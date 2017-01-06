@@ -206,7 +206,7 @@ class TrillSpanner(Spanner):
 
     @property
     def is_harmonic(self):
-        r'''Is true when trill pitch note head should print as a white diamond.
+        r'''Is true when trill pitch note-head should print as a white diamond.
         Otherwise false.
 
         ..  container:: example

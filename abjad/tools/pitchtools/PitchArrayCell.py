@@ -143,6 +143,15 @@ class PitchArrayCell(AbjadObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_parent_row',
+        '_pitches',
+        '_row_parent',
+        '_width',
+        )
+
     ### INTIALIZER ###
 
     def __init__(self, pitches=None, width=1):
@@ -162,11 +171,6 @@ class PitchArrayCell(AbjadObject):
         self._parent_row = None
 
     ### SPECIAL METHODS ###
-
-    def __getstate__(self):
-        r'''Gets object state.
-        '''
-        return vars(self)
 
     def __str__(self):
         r'''Gets string representation of pitch array cell.

@@ -62,6 +62,14 @@ class PitchArrayRow(AbjadObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_cells',
+        '_parent_array',
+        '_pitch_range',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, cells=None):
@@ -152,11 +160,6 @@ class PitchArrayRow(AbjadObject):
         else:
             message = 'must be int or slice.'
             raise ValueError(message)
-
-    def __getstate__(self):
-        r'''Gets state of pitch array row.
-        '''
-        return vars(self)
 
     def __hash__(self):
         r'''Hashes pitch array row.

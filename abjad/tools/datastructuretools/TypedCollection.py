@@ -186,7 +186,7 @@ class TypedCollection(AbjadObject):
         Returns string or none.
         '''
         if self._expression is not None:
-            return self._expression.get_string(name=self._name)
+            return self._expression.get_formula_string(name=self._name)
         return self._name
 
     @property

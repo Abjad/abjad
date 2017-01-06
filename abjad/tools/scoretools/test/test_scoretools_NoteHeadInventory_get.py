@@ -4,7 +4,7 @@ import pytest
 
 
 def test_scoretools_NoteHeadInventory_get_01():
-    r'''Get note heads by pitch number.
+    r'''Get note-heads by pitch number.
     '''
 
     chord = Chord("<c' d' b'>4")
@@ -20,7 +20,7 @@ def test_scoretools_NoteHeadInventory_get_01():
 
 
 def test_scoretools_NoteHeadInventory_get_02():
-    r'''Get note heads by LilyPond input string.
+    r'''Get note-heads by LilyPond input string.
     '''
 
     chord = Chord("<c' d' b'>4")
@@ -36,7 +36,7 @@ def test_scoretools_NoteHeadInventory_get_02():
 
 
 def test_scoretools_NoteHeadInventory_get_03():
-    r'''Get note heads by pitch.
+    r'''Get note-heads by pitch.
     '''
 
     chord = Chord("<c' d' b'>4")
@@ -55,7 +55,7 @@ def test_scoretools_NoteHeadInventory_get_03():
 
 
 def test_scoretools_NoteHeadInventory_get_04():
-    '''Raise exceptions when chord has too few or too many note heads.
+    '''Raise exceptions when chord has too few or too many note-heads.
     '''
 
     chord = Chord("<c' d' d'>4")

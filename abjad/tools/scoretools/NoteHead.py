@@ -7,7 +7,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 @functools.total_ordering
 class NoteHead(AbjadObject):
-    r'''A note head.
+    r'''A note-head.
 
     ::
 
@@ -208,10 +208,10 @@ class NoteHead(AbjadObject):
     def _get_lilypond_format(self):
         from abjad.tools import systemtools
         from abjad.tools import scoretools
-        # make sure note head has pitch
+        # make sure note-head has pitch
         assert self.written_pitch
         result = []
-        # format chord note head with optional tweaks
+        # format chord note-head with optional tweaks
         if self.is_parenthesized:
             result.append(r'\parenthesize')
         if isinstance(self._client, scoretools.Chord):
@@ -222,7 +222,7 @@ class NoteHead(AbjadObject):
                         systemtools.LilyPondFormatManager.format_lilypond_attribute(key),
                         systemtools.LilyPondFormatManager.format_lilypond_value(value)),
                         )
-        # format note head pitch
+        # format note-head pitch
         kernel = format(self.written_pitch)
         if self.is_forced:
             kernel += '!'
@@ -230,7 +230,7 @@ class NoteHead(AbjadObject):
             kernel += '?'
         result.append(kernel)
         result = '\n'.join(result)
-        # return formatted note head
+        # return formatted note-head
         return result
 
     ### PUBLIC PROPERTIES ###

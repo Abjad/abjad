@@ -2,7 +2,43 @@
 
 
 def detach(prototype, component_expression=None):
-    r'''Detaches from `component_expression` all items matching `prototype`.
+    r'''Detaches `prototype` indicators from `component_expression`.
+
+    ..  container:: example
+
+        Detaches articulations from first note in staff:
+
+        ::
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> attach(Articulation('>'), staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4 -\accent
+                d'4
+                e'4
+                f'4
+            }
+
+        ::
+
+            >>> detach(Articulation, staff[0])
+            (Articulation('>'),)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
 
     Returns tuple of zero or more detached items.
     '''

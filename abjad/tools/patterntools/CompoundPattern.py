@@ -1350,7 +1350,7 @@ class CompoundPattern(TypedTuple):
         return new(self, items=patterns)
 
     def rotate(self, n=0):
-        r'''Rotates compound pattern.
+        r'''Rotates compound pattern by index `n`.
 
         ..  container:: example
 

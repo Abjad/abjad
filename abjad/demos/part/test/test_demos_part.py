@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import pytest
-#pytest.skip('FIXME: test runs endlessly without terminating.')
 from abjad.demos.part.make_part_lilypond_file import make_part_lilypond_file
 
 

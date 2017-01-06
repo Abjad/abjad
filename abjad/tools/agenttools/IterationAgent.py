@@ -15,7 +15,7 @@ class IterationAgent(abctools.AbjadObject):
 
     ..  container:: example
 
-        **Example.** Iterates components:
+        **Example 1.** Iterates components:
 
         ::
 

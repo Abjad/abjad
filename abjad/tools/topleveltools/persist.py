@@ -2,21 +2,40 @@
 
 
 def persist(expr):
-    r'''Persists `expr`.
+    r'''Makes persistence agent.
 
     ..  container:: example
+
+        Persists staff as LilyPond file:
 
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
             >>> show(staff) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
+        ::
+
+            >>> persist(staff).as_ly() # doctest: +SKIP
+
+    ..  container:: example
+
+        Returns persistence agent:
+
         ::
 
             >>> persist(staff)
             PersistenceAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
-    Returns score mutation agent.
     '''
     from abjad.tools import agenttools
     return agenttools.PersistenceAgent(expr)

@@ -322,7 +322,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 1.** Get note heads in chord:
+            **Example 1.** Get note-heads in chord:
 
             ::
 
@@ -348,7 +348,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 2.** Set note heads with pitch names:
+            **Example 2.** Set note-heads with pitch names:
 
             ::
 
@@ -367,7 +367,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 3.** Set note heads with pitch numbers:
+            **Example 3.** Set note-heads with pitch numbers:
 
                 >>> chord = Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
@@ -382,7 +382,7 @@ class Chord(Leaf):
                 >>> print(format(chord))
                 <e'' f'' g''>4
 
-        Set note heads with any iterable.
+        Set note-heads with any iterable.
 
         Returns tuple.
         '''

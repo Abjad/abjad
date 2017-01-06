@@ -460,9 +460,9 @@ class PitchClassSegment(Segment):
             message = message.format(segment)
             raise TypeError(message)
         items = self.items + segment.items
-        string_expression = '{{}} + {}'.format(segment.name)
-        markup_expression = expressiontools.Expression()
-        markup_expression = markup_expression.make_callback(
+        formula_string_template = '{{}} + {}'.format(segment.name)
+        formula_markup_expression = expressiontools.Expression()
+        formula_markup_expression = formula_markup_expression.append_callback(
             'Markup({})'
             )
         segment_expression_markup = \
@@ -474,7 +474,7 @@ class PitchClassSegment(Segment):
                 segment_expression_markup,
                 'storage',
                 )
-        markup_expression = markup_expression.make_callback(
+        formula_markup_expression = formula_markup_expression.append_callback(
             "{{}} + Markup('+') + {}".format(segment_expression_markup)
             )
         segment = new(self, items=items, name=self._name)
@@ -482,9 +482,9 @@ class PitchClassSegment(Segment):
             self,
             segment,
             '__add__',
-            direction=Right,
-            markup_expression=markup_expression,
-            string_expression=string_expression,
+            formula_markup_expression=formula_markup_expression,
+            orientation=Right,
+            formula_string_template=formula_string_template,
             )
         return segment
 
@@ -796,23 +796,23 @@ class PitchClassSegment(Segment):
                 stop=stop,
                 step=step,
                 )
-            string_expression = '{}' + subscript_string
-            markup_expression = expressiontools.Expression()
-            markup_expression = markup_expression.make_callback(
+            formula_string_template = '{}' + subscript_string
+            formula_markup_expression = expressiontools.Expression()
+            formula_markup_expression = formula_markup_expression.append_callback(
                 'Markup({})',
                 )
             subscript_markup = abjad.Markup(subscript_string).sub()
             template = 'Markup.concat([{{}}, Markup({!r}).sub()])'
             template = template.format(subscript_string)
-            markup_expression = markup_expression.make_callback(template)
+            formula_markup_expression = formula_markup_expression.append_callback(template)
             expressiontools.Expression._track_expression(
                 self,
                 result,
                 '__getitem__',
-                direction=Right,
-                markup_expression=markup_expression,
+                formula_markup_expression=formula_markup_expression,
+                orientation=Right,
                 precedence=100,
-                string_expression=string_expression,
+                formula_string_template=formula_string_template,
                 )
         return result
 
@@ -1261,12 +1261,12 @@ class PitchClassSegment(Segment):
             else:
                 number = int(number)
             numbers.append(number)
-        string_expression = 'A({})'
-        markup_expression = expressiontools.Expression()
-        markup_expression = markup_expression.make_callback(
+        formula_string_template = 'A({})'
+        formula_markup_expression = expressiontools.Expression()
+        formula_markup_expression = formula_markup_expression.append_callback(
             'Markup({})'
             )
-        markup_expression = markup_expression.make_callback(
+        formula_markup_expression = formula_markup_expression.append_callback(
             "Markup.concat([Markup('A'), {}])",
             )
         segment = new(self, items=numbers, name=self._name)
@@ -1274,8 +1274,8 @@ class PitchClassSegment(Segment):
             self,
             segment,
             'alpha',
-            markup_expression=markup_expression,
-            string_expression=string_expression,
+            formula_markup_expression=formula_markup_expression,
+            formula_string_template=formula_string_template,
             )
         return segment
 
@@ -1565,26 +1565,26 @@ class PitchClassSegment(Segment):
 
         '''
         items = (pc.invert(axis=axis) for pc in self)
-        markup_expression = expressiontools.Expression()
-        markup_expression = markup_expression.make_callback(
+        formula_markup_expression = expressiontools.Expression()
+        formula_markup_expression = formula_markup_expression.append_callback(
             'Markup({})',
             )
         if axis is None:
-            string_expression = 'I({})'
+            formula_string_template = 'I({})'
             template = "Markup.concat(['I', {}])"
         else:
-            string_expression = 'I{}({{}})'
-            string_expression = string_expression.format(axis)
+            formula_string_template = 'I{}({{}})'
+            formula_string_template = formula_string_template.format(axis)
             template = "Markup.concat(['I', Markup({}).sub() {{}}])"
             template = template.format(axis)
-        markup_expression = markup_expression.make_callback(template)
+        formula_markup_expression = formula_markup_expression.append_callback(template)
         segment = new(self, items=items, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             'invert',
-            markup_expression=markup_expression,
-            string_expression=string_expression,
+            formula_markup_expression=formula_markup_expression,
+            formula_string_template=formula_string_template,
             )
         return segment
 
@@ -1886,22 +1886,22 @@ class PitchClassSegment(Segment):
             for pc in self
             ]
 
-        string_expression = 'M{n}({{}})'
-        string_expression = string_expression.format(n=n)
-        markup_expression = expressiontools.Expression()
-        markup_expression = markup_expression.make_callback(
+        formula_string_template = 'M{n}({{}})'
+        formula_string_template = formula_string_template.format(n=n)
+        formula_markup_expression = expressiontools.Expression()
+        formula_markup_expression = formula_markup_expression.append_callback(
             'Markup({})',
             )
         template = "Markup.concat(['M', Markup({n}).sub(), {{}}])"
         template = template.format(n=n)
-        markup_expression = markup_expression.make_callback(template)
+        formula_markup_expression = formula_markup_expression.append_callback(template)
         segment = new(self, items=items, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             'multiply',
-            markup_expression=markup_expression,
-            string_expression=string_expression,
+            formula_markup_expression=formula_markup_expression,
+            formula_string_template=formula_string_template,
             )
         return segment
 
@@ -2027,12 +2027,12 @@ class PitchClassSegment(Segment):
 
         '''
         items = reversed(self)
-        string_expression = 'R({})'
-        markup_expression = expressiontools.Expression()
-        markup_expression = markup_expression.make_callback(
+        formula_string_template = 'R({})'
+        formula_markup_expression = expressiontools.Expression()
+        formula_markup_expression = formula_markup_expression.append_callback(
             'Markup({})',
             )
-        markup_expression = markup_expression.make_callback(
+        formula_markup_expression = formula_markup_expression.append_callback(
             "Markup.concat(['R', {}])",
             )
         segment = new(self, items=items, name=self._name)
@@ -2040,13 +2040,13 @@ class PitchClassSegment(Segment):
             self,
             segment,
             'retrograde',
-            markup_expression=markup_expression,
-            string_expression=string_expression,
+            formula_markup_expression=formula_markup_expression,
+            formula_string_template=formula_string_template,
             )
         return segment
 
     def rotate(self, n=0, stravinsky=False):
-        r'''Rotates segment.
+        r'''Rotates segment by index `n`.
 
         ..  container:: example
 
@@ -2274,13 +2274,13 @@ class PitchClassSegment(Segment):
             abbreviation = 'rs'
         else:
             abbreviation = 'r'
-        string_expression = '{abbreviation}{n}({{}})'
-        string_expression = string_expression.format(
+        formula_string_template = '{abbreviation}{n}({{}})'
+        formula_string_template = formula_string_template.format(
             abbreviation=abbreviation,
             n=original_n,
             )
-        markup_expression = expressiontools.Expression()
-        markup_expression = markup_expression.make_callback('Markup({})')
+        formula_markup_expression = expressiontools.Expression()
+        formula_markup_expression = formula_markup_expression.append_callback('Markup({})')
         if 0 <= original_n:
             hspace = 'Markup.hspace(-0.2)'
         else:
@@ -2294,14 +2294,14 @@ class PitchClassSegment(Segment):
             hspace=hspace,
             subscript=subscript,
             )
-        markup_expression = markup_expression.make_callback(template)
+        formula_markup_expression = formula_markup_expression.append_callback(template)
         segment = new(self, items=items, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             'rotate',
-            markup_expression=markup_expression,
-            string_expression=string_expression,
+            formula_markup_expression=formula_markup_expression,
+            formula_string_template=formula_string_template,
             )
         return segment
 
@@ -2477,10 +2477,10 @@ class PitchClassSegment(Segment):
 
         '''
         items = (pitch_class.transpose(n=n) for pitch_class in self)
-        string_expression = 'T{n}({{}})'
-        string_expression = string_expression.format(n=n)
-        markup_expression = expressiontools.Expression()
-        markup_expression = markup_expression.make_callback(
+        formula_string_template = 'T{n}({{}})'
+        formula_string_template = formula_string_template.format(n=n)
+        formula_markup_expression = expressiontools.Expression()
+        formula_markup_expression = formula_markup_expression.append_callback(
             'Markup({})',
             )
         if 0 <= n:
@@ -2491,14 +2491,14 @@ class PitchClassSegment(Segment):
         subscript = subscript.format(n=n)
         template = "Markup.concat(['T', {hspace}, {subscript}, {{}}])"
         template = template.format(hspace=hspace, subscript=subscript) 
-        markup_expression = markup_expression.make_callback(template)
+        formula_markup_expression = formula_markup_expression.append_callback(template)
         segment = new(self, items=items, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             'transpose',
-            markup_expression=markup_expression,
-            string_expression=string_expression,
+            formula_markup_expression=formula_markup_expression,
+            formula_string_template=formula_string_template,
             )
         return segment
 

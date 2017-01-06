@@ -4,8 +4,8 @@ from abjad.tools.selectiontools import Selection
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_01():
-    r'''True for strictly contiguous leaves in voice.
-    False for other time orderings of leaves in voice.
+    r'''Is true for strictly contiguous leaves in voice.
+    Is false for other time orderings of leaves in voice.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
@@ -33,8 +33,8 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_02():
-    r'''True for unincorporated components when orphans allowed.
-    False to unincorporated components when orphans not allowed.
+    r'''Is true for unincorporated components when orphans allowed.
+    Is false for unincorporated components when orphans not allowed.
     '''
 
     voice = Voice(r'''
@@ -77,8 +77,8 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_03():
-    r'''True for orphan leaves when allow_orphans is True.
-    False for orphan leaves when allow_orphans is False.
+    r'''Is true for orphan leaves when allow_orphans is true.
+    Is false for orphan leaves when allow_orphans is false.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
@@ -89,7 +89,7 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_04():
-    r'''Empty list returns True.
+    r'''Empty list returns true.
     '''
 
     sequence = []

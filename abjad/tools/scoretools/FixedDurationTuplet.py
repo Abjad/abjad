@@ -103,7 +103,7 @@ class FixedDurationTuplet(Tuplet):
         new_target_duration = multiplier * old_target_duration
         # change tuplet target duration
         self.target_duration = new_target_duration
-        # if multiplier is note head assignable,
+        # if multiplier is note-head assignable,
         # scale contents graphically
         if multiplier.is_assignable:
             for component in self[:]:

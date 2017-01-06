@@ -2,10 +2,56 @@
 import types
 
 
-def new(expr, **kwargs):
-    r'''Makes new `expr` with optional new `kwargs`.
+def new(expr, **keywords):
+    r'''Makes new `expr` with optional `keywords`.
 
-    Returns new object with the same type as `expr`.
+    ..  container:: example
+
+        Makes markup with new direction:
+
+        ::
+
+            >>> markup = Markup('Andante assai', direction=Up).italic()
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> attach(markup, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                    ^ \markup {
+                        \italic
+                            "Andante assai"
+                        }
+                d'4
+                e'4
+                f'4
+            }
+
+        ::
+
+            >>> markup = new(markup, direction=Down)
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> attach(markup, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                    _ \markup {
+                        \italic
+                            "Andante assai"
+                        }
+                d'4
+                e'4
+                f'4
+            }
+
+    Returns new object with type equal to that of `expr`.
     '''
     from abjad.tools import systemtools
     if expr is None:
@@ -13,7 +59,7 @@ def new(expr, **kwargs):
     agent = systemtools.StorageFormatAgent(expr)
     template_dict = agent.get_template_dict()
     recursive_arguments = {}
-    for key, value in kwargs.items():
+    for key, value in keywords.items():
         if '__' in key:
             key, divider, subkey = key.partition('__')
             if key not in recursive_arguments:

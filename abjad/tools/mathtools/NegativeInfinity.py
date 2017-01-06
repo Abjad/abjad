@@ -3,36 +3,44 @@ from abjad.tools.mathtools.Infinity import Infinity
 
 
 class NegativeInfinity(Infinity):
-    r'''Object-oriented negative infinity.
+    r'''Negative infinity.
 
-    All numbers compare greater than negative infinity:
+    ..  container:: example
 
-    ::
+        All numbers compare greater than negative infinity:
 
-        >>> NegativeInfinity < -9999999
-        True
+        ::
 
-    Negative infinity compares equal to itself:
+            >>> NegativeInfinity < -9999999
+            True
 
-    ::
+    ..  container:: example
 
-        >>> NegativeInfinity == NegativeInfinity
-        True
+        Negative infinity compares equal to itself:
 
-    Negative infinity compares less than infinity:
+        ::
 
-    ::
+            >>> NegativeInfinity == NegativeInfinity
+            True
 
-        >>> NegativeInfinity < Infinity
-        True
+    ..  container:: example
 
-    Negative infinity is initialize at start-up and is available in the
-    global Abjad namespace.
+        Negative infinity compares less than infinity:
+
+        ::
+
+            >>> NegativeInfinity < Infinity
+            True
+
+    Initializes as a system singleton at start-up.
+
+    Available as a built-in after Abjad start.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

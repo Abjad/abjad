@@ -219,8 +219,7 @@ class Retrograde(AbjadValueObject):
     def period(self):
         r'''Gets optional period of retrograde.
 
-        ..  todo:: Deprecated. Use SequenceExpression followed by Retrograde
-            instead.
+        ..  todo:: Deprecated. Use Expression followed by Retrograde instead.
 
         ..  container:: example
 

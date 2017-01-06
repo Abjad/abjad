@@ -584,7 +584,7 @@ def test_agenttools_MutationAgent_fuse_18():
 def test_agenttools_MutationAgent_fuse_19():
     r'''Fusing measures with power-of-two denominators
     to measures without power-of-two denominators.
-    With change in number of note heads because of non-power-of-two multiplier.
+    With change in number of note-heads because of non-power-of-two multiplier.
     '''
 
     measure_1 = Measure((9, 80), [])

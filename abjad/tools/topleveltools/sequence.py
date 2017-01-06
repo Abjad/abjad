@@ -6,7 +6,7 @@ def sequence(expr=None, name=None):
 
     ..  container:: example
 
-        **Example 1.** Makes sequence:
+        Makes sequence:
 
         ::
 
@@ -15,7 +15,7 @@ def sequence(expr=None, name=None):
 
     ..  container:: example
 
-        **Example 2.** Flattens, reverses and slices sequence:
+        Flattens, reverses and slices sequence:
 
         ::
 
@@ -43,16 +43,24 @@ def sequence(expr=None, name=None):
 
     ..  container:: example
 
-        **Example 3.** Makes sequence expression:
+        Makes sequence expression:
 
         ::
 
-            >>> sequence()
-            SequenceExpression()
+            >>> expression = sequence()
+            >>> f(expression)
+            expressiontools.Expression(
+                callbacks=(
+                    expressiontools.Expression(
+                        evaluation_template='Sequence(items={})',
+                        formula_string_template='sequence({})',
+                        ),
+                    ),
+                )
 
     ..  container:: example
 
-        **Example 4.** Makes expression to flatten, reverse and slice sequence:
+        Makes expression to flatten, reverse and slice sequence:
 
         ::
 
@@ -63,35 +71,38 @@ def sequence(expr=None, name=None):
 
         ::
 
-            >>> print(format(expression))
-            expressiontools.SequenceExpression(
+            >>> f(expression)
+            expressiontools.Expression(
                 callbacks=(
-                    expressiontools.Callback(
-                        'Sequence.flatten',
-                        arguments=[
-                            ('classes', None),
-                            ('depth', -1),
-                            ('indices', None),
-                            ],
-                        string_expression='flatten({})',
+                    expressiontools.Expression(
+                        evaluation_template='Sequence(items={})',
+                        formula_string_template='sequence({})',
                         ),
-                    expressiontools.Callback(
-                        'Sequence.reverse',
-                        string_expression='R({})',
+                    expressiontools.Expression(
+                        evaluation_template='{}.flatten()',
+                        formula_string_template='flatten({})',
                         ),
-                    expressiontools.Callback(
-                        'Sequence.__getitem__',
-                        arguments=[
-                            (
-                                'i',
-                                slice(-3, None, None),
+                    expressiontools.Expression(
+                        evaluation_template='{}.reverse()',
+                        formula_markup_expression=expressiontools.Expression(
+                            callbacks=(
+                                expressiontools.Expression(
+                                    evaluation_template='Markup({})',
+                                    ),
+                                expressiontools.Expression(
+                                    evaluation_template="Markup.concat(['R', {}])",
+                                    ),
                                 ),
-                            ],
-                        string_expression='{}[-3:]',
+                            ),
+                        formula_string_template='R({})',
+                        ),
+                    expressiontools.Expression(
+                        evaluation_template='{}.__getitem__(i=slice(-3, None, None))',
+                        formula_string_template='{}[-3:]',
                         ),
                     ),
                 )
-
+        
         Works with numbers:
 
         ::
@@ -118,6 +129,8 @@ def sequence(expr=None, name=None):
     from abjad.tools import expressiontools
     from abjad.tools import sequencetools
     if expr is None:
-        return expressiontools.SequenceExpression()
+        expression = expressiontools.Expression()
+        expression = expression.sequence(name=name)
+        return expression
     else:
         return sequencetools.Sequence(expr, name=name)

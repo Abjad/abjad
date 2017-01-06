@@ -51,6 +51,14 @@ class PitchArrayColumn(AbjadValueObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_cells',
+        '_column_index',
+        '_parent_array',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, cells=None):
@@ -81,11 +89,6 @@ class PitchArrayColumn(AbjadValueObject):
         Returns pitch arrach cell.
         '''
         return self.cells[arg]
-
-    def __getstate__(self):
-        r'''Gets object state.
-        '''
-        return vars(self)
 
     def __hash__(self):
         r'''Hashes pitch array column.

@@ -2,7 +2,7 @@
 import six
 from abjad.tools import systemtools
 from abjad.tools import datastructuretools
-#from abjad.tools import mathtools
+
 
 # load constants into __builtins__ namespace
 if six.PY3:

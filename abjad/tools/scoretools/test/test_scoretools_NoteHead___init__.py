@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_scoretools_NoteHead___init___01():
-    r'''Initialize note head by number.
+    r'''Initialize note-head by number.
     '''
 
     notehead = scoretools.NoteHead(6)
@@ -11,7 +11,7 @@ def test_scoretools_NoteHead___init___01():
 
 
 def test_scoretools_NoteHead___init___02():
-    r'''Initialize note head by LilyPond-style pitch string.
+    r'''Initialize note-head by LilyPond-style pitch string.
     '''
 
     notehead = scoretools.NoteHead('cs,,,')
@@ -19,7 +19,7 @@ def test_scoretools_NoteHead___init___02():
 
 
 def test_scoretools_NoteHead___init___03():
-    r'''Initialize note head by other note head instance.
+    r'''Initialize note-head by other note-head instance.
     '''
 
     notehead = scoretools.NoteHead(6)
@@ -31,7 +31,7 @@ def test_scoretools_NoteHead___init___03():
 
 
 def test_scoretools_NoteHead___init___04():
-    r'''Initialize note head with tweak pairs.
+    r'''Initialize note-head with tweak pairs.
     '''
 
     note_head = scoretools.NoteHead("cs''", tweak_pairs=(('color', 'red'),))

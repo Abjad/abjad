@@ -896,7 +896,7 @@ class Pattern(AbjadValueObject):
         return new(self, indices=indices)
 
     def rotate(self, n=0):
-        r'''Rotates pattern.
+        r'''Rotates pattern by index `n`.
 
         ..  container:: example
 

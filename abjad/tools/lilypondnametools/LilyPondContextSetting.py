@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondContextSetting(AbjadObject):
-    r'''A LilyPond context setting.
+    r'''LilyPond context setting.
 
     ::
 

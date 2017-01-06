@@ -14,7 +14,7 @@ path_2 = os.path.join(
 
 
 def test_systemtools_TestManager__compare_text_files_01():
-    r'''True when lines are exactly the same.
+    r'''Is true when lines are exactly the same.
     '''
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
@@ -28,7 +28,7 @@ def test_systemtools_TestManager__compare_text_files_01():
 
 
 def test_systemtools_TestManager__compare_text_files_02():
-    r'''True when white space differs.
+    r'''Is true when white space differs.
     '''
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):

@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class NoteHeadInventory(TypedList):
-    r'''An ordered list of note heads.
+    r'''An ordered list of note-heads.
 
     ::
 
@@ -98,11 +98,11 @@ class NoteHeadInventory(TypedList):
     ### PUBLIC METHODS ###
 
     def get(self, pitch):
-        r'''Gets note head in note head inventory by `pitch`.
+        r'''Gets note-head in note-head inventory by `pitch`.
 
         ..  container:: example
 
-            **Example 1.** Gets note head by pitch name:
+            **Example 1.** Gets note-head by pitch name:
 
             ::
 
@@ -127,7 +127,7 @@ class NoteHeadInventory(TypedList):
 
         ..  container:: example
 
-            **Example 2.** Gets note head by pitch number:
+            **Example 2.** Gets note-head by pitch number:
 
             ::
 
@@ -150,13 +150,13 @@ class NoteHeadInventory(TypedList):
                     f''
                 >4
 
-        Raises missing note head error when chord contains no
-        note head with `pitch`.
+        Raises missing note-head error when chord contains no
+        note-head with `pitch`.
 
-        Raises extra note head error when chord contains more than
-        one note head with `pitch`.
+        Raises extra note-head error when chord contains more than
+        one note-head with `pitch`.
 
-        Returns note head.
+        Returns note-head.
         '''
         from abjad.tools import pitchtools
         result = []
@@ -166,19 +166,19 @@ class NoteHeadInventory(TypedList):
                 result.append(note_head)
         count = len(result)
         if count == 0:
-            message = 'missing note head.'
+            message = 'missing note-head.'
             raise ValueError(message)
         elif count == 1:
             note_head = result[0]
             return note_head
         else:
-            message = 'extra note head.'
+            message = 'extra note-head.'
             raise ValueError(message)
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def client(self):
-        r'''The note head inventory's chord client.
+        r'''The note-head inventory's chord client.
         '''
         return self._client

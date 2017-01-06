@@ -180,11 +180,11 @@ class Note(Leaf):
 
     @property
     def note_head(self):
-        r'''Gets and sets note head of note.
+        r'''Gets and sets note-head of note.
 
         .. container:: example
 
-            Gets note head:
+            Gets note-head:
 
             ::
 
@@ -194,7 +194,7 @@ class Note(Leaf):
 
         ..  container:: example
 
-            Sets note head:
+            Sets note-head:
 
             ::
 
@@ -203,7 +203,7 @@ class Note(Leaf):
                 >>> note
                 Note("d''8.")
 
-        Returns note head.
+        Returns note-head.
         '''
         return self._note_head
 

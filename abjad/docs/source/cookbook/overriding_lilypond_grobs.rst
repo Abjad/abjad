@@ -22,7 +22,7 @@ LilyPond grobs control the typographic details of the score:
     show(staff)
 
 In the example above LilyPond creates a grob for every printed glyph.  This
-includes the clef and time signature as well as the note heads, stems and
+includes the clef and time signature as well as the note-heads, stems and
 slurs. If the example included beams, articulations or an explicit key
 signature then LilyPond would create grobs for those as well.
 

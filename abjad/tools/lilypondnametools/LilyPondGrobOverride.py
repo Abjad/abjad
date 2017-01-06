@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondGrobOverride(AbjadObject):
-    r'''A LilyPond grob override.
+    r'''LilyPond grob override.
 
     ::
 

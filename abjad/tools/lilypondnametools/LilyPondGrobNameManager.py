@@ -6,14 +6,53 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 
 class LilyPondGrobNameManager(LilyPondNameManager):
     '''LilyPond grob name manager.
+
+    ..  container:: example
+
+        Initializes with toplevel override function:
+
+        ::
+
+            >>> note = Note("c'4")
+            >>> override(note)
+            LilyPondGrobNameManager()
+
     '''
 
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
-        r'''Gets attribute `name` from LilyPond grob name manager.
+        r'''Gets LilyPond name manager keyed to `name`.
 
-        Returns string.
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> override(staff).note_head.color = 'red'
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override NoteHead.color = #red
+                } {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        ..  container:: example
+
+            Returns LilyPond name manager:
+
+            ::
+
+                >>> override(staff).note_head
+                LilyPondNameManager(('color', 'red'))
+
         '''
         from abjad import ly
         from abjad.tools import lilypondnametools

@@ -2,7 +2,7 @@ from abjad.tools.scoretools.NoteHead import NoteHead
 
 
 class DrumNoteHead(NoteHead):
-    r'''A drum note head.
+    r'''A drum note-head.
 
     ::
 

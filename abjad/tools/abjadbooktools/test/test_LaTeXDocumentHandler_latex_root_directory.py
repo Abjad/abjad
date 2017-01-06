@@ -40,8 +40,8 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     with open(expected_path, 'r') as file_pointer:
         expected_contents = file_pointer.read()
     expected_asset_names = (
-        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.ly',
-        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.pdf',
+        'lilypond-6737d707e144fd1f0af98dd8007ebb4b.ly',
+        'lilypond-6737d707e144fd1f0af98dd8007ebb4b.pdf',
         )
 
     def setUp(self):
@@ -91,7 +91,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             >>> note = Note(0, (1, 4))
             >>> show(note)
             \\end{lstlisting}
-            \\noindent\\includegraphics{assets/lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.pdf}
+            \\noindent\\includegraphics{assets/lilypond-6737d707e144fd1f0af98dd8007ebb4b.pdf}
             %%% ABJADBOOK END %%%
             ''',
             )
@@ -109,6 +109,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         assert os.path.exists(self.assets_directory)
         with open(self.target_path, 'r') as file_pointer:
             target_contents = file_pointer.read()
-        assert target_contents == self.expected_contents
+        assert stringtools.normalize(target_contents) == \
+            stringtools.normalize(self.expected_contents)
         assert tuple(sorted(os.listdir(self.assets_directory))) == \
             self.expected_asset_names

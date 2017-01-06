@@ -6,14 +6,53 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 
 class LilyPondSettingNameManager(LilyPondNameManager):
     '''LilyPond setting name manager.
+
+    ..  container:: example
+
+        Initializes with toplevel function:
+
+        ::
+
+            >>> note = Note("c'4")
+            >>> set_(note)
+            LilyPondSettingNameManager()
+
     '''
 
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
-        r'''Gets setting `name` from LilyPond setting name manager.
+        r'''Gets arbitrary object keyed to `name`.
 
-        Returns string.
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> set_(staff).instrument_name = Markup('Vn. I')
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    instrumentName = \markup { "Vn. I" }
+                } {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        ..  container:: example
+
+            Returns arbitrary object keyed to `name`:
+
+            ::
+
+                >>> set_(staff).instrument_name
+                Markup(contents=('Vn. I',))
+
         '''
         from abjad import ly
         from abjad.tools import lilypondnametools

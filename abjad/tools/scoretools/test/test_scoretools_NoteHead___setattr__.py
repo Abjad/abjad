@@ -4,7 +4,7 @@ from abjad import *
 
 
 def test_scoretools_NoteHead___setattr___01():
-    r'''Slots constrain note head attributes.
+    r'''Slots constrain note-head attributes.
     '''
 
     note_head = scoretools.NoteHead("cs''")

@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_scoretools_Chord___format___01():
-    r'''Format chord with one note head.
+    r'''Format chord with one note-head.
     '''
 
     chord = Chord("<cqs'>4")

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-'''The Abjad ``mathtools`` package imports no other Abjad modules.
-
-Do not add modules to mathtools with intrapackage imports.
+'''The Abjad mathtools package imports no other Abjad packages.
 '''
 from abjad.tools import systemtools
 

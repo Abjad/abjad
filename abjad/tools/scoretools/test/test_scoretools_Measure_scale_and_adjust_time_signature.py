@@ -5,7 +5,7 @@ import pytest
 
 def test_scoretools_Measure_scale_and_adjust_time_signature_01():
     r'''Scales power-of-two measure to non-power-of-two measure.
-    No note head rewriting necessary.
+    No note-head rewriting necessary.
     '''
 
     measure = Measure((3, 8), "c'8 d'8 e'8")
@@ -30,7 +30,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_01():
 
 def test_scoretools_Measure_scale_and_adjust_time_signature_02():
     r'''Scale non-power-of-two time signature to power-of-two.
-    No note head rewriting necessary.
+    No note-head rewriting necessary.
     '''
 
     measure = Measure((3, 12), "c'8 d'8 e'8")
@@ -95,7 +95,7 @@ def test_scoretools_Measure_scale_and_adjust_time_signature_04():
 
 def test_scoretools_Measure_scale_and_adjust_time_signature_05():
     r'''Scale power-of-two time signature to non-power-of-two time signature.
-    No note head rewriting necessary.
+    No note-head rewriting necessary.
     '''
 
     measure = Measure((9, 16), "c'16 d'16 e'16 f'16 g'16 a'16 b'16 c''16 d''16")

@@ -15,7 +15,7 @@ PygmentsBridge.latex_formatter = CustomLatexFormatter
 
 ### CORE ###
 add_function_parentheses = True
-copyright = u'2008-2016, Trevor Bača & Josiah Wolf Oberholtzer'
+copyright = u'2008-2017, Trevor Bača & Josiah Wolf Oberholtzer'
 exclude_patterns = []
 extensions = [
     'sphinx.ext.autodoc',
@@ -37,7 +37,7 @@ version = abjad_configuration.get_abjad_version_string()
 html_domain_indices = False
 html_favicon = '_static/favicon.ico'
 html_last_updated_fmt = '%b %d, %Y'
-html_logo = 'abjad-logo.png'
+html_logo = '_static/abjad-logo.png'
 html_show_sourcelink = True
 html_static_path = ['_static']
 html_theme = "sphinx_rtd_theme"
@@ -77,15 +77,15 @@ latex_documents = [
         'manual',
         ),
     ]
-latex_use_parts = True
-latex_domain_indices = False
+#latex_use_parts = True
+latex_toplevel_sectioning = 'chapter' # just guessing?
 ### MAN ###
 man_pages = [
     (
         'index',
         'abjad',
         u'Abjad Documentation',
-        [u'2008-2016, Trevor Bača & Josiah Wolf Oberholtzer'],
+        [u'2008-2017, Trevor Bača & Josiah Wolf Oberholtzer'],
         1,
         )
     ]
@@ -95,7 +95,7 @@ texinfo_documents = [
         'index',
         'Abjad',
         u'Abjad Documentation',
-        u'2008-2016, Trevor Bača & Josiah Wolf Oberholtzer',
+        u'2008-2017, Trevor Bača & Josiah Wolf Oberholtzer',
         'Abjad',
         'One line description of project.',
         'Miscellaneous',

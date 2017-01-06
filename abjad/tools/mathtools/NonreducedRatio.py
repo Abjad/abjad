@@ -9,7 +9,7 @@ class NonreducedRatio(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Nonreduced ratio of two numbers:
+        Nonreduced ratio of two numbers:
 
         ::
 
@@ -18,7 +18,7 @@ class NonreducedRatio(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Nonreduced ratio of three numbers:
+        Nonreduced ratio of three numbers:
 
             >>> mathtools.NonreducedRatio((2, 4, 2))
             NonreducedRatio((2, 4, 2))
@@ -175,7 +175,7 @@ class NonreducedRatio(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Nonreduced ratio of two numbers:
+            Nonreduced ratio of two numbers:
 
             ::
 
@@ -185,7 +185,7 @@ class NonreducedRatio(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Nonreduced ratio of three numbers:
+            Nonreduced ratio of three numbers:
 
             ::
 
@@ -210,7 +210,7 @@ class NonreducedRatio(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Nonreduced ratio of two numbers:
+            Nonreduced ratio of two numbers:
 
             ::
 
@@ -220,7 +220,7 @@ class NonreducedRatio(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Nonreduced ratio of three numbers:
+            Nonreduced ratio of three numbers:
 
             ::
 

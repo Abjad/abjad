@@ -143,10 +143,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         tagline = ##f
                     }
 
-                    \layout {}
-
-                    \paper {}
-
                     \score {
                         {
                             c'1
@@ -163,10 +159,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     \header {
                         tagline = ##f
                     }
-
-                    \layout {}
-
-                    \paper {}
 
                     \score {
                         {
@@ -211,10 +203,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         tagline = ##f
                     }
 
-                    \layout {}
-
-                    \paper {}
-
                     \score {
                         {
                             c'1
@@ -227,10 +215,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     \header {
                         tagline = ##f
                     }
-
-                    \layout {}
-
-                    \paper {}
 
                     \score {
                         {
@@ -558,10 +542,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         \header {
                             tagline = ##f
                         }
-
-                        \layout {}
-
-                        \paper {}
 
                         \score {
                             \new Staff {

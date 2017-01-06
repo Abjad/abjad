@@ -2,11 +2,11 @@
 
 
 def label(expr=None):
-    r'''Labels `expr` or makes label expression.
+    r'''Makes label agent or label expression.
 
     ..  container:: example
 
-        **Example 1.** Labels logical ties with start offsets:
+        Labels logical ties with start offsets:
 
         ::
 
@@ -36,7 +36,7 @@ def label(expr=None):
 
     ..  container:: example
         
-        **Example 2.** Makes label expression:
+        Makes label expression:
 
             >>> expression = label()
             >>> expression = expression.with_start_offsets()
@@ -65,7 +65,7 @@ def label(expr=None):
                 ef'4 ^ \markup { 3/4 }
             }
 
-        See the ``LabelExpression`` API entry for many more examples.
+        See the ``LabelAgent`` API entry for many more examples.
 
     Returns label agent when `expr` is not none.
 
@@ -74,6 +74,8 @@ def label(expr=None):
     from abjad.tools import agenttools
     from abjad.tools import expressiontools
     if expr is None:
-        return expressiontools.LabelExpression()
+        expression = expressiontools.Expression()
+        expression = expression.label()
+        return expression
     else:
         return agenttools.LabelAgent(expr)

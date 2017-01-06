@@ -1187,7 +1187,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            Initializes named pitch from note head:
+            Initializes named pitch from note-head:
 
             ::
 
@@ -1272,7 +1272,7 @@ class NamedPitch(Pitch):
             return named_pitch
         else:
             message = 'pitch carrier {!r} must be'
-            message += ' pitch, note, note head or chord.'
+            message += ' pitch, note, note-head or chord.'
             message = message.format(pitch_carrier)
             raise TypeError(message)
 
@@ -1426,8 +1426,6 @@ class NamedPitch(Pitch):
                 >>> NamedPitch('bf').invert("c'")
                 NamedPitch("d'")
 
-            Default behavior.
-
         ..  container:: example
 
             Inverts pitch around middle C implicitly:
@@ -1441,8 +1439,6 @@ class NamedPitch(Pitch):
 
                 >>> NamedPitch('bf').invert()
                 NamedPitch("d'")
-
-            Default behavior.
 
         ..  container:: example
 

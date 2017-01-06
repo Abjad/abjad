@@ -14,7 +14,7 @@ path_2 = os.path.join(
 
 
 def test_systemtools_TestManager__compare_pdfs_01():
-    r'''True when PDFs are the same.
+    r'''Is true when PDFs are the same.
     '''
 
     with systemtools.FilesystemState(remove=[path_1]):
@@ -24,7 +24,7 @@ def test_systemtools_TestManager__compare_pdfs_01():
 
 
 def test_systemtools_TestManager__compare_pdfs_02():
-    r'''True when PDFs differ but contain the same music.
+    r'''Is true when PDFs differ but contain the same music.
     '''
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):

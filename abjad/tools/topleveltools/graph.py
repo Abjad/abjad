@@ -12,23 +12,290 @@ def graph(
     edge_attributes=None,
     **kwargs
     ):
-    r'''Graphs `expr` with graphviz and opens resulting image in
-    the default image viewer.
+    r'''Graphs `expr`.
+    
+    ..  container:: example
 
-    ::
+        Graphs staff:
 
-        >>> rtm_syntax = '(3 ((2 (2 1)) 2))'
-        >>> rhythm_tree = rhythmtreetools.RhythmTreeParser()(rtm_syntax)[0]
-        >>> print(rhythm_tree.pretty_rtm_format)
-        (3 (
-            (2 (
-                2
-                1))
-            2))
+        ::
 
-    ::
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> graph(staff) # doctest: +SKIP
 
-        >>> topleveltools.graph(rhythm_tree) # doctest: +SKIP
+        ..  doctest::
+
+            >>> print(format(staff.__graph__()))
+            documentationtools.GraphvizGraph(
+                attributes={
+                    'style': 'rounded',
+                    },
+                children=(
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'margin': 0.05,
+                            },
+                        children=(
+                            documentationtools.GraphvizTable(
+                                children=(
+                                    documentationtools.GraphvizTableRow(
+                                        children=(
+                                            documentationtools.GraphvizTableCell(
+                                                label='Staff',
+                                                attributes={
+                                                    'border': 0,
+                                                    },
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                attributes={
+                                    'border': 2,
+                                    'cellpadding': 5,
+                                    'style': 'rounded',
+                                    },
+                                ),
+                            ),
+                        name='Staff',
+                        ),
+                    documentationtools.GraphvizSubgraph(
+                        attributes={
+                            'color': 'grey75',
+                            'penwidth': 2,
+                            },
+                        children=(
+                            documentationtools.GraphvizNode(
+                                attributes={
+                                    'margin': 0.05,
+                                    },
+                                children=(
+                                    documentationtools.GraphvizTable(
+                                        children=(
+                                            documentationtools.GraphvizTableRow(
+                                                children=(
+                                                    documentationtools.GraphvizTableCell(
+                                                        label='Note',
+                                                        attributes={
+                                                            'border': 0,
+                                                            },
+                                                        ),
+                                                    ),
+                                                ),
+                                            documentationtools.GraphvizTableHorizontalRule(),
+                                            documentationtools.GraphvizTableRow(
+                                                children=(
+                                                    documentationtools.GraphvizTableCell(
+                                                        label="c'4",
+                                                        attributes={
+                                                            'border': 0,
+                                                            },
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        attributes={
+                                            'border': 2,
+                                            'cellpadding': 5,
+                                            'style': 'rounded',
+                                            },
+                                        ),
+                                    ),
+                                name='Note_0',
+                                ),
+                            documentationtools.GraphvizNode(
+                                attributes={
+                                    'margin': 0.05,
+                                    },
+                                children=(
+                                    documentationtools.GraphvizTable(
+                                        children=(
+                                            documentationtools.GraphvizTableRow(
+                                                children=(
+                                                    documentationtools.GraphvizTableCell(
+                                                        label='Note',
+                                                        attributes={
+                                                            'border': 0,
+                                                            },
+                                                        ),
+                                                    ),
+                                                ),
+                                            documentationtools.GraphvizTableHorizontalRule(),
+                                            documentationtools.GraphvizTableRow(
+                                                children=(
+                                                    documentationtools.GraphvizTableCell(
+                                                        label="d'4",
+                                                        attributes={
+                                                            'border': 0,
+                                                            },
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        attributes={
+                                            'border': 2,
+                                            'cellpadding': 5,
+                                            'style': 'rounded',
+                                            },
+                                        ),
+                                    ),
+                                name='Note_1',
+                                ),
+                            documentationtools.GraphvizNode(
+                                attributes={
+                                    'margin': 0.05,
+                                    },
+                                children=(
+                                    documentationtools.GraphvizTable(
+                                        children=(
+                                            documentationtools.GraphvizTableRow(
+                                                children=(
+                                                    documentationtools.GraphvizTableCell(
+                                                        label='Note',
+                                                        attributes={
+                                                            'border': 0,
+                                                            },
+                                                        ),
+                                                    ),
+                                                ),
+                                            documentationtools.GraphvizTableHorizontalRule(),
+                                            documentationtools.GraphvizTableRow(
+                                                children=(
+                                                    documentationtools.GraphvizTableCell(
+                                                        label="e'4",
+                                                        attributes={
+                                                            'border': 0,
+                                                            },
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        attributes={
+                                            'border': 2,
+                                            'cellpadding': 5,
+                                            'style': 'rounded',
+                                            },
+                                        ),
+                                    ),
+                                name='Note_2',
+                                ),
+                            documentationtools.GraphvizNode(
+                                attributes={
+                                    'margin': 0.05,
+                                    },
+                                children=(
+                                    documentationtools.GraphvizTable(
+                                        children=(
+                                            documentationtools.GraphvizTableRow(
+                                                children=(
+                                                    documentationtools.GraphvizTableCell(
+                                                        label='Note',
+                                                        attributes={
+                                                            'border': 0,
+                                                            },
+                                                        ),
+                                                    ),
+                                                ),
+                                            documentationtools.GraphvizTableHorizontalRule(),
+                                            documentationtools.GraphvizTableRow(
+                                                children=(
+                                                    documentationtools.GraphvizTableCell(
+                                                        label="f'4",
+                                                        attributes={
+                                                            'border': 0,
+                                                            },
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        attributes={
+                                            'border': 2,
+                                            'cellpadding': 5,
+                                            'style': 'rounded',
+                                            },
+                                        ),
+                                    ),
+                                name='Note_3',
+                                ),
+                            ),
+                        edge_attributes={
+                            },
+                        is_cluster=True,
+                        name='Staff',
+                        node_attributes={
+                            },
+                        ),
+                    ),
+                edge_attributes={
+                    },
+                is_digraph=True,
+                name='G',
+                node_attributes={
+                    'fontname': 'Arial',
+                    'shape': 'none',
+                    },
+                )
+
+    ..  container:: example
+
+        Graphs rhythm tree:
+
+        ::
+
+            >>> rtm_syntax = '(3 ((2 (2 1)) 2))'
+            >>> rhythm_tree = rhythmtreetools.RhythmTreeParser()(rtm_syntax)[0]
+            >>> topleveltools.graph(rhythm_tree) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(rhythm_tree.__graph__()))
+            documentationtools.GraphvizGraph(
+                attributes={
+                    'bgcolor': 'transparent',
+                    'truecolor': True,
+                    },
+                children=(
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'label': '3',
+                            'shape': 'triangle',
+                            },
+                        ),
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'label': '2',
+                            'shape': 'triangle',
+                            },
+                        ),
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'label': '2',
+                            'shape': 'box',
+                            },
+                        ),
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'label': '1',
+                            'shape': 'box',
+                            },
+                        ),
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'label': '2',
+                            'shape': 'box',
+                            },
+                        ),
+                    ),
+                edge_attributes={
+                    },
+                is_digraph=True,
+                name='G',
+                node_attributes={
+                    },
+                )
+
+    Creates GraphViz object.
+    
+    Opens image in default image viewer.
 
     Returns none.
     '''

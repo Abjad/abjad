@@ -207,9 +207,7 @@ class LilyPondFile(AbjadObject):
                 ...     name='Custom Staff',
                 ...     )
                 >>> score = Score([staff], name='Custom Score')
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     score
-                ...     )
+                >>> lilypond_file = lilypondfiletools.LilyPondFile.new(score)
                 >>> show(score) # doctest: +SKIP
 
             ..  doctest::
@@ -861,39 +859,3 @@ class LilyPondFile(AbjadObject):
         Returns true, false or none.
         '''
         return self._use_relative_includes
-
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def new(
-        cls,
-        music=None,
-        date_time_token=None,
-        default_paper_size=None,
-        comments=None,
-        includes=None,
-        global_staff_size=None,
-        lilypond_language_token=None,
-        lilypond_version_token=None,
-        use_relative_includes=None,
-        ):
-        r'''Makes basic LilyPond file.
-
-        ..  todo:: Deprecated. Use top-level `new()` instead.
-
-        Return LilyPond file.
-        '''
-        from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-            music=music,
-            date_time_token=date_time_token,
-            default_paper_size=default_paper_size,
-            comments=comments,
-            includes=includes,
-            global_staff_size=global_staff_size,
-            lilypond_language_token=lilypond_language_token,
-            lilypond_version_token=lilypond_version_token,
-            use_relative_includes=use_relative_includes,
-            )
-        lilypond_file.header_block.tagline = False
-        return lilypond_file

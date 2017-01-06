@@ -466,6 +466,8 @@ class SetClass(AbjadValueObject):
 
     assert len(_lex_identifier_to_prime_form) == 224
 
+    _publish_storage_format = True
+
     _transposition_only_identifier_to_prime_form = {
         # 0
         (0, 1): (),

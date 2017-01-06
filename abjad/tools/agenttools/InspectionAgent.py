@@ -33,7 +33,10 @@ class InspectionAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         prototype = (scoretools.Component, spannertools.Spanner, type(None))
-        assert isinstance(client, prototype), repr(client)
+        if not isinstance(client, prototype):
+            message = 'must be component, spanner or none: {!r}.'
+            message = message.format(client)
+            raise TypeError(message)
         self._client = client
 
     ### PUBLIC METHODS ###

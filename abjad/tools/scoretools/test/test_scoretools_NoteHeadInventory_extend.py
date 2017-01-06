@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_scoretools_NoteHeadInventory_extend_01():
-    r'''Extend chord with tweaked note heads.
+    r'''Extend chord with tweaked note-heads.
     '''
 
     chord = Chord("<ef'>4")

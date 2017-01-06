@@ -2,22 +2,57 @@
 
 
 def iterate(expr):
-    r'''iterates `expr`.
+    r'''Makes iteration agent.
 
     ..  container:: example
+
+        Example staff:
 
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
             >>> show(staff) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Iterates staff by leaf pair:
+
+            >>> for pair in iterate(staff).by_leaf_pair():
+            ...     pair
+            (Note("c'4"), Note("e'4"))
+            (Note("e'4"), Note("d'4"))
+            (Note("d'4"), Note("f'4"))
+
+    ..  container:: example
+
+        Iterates staff by pitch:
+
+            >>> for pitch in iterate(staff).by_pitch():
+            ...     pitch
+            NamedPitch("c'")
+            NamedPitch("e'")
+            NamedPitch("d'")
+            NamedPitch("f'")
+
+    ..  container:: example
+
+        Returns iteration agent:
+
         ::
 
-            >>> notes = staff[-2:]
-            >>> iterate(notes)
-            IterationAgent(client=Selection([Note("d'4"), Note("f'4")]))
+            >>> iterate(staff)
+            IterationAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
-    Returns score iteration agent.
     '''
     from abjad.tools import agenttools
     return agenttools.IterationAgent(expr)

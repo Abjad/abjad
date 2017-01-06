@@ -4,36 +4,43 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Infinity(AbjadObject):
-    r'''Object-oriented infinity.
+    r'''Infinity.
 
-    All numbers compare less than infinity:
+    ..  container:: example
 
-    ::
+        All numbers compare less than infinity:
 
-        >>> 9999999 < Infinity
-        True
+        ::
 
-    ::
+            >>> 9999999 < Infinity
+            True
 
-        >>> 2**38 < Infinity
-        True
+        ::
 
-    Infinity compares equal to itself:
+            >>> 2**38 < Infinity
+            True
 
-    ::
+    ..  container:: example
 
-        >>> Infinity == Infinity
-        True
+        Infinity compares equal to itself:
 
-    Negative infinity compares less than infinity:
+        ::
 
-    ::
+            >>> Infinity == Infinity
+            True
 
-        >>> NegativeInfinity < Infinity
-        True
+    ..  container:: example
 
-    Infinity is initialized at start-up and is available in the
-    global Abjad namespace.
+        Negative infinity compares less than infinity:
+
+        ::
+
+            >>> NegativeInfinity < Infinity
+            True
+    
+    Initializes as a system singleton at start-up.
+
+    Available as a built-in after Abjad starts.
     '''
 
     ### CLASS VARIABLES ###
@@ -66,14 +73,14 @@ class Infinity(AbjadObject):
         return self._value
 
     def __ge__(self, expr):
-        r''' True for all values of `expr`. Otherwise false.
+        r''' Is true for all values of `expr`. Otherwise false.
 
         Returns true or false.
         '''
         return self._value >= expr
 
     def __gt__(self, expr):
-        r'''True for all noninfinite values of `expr`. Otherwise false.
+        r'''Is true for all noninfinite values of `expr`. Otherwise false.
 
         Returns true or false.
         '''
@@ -96,7 +103,7 @@ class Infinity(AbjadObject):
         return self._value <= expr
 
     def __lt__(self, expr):
-        r'''True for no values of `expr`.
+        r'''Is true for no values of `expr`.
 
         Returns true or false.
         '''

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+import abjad
+import ide
 import os
 import pytest
 import sys
 import traceback
-import ide
-from abjad.tools import systemtools
 abjad_ide = ide.tools.idetools.AbjadIDE()
 
 
@@ -31,7 +31,7 @@ def test_materials_01():
     if not os.path.exists(abbreviations_file_path):
         return
     command = 'python {{}}'.format(abbreviations_file_path)
-    exit_status = systemtools.IOManager.spawn_subprocess(command)
+    exit_status = abjad.systemtools.IOManager.spawn_subprocess(command)
     assert exit_status == 0
 
 

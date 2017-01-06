@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import inspect
 from abjad.tools import abctools
+from abjad.tools import expressiontools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
@@ -18,75 +20,183 @@ class LabelAgent(abctools.AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** Labels pitch names:
+        Labels pitch names:
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
-            >>> label(staff).with_pitches()
-            >>> show(staff) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> staff = Staff("c'4 e'4 d'4 f'4")
+                >>> label(staff).with_pitches()
 
-            >>> f(staff)
-            \new Staff {
-                c'4
-                    ^ \markup {
-                        \small
-                            c'
-                        }
-                e'4
-                    ^ \markup {
-                        \small
-                            e'
-                        }
-                d'4
-                    ^ \markup {
-                        \small
-                            d'
-                        }
-                f'4
-                    ^ \markup {
-                        \small
-                            f'
-                        }
-            }
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                        ^ \markup {
+                            \small
+                                c'
+                            }
+                    e'4
+                        ^ \markup {
+                            \small
+                                e'
+                            }
+                    d'4
+                        ^ \markup {
+                            \small
+                                d'
+                            }
+                    f'4
+                        ^ \markup {
+                            \small
+                                f'
+                            }
+                }
+
+        ..  container:: example expression
+
+            ::
+
+                >>> staff = Staff("c'4 e'4 d'4 f'4")
+                >>> expression = label().with_pitches()
+                >>> f(expression)
+                expressiontools.Expression(
+                    callbacks=(
+                        expressiontools.Expression(
+                            evaluation_template='agenttools.LabelAgent(client={})',
+                            ),
+                        expressiontools.Expression(
+                            evaluation_template='{}.with_pitches()',
+                            ),
+                        ),
+                    )
+
+            ::
+
+                >>> expression(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                        ^ \markup {
+                            \small
+                                c'
+                            }
+                    e'4
+                        ^ \markup {
+                            \small
+                                e'
+                            }
+                    d'4
+                        ^ \markup {
+                            \small
+                                d'
+                            }
+                    f'4
+                        ^ \markup {
+                            \small
+                                f'
+                            }
+                }
 
     ..  container:: example
 
-        **Example 2.** Labels durations:
+        Labels durations:
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
-            >>> label(staff).with_durations()
-            >>> show(staff) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> staff = Staff("c'4 e'4 d'4 f'4")
+                >>> label(staff).with_durations()
 
-            >>> f(staff)
-            \new Staff {
-                c'4
-                    ^ \markup {
-                        \small
-                            1/4
-                        }
-                e'4
-                    ^ \markup {
-                        \small
-                            1/4
-                        }
-                d'4
-                    ^ \markup {
-                        \small
-                            1/4
-                        }
-                f'4
-                    ^ \markup {
-                        \small
-                            1/4
-                        }
-            }
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
+                    e'4
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
+                    d'4
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
+                    f'4
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
+                }
+
+        ..  container:: example expression
+
+            ::
+
+                >>> staff = Staff("c'4 e'4 d'4 f'4")
+                >>> expression = label().with_durations()
+                >>> f(expression)
+                expressiontools.Expression(
+                    callbacks=(
+                        expressiontools.Expression(
+                            evaluation_template='agenttools.LabelAgent(client={})',
+                            ),
+                        expressiontools.Expression(
+                            evaluation_template='{}.with_durations()',
+                            ),
+                        ),
+                    )
+
+            ::
+
+                >>> expression(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
+                    e'4
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
+                    d'4
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
+                    f'4
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
+                }
 
     '''
 
@@ -94,6 +204,7 @@ class LabelAgent(abctools.AbjadObject):
 
     __slots__ = (
         '_client',
+        '_is_frozen',
         )
 
     _pc_number_to_color = {
@@ -125,8 +236,13 @@ class LabelAgent(abctools.AbjadObject):
             list,
             type(None),
             )
-        assert isinstance(client, prototype), repr(client)
+        if not isinstance(client, prototype):
+            message = 'must be component, selection, spanner, list or none:'
+            message += ' {!r}.'
+            message = message.format(client)
+            raise TypeError(message)
         self._client = client
+        self._is_frozen = None
 
     ### PRIVATE METHODS ###
 
@@ -142,6 +258,24 @@ class LabelAgent(abctools.AbjadObject):
             override(leaf).rest.color = color
         return leaf
 
+    def _make_callback(self, frame):
+        assert self._is_frozen, repr(self._is_frozen)
+        Expression = expressiontools.Expression
+        template = Expression._make_evaluation_template(frame)
+        return self._is_frozen.append_callback(
+            evaluation_template=template,
+            )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Gets client of label agent.
+
+        Returns component, selection, spanner or none.
+        '''
+        return self._client
+
     ### PUBLIC METHODS ###
 
     def color_container(self, color='red'):
@@ -149,41 +283,79 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Colors measure:
+            Colors measure:
 
-            ::
+            ..  container:: example
 
-                >>> measure = Measure((2, 8), "c'8 d'8")
-                >>> label(measure).color_container('red')
-                >>> show(measure) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> measure = Measure((2, 8), "c'8 d'8")
+                    >>> label(measure).color_container('red')
+                    >>> show(measure) # doctest: +SKIP
 
-                >>> f(measure)
-                {
-                    \override Accidental.color = #red
-                    \override Beam.color = #red
-                    \override Dots.color = #red
-                    \override NoteHead.color = #red
-                    \override Rest.color = #red
-                    \override Stem.color = #red
-                    \override TupletBracket.color = #red
-                    \override TupletNumber.color = #red
-                    \time 2/8
-                    c'8
-                    d'8
-                    \revert Accidental.color
-                    \revert Beam.color
-                    \revert Dots.color
-                    \revert NoteHead.color
-                    \revert Rest.color
-                    \revert Stem.color
-                    \revert TupletBracket.color
-                    \revert TupletNumber.color
-                }
+                ..  doctest::
+
+                    >>> f(measure)
+                    {
+                        \override Accidental.color = #red
+                        \override Beam.color = #red
+                        \override Dots.color = #red
+                        \override NoteHead.color = #red
+                        \override Rest.color = #red
+                        \override Stem.color = #red
+                        \override TupletBracket.color = #red
+                        \override TupletNumber.color = #red
+                        \time 2/8
+                        c'8
+                        d'8
+                        \revert Accidental.color
+                        \revert Beam.color
+                        \revert Dots.color
+                        \revert NoteHead.color
+                        \revert Rest.color
+                        \revert Stem.color
+                        \revert TupletBracket.color
+                        \revert TupletNumber.color
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> measure = Measure((2, 8), "c'8 d'8")
+                    >>> expression = label().color_container('red')
+                    >>> expression(measure)
+                    >>> show(measure) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(measure)
+                    {
+                        \override Accidental.color = #red
+                        \override Beam.color = #red
+                        \override Dots.color = #red
+                        \override NoteHead.color = #red
+                        \override Rest.color = #red
+                        \override Stem.color = #red
+                        \override TupletBracket.color = #red
+                        \override TupletNumber.color = #red
+                        \time 2/8
+                        c'8
+                        d'8
+                        \revert Accidental.color
+                        \revert Beam.color
+                        \revert Dots.color
+                        \revert NoteHead.color
+                        \revert Rest.color
+                        \revert Stem.color
+                        \revert TupletBracket.color
+                        \revert TupletNumber.color
+                    }
 
         Returns none.
         '''
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         override(self.client).accidental.color = color
         override(self.client).beam.color = color
         override(self.client).dots.color = color
@@ -198,156 +370,279 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Colors leaves red:
+            Colors leaves red:
 
-            ::
+            ..  container:: example
 
-                >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
+                    >>> label(staff).color_leaves('red')
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff {
-                    cs'8. [
-                    r8.
-                    s8.
-                    <c' cs' a'>8. ]
-                }
+                ..  doctest::
 
-            ::
+                    >>> f(staff)
+                    \new Staff {
+                        \once \override Accidental.color = #red
+                        \once \override Beam.color = #red
+                        \once \override Dots.color = #red
+                        \once \override NoteHead.color = #red
+                        \once \override Stem.color = #red
+                        cs'8. [
+                        \once \override Dots.color = #red
+                        \once \override Rest.color = #red
+                        r8.
+                        s8.
+                        \once \override Accidental.color = #red
+                        \once \override Beam.color = #red
+                        \once \override Dots.color = #red
+                        \once \override NoteHead.color = #red
+                        \once \override Stem.color = #red
+                        <c' cs' a'>8. ]
+                    }
 
-                >>> label(staff).color_leaves('red')
-                >>> show(staff) # doctest: +SKIP
+            ..  container:: example expression
 
-            ..  doctest::
+                ::
 
-                >>> f(staff)
-                \new Staff {
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
-                    cs'8. [
-                    \once \override Dots.color = #red
-                    \once \override Rest.color = #red
-                    r8.
-                    s8.
-                    \once \override Accidental.color = #red
-                    \once \override Beam.color = #red
-                    \once \override Dots.color = #red
-                    \once \override NoteHead.color = #red
-                    \once \override Stem.color = #red
-                    <c' cs' a'>8. ]
-                }
+                    >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
+                    >>> expression = label().color_leaves('red')
+                    >>> expression(staff)
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        \once \override Accidental.color = #red
+                        \once \override Beam.color = #red
+                        \once \override Dots.color = #red
+                        \once \override NoteHead.color = #red
+                        \once \override Stem.color = #red
+                        cs'8. [
+                        \once \override Dots.color = #red
+                        \once \override Rest.color = #red
+                        r8.
+                        s8.
+                        \once \override Accidental.color = #red
+                        \once \override Beam.color = #red
+                        \once \override Dots.color = #red
+                        \once \override NoteHead.color = #red
+                        \once \override Stem.color = #red
+                        <c' cs' a'>8. ]
+                    }
 
         Returns none.
         """
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         for leaf in iterate(self.client).by_class(scoretools.Leaf):
             self._color_leaf(leaf, color)
 
     def color_note_heads(self, color_map=None):
-        r'''Colors note note heads.
+        r'''Colors note note-heads.
 
         ..  container:: example
 
-            **Example 1.** Colors chord note heads:
+            Colors chord note-heads:
 
-            ::
+            ..  container:: example
 
-                >>> chord = Chord([12, 14, 18, 21, 23], (1, 4))
-                >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
-                >>> colors = ['red', 'blue', 'green']
-                >>> color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
-                >>> label(chord).color_note_heads(color_map)
-                >>> show(chord) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> chord = Chord([12, 14, 18, 21, 23], (1, 4))
+                    >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
+                    >>> colors = ['red', 'blue', 'green']
+                    >>> color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
+                    >>> label(chord).color_note_heads(color_map)
+                    >>> show(chord) # doctest: +SKIP
 
-                >>> f(chord)
-                <
-                    \tweak color #red
-                    c''
-                    \tweak color #red
-                    d''
-                    \tweak color #green
-                    fs''
-                    \tweak color #green
-                    a''
-                    \tweak color #blue
-                    b''
-                >4
+                ..  doctest::
+
+                    >>> f(chord)
+                    <
+                        \tweak color #red
+                        c''
+                        \tweak color #red
+                        d''
+                        \tweak color #green
+                        fs''
+                        \tweak color #green
+                        a''
+                        \tweak color #blue
+                        b''
+                    >4
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> chord = Chord([12, 14, 18, 21, 23], (1, 4))
+                    >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
+                    >>> colors = ['red', 'blue', 'green']
+                    >>> color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
+                    >>> expression = label().color_note_heads(color_map)
+                    >>> expression(chord)
+                    >>> show(chord) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(chord)
+                    <
+                        \tweak color #red
+                        c''
+                        \tweak color #red
+                        d''
+                        \tweak color #green
+                        fs''
+                        \tweak color #green
+                        a''
+                        \tweak color #blue
+                        b''
+                    >4
 
         ..  container:: example
 
-            **Example 2.** Colors note note head:
+            Colors note note-head:
 
-            ::
+            ..  container:: example
 
-                >>> note = Note("c'4")
-                >>> label(note).color_note_heads(color_map)
-                >>> show(note) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> note = Note("c'4")
+                    >>> label(note).color_note_heads(color_map)
+                    >>> show(note) # doctest: +SKIP
 
-                >>> f(note)
-                \once \override NoteHead.color = #red
-                c'4
+                ..  doctest::
+
+                    >>> f(note)
+                    \once \override NoteHead.color = #red
+                    c'4
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> note = Note("c'4")
+                    >>> expression = label().color_note_heads(color_map)
+                    >>> expression(note)
+                    >>> show(note) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(note)
+                    \once \override NoteHead.color = #red
+                    c'4
 
         ..  container:: example
 
-            **Example 3.** Colors nothing:
+            Colors nothing:
 
-            ::
+            ..  container:: example
 
-                >>> staff = Staff([])
-                >>> label(staff).color_note_heads(color_map)
+                ::
+
+                    >>> staff = Staff()
+                    >>> label(staff).color_note_heads(color_map)
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff()
+                    >>> expression = label().color_note_heads(color_map)
+                    >>> expression(staff)
 
         ..  container:: example
 
-            **Example 4.** Colors note heads:
+            Colors note-heads:
 
-            ::
+            ..  container:: example
 
-                >>> staff = Staff("c'8 cs'8 d'8 ds'8 e'8 f'8 fs'8 g'8 gs'8 a'8 as'8 b'8 c''8")
-                >>> label(staff).color_note_heads()
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> staff = Staff("c'8 cs'8 d'8 ds'8 e'8 f'8 fs'8 g'8 gs'8 a'8 as'8 b'8 c''8")
+                    >>> label(staff).color_note_heads()
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff {
-                    \once \override NoteHead.color = #(x11-color 'red)
-                    c'8
-                    \once \override NoteHead.color = #(x11-color 'MediumBlue)
-                    cs'8
-                    \once \override NoteHead.color = #(x11-color 'orange)
-                    d'8
-                    \once \override NoteHead.color = #(x11-color 'LightSlateBlue)
-                    ds'8
-                    \once \override NoteHead.color = #(x11-color 'ForestGreen)
-                    e'8
-                    \once \override NoteHead.color = #(x11-color 'MediumOrchid)
-                    f'8
-                    \once \override NoteHead.color = #(x11-color 'firebrick)
-                    fs'8
-                    \once \override NoteHead.color = #(x11-color 'DeepPink)
-                    g'8
-                    \once \override NoteHead.color = #(x11-color 'DarkOrange)
-                    gs'8
-                    \once \override NoteHead.color = #(x11-color 'IndianRed)
-                    a'8
-                    \once \override NoteHead.color = #(x11-color 'CadetBlue)
-                    as'8
-                    \once \override NoteHead.color = #(x11-color 'SeaGreen)
-                    b'8
-                    \once \override NoteHead.color = #(x11-color 'red)
-                    c''8
-                }
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        \once \override NoteHead.color = #(x11-color 'red)
+                        c'8
+                        \once \override NoteHead.color = #(x11-color 'MediumBlue)
+                        cs'8
+                        \once \override NoteHead.color = #(x11-color 'orange)
+                        d'8
+                        \once \override NoteHead.color = #(x11-color 'LightSlateBlue)
+                        ds'8
+                        \once \override NoteHead.color = #(x11-color 'ForestGreen)
+                        e'8
+                        \once \override NoteHead.color = #(x11-color 'MediumOrchid)
+                        f'8
+                        \once \override NoteHead.color = #(x11-color 'firebrick)
+                        fs'8
+                        \once \override NoteHead.color = #(x11-color 'DeepPink)
+                        g'8
+                        \once \override NoteHead.color = #(x11-color 'DarkOrange)
+                        gs'8
+                        \once \override NoteHead.color = #(x11-color 'IndianRed)
+                        a'8
+                        \once \override NoteHead.color = #(x11-color 'CadetBlue)
+                        as'8
+                        \once \override NoteHead.color = #(x11-color 'SeaGreen)
+                        b'8
+                        \once \override NoteHead.color = #(x11-color 'red)
+                        c''8
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff("c'8 cs'8 d'8 ds'8 e'8 f'8 fs'8 g'8 gs'8 a'8 as'8 b'8 c''8")
+                    >>> expression = label().color_note_heads()
+                    >>> expression(staff)
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        \once \override NoteHead.color = #(x11-color 'red)
+                        c'8
+                        \once \override NoteHead.color = #(x11-color 'MediumBlue)
+                        cs'8
+                        \once \override NoteHead.color = #(x11-color 'orange)
+                        d'8
+                        \once \override NoteHead.color = #(x11-color 'LightSlateBlue)
+                        ds'8
+                        \once \override NoteHead.color = #(x11-color 'ForestGreen)
+                        e'8
+                        \once \override NoteHead.color = #(x11-color 'MediumOrchid)
+                        f'8
+                        \once \override NoteHead.color = #(x11-color 'firebrick)
+                        fs'8
+                        \once \override NoteHead.color = #(x11-color 'DeepPink)
+                        g'8
+                        \once \override NoteHead.color = #(x11-color 'DarkOrange)
+                        gs'8
+                        \once \override NoteHead.color = #(x11-color 'IndianRed)
+                        a'8
+                        \once \override NoteHead.color = #(x11-color 'CadetBlue)
+                        as'8
+                        \once \override NoteHead.color = #(x11-color 'SeaGreen)
+                        b'8
+                        \once \override NoteHead.color = #(x11-color 'red)
+                        c''8
+                    }
 
         Returns none.
         '''
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         color_map = color_map or self._pc_number_to_color
         for leaf in iterate(self.client).by_class(scoretools.Leaf):
             if isinstance(leaf, scoretools.Chord):
@@ -368,57 +663,112 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example.**
+            Removes markup:
 
-            ::
+            ..  container:: example
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> label(staff).with_pitches()
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> staff = Staff("c'8 d'8 e'8 f'8")
+                    >>> label(staff).with_pitches()
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff {
-                    c'8
-                        ^ \markup {
-                            \small
-                                c'
-                            }
-                    d'8
-                        ^ \markup {
-                            \small
-                                d'
-                            }
-                    e'8
-                        ^ \markup {
-                            \small
-                                e'
-                            }
-                    f'8
-                        ^ \markup {
-                            \small
-                                f'
-                            }
-                }
+                ..  doctest::
 
-            ::
+                    >>> f(staff)
+                    \new Staff {
+                        c'8
+                            ^ \markup {
+                                \small
+                                    c'
+                                }
+                        d'8
+                            ^ \markup {
+                                \small
+                                    d'
+                                }
+                        e'8
+                            ^ \markup {
+                                \small
+                                    e'
+                                }
+                        f'8
+                            ^ \markup {
+                                \small
+                                    f'
+                                }
+                    }
 
-                >>> label(staff).remove_markup()
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> label(staff).remove_markup()
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff {
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                }
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff("c'8 d'8 e'8 f'8")
+                    >>> expression = label().with_pitches()
+                    >>> expression(staff)
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        c'8
+                            ^ \markup {
+                                \small
+                                    c'
+                                }
+                        d'8
+                            ^ \markup {
+                                \small
+                                    d'
+                                }
+                        e'8
+                            ^ \markup {
+                                \small
+                                    e'
+                                }
+                        f'8
+                            ^ \markup {
+                                \small
+                                    f'
+                                }
+                    }
+
+                ::
+
+                    >>> expression = label().remove_markup()
+                    >>> expression(staff)
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                    }
 
         Returns none.
         '''
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         leaves = iterate(self.client).by_class(scoretools.Leaf)
         for leaf in leaves:
             detach(markuptools.Markup, leaf)
@@ -428,542 +778,1043 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Labels indices:
+            Labels indices:
 
-            ::
+            ..  container:: example
 
-                >>> staff_group = StaffGroup([])
-                >>> staff = Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
+                ::
 
-            ::
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> label(staff_group).vertical_moments()
+                    >>> show(staff_group) # doctest: +SKIP
 
-                >>> label(staff_group).vertical_moments()
-                >>> show(staff_group) # doctest: +SKIP
+                ..  doctest::
 
-            ..  doctest::
-
-                >>> f(staff_group)
-                \new StaffGroup <<
-                    \new Staff {
-                        c'8
-                            ^ \markup {
-                                \tiny
-                                    0
-                                }
-                        d'4
-                            ^ \markup {
-                                \tiny
-                                    1
-                                }
-                        e'16
-                            ^ \markup {
-                                \tiny
-                                    3
-                                }
-                        f'16
-                            ^ \markup {
-                                \tiny
-                                    4
-                                }
-                    }
-                    \new Staff {
-                        \clef "alto"
-                        g4
-                        f4
-                            ^ \markup {
-                                \tiny
-                                    2
-                                }
-                    }
-                    \new Staff {
-                        \clef "bass"
-                        c,2
-                    }
-                >>
-
-        ..  container:: example
-
-            **Example 2.** Labels pitch numbers:
-
-            ::
-
-                >>> staff_group = StaffGroup([])
-                >>> staff = Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-
-            ::
-
-                >>> prototype = pitchtools.NumberedPitch
-                >>> label(staff_group).vertical_moments(prototype=prototype)
-                >>> show(staff_group) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff_group)
-                \new StaffGroup <<
-                    \new Staff {
-                        c'8
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            0
-                                            -5
-                                            -24
-                                        }
-                                }
-                        d'4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            2
-                                            -5
-                                            -24
-                                        }
-                                }
-                        e'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            4
-                                            -7
-                                            -24
-                                        }
-                                }
-                        f'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            5
-                                            -7
-                                            -24
-                                        }
-                                }
-                    }
-                    \new Staff {
-                        \clef "alto"
-                        g4
-                        f4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            2
-                                            -7
-                                            -24
-                                        }
-                                }
-                    }
-                    \new Staff {
-                        \clef "bass"
-                        c,2
-                    }
-                >>
-
-        ..  container:: example
-
-            **Example 3.** Labels pitch-class numbers:
-
-            ::
-
-                >>> staff_group = StaffGroup([])
-                >>> staff = Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-
-            ::
-
-                >>> prototype = pitchtools.NumberedPitchClass
-                >>> label(staff_group).vertical_moments(prototype=prototype)
-                >>> show(staff_group) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff_group)
-                \new StaffGroup <<
-                    \new Staff {
-                        c'8
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            7
-                                            0
-                                        }
-                                }
-                        d'4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            7
-                                            2
-                                            0
-                                        }
-                                }
-                        e'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            5
-                                            4
-                                            0
-                                        }
-                                }
-                        f'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            5
-                                            0
-                                        }
-                                }
-                    }
-                    \new Staff {
-                        \clef "alto"
-                        g4
-                        f4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            5
-                                            2
-                                            0
-                                        }
-                                }
-                    }
-                    \new Staff {
-                        \clef "bass"
-                        c,2
-                    }
-                >>
-
-        ..  container:: example
-
-            **Example 4.** Labels interval numbers:
-
-            ::
-
-                >>> staff_group = StaffGroup([])
-                >>> staff = Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-
-            ::
-
-                >>> prototype = pitchtools.NumberedInterval
-                >>> label(staff_group).vertical_moments(prototype=prototype)
-                >>> show(staff_group) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff_group)
-                \new StaffGroup <<
-                    \new Staff {
-                        c'8
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            15
-                                            12
-                                        }
-                                }
-                        d'4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            16
-                                            12
-                                        }
-                                }
-                        e'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            17
-                                            11
-                                        }
-                                }
-                        f'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            18
-                                            11
-                                        }
-                                }
-                    }
-                    \new Staff {
-                        \clef "alto"
-                        g4
-                        f4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            16
-                                            11
-                                        }
-                                }
-                    }
-                    \new Staff {
-                        \clef "bass"
-                        c,2
-                    }
-                >>
-
-        ..  container:: example
-
-            **Example 5.** Labels interval-class numbers:
-
-            ::
-
-                >>> staff_group = StaffGroup([])
-                >>> staff = Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-
-            ::
-
-                >>> prototype = pitchtools.NumberedIntervalClass
-                >>> label(staff_group).vertical_moments(prototype=prototype)
-                >>> show(staff_group) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff_group)
-                \new StaffGroup <<
-                    \new Staff {
-                        c'8
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            12
-                                            7
-                                        }
-                                }
-                        d'4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            2
-                                            7
-                                        }
-                                }
-                        e'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            4
-                                            5
-                                        }
-                                }
-                        f'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            5
-                                            5
-                                        }
-                                }
-                    }
-                    \new Staff {
-                        \clef "alto"
-                        g4
-                        f4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            2
-                                            5
-                                        }
-                                }
-                    }
-                    \new Staff {
-                        \clef "bass"
-                        c,2
-                    }
-                >>
-
-        ..  container:: example
-
-            **Example 6.** Labels interval-class vectors:
-
-            ::
-
-                >>> staff_group = StaffGroup([])
-                >>> staff = Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-
-            ::
-
-                >>> prototype = pitchtools.IntervalClassVector
-                >>> label(staff_group).vertical_moments(prototype=prototype)
-                >>> show(staff_group) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff_group)
-                \new StaffGroup <<
-                    \new Staff {
-                        c'8
-                            ^ \markup {
-                                \tiny
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
                                     \tiny
-                                        1000020
-                                }
-                        d'4
-                            ^ \markup {
-                                \tiny
+                                        0
+                                    }
+                            d'4
+                                ^ \markup {
                                     \tiny
-                                        0010020
-                                }
-                        e'16
-                            ^ \markup {
-                                \tiny
+                                        1
+                                    }
+                            e'16
+                                ^ \markup {
                                     \tiny
-                                        0100110
-                                }
-                        f'16
-                            ^ \markup {
-                                \tiny
+                                        3
+                                    }
+                            f'16
+                                ^ \markup {
                                     \tiny
-                                        1000020
-                                }
-                    }
-                    \new Staff {
-                        \clef "alto"
-                        g4
-                        f4
-                            ^ \markup {
-                                \tiny
+                                        4
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
                                     \tiny
-                                        0011010
-                                }
-                    }
-                    \new Staff {
-                        \clef "bass"
-                        c,2
-                    }
-                >>
+                                        2
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> expression = label().vertical_moments()
+                    >>> expression(staff_group)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        0
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        1
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        3
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        4
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        2
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
 
         ..  container:: example
 
-            **Example 7.** Labels set-classes:
+            Labels pitch numbers:
 
-            ::
+            ..  container:: example
 
-                >>> staff_group = StaffGroup([])
-                >>> staff = Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
+                ::
 
-            ::
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.NumberedPitch
+                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> show(staff_group) # doctest: +SKIP
 
-                >>> prototype = pitchtools.SetClass()
-                >>> label(staff_group).vertical_moments(prototype=prototype)
-                >>> show(staff_group) # doctest: +SKIP
+                ..  doctest::
 
-            ..  doctest::
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                0
+                                                -5
+                                                -24
+                                            }
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                2
+                                                -5
+                                                -24
+                                            }
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                4
+                                                -7
+                                                -24
+                                            }
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                5
+                                                -7
+                                                -24
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                2
+                                                -7
+                                                -24
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
 
-                >>> f(staff_group)
-                \new StaffGroup <<
-                    \new Staff {
-                        c'8
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(2-5){0, 5}"
-                                        }
-                                }
-                        d'4
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(3-9){0, 2, 7}"
-                                        }
-                                }
-                        e'16
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(3-4){0, 1, 5}"
-                                        }
-                                }
-                        f'16
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(2-5){0, 5}"
-                                        }
-                                }
-                    }
-                    \new Staff {
-                        \clef "alto"
-                        g4
-                        f4
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(3-7){0, 2, 5}"
-                                        }
-                                }
-                    }
-                    \new Staff {
-                        \clef "bass"
-                        c,2
-                    }
-                >>
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.NumberedPitch
+                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> expression(staff_group)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                0
+                                                -5
+                                                -24
+                                            }
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                2
+                                                -5
+                                                -24
+                                            }
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                4
+                                                -7
+                                                -24
+                                            }
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                5
+                                                -7
+                                                -24
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                2
+                                                -7
+                                                -24
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+        ..  container:: example
+
+            Labels pitch-class numbers:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                7
+                                                0
+                                            }
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                7
+                                                2
+                                                0
+                                            }
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                5
+                                                4
+                                                0
+                                            }
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                5
+                                                0
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                5
+                                                2
+                                                0
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> expression(staff_group)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                7
+                                                0
+                                            }
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                7
+                                                2
+                                                0
+                                            }
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                5
+                                                4
+                                                0
+                                            }
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                5
+                                                0
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                5
+                                                2
+                                                0
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+        ..  container:: example
+
+            Labels interval numbers:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.NumberedInterval
+                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                15
+                                                12
+                                            }
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                16
+                                                12
+                                            }
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                17
+                                                11
+                                            }
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                18
+                                                11
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                16
+                                                11
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.NumberedInterval
+                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> expression(staff_group)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                15
+                                                12
+                                            }
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                16
+                                                12
+                                            }
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                17
+                                                11
+                                            }
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                18
+                                                11
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                16
+                                                11
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+        ..  container:: example
+
+            Labels interval-class numbers:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.NumberedIntervalClass
+                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                12
+                                                7
+                                            }
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                2
+                                                7
+                                            }
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                4
+                                                5
+                                            }
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                5
+                                                5
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                2
+                                                5
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.NumberedIntervalClass
+                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> expression(staff_group)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                12
+                                                7
+                                            }
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                2
+                                                7
+                                            }
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                4
+                                                5
+                                            }
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                5
+                                                5
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \column
+                                            {
+                                                2
+                                                5
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+        ..  container:: example
+
+            Labels interval-class vectors:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.IntervalClassVector
+                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \tiny
+                                            1000020
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \tiny
+                                            0010020
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \tiny
+                                            0100110
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \tiny
+                                            1000020
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \tiny
+                                            0011010
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.IntervalClassVector
+                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> expression(staff_group)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \tiny
+                                            1000020
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \tiny
+                                            0010020
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \tiny
+                                            0100110
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \tiny
+                                            1000020
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \tiny
+                                            0011010
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+        ..  container:: example
+
+            Labels set-classes:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.SetClass()
+                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \line
+                                            {
+                                                "SC(2-5){0, 5}"
+                                            }
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \line
+                                            {
+                                                "SC(3-9){0, 2, 7}"
+                                            }
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \line
+                                            {
+                                                "SC(3-4){0, 1, 5}"
+                                            }
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \line
+                                            {
+                                                "SC(2-5){0, 5}"
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \line
+                                            {
+                                                "SC(3-7){0, 2, 5}"
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff_group = StaffGroup([])
+                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff_group.append(staff)
+                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff_group.append(staff)
+                    >>> prototype = pitchtools.SetClass()
+                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> expression(staff_group)
+                    >>> show(staff_group) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff_group)
+                    \new StaffGroup <<
+                        \new Staff {
+                            c'8
+                                ^ \markup {
+                                    \tiny
+                                        \line
+                                            {
+                                                "SC(2-5){0, 5}"
+                                            }
+                                    }
+                            d'4
+                                ^ \markup {
+                                    \tiny
+                                        \line
+                                            {
+                                                "SC(3-9){0, 2, 7}"
+                                            }
+                                    }
+                            e'16
+                                ^ \markup {
+                                    \tiny
+                                        \line
+                                            {
+                                                "SC(3-4){0, 1, 5}"
+                                            }
+                                    }
+                            f'16
+                                ^ \markup {
+                                    \tiny
+                                        \line
+                                            {
+                                                "SC(2-5){0, 5}"
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "alto"
+                            g4
+                            f4
+                                ^ \markup {
+                                    \tiny
+                                        \line
+                                            {
+                                                "SC(3-7){0, 2, 5}"
+                                            }
+                                    }
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            c,2
+                        }
+                    >>
 
         Set `prototype` to one of the classes shown above.
 
         Returns none.
         '''
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         prototype = prototype or int
         vertical_moments = iterate(self.client).by_vertical_moment()
         for index, vertical_moment in enumerate(vertical_moments):
@@ -1078,80 +1929,158 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Labels logical tie durations:
+            Labels logical tie durations:
 
-            ::
+            ..  container:: example
 
-                >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                >>> label(staff).with_durations()
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                    >>> label(staff).with_durations()
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff {
-                    c'4.
-                        ^ \markup {
-                            \small
-                                3/8
-                            }
-                    d'8 ~
-                        ^ \markup {
-                            \small
-                                1/2
-                            }
-                    d'4.
-                    e'16 [
-                        ^ \markup {
-                            \small
-                                1/16
-                            }
-                    ef'16 ]
-                        ^ \markup {
-                            \small
-                                1/16
-                            }
-                }
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        c'4.
+                            ^ \markup {
+                                \small
+                                    3/8
+                                }
+                        d'8 ~
+                            ^ \markup {
+                                \small
+                                    1/2
+                                }
+                        d'4.
+                        e'16 [
+                            ^ \markup {
+                                \small
+                                    1/16
+                                }
+                        ef'16 ]
+                            ^ \markup {
+                                \small
+                                    1/16
+                                }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                    >>> expression = label().with_durations()
+                    >>> expression(staff)
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        c'4.
+                            ^ \markup {
+                                \small
+                                    3/8
+                                }
+                        d'8 ~
+                            ^ \markup {
+                                \small
+                                    1/2
+                                }
+                        d'4.
+                        e'16 [
+                            ^ \markup {
+                                \small
+                                    1/16
+                                }
+                        ef'16 ]
+                            ^ \markup {
+                                \small
+                                    1/16
+                                }
+                    }
 
         ..  container:: example
 
-            **Example 2.** Labels logical ties with preferred denominator:
+            Labels logical ties with preferred denominator:
 
-            ::
+            ..  container:: example
 
-                >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                >>> label(staff).with_durations(preferred_denominator=16)
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                    >>> label(staff).with_durations(preferred_denominator=16)
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff {
-                    c'4.
-                        ^ \markup {
-                            \small
-                                6/16
-                            }
-                    d'8 ~
-                        ^ \markup {
-                            \small
-                                8/16
-                            }
-                    d'4.
-                    e'16 [
-                        ^ \markup {
-                            \small
-                                1/16
-                            }
-                    ef'16 ]
-                        ^ \markup {
-                            \small
-                                1/16
-                            }
-                }
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        c'4.
+                            ^ \markup {
+                                \small
+                                    6/16
+                                }
+                        d'8 ~
+                            ^ \markup {
+                                \small
+                                    8/16
+                                }
+                        d'4.
+                        e'16 [
+                            ^ \markup {
+                                \small
+                                    1/16
+                                }
+                        ef'16 ]
+                            ^ \markup {
+                                \small
+                                    1/16
+                                }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                    >>> expression = label().with_durations(preferred_denominator=16)
+                    >>> expression(staff)
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        c'4.
+                            ^ \markup {
+                                \small
+                                    6/16
+                                }
+                        d'8 ~
+                            ^ \markup {
+                                \small
+                                    8/16
+                                }
+                        d'4.
+                        e'16 [
+                            ^ \markup {
+                                \small
+                                    1/16
+                                }
+                        ef'16 ]
+                            ^ \markup {
+                                \small
+                                    1/16
+                                }
+                    }
 
         Returns none.
         '''
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         logical_ties = iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
             duration = logical_tie.get_duration()
@@ -1167,231 +2096,456 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Labels logical tie indices:
+            Labels logical tie indices:
 
-            ::
+            ..  container:: example
 
-                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> label(staff).with_indices()
-                >>> override(staff).text_script.staff_padding = 2
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> label(staff).with_indices()
+                    >>> override(staff).text_script.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #2
-                } {
-                    <c' bf'>8
-                        ^ \markup {
-                            \small
-                                0
-                            }
-                    <g' a'>4
-                        ^ \markup {
-                            \small
-                                1
-                            }
-                    af'8 ~
-                        ^ \markup {
-                            \small
-                                2
-                            }
-                    af'8
-                    gf'8 ~
-                        ^ \markup {
-                            \small
-                                3
-                            }
-                    gf'4
-                }
+                ..  doctest::
 
-        ..  container:: example
-
-            **Example 2.** Labels note indices:
-
-            ::
-
-                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> label(staff).with_indices(prototype=Note)
-                >>> override(staff).text_script.staff_padding = 2
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #2
-                } {
-                    <c' bf'>8
-                    <g' a'>4
-                    af'8 ~
-                        ^ \markup {
-                            \small
-                                0
-                            }
-                    af'8
-                        ^ \markup {
-                            \small
-                                1
-                            }
-                    gf'8 ~
-                        ^ \markup {
-                            \small
-                                2
-                            }
-                    gf'4
-                        ^ \markup {
-                            \small
-                                3
-                            }
-                }
-
-        ..  container:: example
-
-            **Example 3.** Labels chord indices:
-
-            ::
-
-                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> label(staff).with_indices(prototype=Chord)
-                >>> override(staff).text_script.staff_padding = 2
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #2
-                } {
-                    <c' bf'>8
-                        ^ \markup {
-                            \small
-                                0
-                            }
-                    <g' a'>4
-                        ^ \markup {
-                            \small
-                                1
-                            }
-                    af'8 ~
-                    af'8
-                    gf'8 ~
-                    gf'4
-                }
-
-        ..  container:: example
-
-            **Example 4.** Labels leaf indices:
-
-            ::
-
-                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> label(staff).with_indices(prototype=scoretools.Leaf)
-                >>> override(staff).text_script.staff_padding = 2
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #2
-                } {
-                    <c' bf'>8
-                        ^ \markup {
-                            \small
-                                0
-                            }
-                    <g' a'>4
-                        ^ \markup {
-                            \small
-                                1
-                            }
-                    af'8 ~
-                        ^ \markup {
-                            \small
-                                2
-                            }
-                    af'8
-                        ^ \markup {
-                            \small
-                                3
-                            }
-                    gf'8 ~
-                        ^ \markup {
-                            \small
-                                4
-                            }
-                    gf'4
-                        ^ \markup {
-                            \small
-                                5
-                            }
-                }
-
-        ..  container:: example
-
-            **Example 5.** Labels tuplet indices:
-
-            ::
-
-                >>> staff = Staff(4 * Tuplet((2, 3), "c'8 [ d'8 e'8 ]"))
-                >>> label(staff).with_indices(prototype=Tuplet)
-                >>> override(staff).text_script.staff_padding = 2
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #2
-                } {
-                    \times 2/3 {
-                        c'8
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #2
+                    } {
+                        <c' bf'>8
                             ^ \markup {
                                 \small
                                     0
                                 }
-                        d'8
-                        e'8
-                    }
-                    \times 2/3 {
-                        c'8
+                        <g' a'>4
                             ^ \markup {
                                 \small
                                     1
                                 }
-                        d'8
-                        e'8
-                    }
-                    \times 2/3 {
-                        c'8
+                        af'8 ~
                             ^ \markup {
                                 \small
                                     2
                                 }
-                        d'8
-                        e'8
-                    }
-                    \times 2/3 {
-                        c'8
+                        af'8
+                        gf'8 ~
                             ^ \markup {
                                 \small
                                     3
                                 }
-                        d'8
-                        e'8
+                        gf'4
                     }
-                }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> expression = label().with_indices()
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #2
+                    } {
+                        <c' bf'>8
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        <g' a'>4
+                            ^ \markup {
+                                \small
+                                    1
+                                }
+                        af'8 ~
+                            ^ \markup {
+                                \small
+                                    2
+                                }
+                        af'8
+                        gf'8 ~
+                            ^ \markup {
+                                \small
+                                    3
+                                }
+                        gf'4
+                    }
+
+        ..  container:: example
+
+            Labels note indices:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> label(staff).with_indices(prototype=Note)
+                    >>> override(staff).text_script.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #2
+                    } {
+                        <c' bf'>8
+                        <g' a'>4
+                        af'8 ~
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        af'8
+                            ^ \markup {
+                                \small
+                                    1
+                                }
+                        gf'8 ~
+                            ^ \markup {
+                                \small
+                                    2
+                                }
+                        gf'4
+                            ^ \markup {
+                                \small
+                                    3
+                                }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> expression = label().with_indices(prototype=Note)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #2
+                    } {
+                        <c' bf'>8
+                        <g' a'>4
+                        af'8 ~
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        af'8
+                            ^ \markup {
+                                \small
+                                    1
+                                }
+                        gf'8 ~
+                            ^ \markup {
+                                \small
+                                    2
+                                }
+                        gf'4
+                            ^ \markup {
+                                \small
+                                    3
+                                }
+                    }
+
+        ..  container:: example
+
+            Labels chord indices:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> label(staff).with_indices(prototype=Chord)
+                    >>> override(staff).text_script.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #2
+                    } {
+                        <c' bf'>8
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        <g' a'>4
+                            ^ \markup {
+                                \small
+                                    1
+                                }
+                        af'8 ~
+                        af'8
+                        gf'8 ~
+                        gf'4
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> expression = label().with_indices(prototype=Chord)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #2
+                    } {
+                        <c' bf'>8
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        <g' a'>4
+                            ^ \markup {
+                                \small
+                                    1
+                                }
+                        af'8 ~
+                        af'8
+                        gf'8 ~
+                        gf'4
+                    }
+
+        ..  container:: example
+
+            Labels leaf indices:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> label(staff).with_indices(prototype=scoretools.Leaf)
+                    >>> override(staff).text_script.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #2
+                    } {
+                        <c' bf'>8
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        <g' a'>4
+                            ^ \markup {
+                                \small
+                                    1
+                                }
+                        af'8 ~
+                            ^ \markup {
+                                \small
+                                    2
+                                }
+                        af'8
+                            ^ \markup {
+                                \small
+                                    3
+                                }
+                        gf'8 ~
+                            ^ \markup {
+                                \small
+                                    4
+                                }
+                        gf'4
+                            ^ \markup {
+                                \small
+                                    5
+                                }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> expression = label().with_indices(prototype=scoretools.Leaf)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #2
+                    } {
+                        <c' bf'>8
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        <g' a'>4
+                            ^ \markup {
+                                \small
+                                    1
+                                }
+                        af'8 ~
+                            ^ \markup {
+                                \small
+                                    2
+                                }
+                        af'8
+                            ^ \markup {
+                                \small
+                                    3
+                                }
+                        gf'8 ~
+                            ^ \markup {
+                                \small
+                                    4
+                                }
+                        gf'4
+                            ^ \markup {
+                                \small
+                                    5
+                                }
+                    }
+
+        ..  container:: example
+
+            Labels tuplet indices:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff(4 * Tuplet((2, 3), "c'8 [ d'8 e'8 ]"))
+                    >>> label(staff).with_indices(prototype=Tuplet)
+                    >>> override(staff).text_script.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #2
+                    } {
+                        \times 2/3 {
+                            c'8
+                                ^ \markup {
+                                    \small
+                                        0
+                                    }
+                            d'8
+                            e'8
+                        }
+                        \times 2/3 {
+                            c'8
+                                ^ \markup {
+                                    \small
+                                        1
+                                    }
+                            d'8
+                            e'8
+                        }
+                        \times 2/3 {
+                            c'8
+                                ^ \markup {
+                                    \small
+                                        2
+                                    }
+                            d'8
+                            e'8
+                        }
+                        \times 2/3 {
+                            c'8
+                                ^ \markup {
+                                    \small
+                                        3
+                                    }
+                            d'8
+                            e'8
+                        }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff(4 * Tuplet((2, 3), "c'8 [ d'8 e'8 ]"))
+                    >>> expression = label().with_indices(prototype=Tuplet)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #2
+                    } {
+                        \times 2/3 {
+                            c'8
+                                ^ \markup {
+                                    \small
+                                        0
+                                    }
+                            d'8
+                            e'8
+                        }
+                        \times 2/3 {
+                            c'8
+                                ^ \markup {
+                                    \small
+                                        1
+                                    }
+                            d'8
+                            e'8
+                        }
+                        \times 2/3 {
+                            c'8
+                                ^ \markup {
+                                    \small
+                                        2
+                                    }
+                            d'8
+                            e'8
+                        }
+                        \times 2/3 {
+                            c'8
+                                ^ \markup {
+                                    \small
+                                        3
+                                    }
+                            d'8
+                            e'8
+                        }
+                    }
 
         Returns none.
         '''
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         if prototype is None:
             items = iterate(self.client).by_logical_tie()
         else:
             items = iterate(self.client).by_class(prototype=prototype)
         items = list(items)
-        #raise Exception((self.client, items))
         for index, item in enumerate(items):
             string = str(index)
             label = markuptools.Markup(string, direction=direction)
@@ -1405,157 +2559,313 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Labels consecutive notes with interval names:
+            Labels consecutive notes with interval names:
 
-            ::
+            ..  container:: example
 
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                >>> staff = Staff(notes)
-                >>> label(staff).with_intervals(prototype=None)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> staff = Staff(notes)
+                    >>> label(staff).with_intervals(prototype=None)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #4
-                } {
-                    c'4 ^ \markup { +aug15 }
-                    cs'''4 ^ \markup { -M9 }
-                    b'4 ^ \markup { -aug9 }
-                    af4 ^ \markup { -m7 }
-                    bf,4 ^ \markup { +aug1 }
-                    b,4 ^ \markup { +m14 }
-                    a'4 ^ \markup { +m2 }
-                    bf'4
-                }
+                ..  doctest::
 
-        ..  container:: example
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        c'4 ^ \markup { +aug15 }
+                        cs'''4 ^ \markup { -M9 }
+                        b'4 ^ \markup { -aug9 }
+                        af4 ^ \markup { -m7 }
+                        bf,4 ^ \markup { +aug1 }
+                        b,4 ^ \markup { +m14 }
+                        a'4 ^ \markup { +m2 }
+                        bf'4
+                    }
 
-            **Example 2.** Labels consecutive notes with interval-class names:
+            ..  container:: example expression
 
-            ::
+                ::
 
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                >>> staff = Staff(notes)
-                >>> prototype = pitchtools.NamedIntervalClass
-                >>> label(staff).with_intervals(prototype=prototype)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
+                    >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> staff = Staff(notes)
+                    >>> expression = label().with_intervals(prototype=None)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+                ..  doctest::
 
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #4
-                } {
-                    c'4 ^ \markup { +aug8 }
-                    cs'''4 ^ \markup { -M2 }
-                    b'4 ^ \markup { -aug2 }
-                    af4 ^ \markup { -m7 }
-                    bf,4 ^ \markup { aug1 }
-                    b,4 ^ \markup { +m7 }
-                    a'4 ^ \markup { +m2 }
-                    bf'4
-                }
-
-        ..  container:: example
-
-            **Example 3.** Labels consecutive notes with interval numbers:
-
-            ::
-
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                >>> staff = Staff(notes)
-                >>> prototype = pitchtools.NumberedInterval
-                >>> label(staff).with_intervals(prototype=prototype)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #4
-                } {
-                    c'4 ^ \markup { +25 }
-                    cs'''4 ^ \markup { -14 }
-                    b'4 ^ \markup { -15 }
-                    af4 ^ \markup { -10 }
-                    bf,4 ^ \markup { +1 }
-                    b,4 ^ \markup { +22 }
-                    a'4 ^ \markup { +1 }
-                    bf'4
-                }
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        c'4 ^ \markup { +aug15 }
+                        cs'''4 ^ \markup { -M9 }
+                        b'4 ^ \markup { -aug9 }
+                        af4 ^ \markup { -m7 }
+                        bf,4 ^ \markup { +aug1 }
+                        b,4 ^ \markup { +m14 }
+                        a'4 ^ \markup { +m2 }
+                        bf'4
+                    }
 
         ..  container:: example
 
-            **Example 4.** Labels consecutive notes with interval-class
+            Labels consecutive notes with interval-class names:
+
+            ..  container:: example
+
+                ::
+
+                    >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> staff = Staff(notes)
+                    >>> prototype = pitchtools.NamedIntervalClass
+                    >>> label(staff).with_intervals(prototype=prototype)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        c'4 ^ \markup { +aug8 }
+                        cs'''4 ^ \markup { -M2 }
+                        b'4 ^ \markup { -aug2 }
+                        af4 ^ \markup { -m7 }
+                        bf,4 ^ \markup { aug1 }
+                        b,4 ^ \markup { +m7 }
+                        a'4 ^ \markup { +m2 }
+                        bf'4
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> staff = Staff(notes)
+                    >>> prototype = pitchtools.NamedIntervalClass
+                    >>> expression = label().with_intervals(prototype=prototype)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        c'4 ^ \markup { +aug8 }
+                        cs'''4 ^ \markup { -M2 }
+                        b'4 ^ \markup { -aug2 }
+                        af4 ^ \markup { -m7 }
+                        bf,4 ^ \markup { aug1 }
+                        b,4 ^ \markup { +m7 }
+                        a'4 ^ \markup { +m2 }
+                        bf'4
+                    }
+
+        ..  container:: example
+
+            Labels consecutive notes with interval numbers:
+
+            ..  container:: example
+
+                ::
+
+                    >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> staff = Staff(notes)
+                    >>> prototype = pitchtools.NumberedInterval
+                    >>> label(staff).with_intervals(prototype=prototype)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        c'4 ^ \markup { +25 }
+                        cs'''4 ^ \markup { -14 }
+                        b'4 ^ \markup { -15 }
+                        af4 ^ \markup { -10 }
+                        bf,4 ^ \markup { +1 }
+                        b,4 ^ \markup { +22 }
+                        a'4 ^ \markup { +1 }
+                        bf'4
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> staff = Staff(notes)
+                    >>> prototype = pitchtools.NumberedInterval
+                    >>> expression = label().with_intervals(prototype=prototype)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        c'4 ^ \markup { +25 }
+                        cs'''4 ^ \markup { -14 }
+                        b'4 ^ \markup { -15 }
+                        af4 ^ \markup { -10 }
+                        bf,4 ^ \markup { +1 }
+                        b,4 ^ \markup { +22 }
+                        a'4 ^ \markup { +1 }
+                        bf'4
+                    }
+
+
+        ..  container:: example
+
+            Labels consecutive notes with interval-class numbers:
+
+            ..  container:: example
+
+                ::
+
+                    >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> staff = Staff(notes)
+                    >>> prototype = pitchtools.NumberedIntervalClass
+                    >>> label(staff).with_intervals(prototype=prototype)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        c'4 ^ \markup { +1 }
+                        cs'''4 ^ \markup { -2 }
+                        b'4 ^ \markup { -3 }
+                        af4 ^ \markup { -10 }
+                        bf,4 ^ \markup { +1 }
+                        b,4 ^ \markup { +10 }
+                        a'4 ^ \markup { +1 }
+                        bf'4
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> staff = Staff(notes)
+                    >>> prototype = pitchtools.NumberedIntervalClass
+                    >>> expression = label().with_intervals(prototype=prototype)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        c'4 ^ \markup { +1 }
+                        cs'''4 ^ \markup { -2 }
+                        b'4 ^ \markup { -3 }
+                        af4 ^ \markup { -10 }
+                        bf,4 ^ \markup { +1 }
+                        b,4 ^ \markup { +10 }
+                        a'4 ^ \markup { +1 }
+                        bf'4
+                    }
+
+        ..  container:: example
+
+            Labels consecutive notes with inversion-equivalent interval-class
             numbers:
 
-            ::
+            ..  container:: example
 
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                >>> staff = Staff(notes)
-                >>> prototype = pitchtools.NumberedIntervalClass
-                >>> label(staff).with_intervals(prototype=prototype)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> staff = Staff(notes)
+                    >>> prototype = pitchtools.NumberedInversionEquivalentIntervalClass
+                    >>> label(staff).with_intervals(prototype=prototype)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #4
-                } {
-                    c'4 ^ \markup { +1 }
-                    cs'''4 ^ \markup { -2 }
-                    b'4 ^ \markup { -3 }
-                    af4 ^ \markup { -10 }
-                    bf,4 ^ \markup { +1 }
-                    b,4 ^ \markup { +10 }
-                    a'4 ^ \markup { +1 }
-                    bf'4
-                }
+                ..  doctest::
 
-        ..  container:: example
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        c'4 ^ \markup { 1 }
+                        cs'''4 ^ \markup { 2 }
+                        b'4 ^ \markup { 3 }
+                        af4 ^ \markup { 2 }
+                        bf,4 ^ \markup { 1 }
+                        b,4 ^ \markup { 2 }
+                        a'4 ^ \markup { 1 }
+                        bf'4
+                    }
 
-            **Example 5.** Labels consecutive notes with inversion-equivalent
-            interval-class numbers:
+            ..  container:: example expression
 
-            ::
+                ::
 
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                >>> staff = Staff(notes)
-                >>> prototype = pitchtools.NumberedInversionEquivalentIntervalClass
-                >>> label(staff).with_intervals(prototype=prototype)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
+                    >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> staff = Staff(notes)
+                    >>> prototype = pitchtools.NumberedInversionEquivalentIntervalClass
+                    >>> expression = label().with_intervals(prototype=prototype)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+                ..  doctest::
 
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #4
-                } {
-                    c'4 ^ \markup { 1 }
-                    cs'''4 ^ \markup { 2 }
-                    b'4 ^ \markup { 3 }
-                    af4 ^ \markup { 2 }
-                    bf,4 ^ \markup { 1 }
-                    b,4 ^ \markup { 2 }
-                    a'4 ^ \markup { 1 }
-                    bf'4
-                }
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        c'4 ^ \markup { 1 }
+                        cs'''4 ^ \markup { 2 }
+                        b'4 ^ \markup { 3 }
+                        af4 ^ \markup { 2 }
+                        bf,4 ^ \markup { 1 }
+                        b,4 ^ \markup { 2 }
+                        a'4 ^ \markup { 1 }
+                        bf'4
+                    }
 
         Returns none.
         """
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         prototype = prototype or pitchtools.NamedInterval
         notes = iterate(self.client).by_class(scoretools.Note)
         for note in notes:
@@ -1588,286 +2898,569 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Labels logical ties with pitch names:
+            Labels logical ties with pitch names:
 
-            ::
+            ..  container:: example
 
-                >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                >>> label(staff).with_pitches(prototype=None)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> label(staff).with_pitches(prototype=None)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #4
-                } {
-                    <a d' fs'>4
-                        ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        fs'
-                                        d'
-                                        a
-                                    }
-                            }
-                    g'4 ~
-                        ^ \markup {
-                            \small
-                                g'
-                            }
-                    g'8
-                    r8
-                    fs''4
-                        ^ \markup {
-                            \small
-                                fs''
-                            }
-                }
+                ..  doctest::
 
-        ..  container:: example
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        <a d' fs'>4
+                            ^ \markup {
+                                \small
+                                    \column
+                                        {
+                                            fs'
+                                            d'
+                                            a
+                                        }
+                                }
+                        g'4 ~
+                            ^ \markup {
+                                \small
+                                    g'
+                                }
+                        g'8
+                        r8
+                        fs''4
+                            ^ \markup {
+                                \small
+                                    fs''
+                                }
+                    }
 
-            **Example 2.** Labels logical ties with pitch numbers:
+            ..  container:: example expression
 
-            ::
+                ::
 
-                >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                >>> prototype = pitchtools.NumberedPitch
-                >>> label(staff).with_pitches(prototype=prototype)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
+                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> expression = label().with_pitches(prototype=None)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+                ..  doctest::
 
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #4
-                } {
-                    <a d' fs'>4
-                        ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        6
-                                        2
-                                        -3
-                                    }
-                            }
-                    g'4 ~
-                        ^ \markup {
-                            \small
-                                7
-                            }
-                    g'8
-                    r8
-                    fs''4
-                        ^ \markup {
-                            \small
-                                18
-                            }
-                }
-
-        ..  container:: example
-
-            **Example 3.** Labels logical ties with pitch-class numbers:
-
-            ::
-
-                >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                >>> prototype = pitchtools.NumberedPitchClass
-                >>> label(staff).with_pitches(prototype=prototype)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #4
-                } {
-                    <a d' fs'>4
-                        ^ \markup {
-                            \small
-                                \column
-                                    {
-                                        6
-                                        2
-                                        9
-                                    }
-                            }
-                    g'4 ~
-                        ^ \markup {
-                            \small
-                                7
-                            }
-                    g'8
-                    r8
-                    fs''4
-                        ^ \markup {
-                            \small
-                                6
-                            }
-                }
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        <a d' fs'>4
+                            ^ \markup {
+                                \small
+                                    \column
+                                        {
+                                            fs'
+                                            d'
+                                            a
+                                        }
+                                }
+                        g'4 ~
+                            ^ \markup {
+                                \small
+                                    g'
+                                }
+                        g'8
+                        r8
+                        fs''4
+                            ^ \markup {
+                                \small
+                                    fs''
+                                }
+                    }
 
         ..  container:: example
 
-            **Example 4.** Labels logical ties with pitch names (filtered by
+            Labels logical ties with pitch numbers:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> prototype = pitchtools.NumberedPitch
+                    >>> label(staff).with_pitches(prototype=prototype)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        <a d' fs'>4
+                            ^ \markup {
+                                \small
+                                    \column
+                                        {
+                                            6
+                                            2
+                                            -3
+                                        }
+                                }
+                        g'4 ~
+                            ^ \markup {
+                                \small
+                                    7
+                                }
+                        g'8
+                        r8
+                        fs''4
+                            ^ \markup {
+                                \small
+                                    18
+                                }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> prototype = pitchtools.NumberedPitch
+                    >>> expression = label().with_pitches(prototype=prototype)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        <a d' fs'>4
+                            ^ \markup {
+                                \small
+                                    \column
+                                        {
+                                            6
+                                            2
+                                            -3
+                                        }
+                                }
+                        g'4 ~
+                            ^ \markup {
+                                \small
+                                    7
+                                }
+                        g'8
+                        r8
+                        fs''4
+                            ^ \markup {
+                                \small
+                                    18
+                                }
+                    }
+
+        ..  container:: example
+
+            Labels logical ties with pitch-class numbers:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> label(staff).with_pitches(prototype=prototype)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        <a d' fs'>4
+                            ^ \markup {
+                                \small
+                                    \column
+                                        {
+                                            6
+                                            2
+                                            9
+                                        }
+                                }
+                        g'4 ~
+                            ^ \markup {
+                                \small
+                                    7
+                                }
+                        g'8
+                        r8
+                        fs''4
+                            ^ \markup {
+                                \small
+                                    6
+                                }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> expression = label().with_pitches(prototype=prototype)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript.staff-padding = #4
+                    } {
+                        <a d' fs'>4
+                            ^ \markup {
+                                \small
+                                    \column
+                                        {
+                                            6
+                                            2
+                                            9
+                                        }
+                                }
+                        g'4 ~
+                            ^ \markup {
+                                \small
+                                    7
+                                }
+                        g'8
+                        r8
+                        fs''4
+                            ^ \markup {
+                                \small
+                                    6
+                                }
+                    }
+
+        ..  container:: example
+
+            Labels logical ties with pitch names (filtered by selection):
+
+            ..  container:: example
+
+                ::
+
+                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:2], voice[-2:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> label(selections).with_pitches()
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    df''
+                                }
+                        c''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    c''
+                                }
+                        f'4
+                        fs'4
+                        d''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    d''
+                                }
+                        ds''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    ds''
+                                }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:2], voice[-2:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> expression = label().with_pitches()
+                    >>> expression(selections)
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    df''
+                                }
+                        c''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    c''
+                                }
+                        f'4
+                        fs'4
+                        d''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    d''
+                                }
+                        ds''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    ds''
+                                }
+                    }
+
+        ..  container:: example
+
+            Labels logical ties with pitch numbers (filtered by selection):
+
+            ..  container:: example
+
+                ::
+
+                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:2], voice[-2:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> prototype = pitchtools.NumberedPitch
+                    >>> label(selections).with_pitches(prototype=prototype)
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    13
+                                }
+                        c''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    12
+                                }
+                        f'4
+                        fs'4
+                        d''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    14
+                                }
+                        ds''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    15
+                                }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:2], voice[-2:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> prototype = pitchtools.NumberedPitch
+                    >>> expression = label().with_pitches(prototype=prototype)
+                    >>> expression(selections)
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    13
+                                }
+                        c''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    12
+                                }
+                        f'4
+                        fs'4
+                        d''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    14
+                                }
+                        ds''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    15
+                                }
+                    }
+
+        ..  container:: example
+
+            Labels logical ties with pitch-class numbers (filtered by
             selection):
 
-            ::
+            ..  container:: example
 
-                >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:2], voice[-2:]]
-                >>> for selection in selections:
-                ...     spanner = spannertools.HorizontalBracketSpanner()
-                ...     attach(spanner, selection)
-                ...
-                >>> label(selections).with_pitches()
-                >>> override(voice).horizontal_bracket.staff_padding = 3
-                >>> override(voice).text_script.staff_padding = 2
-                >>> show(voice) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:2], voice[-2:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> label(selections).with_pitches(prototype=prototype)
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
 
-                >>> f(voice)
-                \new Voice \with {
-                    \consists Horizontal_bracket_engraver
-                    \override HorizontalBracket.staff-padding = #3
-                    \override TextScript.staff-padding = #2
-                } {
-                    df''4 \startGroup
-                        ^ \markup {
-                            \small
-                                df''
-                            }
-                    c''4 \stopGroup
-                        ^ \markup {
-                            \small
-                                c''
-                            }
-                    f'4
-                    fs'4
-                    d''4 \startGroup
-                        ^ \markup {
-                            \small
-                                d''
-                            }
-                    ds''4 \stopGroup
-                        ^ \markup {
-                            \small
-                                ds''
-                            }
-                }
+                ..  doctest::
 
-        ..  container:: example
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    1
+                                }
+                        c''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        f'4
+                        fs'4
+                        d''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    2
+                                }
+                        ds''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    3
+                                }
+                    }
 
-            **Example 5.** Labels logical ties with pitch numbers (filtered by
-            selection):
+            ..  container:: example expression
 
-            ::
+                ::
 
-                >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:2], voice[-2:]]
-                >>> for selection in selections:
-                ...     spanner = spannertools.HorizontalBracketSpanner()
-                ...     attach(spanner, selection)
-                ...
-                >>> prototype = pitchtools.NumberedPitch
-                >>> label(selections).with_pitches(prototype=prototype)
-                >>> override(voice).horizontal_bracket.staff_padding = 3
-                >>> override(voice).text_script.staff_padding = 2
-                >>> show(voice) # doctest: +SKIP
+                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:2], voice[-2:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> expression = label().with_pitches(prototype=prototype)
+                    >>> expression(selections)
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+                ..  doctest::
 
-                >>> f(voice)
-                \new Voice \with {
-                    \consists Horizontal_bracket_engraver
-                    \override HorizontalBracket.staff-padding = #3
-                    \override TextScript.staff-padding = #2
-                } {
-                    df''4 \startGroup
-                        ^ \markup {
-                            \small
-                                13
-                            }
-                    c''4 \stopGroup
-                        ^ \markup {
-                            \small
-                                12
-                            }
-                    f'4
-                    fs'4
-                    d''4 \startGroup
-                        ^ \markup {
-                            \small
-                                14
-                            }
-                    ds''4 \stopGroup
-                        ^ \markup {
-                            \small
-                                15
-                            }
-                }
-
-        ..  container:: example
-
-            **Example 6.** Labels logical ties with pitch-class numbers
-            (filtered by selection):
-
-            ::
-
-                >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:2], voice[-2:]]
-                >>> for selection in selections:
-                ...     spanner = spannertools.HorizontalBracketSpanner()
-                ...     attach(spanner, selection)
-                ...
-                >>> prototype = pitchtools.NumberedPitchClass
-                >>> label(selections).with_pitches(prototype=prototype)
-                >>> override(voice).horizontal_bracket.staff_padding = 3
-                >>> override(voice).text_script.staff_padding = 2
-                >>> show(voice) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(voice)
-                \new Voice \with {
-                    \consists Horizontal_bracket_engraver
-                    \override HorizontalBracket.staff-padding = #3
-                    \override TextScript.staff-padding = #2
-                } {
-                    df''4 \startGroup
-                        ^ \markup {
-                            \small
-                                1
-                            }
-                    c''4 \stopGroup
-                        ^ \markup {
-                            \small
-                                0
-                            }
-                    f'4
-                    fs'4
-                    d''4 \startGroup
-                        ^ \markup {
-                            \small
-                                2
-                            }
-                    ds''4 \stopGroup
-                        ^ \markup {
-                            \small
-                                3
-                            }
-                }
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    1
+                                }
+                        c''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        f'4
+                        fs'4
+                        d''4 \startGroup
+                            ^ \markup {
+                                \small
+                                    2
+                                }
+                        ds''4 \stopGroup
+                            ^ \markup {
+                                \small
+                                    3
+                                }
+                    }
 
         Returns none.
         '''
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         prototype = prototype or pitchtools.NamedPitch
         logical_ties = iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
@@ -1920,167 +3513,329 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Labels selections with Forte-ranked
-            transposition-inversion set-classes:
-
-            ::
-
-                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                >>> voice = Voice(string)
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:4], voice[-4:]]
-                >>> for selection in selections:
-                ...     spanner = spannertools.HorizontalBracketSpanner()
-                ...     attach(spanner, selection)
-                ...
-                >>> label(selections).with_set_classes()
-                >>> override(voice).horizontal_bracket.staff_padding = 3
-                >>> override(voice).text_script.staff_padding = 2
-                >>> show(voice) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(voice)
-                \new Voice \with {
-                    \consists Horizontal_bracket_engraver
-                    \override HorizontalBracket.staff-padding = #3
-                    \override TextScript.staff-padding = #2
-                } {
-                    df''8 \startGroup
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-3){0, 1, 3, 4}"
-                                    }
-                            }
-                    c''8
-                    bf'8
-                    a'8 \stopGroup
-                    f'4.
-                    fs'8 \startGroup
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-20){0, 1, 5, 8}"
-                                    }
-                            }
-                    g'8
-                    b'8
-                    d''2. \stopGroup
-                }
-
-        ..  container:: example
-
-            **Example 2.** Labels selections with lex-ranked
-            transposition-inversion set-classes:
-
-            ::
-
-                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                >>> voice = Voice(string)
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:4], voice[-4:]]
-                >>> for selection in selections:
-                ...     spanner = spannertools.HorizontalBracketSpanner()
-                ...     attach(spanner, selection)
-                ...
-                >>> prototype = pitchtools.SetClass(lex_rank=True)
-                >>> label(selections).with_set_classes(prototype=prototype)
-                >>> override(voice).horizontal_bracket.staff_padding = 3
-                >>> override(voice).text_script.staff_padding = 2
-                >>> show(voice) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(voice)
-                \new Voice \with {
-                    \consists Horizontal_bracket_engraver
-                    \override HorizontalBracket.staff-padding = #3
-                    \override TextScript.staff-padding = #2
-                } {
-                    df''8 \startGroup
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-6){0, 1, 3, 4}"
-                                    }
-                            }
-                    c''8
-                    bf'8
-                    a'8 \stopGroup
-                    f'4.
-                    fs'8 \startGroup
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-16){0, 1, 5, 8}"
-                                    }
-                            }
-                    g'8
-                    b'8
-                    d''2. \stopGroup
-                }
-
-        ..  container:: example
-
-            **Example 3.** Labels selections with transposition-only
+            Labels selections with Forte-ranked transposition-inversion
             set-classes:
 
-            ::
+            ..  container:: example
 
-                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                >>> voice = Voice(string)
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:4], voice[-4:]]
-                >>> for selection in selections:
-                ...     spanner = spannertools.HorizontalBracketSpanner()
-                ...     attach(spanner, selection)
-                ...
-                >>> prototype = pitchtools.SetClass(transposition_only=True)
-                >>> label(selections).with_set_classes(prototype=prototype)
-                >>> override(voice).horizontal_bracket.staff_padding = 3
-                >>> override(voice).text_script.staff_padding = 2
-                >>> show(voice) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                    >>> voice = Voice(string)
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:4], voice[-4:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> label(selections).with_set_classes()
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
 
-                >>> f(voice)
-                \new Voice \with {
-                    \consists Horizontal_bracket_engraver
-                    \override HorizontalBracket.staff-padding = #3
-                    \override TextScript.staff-padding = #2
-                } {
-                    df''8 \startGroup
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-3){0, 1, 2, 5}"
-                                    }
-                            }
-                    c''8
-                    bf'8
-                    a'8 \stopGroup
-                    f'4.
-                    fs'8 \startGroup
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-20){0, 2, 3, 6}"
-                                    }
-                            }
-                    g'8
-                    b'8
-                    d''2. \stopGroup
-                }
+                ..  doctest::
+
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-3){0, 1, 3, 4}"
+                                        }
+                                }
+                        c''8
+                        bf'8
+                        a'8 \stopGroup
+                        f'4.
+                        fs'8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-20){0, 1, 5, 8}"
+                                        }
+                                }
+                        g'8
+                        b'8
+                        d''2. \stopGroup
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                    >>> voice = Voice(string)
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:4], voice[-4:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> expression = label().with_set_classes()
+                    >>> expression(selections)
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-3){0, 1, 3, 4}"
+                                        }
+                                }
+                        c''8
+                        bf'8
+                        a'8 \stopGroup
+                        f'4.
+                        fs'8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-20){0, 1, 5, 8}"
+                                        }
+                                }
+                        g'8
+                        b'8
+                        d''2. \stopGroup
+                    }
+
+        ..  container:: example
+
+            Labels selections with lex-ranked transposition-inversion
+            set-classes:
+
+            ..  container:: example
+
+                ::
+
+                    >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                    >>> voice = Voice(string)
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:4], voice[-4:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> prototype = pitchtools.SetClass(lex_rank=True)
+                    >>> label(selections).with_set_classes(prototype=prototype)
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-6){0, 1, 3, 4}"
+                                        }
+                                }
+                        c''8
+                        bf'8
+                        a'8 \stopGroup
+                        f'4.
+                        fs'8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-16){0, 1, 5, 8}"
+                                        }
+                                }
+                        g'8
+                        b'8
+                        d''2. \stopGroup
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                    >>> voice = Voice(string)
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:4], voice[-4:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> prototype = pitchtools.SetClass(lex_rank=True)
+                    >>> expression = label().with_set_classes(prototype=prototype)
+                    >>> expression(selections)
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-6){0, 1, 3, 4}"
+                                        }
+                                }
+                        c''8
+                        bf'8
+                        a'8 \stopGroup
+                        f'4.
+                        fs'8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-16){0, 1, 5, 8}"
+                                        }
+                                }
+                        g'8
+                        b'8
+                        d''2. \stopGroup
+                    }
+
+        ..  container:: example
+
+            Labels selections with transposition-only set-classes:
+
+            ..  container:: example
+
+                ::
+
+                    >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                    >>> voice = Voice(string)
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:4], voice[-4:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> prototype = pitchtools.SetClass(transposition_only=True)
+                    >>> label(selections).with_set_classes(prototype=prototype)
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-3){0, 1, 2, 5}"
+                                        }
+                                }
+                        c''8
+                        bf'8
+                        a'8 \stopGroup
+                        f'4.
+                        fs'8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-20){0, 2, 3, 6}"
+                                        }
+                                }
+                        g'8
+                        b'8
+                        d''2. \stopGroup
+                    }
+
+            ..  container:: example expression
+        
+                ::
+
+                    >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                    >>> voice = Voice(string)
+                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> selections = [voice[:4], voice[-4:]]
+                    >>> for selection in selections:
+                    ...     spanner = spannertools.HorizontalBracketSpanner()
+                    ...     attach(spanner, selection)
+                    ...
+                    >>> prototype = pitchtools.SetClass(transposition_only=True)
+                    >>> expression = label().with_set_classes(prototype=prototype)
+                    >>> expression(selections)
+                    >>> override(voice).horizontal_bracket.staff_padding = 3
+                    >>> override(voice).text_script.staff_padding = 2
+                    >>> show(voice) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(voice)
+                    \new Voice \with {
+                        \consists Horizontal_bracket_engraver
+                        \override HorizontalBracket.staff-padding = #3
+                        \override TextScript.staff-padding = #2
+                    } {
+                        df''8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-3){0, 1, 2, 5}"
+                                        }
+                                }
+                        c''8
+                        bf'8
+                        a'8 \stopGroup
+                        f'4.
+                        fs'8 \startGroup
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(4-20){0, 2, 3, 6}"
+                                        }
+                                }
+                        g'8
+                        b'8
+                        d''2. \stopGroup
+                    }
 
         Returns none.
         '''
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         prototype = prototype or pitchtools.SetClass()
         if prototype is pitchtools.SetClass:
             prototype = prototype()
@@ -2113,118 +3868,234 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Labels logical tie start offsets:
+            Labels logical tie start offsets:
 
-            ::
+            ..  container:: example
 
-                >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-                >>> label(staff).with_start_offsets(direction=Up)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> override(staff).tuplet_bracket.staff_padding = 0
-                >>> show(staff) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+                    >>> label(staff).with_start_offsets(direction=Up)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #4
-                    \override TupletBracket.staff-padding = #0
-                } {
-                    \times 2/3 {
-                        c'4 ^ \markup { 0 }
-                        d'4 ^ \markup { 1/6 }
-                        e'4 ~ ^ \markup { 1/3 }
-                    }
-                    e'4
-                    ef'4 ^ \markup { 3/4 }
-                }
+                ..  doctest::
 
-        ..  container:: example
-
-            **Example 2.** Labels logical tie start offsets with clock time:
-
-            ::
-
-                >>> staff = Staff(r"c'2 d' e' f'")
-                >>> score = Score([staff])
-                >>> attach(Tempo(Duration(1, 4), 60), staff[0])
-                >>> label(staff).with_start_offsets(clock_time=True)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> override(staff).tuplet_bracket.staff_padding = 0
-                >>> show(score) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(score)
-                \new Score <<
+                    >>> f(staff)
                     \new Staff \with {
                         \override TextScript.staff-padding = #4
                         \override TupletBracket.staff-padding = #0
                     } {
-                        \tempo 4=60
-                        c'2 ^ \markup { 0'00'' }
-                        d'2 ^ \markup { 0'02'' }
-                        e'2 ^ \markup { 0'04'' }
-                        f'2 ^ \markup { 0'06'' }
+                        \times 2/3 {
+                            c'4 ^ \markup { 0 }
+                            d'4 ^ \markup { 1/6 }
+                            e'4 ~ ^ \markup { 1/3 }
+                        }
+                        e'4
+                        ef'4 ^ \markup { 3/4 }
                     }
-                >>
 
-        ..  container:: example
+            ..  container:: example expression
 
-            **Example 3.** Labels logical tie start offsets with clock time and
-            custom font size:
+                ::
 
-            ::
+                    >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+                    >>> expression = label().with_start_offsets(direction=Up)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> show(staff) # doctest: +SKIP
 
-                >>> staff = Staff(r"c'2 d' e' f'")
-                >>> score = Score([staff])
-                >>> attach(Tempo(Duration(1, 4), 60), staff[0])
-                >>> label(staff).with_start_offsets(
-                ...     clock_time=True,
-                ...     font_size=-3,
-                ...     )
-                >>> override(staff).text_script.staff_padding = 4
-                >>> override(staff).tuplet_bracket.staff_padding = 0
-                >>> show(score) # doctest: +SKIP
+                ..  doctest::
 
-            ..  doctest::
-
-                >>> f(score)
-                \new Score <<
+                    >>> f(staff)
                     \new Staff \with {
                         \override TextScript.staff-padding = #4
                         \override TupletBracket.staff-padding = #0
                     } {
-                        \tempo 4=60
-                        c'2
-                            ^ \markup {
-                                \fontsize
-                                    #-3
-                                    0'00''
-                                }
-                        d'2
-                            ^ \markup {
-                                \fontsize
-                                    #-3
-                                    0'02''
-                                }
-                        e'2
-                            ^ \markup {
-                                \fontsize
-                                    #-3
-                                    0'04''
-                                }
-                        f'2
-                            ^ \markup {
-                                \fontsize
-                                    #-3
-                                    0'06''
-                                }
+                        \times 2/3 {
+                            c'4 ^ \markup { 0 }
+                            d'4 ^ \markup { 1/6 }
+                            e'4 ~ ^ \markup { 1/3 }
+                        }
+                        e'4
+                        ef'4 ^ \markup { 3/4 }
                     }
-                >>
+
+        ..  container:: example
+
+            Labels logical tie start offsets with clock time:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff(r"c'2 d' e' f'")
+                    >>> score = Score([staff])
+                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+                    >>> label(staff).with_start_offsets(clock_time=True)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> show(score) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(score)
+                    \new Score <<
+                        \new Staff \with {
+                            \override TextScript.staff-padding = #4
+                            \override TupletBracket.staff-padding = #0
+                        } {
+                            \tempo 4=60
+                            c'2 ^ \markup { 0'00'' }
+                            d'2 ^ \markup { 0'02'' }
+                            e'2 ^ \markup { 0'04'' }
+                            f'2 ^ \markup { 0'06'' }
+                        }
+                    >>
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff(r"c'2 d' e' f'")
+                    >>> score = Score([staff])
+                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+                    >>> expression = label().with_start_offsets(clock_time=True)
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> show(score) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(score)
+                    \new Score <<
+                        \new Staff \with {
+                            \override TextScript.staff-padding = #4
+                            \override TupletBracket.staff-padding = #0
+                        } {
+                            \tempo 4=60
+                            c'2 ^ \markup { 0'00'' }
+                            d'2 ^ \markup { 0'02'' }
+                            e'2 ^ \markup { 0'04'' }
+                            f'2 ^ \markup { 0'06'' }
+                        }
+                    >>
+
+        ..  container:: example
+
+            Labels logical tie start offsets with clock time and custom font
+            size:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff(r"c'2 d' e' f'")
+                    >>> score = Score([staff])
+                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+                    >>> label(staff).with_start_offsets(
+                    ...     clock_time=True,
+                    ...     font_size=-3,
+                    ...     )
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> show(score) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(score)
+                    \new Score <<
+                        \new Staff \with {
+                            \override TextScript.staff-padding = #4
+                            \override TupletBracket.staff-padding = #0
+                        } {
+                            \tempo 4=60
+                            c'2
+                                ^ \markup {
+                                    \fontsize
+                                        #-3
+                                        0'00''
+                                    }
+                            d'2
+                                ^ \markup {
+                                    \fontsize
+                                        #-3
+                                        0'02''
+                                    }
+                            e'2
+                                ^ \markup {
+                                    \fontsize
+                                        #-3
+                                        0'04''
+                                    }
+                            f'2
+                                ^ \markup {
+                                    \fontsize
+                                        #-3
+                                        0'06''
+                                    }
+                        }
+                    >>
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> staff = Staff(r"c'2 d' e' f'")
+                    >>> score = Score([staff])
+                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+                    >>> expression = label().with_start_offsets(
+                    ...     clock_time=True,
+                    ...     font_size=-3,
+                    ...     )
+                    >>> expression(staff)
+                    >>> override(staff).text_script.staff_padding = 4
+                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> show(score) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(score)
+                    \new Score <<
+                        \new Staff \with {
+                            \override TextScript.staff-padding = #4
+                            \override TupletBracket.staff-padding = #0
+                        } {
+                            \tempo 4=60
+                            c'2
+                                ^ \markup {
+                                    \fontsize
+                                        #-3
+                                        0'00''
+                                    }
+                            d'2
+                                ^ \markup {
+                                    \fontsize
+                                        #-3
+                                        0'02''
+                                    }
+                            e'2
+                                ^ \markup {
+                                    \fontsize
+                                        #-3
+                                        0'04''
+                                    }
+                            f'2
+                                ^ \markup {
+                                    \fontsize
+                                        #-3
+                                        0'06''
+                                    }
+                        }
+                    >>
 
         Returns none.
         '''
+        if self._is_frozen:
+            return self._make_callback(inspect.currentframe())
         logical_ties = iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
             if clock_time:
@@ -2241,13 +4112,3 @@ class LabelAgent(abctools.AbjadObject):
             if font_size is not None:
                 label = label.fontsize(font_size)
             attach(label, logical_tie.head)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        r'''Gets client of label agent.
-
-        Returns component, selection, spanner or none.
-        '''
-        return self._client

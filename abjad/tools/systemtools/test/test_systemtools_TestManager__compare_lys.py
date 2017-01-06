@@ -24,7 +24,7 @@ lines = [
 
 
 def test_systemtools_TestManager__compare_lys_01():
-    r'''True when lines are exactly the same.
+    r'''Is true when lines are exactly the same.
     '''
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
@@ -38,7 +38,7 @@ def test_systemtools_TestManager__compare_lys_01():
 
 
 def test_systemtools_TestManager__compare_lys_02():
-    r'''True when version strings differ.
+    r'''Is true when version strings differ.
     '''
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
@@ -52,7 +52,7 @@ def test_systemtools_TestManager__compare_lys_02():
 
 
 def test_systemtools_TestManager__compare_lys_03():
-    r'''True when comments differ.
+    r'''Is true when comments differ.
     '''
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):

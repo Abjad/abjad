@@ -2,29 +2,47 @@
 
 
 def select(expr=None):
-    r'''Selects `expr`.
-
+    r'''Selects `expr` or makes empty selector.
 
     ..  container:: example
 
-        **Example 1.** Returns selection when `expr` is not none:
+        Selects first two notes in staff:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> select(staff[:2])
-            Selection([Note("c'8"), Note("d'8")])
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> selection = select(staff[:2])
+            >>> for note in selection:
+            ...     override(note).note_head.color = 'red'
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \once \override NoteHead.color = #red
+                c'4
+                \once \override NoteHead.color = #red
+                d'4
+                e'4
+                f'4
+            }
 
     ..  container:: example
 
-        **Example 2.** Returns selector when `expr` is none:
+        Initializes empty selector:
 
         ::
 
             >>> select()
             Selector()
 
-    Returns selection.
+    Returns selection when `expr` is not none.
+
+    Returns selector when `expr` is none.
     '''
     from abjad.tools import scoretools
     from abjad.tools import selectiontools

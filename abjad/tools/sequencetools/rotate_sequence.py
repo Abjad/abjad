@@ -3,7 +3,7 @@ import collections
 
 
 def rotate_sequence(sequence, n=None):
-    '''Rotates `sequence`.
+    '''Rotates `sequence` by index `n`.
 
     ..  container:: example
 

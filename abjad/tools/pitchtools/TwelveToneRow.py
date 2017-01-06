@@ -926,14 +926,14 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Counts pitch-class ``11`` in row:
+            Counts pitch-class 11 in row:
         
                 >>> row.count(11)
                 1
 
         ..  container:: example
 
-            Counts pitch-class ``9`` in row:
+            Counts pitch-class 9 in row:
 
             ::
                 
@@ -1030,7 +1030,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Gets index of pitch-class ``11``:
+            Gets index of pitch-class 11:
         
             ::
 
@@ -1039,7 +1039,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Gets index of pitch-class ``9``:
+            Gets index of pitch-class 9:
 
             ::
                 
@@ -1074,7 +1074,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Inverts row about first pitch-class `axis` is none:
+            Inverts row about first pitch-class when `axis` is none:
 
             ::
 
@@ -1111,7 +1111,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Inverts row about pitch-class ``1``:
+            Inverts row about pitch-class 1:
 
             ::
 
@@ -1144,7 +1144,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Inverts row about pitch-class ``0``:
+            Inverts row about pitch-class 0:
 
             ::
 
@@ -1174,7 +1174,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Inverts row about pitch-class ``5``:
+            Inverts row about pitch-class 5:
 
             ::
 
@@ -1426,7 +1426,7 @@ class TwelveToneRow(PitchClassSegment):
         return superclass.retrograde()
 
     def rotate(self, n=0, stravinsky=False):
-        r'''Rotates row.
+        r'''Rotates row by index `n`.
 
         ..  container:: example
 

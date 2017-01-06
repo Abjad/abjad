@@ -32,9 +32,6 @@ class LilyPondOutputProxy(ImageOutputProxy):
                         name='layout',
                         ),
                     lilypondfiletools.Block(
-                        name='paper',
-                        ),
-                    lilypondfiletools.Block(
                         name='score',
                         ),
                     ],
@@ -48,7 +45,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
     ::
 
         >>> proxy.as_latex(relative_output_directory='assets')
-        ['\\noindent\\includegraphics{assets/lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.pdf}']
+        ['\\noindent\\includegraphics{assets/lilypond-0b731cedacea34e85fbb92b66b42b40b.pdf}']
 
     '''
 
@@ -87,14 +84,16 @@ class LilyPondOutputProxy(ImageOutputProxy):
                 payload)
         lilypond_file = payload
         assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
+        if not len(lilypond_file.layout_block.items):
+            lilypond_file.items.remove(lilypond_file.layout_block)
+        if not len(lilypond_file.paper_block.items):
+            lilypond_file.items.remove(lilypond_file.paper_block)
         if lilypond_file.header_block is None:
             header_block = lilypondfiletools.Block(name='header')
             lilypond_file.items.insert(0, header_block)
         lilypond_file.header_block.tagline = False
         lilypond_file._date_time_token = None
-        token = lilypondfiletools.LilyPondVersionToken(
-            "2.19.0",
-            )
+        token = lilypondfiletools.LilyPondVersionToken("2.19.0")
         lilypond_file._lilypond_version_token = token
         if (
             image_render_specifier.stylesheet and
@@ -190,10 +189,6 @@ class LilyPondOutputProxy(ImageOutputProxy):
                         proportionalNotationDuration = #(ly:make-moment 1 24)
                         tupletFullLength = ##t
                     }
-                }
-            <BLANKLINE>
-                \paper {
-                    left-margin = 1\in
                 }
             <BLANKLINE>
                 \score {

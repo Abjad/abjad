@@ -7,7 +7,7 @@ class Ratio(NonreducedRatio):
 
     ..  container:: example
 
-        **Example 1.** Ratio of two numbers:
+        Ratio of two numbers:
 
         ::
 
@@ -16,7 +16,7 @@ class Ratio(NonreducedRatio):
 
     ..  container:: example
 
-        **Example 2.** Ratio of three numbers:
+        Ratio of three numbers:
 
         ::
 
@@ -79,7 +79,7 @@ class Ratio(NonreducedRatio):
 
         ..  container:: example
 
-            **Example 1.** Ratio of two numbers:
+            Ratio of two numbers:
 
             ::
 
@@ -88,7 +88,7 @@ class Ratio(NonreducedRatio):
 
         ..  container:: example
 
-            **Example 2.** Ratio of three numbers:
+            Ratio of three numbers:
 
             ::
 
@@ -108,7 +108,7 @@ class Ratio(NonreducedRatio):
 
         ..  container:: example
 
-            **Example 1.** Ratio of two numbers:
+            Ratio of two numbers:
 
             ::
 
@@ -118,7 +118,7 @@ class Ratio(NonreducedRatio):
 
         ..  container:: example
 
-            **Example 2.** Ratio of three numbers:
+            Ratio of three numbers:
 
             ::
 
@@ -143,7 +143,7 @@ class Ratio(NonreducedRatio):
 
         ..  container:: example
 
-            **Example 1.** Ratio of two numbers:
+            Ratio of two numbers:
 
             ::
 
@@ -153,7 +153,7 @@ class Ratio(NonreducedRatio):
 
         ..  container:: example
 
-            **Example 2.** Ratio of three numbers:
+            Ratio of three numbers:
 
             ::
 

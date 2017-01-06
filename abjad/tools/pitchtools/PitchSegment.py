@@ -357,7 +357,7 @@ class PitchSegment(Segment):
         return new(self, items=reversed(self))
 
     def rotate(self, n=0, stravinsky=False):
-        r'''Rotates pitch segment.
+        r'''Rotates pitch segment by index `n`.
 
         ::
 

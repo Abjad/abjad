@@ -9,6 +9,8 @@ class ThumbnailDirective(Directive):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Sphinx Internals'
+
     final_argument_whitespace = True
     has_content = False
     option_spec = {

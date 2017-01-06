@@ -2,7 +2,7 @@
 
 
 def tweak(expr):
-    r'''Tweaks `expr`.
+    r'''Makes LilyPond tweak manager.
 
     ..  container:: example
 
@@ -146,7 +146,15 @@ def tweak(expr):
 
         ..  todo:: Remove courtesy autocolumn in favor of explicit tweaks?
 
-    Returns LilyPond tweak manager.
+    ..  container:: example
+
+        Returns LilyPond tweak manager:
+
+        ::
+
+            >>> tweak(markup_1)
+            LilyPondTweakManager(('color', 'red'))
+
     ''' 
     from abjad.tools import lilypondnametools
     if getattr(expr, '_lilypond_tweak_manager', None) is None:

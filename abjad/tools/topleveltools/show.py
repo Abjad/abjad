@@ -6,19 +6,43 @@ def show(expr, return_timing=False, **kwargs):
 
     ..  container:: example
 
-        Shows a note:
+        Shows note:
 
         ::
 
             >>> note = Note("c'4")
             >>> show(note) # doctest: +SKIP
 
-    Abjad writes LilyPond input files to the ``~/.abjad/output/``
-    directory by default.
+        ..  doctest::
 
-    You may change this by setting the ``abjad_output_directory`` variable in
-    the Abjad ``config.py`` file.
+            >>> f(note)
+            c'4
 
+    ..  container:: example
+
+        Shows staff:
+
+        ::
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+    Makes LilyPond input files and output PDF.
+
+    Writes LilyPond input file and output PDF to Abjad output directory.
+
+    Opens output PDF.
+    
     Returns none when `return_timing` is false.
 
     Returns pair of `abjad_formatting_time` and `lilypond_rendering_time`

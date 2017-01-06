@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+r'''The Abjad stringtools package imports no other Abjad packages.
+'''
 from abjad.tools import systemtools
 
 

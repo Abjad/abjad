@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_scoretools_NoteHeadInventory_remove_01():
-    '''Remove note head from chord.
+    '''Remove note-head from chord.
     '''
 
     chord = Chord("<ef' cs'' f''>4")

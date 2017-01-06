@@ -102,11 +102,15 @@ class Selection(object):
         Returns dictionary.
         '''
         if hasattr(self, '__dict__'):
-            return vars(self)
-        state = {}
+            state = vars(self).copy()
+        else:
+            state = {}
         for class_ in type(self).__mro__:
             for slot in getattr(class_, '__slots__', ()):
-                state[slot] = getattr(self, slot, None)
+                try:
+                    state[slot] = getattr(self, slot)
+                except AttributeError:
+                    pass
         return state
 
     def __hash__(self):

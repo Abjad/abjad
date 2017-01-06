@@ -3,7 +3,7 @@ from abjad.tools import abctools
 
 
 class LilyPondGrobInterface(abctools.AbjadValueObject):
-    r'''A LilyPond grob interface.
+    r'''LilyPond grob interface.
 
     ::
 

@@ -4,7 +4,7 @@ import pytest
 
 
 def test_scoretools_Chord_note_heads_01():
-    r'''Chord returns note heads as an immutable tuple.
+    r'''Chord returns note-heads as an immutable tuple.
     '''
 
     chord = Chord("<d' e' f'>4")
@@ -25,7 +25,7 @@ def test_scoretools_Chord_note_heads_02():
 
 
 def test_scoretools_Chord_note_heads_03():
-    r'''Set note heads with pitch numbers.
+    r'''Set note-heads with pitch numbers.
     '''
 
     chord = Chord('<>4')
@@ -35,7 +35,7 @@ def test_scoretools_Chord_note_heads_03():
 
 
 def test_scoretools_Chord_note_heads_04():
-    r'''Set note heads with pitches.
+    r'''Set note-heads with pitches.
     '''
 
     chord = Chord('<>4')
@@ -49,7 +49,7 @@ def test_scoretools_Chord_note_heads_04():
 
 
 def test_scoretools_Chord_note_heads_05():
-    r'''Set note heads with both pitches and pitch numbers.
+    r'''Set note-heads with both pitches and pitch numbers.
     '''
 
     chord = Chord('<>4')
@@ -63,7 +63,7 @@ def test_scoretools_Chord_note_heads_05():
 
 
 def test_scoretools_Chord_note_heads_06():
-    r'''Set note heads with a LilyPond input string.
+    r'''Set note-heads with a LilyPond input string.
     '''
 
     chord = Chord("<c'>4")
@@ -73,7 +73,7 @@ def test_scoretools_Chord_note_heads_06():
 
 
 def test_scoretools_Chord_note_heads_07():
-    r'''Set note head color with the LilyPond tweak reservoir.
+    r'''Set note-head color with the LilyPond tweak reservoir.
     '''
 
     chord = Chord("<ef' cs'' f''>4")

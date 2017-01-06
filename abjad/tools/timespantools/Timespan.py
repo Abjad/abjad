@@ -2336,7 +2336,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_closed(self):
-        r'''False for all timespans.
+        r'''Is false for all timespans.
 
         ::
 
@@ -2349,7 +2349,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_half_closed(self):
-        r'''True for all timespans.
+        r'''Is true for all timespans.
 
         ::
 
@@ -2362,7 +2362,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_half_open(self):
-        r'''True for all timespans.
+        r'''Is true for all timespans.
 
         ::
 
@@ -2375,7 +2375,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_left_closed(self):
-        r'''True for all timespans.
+        r'''Is true for all timespans.
 
         ::
 
@@ -2388,7 +2388,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_left_open(self):
-        r'''False for all timespans.
+        r'''Is false for all timespans.
 
         ::
 
@@ -2401,7 +2401,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_open(self):
-        r'''False for all timespans.
+        r'''Is false for all timespans.
 
         ::
 
@@ -2414,7 +2414,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_right_closed(self):
-        r'''False for all timespans.
+        r'''Is false for all timespans.
 
         ::
 
@@ -2427,7 +2427,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_right_open(self):
-        r'''True for all timespans.
+        r'''Is true for all timespans.
 
         ::
 

@@ -107,13 +107,6 @@ class Block(AbjadObject):
             result.extend(context_block._get_format_pieces())
         return result
 
-    @property
-    def _user_attributes(self):
-        all_attributes = list(vars(self).keys())
-        user_attributes = [x for x in all_attributes if not x.startswith('_')]
-        user_attributes.sort()
-        return user_attributes
-
     ### PRIVATE METHODS ###
 
     def _format_item(self, item, depth=1):

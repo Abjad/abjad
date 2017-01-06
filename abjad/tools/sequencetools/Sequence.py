@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+import inspect
 from abjad.tools import expressiontools
 from abjad.tools.abctools import AbjadObject
 
@@ -9,17 +10,116 @@ class Sequence(AbjadObject):
 
     ..  container:: example
 
-        ::
+        Initializes sequence:
 
-            >>> Sequence([1, 2, 3, 4, 5, 6])
-            Sequence([1, 2, 3, 4, 5, 6])
+        ..  container:: example
+
+            ::
+
+                >>> Sequence([1, 2, 3, 4, 5, 6])
+                Sequence([1, 2, 3, 4, 5, 6])
+
+        ..  container:: example expression
+
+            ::
+
+                >>> expression = sequence()
+                >>> f(expression)
+                expressiontools.Expression(
+                    callbacks=(
+                        expressiontools.Expression(
+                            evaluation_template='Sequence(items={})',
+                            formula_string_template='sequence({})',
+                            ),
+                        ),
+                    )
+
+            ::
+
+                >>> expression([1, 2, 3, 4, 5, 6])
+                Sequence([1, 2, 3, 4, 5, 6])
 
     ..  container:: example
 
-        ::
+        Initializes and reverses sequence:
 
-            >>> Sequence([1, 2, 3, 4, 5, 6]).reverse()
-            Sequence([6, 5, 4, 3, 2, 1])
+        ..  container:: example
+
+            ::
+
+                >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
+                
+            ::
+            
+                >>> sequence_.reverse()
+                Sequence([6, 5, 4, 3, 2, 1])
+
+        ..  container:: example expression
+
+            ::
+
+                >>> expression = sequence()
+                >>> expression = expression.reverse()
+                >>> f(expression)
+                expressiontools.Expression(
+                    callbacks=(
+                        expressiontools.Expression(
+                            evaluation_template='Sequence(items={})',
+                            formula_string_template='sequence({})',
+                            ),
+                        expressiontools.Expression(
+                            evaluation_template='{}.reverse()',
+                            formula_markup_expression=expressiontools.Expression(
+                                callbacks=(
+                                    expressiontools.Expression(
+                                        evaluation_template='Markup({})',
+                                        ),
+                                    expressiontools.Expression(
+                                        evaluation_template="Markup.concat(['R', {}])",
+                                        ),
+                                    ),
+                                ),
+                            formula_string_template='R({})',
+                            ),
+                        ),
+                    )
+
+            ::
+
+                >>> expression([1, 2, 3, 4, 5, 6])
+                Sequence([6, 5, 4, 3, 2, 1])
+
+    ..  container:: example
+
+        Initializes, reverses and flattens sequence:
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence_ = Sequence([1, 2, 3, [4, 5, [6]]])
+                >>> sequence_ = sequence_.reverse()
+                >>> sequence_ = sequence_.flatten()
+
+            ::
+
+                >>> sequence_
+                Sequence([4, 5, 6, 3, 2, 1])
+
+        ..  container:: example expression
+
+            ::
+
+                >>> expression = sequence()
+                >>> expression = expression.reverse()
+                >>> expression = expression.flatten()
+                >>> expression.get_formula_string()
+                'flatten(R(sequence(X)))'
+
+            ::
+
+                >>> expression([1, 2, 3, [4, 5, [6]]])
+                Sequence([4, 5, 6, 3, 2, 1])
 
     '''
 
@@ -28,6 +128,7 @@ class Sequence(AbjadObject):
     __slots__ = (
         '_equivalence_markup',
         '_expression',
+        '_is_frozen',
         '_items',
         '_name',
         '_name_markup',
@@ -38,6 +139,7 @@ class Sequence(AbjadObject):
     def __init__(self, items=None, name=None, name_markup=None):
         self._equivalence_markup = None
         self._expression = None
+        self._is_frozen = None
         items = items or ()
         if not isinstance(items, collections.Iterable):
             items = [items]
@@ -58,38 +160,82 @@ class Sequence(AbjadObject):
 
             Adds tuple to sequence:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence([1, 2, 3]) + (4, 5, 6)
-                Sequence([1, 2, 3, 4, 5, 6])
+                ::
+
+                    >>> Sequence([1, 2, 3]) + (4, 5, 6)
+                    Sequence([1, 2, 3, 4, 5, 6])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence() + (4, 5, 6)
+                    >>> expression([1, 2, 3])
+                    Sequence([1, 2, 3, 4, 5, 6])
 
         ..  container:: example
 
             Adds list to sequence:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence([1, 2, 3]) + [4, 5, 6]
-                Sequence([1, 2, 3, 4, 5, 6])
+                ::
+
+                    >>> Sequence([1, 2, 3]) + [4, 5, 6]
+                    Sequence([1, 2, 3, 4, 5, 6])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence() + [4, 5, 6]
+                    >>> expression([1, 2, 3])
+                    Sequence([1, 2, 3, 4, 5, 6])
 
         ..  container:: example
 
             Adds sequence to sequence:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_1 = Sequence([1, 2, 3], name='J')
-                >>> sequence_2 = Sequence([4, 5, 6], name='K')
-                >>> sequence_1 + sequence_2
-                Sequence([1, 2, 3, 4, 5, 6], name='J + K')
+                ::
+
+                    >>> sequence_1 = Sequence([1, 2, 3], name='J')
+                    >>> sequence_2 = Sequence([4, 5, 6], name='K')
+                    >>> sequence_1 + sequence_2
+                    Sequence([1, 2, 3, 4, 5, 6], name='J + K')
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression_1 = sequence(name='J')
+                    >>> expression_2 = sequence(name='K')
+                    >>> expression_1([1, 2, 3]) + expression_2([4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6], name='J + K')
 
         Returns new sequence.
         '''
+        formula_string_template = '{{}} + {}'
+        if hasattr(sequence_, 'name'):
+            formula_string_template = formula_string_template.format(
+                sequence_.name)
+        else:
+            formula_string_template = formula_string_template.format(sequence_)
+        if self._is_frozen:
+            template = '{{}}.__add__(sequence_={sequence_})'
+            template = template.format(sequence_=sequence_)
+            return self._is_frozen.append_callback(
+                evaluation_template=template,
+                formula_string_template=formula_string_template,
+                )
         sequence_ = type(self)(sequence_)
         name = None
         if self.name and sequence_.name:
-            string_expression = '{sequence} + {sequence_}'
-            name = string_expression.format(
+            name_template = '{sequence} + {sequence_}'
+            name = name_template.format(
                 sequence=self.name,
                 sequence_=sequence_.name,
                 )
@@ -155,47 +301,175 @@ class Sequence(AbjadObject):
 
             Gets first item in sequence:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence([1, 2, 3, 4, 5, 6])[0]
-                1
+                ::
+
+                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
+                    
+                ::
+                
+                    >>> sequence_[0]
+                    1
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression[0]
+                    >>> expression.get_formula_string()
+                    'sequence(X)[0]'
+
+                ::
+
+                    >>> expression([1, 2, 3, 4, 5, 6])
+                    1
 
         ..  container:: example
 
             Gets last item in sequence:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence([1, 2, 3, 4, 5, 6])[-1]
-                6
+                ::
+
+                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
+                 
+                ::
+                
+                    >>> sequence_[-1]
+                    6
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression[-1]
+                    >>> expression.get_formula_string()
+                    'sequence(X)[-1]'
+
+                ::
+
+                    >>> expression([1, 2, 3, 4, 5, 6])
+                    6
 
         ..  container:: example
 
             Gets slice from sequence:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence([1, 2, 3, 4, 5, 6], name='J')[:3]
-                Sequence([1, 2, 3], name='J[:3]')
+                ::
 
-        Returns item.
+                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6], name='J')
+                    >>> sequence_ = sequence_[:3]
+
+                ::
+
+                    >>> sequence_
+                    Sequence([1, 2, 3], name='J[:3]')
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence(name='J')
+                    >>> expression = expression[:3]
+                    >>> expression.get_formula_string()
+                    'sequence(X)[:3]'
+
+                ::
+
+                    >>> expression([1, 2, 3, 4, 5, 6])
+                    Sequence([1, 2, 3], name='J[:3]')
+
+                ..  note:: Implement calltime names:
+
+                    >>> expression = sequence()[:3]
+                    >>> expression([1, 2, 3, 4, 5, 6], name='J') # doctest: +SKIP
+
+        ..  container:: example
+
+            Gets item in sequence and wraps result in new sequence:
+
+            ..  container:: example
+
+                ::
+
+                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
+                    >>> sequence_ = Sequence(sequence_[0])
+
+                ::
+
+                    >>> sequence_
+                    Sequence([1])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression[0]
+                    >>> expression = expression.sequence()
+                    >>> expression.get_formula_string()
+                    'sequence(sequence(X)[0])'
+
+                ::
+
+                    >>> expression([1, 2, 3, 4, 5, 6])
+                    Sequence([1])
+
+        ..  container:: example
+
+            Gets slice from sequence and flattens slice:
+
+            ..  container:: example
+
+                ::
+
+                    >>> sequence_ = Sequence([1, 2, [3, [4]], 5])
+                    >>> sequence_ = sequence_[:-1]
+                    >>> sequence_ = sequence_.flatten()
+
+                ::
+
+                    >>> sequence_
+                    Sequence([1, 2, 3, 4])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression[:-1]
+                    >>> expression = expression.flatten()
+                    >>> expression.get_formula_string()
+                    'flatten(sequence(X)[:-1])'
+
+                ::
+
+                    >>> expression([1, 2, [3, [4]], 5])
+                    Sequence([1, 2, 3, 4])
+
+        Returns item or new sequence.
         '''
-        name = None
-        if self.name:
+        if self._is_frozen:
             if isinstance(i, int):
-                string_expression = '{sequence}[{i}]'
+                formula_string_template = '{{}}[{i}]'
                 start = stop = step = None
             elif isinstance(i, slice):
                 if i.step is not None:
                     raise NotImplementedError
                 if i.start is None and i.stop is None:
-                    string_expression = '{sequence}[:]'
+                    formula_string_template = '{{}}[:]'
                 elif i.start is None:
-                    string_expression = '{sequence}[:{stop}]'
+                    formula_string_template = '{{}}[:{stop}]'
                 elif i.stop is None:
-                    string_expression = '{sequence}[{start}:]'
+                    formula_string_template = '{{}}[{start}:]'
                 else:
-                    string_expression = '{sequence}[{start}:{stop}]'
+                    formula_string_template = '{{}}[{start}:{stop}]'
                 start = i.start
                 stop = i.stop
                 step = i.step
@@ -203,7 +477,41 @@ class Sequence(AbjadObject):
                 message = 'must be integer or slice: {!r}.'
                 message = message.format(i)
                 raise TypeError(message)
-            name = string_expression.format(
+            formula_string_template = formula_string_template.format(
+                i=i,
+                start=start,
+                stop=stop,
+                )
+            template = '{{}}.__getitem__(i={i})'
+            template = template.format(i=i)
+            return self._is_frozen.append_callback(
+                evaluation_template=template,
+                formula_string_template=formula_string_template,
+                )
+        name = None
+        if self.name:
+            if isinstance(i, int):
+                name_template = '{sequence}[{i}]'
+                start = stop = step = None
+            elif isinstance(i, slice):
+                if i.step is not None:
+                    raise NotImplementedError
+                if i.start is None and i.stop is None:
+                    name_template = '{sequence}[:]'
+                elif i.start is None:
+                    name_template = '{sequence}[:{stop}]'
+                elif i.stop is None:
+                    name_template = '{sequence}[{start}:]'
+                else:
+                    name_template = '{sequence}[{start}:{stop}]'
+                start = i.start
+                stop = i.stop
+                step = i.step
+            else:
+                message = 'must be integer or slice: {!r}.'
+                message = message.format(i)
+                raise TypeError(message)
+            name = name_template.format(
                 sequence=self.name,
                 i=i,
                 start=start,
@@ -280,31 +588,67 @@ class Sequence(AbjadObject):
 
             Adds sequence to sequence:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence([1, 2, 3]) + Sequence([4, 5, 6])
-                Sequence([1, 2, 3, 4, 5, 6])
+                ::
+
+                    >>> Sequence([1, 2, 3]) + Sequence([4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression_1 = sequence()
+                    >>> expression_2 = sequence()
+                    >>> expression_1([1, 2, 3]) + expression_2([4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
 
         ..  container:: example
 
             Adds sequence to tuple:
 
-            ::
+            ..  container:: example
 
-                >>> (1, 2, 3) + Sequence([4, 5, 6])
-                Sequence([1, 2, 3, 4, 5, 6])
+                ::
+
+                    >>> (1, 2, 3) + Sequence([4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = (1, 2, 3) + sequence()
+                    >>> expression([4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
 
         ..  container:: example
 
             Adds sequence to list:
 
-            ::
+            ..  container:: example
 
-                >>> [1, 2, 3] + Sequence([4, 5, 6])
-                Sequence([1, 2, 3, 4, 5, 6])
+                ::
+
+                    >>> [1, 2, 3] + Sequence([4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = [1, 2, 3] + sequence()
+                    >>> expression([4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
 
         Returns new sequence.
         '''
+        if self._is_frozen:
+            return self._make_callback(
+                inspect.currentframe(),
+                formula_string_template='{} + {{}}'.format(self.name)
+                )
         expr = type(self)(expr)
         items = expr._items + self._items
         return type(self)(items=items)
@@ -339,7 +683,74 @@ class Sequence(AbjadObject):
         else:
             string = '{}([{}])'
             string = string.format(type(self).__name__, items)
+        if self._is_frozen:
+            string = '*' + string
         return string
+
+    ### PRIVATE METHODS ###
+
+    def _make_callback(
+        self,
+        frame,
+        formula_markup_expression=None,
+        formula_string_template=None,
+        string_arguments=None,
+        string_name=None,
+        ):
+        assert self._is_frozen, repr(self._is_frozen)
+        Expression = expressiontools.Expression
+        template = Expression._make_evaluation_template(frame)
+        if formula_string_template:
+            pass
+        elif string_name is not None and string_arguments is None:
+            arguments = Expression._wrap_arguments(frame)
+            if arguments:
+                formula_string_template = '{string_name}({{}}, {arguments})'
+            else:
+                formula_string_template = '{string_name}({{}})'
+            formula_string_template = formula_string_template.format(
+                string_name=string_name,
+                arguments=arguments,
+                )
+        elif string_name is not None and string_arguments is not None:
+            formula_string_template = '{string_name}({{}}, {string_arguments})'
+            formula_string_template = formula_string_template.format(
+                string_name=string_name,
+                string_arguments=string_arguments,
+                )
+        return self._is_frozen.append_callback(
+            evaluation_template=template,
+            formula_markup_expression=formula_markup_expression,
+            formula_string_template=formula_string_template,
+            )
+        
+    @staticmethod
+    def _make_partition_indicator(counts, cyclic, reversed_, overhang):
+        indicator = [str(_) for _ in counts]
+        indicator = ', '.join(indicator)
+        if cyclic:
+            indicator = '<{}>'.format(indicator)
+        else:
+            indicator = '[{}]'.format(indicator)
+        if reversed_:
+            indicator = 'R' + indicator
+        if overhang is True:
+            indicator += '+'
+        elif overhang is Exact:
+            indicator += '!'
+        return indicator
+
+    @staticmethod
+    def _make_split_indicator(weights, cyclic, overhang):
+        indicator = [str(_) for _ in weights]
+        indicator = ', '.join(indicator)
+        if cyclic:
+            indicator = '<{}>'.format(indicator)
+        else:
+            indicator = '[{}]'.format(indicator)
+        if overhang:
+            indicator += '+'
+        return indicator
 
     ### PUBLIC PROPERTIES ###
 
@@ -423,7 +834,7 @@ class Sequence(AbjadObject):
         Returns string or none.
         '''
         if self._expression is not None:
-            return self._expression.get_string(name=self._name)
+            return self._expression.get_formula_string(name=self._name)
         return self._name
 
     @property
@@ -485,65 +896,190 @@ class Sequence(AbjadObject):
 
             Flattens sequence:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], name='J')
-                >>> sequence_.flatten()
-                Sequence([1, 2, 3, 4, 5, 6, 7, 8], name='flatten(J)')
+                ::
+
+                    >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
+                    >>> sequence_ = Sequence(items=items, name='J')
+
+                ::
+
+                    >>> sequence_.flatten()
+                    Sequence([1, 2, 3, 4, 5, 6, 7, 8], name='flatten(J)')
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence(name='J')
+                    >>> expression = expression.flatten()
+                    >>> expression.get_formula_string()
+                    'flatten(sequence(X))'
+
+                ::
+
+                    >>> expression(items)
+                    Sequence([1, 2, 3, 4, 5, 6, 7, 8], name='flatten(J)')
 
         ..  container:: example
 
             Flattens sequence to depth 1:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence([1, [2, 3, [4]], 5, [6, 7, [8]]])
-                >>> sequence_.flatten(depth=1)
-                Sequence([1, 2, 3, [4], 5, 6, 7, [8]])
+                ::
+
+                    >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
+                    >>> sequence_ = Sequence(items)
+
+                ::
+
+                    >>> sequence_.flatten(depth=1)
+                    Sequence([1, 2, 3, [4], 5, 6, 7, [8]])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.flatten(depth=1)
+                    >>> expression.get_formula_string()
+                    'flatten(sequence(X), depth=1)'
+
+                ::
+
+                    >>> expression(items)
+                    Sequence([1, 2, 3, [4], 5, 6, 7, [8]])
 
         ..  container:: example
 
             Flattens sequence to depth 2:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence([1, [2, 3, [4]], 5, [6, 7, [8]]])
-                >>> sequence_.flatten(depth=2)
-                Sequence([1, 2, 3, 4, 5, 6, 7, 8])
+                ::
+
+                    >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
+                    >>> sequence_ = Sequence(items)
+
+                ::
+
+                    >>> sequence_.flatten(depth=2)
+                    Sequence([1, 2, 3, 4, 5, 6, 7, 8])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.flatten(depth=2)
+                    >>> expression.get_formula_string()
+                    'flatten(sequence(X), depth=2)'
+
+                ::
+
+                    >>> expression(items)
+                    Sequence([1, 2, 3, 4, 5, 6, 7, 8])
 
         ..  container:: example
 
             Flattens sequence at indices:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence([1, [2, 3, [4]], 5, [6, 7, [8]]])
-                >>> sequence_.flatten(indices=[3])
-                Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
+                ::
+
+                    >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
+                    >>> sequence_ = Sequence(items)
+
+                ::
+
+                    >>> sequence_.flatten(indices=[3])
+                    Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.flatten(indices=[3])
+                    >>> expression.get_formula_string()
+                    'flatten(sequence(X), indices=[3])'
+
+                ::
+
+                    >>> expression(items)
+                    Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
 
         ..  container:: example
 
             Flattens sequence at negative indices:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence([1, [2, 3, [4]], 5, [6, 7, [8]]])
-                >>> sequence_.flatten(indices=[-1])
-                Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
+                ::
+
+                    >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
+                    >>> sequence_ = Sequence(items)
+
+                ::
+
+                    >>> sequence_.flatten(indices=[-1])
+                    Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.flatten(indices=[-1])
+                    >>> expression.get_formula_string()
+                    'flatten(sequence(X), indices=[-1])'
+
+                ::
+
+                    >>> expression(items)
+                    Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
 
         ..  container:: example
 
             Flattens tuples in sequence only:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(['ab', 'cd', ('ef', 'gh'), ('ij', 'kl')])
-                >>> sequence_.flatten(classes=(tuple,))
-                Sequence(['ab', 'cd', 'ef', 'gh', 'ij', 'kl'])
+                ::
+
+                    >>> items = ['ab', 'cd', ('ef', 'gh'), ('ij', 'kl')]
+                    >>> sequence_ = Sequence(items=items)
+
+                ::
+
+                    >>> sequence_.flatten(classes=(tuple,))
+                    Sequence(['ab', 'cd', 'ef', 'gh', 'ij', 'kl'])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.flatten(classes=(tuple,))
+                    >>> expression.get_formula_string()
+                    'flatten(sequence(X), classes=(tuple,))'
+
+                ::
+
+                    >>> expression(items)
+                    Sequence(['ab', 'cd', 'ef', 'gh', 'ij', 'kl'])
 
         Returns new sequence.
         '''
         from abjad.tools import sequencetools
+        if self._is_frozen:
+            return self._make_callback(
+                inspect.currentframe(),
+                string_name='flatten',
+                )
         items = sequencetools.flatten_sequence(
             self._items[:],
             classes=classes,
@@ -552,11 +1088,8 @@ class Sequence(AbjadObject):
             )
         name = None
         if self.name:
-            if classes is None and depth == -1 and indices is None:
-                string_expression = 'flatten({sequence})'
-            else:
-                string_expression = 'flatten({sequence}, {depth}, {indices}'
-            name = string_expression.format(
+            name_template = 'flatten({sequence})'
+            name = name_template.format(
                 sequence=self.name,
                 depth=depth,
                 indices=indices,
@@ -843,6 +1376,62 @@ class Sequence(AbjadObject):
         except TypeError:
             return False
 
+    def map(self, operand):
+        r'''Maps `operand` to sequence items.
+
+        ..  container:: example
+
+            Partitions sequence and sums parts:
+
+            ..  container:: example
+
+                ::
+
+                    >>> sequence_ = Sequence(range(1, 10+1))
+                    >>> sequence_ = sequence_.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=True,
+                    ...     )
+                    >>> sequence_ = sequence_.map(sum)
+
+                ::
+
+                    >>> sequence_
+                    Sequence([6, 15, 24])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=True,
+                    ...     )
+                    >>> expression = expression.map(sequence().sum())
+                    >>> expression.get_formula_string()
+                    'sum(sequence(X)) /@ partition(sequence(X), <3>)'
+
+                ::
+
+                    >>> expression(range(1, 10+1))
+                    Sequence([6, 15, 24])
+
+        Returns new sequence.
+        '''
+        if self._is_frozen:
+            formula_string_template = '{expression} /@ {{}}'
+            formula_string_template = formula_string_template.format(
+                expression=operand.get_formula_string(),
+                )
+            return self._is_frozen.append_callback(
+                evaluation_template='map',
+                formula_string_template=formula_string_template,
+                map_operand=operand,
+                )
+        items = [operand(_) for _ in self]
+        return type(self)(items=items)
+
     def partition_by_counts(
         self,
         counts,
@@ -856,332 +1445,787 @@ class Sequence(AbjadObject):
 
             Partitions sequence once by counts without overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16), name='J')
-                >>> sequence_ = sequence_.partition_by_counts(
-                ...     [3],
-                ...     cyclic=False,
-                ...     overhang=False,
-                ...     )
-                >>> sequence_
-                Sequence([Sequence([0, 1, 2])], name='P(J, [3])')
+                ::
 
-            ::
+                    >>> sequence_ = Sequence(range(16), name='J')
+                    >>> sequence_ = sequence_.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=False,
+                    ...     overhang=False,
+                    ...     )
 
-                >>> for part in sequence_:
-                ...     part
-                Sequence([0, 1, 2])
+                ::
+
+                    >>> sequence_
+                    Sequence([Sequence([0, 1, 2])], name='partition(J, [3])')
+
+                ::
+
+                    >>> for part in sequence_:
+                    ...     part
+                    Sequence([0, 1, 2])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence(name='J')
+                    >>> expression = expression.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=False,
+                    ...     overhang=False,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), [3])'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0, 1, 2])
 
         ..  container:: example
 
             Partitions sequence once by counts without overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [4, 3],
-                ...     cyclic=False,
-                ...     overhang=False,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1, 2, 3])
-                Sequence([4, 5, 6])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=False,
+                    ...     overhang=False,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1, 2, 3])
+                    Sequence([4, 5, 6])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=False,
+                    ...     overhang=False,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), [4, 3])'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0, 1, 2, 3])
+                    Sequence([4, 5, 6])
 
         ..  container:: example
 
             Partitions sequence cyclically by counts without overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [3],
-                ...     cyclic=True,
-                ...     overhang=False,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1, 2])
-                Sequence([3, 4, 5])
-                Sequence([6, 7, 8])
-                Sequence([9, 10, 11])
-                Sequence([12, 13, 14])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=True,
+                    ...     overhang=False,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1, 2])
+                    Sequence([3, 4, 5])
+                    Sequence([6, 7, 8])
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=True,
+                    ...     overhang=False,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), <3>)'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0, 1, 2])
+                    Sequence([3, 4, 5])
+                    Sequence([6, 7, 8])
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14])
 
         ..  container:: example
 
-            Partitions sequence cyclically by counts without
-            overhang:
+            Partitions sequence cyclically by counts without overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [4, 3],
-                ...     cyclic=True,
-                ...     overhang=False,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1, 2, 3])
-                Sequence([4, 5, 6])
-                Sequence([7, 8, 9, 10])
-                Sequence([11, 12, 13])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=True,
+                    ...     overhang=False,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1, 2, 3])
+                    Sequence([4, 5, 6])
+                    Sequence([7, 8, 9, 10])
+                    Sequence([11, 12, 13])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=True,
+                    ...     overhang=False,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), <4, 3>)'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0, 1, 2, 3])
+                    Sequence([4, 5, 6])
+                    Sequence([7, 8, 9, 10])
+                    Sequence([11, 12, 13])
 
         ..  container:: example
 
             Partitions sequence once by counts with overhang:
 
-            ::
+            ..  container:: example
 
+                ::
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [3],
-                ...     cyclic=False,
-                ...     overhang=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1, 2])
-                Sequence([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=False,
+                    ...     overhang=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1, 2])
+                    Sequence([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=False,
+                    ...     overhang=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), [3]+)'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0, 1, 2])
+                    Sequence([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
 
         ..  container:: example
 
             Partitions sequence once by counts with overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [4, 3],
-                ...     cyclic=False,
-                ...     overhang=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1, 2, 3])
-                Sequence([4, 5, 6])
-                Sequence([7, 8, 9, 10, 11, 12, 13, 14, 15])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=False,
+                    ...     overhang=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1, 2, 3])
+                    Sequence([4, 5, 6])
+                    Sequence([7, 8, 9, 10, 11, 12, 13, 14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=False,
+                    ...     overhang=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), [4, 3]+)'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0, 1, 2, 3])
+                    Sequence([4, 5, 6])
+                    Sequence([7, 8, 9, 10, 11, 12, 13, 14, 15])
 
         ..  container:: example
 
             Partitions sequence cyclically by counts with overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [3],
-                ...     cyclic=True,
-                ...     overhang=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1, 2])
-                Sequence([3, 4, 5])
-                Sequence([6, 7, 8])
-                Sequence([9, 10, 11])
-                Sequence([12, 13, 14])
-                Sequence([15])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=True,
+                    ...     overhang=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1, 2])
+                    Sequence([3, 4, 5])
+                    Sequence([6, 7, 8])
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14])
+                    Sequence([15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=True,
+                    ...     overhang=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), <3>+)'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0, 1, 2])
+                    Sequence([3, 4, 5])
+                    Sequence([6, 7, 8])
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14])
+                    Sequence([15])
 
         ..  container:: example
 
             Partitions sequence cyclically by counts with overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [4, 3],
-                ...     cyclic=True,
-                ...     overhang=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1, 2, 3])
-                Sequence([4, 5, 6])
-                Sequence([7, 8, 9, 10])
-                Sequence([11, 12, 13])
-                Sequence([14, 15])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=True,
+                    ...     overhang=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1, 2, 3])
+                    Sequence([4, 5, 6])
+                    Sequence([7, 8, 9, 10])
+                    Sequence([11, 12, 13])
+                    Sequence([14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=True,
+                    ...     overhang=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), <4, 3>+)'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0, 1, 2, 3])
+                    Sequence([4, 5, 6])
+                    Sequence([7, 8, 9, 10])
+                    Sequence([11, 12, 13])
+                    Sequence([14, 15])
 
         ..  container:: example
 
             Reverse-partitions sequence once by counts without overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [3],
-                ...     cyclic=False,
-                ...     overhang=False,
-                ...     reversed_=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([13, 14, 15])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=False,
+                    ...     overhang=False,
+                    ...     reversed_=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([13, 14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=False,
+                    ...     overhang=False,
+                    ...     reversed_=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), R[3])'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([13, 14, 15])
 
         ..  container:: example
 
             Reverse-partitions sequence once by counts without overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [4, 3],
-                ...     cyclic=False,
-                ...     overhang=False,
-                ...     reversed_=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([9, 10, 11])
-                Sequence([12, 13, 14, 15])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=False,
+                    ...     overhang=False,
+                    ...     reversed_=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=False,
+                    ...     overhang=False,
+                    ...     reversed_=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), R[4, 3])'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14, 15])
 
         ..  container:: example
 
             Reverse-partitions sequence cyclically by counts without overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [3],
-                ...     cyclic=True,
-                ...     overhang=False,
-                ...     reversed_=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([1, 2, 3])
-                Sequence([4, 5, 6])
-                Sequence([7, 8, 9])
-                Sequence([10, 11, 12])
-                Sequence([13, 14, 15])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=True,
+                    ...     overhang=False,
+                    ...     reversed_=True,
+                    ...     )
+
+                ::
+                
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([1, 2, 3])
+                    Sequence([4, 5, 6])
+                    Sequence([7, 8, 9])
+                    Sequence([10, 11, 12])
+                    Sequence([13, 14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=True,
+                    ...     overhang=False,
+                    ...     reversed_=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), R<3>)'
+
+                ::
+                
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([1, 2, 3])
+                    Sequence([4, 5, 6])
+                    Sequence([7, 8, 9])
+                    Sequence([10, 11, 12])
+                    Sequence([13, 14, 15])
 
         ..  container:: example
 
             Reverse-partitions sequence cyclically by counts without overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [4, 3],
-                ...     cyclic=True,
-                ...     overhang=False,
-                ...     reversed_=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([2, 3, 4])
-                Sequence([5, 6, 7, 8])
-                Sequence([9, 10, 11])
-                Sequence([12, 13, 14, 15])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=True,
+                    ...     overhang=False,
+                    ...     reversed_=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([2, 3, 4])
+                    Sequence([5, 6, 7, 8])
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=True,
+                    ...     overhang=False,
+                    ...     reversed_=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), R<4, 3>)'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([2, 3, 4])
+                    Sequence([5, 6, 7, 8])
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14, 15])
 
         ..  container:: example
 
             Reverse-partitions sequence once by counts with overhang:
 
-            ::
+            ..  container:: example
 
+                ::
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [3],
-                ...     cyclic=False,
-                ...     overhang=True,
-                ...     reversed_=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-                Sequence([13, 14, 15])
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=False,
+                    ...     overhang=True,
+                    ...     reversed_=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+                    Sequence([13, 14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=False,
+                    ...     overhang=True,
+                    ...     reversed_=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), R[3]+)'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+                    Sequence([13, 14, 15])
 
         ..  container:: example
 
             Reverse-partitions sequence once by counts with overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [4, 3],
-                ...     cyclic=False,
-                ...     overhang=True,
-                ...     reversed_=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8])
-                Sequence([9, 10, 11])
-                Sequence([12, 13, 14, 15])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=False,
+                    ...     overhang=True,
+                    ...     reversed_=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8])
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=False,
+                    ...     overhang=True,
+                    ...     reversed_=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), R[4, 3]+)'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8])
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14, 15])
 
         ..  container:: example
 
             Reverse-partitions sequence cyclically by counts with overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [3],
-                ...     cyclic=True,
-                ...     overhang=True,
-                ...     reversed_=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0])
-                Sequence([1, 2, 3])
-                Sequence([4, 5, 6])
-                Sequence([7, 8, 9])
-                Sequence([10, 11, 12])
-                Sequence([13, 14, 15])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=True,
+                    ...     overhang=True,
+                    ...     reversed_=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0])
+                    Sequence([1, 2, 3])
+                    Sequence([4, 5, 6])
+                    Sequence([7, 8, 9])
+                    Sequence([10, 11, 12])
+                    Sequence([13, 14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=True,
+                    ...     overhang=True,
+                    ...     reversed_=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), R<3>+)'
+
+                ::
+
+                    >>> for part in expression(range(16)):
+                    ...     part
+                    Sequence([0])
+                    Sequence([1, 2, 3])
+                    Sequence([4, 5, 6])
+                    Sequence([7, 8, 9])
+                    Sequence([10, 11, 12])
+                    Sequence([13, 14, 15])
 
         ..  container:: example
 
             Reverse-partitions sequence cyclically by counts with overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(16))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [4, 3],
-                ...     cyclic=True,
-                ...     overhang=True,
-                ...     reversed_=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1])
-                Sequence([2, 3, 4])
-                Sequence([5, 6, 7, 8])
-                Sequence([9, 10, 11])
-                Sequence([12, 13, 14, 15])
+                ::
+
+                    >>> sequence_ = Sequence(range(16))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=True,
+                    ...     overhang=True,
+                    ...     reversed_=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1])
+                    Sequence([2, 3, 4])
+                    Sequence([5, 6, 7, 8])
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14, 15])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [4, 3],
+                    ...     cyclic=True,
+                    ...     overhang=True,
+                    ...     reversed_=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), R<4, 3>+)'
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1])
+                    Sequence([2, 3, 4])
+                    Sequence([5, 6, 7, 8])
+                    Sequence([9, 10, 11])
+                    Sequence([12, 13, 14, 15])
 
         ..  container:: example
 
             Partitions sequence once by counts and asserts that sequence
             partitions exactly (with no overhang):
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(10))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [2, 3, 5],
-                ...     cyclic=False,
-                ...     overhang=Exact,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1])
-                Sequence([2, 3, 4])
-                Sequence([5, 6, 7, 8, 9])
+                ::
+
+                    >>> sequence_ = Sequence(range(10))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [2, 3, 5],
+                    ...     cyclic=False,
+                    ...     overhang=Exact,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1])
+                    Sequence([2, 3, 4])
+                    Sequence([5, 6, 7, 8, 9])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [2, 3, 5],
+                    ...     cyclic=False,
+                    ...     overhang=Exact,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), [2, 3, 5]!)'
+
+                ::
+
+                    >>> for part in expression(range(10)):
+                    ...     part
+                    Sequence([0, 1])
+                    Sequence([2, 3, 4])
+                    Sequence([5, 6, 7, 8, 9])
 
         ..  container:: example
 
@@ -1189,43 +2233,107 @@ class Sequence(AbjadObject):
             partitions exactly Exact partitioning means partitioning with no
             overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence(range(10))
-                >>> parts = sequence_.partition_by_counts(
-                ...     [2],
-                ...     cyclic=True,
-                ...     overhang=Exact,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence([0, 1])
-                Sequence([2, 3])
-                Sequence([4, 5])
-                Sequence([6, 7])
-                Sequence([8, 9])
+                ::
+
+                    >>> sequence_ = Sequence(range(10))
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [2],
+                    ...     cyclic=True,
+                    ...     overhang=Exact,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([0, 1])
+                    Sequence([2, 3])
+                    Sequence([4, 5])
+                    Sequence([6, 7])
+                    Sequence([8, 9])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [2],
+                    ...     cyclic=True,
+                    ...     overhang=Exact,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), <2>!)'
+
+                ::
+
+                    >>> for part in expression(range(10)):
+                    ...     part
+                    Sequence([0, 1])
+                    Sequence([2, 3])
+                    Sequence([4, 5])
+                    Sequence([6, 7])
+                    Sequence([8, 9])
 
         ..  container:: example
 
             Partitions string:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence('some text')
-                >>> parts = sequence_.partition_by_counts(
-                ...     [3],
-                ...     cyclic=False,
-                ...     overhang=True,
-                ...     )
-                >>> for part in parts:
-                ...     part
-                Sequence(['s', 'o', 'm'])
-                Sequence(['e', ' ', 't', 'e', 'x', 't'])
+                ::
+
+                    >>> sequence_ = Sequence('some text')
+                    >>> parts = sequence_.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=False,
+                    ...     overhang=True,
+                    ...     )
+
+                ::
+
+                    >>> for part in parts:
+                    ...     part
+                    Sequence(['s', 'o', 'm'])
+                    Sequence(['e', ' ', 't', 'e', 'x', 't'])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.partition_by_counts(
+                    ...     [3],
+                    ...     cyclic=False,
+                    ...     overhang=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), [3]+)'
+
+                ::
+
+                    >>> for part in expression('some text'):
+                    ...     part
+                    Sequence(['s', 'o', 'm'])
+                    Sequence(['e', ' ', 't', 'e', 'x', 't'])
 
         Returns nested sequence.
         '''
-        import abjad
         from abjad.tools import sequencetools
+        indicator = self._make_partition_indicator(
+            counts=counts,
+            cyclic=cyclic,
+            reversed_=reversed_,
+            overhang=overhang,
+            )
+        if self._is_frozen:
+            return self._make_callback(
+                inspect.currentframe(),
+                string_arguments=indicator,
+                string_name='partition',
+                )
         items = self._items[:]
         subsequences = []
         parts = sequencetools.partition_sequence_by_counts(
@@ -1237,30 +2345,23 @@ class Sequence(AbjadObject):
             )
         parts = [type(self)(_) for _ in parts]
         result = type(self)(items=parts, name=self._name)
-        indicator = [str(_) for _ in counts]
-        indicator = ', '.join(indicator)
-        if cyclic:
-            indicator = '<{}>'.format(indicator)
-        else:
-            indicator = '[{}]'.format(indicator)
-        if overhang:
-            indicator += '*'
-        string_expression = 'P({}, {indicator})'
-        string_expression = string_expression.format(
-            self._name,
-            indicator=indicator,
-            )
-        markup_expression = expressiontools.Expression()
-        markup_expression = markup_expression.make_callback('Markup({})')
+        formula_markup_expression = expressiontools.Expression()
+        formula_markup_expression = formula_markup_expression.append_callback(
+            'Markup({})')
         template = "Markup.concat(['P', Markup({indicator!r}).super_(), {{}}])"
         template = template.format(indicator=indicator)
-        markup_expression = markup_expression.make_callback(template)
+        formula_markup_expression = formula_markup_expression.append_callback(
+            template)
+        formula_string_template = 'partition({{}}, {indicator})'
+        formula_string_template = formula_string_template.format(
+            indicator=indicator,
+            )
         expressiontools.Expression._track_expression(
             self,
             result,
             'partition',
-            markup_expression=markup_expression,
-            string_expression=string_expression,
+            formula_markup_expression=formula_markup_expression,
+            formula_string_template=formula_string_template,
             )
         return result
 
@@ -1271,27 +2372,85 @@ class Sequence(AbjadObject):
 
             Partitions sequence by ``1:1:1`` ratio:
 
-            ::
+            ..  container:: example
 
-                >>> numbers = Sequence(range(10))
-                >>> ratio = mathtools.Ratio((1, 1, 1))
-                >>> numbers.partition_by_ratio_of_lengths(ratio)
-                Sequence([Sequence([0, 1, 2]), Sequence([3, 4, 5, 6]), Sequence([7, 8, 9])])
+                ::
+
+                    >>> numbers = Sequence(range(10))
+                    >>> ratio = mathtools.Ratio((1, 1, 1))
+
+                ::
+
+                    >>> for part in numbers.partition_by_ratio_of_lengths(ratio):
+                    ...     part
+                    Sequence([0, 1, 2])
+                    Sequence([3, 4, 5, 6])
+                    Sequence([7, 8, 9])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> ratio = mathtools.Ratio((1, 1, 1))
+                    >>> expression = expression.partition_by_ratio_of_lengths(ratio)
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), 1:1:1)'
+
+                ::
+
+                    >>> for part in expression(range(10)):
+                    ...     part
+                    Sequence([0, 1, 2])
+                    Sequence([3, 4, 5, 6])
+                    Sequence([7, 8, 9])
 
         ..  container:: example
 
             Partitions sequence by ``1:1:2`` ratio:
 
-            ::
+            ..  container:: example
 
-                >>> numbers = Sequence(range(10))
-                >>> ratio = mathtools.Ratio((1, 1, 2))
-                >>> numbers.partition_by_ratio_of_lengths(ratio)
-                Sequence([Sequence([0, 1, 2]), Sequence([3, 4]), Sequence([5, 6, 7, 8, 9])])
+                ::
+
+                    >>> numbers = Sequence(range(10))
+                    >>> ratio = mathtools.Ratio((1, 1, 2))
+
+                ::
+
+                    >>> for part in numbers.partition_by_ratio_of_lengths(ratio):
+                    ...     part
+                    Sequence([0, 1, 2])
+                    Sequence([3, 4])
+                    Sequence([5, 6, 7, 8, 9])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> ratio = mathtools.Ratio((1, 1, 2))
+                    >>> expression = expression.partition_by_ratio_of_lengths(ratio)
+                    >>> expression.get_formula_string()
+                    'partition(sequence(X), 1:1:2)'
+
+                ::
+
+                    >>> for part in expression(range(10)):
+                    ...     part
+                    Sequence([0, 1, 2])
+                    Sequence([3, 4])
+                    Sequence([5, 6, 7, 8, 9])
 
         Returns a sequence of sequences.
         '''
         from abjad.tools import sequencetools
+        if self._is_frozen:
+            return self._make_callback(
+                inspect.currentframe(),
+                string_arguments=str(ratio),
+                string_name='partition',
+                )
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(
             self.items,
             ratio=ratio,
@@ -1306,37 +2465,83 @@ class Sequence(AbjadObject):
 
             Reverses sequence:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence([1, 2, 3, 4, 5], name='J').reverse()
-                Sequence([5, 4, 3, 2, 1], name='R(J)')
+                ::
+
+                    >>> sequence_ = Sequence([1, 2, 3, 4, 5], name='J')
+                    
+                ::
+
+                    >>> sequence_.reverse()
+                    Sequence([5, 4, 3, 2, 1], name='R(J)')
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.reverse()
+                    >>> expression.get_formula_string()
+                    'R(sequence(X))'
+
+                ::
+
+                    >>> expression([1, 2, 3, 4, 5])
+                    Sequence([5, 4, 3, 2, 1])
 
         ..  container:: example
 
             Reverses sequence:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence('text', name='J').reverse()
-                Sequence(['t', 'x', 'e', 't'], name='R(J)')
+                ::
+
+                    >>> sequence_ = Sequence('text', name='J')
+                    
+                ::
+                
+                    >>> sequence_.reverse()
+                    Sequence(['t', 'x', 'e', 't'], name='R(J)')
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.reverse()
+                    >>> expression.get_formula_string()
+                    'R(sequence(X))'
+
+                ::
+
+                    >>> expression('text')
+                    Sequence(['t', 'x', 'e', 't'])
 
         Returns new sequence.
         '''
-        string_expression = 'R({})'
-        markup_expression = expressiontools.Expression()
-        markup_expression = markup_expression.make_callback(
+        formula_markup_expression = expressiontools.Expression()
+        formula_markup_expression = formula_markup_expression.append_callback(
             'Markup({})',
             )
-        markup_expression = markup_expression.make_callback(
+        formula_markup_expression = formula_markup_expression.append_callback(
             "Markup.concat(['R', {}])",
             )
+        if self._is_frozen:
+            return self._make_callback(
+                inspect.currentframe(),
+                formula_markup_expression=formula_markup_expression,
+                string_name='R',
+                )
         result = type(self)(reversed(self), name=self._name)
+        formula_string_template = 'R({})'
         expressiontools.Expression._track_expression(
             self,
             result,
             'retrograde',
-            markup_expression=markup_expression,
-            string_expression=string_expression,
+            formula_markup_expression=formula_markup_expression,
+            formula_string_template=formula_string_template,
             )
         return result
 
@@ -1347,31 +2552,96 @@ class Sequence(AbjadObject):
 
             Rotates sequence to the right:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence(range(10), name='J').rotate(4)
-                Sequence([6, 7, 8, 9, 0, 1, 2, 3, 4, 5], name='r4(J)')
+                ::
+
+                    >>> sequence_ = Sequence(range(10), name='J')
+                    
+                ::
+                
+                    >>> sequence_.rotate(n=4)
+                    Sequence([6, 7, 8, 9, 0, 1, 2, 3, 4, 5], name='r4(J)')
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.rotate(n=4)
+                    >>> expression.get_formula_string()
+                    'r4(sequence(X))'
+
+                ::
+
+                    >>> expression(range(10))
+                    Sequence([6, 7, 8, 9, 0, 1, 2, 3, 4, 5])
 
         ..  container:: example
 
             Rotates sequence to the left:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence(range(10), name='J').rotate(-3)
-                Sequence([3, 4, 5, 6, 7, 8, 9, 0, 1, 2], name='r-3(J)')
+                ::
+
+                    >>> sequence_ = Sequence(range(10), name='J')
+                    
+                ::
+                
+                    >>> sequence_.rotate(n=-3)
+                    Sequence([3, 4, 5, 6, 7, 8, 9, 0, 1, 2], name='r-3(J)')
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.rotate(n=-3)
+                    >>> expression.get_formula_string()
+                    'r-3(sequence(X))'
+
+                ::
+
+                    >>> expression(range(10))
+                    Sequence([3, 4, 5, 6, 7, 8, 9, 0, 1, 2])
 
         ..  container:: example
 
             Rotates sequence neither to the right nor the left:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence(range(10), name='J').rotate(0)
-                Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], name='r0(J)')
+                ::
+
+                    >>> sequence_ = Sequence(range(10), name='J')
+
+                ::
+
+                    >>> sequence_.rotate(n=0)
+                    Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], name='r0(J)')
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.rotate(n=0)
+                    >>> expression.get_formula_string()
+                    'r0(sequence(X))'
+
+                ::
+
+                    >>> expression(range(10))
+                    Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
         Returns new sequence.
         '''
+        if self._is_frozen:
+            return self._make_callback(
+                inspect.currentframe(),
+                formula_string_template='r{n}({{}})'.format(n=n),
+                )
         n = n or 0
         original_n = n
         items = []
@@ -1381,8 +2651,8 @@ class Sequence(AbjadObject):
                 items.append(item)
         name = None
         if self.name:
-            string_expression = 'r{n}({sequence})'
-            name = string_expression.format(
+            formula_string_template = 'r{n}({sequence})'
+            name = formula_string_template.format(
                 sequence=self.name,
                 n=original_n,
                 )
@@ -1398,19 +2668,63 @@ class Sequence(AbjadObject):
 
             Splits sequence cyclically by weights with overhang:
 
-            ::
+            ..  container:: example
 
-                >>> sequence_ = Sequence([10, -10, 10, -10])
-                >>> sequence_.split(
-                ...     (3, 15, 3),
-                ...     cyclic=True,
-                ...     overhang=True,
-                ...     )
-                Sequence([Sequence([3]), Sequence([7, -8]), Sequence([-2, 1]), Sequence([3]), Sequence([6, -9]), Sequence([-1])])
+                ::
+
+                    >>> sequence_ = Sequence([10, -10, 10, -10])
+
+                ::
+
+                    >>> parts = sequence_.split(
+                    ...     (3, 15, 3),
+                    ...     cyclic=True,
+                    ...     overhang=True,
+                    ...     )
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([3])
+                    Sequence([7, -8])
+                    Sequence([-2, 1])
+                    Sequence([3])
+                    Sequence([6, -9])
+                    Sequence([-1])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.split(
+                    ...     (3, 15, 3),
+                    ...     cyclic=True,
+                    ...     overhang=True,
+                    ...     )
+                    >>> expression.get_formula_string()
+                    'S(sequence(X), <3, 15, 3>+)'
+
+                ::
+
+                    >>> parts = expression([10, -10, 10, -10])
+                    >>> for part in parts:
+                    ...     part
+                    Sequence([3])
+                    Sequence([7, -8])
+                    Sequence([-2, 1])
+                    Sequence([3])
+                    Sequence([6, -9])
+                    Sequence([-1])
 
         Returns new sequence.
         '''
         from abjad.tools import sequencetools
+        if self._is_frozen:
+            indicator = self._make_split_indicator(weights, cyclic, overhang)
+            return self._make_callback(
+                inspect.currentframe(),
+                string_arguments=indicator,
+                string_name='S',
+                )
         parts = sequencetools.split_sequence(
             self.items,
             weights,
@@ -1427,22 +2741,99 @@ class Sequence(AbjadObject):
 
             Sums sequence of positive numbers:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).sum()
-                55
+                ::
+
+                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                    
+                ::
+                
+                    >>> sequence_.sum()
+                    55
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.sum()
+                    >>> expression.get_formula_string()
+                    'sum(sequence(X))'
+
+                ::
+
+                    >>> expression([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                    55
 
         ..  container:: example
 
             Sum sequence of numbers with mixed signs:
 
-            ::
+            ..  container:: example
 
-                >>> Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]).sum()
-                5
+                ::
+
+                    >>> sequence_ = Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+                    
+                ::
+                
+                    >>> sequence_.sum()
+                    5
+                    
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.sum()
+                    >>> expression.get_formula_string()
+                    'sum(sequence(X))'
+
+                ::
+
+                    >>> expression([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+                    5
+
+        ..  container:: example
+
+            Sums sequence and wraps result in new sequence:
+
+            ..  container:: example
+
+                ::
+
+                    >>> sequence_ = Sequence(range(1, 10+1))
+                    >>> result = sequence_.sum()
+                    >>> sequence_ = Sequence(result)
+
+                ::
+
+                    >>> sequence_
+                    Sequence([55])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression = expression.sum()
+                    >>> expression = expression.sequence()
+                    >>> expression.get_formula_string()
+                    'sequence(sum(sequence(X)))'
+
+                ::
+
+                    >>> expression(range(1, 10+1))
+                    Sequence([55])
 
         Returns new sequence.
         '''
+        if self._is_frozen:
+            return self._make_callback(
+                inspect.currentframe(),
+                string_name='sum',
+                )
         return sum(self)
 
 

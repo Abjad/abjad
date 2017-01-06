@@ -56,6 +56,13 @@ class PitchArray(AbjadObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_columns',
+        '_rows',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, rows=None):
@@ -148,11 +155,6 @@ class PitchArray(AbjadObject):
         Returns pitch array row.
         '''
         return self.rows[arg]
-
-    def __getstate__(self):
-        r'''Gets object state.
-        '''
-        return vars(self)
 
     def __hash__(self):
         r'''Hashes pitch array.

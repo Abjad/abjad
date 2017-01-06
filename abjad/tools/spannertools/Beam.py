@@ -167,7 +167,7 @@ class Beam(Spanner):
 
         ..  container:: example
 
-            True for skips of any duration when `beam_rests` is true:
+            Is true for skips of any duration when `beam_rests` is true:
 
             ::
 
@@ -183,7 +183,7 @@ class Beam(Spanner):
 
         ..  container:: example
 
-            True for rests of any duration when `beam_rests` is true:
+            Is true for rests of any duration when `beam_rests` is true:
 
             ::
 
