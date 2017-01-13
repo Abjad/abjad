@@ -94,10 +94,10 @@ class Accordion(Instrument):
                     instrument_name='accordion',
                     short_instrument_name='acc.',
                     instrument_name_markup=markuptools.Markup(
-                        contents=('Accordion',),
+                        contents=['Accordion'],
                         ),
                     short_instrument_name_markup=markuptools.Markup(
-                        contents=('Acc.',),
+                        contents=['Acc.'],
                         ),
                     allowable_clefs=indicatortools.ClefInventory(
                         [
@@ -165,7 +165,7 @@ class Accordion(Instrument):
             ::
 
                 >>> accordion.instrument_name_markup
-                Markup(contents=('Accordion',))
+                Markup(contents=['Accordion'])
 
             ::
 
@@ -218,7 +218,7 @@ class Accordion(Instrument):
             ::
 
                 >>> accordion.short_instrument_name_markup
-                Markup(contents=('Acc.',))
+                Markup(contents=['Acc.'])
 
             ::
 

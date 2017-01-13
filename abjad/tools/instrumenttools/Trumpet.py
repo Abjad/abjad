@@ -107,7 +107,7 @@ class Trumpet(Instrument):
             ::
 
                 >>> trumpet.instrument_name_markup
-                Markup(contents=('Trumpet',))
+                Markup(contents=['Trumpet'])
 
             ::
 
@@ -160,7 +160,7 @@ class Trumpet(Instrument):
             ::
 
                 >>> trumpet.short_instrument_name_markup
-                Markup(contents=('Tp.',))
+                Markup(contents=['Tp.'])
 
             ::
 

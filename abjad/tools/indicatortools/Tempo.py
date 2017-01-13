@@ -341,12 +341,12 @@ class Tempo(AbjadValueObject):
                     reference_duration=durationtools.Duration(1, 4),
                     units_per_minute=84,
                     custom_markup=markuptools.Markup(
-                        contents=(
+                        contents=[
                             markuptools.MarkupCommand(
                                 'italic',
                                 ['Allegro']
                                 ),
-                            ),
+                            ],
                         ),
                     )
 

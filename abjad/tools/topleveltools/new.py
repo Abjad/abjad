@@ -2,8 +2,8 @@
 import types
 
 
-def new(expr, **keywords):
-    r'''Makes new `expr` with optional `keywords`.
+def new(argument, **keywords):
+    r'''Makes new `argument` with optional `keywords`.
 
     ..  container:: example
 
@@ -51,12 +51,12 @@ def new(expr, **keywords):
                 f'4
             }
 
-    Returns new object with type equal to that of `expr`.
+    Returns new object with type equal to that of `argument`.
     '''
     from abjad.tools import systemtools
-    if expr is None:
-        return expr
-    agent = systemtools.StorageFormatAgent(expr)
+    if argument is None:
+        return argument
+    agent = systemtools.StorageFormatAgent(argument)
     template_dict = agent.get_template_dict()
     recursive_arguments = {}
     for key, value in keywords.items():
@@ -69,18 +69,18 @@ def new(expr, **keywords):
             continue
         if key in template_dict or agent.signature_accepts_kwargs:
             template_dict[key] = value
-        elif isinstance(getattr(expr, key, None), types.MethodType):
-            method = getattr(expr, key)
+        elif isinstance(getattr(argument, key, None), types.MethodType):
+            method = getattr(argument, key)
             result = method(value)
-            if isinstance(result, type(expr)):
-                expr = result
+            if isinstance(result, type(argument)):
+                argument = result
                 template_dict.update(systemtools.StorageFormatAgent(
-                    expr).get_template_dict())
+                    argument).get_template_dict())
         else:
-            message = '{} has no key {!r}'.format(type(expr), key)
+            message = '{} has no key {!r}'.format(type(argument), key)
             raise KeyError(message)
     for key, pairs in recursive_arguments.items():
-        recursed_object = getattr(expr, key)
+        recursed_object = getattr(argument, key)
         if recursed_object is None:
             continue
         recursive_template_dict = dict(pairs)
@@ -91,8 +91,8 @@ def new(expr, **keywords):
     for name in agent.signature_positional_names:
         if name in template_dict:
             positional_values.append(template_dict.pop(name))
-    result = type(expr)(*positional_values, **template_dict)
-    for name in getattr(expr, '_private_attributes_to_copy', []):
-        value = getattr(expr, name, None)
+    result = type(argument)(*positional_values, **template_dict)
+    for name in getattr(argument, '_private_attributes_to_copy', []):
+        value = getattr(argument, name, None)
         setattr(result, name, value)
     return result

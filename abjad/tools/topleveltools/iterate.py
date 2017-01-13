@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def iterate(expr):
+def iterate(client=None):
     r'''Makes iteration agent.
 
     ..  container:: example
@@ -55,4 +55,9 @@ def iterate(expr):
 
     '''
     from abjad.tools import agenttools
-    return agenttools.IterationAgent(expr)
+    from abjad.tools import expressiontools
+    if client is not None:
+        return agenttools.IterationAgent(client=client)
+    expression = expressiontools.Expression()
+    expression = expression.iterate()
+    return expression

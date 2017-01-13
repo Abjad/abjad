@@ -9,7 +9,6 @@ from .IOManager import IOManager
 from .ImportManager import ImportManager
 from .LilyPondFormatBundle import LilyPondFormatBundle
 from .LilyPondFormatManager import LilyPondFormatManager
-from .Memoize import Memoize
 from .NullContextManager import NullContextManager
 from .ProgressIndicator import ProgressIndicator
 from .RedirectedStreams import RedirectedStreams

@@ -84,7 +84,7 @@ class HorizontalBracketSpanner(Spanner):
             ::
 
                 >>> spanner.markup
-                Markup(contents=(MarkupCommand('smaller', '3-1[012]'),))
+                Markup(contents=[MarkupCommand('smaller', '3-1[012]')])
 
         ..  container:: example
 

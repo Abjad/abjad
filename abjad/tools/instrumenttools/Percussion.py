@@ -155,7 +155,7 @@ class Percussion(Instrument):
             ::
 
                 >>> percussion.instrument_name_markup
-                Markup(contents=('Percussion',))
+                Markup(contents=['Percussion'])
 
             ::
 
@@ -208,7 +208,7 @@ class Percussion(Instrument):
             ::
 
                 >>> percussion.short_instrument_name_markup
-                Markup(contents=('Perc.',))
+                Markup(contents=['Perc.'])
 
             ::
 

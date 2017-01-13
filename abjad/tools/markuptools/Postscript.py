@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class Postscript(AbjadValueObject):
-    r'''A Postscript session.
+    r'''Postscript session.
 
     ..  note::
 

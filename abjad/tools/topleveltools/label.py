@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def label(expr=None):
+def label(client=None):
     r'''Makes label agent or label expression.
 
     ..  container:: example
@@ -18,7 +18,7 @@ def label(expr=None):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 \override TextScript.staff-padding = #4
                 \override TupletBracket.staff-padding = #0
@@ -34,8 +34,24 @@ def label(expr=None):
 
         See the ``LabelAgent`` API entry for many more examples.
 
-    ..  container:: example
-        
+    ..  container:: example expression
+
+        Initializes positionally:
+
+        ::
+
+            >>> expression = label()
+            >>> expression(staff)
+            LabelAgent(client=<Staff{3}>)
+
+        Initializes from keyword:
+
+        ::
+
+            >>> expression = label()
+            >>> expression(client=staff)
+            LabelAgent(client=<Staff{3}>)
+
         Makes label expression:
 
             >>> expression = label()
@@ -51,7 +67,7 @@ def label(expr=None):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 \override TextScript.staff-padding = #4
                 \override TupletBracket.staff-padding = #0
@@ -67,15 +83,14 @@ def label(expr=None):
 
         See the ``LabelAgent`` API entry for many more examples.
 
-    Returns label agent when `expr` is not none.
+    Returns label agent when `client` is not none.
 
-    Returns label expression when `expr` is none.
+    Returns label expression when `client` is none.
     '''
     from abjad.tools import agenttools
     from abjad.tools import expressiontools
-    if expr is None:
-        expression = expressiontools.Expression()
-        expression = expression.label()
-        return expression
-    else:
-        return agenttools.LabelAgent(expr)
+    if client is not None:
+        return agenttools.LabelAgent(client=client)
+    expression = expressiontools.Expression()
+    expression = expression.label()
+    return expression

@@ -105,7 +105,7 @@ class Marimba(Instrument):
             ::
 
                 >>> marimba.instrument_name_markup
-                Markup(contents=('Marimba',))
+                Markup(contents=['Marimba'])
 
             ::
 
@@ -158,7 +158,7 @@ class Marimba(Instrument):
             ::
 
                 >>> marimba.short_instrument_name_markup
-                Markup(contents=('Mb.',))
+                Markup(contents=['Mb.'])
 
             ::
 

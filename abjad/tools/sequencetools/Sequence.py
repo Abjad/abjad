@@ -24,18 +24,6 @@ class Sequence(AbjadObject):
             ::
 
                 >>> expression = sequence()
-                >>> f(expression)
-                expressiontools.Expression(
-                    callbacks=(
-                        expressiontools.Expression(
-                            evaluation_template='Sequence(items={})',
-                            formula_string_template='sequence({})',
-                            ),
-                        ),
-                    )
-
-            ::
-
                 >>> expression([1, 2, 3, 4, 5, 6])
                 Sequence([1, 2, 3, 4, 5, 6])
 
@@ -48,9 +36,6 @@ class Sequence(AbjadObject):
             ::
 
                 >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
-                
-            ::
-            
                 >>> sequence_.reverse()
                 Sequence([6, 5, 4, 3, 2, 1])
 
@@ -60,32 +45,6 @@ class Sequence(AbjadObject):
 
                 >>> expression = sequence()
                 >>> expression = expression.reverse()
-                >>> f(expression)
-                expressiontools.Expression(
-                    callbacks=(
-                        expressiontools.Expression(
-                            evaluation_template='Sequence(items={})',
-                            formula_string_template='sequence({})',
-                            ),
-                        expressiontools.Expression(
-                            evaluation_template='{}.reverse()',
-                            formula_markup_expression=expressiontools.Expression(
-                                callbacks=(
-                                    expressiontools.Expression(
-                                        evaluation_template='Markup({})',
-                                        ),
-                                    expressiontools.Expression(
-                                        evaluation_template="Markup.concat(['R', {}])",
-                                        ),
-                                    ),
-                                ),
-                            formula_string_template='R({})',
-                            ),
-                        ),
-                    )
-
-            ::
-
                 >>> expression([1, 2, 3, 4, 5, 6])
                 Sequence([6, 5, 4, 3, 2, 1])
 
@@ -100,9 +59,6 @@ class Sequence(AbjadObject):
                 >>> sequence_ = Sequence([1, 2, 3, [4, 5, [6]]])
                 >>> sequence_ = sequence_.reverse()
                 >>> sequence_ = sequence_.flatten()
-
-            ::
-
                 >>> sequence_
                 Sequence([4, 5, 6, 3, 2, 1])
 
@@ -113,11 +69,6 @@ class Sequence(AbjadObject):
                 >>> expression = sequence()
                 >>> expression = expression.reverse()
                 >>> expression = expression.flatten()
-                >>> expression.get_formula_string()
-                'flatten(R(sequence(X)))'
-
-            ::
-
                 >>> expression([1, 2, 3, [4, 5, [6]]])
                 Sequence([4, 5, 6, 3, 2, 1])
 
@@ -128,7 +79,7 @@ class Sequence(AbjadObject):
     __slots__ = (
         '_equivalence_markup',
         '_expression',
-        '_is_frozen',
+        '_frozen_expression',
         '_items',
         '_name',
         '_name_markup',
@@ -139,7 +90,7 @@ class Sequence(AbjadObject):
     def __init__(self, items=None, name=None, name_markup=None):
         self._equivalence_markup = None
         self._expression = None
-        self._is_frozen = None
+        self._frozen_expression = None
         items = items or ()
         if not isinstance(items, collections.Iterable):
             items = [items]
@@ -224,10 +175,10 @@ class Sequence(AbjadObject):
                 sequence_.name)
         else:
             formula_string_template = formula_string_template.format(sequence_)
-        if self._is_frozen:
+        if self._frozen_expression:
             template = '{{}}.__add__(sequence_={sequence_})'
             template = template.format(sequence_=sequence_)
-            return self._is_frozen.append_callback(
+            return self._frozen_expression.append_callback(
                 evaluation_template=template,
                 formula_string_template=formula_string_template,
                 )
@@ -278,13 +229,32 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Gets storage format:
+            Formats sequence:
 
             ::
 
-                >>> print(format(Sequence([1, 2, 3, 4, 5, 6])))
-                sequencetools.Sequence(
-                    items=(1, 2, 3, 4, 5, 6),
+                >>> f(Sequence([1, 2, 3, 4, 5, 6], name='J'))
+                Sequence([1, 2, 3, 4, 5, 6], name='J')
+
+        ..  container:: example expression
+
+            Formats expression:
+
+            ::
+
+                >>> expression = sequence(name='J')
+                >>> f(expression)
+                expressiontools.Expression(
+                    callbacks=(
+                        expressiontools.Expression(
+                            evaluation_template='abjad.sequencetools.Sequence',
+                            formula_string_template='{}',
+                            is_initializer=True,
+                            keywords={
+                                'name': 'J',
+                                },
+                            ),
+                        ),
                     )
 
         Returns string.
@@ -318,8 +288,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression[0]
-                    >>> expression.get_formula_string()
-                    'sequence(X)[0]'
+                    >>> expression.get_formula_string(name='X')
+                    'X[0]'
 
                 ::
 
@@ -347,8 +317,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression[-1]
-                    >>> expression.get_formula_string()
-                    'sequence(X)[-1]'
+                    >>> expression.get_formula_string(name='X')
+                    'X[-1]'
 
                 ::
 
@@ -377,8 +347,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence(name='J')
                     >>> expression = expression[:3]
-                    >>> expression.get_formula_string()
-                    'sequence(X)[:3]'
+                    >>> expression.get_formula_string(name='X')
+                    'X[:3]'
 
                 ::
 
@@ -413,8 +383,8 @@ class Sequence(AbjadObject):
                     >>> expression = sequence()
                     >>> expression = expression[0]
                     >>> expression = expression.sequence()
-                    >>> expression.get_formula_string()
-                    'sequence(sequence(X)[0])'
+                    >>> expression.get_formula_string(name='X')
+                    'X[0]'
 
                 ::
 
@@ -445,8 +415,8 @@ class Sequence(AbjadObject):
                     >>> expression = sequence()
                     >>> expression = expression[:-1]
                     >>> expression = expression.flatten()
-                    >>> expression.get_formula_string()
-                    'flatten(sequence(X)[:-1])'
+                    >>> expression.get_formula_string(name='X')
+                    'flatten(X[:-1])'
 
                 ::
 
@@ -455,7 +425,7 @@ class Sequence(AbjadObject):
 
         Returns item or new sequence.
         '''
-        if self._is_frozen:
+        if self._frozen_expression:
             if isinstance(i, int):
                 formula_string_template = '{{}}[{i}]'
                 start = stop = step = None
@@ -484,7 +454,7 @@ class Sequence(AbjadObject):
                 )
             template = '{{}}.__getitem__(i={i})'
             template = template.format(i=i)
-            return self._is_frozen.append_callback(
+            return self._frozen_expression.append_callback(
                 evaluation_template=template,
                 formula_string_template=formula_string_template,
                 )
@@ -644,7 +614,7 @@ class Sequence(AbjadObject):
 
         Returns new sequence.
         '''
-        if self._is_frozen:
+        if self._frozen_expression:
             return self._make_callback(
                 inspect.currentframe(),
                 formula_string_template='{} + {{}}'.format(self.name)
@@ -683,7 +653,7 @@ class Sequence(AbjadObject):
         else:
             string = '{}([{}])'
             string = string.format(type(self).__name__, items)
-        if self._is_frozen:
+        if self._frozen_expression:
             string = '*' + string
         return string
 
@@ -697,7 +667,7 @@ class Sequence(AbjadObject):
         string_arguments=None,
         string_name=None,
         ):
-        assert self._is_frozen, repr(self._is_frozen)
+        assert self._frozen_expression, repr(self._frozen_expression)
         Expression = expressiontools.Expression
         template = Expression._make_evaluation_template(frame)
         if formula_string_template:
@@ -718,7 +688,7 @@ class Sequence(AbjadObject):
                 string_name=string_name,
                 string_arguments=string_arguments,
                 )
-        return self._is_frozen.append_callback(
+        return self._frozen_expression.append_callback(
             evaluation_template=template,
             formula_markup_expression=formula_markup_expression,
             formula_string_template=formula_string_template,
@@ -801,23 +771,39 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Gets sequence items:
+            ..  container:: example
 
-            ::
+                Initializes items positionally:
 
-                >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
-                >>> sequence_.items
-                (1, 2, 3, 4, 5, 6)
+                ::
 
-        ..  container:: example
+                    >>> Sequence([1, 2, 3, 4, 5, 6]).items
+                    (1, 2, 3, 4, 5, 6)
 
-            Gets sequence items:
+                Initializes items from keyword:
 
-            ::
+                ::
 
-                >>> sequence_ = Sequence('text')
-                >>> sequence_.items
-                ('t', 'e', 'x', 't')
+                    >>> Sequence(items=[1, 2, 3, 4, 5, 6]).items
+                    (1, 2, 3, 4, 5, 6)
+
+            ..  container:: example expression
+
+                Initializes items positionally:
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression([1, 2, 3, 4, 5, 6]).items
+                    (1, 2, 3, 4, 5, 6)
+
+                Initializes items from keyword:
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression(items=[1, 2, 3, 4, 5, 6]).items
+                    (1, 2, 3, 4, 5, 6)
 
         Returns tuple.
         '''
@@ -826,6 +812,58 @@ class Sequence(AbjadObject):
     @property
     def name(self):
         r'''Gets sequence name.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                Initializes without name:
+
+                ::
+
+                    >>> Sequence([1, 2, 3, 4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
+
+                Sets name at initialization:
+
+                ::
+
+                    >>> Sequence([1, 2, 3, 4, 5, 6], name='J')
+                    Sequence([1, 2, 3, 4, 5, 6], name='J')
+
+            ..  container:: example expression
+
+                Initializes without name:
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression([1, 2, 3, 4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
+
+                Sets name at initialization:
+
+                ::
+
+                    >>> expression = sequence(name='J')
+                    >>> expression([1, 2, 3, 4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6], name='J')
+
+                Sets name at evaluation:
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> expression([1, 2, 3, 4, 5, 6], name='K')
+                    Sequence([1, 2, 3, 4, 5, 6], name='K')
+
+                Overrides name at evaluation:
+
+                ::
+
+                    >>> expression = sequence(name='J')
+                    >>> expression([1, 2, 3, 4, 5, 6], name='K')
+                    Sequence([1, 2, 3, 4, 5, 6], name='K')
 
         Defaults to none.
 
@@ -840,6 +878,73 @@ class Sequence(AbjadObject):
     @property
     def name_markup(self):
         r'''Gets sequence name markup.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                Initializes without name markup:
+
+                ::
+
+                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
+                    >>> sequence_.name_markup is None
+                    True
+
+                Sets name markup at initialization:
+
+                ::
+
+                    >>> sequence_ = Sequence(
+                    ...     [1, 2, 3, 4, 5, 6],
+                    ...     name_markup=Markup('J'),
+                    ...     )
+                    >>> sequence_.name_markup
+                    Markup(contents=['J'])
+
+            ..  container:: example expression
+
+                Initializes without name markup:
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> sequence_ = expression([1, 2, 3, 4, 5, 6])
+                    >>> sequence_.name_markup is None
+                    True
+
+                Sets name markup at initialization:
+
+                ::
+
+                    >>> expression = sequence(name_markup=Markup('J'))
+                    >>> sequence_ = expression([1, 2, 3, 4, 5, 6])
+                    >>> sequence_.name_markup
+                    Markup(contents=['J'])
+
+                Sets name markup at evaluation:
+
+                ::
+
+                    >>> expression = sequence()
+                    >>> sequence_ = expression(
+                    ...     [1, 2, 3, 4, 5, 6],
+                    ...     name_markup=Markup('K'),
+                    ...     )
+                    >>> sequence_.name_markup
+                    Markup(contents=['K'])
+
+                Overrides name markup at evaluation:
+
+                ::
+
+                    >>> expression = sequence(name_markup=Markup('J'))
+                    >>> sequence_ = expression(
+                    ...     [1, 2, 3, 4, 5, 6],
+                    ...     name_markup=Markup('K'),
+                    ...     )
+                    >>> sequence_.name_markup
+                    Markup(contents=['K'])
 
         Defaults to none.
 
@@ -914,8 +1019,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence(name='J')
                     >>> expression = expression.flatten()
-                    >>> expression.get_formula_string()
-                    'flatten(sequence(X))'
+                    >>> expression.get_formula_string(name='X')
+                    'flatten(X)'
 
                 ::
 
@@ -944,8 +1049,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.flatten(depth=1)
-                    >>> expression.get_formula_string()
-                    'flatten(sequence(X), depth=1)'
+                    >>> expression.get_formula_string(name='X')
+                    'flatten(X, depth=1)'
 
                 ::
 
@@ -974,8 +1079,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.flatten(depth=2)
-                    >>> expression.get_formula_string()
-                    'flatten(sequence(X), depth=2)'
+                    >>> expression.get_formula_string(name='X')
+                    'flatten(X, depth=2)'
 
                 ::
 
@@ -1004,8 +1109,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.flatten(indices=[3])
-                    >>> expression.get_formula_string()
-                    'flatten(sequence(X), indices=[3])'
+                    >>> expression.get_formula_string(name='X')
+                    'flatten(X, indices=[3])'
 
                 ::
 
@@ -1034,8 +1139,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.flatten(indices=[-1])
-                    >>> expression.get_formula_string()
-                    'flatten(sequence(X), indices=[-1])'
+                    >>> expression.get_formula_string(name='X')
+                    'flatten(X, indices=[-1])'
 
                 ::
 
@@ -1064,8 +1169,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.flatten(classes=(tuple,))
-                    >>> expression.get_formula_string()
-                    'flatten(sequence(X), classes=(tuple,))'
+                    >>> expression.get_formula_string(name='X')
+                    'flatten(X, classes=(tuple,))'
 
                 ::
 
@@ -1074,13 +1179,13 @@ class Sequence(AbjadObject):
 
         Returns new sequence.
         '''
-        from abjad.tools import sequencetools
-        if self._is_frozen:
+        import abjad
+        if self._frozen_expression:
             return self._make_callback(
                 inspect.currentframe(),
                 string_name='flatten',
                 )
-        items = sequencetools.flatten_sequence(
+        items = abjad.sequencetools.flatten_sequence(
             self._items[:],
             classes=classes,
             depth=depth,
@@ -1306,9 +1411,9 @@ class Sequence(AbjadObject):
 
         Returns true or false.
         '''
-        from abjad.tools import sequencetools
+        import abjad
         try:
-            pairs = sequencetools.iterate_sequence_nwise(self)
+            pairs = abjad.sequencetools.iterate_sequence_nwise(self)
             for left, right in pairs:
                 if left == right:
                     return False
@@ -1409,8 +1514,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=True,
                     ...     )
                     >>> expression = expression.map(sequence().sum())
-                    >>> expression.get_formula_string()
-                    'sum(sequence(X)) /@ partition(sequence(X), <3>)'
+                    >>> expression.get_formula_string(name='X')
+                    'sum(X) /@ partition(X, <3>)'
 
                 ::
 
@@ -1419,12 +1524,12 @@ class Sequence(AbjadObject):
 
         Returns new sequence.
         '''
-        if self._is_frozen:
+        if self._frozen_expression:
             formula_string_template = '{expression} /@ {{}}'
             formula_string_template = formula_string_template.format(
-                expression=operand.get_formula_string(),
+                expression=operand.get_formula_string(name='X'),
                 )
-            return self._is_frozen.append_callback(
+            return self._frozen_expression.append_callback(
                 evaluation_template='map',
                 formula_string_template=formula_string_template,
                 map_operand=operand,
@@ -1477,8 +1582,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=False,
                     ...     overhang=False,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), [3])'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, [3])'
 
                 ::
 
@@ -1518,8 +1623,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=False,
                     ...     overhang=False,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), [4, 3])'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, [4, 3])'
 
                 ::
 
@@ -1563,8 +1668,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=True,
                     ...     overhang=False,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), <3>)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, <3>)'
 
                 ::
 
@@ -1610,8 +1715,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=True,
                     ...     overhang=False,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), <4, 3>)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, <4, 3>)'
 
                 ::
 
@@ -1654,8 +1759,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=False,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), [3]+)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, [3]+)'
 
                 ::
 
@@ -1697,8 +1802,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=False,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), [4, 3]+)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, [4, 3]+)'
 
                 ::
 
@@ -1744,8 +1849,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=True,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), <3>+)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, <3>+)'
 
                 ::
 
@@ -1793,8 +1898,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=True,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), <4, 3>+)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, <4, 3>+)'
 
                 ::
 
@@ -1839,8 +1944,8 @@ class Sequence(AbjadObject):
                     ...     overhang=False,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), R[3])'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, R[3])'
 
                 ::
 
@@ -1882,8 +1987,8 @@ class Sequence(AbjadObject):
                     ...     overhang=False,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), R[4, 3])'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, R[4, 3])'
 
                 ::
 
@@ -1929,8 +2034,8 @@ class Sequence(AbjadObject):
                     ...     overhang=False,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), R<3>)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, R<3>)'
 
                 ::
                 
@@ -1978,8 +2083,8 @@ class Sequence(AbjadObject):
                     ...     overhang=False,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), R<4, 3>)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, R<4, 3>)'
 
                 ::
 
@@ -2024,8 +2129,8 @@ class Sequence(AbjadObject):
                     ...     overhang=True,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), R[3]+)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, R[3]+)'
 
                 ::
 
@@ -2069,8 +2174,8 @@ class Sequence(AbjadObject):
                     ...     overhang=True,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), R[4, 3]+)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, R[4, 3]+)'
 
                 ::
 
@@ -2118,8 +2223,8 @@ class Sequence(AbjadObject):
                     ...     overhang=True,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), R<3>+)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, R<3>+)'
 
                 ::
 
@@ -2169,8 +2274,8 @@ class Sequence(AbjadObject):
                     ...     overhang=True,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), R<4, 3>+)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, R<4, 3>+)'
 
                 ::
 
@@ -2216,8 +2321,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=False,
                     ...     overhang=Exact,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), [2, 3, 5]!)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, [2, 3, 5]!)'
 
                 ::
 
@@ -2264,8 +2369,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=True,
                     ...     overhang=Exact,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), <2>!)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, <2>!)'
 
                 ::
 
@@ -2309,8 +2414,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=False,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), [3]+)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, [3]+)'
 
                 ::
 
@@ -2321,14 +2426,14 @@ class Sequence(AbjadObject):
 
         Returns nested sequence.
         '''
-        from abjad.tools import sequencetools
+        import abjad
         indicator = self._make_partition_indicator(
             counts=counts,
             cyclic=cyclic,
             reversed_=reversed_,
             overhang=overhang,
             )
-        if self._is_frozen:
+        if self._frozen_expression:
             return self._make_callback(
                 inspect.currentframe(),
                 string_arguments=indicator,
@@ -2336,7 +2441,7 @@ class Sequence(AbjadObject):
                 )
         items = self._items[:]
         subsequences = []
-        parts = sequencetools.partition_sequence_by_counts(
+        parts = abjad.sequencetools.partition_sequence_by_counts(
             items,
             counts,
             cyclic=cyclic,
@@ -2345,23 +2450,24 @@ class Sequence(AbjadObject):
             )
         parts = [type(self)(_) for _ in parts]
         result = type(self)(items=parts, name=self._name)
-        formula_markup_expression = expressiontools.Expression()
-        formula_markup_expression = formula_markup_expression.append_callback(
-            'Markup({})')
-        template = "Markup.concat(['P', Markup({indicator!r}).super_(), {{}}])"
+        #
+        template = 'partition({{}}, {indicator})'
         template = template.format(indicator=indicator)
-        formula_markup_expression = formula_markup_expression.append_callback(
-            template)
-        formula_string_template = 'partition({{}}, {indicator})'
-        formula_string_template = formula_string_template.format(
-            indicator=indicator,
-            )
+        #
+        expression = abjad.Expression().markup()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.insert(0, 'P')
+        indicator_markup = abjad.Markup(repr(indicator)).super()
+        expression = expression.insert(1, indicator_markup)
+        expression = expression.concat()
+        #
         expressiontools.Expression._track_expression(
             self,
             result,
             'partition',
-            formula_markup_expression=formula_markup_expression,
-            formula_string_template=formula_string_template,
+            formula_markup_expression=expression,
+            formula_string_template=template,
             )
         return result
 
@@ -2394,8 +2500,8 @@ class Sequence(AbjadObject):
                     >>> expression = sequence()
                     >>> ratio = mathtools.Ratio((1, 1, 1))
                     >>> expression = expression.partition_by_ratio_of_lengths(ratio)
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), 1:1:1)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, 1:1:1)'
 
                 ::
 
@@ -2431,8 +2537,8 @@ class Sequence(AbjadObject):
                     >>> expression = sequence()
                     >>> ratio = mathtools.Ratio((1, 1, 2))
                     >>> expression = expression.partition_by_ratio_of_lengths(ratio)
-                    >>> expression.get_formula_string()
-                    'partition(sequence(X), 1:1:2)'
+                    >>> expression.get_formula_string(name='X')
+                    'partition(X, 1:1:2)'
 
                 ::
 
@@ -2444,14 +2550,14 @@ class Sequence(AbjadObject):
 
         Returns a sequence of sequences.
         '''
-        from abjad.tools import sequencetools
-        if self._is_frozen:
+        import abjad
+        if self._frozen_expression:
             return self._make_callback(
                 inspect.currentframe(),
                 string_arguments=str(ratio),
                 string_name='partition',
                 )
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(
+        parts = abjad.sequencetools.partition_sequence_by_ratio_of_lengths(
             self.items,
             ratio=ratio,
             )
@@ -2482,8 +2588,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.reverse()
-                    >>> expression.get_formula_string()
-                    'R(sequence(X))'
+                    >>> expression.get_formula_string(name='X')
+                    'R(X)'
 
                 ::
 
@@ -2511,8 +2617,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.reverse()
-                    >>> expression.get_formula_string()
-                    'R(sequence(X))'
+                    >>> expression.get_formula_string(name='X')
+                    'R(X)'
 
                 ::
 
@@ -2521,27 +2627,26 @@ class Sequence(AbjadObject):
 
         Returns new sequence.
         '''
-        formula_markup_expression = expressiontools.Expression()
-        formula_markup_expression = formula_markup_expression.append_callback(
-            'Markup({})',
-            )
-        formula_markup_expression = formula_markup_expression.append_callback(
-            "Markup.concat(['R', {}])",
-            )
-        if self._is_frozen:
+        import abjad
+        expression = abjad.Expression().markup()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.insert(0, 'R')
+        expression = expression.concat()
+        if self._frozen_expression:
             return self._make_callback(
                 inspect.currentframe(),
-                formula_markup_expression=formula_markup_expression,
+                formula_markup_expression=expression,
                 string_name='R',
                 )
         result = type(self)(reversed(self), name=self._name)
-        formula_string_template = 'R({})'
+        template = 'R({})'
         expressiontools.Expression._track_expression(
             self,
             result,
             'retrograde',
-            formula_markup_expression=formula_markup_expression,
-            formula_string_template=formula_string_template,
+            formula_markup_expression=expression,
+            formula_string_template=template,
             )
         return result
 
@@ -2569,8 +2674,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.rotate(n=4)
-                    >>> expression.get_formula_string()
-                    'r4(sequence(X))'
+                    >>> expression.get_formula_string(name='X')
+                    'r4(X)'
 
                 ::
 
@@ -2598,8 +2703,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.rotate(n=-3)
-                    >>> expression.get_formula_string()
-                    'r-3(sequence(X))'
+                    >>> expression.get_formula_string(name='X')
+                    'r-3(X)'
 
                 ::
 
@@ -2627,8 +2732,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.rotate(n=0)
-                    >>> expression.get_formula_string()
-                    'r0(sequence(X))'
+                    >>> expression.get_formula_string(name='X')
+                    'r0(X)'
 
                 ::
 
@@ -2637,7 +2742,7 @@ class Sequence(AbjadObject):
 
         Returns new sequence.
         '''
-        if self._is_frozen:
+        if self._frozen_expression:
             return self._make_callback(
                 inspect.currentframe(),
                 formula_string_template='r{n}({{}})'.format(n=n),
@@ -2700,8 +2805,8 @@ class Sequence(AbjadObject):
                     ...     cyclic=True,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string()
-                    'S(sequence(X), <3, 15, 3>+)'
+                    >>> expression.get_formula_string(name='X')
+                    'split(X, <3, 15, 3>+)'
 
                 ::
 
@@ -2717,15 +2822,15 @@ class Sequence(AbjadObject):
 
         Returns new sequence.
         '''
-        from abjad.tools import sequencetools
-        if self._is_frozen:
+        import abjad
+        if self._frozen_expression:
             indicator = self._make_split_indicator(weights, cyclic, overhang)
             return self._make_callback(
                 inspect.currentframe(),
                 string_arguments=indicator,
-                string_name='S',
+                string_name='split',
                 )
-        parts = sequencetools.split_sequence(
+        parts = abjad.sequencetools.split_sequence(
             self.items,
             weights,
             cyclic=cyclic,
@@ -2758,8 +2863,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.sum()
-                    >>> expression.get_formula_string()
-                    'sum(sequence(X))'
+                    >>> expression.get_formula_string(name='X')
+                    'sum(X)'
 
                 ::
 
@@ -2787,8 +2892,8 @@ class Sequence(AbjadObject):
 
                     >>> expression = sequence()
                     >>> expression = expression.sum()
-                    >>> expression.get_formula_string()
-                    'sum(sequence(X))'
+                    >>> expression.get_formula_string(name='X')
+                    'sum(X)'
 
                 ::
 
@@ -2819,8 +2924,8 @@ class Sequence(AbjadObject):
                     >>> expression = sequence()
                     >>> expression = expression.sum()
                     >>> expression = expression.sequence()
-                    >>> expression.get_formula_string()
-                    'sequence(sum(sequence(X)))'
+                    >>> expression.get_formula_string(name='X')
+                    'sum(X)'
 
                 ::
 
@@ -2829,7 +2934,7 @@ class Sequence(AbjadObject):
 
         Returns new sequence.
         '''
-        if self._is_frozen:
+        if self._frozen_expression:
             return self._make_callback(
                 inspect.currentframe(),
                 string_name='sum',

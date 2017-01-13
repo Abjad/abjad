@@ -2,6 +2,7 @@
 import abc
 import collections
 import types
+from abjad.tools import expressiontools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools import TypedTuple
@@ -14,6 +15,7 @@ class Segment(TypedTuple):
     ### CLASS VARIABLES ##
 
     __slots__ = (
+        '_frozen_expression',
         )
 
     ### INITIALIZER ###
@@ -49,6 +51,11 @@ class Segment(TypedTuple):
                         item_class = self._numbered_item_class
                     elif isinstance(items[0], self._parent_item_class):
                         item_class = type(items[0])
+        if isinstance(item_class, str):
+            import abjad
+            globals_ = {'abjad': abjad}
+            globals_.update(abjad.__dict__.copy())
+            item_class = eval(item_class, globals_)
         assert issubclass(item_class, self._parent_item_class)
         TypedTuple.__init__(
             self,
@@ -57,6 +64,7 @@ class Segment(TypedTuple):
             name=name,
             name_markup=name_markup,
             )
+        self._frozen_expression = None
 
     ### SPECIAL METHODS ###
 
@@ -97,10 +105,7 @@ class Segment(TypedTuple):
         abjad.attach(command, last_leaf)
         moment = abjad.schemetools.SchemeMoment((1, 12))
         abjad.set_(score).proportional_notation_duration = moment
-        lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(
-            global_staff_size=12,
-            music=score,
-            )
+        lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(music=score)
         if 'title' in kwargs:
             title = kwargs.get('title')
             if not isinstance(title, abjad.Markup):
@@ -182,6 +187,14 @@ class Segment(TypedTuple):
             string = string.format(item)
             strings.append(string)
         return '<{}>'.format(', '.join(strings))
+
+    def _make_callback(self, frame):
+        assert self._frozen_expression, repr(self._frozen_expression)
+        Expression = expressiontools.Expression
+        template = Expression._make_evaluation_template(frame)
+        return self._frozen_expression.append_callback(
+            evaluation_template=template,
+            )
 
     ### PUBLIC METHODS ###
 

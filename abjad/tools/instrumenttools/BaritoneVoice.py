@@ -112,7 +112,7 @@ class BaritoneVoice(Instrument):
             ::
 
                 >>> baritone.instrument_name_markup
-                Markup(contents=('Baritone',))
+                Markup(contents=['Baritone'])
 
             ::
 
@@ -165,7 +165,7 @@ class BaritoneVoice(Instrument):
             ::
 
                 >>> baritone.short_instrument_name_markup
-                Markup(contents=('Bar.',))
+                Markup(contents=['Bar.'])
 
             ::
 

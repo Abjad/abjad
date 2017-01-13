@@ -1743,7 +1743,7 @@ class TempoSpanner(Spanner):
         modulation_markup = metric_modulation._get_markup(
             music_scale_pair=(0.5, 0.5),
             )
-        modulation_markup = modulation_markup.line()
+        modulation_markup = modulation_markup.line([modulation_markup])
         modulation_markup = modulation_markup.parenthesize()
         modulation_markup = modulation_markup.override(('padding', 0.5))
         modulation_markup = modulation_markup.general_align('Y', Down)
@@ -2028,10 +2028,9 @@ class TempoSpanner(Spanner):
         current_tempo_trend,
         previous_tempo,
         ):
-        #
         if self.start_with_parenthesized_tempo and previous_tempo:
             markup = previous_tempo._to_markup()
-            markup = markup.line()
+            markup = markup.line([markup])
             markup = markup.parenthesize()
             markup = markup.override(('padding', 0.45))
             markup = markup + markup.hspace(0.75)

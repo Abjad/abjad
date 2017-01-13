@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def set_(expr):
+def set_(argument):
     r'''Makes LilyPond setting name manager.
 
     ..  container:: example
@@ -27,7 +27,6 @@ def set_(expr):
                 f'4
             }
 
-
     ..  container:: example
 
         Returns LilyPond setting name manager:
@@ -35,11 +34,11 @@ def set_(expr):
         ::
 
             >>> set_(staff)
-            LilyPondSettingNameManager(('instrument_name', Markup(contents=('Vn. I',))))
+            LilyPondSettingNameManager(('instrument_name', Markup(contents=['Vn. I'])))
 
     '''
     from abjad.tools import lilypondnametools
-    if getattr(expr, '_lilypond_setting_name_manager', None) is None:
+    if getattr(argument, '_lilypond_setting_name_manager', None) is None:
         manager = lilypondnametools.LilyPondSettingNameManager()
-        expr._lilypond_setting_name_manager = manager
-    return expr._lilypond_setting_name_manager
+        argument._lilypond_setting_name_manager = manager
+    return argument._lilypond_setting_name_manager

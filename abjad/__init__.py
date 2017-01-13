@@ -45,6 +45,7 @@ from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Multiplier
 from abjad.tools.durationtools import Offset
 from abjad.tools.mathtools import Ratio
+from abjad.tools.expressiontools import Expression
 from abjad.tools.indicatortools import Accelerando
 from abjad.tools.indicatortools import Articulation
 from abjad.tools.indicatortools import Clef
@@ -57,6 +58,7 @@ from abjad.tools.indicatortools import Tempo
 from abjad.tools.indicatortools import TimeSignature
 from abjad.tools.lilypondfiletools import LilyPondFile
 from abjad.tools.markuptools import Markup
+from abjad.tools.markuptools import MarkupList
 from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.scoretools import Chord
 from abjad.tools.scoretools import Container

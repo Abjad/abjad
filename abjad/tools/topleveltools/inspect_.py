@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def inspect_(expr):
+def inspect_(client):
     r'''Makes inspection agent.
 
     ..  container:: example
@@ -52,4 +52,4 @@ def inspect_(expr):
 
     '''
     from abjad.tools import agenttools
-    return agenttools.InspectionAgent(expr)
+    return agenttools.InspectionAgent(client=client)

@@ -41,10 +41,10 @@ def test_datastructuretools_TypedList___format___02():
                     instrument_name='flute',
                     short_instrument_name='fl.',
                     instrument_name_markup=markuptools.Markup(
-                        contents=('Flute',),
+                        contents=['Flute'],
                         ),
                     short_instrument_name_markup=markuptools.Markup(
-                        contents=('Fl.',),
+                        contents=['Fl.'],
                         ),
                     allowable_clefs=indicatortools.ClefInventory(
                         [
@@ -90,10 +90,10 @@ def test_datastructuretools_TypedList___format___03():
                     instrument_name='flute',
                     short_instrument_name='fl.',
                     instrument_name_markup=markuptools.Markup(
-                        contents=('Flute',),
+                        contents=['Flute'],
                         ),
                     short_instrument_name_markup=markuptools.Markup(
-                        contents=('Fl.',),
+                        contents=['Fl.'],
                         ),
                     allowable_clefs=indicatortools.ClefInventory(
                         [

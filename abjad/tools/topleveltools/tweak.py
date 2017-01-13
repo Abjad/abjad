@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def tweak(expr):
+def tweak(argument):
     r'''Makes LilyPond tweak manager.
 
     ..  container:: example
@@ -157,7 +157,7 @@ def tweak(expr):
 
     ''' 
     from abjad.tools import lilypondnametools
-    if getattr(expr, '_lilypond_tweak_manager', None) is None:
+    if getattr(argument, '_lilypond_tweak_manager', None) is None:
         manager = lilypondnametools.LilyPondTweakManager()
-        expr._lilypond_tweak_manager = manager
-    return expr._lilypond_tweak_manager
+        argument._lilypond_tweak_manager = manager
+    return argument._lilypond_tweak_manager

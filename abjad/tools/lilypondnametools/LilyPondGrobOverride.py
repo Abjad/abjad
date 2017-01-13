@@ -386,7 +386,7 @@ class LilyPondGrobOverride(AbjadObject):
             ...    value=Markup(r'\bold { over pressure }'),
             ...    )
             >>> override.value
-            Markup(contents=(MarkupCommand('bold', ['over', 'pressure']),))
+            Markup(contents=[MarkupCommand('bold', ['over', 'pressure'])])
 
         Returns arbitrary object.
         '''

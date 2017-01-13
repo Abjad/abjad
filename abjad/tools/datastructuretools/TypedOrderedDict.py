@@ -27,12 +27,12 @@ class TypedOrderedDict(TypedCollection):
                     (
                         'directive',
                         markuptools.Markup(
-                            contents=(
+                            contents=[
                                 markuptools.MarkupCommand(
                                     'italic',
                                     'Allegretto'
                                     ),
-                                ),
+                                ],
                             ),
                         ),
                     ]
@@ -61,12 +61,12 @@ class TypedOrderedDict(TypedCollection):
                     (
                         'directive',
                         markuptools.Markup(
-                            contents=(
+                            contents=[
                                 markuptools.MarkupCommand(
                                     'italic',
                                     'Allegretto'
                                     ),
-                                ),
+                                ],
                             ),
                         ),
                     ]
@@ -95,12 +95,12 @@ class TypedOrderedDict(TypedCollection):
                     (
                         'directive',
                         markuptools.Markup(
-                            contents=(
+                            contents=[
                                 markuptools.MarkupCommand(
                                     'italic',
                                     'Allegretto'
                                     ),
-                                ),
+                                ],
                             ),
                         ),
                     ]

@@ -194,7 +194,8 @@ class LilyPondFormatManager(AbjadObject):
                     direction = '-'
                 markup_list = markup_list[:]
                 markup_list.sort(key=lambda x: -x.stack_priority)
-                markup_list = [_.line() for _ in markup_list]
+                markup_list = [
+                    markuptools.Markup.line([_]) for _ in markup_list]
                 markup = markuptools.Markup.column(
                     markup_list,
                     direction=direction,

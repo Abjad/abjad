@@ -26,10 +26,10 @@ class Performer(AbjadObject):
                             instrument_name='flute',
                             short_instrument_name='fl.',
                             instrument_name_markup=markuptools.Markup(
-                                contents=('Flute',),
+                                contents=['Flute'],
                                 ),
                             short_instrument_name_markup=markuptools.Markup(
-                                contents=('Fl.',),
+                                contents=['Fl.'],
                                 ),
                             allowable_clefs=indicatortools.ClefInventory(
                                 [
@@ -47,10 +47,10 @@ class Performer(AbjadObject):
                             instrument_name='piccolo',
                             short_instrument_name='picc.',
                             instrument_name_markup=markuptools.Markup(
-                                contents=('Piccolo',),
+                                contents=['Piccolo'],
                                 ),
                             short_instrument_name_markup=markuptools.Markup(
-                                contents=('Picc.',),
+                                contents=['Picc.'],
                                 ),
                             allowable_clefs=indicatortools.ClefInventory(
                                 [

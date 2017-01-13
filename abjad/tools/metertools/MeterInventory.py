@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import durationtools
-from abjad.tools import mathtools
-from abjad.tools import markuptools
-from abjad.tools import sequencetools
-from abjad.tools import timespantools
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -40,7 +35,8 @@ class MeterInventory(TypedList):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
@@ -248,24 +244,23 @@ class MeterInventory(TypedList):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import metertools
+        import abjad
         durations = [_.duration for _ in self]
         total_duration = sum(durations)
-        offsets = mathtools.cumulative_sums(durations, start=0)
-        timespan_inventory = timespantools.TimespanInventory()
-        for one, two in sequencetools.iterate_sequence_nwise(offsets):
-            timespan = timespantools.Timespan(
+        offsets = abjad.mathtools.cumulative_sums(durations, start=0)
+        timespan_inventory = abjad.timespantools.TimespanInventory()
+        for one, two in abjad.sequencetools.iterate_sequence_nwise(offsets):
+            timespan = abjad.Timespan(
                 start_offset=one,
                 stop_offset=two,
                 )
             timespan_inventory.append(timespan)
-
         if range_ is not None:
             minimum, maximum = range_
         else:
             minimum, maximum = 0, total_duration
-        minimum = float(durationtools.Offset(minimum))
-        maximum = float(durationtools.Offset(maximum))
+        minimum = float(abjad.Offset(minimum))
+        maximum = float(abjad.Offset(maximum))
         if scale is None:
             scale = 1.
         assert 0 < scale
@@ -278,11 +273,11 @@ class MeterInventory(TypedList):
             postscript_scale,
             draw_offsets=False,
             )
-        ps = markuptools.Postscript()
-        rational_x_offset = durationtools.Offset(0)
+        ps = abjad.markuptools.Postscript()
+        rational_x_offset = abjad.Offset(0)
         for meter in self:
             kernel_denominator = denominator or meter.denominator
-            kernel = metertools.MetricAccentKernel.from_meter(
+            kernel = abjad.metertools.MetricAccentKernel.from_meter(
                 meter, kernel_denominator)
             for offset, weight in sorted(kernel.kernel.items()):
                 weight = float(weight) * -40
@@ -293,12 +288,13 @@ class MeterInventory(TypedList):
                 ps = ps.rlineto(0, weight)
                 ps = ps.stroke()
             rational_x_offset += meter.duration
-        ps = markuptools.Markup.postscript(ps)
-        lines_markup = markuptools.Markup.combine(timespan_markup, ps)
+        ps = abjad.Markup.postscript(ps)
+        markup_list = abjad.MarkupList([timespan_markup, ps])
+        lines_markup = markup_list.combine()
         fraction_markups = []
         for meter, offset in zip(self, offsets):
             numerator, denominator = meter.numerator, meter.denominator
-            fraction = markuptools.Markup.fraction(numerator, denominator)
+            fraction = abjad.Markup.fraction(numerator, denominator)
             fraction = fraction.center_align().fontsize(-3).sans()
             x_translation = (float(offset) * postscript_scale)
             x_translation -= postscript_x_offset
@@ -306,9 +302,10 @@ class MeterInventory(TypedList):
             fraction_markups.append(fraction)
         fraction_markup = fraction_markups[0]
         for markup in fraction_markups[1:]:
-            fraction_markup = markuptools.Markup.combine(
-                fraction_markup, markup)
-        markup = markuptools.Markup.column([fraction_markup, lines_markup])
+            markup_list = [fraction_markup, markup]
+            markup_list = abjad.MarkupList(markup_list)
+            fraction_markup = markup_list.combine()
+        markup = abjad.Markup.column([fraction_markup, lines_markup])
         return markup.__illustrate__()
 
     ### PRIVATE PROPERTIES ###

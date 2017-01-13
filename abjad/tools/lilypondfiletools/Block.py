@@ -235,7 +235,7 @@ class Block(AbjadObject):
             ::
 
                 >>> block.items
-                [Markup(contents=('foo',))]
+                [Markup(contents=['foo'])]
 
         Returns list.
         '''

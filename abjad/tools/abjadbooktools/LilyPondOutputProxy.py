@@ -84,9 +84,11 @@ class LilyPondOutputProxy(ImageOutputProxy):
                 payload)
         lilypond_file = payload
         assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
-        if not len(lilypond_file.layout_block.items):
+        if (lilypond_file.layout_block and
+            not len(lilypond_file.layout_block.items)):
             lilypond_file.items.remove(lilypond_file.layout_block)
-        if not len(lilypond_file.paper_block.items):
+        if (lilypond_file.paper_block and
+            not len(lilypond_file.paper_block.items)):
             lilypond_file.items.remove(lilypond_file.paper_block)
         if lilypond_file.header_block is None:
             header_block = lilypondfiletools.Block(name='header')

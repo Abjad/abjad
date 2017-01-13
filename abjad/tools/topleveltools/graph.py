@@ -4,7 +4,7 @@ import subprocess
 
 
 def graph(
-    expr,
+    argument,
     image_format='pdf',
     layout='dot',
     graph_attributes=None,
@@ -12,7 +12,7 @@ def graph(
     edge_attributes=None,
     **kwargs
     ):
-    r'''Graphs `expr`.
+    r'''Graphs `argument`.
     
     ..  container:: example
 
@@ -302,11 +302,11 @@ def graph(
     from abjad import abjad_configuration
     from abjad.tools import systemtools
 
-    if isinstance(expr, str):
-        graphviz_format = expr
+    if isinstance(argument, str):
+        graphviz_format = argument
     else:
-        assert hasattr(expr, '__graph__')
-        graphviz_graph = expr.__graph__(**kwargs)
+        assert hasattr(argument, '__graph__')
+        graphviz_graph = argument.__graph__(**kwargs)
         if graph_attributes:
             graphviz_graph.attributes.update(graph_attributes)
         if node_attributes:

@@ -295,6 +295,7 @@ class TreeContainer(TreeNode):
             storage_format_kwargs_names=names,
             template_names=template_names,
             )
+
     ### PUBLIC METHODS ###
 
     def append(self, node):

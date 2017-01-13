@@ -106,7 +106,7 @@ class Vibraphone(Instrument):
             ::
 
                 >>> vibraphone.instrument_name_markup
-                Markup(contents=('Vibraphone',))
+                Markup(contents=['Vibraphone'])
 
             ::
 
@@ -159,7 +159,7 @@ class Vibraphone(Instrument):
             ::
 
                 >>> vibraphone.short_instrument_name_markup
-                Markup(contents=('Vibr.',))
+                Markup(contents=['Vibr.'])
 
             ::
 

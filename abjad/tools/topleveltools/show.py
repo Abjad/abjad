@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def show(expr, return_timing=False, **kwargs):
-    r'''Shows `expr`.
+def show(argument, return_timing=False, **kwargs):
+    r'''Shows `argument`.
 
     ..  container:: example
 
@@ -49,11 +49,11 @@ def show(expr, return_timing=False, **kwargs):
     when `return_timing` is true.
     '''
     import abjad
-    if not hasattr(expr, '__illustrate__'):
+    if not hasattr(argument, '__illustrate__'):
         message = 'must have __illustrate__ method: {!r}.'
-        message = message.format(expr)
+        message = message.format(argument)
         raise Exception(message)
-    result = abjad.persist(expr).as_pdf(**kwargs)
+    result = abjad.persist(argument).as_pdf(**kwargs)
     pdf_file_path = result[0]
     abjad_formatting_time = result[1]
     lilypond_rendering_time = result[2]

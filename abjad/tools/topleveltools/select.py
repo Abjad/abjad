@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def select(expr=None):
-    r'''Selects `expr` or makes empty selector.
+def select(argument=None):
+    r'''Selects `argument` or makes empty selector.
 
     ..  container:: example
 
@@ -40,22 +40,22 @@ def select(expr=None):
             >>> select()
             Selector()
 
-    Returns selection when `expr` is not none.
+    Returns selection when `argument` is not none.
 
-    Returns selector when `expr` is none.
+    Returns selector when `argument` is none.
     '''
     from abjad.tools import scoretools
     from abjad.tools import selectiontools
     from abjad.tools import selectortools
     from abjad.tools import spannertools
-    if expr is None:
+    if argument is None:
         return selectortools.Selector()
-    elif isinstance(expr, scoretools.Component):
-        return selectiontools.Selection(expr)
-    elif hasattr(expr, '_music'):
-        music = expr._music
+    elif isinstance(argument, scoretools.Component):
+        return selectiontools.Selection(argument)
+    elif hasattr(argument, '_music'):
+        music = argument._music
         return selectiontools.Selection(music)
-    elif isinstance(expr, spannertools.Spanner):
-        music = expr._components
+    elif isinstance(argument, spannertools.Spanner):
+        music = argument._components
         return selectiontools.Selection(music)
-    return selectiontools.Selection(expr)
+    return selectiontools.Selection(argument)

@@ -1,4 +1,5 @@
 # -* coding: utf-8 -*-
+import inspect
 from abjad.tools import durationtools
 from abjad.tools import expressiontools
 from abjad.tools import mathtools
@@ -13,63 +14,104 @@ class PitchClassSegment(Segment):
 
     ..  container:: example
 
-        With numbered pitch-classes:
+        Initializes segment with numbered pitch-classes:
 
-        ::
+        ..  container:: example
 
-            >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-            >>> segment = pitchtools.PitchClassSegment(items=items)
-            >>> show(segment) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> show(segment) # doctest: +SKIP
 
-            >>> lilypond_file = segment.__illustrate__()
-            >>> f(lilypond_file[Voice])
-            \new Voice {
-                bf'8
-                bqf'8
-                fs'8
-                g'8
-                bqf'8
-                g'8
-                \bar "|."
-                \override Score.BarLine.transparent = ##f
-            }
+            ..  doctest::
 
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    bf'8
+                    bqf'8
+                    fs'8
+                    g'8
+                    bqf'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example expression
+
+            ::
+
+                >>> expression = Expression().pitch_class_segment()
+                >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    bf'8
+                    bqf'8
+                    fs'8
+                    g'8
+                    bqf'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+            
     ..  container:: example
 
-        With named pitch-classes:
+        Initializes segment with named pitch-classes:
 
-        ::
+        ..  container:: example
 
-            >>> items = ['c', 'ef', 'bqs,', 'd']
-            >>> segment = pitchtools.PitchClassSegment(
-            ...     items=items,
-            ...     item_class=pitchtools.NamedPitchClass,
-            ...     )
-            >>> show(segment) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> items = ['c', 'ef', 'bqs,', 'd']
+                >>> segment = pitchtools.PitchClassSegment(
+                ...     items=items,
+                ...     item_class=pitchtools.NamedPitchClass,
+                ...     )
+                >>> show(segment) # doctest: +SKIP
 
-            >>> lilypond_file = segment.__illustrate__()
-            >>> f(lilypond_file[Voice])
-            \new Voice {
-                c'8
-                ef'8
-                bqs'8
-                d'8
-                \bar "|."
-                \override Score.BarLine.transparent = ##f
-            }
+            ..  doctest::
 
-    ..  container:: example
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    ef'8
+                    bqs'8
+                    d'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
 
-        Interpreter representation:
+        ..  container:: example expression
 
-        ::
+            ::
 
-            >>> segment
-            PitchClassSegment(['c', 'ef', 'bqs', 'd'])
+                >>> expression = Expression().pitch_class_segment(
+                ...     item_class=pitchtools.NamedPitchClass,
+                ...     )
+                >>> segment = expression(['c', 'ef', 'bqs,', 'd'])
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    ef'8
+                    bqs'8
+                    d'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
 
     '''
 
@@ -455,36 +497,28 @@ class PitchClassSegment(Segment):
 
         Returns new segment.
         '''
+        import abjad
         if not isinstance(segment, type(self)):
             message = 'must be pitch-class segment: {!r}.'
             message = message.format(segment)
             raise TypeError(message)
         items = self.items + segment.items
-        formula_string_template = '{{}} + {}'.format(segment.name)
-        formula_markup_expression = expressiontools.Expression()
-        formula_markup_expression = formula_markup_expression.append_callback(
-            'Markup({})'
-            )
-        segment_expression_markup = \
-            expressiontools.Expression._get_expression_markup(segment)
-        if segment_expression_markup is None:
-            segment_expression_markup = '?'
-        else:
-            segment_expression_markup = format(
-                segment_expression_markup,
-                'storage',
-                )
-        formula_markup_expression = formula_markup_expression.append_callback(
-            "{{}} + Markup('+') + {}".format(segment_expression_markup)
-            )
+        template = '{{}} + {}'.format(segment.name)
+        segment_markup = abjad.Expression._get_expression_markup(segment)
+        if segment_markup is None:
+            segment_markup = abjad.Markup('?')
+        expression = expressiontools.Expression()
+        expression = expression.markup()
+        expression = expression + abjad.Markup('+')
+        expression = expression + segment_markup
         segment = new(self, items=items, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             '__add__',
-            formula_markup_expression=formula_markup_expression,
+            formula_markup_expression=expression,
+            formula_string_template=template,
             orientation=Right,
-            formula_string_template=formula_string_template,
             )
         return segment
 
@@ -767,56 +801,29 @@ class PitchClassSegment(Segment):
         import abjad
         superclass = super(PitchClassSegment, self)
         result = superclass.__getitem__(i)
-        if isinstance(result, Segment):
-            result._name = self._name
-            if isinstance(i, int):
-                subscript_string = '[{i}]'
-                start = stop = step = None
-            elif isinstance(i, slice):
-                if i.step is not None:
-                    raise NotImplementedError
-                if i.start is None and i.stop is None:
-                    subscript_string = '[:]'
-                elif i.start is None:
-                    subscript_string = '[:{stop}]'
-                elif i.stop is None:
-                    subscript_string = '[{start}:]'
-                else:
-                    subscript_string = '[{start}:{stop}]'
-                start = i.start
-                stop = i.stop
-                step = i.step
-            else:
-                message = 'must be integer or slice: {!r}.'
-                message = message.format(i)
-                raise TypeError(message)
-            subscript_string = subscript_string.format(
-                i=i,
-                start=start,
-                stop=stop,
-                step=step,
-                )
-            formula_string_template = '{}' + subscript_string
-            formula_markup_expression = expressiontools.Expression()
-            formula_markup_expression = formula_markup_expression.append_callback(
-                'Markup({})',
-                )
-            subscript_markup = abjad.Markup(subscript_string).sub()
-            template = 'Markup.concat([{{}}, Markup({!r}).sub()])'
-            template = template.format(subscript_string)
-            formula_markup_expression = formula_markup_expression.append_callback(template)
-            expressiontools.Expression._track_expression(
-                self,
-                result,
-                '__getitem__',
-                formula_markup_expression=formula_markup_expression,
-                orientation=Right,
-                precedence=100,
-                formula_string_template=formula_string_template,
-                )
+        if not isinstance(result, Segment):
+            return result
+        result._name = self._name
+        subscript_string = self._make_subscript_string(i)
+        template = '{}' + subscript_string
+        subscript_markup = abjad.Markup(subscript_string).sub()
+        expression = expressiontools.Expression()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.append(subscript_markup)
+        expression = expression.concat()
+        expressiontools.Expression._track_expression(
+            self,
+            result,
+            '__getitem__',
+            formula_markup_expression=expression,
+            formula_string_template=template,
+            orientation=Right,
+            precedence=100,
+            )
         return result
 
-    def __illustrate__(self, expression_markup_direction=Up, **kwargs):
+    def __illustrate__(self, expression_markup_direction=Up, **keywords):
         r'''Illustrates segment.
 
         ..  container:: example
@@ -876,15 +883,34 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment.__illustrate__(), lilypondfiletools.LilyPondFile)
+                >>> prototype = lilypondfiletools.LilyPondFile
+                >>> isinstance(segment.__illustrate__(), prototype)
                 True
 
         '''
         superclass = super(PitchClassSegment, self)
         return superclass.__illustrate__(
             expression_markup_direction=expression_markup_direction,
-            **kwargs
+            **keywords
             )
+
+    def __repr__(self):
+        r'''Gets interpreter representation.
+
+        ..  container:: example
+
+            Interpreter representation:
+
+            ::
+
+                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                >>> pitchtools.PitchClassSegment(items=items)
+                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+
+        Returns string.
+        '''
+        superclass = super(PitchClassSegment, self)
+        return superclass.__repr__()
 
     ### PRIVATE PROPERTIES ###
 
@@ -912,16 +938,47 @@ class PitchClassSegment(Segment):
 
         Returns true or false.
         '''
-        from abjad.tools import pitchtools
+        import abjad
         if not isinstance(expr, type(self)):
             return False
         if not len(self) == len(expr):
             return False
-        difference = -(pitchtools.NamedPitch(expr[0], 4) -
-            pitchtools.NamedPitch(self[0], 4))
+        difference = -(abjad.NamedPitch(expr[0], 4) -
+            abjad.NamedPitch(self[0], 4))
         new_pitch_classes = (x + difference for x in self)
         new_pitch_classes = new(self, items=new_pitch_classes)
         return expr == new_pitch_classes
+
+    @staticmethod
+    def _make_subscript_string(i):
+        if isinstance(i, int):
+            subscript_string = '[{i}]'
+            start = stop = step = None
+        elif isinstance(i, slice):
+            if i.step is not None:
+                raise NotImplementedError
+            if i.start is None and i.stop is None:
+                subscript_string = '[:]'
+            elif i.start is None:
+                subscript_string = '[:{stop}]'
+            elif i.stop is None:
+                subscript_string = '[{start}:]'
+            else:
+                subscript_string = '[{start}:{stop}]'
+            start = i.start
+            stop = i.stop
+            step = i.step
+        else:
+            message = 'must be integer or slice: {!r}.'
+            message = message.format(i)
+            raise TypeError(message)
+        subscript_string = subscript_string.format(
+            i=i,
+            start=start,
+            stop=stop,
+            step=step,
+            )
+        return subscript_string
 
     ### PUBLIC PROPERTIES ###
 
@@ -982,46 +1039,72 @@ class PitchClassSegment(Segment):
 
         ..  container:: example
 
-            Gets items in numbered segment:
-        
-            ::
+            ..  container:: example
 
-                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
-                >>> show(segment) # doctest: +SKIP
+                Initializes items positionally:
 
-            ::
+                ::
 
-                >>> for item in segment.items:
-                ...     item
-                NumberedPitchClass(10)
-                NumberedPitchClass(10.5)
-                NumberedPitchClass(6)
-                NumberedPitchClass(7)
-                NumberedPitchClass(10.5)
-                NumberedPitchClass(7)
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> segment = pitchtools.PitchClassSegment(items)
+                    >>> for item in segment.items:
+                    ...     item
+                    ...
+                    NumberedPitchClass(10)
+                    NumberedPitchClass(10.5)
+                    NumberedPitchClass(6)
+                    NumberedPitchClass(7)
+                    NumberedPitchClass(10.5)
+                    NumberedPitchClass(7)
 
-        ..  container:: example
+                Initializes items from keyword:
 
-            Gets items in named segment:
+                ::
 
-            ::
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> segment = pitchtools.PitchClassSegment(items=items)
+                    >>> for item in segment.items:
+                    ...     item
+                    NumberedPitchClass(10)
+                    NumberedPitchClass(10.5)
+                    NumberedPitchClass(6)
+                    NumberedPitchClass(7)
+                    NumberedPitchClass(10.5)
+                    NumberedPitchClass(7)
 
-                >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> segment = pitchtools.PitchClassSegment(
-                ...     items=items,
-                ...     item_class=pitchtools.NamedPitchClass,
-                ...     )
-                >>> show(segment) # doctest: +SKIP
+            ..  container:: example expression
 
-            ::
-                
-                >>> for item in segment.items:
-                ...     item
-                NamedPitchClass('c')
-                NamedPitchClass('ef')
-                NamedPitchClass('bqs')
-                NamedPitchClass('d')
+                Initializes items positionally:
+
+                ::
+
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> expression = Expression().pitch_class_segment()
+                    >>> segment = expression(items)
+                    >>> for item in segment.items:
+                    ...     item
+                    NumberedPitchClass(10)
+                    NumberedPitchClass(10.5)
+                    NumberedPitchClass(6)
+                    NumberedPitchClass(7)
+                    NumberedPitchClass(10.5)
+                    NumberedPitchClass(7)
+
+                Initializes items from keyword:
+
+                ::
+
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> expression = Expression().pitch_class_segment()
+                    >>> segment = expression(items=items)
+                    >>> for item in segment.items:
+                    ...     item
+                    NumberedPitchClass(10)
+                    NumberedPitchClass(10.5)
+                    NumberedPitchClass(6)
+                    NumberedPitchClass(7)
+                    NumberedPitchClass(10.5)
+                    NumberedPitchClass(7)
 
         ..  container:: example
 
@@ -1038,81 +1121,67 @@ class PitchClassSegment(Segment):
 
     @property
     def name(self):
-        r'''Gets name of segment.
+        r'''Gets segment name.
 
         ..  container:: example
 
-            Gets name:
+            ..  container:: example
 
-            ::
+                Initializes without name:
 
-                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = pitchtools.PitchClassSegment(items=items, name='J')
-                >>> segment
-                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
+                ::
 
-            ::
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> pitchtools.PitchClassSegment(items=items)
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
-                >>> show(segment) # doctest: +SKIP
+                Sets name at initialization:
 
-            ..  doctest::
+                ::
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    bf'8
-                        ^ \markup {
-                            \bold
-                                J
-                            }
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> pitchtools.PitchClassSegment(items=items, name='J')
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
 
-            ::
+            ..  container:: example expression
 
-                >>> segment.name
-                'J'
+                Initializes without name:
 
-        ..  container:: example
+                ::
 
-            Defaults to none:
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> expression = Expression().pitch_class_segment()
+                    >>> expression(items=items)
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
-            ::
+                Sets name at initialization:
 
-                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
-                >>> segment
-                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+                ::
 
-            ::
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression(items=items)
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
 
-                >>> show(segment) # doctest: +SKIP
+                Sets name at evaluation:
 
-            ..  doctest::
+                ::
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    bf'8
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> expression = Expression().pitch_class_segment()
+                    >>> expression(items=items, name='K')
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='K')
 
-            ::
+                Overrides name at evaluation:
 
-                >>> segment.name is None
-                True
+                ::
+
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression(items=items, name='K')
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='K')
+
+        Defaults to none.
 
         Set to string or none.
 
@@ -1120,6 +1189,96 @@ class PitchClassSegment(Segment):
         '''
         superclass = super(PitchClassSegment, self)
         return superclass.name
+
+    @property
+    def name_markup(self):
+        r'''Gets segment name markup.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                Initializes without name markup:
+
+                ::
+
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> segment = pitchtools.PitchClassSegment(items=items)
+                    >>> segment.name_markup is None
+                    True
+
+                Sets name markup at initialization:
+
+                ::
+
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> segment = pitchtools.PitchClassSegment(
+                    ...     items=items,
+                    ...     name_markup=Markup('J'),
+                    ...     )
+                    >>> segment.name_markup
+                    Markup(contents=['J'])
+
+            ..  container:: example expression
+
+                Initializes without name markup:
+
+                ::
+
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> expression = Expression().pitch_class_segment()
+                    >>> segment = expression(items=items)
+                    >>> segment.name_markup is None
+                    True
+
+                Sets name markup at initialization:
+
+                ::
+
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> expression = Expression().pitch_class_segment(
+                    ...     name_markup=Markup('J'),
+                    ...     )
+                    >>> segment = expression(items=items)
+                    >>> segment.name_markup
+                    Markup(contents=['J'])
+
+                Sets name markup at evaluation:
+
+                ::
+
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> expression = Expression().pitch_class_segment()
+                    >>> segment = expression(
+                    ...     items=items,
+                    ...     name_markup=Markup('K'),
+                    ...     )
+                    >>> segment.name_markup
+                    Markup(contents=['K'])
+
+                Overrides name markup at evaluation:
+
+                ::
+
+                    >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                    >>> expression = Expression().pitch_class_segment(
+                    ...     name_markup=Markup('J'),
+                    ...     )
+                    >>> segment = expression(
+                    ...     items=items,
+                    ...     name_markup=Markup('K'),
+                    ...     )
+                    >>> segment.name_markup
+                    Markup(contents=['K'])
+
+        Defaults to none.
+
+        Set to markup or none.
+
+        Returns markup or none.
+        '''
+        superclass = super(PitchClassSegment, self)
+        return superclass.name_markup
 
     ### PUBLIC METHODS ###
 
@@ -1145,94 +1304,192 @@ class PitchClassSegment(Segment):
 
             Gets alpha transform of segment:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.alpha()
-                >>> segment
-                PitchClassSegment([11, 11.5, 7, 6, 11.5, 6], name='A(J)')
+                ::
 
-            ::
+                    >>> segment = J.alpha()
+                    >>> segment
+                    PitchClassSegment([11, 11.5, 7, 6, 11.5, 6], name='A(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    b'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    A
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        b'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        A
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    bqs'8
-                    g'8
-                    fs'8
-                    bqs'8
-                    fs'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        bqs'8
+                        g'8
+                        fs'8
+                        bqs'8
+                        fs'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.alpha()
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([11, 11.5, 7, 6, 11.5, 6], name='A(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        b'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        A
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        bqs'8
+                        g'8
+                        fs'8
+                        bqs'8
+                        fs'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
             Gets alpha transform of alpha transform of segment:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.alpha().alpha()
-                >>> segment
-                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='A(A(J))')
+                ::
 
-            ::
+                    >>> segment = J.alpha().alpha()
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='A(A(J))')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    bf'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    A
-                                    \concat
-                                        {
-                                            A
-                                            \concat
-                                                {
-                                                    \hspace
-                                                        #0.4
-                                                    \bold
-                                                        J
-                                                }
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        A
+                                        \concat
+                                            {
+                                                A
+                                                \concat
+                                                    {
+                                                        \hspace
+                                                            #0.4
+                                                        \bold
+                                                            J
+                                                    }
+                                            }
+                                    }
                                 }
-                            }
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
-            ::
+                ::
 
-                >>> segment == J
-                True
+                    >>> segment == J
+                    True
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.alpha()
+                    >>> expression = expression.alpha()
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='A(A(J))')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        A
+                                        \concat
+                                            {
+                                                A
+                                                \concat
+                                                    {
+                                                        \hspace
+                                                            #0.4
+                                                        \bold
+                                                            J
+                                                    }
+                                            }
+                                    }
+                                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+                ::
+
+                    >>> segment == J
+                    True
 
         ..  container:: example
 
@@ -1244,6 +1501,9 @@ class PitchClassSegment(Segment):
                 True
 
         '''
+        import abjad
+        if self._frozen_expression:
+            return self._make_callback(inspect.currentframe())
         numbers = []
         for pc in self:
             pc = abs(float(pc))
@@ -1261,21 +1521,19 @@ class PitchClassSegment(Segment):
             else:
                 number = int(number)
             numbers.append(number)
-        formula_string_template = 'A({})'
-        formula_markup_expression = expressiontools.Expression()
-        formula_markup_expression = formula_markup_expression.append_callback(
-            'Markup({})'
-            )
-        formula_markup_expression = formula_markup_expression.append_callback(
-            "Markup.concat([Markup('A'), {}])",
-            )
+        template = 'A({})'
+        expression = expressiontools.Expression()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.insert(0, 'A')
+        expression = expression.concat()
         segment = new(self, items=numbers, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             'alpha',
-            formula_markup_expression=formula_markup_expression,
-            formula_string_template=formula_string_template,
+            formula_markup_expression=expression,
+            formula_string_template=template,
             )
         return segment
 
@@ -1354,8 +1612,8 @@ class PitchClassSegment(Segment):
                 PitchClassSegment(['c', 'd', 'fs', 'a', 'b', 'c', 'g'])
 
         '''
-        from abjad.tools import pitchtools
-        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
+        import abjad
+        pitch_segment = abjad.pitchtools.PitchSegment.from_selection(selection)
         return class_(
             items=pitch_segment,
             item_class=item_class,
@@ -1396,8 +1654,8 @@ class PitchClassSegment(Segment):
 
         Returns true or false.
         '''
-        from abjad.tools import pitchtools
-        return len(pitchtools.PitchClassSet(self)) < len(self)
+        import abjad
+        return len(abjad.pitchtools.PitchClassSet(self)) < len(self)
 
     def index(self, item):
         r'''Gets index of `item` in segment.
@@ -1465,94 +1723,187 @@ class PitchClassSegment(Segment):
 
             Inverts segment:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.invert()
-                >>> segment
-                PitchClassSegment([2, 1.5, 6, 5, 1.5, 5], name='I(J)')
+                ::
 
-            ::
+                    >>> segment = J.invert()
+                    >>> segment
+                    PitchClassSegment([2, 1.5, 6, 5, 1.5, 5], name='I(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    d'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    I
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        d'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        I
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    dqf'8
-                    fs'8
-                    f'8
-                    dqf'8
-                    f'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        dqf'8
+                        fs'8
+                        f'8
+                        dqf'8
+                        f'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.invert()
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([2, 1.5, 6, 5, 1.5, 5], name='I(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        d'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        I
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        dqf'8
+                        fs'8
+                        f'8
+                        dqf'8
+                        f'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
             Inverts inversion of segment:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.invert().invert()
-                >>> segment
-                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='I(I(J))')
+                ::
 
-            ::
+                    >>> segment = J.invert().invert()
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='I(I(J))')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    bf'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    I
-                                    \concat
-                                        {
-                                            I
-                                            \concat
-                                                {
-                                                    \hspace
-                                                        #0.4
-                                                    \bold
-                                                        J
-                                                }
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        I
+                                        \concat
+                                            {
+                                                I
+                                                \concat
+                                                    {
+                                                        \hspace
+                                                            #0.4
+                                                        \bold
+                                                            J
+                                                    }
+                                            }
+                                    }
                                 }
-                            }
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
-            ::
+                ::
 
-                >>> segment == J
-                True
+                    >>> segment == J
+                    True
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.invert()
+                    >>> expression = expression.invert()
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='I(I(J))')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        I
+                                        \concat
+                                            {
+                                                I
+                                                \concat
+                                                    {
+                                                        \hspace
+                                                            #0.4
+                                                        \bold
+                                                            J
+                                                    }
+                                            }
+                                    }
+                                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
@@ -1564,27 +1915,30 @@ class PitchClassSegment(Segment):
                 True
 
         '''
+        import abjad
+        if self._frozen_expression:
+            return self._make_callback(inspect.currentframe())
         items = (pc.invert(axis=axis) for pc in self)
-        formula_markup_expression = expressiontools.Expression()
-        formula_markup_expression = formula_markup_expression.append_callback(
-            'Markup({})',
-            )
         if axis is None:
-            formula_string_template = 'I({})'
-            template = "Markup.concat(['I', {}])"
+            template = 'I({})'
         else:
-            formula_string_template = 'I{}({{}})'
-            formula_string_template = formula_string_template.format(axis)
-            template = "Markup.concat(['I', Markup({}).sub() {{}}])"
+            template = 'I{}({{}})'
             template = template.format(axis)
-        formula_markup_expression = formula_markup_expression.append_callback(template)
+        expression = abjad.Expression().markup()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.insert(0, 'I')
+        if axis is not None:
+            axis_markup = abjad.Markup(axis).sub()
+            expression = expression.insert(1, axis_markup)
+        expression = expression.concat()
         segment = new(self, items=items, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             'invert',
-            formula_markup_expression=formula_markup_expression,
-            formula_string_template=formula_string_template,
+            formula_markup_expression=expression,
+            formula_string_template=template,
             )
         return segment
 
@@ -1664,14 +2018,14 @@ class PitchClassSegment(Segment):
                 True
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import pitchtools
+        import abjad
         n = n or len(self)
-        written_duration = written_duration or durationtools.Duration(1, 8)
-        result = scoretools.make_notes([0] * n, [written_duration])
-        for i, logical_tie in enumerate(iterate(result).by_logical_tie()):
-            pitch_class = pitchtools.NamedPitchClass(self[i % len(self)])
-            pitch = pitchtools.NamedPitch(pitch_class, 4)
+        written_duration = written_duration or abjad.Duration(1, 8)
+        result = abjad.scoretools.make_notes([0] * n, [written_duration])
+        logical_ties = abjad.iterate(result).by_logical_tie()
+        for i, logical_tie in enumerate(logical_ties):
+            pitch_class = abjad.pitchtools.NamedPitchClass(self[i % len(self)])
+            pitch = abjad.NamedPitch(pitch_class, 4)
             for note in logical_tie:
                 note.written_pitch = pitch
         return result
@@ -1698,177 +2052,362 @@ class PitchClassSegment(Segment):
 
             Multiplies pitch-classes in segment by 1:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.multiply(n=1)
-                >>> segment
-                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='M1(J)')
+                ::
 
-            ::
+                    >>> segment = J.multiply(n=1)
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='M1(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    bf'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    M
-                                    \sub
-                                        1
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        M
+                                        \sub
+                                            1
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.multiply(n=1)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='M1(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        M
+                                        \sub
+                                            1
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
             Multiplies pitch-classes in segment by 5:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.multiply(n=5)
-                >>> segment
-                PitchClassSegment([2, 4.5, 6, 11, 4.5, 11], name='M5(J)')
+                ::
 
-            ::
+                    >>> segment = J.multiply(n=5)
+                    >>> segment
+                    PitchClassSegment([2, 4.5, 6, 11, 4.5, 11], name='M5(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    d'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    M
-                                    \sub
-                                        5
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        d'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        M
+                                        \sub
+                                            5
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    eqs'8
-                    fs'8
-                    b'8
-                    eqs'8
-                    b'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        eqs'8
+                        fs'8
+                        b'8
+                        eqs'8
+                        b'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.multiply(n=5)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([2, 4.5, 6, 11, 4.5, 11], name='M5(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        d'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        M
+                                        \sub
+                                            5
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        eqs'8
+                        fs'8
+                        b'8
+                        eqs'8
+                        b'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
             Multiplies pitch-classes in segment by 7:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.multiply(n=7)
-                >>> segment
-                PitchClassSegment([10, 1.5, 6, 1, 1.5, 1], name='M7(J)')
+                ::
 
-            ::
+                    >>> segment = J.multiply(n=7)
+                    >>> segment
+                    PitchClassSegment([10, 1.5, 6, 1, 1.5, 1], name='M7(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    bf'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    M
-                                    \sub
-                                        7
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        M
+                                        \sub
+                                            7
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    dqf'8
-                    fs'8
-                    cs'8
-                    dqf'8
-                    cs'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        dqf'8
+                        fs'8
+                        cs'8
+                        dqf'8
+                        cs'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.multiply(n=7)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([10, 1.5, 6, 1, 1.5, 1], name='M7(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        M
+                                        \sub
+                                            7
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        dqf'8
+                        fs'8
+                        cs'8
+                        dqf'8
+                        cs'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
 
         ..  container:: example
 
             Multiplies pitch-classes in segment by 11:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.multiply(n=11)
-                >>> segment
-                PitchClassSegment([2, 7.5, 6, 5, 7.5, 5], name='M11(J)')
+                ::
 
-            ::
+                    >>> segment = J.multiply(n=11)
+                    >>> segment
+                    PitchClassSegment([2, 7.5, 6, 5, 7.5, 5], name='M11(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    d'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    M
-                                    \sub
-                                        11
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        d'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        M
+                                        \sub
+                                            11
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    gqs'8
-                    fs'8
-                    f'8
-                    gqs'8
-                    f'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        gqs'8
+                        fs'8
+                        f'8
+                        gqs'8
+                        f'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.multiply(n=11)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([2, 7.5, 6, 5, 7.5, 5], name='M11(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        d'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        M
+                                        \sub
+                                            11
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        gqs'8
+                        fs'8
+                        f'8
+                        gqs'8
+                        f'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
@@ -1880,28 +2419,28 @@ class PitchClassSegment(Segment):
                 True
 
         '''
-        from abjad.tools import pitchtools
+        import abjad
+        if self._frozen_expression:
+            return self._make_callback(inspect.currentframe())
         items = [
-            pitchtools.NumberedPitchClass(pc).multiply(n)
+            abjad.pitchtools.NumberedPitchClass(pc).multiply(n)
             for pc in self
             ]
-
-        formula_string_template = 'M{n}({{}})'
-        formula_string_template = formula_string_template.format(n=n)
-        formula_markup_expression = expressiontools.Expression()
-        formula_markup_expression = formula_markup_expression.append_callback(
-            'Markup({})',
-            )
-        template = "Markup.concat(['M', Markup({n}).sub(), {{}}])"
+        template = 'M{n}({{}})'
         template = template.format(n=n)
-        formula_markup_expression = formula_markup_expression.append_callback(template)
+        expression = abjad.Expression().markup()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.insert(0, 'M')
+        expression = expression.insert(1, abjad.Markup(n).sub())
+        expression = expression.concat()
         segment = new(self, items=items, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             'multiply',
-            formula_markup_expression=formula_markup_expression,
-            formula_string_template=formula_string_template,
+            formula_markup_expression=expression,
+            formula_string_template=template,
             )
         return segment
 
@@ -1927,94 +2466,190 @@ class PitchClassSegment(Segment):
 
             Gets retrograde of segment:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.retrograde()
-                >>> segment
-                PitchClassSegment([7, 10.5, 7, 6, 10.5, 10], name='R(J)')
+                ::
 
-            ::
+                    >>> segment = J.retrograde()
+                    >>> segment
+                    PitchClassSegment([7, 10.5, 7, 6, 10.5, 10], name='R(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    g'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    R
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        g'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        R
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    bqf'8
-                    g'8
-                    fs'8
-                    bqf'8
-                    bf'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        bqf'8
+                        g'8
+                        fs'8
+                        bqf'8
+                        bf'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.retrograde()
+                    >>> segment
+                    PitchClassSegment([7, 10.5, 7, 6, 10.5, 10], name='R(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        g'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        R
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        bqf'8
+                        g'8
+                        fs'8
+                        bqf'8
+                        bf'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
             Gets retrograde of retrograde of segment:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.retrograde().retrograde()
-                >>> segment
-                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='R(R(J))')
+                ::
 
-            ::
+                    >>> segment = J.retrograde().retrograde()
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='R(R(J))')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    bf'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    R
-                                    \concat
-                                        {
-                                            R
-                                            \concat
-                                                {
-                                                    \hspace
-                                                        #0.4
-                                                    \bold
-                                                        J
-                                                }
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        R
+                                        \concat
+                                            {
+                                                R
+                                                \concat
+                                                    {
+                                                        \hspace
+                                                            #0.4
+                                                        \bold
+                                                            J
+                                                    }
+                                            }
+                                    }
                                 }
-                            }
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
-            ::
+                ::
 
-                >>> segment == J
-                True
+                    >>> segment == J
+                    True
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.retrograde()
+                    >>> expression = expression.retrograde()
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='R(R(J))')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        R
+                                        \concat
+                                            {
+                                                R
+                                                \concat
+                                                    {
+                                                        \hspace
+                                                            #0.4
+                                                        \bold
+                                                            J
+                                                    }
+                                            }
+                                    }
+                                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+                ::
+
+                    >>> segment == J
+                    True
 
         ..  container:: example
 
@@ -2026,22 +2661,24 @@ class PitchClassSegment(Segment):
                 True
 
         '''
+        import abjad
+        if self._frozen_expression:
+            return self._make_callback(inspect.currentframe())
         items = reversed(self)
-        formula_string_template = 'R({})'
-        formula_markup_expression = expressiontools.Expression()
-        formula_markup_expression = formula_markup_expression.append_callback(
-            'Markup({})',
-            )
-        formula_markup_expression = formula_markup_expression.append_callback(
-            "Markup.concat(['R', {}])",
-            )
+        template = 'R({})'
+        expression = abjad.Expression().markup()
+        expression = expression.markup()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.insert(0, 'R')
+        expression = expression.concat()
         segment = new(self, items=items, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             'retrograde',
-            formula_markup_expression=formula_markup_expression,
-            formula_string_template=formula_string_template,
+            formula_markup_expression=expression,
+            formula_string_template=template,
             )
         return segment
 
@@ -2067,191 +2704,388 @@ class PitchClassSegment(Segment):
 
             Rotates segment to the right:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.rotate(n=1)
-                >>> segment
-                PitchClassSegment([7, 10, 10.5, 6, 7, 10.5], name='r1(J)')
+                ::
 
-            ::
+                    >>> segment = J.rotate(n=1)
+                    >>> segment
+                    PitchClassSegment([7, 10, 10.5, 6, 7, 10.5], name='r1(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    g'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    r
-                                    \hspace
-                                        #-0.2
-                                    \sub
-                                        1
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        g'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        r
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            1
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    bf'8
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        bf'8
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.rotate(n=1)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([7, 10, 10.5, 6, 7, 10.5], name='r1(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        g'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        r
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            1
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        bf'8
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
             Rotates segment to the left:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.rotate(n=-1)
-                >>> segment
-                PitchClassSegment([10.5, 6, 7, 10.5, 7, 10], name='r-1(J)')
+                ::
 
-            ::
+                    >>> segment = J.rotate(n=-1)
+                    >>> segment
+                    PitchClassSegment([10.5, 6, 7, 10.5, 7, 10], name='r-1(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    bqf'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    r
-                                    \hspace
-                                        #-0.7
-                                    \sub
-                                        -1
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bqf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        r
+                                        \hspace
+                                            #-0.7
+                                        \sub
+                                            -1
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    bf'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        bf'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.rotate(n=-1)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([10.5, 6, 7, 10.5, 7, 10], name='r-1(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bqf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        r
+                                        \hspace
+                                            #-0.7
+                                        \sub
+                                            -1
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        bf'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
             Rotates segment by zero:
+            
+            ..  container:: example
 
-            ::
+                ::
 
-                >>> segment = J.rotate(n=0)
-                >>> segment
-                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='r0(J)')
+                    >>> segment = J.rotate(n=0)
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='r0(J)')
 
-            ::
+                ::
 
-                >>> show(segment) # doctest: +SKIP
+                    >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+                ..  doctest::
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    bf'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    r
-                                    \hspace
-                                        #-0.2
-                                    \sub
-                                        0
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        r
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            0
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
-            ::
+                ::
 
-                >>> segment == J
-                True
+                    >>> segment == J
+                    True
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.rotate(n=0)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='r0(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        r
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            0
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+                ::
+
+                    >>> segment == J
+                    True
 
         ..  container:: example
 
             Stravinsky-style rotation back-transposes segment to
             begin at zero:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.rotate(n=1, stravinsky=True)
-                >>> segment
-                PitchClassSegment([0, 3, 3.5, 11, 0, 3.5], name='rs1(J)')
+                ::
 
-            ::
+                    >>> segment = J.rotate(n=1, stravinsky=True)
+                    >>> segment
+                    PitchClassSegment([0, 3, 3.5, 11, 0, 3.5], name='rs1(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    c'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    rs
-                                    \hspace
-                                        #-0.2
-                                    \sub
-                                        1
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        c'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        rs
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            1
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    ef'8
-                    eqf'8
-                    b'8
-                    c'8
-                    eqf'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        ef'8
+                        eqf'8
+                        b'8
+                        c'8
+                        eqf'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.rotate(n=1, stravinsky=True)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([0, 3, 3.5, 11, 0, 3.5], name='rs1(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        c'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        rs
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            1
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        ef'8
+                        eqf'8
+                        b'8
+                        c'8
+                        eqf'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
@@ -2263,6 +3097,9 @@ class PitchClassSegment(Segment):
                 True
 
         '''
+        import abjad
+        if self._frozen_expression:
+            return self._make_callback(inspect.currentframe())
         original_n = n
         items = sequencetools.rotate_sequence(self._collection, n)
         if stravinsky:
@@ -2274,34 +3111,26 @@ class PitchClassSegment(Segment):
             abbreviation = 'rs'
         else:
             abbreviation = 'r'
-        formula_string_template = '{abbreviation}{n}({{}})'
-        formula_string_template = formula_string_template.format(
-            abbreviation=abbreviation,
-            n=original_n,
-            )
-        formula_markup_expression = expressiontools.Expression()
-        formula_markup_expression = formula_markup_expression.append_callback('Markup({})')
+        template = '{abbreviation}{n}({{}})'
+        template = template.format(abbreviation=abbreviation, n=original_n)
         if 0 <= original_n:
-            hspace = 'Markup.hspace(-0.2)'
+            hspace_markup = abjad.Markup.hspace(-0.2)
         else:
-            hspace = 'Markup.hspace(-0.7)'
-        subscript = 'Markup({n}).sub()'
-        subscript = subscript.format(n=original_n)
-        template = \
-            "Markup.concat([{abbreviation!r}, {hspace}, {subscript}, {{}}])"
-        template = template.format(
-            abbreviation=abbreviation,
-            hspace=hspace,
-            subscript=subscript,
-            )
-        formula_markup_expression = formula_markup_expression.append_callback(template)
+            hspace_markup = abjad.Markup.hspace(-0.7)
+        expression = abjad.Expression().markup()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.insert(0, abbreviation)
+        expression = expression.insert(1, hspace_markup)
+        expression = expression.insert(2, abjad.Markup(original_n).sub())
+        expression = expression.concat()
         segment = new(self, items=items, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             'rotate',
-            formula_markup_expression=formula_markup_expression,
-            formula_string_template=formula_string_template,
+            formula_markup_expression=expression,
+            formula_string_template=template,
             )
         return segment
 
@@ -2327,144 +3156,293 @@ class PitchClassSegment(Segment):
 
             Transposes segment by positive index:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.transpose(n=13)
-                >>> segment
-                PitchClassSegment([11, 11.5, 7, 8, 11.5, 8], name='T13(J)')
+                ::
 
-            ::
+                    >>> segment = J.transpose(n=13)
+                    >>> segment
+                    PitchClassSegment([11, 11.5, 7, 8, 11.5, 8], name='T13(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    b'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    T
-                                    \hspace
-                                        #-0.2
-                                    \sub
-                                        13
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        b'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        T
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            13
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    bqs'8
-                    g'8
-                    af'8
-                    bqs'8
-                    af'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        bqs'8
+                        g'8
+                        af'8
+                        bqs'8
+                        af'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.transpose(n=13)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([11, 11.5, 7, 8, 11.5, 8], name='T13(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        b'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        T
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            13
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        bqs'8
+                        g'8
+                        af'8
+                        bqs'8
+                        af'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
             Transposes segment by negative index:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.transpose(n=-13)
-                >>> segment
-                PitchClassSegment([9, 9.5, 5, 6, 9.5, 6], name='T-13(J)')
+                ::
 
-            ::
+                    >>> segment = J.transpose(n=-13)
+                    >>> segment
+                    PitchClassSegment([9, 9.5, 5, 6, 9.5, 6], name='T-13(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    a'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    T
-                                    \hspace
-                                        #-0.7
-                                    \sub
-                                        -13
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        a'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        T
+                                        \hspace
+                                            #-0.7
+                                        \sub
+                                            -13
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    aqs'8
-                    f'8
-                    fs'8
-                    aqs'8
-                    fs'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        aqs'8
+                        f'8
+                        fs'8
+                        aqs'8
+                        fs'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.transpose(n=-13)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([9, 9.5, 5, 6, 9.5, 6], name='T-13(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        a'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        T
+                                        \hspace
+                                            #-0.7
+                                        \sub
+                                            -13
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        aqs'8
+                        f'8
+                        fs'8
+                        aqs'8
+                        fs'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         ..  container:: example
 
             Transposes segment by zero index:
 
-            ::
+            ..  container:: example
 
-                >>> segment = J.transpose(n=0)
-                >>> segment
-                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='T0(J)')
+                ::
 
-            ::
+                    >>> segment = J.transpose(n=0)
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='T0(J)')
 
-                >>> show(segment) # doctest: +SKIP
+                ::
 
-            ..  doctest::
+                    >>> show(segment) # doctest: +SKIP
 
-                >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    bf'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    T
-                                    \hspace
-                                        #-0.2
-                                    \sub
-                                        0
-                                    \concat
-                                        {
-                                            \hspace
-                                                #0.4
-                                            \bold
-                                                J
-                                        }
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        T
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            0
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
                                 }
-                            }
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
-            ::
+                ::
 
-                >>> segment == J
-                True
+                    >>> segment == J
+                    True
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().pitch_class_segment(name='J')
+                    >>> expression = expression.transpose(n=0)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='T0(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        bf'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        T
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            0
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        bqf'8
+                        fs'8
+                        g'8
+                        bqf'8
+                        g'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
+
+                ::
+
+                    >>> segment == J
+                    True
 
         ..  container:: example
 
@@ -2476,29 +3454,30 @@ class PitchClassSegment(Segment):
                 True
 
         '''
+        import abjad
+        if self._frozen_expression:
+            return self._make_callback(inspect.currentframe())
         items = (pitch_class.transpose(n=n) for pitch_class in self)
-        formula_string_template = 'T{n}({{}})'
-        formula_string_template = formula_string_template.format(n=n)
-        formula_markup_expression = expressiontools.Expression()
-        formula_markup_expression = formula_markup_expression.append_callback(
-            'Markup({})',
-            )
+        template = 'T{n}({{}})'
+        template = template.format(n=n)
         if 0 <= n:
-            hspace = 'Markup.hspace(-0.2)'
+            hspace_markup = abjad.Markup.hspace(-0.2)
         else:
-            hspace = 'Markup.hspace(-0.7)'
-        subscript = 'Markup({n}).sub()'
-        subscript = subscript.format(n=n)
-        template = "Markup.concat(['T', {hspace}, {subscript}, {{}}])"
-        template = template.format(hspace=hspace, subscript=subscript) 
-        formula_markup_expression = formula_markup_expression.append_callback(template)
+            hspace_markup = abjad.Markup.hspace(-0.7)
+        expression = abjad.Expression().markup()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.insert(0, 'T')
+        expression = expression.insert(1, hspace_markup)
+        expression = expression.insert(2, abjad.Markup(n).sub())
+        expression = expression.concat()
         segment = new(self, items=items, name=self._name)
         expressiontools.Expression._track_expression(
             self,
             segment,
             'transpose',
-            formula_markup_expression=formula_markup_expression,
-            formula_string_template=formula_string_template,
+            formula_markup_expression=expression,
+            formula_string_template=template,
             )
         return segment
 
@@ -2574,16 +3553,16 @@ class PitchClassSegment(Segment):
                 PitchSegment(["c'", 'b', "d'", "e'", "f'", "g'", "e'", 'b', 'a', "c'"])
 
         '''
-        from abjad.tools import pitchtools
-        initial_octave = pitchtools.Octave(initial_octave)
+        import abjad
+        initial_octave = abjad.pitchtools.Octave(initial_octave)
         pitches = []
         if self:
-            pitch_class = pitchtools.NamedPitchClass(self[0])
-            pitch = pitchtools.NamedPitch(pitch_class, initial_octave)
+            pitch_class = abjad.pitchtools.NamedPitchClass(self[0])
+            pitch = abjad.NamedPitch(pitch_class, initial_octave)
             pitches.append(pitch)
             for pitch_class in self[1:]:
-                pitch_class = pitchtools.NamedPitchClass(pitch_class)
-                pitch = pitchtools.NamedPitch(pitch_class, initial_octave)
+                pitch_class = abjad.pitchtools.NamedPitchClass(pitch_class)
+                pitch = abjad.NamedPitch(pitch_class, initial_octave)
                 semitones = abs((pitch - pitches[-1]).semitones)
                 while 6 < semitones:
                     if pitch < pitches[-1]:
@@ -2592,11 +3571,11 @@ class PitchClassSegment(Segment):
                         pitch -= 12
                     semitones = abs((pitch - pitches[-1]).semitones)
                 pitches.append(pitch)
-        if self.item_class is pitchtools.NamedPitchClass:
-            item_class = pitchtools.NamedPitch
+        if self.item_class is abjad.pitchtools.NamedPitchClass:
+            item_class = abjad.NamedPitch
         else:
-            item_class = pitchtools.NumberedPitch
-        return pitchtools.PitchSegment(
+            item_class = abjad.pitchtools.NumberedPitch
+        return abjad.pitchtools.PitchSegment(
             items=pitches,
             item_class=item_class,
             )
@@ -2669,24 +3648,24 @@ class PitchClassSegment(Segment):
                 PitchSegment(["c'", "ef'", "g'", "bf'", "d''", "f''", "af''"])
 
         '''
-        from abjad.tools import pitchtools
-        initial_octave = pitchtools.Octave(initial_octave)
+        import abjad
+        initial_octave = abjad.pitchtools.Octave(initial_octave)
         pitches = []
         if self:
-            pitch_class = pitchtools.NamedPitchClass(self[0])
-            pitch = pitchtools.NamedPitch(pitch_class, initial_octave)
+            pitch_class = abjad.pitchtools.NamedPitchClass(self[0])
+            pitch = abjad.NamedPitch(pitch_class, initial_octave)
             pitches.append(pitch)
             for pitch_class in self[1:]:
-                pitch_class = pitchtools.NamedPitchClass(pitch_class)
-                pitch = pitchtools.NamedPitch(pitch_class, initial_octave)
+                pitch_class = abjad.pitchtools.NamedPitchClass(pitch_class)
+                pitch = abjad.NamedPitch(pitch_class, initial_octave)
                 while pitch < pitches[-1]:
                     pitch += 12
                 pitches.append(pitch)
-        if self.item_class is pitchtools.NamedPitchClass:
-            item_class = pitchtools.NamedPitch
+        if self.item_class is abjad.pitchtools.NamedPitchClass:
+            item_class = abjad.NamedPitch
         else:
-            item_class = pitchtools.NumberedPitch
-        return pitchtools.PitchSegment(
+            item_class = abjad.pitchtools.NumberedPitch
+        return abjad.pitchtools.PitchSegment(
             items=pitches,
             item_class=item_class,
             )

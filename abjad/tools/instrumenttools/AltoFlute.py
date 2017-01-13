@@ -81,10 +81,10 @@ class AltoFlute(Instrument):
                     instrument_name='alto flute',
                     short_instrument_name='alt. fl.',
                     instrument_name_markup=markuptools.Markup(
-                        contents=('Alto flute',),
+                        contents=['Alto flute'],
                         ),
                     short_instrument_name_markup=markuptools.Markup(
-                        contents=('Alt. fl.',),
+                        contents=['Alt. fl.'],
                         ),
                     allowable_clefs=indicatortools.ClefInventory(
                         [
@@ -149,7 +149,7 @@ class AltoFlute(Instrument):
             ::
 
                 >>> alto_flute.instrument_name_markup
-                Markup(contents=('Alto flute',))
+                Markup(contents=['Alto flute'])
 
             ::
 
@@ -202,7 +202,7 @@ class AltoFlute(Instrument):
             ::
 
                 >>> alto_flute.short_instrument_name_markup
-                Markup(contents=('Alt. fl.',))
+                Markup(contents=['Alt. fl.'])
 
             ::
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def persist(expr):
+def persist(client):
     r'''Makes persistence agent.
 
     ..  container:: example
@@ -38,4 +38,4 @@ def persist(expr):
 
     '''
     from abjad.tools import agenttools
-    return agenttools.PersistenceAgent(expr)
+    return agenttools.PersistenceAgent(client)

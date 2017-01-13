@@ -121,7 +121,7 @@ class Harp(Instrument):
             ::
 
                 >>> harp.instrument_name_markup
-                Markup(contents=('Harp',))
+                Markup(contents=['Harp'])
 
             ::
 
@@ -174,7 +174,7 @@ class Harp(Instrument):
             ::
 
                 >>> harp.short_instrument_name_markup
-                Markup(contents=('Hp.',))
+                Markup(contents=['Hp.'])
 
             ::
 

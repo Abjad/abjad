@@ -275,7 +275,7 @@ class LilyPondFile(AbjadObject):
         Raises key error when no item with `name` is found.
         '''
         import abjad
-        if self.score_block.items:
+        if self.score_block and self.score_block.items:
             score = self.score_block.items[0]
         else:
             score = None

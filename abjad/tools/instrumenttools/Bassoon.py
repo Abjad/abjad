@@ -113,7 +113,7 @@ class Bassoon(Instrument):
             ::
 
                 >>> bassoon.instrument_name_markup
-                Markup(contents=('Bassoon',))
+                Markup(contents=['Bassoon'])
 
             ::
 
@@ -166,7 +166,7 @@ class Bassoon(Instrument):
             ::
 
                 >>> bassoon.short_instrument_name_markup
-                Markup(contents=('Bsn.',))
+                Markup(contents=['Bsn.'])
 
             ::
 

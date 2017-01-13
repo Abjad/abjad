@@ -51,7 +51,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
             ::
 
                 >>> set_(staff).instrument_name
-                Markup(contents=('Vn. I',))
+                Markup(contents=['Vn. I'])
 
         '''
         from abjad import ly

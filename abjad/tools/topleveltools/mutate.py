@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def mutate(expr):
+def mutate(client):
     r'''Makes mutation agent.
 
     ..  container:: example
@@ -49,4 +49,4 @@ def mutate(expr):
 
     '''
     from abjad.tools import agenttools
-    return agenttools.MutationAgent(expr)
+    return agenttools.MutationAgent(client)

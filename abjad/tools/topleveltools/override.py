@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def override(expr):
+def override(argument):
     r'''Makes LilyPond grob name manager.
 
     ..  container:: example
@@ -37,7 +37,7 @@ def override(expr):
 
     '''
     from abjad.tools import lilypondnametools
-    if getattr(expr, '_lilypond_grob_name_manager', None) is None:
+    if getattr(argument, '_lilypond_grob_name_manager', None) is None:
         manager = lilypondnametools.LilyPondGrobNameManager()
-        expr._lilypond_grob_name_manager = manager
-    return expr._lilypond_grob_name_manager
+        argument._lilypond_grob_name_manager = manager
+    return argument._lilypond_grob_name_manager
