@@ -112,8 +112,8 @@ class Component(AbjadObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.LilyPondFile.new(self)
+        import abjad
+        lilypond_file = abjad.LilyPondFile.new(self)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 

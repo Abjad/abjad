@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class Tuning(AbjadValueObject):
-    r'''Tuning indicator.
+    r'''Tuning.
 
     ..  container:: example
 

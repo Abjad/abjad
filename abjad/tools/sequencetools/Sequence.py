@@ -194,13 +194,13 @@ class Sequence(AbjadObject):
         result = type(self)(items=items, name=name)
         return result
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a sequence with items equal to those of
+    def __eq__(self, argment):
+        r'''Is true when `argment` is a sequence with items equal to those of
         this sequence. Otherwise false.
 
         ..  container:: example
 
-            Is true when `expr` is a sequence with items equal to those of this
+            Is true when `argment` is a sequence with items equal to those of this
             sequence:
 
             ::
@@ -210,7 +210,7 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Is false when `expr` is not a sequence with items equal to those of
+            Is false when `argment` is not a sequence with items equal to those of
             this sequence:
 
             ::
@@ -220,8 +220,8 @@ class Sequence(AbjadObject):
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            return self._items == expr._items
+        if isinstance(argment, type(self)):
+            return self._items == argment._items
         return False
 
     def __format__(self, format_specification=''):
@@ -527,12 +527,12 @@ class Sequence(AbjadObject):
         '''
         return len(self._items)
 
-    def __ne__(self, expr):
-        r'''Is true when sequence is not equal to `expr`. Otherwise false.
+    def __ne__(self, argment):
+        r'''Is true when sequence is not equal to `argment`. Otherwise false.
 
         ..  container:: example
 
-            Is true when `expr` does not equal this sequence:
+            Is true when `argment` does not equal this sequence:
 
             ::
 
@@ -541,7 +541,7 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Is false when `expr` does equal this seuqence:
+            Is false when `argment` does equal this seuqence:
 
             ::
 
@@ -549,10 +549,10 @@ class Sequence(AbjadObject):
                 False
 
         '''
-        return not self == expr
+        return not self == argment
 
-    def __radd__(self, expr):
-        r'''Adds sequence to `expr`.
+    def __radd__(self, argment):
+        r'''Adds sequence to `argment`.
 
         ..  container:: example
 
@@ -619,8 +619,8 @@ class Sequence(AbjadObject):
                 inspect.currentframe(),
                 formula_string_template='{} + {{}}'.format(self.name)
                 )
-        expr = type(self)(expr)
-        items = expr._items + self._items
+        argment = type(self)(argment)
+        items = argment._items + self._items
         return type(self)(items=items)
 
     def __repr__(self):
@@ -723,47 +723,6 @@ class Sequence(AbjadObject):
         return indicator
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def degree_of_rotational_symmetry(self):
-        '''Gets degree of rotational symmetry.
-
-        ..  container:: example
-
-            ::
-
-                >>> Sequence([1, 1, 1, 1, 1, 1]).degree_of_rotational_symmetry
-                6
-
-            ::
-
-                >>> Sequence([1, 2, 1, 2, 1, 2]).degree_of_rotational_symmetry
-                3
-
-            ::
-
-                >>> Sequence([1, 2, 3, 1, 2, 3]).degree_of_rotational_symmetry
-                2
-
-            ::
-
-                >>> Sequence([1, 2, 3, 4, 5, 6]).degree_of_rotational_symmetry
-                1
-
-            ::
-
-                >>> Sequence().degree_of_rotational_symmetry
-                1
-
-        Returns positive integer.
-        '''
-        degree_of_rotational_symmetry = 0
-        for index in range(len(self)):
-            rotation = self[index:] + self[:index]
-            if rotation == self:
-                degree_of_rotational_symmetry += 1
-        degree_of_rotational_symmetry = degree_of_rotational_symmetry or 1
-        return degree_of_rotational_symmetry
 
     @property
     def items(self):
@@ -953,44 +912,6 @@ class Sequence(AbjadObject):
         Returns markup or none.
         '''
         return self._name_markup
-
-    @property
-    def period_of_rotation(self):
-        '''Gets period of rotation.
-
-        ..  container:: example
-
-            ::
-
-                >>> Sequence([1, 2, 3, 4, 5, 6]).period_of_rotation
-                6
-
-            ::
-
-                >>> Sequence([1, 2, 3, 1, 2, 3]).period_of_rotation
-                3
-
-            ::
-
-                >>> Sequence([1, 2, 1, 2, 1, 2]).period_of_rotation
-                2
-
-            ::
-
-                >>> Sequence([1, 1, 1, 1, 1, 1]).period_of_rotation
-                1
-
-            ::
-
-                >>> Sequence().period_of_rotation
-                0
-
-        Defined equal to length of sequence divided by degree of rotational
-        symmetry of sequence.
-
-        Returns positive integer.
-        '''
-        return len(self) // self.degree_of_rotational_symmetry
 
     ### PUBLIC METHODS ###
 
@@ -1207,7 +1128,7 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Strictly decreasing:
+            Is true when sequence is strictly decreasing:
 
             ::
 
@@ -1231,7 +1152,7 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Monotonically decreasing:
+            Is true when sequence decreases monotonically:
 
             ::
 
@@ -1283,7 +1204,7 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Strictly increasing:
+            Is true when sequence is strictly increasing:
 
             ::
 
@@ -1307,7 +1228,7 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Monotonically increasing:
+            Is true when sequence increases monotonically:
 
             ::
 
@@ -1417,66 +1338,6 @@ class Sequence(AbjadObject):
             for left, right in pairs:
                 if left == right:
                     return False
-            return True
-        except TypeError:
-            return False
-
-    def is_restricted_growth_function(self):
-        '''Is true when sequence is a restricted growth function.
-
-        ..  container:: example
-
-            Is true when sequence is a restricted growth function:
-
-            ::
-
-                >>> Sequence([1, 1, 1, 1]).is_restricted_growth_function()
-                True
-
-            ::
-
-
-                >>> Sequence([1, 1, 1, 2]).is_restricted_growth_function()
-                True
-
-            ::
-
-                >>> Sequence([1, 1, 2, 1]).is_restricted_growth_function()
-                True
-
-            ::
-
-                >>> Sequence([1, 1, 2, 2]).is_restricted_growth_function()
-                True
-
-        ..  container:: example
-
-            Is false when sequence is not a restricted growth function:
-
-            ::
-
-                >>> Sequence([1, 1, 1, 3]).is_restricted_growth_function()
-                False
-
-            ::
-
-                >>> Sequence([17,]).is_restricted_growth_function()
-                False
-
-        A restricted growth function is a sequence ``l`` such that
-        ``l[0] == 1`` and such that ``l[i] <= max(l[:i]) + 1`` for
-        ``1 <= i <= len(l)``.
-
-        Returns true or false.
-        '''
-        try:
-            for i, n in enumerate(self):
-                if i == 0:
-                    if not n == 1:
-                        return False
-                else:
-                    if not n <= max(self[:i]) + 1:
-                        return False
             return True
         except TypeError:
             return False

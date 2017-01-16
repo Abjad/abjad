@@ -4,7 +4,7 @@ from abjad.tools.topleveltools.new import new
 
 
 class Ritardando(AbjadValueObject):
-    r'''A ritardando.
+    r'''Ritardando.
 
     ..  container:: example
 

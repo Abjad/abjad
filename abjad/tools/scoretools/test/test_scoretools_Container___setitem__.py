@@ -8,7 +8,7 @@ def test_scoretools_Container___setitem___01():
     '''
 
     voice = Voice("c'8 [ d'8 ] e'8 f'8")
-    leaves = iterate(voice).by_class(scoretools.Leaf)
+    leaves = iterate(voice).by_leaf()
     attach(Glissando(), list(leaves))
 
     assert format(voice) == stringtools.normalize(
@@ -43,7 +43,7 @@ def test_scoretools_Container___setitem___02():
     '''
 
     voice = Voice("c'8 [ d'8 ] e'8 f'8")
-    leaves = iterate(voice).by_class(scoretools.Leaf)
+    leaves = iterate(voice).by_leaf()
     glissando = Glissando(allow_repeated_pitches=True)
     attach(glissando, list(leaves))
 
@@ -83,7 +83,7 @@ def test_scoretools_Container___setitem___03():
     '''
 
     voice = Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
-    leaves = iterate(voice).by_class(scoretools.Leaf)
+    leaves = iterate(voice).by_leaf()
     attach(Glissando(), list(leaves))
 
     assert format(voice) == stringtools.normalize(
@@ -168,7 +168,7 @@ def test_scoretools_Container___setitem___05():
     '''
 
     voice = Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
-    leaves = iterate(voice).by_class(scoretools.Leaf)
+    leaves = iterate(voice).by_leaf()
     attach(Glissando(), list(leaves))
 
     assert format(voice) == stringtools.normalize(
@@ -209,7 +209,7 @@ def test_scoretools_Container___setitem___06():
 
     voice = Voice(2 * Container("c'8 c'8 c'8 c'8"))
     voice = Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
-    leaves = iterate(voice).by_class(scoretools.Leaf)
+    leaves = iterate(voice).by_leaf()
     attach(Beam(), list(leaves)[0:6])
 
     assert format(voice) == stringtools.normalize(
@@ -334,9 +334,9 @@ def test_scoretools_Container___setitem___08():
 
     voice_2 = Voice(notes[3:])
     Container(voice_2[1:3])
-    leaves = iterate(voice_2).by_class(scoretools.Leaf)
+    leaves = iterate(voice_2).by_leaf()
     attach(Glissando(), list(leaves))
-    leaves = iterate(voice_2[1]).by_class(scoretools.Leaf)
+    leaves = iterate(voice_2[1]).by_leaf()
     attach(Slur(), list(leaves))
 
     assert format(voice_2) == stringtools.normalize(
@@ -859,23 +859,23 @@ def test_scoretools_Container___setitem___21():
     staff = Staff("c'8 [ { d'8 e'8 } f'8 ]")
     beam = inspect_(staff[0]).get_spanner(prototype=Beam)
 
-    leaves = iterate(staff).by_class(scoretools.Leaf)
+    leaves = iterate(staff).by_leaf()
     assert beam.components == list(leaves)
 
     staff[1].append("g'8")
-    leaves = iterate(staff).by_class(scoretools.Leaf)
+    leaves = iterate(staff).by_leaf()
     assert beam.components == list(leaves)
 
     staff[1].insert(0, "b'8")
-    leaves = iterate(staff).by_class(scoretools.Leaf)
+    leaves = iterate(staff).by_leaf()
     assert beam.components == list(leaves)
 
     staff.insert(1, "a'8")
-    leaves = iterate(staff).by_class(scoretools.Leaf)
+    leaves = iterate(staff).by_leaf()
     assert beam.components == list(leaves)
 
     staff.insert(3, "fs'8")
-    leaves = iterate(staff).by_class(scoretools.Leaf)
+    leaves = iterate(staff).by_leaf()
     assert beam.components == list(leaves)
 
     assert format(staff) == systemtools.TestManager.clean_string(

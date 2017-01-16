@@ -14,9 +14,9 @@ class PitchSegment(Segment):
 
         ::
 
-            >>> numbered_pitch_segment = pitchtools.PitchSegment(
+            >>> numbered_pitch_segment = PitchSegment(
             ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-            ...     item_class=pitchtools.NumberedPitch,
+            ...     item_class=NumberedPitch,
             ...     )
             >>> numbered_pitch_segment
             PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
@@ -31,7 +31,7 @@ class PitchSegment(Segment):
 
         ::
 
-            >>> named_pitch_segment = pitchtools.PitchSegment(
+            >>> named_pitch_segment = PitchSegment(
             ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
             ...     item_class=NamedPitch,
             ...     )
@@ -72,7 +72,7 @@ class PitchSegment(Segment):
 
         ::
 
-            >>> named_pitch_segment = pitchtools.PitchSegment(
+            >>> named_pitch_segment = PitchSegment(
             ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
             ...     item_class=NamedPitch,
             ...     )
@@ -80,21 +80,15 @@ class PitchSegment(Segment):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import durationtools
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import pitchtools
-        from abjad.tools import scoretools
-        from abjad.tools.topleveltools import attach
-        from abjad.tools.topleveltools import iterate
-        from abjad.tools.topleveltools import override
-        named_pitches = [pitchtools.NamedPitch(x) for x in self]
-        notes = scoretools.make_notes(named_pitches, [1])
-        score, treble_staff, bass_staff = \
-            scoretools.make_piano_sketch_score_from_leaves(notes)
-        for leaf in iterate(score).by_class(scoretools.Leaf):
-            attach(durationtools.Multiplier(1, 8), leaf)
-        override(score).rest.transparent = True
-        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+        import abjad
+        named_pitches = [abjad.NamedPitch(x) for x in self]
+        notes = abjad.scoretools.make_notes(named_pitches, [1])
+        result = abjad.scoretools.make_piano_sketch_score_from_leaves(notes)
+        score, treble_staff, bass_staff = result
+        for leaf in abjad.iterate(score).by_leaf():
+            abjad.attach(abjad.Multiplier(1, 8), leaf)
+        abjad.override(score).rest.transparent = True
+        lilypond_file = abjad.LilyPondFile.new(score)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 
@@ -123,7 +117,7 @@ class PitchSegment(Segment):
 
         ::
 
-            >>> pitch_segment = pitchtools.PitchSegment('c e g b')
+            >>> pitch_segment = PitchSegment('c e g b')
             >>> pitch_segment.hertz
             (130.81..., 164.81..., 195.99..., 246.94...)
 
@@ -182,7 +176,7 @@ class PitchSegment(Segment):
             >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = Staff("c4. r8 g2")
             >>> selection = select((staff_1, staff_2))
-            >>> pitch_segment = pitchtools.PitchSegment.from_selection(
+            >>> pitch_segment = PitchSegment.from_selection(
             ...     selection)
             >>> pitch_segment
             PitchSegment(["c'", "d'", "fs'", "a'", 'b', 'c', 'g'])
@@ -214,7 +208,7 @@ class PitchSegment(Segment):
 
         ::
 
-            >>> pitch_class_segment = pitchtools.PitchSegment(
+            >>> pitch_class_segment = PitchSegment(
             ...     items=[-2, -1.5, 6, 7, -1.5, 7],
             ...     )
             >>> pitch_class_segment.has_duplicates()
@@ -222,7 +216,7 @@ class PitchSegment(Segment):
 
         ::
 
-            >>> pitch_class_segment = pitchtools.PitchSegment(
+            >>> pitch_class_segment = PitchSegment(
             ...     items="c d e f g a b",
             ...     )
             >>> pitch_class_segment.has_duplicates()
@@ -241,22 +235,22 @@ class PitchSegment(Segment):
         items = (pitch.invert(axis) for pitch in self)
         return new(self, items=items)
 
-    def _is_equivalent_under_transposition(self, expr):
-        r'''True if pitch segment is equivalent to `expr` under transposition.
+    def _is_equivalent_under_transposition(self, argment):
+        r'''True if pitch segment is equivalent to `argment` under transposition.
         Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
-        if not isinstance(expr, type(self)):
+        if not isinstance(argment, type(self)):
             return False
-        if not len(self) == len(expr):
+        if not len(self) == len(argment):
             return False
-        difference = -(pitchtools.NamedPitch(expr[0], 4) -
+        difference = -(pitchtools.NamedPitch(argment[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
         new_pitches = new(self, items=new_pitches)
-        return expr == new_pitches
+        return argment == new_pitches
 
     def make_notes(self, n=None, written_duration=None):
         r'''Makes first `n` notes in pitch segment.
@@ -381,7 +375,7 @@ class PitchSegment(Segment):
 
         ::
 
-            >>> pitch_segment = pitchtools.PitchSegment("c' d' e' f'")
+            >>> pitch_segment = PitchSegment("c' d' e' f'")
             >>> result = pitch_segment.rotate(-1, stravinsky=True)
             >>> result
             PitchSegment(["c'", "d'", "ef'", 'bf'])
@@ -401,10 +395,10 @@ class PitchSegment(Segment):
                 new_segment = new_segment.transpose(interval)
         return new_segment
 
-    def transpose(self, expr):
-        r'''Transposes pitch segment by `expr`.
+    def transpose(self, argment):
+        r'''Transposes pitch segment by `argment`.
 
         Returns new pitch segment.
         '''
-        items = (pitch.transpose(expr) for pitch in self)
+        items = (pitch.transpose(argment) for pitch in self)
         return new(self, items=items)

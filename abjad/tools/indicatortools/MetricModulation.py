@@ -7,7 +7,7 @@ from abjad.tools.topleveltools.new import new
 
 
 class MetricModulation(AbjadValueObject):
-    r'''A metric modulation.
+    r'''Metric modulation.
 
     ..  container:: example
 
@@ -567,8 +567,8 @@ class MetricModulation(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true `expr` is another metric modulation with the same ratio as
+    def __eq__(self, argment):
+        r'''Is true `argment` is another metric modulation with the same ratio as
         this metric modulation. Otherwise false.
 
         ..  container:: example
@@ -627,8 +627,8 @@ class MetricModulation(AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            if self.ratio == expr.ratio:
+        if isinstance(argment, type(self)):
+            if self.ratio == argment.ratio:
                 return True
         return False
 
@@ -762,8 +762,8 @@ class MetricModulation(AbjadValueObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.LilyPondFile.new()
+        import abjad
+        lilypond_file = abjad.LilyPondFile.new()
         lilypond_file.header_block.tagline = False
         lilypond_file.items.append(self._get_markup())
         return lilypond_file

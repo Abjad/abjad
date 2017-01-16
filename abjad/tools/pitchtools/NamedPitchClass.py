@@ -12,7 +12,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs')
+            >>> NamedPitchClass('cs')
             NamedPitchClass('cs')
 
     ..  container:: example
@@ -21,7 +21,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass(14)
+            >>> NamedPitchClass(14)
             NamedPitchClass('d')
 
     ..  container:: example
@@ -30,7 +30,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass(NamedPitch('g,'))
+            >>> NamedPitchClass(NamedPitch('g,'))
             NamedPitchClass('g')
 
     ..  container:: example
@@ -39,7 +39,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass(pitchtools.NumberedPitch(15))
+            >>> NamedPitchClass(NumberedPitch(15))
             NamedPitchClass('ef')
 
     ..  container:: example
@@ -48,7 +48,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass(pitchtools.NumberedPitchClass(4))
+            >>> NamedPitchClass(NumberedPitchClass(4))
             NamedPitchClass('e')
 
     ..  container:: example
@@ -58,7 +58,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('C#5')
+            >>> NamedPitchClass('C#5')
             NamedPitchClass('cs')
 
 
@@ -68,14 +68,14 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass(Note("a'8."))
+            >>> NamedPitchClass(Note("a'8."))
             NamedPitchClass('a')
 
     ..  container:: example
 
         Initializes from pitch-class name:
 
-            >>> pitch_class = pitchtools.NamedPitchClass('cs')
+            >>> pitch_class = NamedPitchClass('cs')
             >>> pitch_class
             NamedPitchClass('cs')
 
@@ -90,29 +90,29 @@ class NamedPitchClass(PitchClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr=None):
+    def __init__(self, argment=None):
         from abjad.tools import pitchtools
-        if isinstance(expr, type(self)):
-            self._initialize_by_named_pitch_class(expr)
-        elif isinstance(expr, pitchtools.NamedPitch):
-            self._initialize_by_named_pitch(expr)
-        elif pitchtools.Pitch.is_pitch_class_octave_number_string(expr):
-            self._initialize_by_pitch_class_octave_number_string(expr)
-        elif pitchtools.Pitch.is_pitch_name(expr):
-            self._initialize_by_pitch_name(expr)
-        elif isinstance(expr, (
+        if isinstance(argment, type(self)):
+            self._initialize_by_named_pitch_class(argment)
+        elif isinstance(argment, pitchtools.NamedPitch):
+            self._initialize_by_named_pitch(argment)
+        elif pitchtools.Pitch.is_pitch_class_octave_number_string(argment):
+            self._initialize_by_pitch_class_octave_number_string(argment)
+        elif pitchtools.Pitch.is_pitch_name(argment):
+            self._initialize_by_pitch_name(argment)
+        elif isinstance(argment, (
             numbers.Number,
             pitchtools.NumberedPitch,
             pitchtools.NumberedPitchClass,
             )):
-            self._initialize_by_number(float(expr))
-        elif pitchtools.Pitch.is_pitch_carrier(expr):
-            self._initialize_by_pitch_carrier(expr)
-        elif expr is None:
+            self._initialize_by_number(float(argment))
+        elif pitchtools.Pitch.is_pitch_carrier(argment):
+            self._initialize_by_pitch_carrier(argment)
+        elif argment is None:
             self._initialize_by_number(0)
         else:
             message = 'can not instantiate {} from {!r}.'
-            message = message.format(type(self).__name__, expr)
+            message = message.format(type(self).__name__, argment)
             raise TypeError(message)
 
     ### SPECIAL METHODS ###
@@ -122,7 +122,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitch_class + pitchtools.NamedInterval('+M9')
+            >>> pitch_class + NamedInterval('+M9')
             NamedPitchClass('ds')
 
         Return new named pitch-class.
@@ -132,7 +132,7 @@ class NamedPitchClass(PitchClass):
         pitch = named_interval.transpose(dummy_pitch)
         return type(self)(pitch)
 
-    def __copy__(self, *args):
+    def __copy__(self, *arguments):
         r'''Copies named pitch-class.
 
         ::
@@ -145,8 +145,8 @@ class NamedPitchClass(PitchClass):
         '''
         return type(self)(self)
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` can be coerced to a named pitch-class with
+    def __eq__(self, argment):
+        r'''Is true when `argment` can be coerced to a named pitch-class with
         pitch-class name equal to that of this named pitch-class.
 
         ::
@@ -161,10 +161,10 @@ class NamedPitchClass(PitchClass):
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
+        if isinstance(argment, type(self)):
             return self.pitch_class_name == \
-                expr.pitch_class_name
-        return self.pitch_class_name == expr
+                argment.pitch_class_name
+        return self.pitch_class_name == argment
 
     def __float__(self):
         r'''Changes named pitch-class to a float.
@@ -211,23 +211,23 @@ class NamedPitchClass(PitchClass):
         '''
         return self.pitch_class_name
 
-    def __sub__(self, arg):
-        r'''Subtracts `arg` from named pitch-class.
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from named pitch-class.
 
         ::
 
-            >>> pitch_class - pitchtools.NamedPitchClass('g')
+            >>> pitch_class - NamedPitchClass('g')
             NamedInversionEquivalentIntervalClass('+aug4')
 
         Returns named inversion-equivalent interval-class.
         '''
-        if not isinstance(arg, type(self)):
+        if not isinstance(argument, type(self)):
             message = 'must be named pitch-class: {!r}.'
-            message = message.format(arg)
+            message = message.format(argument)
             raise TypeError(message)
         from abjad.tools import pitchtools
         pitch_1 = pitchtools.NamedPitch(self, 4)
-        pitch_2 = pitchtools.NamedPitch(arg, 4)
+        pitch_2 = pitchtools.NamedPitch(argument, 4)
         mdi = pitchtools.NamedInterval.from_pitch_carriers(
             pitch_1, pitch_2)
         dic = pitchtools.NamedInversionEquivalentIntervalClass(
@@ -236,31 +236,31 @@ class NamedPitchClass(PitchClass):
 
     ### PRIVATE METHODS ###
 
-    def _initialize_by_named_pitch(self, expr):
-        self._alteration_in_semitones = expr.alteration_in_semitones
-        self._diatonic_pitch_class_number = expr.diatonic_pitch_class_number
+    def _initialize_by_named_pitch(self, argment):
+        self._alteration_in_semitones = argment.alteration_in_semitones
+        self._diatonic_pitch_class_number = argment.diatonic_pitch_class_number
 
-    def _initialize_by_named_pitch_class(self, expr):
-        self._alteration_in_semitones = expr.alteration_in_semitones
-        self._diatonic_pitch_class_number = expr.diatonic_pitch_class_number
+    def _initialize_by_named_pitch_class(self, argment):
+        self._alteration_in_semitones = argment.alteration_in_semitones
+        self._diatonic_pitch_class_number = argment.diatonic_pitch_class_number
 
-    def _initialize_by_number(self, expr):
+    def _initialize_by_number(self, argment):
         from abjad.tools import pitchtools
-        pitch_class_number = float(expr) % 12
+        pitch_class_number = float(argment) % 12
         numbered_pitch_class = pitchtools.NumberedPitchClass(
             pitch_class_number)
         pitch_class_name = numbered_pitch_class.pitch_class_name
         self._initialize_by_pitch_name(pitch_class_name)
 
-    def _initialize_by_pitch_carrier(self, expr):
+    def _initialize_by_pitch_carrier(self, argment):
         from abjad.tools import pitchtools
-        named_pitch = pitchtools.NamedPitch.from_pitch_carrier(expr)
+        named_pitch = pitchtools.NamedPitch.from_pitch_carrier(argment)
         self._initialize_by_named_pitch(named_pitch)
 
-    def _initialize_by_pitch_class_octave_number_string(self, expr):
+    def _initialize_by_pitch_class_octave_number_string(self, argment):
         from abjad.tools import pitchtools
         group_dict = pitchtools.Pitch._pitch_class_octave_number_regex.match(
-            expr).groupdict()
+            argment).groupdict()
         diatonic_pitch_class_name = group_dict['diatonic_pitch_class_name'].lower()
         symbolic_string = group_dict['symbolic_string']
         self._alteration_in_semitones = \
@@ -270,9 +270,9 @@ class NamedPitchClass(PitchClass):
             self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
                 diatonic_pitch_class_name]
 
-    def _initialize_by_pitch_name(self, expr):
+    def _initialize_by_pitch_name(self, argment):
         from abjad.tools import pitchtools
-        match = pitchtools.Pitch._pitch_name_regex.match(expr.lower())
+        match = pitchtools.Pitch._pitch_name_regex.match(argment.lower())
         if match is None:
             raise ValueError
         groups = match.groups()
@@ -280,8 +280,6 @@ class NamedPitchClass(PitchClass):
         abbreviation = groups[1]
         accidental = pitchtools.Accidental(abbreviation)
         self._alteration_in_semitones = accidental.semitones
-        #self._alteration_in_semitones = \
-        #    pitchtools.Accidental._abbreviation_to_semitones[abbreviation]
         self._diatonic_pitch_class_number = \
             self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
                 diatonic_pitch_class_name]
@@ -294,7 +292,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').accidental
+            >>> NamedPitchClass('cs').accidental
             Accidental('s')
 
         Returns accidental.
@@ -308,7 +306,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').alteration_in_semitones
+            >>> NamedPitchClass('cs').alteration_in_semitones
             1
 
         Returns integer or float.
@@ -321,7 +319,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').diatonic_pitch_class_name
+            >>> NamedPitchClass('cs').diatonic_pitch_class_name
             'c'
 
         Returns string.
@@ -335,7 +333,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').diatonic_pitch_class_number
+            >>> NamedPitchClass('cs').diatonic_pitch_class_number
             0
 
         Returns integer.
@@ -348,7 +346,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').named_pitch_class
+            >>> NamedPitchClass('cs').named_pitch_class
             NamedPitchClass('cs')
 
         Returns new named pitch-class.
@@ -361,7 +359,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').numbered_pitch_class
+            >>> NamedPitchClass('cs').numbered_pitch_class
             NumberedPitchClass(1)
 
         Returns numbered pitch-class.
@@ -375,7 +373,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').pitch_class_label
+            >>> NamedPitchClass('cs').pitch_class_label
             'C#'
 
         Returns string.
@@ -391,7 +389,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').pitch_class_name
+            >>> NamedPitchClass('cs').pitch_class_name
             'cs'
 
         Returns string.
@@ -409,7 +407,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').pitch_class_number
+            >>> NamedPitchClass('cs').pitch_class_number
             1
 
         Returns integer or float.
@@ -426,7 +424,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').apply_accidental('qs')
+            >>> NamedPitchClass('cs').apply_accidental('qs')
             NamedPitchClass('ctqs')
 
         Returns new named pitch-class.
@@ -456,7 +454,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').multiply(3)
+            >>> NamedPitchClass('cs').multiply(3)
             NamedPitchClass('ef')
 
         Returns new named pitch-class.
@@ -468,8 +466,8 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> named_interval = pitchtools.NamedInterval('major', 2)
-            >>> pitchtools.NamedPitchClass('cs').transpose(named_interval)
+            >>> named_interval = NamedInterval('major', 2)
+            >>> NamedPitchClass('cs').transpose(named_interval)
             NamedPitchClass('ds')
 
         Returns new named pitch-class.

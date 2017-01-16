@@ -11,14 +11,14 @@ class Rotation(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Rotation()
+            >>> Rotation()
             Rotation(n=0)
 
     ..  container:: example
 
         ::
 
-            >>> pitchtools.Rotation(n=1)
+            >>> Rotation(n=1)
             Rotation(n=1)
 
     Object model of the twelve-tone rotation operator.
@@ -55,15 +55,15 @@ class Rotation(AbjadValueObject):
             ::
 
                 >>> items = [0, 2, 4, 5]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
     
             Example operators:
 
             ::
 
-                >>> rotation = pitchtools.Rotation(n=-1)
-                >>> transposition = pitchtools.Transposition(n=3)
+                >>> rotation = Rotation(n=-1)
+                >>> transposition = Transposition(n=3)
 
         ..  container:: example
 
@@ -143,8 +143,8 @@ class Rotation(AbjadValueObject):
         from abjad.tools import pitchtools
         return pitchtools.CompoundOperator._compose_operators(self, operator)
 
-    def __call__(self, expr):
-        r'''Calls rotation on `expr`.
+    def __call__(self, argment):
+        r'''Calls rotation on `argment`.
 
         ..  container:: example
 
@@ -152,8 +152,8 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> rotation = pitchtools.Rotation(n=1)
-                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7])
+                >>> rotation = Rotation(n=1)
+                >>> pitch_classes = PitchClassSegment([0, 1, 4, 7])
                 >>> rotation(pitch_classes)
                 PitchClassSegment([7, 0, 1, 4])
 
@@ -164,8 +164,8 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> rotation = pitchtools.Rotation(n=1, stravinsky=True)
-                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7])
+                >>> rotation = Rotation(n=1, stravinsky=True)
+                >>> pitch_classes = PitchClassSegment([0, 1, 4, 7])
                 >>> rotation(pitch_classes)
                 PitchClassSegment([0, 5, 6, 9])
 
@@ -175,8 +175,8 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> rotation = pitchtools.Rotation(n=1)
-                >>> pitch_class = pitchtools.NumberedPitchClass(6)
+                >>> rotation = Rotation(n=1)
+                >>> pitch_class = NumberedPitchClass(6)
                 >>> rotation(pitch_class)
                 NumberedPitchClass(6)
 
@@ -188,8 +188,8 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> rotation = pitchtools.Rotation(n=1, period=3)
-                >>> pitches = pitchtools.PitchSegment("c' d' e' f' g' a' b' c''")
+                >>> rotation = Rotation(n=1, period=3)
+                >>> pitches = PitchSegment("c' d' e' f' g' a' b' c''")
                 >>> rotation(pitches)
                 PitchSegment(["e'", "c'", "d'", "a'", "f'", "g'", "c''", "b'"])
 
@@ -201,35 +201,35 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> rotation = pitchtools.Rotation(
+                >>> rotation = Rotation(
                 ...     n=1,
                 ...     period=3,
                 ...     stravinsky=True,
                 ...     )
-                >>> pitches = pitchtools.PitchSegment("c' d' e' f' g' a' b' c''")
+                >>> pitches = PitchSegment("c' d' e' f' g' a' b' c''")
                 >>> rotation(pitches)
                 PitchSegment(["c'", 'af', 'bf', "f'", "df'", "ef'", "b'", "as'"])
 
-        Returns new object with type equal to that of `expr`.
+        Returns new object with type equal to that of `argment`.
         '''
         from abjad.tools import pitchtools
-        if isinstance(expr, (pitchtools.Pitch, pitchtools.PitchClass)):
-            return expr
-        if not isinstance(expr, (
+        if isinstance(argment, (pitchtools.Pitch, pitchtools.PitchClass)):
+            return argment
+        if not isinstance(argment, (
             pitchtools.PitchSegment,
             pitchtools.PitchClassSegment,
             )):
-            expr = pitchtools.PitchSegment(expr)
+            argment = pitchtools.PitchSegment(argment)
         if not self.period:
-            return expr.rotate(self.n, stravinsky=self.stravinsky)
-        result = new(expr, items=())
+            return argment.rotate(self.n, stravinsky=self.stravinsky)
+        result = new(argment, items=())
         for shard in sequencetools.partition_sequence_by_counts(
-            expr,
+            argment,
             [self.period],
             cyclic=True,
             overhang=True,
             ):
-            shard = type(expr)(shard)
+            shard = type(argment)(shard)
             shard = shard.rotate(self.n, stravinsky=self.stravinsky)
             result = result + shard
         return result
@@ -241,28 +241,28 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> str(pitchtools.Rotation())
+                >>> str(Rotation())
                 'r0'
 
         ..  container:: example
 
             ::
 
-                >>> str(pitchtools.Rotation(n=1))
+                >>> str(Rotation(n=1))
                 'r1'
 
         ..  container:: example
 
             ::
 
-                >>> str(pitchtools.Rotation(stravinsky=True))
+                >>> str(Rotation(stravinsky=True))
                 'rs0'
 
         ..  container:: example
 
             ::
 
-                >>> str(pitchtools.Rotation(n=1, stravinsky=True))
+                >>> str(Rotation(n=1, stravinsky=True))
                 'rs1'
 
         '''
@@ -297,7 +297,7 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> rotation = pitchtools.Rotation()
+                >>> rotation = Rotation()
                 >>> rotation.n
                 0
 
@@ -305,7 +305,7 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> rotation = pitchtools.Rotation(n=2)
+                >>> rotation = Rotation(n=2)
                 >>> rotation.n
                 2
 
@@ -323,7 +323,7 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> rotation = pitchtools.Rotation(n=2, period=3)
+                >>> rotation = Rotation(n=2, period=3)
                 >>> rotation.period
                 3
 
@@ -340,7 +340,7 @@ class Rotation(AbjadValueObject):
 
             ::
 
-                >>> rotation = pitchtools.Rotation(n=2, stravinsky=False)
+                >>> rotation = Rotation(n=2, stravinsky=False)
                 >>> rotation.stravinsky
                 False
 

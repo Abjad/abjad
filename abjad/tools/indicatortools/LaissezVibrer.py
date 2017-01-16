@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class LaissezVibrer(AbjadValueObject):
-    r'''A `laissez vibrer` indicator.
+    r'''Laissez vibrer.
 
     ..  container:: example
 

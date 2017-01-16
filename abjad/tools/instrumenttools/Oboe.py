@@ -17,7 +17,7 @@ class Oboe(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Oboe }
             \set Staff.shortInstrumentName = \markup { Ob. }
@@ -75,7 +75,7 @@ class Oboe(Instrument):
             ::
 
                 >>> oboe.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 

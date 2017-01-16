@@ -31,7 +31,7 @@ class Performer(AbjadObject):
                             short_instrument_name_markup=markuptools.Markup(
                                 contents=['Fl.'],
                                 ),
-                            allowable_clefs=indicatortools.ClefInventory(
+                            allowable_clefs=instrumenttools.ClefList(
                                 [
                                     indicatortools.Clef(
                                         name='treble',
@@ -52,7 +52,7 @@ class Performer(AbjadObject):
                             short_instrument_name_markup=markuptools.Markup(
                                 contents=['Picc.'],
                                 ),
-                            allowable_clefs=indicatortools.ClefInventory(
+                            allowable_clefs=instrumenttools.ClefList(
                                 [
                                     indicatortools.Clef(
                                         name='treble',

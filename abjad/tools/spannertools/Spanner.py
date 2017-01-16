@@ -381,11 +381,11 @@ class Spanner(AbjadObject):
         return lilypond_format_bundle
 
     def _get_my_first_leaf(self):
-        for leaf in iterate(self).by_class(scoretools.Leaf):
+        for leaf in iterate(self).by_leaf():
             return leaf
 
     def _get_my_last_leaf(self):
-        for leaf in iterate(self).by_class(scoretools.Leaf, reverse=True):
+        for leaf in iterate(self).by_leaf(reverse=True):
             return leaf
 
     def _get_my_nth_leaf(self, n):
@@ -393,12 +393,12 @@ class Spanner(AbjadObject):
         if not isinstance(n, int):
             raise TypeError
         if 0 <= n:
-            leaves = iterate(self).by_class(scoretools.Leaf)
+            leaves = iterate(self).by_leaf()
             for leaf_index, leaf in enumerate(leaves):
                 if leaf_index == n:
                     return leaf
         else:
-            leaves = iterate(self).by_class(scoretools.Leaf, reverse=True)
+            leaves = iterate(self).by_leaf(reverse=True)
             for leaf_index, leaf in enumerate(leaves):
                 leaf_number = -leaf_index - 1
                 if leaf_number == n:

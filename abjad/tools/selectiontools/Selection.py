@@ -139,22 +139,18 @@ class Selection(object):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import pitchtools
-        from abjad.tools import scoretools
-        from abjad.tools.topleveltools import iterate
-        from abjad.tools.topleveltools import mutate
-        music = mutate(self).copy()
-        staff = scoretools.Staff(music)
+        import abjad
+        music = abjad.mutate(self).copy()
+        staff = abjad.Staff(music)
         found_different_pitch = False
-        for pitch in iterate(staff).by_pitch():
-            if pitch != pitchtools.NamedPitch("c'"):
+        for pitch in abjad.iterate(staff).by_pitch():
+            if pitch != abjad.NamedPitch("c'"):
                 found_different_pitch = True
                 break
         if not found_different_pitch:
             staff.context_name = 'RhythmicStaff'
-        score = scoretools.Score([staff])
-        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+        score = abjad.Score([staff])
+        lilypond_file = abjad.LilyPondFile.new(score)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 
@@ -626,7 +622,7 @@ class Selection(object):
         # trim governor copy forwards from first leaf
         found_start_leaf = False
         while not found_start_leaf:
-            leaf = next(iterate(governor_copy).by_class(scoretools.Leaf))
+            leaf = next(iterate(governor_copy).by_leaf())
             if leaf is start_leaf:
                 found_start_leaf = True
             else:
@@ -634,8 +630,7 @@ class Selection(object):
         # trim governor copy backwards from last leaf
         found_stop_leaf = False
         while not found_stop_leaf:
-            reverse_iterator = iterate(governor_copy).by_class(
-                scoretools.Leaf, reverse=True)
+            reverse_iterator = iterate(governor_copy).by_leaf(reverse=True)
             leaf = next(reverse_iterator)
             if leaf is stop_leaf:
                 found_stop_leaf = True

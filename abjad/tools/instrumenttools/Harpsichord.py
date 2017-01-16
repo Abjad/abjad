@@ -21,7 +21,7 @@ class Harpsichord(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff_group))
+        >>> f(staff_group)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Harpsichord }
             \set PianoStaff.shortInstrumentName = \markup { Hpschd. }
@@ -87,7 +87,7 @@ class Harpsichord(Instrument):
             ::
 
                 >>> harpsichord.allowable_clefs
-                ClefInventory([Clef(name='treble'), Clef(name='bass')])
+                ClefList([Clef(name='treble'), Clef(name='bass')])
 
             ::
 

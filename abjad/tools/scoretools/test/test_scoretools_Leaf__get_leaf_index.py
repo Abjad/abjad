@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_scoretools_Leaf__get_leaf_index_01():

@@ -6,7 +6,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Articulation(AbjadValueObject):
-    r'''An articulation.
+    r'''Articulation.
 
     ..  container:: example
 
@@ -139,9 +139,9 @@ class Articulation(AbjadValueObject):
     def __init__(self, name=None, direction=None):
         self._default_scope = None
         if isinstance(name, type(self)):
-            expr = name
-            name = expr.name
-            direction = direction or expr.direction
+            argment = name
+            name = argment.name
+            direction = direction or argment.direction
         name = str(name)
         if '\\' in name:
             direction, name = name.split('\\')
@@ -177,13 +177,11 @@ class Articulation(AbjadValueObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import scoretools
-        from abjad.tools import topleveltools
-        note = scoretools.Note("c'4")
+        import abjad
+        note = abjad.Note("c'4")
         articulation = copy.copy(self)
-        topleveltools.attach(articulation, note)
-        lilypond_file = lilypondfiletools.LilyPondFile.new(note)
+        abjad.attach(articulation, note)
+        lilypond_file = abjad.LilyPondFile.new(note)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 

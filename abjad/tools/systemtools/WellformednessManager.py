@@ -55,7 +55,7 @@ class WellformednessManager(AbjadObject):
             spannertools.DuratedComplexBeam,
             spannertools.MultipartBeam,
             )
-        for leaf in iterate(expr).by_class(scoretools.Leaf):
+        for leaf in iterate(expr).by_leaf():
             total += 1
             parentage = leaf._get_parentage(include_self=True)
             beams = parentage._get_spanners(spannertools.Beam)
@@ -484,19 +484,19 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import set_
         violators = []
         total = 0
-        for leaf in iterate(expr).by_class(scoretools.Leaf):
+        for leaf in iterate(expr).by_leaf():
             total += 1
             flags = leaf.written_duration.flag_count
             left = getattr(set_(leaf), 'stem_left_beam_count', None)
             right = getattr(set_(leaf), 'stem_right_beam_count', None)
             if left is not None:
-                if flags < left or \
-                    (left < flags and right not in (flags, None)):
+                if (flags < left or
+                    (left < flags and right not in (flags, None))):
                     if leaf not in violators:
                         violators.append(leaf)
             if right is not None:
-                if flags < right or \
-                    (right < flags and left not in (flags, None)):
+                if (flags < right or
+                    (right < flags and left not in (flags, None))):
                     if leaf not in violators:
                         violators.append(leaf)
         return violators, total
@@ -548,7 +548,7 @@ class WellformednessManager(AbjadObject):
         violators = []
         prototype = (spannertools.Beam,)
         all_beams = set()
-        for leaf in iterate(expr).by_class(scoretools.Leaf):
+        for leaf in iterate(expr).by_leaf():
             beams = leaf._get_spanners(prototype)
             all_beams.update(beams)
             if 1 < len(beams):
@@ -569,7 +569,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         prototype = (spannertools.Glissando,)
-        for leaf in iterate(expr).by_class(scoretools.Leaf):
+        for leaf in iterate(expr).by_leaf():
             glissandi = leaf._get_spanners(prototype)
             glissandi = list(glissandi)
             if 1 < len(glissandi):
@@ -676,7 +676,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         prototype = (spannertools.OctavationSpanner, )
-        for leaf in iterate(expr).by_class(scoretools.Leaf):
+        for leaf in iterate(expr).by_leaf():
             spanners = leaf._get_descendants()._get_spanners(prototype)
             if 1 < len(spanners):
                 for spanner in spanners:

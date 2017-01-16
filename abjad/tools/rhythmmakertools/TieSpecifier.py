@@ -78,7 +78,7 @@ class TieSpecifier(AbjadValueObject):
         if not self.use_messiaen_style_ties:
             return
         tie_spanners = set()
-        for leaf in iterate(divisions).by_class(scoretools.Leaf):
+        for leaf in iterate(divisions).by_leaf():
             tie_spanners_ = inspect_(leaf).get_spanners(
                 prototype=spannertools.Tie,
                 in_parentage=True,
@@ -91,7 +91,7 @@ class TieSpecifier(AbjadValueObject):
         if not self.strip_ties:
             return
         for division in divisions:
-            for leaf in iterate(division).by_class(scoretools.Leaf):
+            for leaf in iterate(division).by_leaf():
                 detach(spannertools.Tie, leaf)
 
     def _do_tie_across_divisions(self, divisions):
@@ -114,13 +114,8 @@ class TieSpecifier(AbjadValueObject):
             if not tie_across_divisions.matches_index(i, length):
                 continue
             division_one, division_two = pair
-            leaf_one = next(iterate(division_one).by_class(
-                prototype=scoretools.Leaf,
-                reverse=True,
-                ))
-            leaf_two = next(iterate(division_two).by_class(
-                prototype=scoretools.Leaf,
-                ))
+            leaf_one = next(iterate(division_one).by_leaf(reverse=True))
+            leaf_two = next(iterate(division_two).by_leaf())
             leaves = [leaf_one, leaf_two]
             if isinstance(leaf_one, rest_prototype):
                 continue

@@ -11,7 +11,7 @@ class Retrograde(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Retrograde()
+            >>> Retrograde()
             Retrograde()
 
     Object model of twelve-tone retrograde operator.
@@ -43,15 +43,15 @@ class Retrograde(AbjadValueObject):
             ::
 
                 >>> items = [0, 2, 4, 5]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
     
             Example operators:
 
             ::
 
-                >>> retrograde = pitchtools.Retrograde()
-                >>> transposition = pitchtools.Transposition(n=3)
+                >>> retrograde = Retrograde()
+                >>> transposition = Transposition(n=3)
 
         ..  container:: example
 
@@ -129,8 +129,8 @@ class Retrograde(AbjadValueObject):
         from abjad.tools import pitchtools
         return pitchtools.CompoundOperator._compose_operators(self, operator)
 
-    def __call__(self, expr):
-        r'''Calls retrograde on `expr`.
+    def __call__(self, argment):
+        r'''Calls retrograde on `argment`.
 
         ..  container:: example
 
@@ -138,8 +138,8 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrograde = pitchtools.Retrograde()
-                >>> segment = pitchtools.PitchClassSegment([0, 1, 4, 7])
+                >>> retrograde = Retrograde()
+                >>> segment = PitchClassSegment([0, 1, 4, 7])
                 >>> retrograde(segment)
                 PitchClassSegment([7, 4, 1, 0])
 
@@ -149,8 +149,8 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrogresion = pitchtools.Retrograde()
-                >>> pitch_class = pitchtools.NumberedPitchClass(6)
+                >>> retrogresion = Retrograde()
+                >>> pitch_class = NumberedPitchClass(6)
                 >>> retrograde(pitch_class)
                 NumberedPitchClass(6)
 
@@ -162,32 +162,32 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrograde = pitchtools.Retrograde(period=3)
-                >>> segment = pitchtools.PitchSegment("c' d' e' f' g' a' b' c''")
+                >>> retrograde = Retrograde(period=3)
+                >>> segment = PitchSegment("c' d' e' f' g' a' b' c''")
                 >>> retrograde(segment)
                 PitchSegment(["e'", "d'", "c'", "a'", "g'", "f'", "c''", "b'"])
 
-        Returns new object with type equal to that of `expr`.
+        Returns new object with type equal to that of `argment`.
         '''
         from abjad.tools import pitchtools
-        if isinstance(expr, (pitchtools.Pitch, pitchtools.PitchClass)):
-            return expr
-        if not isinstance(expr, (
+        if isinstance(argment, (pitchtools.Pitch, pitchtools.PitchClass)):
+            return argment
+        if not isinstance(argment, (
             pitchtools.PitchSegment,
             pitchtools.PitchClassSegment,
             )):
-            expr = pitchtools.PitchSegment(expr)
+            argment = pitchtools.PitchSegment(argment)
         if not self.period:
-            return type(expr)(reversed(expr))
-        result = new(expr, items=())
+            return type(argment)(reversed(argment))
+        result = new(argment, items=())
         for shard in sequencetools.partition_sequence_by_counts(
-            expr,
+            argment,
             [self.period],
             cyclic=True,
             overhang=True,
             ):
-            shard = type(expr)(shard)
-            shard = type(expr)(reversed(shard))
+            shard = type(argment)(shard)
+            shard = type(argment)(reversed(shard))
             result = result + shard
         return result
 
@@ -198,7 +198,7 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> str(pitchtools.Retrograde())
+                >>> str(Retrograde())
                 'R'
 
         '''
@@ -225,7 +225,7 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrograde = pitchtools.Retrograde(period=3)
+                >>> retrograde = Retrograde(period=3)
                 >>> retrograde.period
                 3
 

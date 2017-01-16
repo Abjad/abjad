@@ -145,13 +145,13 @@ class Registration(TypedList):
 
     @property
     def _item_coercer(self):
-        def coerce_(expr):
-            if isinstance(expr, tuple):
-                component = pitchtools.RegistrationComponent(*expr)
-            elif isinstance(expr, pitchtools.RegistrationComponent):
-                component = copy.copy(expr)
+        def coerce_(argment):
+            if isinstance(argment, tuple):
+                component = pitchtools.RegistrationComponent(*argment)
+            elif isinstance(argment, pitchtools.RegistrationComponent):
+                component = copy.copy(argment)
             else:
-                raise TypeError(repr(expr))
+                raise TypeError(repr(argment))
             return component
         from abjad.tools import pitchtools
         return coerce_

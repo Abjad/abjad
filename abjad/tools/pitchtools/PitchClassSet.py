@@ -14,9 +14,9 @@ class PitchClassSet(Set):
 
         ::
 
-            >>> numbered_pitch_class_set = pitchtools.PitchClassSet(
+            >>> numbered_pitch_class_set = PitchClassSet(
             ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-            ...     item_class=pitchtools.NumberedPitchClass,
+            ...     item_class=NumberedPitchClass,
             ...     )
             >>> numbered_pitch_class_set
             PitchClassSet([6, 7, 10, 10.5])
@@ -27,9 +27,9 @@ class PitchClassSet(Set):
 
         ::
 
-            >>> named_pitch_class_set = pitchtools.PitchClassSet(
+            >>> named_pitch_class_set = PitchClassSet(
             ...     items=['c', 'ef', 'bqs,', 'd'],
-            ...     item_class=pitchtools.NamedPitchClass,
+            ...     item_class=NamedPitchClass,
             ...     )
             >>> named_pitch_class_set
             PitchClassSet(['c', 'd', 'ef', 'bqs'])
@@ -59,7 +59,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([6, 7, 10, 10.5])
+                >>> pc_set = PitchClassSet([6, 7, 10, 10.5])
                 >>> str(pc_set)
                 '{6, 7, 10, 10.5}'
 
@@ -69,7 +69,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([10.5, 10, 7, 6])
+                >>> pc_set = PitchClassSet([10.5, 10, 7, 6])
                 >>> str(pc_set)
                 '{6, 7, 10, 10.5}'
 
@@ -176,7 +176,7 @@ class PitchClassSet(Set):
             >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = Staff("c4. r8 g2")
             >>> selection = select((staff_1, staff_2))
-            >>> pitchtools.PitchClassSet.from_selection(selection)
+            >>> PitchClassSet.from_selection(selection)
             PitchClassSet(['c', 'd', 'fs', 'g', 'a', 'b'])
 
         Returns pitch-class set.
@@ -197,7 +197,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet()
+                >>> pc_set = PitchClassSet()
                 >>> pc_set.get_normal_order()
                 PitchClassSegment([])
 
@@ -207,7 +207,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([0, 1, 10, 11])
+                >>> pc_set = PitchClassSet([0, 1, 10, 11])
                 >>> pc_set.get_normal_order()
                 PitchClassSegment([10, 11, 0, 1])
 
@@ -217,7 +217,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([2, 8, 9])
+                >>> pc_set = PitchClassSet([2, 8, 9])
                 >>> pc_set.get_normal_order()
                 PitchClassSegment([8, 9, 2])
 
@@ -228,7 +228,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([1, 2, 7, 8])
+                >>> pc_set = PitchClassSet([1, 2, 7, 8])
                 >>> pc_set.get_normal_order()
                 PitchClassSegment([1, 2, 7, 8])
 
@@ -239,7 +239,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([0, 3, 6, 9])
+                >>> pc_set = PitchClassSet([0, 3, 6, 9])
                 >>> pc_set.get_normal_order()
                 PitchClassSegment([0, 3, 6, 9])
 
@@ -270,13 +270,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet()
+                >>> pc_set = PitchClassSet()
                 >>> pc_set.get_prime_form()
                 PitchClassSet([])
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet()
+                >>> pc_set = PitchClassSet()
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([])
 
@@ -286,13 +286,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([0, 1, 10, 11])
+                >>> pc_set = PitchClassSet([0, 1, 10, 11])
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 1, 2, 3])
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([0, 1, 10, 11])
+                >>> pc_set = PitchClassSet([0, 1, 10, 11])
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 1, 2, 3])
 
@@ -302,13 +302,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([2, 8, 9])
+                >>> pc_set = PitchClassSet([2, 8, 9])
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 1, 6])
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([2, 8, 9])
+                >>> pc_set = PitchClassSet([2, 8, 9])
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 1, 6])
 
@@ -319,13 +319,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([1, 2, 7, 8])
+                >>> pc_set = PitchClassSet([1, 2, 7, 8])
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 1, 6, 7])
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([1, 2, 7, 8])
+                >>> pc_set = PitchClassSet([1, 2, 7, 8])
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 1, 6, 7])
 
@@ -336,13 +336,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([0, 3, 6, 9])
+                >>> pc_set = PitchClassSet([0, 3, 6, 9])
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 3, 6, 9])
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([0, 3, 6, 9])
+                >>> pc_set = PitchClassSet([0, 3, 6, 9])
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 3, 6, 9])
 
@@ -352,13 +352,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([0, 4, 6, 7])
+                >>> pc_set = PitchClassSet([0, 4, 6, 7])
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 1, 3, 7])
 
             ::
 
-                >>> pc_set = pitchtools.PitchClassSet([0, 4, 6, 7])
+                >>> pc_set = PitchClassSet([0, 4, 6, 7])
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 4, 6, 7])
 
@@ -387,7 +387,7 @@ class PitchClassSet(Set):
 
         ::
 
-            >>> pitchtools.PitchClassSet(
+            >>> PitchClassSet(
             ...     [-2, -1.5, 6, 7, -1.5, 7],
             ...     ).invert()
             PitchClassSet([1.5, 2, 5, 6])
@@ -402,10 +402,10 @@ class PitchClassSet(Set):
 
         ::
 
-            >>> pitch_class_set_1 = pitchtools.PitchClassSet(
+            >>> pitch_class_set_1 = PitchClassSet(
             ...     [-2, -1.5, 6, 7, -1.5, 7],
             ...     )
-            >>> pitch_class_set_2 = pitchtools.PitchClassSet(
+            >>> pitch_class_set_2 = PitchClassSet(
             ...     [-2, -1.5, 6, 7, -1.5, 7, 7.5, 8],
             ...     )
 
@@ -427,10 +427,10 @@ class PitchClassSet(Set):
 
         ::
 
-            >>> pitch_class_set_1 = pitchtools.PitchClassSet(
+            >>> pitch_class_set_1 = PitchClassSet(
             ...     [-2, -1.5, 6, 7, -1.5, 7],
             ...     )
-            >>> pitch_class_set_2 = pitchtools.PitchClassSet(
+            >>> pitch_class_set_2 = PitchClassSet(
             ...     [-2, -1.5, 6, 7, -1.5, 7, 7.5, 8],
             ...     )
 
@@ -451,7 +451,7 @@ class PitchClassSet(Set):
 
         ::
 
-            >>> pitchtools.PitchClassSet(
+            >>> PitchClassSet(
             ...     [-2, -1.5, 6, 7, -1.5, 7],
             ...     ).multiply(5)
             PitchClassSet([2, 4.5, 6, 11])
@@ -483,12 +483,12 @@ class PitchClassSet(Set):
         message = message.format(self, pitch_class_segment)
         raise ValueError(message)
 
-    def transpose(self, expr):
-        r'''Transposes all pitch-classes in pitch-class set by `expr`.
+    def transpose(self, argment):
+        r'''Transposes all pitch-classes in pitch-class set by `argment`.
 
         Returns new pitch-class set.
         '''
-        items = (pitch_class + expr for pitch_class in self)
+        items = (pitch_class + argment for pitch_class in self)
         return new(self, items=items)
 
     @staticmethod
@@ -502,7 +502,7 @@ class PitchClassSet(Set):
             ::
 
 
-                >>> class_ = pitchtools.PitchClassSet
+                >>> class_ = PitchClassSet
                 >>> pcsets = list(class_.yield_all_pitch_class_sets())
                 >>> len(pcsets)
                 4096

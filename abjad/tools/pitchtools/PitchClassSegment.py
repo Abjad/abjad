@@ -21,7 +21,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ..  doctest::
@@ -71,9 +71,9 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> segment = pitchtools.PitchClassSegment(
+                >>> segment = PitchClassSegment(
                 ...     items=items,
-                ...     item_class=pitchtools.NamedPitchClass,
+                ...     item_class=NamedPitchClass,
                 ...     )
                 >>> show(segment) # doctest: +SKIP
 
@@ -95,7 +95,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> expression = Expression().pitch_class_segment(
-                ...     item_class=pitchtools.NamedPitchClass,
+                ...     item_class=NamedPitchClass,
                 ...     )
                 >>> segment = expression(['c', 'ef', 'bqs,', 'd'])
                 >>> show(segment) # doctest: +SKIP
@@ -152,7 +152,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = pitchtools.PitchClassSegment(items=items, name='J')
+                >>> J = PitchClassSegment(items=items, name='J')
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
 
@@ -163,7 +163,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> K = pitchtools.PitchClassSegment(items=items, name='K')
+                >>> K = PitchClassSegment(items=items, name='K')
                 >>> K
                 PitchClassSegment(['c', 'ef', 'bqs', 'd'], name='K')
 
@@ -532,7 +532,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = pitchtools.PitchClassSegment(items=items, name='J')
+                >>> J = PitchClassSegment(items=items, name='J')
 
             ::
 
@@ -580,9 +580,9 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> K = pitchtools.PitchClassSegment(
+                >>> K = PitchClassSegment(
                 ...     items=items,
-                ...     item_class=pitchtools.NamedPitchClass,
+                ...     item_class=NamedPitchClass,
                 ...     name='K',
                 ...     )
 
@@ -636,7 +636,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = pitchtools.PitchClassSegment(items=items, name='J')
+                >>> J = PitchClassSegment(items=items, name='J')
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
 
@@ -794,7 +794,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, pitchtools.PitchClassSegment)
+                >>> isinstance(segment, PitchClassSegment)
                 True
 
         '''
@@ -833,7 +833,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ..  doctest::
@@ -858,9 +858,9 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> segment = pitchtools.PitchClassSegment(
+                >>> segment = PitchClassSegment(
                 ...     items=items,
-                ...     item_class=pitchtools.NumberedPitchClass,
+                ...     item_class=NumberedPitchClass,
                 ...     )
                 >>> show(segment) # doctest: +SKIP
 
@@ -904,7 +904,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> pitchtools.PitchClassSegment(items=items)
+                >>> PitchClassSegment(items=items)
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
         Returns string.
@@ -931,23 +931,23 @@ class PitchClassSegment(Segment):
 
     ### PRIVATE METHODS ###
 
-    def _is_equivalent_under_transposition(self, expr):
-        r'''Is true when `expr` is equivalent to segment under transposition.
+    def _is_equivalent_under_transposition(self, argment):
+        r'''Is true when `argment` is equivalent to segment under transposition.
         
         Otherwise False.
 
         Returns true or false.
         '''
         import abjad
-        if not isinstance(expr, type(self)):
+        if not isinstance(argment, type(self)):
             return False
-        if not len(self) == len(expr):
+        if not len(self) == len(argment):
             return False
-        difference = -(abjad.NamedPitch(expr[0], 4) -
+        difference = -(abjad.NamedPitch(argment[0], 4) -
             abjad.NamedPitch(self[0], 4))
         new_pitch_classes = (x + difference for x in self)
         new_pitch_classes = new(self, items=new_pitch_classes)
-        return expr == new_pitch_classes
+        return argment == new_pitch_classes
 
     @staticmethod
     def _make_subscript_string(i):
@@ -993,7 +993,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -1009,9 +1009,9 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> segment = pitchtools.PitchClassSegment(
+                >>> segment = PitchClassSegment(
                 ...     items=items,
-                ...     item_class=pitchtools.NamedPitchClass,
+                ...     item_class=NamedPitchClass,
                 ...     )
                 >>> show(segment) # doctest: +SKIP
 
@@ -1046,7 +1046,7 @@ class PitchClassSegment(Segment):
                 ::
 
                     >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                    >>> segment = pitchtools.PitchClassSegment(items)
+                    >>> segment = PitchClassSegment(items)
                     >>> for item in segment.items:
                     ...     item
                     ...
@@ -1062,7 +1062,7 @@ class PitchClassSegment(Segment):
                 ::
 
                     >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                    >>> segment = pitchtools.PitchClassSegment(items=items)
+                    >>> segment = PitchClassSegment(items=items)
                     >>> for item in segment.items:
                     ...     item
                     NumberedPitchClass(10)
@@ -1132,7 +1132,7 @@ class PitchClassSegment(Segment):
                 ::
 
                     >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                    >>> pitchtools.PitchClassSegment(items=items)
+                    >>> PitchClassSegment(items=items)
                     PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
                 Sets name at initialization:
@@ -1140,7 +1140,7 @@ class PitchClassSegment(Segment):
                 ::
 
                     >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                    >>> pitchtools.PitchClassSegment(items=items, name='J')
+                    >>> PitchClassSegment(items=items, name='J')
                     PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
 
             ..  container:: example expression
@@ -1203,7 +1203,7 @@ class PitchClassSegment(Segment):
                 ::
 
                     >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                    >>> segment = pitchtools.PitchClassSegment(items=items)
+                    >>> segment = PitchClassSegment(items=items)
                     >>> segment.name_markup is None
                     True
 
@@ -1212,7 +1212,7 @@ class PitchClassSegment(Segment):
                 ::
 
                     >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                    >>> segment = pitchtools.PitchClassSegment(
+                    >>> segment = PitchClassSegment(
                     ...     items=items,
                     ...     name_markup=Markup('J'),
                     ...     )
@@ -1282,261 +1282,6 @@ class PitchClassSegment(Segment):
 
     ### PUBLIC METHODS ###
 
-    def alpha(self):
-        r'''Gets alpha transform of segment.
-
-        ..  container:: example
-
-            Example segment:
-
-            ::
-
-                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = pitchtools.PitchClassSegment(items=items, name='J')
-                >>> J
-                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
-
-            ::
-
-                >>> show(J) # doctest: +SKIP
-
-        ..  container:: example
-
-            Gets alpha transform of segment:
-
-            ..  container:: example
-
-                ::
-
-                    >>> segment = J.alpha()
-                    >>> segment
-                    PitchClassSegment([11, 11.5, 7, 6, 11.5, 6], name='A(J)')
-
-                ::
-
-                    >>> show(segment) # doctest: +SKIP
-
-                ..  doctest::
-
-                    >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
-                    \new Voice {
-                        b'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        A
-                                        \concat
-                                            {
-                                                \hspace
-                                                    #0.4
-                                                \bold
-                                                    J
-                                            }
-                                    }
-                                }
-                        bqs'8
-                        g'8
-                        fs'8
-                        bqs'8
-                        fs'8
-                        \bar "|."
-                        \override Score.BarLine.transparent = ##f
-                    }
-
-            ..  container:: example expression
-
-                ::
-
-                    >>> expression = Expression().pitch_class_segment(name='J')
-                    >>> expression = expression.alpha()
-                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
-                    >>> segment
-                    PitchClassSegment([11, 11.5, 7, 6, 11.5, 6], name='A(J)')
-
-                ::
-
-                    >>> show(segment) # doctest: +SKIP
-
-                ..  doctest::
-
-                    >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
-                    \new Voice {
-                        b'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        A
-                                        \concat
-                                            {
-                                                \hspace
-                                                    #0.4
-                                                \bold
-                                                    J
-                                            }
-                                    }
-                                }
-                        bqs'8
-                        g'8
-                        fs'8
-                        bqs'8
-                        fs'8
-                        \bar "|."
-                        \override Score.BarLine.transparent = ##f
-                    }
-
-        ..  container:: example
-
-            Gets alpha transform of alpha transform of segment:
-
-            ..  container:: example
-
-                ::
-
-                    >>> segment = J.alpha().alpha()
-                    >>> segment
-                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='A(A(J))')
-
-                ::
-
-                    >>> show(segment) # doctest: +SKIP
-
-                ..  doctest::
-
-                    >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
-                    \new Voice {
-                        bf'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        A
-                                        \concat
-                                            {
-                                                A
-                                                \concat
-                                                    {
-                                                        \hspace
-                                                            #0.4
-                                                        \bold
-                                                            J
-                                                    }
-                                            }
-                                    }
-                                }
-                        bqf'8
-                        fs'8
-                        g'8
-                        bqf'8
-                        g'8
-                        \bar "|."
-                        \override Score.BarLine.transparent = ##f
-                    }
-
-                ::
-
-                    >>> segment == J
-                    True
-
-            ..  container:: example expression
-
-                ::
-
-                    >>> expression = Expression().pitch_class_segment(name='J')
-                    >>> expression = expression.alpha()
-                    >>> expression = expression.alpha()
-                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
-                    >>> segment
-                    PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='A(A(J))')
-
-                ::
-
-                    >>> show(segment) # doctest: +SKIP
-
-                ..  doctest::
-
-                    >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
-                    \new Voice {
-                        bf'8
-                            ^ \markup {
-                                \concat
-                                    {
-                                        A
-                                        \concat
-                                            {
-                                                A
-                                                \concat
-                                                    {
-                                                        \hspace
-                                                            #0.4
-                                                        \bold
-                                                            J
-                                                    }
-                                            }
-                                    }
-                                }
-                        bqf'8
-                        fs'8
-                        g'8
-                        bqf'8
-                        g'8
-                        \bar "|."
-                        \override Score.BarLine.transparent = ##f
-                    }
-
-                ::
-
-                    >>> segment == J
-                    True
-
-        ..  container:: example
-
-            Returns pitch-class segment:
-
-            ::
-
-                >>> isinstance(segment, pitchtools.PitchClassSegment)
-                True
-
-        '''
-        import abjad
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
-        numbers = []
-        for pc in self:
-            pc = abs(float(pc))
-            is_integer = True
-            if not mathtools.is_integer_equivalent_number(pc):
-                is_integer = False
-                fraction_part = pc - int(pc)
-                pc = int(pc)
-            if abs(pc) % 2 == 0:
-                number = (abs(pc) + 1) % 12
-            else:
-                number = abs(pc) - 1
-            if not is_integer:
-                number += fraction_part
-            else:
-                number = int(number)
-            numbers.append(number)
-        template = 'A({})'
-        expression = expressiontools.Expression()
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.insert(0, 'A')
-        expression = expression.concat()
-        segment = new(self, items=numbers, name=self._name)
-        expressiontools.Expression._track_expression(
-            self,
-            segment,
-            'alpha',
-            formula_markup_expression=expression,
-            formula_string_template=template,
-            )
-        return segment
-
     def count(self, item):
         r'''Counts `item` in segment.
 
@@ -1547,7 +1292,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
         ..  container:: example
@@ -1599,7 +1344,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> selection = select((staff_1, staff_2))
-                >>> segment = pitchtools.PitchClassSegment.from_selection(selection)
+                >>> segment = PitchClassSegment.from_selection(selection)
                 >>> show(segment) # doctest: +SKIP
 
         ..  container:: example
@@ -1629,7 +1374,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -1644,7 +1389,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = "c d e f g a b"
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -1667,7 +1412,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
         ..  container:: example
@@ -1711,7 +1456,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = pitchtools.PitchClassSegment(items=items, name='J')
+                >>> J = PitchClassSegment(items=items, name='J')
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
 
@@ -1911,7 +1656,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, pitchtools.PitchClassSegment)
+                >>> isinstance(segment, PitchClassSegment)
                 True
 
         '''
@@ -1952,7 +1697,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [2, 4.5, 6, 11, 4.5, 10]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
         ..  container:: example
@@ -2040,7 +1785,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = pitchtools.PitchClassSegment(items=items, name='J')
+                >>> J = PitchClassSegment(items=items, name='J')
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
 
@@ -2415,7 +2160,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, pitchtools.PitchClassSegment)
+                >>> isinstance(segment, PitchClassSegment)
                 True
 
         '''
@@ -2454,7 +2199,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = pitchtools.PitchClassSegment(items=items, name='J')
+                >>> J = PitchClassSegment(items=items, name='J')
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
 
@@ -2657,7 +2402,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, pitchtools.PitchClassSegment)
+                >>> isinstance(segment, PitchClassSegment)
                 True
 
         '''
@@ -2692,7 +2437,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = pitchtools.PitchClassSegment(items=items, name='J')
+                >>> J = PitchClassSegment(items=items, name='J')
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
 
@@ -3093,7 +2838,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, pitchtools.PitchClassSegment)
+                >>> isinstance(segment, PitchClassSegment)
                 True
 
         '''
@@ -3144,7 +2889,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = pitchtools.PitchClassSegment(items=items, name='J')
+                >>> J = PitchClassSegment(items=items, name='J')
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
 
@@ -3450,16 +3195,19 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, pitchtools.PitchClassSegment)
+                >>> isinstance(segment, PitchClassSegment)
                 True
 
         '''
         import abjad
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
-        items = (pitch_class.transpose(n=n) for pitch_class in self)
         template = 'T{n}({{}})'
         template = template.format(n=n)
+        if self._frozen_expression:
+            return self._make_callback(
+                inspect.currentframe(),
+                formula_string_template=template,
+                )
+        items = (pitch_class.transpose(n=n) for pitch_class in self)
         if 0 <= n:
             hspace_markup = abjad.Markup.hspace(-0.2)
         else:
@@ -3494,7 +3242,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = "c b d e f g e b a c"
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -3593,7 +3341,7 @@ class PitchClassSegment(Segment):
 
                 >>> scale_degree_numbers = [1, 3, 5, 7, 9, 11, 13]
                 >>> scale = tonalanalysistools.Scale('c', 'minor')
-                >>> segment = pitchtools.PitchClassSegment((
+                >>> segment = PitchClassSegment((
                 ...     scale.scale_degree_to_named_pitch_class(x)
                 ...     for x in scale_degree_numbers))
                 >>> show(segment) # doctest: +SKIP

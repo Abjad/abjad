@@ -5,17 +5,17 @@ from abjad.tools.topleveltools import override
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class ClefInventory(TypedList):
+class ClefList(TypedList):
     r'''An ordered list of clefs.
 
     ::
 
-        >>> inventory = indicatortools.ClefInventory(['treble', 'bass'])
+        >>> inventory = instrumenttools.ClefList(['treble', 'bass'])
 
     ::
 
         >>> inventory
-        ClefInventory([Clef(name='treble'), Clef(name='bass')])
+        ClefList([Clef(name='treble'), Clef(name='bass')])
 
     ::
 
@@ -55,18 +55,17 @@ class ClefInventory(TypedList):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import scoretools
-        staff = scoretools.Staff()
+        import abjad
+        staff = abjad.Staff()
         for clef in self:
-            rest = scoretools.Rest((1, 8))
+            rest = abjad.Rest((1, 8))
             clef = copy.copy(clef)
             attach(clef, rest)
             staff.append(rest)
         override(staff).clef.full_size_change = True
         override(staff).rest.transparent = True
         override(staff).time_signature.stencil = False
-        lilypond_file = lilypondfiletools.LilyPondFile.new(staff)
+        lilypond_file = abjad.LilyPondFile.new(staff)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 

@@ -14,7 +14,7 @@ class Piccolo(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Piccolo }
             \set Staff.shortInstrumentName = \markup { Picc. }
@@ -70,7 +70,7 @@ class Piccolo(Instrument):
             ::
 
                 >>> piccolo.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 

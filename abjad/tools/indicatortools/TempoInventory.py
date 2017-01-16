@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class TempoInventory(TypedList):
-    r'''An ordered list of tempo indicators.
+    r'''Tempo list.
 
     ::
 
@@ -26,6 +26,8 @@ class TempoInventory(TypedList):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Collections'
+
     __slots__ = (
         )
 
@@ -41,36 +43,32 @@ class TempoInventory(TypedList):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools.topleveltools import attach
-        from abjad.tools.topleveltools import override
-        staff = scoretools.Staff()
-        score = scoretools.Score([staff])
-        time_signature = indicatortools.TimeSignature((2, 4))
-        attach(time_signature, staff)
+        import abjad
+        staff = abjad.Staff()
+        score = abjad.Score([staff])
+        time_signature = abjad.TimeSignature((2, 4))
+        abjad.attach(time_signature, staff)
         # the zero note avoids a lilypond spacing problem:
         # score-initial tempo indications slip to the left
-        zero_note = scoretools.Note("c'2")
+        zero_note = abjad.Note("c'2")
         staff.append(zero_note)
-        command = indicatortools.LilyPondCommand('break')
-        attach(command, zero_note)
+        command = abjad.LilyPondCommand('break')
+        abjad.attach(command, zero_note)
         for tempo in self.items:
-            note = scoretools.Note("c'2")
-            attach(tempo, note)
+            note = abjad.Note("c'2")
+            abjad.attach(tempo, note)
             staff.append(note)
-            command = indicatortools.LilyPondCommand('break')
-            attach(command, note)
-        override(score).bar_line.transparent = True
-        override(score).bar_number.stencil = False
-        override(score).clef.stencil = False
-        override(score).note_head.no_ledgers = True
-        override(score).note_head.transparent = True
-        override(score).staff_symbol.transparent = True
-        override(score).stem.transparent = True
-        override(score).time_signature.stencil = False
-        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+            command = abjad.LilyPondCommand('break')
+            abjad.attach(command, note)
+        abjad.override(score).bar_line.transparent = True
+        abjad.override(score).bar_number.stencil = False
+        abjad.override(score).clef.stencil = False
+        abjad.override(score).note_head.no_ledgers = True
+        abjad.override(score).note_head.transparent = True
+        abjad.override(score).staff_symbol.transparent = True
+        abjad.override(score).stem.transparent = True
+        abjad.override(score).time_signature.stencil = False
+        lilypond_file = abjad.LilyPondFile.new(score)
         lilypond_file.layout_block.indent = 0
         lilypond_file.layout_block.ragged_right = True
         lilypond_file.items.remove(lilypond_file['paper'])
@@ -81,15 +79,15 @@ class TempoInventory(TypedList):
 
     @property
     def _item_coercer(self):
-        def coerce_(expr):
-            if expr is None:
+        def coerce_(argment):
+            if argment is None:
                 tempo = indicatortools.Tempo()
-            elif isinstance(expr, tuple):
-                tempo = indicatortools.Tempo(*expr)
-            elif isinstance(expr, indicatortools.Tempo):
-                tempo = copy.copy(expr)
+            elif isinstance(argment, tuple):
+                tempo = indicatortools.Tempo(*argment)
+            elif isinstance(argment, indicatortools.Tempo):
+                tempo = copy.copy(argment)
             else:
-                raise TypeError(repr(expr))
+                raise TypeError(repr(argment))
             return tempo
         from abjad.tools import indicatortools
         return coerce_

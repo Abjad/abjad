@@ -19,7 +19,7 @@ class TenorTrombone(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { "Tenor trombone" }
@@ -76,7 +76,7 @@ class TenorTrombone(Instrument):
             ::
 
                 >>> tenor_trombone.allowable_clefs
-                ClefInventory([Clef(name='tenor'), Clef(name='bass')])
+                ClefList([Clef(name='tenor'), Clef(name='bass')])
 
             ::
 

@@ -134,10 +134,10 @@ class Block(AbjadObject):
         from abjad.tools import systemtools
         indent = systemtools.LilyPondFormatManager.indent
         result = []
-        if not self._get_formatted_user_attributes() and \
-            not getattr(self, 'contexts', None) and \
-            not getattr(self, 'context_blocks', None) and \
-            not len(self.items):
+        if (not self._get_formatted_user_attributes() and
+            not getattr(self, 'contexts', None) and
+            not getattr(self, 'context_blocks', None) and
+            not len(self.items)):
             if self.name == 'score':
                 return ''
             string = '{} {{}}'.format(self._escaped_name)
@@ -157,7 +157,8 @@ class Block(AbjadObject):
         result.extend(formatted_attributes)
         formatted_context_blocks = getattr(
             self, '_formatted_context_blocks', [])
-        formatted_context_blocks = [indent + x for x in formatted_context_blocks]
+        formatted_context_blocks = [
+            indent + x for x in formatted_context_blocks]
         result.extend(formatted_context_blocks)
         result.append('}')
         return result

@@ -283,8 +283,8 @@ class PitchClass(AbjadValueObject):
         raise NotImplementedError
 
     @staticmethod
-    def is_diatonic_pitch_class_name(expr):
-        '''Is true when `expr` is a diatonic pitch-class name. Otherwise false.
+    def is_diatonic_pitch_class_name(argment):
+        '''Is true when `argment` is a diatonic pitch-class name. Otherwise false.
 
         ::
 
@@ -295,13 +295,13 @@ class PitchClass(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(expr, str):
+        if not isinstance(argment, str):
             return False
-        return bool(PitchClass._diatonic_pitch_class_name_regex.match(expr))
+        return bool(PitchClass._diatonic_pitch_class_name_regex.match(argment))
 
     @staticmethod
-    def is_diatonic_pitch_class_number(expr):
-        '''Is true when `expr` is a diatonic pitch-class number. Otherwise false.
+    def is_diatonic_pitch_class_number(argment):
+        '''Is true when `argment` is a diatonic pitch-class number. Otherwise false.
 
         ::
 
@@ -318,13 +318,13 @@ class PitchClass(AbjadValueObject):
 
         Returns true or false.
         '''
-        if expr in range(7):
+        if argment in range(7):
             return True
         return False
 
     @staticmethod
-    def is_pitch_class_name(expr):
-        '''Is true when `expr` is a pitch-class name. Otherwise false.
+    def is_pitch_class_name(argment):
+        '''Is true when `argment` is a pitch-class name. Otherwise false.
 
         ::
 
@@ -336,13 +336,13 @@ class PitchClass(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(expr, str):
+        if not isinstance(argment, str):
             return False
-        return bool(PitchClass._pitch_class_name_regex.match(expr))
+        return bool(PitchClass._pitch_class_name_regex.match(argment))
 
     @staticmethod
-    def is_pitch_class_number(expr):
-        '''True `expr` is a pitch-class number. Otherwise false.
+    def is_pitch_class_number(argment):
+        '''True `argment` is a pitch-class number. Otherwise false.
 
         ::
 
@@ -355,7 +355,7 @@ class PitchClass(AbjadValueObject):
         Returns true or false.
         '''
 
-        return expr in [(n).__truediv__(2) for n in range(24)]
+        return argment in [(n).__truediv__(2) for n in range(24)]
 
     @abc.abstractmethod
     def multiply(self, n=1):
@@ -366,7 +366,7 @@ class PitchClass(AbjadValueObject):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def transpose(self, expr):
+    def transpose(self, argment):
         r'''Transposes pitch-class by `n`'.
 
         Returns new pitch-class.

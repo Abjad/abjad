@@ -5,10 +5,12 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class IndicatorExpression(AbjadValueObject):
-    r'''An indicator expression.
+    r'''Indicator expression.
     '''
 
     ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Internals'
 
     __slots__ = (
         '_component',

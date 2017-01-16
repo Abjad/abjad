@@ -77,13 +77,13 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         '''
         return type(self)(self.number)
 
-    def __lt__(self, arg):
-        r'''Is true when `arg` is a numbered inversion-equivalent
+    def __lt__(self, argument):
+        r'''Is true when `argument` is a numbered inversion-equivalent
         interval-class with a number less than this numbered
         inversion-equivalent interval-class.
         '''
-        if isinstance(arg, type(self)):
-            return self.number < arg.number
+        if isinstance(argument, type(self)):
+            return self.number < argument.number
         return False
 
     def __neg__(self):

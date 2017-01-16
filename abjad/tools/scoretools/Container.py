@@ -189,7 +189,7 @@ class Container(Component):
                 >>> voice = Voice()
                 >>> voice.append(Tuplet((2, 3), "c'4 d'4 e'4"))
                 >>> voice.append(Tuplet((2, 3), "e'4 d'4 c'4"))
-                >>> leaves = iterate(voice).by_class(scoretools.Leaf)
+                >>> leaves = iterate(voice).by_leaf()
                 >>> attach(Slur(), list(leaves))
                 >>> show(voice) # doctest: +SKIP
 
@@ -1046,7 +1046,7 @@ class Container(Component):
         # in order to start upward crawl through duration-crossing containers
         else:
             duration_crossing_containers = duration_crossing_descendants[:]
-            for leaf in iterate(bottom).by_class(scoretools.Leaf):
+            for leaf in iterate(bottom).by_leaf():
                 if leaf._get_timespan().start_offset == global_split_point:
                     leaf_right_of_split = leaf
                     leaf_left_of_split = leaf_right_of_split._get_leaf(-1)
@@ -1559,7 +1559,7 @@ class Container(Component):
                 [x._get_duration(in_seconds=True) for x in self])
         else:
             duration = durationtools.Duration(0)
-            for leaf in iterate(self).by_class(scoretools.Leaf):
+            for leaf in iterate(self).by_leaf():
                 duration += leaf._get_duration(in_seconds=True)
             return duration
 

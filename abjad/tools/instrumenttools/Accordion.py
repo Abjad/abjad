@@ -21,7 +21,7 @@ class Accordion(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff_group))
+        >>> f(staff_group)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Accordion }
             \set PianoStaff.shortInstrumentName = \markup { Acc. }
@@ -99,7 +99,7 @@ class Accordion(Instrument):
                     short_instrument_name_markup=markuptools.Markup(
                         contents=['Acc.'],
                         ),
-                    allowable_clefs=indicatortools.ClefInventory(
+                    allowable_clefs=instrumenttools.ClefList(
                         [
                             indicatortools.Clef(
                                 name='treble',
@@ -131,7 +131,7 @@ class Accordion(Instrument):
             ::
 
                 >>> accordion.allowable_clefs
-                ClefInventory([Clef(name='treble'), Clef(name='bass')])
+                ClefList([Clef(name='treble'), Clef(name='bass')])
 
             ::
 

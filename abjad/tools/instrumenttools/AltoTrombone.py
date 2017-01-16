@@ -19,7 +19,7 @@ class AltoTrombone(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { "Alto trombone" }
@@ -63,7 +63,7 @@ class AltoTrombone(Instrument):
             'brass player',
             'trombonist',
             ])
-        self._starting_clefs = indicatortools.ClefInventory(['bass'])
+        self._starting_clefs = type(self.allowable_clefs)(['bass'])
 
     ### SPECIAL METHODS ###
 
@@ -88,7 +88,7 @@ class AltoTrombone(Instrument):
                     short_instrument_name_markup=markuptools.Markup(
                         contents=['Alt. trb.'],
                         ),
-                    allowable_clefs=indicatortools.ClefInventory(
+                    allowable_clefs=instrumenttools.ClefList(
                         [
                             indicatortools.Clef(
                                 name='bass',
@@ -120,7 +120,7 @@ class AltoTrombone(Instrument):
             ::
 
                 >>> alto_trombone.allowable_clefs
-                ClefInventory([Clef(name='bass'), Clef(name='tenor')])
+                ClefList([Clef(name='bass'), Clef(name='tenor')])
 
             ::
 

@@ -16,7 +16,7 @@ class Contrabassoon(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { Contrabassoon }
@@ -74,7 +74,7 @@ class Contrabassoon(Instrument):
             ::
 
                 >>> contrabassoon.allowable_clefs
-                ClefInventory([Clef(name='bass')])
+                ClefList([Clef(name='bass')])
 
             ::
 

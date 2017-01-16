@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class StringContactPoint(AbjadValueObject):
-    r'''String contact point indicator.
+    r'''String contact point.
 
     ..  container:: example
 

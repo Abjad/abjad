@@ -1978,7 +1978,10 @@ class IterationAgent(abctools.AbjadObject):
                     >>> leaves = selector(staff)
                     >>> leaf = leaves[0]
                     >>> signature = inspect_(leaf).get_parentage().logical_voice
-                    >>> for note in iterate(staff).by_logical_voice(Note, signature):
+                    >>> for note in iterate(staff).by_logical_voice(
+                    ...     prototype=Note,
+                    ...     logical_voice=signature,
+                    ...     ):
                     ...     note
                     ...
                     Note("c'8")
@@ -2581,45 +2584,6 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            Iterates pitches in array:
-
-            ..  container:: example
-
-                ::
-
-                    >>> array = pitchtools.PitchArray([
-                    ...     [1, (2, 1), (-1.5, 2)],
-                    ...     [(7, 2), (6, 1), 1],
-                    ...     ])
-
-            ..  container:: example
-
-                ::
-
-                    >>> for pitch in iterate(array).by_pitch():
-                    ...     pitch
-                    ...
-                    NamedPitch("d'")
-                    NamedPitch('bqf')
-                    NamedPitch("g'")
-                    NamedPitch("fs'")
-
-            ..  container:: example expression
-
-                ::
-
-                    >>> expression = iterate()
-                    >>> expression = expression.by_pitch()
-                    >>> for pitch in expression(array):
-                    ...     pitch
-                    ...
-                    NamedPitch("d'")
-                    NamedPitch('bqf')
-                    NamedPitch("g'")
-                    NamedPitch("fs'")
-
-        ..  container:: example
-
             Iterates different types of object in tuple:
 
             ..  container:: example
@@ -2975,7 +2939,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> leaves = iterate(staff).by_class(scoretools.Leaf)
+                    >>> leaves = iterate(staff).by_leaf()
                     >>> prototype = (Note, Chord)
                     >>> for group in iterate(leaves).by_run(
                     ...     prototype=prototype,
@@ -2990,7 +2954,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> leaves = iterate(staff).by_class(scoretools.Leaf)
+                    >>> leaves = iterate(staff).by_leaf()
                     >>> prototype = (Note, Chord)
                     >>> expression = iterate()
                     >>> expression = expression.by_run(prototype=prototype)
@@ -3777,10 +3741,7 @@ class IterationAgent(abctools.AbjadObject):
             return self._make_callback(inspect.currentframe())
         def _closure():
             visited_logical_ties = set()
-            iterator = self.by_timeline(
-                prototype=scoretools.Leaf,
-                reverse=reverse,
-                )
+            iterator = self.by_timeline(reverse=reverse)
             for leaf in iterator:
                 logical_tie = leaf._get_logical_tie()
                 if logical_tie in visited_logical_ties:
@@ -3926,8 +3887,7 @@ class IterationAgent(abctools.AbjadObject):
         if self._frozen_expression:
             return self._make_callback(inspect.currentframe())
         assert isinstance(self._client, scoretools.Component)
-        if prototype is None:
-            prototype = scoretools.Leaf
+        prototype = prototype or scoretools.Leaf
         root = self._client._get_parentage().root
         component_generator = iterate(root).by_timeline(
             prototype=prototype,

@@ -102,7 +102,6 @@ class LilyPondFormatManager(AbjadObject):
                 string = manager.format_lilypond_context_setting_in_with_block(
                     name, value)
                 result.append(string)
-        #if isinstance(component, (scoretools.Leaf, scoretools.Measure)):
         else:
             contextualizer = set_(component)
             variables = vars(contextualizer)

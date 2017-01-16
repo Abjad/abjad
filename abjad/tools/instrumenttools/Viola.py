@@ -19,7 +19,7 @@ class Viola(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \clef "alto"
             \set Staff.instrumentName = \markup { Viola }
@@ -67,7 +67,7 @@ class Viola(Instrument):
             'violist',
             ])
         self._is_primary_instrument = True
-        self._starting_clefs = indicatortools.ClefInventory(['alto'])
+        self._starting_clefs = type(self.allowable_clefs)(['alto'])
         self._default_tuning = indicatortools.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
@@ -81,7 +81,7 @@ class Viola(Instrument):
             ::
 
                 >>> viola.allowable_clefs
-                ClefInventory([Clef(name='alto'), Clef(name='treble')])
+                ClefList([Clef(name='alto'), Clef(name='treble')])
 
             ::
 

@@ -13,7 +13,7 @@ from abjad.tools.topleveltools import new
 
 @functools.total_ordering
 class Tempo(AbjadValueObject):
-    r'''Tempo indicator.
+    r'''Tempo.
 
     ..  container:: example
 
@@ -225,8 +225,8 @@ class Tempo(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
-        r'''Adds tempo to `expr`.
+    def __add__(self, argment):
+        r'''Adds tempo to `argment`.
 
         ..  container:: example
 
@@ -239,7 +239,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Returns none when `expr` is not a tempo:
+            **Example 2.** Returns none when `argment` is not a tempo:
 
             ::
 
@@ -248,13 +248,13 @@ class Tempo(AbjadValueObject):
 
         Returns new tempo or none.
         '''
-        if isinstance(expr, type(self)):
-            if self.is_imprecise or expr.is_imprecise:
+        if isinstance(argment, type(self)):
+            if self.is_imprecise or argment.is_imprecise:
                 raise ImpreciseTempoError
             new_quarters_per_minute = \
-                self.quarters_per_minute + expr.quarters_per_minute
+                self.quarters_per_minute + argment.quarters_per_minute
             minimum_denominator = \
-                min((self.reference_duration.denominator, expr.reference_duration.denominator))
+                min((self.reference_duration.denominator, argment.reference_duration.denominator))
             nonreduced_fraction = \
                 mathtools.NonreducedFraction(new_quarters_per_minute / 4)
             nonreduced_fraction = \
@@ -269,8 +269,8 @@ class Tempo(AbjadValueObject):
                 )
             return new_tempo
 
-    def __div__(self, expr):
-        r'''Divides tempo by `expr`.
+    def __div__(self, argment):
+        r'''Divides tempo by `argment`.
 
         ..  container:: example
 
@@ -294,18 +294,18 @@ class Tempo(AbjadValueObject):
         '''
         if self.is_imprecise:
             raise ImpreciseTempoError
-        if getattr(expr, 'is_imprecise', False):
+        if getattr(argment, 'is_imprecise', False):
             raise ImpreciseTempoError
-        if isinstance(expr, type(self)):
-            result = self.quarters_per_minute / expr.quarters_per_minute
+        if isinstance(argment, type(self)):
+            result = self.quarters_per_minute / argment.quarters_per_minute
             return durationtools.Multiplier(result)
-        elif isinstance(expr, numbers.Number):
-            units_per_minute = self.units_per_minute / expr
+        elif isinstance(argment, numbers.Number):
+            units_per_minute = self.units_per_minute / argment
             result = new(self, units_per_minute=units_per_minute)
             return result
         else:
             message = 'must be number or tempo indication: {!r}.'
-            message = message.format(expr)
+            message = message.format(argment)
             raise TypeError(message)
 
     def __format__(self, format_specification=''):
@@ -359,14 +359,14 @@ class Tempo(AbjadValueObject):
             return self._get_lilypond_format()
         return str(self)
 
-    def __lt__(self, arg):
-        r'''Is true when `arg` is a tempo with quarters per minute greater than
+    def __lt__(self, argument):
+        r'''Is true when `argument` is a tempo with quarters per minute greater than
         that of this tempo. Otherwise false.
 
         Returns true or false.
         '''
-        assert isinstance(arg, type(self)), repr(arg)
-        return self.quarters_per_minute < arg.quarters_per_minute
+        assert isinstance(argument, type(self)), repr(argument)
+        return self.quarters_per_minute < argument.quarters_per_minute
 
     def __mul__(self, multiplier):
         r'''Multiplies tempo by `multiplier`.
@@ -520,8 +520,8 @@ class Tempo(AbjadValueObject):
             raise TypeError(message)
         return string
 
-    def __sub__(self, expr):
-        r'''Subtracts `expr` from tempo.
+    def __sub__(self, argment):
+        r'''Subtracts `argment` from tempo.
 
         ..  container:: example
 
@@ -545,17 +545,17 @@ class Tempo(AbjadValueObject):
 
         Returns new tempo.
         '''
-        if not isinstance(expr, type(self)):
+        if not isinstance(argment, type(self)):
             message = 'must be tempo: {!r}.'
-            message = message.format(expr)
+            message = message.format(argment)
             raise Exception(message)
-        if self.is_imprecise or expr.is_imprecise:
+        if self.is_imprecise or argment.is_imprecise:
             raise ImpreciseTempoError
         new_quarters_per_minute = self.quarters_per_minute - \
-            expr.quarters_per_minute
+            argment.quarters_per_minute
         minimum_denominator = min((
             self.reference_duration.denominator,
-            expr.reference_duration.denominator,
+            argment.reference_duration.denominator,
             ))
         nonreduced_fraction = mathtools.NonreducedFraction(
             new_quarters_per_minute / 4)
@@ -571,8 +571,8 @@ class Tempo(AbjadValueObject):
             )
         return new_tempo
 
-    def __truediv__(self, expr):
-        r'''Divides tempo by `expr`. Operator required by Python 3.
+    def __truediv__(self, argment):
+        r'''Divides tempo by `argment`. Operator required by Python 3.
 
         ..  container:: example
 
@@ -596,7 +596,7 @@ class Tempo(AbjadValueObject):
 
         Returns new tempo.
         '''
-        return self.__div__(expr)
+        return self.__div__(argment)
 
     ### PRIVATE PROPERTIES ###
 

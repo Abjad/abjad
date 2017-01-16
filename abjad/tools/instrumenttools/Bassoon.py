@@ -19,7 +19,7 @@ class Bassoon(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { Bassoon }
@@ -65,7 +65,7 @@ class Bassoon(Instrument):
             'double reed player',
             'bassoonist',
             ])
-        self._starting_clefs = indicatortools.ClefInventory(['bass'])
+        self._starting_clefs = type(self.allowable_clefs)(['bass'])
         self._is_primary_instrument = True
 
     ### PUBLIC PROPERTIES ###
@@ -79,7 +79,7 @@ class Bassoon(Instrument):
             ::
 
                 >>> bassoon.allowable_clefs
-                ClefInventory([Clef(name='bass'), Clef(name='tenor')])
+                ClefList([Clef(name='bass'), Clef(name='tenor')])
 
             ::
 

@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BarLine(AbjadValueObject):
-    r'''A bar line.
+    r'''Bar line.
 
     ..  container:: example
 

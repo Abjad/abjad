@@ -7,13 +7,13 @@ from abjad.tools.abctools import AbjadObject
 class Expression(AbjadObject):
     r'''Expression.
 
-    ..  container:: example
+    ..  container:: example expression
 
-        Identity expression:
+        Makes identity expression:
 
         ::
 
-            >>> expression = expressiontools.Expression()
+            >>> expression = Expression()
 
         ::
 
@@ -30,15 +30,13 @@ class Expression(AbjadObject):
             >>> expression(99, 99.25)
             (99, 99.25)
 
-    ..  container:: example
+    ..  container:: example expression
 
-        Integer initialization expression:
+        Makes integer initialization expression:
 
         ::
 
-            >>> expression = expressiontools.Expression(
-            ...     evaluation_template='int({})',
-            ...     )
+            >>> expression = Expression(evaluation_template='int({})')
 
         ::
 
@@ -55,15 +53,13 @@ class Expression(AbjadObject):
             >>> expression(99.25)
             99
 
-    ..  container:: example
+    ..  container:: example expression
 
-        Binary integer initialization expression:
+        Makes binary integer initialization expression:
 
         ::
 
-            >>> expression = expressiontools.Expression(
-            ...     evaluation_template='int({}, base=2)',
-            ...     )
+            >>> expression = Expression(evaluation_template='int({}, base=2)')
 
         ::
 
@@ -79,131 +75,6 @@ class Expression(AbjadObject):
 
             >>> expression('111')
             7
-
-    ..  container:: example
-
-        Single-item list initialization expression:
-
-        ::
-
-            >>> expression = expressiontools.Expression(
-            ...     evaluation_template='[{}]',
-            ...     )
-
-        ::
-
-            >>> expression()
-            []
-
-        ::
-
-            >>> expression('Allegro')
-            ['Allegro']
-
-        ::
-
-            >>> expression(Markup('Allegro assai').italic())
-            [Markup(contents=[MarkupCommand('italic', 'Allegro assai')])]
-
-    ..  container:: example
-
-        Sequence initialization expression:
-
-        ::
-
-            >>> expression = sequence()
-
-        ::
-
-            >>> expression()
-            Sequence([])
-
-        ::
-
-            >>> expression('Allegro')
-            Sequence(['A', 'l', 'l', 'e', 'g', 'r', 'o'])
-
-        ::
-
-            >>> expression([1, 2, [3, [4]], 5])
-            Sequence([1, 2, [3, [4]], 5])
-
-    ..  container:: example
-
-        Flatten-sequence expression:
-
-        ::
-
-            >>> template = 'sequencetools.flatten_sequence({})'
-            >>> expression = expressiontools.Expression(
-            ...     evaluation_template=template,
-            ...     )
-
-        ::
-
-            >>> expression([])
-            []
-
-        ::
-
-            >>> expression([1, 2, 3, 4, 5])
-            [1, 2, 3, 4, 5]
-
-        ::
-
-            >>> expression([1, 2, [3, [4]], 5])
-            [1, 2, 3, 4, 5]
-
-    ..  container:: example
-
-        Restricted flatten-sequence expression:
-
-        ::
-
-            >>> template = 'sequencetools.flatten_sequence({}, depth=1)'
-            >>> expression = expressiontools.Expression(
-            ...     evaluation_template=template,
-            ...     )
-
-        ::
-
-            >>> expression([])
-            []
-
-        ::
-
-            >>> expression([1, 2, 3, 4, 5])
-            [1, 2, 3, 4, 5]
-
-        ::
-
-            >>> expression([1, 2, [3, [4]], 5])
-            [1, 2, 3, [4], 5]
-
-    ..  container:: example
-
-        Markup expression:
-
-        ::
-
-            >>> expression = expressiontools.Expression()
-            >>> expression = expression.markup()
-            >>> expression = expression.append_callback('{}.italic()')
-
-        ::
-
-            >>> expression('Allego')
-            Markup(contents=[MarkupCommand('italic', 'Allego')])
-
-        ::
-
-            >>> expression('Allegro assai')
-            Markup(contents=[MarkupCommand('italic', 'Allegro assai')])
-
-        ::
-
-            >>> expression('Allegro assai ma non troppo')
-            Markup(contents=[MarkupCommand('italic', 'Allegro assai ma non troppo')])
 
     '''
 
@@ -288,35 +159,35 @@ class Expression(AbjadObject):
         return proxy_method(i)
 
     def __call__(self, *arguments, **keywords):
-        r'''Calls expression on `arguments`.
+        r'''Calls expression on `arguments` with `keywords`.
 
-        ..  container:: example
+        ..  container:: example expression
 
             Calls identity expression:
 
             ::
 
-                >>> expression = expressiontools.Expression()
+                >>> expression = Expression()
 
             ::
 
                 >>> expression() is None
                 True
 
-        ..  container:: example
+        ..  container:: example expression
 
             Calls markup expression:
 
             ::
 
-                >>> expression = expressiontools.Expression()
+                >>> expression = Expression()
                 >>> expression = expression.markup()
-                >>> expression = expression.append_callback('{}.italic()')
+                >>> expression = expression.bold()
 
             ::
 
-                >>> expression('text')
-                Markup(contents=[MarkupCommand('italic', 'text')])
+                >>> expression('Allegro assai')
+                Markup(contents=[MarkupCommand('bold', 'Allegro assai')])
 
         Returns ouput of last callback.
         '''
@@ -338,28 +209,28 @@ class Expression(AbjadObject):
     def __format__(self, format_specification=''):
         r'''Formats expression.
 
-        ..  container:: example
+        ..  container:: example expression
 
             Formats identity expression:
 
             ::
 
-                >>> expression = expressiontools.Expression()
+                >>> expression = Expression()
 
             ::
 
                 >>> f(expression)
                 expressiontools.Expression()
 
-        ..  container:: example
+        ..  container:: example expression
 
             Formats markup expression:
 
             ::
 
-                >>> expression = expressiontools.Expression()
-                >>> expression = expression.append_callback('Markup({})')
-                >>> expression = expression.append_callback('{}.italic()')
+                >>> expression = Expression()
+                >>> expression = expression.markup()
+                >>> expression = expression.bold()
 
             ::
 
@@ -367,10 +238,11 @@ class Expression(AbjadObject):
                 expressiontools.Expression(
                     callbacks=(
                         expressiontools.Expression(
-                            evaluation_template='Markup({})',
+                            evaluation_template='abjad.markuptools.Markup',
+                            is_initializer=True,
                             ),
                         expressiontools.Expression(
-                            evaluation_template='{}.italic()',
+                            evaluation_template='{}.bold()',
                             ),
                         ),
                     )
@@ -429,33 +301,33 @@ class Expression(AbjadObject):
     def __repr__(self):
         r'''Gets interpreter representation.
 
-        ..  container:: example
+        ..  container:: example expression
 
             Gets interpreter representation of identity expression:
 
             ::
 
-                >>> expression = expressiontools.Expression()
+                >>> expression = Expression()
 
             ::
 
                 >>> expression
                 Expression()
 
-        ..  container:: example
+        ..  container:: example expression
 
             Gets interpreter representation of markup expression:
 
             ::
 
-                >>> expression = expressiontools.Expression()
-                >>> expression = expression.append_callback('Markup({})')
-                >>> expression = expression.append_callback('{}.italic()')
+                >>> expression = Expression()
+                >>> expression = expression.markup()
+                >>> expression = expression.bold()
 
             ::
 
                 >>> expression
-                Expression(callbacks=(Expression(evaluation_template='Markup({})'), Expression(evaluation_template='{}.italic()')))
+                Expression(callbacks=(Expression(evaluation_template='abjad.markuptools.Markup', is_initializer=True), Expression(evaluation_template='{}.bold()')))
 
         Returns string.
         '''
@@ -469,35 +341,35 @@ class Expression(AbjadObject):
         return proxy_method(i, argument)
 
     def __str__(self):
-        r'''Gets string representation.
+        r'''Gets string representation of expression.
 
-        ..  container:: example
+        ..  container:: example expression
 
             Gets string representation of identity expression:
 
             ::
 
-                >>> expression = expressiontools.Expression()
+                >>> expression = Expression()
 
             ::
 
                 >>> str(expression)
                 'Expression()'
 
-        ..  container:: example
+        ..  container:: example expression
 
             Gets string representation of markup expression:
 
             ::
 
-                >>> expression = expressiontools.Expression()
-                >>> expression = expression.append_callback('Markup({})')
-                >>> expression = expression.append_callback('{}.italic()')
+                >>> expression = Expression()
+                >>> expression = expression.markup()
+                >>> expression = expression.bold()
 
             ::
 
                 >>> str(expression)
-                "Expression(callbacks=(Expression(evaluation_template='Markup({})'), Expression(evaluation_template='{}.italic()')))"
+                "Expression(callbacks=(Expression(evaluation_template='abjad.markuptools.Markup', is_initializer=True), Expression(evaluation_template='{}.bold()')))"
 
         Returns string.
         '''
@@ -577,30 +449,37 @@ class Expression(AbjadObject):
         return result
 
     @staticmethod
-    def _get_expression_markup(object_, direction=None, name=None):
+    def _get_expression_markup(argument, direction=None, name=None):
         import abjad
         if name is None:
-            name = getattr(object_, '_name_markup', None)
+            name = getattr(argument, '_name_markup', None)
         if name is None:
-            name = getattr(object_, '_name', None)
-        if getattr(object_, '_equivalence_markup', None) is not None:
-            return abjad.new(object_._equivalence_markup, direction=direction)
-        elif getattr(object_, '_expression', None) is not None:
-            return object_._expression.get_formula_markup(
+            name = getattr(argument, '_name', None)
+        if getattr(argument, '_equivalence_markup', None) is not None:
+            return abjad.new(argument._equivalence_markup, direction=direction)
+        elif getattr(argument, '_expression', None) is not None:
+            return argument._expression.get_formula_markup(
                 direction=direction,
                 name=name,
                 )
         elif name is not None:
             return abjad.Markup(contents=name, direction=direction).bold()
 
-    def _initialize(self, class_, formula_string_template=None, **keywords):
+    def _initialize(
+        self,
+        class_,
+        formula_string_template=None,
+        module_names=None,
+        **keywords
+        ):
         assert isinstance(class_, type), repr(class_)
         if not hasattr(class_, '_frozen_expression'):
             message = 'does not implement expression protocol: {!r}.'
             message = message.format(class_)
             raise TypeError(class_)
         template = class_.__module__.split('.')
-        template = [_ for _ in template if _ != 'tools']
+        if 'abjad' in template:
+            template = [_ for _ in template if _ != 'tools']
         template = '.'.join(template)
         keywords = self._make_evaluable_keywords(keywords)
         keywords = keywords or None
@@ -609,6 +488,7 @@ class Expression(AbjadObject):
             formula_string_template=formula_string_template,
             is_initializer=True,
             keywords=keywords,
+            module_names=module_names,
             )
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
@@ -778,44 +658,39 @@ class Expression(AbjadObject):
     def callbacks(self):
         r'''Gets callbacks.
 
-        ..  container:: example
-
-            Gets callbacks:
+        ..  container:: example expression
 
             ::
 
-                >>> expression = expressiontools.Expression()
-                >>> expression = expression.append_callback('Markup({})')
-                >>> expression = expression.append_callback('{}.italic()')
-
-            ::
-
+                >>> expression = Expression()
+                >>> expression = expression.markup()
+                >>> expression = expression.bold()
                 >>> for callback in expression.callbacks:
                 ...     callback
-                Expression(evaluation_template='Markup({})')
-                Expression(evaluation_template='{}.italic()')
+                Expression(evaluation_template='abjad.markuptools.Markup', is_initializer=True)
+                Expression(evaluation_template='{}.bold()')
 
-        ..  container:: example
+        ..  container:: example expression
 
             Defaults to none:
 
             ::
 
-                >>> expression = expressiontools.Expression()
+                >>> expression = Expression()
                 >>> expression.callbacks is None
                 True
 
         Set to callbacks or none.
 
-        ..  container:: example
+        ..  container:: example expression
 
             Returns tuple or none:
 
             ::
 
-                >>> expression = expressiontools.Expression()
-                >>> expression = expression.append_callback('Markup({})')
-                >>> expression = expression.append_callback('{}.italic()')
+                >>> expression = Expression()
+                >>> expression = expression.markup()
+                >>> expression = expression.bold()
                 >>> isinstance(expression.callbacks, tuple)
                 True
 
@@ -958,31 +833,29 @@ class Expression(AbjadObject):
         ):
         r'''Appends callback.
 
-        ..  container:: example
-
-            Appends callback:
+        ..  container:: example expression
 
             ::
 
-                >>> expression = expressiontools.Expression()
+                >>> expression = Expression()
                 >>> expression.callbacks is None
                 True
 
             ::
 
                 
-                >>> expression = expression.append_callback('Markup({})')
+                >>> expression = expression.append_callback('int({})')
                 >>> for callback in expression.callbacks:
                 ...     callback
-                Expression(evaluation_template='Markup({})')
+                Expression(evaluation_template='int({})')
 
             ::
 
-                >>> expression = expression.append_callback('{}.italic()')
+                >>> expression = expression.append_callback('{}**2')
                 >>> for expression in expression.callbacks:
                 ...     expression
-                Expression(evaluation_template='Markup({})')
-                Expression(evaluation_template='{}.italic()')
+                Expression(evaluation_template='int({})')
+                Expression(evaluation_template='{}**2')
 
         Returns new expression.
         '''
@@ -1004,10 +877,10 @@ class Expression(AbjadObject):
         return result
 
     @staticmethod
-    def establish_equivalence(object_, name):
+    def establish_equivalence(argument, name):
         r'''Makes new object with `name` and equivalence markup.
 
-        ..  container:: example
+        ..  container:: example expression
 
             ::
 
@@ -1024,7 +897,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> segment = expressiontools.Expression.establish_equivalence(segment, 'Q')
+                >>> segment = Expression.establish_equivalence(segment, 'Q')
                 >>> segment
                 PitchClassSegment([7, 10, 10.5, 6, 7, 10.5, 11.5, 2, 0, 3], name='Q')
 
@@ -1090,12 +963,12 @@ class Expression(AbjadObject):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        Returns new object with type equal to that of `object_`.
+        Returns new object with type equal to that of `argument`.
         '''
         import abjad
-        result = abjad.new(object_, name=name)
+        result = abjad.new(argument, name=name)
         lhs_markup = abjad.Markup(name).bold()
-        rhs_markup = Expression._get_expression_markup(object_)
+        rhs_markup = Expression._get_expression_markup(argument)
         equivalence_markup = lhs_markup + abjad.Markup('=') + rhs_markup
         equivalence_markup = abjad.Markup.line([equivalence_markup])
         result._equivalence_markup = equivalence_markup
@@ -1104,16 +977,13 @@ class Expression(AbjadObject):
     def get_formula_markup(self, name, direction=None):
         r'''Gets formula markup.
 
-        ..  container:: example
+        ..  container:: example expression
 
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
                 >>> segment = pitchtools.PitchClassSegment(items=items, name='J')
-                >>> segment = segment.alpha()
-
-            ::
-
+                >>> segment = segment.invert()
                 >>> markup = segment._expression.get_formula_markup(name='J')
                 >>> show(markup) # doctest: +SKIP
                 
@@ -1123,7 +993,7 @@ class Expression(AbjadObject):
                 \markup {
                     \concat
                         {
-                            A
+                            I
                             \concat
                                 {
                                     \hspace
@@ -1134,17 +1004,14 @@ class Expression(AbjadObject):
                         }
                     }
 
-        ..  container:: example
+        ..  container:: example expression
 
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
                 >>> segment = pitchtools.PitchClassSegment(items=items, name='J')
-                >>> segment = segment.alpha()
+                >>> segment = segment.invert()
                 >>> segment = segment.rotate(n=2)
-
-            ::
-
                 >>> markup = segment._expression.get_formula_markup(name='J')
                 >>> show(markup) # doctest: +SKIP
                 
@@ -1161,7 +1028,7 @@ class Expression(AbjadObject):
                                 2
                             \concat
                                 {
-                                    A
+                                    I
                                     \concat
                                         {
                                             \hspace
@@ -1199,32 +1066,26 @@ class Expression(AbjadObject):
     def get_formula_string(self, name):
         r'''Gets formula string.
 
-        ..  container:: example
+        ..  container:: example expression
 
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
                 >>> segment = pitchtools.PitchClassSegment(items=items, name='J')
-                >>> segment = segment.alpha()
-
-            ::
-
+                >>> segment = segment.invert()
                 >>> segment._expression.get_formula_string(name='J')
-                'A(J)'
+                'I(J)'
                 
-        ..  container:: example
+        ..  container:: example expression
 
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
                 >>> segment = pitchtools.PitchClassSegment(items=items, name='J')
-                >>> segment = segment.alpha()
+                >>> segment = segment.invert()
                 >>> segment = segment.rotate(n=2)
-
-            ::
-
                 >>> segment._expression.get_formula_string(name='J')
-                'r2(A(J))'
+                'r2(I(J))'
                 
         Returns string or none.
         '''
@@ -1234,9 +1095,10 @@ class Expression(AbjadObject):
         callback = self.callbacks[0]
         try:
             string = callback.formula_string_template.format(name)
-        except (IndexError, KeyError) as e:
-            message = '{!r} with {!r} raises {!r}.'
+        except (AttributeError, IndexError, KeyError) as e:
+            message = '{!r} with template {!r} and name {!r} raises {!r}.'
             message = message.format(
+                callback,
                 callback.formula_string_template,
                 name,
                 e,
@@ -1245,9 +1107,10 @@ class Expression(AbjadObject):
         for callback in self.callbacks[1:]:
             try:
                 string = callback.formula_string_template.format(string)
-            except (IndexError, KeyError) as e:
-                message = '{!r} with {!r} raises {!r}.'
+            except (AttributeError, IndexError, KeyError) as e:
+                message = '{!r} with template {!r} and name {!r} raises {!r}.'
                 message = message.format(
+                    callback,
                     callback.formula_string_template,
                     string,
                     e,
@@ -1256,7 +1119,57 @@ class Expression(AbjadObject):
         return string
 
     def iterate(self, **keywords):
-        r'''Appends iteration agent and sets proxy.
+        r'''Makes iterate expression and sets proxy.
+
+        ..  container:: example
+
+            Makes expression to iterate leaves:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff()
+                    >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                    >>> staff.append(Measure((2, 8), "af'8 r8"))
+                    >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        {
+                            \time 2/8
+                            <c' bf'>8
+                            <g' a'>8
+                        }
+                        {
+                            af'8
+                            r8
+                        }
+                        {
+                            r8
+                            gf'8
+                        }
+                    }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression()
+                    >>> expression = expression.iterate()
+                    >>> expression = expression.by_leaf()
+                    >>> for leaf in expression(staff):
+                    ...     leaf
+                    ...
+                    Chord("<c' bf'>8")
+                    Chord("<g' a'>8")
+                    Note("af'8")
+                    Rest('r8')
+                    Rest('r8')
+                    Note("gf'8")
 
         Returns expression.
         '''
@@ -1264,7 +1177,52 @@ class Expression(AbjadObject):
         return self._initialize(abjad.agenttools.IterationAgent, **keywords)
 
     def label(self, **keywords):
-        r'''Appends label callback and sets proxy.
+        r'''Makes label expression and sets proxy.
+
+        ..  container:: example
+
+            Makes expression to label logical tie durations:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+
+            ..  container:: example expression
+
+                    >>> expression = Expression()
+                    >>> expression = expression.label()
+                    >>> expression = expression.with_durations()
+                    >>> expression(staff)
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff {
+                        c'4.
+                            ^ \markup {
+                                \small
+                                    3/8
+                                }
+                        d'8 ~
+                            ^ \markup {
+                                \small
+                                    1/2
+                                }
+                        d'4.
+                        e'16 [
+                            ^ \markup {
+                                \small
+                                    1/16
+                                }
+                        ef'16 ]
+                            ^ \markup {
+                                \small
+                                    1/16
+                                }
+                    }
 
         Returns expression.
         '''
@@ -1272,7 +1230,27 @@ class Expression(AbjadObject):
         return self._initialize(abjad.agenttools.LabelAgent, **keywords)
 
     def markup(self, **keywords):
-        r'''Appends markup callback and sets proxy.
+        r'''Makes markup expression and sets proxy.
+
+        ..  container:: example expression
+
+            Makes expression to make bold markup:
+
+            ::
+
+                >>> expression = Expression()
+                >>> expression = expression.markup()
+                >>> expression = expression.bold()
+                >>> markup = expression('Allegro assai')
+                >>> f(markup)
+                \markup {
+                    \bold
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
 
         Returns expression.
         '''
@@ -1280,7 +1258,38 @@ class Expression(AbjadObject):
         return self._initialize(abjad.Markup, **keywords)
 
     def markup_list(self, **keywords):
-        r'''Appends markup list callback and sets proxy.
+        r'''Makes markup list expression and sets proxy.
+
+        ..  container:: example expression
+
+            Makes expression to concatenate markups in markup list:
+
+            ::
+
+                >>> expression = Expression()
+                >>> expression = expression.markup_list()
+                >>> expression = expression.concat(direction=Up)
+                >>> downbow = Markup.musicglyph('scripts.downbow')
+                >>> hspace = Markup.hspace(1)
+                >>> upbow = Markup.musicglyph('scripts.upbow')
+                >>> markups = [downbow, hspace, upbow]
+                >>> markup = expression(markups)
+                >>> f(markup)
+                ^ \markup {
+                    \concat
+                        {
+                            \musicglyph
+                                #"scripts.downbow"
+                            \hspace
+                                #1
+                            \musicglyph
+                                #"scripts.upbow"
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
 
         Returns expression.
         '''
@@ -1288,15 +1297,93 @@ class Expression(AbjadObject):
         return self._initialize(abjad.MarkupList, **keywords)
 
     def pitch_class_segment(self, **keywords):
-        r'''Appends pitch-class segment callback and sets proxy.
+        r'''Makes pitch-class segment expression and sets proxy.
+
+        ..  container:: example
+
+            Makes expression to transpose pitch-class segment:
+
+            ::
+
+                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                >>> J = pitchtools.PitchClassSegment(items=items, name='J')
+                >>> J
+                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7], name='J')
+
+            ::
+
+                >>> show(J) # doctest: +SKIP
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression()
+                    >>> expression = expression.pitch_class_segment(name='J')
+                    >>> expression = expression.transpose(n=13)
+                    >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
+                    >>> segment
+                    PitchClassSegment([11, 11.5, 7, 8, 11.5, 8], name='T13(J)')
+
+                ::
+
+                    >>> show(segment) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = segment.__illustrate__()
+                    >>> f(lilypond_file[Voice])
+                    \new Voice {
+                        b'8
+                            ^ \markup {
+                                \concat
+                                    {
+                                        T
+                                        \hspace
+                                            #-0.2
+                                        \sub
+                                            13
+                                        \concat
+                                            {
+                                                \hspace
+                                                    #0.4
+                                                \bold
+                                                    J
+                                            }
+                                    }
+                                }
+                        bqs'8
+                        g'8
+                        af'8
+                        bqs'8
+                        af'8
+                        \bar "|."
+                        \override Score.BarLine.transparent = ##f
+                    }
 
         Returns expression.
         '''
         import abjad
-        return self._initialize(abjad.pitchtools.PitchClassSegment, **keywords)
+        return self._initialize(
+            abjad.PitchClassSegment,
+            formula_string_template='pcs({})',
+            **keywords
+            )
 
     def sequence(self, **keywords):
-        r'''Appends sequence callback and sets proxy.
+        r'''Makes sequence expression and sets proxy.
+
+        ..  container:: example expression
+
+            Makes expression to initialize, flatten and reverse sequence:
+
+            ::
+
+                >>> expression = sequence()
+                >>> expression = expression.reverse()
+                >>> expression = expression.flatten()
+                >>> expression([1, 2, 3, [4, 5, [6]]])
+                Sequence([4, 5, 6, 3, 2, 1])
 
         Returns expression.
         '''
@@ -1308,9 +1395,9 @@ class Expression(AbjadObject):
             )
 
     def wrap_in_list(self):
-        r'''Wraps list around input argument.
+        r'''Makes expression to wrap argument in list.
 
-        ..  container:: example
+        ..  container:: example expression
 
             ::
 

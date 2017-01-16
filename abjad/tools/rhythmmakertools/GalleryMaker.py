@@ -81,7 +81,7 @@ class GalleryMaker(AbjadValueObject):
         ):
         markup = self._make_configuration_markup(rhythm_maker)
         context = first_score['TimeSignatureContext']
-        for leaf in iterate(context).by_class(scoretools.Leaf):
+        for leaf in iterate(context).by_leaf():
             break
         first_leaf = leaf
         attach(markup, first_leaf)

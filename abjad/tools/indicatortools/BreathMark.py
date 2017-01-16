@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BreathMark(AbjadValueObject):
-    r'''A breath mark.
+    r'''Breath mark.
 
     ..  container:: example
 

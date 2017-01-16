@@ -97,7 +97,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                 if 1 < segment_number:
                     rehearsal_mark = indicatortools.RehearsalMark()
                     for voice in iterate(score).by_class(scoretools.Voice):
-                        for leaf in iterate(voice).by_class(scoretools.Leaf):
+                        for leaf in iterate(voice).by_leaf():
                             attach(rehearsal_mark, leaf)
                             break
                 if segment_count <= segment_number:

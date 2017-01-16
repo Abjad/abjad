@@ -37,28 +37,15 @@ class CompoundOperator(AbjadValueObject):
         '_show_identity_operators',
         )
 
-    _reserved_operator_abbreviations = (
-        'A', 'I', 'M', 'R', 'r', 'T',
-        )
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
     def __init__(self, operators=None, show_identity_operators=None):
-        from abjad.tools import pitchtools
-        prototype = (
-            pitchtools.Alpha,
-            pitchtools.Inversion,
-            pitchtools.Multiplication,
-            pitchtools.Retrograde,
-            pitchtools.Rotation,
-            pitchtools.Transposition,
-            sequencetools.Duplication,
-            )
         if operators is not None:
             if not isinstance(operators, collections.Sequence):
                 operators = (operators,)
             assert len(operators)
-            assert all(isinstance(_, prototype) for _ in operators)
             operators = tuple(operators)
         self._operators = operators
         assert isinstance(show_identity_operators, (bool, type(None)))
@@ -79,57 +66,43 @@ class CompoundOperator(AbjadValueObject):
                 >>> str(operator)
                 'M5T1'
 
-            ::
-
-                >>> alpha = pitchtools.Alpha()
-                >>> new_operator = alpha + operator
-                >>> str(new_operator)
-                'AM5T1'
-
-            ::
-
-                >>> new_operator = operator + alpha
-                >>> str(new_operator)
-                'M5T1A'
-
         ..  container:: example
 
             ::
 
-                >>> alpha = pitchtools.Alpha()
                 >>> inversion = pitchtools.Inversion()
                 >>> retrograde = pitchtools.Retrograde()
                 >>> transposition = pitchtools.Transposition(n=1)
 
             ::
 
-                >>> operator_1 = alpha + inversion
+                >>> operator_1 = inversion + retrograde
                 >>> str(operator_1)
-                'AI'
+                'IR'
 
             ::
 
-                >>> operator_2 = retrograde + transposition
+                >>> operator_2 = inversion + transposition
                 >>> str(operator_2)
-                'RT1'
+                'IT1'
 
             ::
 
                 >>> operator_3 = operator_1 + operator_2
                 >>> str(operator_3)
-                'AIRT1'
+                'IRIT1'
 
             ::
 
-                >>> print(format(operator_3))
+                >>> f(operator_3)
                 pitchtools.CompoundOperator(
                     operators=(
                         pitchtools.Transposition(
                             n=1,
                             ),
+                        pitchtools.Inversion(),
                         pitchtools.Retrograde(),
                         pitchtools.Inversion(),
-                        pitchtools.Alpha(),
                         ),
                     )
 
@@ -145,8 +118,8 @@ class CompoundOperator(AbjadValueObject):
             result = result._with_operator(operator)
         return result
 
-    def __call__(self, expr):
-        r'''Calls compound operator on `expr`.
+    def __call__(self, argment):
+        r'''Calls compound operator on `argment`.
 
         ..  container:: example
 
@@ -173,13 +146,13 @@ class CompoundOperator(AbjadValueObject):
                 >>> transform
                 PitchClassSegment([2, 7, 8, 11])
 
-        Returns new object with type equal to that of `expr`.
+        Returns new object with type equal to that of `argment`.
         '''
         if self.operators is None:
-            return expr
+            return argment
         for transform in self.operators:
-            expr = transform(expr)
-        return expr
+            argment = transform(argment)
+        return argment
 
     def __radd__(self, operator):
         r'''Composes `operator` and compound operator.
@@ -196,16 +169,16 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> alpha = pitchtools.Alpha()
-                >>> new_operator = alpha + operator
+                >>> retrograde = Retrograde()
+                >>> new_operator = retrograde + operator
                 >>> str(new_operator)
-                'AM5T1'
+                'RM5T1'
 
             ::
 
-                >>> new_operator = operator + alpha
+                >>> new_operator = operator + retrograde
                 >>> str(new_operator)
-                'M5T1A'
+                'M5T1R'
 
         Returns new compound operator.
         '''
@@ -377,30 +350,6 @@ class CompoundOperator(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    def alpha(self):
-        r'''Configures compound operator to take alpha transform.
-
-        ..  container:: example
-
-            Composes alpha transform:
-
-            ::
-
-                >>> operator = pitchtools.CompoundOperator()
-                >>> operator = operator.alpha()
-                >>> print(format(operator))
-                pitchtools.CompoundOperator(
-                    operators=(
-                        pitchtools.Alpha(),
-                        ),
-                    )
-
-        Returns new compound operator.
-        '''
-        from abjad.tools import pitchtools
-        operator = pitchtools.Alpha()
-        return self._with_operator(operator)
-
     def duplicate(self, counts=None, indices=None, period=None):
         r'''Configures compound operator to duplicate pitches by `counts`, with
         optional `indices` and `period`.
@@ -411,7 +360,7 @@ class CompoundOperator(AbjadValueObject):
 
                 >>> operator = pitchtools.CompoundOperator()
                 >>> operator = operator.duplicate(counts=1)
-                >>> print(format(operator))
+                >>> f(operator)
                 pitchtools.CompoundOperator(
                     operators=(
                         sequencetools.Duplication(
@@ -438,7 +387,7 @@ class CompoundOperator(AbjadValueObject):
 
                 >>> operator = pitchtools.CompoundOperator()
                 >>> operator = operator.invert(axis=2)
-                >>> print(format(operator))
+                >>> f(operator)
                 pitchtools.CompoundOperator(
                     operators=(
                         pitchtools.Inversion(
@@ -462,7 +411,7 @@ class CompoundOperator(AbjadValueObject):
 
                 >>> operator = pitchtools.CompoundOperator()
                 >>> operator = operator.multiply(n=3)
-                >>> print(format(operator))
+                >>> f(operator)
                 pitchtools.CompoundOperator(
                     operators=(
                         pitchtools.Multiplication(
@@ -486,7 +435,7 @@ class CompoundOperator(AbjadValueObject):
 
                 >>> operator = pitchtools.CompoundOperator()
                 >>> operator = operator.retrograde()
-                >>> print(format(operator))
+                >>> f(operator)
                 pitchtools.CompoundOperator(
                     operators=(
                         pitchtools.Retrograde(),
@@ -508,7 +457,7 @@ class CompoundOperator(AbjadValueObject):
 
                 >>> operator = pitchtools.CompoundOperator()
                 >>> operator = operator.rotate(n=-1)
-                >>> print(format(operator))
+                >>> f(operator)
                 pitchtools.CompoundOperator(
                     operators=(
                         pitchtools.Rotation(
@@ -539,7 +488,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> print(format(operator))
+                >>> f(operator)
                 pitchtools.CompoundOperator(
                     operators=(
                         pitchtools.Transposition(

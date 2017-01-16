@@ -439,7 +439,7 @@ class LabelAgent(abctools.AbjadObject):
         """
         if self._frozen_expression:
             return self._make_callback(inspect.currentframe())
-        for leaf in iterate(self.client).by_class(scoretools.Leaf):
+        for leaf in iterate(self.client).by_leaf():
             self._color_leaf(leaf, color)
 
     def color_note_heads(self, color_map=None):
@@ -646,7 +646,7 @@ class LabelAgent(abctools.AbjadObject):
         if self._frozen_expression:
             return self._make_callback(inspect.currentframe())
         color_map = color_map or self._pc_number_to_color
-        for leaf in iterate(self.client).by_class(scoretools.Leaf):
+        for leaf in iterate(self.client).by_leaf():
             if isinstance(leaf, scoretools.Chord):
                 for note_head in leaf.note_heads:
                     pc = note_head.written_pitch.numbered_pitch_class
@@ -771,7 +771,7 @@ class LabelAgent(abctools.AbjadObject):
         '''
         if self._frozen_expression:
             return self._make_callback(inspect.currentframe())
-        leaves = iterate(self.client).by_class(scoretools.Leaf)
+        leaves = iterate(self.client).by_leaf()
         for leaf in leaves:
             detach(markuptools.Markup, leaf)
 
@@ -2552,7 +2552,7 @@ class LabelAgent(abctools.AbjadObject):
             string = str(index)
             label = markuptools.Markup(string, direction=direction)
             label = label.small()
-            leaves = iterate(item).by_class(scoretools.Leaf)
+            leaves = iterate(item).by_leaf()
             first_leaf = list(leaves)[0]
             attach(label, first_leaf)
 

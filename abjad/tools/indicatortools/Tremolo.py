@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Tremolo(AbjadValueObject):
-    r'''A (two-note) tremolo.
+    r'''Tremolo (of exactly two notes).
     
     ..  container:: example
 
@@ -69,7 +69,7 @@ class Tremolo(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
+    def __copy__(self, *arguments):
         r'''Copies tremolo.
 
         ..  container:: example
@@ -95,7 +95,7 @@ class Tremolo(AbjadValueObject):
         Returns new tremolo.
         '''
         superclass = super(Tremolo, self)
-        return superclass.__copy__(*args)
+        return superclass.__copy__(*arguments)
 
     def __format__(self, format_specification=''):
         r'''Formats stem tremolo.

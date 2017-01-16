@@ -86,10 +86,10 @@ class OffsetCounter(TypedCounter):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import timespantools
+        import abjad
         if not self:
             return markuptools.Markup.null().__illustrate__()
-        if isinstance(range_, timespantools.Timespan):
+        if isinstance(range_, abjad.Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
             minimum, maximum = range_

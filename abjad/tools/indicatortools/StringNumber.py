@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class StringNumber(AbjadValueObject):
-    r'''String number indicator.
+    r'''String number.
 
     ..  container:: example
 

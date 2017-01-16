@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class PageBreak(AbjadValueObject):
-    r'''A page break.
+    r'''Page break.
 
     ..  container:: example
 

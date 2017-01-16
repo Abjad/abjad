@@ -71,7 +71,7 @@ class Segment(TypedTuple):
     def __illustrate__(
         self,
         name_markup_direction=Up,
-        **kwargs
+        **keywords
         ):
         r'''Illustrates segment.
 
@@ -106,13 +106,13 @@ class Segment(TypedTuple):
         moment = abjad.schemetools.SchemeMoment((1, 12))
         abjad.set_(score).proportional_notation_duration = moment
         lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(music=score)
-        if 'title' in kwargs:
-            title = kwargs.get('title')
+        if 'title' in keywords:
+            title = keywords.get('title')
             if not isinstance(title, abjad.Markup):
                 title = abjad.Markup(title)
             lilypond_file.header_block.title = title
-        if 'subtitle' in kwargs:
-            markup = abjad.Markup(kwargs.get('subtitle'))
+        if 'subtitle' in keywords:
+            markup = abjad.Markup(keywords.get('subtitle'))
             lilypond_file.header_block.subtitle = markup
         command = abjad.LilyPondCommand('accidentalStyle forget')
         lilypond_file.layout_block.items.append(command)
@@ -188,12 +188,13 @@ class Segment(TypedTuple):
             strings.append(string)
         return '<{}>'.format(', '.join(strings))
 
-    def _make_callback(self, frame):
+    def _make_callback(self, frame, formula_string_template=None):
         assert self._frozen_expression, repr(self._frozen_expression)
         Expression = expressiontools.Expression
         template = Expression._make_evaluation_template(frame)
         return self._frozen_expression.append_callback(
             evaluation_template=template,
+            formula_string_template=formula_string_template,
             )
 
     ### PUBLIC METHODS ###

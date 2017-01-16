@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class BowPressure(AbjadValueObject):
-    r'''A bow pressure indicator.
+    r'''Bow pressure indicator.
 
     ..  container:: example
 

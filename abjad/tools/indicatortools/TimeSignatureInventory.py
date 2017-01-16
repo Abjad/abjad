@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class TimeSignatureInventory(TypedList):
-    r'''An ordered list of time signatures.
+    r'''Time signature list.
 
     ..  container:: example
 
@@ -42,6 +42,8 @@ class TimeSignatureInventory(TypedList):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Collections'
+
     __slots__ = (
         )
 
@@ -56,13 +58,12 @@ class TimeSignatureInventory(TypedList):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import scoretools
-        measures = scoretools.make_spacer_skip_measures(self)
-        staff = scoretools.Staff(measures)
+        import abjad
+        measures = abjad.scoretools.make_spacer_skip_measures(self)
+        staff = abjad.Staff(measures)
         staff.context_name = 'RhythmicStaff'
-        score = scoretools.Score([staff])
-        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+        score = abjad.Score([staff])
+        lilypond_file = abjad.LilyPondFile.new(score)
         return lilypond_file
 
     ### PRIVATE PROPERTIES ###
@@ -70,14 +71,14 @@ class TimeSignatureInventory(TypedList):
     @property
     def _item_coercer(self):
         from abjad.tools import indicatortools
-        def coerce(expr):
-            if isinstance(expr, tuple):
-                return indicatortools.TimeSignature(expr)
-            elif isinstance(expr, indicatortools.TimeSignature):
-                return copy.copy(expr)
+        def coerce(argment):
+            if isinstance(argment, tuple):
+                return indicatortools.TimeSignature(argment)
+            elif isinstance(argment, indicatortools.TimeSignature):
+                return copy.copy(argment)
             else:
                 message = 'must be pair or time signature: {!r}.'
-                message = message.format(expr)
+                message = message.format(argment)
                 raise Exception(message)
         return coerce
 

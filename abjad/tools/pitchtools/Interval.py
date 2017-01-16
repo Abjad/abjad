@@ -73,12 +73,12 @@ class Interval(AbjadValueObject):
         message = message.format(type(self))
         raise NotImplementedError(message)
 
-    def __ne__(self, arg):
-        r'''Is true when interval does not equal `arg`.
+    def __ne__(self, argument):
+        r'''Is true when interval does not equal `argument`.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     def __neg__(self):
         r'''Negates interval.
@@ -142,8 +142,8 @@ class Interval(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def is_named_interval_abbreviation(expr):
-        '''Is true when `expr` is a named interval abbreviation.
+    def is_named_interval_abbreviation(argment):
+        '''Is true when `argment` is a named interval abbreviation.
         Otherwise false:
 
         ::
@@ -155,13 +155,13 @@ class Interval(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(expr, str):
+        if not isinstance(argment, str):
             return False
-        return bool(Interval._interval_name_abbreviation_regex.match(expr))
+        return bool(Interval._interval_name_abbreviation_regex.match(argment))
 
     @staticmethod
-    def is_named_interval_quality_abbreviation(expr):
-        '''Is true when `expr` is a named-interval quality abbreviation. Otherwise
+    def is_named_interval_quality_abbreviation(argment):
+        '''Is true when `argment` is a named-interval quality abbreviation. Otherwise
         false:
 
         ::
@@ -173,7 +173,7 @@ class Interval(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(expr, str):
+        if not isinstance(argment, str):
             return False
         return bool(Interval._named_interval_quality_abbreviation_regex.match(
-            expr))
+            argment))

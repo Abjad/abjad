@@ -84,9 +84,9 @@ class RhythmMaker(AbjadValueObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import rhythmmakertools
+        import abjad
         selections = self(divisions)
-        lilypond_file = rhythmmakertools.make_lilypond_file(
+        lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
             selections,
             divisions,
             )
@@ -242,9 +242,6 @@ class RhythmMaker(AbjadValueObject):
         divisions_ = []
         for division in divisions:
             if isinstance(division, mathtools.NonreducedFraction):
-                divisions_.append(division)
-            elif isinstance(division, durationtools.Division):
-                division = mathtools.NonreducedFraction(division.duration)
                 divisions_.append(division)
             else:
                 division = mathtools.NonreducedFraction(division)

@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class KeyCluster(AbjadValueObject):
-    r'''A key cluster indicator.
+    r'''Key cluster.
 
     ..  container:: example
 

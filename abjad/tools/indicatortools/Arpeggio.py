@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Arpeggio(AbjadValueObject):
-    r'''An arpeggio.
+    r'''Arpeggio.
 
     ..  container:: example
 

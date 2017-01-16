@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import new
 
 
 class Annotation(AbjadValueObject):
-    r'''An annotation.
+    r'''Annotation.
 
     ..  container:: example
 
@@ -43,9 +43,9 @@ class Annotation(AbjadValueObject):
     def __init__(self, name='annotation', value=None):
         self._default_scope = None
         if isinstance(name, type(self)):
-            expr = name
-            name = expr.name
-            value = value or expr.value
+            argment = name
+            name = argment.name
+            value = value or argment.value
         name = copy.copy(name)
         value = copy.copy(value)
         self._name = name

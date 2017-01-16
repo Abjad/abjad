@@ -9,14 +9,14 @@ class Inversion(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Inversion()
+            >>> Inversion()
             Inversion()
 
     ..  container:: example
 
         ::
 
-            >>> pitchtools.Inversion(axis=15)
+            >>> Inversion(axis=15)
             Inversion(axis=NamedPitch("ef''"))
 
     Object model of twelve-tone inversion operator.
@@ -48,15 +48,15 @@ class Inversion(AbjadValueObject):
             ::
 
                 >>> items = [0, 2, 4, 5]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             Example operators:
 
             ::
 
-                >>> inversion = pitchtools.Inversion()
-                >>> transposition = pitchtools.Transposition(n=3)
+                >>> inversion = Inversion()
+                >>> transposition = Transposition(n=3)
 
         ..  container:: example
 
@@ -134,8 +134,8 @@ class Inversion(AbjadValueObject):
         from abjad.tools import pitchtools
         return pitchtools.CompoundOperator._compose_operators(self, operator)
 
-    def __call__(self, expr):
-        r'''Calls inversion on `expr`.
+    def __call__(self, argment):
+        r'''Calls inversion on `argment`.
 
         ..  container:: example
 
@@ -143,8 +143,8 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = pitchtools.Inversion()
-                >>> pitch_class = pitchtools.NumberedPitchClass(1)
+                >>> inversion = Inversion()
+                >>> pitch_class = NumberedPitchClass(1)
                 >>> inversion(pitch_class)
                 NumberedPitchClass(11)
 
@@ -154,8 +154,8 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = pitchtools.Inversion()
-                >>> pitch = pitchtools.NumberedPitch(15)
+                >>> inversion = Inversion()
+                >>> pitch = NumberedPitch(15)
                 >>> inversion(pitch)
                 NumberedPitch(-15)
 
@@ -165,8 +165,8 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = pitchtools.Inversion()
-                >>> pitch = pitchtools.NamedPitch("d'")
+                >>> inversion = Inversion()
+                >>> pitch = NamedPitch("d'")
                 >>> inversion(pitch)
                 NamedPitch('bf')
 
@@ -176,8 +176,8 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = pitchtools.Inversion()
-                >>> pitch_class = pitchtools.NamedPitchClass('d')
+                >>> inversion = Inversion()
+                >>> pitch_class = NamedPitchClass('d')
                 >>> inversion(pitch_class)
                 NamedPitchClass('bf')
 
@@ -187,8 +187,8 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = pitchtools.Inversion()
-                >>> segment = pitchtools.PitchSegment("c' d' e'")
+                >>> inversion = Inversion()
+                >>> segment = PitchSegment("c' d' e'")
                 >>> inversion(segment)
                 PitchSegment(["c'", 'bf', 'af'])
 
@@ -198,8 +198,8 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = pitchtools.Inversion()
-                >>> segment = pitchtools.PitchClassSegment("c d e")
+                >>> inversion = Inversion()
+                >>> segment = PitchClassSegment("c d e")
                 >>> inversion(segment)
                 PitchClassSegment(['c', 'bf', 'af'])
 
@@ -209,18 +209,18 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = pitchtools.Inversion()
-                >>> set_ = pitchtools.PitchClassSet("c d e")
+                >>> inversion = Inversion()
+                >>> set_ = PitchClassSet("c d e")
                 >>> inversion(set_)
                 PitchClassSet(['c', 'af', 'bf'])
 
-        Returns new object with type equal to that of `expr`.
+        Returns new object with type equal to that of `argment`.
         '''
-        if hasattr(expr, 'invert'):
-            result = expr.invert(axis=self.axis)
+        if hasattr(argment, 'invert'):
+            result = argment.invert(axis=self.axis)
         else:
             message = 'do not know how to invert: {!r}.'
-            message = message.format(expr)
+            message = message.format(argment)
             raise TypeError(message)
         return result
 
@@ -231,14 +231,14 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> str(pitchtools.Inversion())
+                >>> str(Inversion())
                 'I'
 
         ..  container:: example
 
             ::
 
-                >>> str(pitchtools.Inversion(axis=15))
+                >>> str(Inversion(axis=15))
                 'I(Eb5)'
 
         '''
@@ -272,7 +272,7 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = pitchtools.Inversion()
+                >>> inversion = Inversion()
                 >>> inversion.axis is None
                 True
 
@@ -280,7 +280,7 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> inversion = pitchtools.Inversion(axis=15)
+                >>> inversion = Inversion(axis=15)
                 >>> inversion.axis
                 NamedPitch("ef''")
 

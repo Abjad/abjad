@@ -17,7 +17,7 @@ class FrenchHorn(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Horn }
             \set Staff.shortInstrumentName = \markup { Hn. }
@@ -62,7 +62,7 @@ class FrenchHorn(Instrument):
             'hornist',
             ])
         self._is_primary_instrument = True
-        self._starting_clefs = indicatortools.ClefInventory(['bass'])
+        self._starting_clefs = type(self.allowable_clefs)(['bass'])
 
     ### PUBLIC PROPERTIES ###
 
@@ -75,7 +75,7 @@ class FrenchHorn(Instrument):
             ::
 
                 >>> french_horn.allowable_clefs
-                ClefInventory([Clef(name='bass'), Clef(name='treble')])
+                ClefList([Clef(name='bass'), Clef(name='treble')])
 
             ::
 

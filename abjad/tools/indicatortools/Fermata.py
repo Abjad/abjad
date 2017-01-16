@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Fermata(AbjadValueObject):
-    r'''A fermata.
+    r'''Fermata.
 
     ..  container:: example
 

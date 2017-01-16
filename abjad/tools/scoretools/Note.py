@@ -4,6 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import inspect_
 
 
 class Note(Leaf):
@@ -133,7 +134,7 @@ class Note(Leaf):
     def _get_sounding_pitch(self):
         from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
-        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
+        if 'sounding pitch' in inspect_(self).get_indicators(str):
             return self.written_pitch
         else:
             instrument = self._get_effective(instrumenttools.Instrument)

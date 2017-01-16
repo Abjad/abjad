@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class LilyPondCommand(AbjadValueObject):
-    r'''A LilyPond command.
+    r'''LilyPond command.
 
     ..  container:: example
 

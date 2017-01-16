@@ -46,7 +46,7 @@ def test_datastructuretools_TypedList___format___02():
                     short_instrument_name_markup=markuptools.Markup(
                         contents=['Fl.'],
                         ),
-                    allowable_clefs=indicatortools.ClefInventory(
+                    allowable_clefs=instrumenttools.ClefList(
                         [
                             indicatortools.Clef(
                                 name='treble',
@@ -95,7 +95,7 @@ def test_datastructuretools_TypedList___format___03():
                     short_instrument_name_markup=markuptools.Markup(
                         contents=['Fl.'],
                         ),
-                    allowable_clefs=indicatortools.ClefInventory(
+                    allowable_clefs=instrumenttools.ClefList(
                         [
                             indicatortools.Clef(
                                 name='treble',

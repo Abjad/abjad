@@ -39,17 +39,17 @@ class RegistrationComponent(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a registration component
+    def __eq__(self, argment):
+        r'''Is true when `argment` is a registration component
         with source pitch range and target octave start pitch equal to those of
         this registration component. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            if self.source_pitch_range == expr.source_pitch_range:
+        if isinstance(argment, type(self)):
+            if self.source_pitch_range == argment.source_pitch_range:
                 if (self.target_octave_start_pitch ==
-                    expr.target_octave_start_pitch):
+                    argment.target_octave_start_pitch):
                     return True
         return False
 

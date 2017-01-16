@@ -218,8 +218,8 @@ class Timespan(BoundedObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import timespantools
-        timespan_inventory = timespantools.TimespanInventory([self])
+        import abjad
+        timespan_inventory = abjad.timespantools.TimespanInventory([self])
         return timespan_inventory.__illustrate__(
             range_=range_,
             scale=scale,

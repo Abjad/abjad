@@ -186,10 +186,10 @@ class TimespanInventory(TypedList):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import timespantools
+        import abjad
         if not self:
-            return markuptools.Markup.null().__illustrate__()
-        if isinstance(range_, timespantools.Timespan):
+            return abjad.Markup.null().__illustrate__()
+        if isinstance(range_, abjad.Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
             minimum, maximum = range_
@@ -198,8 +198,8 @@ class TimespanInventory(TypedList):
         if scale is None:
             scale = 1.
         assert 0 < scale
-        minimum = float(durationtools.Offset(minimum))
-        maximum = float(durationtools.Offset(maximum))
+        minimum = float(abjad.Offset(minimum))
+        maximum = float(abjad.Offset(maximum))
         postscript_scale = 150. / (maximum - minimum)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
@@ -222,10 +222,10 @@ class TimespanInventory(TypedList):
                 value, timespans = item
                 timespans.sort()
                 if 0 < i:
-                    vspace_markup = markuptools.Markup.vspace(0.5)
+                    vspace_markup = abjad.Markup.vspace(0.5)
                     markups.append(vspace_markup)
-                value_markup = markuptools.Markup('{}:'.format(value))
-                value_markup = markuptools.Markup.line([value_markup])
+                value_markup = abjad.Markup('{}:'.format(value))
+                value_markup = abjad.Markup.line([value_markup])
                 value_markup = value_markup.sans().fontsize(-1)
                 markups.append(value_markup)
                 vspace_markup = markuptools.Markup.vspace(0.5)
@@ -237,7 +237,7 @@ class TimespanInventory(TypedList):
                     sortkey=sortkey,
                     )
                 markups.append(timespan_markup)
-            markup = markuptools.Markup.left_column(markups)
+            markup = abjad.Markup.left_column(markups)
         return markup.__illustrate__()
 
     def __invert__(self):

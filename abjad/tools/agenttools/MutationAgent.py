@@ -641,7 +641,7 @@ class MutationAgent(abctools.AbjadObject):
         Returns none.
         '''
         from abjad.tools import scoretools
-        for leaf in iterate(self._client).by_class(scoretools.Leaf):
+        for leaf in iterate(self._client).by_leaf():
             if isinstance(leaf, scoretools.Chord):
                 for note_head in leaf.note_heads:
                     note_head.written_pitch = \
@@ -695,7 +695,7 @@ class MutationAgent(abctools.AbjadObject):
         Returns none.
         '''
         from abjad.tools import scoretools
-        for leaf in iterate(self._client).by_class(scoretools.Leaf):
+        for leaf in iterate(self._client).by_leaf():
             if isinstance(leaf, scoretools.Chord):
                 for note_head in leaf.note_heads:
                     note_head.written_pitch = \

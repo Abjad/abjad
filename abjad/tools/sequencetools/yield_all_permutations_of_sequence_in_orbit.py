@@ -26,7 +26,7 @@ def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
 
     if not sequencetools.Sequence(permutation).is_permutation() or \
         len(sequence) != len(permutation):
-        args = (str(permutation), len(sequence))
+        arguments = (str(permutation), len(sequence))
         message = '{!r} must be permutation of length {}.'
         message = message.format(permutation, len(sequence))
         raise TypeError(message)

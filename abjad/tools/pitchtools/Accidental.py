@@ -194,111 +194,111 @@ class Accidental(AbjadValueObject):
 
     ### INITIALIZER ##
 
-    def __init__(self, expr=None):
-        if expr is None:
+    def __init__(self, argment=None):
+        if argment is None:
             semitones = 0
-        elif isinstance(expr, str):
+        elif isinstance(argment, str):
             semitones = 0
-            if self.is_abbreviation(expr):
-                if expr in self._abbreviation_to_semitones:
-                    semitones = self._abbreviation_to_semitones[expr]
+            if self.is_abbreviation(argment):
+                if argment in self._abbreviation_to_semitones:
+                    semitones = self._abbreviation_to_semitones[argment]
                 else:
-                    while expr and expr.startswith(('f', 's')):
-                        if expr[0] == 's':
+                    while argment and argment.startswith(('f', 's')):
+                        if argment[0] == 's':
                             semitones += 1
                         else:
                             semitones -= 1
-                        expr = expr[1:]
-                    if expr == 'qs':
+                        argment = argment[1:]
+                    if argment == 'qs':
                         semitones += 0.5
-                    elif expr == 'qf':
+                    elif argment == 'qf':
                         semitones -= 0.5
-            elif self.is_symbolic_string(expr):
-                if expr in self._symbolic_string_to_semitones:
-                    semitones = self._symbolic_string_to_semitones[expr]
+            elif self.is_symbolic_string(argment):
+                if argment in self._symbolic_string_to_semitones:
+                    semitones = self._symbolic_string_to_semitones[argment]
                 else:
-                    while expr and expr.startswith(('b', '#')):
-                        if expr[0] == '#':
+                    while argment and argment.startswith(('b', '#')):
+                        if argment[0] == '#':
                             semitones += 1
                         else:
                             semitones -= 1
-                        expr = expr[1:]
-                    if expr == '+':
+                        argment = argment[1:]
+                    if argment == '+':
                         semitones += 0.5
-                    elif expr == '~':
+                    elif argment == '~':
                         semitones -= 0.5
-            elif expr in self._name_to_abbreviation:
-                abbreviation = self._name_to_abbreviation[expr]
+            elif argment in self._name_to_abbreviation:
+                abbreviation = self._name_to_abbreviation[argment]
                 semitones = self._abbreviation_to_semitones[abbreviation]
             else:
                 message = 'can not initialize accidental from value: {!r}'
-                message = message.format(expr)
+                message = message.format(argment)
                 raise ValueError(message)
-        elif isinstance(expr, type(self)):
-            semitones = expr.semitones
-        elif isinstance(expr, (int, float)):
-            semitones = float(expr)
+        elif isinstance(argment, type(self)):
+            semitones = argment.semitones
+        elif isinstance(argment, (int, float)):
+            semitones = float(argment)
             assert (semitones % 1.) in (0., 0.5)
-        elif hasattr(expr, 'accidental'):
-            semitones = expr.accidental.semitones
+        elif hasattr(argment, 'accidental'):
+            semitones = argment.accidental.semitones
         else:
             message = 'can not initialize accidental from value: {!r}'
-            message = message.format(expr)
+            message = message.format(argment)
             raise ValueError(message)
         semitones = mathtools.integer_equivalent_number_to_integer(semitones)
         self._semitones = semitones
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, arg):
-        r'''Adds `arg` to accidental.
+    def __add__(self, argument):
+        r'''Adds `argument` to accidental.
 
         Returns new accidental.
         '''
-        if not isinstance(arg, type(self)):
+        if not isinstance(argument, type(self)):
             message = 'can only add accidental to other accidental.'
             raise TypeError(message)
-        semitones = self.semitones + arg.semitones
+        semitones = self.semitones + argument.semitones
         return type(self)(semitones)
 
-    def __ge__(self, arg):
-        r'''Is true when `arg` is an accidental with semitones less than or equal
+    def __ge__(self, argument):
+        r'''Is true when `argument` is an accidental with semitones less than or equal
         to those of this accidental. Otherwise false.
 
         Returns true or false.
         '''
-        return self.semitones >= arg.semitones
+        return self.semitones >= argument.semitones
 
-    def __gt__(self, arg):
-        r'''Is true when `arg` is an accidental with semitones less than
+    def __gt__(self, argument):
+        r'''Is true when `argument` is an accidental with semitones less than
         those of this accidental. Otherwise false.
 
         Returns true or false.
         '''
-        return self.semitones > arg.semitones
+        return self.semitones > argument.semitones
 
-    def __le__(self, arg):
-        r'''Is true when `arg` is an accidental with semitones greater than or
+    def __le__(self, argument):
+        r'''Is true when `argument` is an accidental with semitones greater than or
         equal to those of this accidental. Otherwise false.
 
         Returns true or false.
         '''
-        return self.semitones <= arg.semitones
+        return self.semitones <= argument.semitones
 
-    def __lt__(self, arg):
-        r'''Is true when `arg` is an accidental with semitones greater than those
+    def __lt__(self, argument):
+        r'''Is true when `argument` is an accidental with semitones greater than those
         of this accidental. Otherwise false.
 
         Returns true or false.
         '''
-        return self.semitones < arg.semitones
+        return self.semitones < argument.semitones
 
-    def __ne__(self, arg):
-        r'''Is true when accidental does not equal `arg`. Otherwise false.
+    def __ne__(self, argument):
+        r'''Is true when accidental does not equal `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     def __neg__(self):
         r'''Negates accidental.
@@ -321,15 +321,15 @@ class Accidental(AbjadValueObject):
         '''
         return self.abbreviation
 
-    def __sub__(self, arg):
-        r'''Subtracts `arg` from accidental.
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from accidental.
 
         Returns new accidental.
         '''
-        if not isinstance(arg, type(self)):
+        if not isinstance(argument, type(self)):
             message = 'can only subtract accidental from other accidental.'
             raise TypeError(message)
-        semitones = self.semitones - arg.semitones
+        semitones = self.semitones - argument.semitones
         return type(self)(semitones)
 
     ### PRIVATE PROPERTIES ###
@@ -461,8 +461,8 @@ class Accidental(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def is_abbreviation(expr):
-        '''Is true when `expr` is an alphabetic accidental abbreviation.
+    def is_abbreviation(argment):
+        '''Is true when `argment` is an alphabetic accidental abbreviation.
         Otherwise false.
 
         ..  container:: example
@@ -477,13 +477,13 @@ class Accidental(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(expr, str):
+        if not isinstance(argment, str):
             return False
-        return bool(Accidental._alphabetic_accidental_regex.match(expr))
+        return bool(Accidental._alphabetic_accidental_regex.match(argment))
 
     @staticmethod
-    def is_symbolic_string(expr):
-        '''Is true when `expr` is a symbolic accidental string.
+    def is_symbolic_string(argment):
+        '''Is true when `argment` is a symbolic accidental string.
         Otherwise false.
 
         ..  container:: example
@@ -500,6 +500,6 @@ class Accidental(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(expr, str):
+        if not isinstance(argment, str):
             return False
-        return bool(Accidental._symbolic_string_regex.match(expr))
+        return bool(Accidental._symbolic_string_regex.match(argment))

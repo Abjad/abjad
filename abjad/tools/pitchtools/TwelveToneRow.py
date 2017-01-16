@@ -12,7 +12,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ::
 
-            >>> row = pitchtools.TwelveToneRow()
+            >>> row = TwelveToneRow()
             >>> show(row) # doctest: +SKIP
 
     ..  container:: example
@@ -22,7 +22,7 @@ class TwelveToneRow(PitchClassSegment):
         ::
 
             >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-            >>> row = pitchtools.TwelveToneRow(numbers)
+            >>> row = TwelveToneRow(numbers)
             >>> show(row) # doctest: +SKIP
 
     ..  container:: example
@@ -70,7 +70,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -79,17 +79,17 @@ class TwelveToneRow(PitchClassSegment):
             
             ::
 
-                >>> row([pitchtools.NumberedPitchClass(2)])
+                >>> row([NumberedPitchClass(2)])
                 [NumberedPitchClass(9)]
 
             ::
 
-                >>> row([pitchtools.NumberedPitchClass(3)])
+                >>> row([NumberedPitchClass(3)])
                 [NumberedPitchClass(3)]
 
             ::
 
-                >>> row([pitchtools.NumberedPitchClass(4)])
+                >>> row([NumberedPitchClass(4)])
                 [NumberedPitchClass(6)]
 
         ..  container:: example
@@ -99,7 +99,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> items = [-2, -1, 6, 7, -1, 7]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -129,7 +129,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-                >>> row_2 = pitchtools.TwelveToneRow(numbers)
+                >>> row_2 = TwelveToneRow(numbers)
                 >>> show(row_2) # doctest: +SKIP
 
             ..  doctest::
@@ -186,7 +186,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-                >>> row_2 = pitchtools.TwelveToneRow(numbers)
+                >>> row_2 = TwelveToneRow(numbers)
                 >>> show(row_2) # doctest: +SKIP
 
             ..  doctest::
@@ -243,7 +243,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
-                >>> row_2 = pitchtools.TwelveToneRow(numbers)
+                >>> row_2 = TwelveToneRow(numbers)
                 >>> show(row_2) # doctest: +SKIP
 
             ..  doctest::
@@ -316,7 +316,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -386,7 +386,7 @@ class TwelveToneRow(PitchClassSegment):
         except TypeError:
             return result
 
-    def __illustrate__(self, **kwargs):
+    def __illustrate__(self, **keywords):
         r'''Illustrates row.
 
         ..  container:: example
@@ -395,7 +395,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> row = pitchtools.TwelveToneRow()
+                >>> row = TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
             ..  doctest::
@@ -427,7 +427,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ..  doctest::
@@ -462,10 +462,10 @@ class TwelveToneRow(PitchClassSegment):
 
         '''
         superclass = super(PitchClassSegment, self)
-        return superclass.__illustrate__(**kwargs)
+        return superclass.__illustrate__(**keywords)
 
-    def __mul__(self, expr):
-        r'''Multiplies row by `expr`.
+    def __mul__(self, argment):
+        r'''Multiplies row by `argment`.
 
         ..  container:: example
 
@@ -473,7 +473,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> row = pitchtools.TwelveToneRow()
+                >>> row = TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -521,7 +521,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -574,10 +574,10 @@ class TwelveToneRow(PitchClassSegment):
 
         Returns pitch-class segment.
         '''
-        return PitchClassSegment(self) * expr
+        return PitchClassSegment(self) * argment
 
-    def __rmul__(self, expr):
-        r'''Multiplies `expr` by row.
+    def __rmul__(self, argment):
+        r'''Multiplies `argment` by row.
 
         ..  container:: example
 
@@ -585,7 +585,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> row = pitchtools.TwelveToneRow()
+                >>> row = TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -633,7 +633,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -684,7 +684,7 @@ class TwelveToneRow(PitchClassSegment):
                 PitchClassSegment([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
         '''
-        return PitchClassSegment(self) * expr
+        return PitchClassSegment(self) * argment
 
     ### PRIVATE PROPERTIES ###
 
@@ -715,7 +715,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> row = pitchtools.TwelveToneRow()
+                >>> row = TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -730,7 +730,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -761,7 +761,7 @@ class TwelveToneRow(PitchClassSegment):
         
             ::
 
-                >>> row = pitchtools.TwelveToneRow()
+                >>> row = TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
 
@@ -789,7 +789,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -824,93 +824,6 @@ class TwelveToneRow(PitchClassSegment):
 
     ### PUBLIC METHODS ###
 
-    def alpha(self):
-        r'''Gets alpha transform of row.
-
-        ..  container:: example
-
-            Example row:
-        
-            ::
-
-                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
-                >>> show(row) # doctest: +SKIP
-
-        ..  container:: example
-
-            Gets alpha transform of row:
-
-                >>> alpha = row.alpha()
-                >>> show(alpha) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> lilypond_file = alpha.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    c'8
-                    bf'8
-                    af'8
-                    d'8
-                    g'8
-                    fs'8
-                    e'8
-                    f'8
-                    b'8
-                    ef'8
-                    a'8
-                    cs'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            Gets alpha transform of alpha transform of row:
-
-                >>> alpha = row.alpha().alpha()
-                >>> show(alpha) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> lilypond_file = alpha.__illustrate__()
-                >>> f(lilypond_file[Voice])
-                \new Voice {
-                    cs'8
-                    b'8
-                    a'8
-                    ef'8
-                    fs'8
-                    g'8
-                    f'8
-                    e'8
-                    bf'8
-                    d'8
-                    af'8
-                    c'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-            ::
-
-                >>> alpha == row
-                True
-
-        ..  container:: example
-
-            Returns twelve-tone row:
-
-            ::
-
-                >>> row.alpha()
-                TwelveToneRow([0, 10, 8, 2, 7, 6, 4, 5, 11, 3, 9, 1])
-
-        '''
-        superclass = super(TwelveToneRow, self)
-        return superclass.alpha()
-
     def count(self, item):
         r'''Counts `item` in row.
 
@@ -921,7 +834,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -985,7 +898,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
             
-                >>> row = pitchtools.TwelveToneRow()
+                >>> row = TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -1000,7 +913,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
             
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -1025,7 +938,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -1069,7 +982,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -1228,7 +1141,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -1344,7 +1257,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -1435,7 +1348,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -1586,7 +1499,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = pitchtools.TwelveToneRow(numbers)
+                >>> row = TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example

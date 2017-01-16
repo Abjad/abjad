@@ -17,7 +17,7 @@ class Glockenspiel(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Glockenspiel }
             \set Staff.shortInstrumentName = \markup { Gkspl. }
@@ -71,7 +71,7 @@ class Glockenspiel(Instrument):
             ::
 
                 >>> glockenspiel.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 

@@ -17,7 +17,7 @@ class ClarinetInBFlat(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
             \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
@@ -98,7 +98,7 @@ class ClarinetInBFlat(Instrument):
             ::
 
                 >>> clarinet.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 

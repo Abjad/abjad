@@ -17,7 +17,7 @@ class AltoVoice(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Alto }
             \set Staff.shortInstrumentName = \markup { Alto }
@@ -75,7 +75,7 @@ class AltoVoice(Instrument):
             ::
 
                 >>> alto.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 

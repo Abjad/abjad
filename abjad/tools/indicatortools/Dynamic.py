@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Dynamic(AbjadValueObject):
-    r'''A dynamic.
+    r'''Dynamic.
 
     ..  container:: example
 
@@ -311,8 +311,8 @@ class Dynamic(AbjadValueObject):
             return Dynamic._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]
 
     @staticmethod
-    def is_dynamic_name(arg):
-        r'''Is true when `arg` is dynamic name. Otherwise false.
+    def is_dynamic_name(argument):
+        r'''Is true when `argument` is dynamic name. Otherwise false.
 
         ..  container:: example
 
@@ -339,7 +339,7 @@ class Dynamic(AbjadValueObject):
 
         Returns true or false.
         '''
-        return arg in Dynamic._dynamic_names
+        return argument in Dynamic._dynamic_names
 
     ### PUBLIC PROPERTIES ###
 

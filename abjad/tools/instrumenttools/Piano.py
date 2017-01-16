@@ -21,7 +21,7 @@ class Piano(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff_group))
+        >>> f(staff_group)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Piano }
             \set PianoStaff.shortInstrumentName = \markup { Pf. }
@@ -87,7 +87,7 @@ class Piano(Instrument):
             ::
 
                 >>> piano.allowable_clefs
-                ClefInventory([Clef(name='treble'), Clef(name='bass')])
+                ClefList([Clef(name='treble'), Clef(name='bass')])
 
             ::
 

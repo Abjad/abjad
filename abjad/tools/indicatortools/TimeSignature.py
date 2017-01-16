@@ -150,8 +150,8 @@ class TimeSignature(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, arg):
-        r'''Adds time signature to `arg`.
+    def __add__(self, argument):
+        r'''Adds time signature to `argument`.
 
         ..  container:: example
 
@@ -172,17 +172,17 @@ class TimeSignature(AbjadValueObject):
 
         Returns new time signature.
         '''
-        if not isinstance(arg, type(self)):
+        if not isinstance(argument, type(self)):
             message = 'must be time signature: {!r}.'
-            message = message.format(arg)
+            message = message.format(argument)
             raise Exception(message)
         nonreduced_1 = mathtools.NonreducedFraction(
             self.numerator,
             self.denominator,
             )
         nonreduced_2 = mathtools.NonreducedFraction(
-            arg.numerator,
-            arg.denominator,
+            argument.numerator,
+            argument.denominator,
             )
         result = nonreduced_1 + nonreduced_2
         result = type(self)((
@@ -191,7 +191,7 @@ class TimeSignature(AbjadValueObject):
             ))
         return result
 
-    def __copy__(self, *args):
+    def __copy__(self, *arguments):
         r'''Copies time signature.
 
         Returns new time signature.
@@ -201,19 +201,19 @@ class TimeSignature(AbjadValueObject):
             partial=self.partial,
             )
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a time signature with numerator and
-        denominator equal to this time signature. Also true when `arg` is a
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a time signature with numerator and
+        denominator equal to this time signature. Also true when `argument` is a
         tuple with first and second elements equal to numerator and denominator
         of this time signature. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            return (self.numerator == arg.numerator and
-                self.denominator == arg.denominator)
-        elif isinstance(arg, tuple):
-            return self.numerator == arg[0] and self.denominator == arg[1]
+        if isinstance(argument, type(self)):
+            return (self.numerator == argument.numerator and
+                self.denominator == argument.denominator)
+        elif isinstance(argument, tuple):
+            return self.numerator == argument[0] and self.denominator == argument[1]
         else:
             return False
 
@@ -247,25 +247,25 @@ class TimeSignature(AbjadValueObject):
             return self._get_lilypond_format()
         return str(self)
 
-    def __ge__(self, arg):
+    def __ge__(self, argument):
         r'''Is true when duration of time signature is greater than or equal to
-        duration of `arg`. Otherwise false.
+        duration of `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            return self.duration >= arg.duration
+        if isinstance(argument, type(self)):
+            return self.duration >= argument.duration
         else:
             raise TypeError
 
-    def __gt__(self, arg):
+    def __gt__(self, argument):
         r'''Is true when duration of time signature is greater than duration of
-        `arg`. Otherwise false.
+        `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            return self.duration > arg.duration
+        if isinstance(argument, type(self)):
+            return self.duration > argument.duration
         else:
             raise TypeError
 
@@ -278,30 +278,30 @@ class TimeSignature(AbjadValueObject):
         '''
         return super(TimeSignature, self).__hash__()
 
-    def __le__(self, arg):
+    def __le__(self, argument):
         r'''Is true when duration of time signature is less than duration of
-        `arg`. Otherwise false.
+        `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            return self.duration <= arg.duration
+        if isinstance(argument, type(self)):
+            return self.duration <= argument.duration
         else:
             raise TypeError
 
-    def __lt__(self, arg):
+    def __lt__(self, argument):
         r'''Is true when duration of time signature is less than duration of
-        `arg`. Otherwise false.
+        `argument`. Otherwise false.
 
         Returns booelan.
         '''
-        if isinstance(arg, type(self)):
-            return self.duration < arg.duration
+        if isinstance(argument, type(self)):
+            return self.duration < argument.duration
         else:
             raise TypeError
 
-    def __radd__(self, arg):
-        r'''Adds `arg` to time signature.
+    def __radd__(self, argument):
+        r'''Adds `argument` to time signature.
 
         ..  container:: example
 
@@ -319,7 +319,7 @@ class TimeSignature(AbjadValueObject):
 
         Returns new time signature.
         '''
-        return self.__add__(arg)
+        return self.__add__(argument)
 
     def __str__(self):
         r'''Gets string representation of time signature.
@@ -643,8 +643,8 @@ class TimeSignature(AbjadValueObject):
         return self._suppress
 
     @suppress.setter
-    def suppress(self, expr):
-        self._suppress = bool(expr)
+    def suppress(self, argment):
+        self._suppress = bool(argment)
 
     ### PUBLIC METHODS ###
 

@@ -237,8 +237,9 @@ class Leaf(Component):
             if new_component is None:
                 return
             candidates = new_component._get_descendants_stopping_with()
-            candidates = \
-                [x for x in candidates if isinstance(x, scoretools.Leaf)]
+            candidates = [
+                x for x in candidates if isinstance(x, scoretools.Leaf)
+                ]
             for candidate in candidates:
                 if Selection._all_are_components_in_same_logical_voice(
                     [component, candidate]):
@@ -487,8 +488,7 @@ class Leaf(Component):
         detach(object, last_leaf)
         # tie split notes, rests and chords as specified
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
-            flattened_result_leaves = iterate(flattened_result).by_class(
-                scoretools.Leaf)
+            flattened_result_leaves = iterate(flattened_result).by_leaf()
             # TODO: implement Selection._attach_tie_spanner_to_leaves()
             for leaf_pair in sequencetools.iterate_sequence_nwise(
                 flattened_result_leaves):

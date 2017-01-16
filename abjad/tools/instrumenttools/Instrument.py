@@ -44,6 +44,7 @@ class Instrument(AbjadValueObject):
         pitch_range=None,
         sounding_pitch_of_written_middle_c=None,
         ):
+        from abjad.tools import instrumenttools
         from abjad.tools import scoretools
         self._do_not_format = False
         if instrument_name is not None:
@@ -60,7 +61,7 @@ class Instrument(AbjadValueObject):
             assert isinstance(short_instrument_name_markup, prototype)
         self._short_instrument_name_markup = short_instrument_name_markup
         allowable_clefs = allowable_clefs or ['treble']
-        allowable_clefs = indicatortools.ClefInventory(allowable_clefs)
+        allowable_clefs = instrumenttools.ClefList(allowable_clefs)
         self._allowable_clefs = allowable_clefs
         if isinstance(pitch_range, str):
             pitch_range = pitchtools.PitchRange(pitch_range)
@@ -264,7 +265,7 @@ class Instrument(AbjadValueObject):
         Returns clef inventory.
         '''
         if self._allowable_clefs is None:
-            self._allowable_clefs = indicatortools.ClefInventory('treble')
+            self._allowable_clefs = instrumenttools.ClefList('treble')
         return self._allowable_clefs
 
     @property

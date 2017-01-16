@@ -4,7 +4,7 @@ from abjad.tools.topleveltools.new import new
 
 
 class Accelerando(AbjadValueObject):
-    r'''An accelerando.
+    r'''Accelerando.
 
     ..  container:: example
 

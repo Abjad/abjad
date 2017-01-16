@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class StaffChange(AbjadValueObject):
-    r'''A staff change.
+    r'''Staff change.
 
     ..  container:: example
 

@@ -9,14 +9,14 @@ class Multiplication(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Multiplication()
+            >>> Multiplication()
             Multiplication(n=1)
 
     ..  container:: example
 
         ::
 
-            >>> pitchtools.Multiplication(n=5)
+            >>> Multiplication(n=5)
             Multiplication(n=5)
 
     Object model of twelve-tone multiplication operator.
@@ -45,15 +45,15 @@ class Multiplication(AbjadValueObject):
             ::
 
                 >>> items = [0, 2, 4, 5]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
     
             Example operators:
 
             ::
 
-                >>> multiplication = pitchtools.Multiplication(n=5)
-                >>> transposition = pitchtools.Transposition(n=3)
+                >>> multiplication = Multiplication(n=5)
+                >>> transposition = Transposition(n=3)
 
         ..  container:: example
 
@@ -117,8 +117,8 @@ class Multiplication(AbjadValueObject):
         from abjad.tools import pitchtools
         return pitchtools.CompoundOperator._compose_operators(self, operator)
 
-    def __call__(self, expr):
-        r'''Calls multiplication on `expr`.
+    def __call__(self, argment):
+        r'''Calls multiplication on `argment`.
 
         ..  container:: example
 
@@ -126,8 +126,8 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> multiplication = pitchtools.Multiplication(n=5)
-                >>> pitch_class = pitchtools.NumberedPitchClass(4)
+                >>> multiplication = Multiplication(n=5)
+                >>> pitch_class = NumberedPitchClass(4)
                 >>> multiplication(pitch_class)
                 NumberedPitchClass(8)
 
@@ -137,18 +137,18 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> multiplication = pitchtools.Multiplication(n=7)
-                >>> pitch = pitchtools.NamedPitch("f'")
+                >>> multiplication = Multiplication(n=7)
+                >>> pitch = NamedPitch("f'")
                 >>> multiplication(pitch)
                 NamedPitch("b'")
 
-        Returns new object with type equal to that of `expr`.
+        Returns new object with type equal to that of `argment`.
         '''
-        if hasattr(expr, 'multiply'):
-            result = expr.multiply(self.n)
+        if hasattr(argment, 'multiply'):
+            result = argment.multiply(self.n)
         else:
             message = 'do not know how to multiply: {!r}.'
-            message = message.format(expr)
+            message = message.format(argment)
             raise TypeError(message)
         return result
 
@@ -159,14 +159,14 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> str(pitchtools.Multiplication())
+                >>> str(Multiplication())
                 'M1'
 
         ..  container:: example
 
             ::
 
-                >>> str(pitchtools.Multiplication(n=5))
+                >>> str(Multiplication(n=5))
                 'M5'
 
         '''
@@ -198,7 +198,7 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> multiplication = pitchtools.Multiplication()
+                >>> multiplication = Multiplication()
                 >>> multiplication.n
                 1
 
@@ -206,7 +206,7 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> multiplication = pitchtools.Multiplication(n=5)
+                >>> multiplication = Multiplication(n=5)
                 >>> multiplication.n
                 5
 

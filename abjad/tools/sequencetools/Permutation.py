@@ -62,8 +62,8 @@ class Permutation(TypedTuple):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
-        r'''Calls permutation on `expr`.
+    def __call__(self, argment):
+        r'''Calls permutation on `argment`.
 
         ..  container:: example
 
@@ -87,18 +87,18 @@ class Permutation(TypedTuple):
                 >>> permutation('winter')
                 'iwtnre'
 
-        Returns new object of `expr` type.
+        Returns new object of `argment` type.
         '''
         pass
         result = []
-        for i, item in enumerate(expr):
+        for i, item in enumerate(argment):
             j = self[i]
-            item_ = expr[j]
+            item_ = argment[j]
             result.append(item_)
-        if isinstance(expr, str):
+        if isinstance(argment, str):
             result = ''.join(result)
         else:
-            result = type(expr)(result)
+            result = type(argment)(result)
         return result
 
     def __getitem__(self, i):

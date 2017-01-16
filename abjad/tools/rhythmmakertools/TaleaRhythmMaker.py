@@ -412,7 +412,7 @@ class TaleaRhythmMaker(RhythmMaker):
         tie_specifier = self._get_tie_specifier()
         if not self.tie_split_notes:
             return
-        leaves = select(result).by_class(scoretools.Leaf)
+        leaves = select(result).by_leaf()
         written_durations = [leaf.written_duration for leaf in leaves]
         weights = []
         for numerator in unscaled_talea:

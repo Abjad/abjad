@@ -17,7 +17,7 @@ class MezzoSopranoVoice(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Mezzo-soprano }
             \set Staff.shortInstrumentName = \markup { Mezz. }
@@ -75,7 +75,7 @@ class MezzoSopranoVoice(Instrument):
             ::
 
                 >>> mezzo_soprano.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 

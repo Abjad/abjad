@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BendAfter(AbjadValueObject):
-    r'''A fall or doit.
+    r'''Fall or doit.
 
     ..  container:: example
 

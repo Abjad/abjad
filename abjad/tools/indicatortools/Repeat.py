@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Repeat(AbjadValueObject):
-    r'''A repeat indicator.
+    r'''Repeat.
 
     ..  container:: example
 

@@ -186,8 +186,8 @@ class GuileProxy(AbjadObject):
         r'''Handles LilyPond ``\times`` command.
         '''
         n, d  = fraction.numerator, fraction.denominator
-        if not isinstance(music, scoretools.Context) and \
-            not isinstance(music, scoretools.Leaf):
+        if (not isinstance(music, scoretools.Context) and
+            not isinstance(music, scoretools.Leaf)):
             return scoretools.Tuplet((n, d), music[:])
         return scoretools.Tuplet((n, d), [music])
 

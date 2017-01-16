@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Clef(AbjadValueObject):
-    r'''A clef.
+    r'''Clef.
 
     ..  container:: example
 
@@ -143,8 +143,8 @@ class Clef(AbjadValueObject):
         superclass = super(Clef, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __ne__(self, arg):
-        r'''Is true when clef of `arg` does not equal clef name of clef.
+    def __ne__(self, argument):
+        r'''Is true when clef of `argument` does not equal clef name of clef.
         Otherwise false.
 
         ..  container:: example
@@ -168,7 +168,7 @@ class Clef(AbjadValueObject):
         Returns true or false.
         '''
         superclass = super(Clef, self)
-        return superclass.__ne__(arg)
+        return superclass.__ne__(argument)
 
     ### PRIVATE PROPERTIES ###
 

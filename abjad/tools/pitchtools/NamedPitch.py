@@ -40,63 +40,63 @@ class NamedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, *arguments):
         from abjad.tools import pitchtools
         if (
-            args and
-            isinstance(args[0], collections.Iterable) and
-            not stringtools.is_string(args[0]) and
-            len(args) == 1
+            arguments and
+            isinstance(arguments[0], collections.Iterable) and
+            not stringtools.is_string(arguments[0]) and
+            len(arguments) == 1
             ):
-            args = args[0]
-        if len(args) == 1:
-            if isinstance(args[0], (int, float)):
-                arg = mathtools.integer_equivalent_number_to_integer(
-                    float(args[0]))
-                self._initialize_by_pitch_number(arg)
-            elif isinstance(args[0], type(self)):
-                self._initialize_by_named_pitch(*args)
-            elif isinstance(args[0], pitchtools.NumberedPitch):
+            arguments = arguments[0]
+        if len(arguments) == 1:
+            if isinstance(arguments[0], (int, float)):
+                argument = mathtools.integer_equivalent_number_to_integer(
+                    float(arguments[0]))
+                self._initialize_by_pitch_number(argument)
+            elif isinstance(arguments[0], type(self)):
+                self._initialize_by_named_pitch(*arguments)
+            elif isinstance(arguments[0], pitchtools.NumberedPitch):
                 self._initialize_by_pitch_number(
-                    args[0].pitch_number)
-            elif isinstance(args[0], pitchtools.PitchClass):
+                    arguments[0].pitch_number)
+            elif isinstance(arguments[0], pitchtools.PitchClass):
                 self._initialize_by_named_pitch_class_and_octave_number(
-                    pitchtools.NamedPitchClass(args[0]), 4)
-            elif hasattr(args[0], 'named_pitch'):
-                self._initialize_by_named_pitch(args[0].named_pitch)
-            elif self.is_pitch_class_octave_number_string(args[0]):
-                self._initialize_by_pitch_class_octave_number_string(*args)
-            elif isinstance(args[0], str):
-                self._initialize_by_pitch_name(*args)
+                    pitchtools.NamedPitchClass(arguments[0]), 4)
+            elif hasattr(arguments[0], 'named_pitch'):
+                self._initialize_by_named_pitch(arguments[0].named_pitch)
+            elif self.is_pitch_class_octave_number_string(arguments[0]):
+                self._initialize_by_pitch_class_octave_number_string(*arguments)
+            elif isinstance(arguments[0], str):
+                self._initialize_by_pitch_name(*arguments)
             else:
                 message = 'can not initialize {} from {!r}.'
-                message = message.format(type(self).__name__, args)
+                message = message.format(type(self).__name__, arguments)
                 raise ValueError(message)
-        elif len(args) == 2:
-            if isinstance(args[0], str):
-                self._initialize_by_pitch_class_name_and_octave_number(*args)
-            elif isinstance(args[0], pitchtools.NamedPitchClass):
-                self._initialize_by_named_pitch_class_and_octave_number(*args)
-            elif isinstance(args[0], (int, float)):
-                if isinstance(args[1], str):
+        elif len(arguments) == 2:
+            if isinstance(arguments[0], str):
+                self._initialize_by_pitch_class_name_and_octave_number(*arguments)
+            elif isinstance(arguments[0], pitchtools.NamedPitchClass):
+                self._initialize_by_named_pitch_class_and_octave_number(*arguments)
+            elif isinstance(arguments[0], (int, float)):
+                if isinstance(arguments[1], str):
                     self._initialize_by_pitch_number_and_diatonic_pitch_class_name(
-                        *args)
-                elif isinstance(args[1], pitchtools.NamedPitchClass):
+                        *arguments)
+                elif isinstance(arguments[1], pitchtools.NamedPitchClass):
                     self._initialize_by_pitch_number_and_named_pitch_class(
-                        *args)
+                        *arguments)
                 else:
                     message = 'can not initialize {}: {!r}.'
-                    message = message.format(type(self).__name__, args)
+                    message = message.format(type(self).__name__, arguments)
                     raise TypeError(message)
             else:
                 message = 'can not initialize {}: {!r}.'
-                message = message.format(type(self).__name__, args)
+                message = message.format(type(self).__name__, arguments)
                 raise ValueError(message)
-        elif len(args) == 0:
+        elif len(arguments) == 0:
             self._initialize_by_pitch_class_name_and_octave_number('c', 4)
         else:
             message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, args)
+            message = message.format(type(self).__name__, arguments)
             raise ValueError(message)
 
     ### SPECIAL METHODS ###
@@ -110,7 +110,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''") + pitchtools.NamedInterval('+M2')
+                >>> NamedPitch("cs''") + NamedInterval('+M2')
                 NamedPitch("ds''")
 
         ..  container:: example
@@ -119,7 +119,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''") + pitchtools.NamedInterval('-M2')
+                >>> NamedPitch("cs''") + NamedInterval('-M2')
                 NamedPitch("b'")
 
         Returns new named pitch.
@@ -129,7 +129,7 @@ class NamedPitch(Pitch):
         pitch = interval.transpose(self)
         return pitch
 
-    def __copy__(self, *args):
+    def __copy__(self, *arguments):
         r'''Copies named pitch.
 
         ..  container:: example
@@ -155,8 +155,8 @@ class NamedPitch(Pitch):
         '''
         return type(self)(self)
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a named pitch equal to this named pitch.
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a named pitch equal to this named pitch.
         Otherwise false.
 
         ..  container:: example
@@ -180,8 +180,8 @@ class NamedPitch(Pitch):
         Returns true or false.
         '''
         try:
-            arg = type(self)(arg)
-            if str(self) == str(arg):
+            argument = type(self)(argument)
+            if str(self) == str(argument):
                 return True
             return False
         except (TypeError, ValueError):
@@ -212,23 +212,23 @@ class NamedPitch(Pitch):
         '''
         return float(self.pitch_number)
 
-    def __ge__(self, arg):
-        r'''Is true when named pitch is greater than or equal to `arg`.
+    def __ge__(self, argument):
+        r'''Is true when named pitch is greater than or equal to `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
-        if isinstance(arg, type(self)):
-            return self.diatonic_pitch_number > arg.diatonic_pitch_number or \
-                (self.diatonic_pitch_number == arg.diatonic_pitch_number and
-                self.alteration_in_semitones >= arg.alteration_in_semitones)
-        elif isinstance(arg, pitchtools.PitchRange):
-            return self >= arg.stop_pitch
+        if isinstance(argument, type(self)):
+            return self.diatonic_pitch_number > argument.diatonic_pitch_number or \
+                (self.diatonic_pitch_number == argument.diatonic_pitch_number and
+                self.alteration_in_semitones >= argument.alteration_in_semitones)
+        elif isinstance(argument, pitchtools.PitchRange):
+            return self >= argument.stop_pitch
         else:
             try:
-                arg = type(self)(arg)
-                return self.__ge__(arg)
+                argument = type(self)(argument)
+                return self.__ge__(argument)
             except (TypeError, ValueError):
                 pass
         return False
@@ -240,22 +240,22 @@ class NamedPitch(Pitch):
         '''
         return (self.pitch_name,)
 
-    def __gt__(self, arg):
-        r'''Is true when named pitch is greater than `arg`. Otherwise false.
+    def __gt__(self, argument):
+        r'''Is true when named pitch is greater than `argument`. Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
-        if isinstance(arg, type(self)):
-            return (self.diatonic_pitch_number > arg.diatonic_pitch_number or
-                (self.diatonic_pitch_number == arg.diatonic_pitch_number and
-                self.alteration_in_semitones > arg.alteration_in_semitones))
-        elif isinstance(arg, pitchtools.PitchRange):
-            return self > arg.stop_pitch
+        if isinstance(argument, type(self)):
+            return (self.diatonic_pitch_number > argument.diatonic_pitch_number or
+                (self.diatonic_pitch_number == argument.diatonic_pitch_number and
+                self.alteration_in_semitones > argument.alteration_in_semitones))
+        elif isinstance(argument, pitchtools.PitchRange):
+            return self > argument.stop_pitch
         else:
             try:
-                arg = type(self)(arg)
-                return self.__gt__(arg)
+                argument = type(self)(argument)
+                return self.__gt__(argument)
             except (TypeError, ValueError):
                 pass
         return False
@@ -295,54 +295,54 @@ class NamedPitch(Pitch):
             raise TypeError
         return int(self.pitch_number)
 
-    def __le__(self, arg):
-        r'''Is true when named pitch is less than or equal to `arg`. Otherwise
+    def __le__(self, argument):
+        r'''Is true when named pitch is less than or equal to `argument`. Otherwise
         false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
-        if isinstance(arg, type(self)):
-            if not self.diatonic_pitch_number == arg.diatonic_pitch_number:
-                return self.diatonic_pitch_number <= arg.diatonic_pitch_number
-            if not self.alteration_in_semitones == arg.alteration_in_semitones:
+        if isinstance(argument, type(self)):
+            if not self.diatonic_pitch_number == argument.diatonic_pitch_number:
+                return self.diatonic_pitch_number <= argument.diatonic_pitch_number
+            if not self.alteration_in_semitones == argument.alteration_in_semitones:
                 return self.alteration_in_semitones <= \
-                    arg.alteration_in_semitones
+                    argument.alteration_in_semitones
             return True
-        elif isinstance(arg, pitchtools.PitchRange):
-            return self <= arg.start_pitch
+        elif isinstance(argument, pitchtools.PitchRange):
+            return self <= argument.start_pitch
         else:
             try:
-                arg = type(self)(arg)
-                return self.__le__(arg)
+                argument = type(self)(argument)
+                return self.__le__(argument)
             except (TypeError, ValueError):
                 pass
         return False
 
-    def __lt__(self, arg):
-        r'''Is true when named pitch is less than `arg`. Otherwise false.
+    def __lt__(self, argument):
+        r'''Is true when named pitch is less than `argument`. Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
-        if isinstance(arg, type(self)):
-            return (self.diatonic_pitch_number < arg.diatonic_pitch_number or
-                (self.diatonic_pitch_number == arg.diatonic_pitch_number and
-                self.alteration_in_semitones < arg.alteration_in_semitones))
-        elif isinstance(arg, pitchtools.PitchRange):
-            return self < arg.start_pitch
-        elif arg is None:
+        if isinstance(argument, type(self)):
+            return (self.diatonic_pitch_number < argument.diatonic_pitch_number or
+                (self.diatonic_pitch_number == argument.diatonic_pitch_number and
+                self.alteration_in_semitones < argument.alteration_in_semitones))
+        elif isinstance(argument, pitchtools.PitchRange):
+            return self < argument.start_pitch
+        elif argument is None:
             return True
         else:
             try:
-                arg = type(self)(arg)
-                return self.__lt__(arg)
+                argument = type(self)(argument)
+                return self.__lt__(argument)
             except (TypeError, ValueError):
                 pass
         return False
 
-    def __ne__(self, arg):
-        r'''Is true when named pitch does not equal `arg`. Otherwise false.
+    def __ne__(self, argument):
+        r'''Is true when named pitch does not equal `argument`. Otherwise false.
 
         ..  container:: example
 
@@ -364,7 +364,7 @@ class NamedPitch(Pitch):
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     def __str__(self):
         r'''Gets string representation of named pitch.
@@ -391,8 +391,8 @@ class NamedPitch(Pitch):
         '''
         return self.pitch_name
 
-    def __sub__(self, arg):
-        r'''Subtracts `arg` from named pitch.
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from named pitch.
 
         ..  container:: example
 
@@ -415,9 +415,9 @@ class NamedPitch(Pitch):
         Returns named interval.
         '''
         from abjad.tools import pitchtools
-        if isinstance(arg, type(self)):
-            return pitchtools.NamedInterval.from_pitch_carriers(self, arg)
-        interval = pitchtools.NamedInterval(arg)
+        if isinstance(argument, type(self)):
+            return pitchtools.NamedInterval.from_pitch_carriers(self, argument)
+        interval = pitchtools.NamedInterval(argument)
         interval = -interval
         pitch = interval.transpose(self)
         return pitch
@@ -1220,7 +1220,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> pitch_class = pitchtools.NumberedPitchClass(7)
+                >>> pitch_class = NumberedPitchClass(7)
                 >>> NamedPitch.from_pitch_carrier(pitch_class)
                 NamedPitch("g'")
 
@@ -1718,8 +1718,8 @@ class NamedPitch(Pitch):
         staff_position = pitchtools.StaffPosition(staff_position_number)
         return staff_position
 
-    def transpose(self, expr):
-        r'''Transposes named pitch by `expr`.
+    def transpose(self, argment):
+        r'''Transposes named pitch by `argment`.
 
         ..  container:: example
 
@@ -1742,7 +1742,7 @@ class NamedPitch(Pitch):
         Returns new named pitch.
         '''
         from abjad.tools import pitchtools
-        interval = pitchtools.NamedInterval(expr)
+        interval = pitchtools.NamedInterval(argment)
         pitch = interval.transpose(self)
         return type(self)(pitch)
 

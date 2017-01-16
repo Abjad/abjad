@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -9,14 +10,14 @@ class Transposition(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Transposition()
+            >>> Transposition()
             Transposition(n=0)
 
     ..  container:: example
 
         ::
 
-            >>> pitchtools.Transposition(n=2)
+            >>> Transposition(n=2)
             Transposition(n=2)
 
     Object model of twelve-tone transposition operator.
@@ -45,15 +46,15 @@ class Transposition(AbjadValueObject):
             ::
 
                 >>> items = [0, 2, 4, 5]
-                >>> segment = pitchtools.PitchClassSegment(items=items)
+                >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
     
             Example operators:
 
             ::
 
-                >>> T_1 = pitchtools.Transposition(n=1)
-                >>> T_3 = pitchtools.Transposition(n=3)
+                >>> T_1 = Transposition(n=1)
+                >>> T_3 = Transposition(n=3)
 
         ..  container:: example
 
@@ -116,8 +117,8 @@ class Transposition(AbjadValueObject):
         from abjad.tools import pitchtools
         return pitchtools.CompoundOperator._compose_operators(self, operator)
 
-    def __call__(self, expr):
-        r'''Calls transposition on `expr`.
+    def __call__(self, argument):
+        r'''Calls transposition on `argument`.
 
         ..  container:: example
 
@@ -125,8 +126,8 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> transposition = pitchtools.Transposition(n=2)
-                >>> pitch_class = pitchtools.NumberedPitchClass(1)
+                >>> transposition = Transposition(n=2)
+                >>> pitch_class = NumberedPitchClass(1)
                 >>> transposition(pitch_class)
                 NumberedPitchClass(3)
 
@@ -136,18 +137,35 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> transposition = pitchtools.Transposition(n=2)
-                >>> pitch = pitchtools.NumberedPitch(15)
+                >>> transposition = Transposition(n=2)
+                >>> pitch = NumberedPitch(15)
                 >>> transposition(pitch)
                 NumberedPitch(17)
 
-        Returns new object with type equal to that of `expr`.
+        ..  container:: example
+
+            Transposes list of pitches:
+
+            ::
+
+                >>> transposition = Transposition(n=2)
+                >>> pitches = [NumberedPitch(_) for _ in [15, 16]]
+                >>> transposition(pitches)
+                [NumberedPitch(17), NumberedPitch(18)]
+
+        Returns new object with type equal to that of `argument`.
         '''
-        if hasattr(expr, 'transpose'):
-            result = expr.transpose(self.n)
+        if hasattr(argument, 'transpose'):
+            result = argument.transpose(self.n)
+        elif isinstance(argument, collections.Iterable):
+            items = []
+            for item in argument:
+                item = item.transpose(self.n)
+                items.append(item)
+            result = type(argument)(items)
         else:
             message = 'do not know how to transpose: {!r}.'
-            message = message.format(expr)
+            message = message.format(argument)
             raise TypeError(message)
         return result
 
@@ -158,14 +176,14 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> str(pitchtools.Transposition())
+                >>> str(Transposition())
                 'T0'
 
         ..  container:: example
 
             ::
 
-                >>> str(pitchtools.Transposition(n=2))
+                >>> str(Transposition(n=2))
                 'T2'
 
         '''
@@ -197,7 +215,7 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> transposition = pitchtools.Transposition()
+                >>> transposition = Transposition()
                 >>> transposition.n
                 0
 
@@ -205,7 +223,7 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> transposition = pitchtools.Transposition(n=2)
+                >>> transposition = Transposition(n=2)
                 >>> transposition.n
                 2
 

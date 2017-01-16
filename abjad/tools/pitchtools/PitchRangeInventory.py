@@ -76,50 +76,43 @@ class PitchRangeInventory(TypedList):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import durationtools
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        from abjad.tools.topleveltools import attach
-        from abjad.tools.topleveltools import iterate
-        from abjad.tools.topleveltools import override
+        import abjad
         start_note_clefs = []
         stop_note_clefs = []
         for pitch_range in self.items:
-            start_note_clef = indicatortools.Clef.from_selection(
+            start_note_clef = abjad.Clef.from_selection(
                 pitch_range.start_pitch)
             start_note_clefs.append(start_note_clef)
-            stop_note_clef = indicatortools.Clef.from_selection(
+            stop_note_clef = abjad.Clef.from_selection(
                 pitch_range.stop_pitch)
             stop_note_clefs.append(stop_note_clef)
         if start_note_clefs == stop_note_clefs:
             clef = start_note_clefs[0]
-            staff = scoretools.Staff()
-            attach(clef, staff)
-            score = scoretools.Score([staff])
+            staff = abjad.Staff()
+            abjad.attach(clef, staff)
+            score = abjad.Score([staff])
             for pitch_range in self.items:
-                start_note = scoretools.Note(pitch_range.start_pitch, 1)
-                stop_note = scoretools.Note(pitch_range.stop_pitch, 1)
+                start_note = abjad.Note(pitch_range.start_pitch, 1)
+                stop_note = abjad.Note(pitch_range.stop_pitch, 1)
                 notes = [start_note, stop_note]
-                glissando = spannertools.Glissando()
+                glissando = abjad.Glissando()
                 staff.extend(notes)
-                attach(glissando, notes)
+                abjad.attach(glissando, notes)
         else:
-            result = scoretools.make_empty_piano_score()
+            result = abjad.scoretools.make_empty_piano_score()
             score, treble_staff, bass_staff = result
             for pitch_range in self.items:
-                start_note = scoretools.Note(pitch_range.start_pitch, 1)
-                start_note_clef = indicatortools.Clef.from_selection(
+                start_note = abjad.Note(pitch_range.start_pitch, 1)
+                start_note_clef = abjad.Clef.from_selection(
                     pitch_range.start_pitch)
-                stop_note = scoretools.Note(pitch_range.stop_pitch, 1)
-                stop_note_clef = indicatortools.Clef.from_selection(
+                stop_note = abjad.Note(pitch_range.stop_pitch, 1)
+                stop_note_clef = abjad.Clef.from_selection(
                     pitch_range.stop_pitch)
                 notes = [start_note, stop_note]
-                glissando = spannertools.Glissando()
-                skips = 2 * scoretools.Skip(1)
-                treble_clef = indicatortools.Clef('treble')
-                bass_clef = indicatortools.Clef('bass')
+                glissando = abjad.Glissando()
+                skips = 2 * abjad.Skip(1)
+                treble_clef = abjad.Clef('treble')
+                bass_clef = abjad.Clef('bass')
                 if start_note_clef == stop_note_clef == treble_clef:
                     treble_staff.extend(notes)
                     bass_staff.extend(skips)
@@ -131,17 +124,17 @@ class PitchRangeInventory(TypedList):
                     assert stop_note_clef == treble_clef
                     bass_staff.extend(notes)
                     treble_staff.extend(skips)
-                    staff_change = indicatortools.StaffChange(treble_staff)
-                    attach(staff_change, stop_note)
-                attach(glissando, notes)
-        for leaf in iterate(score).by_class(scoretools.Leaf):
-            multiplier = durationtools.Multiplier(1, 4)
-            attach(multiplier, leaf)
-        override(score).bar_line.stencil = False
-        override(score).span_bar.stencil = False
-        override(score).glissando.thickness = 2
-        override(score).time_signature.stencil = False
-        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+                    staff_change = abjad.StaffChange(treble_staff)
+                    abjad.attach(staff_change, stop_note)
+                abjad.attach(glissando, notes)
+        for leaf in abjad.iterate(score).by_leaf():
+            multiplier = abjad.Multiplier(1, 4)
+            abjad.attach(multiplier, leaf)
+        abjad.override(score).bar_line.stencil = False
+        abjad.override(score).span_bar.stencil = False
+        abjad.override(score).glissando.thickness = 2
+        abjad.override(score).time_signature.stencil = False
+        lilypond_file = abjad.LilyPondFile.new(score)
         lilypond_file.items.remove(lilypond_file['layout'])
         lilypond_file.items.remove(lilypond_file['paper'])
         lilypond_file.header_block.tagline = False
@@ -151,15 +144,15 @@ class PitchRangeInventory(TypedList):
 
     @property
     def _item_coercer(self):
-        def coerce_(expr):
-            if isinstance(expr, str):
-                range_ = pitchtools.PitchRange(expr)
-            elif isinstance(expr, tuple):
-                range_ = pitchtools.PitchRange.from_pitches(*expr)
-            elif isinstance(expr, pitchtools.PitchRange):
-                range_ = copy.copy(expr)
+        def coerce_(argment):
+            if isinstance(argment, str):
+                range_ = pitchtools.PitchRange(argment)
+            elif isinstance(argment, tuple):
+                range_ = pitchtools.PitchRange.from_pitches(*argment)
+            elif isinstance(argment, pitchtools.PitchRange):
+                range_ = copy.copy(argment)
             else:
-                raise TypeError(expr)
+                raise TypeError(argment)
             return range_
         from abjad.tools import pitchtools
         return coerce_

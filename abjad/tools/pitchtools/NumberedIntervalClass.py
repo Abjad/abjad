@@ -13,7 +13,7 @@ class NumberedIntervalClass(IntervalClass):
 
         ::
 
-            >>> pitchtools.NumberedIntervalClass(-14)
+            >>> NumberedIntervalClass(-14)
             NumberedIntervalClass(-2)
 
     ..  container:: example
@@ -22,7 +22,7 @@ class NumberedIntervalClass(IntervalClass):
 
         ::
 
-            >>> pitchtools.NumberedIntervalClass(-14.5)
+            >>> NumberedIntervalClass(-14.5)
             NumberedIntervalClass(-2.5)
 
     ..  container:: example
@@ -31,7 +31,7 @@ class NumberedIntervalClass(IntervalClass):
 
         ::
 
-            >>> pitchtools.NumberedIntervalClass('-14.5')
+            >>> NumberedIntervalClass('-14.5')
             NumberedIntervalClass(-2.5)
 
     '''
@@ -100,14 +100,14 @@ class NumberedIntervalClass(IntervalClass):
         '''
         return type(self)(abs(self._number))
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a numbered interval-class with number equal to
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a numbered interval-class with number equal to
         that of this numbered interval-class. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.number == arg.number:
+        if isinstance(argument, type(self)):
+            if self.number == argument.number:
                 return True
         return False
 
@@ -188,7 +188,7 @@ class NumberedIntervalClass(IntervalClass):
 
         ::
 
-            >>> pitchtools.NumberedIntervalClass.from_pitch_carriers(
+            >>> NumberedIntervalClass.from_pitch_carriers(
             ...     NamedPitch(-2),
             ...     NamedPitch(12),
             ...     )

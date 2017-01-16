@@ -195,9 +195,8 @@ def test_pitchtools_PitchRange___contains___15():
     staff = Staff("c'4 d'4 c4 d4")
     flute = instrumenttools.Flute()
     attach(flute, staff)
-    indicator = indicatortools.IsUnpitched()
-    attach(indicator, staff[2])
-    attach(indicator, staff[3])
+    attach('unpitched', staff[2])
+    attach('unpitched', staff[3])
     override(staff[2]).note_head.style = 'cross'
     override(staff[3]).note_head.style = 'cross'
 

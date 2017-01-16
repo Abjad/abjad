@@ -3,7 +3,7 @@ from abjad.tools.indicatortools.LineSegment import LineSegment
 
 
 class Arrow(LineSegment):
-    r'''An arrow.
+    r'''Arrow.
 
     ..  container:: example
 

@@ -9,9 +9,9 @@ class PitchSet(Set):
 
     ::
 
-        >>> numbered_pitch_set = pitchtools.PitchSet(
+        >>> numbered_pitch_set = PitchSet(
         ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-        ...     item_class=pitchtools.NumberedPitch,
+        ...     item_class=NumberedPitch,
         ...     )
         >>> numbered_pitch_set
         PitchSet([-2, -1.5, 6, 7])
@@ -25,7 +25,7 @@ class PitchSet(Set):
 
     ::
 
-        >>> named_pitch_set = pitchtools.PitchSet(
+        >>> named_pitch_set = PitchSet(
         ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
         ...     item_class=NamedPitch,
         ...     )
@@ -96,7 +96,7 @@ class PitchSet(Set):
 
         ::
 
-            >>> pitch_set = pitchtools.PitchSet('c e g b')
+            >>> pitch_set = PitchSet('c e g b')
             >>> sorted(pitch_set.hertz)
             [130.81..., 164.81..., 195.99..., 246.94...]
 
@@ -130,7 +130,7 @@ class PitchSet(Set):
             >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = Staff("c4. r8 g2")
             >>> selection = select((staff_1, staff_2))
-            >>> pitchtools.PitchSet.from_selection(selection)
+            >>> PitchSet.from_selection(selection)
             PitchSet(['c', 'g', 'b', "c'", "d'", "fs'", "a'"])
 
         Returns pitch set.
@@ -150,22 +150,22 @@ class PitchSet(Set):
         items = (pitch.invert(axis) for pitch in self)
         return new(self, items=items)
 
-    def _is_equivalent_under_transposition(self, expr):
-        r'''True if pitch set is equivalent to `expr` under transposition.
+    def _is_equivalent_under_transposition(self, argment):
+        r'''True if pitch set is equivalent to `argment` under transposition.
         Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
-        if not isinstance(expr, type(self)):
+        if not isinstance(argment, type(self)):
             return False
-        if not len(self) == len(expr):
+        if not len(self) == len(argment):
             return False
-        difference = -(pitchtools.NamedPitch(expr[0], 4) -
+        difference = -(pitchtools.NamedPitch(argment[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
         new_pitches = new(self, items=new_pitch)
-        return expr == new_pitches
+        return argment == new_pitches
 
     def register(self, pitch_classes):
         '''Registers `pitch_classes` by pitch set.
@@ -174,9 +174,9 @@ class PitchSet(Set):
 
             ::
 
-                >>> pitch_set = pitchtools.PitchSet(
+                >>> pitch_set = PitchSet(
                 ...     items=[10, 19, 20, 23, 24, 26, 27, 29, 30, 33, 37, 40],
-                ...     item_class=pitchtools.NumberedPitch,
+                ...     item_class=NumberedPitch,
                 ...     )
                 >>> pitch_classes = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
                 >>> pitches = pitch_set.register(pitch_classes)
@@ -210,10 +210,10 @@ class PitchSet(Set):
             raise TypeError(message)
         return result
 
-    def transpose(self, expr):
-        r'''Transposes all pitches in pitch set by `expr`.
+    def transpose(self, argment):
+        r'''Transposes all pitches in pitch set by `argment`.
 
         Returns new pitch set.
         '''
-        items = (pitch.transpose(expr) for pitch in self)
+        items = (pitch.transpose(argment) for pitch in self)
         return new(self, items=items)

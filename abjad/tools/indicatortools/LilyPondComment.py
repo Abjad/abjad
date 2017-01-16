@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class LilyPondComment(AbjadValueObject):
-    r'''A LilyPond comment.
+    r'''LilyPond comment.
 
     ..  container:: example
 
@@ -63,9 +63,9 @@ class LilyPondComment(AbjadValueObject):
 
     def __init__(self, contents_string=None, format_slot=None):
         if isinstance(contents_string, type(self)):
-            expr = contents_string
-            contents_string = expr.contents_string
-            format_slot = format_slot or expr.format_slot
+            argment = contents_string
+            contents_string = argment.contents_string
+            format_slot = format_slot or argment.format_slot
         else:
             contents_string = str(contents_string)
         self._contents_string = contents_string

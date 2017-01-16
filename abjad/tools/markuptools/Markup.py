@@ -215,13 +215,13 @@ class Markup(AbjadValueObject):
             new_contents = tuple(contents._contents)
         elif isinstance(contents, collections.Sequence) and 0 < len(contents):
             new_contents = []
-            for arg in contents:
-                if isinstance(arg, (str, MarkupCommand)):
-                    new_contents.append(arg)
-                elif isinstance(arg, type(self)):
-                    new_contents.extend(arg.contents)
+            for argument in contents:
+                if isinstance(argument, (str, MarkupCommand)):
+                    new_contents.append(argument)
+                elif isinstance(argument, type(self)):
+                    new_contents.extend(argument.contents)
                 else:
-                    new_contents.append(str(arg))
+                    new_contents.append(str(argument))
             new_contents = tuple(new_contents)
         else:
             new_contents = (str(contents),)
@@ -237,8 +237,8 @@ class Markup(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
-        r'''Adds markup to `expr`.
+    def __add__(self, argment):
+        r'''Adds markup to `argment`.
 
         ..  container:: example
 
@@ -325,13 +325,13 @@ class Markup(AbjadValueObject):
         if self._frozen_expression:
             return self._make_callback(inspect.currentframe())
         commands = list(self.contents)
-        if isinstance(expr, type(self)):
-            commands.extend(expr.contents)
-        elif isinstance(expr, MarkupCommand):
-            commands.append(expr)
+        if isinstance(argment, type(self)):
+            commands.extend(argment.contents)
+        elif isinstance(argment, MarkupCommand):
+            commands.append(argment)
         else:
             message = 'must be markup or markup command: {!r}.'
-            message = message.format(expr)
+            message = message.format(argment)
             raise TypeError(message)
         markup = type(self)(contents=commands, direction=self.direction)
         return markup
@@ -611,8 +611,8 @@ class Markup(AbjadValueObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.LilyPondFile.new()
+        import abjad
+        lilypond_file = abjad.LilyPondFile.new()
         lilypond_file.header_block.tagline = False
         markup = new(self, direction=None)
         lilypond_file.items.append(markup)

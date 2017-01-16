@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class KeySignature(AbjadValueObject):
-    r'''A key signature.
+    r'''Key signature.
 
     ..  container:: example
 

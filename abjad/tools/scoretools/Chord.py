@@ -288,7 +288,7 @@ class Chord(Leaf):
     def _get_sounding_pitches(self):
         from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
-        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
+        if 'sounding pitch' in inspect_(self).get_indicators(str):
             return self.written_pitches
         else:
             instrument = self._get_effective(

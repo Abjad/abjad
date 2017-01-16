@@ -59,8 +59,8 @@ class Duplication(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
-        r'''Calls rotation on `expr`.
+    def __call__(self, argment):
+        r'''Calls rotation on `argment`.
 
         ..  container:: example
 
@@ -168,14 +168,14 @@ class Duplication(AbjadValueObject):
                 >>> operator_(pitch_classes)
                 PitchClassSegment([0, 1, 1, 4, 4, 4, 7, 7, 7, 7, 9])
                 
-        Returns new object with type equal to that of `expr`.
+        Returns new object with type equal to that of `argment`.
         '''
         from abjad.tools import datastructuretools
         from abjad.tools import patterntools
         from abjad.tools import sequencetools
 
-        if not isinstance(expr, collections.Sequence):
-            expr = (expr,)
+        if not isinstance(argment, collections.Sequence):
+            argment = (argment,)
 
         counts = self.counts
         if isinstance(counts, int):
@@ -185,17 +185,17 @@ class Duplication(AbjadValueObject):
 
         if not self.period and not self.indices:
             if isinstance(counts, int):
-                return type(expr)(expr * counts)
+                return type(argment)(argment * counts)
             else:
                 counts = datastructuretools.CyclicTuple(counts)
                 result = []
-                for i, x in enumerate(expr):
+                for i, x in enumerate(argment):
                     count = counts[i]
                     result.extend([x] * count)
-                if isinstance(expr, datastructuretools.TypedCollection):
-                    result = new(expr, items=result)
+                if isinstance(argment, datastructuretools.TypedCollection):
+                    result = new(argment, items=result)
                 else:
-                    result = type(expr)(result)
+                    result = type(argment)(result)
                 return result
 
         if isinstance(counts, int):
@@ -203,14 +203,14 @@ class Duplication(AbjadValueObject):
         counts = datastructuretools.CyclicTuple(counts)
 
         if not self.indices:
-            if isinstance(expr, datastructuretools.TypedCollection):
-                result = new(expr, items=())
+            if isinstance(argment, datastructuretools.TypedCollection):
+                result = new(argment, items=())
             else:
-                result = type(expr)()
+                result = type(argment)()
             iterator = sequencetools.partition_sequence_by_counts(
-                expr, [self.period], cyclic=True, overhang=True)
+                argment, [self.period], cyclic=True, overhang=True)
             for i, shard in enumerate(iterator):
-                shard = type(expr)(shard) * counts[i]
+                shard = type(argment)(shard) * counts[i]
                 result = result + shard
             return result
 
@@ -219,19 +219,19 @@ class Duplication(AbjadValueObject):
             period=self.period,
             )
         result = []
-        length = len(expr)
+        length = len(argment)
         j = 0
-        for i, x in enumerate(expr):
+        for i, x in enumerate(argment):
             if pattern.matches_index(i, length):
                 count = counts[j]
                 result.extend([x] * count)
                 j += 1
             else:
                 result.append(x)
-        if isinstance(expr, datastructuretools.TypedCollection):
-            result = new(expr, items=result)
+        if isinstance(argment, datastructuretools.TypedCollection):
+            result = new(argment, items=result)
         else:
-            result = type(expr)(result)
+            result = type(argment)(result)
         return result
 
     ### PUBLIC PROPERTIES ###

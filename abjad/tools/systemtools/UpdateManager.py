@@ -70,16 +70,14 @@ class UpdateManager(AbjadObject):
         if isinstance(score_root, scoretools.Context):
             contexts = iterate(score_root).by_class(scoretools.Context)
             for context in contexts:
-                for leaf_index, leaf in enumerate(
-                    iterate(context).by_class(scoretools.Leaf)):
+                for leaf_index, leaf in enumerate(iterate(context).by_leaf()):
                     leaf._leaf_index = leaf_index
                 for measure_index, measure in enumerate(
                     iterate(context).by_class(scoretools.Measure)):
                     measure_number = measure_index + 1
                     measure._measure_number = measure_number
         else:
-            for leaf_index, leaf in enumerate(
-                iterate(score_root).by_class(scoretools.Leaf)):
+            for leaf_index, leaf in enumerate(iterate(score_root).by_leaf()):
                 leaf._leaf_index = leaf_index
             for measure_index, measure in enumerate(
                 iterate(score_root).by_class(scoretools.Measure)):

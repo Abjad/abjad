@@ -17,7 +17,7 @@ class Marimba(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Marimba }
             \set Staff.shortInstrumentName = \markup { Mb. }
@@ -71,7 +71,7 @@ class Marimba(Instrument):
             ::
 
                 >>> marimba.allowable_clefs
-                ClefInventory([Clef(name='treble'), Clef(name='bass')])
+                ClefList([Clef(name='treble'), Clef(name='bass')])
 
             ::
 
