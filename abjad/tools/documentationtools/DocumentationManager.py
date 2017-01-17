@@ -547,9 +547,12 @@ class DocumentationManager(abctools.AbjadObject):
                 continue
             obj = getattr(tools_package, name)
             if not hasattr(obj, '__module__'):
-                message = 'Warning: no nominative object in {}'
-                message = message.format(obj)
-                print(message)
+                if getattr(obj, '__name__', None) == 'abjad':
+                    pass
+                else:
+                    message = 'Warning: no nominative object in {}'
+                    message = message.format(obj)
+                    print(message)
                 continue
             if not obj.__module__.startswith(tools_package.__name__):
                 continue

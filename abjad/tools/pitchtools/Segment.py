@@ -15,7 +15,8 @@ class Segment(TypedTuple):
     ### CLASS VARIABLES ##
 
     __slots__ = (
-        '_frozen_expression',
+        '_equivalence_markup',
+        '_expression',
         )
 
     ### INITIALIZER ###
@@ -24,10 +25,9 @@ class Segment(TypedTuple):
         self,
         items=None,
         item_class=None,
-        name=None,
-        name_markup=None,
         ):
         from abjad.tools import datastructuretools
+        from abjad.tools import markuptools
         prototype = (
             collections.Iterator,
             types.GeneratorType,
@@ -35,7 +35,7 @@ class Segment(TypedTuple):
         if isinstance(items, str):
             items = items.split()
         elif isinstance(items, prototype):
-            items = [item for item in items]
+            items = [_ for _ in items]
         if item_class is None:
             item_class = self._named_item_class
             if items is not None:
@@ -61,16 +61,16 @@ class Segment(TypedTuple):
             self,
             items=items,
             item_class=item_class,
-            name=name,
-            name_markup=name_markup,
             )
-        self._frozen_expression = None
+        self._equivalence_markup = None
+        self._expression = None
 
     ### SPECIAL METHODS ###
 
     def __illustrate__(
         self,
-        name_markup_direction=Up,
+        markup_direction=Up,
+        figure_name=None,
         **keywords
         ):
         r'''Illustrates segment.
@@ -82,13 +82,17 @@ class Segment(TypedTuple):
         for item in self:
             note = abjad.Note(item, abjad.Duration(1, 8))
             notes.append(note)
-        expression_markup = \
-            abjad.expressiontools.Expression._get_expression_markup(
-            self,
-            direction=name_markup_direction,
-            )
-        if expression_markup is not None:
-            abjad.attach(expression_markup, notes[0])
+        markup = None
+        if self._equivalence_markup:
+            markup = self._equivalence_markup
+        if isinstance(figure_name, str):
+            figure_name = abjad.Markup(figure_name)
+        if figure_name is not None:
+            markup = figure_name
+        if markup is not None:
+            direction = markup_direction
+            markup = abjad.new(markup, direction=direction)
+            abjad.attach(markup, notes[0])
         voice = abjad.Voice(notes)
         staff = abjad.Staff([voice])
         score = abjad.Score([staff])
@@ -187,15 +191,6 @@ class Segment(TypedTuple):
             string = string.format(item)
             strings.append(string)
         return '<{}>'.format(', '.join(strings))
-
-    def _make_callback(self, frame, formula_string_template=None):
-        assert self._frozen_expression, repr(self._frozen_expression)
-        Expression = expressiontools.Expression
-        template = Expression._make_evaluation_template(frame)
-        return self._frozen_expression.append_callback(
-            evaluation_template=template,
-            formula_string_template=formula_string_template,
-            )
 
     ### PUBLIC METHODS ###
 

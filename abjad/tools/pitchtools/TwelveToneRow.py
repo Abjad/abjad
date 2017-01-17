@@ -46,7 +46,6 @@ class TwelveToneRow(PitchClassSegment):
     def __init__(
         self,
         items=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
-        name=None,
         ):
         from abjad.tools import pitchtools
         assert items is not None
@@ -54,7 +53,6 @@ class TwelveToneRow(PitchClassSegment):
             self,
             items=items,
             item_class=pitchtools.NumberedPitchClass,
-            name=name,
             )
         self._validate_pitch_classes(self)
 
@@ -464,8 +462,8 @@ class TwelveToneRow(PitchClassSegment):
         superclass = super(PitchClassSegment, self)
         return superclass.__illustrate__(**keywords)
 
-    def __mul__(self, argment):
-        r'''Multiplies row by `argment`.
+    def __mul__(self, argument):
+        r'''Multiplies row by `argument`.
 
         ..  container:: example
 
@@ -574,10 +572,10 @@ class TwelveToneRow(PitchClassSegment):
 
         Returns pitch-class segment.
         '''
-        return PitchClassSegment(self) * argment
+        return PitchClassSegment(self) * argument
 
-    def __rmul__(self, argment):
-        r'''Multiplies `argment` by row.
+    def __rmul__(self, argument):
+        r'''Multiplies `argument` by row.
 
         ..  container:: example
 
@@ -684,7 +682,7 @@ class TwelveToneRow(PitchClassSegment):
                 PitchClassSegment([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
         '''
-        return PitchClassSegment(self) * argment
+        return PitchClassSegment(self) * argument
 
     ### PRIVATE PROPERTIES ###
 

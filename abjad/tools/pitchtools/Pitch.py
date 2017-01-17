@@ -337,8 +337,8 @@ class Pitch(AbjadValueObject):
         return result
 
     @staticmethod
-    def is_diatonic_pitch_name(argment):
-        '''Is true when `argment` is a diatonic pitch name. Otherwise false.
+    def is_diatonic_pitch_name(argument):
+        '''Is true when `argument` is a diatonic pitch name. Otherwise false.
 
         ..  container:: example
 
@@ -358,13 +358,13 @@ class Pitch(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(argment, str):
+        if not isinstance(argument, str):
             return False
-        return bool(Pitch._diatonic_pitch_name_regex.match(argment))
+        return bool(Pitch._diatonic_pitch_name_regex.match(argument))
 
     @staticmethod
-    def is_diatonic_pitch_number(argment):
-        '''Is true when `argment` is a diatonic pitch number. Otherwise false.
+    def is_diatonic_pitch_number(argument):
+        '''Is true when `argument` is a diatonic pitch number. Otherwise false.
 
         ..  container:: example
 
@@ -384,11 +384,11 @@ class Pitch(AbjadValueObject):
 
         Returns true or false.
         '''
-        return isinstance(argment, int)
+        return isinstance(argument, int)
 
     @staticmethod
-    def is_pitch_carrier(argment):
-        '''Is true when `argment` is an Abjad pitch, note, note-head of chord
+    def is_pitch_carrier(argument):
+        '''Is true when `argument` is an Abjad pitch, note, note-head of chord
         instance. Otherwise false.
 
         ..  container:: example
@@ -411,7 +411,7 @@ class Pitch(AbjadValueObject):
         from abjad.tools import scoretools
         from abjad.tools import pitchtools
         return isinstance(
-            argment, (
+            argument, (
                 pitchtools.NamedPitch,
                 scoretools.Note,
                 scoretools.NoteHead,
@@ -420,8 +420,8 @@ class Pitch(AbjadValueObject):
             )
 
     @staticmethod
-    def is_pitch_class_octave_number_string(argment):
-        '''Is true when `argment` is a pitch-class / octave number string.
+    def is_pitch_class_octave_number_string(argument):
+        '''Is true when `argument` is a pitch-class / octave number string.
         Otherwise false.
 
         ..  container:: example
@@ -452,13 +452,13 @@ class Pitch(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(argment, str):
+        if not isinstance(argument, str):
             return False
-        return bool(Pitch._pitch_class_octave_number_regex.match(argment))
+        return bool(Pitch._pitch_class_octave_number_regex.match(argument))
 
     @staticmethod
-    def is_pitch_name(argment):
-        '''Is true when `argment` is a pitch name. Otherwise false.
+    def is_pitch_name(argument):
+        '''Is true when `argument` is a pitch name. Otherwise false.
 
         ..  container:: example
 
@@ -479,13 +479,13 @@ class Pitch(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(argment, str):
+        if not isinstance(argument, str):
             return False
-        return bool(Pitch._pitch_name_regex.match(argment))
+        return bool(Pitch._pitch_name_regex.match(argument))
 
     @staticmethod
-    def is_pitch_number(argment):
-        '''Is true when `argment` is a pitch number. Otherwise false.
+    def is_pitch_number(argument):
+        '''Is true when `argument` is a pitch number. Otherwise false.
 
         ..  container:: example
 
@@ -506,8 +506,8 @@ class Pitch(AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(argment, (int, float)):
-            return argment % 0.5 == 0
+        if isinstance(argument, (int, float)):
+            return argument % 0.5 == 0
         return False
 
     @abc.abstractmethod

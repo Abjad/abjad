@@ -109,9 +109,9 @@ class ColorFingering(AbjadValueObject):
         superclass = super(ColorFingering, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __lt__(self, argment):
-        r'''Is true if `argment` is a color fingering and the number of this color
-        fingering is less than that of `argment`.
+    def __lt__(self, argument):
+        r'''Is true if `argument` is a color fingering and the number of this color
+        fingering is less than that of `argument`.
 
         ..  container:: example
 
@@ -150,8 +150,8 @@ class ColorFingering(AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(argment, type(self)):
-            return self.number < argment.number
+        if isinstance(argument, type(self)):
+            return self.number < argument.number
         raise TypeError('unorderable types')
 
     ### PRIVATE PROPERTIES ###

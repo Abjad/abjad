@@ -2458,7 +2458,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
                 >>> rhythm_maker(divisions)
                 Traceback (most recent call last):
-                ...
+                    ...
                 Exception: talea is too short to read once only:
                 CyclicTuple([1, 2, 3, 4]) in [6, 6, 6, 6].
 

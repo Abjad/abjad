@@ -18,7 +18,7 @@ class PitchSet(Set):
 
     ::
 
-        >>> print(format(numbered_pitch_set))
+        >>> f(numbered_pitch_set)
         pitchtools.PitchSet(
             [-2, -1.5, 6, 7]
             )
@@ -34,7 +34,7 @@ class PitchSet(Set):
 
     ::
 
-        >>> print(format(named_pitch_set))
+        >>> f(named_pitch_set)
         pitchtools.PitchSet(
             ['bf,', 'aqs', 'bqf', "fs'", "g'"]
             )
@@ -150,22 +150,22 @@ class PitchSet(Set):
         items = (pitch.invert(axis) for pitch in self)
         return new(self, items=items)
 
-    def _is_equivalent_under_transposition(self, argment):
-        r'''True if pitch set is equivalent to `argment` under transposition.
+    def _is_equivalent_under_transposition(self, argument):
+        r'''True if pitch set is equivalent to `argument` under transposition.
         Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
-        if not isinstance(argment, type(self)):
+        if not isinstance(argument, type(self)):
             return False
-        if not len(self) == len(argment):
+        if not len(self) == len(argument):
             return False
-        difference = -(pitchtools.NamedPitch(argment[0], 4) -
+        difference = -(pitchtools.NamedPitch(argument[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
         new_pitches = new(self, items=new_pitch)
-        return argment == new_pitches
+        return argument == new_pitches
 
     def register(self, pitch_classes):
         '''Registers `pitch_classes` by pitch set.
@@ -210,10 +210,10 @@ class PitchSet(Set):
             raise TypeError(message)
         return result
 
-    def transpose(self, argment):
-        r'''Transposes all pitches in pitch set by `argment`.
+    def transpose(self, argument):
+        r'''Transposes all pitches in pitch set by `argument`.
 
         Returns new pitch set.
         '''
-        items = (pitch.transpose(argment) for pitch in self)
+        items = (pitch.transpose(argument) for pitch in self)
         return new(self, items=items)

@@ -643,8 +643,8 @@ class TimeSignature(AbjadValueObject):
         return self._suppress
 
     @suppress.setter
-    def suppress(self, argment):
-        self._suppress = bool(argment)
+    def suppress(self, argument):
+        self._suppress = bool(argument)
 
     ### PUBLIC METHODS ###
 

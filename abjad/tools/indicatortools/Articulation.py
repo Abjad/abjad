@@ -139,9 +139,9 @@ class Articulation(AbjadValueObject):
     def __init__(self, name=None, direction=None):
         self._default_scope = None
         if isinstance(name, type(self)):
-            argment = name
-            name = argment.name
-            direction = direction or argment.direction
+            argument = name
+            name = argument.name
+            direction = direction or argument.direction
         name = str(name)
         if '\\' in name:
             direction, name = name.split('\\')

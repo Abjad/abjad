@@ -71,14 +71,14 @@ class TimeSignatureInventory(TypedList):
     @property
     def _item_coercer(self):
         from abjad.tools import indicatortools
-        def coerce(argment):
-            if isinstance(argment, tuple):
-                return indicatortools.TimeSignature(argment)
-            elif isinstance(argment, indicatortools.TimeSignature):
-                return copy.copy(argment)
+        def coerce(argument):
+            if isinstance(argument, tuple):
+                return indicatortools.TimeSignature(argument)
+            elif isinstance(argument, indicatortools.TimeSignature):
+                return copy.copy(argument)
             else:
                 message = 'must be pair or time signature: {!r}.'
-                message = message.format(argment)
+                message = message.format(argument)
                 raise Exception(message)
         return coerce
 

@@ -142,8 +142,8 @@ class Interval(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def is_named_interval_abbreviation(argment):
-        '''Is true when `argment` is a named interval abbreviation.
+    def is_named_interval_abbreviation(argument):
+        '''Is true when `argument` is a named interval abbreviation.
         Otherwise false:
 
         ::
@@ -155,13 +155,13 @@ class Interval(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(argment, str):
+        if not isinstance(argument, str):
             return False
-        return bool(Interval._interval_name_abbreviation_regex.match(argment))
+        return bool(Interval._interval_name_abbreviation_regex.match(argument))
 
     @staticmethod
-    def is_named_interval_quality_abbreviation(argment):
-        '''Is true when `argment` is a named-interval quality abbreviation. Otherwise
+    def is_named_interval_quality_abbreviation(argument):
+        '''Is true when `argument` is a named-interval quality abbreviation. Otherwise
         false:
 
         ::
@@ -173,7 +173,7 @@ class Interval(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(argment, str):
+        if not isinstance(argument, str):
             return False
         return bool(Interval._named_interval_quality_abbreviation_regex.match(
-            argment))
+            argument))

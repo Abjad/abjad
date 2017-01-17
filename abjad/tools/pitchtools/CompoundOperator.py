@@ -96,14 +96,14 @@ class CompoundOperator(AbjadValueObject):
 
                 >>> f(operator_3)
                 pitchtools.CompoundOperator(
-                    operators=(
+                    operators=[
                         pitchtools.Transposition(
                             n=1,
                             ),
                         pitchtools.Inversion(),
                         pitchtools.Retrograde(),
                         pitchtools.Inversion(),
-                        ),
+                        ],
                     )
 
         Returns new compound operator.
@@ -118,8 +118,8 @@ class CompoundOperator(AbjadValueObject):
             result = result._with_operator(operator)
         return result
 
-    def __call__(self, argment):
-        r'''Calls compound operator on `argment`.
+    def __call__(self, argument):
+        r'''Calls compound operator on `argument`.
 
         ..  container:: example
 
@@ -146,13 +146,13 @@ class CompoundOperator(AbjadValueObject):
                 >>> transform
                 PitchClassSegment([2, 7, 8, 11])
 
-        Returns new object with type equal to that of `argment`.
+        Returns new object with type equal to that of `argument`.
         '''
         if self.operators is None:
-            return argment
+            return argument
         for transform in self.operators:
-            argment = transform(argment)
-        return argment
+            argument = transform(argument)
+        return argument
 
     def __radd__(self, operator):
         r'''Composes `operator` and compound operator.
@@ -268,8 +268,8 @@ class CompoundOperator(AbjadValueObject):
         return markup
         
     def _with_operator(self, operator):
-        operators = self.operators or ()
-        operators = operators + (operator,)
+        operators = self.operators or []
+        operators = operators + [operator]
         return type(self)(
             operators,
             show_identity_operators=self.show_identity_operators,
@@ -299,9 +299,10 @@ class CompoundOperator(AbjadValueObject):
                 Rotation(n=1)
                 Transposition(n=2)
 
-        Returns tuple of operators.
+        Returns list of operators.
         '''
-        return self._operators
+        if self._operators is not None:
+            return list(self._operators)
 
     @property
     def show_identity_operators(self):
@@ -362,11 +363,11 @@ class CompoundOperator(AbjadValueObject):
                 >>> operator = operator.duplicate(counts=1)
                 >>> f(operator)
                 pitchtools.CompoundOperator(
-                    operators=(
+                    operators=[
                         sequencetools.Duplication(
                             counts=1,
                             ),
-                        ),
+                        ],
                     )
 
         Returns new compound operator.
@@ -389,11 +390,11 @@ class CompoundOperator(AbjadValueObject):
                 >>> operator = operator.invert(axis=2)
                 >>> f(operator)
                 pitchtools.CompoundOperator(
-                    operators=(
+                    operators=[
                         pitchtools.Inversion(
                             axis=pitchtools.NamedPitch("d'"),
                             ),
-                        ),
+                        ],
                     )
 
         Returns new compound operator.
@@ -413,11 +414,11 @@ class CompoundOperator(AbjadValueObject):
                 >>> operator = operator.multiply(n=3)
                 >>> f(operator)
                 pitchtools.CompoundOperator(
-                    operators=(
+                    operators=[
                         pitchtools.Multiplication(
                             n=3,
                             ),
-                        ),
+                        ],
                     )
 
         Returns new compound operator.
@@ -437,9 +438,9 @@ class CompoundOperator(AbjadValueObject):
                 >>> operator = operator.retrograde()
                 >>> f(operator)
                 pitchtools.CompoundOperator(
-                    operators=(
+                    operators=[
                         pitchtools.Retrograde(),
-                        ),
+                        ],
                     )
 
         Returns new compound operator.
@@ -459,11 +460,11 @@ class CompoundOperator(AbjadValueObject):
                 >>> operator = operator.rotate(n=-1)
                 >>> f(operator)
                 pitchtools.CompoundOperator(
-                    operators=(
+                    operators=[
                         pitchtools.Rotation(
                             n=-1,
                             ),
-                        ),
+                        ],
                     )
 
         Returns new compound operator.
@@ -490,11 +491,11 @@ class CompoundOperator(AbjadValueObject):
 
                 >>> f(operator)
                 pitchtools.CompoundOperator(
-                    operators=(
+                    operators=[
                         pitchtools.Transposition(
                             n=1,
                             ),
-                        ),
+                        ],
                     )
 
         Returns new compound operator.

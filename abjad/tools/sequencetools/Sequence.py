@@ -79,33 +79,27 @@ class Sequence(AbjadObject):
     __slots__ = (
         '_equivalence_markup',
         '_expression',
-        '_frozen_expression',
         '_items',
-        '_name',
-        '_name_markup',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, items=None, name=None, name_markup=None):
+    def __init__(self, items=None):
         self._equivalence_markup = None
         self._expression = None
-        self._frozen_expression = None
         items = items or ()
         if not isinstance(items, collections.Iterable):
             items = [items]
         self._items = tuple(items)
-        if name is None:
-            name = getattr(items, '_name', None)
-        self._name = name
-        if name_markup is None:
-            name_markup = getattr(items, '_name_markup', None)    
-        self._name_markup = name_markup
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, sequence_):
-        r'''Adds `sequence_` to sequence.
+    @expressiontools.Signature(
+        markup_expression_callback='_make___add___markup_expression',
+        string_template_callback='_make___add___string_template',
+        )
+    def __add__(self, argument):
+        r'''Adds `argument` to sequence.
 
         ..  container:: example
 
@@ -122,9 +116,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence() + (4, 5, 6)
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
+                    >>> expression = expression + (4, 5, 6)
+
+                ::
+
                     >>> expression([1, 2, 3])
                     Sequence([1, 2, 3, 4, 5, 6])
+
+                ::
+
+                    >>> expression.get_string()
+                    'J + (4, 5, 6)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \line
+                            {
+                                \bold
+                                    J
+                                +
+                                "(4, 5, 6)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -141,9 +163,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence() + [4, 5, 6]
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
+                    >>> expression = expression + [4, 5, 6]
+
+                ::
+
                     >>> expression([1, 2, 3])
                     Sequence([1, 2, 3, 4, 5, 6])
+
+                ::
+
+                    >>> expression.get_string()
+                    'J + [4, 5, 6]'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \line
+                            {
+                                \bold
+                                    J
+                                +
+                                "[4, 5, 6]"
+                            }
+                        }
 
         ..  container:: example
 
@@ -153,54 +203,128 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_1 = Sequence([1, 2, 3], name='J')
-                    >>> sequence_2 = Sequence([4, 5, 6], name='K')
+                    >>> sequence_1 = Sequence([1, 2, 3])
+                    >>> sequence_2 = Sequence([4, 5, 6])
                     >>> sequence_1 + sequence_2
-                    Sequence([1, 2, 3, 4, 5, 6], name='J + K')
+                    Sequence([1, 2, 3, 4, 5, 6])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression_1 = sequence(name='J')
-                    >>> expression_2 = sequence(name='K')
-                    >>> expression_1([1, 2, 3]) + expression_2([4, 5, 6])
-                    Sequence([1, 2, 3, 4, 5, 6], name='J + K')
+                    >>> expression_1 = Expression(name='J')
+                    >>> expression_1 = expression_1.sequence()
+                    >>> expression_2 = Expression(name='K')
+                    >>> expression_2 = expression_2.sequence()
+                    >>> expression = expression_1 + expression_2
+
+                ::
+
+                    >>> expression([1, 2, 3], [4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
+
+                ::
+
+                    >>> expression.get_string()
+                    'J + K'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \line
+                            {
+                                \bold
+                                    J
+                                +
+                                \bold
+                                    K
+                            }
+                        }
+
+        ..  container:: example
+
+            Reverses result:
+
+            ..  container:: example
+
+                ::
+
+                    >>> sequence_1 = Sequence([1, 2, 3])
+                    >>> sequence_2 = Sequence([4, 5, 6])
+                    >>> sequence_ = sequence_1 + sequence_2
+                    >>> sequence_.reverse()
+                    Sequence([6, 5, 4, 3, 2, 1])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression_1 = Expression(name='J')
+                    >>> expression_1 = expression_1.sequence()
+                    >>> expression_2 = Expression(name='K')
+                    >>> expression_2 = expression_2.sequence()
+                    >>> expression = expression_1 + expression_2
+                    >>> expression = expression.reverse()
+
+                ::
+
+                    >>> expression([1, 2, 3], [4, 5, 6])
+                    Sequence([6, 5, 4, 3, 2, 1])
+
+                ::
+
+                    >>> expression.get_string()
+                    'R(J + K)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                R
+                                \concat
+                                    {
+                                        (
+                                        \line
+                                            {
+                                                \bold
+                                                    J
+                                                +
+                                                \bold
+                                                    K
+                                            }
+                                        )
+                                    }
+                            }
+                        }
 
         Returns new sequence.
         '''
-        formula_string_template = '{{}} + {}'
-        if hasattr(sequence_, 'name'):
-            formula_string_template = formula_string_template.format(
-                sequence_.name)
-        else:
-            formula_string_template = formula_string_template.format(sequence_)
-        if self._frozen_expression:
-            template = '{{}}.__add__(sequence_={sequence_})'
-            template = template.format(sequence_=sequence_)
-            return self._frozen_expression.append_callback(
-                evaluation_template=template,
-                formula_string_template=formula_string_template,
-                )
-        sequence_ = type(self)(sequence_)
-        name = None
-        if self.name and sequence_.name:
-            name_template = '{sequence} + {sequence_}'
-            name = name_template.format(
-                sequence=self.name,
-                sequence_=sequence_.name,
-                )
-        items = self._items + sequence_._items
-        result = type(self)(items=items, name=name)
-        return result
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        argument = type(self)(items=argument)
+        items = self.items + argument.items
+        return type(self)(items=items)
 
-    def __eq__(self, argment):
-        r'''Is true when `argment` is a sequence with items equal to those of
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a sequence with items equal to those of
         this sequence. Otherwise false.
 
         ..  container:: example
 
-            Is true when `argment` is a sequence with items equal to those of this
+            Is true when `argument` is a sequence with items equal to those of this
             sequence:
 
             ::
@@ -210,7 +334,7 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Is false when `argment` is not a sequence with items equal to those of
+            Is false when `argument` is not a sequence with items equal to those of
             this sequence:
 
             ::
@@ -220,8 +344,8 @@ class Sequence(AbjadObject):
 
         Returns true or false.
         '''
-        if isinstance(argment, type(self)):
-            return self._items == argment._items
+        if isinstance(argument, type(self)):
+            return self._items == argument._items
         return False
 
     def __format__(self, format_specification=''):
@@ -233,8 +357,8 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> f(Sequence([1, 2, 3, 4, 5, 6], name='J'))
-                Sequence([1, 2, 3, 4, 5, 6], name='J')
+                >>> f(Sequence([1, 2, 3, 4, 5, 6]))
+                Sequence([1, 2, 3, 4, 5, 6])
 
         ..  container:: example expression
 
@@ -242,19 +366,28 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> expression = sequence(name='J')
+                >>> expression = Expression(name='J')
+                >>> expression = expression.sequence()
                 >>> f(expression)
                 expressiontools.Expression(
-                    callbacks=(
+                    callbacks=[
                         expressiontools.Expression(
                             evaluation_template='abjad.sequencetools.Sequence',
-                            formula_string_template='{}',
                             is_initializer=True,
-                            keywords={
-                                'name': 'J',
-                                },
+                            markup_expression=expressiontools.Expression(
+                                callbacks=[
+                                    expressiontools.Expression(
+                                        evaluation_template='abjad.markuptools.Markup',
+                                        is_initializer=True,
+                                        ),
+                                    ],
+                                proxy_class=markuptools.Markup,
+                                ),
+                            string_template='{}',
                             ),
-                        ),
+                        ],
+                    name='J',
+                    proxy_class=sequencetools.Sequence,
                     )
 
         Returns string.
@@ -264,8 +397,12 @@ class Sequence(AbjadObject):
             format_specification=format_specification,
             )
 
-    def __getitem__(self, i):
-        r'''Gets item `i` from sequence.
+    @expressiontools.Signature(
+        markup_expression_callback='_make___getitem___markup_expression',
+        string_template_callback='_make___getitem___string_template',
+        )
+    def __getitem__(self, argument):
+        r'''Gets item at index or slice `argument` from sequence.
 
         ..  container:: example
 
@@ -286,15 +423,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression[0]
-                    >>> expression.get_formula_string(name='X')
-                    'X[0]'
 
                 ::
 
                     >>> expression([1, 2, 3, 4, 5, 6])
                     1
+
+                ::
+
+                    >>> expression.get_string()
+                    'J[0]'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                \bold
+                                    J
+                                \sub
+                                    0
+                            }
+                        }
 
         ..  container:: example
 
@@ -315,15 +474,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression[-1]
-                    >>> expression.get_formula_string(name='X')
-                    'X[-1]'
 
                 ::
 
                     >>> expression([1, 2, 3, 4, 5, 6])
                     6
+
+                ::
+
+                    >>> expression.get_string()
+                    'J[-1]'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                \bold
+                                    J
+                                \sub
+                                    -1
+                            }
+                        }
 
         ..  container:: example
 
@@ -333,32 +514,49 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6], name='J')
+                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
                     >>> sequence_ = sequence_[:3]
 
                 ::
 
                     >>> sequence_
-                    Sequence([1, 2, 3], name='J[:3]')
+                    Sequence([1, 2, 3])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = sequence(name='J')
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression[:3]
-                    >>> expression.get_formula_string(name='X')
-                    'X[:3]'
 
                 ::
 
                     >>> expression([1, 2, 3, 4, 5, 6])
-                    Sequence([1, 2, 3], name='J[:3]')
+                    Sequence([1, 2, 3])
 
-                ..  note:: Implement calltime names:
+                ::
 
-                    >>> expression = sequence()[:3]
-                    >>> expression([1, 2, 3, 4, 5, 6], name='J') # doctest: +SKIP
+                    >>> expression.get_string()
+                    'J[:3]'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                \bold
+                                    J
+                                \sub
+                                    [:3]
+                            }
+                        }
 
         ..  container:: example
 
@@ -380,16 +578,38 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression[0]
                     >>> expression = expression.sequence()
-                    >>> expression.get_formula_string(name='X')
-                    'X[0]'
 
                 ::
 
                     >>> expression([1, 2, 3, 4, 5, 6])
                     Sequence([1])
+
+                ::
+
+                    >>> expression.get_string()
+                    'J[0]'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                \bold
+                                    J
+                                \sub
+                                    0
+                            }
+                        }
 
         ..  container:: example
 
@@ -412,85 +632,51 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression[:-1]
                     >>> expression = expression.flatten()
-                    >>> expression.get_formula_string(name='X')
-                    'flatten(X[:-1])'
 
                 ::
 
                     >>> expression([1, 2, [3, [4]], 5])
                     Sequence([1, 2, 3, 4])
 
+                ::
+
+                    >>> expression.get_string()
+                    'flatten(J[:-1])'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                flatten(
+                                \concat
+                                    {
+                                        \bold
+                                            J
+                                        \sub
+                                            [:-1]
+                                    }
+                                )
+                            }
+                        }
+
         Returns item or new sequence.
         '''
-        if self._frozen_expression:
-            if isinstance(i, int):
-                formula_string_template = '{{}}[{i}]'
-                start = stop = step = None
-            elif isinstance(i, slice):
-                if i.step is not None:
-                    raise NotImplementedError
-                if i.start is None and i.stop is None:
-                    formula_string_template = '{{}}[:]'
-                elif i.start is None:
-                    formula_string_template = '{{}}[:{stop}]'
-                elif i.stop is None:
-                    formula_string_template = '{{}}[{start}:]'
-                else:
-                    formula_string_template = '{{}}[{start}:{stop}]'
-                start = i.start
-                stop = i.stop
-                step = i.step
-            else:
-                message = 'must be integer or slice: {!r}.'
-                message = message.format(i)
-                raise TypeError(message)
-            formula_string_template = formula_string_template.format(
-                i=i,
-                start=start,
-                stop=stop,
-                )
-            template = '{{}}.__getitem__(i={i})'
-            template = template.format(i=i)
-            return self._frozen_expression.append_callback(
-                evaluation_template=template,
-                formula_string_template=formula_string_template,
-                )
-        name = None
-        if self.name:
-            if isinstance(i, int):
-                name_template = '{sequence}[{i}]'
-                start = stop = step = None
-            elif isinstance(i, slice):
-                if i.step is not None:
-                    raise NotImplementedError
-                if i.start is None and i.stop is None:
-                    name_template = '{sequence}[:]'
-                elif i.start is None:
-                    name_template = '{sequence}[:{stop}]'
-                elif i.stop is None:
-                    name_template = '{sequence}[{start}:]'
-                else:
-                    name_template = '{sequence}[{start}:{stop}]'
-                start = i.start
-                stop = i.stop
-                step = i.step
-            else:
-                message = 'must be integer or slice: {!r}.'
-                message = message.format(i)
-                raise TypeError(message)
-            name = name_template.format(
-                sequence=self.name,
-                i=i,
-                start=start,
-                stop=stop,
-                step=step,
-                )
-        result = self._items.__getitem__(i)
-        if isinstance(i, slice):
-            return type(self)(result, name=name)
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        result = self._items.__getitem__(argument)
+        if isinstance(argument, slice):
+            return type(self)(items=result)
         return result
 
     def __hash__(self):
@@ -527,12 +713,12 @@ class Sequence(AbjadObject):
         '''
         return len(self._items)
 
-    def __ne__(self, argment):
-        r'''Is true when sequence is not equal to `argment`. Otherwise false.
+    def __ne__(self, argument):
+        r'''Is true when sequence is not equal to `argument`. Otherwise false.
 
         ..  container:: example
 
-            Is true when `argment` does not equal this sequence:
+            Is true when `argument` does not equal this sequence:
 
             ::
 
@@ -541,7 +727,7 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Is false when `argment` does equal this seuqence:
+            Is false when `argument` does equal this seuqence:
 
             ::
 
@@ -549,30 +735,14 @@ class Sequence(AbjadObject):
                 False
 
         '''
-        return not self == argment
+        return not self == argument
 
-    def __radd__(self, argment):
-        r'''Adds sequence to `argment`.
-
-        ..  container:: example
-
-            Adds sequence to sequence:
-
-            ..  container:: example
-
-                ::
-
-                    >>> Sequence([1, 2, 3]) + Sequence([4, 5, 6])
-                    Sequence([1, 2, 3, 4, 5, 6])
-
-            ..  container:: example expression
-
-                ::
-
-                    >>> expression_1 = sequence()
-                    >>> expression_2 = sequence()
-                    >>> expression_1([1, 2, 3]) + expression_2([4, 5, 6])
-                    Sequence([1, 2, 3, 4, 5, 6])
+    @expressiontools.Signature(
+        markup_expression_callback='_make___radd___markup_expression',
+        string_template_callback='_make___radd___string_template',
+        )
+    def __radd__(self, argument):
+        r'''Adds sequence to `argument`.
 
         ..  container:: example
 
@@ -589,9 +759,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = (1, 2, 3) + sequence()
+                    >>> expression = Expression(name='K')
+                    >>> expression = expression.sequence()
+                    >>> expression = (1, 2, 3) + expression
+
+                ::
+
                     >>> expression([4, 5, 6])
                     Sequence([1, 2, 3, 4, 5, 6])
+
+                ::
+
+                    >>> expression.get_string()
+                    '(1, 2, 3) + K'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \line
+                            {
+                                "(1, 2, 3)"
+                                +
+                                \bold
+                                    K
+                            }
+                        }
 
         ..  container:: example
 
@@ -608,19 +806,94 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = [1, 2, 3] + sequence()
+                    >>> expression = Expression(name='K')
+                    >>> expression = expression.sequence()
+                    >>> expression = [1, 2, 3] + expression
+
+                ::
+
                     >>> expression([4, 5, 6])
                     Sequence([1, 2, 3, 4, 5, 6])
 
+                ::
+
+                    >>> expression.get_string()
+                    '[1, 2, 3] + K'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \line
+                            {
+                                "[1, 2, 3]"
+                                +
+                                \bold
+                                    K
+                            }
+                        }
+
+        ..  container:: example
+
+            Adds sequence to sequence:
+
+            ..  container:: example
+
+                ::
+
+                    >>> Sequence([1, 2, 3]) + Sequence([4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression_1 = Expression(name='J')
+                    >>> expression_1 = expression_1.sequence()
+                    >>> expression_2 = Expression(name='K')
+                    >>> expression_2 = expression_2.sequence()
+                    >>> expression = expression_1 + expression_2
+
+                ::
+
+                    >>> expression([1, 2, 3], [4, 5, 6])
+                    Sequence([1, 2, 3, 4, 5, 6])
+
+                ::
+
+                    >>> expression.get_string()
+                    'J + K'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \line
+                            {
+                                \bold
+                                    J
+                                +
+                                \bold
+                                    K
+                            }
+                        }
+
         Returns new sequence.
         '''
-        if self._frozen_expression:
-            return self._make_callback(
-                inspect.currentframe(),
-                formula_string_template='{} + {{}}'.format(self.name)
-                )
-        argment = type(self)(argment)
-        items = argment._items + self._items
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        argument = type(self)(items=argument)
+        items = argument.items + self.items
         return type(self)(items=items)
 
     def __repr__(self):
@@ -647,55 +920,34 @@ class Sequence(AbjadObject):
         Returns string.
         '''
         items = ', '.join([repr(_) for _ in self.items])
-        if self.name:
-            string = '{}([{}], name={!r})'
-            string = string.format(type(self).__name__, items, self.name)
-        else:
-            string = '{}([{}])'
-            string = string.format(type(self).__name__, items)
-        if self._frozen_expression:
+        string = '{}([{}])'
+        string = string.format(type(self).__name__, items)
+        if self._expression:
             string = '*' + string
         return string
 
     ### PRIVATE METHODS ###
 
-    def _make_callback(
-        self,
-        frame,
-        formula_markup_expression=None,
-        formula_string_template=None,
-        string_arguments=None,
-        string_name=None,
-        ):
-        assert self._frozen_expression, repr(self._frozen_expression)
-        Expression = expressiontools.Expression
-        template = Expression._make_evaluation_template(frame)
-        if formula_string_template:
-            pass
-        elif string_name is not None and string_arguments is None:
-            arguments = Expression._wrap_arguments(frame)
-            if arguments:
-                formula_string_template = '{string_name}({{}}, {arguments})'
-            else:
-                formula_string_template = '{string_name}({{}})'
-            formula_string_template = formula_string_template.format(
-                string_name=string_name,
-                arguments=arguments,
-                )
-        elif string_name is not None and string_arguments is not None:
-            formula_string_template = '{string_name}({{}}, {string_arguments})'
-            formula_string_template = formula_string_template.format(
-                string_name=string_name,
-                string_arguments=string_arguments,
-                )
-        return self._frozen_expression.append_callback(
-            evaluation_template=template,
-            formula_markup_expression=formula_markup_expression,
-            formula_string_template=formula_string_template,
-            )
+    @staticmethod
+    def _make_map_markup_expression(operand):
+        expression = expressiontools.Expression()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.insert(0, '/@')
+        operand_markup = operand.get_markup(name='X')
+        expression = expression.insert(0, operand_markup)
+        expression = expression.line()
+        return expression
         
     @staticmethod
-    def _make_partition_indicator(counts, cyclic, reversed_, overhang):
+    def _make_map_string_template(operand):
+        string_template = '{operand} /@ {{}}'
+        operand = operand.get_string(name='X')
+        string_template = string_template.format(operand=operand)
+        return string_template
+
+    @staticmethod
+    def _make_partition_indicator(counts, cyclic, overhang, reversed_):
         indicator = [str(_) for _ in counts]
         indicator = ', '.join(indicator)
         if cyclic:
@@ -711,6 +963,10 @@ class Sequence(AbjadObject):
         return indicator
 
     @staticmethod
+    def _make_partition_ratio_indicator(ratio):
+        return str(ratio)
+
+    @staticmethod
     def _make_split_indicator(weights, cyclic, overhang):
         indicator = [str(_) for _ in weights]
         indicator = ', '.join(indicator)
@@ -721,6 +977,19 @@ class Sequence(AbjadObject):
         if overhang:
             indicator += '+'
         return indicator
+
+    def _update_expression(
+        self,
+        frame,
+        evaluation_template=None,
+        map_operand=None,
+        ):
+        callback = expressiontools.Expression._frame_to_callback(
+            frame,
+            evaluation_template=evaluation_template,
+            map_operand=map_operand,
+            )
+        return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
 
@@ -768,153 +1037,9 @@ class Sequence(AbjadObject):
         '''
         return self._items
 
-    @property
-    def name(self):
-        r'''Gets sequence name.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                Initializes without name:
-
-                ::
-
-                    >>> Sequence([1, 2, 3, 4, 5, 6])
-                    Sequence([1, 2, 3, 4, 5, 6])
-
-                Sets name at initialization:
-
-                ::
-
-                    >>> Sequence([1, 2, 3, 4, 5, 6], name='J')
-                    Sequence([1, 2, 3, 4, 5, 6], name='J')
-
-            ..  container:: example expression
-
-                Initializes without name:
-
-                ::
-
-                    >>> expression = sequence()
-                    >>> expression([1, 2, 3, 4, 5, 6])
-                    Sequence([1, 2, 3, 4, 5, 6])
-
-                Sets name at initialization:
-
-                ::
-
-                    >>> expression = sequence(name='J')
-                    >>> expression([1, 2, 3, 4, 5, 6])
-                    Sequence([1, 2, 3, 4, 5, 6], name='J')
-
-                Sets name at evaluation:
-
-                ::
-
-                    >>> expression = sequence()
-                    >>> expression([1, 2, 3, 4, 5, 6], name='K')
-                    Sequence([1, 2, 3, 4, 5, 6], name='K')
-
-                Overrides name at evaluation:
-
-                ::
-
-                    >>> expression = sequence(name='J')
-                    >>> expression([1, 2, 3, 4, 5, 6], name='K')
-                    Sequence([1, 2, 3, 4, 5, 6], name='K')
-
-        Defaults to none.
-
-        Set to string or none.
-
-        Returns string or none.
-        '''
-        if self._expression is not None:
-            return self._expression.get_formula_string(name=self._name)
-        return self._name
-
-    @property
-    def name_markup(self):
-        r'''Gets sequence name markup.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                Initializes without name markup:
-
-                ::
-
-                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
-                    >>> sequence_.name_markup is None
-                    True
-
-                Sets name markup at initialization:
-
-                ::
-
-                    >>> sequence_ = Sequence(
-                    ...     [1, 2, 3, 4, 5, 6],
-                    ...     name_markup=Markup('J'),
-                    ...     )
-                    >>> sequence_.name_markup
-                    Markup(contents=['J'])
-
-            ..  container:: example expression
-
-                Initializes without name markup:
-
-                ::
-
-                    >>> expression = sequence()
-                    >>> sequence_ = expression([1, 2, 3, 4, 5, 6])
-                    >>> sequence_.name_markup is None
-                    True
-
-                Sets name markup at initialization:
-
-                ::
-
-                    >>> expression = sequence(name_markup=Markup('J'))
-                    >>> sequence_ = expression([1, 2, 3, 4, 5, 6])
-                    >>> sequence_.name_markup
-                    Markup(contents=['J'])
-
-                Sets name markup at evaluation:
-
-                ::
-
-                    >>> expression = sequence()
-                    >>> sequence_ = expression(
-                    ...     [1, 2, 3, 4, 5, 6],
-                    ...     name_markup=Markup('K'),
-                    ...     )
-                    >>> sequence_.name_markup
-                    Markup(contents=['K'])
-
-                Overrides name markup at evaluation:
-
-                ::
-
-                    >>> expression = sequence(name_markup=Markup('J'))
-                    >>> sequence_ = expression(
-                    ...     [1, 2, 3, 4, 5, 6],
-                    ...     name_markup=Markup('K'),
-                    ...     )
-                    >>> sequence_.name_markup
-                    Markup(contents=['K'])
-
-        Defaults to none.
-
-        Set to markup or none.
-
-        Returns markup or none.
-        '''
-        return self._name_markup
-
     ### PUBLIC METHODS ###
 
+    @expressiontools.Signature()
     def flatten(self, classes=None, depth=-1, indices=None):
         r'''Flattens sequence.
 
@@ -927,26 +1052,48 @@ class Sequence(AbjadObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence_ = Sequence(items=items, name='J')
+                    >>> sequence_ = Sequence(items=items)
 
                 ::
 
                     >>> sequence_.flatten()
-                    Sequence([1, 2, 3, 4, 5, 6, 7, 8], name='flatten(J)')
+                    Sequence([1, 2, 3, 4, 5, 6, 7, 8])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = sequence(name='J')
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.flatten()
-                    >>> expression.get_formula_string(name='X')
-                    'flatten(X)'
 
                 ::
 
-                    >>> expression(items)
-                    Sequence([1, 2, 3, 4, 5, 6, 7, 8], name='flatten(J)')
+                    >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
+                    Sequence([1, 2, 3, 4, 5, 6, 7, 8])
+
+                ::
+
+                    >>> expression.get_string()
+                    'flatten(J)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                flatten(
+                                \bold
+                                    J
+                                )
+                            }
+                        }
 
         ..  container:: example
 
@@ -968,15 +1115,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.flatten(depth=1)
-                    >>> expression.get_formula_string(name='X')
-                    'flatten(X, depth=1)'
 
                 ::
 
-                    >>> expression(items)
+                    >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
                     Sequence([1, 2, 3, [4], 5, 6, 7, [8]])
+
+                ::
+
+                    >>> expression.get_string()
+                    'flatten(J, depth=1)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                flatten(
+                                \bold
+                                    J
+                                ", depth=1)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -998,15 +1167,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.flatten(depth=2)
-                    >>> expression.get_formula_string(name='X')
-                    'flatten(X, depth=2)'
 
                 ::
 
-                    >>> expression(items)
+                    >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
                     Sequence([1, 2, 3, 4, 5, 6, 7, 8])
+
+                ::
+
+                    >>> expression.get_string()
+                    'flatten(J, depth=2)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                flatten(
+                                \bold
+                                    J
+                                ", depth=2)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1028,15 +1219,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.flatten(indices=[3])
-                    >>> expression.get_formula_string(name='X')
-                    'flatten(X, indices=[3])'
 
                 ::
 
-                    >>> expression(items)
+                    >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
                     Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
+
+                ::
+
+                    >>> expression.get_string()
+                    'flatten(J, indices=[3])'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                flatten(
+                                \bold
+                                    J
+                                ", indices=[3])"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1058,15 +1271,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.flatten(indices=[-1])
-                    >>> expression.get_formula_string(name='X')
-                    'flatten(X, indices=[-1])'
 
                 ::
 
-                    >>> expression(items)
+                    >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
                     Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
+
+                ::
+
+                    >>> expression.get_string()
+                    'flatten(J, indices=[-1])'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                flatten(
+                                \bold
+                                    J
+                                ", indices=[-1])"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1088,40 +1323,50 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.flatten(classes=(tuple,))
-                    >>> expression.get_formula_string(name='X')
-                    'flatten(X, classes=(tuple,))'
 
                 ::
 
-                    >>> expression(items)
+                    >>> expression(['ab', 'cd', ('ef', 'gh'), ('ij', 'kl')])
                     Sequence(['ab', 'cd', 'ef', 'gh', 'ij', 'kl'])
+
+                ::
+
+                    >>> expression.get_string()
+                    'flatten(J, classes=(tuple,))'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                flatten(
+                                \bold
+                                    J
+                                ", classes=(tuple,))"
+                            }
+                        }
 
         Returns new sequence.
         '''
         import abjad
-        if self._frozen_expression:
-            return self._make_callback(
-                inspect.currentframe(),
-                string_name='flatten',
-                )
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         items = abjad.sequencetools.flatten_sequence(
             self._items[:],
             classes=classes,
             depth=depth,
             indices=indices,
             )
-        name = None
-        if self.name:
-            name_template = 'flatten({sequence})'
-            name = name_template.format(
-                sequence=self.name,
-                depth=depth,
-                indices=indices,
-                )
-        result = type(self)(items=items, name=name)
-        return result
+        return type(self)(items=items)
 
     def is_decreasing(self, strict=True):
         r'''Is true when sequence decreases.
@@ -1342,6 +1587,10 @@ class Sequence(AbjadObject):
         except TypeError:
             return False
 
+    @expressiontools.Signature(
+        markup_expression_callback='_make_map_markup_expression',
+        string_template_callback='_make_map_string_template',
+        )
     def map(self, operand):
         r'''Maps `operand` to sequence items.
 
@@ -1369,35 +1618,68 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
                     ...     )
                     >>> expression = expression.map(sequence().sum())
-                    >>> expression.get_formula_string(name='X')
-                    'sum(X) /@ partition(X, <3>)'
 
                 ::
 
                     >>> expression(range(1, 10+1))
                     Sequence([6, 15, 24])
 
+                ::
+
+                    >>> expression.get_string()
+                    'sum(X) /@ partition(J, <3>)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \line
+                            {
+                                \concat
+                                    {
+                                        sum(
+                                        \bold
+                                            X
+                                        )
+                                    }
+                                /@
+                                \concat
+                                    {
+                                        partition(
+                                        \bold
+                                            J
+                                        ", <3>)"
+                                    }
+                            }
+                        }
+
         Returns new sequence.
         '''
-        if self._frozen_expression:
-            formula_string_template = '{expression} /@ {{}}'
-            formula_string_template = formula_string_template.format(
-                expression=operand.get_formula_string(name='X'),
-                )
-            return self._frozen_expression.append_callback(
+        if self._expression:
+            return self._update_expression(
+                inspect.currentframe(),
                 evaluation_template='map',
-                formula_string_template=formula_string_template,
                 map_operand=operand,
                 )
         items = [operand(_) for _ in self]
         return type(self)(items=items)
 
+    @expressiontools.Signature(
+        argument_list_callback='_make_partition_indicator',
+        method_name='partition',
+        )
     def partition_by_counts(
         self,
         counts,
@@ -1415,7 +1697,7 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16), name='J')
+                    >>> sequence_ = Sequence(range(16))
                     >>> sequence_ = sequence_.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
@@ -1425,7 +1707,7 @@ class Sequence(AbjadObject):
                 ::
 
                     >>> sequence_
-                    Sequence([Sequence([0, 1, 2])], name='partition(J, [3])')
+                    Sequence([Sequence([0, 1, 2])])
 
                 ::
 
@@ -1437,20 +1719,42 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence(name='J')
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
                     ...     overhang=False,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, [3])'
 
                 ::
 
                     >>> for part in expression(range(16)):
                     ...     part
                     Sequence([0, 1, 2])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, [3])'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", [3])"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1478,14 +1782,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
                     ...     overhang=False,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, [4, 3])'
 
                 ::
 
@@ -1493,6 +1796,29 @@ class Sequence(AbjadObject):
                     ...     part
                     Sequence([0, 1, 2, 3])
                     Sequence([4, 5, 6])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, [4, 3])'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", [4, 3])"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1523,14 +1849,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
                     ...     overhang=False,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, <3>)'
 
                 ::
 
@@ -1541,6 +1866,29 @@ class Sequence(AbjadObject):
                     Sequence([6, 7, 8])
                     Sequence([9, 10, 11])
                     Sequence([12, 13, 14])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, <3>)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", <3>)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1570,14 +1918,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
                     ...     overhang=False,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, <4, 3>)'
 
                 ::
 
@@ -1588,6 +1935,29 @@ class Sequence(AbjadObject):
                     Sequence([7, 8, 9, 10])
                     Sequence([11, 12, 13])
 
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, <4, 3>)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", <4, 3>)"
+                            }
+                        }
+
         ..  container:: example
 
             Partitions sequence once by counts with overhang:
@@ -1614,14 +1984,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, [3]+)'
 
                 ::
 
@@ -1629,6 +1998,29 @@ class Sequence(AbjadObject):
                     ...     part
                     Sequence([0, 1, 2])
                     Sequence([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, [3]+)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", [3]+)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1657,14 +2049,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, [4, 3]+)'
 
                 ::
 
@@ -1673,6 +2064,29 @@ class Sequence(AbjadObject):
                     Sequence([0, 1, 2, 3])
                     Sequence([4, 5, 6])
                     Sequence([7, 8, 9, 10, 11, 12, 13, 14, 15])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, [4, 3]+)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", [4, 3]+)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1704,14 +2118,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, <3>+)'
 
                 ::
 
@@ -1723,6 +2136,29 @@ class Sequence(AbjadObject):
                     Sequence([9, 10, 11])
                     Sequence([12, 13, 14])
                     Sequence([15])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, <3>+)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", <3>+)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1753,14 +2189,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, <4, 3>+)'
 
                 ::
 
@@ -1772,6 +2207,29 @@ class Sequence(AbjadObject):
                     Sequence([11, 12, 13])
                     Sequence([14, 15])
 
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, <4, 3>+)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", <4, 3>+)"
+                            }
+                        }
+
         ..  container:: example
 
             Reverse-partitions sequence once by counts without overhang:
@@ -1798,21 +2256,43 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
                     ...     overhang=False,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, R[3])'
 
                 ::
 
                     >>> for part in expression(range(16)):
                     ...     part
                     Sequence([13, 14, 15])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, R[3])'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", R[3])"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1841,15 +2321,14 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
                     ...     overhang=False,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, R[4, 3])'
 
                 ::
 
@@ -1857,6 +2336,29 @@ class Sequence(AbjadObject):
                     ...     part
                     Sequence([9, 10, 11])
                     Sequence([12, 13, 14, 15])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, R[4, 3])'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", R[4, 3])"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1888,15 +2390,14 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
                     ...     overhang=False,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, R<3>)'
 
                 ::
                 
@@ -1907,6 +2408,29 @@ class Sequence(AbjadObject):
                     Sequence([7, 8, 9])
                     Sequence([10, 11, 12])
                     Sequence([13, 14, 15])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, R<3>)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", R<3>)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -1937,15 +2461,14 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
                     ...     overhang=False,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, R<4, 3>)'
 
                 ::
 
@@ -1956,6 +2479,29 @@ class Sequence(AbjadObject):
                     Sequence([9, 10, 11])
                     Sequence([12, 13, 14, 15])
 
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, R<4, 3>)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", R<4, 3>)"
+                            }
+                        }
+
         ..  container:: example
 
             Reverse-partitions sequence once by counts with overhang:
@@ -1983,15 +2529,14 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
                     ...     overhang=True,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, R[3]+)'
 
                 ::
 
@@ -1999,6 +2544,29 @@ class Sequence(AbjadObject):
                     ...     part
                     Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
                     Sequence([13, 14, 15])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, R[3]+)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", R[3]+)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -2028,15 +2596,14 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
                     ...     overhang=True,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, R[4, 3]+)'
 
                 ::
 
@@ -2045,6 +2612,29 @@ class Sequence(AbjadObject):
                     Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8])
                     Sequence([9, 10, 11])
                     Sequence([12, 13, 14, 15])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, R[4, 3]+)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", R[4, 3]+)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -2077,15 +2667,14 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
                     ...     overhang=True,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, R<3>+)'
 
                 ::
 
@@ -2097,6 +2686,29 @@ class Sequence(AbjadObject):
                     Sequence([7, 8, 9])
                     Sequence([10, 11, 12])
                     Sequence([13, 14, 15])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, R<3>+)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", R<3>+)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -2128,15 +2740,14 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
                     ...     overhang=True,
                     ...     reversed_=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, R<4, 3>+)'
 
                 ::
 
@@ -2147,6 +2758,29 @@ class Sequence(AbjadObject):
                     Sequence([5, 6, 7, 8])
                     Sequence([9, 10, 11])
                     Sequence([12, 13, 14, 15])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, R<4, 3>+)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", R<4, 3>+)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -2176,14 +2810,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [2, 3, 5],
                     ...     cyclic=False,
                     ...     overhang=Exact,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, [2, 3, 5]!)'
 
                 ::
 
@@ -2192,6 +2825,29 @@ class Sequence(AbjadObject):
                     Sequence([0, 1])
                     Sequence([2, 3, 4])
                     Sequence([5, 6, 7, 8, 9])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, [2, 3, 5]!)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", [2, 3, 5]!)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -2224,14 +2880,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [2],
                     ...     cyclic=True,
                     ...     overhang=Exact,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, <2>!)'
 
                 ::
 
@@ -2242,6 +2897,29 @@ class Sequence(AbjadObject):
                     Sequence([4, 5])
                     Sequence([6, 7])
                     Sequence([8, 9])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, <2>!)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", <2>!)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -2269,14 +2947,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, [3]+)'
 
                 ::
 
@@ -2285,21 +2962,34 @@ class Sequence(AbjadObject):
                     Sequence(['s', 'o', 'm'])
                     Sequence(['e', ' ', 't', 'e', 'x', 't'])
 
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, [3]+)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", [3]+)"
+                            }
+                        }
+
         Returns nested sequence.
         '''
         import abjad
-        indicator = self._make_partition_indicator(
-            counts=counts,
-            cyclic=cyclic,
-            reversed_=reversed_,
-            overhang=overhang,
-            )
-        if self._frozen_expression:
-            return self._make_callback(
-                inspect.currentframe(),
-                string_arguments=indicator,
-                string_name='partition',
-                )
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         items = self._items[:]
         subsequences = []
         parts = abjad.sequencetools.partition_sequence_by_counts(
@@ -2310,28 +3000,12 @@ class Sequence(AbjadObject):
             reversed_=reversed_,
             )
         parts = [type(self)(_) for _ in parts]
-        result = type(self)(items=parts, name=self._name)
-        #
-        template = 'partition({{}}, {indicator})'
-        template = template.format(indicator=indicator)
-        #
-        expression = abjad.Expression().markup()
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.insert(0, 'P')
-        indicator_markup = abjad.Markup(repr(indicator)).super()
-        expression = expression.insert(1, indicator_markup)
-        expression = expression.concat()
-        #
-        expressiontools.Expression._track_expression(
-            self,
-            result,
-            'partition',
-            formula_markup_expression=expression,
-            formula_string_template=template,
-            )
-        return result
+        return type(self)(items=parts)
 
+    @expressiontools.Signature(
+        argument_list_callback='_make_partition_ratio_indicator',
+        method_name='partition',
+        )
     def partition_by_ratio_of_lengths(self, ratio):
         r'''Partitions sequence by `ratio` of lengths.
 
@@ -2358,11 +3032,10 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> ratio = mathtools.Ratio((1, 1, 1))
                     >>> expression = expression.partition_by_ratio_of_lengths(ratio)
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, 1:1:1)'
 
                 ::
 
@@ -2371,6 +3044,29 @@ class Sequence(AbjadObject):
                     Sequence([0, 1, 2])
                     Sequence([3, 4, 5, 6])
                     Sequence([7, 8, 9])
+
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, 1:1:1)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", 1:1:1)"
+                            }
+                        }
 
         ..  container:: example
 
@@ -2395,11 +3091,10 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> ratio = mathtools.Ratio((1, 1, 2))
                     >>> expression = expression.partition_by_ratio_of_lengths(ratio)
-                    >>> expression.get_formula_string(name='X')
-                    'partition(X, 1:1:2)'
 
                 ::
 
@@ -2409,22 +3104,42 @@ class Sequence(AbjadObject):
                     Sequence([3, 4])
                     Sequence([5, 6, 7, 8, 9])
 
+                ::
+
+                    >>> expression.get_string()
+                    'partition(J, 1:1:2)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                partition(
+                                \bold
+                                    J
+                                ", 1:1:2)"
+                            }
+                        }
+
         Returns a sequence of sequences.
         '''
         import abjad
-        if self._frozen_expression:
-            return self._make_callback(
-                inspect.currentframe(),
-                string_arguments=str(ratio),
-                string_name='partition',
-                )
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         parts = abjad.sequencetools.partition_sequence_by_ratio_of_lengths(
             self.items,
             ratio=ratio,
             )
         parts = [type(self)(_) for _ in parts]
-        return type(self)(parts)
+        return type(self)(items=parts)
 
+    @expressiontools.Signature(is_operator=True, method_name='R')
     def reverse(self):
         '''Reverses sequence.
 
@@ -2436,26 +3151,47 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([1, 2, 3, 4, 5], name='J')
+                    >>> sequence_ = Sequence([1, 2, 3, 4, 5])
                     
                 ::
 
                     >>> sequence_.reverse()
-                    Sequence([5, 4, 3, 2, 1], name='R(J)')
+                    Sequence([5, 4, 3, 2, 1])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.reverse()
-                    >>> expression.get_formula_string(name='X')
-                    'R(X)'
 
                 ::
 
                     >>> expression([1, 2, 3, 4, 5])
                     Sequence([5, 4, 3, 2, 1])
+
+                ::
+
+                    >>> expression.get_string()
+                    'R(J)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                R
+                                \bold
+                                    J
+                            }
+                        }
 
         ..  container:: example
 
@@ -2465,53 +3201,60 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence('text', name='J')
+                    >>> sequence_ = Sequence('text')
                     
                 ::
                 
                     >>> sequence_.reverse()
-                    Sequence(['t', 'x', 'e', 't'], name='R(J)')
+                    Sequence(['t', 'x', 'e', 't'])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.reverse()
-                    >>> expression.get_formula_string(name='X')
-                    'R(X)'
 
                 ::
 
                     >>> expression('text')
                     Sequence(['t', 'x', 'e', 't'])
 
+                ::
+
+                    >>> expression.get_string()
+                    'R(J)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                R
+                                \bold
+                                    J
+                            }
+                        }
+
         Returns new sequence.
         '''
-        import abjad
-        expression = abjad.Expression().markup()
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.insert(0, 'R')
-        expression = expression.concat()
-        if self._frozen_expression:
-            return self._make_callback(
-                inspect.currentframe(),
-                formula_markup_expression=expression,
-                string_name='R',
-                )
-        result = type(self)(reversed(self), name=self._name)
-        template = 'R({})'
-        expressiontools.Expression._track_expression(
-            self,
-            result,
-            'retrograde',
-            formula_markup_expression=expression,
-            formula_string_template=template,
-            )
-        return result
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        return type(self)(items=reversed(self))
 
-    def rotate(self, n=None):
+    @expressiontools.Signature( 
+        is_operator=True,
+        method_name='r',
+        subscript='n',
+        )
+    def rotate(self, n=0):
         '''Rotates sequence by index `n`.
 
         ..  container:: example
@@ -2522,26 +3265,49 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(10), name='J')
+                    >>> sequence_ = Sequence(range(10))
                     
                 ::
                 
                     >>> sequence_.rotate(n=4)
-                    Sequence([6, 7, 8, 9, 0, 1, 2, 3, 4, 5], name='r4(J)')
+                    Sequence([6, 7, 8, 9, 0, 1, 2, 3, 4, 5])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.rotate(n=4)
-                    >>> expression.get_formula_string(name='X')
-                    'r4(X)'
 
                 ::
 
                     >>> expression(range(10))
                     Sequence([6, 7, 8, 9, 0, 1, 2, 3, 4, 5])
+
+                ::
+
+                    >>> expression.get_string()
+                    'r4(J)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                r
+                                \sub
+                                    4
+                                \bold
+                                    J
+                            }
+                        }
 
         ..  container:: example
 
@@ -2551,26 +3317,49 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(10), name='J')
+                    >>> sequence_ = Sequence(range(10))
                     
                 ::
                 
                     >>> sequence_.rotate(n=-3)
-                    Sequence([3, 4, 5, 6, 7, 8, 9, 0, 1, 2], name='r-3(J)')
+                    Sequence([3, 4, 5, 6, 7, 8, 9, 0, 1, 2])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.rotate(n=-3)
-                    >>> expression.get_formula_string(name='X')
-                    'r-3(X)'
 
                 ::
 
                     >>> expression(range(10))
                     Sequence([3, 4, 5, 6, 7, 8, 9, 0, 1, 2])
+
+                ::
+
+                    >>> expression.get_string()
+                    'r-3(J)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                r
+                                \sub
+                                    -3
+                                \bold
+                                    J
+                            }
+                        }
 
         ..  container:: example
 
@@ -2580,50 +3369,65 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(10), name='J')
+                    >>> sequence_ = Sequence(range(10))
 
                 ::
 
                     >>> sequence_.rotate(n=0)
-                    Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], name='r0(J)')
+                    Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.rotate(n=0)
-                    >>> expression.get_formula_string(name='X')
-                    'r0(X)'
 
                 ::
 
                     >>> expression(range(10))
                     Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
+                ::
+
+                    >>> expression.get_string()
+                    'r0(J)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                r
+                                \sub
+                                    0
+                                \bold
+                                    J
+                            }
+                        }
+
         Returns new sequence.
         '''
-        if self._frozen_expression:
-            return self._make_callback(
-                inspect.currentframe(),
-                formula_string_template='r{n}({{}})'.format(n=n),
-                )
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         n = n or 0
-        original_n = n
         items = []
         if len(self):
             n = n % len(self)
             for item in self[-n:len(self)] + self[:-n]:
                 items.append(item)
-        name = None
-        if self.name:
-            formula_string_template = 'r{n}({sequence})'
-            name = formula_string_template.format(
-                sequence=self.name,
-                n=original_n,
-                )
-        return type(self)(items=items, name=name)
+        return type(self)(items=items)
 
+    @expressiontools.Signature(
+        argument_list_callback='_make_split_indicator',
+        )
     def split(self, weights, cyclic=False, overhang=False):
         r'''Splits sequence by `weights`.
 
@@ -2660,14 +3464,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.split(
                     ...     (3, 15, 3),
                     ...     cyclic=True,
                     ...     overhang=True,
                     ...     )
-                    >>> expression.get_formula_string(name='X')
-                    'split(X, <3, 15, 3>+)'
 
                 ::
 
@@ -2681,16 +3484,34 @@ class Sequence(AbjadObject):
                     Sequence([6, -9])
                     Sequence([-1])
 
+                ::
+
+                    >>> expression.get_string()
+                    'split(J, <3, 15, 3>+)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                split(
+                                \bold
+                                    J
+                                ", <3, 15, 3>+)"
+                            }
+                        }
+
         Returns new sequence.
         '''
         import abjad
-        if self._frozen_expression:
-            indicator = self._make_split_indicator(weights, cyclic, overhang)
-            return self._make_callback(
-                inspect.currentframe(),
-                string_arguments=indicator,
-                string_name='split',
-                )
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         parts = abjad.sequencetools.split_sequence(
             self.items,
             weights,
@@ -2698,8 +3519,9 @@ class Sequence(AbjadObject):
             overhang=overhang,
             )
         parts = [type(self)(_) for _ in parts]
-        return type(self)(parts)
+        return type(self)(items=parts)
 
+    @expressiontools.Signature()
     def sum(self):
         '''Sums sequence.
 
@@ -2722,15 +3544,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.sum()
-                    >>> expression.get_formula_string(name='X')
-                    'sum(X)'
 
                 ::
 
                     >>> expression([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
                     55
+
+                ::
+
+                    >>> expression.get_string()
+                    'sum(J)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                sum(
+                                \bold
+                                    J
+                                )
+                            }
+                        }
 
         ..  container:: example
 
@@ -2751,15 +3595,37 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.sum()
-                    >>> expression.get_formula_string(name='X')
-                    'sum(X)'
 
                 ::
 
                     >>> expression([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
                     5
+
+                ::
+
+                    >>> expression.get_string()
+                    'sum(J)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                sum(
+                                \bold
+                                    J
+                                )
+                            }
+                        }
 
         ..  container:: example
 
@@ -2782,25 +3648,49 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
                     >>> expression = expression.sum()
                     >>> expression = expression.sequence()
-                    >>> expression.get_formula_string(name='X')
-                    'sum(X)'
 
                 ::
 
                     >>> expression(range(1, 10+1))
                     Sequence([55])
 
+                ::
+
+                    >>> expression.get_string()
+                    'sum(J)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                sum(
+                                \bold
+                                    J
+                                )
+                            }
+                        }
+
         Returns new sequence.
         '''
-        if self._frozen_expression:
-            return self._make_callback(
-                inspect.currentframe(),
-                string_name='sum',
-                )
-        return sum(self)
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        if len(self) == 0:
+            return 0
+        result = self[0]
+        for item in self[1:]:
+            result += item
+        return result
 
 
 collections.Sequence.register(Sequence)

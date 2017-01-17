@@ -62,8 +62,8 @@ class Permutation(TypedTuple):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, argment):
-        r'''Calls permutation on `argment`.
+    def __call__(self, argument):
+        r'''Calls permutation on `argument`.
 
         ..  container:: example
 
@@ -87,18 +87,18 @@ class Permutation(TypedTuple):
                 >>> permutation('winter')
                 'iwtnre'
 
-        Returns new object of `argment` type.
+        Returns new object of `argument` type.
         '''
         pass
         result = []
-        for i, item in enumerate(argment):
+        for i, item in enumerate(argument):
             j = self[i]
-            item_ = argment[j]
+            item_ = argument[j]
             result.append(item_)
-        if isinstance(argment, str):
+        if isinstance(argument, str):
             result = ''.join(result)
         else:
-            result = type(argment)(result)
+            result = type(argument)(result)
         return result
 
     def __getitem__(self, i):

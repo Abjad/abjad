@@ -155,7 +155,7 @@ class TextSpanner(Spanner):
             >>> text_spanner = spannertools.TextSpanner()
             >>> attach(text_spanner, staff[:1])
             Traceback (most recent call last):
-            ...
+                ...
             Exception: TextSpanner() attachment test fails for Selection([Note("c'4")]).
 
     '''

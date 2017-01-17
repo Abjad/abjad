@@ -1718,8 +1718,8 @@ class NamedPitch(Pitch):
         staff_position = pitchtools.StaffPosition(staff_position_number)
         return staff_position
 
-    def transpose(self, argment):
-        r'''Transposes named pitch by `argment`.
+    def transpose(self, argument):
+        r'''Transposes named pitch by `argument`.
 
         ..  container:: example
 
@@ -1742,7 +1742,7 @@ class NamedPitch(Pitch):
         Returns new named pitch.
         '''
         from abjad.tools import pitchtools
-        interval = pitchtools.NamedInterval(argment)
+        interval = pitchtools.NamedInterval(argument)
         pitch = interval.transpose(self)
         return type(self)(pitch)
 

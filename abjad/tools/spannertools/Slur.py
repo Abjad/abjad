@@ -37,7 +37,7 @@ class Slur(Spanner):
             >>> staff = Staff("c'4 d' e' f'")
             >>> attach(Slur(), staff[:1])
             Traceback (most recent call last):
-            ...
+                ...
             Exception: Slur() attachment test fails for Selection([Note("c'4")]).
 
     Formats LilyPond ``(`` command on first leaf in spanner.

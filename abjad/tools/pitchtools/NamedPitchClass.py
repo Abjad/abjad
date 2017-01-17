@@ -90,29 +90,29 @@ class NamedPitchClass(PitchClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, argment=None):
+    def __init__(self, argument=None):
         from abjad.tools import pitchtools
-        if isinstance(argment, type(self)):
-            self._initialize_by_named_pitch_class(argment)
-        elif isinstance(argment, pitchtools.NamedPitch):
-            self._initialize_by_named_pitch(argment)
-        elif pitchtools.Pitch.is_pitch_class_octave_number_string(argment):
-            self._initialize_by_pitch_class_octave_number_string(argment)
-        elif pitchtools.Pitch.is_pitch_name(argment):
-            self._initialize_by_pitch_name(argment)
-        elif isinstance(argment, (
+        if isinstance(argument, type(self)):
+            self._initialize_by_named_pitch_class(argument)
+        elif isinstance(argument, pitchtools.NamedPitch):
+            self._initialize_by_named_pitch(argument)
+        elif pitchtools.Pitch.is_pitch_class_octave_number_string(argument):
+            self._initialize_by_pitch_class_octave_number_string(argument)
+        elif pitchtools.Pitch.is_pitch_name(argument):
+            self._initialize_by_pitch_name(argument)
+        elif isinstance(argument, (
             numbers.Number,
             pitchtools.NumberedPitch,
             pitchtools.NumberedPitchClass,
             )):
-            self._initialize_by_number(float(argment))
-        elif pitchtools.Pitch.is_pitch_carrier(argment):
-            self._initialize_by_pitch_carrier(argment)
-        elif argment is None:
+            self._initialize_by_number(float(argument))
+        elif pitchtools.Pitch.is_pitch_carrier(argument):
+            self._initialize_by_pitch_carrier(argument)
+        elif argument is None:
             self._initialize_by_number(0)
         else:
             message = 'can not instantiate {} from {!r}.'
-            message = message.format(type(self).__name__, argment)
+            message = message.format(type(self).__name__, argument)
             raise TypeError(message)
 
     ### SPECIAL METHODS ###
@@ -145,8 +145,8 @@ class NamedPitchClass(PitchClass):
         '''
         return type(self)(self)
 
-    def __eq__(self, argment):
-        r'''Is true when `argment` can be coerced to a named pitch-class with
+    def __eq__(self, argument):
+        r'''Is true when `argument` can be coerced to a named pitch-class with
         pitch-class name equal to that of this named pitch-class.
 
         ::
@@ -161,10 +161,10 @@ class NamedPitchClass(PitchClass):
 
         Returns true or false.
         '''
-        if isinstance(argment, type(self)):
+        if isinstance(argument, type(self)):
             return self.pitch_class_name == \
-                argment.pitch_class_name
-        return self.pitch_class_name == argment
+                argument.pitch_class_name
+        return self.pitch_class_name == argument
 
     def __float__(self):
         r'''Changes named pitch-class to a float.
@@ -236,31 +236,31 @@ class NamedPitchClass(PitchClass):
 
     ### PRIVATE METHODS ###
 
-    def _initialize_by_named_pitch(self, argment):
-        self._alteration_in_semitones = argment.alteration_in_semitones
-        self._diatonic_pitch_class_number = argment.diatonic_pitch_class_number
+    def _initialize_by_named_pitch(self, argument):
+        self._alteration_in_semitones = argument.alteration_in_semitones
+        self._diatonic_pitch_class_number = argument.diatonic_pitch_class_number
 
-    def _initialize_by_named_pitch_class(self, argment):
-        self._alteration_in_semitones = argment.alteration_in_semitones
-        self._diatonic_pitch_class_number = argment.diatonic_pitch_class_number
+    def _initialize_by_named_pitch_class(self, argument):
+        self._alteration_in_semitones = argument.alteration_in_semitones
+        self._diatonic_pitch_class_number = argument.diatonic_pitch_class_number
 
-    def _initialize_by_number(self, argment):
+    def _initialize_by_number(self, argument):
         from abjad.tools import pitchtools
-        pitch_class_number = float(argment) % 12
+        pitch_class_number = float(argument) % 12
         numbered_pitch_class = pitchtools.NumberedPitchClass(
             pitch_class_number)
         pitch_class_name = numbered_pitch_class.pitch_class_name
         self._initialize_by_pitch_name(pitch_class_name)
 
-    def _initialize_by_pitch_carrier(self, argment):
+    def _initialize_by_pitch_carrier(self, argument):
         from abjad.tools import pitchtools
-        named_pitch = pitchtools.NamedPitch.from_pitch_carrier(argment)
+        named_pitch = pitchtools.NamedPitch.from_pitch_carrier(argument)
         self._initialize_by_named_pitch(named_pitch)
 
-    def _initialize_by_pitch_class_octave_number_string(self, argment):
+    def _initialize_by_pitch_class_octave_number_string(self, argument):
         from abjad.tools import pitchtools
         group_dict = pitchtools.Pitch._pitch_class_octave_number_regex.match(
-            argment).groupdict()
+            argument).groupdict()
         diatonic_pitch_class_name = group_dict['diatonic_pitch_class_name'].lower()
         symbolic_string = group_dict['symbolic_string']
         self._alteration_in_semitones = \
@@ -270,9 +270,9 @@ class NamedPitchClass(PitchClass):
             self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
                 diatonic_pitch_class_name]
 
-    def _initialize_by_pitch_name(self, argment):
+    def _initialize_by_pitch_name(self, argument):
         from abjad.tools import pitchtools
-        match = pitchtools.Pitch._pitch_name_regex.match(argment.lower())
+        match = pitchtools.Pitch._pitch_name_regex.match(argument.lower())
         if match is None:
             raise ValueError
         groups = match.groups()

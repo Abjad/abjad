@@ -58,9 +58,9 @@ class BowContactPoint(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __lt__(self, argment):
-        r'''Is true if `argment` is a bow contact point and this bow contact point
-        is less than `argment`.
+    def __lt__(self, argument):
+        r'''Is true if `argument` is a bow contact point and this bow contact point
+        is less than `argument`.
 
         ..  container:: example
 
@@ -99,8 +99,8 @@ class BowContactPoint(AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(argment, type(self)):
-            return self.contact_point < argment.contact_point
+        if isinstance(argument, type(self)):
+            return self.contact_point < argument.contact_point
         raise TypeError('unorderable types')
 
     ### PUBLIC PROPERTIES ###

@@ -115,22 +115,22 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> print(format(operator))
+                >>> f(operator)
                 pitchtools.CompoundOperator(
-                    operators=(
+                    operators=[
                         pitchtools.Retrograde(),
                         pitchtools.Transposition(
                             n=3,
                             ),
-                        ),
+                        ],
                     )
 
         '''
         from abjad.tools import pitchtools
         return pitchtools.CompoundOperator._compose_operators(self, operator)
 
-    def __call__(self, argment):
-        r'''Calls retrograde on `argment`.
+    def __call__(self, argument):
+        r'''Calls retrograde on `argument`.
 
         ..  container:: example
 
@@ -167,27 +167,27 @@ class Retrograde(AbjadValueObject):
                 >>> retrograde(segment)
                 PitchSegment(["e'", "d'", "c'", "a'", "g'", "f'", "c''", "b'"])
 
-        Returns new object with type equal to that of `argment`.
+        Returns new object with type equal to that of `argument`.
         '''
         from abjad.tools import pitchtools
-        if isinstance(argment, (pitchtools.Pitch, pitchtools.PitchClass)):
-            return argment
-        if not isinstance(argment, (
+        if isinstance(argument, (pitchtools.Pitch, pitchtools.PitchClass)):
+            return argument
+        if not isinstance(argument, (
             pitchtools.PitchSegment,
             pitchtools.PitchClassSegment,
             )):
-            argment = pitchtools.PitchSegment(argment)
+            argument = pitchtools.PitchSegment(argument)
         if not self.period:
-            return type(argment)(reversed(argment))
-        result = new(argment, items=())
+            return type(argument)(reversed(argument))
+        result = new(argument, items=())
         for shard in sequencetools.partition_sequence_by_counts(
-            argment,
+            argument,
             [self.period],
             cyclic=True,
             overhang=True,
             ):
-            shard = type(argment)(shard)
-            shard = type(argment)(reversed(shard))
+            shard = type(argument)(shard)
+            shard = type(argument)(reversed(shard))
             result = result + shard
         return result
 

@@ -19,15 +19,11 @@ class TypedTuple(TypedCollection):
         self,
         items=None,
         item_class=None,
-        name=None,
-        name_markup=None,
         ):
         TypedCollection.__init__(
             self,
             item_class=item_class,
             items=items,
-            name=name,
-            name_markup=name_markup,
             )
         items = items or []
         self._collection = tuple(

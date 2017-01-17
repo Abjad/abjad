@@ -43,9 +43,9 @@ class Annotation(AbjadValueObject):
     def __init__(self, name='annotation', value=None):
         self._default_scope = None
         if isinstance(name, type(self)):
-            argment = name
-            name = argment.name
-            value = value or argment.value
+            argument = name
+            name = argument.name
+            value = value or argument.value
         name = copy.copy(name)
         value = copy.copy(value)
         self._name = name

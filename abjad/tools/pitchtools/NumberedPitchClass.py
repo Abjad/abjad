@@ -82,30 +82,30 @@ class NumberedPitchClass(PitchClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, argment=None):
+    def __init__(self, argument=None):
         from abjad.tools import pitchtools
         prototype = (numbers.Number, pitchtools.NumberedPitch, type(self))
-        if isinstance(argment, prototype):
-            self._initialize_by_number(float(argment))
-        elif isinstance(argment, pitchtools.NamedPitch):
-            self._initialize_by_named_pitch(argment)
-        elif isinstance(argment, pitchtools.NamedPitchClass):
-            self._initialize_by_named_pitch_class(argment)
-        elif isinstance(argment, str):
-            self._initialize_by_string(argment)
-        elif pitchtools.Pitch.is_pitch_carrier(argment):
-            self._initialize_by_pitch_carrier(argment)
-        elif argment is None:
+        if isinstance(argument, prototype):
+            self._initialize_by_number(float(argument))
+        elif isinstance(argument, pitchtools.NamedPitch):
+            self._initialize_by_named_pitch(argument)
+        elif isinstance(argument, pitchtools.NamedPitchClass):
+            self._initialize_by_named_pitch_class(argument)
+        elif isinstance(argument, str):
+            self._initialize_by_string(argument)
+        elif pitchtools.Pitch.is_pitch_carrier(argument):
+            self._initialize_by_pitch_carrier(argument)
+        elif argument is None:
             self._initialize_by_number(0)
         else:
             message = 'can not instantiate {} from {!r}.'
-            message = message.format(type(self).__name__, argment)
+            message = message.format(type(self).__name__, argument)
             raise TypeError(message)
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argment):
-        r'''Adds `argment` to numbered pitch-class.
+    def __add__(self, argument):
+        r'''Adds `argument` to numbered pitch-class.
 
         ::
 
@@ -117,7 +117,7 @@ class NumberedPitchClass(PitchClass):
         Returns new numbered pitch-class.
         '''
         from abjad.tools import pitchtools
-        interval = pitchtools.NumberedInterval(argment)
+        interval = pitchtools.NumberedInterval(argument)
         return type(self)(self.pitch_class_number + interval.number % 12)
 
     def __copy__(self, *arguments):
@@ -194,8 +194,8 @@ class NumberedPitchClass(PitchClass):
         '''
         return self._pitch_class_number
 
-    def __lt__(self, argment):
-        r'''Is true when `argment` is a numbered pitch-class with a pitch number
+    def __lt__(self, argument):
+        r'''Is true when `argument` is a numbered pitch-class with a pitch number
         greater than that of this numberd pitch-class.
 
         ..  container:: example
@@ -216,13 +216,13 @@ class NumberedPitchClass(PitchClass):
                 >>> NumberedPitchClass(2) < NumberedPitchClass(1)
                 False
 
-        Raises type error when `argment` is not a numbered pitch-class.
+        Raises type error when `argument` is not a numbered pitch-class.
         '''
-        if not isinstance(argment, type(self)):
+        if not isinstance(argument, type(self)):
             message = 'can not compare numbered pitch-class to {!r}.'
-            message = message.format(argment)
+            message = message.format(argument)
             raise TypeError(message)
-        return self.pitch_class_number < argment.pitch_class_number
+        return self.pitch_class_number < argument.pitch_class_number
 
     def __neg__(self):
         r'''Negates numbered pitch-class.
@@ -244,8 +244,8 @@ class NumberedPitchClass(PitchClass):
         '''
         return str(self.pitch_class_number)
 
-    def __sub__(self, argment):
-        r'''Subtracts `argment` from numbered pitch-class.
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from numbered pitch-class.
 
         Subtraction defined against both numbered intervals
         and against other pitch-classes.
@@ -253,30 +253,30 @@ class NumberedPitchClass(PitchClass):
         Returns numbered inversion-equivalent interval-class.
         '''
         from abjad.tools import pitchtools
-        if isinstance(argment, type(self)):
+        if isinstance(argument, type(self)):
             interval_class_number = abs(
                 self.pitch_class_number -
-                argment.pitch_class_number
+                argument.pitch_class_number
                 )
             if 6 < interval_class_number:
                 interval_class_number = 12 - interval_class_number
             return pitchtools.NumberedInversionEquivalentIntervalClass(
                 interval_class_number)
         interval_class = pitchtools.NumberedInversionEquivalentIntervalClass(
-            argment)
+            argument)
         return type(self)(self.pitch_class_number - interval_class.number % 12)
 
     ### PRIVATE METHODS ###
 
-    def _initialize_by_named_pitch(self, argment):
-        self._pitch_class_number = argment.pitch_class_number
+    def _initialize_by_named_pitch(self, argument):
+        self._pitch_class_number = argument.pitch_class_number
 
-    def _initialize_by_named_pitch_class(self, argment):
-        self._pitch_class_number = argment.pitch_class_number
+    def _initialize_by_named_pitch_class(self, argument):
+        self._pitch_class_number = argument.pitch_class_number
 
-    def _initialize_by_number(self, argment):
-        argment = round((float(argment) % 12) * 4) / 4
-        div, mod = divmod(argment, 1)
+    def _initialize_by_number(self, argument):
+        argument = round((float(argument) % 12) * 4) / 4
+        div, mod = divmod(argument, 1)
         if mod == 0.75:
             div += 1
         elif mod == 0.5:
@@ -285,14 +285,14 @@ class NumberedPitchClass(PitchClass):
         self._pitch_class_number = \
             mathtools.integer_equivalent_number_to_integer(div)
 
-    def _initialize_by_pitch_carrier(self, argment):
+    def _initialize_by_pitch_carrier(self, argument):
         from abjad.tools import pitchtools
-        named_pitch = pitchtools.NamedPitch.from_pitch_carrier(argment)
+        named_pitch = pitchtools.NamedPitch.from_pitch_carrier(argument)
         self._initialize_by_named_pitch(named_pitch)
 
-    def _initialize_by_string(self, argment):
+    def _initialize_by_string(self, argument):
         from abjad.tools import pitchtools
-        named_pitch_class = pitchtools.NamedPitchClass(argment)
+        named_pitch_class = pitchtools.NamedPitchClass(argument)
         self._initialize_by_named_pitch_class(named_pitch_class)
 
     ### PUBLIC PROPERTIES ###

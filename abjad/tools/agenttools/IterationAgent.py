@@ -113,14 +113,14 @@ class IterationAgent(abctools.AbjadObject):
 
     __slots__ = (
         '_client',
-        '_frozen_expression'
+        '_expression'
         )
 
     ### INITIALIZER ###
 
     def __init__(self, client=None):
         self._client = client
-        self._frozen_expression = None
+        self._expression = None
 
     ### PRIVATE METHODS ###
 
@@ -170,13 +170,10 @@ class IterationAgent(abctools.AbjadObject):
         for pair in pairs:
             yield pair
 
-    def _make_callback(self, frame):
-        assert self._frozen_expression, repr(self._frozen_expression)
-        Expression = expressiontools.Expression
-        template = Expression._make_evaluation_template(frame)
-        return self._frozen_expression.append_callback(
-            evaluation_template=template,
-            )
+    def _update_expression(self, frame):
+        import abjad
+        callback = abjad.Expression._frame_to_callback(frame)
+        return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
 
@@ -726,8 +723,8 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         prototype = prototype or scoretools.Component
         if with_grace_notes:
             if reverse:
@@ -1207,8 +1204,8 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         prototype = prototype or scoretools.Leaf
         return self.by_class(
             prototype=prototype,
@@ -1307,8 +1304,8 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         vertical_moments = self.by_vertical_moment()
         def _closure(vertical_moments):
             pairs = sequencetools.iterate_sequence_nwise(vertical_moments)
@@ -1834,8 +1831,8 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         from abjad.tools import selectiontools
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         nontrivial = bool(nontrivial)
         prototype = scoretools.Leaf
         if pitched:
@@ -2005,8 +2002,8 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         def _closure():
             if (isinstance(self._client, prototype) and
                 self._client._get_parentage().logical_voice == logical_voice):
@@ -2421,8 +2418,8 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         # set default class
         if prototype is None:
             prototype = scoretools.Component
@@ -2630,8 +2627,8 @@ class IterationAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools.topleveltools import iterate
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         def _closure():
             if isinstance(self._client, pitchtools.Pitch):
                 pitch = pitchtools.NamedPitch.from_pitch_carrier(self._client)
@@ -2814,8 +2811,8 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         from abjad.tools import pitchtools
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         def _closure():
             for leaf_pair in self.by_leaf_pair():
                 leaf_pair_list = list(leaf_pair)
@@ -2968,8 +2965,8 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         from abjad.tools import selectiontools
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         if not isinstance(prototype, collections.Sequence):
             prototype = (prototype,)
         sequence = selectiontools.Selection(self._client)
@@ -3095,8 +3092,8 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         for voice in self.by_class(
             scoretools.Voice,
             reverse=reverse,
@@ -3221,8 +3218,8 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         def _closure():
             visited_spanners = set()
             for component in self.by_class(reverse=reverse):
@@ -3437,8 +3434,8 @@ class IterationAgent(abctools.AbjadObject):
 
         Iterates leaves when `prototype` is none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         prototype = prototype or scoretools.Leaf
         def _closure():
             if isinstance(self.client, scoretools.Component):
@@ -3737,8 +3734,8 @@ class IterationAgent(abctools.AbjadObject):
                     LogicalTie([Note("f'8."), Note("f'8")])
 
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         def _closure():
             visited_logical_ties = set()
             iterator = self.by_timeline(reverse=reverse)
@@ -3884,8 +3881,8 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         assert isinstance(self._client, scoretools.Component)
         prototype = prototype or scoretools.Leaf
         root = self._client._get_parentage().root
@@ -3971,8 +3968,8 @@ class IterationAgent(abctools.AbjadObject):
         '''
         from abjad.tools import selectiontools
         prototype = (spannertools.Tie,)
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         def _closure():
             if isinstance(self._client, scoretools.Leaf):
                 logical_tie = self._client._get_logical_tie()
@@ -4209,8 +4206,8 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         from abjad.tools import selectiontools
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         def _buffer_components_starting_with(component, buffer, stop_offsets):
             #if not isinstance(component, scoretools.Component):
             #    raise TypeError
@@ -4544,8 +4541,8 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         def _next_node_depth_first(component, total):
             r'''If client has unvisited music, return next unvisited node in
             client's music.

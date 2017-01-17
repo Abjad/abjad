@@ -567,8 +567,8 @@ class MetricModulation(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argment):
-        r'''Is true `argment` is another metric modulation with the same ratio as
+    def __eq__(self, argument):
+        r'''Is true `argument` is another metric modulation with the same ratio as
         this metric modulation. Otherwise false.
 
         ..  container:: example
@@ -627,8 +627,8 @@ class MetricModulation(AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(argment, type(self)):
-            if self.ratio == argment.ratio:
+        if isinstance(argument, type(self)):
+            if self.ratio == argument.ratio:
                 return True
         return False
 

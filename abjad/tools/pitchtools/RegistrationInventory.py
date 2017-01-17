@@ -23,7 +23,7 @@ class RegistrationInventory(TypedList):
 
         ::
 
-            >>> print(format(inventory))
+            >>> f(inventory)
             pitchtools.RegistrationInventory(
                 [
                     pitchtools.Registration(

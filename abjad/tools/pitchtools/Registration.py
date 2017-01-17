@@ -14,11 +14,11 @@ class Registration(TypedList):
         ::
 
             >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-            >>> registration = pitchtools.Registration(components)
+            >>> registration = Registration(components)
 
         ::
 
-            >>> print(format(registration))
+            >>> f(registration)
             pitchtools.Registration(
                 [
                     pitchtools.RegistrationComponent(
@@ -55,7 +55,7 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = pitchtools.Registration(components)
+                >>> registration = Registration(components)
                 >>> pitches = registration([-24, -22, -23, -21])
                 >>> for pitch in pitches:
                 ...     pitch
@@ -71,7 +71,7 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = pitchtools.Registration(components)
+                >>> registration = Registration(components)
                 >>> pitches = registration([0, 2, 1, 3])
                 >>> for pitch in pitches:
                 ...     pitch
@@ -87,7 +87,7 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = pitchtools.Registration(components)
+                >>> registration = Registration(components)
                 >>> pitches = registration([0.5, 2.5, 1.5, 3.5])
                 >>> for pitch in pitches:
                 ...     pitch
@@ -114,11 +114,11 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = pitchtools.Registration(components)
+                >>> registration = Registration(components)
 
             ::
 
-                >>> print(format(registration))
+                >>> f(registration)
                 pitchtools.Registration(
                     [
                         pitchtools.RegistrationComponent(
@@ -145,13 +145,13 @@ class Registration(TypedList):
 
     @property
     def _item_coercer(self):
-        def coerce_(argment):
-            if isinstance(argment, tuple):
-                component = pitchtools.RegistrationComponent(*argment)
-            elif isinstance(argment, pitchtools.RegistrationComponent):
-                component = copy.copy(argment)
+        def coerce_(argument):
+            if isinstance(argument, tuple):
+                component = pitchtools.RegistrationComponent(*argument)
+            elif isinstance(argument, pitchtools.RegistrationComponent):
+                component = copy.copy(argument)
             else:
-                raise TypeError(repr(argment))
+                raise TypeError(repr(argument))
             return component
         from abjad.tools import pitchtools
         return coerce_

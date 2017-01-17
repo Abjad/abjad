@@ -120,22 +120,22 @@ class Inversion(AbjadValueObject):
 
             ::
 
-                >>> print(format(operator))
+                >>> f(operator)
                 pitchtools.CompoundOperator(
-                    operators=(
+                    operators=[
                         pitchtools.Inversion(),
                         pitchtools.Transposition(
                             n=3,
                             ),
-                        ),
+                        ],
                     )
 
         '''
         from abjad.tools import pitchtools
         return pitchtools.CompoundOperator._compose_operators(self, operator)
 
-    def __call__(self, argment):
-        r'''Calls inversion on `argment`.
+    def __call__(self, argument):
+        r'''Calls inversion on `argument`.
 
         ..  container:: example
 
@@ -214,13 +214,13 @@ class Inversion(AbjadValueObject):
                 >>> inversion(set_)
                 PitchClassSet(['c', 'af', 'bf'])
 
-        Returns new object with type equal to that of `argment`.
+        Returns new object with type equal to that of `argument`.
         '''
-        if hasattr(argment, 'invert'):
-            result = argment.invert(axis=self.axis)
+        if hasattr(argument, 'invert'):
+            result = argument.invert(axis=self.axis)
         else:
             message = 'do not know how to invert: {!r}.'
-            message = message.format(argment)
+            message = message.format(argument)
             raise TypeError(message)
         return result
 

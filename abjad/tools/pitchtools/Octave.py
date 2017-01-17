@@ -68,14 +68,14 @@ class Octave(AbjadValueObject):
 
     def __init__(self, octave_number=None):
         from abjad.tools import pitchtools
-        argment = octave_number
-        if isinstance(argment, numbers.Number):
-            octave_number = int(argment)
-        elif isinstance(argment, str):
-            match = self._octave_tick_regex.match(argment)
+        argument = octave_number
+        if isinstance(argument, numbers.Number):
+            octave_number = int(argument)
+        elif isinstance(argument, str):
+            match = self._octave_tick_regex.match(argument)
             if match is None:
                 message = 'can not instantiate octave: {!r}.'
-                message = message.format(argment)
+                message = message.format(argument)
                 raise Exception(message)
             group = match.group()
             if group == '':
@@ -84,15 +84,15 @@ class Octave(AbjadValueObject):
                 octave_number = 3 + len(group)
             else:
                 octave_number = 3 - len(group)
-        elif isinstance(argment, pitchtools.Pitch):
-            octave_number = argment.octave_number
-        elif isinstance(argment, type(self)):
-            octave_number = argment.octave_number
-        elif argment is None:
+        elif isinstance(argument, pitchtools.Pitch):
+            octave_number = argument.octave_number
+        elif isinstance(argument, type(self)):
+            octave_number = argument.octave_number
+        elif argument is None:
             octave_number = 4
         else:
             message = 'can not instantiate {}: {!r}.'
-            message = message.format(type(self), argment)
+            message = message.format(type(self), argument)
             raise Exception(message)
         self._octave_number = octave_number
 
@@ -334,8 +334,8 @@ class Octave(AbjadValueObject):
         return class_(octave_number)
 
     @classmethod
-    def is_octave_tick_string(class_, argment):
-        '''Is true when `argment` is an octave tick string. Otherwise false.
+    def is_octave_tick_string(class_, argument):
+        '''Is true when `argument` is an octave tick string. Otherwise false.
 
         ..  container:: example
 
@@ -348,6 +348,6 @@ class Octave(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(argment, str):
+        if not isinstance(argument, str):
             return False
-        return bool(class_._octave_tick_regex.match(argment))
+        return bool(class_._octave_tick_regex.match(argument))

@@ -21,7 +21,7 @@ class PitchRange(AbjadValueObject):
         ::
 
             >>> pitch_range = PitchRange('[C3, C7]')
-            >>> print(format(pitch_range))
+            >>> f(pitch_range)
             pitchtools.PitchRange(
                 range_string='[C3, C7]',
                 )
@@ -47,6 +47,8 @@ class PitchRange(AbjadValueObject):
         '_start',
         '_stop',
         )
+
+    _publish_storage_format = True
 
     _range_string_regex_body = '''
         (?P<open_bracket>
@@ -137,14 +139,14 @@ class PitchRange(AbjadValueObject):
                     return False
         return False
 
-    def __eq__(self, argment):
-        r'''Is true when `argment` is a pitch range with start and stop equal
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a pitch range with start and stop equal
         to those of this pitch range. Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, argment)
+        return systemtools.TestManager.compare_objects(self, argument)
 
     def __format__(self, format_specification=''):
         r'''Formats pitch range.
@@ -566,8 +568,8 @@ class PitchRange(AbjadValueObject):
         return pitch_range
 
     @classmethod
-    def is_range_string(class_, argment):
-        '''Is true when `argment` is a symbolic pitch range string.
+    def is_range_string(class_, argument):
+        '''Is true when `argument` is a symbolic pitch range string.
         Otherwise false:
 
         ..  container:: example
@@ -594,9 +596,9 @@ class PitchRange(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(argment, str):
+        if not isinstance(argument, str):
             return False
-        return bool(class_._range_string_regex.match(argment))
+        return bool(class_._range_string_regex.match(argument))
 
     def list_octave_transpositions(self, pitch_carrier):
         r"""Lists octave transpositions of `pitch_carrier` in pitch range.

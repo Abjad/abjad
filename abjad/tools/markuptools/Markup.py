@@ -180,7 +180,7 @@ class Markup(AbjadValueObject):
         '_contents',
         '_direction',
         '_format_slot',
-        '_frozen_expression',
+        '_expression',
         '_lilypond_tweak_manager',
         '_stack_priority',
         )
@@ -230,15 +230,15 @@ class Markup(AbjadValueObject):
         direction = stringtools.expr_to_tridirectional_ordinal_constant(
             direction)
         self._direction = direction
-        self._frozen_expression = None
+        self._expression = None
         self._lilypond_tweak_manager = None
         assert isinstance(stack_priority, int), repr(stack_priority)
         self._stack_priority = stack_priority
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argment):
-        r'''Adds markup to `argment`.
+    def __add__(self, argument):
+        r'''Adds markup to `argument`.
 
         ..  container:: example
 
@@ -322,16 +322,16 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         commands = list(self.contents)
-        if isinstance(argment, type(self)):
-            commands.extend(argment.contents)
-        elif isinstance(argment, MarkupCommand):
-            commands.append(argment)
+        if isinstance(argument, type(self)):
+            commands.extend(argument.contents)
+        elif isinstance(argument, MarkupCommand):
+            commands.append(argument)
         else:
             message = 'must be markup or markup command: {!r}.'
-            message = message.format(argment)
+            message = message.format(argument)
             raise TypeError(message)
         markup = type(self)(contents=commands, direction=self.direction)
         return markup
@@ -466,12 +466,13 @@ class Markup(AbjadValueObject):
                     >>> expression = Expression().markup()
                     >>> f(expression)
                     expressiontools.Expression(
-                        callbacks=(
+                        callbacks=[
                             expressiontools.Expression(
                                 evaluation_template='abjad.markuptools.Markup',
                                 is_initializer=True,
                                 ),
-                            ),
+                            ],
+                        proxy_class=markuptools.Markup,
                         )
 
         Returns string.
@@ -743,24 +744,17 @@ class Markup(AbjadValueObject):
     def _get_lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
 
-    def _make_callback(self, frame):
-        assert self._frozen_expression, repr(self._frozen_expression)
-        Expression = expressiontools.Expression
-        template = Expression._make_evaluation_template(frame)
-        return self._frozen_expression.append_callback(
-            evaluation_template=template,
-            )
-
     @staticmethod
     def _make_static_callback(frozen_expression, frame):
         Expression = expressiontools.Expression
-        template = Expression._make_evaluation_template(
+        template = Expression._frame_to_evaluation_template(
             frame,
             static_class=Markup,
             )
-        return frozen_expression.append_callback(
+        callback = abjad.Expression.make_callback(
             evaluation_template=template,
             )
+        return frozen_expression.append_callback(callback)
 
     @staticmethod
     def _parse_markup_command_argument(argument):
@@ -776,6 +770,10 @@ class Markup(AbjadValueObject):
             message = message.format(argument)
             raise TypeError(argument)
         return contents
+
+    def _update_expression(self, frame):
+        callback = expressiontools.Expression._frame_to_callback(frame)
+        return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
 
@@ -1016,8 +1014,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand(
             'bold',
@@ -1110,8 +1108,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('box', contents)
         return new(self, contents=command)
@@ -1156,8 +1154,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('bracket', contents)
         return new(self, contents=command)
@@ -1202,8 +1200,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('caps', contents)
         return new(self, contents=command)
@@ -1266,8 +1264,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('center-align', contents)
         return new(self, contents=command)
@@ -1376,8 +1374,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('circle', contents)
         return new(self, contents=command)
@@ -1589,8 +1587,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('dynamic', contents)
         return new(self, contents=command)
@@ -1664,8 +1662,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('finger', contents)
         return new(self, contents=command)
@@ -1738,8 +1736,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         fontsize = float(fontsize)
         fontsize = mathtools.integer_equivalent_number_to_integer(fontsize)
         contents = self._parse_markup_command_argument(self)
@@ -1878,8 +1876,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         axis = schemetools.Scheme(axis)
         # TODO: make schemetools.Scheme(Up) work
@@ -1940,8 +1938,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('halign', direction, contents)
         return new(self, contents=command)
@@ -1988,8 +1986,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('hcenter-in', length, contents)
         return new(self, contents=command)
@@ -2058,8 +2056,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('huge', contents)
         return new(self, contents=command)
@@ -2105,8 +2103,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('italic', contents)
         return new(self, contents=command)
@@ -2151,8 +2149,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('larger', contents)
         return new(self, contents=command)
@@ -2470,8 +2468,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         new_property = schemetools.SchemePair(new_property)
         command = MarkupCommand('override', new_property, contents)
@@ -2523,8 +2521,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('pad-around', padding, contents)
         return new(self, contents=command)
@@ -2728,8 +2726,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         x_extent = schemetools.SchemePair(x_extent)
         y_extent = schemetools.SchemePair(y_extent)
@@ -2776,8 +2774,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('parenthesize', contents)
         return new(self, contents=command)
@@ -2863,8 +2861,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('raise', amount, contents)
         return new(self, contents=command)
@@ -2943,8 +2941,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('rotate', angle, contents)
         return new(self, contents=command)
@@ -2989,8 +2987,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('sans', contents)
         return new(self, contents=command)
@@ -3037,8 +3035,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         factor_pair = schemetools.SchemePair(factor_pair)
         command = MarkupCommand('scale', factor_pair, contents)
@@ -3107,8 +3105,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('small', contents)
         return new(self, contents=command)
@@ -3153,8 +3151,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('smaller', contents)
         return new(self, contents=command)
@@ -3211,8 +3209,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('sub', contents)
         return new(self, contents=command)
@@ -3270,8 +3268,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('super', contents)
         return new(self, contents=command)
@@ -3316,8 +3314,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('tiny', contents)
         return new(self, contents=command)
@@ -3364,8 +3362,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         offset_pair = schemetools.SchemePair(offset_pair)
         command = MarkupCommand('translate', offset_pair, contents)
@@ -3435,8 +3433,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('upright', contents)
         return new(self, contents=command)
@@ -3481,8 +3479,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('vcenter', contents)
         return new(self, contents=command)
@@ -3551,8 +3549,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand('whiteout', contents)
         return new(self, contents=command)
@@ -3599,8 +3597,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         color = schemetools.Scheme(color)
         command = MarkupCommand('with-color', color, contents)
@@ -3696,8 +3694,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         x_extent = schemetools.SchemePair(x_extent)
         y_extent = schemetools.SchemePair(y_extent)

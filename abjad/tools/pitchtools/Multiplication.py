@@ -117,8 +117,8 @@ class Multiplication(AbjadValueObject):
         from abjad.tools import pitchtools
         return pitchtools.CompoundOperator._compose_operators(self, operator)
 
-    def __call__(self, argment):
-        r'''Calls multiplication on `argment`.
+    def __call__(self, argument):
+        r'''Calls multiplication on `argument`.
 
         ..  container:: example
 
@@ -142,13 +142,13 @@ class Multiplication(AbjadValueObject):
                 >>> multiplication(pitch)
                 NamedPitch("b'")
 
-        Returns new object with type equal to that of `argment`.
+        Returns new object with type equal to that of `argument`.
         '''
-        if hasattr(argment, 'multiply'):
-            result = argment.multiply(self.n)
+        if hasattr(argument, 'multiply'):
+            result = argument.multiply(self.n)
         else:
             message = 'do not know how to multiply: {!r}.'
-            message = message.format(argment)
+            message = message.format(argument)
             raise TypeError(message)
         return result
 

@@ -84,7 +84,7 @@ class MarkupList(TypedList):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_frozen_expression',
+        '_expression',
         )
 
     ### INITIALIZER ###
@@ -95,9 +95,9 @@ class MarkupList(TypedList):
         item_class=None,
         keep_sorted=None,
         ):
-        import abjad
-        self._frozen_expression = None
-        item_class = item_class or abjad.Markup
+        from abjad.tools import markuptools
+        self._expression = None
+        item_class = item_class or markuptools.Markup
         TypedList.__init__(
             self,
             item_class=item_class,
@@ -177,12 +177,13 @@ class MarkupList(TypedList):
                     >>> expression = Expression().markup_list()
                     >>> f(expression)
                     expressiontools.Expression(
-                        callbacks=(
+                        callbacks=[
                             expressiontools.Expression(
                                 evaluation_template='abjad.markuptools.MarkupList',
                                 is_initializer=True,
                                 ),
-                            ),
+                            ],
+                        proxy_class=markuptools.MarkupList,
                         )
 
         Returns string.
@@ -275,8 +276,8 @@ class MarkupList(TypedList):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(
+        if self._expression:
+            return self._update_expression(
                 inspect.currentframe(),
                 force_return=True,
                 )
@@ -441,8 +442,8 @@ class MarkupList(TypedList):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(
+        if self._expression:
+            return self._update_expression(
                 inspect.currentframe(),
                 force_return=True,
                 )
@@ -462,15 +463,14 @@ class MarkupList(TypedList):
             storage_format_kwargs_names=names,
             )
 
-    def _make_callback(self, frame, force_return=None):
-        assert self._frozen_expression, repr(self._frozen_expression)
-        Expression = expressiontools.Expression
-        template = Expression._make_evaluation_template(frame)
-        callback = self._frozen_expression.append_callback(
-            evaluation_template=template,
+    def _update_expression(self, frame, force_return=None):
+        #import abjad
+        from abjad.tools import expressiontools
+        callback = expressiontools.Expression._frame_to_callback(
+            frame,
             force_return=force_return,
             )
-        return callback
+        return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
 
@@ -669,8 +669,8 @@ class MarkupList(TypedList):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(
+        if self._expression:
+            return self._update_expression(
                 inspect.currentframe(),
                 force_return=True,
                 )
@@ -730,8 +730,8 @@ class MarkupList(TypedList):
         Returns new markup.
         '''
         from abjad.tools import markuptools
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = []
         for markup in self:
             string = markuptools.Markup._parse_markup_command_argument(markup)
@@ -790,8 +790,8 @@ class MarkupList(TypedList):
         Returns new markup.
         '''
         import abjad
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = []
         for markup in self:
             contents.extend(markup.contents)
@@ -849,8 +849,8 @@ class MarkupList(TypedList):
         Returns new markup.
         '''
         import abjad
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         if not len(self) == 2:
             message = 'markup list must be length 2: {!r}.'
             message = message.format(markup_list)
@@ -925,8 +925,8 @@ class MarkupList(TypedList):
         Returns new markup.
         '''
         from abjad.tools import markuptools
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         result = []
         for markup in self:
             contents = markuptools.Markup._parse_markup_command_argument(
@@ -1037,8 +1037,8 @@ class MarkupList(TypedList):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(
+        if self._expression:
+            return self._update_expression(
                 inspect.currentframe(),
                 force_return=True,
                 )
@@ -1145,8 +1145,8 @@ class MarkupList(TypedList):
 
         Returns markup class.
         '''
-        if self._frozen_expression:
-            return self._make_callback(
+        if self._expression:
+            return self._update_expression(
                 inspect.currentframe(),
                 force_return=True,
                 )
@@ -1204,8 +1204,8 @@ class MarkupList(TypedList):
         Returns new markup.
         '''
         import abjad
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = []
         for markup in self:
             contents.append(abjad.Markup._parse_markup_command_argument(markup))
@@ -1262,8 +1262,8 @@ class MarkupList(TypedList):
         Returns new markup.
         '''
         import abjad
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = []
         for markup in self:
             contents.extend(markup.contents)
@@ -1321,8 +1321,8 @@ class MarkupList(TypedList):
         Returns new markup.
         '''
         import abjad
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = []
         for markup in self:
             contents.append(abjad.Markup._parse_markup_command_argument(markup))
@@ -1383,8 +1383,8 @@ class MarkupList(TypedList):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(
+        if self._expression:
+            return self._update_expression(
                 inspect.currentframe(),
                 force_return=True,
                 )
@@ -1458,8 +1458,8 @@ class MarkupList(TypedList):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(
+        if self._expression:
+            return self._update_expression(
                 inspect.currentframe(),
                 force_return=True,
                 )
@@ -1517,8 +1517,8 @@ class MarkupList(TypedList):
         Returns new markup.
         '''
         import abjad
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = []
         for markup in self:
             contents.append(abjad.Markup._parse_markup_command_argument(markup))

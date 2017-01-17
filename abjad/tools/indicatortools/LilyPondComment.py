@@ -63,9 +63,9 @@ class LilyPondComment(AbjadValueObject):
 
     def __init__(self, contents_string=None, format_slot=None):
         if isinstance(contents_string, type(self)):
-            argment = contents_string
-            contents_string = argment.contents_string
-            format_slot = format_slot or argment.format_slot
+            argument = contents_string
+            contents_string = argument.contents_string
+            format_slot = format_slot or argument.format_slot
         else:
             contents_string = str(contents_string)
         self._contents_string = contents_string

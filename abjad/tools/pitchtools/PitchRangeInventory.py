@@ -144,15 +144,15 @@ class PitchRangeInventory(TypedList):
 
     @property
     def _item_coercer(self):
-        def coerce_(argment):
-            if isinstance(argment, str):
-                range_ = pitchtools.PitchRange(argment)
-            elif isinstance(argment, tuple):
-                range_ = pitchtools.PitchRange.from_pitches(*argment)
-            elif isinstance(argment, pitchtools.PitchRange):
-                range_ = copy.copy(argment)
+        def coerce_(argument):
+            if isinstance(argument, str):
+                range_ = pitchtools.PitchRange(argument)
+            elif isinstance(argument, tuple):
+                range_ = pitchtools.PitchRange.from_pitches(*argument)
+            elif isinstance(argument, pitchtools.PitchRange):
+                range_ = copy.copy(argument)
             else:
-                raise TypeError(argment)
+                raise TypeError(argument)
             return range_
         from abjad.tools import pitchtools
         return coerce_

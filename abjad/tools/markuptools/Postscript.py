@@ -95,14 +95,14 @@ class Postscript(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argment):
-        r'''Adds postscript to `argment`.
+    def __add__(self, argument):
+        r'''Adds postscript to `argument`.
 
         Returns new postscript.
         '''
-        assert isinstance(argment, type(self))
+        assert isinstance(argument, type(self))
         self_operators = self.operators or ()
-        expr_operators = argment.operators or ()
+        expr_operators = argument.operators or ()
         operators = self_operators + expr_operators
         operators = operators or None
         return type(self)(operators)

@@ -103,6 +103,7 @@ from abjad.tools.pitchtools import PitchClassSegment
 from abjad.tools.pitchtools import PitchSegment
 from abjad.tools.pitchtools import PitchSet
 from abjad.tools.pitchtools import PitchRange
+from abjad.tools.pitchtools import Registration
 from abjad.tools.pitchtools import Retrograde
 from abjad.tools.pitchtools import Rotation
 from abjad.tools.pitchtools import SetClass

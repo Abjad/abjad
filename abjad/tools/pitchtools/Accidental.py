@@ -194,56 +194,56 @@ class Accidental(AbjadValueObject):
 
     ### INITIALIZER ##
 
-    def __init__(self, argment=None):
-        if argment is None:
+    def __init__(self, argument=None):
+        if argument is None:
             semitones = 0
-        elif isinstance(argment, str):
+        elif isinstance(argument, str):
             semitones = 0
-            if self.is_abbreviation(argment):
-                if argment in self._abbreviation_to_semitones:
-                    semitones = self._abbreviation_to_semitones[argment]
+            if self.is_abbreviation(argument):
+                if argument in self._abbreviation_to_semitones:
+                    semitones = self._abbreviation_to_semitones[argument]
                 else:
-                    while argment and argment.startswith(('f', 's')):
-                        if argment[0] == 's':
+                    while argument and argument.startswith(('f', 's')):
+                        if argument[0] == 's':
                             semitones += 1
                         else:
                             semitones -= 1
-                        argment = argment[1:]
-                    if argment == 'qs':
+                        argument = argument[1:]
+                    if argument == 'qs':
                         semitones += 0.5
-                    elif argment == 'qf':
+                    elif argument == 'qf':
                         semitones -= 0.5
-            elif self.is_symbolic_string(argment):
-                if argment in self._symbolic_string_to_semitones:
-                    semitones = self._symbolic_string_to_semitones[argment]
+            elif self.is_symbolic_string(argument):
+                if argument in self._symbolic_string_to_semitones:
+                    semitones = self._symbolic_string_to_semitones[argument]
                 else:
-                    while argment and argment.startswith(('b', '#')):
-                        if argment[0] == '#':
+                    while argument and argument.startswith(('b', '#')):
+                        if argument[0] == '#':
                             semitones += 1
                         else:
                             semitones -= 1
-                        argment = argment[1:]
-                    if argment == '+':
+                        argument = argument[1:]
+                    if argument == '+':
                         semitones += 0.5
-                    elif argment == '~':
+                    elif argument == '~':
                         semitones -= 0.5
-            elif argment in self._name_to_abbreviation:
-                abbreviation = self._name_to_abbreviation[argment]
+            elif argument in self._name_to_abbreviation:
+                abbreviation = self._name_to_abbreviation[argument]
                 semitones = self._abbreviation_to_semitones[abbreviation]
             else:
                 message = 'can not initialize accidental from value: {!r}'
-                message = message.format(argment)
+                message = message.format(argument)
                 raise ValueError(message)
-        elif isinstance(argment, type(self)):
-            semitones = argment.semitones
-        elif isinstance(argment, (int, float)):
-            semitones = float(argment)
+        elif isinstance(argument, type(self)):
+            semitones = argument.semitones
+        elif isinstance(argument, (int, float)):
+            semitones = float(argument)
             assert (semitones % 1.) in (0., 0.5)
-        elif hasattr(argment, 'accidental'):
-            semitones = argment.accidental.semitones
+        elif hasattr(argument, 'accidental'):
+            semitones = argument.accidental.semitones
         else:
             message = 'can not initialize accidental from value: {!r}'
-            message = message.format(argment)
+            message = message.format(argument)
             raise ValueError(message)
         semitones = mathtools.integer_equivalent_number_to_integer(semitones)
         self._semitones = semitones
@@ -461,8 +461,8 @@ class Accidental(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def is_abbreviation(argment):
-        '''Is true when `argment` is an alphabetic accidental abbreviation.
+    def is_abbreviation(argument):
+        '''Is true when `argument` is an alphabetic accidental abbreviation.
         Otherwise false.
 
         ..  container:: example
@@ -477,13 +477,13 @@ class Accidental(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(argment, str):
+        if not isinstance(argument, str):
             return False
-        return bool(Accidental._alphabetic_accidental_regex.match(argment))
+        return bool(Accidental._alphabetic_accidental_regex.match(argument))
 
     @staticmethod
-    def is_symbolic_string(argment):
-        '''Is true when `argment` is a symbolic accidental string.
+    def is_symbolic_string(argument):
+        '''Is true when `argument` is a symbolic accidental string.
         Otherwise false.
 
         ..  container:: example
@@ -500,6 +500,6 @@ class Accidental(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(argment, str):
+        if not isinstance(argument, str):
             return False
-        return bool(Accidental._symbolic_string_regex.match(argment))
+        return bool(Accidental._symbolic_string_regex.match(argument))

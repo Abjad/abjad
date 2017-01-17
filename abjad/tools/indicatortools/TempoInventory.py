@@ -79,15 +79,15 @@ class TempoInventory(TypedList):
 
     @property
     def _item_coercer(self):
-        def coerce_(argment):
-            if argment is None:
+        def coerce_(argument):
+            if argument is None:
                 tempo = indicatortools.Tempo()
-            elif isinstance(argment, tuple):
-                tempo = indicatortools.Tempo(*argment)
-            elif isinstance(argment, indicatortools.Tempo):
-                tempo = copy.copy(argment)
+            elif isinstance(argument, tuple):
+                tempo = indicatortools.Tempo(*argument)
+            elif isinstance(argument, indicatortools.Tempo):
+                tempo = copy.copy(argument)
             else:
-                raise TypeError(repr(argment))
+                raise TypeError(repr(argument))
             return tempo
         from abjad.tools import indicatortools
         return coerce_

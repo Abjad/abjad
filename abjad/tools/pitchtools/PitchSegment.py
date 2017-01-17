@@ -235,22 +235,22 @@ class PitchSegment(Segment):
         items = (pitch.invert(axis) for pitch in self)
         return new(self, items=items)
 
-    def _is_equivalent_under_transposition(self, argment):
-        r'''True if pitch segment is equivalent to `argment` under transposition.
+    def _is_equivalent_under_transposition(self, argument):
+        r'''True if pitch segment is equivalent to `argument` under transposition.
         Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
-        if not isinstance(argment, type(self)):
+        if not isinstance(argument, type(self)):
             return False
-        if not len(self) == len(argment):
+        if not len(self) == len(argument):
             return False
-        difference = -(pitchtools.NamedPitch(argment[0], 4) -
+        difference = -(pitchtools.NamedPitch(argument[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
         new_pitches = new(self, items=new_pitches)
-        return argment == new_pitches
+        return argument == new_pitches
 
     def make_notes(self, n=None, written_duration=None):
         r'''Makes first `n` notes in pitch segment.
@@ -395,10 +395,10 @@ class PitchSegment(Segment):
                 new_segment = new_segment.transpose(interval)
         return new_segment
 
-    def transpose(self, argment):
-        r'''Transposes pitch segment by `argment`.
+    def transpose(self, argument):
+        r'''Transposes pitch segment by `argument`.
 
         Returns new pitch segment.
         '''
-        items = (pitch.transpose(argment) for pitch in self)
+        items = (pitch.transpose(argument) for pitch in self)
         return new(self, items=items)

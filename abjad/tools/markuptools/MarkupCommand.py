@@ -163,8 +163,8 @@ class MarkupCommand(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argment):
-        r'''Is true when `argment` is a markup command with command and
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a markup command with command and
         arguments equal to those of this markup command. Otherwise false.
 
         ..  container:: example
@@ -198,9 +198,9 @@ class MarkupCommand(AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(argment, type(self)):
-            if self.command == argment.command:
-                if self.arguments == argment.arguments:
+        if isinstance(argument, type(self)):
+            if self.command == argument.command:
+                if self.arguments == argument.arguments:
                     return True
         return False
 

@@ -49,7 +49,7 @@ class PitchClassVector(Vector):
 
             ::
 
-                >>> print(format(vector))
+                >>> f(vector)
                 pitchtools.PitchClassVector(
                     {
                         pitchtools.NumberedPitchClass(0): 1,

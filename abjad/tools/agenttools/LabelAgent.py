@@ -67,7 +67,7 @@ class LabelAgent(abctools.AbjadObject):
                 >>> expression = label().with_pitches()
                 >>> f(expression)
                 expressiontools.Expression(
-                    callbacks=(
+                    callbacks=[
                         expressiontools.Expression(
                             evaluation_template='abjad.agenttools.LabelAgent',
                             is_initializer=True,
@@ -75,7 +75,8 @@ class LabelAgent(abctools.AbjadObject):
                         expressiontools.Expression(
                             evaluation_template='{}.with_pitches()',
                             ),
-                        ),
+                        ],
+                    proxy_class=agenttools.LabelAgent,
                     )
 
             ::
@@ -158,7 +159,7 @@ class LabelAgent(abctools.AbjadObject):
                 >>> expression = label().with_durations()
                 >>> f(expression)
                 expressiontools.Expression(
-                    callbacks=(
+                    callbacks=[
                         expressiontools.Expression(
                             evaluation_template='abjad.agenttools.LabelAgent',
                             is_initializer=True,
@@ -166,7 +167,8 @@ class LabelAgent(abctools.AbjadObject):
                         expressiontools.Expression(
                             evaluation_template='{}.with_durations()',
                             ),
-                        ),
+                        ],
+                    proxy_class=agenttools.LabelAgent,
                     )
 
             ::
@@ -206,7 +208,7 @@ class LabelAgent(abctools.AbjadObject):
 
     __slots__ = (
         '_client',
-        '_frozen_expression',
+        '_expression',
         )
 
     _pc_number_to_color = {
@@ -244,7 +246,7 @@ class LabelAgent(abctools.AbjadObject):
             message = message.format(client)
             raise TypeError(message)
         self._client = client
-        self._frozen_expression = None
+        self._expression = None
 
     ### PRIVATE METHODS ###
 
@@ -260,13 +262,10 @@ class LabelAgent(abctools.AbjadObject):
             override(leaf).rest.color = color
         return leaf
 
-    def _make_callback(self, frame):
-        assert self._frozen_expression, repr(self._frozen_expression)
-        Expression = expressiontools.Expression
-        template = Expression._make_evaluation_template(frame)
-        return self._frozen_expression.append_callback(
-            evaluation_template=template,
-            )
+    def _update_expression(self, frame):
+        import abjad
+        callback = abjad.Expression._frame_to_callback(frame)
+        return self._expression.append_callback(callback)
 
     ### PUBLIC PROPERTIES ###
 
@@ -356,8 +355,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         override(self.client).accidental.color = color
         override(self.client).beam.color = color
         override(self.client).dots.color = color
@@ -437,8 +436,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         """
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         for leaf in iterate(self.client).by_leaf():
             self._color_leaf(leaf, color)
 
@@ -643,8 +642,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         color_map = color_map or self._pc_number_to_color
         for leaf in iterate(self.client).by_leaf():
             if isinstance(leaf, scoretools.Chord):
@@ -769,8 +768,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         leaves = iterate(self.client).by_leaf()
         for leaf in leaves:
             detach(markuptools.Markup, leaf)
@@ -1815,8 +1814,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         prototype = prototype or int
         vertical_moments = iterate(self.client).by_vertical_moment()
         for index, vertical_moment in enumerate(vertical_moments):
@@ -2081,8 +2080,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         logical_ties = iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
             duration = logical_tie.get_duration()
@@ -2541,8 +2540,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         if prototype is None:
             items = iterate(self.client).by_logical_tie()
         else:
@@ -2866,8 +2865,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         """
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         prototype = prototype or pitchtools.NamedInterval
         notes = iterate(self.client).by_class(scoretools.Note)
         for note in notes:
@@ -3461,8 +3460,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         prototype = prototype or pitchtools.NamedPitch
         logical_ties = iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
@@ -3836,8 +3835,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         prototype = prototype or pitchtools.SetClass()
         if prototype is pitchtools.SetClass:
             prototype = prototype()
@@ -4096,8 +4095,8 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        if self._frozen_expression:
-            return self._make_callback(inspect.currentframe())
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         logical_ties = iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
             if clock_time:
