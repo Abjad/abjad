@@ -157,7 +157,7 @@ class GalleryMaker(AbjadValueObject):
         score_number_markup,
         ):
         lists = rhythm_maker(division_list)
-        selections = sequencetools.flatten_sequence(lists)
+        selections = sequencetools.Sequence(lists).flatten()
         measures = scoretools.make_spacer_skip_measures(division_list)
         time_signature_context = scoretools.Context(
             measures,

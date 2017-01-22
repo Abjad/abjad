@@ -81,7 +81,3 @@ class TimeSignatureInventory(TypedList):
                 message = message.format(argument)
                 raise Exception(message)
         return coerce
-
-    @property
-    def _one_line_menu_summary(self):
-        return ', '.join([time_signature.pair for time_signature in self])

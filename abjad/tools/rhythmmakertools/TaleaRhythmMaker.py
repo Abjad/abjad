@@ -115,7 +115,7 @@ class TaleaRhythmMaker(RhythmMaker):
         if not talea:
             return talea
         voice_index, measure_index = rotation
-        talea = sequencetools.rotate_sequence(talea, -voice_index)
+        talea = sequencetools.Sequence(talea).rotate(n=-voice_index)
         return talea
 
     # used in a piece with four voices:
@@ -130,7 +130,7 @@ class TaleaRhythmMaker(RhythmMaker):
         voice_index, measure_index = rotation
         index_of_rotation = -voice_index * (len(talea) // 4)
         index_of_rotation += -4 * measure_index
-        talea = sequencetools.rotate_sequence(talea, index_of_rotation)
+        talea = sequencetools.Sequence(talea).rotate(n=index_of_rotation)
         return talea
     '''
 
@@ -422,15 +422,14 @@ class TaleaRhythmMaker(RhythmMaker):
                 )
             weight = abs(duration)
             weights.append(weight)
-        parts = sequencetools.partition_sequence_by_weights(
-            written_durations,
+        parts = sequencetools.Sequence(written_durations).partition_by_weights(
             weights=weights,
             allow_part_weights=More,
             cyclic=True,
             overhang=True,
             )
         counts = [len(part) for part in parts]
-        parts = sequencetools.partition_sequence_by_counts(leaves, counts)
+        parts = sequencetools.Sequence(leaves).partition_by_counts(counts)
         prototype = (spannertools.Tie,)
         for part in parts:
             if any(isinstance(_, scoretools.Rest) for _ in part):
@@ -661,19 +660,16 @@ class TaleaRhythmMaker(RhythmMaker):
     def _split_sequence_extended_to_weights(self, sequence, weights):
         assert mathtools.all_are_positive_integers(weights), repr(weights)
         sequence_weight = mathtools.weight(sequence)
-        total_weight = mathtools.weight(weights)
+        weight = mathtools.weight(weights)
         if self.read_talea_once_only:
-            if sequence_weight < total_weight:
+            if sequence_weight < weight:
                 message = 'talea is too short to read once only:'
                 message += '\n{!r} in {!r}.'
                 message = message.format(sequence, weights)
                 raise Exception(message)
-        sequence = sequencetools.repeat_sequence_to_weight(
-            sequence,
-            total_weight,
-            )
-        result = sequencetools.split_sequence(sequence, weights, cyclic=False)
-        return result
+        sequence = sequencetools.Sequence(sequence).repeat_to_weight(weight)
+        sequence = sequence.split(weights, cyclic=True)
+        return sequence
 
     ### PUBLIC PROPERTIES ###
 

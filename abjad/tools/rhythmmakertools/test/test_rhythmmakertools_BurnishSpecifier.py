@@ -25,7 +25,7 @@ def test_rhythmmakertools_BurnishSpecifier_01():
     divisions = [(5, 16), (6, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = sequencetools.flatten_sequence(selections)
+    selections = Sequence(selections).flatten()
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(selections)
 
@@ -83,7 +83,7 @@ def test_rhythmmakertools_BurnishSpecifier_02():
     divisions = [(5, 16), (6, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = sequencetools.flatten_sequence(selections)
+    selections = Sequence(selections).flatten()
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(selections)
 
@@ -141,7 +141,7 @@ def test_rhythmmakertools_BurnishSpecifier_03():
     divisions = [(5, 16), (6, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = sequencetools.flatten_sequence(selections)
+    selections = Sequence(selections).flatten()
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(selections)
 
@@ -203,7 +203,7 @@ def test_rhythmmakertools_BurnishSpecifier_04():
     divisions = [(5, 16), (6, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = sequencetools.flatten_sequence(selections)
+    selections = Sequence(selections).flatten()
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(selections)
 
@@ -262,7 +262,7 @@ def test_rhythmmakertools_BurnishSpecifier_05():
     divisions = [(5, 16), (6, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = sequencetools.flatten_sequence(selections)
+    selections = Sequence(selections).flatten()
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(selections)
 

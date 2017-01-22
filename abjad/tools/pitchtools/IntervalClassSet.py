@@ -24,8 +24,8 @@ class IntervalClassSet(Set):
             )
         if isinstance(items, prototype):
             items = list(items)
-            pairs = sequencetools.yield_all_unordered_pairs_of_sequence(
-                items)
+            enumeration = sequencetools.Enumeration(items)
+            pairs = enumeration.yield_pairs()
             items = [second - first for first, second in pairs]
         Set.__init__(
             self,

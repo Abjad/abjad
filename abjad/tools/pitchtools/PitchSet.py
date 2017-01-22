@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Set import Set
 from abjad.tools.topleveltools import new
@@ -197,12 +198,12 @@ class PitchSet(Set):
 
         Returns list of zero or more numbered pitches.
         '''
-        if isinstance(pitch_classes, list):
+        if isinstance(pitch_classes, collections.Iterable):
             result = [
                 [_ for _ in self if _.pitch_number % 12 == pc]
                 for pc in [x % 12 for x in pitch_classes]
                 ]
-            result = sequencetools.flatten_sequence(result)
+            result = sequencetools.Sequence(result).flatten()
         elif isinstance(pitch_classes, int):
             result = [p for p in pitch_classes if p % 12 == pitch_classes][0]
         else:

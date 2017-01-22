@@ -93,10 +93,6 @@ class Instrument(AbjadValueObject):
                 return instrument_class
 
     @property
-    def _one_line_menu_summary(self):
-        return self.instrument_name
-
-    @property
     def _scope_name(self):
         if isinstance(self._default_scope, type):
             return self._default_scope.__name__

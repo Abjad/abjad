@@ -627,17 +627,6 @@ class Tempo(AbjadValueObject):
         string = string.format(self._dotted, self.units_per_minute)
         return string
 
-    @property
-    def _one_line_menu_summary(self):
-        result = self._get_lilypond_format()
-        if result.startswith(r'\tempo '):
-            result = result[7:]
-        elif result.startswith(r'\markup '):
-            result = result[8:]
-        else:
-            raise ValueError(result)
-        return result
-
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
@@ -1102,17 +1091,16 @@ class Tempo(AbjadValueObject):
         from abjad.tools import sequencetools
         allowable_numerators = range(1, maximum_numerator + 1)
         allowable_denominators = range(1, maximum_denominator + 1)
-        pairs = sequencetools.yield_outer_product_of_sequences([
-            allowable_numerators,
-            allowable_denominators,
-            ])
+        numbers = [allowable_numerators, allowable_denominators]
+        enumeration = sequencetools.Enumeration(numbers)
+        pairs = enumeration.yield_outer_product()
         multipliers = [durationtools.Multiplier(_) for _ in pairs]
         multipliers = [
             _ for _ in multipliers
             if fractions.Fraction(1, 2) <= _ <= fractions.Fraction(2)
             ]
         multipliers.sort()
-        multipliers = sequencetools.remove_repeated_elements(multipliers)
+        multipliers = sequencetools.Sequence(multipliers).remove_repeats()
         pairs = []
         for multiplier in multipliers:
             new_units_per_minute = multiplier * self.units_per_minute

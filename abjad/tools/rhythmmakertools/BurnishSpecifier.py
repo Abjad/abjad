@@ -266,9 +266,8 @@ class BurnishSpecifier(AbjadValueObject):
             else:
                 middle = middle_count * [0]
             right = right[:right_count]
-            left_part, middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                    division,
+            left_part, middle_part, right_part = sequencetools.Sequence(
+                    division).partition_by_counts(
                     [left_count, middle_count, right_count],
                     cyclic=False,
                     overhang=False,
@@ -315,9 +314,8 @@ class BurnishSpecifier(AbjadValueObject):
             middle = [middle_classes[0]]
             middle = middle_count * middle
             right = right[:right_count]
-            left_part, middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                    divisions[0],
+            left_part, middle_part, right_part = sequencetools.Sequence(
+                    divisions[0]).partition_by_counts(
                     [left_count, middle_count, right_count],
                     cyclic=False,
                     overhang=Exact,
@@ -337,9 +335,8 @@ class BurnishSpecifier(AbjadValueObject):
                 middle_classes = [1]
             middle = [middle_classes[0]]
             middle = middle_count * middle
-            left_part, middle_part = \
-                sequencetools.partition_sequence_by_counts(
-                    divisions[0],
+            left_part, middle_part = sequencetools.Sequence(
+                    divisions[0]).partition_by_counts(
                     [left_count, middle_count],
                     cyclic=False,
                     overhang=Exact,
@@ -364,9 +361,8 @@ class BurnishSpecifier(AbjadValueObject):
             middle_count = len(divisions[-1]) - right_count
             right = right[:right_count]
             middle = middle_count * [middle_classes[0]]
-            middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                    divisions[-1],
+            middle_part, right_part = sequencetools.Sequence(
+                    divisions[-1]).partition_by_counts(
                     [middle_count, right_count],
                     cyclic=False,
                     overhang=Exact,
@@ -395,29 +391,29 @@ class BurnishSpecifier(AbjadValueObject):
             )
 
     @staticmethod
-    def _is_length_tuple(expr):
-        if expr is None:
+    def _is_length_tuple(argument):
+        if argument is None:
             return True
-        if mathtools.all_are_nonnegative_integer_equivalent_numbers(expr):
-            if isinstance(expr, tuple):
+        if mathtools.all_are_nonnegative_integer_equivalent_numbers(argument):
+            if isinstance(argument, tuple):
                 return True
         return False
 
     @staticmethod
-    def _is_sign_tuple(expr):
+    def _is_sign_tuple(argument):
         from abjad.tools import scoretools
-        if expr is None:
+        if argument is None:
             return True
-        if isinstance(expr, tuple):
+        if isinstance(argument, tuple):
             prototype = (-1, 0, 1, scoretools.Note, scoretools.Rest)
-            return all(_ in prototype for _ in expr)
+            return all(_ in prototype for _ in argument)
         return False
 
-    def _none_to_trivial_helper(self, expr):
-        if expr is None:
-            expr = self._trivial_helper
-        assert callable(expr)
-        return expr
+    def _none_to_trivial_helper(self, argument):
+        if argument is None:
+            argument = self._trivial_helper
+        assert callable(argument)
+        return argument
 
     def _rotate_input(self, helper_functions=None, rotation=None):
         helper_functions = helper_functions or {}
@@ -441,7 +437,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     def _trivial_helper(self, sequence_, rotation):
         if isinstance(rotation, int) and len(sequence_):
-            return sequencetools.rotate_sequence(sequence_, rotation)
+            return sequencetools.Sequence(sequence_).rotate(n=rotation)
         return sequence_
 
     ### PUBLIC PROPERTIES ###

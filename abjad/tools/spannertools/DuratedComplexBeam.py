@@ -196,8 +196,8 @@ class DuratedComplexBeam(ComplexBeam):
             inspect_(right).get_duration(),
             ]
         assert sum(self.durations) == sum(weights)
-        split_durations = sequencetools.split_sequence(
-            self.durations,
+        split_durations = sequencetools.Sequence(self.durations)
+        split_durations = split_durations.split(
             weights,
             cyclic=False,
             overhang=False,
@@ -214,8 +214,8 @@ class DuratedComplexBeam(ComplexBeam):
             inspect_(right).get_duration(),
             ]
         assert sum(self.durations) == sum(weights)
-        split_durations = sequencetools.split_sequence(
-            self.durations,
+        split_durations = sequencetools.Sequence(self.durations)
+        split_durations = split_durations.split(
             weights,
             cyclic=False,
             overhang=False,

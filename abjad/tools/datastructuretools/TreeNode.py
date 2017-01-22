@@ -215,8 +215,8 @@ class TreeNode(AbjadObject):
         '''
         from abjad.tools import sequencetools
         order = []
-        for parent, child in sequencetools.iterate_sequence_nwise(
-            reversed(self.improper_parentage)):
+        components = sequencetools.Sequence(reversed(self.improper_parentage))
+        for parent, child in components.nwise():
             order.append(parent.index(child))
         return tuple(order)
 

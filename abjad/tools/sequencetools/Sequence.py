@@ -1,12 +1,21 @@
 # -*- coding: utf-8 -*-
 import collections
 import inspect
+import itertools
+import math
+import numbers
+import sys
+from abjad.tools import abctools
 from abjad.tools import expressiontools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools import mathtools
 
 
-class Sequence(AbjadObject):
+class Sequence(abctools.AbjadValueObject):
     r'''Sequence.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -23,7 +32,7 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> expression = sequence()
+                >>> expression = abjad.sequence()
                 >>> expression([1, 2, 3, 4, 5, 6])
                 Sequence([1, 2, 3, 4, 5, 6])
 
@@ -35,15 +44,15 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
-                >>> sequence_.reverse()
+                >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                >>> sequence.reverse()
                 Sequence([6, 5, 4, 3, 2, 1])
 
         ..  container:: example expression
 
             ::
 
-                >>> expression = sequence()
+                >>> expression = abjad.sequence()
                 >>> expression = expression.reverse()
                 >>> expression([1, 2, 3, 4, 5, 6])
                 Sequence([6, 5, 4, 3, 2, 1])
@@ -56,17 +65,17 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence_ = Sequence([1, 2, 3, [4, 5, [6]]])
-                >>> sequence_ = sequence_.reverse()
-                >>> sequence_ = sequence_.flatten()
-                >>> sequence_
+                >>> sequence = Sequence([1, 2, 3, [4, 5, [6]]])
+                >>> sequence = sequence.reverse()
+                >>> sequence = sequence.flatten()
+                >>> sequence
                 Sequence([4, 5, 6, 3, 2, 1])
 
         ..  container:: example expression
 
             ::
 
-                >>> expression = sequence()
+                >>> expression = abjad.sequence()
                 >>> expression = expression.reverse()
                 >>> expression = expression.flatten()
                 >>> expression([1, 2, 3, [4, 5, [6]]])
@@ -257,8 +266,8 @@ class Sequence(AbjadObject):
 
                     >>> sequence_1 = Sequence([1, 2, 3])
                     >>> sequence_2 = Sequence([4, 5, 6])
-                    >>> sequence_ = sequence_1 + sequence_2
-                    >>> sequence_.reverse()
+                    >>> sequence = sequence_1 + sequence_2
+                    >>> sequence.reverse()
                     Sequence([6, 5, 4, 3, 2, 1])
 
             ..  container:: example expression
@@ -392,10 +401,8 @@ class Sequence(AbjadObject):
 
         Returns string.
         '''
-        return AbjadObject.__format__(
-            self,
-            format_specification=format_specification,
-            )
+        superclass = super(Sequence, self)
+        return superclass.__format__(format_specification=format_specification)
 
     @expressiontools.Signature(
         markup_expression_callback='_make___getitem___markup_expression',
@@ -412,11 +419,11 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
+                    >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
                     
                 ::
                 
-                    >>> sequence_[0]
+                    >>> sequence[0]
                     1
 
             ..  container:: example expression
@@ -463,11 +470,11 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
+                    >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
                  
                 ::
                 
-                    >>> sequence_[-1]
+                    >>> sequence[-1]
                     6
 
             ..  container:: example expression
@@ -514,12 +521,12 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
-                    >>> sequence_ = sequence_[:3]
+                    >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                    >>> sequence = sequence[:3]
 
                 ::
 
-                    >>> sequence_
+                    >>> sequence
                     Sequence([1, 2, 3])
 
             ..  container:: example expression
@@ -566,12 +573,12 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6])
-                    >>> sequence_ = Sequence(sequence_[0])
+                    >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                    >>> sequence = Sequence(sequence[0])
 
                 ::
 
-                    >>> sequence_
+                    >>> sequence
                     Sequence([1])
 
             ..  container:: example expression
@@ -619,13 +626,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([1, 2, [3, [4]], 5])
-                    >>> sequence_ = sequence_[:-1]
-                    >>> sequence_ = sequence_.flatten()
+                    >>> sequence = Sequence([1, 2, [3, [4]], 5])
+                    >>> sequence = sequence[:-1]
+                    >>> sequence = sequence.flatten()
 
                 ::
 
-                    >>> sequence_
+                    >>> sequence
                     Sequence([1, 2, 3, 4])
 
             ..  container:: example expression
@@ -928,6 +935,47 @@ class Sequence(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    # creates an iterator that can generate a flattened list,
+    # descending down into child elements to a depth given in the arguments.
+    # note that depth < 0 is effectively equivalent to infinity.
+    @staticmethod
+    def _flatten_helper(sequence, classes, depth):
+        if not isinstance(sequence, classes):
+            yield sequence
+        elif depth == 0:
+            for item in sequence:
+                yield item
+        else:
+            for item in sequence:
+                # flatten an iterable by one level
+                for item_ in Sequence._flatten_helper(item, classes, depth-1):
+                    yield item_
+
+    @staticmethod
+    def _flatten_at_indices_helper(sequence, indices, classes, depth):
+        if classes is None:
+            classes = (list, tuple)
+        if not isinstance(sequence, classes):
+            raise TypeError()
+        ltype = type(sequence)
+        len_l = len(sequence)
+        indices = [x if 0 <= x else len_l + x for x in indices]
+        result = []
+        for i, item in enumerate(sequence):
+            if i in indices:
+                try:
+                    flattened = Sequence._flatten_helper(
+                        item,
+                        classes=classes,
+                        depth=depth,
+                        )
+                    result.extend(flattened)
+                except:
+                    result.append(item)
+            else:
+                result.append(item)
+        return ltype(result)
+
     @staticmethod
     def _make_map_markup_expression(operand):
         expression = expressiontools.Expression()
@@ -967,6 +1015,12 @@ class Sequence(AbjadObject):
         return str(ratio)
 
     @staticmethod
+    def _make_reverse_method_name(recurse=False):
+        if recurse:
+            return 'R*'
+        return 'R'
+
+    @staticmethod
     def _make_split_indicator(weights, cyclic, overhang):
         indicator = [str(_) for _ in weights]
         indicator = ', '.join(indicator)
@@ -977,6 +1031,156 @@ class Sequence(AbjadObject):
         if overhang:
             indicator += '+'
         return indicator
+
+    @classmethod
+    def _partition_sequence_once_by_weights_at_least(
+        class_,
+        sequence,
+        weights,
+        overhang=False,
+        ):
+        result = []
+        current_part = []
+        l_copy = list(sequence)
+        for num_weight, target_weight in enumerate(weights):
+            while True:
+                try:
+                    x = l_copy.pop(0)
+                except IndexError:
+                    if num_weight + 1 == len(weights):
+                        if current_part:
+                            result.append(current_part)
+                            break
+                    message = 'too few elements in sequence.'
+                    raise Exception(message)
+                current_part.append(x)
+                if target_weight <= mathtools.weight(current_part):
+                    result.append(current_part)
+                    current_part = []
+                    break
+        if l_copy:
+            if overhang:
+                result.append(l_copy)
+        result = [class_(_) for _ in result]
+        return class_(items=result)
+
+    @classmethod
+    def _partition_sequence_cyclically_by_weights_at_least(
+        class_,
+        sequence,
+        weights,
+        overhang=False,
+        ):
+        l_copy = list(sequence)
+        result = []
+        current_part = []
+        target_weight_index = 0
+        len_weights = len(weights)
+        while l_copy:
+            target_weight = weights[target_weight_index % len_weights]
+            x = l_copy.pop(0)
+            current_part.append(x)
+            if target_weight <= mathtools.weight(current_part):
+                result.append(current_part)
+                current_part = []
+                target_weight_index += 1
+        assert not l_copy
+        if current_part:
+            if overhang:
+                result.append(current_part)
+        #return result
+        result = [class_(_) for _ in result]
+        return class_(items=result)
+
+    @classmethod
+    def _partition_sequence_once_by_weights_at_most(
+        class_,
+        sequence,
+        weights,
+        overhang=False,
+        ):
+        l_copy = list(sequence)
+        result = []
+        current_part = []
+        for target_weight in weights:
+            while True:
+                try:
+                    x = l_copy.pop(0)
+                except IndexError:
+                    message = 'too few elements in sequence.'
+                    raise Exception(message)
+                current_weight = mathtools.weight(current_part)
+                candidate_weight = current_weight + mathtools.weight([x])
+                if candidate_weight < target_weight:
+                    current_part.append(x)
+                elif candidate_weight == target_weight:
+                    current_part.append(x)
+                    result.append(current_part)
+                    current_part = []
+                    break
+                elif target_weight < candidate_weight:
+                    if current_part:
+                        result.append(current_part)
+                        current_part = []
+                        l_copy.insert(0, x)
+                        break
+                    else:
+                        message = 'elements in sequence too big.'
+                        raise Exception(message)
+                else:
+                    message = 'candidate and target weights must compare.'
+                    raise ValueError(message)
+        if overhang:
+            left_over = current_part + l_copy
+            if left_over:
+                result.append(left_over)
+        #return result
+        result = [class_(_) for _ in result]
+        return class_(items=result)
+
+    @classmethod
+    def _partition_sequence_cyclically_by_weights_at_most(
+        class_,
+        sequence,
+        weights,
+        overhang=False,
+        ):
+        result = []
+        current_part = []
+        current_target_weight_index = 0
+        current_target_weight = weights[current_target_weight_index]
+        l_copy = list(sequence)
+        while l_copy:
+            current_target_weight = weights[
+                current_target_weight_index % len(weights)]
+            x = l_copy.pop(0)
+            current_part_weight = mathtools.weight(current_part)
+            candidate_part_weight = current_part_weight + mathtools.weight([x])
+            if candidate_part_weight < current_target_weight:
+                current_part.append(x)
+            elif candidate_part_weight == current_target_weight:
+                current_part.append(x)
+                result.append(current_part)
+                current_part = []
+                current_target_weight_index += 1
+            elif current_target_weight < candidate_part_weight:
+                if current_part:
+                    l_copy.insert(0, x)
+                    result.append(current_part)
+                    current_part = []
+                    current_target_weight_index += 1
+                else:
+                    message = 'elements in sequence too big.'
+                    raise Exception(message)
+            else:
+                message = 'candidate and target rates must compare.'
+                raise ValueError(message)
+        if current_part:
+            if overhang:
+                result.append(current_part)
+        #return result
+        result = [class_(_) for _ in result]
+        return class_(items=result)
 
     def _update_expression(
         self,
@@ -1021,7 +1225,7 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = abjad.sequence()
                     >>> expression([1, 2, 3, 4, 5, 6]).items
                     (1, 2, 3, 4, 5, 6)
 
@@ -1029,7 +1233,7 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = abjad.sequence()
                     >>> expression(items=[1, 2, 3, 4, 5, 6]).items
                     (1, 2, 3, 4, 5, 6)
 
@@ -1052,11 +1256,11 @@ class Sequence(AbjadObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence_ = Sequence(items=items)
+                    >>> sequence = Sequence(items=items)
 
                 ::
 
-                    >>> sequence_.flatten()
+                    >>> sequence.flatten()
                     Sequence([1, 2, 3, 4, 5, 6, 7, 8])
 
             ..  container:: example expression
@@ -1104,11 +1308,11 @@ class Sequence(AbjadObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence_ = Sequence(items)
+                    >>> sequence = Sequence(items)
 
                 ::
 
-                    >>> sequence_.flatten(depth=1)
+                    >>> sequence.flatten(depth=1)
                     Sequence([1, 2, 3, [4], 5, 6, 7, [8]])
 
             ..  container:: example expression
@@ -1156,11 +1360,11 @@ class Sequence(AbjadObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence_ = Sequence(items)
+                    >>> sequence = Sequence(items)
 
                 ::
 
-                    >>> sequence_.flatten(depth=2)
+                    >>> sequence.flatten(depth=2)
                     Sequence([1, 2, 3, 4, 5, 6, 7, 8])
 
             ..  container:: example expression
@@ -1208,11 +1412,11 @@ class Sequence(AbjadObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence_ = Sequence(items)
+                    >>> sequence = Sequence(items)
 
                 ::
 
-                    >>> sequence_.flatten(indices=[3])
+                    >>> sequence.flatten(indices=[3])
                     Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
 
             ..  container:: example expression
@@ -1260,11 +1464,11 @@ class Sequence(AbjadObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence_ = Sequence(items)
+                    >>> sequence = Sequence(items)
 
                 ::
 
-                    >>> sequence_.flatten(indices=[-1])
+                    >>> sequence.flatten(indices=[-1])
                     Sequence([1, [2, 3, [4]], 5, 6, 7, 8])
 
             ..  container:: example expression
@@ -1312,11 +1516,11 @@ class Sequence(AbjadObject):
                 ::
 
                     >>> items = ['ab', 'cd', ('ef', 'gh'), ('ij', 'kl')]
-                    >>> sequence_ = Sequence(items=items)
+                    >>> sequence = Sequence(items=items)
 
                 ::
 
-                    >>> sequence_.flatten(classes=(tuple,))
+                    >>> sequence.flatten(classes=(tuple,))
                     Sequence(['ab', 'cd', 'ef', 'gh', 'ij', 'kl'])
 
             ..  container:: example expression
@@ -1357,15 +1561,49 @@ class Sequence(AbjadObject):
 
         Returns new sequence.
         '''
-        import abjad
+        from abjad.tools import selectiontools
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        items = abjad.sequencetools.flatten_sequence(
-            self._items[:],
-            classes=classes,
-            depth=depth,
-            indices=indices,
-            )
+        if classes is None:
+            classes = (collections.Sequence, selectiontools.Selection)
+        if Sequence not in classes:
+            classes = tuple(list(classes) + [Sequence])
+        if indices is None:
+            items = self._flatten_helper(self, classes, depth)
+            return type(self)(items=items)
+        else:
+            return type(self)(
+                self._flatten_at_indices_helper(self, indices, classes, depth)
+                )
+
+    def group_by(self):
+        '''Groups sequence items by value of items.
+
+        ..  container:: example
+
+            ::
+
+                >>> items = [0, 0, -1, -1, 2, 3, -5, 1, 1, 5, -5]
+                >>> sequence = abjad.sequence(items)
+                >>> for item in sequence.group_by():
+                ...     item
+                ... 
+                Sequence([0, 0])
+                Sequence([-1, -1])
+                Sequence([2])
+                Sequence([3])
+                Sequence([-5])
+                Sequence([1, 1])
+                Sequence([5])
+                Sequence([-5])
+
+        Returns nested sequence.
+        '''
+        items = []
+        pairs = itertools.groupby(self, lambda _: _)
+        for count, group in pairs:
+            item = type(self)(items=group)
+            items.append(item)
         return type(self)(items=items)
 
     def is_decreasing(self, strict=True):
@@ -1577,21 +1815,87 @@ class Sequence(AbjadObject):
 
         Returns true or false.
         '''
-        import abjad
         try:
-            pairs = abjad.sequencetools.iterate_sequence_nwise(self)
-            for left, right in pairs:
+            for left, right in self.nwise():
                 if left == right:
                     return False
             return True
         except TypeError:
             return False
 
+    @expressiontools.Signature()
+    def join(self):
+        '''Join subsequences in `sequence`.
+
+        ..  container:: example
+
+            ::
+
+                >>> items = [(1, 2, 3), (), (4, 5), (), (6,)]
+                >>> sequence = abjad.sequence(items=items)
+                >>> sequence
+                Sequence([(1, 2, 3), (), (4, 5), (), (6,)])
+
+            ::
+
+                >>> sequence.join()
+                Sequence([(1, 2, 3, 4, 5, 6)])
+
+        ..  container:: example expression
+
+            ::
+
+                >>> expression = Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression.split([10], cyclic=True)
+                >>> expression = expression.join()
+
+            ::
+
+                >>> expression(range(1, 11))
+                Sequence([Sequence([1, 2, 3, 4, 5, 5, 1, 7, 2, 6, 4, 5, 5])])
+
+            ::
+
+                >>> expression.get_string()
+                'join(split(J, <10>))'
+
+            ::
+
+                >>> markup = expression.get_markup()
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(markup)
+                \markup {
+                    \concat
+                        {
+                            join(
+                            \concat
+                                {
+                                    split(
+                                    \bold
+                                        J
+                                    ", <10>)"
+                                }
+                            )
+                        }
+                    }
+
+        Returns new sequence.
+        '''
+        import abjad
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        cumulative_sum = abjad.mathtools.cumulative_sums(self, start=None)[-1]
+        return type(self)(items=[cumulative_sum])
+
     @expressiontools.Signature(
         markup_expression_callback='_make_map_markup_expression',
         string_template_callback='_make_map_string_template',
         )
-    def map(self, operand):
+    def map(self, operand=None):
         r'''Maps `operand` to sequence items.
 
         ..  container:: example
@@ -1602,16 +1906,16 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(1, 10+1))
-                    >>> sequence_ = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(1, 10+1))
+                    >>> sequence = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
                     ...     )
-                    >>> sequence_ = sequence_.map(sum)
+                    >>> sequence = sequence.map(sum)
 
                 ::
 
-                    >>> sequence_
+                    >>> sequence
                     Sequence([6, 15, 24])
 
             ..  container:: example expression
@@ -1624,7 +1928,7 @@ class Sequence(AbjadObject):
                     ...     [3],
                     ...     cyclic=True,
                     ...     )
-                    >>> expression = expression.map(sequence().sum())
+                    >>> expression = expression.map(abjad.sequence().sum())
 
                 ::
 
@@ -1665,6 +1969,16 @@ class Sequence(AbjadObject):
                             }
                         }
 
+        ..  container:: example
+
+            Maps identity:
+
+            ::
+
+                >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                >>> sequence.map()
+                Sequence([1, 2, 3, 4, 5, 6])
+
         Returns new sequence.
         '''
         if self._expression:
@@ -1673,9 +1987,222 @@ class Sequence(AbjadObject):
                 evaluation_template='map',
                 map_operand=operand,
                 )
-        items = [operand(_) for _ in self]
+        if operand is not None:
+            items = [operand(_) for _ in self]
+        else:
+            items = self.items[:]
         return type(self)(items=items)
 
+
+    def nwise(self, n=2, cyclic=False, wrapped=False):
+        '''Iterates sequence `n` at a time.
+
+        ..  container:: example
+
+            Iterates iterable by pairs:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(10))
+                >>> for item in sequence.nwise():
+                ...     item
+                ...
+                Sequence([0, 1])
+                Sequence([1, 2])
+                Sequence([2, 3])
+                Sequence([3, 4])
+                Sequence([4, 5])
+                Sequence([5, 6])
+                Sequence([6, 7])
+                Sequence([7, 8])
+                Sequence([8, 9])
+
+        ..  container:: example
+
+            Iterates iterable by triples:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(10))
+                >>> for item in sequence.nwise(n=3):
+                ...     item
+                ...
+                Sequence([0, 1, 2])
+                Sequence([1, 2, 3])
+                Sequence([2, 3, 4])
+                Sequence([3, 4, 5])
+                Sequence([4, 5, 6])
+                Sequence([5, 6, 7])
+                Sequence([6, 7, 8])
+                Sequence([7, 8, 9])
+
+        ..  container:: example
+
+            Iterates iterable by pairs. Wraps around at end:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(10))
+                >>> for item in sequence.nwise(n=2, wrapped=True):
+                ...     item
+                ...
+                Sequence([0, 1])
+                Sequence([1, 2])
+                Sequence([2, 3])
+                Sequence([3, 4])
+                Sequence([4, 5])
+                Sequence([5, 6])
+                Sequence([6, 7])
+                Sequence([7, 8])
+                Sequence([8, 9])
+                Sequence([9, 0])
+
+        ..  container:: example
+
+            Iterates iterable by triples. Wraps around at end:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(10))
+                >>> for item in sequence.nwise(n=3, wrapped=True):
+                ...     item
+                ...
+                Sequence([0, 1, 2])
+                Sequence([1, 2, 3])
+                Sequence([2, 3, 4])
+                Sequence([3, 4, 5])
+                Sequence([4, 5, 6])
+                Sequence([5, 6, 7])
+                Sequence([6, 7, 8])
+                Sequence([7, 8, 9])
+                Sequence([8, 9, 0])
+                Sequence([9, 0, 1])
+
+        ..  container:: example
+
+            Iterates iterable by pairs. Cycles indefinitely:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(10))
+                >>> pairs = sequence.nwise(n=2, cyclic=True)
+                >>> for _ in range(15):
+                ...     next(pairs)
+                ...
+                Sequence([0, 1])
+                Sequence([1, 2])
+                Sequence([2, 3])
+                Sequence([3, 4])
+                Sequence([4, 5])
+                Sequence([5, 6])
+                Sequence([6, 7])
+                Sequence([7, 8])
+                Sequence([8, 9])
+                Sequence([9, 0])
+                Sequence([0, 1])
+                Sequence([1, 2])
+                Sequence([2, 3])
+                Sequence([3, 4])
+                Sequence([4, 5])
+
+            Returns infinite generator.
+
+        ..  container:: example
+
+            Iterates iterable by triples. Cycles indefinitely:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(10))
+                >>> triples = sequence.nwise(n=3, cyclic=True)
+                >>> for _ in range(15):
+                ...     next(triples)
+                ...
+                Sequence([0, 1, 2])
+                Sequence([1, 2, 3])
+                Sequence([2, 3, 4])
+                Sequence([3, 4, 5])
+                Sequence([4, 5, 6])
+                Sequence([5, 6, 7])
+                Sequence([6, 7, 8])
+                Sequence([7, 8, 9])
+                Sequence([8, 9, 0])
+                Sequence([9, 0, 1])
+                Sequence([0, 1, 2])
+                Sequence([1, 2, 3])
+                Sequence([2, 3, 4])
+                Sequence([3, 4, 5])
+                Sequence([4, 5, 6])
+
+            Returns infinite generator.
+
+        ..  container:: example
+
+            Iterates items one at a time:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(10))
+                >>> for item in sequence.nwise(n=1):
+                ...     item
+                ...
+                Sequence([0])
+                Sequence([1])
+                Sequence([2])
+                Sequence([3])
+                Sequence([4])
+                Sequence([5])
+                Sequence([6])
+                Sequence([7])
+                Sequence([8])
+                Sequence([9])
+
+        Ignores `wrapped` when `cyclic` is true.
+
+        Returns generator.
+        '''
+        if cyclic:
+            item_buffer = []
+            long_enough = False
+            for item in self:
+                item_buffer.append(item)
+                if not long_enough:
+                    if n <= len(item_buffer):
+                        long_enough = True
+                if long_enough:
+                    yield type(self)(items=item_buffer[-n:])
+            len_sequence = len(item_buffer)
+            current = len_sequence - n + 1
+            while True:
+                output = []
+                for local_offset in range(n):
+                    index = (current + local_offset) % len_sequence
+                    output.append(item_buffer[index])
+                yield type(self)(items=output)
+                current += 1
+                current %= len_sequence
+        elif wrapped:
+            first_n_minus_1 = []
+            item_buffer = []
+            for item in self:
+                item_buffer.append(item)
+                if len(item_buffer) == n:
+                    yield type(self)(items=item_buffer)
+                    item_buffer.pop(0)
+                if len(first_n_minus_1) < n - 1:
+                    first_n_minus_1.append(item)
+            item_buffer = item_buffer + first_n_minus_1
+            if item_buffer:
+                for x in range(n - 1):
+                    yield type(self)(items=item_buffer[x:x+n])
+        else:
+            item_buffer = []
+            for item in self:
+                item_buffer.append(item)
+                if len(item_buffer) == n:
+                    yield type(self)(items=item_buffer)
+                    item_buffer.pop(0)
+    
     @expressiontools.Signature(
         argument_list_callback='_make_partition_indicator',
         method_name='partition',
@@ -1697,8 +2224,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> sequence_ = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> sequence = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
                     ...     overhang=False,
@@ -1706,12 +2233,12 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_
+                    >>> sequence
                     Sequence([Sequence([0, 1, 2])])
 
                 ::
 
-                    >>> for part in sequence_:
+                    >>> for part in sequence:
                     ...     part
                     Sequence([0, 1, 2])
 
@@ -1764,8 +2291,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
                     ...     overhang=False,
@@ -1828,8 +2355,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
                     ...     overhang=False,
@@ -1898,8 +2425,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
                     ...     overhang=False,
@@ -1966,8 +2493,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
                     ...     overhang=True,
@@ -2030,8 +2557,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
                     ...     overhang=True,
@@ -2096,8 +2623,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
                     ...     overhang=True,
@@ -2168,8 +2695,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
                     ...     overhang=True,
@@ -2238,8 +2765,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
                     ...     overhang=False,
@@ -2302,8 +2829,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
                     ...     overhang=False,
@@ -2368,8 +2895,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
                     ...     overhang=False,
@@ -2440,8 +2967,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
                     ...     overhang=False,
@@ -2510,8 +3037,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
                     ...     overhang=True,
@@ -2576,8 +3103,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
                     ...     overhang=True,
@@ -2644,8 +3171,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
                     ...     overhang=True,
@@ -2718,8 +3245,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(16))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(16))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
                     ...     overhang=True,
@@ -2791,8 +3318,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(10))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(10))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [2, 3, 5],
                     ...     cyclic=False,
                     ...     overhang=Exact,
@@ -2859,8 +3386,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(10))
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence(range(10))
+                    >>> parts = sequence.partition_by_counts(
                     ...     [2],
                     ...     cyclic=True,
                     ...     overhang=Exact,
@@ -2929,8 +3456,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence('some text')
-                    >>> parts = sequence_.partition_by_counts(
+                    >>> sequence = Sequence('some text')
+                    >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
                     ...     overhang=True,
@@ -2987,20 +3514,55 @@ class Sequence(AbjadObject):
 
         Returns nested sequence.
         '''
-        import abjad
+        from abjad.tools import sequencetools
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        items = self._items[:]
-        subsequences = []
-        parts = abjad.sequencetools.partition_sequence_by_counts(
-            items,
-            counts,
-            cyclic=cyclic,
-            overhang=overhang,
-            reversed_=reversed_,
-            )
-        parts = [type(self)(_) for _ in parts]
-        return type(self)(items=parts)
+        sequence = self
+        if reversed_:
+            sequence = type(self)(reversed(sequence))
+        if overhang == Exact:
+            result_with_overhang = sequence.partition_by_counts(
+                counts,
+                cyclic=cyclic,
+                overhang=True,
+                )
+            result_without_overhang = sequence.partition_by_counts(
+                counts,
+                cyclic=cyclic,
+                overhang=False,
+                )
+            if result_with_overhang == result_without_overhang:
+                return result_without_overhang
+            else:
+                message = 'sequence does not partition exactly.'
+                raise Exception(message)
+        result = []
+        if cyclic:
+            if overhang:
+                counts = type(self)(counts).repeat_to_weight(len(sequence))
+            else:
+                counts = type(self)(counts).repeat_to_weight( 
+                    len(sequence), 
+                    allow_total=Less,
+                    )
+        elif overhang:
+            weight_counts = mathtools.weight(counts)
+            length = len(sequence)
+            if weight_counts < length:
+                counts = list(counts)
+                counts.append(len(sequence) - weight_counts)
+        for start, stop in mathtools.cumulative_sums_pairwise(counts):
+            part = sequence[start:stop]
+            result.append(part)
+        if reversed_:
+            result_ = []
+            for part in reversed(result):
+                part_type = type(part)
+                part = reversed(part)
+                part = part_type(part)
+                result_.append(part)
+            result = result_
+        return type(self)(items=result)
 
     @expressiontools.Signature(
         argument_list_callback='_make_partition_ratio_indicator',
@@ -3132,15 +3694,1171 @@ class Sequence(AbjadObject):
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        parts = abjad.sequencetools.partition_sequence_by_ratio_of_lengths(
-            self.items,
-            ratio=ratio,
+        ratio = abjad.Ratio(ratio)
+        length = len(self)
+        counts = abjad.mathtools.partition_integer_by_ratio(length, ratio)
+        parts = self.partition_by_counts(
+            counts,
+            cyclic=False,
+            overhang=Exact,
             )
-        parts = [type(self)(_) for _ in parts]
         return type(self)(items=parts)
 
-    @expressiontools.Signature(is_operator=True, method_name='R')
-    def reverse(self):
+    def partition_by_ratio_of_weights(self, weights):
+        '''Partitions sequence by ratio of `weights`.
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = abjad.Ratio([1, 1, 1])
+                >>> sequence = abjad.Sequence(10 * [1])
+                >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
+                >>> for item in sequence:
+                ...     item
+                ... 
+                Sequence([1, 1, 1])
+                Sequence([1, 1, 1, 1])
+                Sequence([1, 1, 1])
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = abjad.Ratio([1, 1, 1, 1])
+                >>> sequence = abjad.Sequence(10 * [1])
+                >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
+                >>> for item in sequence:
+                ...     item
+                ... 
+                Sequence([1, 1, 1])
+                Sequence([1, 1])
+                Sequence([1, 1, 1])
+                Sequence([1, 1])
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = abjad.Ratio([2, 2, 3])
+                >>> sequence = abjad.Sequence(10 * [1])
+                >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
+                >>> for item in sequence:
+                ...     item
+                ... 
+                Sequence([1, 1, 1])
+                Sequence([1, 1, 1])
+                Sequence([1, 1, 1, 1])
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = abjad.Ratio([3, 2, 2])
+                >>> sequence = abjad.Sequence(10 * [1])
+                >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
+                >>> for item in sequence:
+                ...     item
+                ... 
+                Sequence([1, 1, 1, 1])
+                Sequence([1, 1, 1])
+                Sequence([1, 1, 1])
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = abjad.Ratio([1, 1])
+                >>> items = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2]
+                >>> sequence = abjad.Sequence(items)
+                >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
+                >>> for item in sequence:
+                ...     item
+                ... 
+                Sequence([1, 1, 1, 1, 1, 1, 2, 2])
+                Sequence([2, 2, 2, 2])
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = abjad.Ratio([1, 1, 1])
+                >>> items = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2]
+                >>> sequence = abjad.Sequence(items)
+                >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
+                >>> for item in sequence:
+                ...     item
+                ... 
+                Sequence([1, 1, 1, 1, 1, 1])
+                Sequence([2, 2, 2])
+                Sequence([2, 2, 2])
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = abjad.Ratio([1, 1, 1])
+                >>> sequence = abjad.Sequence([5, 5])
+                >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
+                >>> for item in sequence:
+                ...     item
+                ... 
+                Sequence([5])
+                Sequence([5])
+                Sequence([])
+            
+        ..  container:: example
+
+            ::
+
+                >>> ratio = abjad.Ratio([1, 1, 1, 1])
+                >>> sequence = abjad.Sequence([5, 5])
+                >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
+                >>> for item in sequence:
+                ...     item
+                ... 
+                Sequence([5])
+                Sequence([])
+                Sequence([5])
+                Sequence([])
+            
+        ..  container:: example
+
+            ::
+
+                >>> ratio = abjad.Ratio([2, 2, 3])
+                >>> sequence = abjad.Sequence([5, 5])
+                >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
+                >>> for item in sequence:
+                ...     item
+                ... 
+                Sequence([5])
+                Sequence([5])
+                Sequence([])
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = abjad.Ratio([3, 2, 2])
+                >>> sequence = abjad.Sequence([5, 5])
+                >>> sequence = sequence.partition_by_ratio_of_weights(ratio)
+                >>> for item in sequence:
+                ...     item
+                ... 
+                Sequence([5])
+                Sequence([5])
+                Sequence([])
+
+        Rounded weight-proportions of sequences returned equal to rounded
+        `weights`.
+
+        Returns nested sequence.
+        '''
+        import abjad
+        list_weight = abjad.mathtools.weight(self)
+        weights_parts = abjad.mathtools.partition_integer_by_ratio(
+            list_weight,
+            weights,
+            )
+        cumulative_weights = abjad.mathtools.cumulative_sums(
+            weights_parts,
+            start=None,
+            )
+        items = []
+        sublist = []
+        items.append(sublist)
+        current_cumulative_weight = cumulative_weights.pop(0)
+        for item in self:
+            if not isinstance(item, (int, float, abjad.Fraction)):
+                message = 'must be number: {!r}.'
+                message = message.format(item)
+                raise TypeError(message)
+            sublist.append(item)
+            while current_cumulative_weight <= abjad.mathtools.weight(
+                type(self)(items=items).flatten()):
+                try:
+                    current_cumulative_weight = cumulative_weights.pop(0)
+                    sublist = []
+                    items.append(sublist)
+                except IndexError:
+                    break
+        items = [type(self)(items=_) for _ in items]
+        return type(self)(items=items)
+
+    def partition_by_weights(
+        self,
+        weights,
+        cyclic=False,
+        overhang=False,
+        allow_part_weights=Exact,
+        ):
+        r'''Partitions sequence by `weights` exactly.
+
+        ::
+
+            >>> sequence = abjad.Sequence([3, 3, 3, 3, 4, 4, 4, 4, 5])
+
+        ..  container:: example
+
+            Partitions sequence once by weights with overhang:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [3, 9],
+                ...     cyclic=False,
+                ...     overhang=False,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3])
+                Sequence([3, 3, 3])
+
+        ..  container:: example
+
+            Partitions sequence once by weights. Allows overhang:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [3, 9],
+                ...     cyclic=False,
+                ...     overhang=True,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3])
+                Sequence([3, 3, 3])
+                Sequence([4, 4, 4, 4, 5])
+
+        ..  container:: example
+
+            Partitions sequence cyclically by weights:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [12],
+                ...     cyclic=True,
+                ...     overhang=False,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3, 3, 3, 3])
+                Sequence([4, 4, 4])
+
+        ..  container:: example
+
+            Partitions sequence cyclically by weights. Allows overhang:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [12],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3, 3, 3, 3])
+                Sequence([4, 4, 4])
+                Sequence([4, 5])
+
+        ::
+
+            >>> sequence = abjad.sequence([3, 3, 3, 3, 4, 4, 4, 4, 5, 5])
+
+        ..  container:: example
+
+            Partitions sequence once by weights. Allows part weights to be just
+            less than specified:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [10, 4],
+                ...     cyclic=False,
+                ...     overhang=False,
+                ...     allow_part_weights=Less,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3, 3, 3])
+                Sequence([3])
+
+        ..  container:: example
+
+            Partitions sequence once by weights. Allows part weights to be just
+            less than specified. Allows overhang:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [10, 4],
+                ...     cyclic=False,
+                ...     overhang=True,
+                ...     allow_part_weights=Less,
+                ...     ):
+                ...     item
+                ... 
+                Sequence([3, 3, 3])
+                Sequence([3])
+                Sequence([4, 4, 4, 4, 5, 5])
+
+        ..  container:: example
+
+            Partitions sequence cyclically by weights. Allows part weights to
+            be just less than specified:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [10, 5],
+                ...     cyclic=True,
+                ...     overhang=False,
+                ...     allow_part_weights=Less,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3, 3, 3])
+                Sequence([3])
+                Sequence([4, 4])
+                Sequence([4])
+                Sequence([4, 5])
+                Sequence([5])
+
+        ..  container:: example
+
+            Partitions sequence cyclically by weights. Allows part weights to
+            be just less than specified. Allows overhang:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [10, 5],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     allow_part_weights=Less,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3, 3, 3])
+                Sequence([3])
+                Sequence([4, 4])
+                Sequence([4])
+                Sequence([4, 5])
+                Sequence([5])
+
+        ::
+
+            >>> sequence = abjad.Sequence([3, 3, 3, 3, 4, 4, 4, 4, 5, 5])
+
+        ..  container:: example
+
+            Partitions sequence once by weights. Allow part weights to be just
+            more than specified:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [10, 4],
+                ...     cyclic=False,
+                ...     overhang=False,
+                ...     allow_part_weights=More,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3, 3, 3, 3])
+                Sequence([4])
+
+        ..  container:: example
+
+            Partitions sequence once by weights. Allows part weights to be just
+            more than specified. Allows overhang:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [10, 4],
+                ...     cyclic=False,
+                ...     overhang=True,
+                ...     allow_part_weights=More,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3, 3, 3, 3])
+                Sequence([4])
+                Sequence([4, 4, 4, 5, 5])
+
+        ..  container:: example
+
+            Partitions sequence cyclically by weights. Allows part weights to
+            be just more than specified:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [10, 4],
+                ...     cyclic=True,
+                ...     overhang=False,
+                ...     allow_part_weights=More,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3, 3, 3, 3])
+                Sequence([4])
+                Sequence([4, 4, 4])
+                Sequence([5])
+
+        ..  container:: example
+
+            Partitions sequence cyclically by weights. Allows part weights to
+            be just more than specified. Allows overhang:
+
+            ::
+
+                >>> for item in sequence.partition_by_weights(
+                ...     [10, 4],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     allow_part_weights=More,
+                ...     ):
+                ...     item
+                ...
+                Sequence([3, 3, 3, 3])
+                Sequence([4])
+                Sequence([4, 4, 4])
+                Sequence([5])
+                Sequence([5])
+
+        Returns nested sequence.
+        '''
+        import abjad
+        if allow_part_weights == Exact:
+            sequence = type(self)(items=self)
+            candidate = type(self)(items=self)
+            candidate = candidate.split(
+                weights,
+                cyclic=cyclic,
+                overhang=overhang,
+                )
+            flattened_candidate = candidate.flatten()
+            if flattened_candidate == self[:len(flattened_candidate)]:
+                return candidate
+            else:
+                message = 'can not partition exactly.'
+                raise Exception(message)
+        elif allow_part_weights == More:
+            if not cyclic:
+                return Sequence._partition_sequence_once_by_weights_at_least(
+                    self,
+                    weights,
+                    overhang=overhang,
+                    )
+            else:
+                return Sequence._partition_sequence_cyclically_by_weights_at_least(
+                    self,
+                    weights,
+                    overhang=overhang,
+                    )
+        elif allow_part_weights == Less:
+            if not cyclic:
+                return Sequence._partition_sequence_once_by_weights_at_most(
+                    self,
+                    weights,
+                    overhang=overhang,
+                    )
+            else:
+                return Sequence._partition_sequence_cyclically_by_weights_at_most(
+                    self,
+                    weights,
+                    overhang=overhang,
+                    )
+        else:
+            message = 'allow_part_weights must be ordinal constant: {!r}.'
+            message = message.format(allow_part_weights)
+            raise ValueError(message)
+
+    @expressiontools.Signature()
+    def permute(self, permutation):
+        r'''Permutes sequence by `permutation`.
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence = abjad.sequence([10, 11, 12, 13, 14, 15])
+                >>> sequence.permute([5, 4, 0, 1, 2, 3])
+                Sequence([15, 14, 10, 11, 12, 13])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence = abjad.sequence([11, 12, 13, 14])
+                >>> sequence.permute([1, 0, 3, 2])
+                Sequence([12, 11, 14, 13])
+
+        ..  container:: example expression
+
+            ::
+
+                >>> expression = Expression(name='J')
+                >>> expression = expression.sequence()
+                >>> expression = expression.permute([1, 0, 3, 2])
+
+            ::
+
+                >>> expression([11, 12, 13, 14])
+                Sequence([12, 11, 14, 13])
+
+            ::
+
+                >>> expression.get_string()
+                'permute(J, permutation=[1, 0, 3, 2])'
+
+            ::
+
+                >>> markup = expression.get_markup()
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(markup)
+                \markup {
+                    \concat
+                        {
+                            permute(
+                            \bold
+                                J
+                            ", permutation=[1, 0, 3, 2])"
+                        }
+                    }
+
+        ..  container:: example
+
+            Raises exception when lengths do not match:
+
+            ::
+
+                >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                >>> sequence.permute([3, 0, 1, 2])
+                Traceback (most recent call last):
+                    ...
+                ValueError: permutation Sequence([3, 0, 1, 2]) must match length of sequence Sequence([1, 2, 3, 4, 5, 6]).
+
+        Returns new sequence.
+        '''
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        permutation = type(self)(items=permutation)
+        if not permutation.is_permutation():
+            message = 'must be permutation: {!r}.'
+            message = message.format(permutation)
+            raise ValueError(message)
+        if len(permutation) != len(self):
+            message = 'permutation {!r} must match length of sequence {!r}.'
+            message = message.format(permutation, self)
+            raise ValueError(message)
+        result = []
+        for i, item in enumerate(self):
+            j = permutation[i]
+            item_ = self[j]
+            result.append(item_)
+        return type(self)(items=result)
+
+    def remove(self, indices=None, period=None):
+        '''Removes items at `indices`.
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(15))
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.remove()
+                Sequence([])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.remove(indices=[2, 3])
+                Sequence([0, 1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+
+        ..  container:: example
+
+            Removes elements and indices -2 and -3:
+
+            ::
+
+                >>> sequence.remove(indices=[-2, -3])
+                Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.remove(indices=[2, 3], period=4)
+                Sequence([0, 1, 4, 5, 8, 9, 12, 13])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.remove(indices=[-2, -3], period=4)
+                Sequence([2, 3, 6, 7, 10, 11, 14])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.remove(indices=[])
+                Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.remove(indices=[97, 98, 99])
+                Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+
+        ..  container:: example
+
+            Removes no elements:
+
+            ::
+
+                >>> sequence.remove(indices=[-97, -98, -99])
+                Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+
+        Returns new sequence.
+        '''
+        items = []
+        length = len(self)
+        period = period or length
+        if indices is None:
+            indices = range(length)
+        new_indices = []
+        for i in indices:
+            if length < abs(i):
+                continue
+            if i < 0:
+                i = length + i
+            i = i % period
+            new_indices.append(i)
+        indices = new_indices
+        indices.sort()
+        for i, item in enumerate(self):
+            if i % period not in indices:
+                items.append(item)
+        return type(self)(items=items)
+
+    def remove_repeats(self):
+        r'''Removes repeats from `sequence`.
+
+        ..  container:: example
+
+            ::
+
+                >>> items = [31, 31, 35, 35, 31, 31, 31, 31, 35]
+                >>> sequence = abjad.Sequence(items)
+                >>> sequence.remove_repeats()
+                Sequence([31, 35, 31, 35])
+
+        Returns new sequence.
+        '''
+        items = [self[0]]
+        for item in self[1:]:
+            if item != items[-1]:
+                items.append(item)
+        return type(self)(items=items)
+
+    @expressiontools.Signature()
+    def repeat(self, n=1):
+        r'''Repeats sequence.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                ::
+
+                    >>> Sequence([1, 2, 3]).repeat(n=0)
+                    Sequence([])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
+                    >>> expression = expression.repeat(n=0)
+
+                ::
+
+                    >>> expression([1, 2, 3])
+                    Sequence([])
+
+                ::
+
+                    >>> expression.get_string()
+                    'repeat(J, n=0)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                repeat(
+                                \bold
+                                    J
+                                ", n=0)"
+                            }
+                        }
+
+        ..  container:: example
+
+            ..  container:: example
+
+                ::
+
+                    >>> Sequence([1, 2, 3]).repeat(n=1)
+                    Sequence([Sequence([1, 2, 3])])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
+                    >>> expression = expression.repeat(n=1)
+
+                ::
+
+                    >>> expression([1, 2, 3])
+                    Sequence([Sequence([1, 2, 3])])
+
+                ::
+
+                    >>> expression.get_string()
+                    'repeat(J)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                repeat(
+                                \bold
+                                    J
+                                )
+                            }
+                        }
+
+        ..  container:: example
+
+            ..  container:: example
+
+                ::
+
+                    >>> Sequence([1, 2, 3]).repeat(n=2)
+                    Sequence([Sequence([1, 2, 3]), Sequence([1, 2, 3])])
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression(name='J')
+                    >>> expression = expression.sequence()
+                    >>> expression = expression.repeat(n=2)
+
+                ::
+
+                    >>> expression([1, 2, 3])
+                    Sequence([Sequence([1, 2, 3]), Sequence([1, 2, 3])])
+
+                ::
+
+                    >>> expression.get_string()
+                    'repeat(J, n=2)'
+
+                ::
+
+                    >>> markup = expression.get_markup()
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                repeat(
+                                \bold
+                                    J
+                                ", n=2)"
+                            }
+                        }
+
+        Returns sequence of sequences.
+        '''
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        items = []
+        for i in range(n):
+            items.append(self[:])
+        return type(self)(items=items)
+
+    def repeat_to_length(self, length=None, start=0):
+        '''Repeats sequence to `length`.
+
+        ..  container:: example
+
+            Repeats list to length 11:
+
+            ::
+
+                >>> abjad.Sequence(range(5)).repeat_to_length(11)
+                Sequence([0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0])
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.Sequence(range(5)).repeat_to_length(11, start=2)
+                Sequence([2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2])
+
+        ..  container:: example
+
+            ::
+            
+                >>> sequence = abjad.Sequence([0, -1, -2, -3, -4])
+                >>> sequence.repeat_to_length(11)
+                Sequence([0, -1, -2, -3, -4, 0, -1, -2, -3, -4, 0])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.repeat_to_length(0)
+                Sequence([])
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.Sequence([1, 2, 3]).repeat_to_length(10, start=100)
+                Sequence([2, 3, 1, 2, 3, 1, 2, 3, 1, 2])
+
+        Returns new sequence.
+        '''
+        if not mathtools.is_nonnegative_integer(length):
+            raise TypeError
+        if not len(self):
+            raise ValueError
+        items = []
+        start %= len(self)
+        stop_index = start + length
+        repetitions = int(math.ceil(float(stop_index) / len(self)))
+        for i in range(repetitions):
+            for item in self:
+                items.append(item)
+        return type(self)(items=items[start:stop_index])
+
+    def repeat_to_weight(self, weight, allow_total=Exact):
+        '''Repeats sequence to `weight`.
+
+        ..  container:: example
+
+            Repeats sequence to weight of 23 exactly:
+
+            ::
+
+                >>> abjad.Sequence([5, -5, -5]).repeat_to_weight(23)
+                Sequence([5, -5, -5, 5, -3])
+
+        ..  container:: example
+
+            Repeats sequence to weight of 23 more:
+
+            ::
+
+                >>> sequence = abjad.Sequence([5, -5, -5])
+                >>> sequence.repeat_to_weight(23, allow_total=More)
+                Sequence([5, -5, -5, 5, -5])
+
+        ..  container:: example
+
+            Repeats sequence to weight of 23 or less:
+
+            ::
+
+                >>> sequence = abjad.Sequence([5, -5, -5])
+                >>> sequence.repeat_to_weight(23, allow_total=Less)
+                Sequence([5, -5, -5, 5])
+
+        ..  container:: example
+
+            ::
+
+                >>> items = [mathtools.NonreducedFraction(3, 16)]
+                >>> sequence = abjad.Sequence(items)
+                >>> weight = NonreducedFraction(5, 4)
+                >>> sequence = sequence.repeat_to_weight(weight)
+                >>> sum(sequence)
+                NonreducedFraction(20, 16)
+
+            ::
+
+                >>> [_.pair for _ in sequence]
+                [(3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]
+
+        Returns new sequence.
+        '''
+        assert isinstance(weight, numbers.Number), repr(weight)
+        assert 0 <= weight
+        if allow_total == Exact:
+            sequence_weight = mathtools.weight(self)
+            complete_repetitions = int(
+                math.ceil(float(weight) / float(sequence_weight))
+                )
+            items = list(self)
+            items = complete_repetitions * items
+            overage = complete_repetitions * sequence_weight - weight
+            for item in reversed(items):
+                if 0 < overage:
+                    element_weight = abs(item)
+                    candidate_overage = overage - element_weight
+                    if 0 <= candidate_overage:
+                        overage = candidate_overage
+                        items.pop()
+                    else:
+                        absolute_amount_to_keep = element_weight - overage
+                        assert 0 < absolute_amount_to_keep
+                        signed_amount_to_keep = absolute_amount_to_keep
+                        signed_amount_to_keep *= mathtools.sign(item)
+                        items.pop()
+                        items.append(signed_amount_to_keep)
+                        break
+                else:
+                    break
+        elif allow_total == Less:
+            items = [self[0]]
+            i = 1
+            while mathtools.weight(items) < weight:
+                items.append(self[i % len(self)])
+                i += 1
+            if weight < mathtools.weight(items):
+                items = items[:-1]
+            return type(self)(items)
+        elif allow_total == More:
+            items = [self[0]]
+            i = 1
+            while mathtools.weight(items) < weight:
+                items.append(self[i % len(self)])
+                i += 1
+            return type(self)(items)
+        else:
+            message = 'is not an ordinal value constant: {!r}.'
+            message = message.format(allow_total)
+            raise ValueError(message)
+        return type(self)(items=items)
+
+    def replace(self, indices, new_material):
+        '''Replaces items at `indices` with `new_material`.
+
+        ..  container:: example
+
+            Replaces items at indices 0, 2, 4, 6:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(16))
+                >>> sequence.replace(
+                ...     ([0], 2),
+                ...     (['A', 'B', 'C', 'D'], None),
+                ...     )
+                Sequence(['A', 1, 'B', 3, 'C', 5, 'D', 7, 8, 9, 10, 11, 12, 13, 14, 15])
+
+        ..  container:: example
+
+            Replaces elements at indices 0, 1, 8, 13:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(16))
+                >>> sequence.replace(
+                ...     ([0, 1, 8, 13], None),
+                ...     (['A', 'B', 'C', 'D'], None),
+                ...     )
+                Sequence(['A', 'B', 2, 3, 4, 5, 6, 7, 'C', 9, 10, 11, 12, 'D', 14, 15])
+
+        ..  container:: example
+
+            Replaces every item at even index:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(16))
+                >>> sequence.replace(
+                ...     ([0], 2),
+                ...     (['*'], 1),
+                ...     )
+                Sequence(['*', 1, '*', 3, '*', 5, '*', 7, '*', 9, '*', 11, '*', 13, '*', 15])
+
+        ..  container:: example
+
+            Replaces every element at an index congruent to 0 (mod 6) with
+            ``'A'``; replaces every element at an index congruent to 2 (mod 6)
+            with ``'B'``:
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(16))
+                >>> sequence.replace(
+                ...     ([0], 2),
+                ...     (['A', 'B'], 3),
+                ...     )
+                Sequence(['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15])
+
+        Returns new sequence.
+        '''
+        assert isinstance(indices, tuple) and len(indices) == 2
+        index_values, index_period = indices
+        assert isinstance(index_values, list)
+        assert isinstance(index_period, (int, type(None)))
+        assert isinstance(new_material, tuple) and len(new_material) == 2
+        material_values, material_period = new_material
+        assert isinstance(material_values, list)
+        assert isinstance(material_period, (int, type(None)))
+        try:
+            maxint = sys.maxint
+        except AttributeError:
+            maxint = sys.maxsize
+        if index_period is None:
+            index_period = maxint
+        if material_period is None:
+            material_period = maxint
+        items = []
+        material_index = 0
+        for index, item in enumerate(self):
+            if index % index_period in index_values:
+                try:
+                    cyclic_material_index = material_index % material_period
+                    material_value = material_values[cyclic_material_index]
+                    items.append(material_value)
+                except IndexError:
+                    items.append(item)
+                material_index += 1
+            else:
+                items.append(item)
+        return type(self)(items=items)
+
+    def retain(self, indices=None, period=None):
+        '''Retains items at `indices`.
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence = abjad.Sequence(range(10))
+                >>> sequence.retain()
+                Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.retain(indices=[2, 3])
+                Sequence([2, 3])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.retain(indices=[-2, -3])
+                Sequence([7, 8])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.retain(indices=[2, 3], period=4)
+                Sequence([2, 3, 6, 7])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.retain(indices=[-2, -3], period=4)
+                Sequence([0, 3, 4, 7, 8])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.retain(indices=[])
+                Sequence([])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.retain(indices=[97, 98, 99])
+                Sequence([])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.retain(indices=[-97, -98, -99])
+                Sequence([])
+
+        Returns new sequence.
+        '''
+        length = len(self)
+        period = period or length
+        if indices is None:
+            indices = range(length)
+        new_indices = []
+        for i in indices:
+            if length < abs(i):
+                continue
+            if i < 0:
+                i = length + i
+            i = i % period
+            new_indices.append(i)
+        indices = new_indices
+        indices.sort()
+        items = []
+        for i, item in enumerate(self):
+            if i % period in indices:
+                items.append(item)
+        return type(self)(items=items)
+
+    @expressiontools.Signature(
+        is_operator=True,
+        method_name_callback='_make_reverse_method_name',
+        )
+    def reverse(self, recurse=False):
         '''Reverses sequence.
 
         ..  container:: example
@@ -3151,12 +4869,12 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([1, 2, 3, 4, 5])
+                    >>> sequence = Sequence([[1, 2], 3, [4, 5]])
                     
                 ::
 
-                    >>> sequence_.reverse()
-                    Sequence([5, 4, 3, 2, 1])
+                    >>> sequence.reverse()
+                    Sequence([[4, 5], 3, [1, 2]])
 
             ..  container:: example expression
 
@@ -3168,8 +4886,8 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> expression([1, 2, 3, 4, 5])
-                    Sequence([5, 4, 3, 2, 1])
+                    >>> expression([[1, 2], 3, [4, 5]])
+                    Sequence([[4, 5], 3, [1, 2]])
 
                 ::
 
@@ -3195,18 +4913,25 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Reverses sequence:
+            Reverses recursively:
 
             ..  container:: example
 
                 ::
 
-                    >>> sequence_ = Sequence('text')
+                    >>> segment_1 = PitchClassSegment([1, 2])
+                    >>> pitch = NumberedPitch(3)
+                    >>> segment_2 = PitchClassSegment([4, 5])
+                    >>> sequence = Sequence([segment_1, pitch, segment_2])
                     
                 ::
-                
-                    >>> sequence_.reverse()
-                    Sequence(['t', 'x', 'e', 't'])
+
+                    >>> for item in sequence.reverse(recurse=True):
+                    ...     item
+                    ...
+                    PitchClassSegment([5, 4])
+                    NumberedPitch(3)
+                    PitchClassSegment([2, 1])
 
             ..  container:: example expression
 
@@ -3214,17 +4939,21 @@ class Sequence(AbjadObject):
 
                     >>> expression = Expression(name='J')
                     >>> expression = expression.sequence()
-                    >>> expression = expression.reverse()
+                    >>> expression = expression.reverse(recurse=True)
 
                 ::
 
-                    >>> expression('text')
-                    Sequence(['t', 'x', 'e', 't'])
+                    >>> for item in expression([segment_1, pitch, segment_2]):
+                    ...     item
+                    ...
+                    PitchClassSegment([5, 4])
+                    NumberedPitch(3)
+                    PitchClassSegment([2, 1])
 
                 ::
 
                     >>> expression.get_string()
-                    'R(J)'
+                    'R*(J)'
 
                 ::
 
@@ -3237,7 +4966,7 @@ class Sequence(AbjadObject):
                     \markup {
                         \concat
                             {
-                                R
+                                R*
                                 \bold
                                     J
                             }
@@ -3247,7 +4976,16 @@ class Sequence(AbjadObject):
         '''
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return type(self)(items=reversed(self))
+        if not recurse:
+            return type(self)(items=reversed(self))
+        def _reverse_helper(item):
+            if isinstance(item, collections.Iterable):
+                subitems_ = [_reverse_helper(_) for _ in reversed(item)]
+                return type(item)(subitems_)
+            else:
+                return item
+        items = _reverse_helper(self.items)
+        return type(self)(items=items)
 
     @expressiontools.Signature( 
         is_operator=True,
@@ -3265,11 +5003,11 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(10))
+                    >>> sequence = Sequence(range(10))
                     
                 ::
                 
-                    >>> sequence_.rotate(n=4)
+                    >>> sequence.rotate(n=4)
                     Sequence([6, 7, 8, 9, 0, 1, 2, 3, 4, 5])
 
             ..  container:: example expression
@@ -3317,11 +5055,11 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(10))
+                    >>> sequence = Sequence(range(10))
                     
                 ::
                 
-                    >>> sequence_.rotate(n=-3)
+                    >>> sequence.rotate(n=-3)
                     Sequence([3, 4, 5, 6, 7, 8, 9, 0, 1, 2])
 
             ..  container:: example expression
@@ -3369,11 +5107,11 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(10))
+                    >>> sequence = Sequence(range(10))
 
                 ::
 
-                    >>> sequence_.rotate(n=0)
+                    >>> sequence.rotate(n=0)
                     Sequence([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
             ..  container:: example expression
@@ -3425,14 +5163,33 @@ class Sequence(AbjadObject):
                 items.append(item)
         return type(self)(items=items)
 
+    def sort(self, key=None, reverse=False):
+        r'''Sorts sequence.
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence = Sequence([3, 2, 5, 4, 1, 6])
+                >>> sequence.sort()
+                Sequence([1, 2, 3, 4, 5, 6])
+
+            ::
+
+                >>> sequence
+                Sequence([3, 2, 5, 4, 1, 6])
+
+        Returns new sequence.
+        '''
+        items = list(self)
+        items.sort(key=key, reverse=reverse)
+        return type(self)(items=items)
+        
     @expressiontools.Signature(
         argument_list_callback='_make_split_indicator',
         )
     def split(self, weights, cyclic=False, overhang=False):
         r'''Splits sequence by `weights`.
-
-        ..  todo:: Port remaining examples from
-            ``sequencetools.split_sequence()``.
 
         ..  container:: example
 
@@ -3442,17 +5199,17 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([10, -10, 10, -10])
+                    >>> sequence = Sequence([10, -10, 10, -10])
 
                 ::
 
-                    >>> parts = sequence_.split(
+                    >>> for part in sequence.split(
                     ...     (3, 15, 3),
                     ...     cyclic=True,
                     ...     overhang=True,
-                    ...     )
-                    >>> for part in parts:
+                    ...     ):
                     ...     part
+                    ...
                     Sequence([3])
                     Sequence([7, -8])
                     Sequence([-2, 1])
@@ -3474,9 +5231,9 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> parts = expression([10, -10, 10, -10])
-                    >>> for part in parts:
+                    >>> for part in expression([10, -10, 10, -10]):
                     ...     part
+                    ...
                     Sequence([3])
                     Sequence([7, -8])
                     Sequence([-2, 1])
@@ -3507,19 +5264,81 @@ class Sequence(AbjadObject):
                             }
                         }
 
+        ..  container:: example
+
+            Splits sequence once by weights with overhang:
+
+            ::
+
+                >>> for part in sequence.split(
+                ...     (3, 15, 3),
+                ...     cyclic=False,
+                ...     overhang=True,
+                ...     ):
+                ...     part
+                ...
+                Sequence([3])
+                Sequence([7, -8])
+                Sequence([-2, 1])
+                Sequence([9, -10])
+
+        ..  container:: example
+
+            Splits sequence once by weights without overhang:
+
+            ::
+
+                >>> for part in sequence.split(
+                ...     (3, 15, 3),
+                ...     cyclic=False,
+                ...     overhang=False,
+                ...     ):
+                ...     part
+                ...
+                Sequence([3])
+                Sequence([7, -8])
+                Sequence([-2, 1])
+
         Returns new sequence.
         '''
-        import abjad
+        from abjad.tools import sequencetools
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        parts = abjad.sequencetools.split_sequence(
-            self.items,
-            weights,
-            cyclic=cyclic,
-            overhang=overhang,
-            )
-        parts = [type(self)(_) for _ in parts]
-        return type(self)(items=parts)
+        result = []
+        current_index = 0
+        current_piece = []
+        if cyclic:
+            weights = type(self)(weights).repeat_to_weight(
+                mathtools.weight(self),
+                allow_total=Less,
+                )
+        for weight in weights:
+            current_piece_weight = mathtools.weight(current_piece)
+            while current_piece_weight < weight:
+                current_piece.append(self[current_index])
+                current_index += 1
+                current_piece_weight = mathtools.weight(current_piece)
+            if current_piece_weight == weight:
+                current_piece = type(self)(current_piece)
+                result.append(current_piece)
+                current_piece = []
+            elif weight < current_piece_weight:
+                overage = current_piece_weight - weight
+                current_last_element = current_piece.pop(-1)
+                needed = abs(current_last_element) - overage
+                needed *= mathtools.sign(current_last_element)
+                current_piece.append(needed)
+                current_piece = type(self)(current_piece)
+                result.append(current_piece)
+                overage *= mathtools.sign(current_last_element)
+                current_piece = [overage]
+        if overhang:
+            last_piece = current_piece
+            last_piece.extend(self[current_index:])
+            if last_piece:
+                last_piece = type(self)(last_piece)
+                result.append(last_piece)
+        return type(self)(items=result)
 
     @expressiontools.Signature()
     def sum(self):
@@ -3533,11 +5352,11 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                    >>> sequence = Sequence([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
                     
                 ::
                 
-                    >>> sequence_.sum()
+                    >>> sequence.sum()
                     55
 
             ..  container:: example expression
@@ -3584,11 +5403,11 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+                    >>> sequence = Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
                     
                 ::
                 
-                    >>> sequence_.sum()
+                    >>> sequence.sum()
                     5
                     
             ..  container:: example expression
@@ -3635,13 +5454,13 @@ class Sequence(AbjadObject):
 
                 ::
 
-                    >>> sequence_ = Sequence(range(1, 10+1))
-                    >>> result = sequence_.sum()
-                    >>> sequence_ = Sequence(result)
+                    >>> sequence = Sequence(range(1, 10+1))
+                    >>> result = sequence.sum()
+                    >>> sequence = Sequence(result)
 
                 ::
 
-                    >>> sequence_
+                    >>> sequence
                     Sequence([55])
 
             ..  container:: example expression
@@ -3691,6 +5510,289 @@ class Sequence(AbjadObject):
         for item in self[1:]:
             result += item
         return result
+
+    def sum_by_sign(self, sign=(-1, 0, 1)):
+        '''Sums consecutive sequence items by `sign`.
+
+        ::
+
+            >>> items = [0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
+            >>> sequence = abjad.Sequence(items)
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.sum_by_sign()
+                Sequence([0, -2, 5, -5, 8, -11])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.sum_by_sign(sign=[-1])
+                Sequence([0, 0, -2, 2, 3, -5, 1, 2, 5, -11])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.sum_by_sign(sign=[0])
+                Sequence([0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.sum_by_sign(sign=[1])
+                Sequence([0, 0, -1, -1, 5, -5, 8, -5, -6])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.sum_by_sign(sign=[-1, 0])
+                Sequence([0, -2, 2, 3, -5, 1, 2, 5, -11])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.sum_by_sign(sign=[-1, 1])
+                Sequence([0, 0, -2, 5, -5, 8, -11])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.sum_by_sign(sign=[0, 1])
+                Sequence([0, -1, -1, 5, -5, 8, -5, -6])
+
+        ..  container:: example
+
+            ::
+
+                >>> sequence.sum_by_sign(sign=[-1, 0, 1])
+                Sequence([0, -2, 5, -5, 8, -11])
+
+        Sumsn consecutive negative elements when ``-1`` in `sign`.
+
+        Sums consecutive zero-valued elements when ``0`` in `sign`.
+
+        Sums consecutive positive elements when ``1`` in `sign`.
+
+        Returns new sequence.
+        '''
+        items = []
+        generator = itertools.groupby(self, mathtools.sign)
+        for current_sign, group in generator:
+            if current_sign in sign:
+                items.append(sum(group))
+            else:
+                for item in group:
+                    items.append(item)
+        return type(self)(items=items)
+
+    def truncate(self, sum=None, weight=None):
+        '''Truncates sequence.
+
+        ::
+
+            >>> sequence = abjad.sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+
+        ..  container:: example
+
+            Truncates sequence to weights ranging from 1 to 10:
+
+            ::
+
+                >>> for weight in range(1, 11):
+                ...     result = sequence.truncate(weight=weight)
+                ...     print(weight, result)
+                ... 
+                1 Sequence([-1])
+                2 Sequence([-1, 1])
+                3 Sequence([-1, 2])
+                4 Sequence([-1, 2, -1])
+                5 Sequence([-1, 2, -2])
+                6 Sequence([-1, 2, -3])
+                7 Sequence([-1, 2, -3, 1])
+                8 Sequence([-1, 2, -3, 2])
+                9 Sequence([-1, 2, -3, 3])
+                10 Sequence([-1, 2, -3, 4])
+
+        ..  container:: example
+
+            Truncates sequence to sums ranging from 1 to 10:
+
+            ::
+
+                >>> for sum_ in range(1, 11):
+                ...     result = sequence.truncate(sum=sum_)
+                ...     print(sum_, result)
+                ... 
+                1 Sequence([-1, 2])
+                2 Sequence([-1, 2, -3, 4])
+                3 Sequence([-1, 2, -3, 4, -5, 6])
+                4 Sequence([-1, 2, -3, 4, -5, 6, -7, 8])
+                5 Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+                6 Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+                7 Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+                8 Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+                9 Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+                10 Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+
+        ..  container:: example
+
+            Truncates sequence to zero weight:
+
+            ::
+
+                >>> sequence.truncate(weight=0)
+                Sequence([])
+
+        ..  container:: example
+
+            Truncates sequence to zero sum:
+
+            ::
+
+                >>> sequence.truncate(sum=0)
+                Sequence([])
+
+        Ignores `sum` when `weight` and `sum` are both set.
+
+        Raises value error on negative `sum`.
+
+        Returns new sequence.
+        '''
+        builtin_sum = __builtins__['sum']
+        if weight is not None:
+            if weight < 0:
+                raise ValueError
+            items = []
+            if 0 < weight:
+                total = 0
+                for item in self:
+                    total += abs(item)
+                    if total < weight:
+                        items.append(item)
+                    else:
+                        sign = mathtools.sign(item)
+                        trimmed_part = weight - mathtools.weight(items)
+                        trimmed_part *= sign
+                        items.append(trimmed_part)
+                        break
+        elif sum is not None:
+            if sum < 0:
+                raise ValueError
+            items = []
+            if 0 < sum:
+                total = 0
+                for item in self:
+                    total += item
+                    if total < sum:
+                        items.append(item)
+                    else:
+                        items.append(sum - builtin_sum(items))
+                        break
+        return type(self)(items=items)
+
+    def zip(self, cyclic=False, truncate=True):
+        r'''Zips sequences in sequence.
+        
+        ..  container:: example
+
+            Zips cyclically:
+
+            ::
+
+                >>> sequence = abjad.Sequence([[1, 2, 3], ['a', 'b']])
+                >>> for item in sequence.zip(cyclic=True):
+                ...     item
+                ...
+                Sequence([1, 'a'])
+                Sequence([2, 'b'])
+                Sequence([3, 'a'])
+
+            ::
+
+                >>> items = [[10, 11, 12], [20, 21], [30, 31, 32, 33]]
+                >>> sequence = abjad.sequence(items)
+                >>> for item in sequence.zip(cyclic=True):
+                ...     item
+                ... 
+                Sequence([10, 20, 30])
+                Sequence([11, 21, 31])
+                Sequence([12, 20, 32])
+                Sequence([10, 21, 33])
+
+        ..  container:: example
+
+            Zips without truncation:
+
+            ::
+
+                >>> items = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
+                >>> sequence = abjad.sequence(items)
+                >>> for item in sequence.zip(truncate=False):
+                ...     item
+                ...
+                Sequence([1, 11, 21])
+                Sequence([2, 12, 22])
+                Sequence([3, 13, 23])
+                Sequence([4])
+
+        ..  container:: example
+
+            Zips strictly:
+
+            ::
+
+                >>> items = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
+                >>> for item in abjad.sequence(items).zip():
+                ...     item
+                ...     
+                Sequence([1, 11, 21])
+                Sequence([2, 12, 22])
+                Sequence([3, 13, 23])
+
+        Returns nested sequence.
+        '''
+        for item in self:
+            if not isinstance(item, collections.Iterable):
+                message = 'must by iterable: {!r}.'
+                message = message.format(item)
+                raise Exception(message)
+        items = []
+        if cyclic:
+            if not min(len(_) for _ in self):
+                return type(self)(items=items)
+            maximum_length = max([len(_) for _ in self])
+            for i in range(maximum_length):
+                part = []
+                for item in self:
+                    index = i % len(item)
+                    element = item[index]
+                    part.append(element)
+                part = type(self)(items=part)
+                items.append(part)
+        elif not truncate:
+            maximum_length = max([len(_) for _ in self])
+            for i in range(maximum_length):
+                part = []
+                for item in self:
+                    try:
+                        part.append(item[i])
+                    except IndexError:
+                        pass
+                part = type(self)(items=part)
+                items.append(part)
+        elif truncate:
+            for item in zip(*self):
+                item = type(self)(items=item)
+                items.append(item)
+        return type(self)(items=items)
 
 
 collections.Sequence.register(Sequence)

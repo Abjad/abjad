@@ -180,8 +180,7 @@ class Retrograde(AbjadValueObject):
         if not self.period:
             return type(argument)(reversed(argument))
         result = new(argument, items=())
-        for shard in sequencetools.partition_sequence_by_counts(
-            argument,
+        for shard in sequencetools.Sequence(argument).partition_by_counts(
             [self.period],
             cyclic=True,
             overhang=True,

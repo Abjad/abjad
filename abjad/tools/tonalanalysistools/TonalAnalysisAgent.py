@@ -425,8 +425,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         '''
         from abjad.tools import scoretools
         direction_string = None
-        for left, right in sequencetools.iterate_sequence_nwise(
-            iterate(self._client).by_class(scoretools.Note)):
+        notes = iterate(self._client).by_class(scoretools.Note)
+        for left, right in sequencetools.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -457,8 +457,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns true or false.
         '''
         from abjad.tools import scoretools
-        for left, right in sequencetools.iterate_sequence_nwise(
-            iterate(self._client).by_class(scoretools.Note)):
+        notes = iterate(self._client).by_class(scoretools.Note)
+        for left, right in sequencetools.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -495,8 +495,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns true or false.
         '''
         from abjad.tools import scoretools
-        for left, right in sequencetools.iterate_sequence_nwise(
-            iterate(self._client).by_class(scoretools.Note)):
+        notes = iterate(self._client).by_class(scoretools.Note)
+        for left, right in sequencetools.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -525,8 +525,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns true or false.
         '''
         from abjad.tools import scoretools
-        for left, right in sequencetools.iterate_sequence_nwise(
-            iterate(self._client).by_class(scoretools.Note)):
+        notes = iterate(self._client).by_class(scoretools.Note)
+        for left, right in sequencetools.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 hdi = pitchtools.NamedInterval.from_pitch_carriers(

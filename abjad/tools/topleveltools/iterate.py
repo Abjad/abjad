@@ -29,9 +29,9 @@ def iterate(client=None):
 
             >>> for pair in iterate(staff).by_leaf_pair():
             ...     pair
-            (Note("c'4"), Note("e'4"))
-            (Note("e'4"), Note("d'4"))
-            (Note("d'4"), Note("f'4"))
+            Selection([Note("c'4"), Note("e'4")])
+            Selection([Note("e'4"), Note("d'4")])
+            Selection([Note("d'4"), Note("f'4")])
 
     ..  container:: example
 

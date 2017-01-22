@@ -183,23 +183,17 @@ def make_notes(
     '''
     from abjad.tools import scoretools
     from abjad.tools import selectiontools
-
     if isinstance(pitches, str):
         pitches = pitches.split()
-
     if not isinstance(pitches, list):
         pitches = [pitches]
-
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]
-
     nonreduced_fractions = [mathtools.NonreducedFraction(_) for _ in durations]
     size = max(len(nonreduced_fractions), len(pitches))
-    nonreduced_fractions = sequencetools.repeat_sequence_to_length(
-        nonreduced_fractions,
-        size,
-        )
-    pitches = sequencetools.repeat_sequence_to_length(pitches, size)
+    nonreduced_fractions = sequencetools.Sequence(nonreduced_fractions)
+    nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
+    pitches = sequencetools.Sequence(pitches).repeat_to_length(size)
     Duration = durationtools.Duration
     durations = Duration._group_nonreduced_fractions_by_implied_prolation(
         nonreduced_fractions)

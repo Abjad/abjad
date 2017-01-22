@@ -453,10 +453,8 @@ class TestManager(AbjadObject):
             title_lines.append(parts.pop(0))
         lengths = [len(part) for part in parts]
         if 35 < sum(lengths):
-            halves = sequencetools.partition_sequence_by_ratio_of_weights(
-                lengths,
-                [1, 1],
-                )
+            halves = baca.Sequence(halves)
+            halves = halves.partition_by_ratio_of_weights(ratio=[1, 1])
             left_count = len(halves[0])
             right_count = len(halves[-1])
             assert left_count + right_count == len(lengths)

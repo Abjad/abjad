@@ -316,20 +316,16 @@ class IncisedRhythmMaker(RhythmMaker):
         middle = numerator - prefix_weight - suffix_weight
         if numerator < prefix_weight:
             weights = [numerator]
-            prefix = sequencetools.split_sequence(
-                prefix, weights, cyclic=False, overhang=False)[0]
+            prefix = sequencetools.Sequence(prefix)
+            prefix = prefix.split(weights, cyclic=False, overhang=False)[0]
         middle = self._make_middle_of_numeric_map_part(middle)
         suffix_space = numerator - prefix_weight
         if suffix_space <= 0:
             suffix = ()
         elif suffix_space < suffix_weight:
             weights = [suffix_space]
-            suffix = sequencetools.split_sequence(
-                suffix,
-                weights,
-                cyclic=False,
-                overhang=False,
-                )[0]
+            suffix = sequencetools.Sequence(suffix)
+            suffix = suffix.split(weights, cyclic=False, overhang=False)[0]
         numeric_map_part = prefix + middle + suffix
         return [durationtools.Duration(x) for x in numeric_map_part]
 

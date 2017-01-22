@@ -257,7 +257,7 @@ class PitchClassSet(Set):
         candidates = []
         for i in range(self.cardinality):
             candidate = [pitchtools.NumberedPitch(_) for _ in pitch_classes]
-            candidate = sequencetools.rotate_sequence(candidate, -i)
+            candidate = sequencetools.Sequence(candidate).rotate(n=-i)
             candidates.append(candidate)
         return self._get_most_compact_ordering(candidates)
 
@@ -471,8 +471,8 @@ class PitchClassSet(Set):
         if not len(self) == len(pitch_class_segment):
             message = 'set and segment must be on equal length.'
             raise ValueError(message)
-        for pitch_classes in sequencetools.yield_all_permutations_of_sequence(
-            tuple(self)):
+        enumeration = sequencetools.Enumeration(self)
+        for pitch_classes in enumeration.yield_permutations():
             candidate_pitch_class_segment = \
                 pitchtools.PitchClassSegment(pitch_classes)
             if candidate_pitch_class_segment._is_equivalent_under_transposition(

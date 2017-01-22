@@ -119,9 +119,3 @@ class AbjadObject(AbstractBase):
     def _get_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.FormatSpecification(client=self)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _one_line_menu_summary(self):
-        return str(self)

@@ -789,7 +789,7 @@ class TimespanInventory(TypedList):
         '''
         if len(self) < 2:
             return True
-        pairs = sequencetools.iterate_sequence_nwise(self)
+        pairs = sequencetools.Sequence(self).nwise()
         for left_timespan, right_timespan in pairs:
             if right_timespan.start_offset < left_timespan.start_offset:
                 return False
@@ -1796,9 +1796,8 @@ class TimespanInventory(TypedList):
         '''
         from abjad.tools import timespantools
         mapping = collections.OrderedDict()
-        for start_offset, stop_offset in \
-            sequencetools.iterate_sequence_nwise(sorted(
-                self.count_offsets())):
+        offsets = sequencetools.Sequence(sorted(self.count_offsets()))
+        for start_offset, stop_offset in offsets.nwise():
             timespan = timespantools.Timespan(start_offset, stop_offset)
             overlap_factor = self.compute_overlap_factor(timespan=timespan)
             mapping[timespan] = overlap_factor

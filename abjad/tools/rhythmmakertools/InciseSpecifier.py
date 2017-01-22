@@ -176,7 +176,7 @@ class InciseSpecifier(AbjadValueObject):
                 continue
             if not getattr(self, name):
                 names.remove(name)
-        # TODO: kwargs defaults checking
+        # TODO: keywords defaults checking
         if self.fill_with_notes:
             names.remove('fill_with_notes')
         return systemtools.FormatSpecification(
@@ -185,31 +185,31 @@ class InciseSpecifier(AbjadValueObject):
             )
 
     @staticmethod
-    def _is_integer_tuple(expr):
-        if expr is None:
+    def _is_integer_tuple(argument):
+        if argument is None:
             return True
-        if all(isinstance(x, int) for x in expr):
+        if all(isinstance(x, int) for x in argument):
             return True
         return False
 
     @staticmethod
-    def _is_length_tuple(expr):
-        if expr is None:
+    def _is_length_tuple(argument):
+        if argument is None:
             return True
-        if mathtools.all_are_nonnegative_integer_equivalent_numbers(expr):
-            if isinstance(expr, (tuple, list)):
+        if mathtools.all_are_nonnegative_integer_equivalent_numbers(argument):
+            if isinstance(argument, (tuple, list)):
                 return True
         return False
 
     @staticmethod
-    def _reverse_tuple(expr):
-        if expr is not None:
-            return tuple(reversed(expr))
+    def _reverse_tuple(argument):
+        if argument is not None:
+            return tuple(reversed(argument))
 
     @staticmethod
-    def _rotate_tuple(expr, n):
-        if expr is not None:
-            return tuple(sequencetools.rotate_sequence(expr, n))
+    def _rotate_tuple(argument, n):
+        if argument is not None:
+            return tuple(sequencetools.Sequence(argument).rotate(n=n))
 
     ### PUBLIC PROPERTIES ###
 

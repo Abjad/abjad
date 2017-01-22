@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import collections
+from abjad.tools import abctools
 from abjad.tools.topleveltools import new
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Duplication(AbjadValueObject):
-    r'''Duplication operator.
+class Duplication(abctools.AbjadValueObject):
+    r'''Duplication.
 
     ..  container:: example:
 
@@ -207,8 +207,11 @@ class Duplication(AbjadValueObject):
                 result = new(argument, items=())
             else:
                 result = type(argument)()
-            iterator = sequencetools.partition_sequence_by_counts(
-                argument, [self.period], cyclic=True, overhang=True)
+            iterator = sequencetools.Sequence(argument).partition_by_counts(
+                [self.period],
+                cyclic=True,
+                overhang=True,
+                )
             for i, shard in enumerate(iterator):
                 shard = type(argument)(shard) * counts[i]
                 result = result + shard

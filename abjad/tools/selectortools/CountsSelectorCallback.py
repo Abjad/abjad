@@ -100,14 +100,15 @@ class CountsSelectorCallback(AbjadValueObject):
         result = []
         counts = self.counts
         if self.rotate:
-            counts = sequencetools.rotate_sequence(counts, -rotation)
+            counts = sequencetools.Sequence(counts).rotate(n=-rotation)
+            counts = datastructuretools.CyclicTuple(counts)
         for subexpr in expr:
-            groups = sequencetools.partition_sequence_by_counts(
-                subexpr,
+            groups = sequencetools.Sequence(subexpr).partition_by_counts(
                 [abs(_) for _ in counts],
                 cyclic=self.cyclic,
                 overhang=self.overhang,
                 )
+            groups = list(groups)
             if self.overhang and self.fuse_overhang and 1 < len(groups):
                 last_count = counts[(len(groups) - 1) % len(counts)]
                 if len(groups[-1]) != last_count:
@@ -115,7 +116,10 @@ class CountsSelectorCallback(AbjadValueObject):
                     groups[-1] += last_group
             subresult = []
             for i, group in enumerate(groups):
-                count = counts[i]
+                try:
+                    count = counts[i]
+                except:
+                    raise Exception(counts, i)
                 if count < 0:
                     continue
                 items = selectiontools.Selection(group)
@@ -125,7 +129,8 @@ class CountsSelectorCallback(AbjadValueObject):
                 subresult.append(group)
             result.extend(subresult)
             if self.rotate:
-                counts = sequencetools.rotate_sequence(counts, -1)
+                counts = sequencetools.Sequence(counts).rotate(n=-1)
+                counts = datastructuretools.CyclicTuple(counts)
         return tuple(result)
 
     ### PUBLIC PROPERTIES ###

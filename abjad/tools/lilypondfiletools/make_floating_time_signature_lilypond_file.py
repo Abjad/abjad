@@ -160,7 +160,7 @@ def make_floating_time_signature_lilypond_file(music=None):
     lilypond_file = lilypondfiletools.LilyPondFile.new(
         music=music,
         default_paper_size=('letter', 'portrait'),
-        global_staff_size=12,
+        global_staff_size=16,
         )
 
     lilypond_file.paper_block.left_margin = 20

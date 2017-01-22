@@ -108,7 +108,7 @@ class TieSpecifier(AbjadValueObject):
         if not isinstance(tie_across_divisions, patterntools.Pattern):
             tie_across_divisions = patterntools.Pattern.from_vector(
                 tie_across_divisions)
-        pairs = sequencetools.iterate_sequence_nwise(divisions)
+        pairs = sequencetools.Sequence(divisions).nwise()
         rest_prototype = (scoretools.Rest, scoretools.MultimeasureRest)
         for i, pair in enumerate(pairs):
             if not tie_across_divisions.matches_index(i, length):

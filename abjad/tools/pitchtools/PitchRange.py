@@ -297,10 +297,6 @@ class PitchRange(AbjadValueObject):
             return ')'
 
     @property
-    def _one_line_menu_summary(self):
-        return self.one_line_named_pitch_repr
-
-    @property
     def _open_bracket_string(self):
         if self.start_pitch_is_included_in_range:
             return '['
@@ -400,13 +396,15 @@ class PitchRange(AbjadValueObject):
 
     @property
     def one_line_named_pitch_repr(self):
-        r'''One-line named pitch representation of pitch range.
+        r'''Gets one-line named pitch representation of pitch range.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_range = PitchRange('[C3, C7]')
-            >>> pitch_range.one_line_named_pitch_repr
-            '[C3, C7]'
+            ::
+
+                >>> pitch_range = PitchRange('[C3, C7]')
+                >>> pitch_range.one_line_named_pitch_repr
+                '[C3, C7]'
 
         Returns string.
         '''
@@ -427,12 +425,14 @@ class PitchRange(AbjadValueObject):
 
     @property
     def one_line_numbered_pitch_repr(self):
-        r'''One-line numbered pitch representation of pitch range.
+        r'''Gets one-line numbered pitch representation of pitch range.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_range.one_line_numbered_pitch_repr
-            '[-12, 36]'
+            ::
+
+                >>> pitch_range.one_line_numbered_pitch_repr
+                '[-12, 36]'
 
         Returns string.
         '''

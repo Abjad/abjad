@@ -41,13 +41,13 @@ class MeasurewiseQTarget(QTarget):
         voice.append(measure)
 
         # generate the rest pairwise, comparing tempi
-        for q_target_measure_one, q_target_measure_two in \
-            sequencetools.iterate_sequence_nwise(self.items):
+        pairs = sequencetools.Sequence(self.items).nwise()
+        for q_target_measure_one, q_target_measure_two in pairs:
             measure = scoretools.Measure(q_target_measure_two.time_signature)
             for beat in q_target_measure_two.beats:
                 measure.extend(beat.q_grid(beat.beatspan))
-            if (q_target_measure_two.tempo != q_target_measure_one.tempo) \
-                and attach_tempos:
+            if ((q_target_measure_two.tempo != q_target_measure_one.tempo) and
+                attach_tempos):
                 tempo = copy.copy(q_target_measure_two.tempo)
                 attach(tempo, measure)
             voice.append(measure)

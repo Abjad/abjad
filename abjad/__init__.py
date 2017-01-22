@@ -131,6 +131,7 @@ from abjad.tools.scoretools import Staff
 from abjad.tools.scoretools import StaffGroup
 from abjad.tools.scoretools import Tuplet
 from abjad.tools.scoretools import Voice
+from abjad.tools.selectiontools import Selection
 from abjad.tools.sequencetools import Sequence
 from abjad.tools.spannertools import Beam
 from abjad.tools.spannertools import BowContactSpanner

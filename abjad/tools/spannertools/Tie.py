@@ -108,7 +108,7 @@ class Tie(Spanner):
                 written_pitches.append(set(component.written_pitches))
             else:
                 return False
-        for pair in sequencetools.iterate_sequence_nwise(written_pitches):
+        for pair in sequencetools.Sequence(written_pitches).nwise():
             if not set.intersection(*pair):
                 return False
         return True

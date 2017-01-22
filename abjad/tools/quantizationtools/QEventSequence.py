@@ -256,9 +256,11 @@ class QEventSequence(AbjadObject):
         '''
         from abjad.tools import quantizationtools
         if fuse_silences:
-            durations = [x for x in \
-                sequencetools.sum_consecutive_elements_by_sign(
-                    milliseconds, sign=[-1]) if x]
+            durations = [
+                x for x in
+                sequencetools.Sequence(milliseconds).sum_by_sign(sign=[-1])
+                if x
+                ]
         else:
             durations = milliseconds
         offsets = mathtools.cumulative_sums([abs(x) for x in durations])
@@ -475,11 +477,11 @@ class QEventSequence(AbjadObject):
         from abjad.tools import quantizationtools
         durations = [durationtools.Duration(x) for x in durations]
         assert isinstance(tempo, indicatortools.Tempo)
-        durations = [x for x in
-            sequencetools.sum_consecutive_elements_by_sign(
-                durations,
-                sign=[-1],
-                ) if x]
+        durations = [
+            x for x in
+            sequencetools.Sequence(durations).sum_by_sign(sign=[-1])
+            if x
+            ]
         durations = [tempo.duration_to_milliseconds(x) for x in durations]
         offsets = mathtools.cumulative_sums(abs(x) for x in durations)
         q_events = []

@@ -156,15 +156,6 @@ class Registration(TypedList):
         from abjad.tools import pitchtools
         return coerce_
 
-    @property
-    def _one_line_menu_summary(self):
-        name = 'registration'
-        contents = []
-        for registration_component in self:
-            contents.append(registration_component._one_line_menu_summary)
-        contents_string = ', '.join(contents)
-        return '{}: {}'.format(name, contents_string)
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):

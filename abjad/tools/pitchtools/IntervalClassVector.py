@@ -48,7 +48,8 @@ class IntervalClassVector(Vector):
         if isinstance(items, prototype):
             intervals = []
             items = tuple(items)
-            pairs = sequencetools.yield_all_unordered_pairs_of_sequence(items)
+            enumeration = sequencetools.Enumeration(items)
+            pairs = enumeration.yield_pairs()
             for first, second in pairs:
                 intervals.append(second - first)
             items = intervals

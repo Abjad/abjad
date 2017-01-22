@@ -93,13 +93,6 @@ class RegistrationComponent(AbjadValueObject):
             self.target_octave_start_pitch.pitch_number
             )
 
-    @property
-    def _one_line_menu_summary(self):
-        return '{} => {:d}'.format(
-            self.source_pitch_range.one_line_named_pitch_repr,
-            self.target_octave_start_pitch,
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

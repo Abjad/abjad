@@ -179,8 +179,8 @@ class Markup(AbjadValueObject):
         '_annotation',
         '_contents',
         '_direction',
-        '_format_slot',
         '_expression',
+        '_format_slot',
         '_lilypond_tweak_manager',
         '_stack_priority',
         )

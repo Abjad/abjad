@@ -36,7 +36,7 @@ def test_selectortools_Selector_run_selectors_01():
         assert duration_selector in result
         assert contiguity_selector in result
 
-    iterator = sequencetools.iterate_sequence_nwise(all_results)
-    for results_one, results_two in iterator:
+    pairs = sequencetools.Sequence(all_results).nwise()
+    for results_one, results_two in pairs:
         for selector in selectors:
             assert results_one[selector] == results_two[selector]

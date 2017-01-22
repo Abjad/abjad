@@ -527,21 +527,6 @@ class Performer(AbjadObject):
             instruments.sort(key=lambda x: x.__name__.lower())
         return result
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _one_line_menu_summary(self):
-        if not self.instruments:
-            result = '{}: no instruments'.format(self.name)
-        elif len(self.instruments) == 1 and self.name == \
-            self.instruments[0].instrument_name:
-            result = '{}'.format(self.name)
-        else:
-            instruments = ([x.instrument_name for x in self.instruments])
-            instruments = ', '.join(instruments)
-            result = '{}: {}'.format(self.name, instruments)
-        return result
-
     ### PUBLIC PROPERTIES ###
 
     @property

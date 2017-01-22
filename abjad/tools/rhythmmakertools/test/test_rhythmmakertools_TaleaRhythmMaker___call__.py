@@ -16,7 +16,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
     divisions = [(2, 8), (5, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = sequencetools.flatten_sequence(selections)
+    selections = Sequence(selections).flatten()
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)
@@ -64,7 +64,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
     divisions = [(2, 8), (5, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = sequencetools.flatten_sequence(selections)
+    selections = Sequence(selections).flatten()
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)

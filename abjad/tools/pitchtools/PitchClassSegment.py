@@ -2433,6 +2433,122 @@ class PitchClassSegment(Segment):
         items = [_.multiply(n) for _ in items]
         return type(self)(items=items)
 
+    @expressiontools.Signature()
+    def permute(self, row=None):
+        r'''Permutes segment by twelve-tone `row`.
+
+        ..  container:: example
+
+            ::
+
+                >>> PitchClassSegment([-2, -1, 6, 7, -1, 7])
+                PitchClassSegment([10, 11, 6, 7, 11, 7])
+
+            ::
+
+                >>> segment = PitchClassSegment([-2, -1, 6, 7, -1, 7])
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest:
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    bf'8
+                    b'8
+                    fs'8
+                    g'8
+                    b'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> segment.permute([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]) 
+                PitchClassSegment([4, 11, 5, 3, 11, 3])
+
+            ::
+
+                >>> segment = segment.permute([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]) 
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    e'8
+                    b'8
+                    f'8
+                    ef'8
+                    b'8
+                    ef'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example expression
+
+            ::
+
+                >>> expression = Expression(name='J')
+                >>> expression = expression.pitch_class_segment()
+                >>> row = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
+                >>> expression = expression.permute(row)
+
+            ::
+
+                >>> expression([-2, -1, 6, 7, -1, 7])
+                PitchClassSegment([4, 11, 5, 3, 11, 3])
+
+            ::
+
+                >>> expression.get_string()
+                'permute(J, row=[10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])'
+
+            ::
+
+                >>> segment = expression([-2, -1, 6, 7, -1, 7])
+                >>> markup = expression.get_markup()
+                >>> show(segment, figure_name=markup) # doctest: +SKIP
+
+            ..  doctest:
+
+                >>> lilypond_file = segment.__illustrate__(
+                ...     figure_name=markup,
+                ...     )
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    e'8
+                        ^ \markup {
+                            \concat
+                                {
+                                    permute(
+                                    \bold
+                                        J
+                                    ", row=[10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])"
+                                }
+                            }
+                    b'8
+                    f'8
+                    ef'8
+                    b'8
+                    ef'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        Returns new segment.
+        '''
+        from abjad.tools import pitchtools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        row = pitchtools.TwelveToneRow(items=row)
+        items = row(self)
+        return type(self)(items=items)
+
     @expressiontools.Signature(is_operator=True, method_name='R')
     def retrograde(self):
         r'''Gets retrograde of segment.
@@ -3016,7 +3132,7 @@ class PitchClassSegment(Segment):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         original_n = n
-        items = sequencetools.rotate_sequence(self._collection, n)
+        items = sequencetools.Sequence(self._collection).rotate(n=n)
         if stravinsky:
             n = 0 - float(items[0])
             segment = new(self, items=items)

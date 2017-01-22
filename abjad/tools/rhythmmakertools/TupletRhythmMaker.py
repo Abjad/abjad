@@ -353,7 +353,7 @@ class TupletRhythmMaker(RhythmMaker):
         if not isinstance(rotation, int):
             rotation = 0
         tuplet_ratios = datastructuretools.CyclicTuple(
-            sequencetools.rotate_sequence(self.tuplet_ratios, rotation)
+            sequencetools.Sequence(self.tuplet_ratios).rotate(n=rotation)
             )
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         for duration_index, division in enumerate(divisions):

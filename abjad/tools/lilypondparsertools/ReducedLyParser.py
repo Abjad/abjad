@@ -511,12 +511,10 @@ class ReducedLyParser(abctools.Parser):
         }
 
         first_leaf = leaves[0]
-        for leaf, next_leaf in \
-            sequencetools.iterate_sequence_nwise(leaves, wrapped=True):
-
+        pairs = sequencetools.Sequence(leaves).nwise(wrapped=True)
+        for leaf, next_leaf in pairs:
             span_events = self._get_span_events(leaf)
             for current_class, directions in span_events.items():
-
                 starting, stopping = [], []
                 for direction in directions:
                     if direction == Left:

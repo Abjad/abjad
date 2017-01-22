@@ -362,8 +362,7 @@ class Scale(PitchClassSegment):
         Returns interval-class segment.
         '''
         dics = []
-        for left, right in \
-            sequencetools.iterate_sequence_nwise(self, wrapped=True):
+        for left, right in sequencetools.Sequence(self).nwise(wrapped=True):
             dic = left - right
             dics.append(dic)
         dicg = pitchtools.IntervalClassSegment(

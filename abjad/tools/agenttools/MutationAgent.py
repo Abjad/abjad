@@ -556,6 +556,7 @@ class MutationAgent(abctools.AbjadObject):
         #del(current_measure[:])
         current_measure.__delitem__(slice(0, len(current_measure)))
         # iterate new contents
+        new_contents = list(new_contents)
         while new_contents:
             # find candidate duration of new element plus current measure
             current_element = new_contents[0]
@@ -2583,16 +2584,17 @@ class MutationAgent(abctools.AbjadObject):
         total_split_duration = sum(durations)
         # calculate durations
         if cyclic:
-            durations = sequencetools.repeat_sequence_to_weight(
-                durations, total_component_duration)
+            durations = sequencetools.Sequence(durations)
+            durations = durations.repeat_to_weight(total_component_duration)
+            durations = list(durations)
         elif total_split_duration < total_component_duration:
             final_offset = total_component_duration - sum(durations)
             durations.append(final_offset)
         elif total_component_duration < total_split_duration:
-            durations = sequencetools.truncate_sequence(
-                durations,
+            durations = sequencetools.Sequence(durations).truncate(
                 weight=total_component_duration,
                 )
+            durations = list(durations)
         # keep copy of durations to partition result components
         durations_copy = durations[:]
         # calculate total split duration
@@ -2638,12 +2640,13 @@ class MutationAgent(abctools.AbjadObject):
                     current_duration = current_component._get_duration()
                     additional_required_duration = \
                         current_duration - local_split_duration
-                    split_durations = sequencetools.split_sequence(
-                        durations,
+                    split_durations = sequencetools.Sequence(durations)
+                    split_durations = split_durations.split(
                         [additional_required_duration],
                         cyclic=False,
                         overhang=True,
                         )
+                    split_durations = [list(_) for _ in split_durations]
                     additional_durations = split_durations[0]
                     leaf_split_durations.extend(additional_durations)
                     durations = split_durations[-1]
@@ -2685,7 +2688,7 @@ class MutationAgent(abctools.AbjadObject):
         if len(remaining_components):
             result.append(remaining_components)
         # partition split components according to input durations
-        result = sequencetools.flatten_sequence(result)
+        result = sequencetools.Sequence(result).flatten()
         result = selectiontools.Selection(result)
         result = result.partition_by_durations(durations_copy, fill=Exact)
         # return list of shards

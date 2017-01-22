@@ -95,10 +95,10 @@ class RhythmMaker(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _all_are_tuplets_or_all_are_leaf_selections(expr):
-        if all(isinstance(x, scoretools.Tuplet) for x in expr):
+    def _all_are_tuplets_or_all_are_leaf_selections(argument):
+        if all(isinstance(x, scoretools.Tuplet) for x in argument):
             return True
-        elif all(RhythmMaker._is_leaf_selection(x) for x in expr):
+        elif all(RhythmMaker._is_leaf_selection(x) for x in argument):
             return True
         else:
             return False
@@ -299,16 +299,16 @@ class RhythmMaker(AbjadValueObject):
         return rhythmmakertools.TupletSpellingSpecifier()
 
     @staticmethod
-    def _is_leaf_selection(expr):
-        if isinstance(expr, selectiontools.Selection):
-            return all(isinstance(x, scoretools.Leaf) for x in expr)
+    def _is_leaf_selection(argument):
+        if isinstance(argument, selectiontools.Selection):
+            return all(isinstance(x, scoretools.Leaf) for x in argument)
         return False
 
     @staticmethod
-    def _is_sign_tuple(expr):
-        if isinstance(expr, tuple):
+    def _is_sign_tuple(argument):
+        if isinstance(argument, tuple):
             prototype = (-1, 0, 1)
-            return all(_ in prototype for _ in expr)
+            return all(_ in prototype for _ in argument)
         return False
 
     @staticmethod
@@ -330,14 +330,14 @@ class RhythmMaker(AbjadValueObject):
             division.numerator
             for division in divisions
             ]
-        secondary_numerators = sequencetools.split_sequence(
-            numerators,
+        secondary_numerators = sequencetools.Sequence(numerators)
+        secondary_numerators = secondary_numerators.split(
             split_divisions_by_counts,
             cyclic=True,
             overhang=True,
             )
-        secondary_numerators = \
-            sequencetools.flatten_sequence(secondary_numerators)
+        secondary_numerators = sequencetools.Sequence(secondary_numerators)
+        secondary_numerators = secondary_numerators.flatten()
         denominator = divisions[0].denominator
         secondary_divisions = [
             (n, denominator)
@@ -353,11 +353,11 @@ class RhythmMaker(AbjadValueObject):
             tuplets.append(tuplet)
         return tuplets
 
-    def _none_to_trivial_helper(self, expr):
-        if expr is None:
-            expr = self._trivial_helper
-        assert callable(expr)
-        return expr
+    def _none_to_trivial_helper(self, argument):
+        if argument is None:
+            argument = self._trivial_helper
+        assert callable(argument)
+        return argument
 
     @staticmethod
     def _prepare_masks(masks):
@@ -378,9 +378,9 @@ class RhythmMaker(AbjadValueObject):
         return masks
 
     @staticmethod
-    def _reverse_tuple(expr):
-        if expr is not None:
-            return tuple(reversed(expr))
+    def _reverse_tuple(argument):
+        if argument is not None:
+            return tuple(reversed(argument))
 
     def _rewrite_rest_filled_tuplets(self, selections):
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
@@ -403,9 +403,9 @@ class RhythmMaker(AbjadValueObject):
         return new_selections
 
     @staticmethod
-    def _rotate_tuple(expr, n):
-        if expr is not None:
-            return tuple(sequencetools.rotate_sequence(expr, n))
+    def _rotate_tuple(argument, n):
+        if argument is not None:
+            return tuple(sequencetools.Sequence(argument).rotate(n=n))
 
     def _scale_taleas(self, divisions, talea_denominator, taleas):
         talea_denominator = talea_denominator or 1
@@ -440,7 +440,7 @@ class RhythmMaker(AbjadValueObject):
 
     def _trivial_helper(self, sequence_, rotation):
         if isinstance(rotation, int) and len(sequence_):
-            return sequencetools.rotate_sequence(sequence_, rotation)
+            return sequencetools.Sequence(sequence_).rotate(n=rotation)
         return sequence_
 
     def _validate_selections(self, selections):

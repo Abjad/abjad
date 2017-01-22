@@ -19,7 +19,7 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
     divisions = [(2, 16), (5, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = sequencetools.flatten_sequence(selections)
+    selections = Sequence(selections).flatten()
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)

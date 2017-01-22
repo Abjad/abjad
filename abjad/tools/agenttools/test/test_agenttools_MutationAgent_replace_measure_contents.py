@@ -136,7 +136,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_06():
     maker = rhythmmakertools.NoteRhythmMaker()
     durations = [(5, 16), (3, 16)]
     leaf_lists = maker(durations)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
     measures = scoretools.make_spacer_skip_measures(durations)
     staff = Staff(measures)
     measures = mutate(staff).replace_measure_contents(leaves)

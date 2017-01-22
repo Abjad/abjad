@@ -39,10 +39,10 @@ class PartitionByRatioCallback(AbjadValueObject):
             len(selection),
             self.ratio,
             )
-        selections = sequencetools.partition_sequence_by_counts(
-            selection,
+        selections = sequencetools.Sequence(selection).partition_by_counts(
             counts=counts,
             )
+        selections = [selectiontools.Selection(_) for _ in selections]
         return tuple(selections)
 
     ### PUBLIC PROPERTIES ###

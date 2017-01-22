@@ -391,18 +391,18 @@ class Measure(FixedDurationContainer):
         from abjad.tools import sequencetools
         assert all(isinstance(x, scoretools.Component) for x in components)
         logical_tie_duration_numerators = []
-        for expr in \
-            iterate(components).by_topmost_logical_ties_and_components():
-            if isinstance(expr, selectiontools.LogicalTie):
-                logical_tie_duration = expr._preprolated_duration
-                logical_tie_duration_numerators.append(
-                    logical_tie_duration.numerator)
-        if len(sequencetools.remove_repeated_elements(
-            logical_tie_duration_numerators)) == 1:
+        items = iterate(components).by_topmost_logical_ties_and_components()
+        for item in items:
+            if isinstance(item, selectiontools.LogicalTie):
+                logical_tie_duration = item._preprolated_duration
+                numerator = logical_tie_duration.numerator
+                logical_tie_duration_numerators.append(numerator)
+        numerators = sequencetools.Sequence(logical_tie_duration_numerators)
+        if len(numerators.remove_repeats()) == 1:
             numerator = logical_tie_duration_numerators[0]
             denominator = mathtools.greatest_power_of_two_less_equal(numerator)
-            likely_multiplier = durationtools.Multiplier(
-                numerator, denominator)
+            pair = (numerator, denominator)
+            likely_multiplier = durationtools.Multiplier(*pair)
             return likely_multiplier
 
     def _get_lilypond_format(self):
@@ -417,8 +417,8 @@ class Measure(FixedDurationContainer):
             return
         multiplier = durationtools.Multiplier(multiplier)
         old_time_signature = self.time_signature
-        if mathtools.is_nonnegative_integer_power_of_two(multiplier) and \
-            1 <= multiplier:
+        if (mathtools.is_nonnegative_integer_power_of_two(multiplier) and
+            1 <= multiplier):
             old_numerator = old_time_signature.numerator
             old_denominator = old_time_signature.denominator
             new_denominator = old_denominator // multiplier.numerator

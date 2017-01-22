@@ -249,7 +249,7 @@ class MeterInventory(TypedList):
         total_duration = sum(durations)
         offsets = abjad.mathtools.cumulative_sums(durations, start=0)
         timespan_inventory = abjad.timespantools.TimespanInventory()
-        for one, two in abjad.sequencetools.iterate_sequence_nwise(offsets):
+        for one, two in abjad.Sequence(offsets).nwise():
             timespan = abjad.Timespan(
                 start_offset=one,
                 stop_offset=two,

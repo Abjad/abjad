@@ -387,7 +387,7 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         '''
         from abjad.tools import sequencetools
-        rotated_pitches = sequencetools.rotate_sequence(self._collection, n)
+        rotated_pitches = sequencetools.Sequence(self._collection).rotate(n=n)
         new_segment = new(self, items=rotated_pitches)
         if stravinsky:
             if self[0] != new_segment[0]:

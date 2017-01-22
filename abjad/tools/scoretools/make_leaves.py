@@ -458,11 +458,9 @@ def make_leaves(
         durations = [durations]
     nonreduced_fractions = [mathtools.NonreducedFraction(_) for _ in durations]
     size = max(len(nonreduced_fractions), len(pitches))
-    nonreduced_fractions = sequencetools.repeat_sequence_to_length(
-        nonreduced_fractions, 
-        size,
-        )
-    pitches = sequencetools.repeat_sequence_to_length(pitches, size)
+    nonreduced_fractions = sequencetools.Sequence(nonreduced_fractions)
+    nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
+    pitches = sequencetools.Sequence(pitches).repeat_to_length(size)
     Duration = durationtools.Duration
     duration_groups = \
         Duration._group_nonreduced_fractions_by_implied_prolation(

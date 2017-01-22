@@ -155,19 +155,18 @@ class IterationAgent(abctools.AbjadObject):
 
     @staticmethod
     def _list_ordered_pitch_pairs(expr_1, expr_2):
-        from abjad.tools import pitchtools
         pitches_1 = sorted(iterate(expr_1).by_pitch())
         pitches_2 = sorted(iterate(expr_2).by_pitch())
-        for pair in sequencetools.yield_all_pairs_between_sequences(
-            pitches_1, pitches_2):
+        sequences = [pitches_1, pitches_2]
+        enumeration = sequencetools.Enumeration(sequences)
+        for pair in enumeration.yield_outer_product():
             yield pair
 
     @staticmethod
     def _list_unordered_pitch_pairs(expr):
-        from abjad.tools import pitchtools
         pitches = sorted(iterate(expr).by_pitch())
-        pairs = sequencetools.yield_all_unordered_pairs_of_sequence(pitches)
-        for pair in pairs:
+        enumeration = sequencetools.Enumeration(pitches)
+        for pair in enumeration.yield_pairs():
             yield pair
 
     def _update_expression(self, frame):
@@ -1259,21 +1258,21 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for leaf_pair in iterate(score).by_leaf_pair():
                     ...     leaf_pair
                     ...
-                    (Note("c'8"), Note('c4'))
-                    (Note("c'8"), Note("d'8"))
-                    (Note('c4'), Note("d'8"))
-                    (Note("d'8"), Note("e'8"))
-                    (Note("d'8"), Note('a,4'))
-                    (Note('c4'), Note("e'8"))
-                    (Note('c4'), Note('a,4'))
-                    (Note("e'8"), Note('a,4'))
-                    (Note("e'8"), Note("f'8"))
-                    (Note('a,4'), Note("f'8"))
-                    (Note("f'8"), Note("g'4"))
-                    (Note("f'8"), Note('g,4'))
-                    (Note('a,4'), Note("g'4"))
-                    (Note('a,4'), Note('g,4'))
-                    (Note("g'4"), Note('g,4'))
+                    Selection([Note("c'8"), Note('c4')])
+                    Selection([Note("c'8"), Note("d'8")])
+                    Selection([Note('c4'), Note("d'8")])
+                    Selection([Note("d'8"), Note("e'8")])
+                    Selection([Note("d'8"), Note('a,4')])
+                    Selection([Note('c4'), Note("e'8")])
+                    Selection([Note('c4'), Note('a,4')])
+                    Selection([Note("e'8"), Note('a,4')])
+                    Selection([Note("e'8"), Note("f'8")])
+                    Selection([Note('a,4'), Note("f'8")])
+                    Selection([Note("f'8"), Note("g'4")])
+                    Selection([Note("f'8"), Note('g,4')])
+                    Selection([Note('a,4'), Note("g'4")])
+                    Selection([Note('a,4'), Note('g,4')])
+                    Selection([Note("g'4"), Note('g,4')])
 
             ..  container:: example expression
 
@@ -1284,43 +1283,43 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for leaf_pair in expression(score):
                     ...     leaf_pair
                     ...
-                    (Note("c'8"), Note('c4'))
-                    (Note("c'8"), Note("d'8"))
-                    (Note('c4'), Note("d'8"))
-                    (Note("d'8"), Note("e'8"))
-                    (Note("d'8"), Note('a,4'))
-                    (Note('c4'), Note("e'8"))
-                    (Note('c4'), Note('a,4'))
-                    (Note("e'8"), Note('a,4'))
-                    (Note("e'8"), Note("f'8"))
-                    (Note('a,4'), Note("f'8"))
-                    (Note("f'8"), Note("g'4"))
-                    (Note("f'8"), Note('g,4'))
-                    (Note('a,4'), Note("g'4"))
-                    (Note('a,4'), Note('g,4'))
-                    (Note("g'4"), Note('g,4'))
+                    Selection([Note("c'8"), Note('c4')])
+                    Selection([Note("c'8"), Note("d'8")])
+                    Selection([Note('c4'), Note("d'8")])
+                    Selection([Note("d'8"), Note("e'8")])
+                    Selection([Note("d'8"), Note('a,4')])
+                    Selection([Note('c4'), Note("e'8")])
+                    Selection([Note('c4'), Note('a,4')])
+                    Selection([Note("e'8"), Note('a,4')])
+                    Selection([Note("e'8"), Note("f'8")])
+                    Selection([Note('a,4'), Note("f'8")])
+                    Selection([Note("f'8"), Note("g'4")])
+                    Selection([Note("f'8"), Note('g,4')])
+                    Selection([Note('a,4'), Note("g'4")])
+                    Selection([Note('a,4'), Note('g,4')])
+                    Selection([Note("g'4"), Note('g,4')])
 
         Iterates leaf pairs left-to-right and top-to-bottom.
 
         Returns generator.
         '''
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         vertical_moments = self.by_vertical_moment()
         def _closure(vertical_moments):
-            pairs = sequencetools.iterate_sequence_nwise(vertical_moments)
-            for moment_1, moment_2 in pairs:
-                for pair in sequencetools.yield_all_unordered_pairs_of_sequence(
-                    moment_1.start_leaves):
-                    yield pair
-                pairs = sequencetools.yield_all_pairs_between_sequences(
-                    moment_1.leaves, moment_2.start_leaves)
-                for pair in pairs:
-                    yield pair
+            for moment_1, moment_2 in abjad.Sequence(vertical_moments).nwise():
+                enumeration = sequencetools.Enumeration(moment_1.start_leaves)
+                for pair in enumeration.yield_pairs():
+                    yield abjad.select(pair)
+                sequences = [moment_1.leaves, moment_2.start_leaves]
+                enumeration = sequencetools.Enumeration(sequences)
+                for pair in enumeration.yield_outer_product():
+                    yield abjad.select(pair)
             else:
-                for pair in sequencetools.yield_all_unordered_pairs_of_sequence(
-                    moment_2.start_leaves):
-                    yield pair
+                enumeration = sequencetools.Enumeration(moment_2.start_leaves)
+                for pair in enumeration.yield_pairs():
+                    yield abjad.select(pair)
         return _closure(vertical_moments)
 
     def by_logical_tie(
@@ -2709,21 +2708,21 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for pair in iterate(score).by_pitch_pair():
                     ...     pair
                     ...
-                    (NamedPitch("c'"), NamedPitch('c'))
-                    (NamedPitch("c'"), NamedPitch("d'"))
-                    (NamedPitch('c'), NamedPitch("d'"))
-                    (NamedPitch("d'"), NamedPitch("e'"))
-                    (NamedPitch("d'"), NamedPitch('a,'))
-                    (NamedPitch('c'), NamedPitch("e'"))
-                    (NamedPitch('c'), NamedPitch('a,'))
-                    (NamedPitch("e'"), NamedPitch('a,'))
-                    (NamedPitch("e'"), NamedPitch("f'"))
-                    (NamedPitch('a,'), NamedPitch("f'"))
-                    (NamedPitch("f'"), NamedPitch("g'"))
-                    (NamedPitch("f'"), NamedPitch('g,'))
-                    (NamedPitch('a,'), NamedPitch("g'"))
-                    (NamedPitch('a,'), NamedPitch('g,'))
-                    (NamedPitch("g'"), NamedPitch('g,'))
+                    PitchSegment(["c'", 'c'])
+                    PitchSegment(["c'", "d'"])
+                    PitchSegment(['c', "d'"])
+                    PitchSegment(["d'", "e'"])
+                    PitchSegment(["d'", 'a,'])
+                    PitchSegment(['c', "e'"])
+                    PitchSegment(['c', 'a,'])
+                    PitchSegment(["e'", 'a,'])
+                    PitchSegment(["e'", "f'"])
+                    PitchSegment(['a,', "f'"])
+                    PitchSegment(["f'", "g'"])
+                    PitchSegment(["f'", 'g,'])
+                    PitchSegment(['a,', "g'"])
+                    PitchSegment(['a,', 'g,'])
+                    PitchSegment(["g'", 'g,'])
 
             ..  container:: example expression
 
@@ -2734,21 +2733,21 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for pair in expression(score):
                     ...     pair
                     ...
-                    (NamedPitch("c'"), NamedPitch('c'))
-                    (NamedPitch("c'"), NamedPitch("d'"))
-                    (NamedPitch('c'), NamedPitch("d'"))
-                    (NamedPitch("d'"), NamedPitch("e'"))
-                    (NamedPitch("d'"), NamedPitch('a,'))
-                    (NamedPitch('c'), NamedPitch("e'"))
-                    (NamedPitch('c'), NamedPitch('a,'))
-                    (NamedPitch("e'"), NamedPitch('a,'))
-                    (NamedPitch("e'"), NamedPitch("f'"))
-                    (NamedPitch('a,'), NamedPitch("f'"))
-                    (NamedPitch("f'"), NamedPitch("g'"))
-                    (NamedPitch("f'"), NamedPitch('g,'))
-                    (NamedPitch('a,'), NamedPitch("g'"))
-                    (NamedPitch('a,'), NamedPitch('g,'))
-                    (NamedPitch("g'"), NamedPitch('g,'))
+                    PitchSegment(["c'", 'c'])
+                    PitchSegment(["c'", "d'"])
+                    PitchSegment(['c', "d'"])
+                    PitchSegment(["d'", "e'"])
+                    PitchSegment(["d'", 'a,'])
+                    PitchSegment(['c', "e'"])
+                    PitchSegment(['c', 'a,'])
+                    PitchSegment(["e'", 'a,'])
+                    PitchSegment(["e'", "f'"])
+                    PitchSegment(['a,', "f'"])
+                    PitchSegment(["f'", "g'"])
+                    PitchSegment(["f'", 'g,'])
+                    PitchSegment(['a,', "g'"])
+                    PitchSegment(['a,', 'g,'])
+                    PitchSegment(["g'", 'g,'])
 
         ..  container:: example
 
@@ -2777,16 +2776,16 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for pair in iterate(staff).by_pitch_pair():
                     ...     pair
                     ...
-                    (NamedPitch("c'"), NamedPitch("d'"))
-                    (NamedPitch("c'"), NamedPitch("e'"))
-                    (NamedPitch("d'"), NamedPitch("e'"))
-                    (NamedPitch("c'"), NamedPitch("f''"))
-                    (NamedPitch("c'"), NamedPitch("g''"))
-                    (NamedPitch("d'"), NamedPitch("f''"))
-                    (NamedPitch("d'"), NamedPitch("g''"))
-                    (NamedPitch("e'"), NamedPitch("f''"))
-                    (NamedPitch("e'"), NamedPitch("g''"))
-                    (NamedPitch("f''"), NamedPitch("g''"))
+                    PitchSegment(["c'", "d'"])
+                    PitchSegment(["c'", "e'"])
+                    PitchSegment(["d'", "e'"])
+                    PitchSegment(["c'", "f''"])
+                    PitchSegment(["c'", "g''"])
+                    PitchSegment(["d'", "f''"])
+                    PitchSegment(["d'", "g''"])
+                    PitchSegment(["e'", "f''"])
+                    PitchSegment(["e'", "g''"])
+                    PitchSegment(["f''", "g''"])
 
             ..  container:: example expression
 
@@ -2797,40 +2796,39 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for pair in expression(staff):
                     ...     pair
                     ...
-                    (NamedPitch("c'"), NamedPitch("d'"))
-                    (NamedPitch("c'"), NamedPitch("e'"))
-                    (NamedPitch("d'"), NamedPitch("e'"))
-                    (NamedPitch("c'"), NamedPitch("f''"))
-                    (NamedPitch("c'"), NamedPitch("g''"))
-                    (NamedPitch("d'"), NamedPitch("f''"))
-                    (NamedPitch("d'"), NamedPitch("g''"))
-                    (NamedPitch("e'"), NamedPitch("f''"))
-                    (NamedPitch("e'"), NamedPitch("g''"))
-                    (NamedPitch("f''"), NamedPitch("g''"))
+                    PitchSegment(["c'", "d'"])
+                    PitchSegment(["c'", "e'"])
+                    PitchSegment(["d'", "e'"])
+                    PitchSegment(["c'", "f''"])
+                    PitchSegment(["c'", "g''"])
+                    PitchSegment(["d'", "f''"])
+                    PitchSegment(["d'", "g''"])
+                    PitchSegment(["e'", "f''"])
+                    PitchSegment(["e'", "g''"])
+                    PitchSegment(["f''", "g''"])
 
         Returns generator.
         '''
-        from abjad.tools import pitchtools
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def _closure():
             for leaf_pair in self.by_leaf_pair():
                 leaf_pair_list = list(leaf_pair)
                 # iterate chord pitches if first leaf is chord
-                for pair in self._list_unordered_pitch_pairs(leaf_pair_list[0]):
-                    yield pair
+                for pair in self._list_unordered_pitch_pairs(
+                    leaf_pair_list[0]):
+                    yield abjad.PitchSegment(items=pair)
                 if isinstance(leaf_pair, set):
                     for pair in self._list_unordered_pitch_pairs(leaf_pair):
-                        yield pair
-                elif isinstance(leaf_pair, tuple):
-                    for pair in self._list_ordered_pitch_pairs(*leaf_pair):
-                        yield pair
+                        yield abjad.PitchSegment(items=pair)
                 else:
-                    message = 'leaf pair must be set or tuple.'
-                    raise TypeError(message)
+                    for pair in self._list_ordered_pitch_pairs(*leaf_pair):
+                        yield abjad.PitchSegment(items=pair)
                 # iterate chord pitches if last leaf is chord
-                for pair in self._list_unordered_pitch_pairs(leaf_pair_list[1]):
-                    yield pair
+                for pair in self._list_unordered_pitch_pairs(
+                    leaf_pair_list[1]):
+                    yield abjad.PitchSegment(items=pair)
         return _closure()
 
     def by_run(self, prototype=None):

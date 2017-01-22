@@ -382,7 +382,7 @@ def make_lilypond_file(
             staff = abjad.Staff(measures)
         else:
             staff = abjad.Staff(measures, context_name='RhythmicStaff')
-        selections = abjad.sequencetools.flatten_sequence(selections)
+        selections = abjad.Sequence(selections).flatten()
         selections_ = copy.deepcopy(selections)
         try:
             measures = abjad.mutate(staff).replace_measure_contents(selections)
@@ -395,7 +395,7 @@ def make_lilypond_file(
         voices = []
         for voice_name in sorted(selections):
             selections_ = selections[voice_name]
-            selections_ = abjad.sequencetools.flatten_sequence(selections_)
+            selections_ = abjad.Sequence(selections_).flatten()
             selections_ = copy.deepcopy(selections_)
             voice = abjad.Voice(selections_, name=voice_name)
             if attach_lilypond_voice_commands:

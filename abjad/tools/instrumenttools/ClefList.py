@@ -75,7 +75,3 @@ class ClefList(TypedList):
     def _item_coercer(self):
         from abjad.tools import indicatortools
         return indicatortools.Clef
-
-    @property
-    def _one_line_menu_summary(self):
-        return ', '.join([clef.name for clef in self])

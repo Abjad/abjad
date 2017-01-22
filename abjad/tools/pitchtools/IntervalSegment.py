@@ -46,7 +46,7 @@ class IntervalSegment(Segment):
         from abjad.tools import pitchtools
         if isinstance(items, pitchtools.PitchSegment):
             intervals = []
-            for one, two in sequencetools.iterate_sequence_nwise(items):
+            for one, two in sequencetools.Sequence(items).nwise():
                 intervals.append(one - two)
             items = intervals
         Segment.__init__(

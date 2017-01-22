@@ -356,8 +356,8 @@ class Container(Component):
         graph._node_order = node_order
 
         if spanner:
-            for component_one, component_two in \
-                sequencetools.iterate_sequence_nwise(spanner.components):
+            pairs = sequencetools.Sequence(spanner.components).nwise()
+            for component_one, component_two in pairs:
                 node_one = node_mapping[component_one]
                 node_two = node_mapping[component_two]
                 edge = documentationtools.GraphvizEdge(

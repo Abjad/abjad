@@ -39,12 +39,12 @@ class RotationCounter(TypedCounter):
         autoincrement=None,
         default=None,
         items=None,
-        **kwargs
+        **keywords
         ):
         TypedCounter.__init__(
             self,
             items=items,
-            **kwargs
+            **keywords
             )
         if autoincrement is not None:
             autoincrement = bool(autoincrement)
