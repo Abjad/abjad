@@ -204,20 +204,6 @@ class Measure(FixedDurationContainer):
             )
 
     @property
-    def _one_line_input_string(self):
-        time_signature = self.time_signature
-        pair = (time_signature.numerator, time_signature.denominator)
-        contents_string = ' '.join([str(x) for x in self])
-        result = '{}({}, {!r}, implicit_scaling={})'
-        result = result.format(
-            type(self).__name__,
-            pair,
-            contents_string,
-            self.implicit_scaling,
-            )
-        return result
-
-    @property
     def _preprolated_duration(self):
         time_signature_prolation = 1
         if self.implicit_scaling:

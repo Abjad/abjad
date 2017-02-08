@@ -190,7 +190,7 @@ class Inversion(AbjadValueObject):
                 >>> inversion = Inversion()
                 >>> segment = PitchSegment("c' d' e'")
                 >>> inversion(segment)
-                PitchSegment(["c'", 'bf', 'af'])
+                PitchSegment("c' bf af")
 
         ..  container:: example
 
@@ -201,7 +201,7 @@ class Inversion(AbjadValueObject):
                 >>> inversion = Inversion()
                 >>> segment = PitchClassSegment("c d e")
                 >>> inversion(segment)
-                PitchClassSegment(['c', 'bf', 'af'])
+                PitchClassSegment("c bf af")
 
         ..  container:: example
         

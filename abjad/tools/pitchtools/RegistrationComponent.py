@@ -74,25 +74,6 @@ class RegistrationComponent(AbjadValueObject):
         '''
         return super(RegistrationComponent, self).__hash__()
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _input_argument_token(self):
-        return '({!r}, {:d})'.format(
-            self.source_pitch_range.one_line_named_pitch_repr,
-            self.target_octave_start_pitch,
-            )
-
-    @property
-    def _list_format(self):
-        return (
-            (
-            self.source_pitch_range.start_pitch.pitch_number,
-            self.source_pitch_range.stop_pitch.pitch_number
-            ),
-            self.target_octave_start_pitch.pitch_number
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

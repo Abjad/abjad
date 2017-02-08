@@ -83,6 +83,7 @@ from abjad.tools.indicatortools import Tuning
 from abjad.tools.lilypondfiletools import LilyPondFile
 from abjad.tools.markuptools import Markup
 from abjad.tools.markuptools import MarkupList
+from abjad.tools.mathtools import Infinity
 from abjad.tools.mathtools import NonreducedFraction
 from abjad.tools.mathtools import NonreducedRatio
 from abjad.tools.mathtools import Ratio
@@ -132,6 +133,7 @@ from abjad.tools.scoretools import StaffGroup
 from abjad.tools.scoretools import Tuplet
 from abjad.tools.scoretools import Voice
 from abjad.tools.selectiontools import Selection
+from abjad.tools.selectortools import Selector
 from abjad.tools.sequencetools import Sequence
 from abjad.tools.spannertools import Beam
 from abjad.tools.spannertools import BowContactSpanner

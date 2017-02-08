@@ -147,6 +147,32 @@ class Pitch(AbjadValueObject):
     def _get_lilypond_format(self):
         raise NotImplementedError
 
+    @staticmethod
+    def _to_pitch_class_item_class(item_class):
+        import abjad
+        item_class = item_class or abjad.NumberedPitch
+        if item_class in (abjad.NamedPitchClass, abjad.NumberedPitchClass):
+            return item_class
+        elif item_class is abjad.NamedPitch:
+            return abjad.NamedPitchClass
+        elif item_class is abjad.NumberedPitch:
+            return abjad.NumberedPitchClass
+        else:
+            raise TypeError(item_class)
+
+    @staticmethod
+    def _to_pitch_item_class(item_class):
+        import abjad
+        item_class = item_class or abjad.NumberedPitch
+        if item_class in (abjad.NamedPitch, abjad.NumberedPitch):
+            return item_class
+        elif item_class is abjad.NamedPitchClass:
+            return abjad.NamedPitch
+        elif item_class is abjad.NumberedPitchClass:
+            return abjad.NumberedPitch
+        else:
+            raise TypeError(item_class)
+
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
@@ -158,24 +184,32 @@ class Pitch(AbjadValueObject):
     @abc.abstractproperty
     def diatonic_pitch_class_name(self):
         r'''Gets diatonic pitch-class name of pitch.
+
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def diatonic_pitch_class_number(self):
         r'''Gets diatonic pitch-class number of pitch.
+
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def diatonic_pitch_name(self):
         r'''Gets diatonic pitch name of pitch.
+
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def diatonic_pitch_number(self):
         r'''Gets diatonic pitch number of pitch.
+
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
@@ -206,26 +240,46 @@ class Pitch(AbjadValueObject):
         return hertz
 
     @abc.abstractproperty
+    def name(self):
+        r'''Gets pitch name.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
     def named_pitch(self):
         r'''Gets named pitch corresponding to pitch.
+
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def named_pitch_class(self):
         r'''Gets named pitch-class corresponding to pitch.
+
+        ..  note:: Deprecated.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def number(self):
+        r'''Gets pitch number.
         '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def numbered_pitch(self):
         r'''Gets numbered pitch corresponding to pitch.
+
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def numbered_pitch_class(self):
         r'''Gets numbered pitch-class corresponding to pitch.
+
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
@@ -236,12 +290,12 @@ class Pitch(AbjadValueObject):
         Returns octave.
         '''
         raise NotImplementedError
-
+            
     @abc.abstractproperty
-    def octave_number(self):
-        r'''Gets octave number of pitch.
+    def pitch_class(self):
+        r'''Gets pitch-class.
 
-        Returns integer.
+        Returns pitch-class.
         '''
         raise NotImplementedError
 
@@ -249,7 +303,7 @@ class Pitch(AbjadValueObject):
     def pitch_class_name(self):
         r'''Gets pitch-class name corresponding to pitch.
 
-        Returns string.
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
@@ -257,13 +311,15 @@ class Pitch(AbjadValueObject):
     def pitch_class_number(self):
         r'''Gets pitch-class number of pitch.
 
-        Returns number
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def pitch_class_octave_label(self):
         r'''Gets pitch-class / octave label of pitch.
+
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
@@ -271,7 +327,7 @@ class Pitch(AbjadValueObject):
     def pitch_name(self):
         r'''Gets pitch name of pitch.
 
-        Returns string.
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 
@@ -279,7 +335,7 @@ class Pitch(AbjadValueObject):
     def pitch_number(self):
         r'''Get pitch number of pitch.
 
-        Returns number.
+        ..  note:: Deprecated.
         '''
         raise NotImplementedError
 

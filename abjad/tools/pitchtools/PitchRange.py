@@ -335,6 +335,32 @@ class PitchRange(AbjadValueObject):
                 else:
                     return self.start_pitch < pitch < self.stop_pitch
 
+    def _get_named_range_string(self):
+        result = []
+        result.append(self._open_bracket_string)
+        if self.start_pitch:
+            result.append(self.start_pitch.pitch_class_octave_label)
+        else:
+            result.append('-inf')
+        result.append(', ')
+        if self.stop_pitch:
+            result.append(self.stop_pitch.pitch_class_octave_label)
+        else:
+            result.append('+inf')
+        result.append(self._close_bracket_string)
+        result = ''.join(result)
+        return result
+
+    def _get_numbered_range_string(self):
+        result = []
+        result.append(self._open_bracket_string)
+        result.append(str(self.start_pitch.pitch_number))
+        result.append(', ')
+        result.append(str(self.stop_pitch.pitch_number))
+        result.append(self._close_bracket_string)
+        result = ''.join(result)
+        return result
+
     def _list_numeric_octave_transpositions(self, pitch_number_list):
         result = []
         pitch_number_set = set(pitch_number_list)
@@ -395,70 +421,19 @@ class PitchRange(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def one_line_named_pitch_repr(self):
-        r'''Gets one-line named pitch representation of pitch range.
+    def range_string(self):
+        r'''Gets range string of pitch range.
 
         ..  container:: example
 
             ::
 
-                >>> pitch_range = PitchRange('[C3, C7]')
-                >>> pitch_range.one_line_named_pitch_repr
+                >>> pitch_range.range_string
                 '[C3, C7]'
 
         Returns string.
         '''
-        result = []
-        result.append(self._open_bracket_string)
-        if self.start_pitch:
-            result.append(self.start_pitch.pitch_class_octave_label)
-        else:
-            result.append('-inf')
-        result.append(', ')
-        if self.stop_pitch:
-            result.append(self.stop_pitch.pitch_class_octave_label)
-        else:
-            result.append('+inf')
-        result.append(self._close_bracket_string)
-        result = ''.join(result)
-        return result
-
-    @property
-    def one_line_numbered_pitch_repr(self):
-        r'''Gets one-line numbered pitch representation of pitch range.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitch_range.one_line_numbered_pitch_repr
-                '[-12, 36]'
-
-        Returns string.
-        '''
-        result = []
-        result.append(self._open_bracket_string)
-        result.append(str(self.start_pitch.pitch_number))
-        result.append(', ')
-        result.append(str(self.stop_pitch.pitch_number))
-        result.append(self._close_bracket_string)
-        result = ''.join(result)
-        return result
-
-    @property
-    def range_string(self):
-        r'''Gets range string of pitch range.
-
-        ::
-
-            >>> pitch_range.range_string
-            '[C3, C7]'
-
-        Aliased to `one_line_named_pitch_repr`.
-
-        Returns string.
-        '''
-        return self.one_line_named_pitch_repr
+        return self._get_named_range_string()
 
     @property
     def start_pitch(self):
@@ -696,7 +671,7 @@ class PitchRange(AbjadValueObject):
         named_pitch_class = pitchtools.NamedPitchClass(pitch_class)
         named_pitch = pitchtools.NamedPitch(
             named_pitch_class,
-            self.start_pitch.octave_number,
+            self.start_pitch.octave.number,
             )
         result = []
         while named_pitch <= self.stop_pitch:

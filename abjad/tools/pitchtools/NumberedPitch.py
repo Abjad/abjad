@@ -147,6 +147,8 @@ class NumberedPitch(Pitch):
     def diatonic_pitch_class_name(self):
         r'''Gets diatonic pitch-class name corresponding to numbered pitch.
 
+        ..  note:: Deprecated.
+
         ..  container:: example
 
             ::
@@ -161,6 +163,8 @@ class NumberedPitch(Pitch):
     @property
     def diatonic_pitch_class_number(self):
         r'''Gets diatonic pitch-class number of numbered pitch.
+
+        ..  note:: Deprecated.
 
         ..  container:: example
 
@@ -177,6 +181,8 @@ class NumberedPitch(Pitch):
     def diatonic_pitch_name(self):
         r'''Gets diatonic pitch name of numbered pitch.
 
+        ..  note:: Deprecated.
+
         ..  container:: example
 
             ::
@@ -188,12 +194,14 @@ class NumberedPitch(Pitch):
         '''
         return '{}{}'.format(
             self.diatonic_pitch_class_name,
-            self.octave.octave_tick_string,
+            self.octave.tick_string,
             )
 
     @property
     def diatonic_pitch_number(self):
         r'''Gets diatonic pitch-class number corresponding to numbered pitch.
+
+        ..  note:: Deprecated.
 
         ..  container:: example
 
@@ -204,13 +212,29 @@ class NumberedPitch(Pitch):
 
         Returns integer.
         '''
+        return 7 * (self.octave.number - 4) + self.diatonic_pitch_class_number
+
+    @property
+    def name(self):
+        r'''Gets pitch name.
+
+        ..  container:: example
+
+            ::
+
+                >>> NumberedPitch(13).name
+                "cs''"
+
+        Returns string
+        '''
         from abjad.tools import pitchtools
-        return ((self.octave_number - 4) * 7) + \
-            self.diatonic_pitch_class_number
+        return pitchtools.NamedPitch(self).name
 
     @property
     def named_pitch(self):
         r'''Gets named pitch corresponding to numbered pitch.
+
+        ..  note:: Deprecated.
 
         ..  container:: example
 
@@ -228,6 +252,8 @@ class NumberedPitch(Pitch):
     def named_pitch_class(self):
         r'''Gets named pitch-class corresponding to numbered pitch.
 
+        ..  note:: Deprecated.
+
         ..  container:: example
 
             ::
@@ -241,8 +267,25 @@ class NumberedPitch(Pitch):
         return pitchtools.NamedPitchClass(self)
 
     @property
+    def number(self):
+        r'''Gets pitch number.
+
+        ..  container:: example
+
+            ::
+
+                >>> NumberedPitch(13).number
+                13
+
+        Returns number.
+        '''
+        return self._pitch_number
+
+    @property
     def numbered_pitch(self):
         r'''Gets numbered pitch.
+
+        ..  note:: Deprecated.
 
         ..  container:: example
 
@@ -258,6 +301,8 @@ class NumberedPitch(Pitch):
     @property
     def numbered_pitch_class(self):
         r'''Gets numbered pitch-class corresponding to numbered pitch.
+
+        ..  note:: Deprecated.
 
         ..  container:: example
 
@@ -285,26 +330,30 @@ class NumberedPitch(Pitch):
         Returns octave.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.Octave(self.octave_number)
+        number = self._pitch_number // 12 + 4
+        return pitchtools.Octave(number=number)
 
     @property
-    def octave_number(self):
-        r'''Gets octave number of numbered pitch.
+    def pitch_class(self):
+        r'''Gets pitch-class.
 
         ..  container:: example
 
             ::
 
-                >>> NumberedPitch(13).octave_number
-                5
+                >>> NumberedPitch(13).pitch_class
+                NumberedPitchClass(1)
 
-        Returns integer.
+        Returns numbered pitch-class.
         '''
-        return self._pitch_number // 12 + 4
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitchClass(self)
 
     @property
     def pitch_class_name(self):
         r'''Gets pitch-class name of numbered pitch.
+
+        ..  note:: Deprecated.
 
         ..  container:: example
 
@@ -321,6 +370,8 @@ class NumberedPitch(Pitch):
     def pitch_class_number(self):
         r'''Gets pitch-class number of numbered pitch.
 
+        ..  note:: Deprecated.
+
         ..  container:: example
 
             ::
@@ -336,6 +387,8 @@ class NumberedPitch(Pitch):
     def pitch_class_octave_label(self):
         r'''Gets pitch-class / octave label of numbered pitch.
 
+        ..  note:: Deprecated.
+
         ..  container:: example
 
             ::
@@ -348,12 +401,14 @@ class NumberedPitch(Pitch):
         return '{}{}{}'.format(
             self.diatonic_pitch_class_name.upper(),
             self.accidental.symbolic_string,
-            self.octave_number,
+            self.octave.number,
             )
 
     @property
     def pitch_name(self):
         r'''Gets pitch name corresponding to numbered pitch.
+
+        ..  note:: Deprecated.
 
         ..  container:: example
 
@@ -366,12 +421,14 @@ class NumberedPitch(Pitch):
         '''
         return '{}{}'.format(
             self.numbered_pitch_class.pitch_class_name,
-            self.octave.octave_tick_string,
+            self.octave.tick_string,
             )
 
     @property
     def pitch_number(self):
         r'''Gets pitch number of numbered pitch.
+
+        ..  note:: Deprecated.
 
         ..  container:: example
 
@@ -402,6 +459,33 @@ class NumberedPitch(Pitch):
         accidental = Accidental(accidental)
         semitones = self.pitch_number + accidental.semitones
         return type(self)(semitones)
+
+    @staticmethod
+    def from_pitch_class_octave(pitch_class, octave):
+        r'''Initializes numbered pitch from `pitch_class` and `octave`.
+
+        ..  container:: example
+
+            ::
+
+                >>> for octave in [1, 2, 3, 4, 5, 6, 7]:
+                ...     NumberedPitch.from_pitch_class_octave(6, octave)
+                ...
+                NumberedPitch(-30)
+                NumberedPitch(-18)
+                NumberedPitch(-6)
+                NumberedPitch(6)
+                NumberedPitch(18)
+                NumberedPitch(30)
+                NumberedPitch(42)
+
+        Returns new numbered pitch.
+        '''
+        from abjad.tools import pitchtools
+        pitch_class = pitchtools.NumberedPitchClass(pitch_class)
+        octave = pitchtools.Octave(octave)
+        number = 12 * (octave.number - 4) + pitch_class.number
+        return NumberedPitch(number)
 
     def interpolate(self, stop_pitch, fraction):
         r'''Interpolates between this pitch and `stop_pitch` by `fraction`
@@ -518,23 +602,21 @@ class NumberedPitch(Pitch):
         return Pitch.invert(self, axis=axis)
 
     def multiply(self, n=1):
-        r'''Multiplies pitch-class of numbered pitch by `n` and maintains
-        octave.
-
-        ..  note:: This is wrong. Should not preserve octave.
+        r'''Multiplies pitch by index `n`.
 
         ..  container:: example
 
             ::
 
                 >>> NumberedPitch(14).multiply(3)
-                NumberedPitch(18)
+                NumberedPitch(42)
 
         Returns new numbered pitch.
         '''
-        pitch_class_number = (self.pitch_class_number * n) % 12
-        octave_floor = (self.octave_number - 4) * 12
-        return type(self)(pitch_class_number + octave_floor)
+        #pitch_class_number = (self.pitch_class_number * n) % 12
+        #octave_floor = (self.octave.number - 4) * 12
+        #return type(self)(pitch_class_number + octave_floor)
+        return type(self)(n * self.number)
 
     def transpose(self, n=0):
         r'''Tranposes numbered pitch by `n` semitones.

@@ -162,7 +162,7 @@ class Registration(TypedList):
         values = []
         for registration_component in self:
             item = (
-                registration_component.source_pitch_range.one_line_named_pitch_repr,
+                registration_component.source_pitch_range.range_string,
                 registration_component.target_octave_start_pitch.pitch_number
                 )
             values.append(item)

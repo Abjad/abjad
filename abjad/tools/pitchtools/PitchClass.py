@@ -366,8 +366,8 @@ class PitchClass(AbjadValueObject):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def transpose(self, argument):
-        r'''Transposes pitch-class by `n`'.
+    def transpose(self, n=0):
+        r'''Transposes pitch-class by index `n`.
 
         Returns new pitch-class.
         '''

@@ -165,7 +165,7 @@ class Retrograde(AbjadValueObject):
                 >>> retrograde = Retrograde(period=3)
                 >>> segment = PitchSegment("c' d' e' f' g' a' b' c''")
                 >>> retrograde(segment)
-                PitchSegment(["e'", "d'", "c'", "a'", "g'", "f'", "c''", "b'"])
+                PitchSegment("e' d' c' a' g' f' c'' b'")
 
         Returns new object with type equal to that of `argument`.
         '''

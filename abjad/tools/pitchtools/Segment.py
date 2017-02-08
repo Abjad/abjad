@@ -137,8 +137,8 @@ class Segment(TypedTuple):
 
         Returns string.
         '''
-        parts = [str(x) for x in self]
-        return '<{}>'.format(', '.join(parts))
+        items = [str(_) for _ in self]
+        return '<{}>'.format(', '.join(items))
 
     ### PRIVATE PROPERTIES ###
 

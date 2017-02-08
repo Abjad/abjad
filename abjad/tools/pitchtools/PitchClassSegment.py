@@ -171,7 +171,7 @@ class PitchClassSegment(Segment):
 
                 >>> pitch_names = ['c', 'ef', 'bqs,', 'd']
                 >>> PitchClassSegment(items=pitch_names)
-                PitchClassSegment(['c', 'ef', 'bqs', 'd'])
+                PitchClassSegment("c ef bqs d")
 
             ::
 
@@ -279,7 +279,7 @@ class PitchClassSegment(Segment):
                 ::
 
                     >>> K + J
-                    PitchClassSegment(['c', 'ef', 'bqs', 'd', 'bf', 'bqf', 'fs', 'g', 'bqf', 'g'])
+                    PitchClassSegment("c ef bqs d bf bqf fs g bqf g")
 
                 ::
 
@@ -318,7 +318,7 @@ class PitchClassSegment(Segment):
                 ::
 
                     >>> expression(pitch_names, pitch_numbers)
-                    PitchClassSegment(['c', 'ef', 'bqs', 'd', 'bf', 'bqf', 'fs', 'g', 'bqf', 'g'])
+                    PitchClassSegment("c ef bqs d bf bqf fs g bqf g")
 
                 ::
 
@@ -1402,8 +1402,49 @@ class PitchClassSegment(Segment):
 
         Returns string.
         '''
-        superclass = super(PitchClassSegment, self)
-        return superclass.__repr__()
+        import abjad
+        if self.item_class is abjad.pitchtools.NamedPitchClass:
+            contents = ' '.join([str(_) for _ in self])
+            contents = '"' + contents + '"'
+        else:
+            contents = ', '.join([str(_) for _ in self])
+            contents = '[' + contents + ']'
+        return '{}({})'.format(type(self).__name__, contents)
+
+    def __str__(self):
+        r'''Gets string representation of pitch-class segment.
+
+        ..  container::
+
+            Gets string represenation of numbered pitch class:
+
+            ::
+
+                >>> segment = PitchClassSegment([-2, -1.5, 6, 7, -1.5, 7])
+                >>> str(segment)
+                'PC<10, 10.5, 6, 7, 10.5, 7>'
+
+        ..  container::
+
+            Gets string represenation of named pitch class:
+
+            ::
+
+                >>> segment = PitchClassSegment(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=NamedPitchClass,
+                ...     )
+                >>> str(segment)
+                'PC<bf bqf fs g bqf g>'
+
+        Returns string.
+        '''
+        import abjad
+        items = [str(_) for _ in self]
+        separator = ' '
+        if self.item_class is abjad.NumberedPitchClass:
+            separator = ', '
+        return 'PC<{}>'.format(separator.join(items))
 
     ### PRIVATE PROPERTIES ###
 
@@ -1423,6 +1464,11 @@ class PitchClassSegment(Segment):
         return pitchtools.PitchClass
 
     ### PRIVATE METHODS ###
+
+    def _get_padded_string(self, width=2):
+        superclass = super(PitchClassSegment, self)
+        string = superclass._get_padded_string(width=width)
+        return 'PC<' + string[1:-1] + '>'
 
     def _is_equivalent_under_transposition(self, argument):
         r'''Is true when `argument` is equivalent to segment under
@@ -1677,7 +1723,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> segment
-                PitchClassSegment(['c', 'd', 'fs', 'a', 'b', 'c', 'g'])
+                PitchClassSegment("c d fs a b c g")
 
         '''
         import abjad
@@ -3140,6 +3186,270 @@ class PitchClassSegment(Segment):
             items = segment.items[:]
         return type(self)(items=items)
 
+    def to_pitch_classes(self):
+        r'''Changes to pitch-classes.
+
+        ..  container:: example
+
+            To numbered pitch-class segment:
+
+            ::
+
+                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                >>> segment = PitchClassSegment(items=items)
+                >>> segment
+                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+
+            ::
+
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    bf'8
+                    bqf'8
+                    fs'8
+                    g'8
+                    bqf'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> segment = segment.to_pitch_classes()
+                >>> segment
+                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+
+            ::
+
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    bf'8
+                    bqf'8
+                    fs'8
+                    g'8
+                    bqf'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            To named pitch-class segment:
+
+            ::
+
+                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                >>> segment = PitchClassSegment(
+                ...     items=items,
+                ...     item_class=NamedPitchClass,
+                ...     )
+                >>> segment
+                PitchClassSegment("bf bqf fs g bqf g")
+
+            ::
+
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    bf'8
+                    bqf'8
+                    fs'8
+                    g'8
+                    bqf'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> segment = segment.to_pitch_classes()
+                >>> segment
+                PitchClassSegment("bf bqf fs g bqf g")
+
+            ::
+
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    bf'8
+                    bqf'8
+                    fs'8
+                    g'8
+                    bqf'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        Returns new segment.
+        '''
+        import abjad
+        return abjad.new(self)
+
+    def to_pitches(self):
+        r'''Changes to pitches.
+
+        ..  container:: example
+
+            To numbered pitch segment:
+
+            ::
+
+                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                >>> segment = PitchClassSegment(items=items)
+                >>> segment
+                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+
+            ::
+
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    bf'8
+                    bqf'8
+                    fs'8
+                    g'8
+                    bqf'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> segment = segment.to_pitches()
+                >>> segment
+                PitchSegment([10, 10.5, 6, 7, 10.5, 7])
+
+            ::
+
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[StaffGroup])
+                \new PianoStaff <<
+                    \context Staff = "treble" {
+                        \clef "treble"
+                        bf'1 * 1/8
+                        bqf'1 * 1/8
+                        fs'1 * 1/8
+                        g'1 * 1/8
+                        bqf'1 * 1/8
+                        g'1 * 1/8
+                    }
+                    \context Staff = "bass" {
+                        \clef "bass"
+                        r1 * 1/8
+                        r1 * 1/8
+                        r1 * 1/8
+                        r1 * 1/8
+                        r1 * 1/8
+                        r1 * 1/8
+                    }
+                >>
+
+        ..  container:: example
+
+            To named pitch segment:
+
+            ::
+
+                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                >>> segment = PitchClassSegment(
+                ...     items=items,
+                ...     item_class=NamedPitchClass,
+                ...     )
+                >>> segment
+                PitchClassSegment("bf bqf fs g bqf g")
+
+            ::
+
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    bf'8
+                    bqf'8
+                    fs'8
+                    g'8
+                    bqf'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> segment = segment.to_pitches()
+                >>> segment
+                PitchSegment("bf' bqf' fs' g' bqf' g'")
+
+            ::
+
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[StaffGroup])
+                \new PianoStaff <<
+                    \context Staff = "treble" {
+                        \clef "treble"
+                        bf'1 * 1/8
+                        bqf'1 * 1/8
+                        fs'1 * 1/8
+                        g'1 * 1/8
+                        bqf'1 * 1/8
+                        g'1 * 1/8
+                    }
+                    \context Staff = "bass" {
+                        \clef "bass"
+                        r1 * 1/8
+                        r1 * 1/8
+                        r1 * 1/8
+                        r1 * 1/8
+                        r1 * 1/8
+                        r1 * 1/8
+                    }
+                >>
+
+        Returns new segment.
+        '''
+        import abjad
+        class_ = abjad.pitchtools.Pitch
+        item_class = class_._to_pitch_item_class(self.item_class)
+        return abjad.PitchSegment(items=self.items, item_class=item_class)
+
     @expressiontools.Signature(
         is_operator=True,
         method_name='T',
@@ -3503,7 +3813,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> voiced_segment
-                PitchSegment(["c'", 'b', "d'", "e'", "f'", "g'", "e'", 'b', 'a', "c'"])
+                PitchSegment("c' b d' e' f' g' e' b a c'")
 
         '''
         import abjad
@@ -3598,7 +3908,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> voiced_segment
-                PitchSegment(["c'", "ef'", "g'", "bf'", "d''", "f''", "af''"])
+                PitchSegment("c' ef' g' bf' d'' f'' af''")
 
         '''
         import abjad

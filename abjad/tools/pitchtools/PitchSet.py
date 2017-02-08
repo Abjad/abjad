@@ -211,10 +211,10 @@ class PitchSet(Set):
             raise TypeError(message)
         return result
 
-    def transpose(self, argument):
-        r'''Transposes all pitches in pitch set by `argument`.
+    def transpose(self, n=0):
+        r'''Transposes all pitches in pitch set by index `n`.
 
         Returns new pitch set.
         '''
-        items = (pitch.transpose(argument) for pitch in self)
+        items = (pitch.transpose(n=n) for pitch in self)
         return new(self, items=items)

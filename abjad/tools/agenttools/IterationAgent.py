@@ -2708,21 +2708,21 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for pair in iterate(score).by_pitch_pair():
                     ...     pair
                     ...
-                    PitchSegment(["c'", 'c'])
-                    PitchSegment(["c'", "d'"])
-                    PitchSegment(['c', "d'"])
-                    PitchSegment(["d'", "e'"])
-                    PitchSegment(["d'", 'a,'])
-                    PitchSegment(['c', "e'"])
-                    PitchSegment(['c', 'a,'])
-                    PitchSegment(["e'", 'a,'])
-                    PitchSegment(["e'", "f'"])
-                    PitchSegment(['a,', "f'"])
-                    PitchSegment(["f'", "g'"])
-                    PitchSegment(["f'", 'g,'])
-                    PitchSegment(['a,', "g'"])
-                    PitchSegment(['a,', 'g,'])
-                    PitchSegment(["g'", 'g,'])
+                    PitchSegment("c' c")
+                    PitchSegment("c' d'")
+                    PitchSegment("c d'")
+                    PitchSegment("d' e'")
+                    PitchSegment("d' a,")
+                    PitchSegment("c e'")
+                    PitchSegment("c a,")
+                    PitchSegment("e' a,")
+                    PitchSegment("e' f'")
+                    PitchSegment("a, f'")
+                    PitchSegment("f' g'")
+                    PitchSegment("f' g,")
+                    PitchSegment("a, g'")
+                    PitchSegment("a, g,")
+                    PitchSegment("g' g,")
 
             ..  container:: example expression
 
@@ -2733,21 +2733,21 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for pair in expression(score):
                     ...     pair
                     ...
-                    PitchSegment(["c'", 'c'])
-                    PitchSegment(["c'", "d'"])
-                    PitchSegment(['c', "d'"])
-                    PitchSegment(["d'", "e'"])
-                    PitchSegment(["d'", 'a,'])
-                    PitchSegment(['c', "e'"])
-                    PitchSegment(['c', 'a,'])
-                    PitchSegment(["e'", 'a,'])
-                    PitchSegment(["e'", "f'"])
-                    PitchSegment(['a,', "f'"])
-                    PitchSegment(["f'", "g'"])
-                    PitchSegment(["f'", 'g,'])
-                    PitchSegment(['a,', "g'"])
-                    PitchSegment(['a,', 'g,'])
-                    PitchSegment(["g'", 'g,'])
+                    PitchSegment("c' c")
+                    PitchSegment("c' d'")
+                    PitchSegment("c d'")
+                    PitchSegment("d' e'")
+                    PitchSegment("d' a,")
+                    PitchSegment("c e'")
+                    PitchSegment("c a,")
+                    PitchSegment("e' a,")
+                    PitchSegment("e' f'")
+                    PitchSegment("a, f'")
+                    PitchSegment("f' g'")
+                    PitchSegment("f' g,")
+                    PitchSegment("a, g'")
+                    PitchSegment("a, g,")
+                    PitchSegment("g' g,")
 
         ..  container:: example
 
@@ -2776,16 +2776,16 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for pair in iterate(staff).by_pitch_pair():
                     ...     pair
                     ...
-                    PitchSegment(["c'", "d'"])
-                    PitchSegment(["c'", "e'"])
-                    PitchSegment(["d'", "e'"])
-                    PitchSegment(["c'", "f''"])
-                    PitchSegment(["c'", "g''"])
-                    PitchSegment(["d'", "f''"])
-                    PitchSegment(["d'", "g''"])
-                    PitchSegment(["e'", "f''"])
-                    PitchSegment(["e'", "g''"])
-                    PitchSegment(["f''", "g''"])
+                    PitchSegment("c' d'")
+                    PitchSegment("c' e'")
+                    PitchSegment("d' e'")
+                    PitchSegment("c' f''")
+                    PitchSegment("c' g''")
+                    PitchSegment("d' f''")
+                    PitchSegment("d' g''")
+                    PitchSegment("e' f''")
+                    PitchSegment("e' g''")
+                    PitchSegment("f'' g''")
 
             ..  container:: example expression
 
@@ -2796,16 +2796,16 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for pair in expression(staff):
                     ...     pair
                     ...
-                    PitchSegment(["c'", "d'"])
-                    PitchSegment(["c'", "e'"])
-                    PitchSegment(["d'", "e'"])
-                    PitchSegment(["c'", "f''"])
-                    PitchSegment(["c'", "g''"])
-                    PitchSegment(["d'", "f''"])
-                    PitchSegment(["d'", "g''"])
-                    PitchSegment(["e'", "f''"])
-                    PitchSegment(["e'", "g''"])
-                    PitchSegment(["f''", "g''"])
+                    PitchSegment("c' d'")
+                    PitchSegment("c' e'")
+                    PitchSegment("d' e'")
+                    PitchSegment("c' f''")
+                    PitchSegment("c' g''")
+                    PitchSegment("d' f''")
+                    PitchSegment("d' g''")
+                    PitchSegment("e' f''")
+                    PitchSegment("e' g''")
+                    PitchSegment("f'' g''")
 
         Returns generator.
         '''

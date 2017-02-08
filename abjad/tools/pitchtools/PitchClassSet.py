@@ -483,12 +483,12 @@ class PitchClassSet(Set):
         message = message.format(self, pitch_class_segment)
         raise ValueError(message)
 
-    def transpose(self, argument):
-        r'''Transposes all pitch-classes in pitch-class set by `argument`.
+    def transpose(self, n=0):
+        r'''Transposes all pitch-classes in pitch-class set by index `n`.
 
         Returns new pitch-class set.
         '''
-        items = (pitch_class + argument for pitch_class in self)
+        items = (pitch_class + n for pitch_class in self)
         return new(self, items=items)
 
     @staticmethod

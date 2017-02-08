@@ -45,12 +45,12 @@ class TypedCollection(AbjadObject):
         return self._collection.__contains__(item)
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a typed collection with items that compare
-        equal to those of this typed collection. Otherwise false.
+        r'''Is true when `argument` is a typed collection with items that
+        compare equal to those of this typed collection. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
+        if issubclass(type(argument), type(self)):
             return self._collection == argument._collection
         elif isinstance(argument, type(self._collection)):
             return self._collection == argument

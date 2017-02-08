@@ -99,8 +99,8 @@ class Scale(PitchClassSegment):
             pitch_range = pitchtools.PitchRange(
                 float(pitchtools.NamedPitch(pitch_range[0])),
                 float(pitchtools.NamedPitch(pitch_range[1])))
-        low = pitch_range.start_pitch.octave_number
-        high = pitch_range.stop_pitch.octave_number
+        low = pitch_range.start_pitch.octave.number
+        high = pitch_range.stop_pitch.octave.number
         pitches = []
         octave = low
         while octave <= high:
@@ -291,10 +291,10 @@ class Scale(PitchClassSegment):
 
             >>> scale = tonalanalysistools.Scale('c', 'major')
             >>> scale_degrees = [1, 3, ('flat', 5), 7, ('sharp', 9)]
-            >>> pitches = scale.voice_scale_degrees_in_open_position(
+            >>> segment = scale.voice_scale_degrees_in_open_position(
             ...     scale_degrees)
-            >>> pitches
-            PitchSegment(["c'", "e'", "gf'", "b'", "ds''"])
+            >>> segment
+            PitchSegment("c' e' gf' b' ds''")
 
         Return pitch segment.
         '''

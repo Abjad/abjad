@@ -40,6 +40,20 @@ class LogicalTie(Selection):
         parents = [leaf._parent for leaf in self.leaves]
         return mathtools.all_are_equal(parents)
 
+    @property
+    def _leaves_grouped_by_immediate_parents(self):
+        r'''Leaves in logical tie grouped by immediate parents of leaves.
+
+        Returns list of lists.
+        '''
+        from abjad.tools import selectiontools
+        result = []
+        pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
+        for key, values_generator in pairs_generator:
+            group = selectiontools.Selection(list(values_generator))
+            result.append(group)
+        return result
+
     ### PRIVATE METHODS ###
 
     def _add_or_remove_notes_to_achieve_written_duration(
@@ -154,20 +168,6 @@ class LogicalTie(Selection):
         except MissingSpannerError:
             assert self.is_trivial
             return (self[0], )
-
-    @property
-    def _leaves_grouped_by_immediate_parents(self):
-        r'''Leaves in logical tie grouped by immediate parents of leaves.
-
-        Returns list of lists.
-        '''
-        from abjad.tools import selectiontools
-        result = []
-        pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
-        for key, values_generator in pairs_generator:
-            group = selectiontools.Selection(list(values_generator))
-            result.append(group)
-        return result
 
     @property
     def tail(self):

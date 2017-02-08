@@ -191,7 +191,7 @@ class Rotation(AbjadValueObject):
                 >>> rotation = Rotation(n=1, period=3)
                 >>> pitches = PitchSegment("c' d' e' f' g' a' b' c''")
                 >>> rotation(pitches)
-                PitchSegment(["e'", "c'", "d'", "a'", "f'", "g'", "c''", "b'"])
+                PitchSegment("e' c' d' a' f' g' c'' b'")
 
         ..  container:: example
 
@@ -208,7 +208,7 @@ class Rotation(AbjadValueObject):
                 ...     )
                 >>> pitches = PitchSegment("c' d' e' f' g' a' b' c''")
                 >>> rotation(pitches)
-                PitchSegment(["c'", 'af', 'bf', "f'", "df'", "ef'", "b'", "as'"])
+                PitchSegment("c' af bf f' df' ef' b' as'")
 
         Returns new object with type equal to that of `argument`.
         '''
