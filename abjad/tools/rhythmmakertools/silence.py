@@ -8,7 +8,7 @@ def silence(indices=None, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Silences divisions 1 and 2:
+        Silences divisions 1 and 2:
 
         ::
 
@@ -60,7 +60,7 @@ def silence(indices=None, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Silences divisions -1 and -2:
+        Silences divisions -1 and -2:
 
         ::
 
@@ -114,7 +114,7 @@ def silence(indices=None, inverted=None):
 
     ..  container:: example
 
-        **Example 3.** Works with pattern input:
+        Works with pattern input:
 
         ::
 
@@ -184,7 +184,7 @@ def silence(indices=None, inverted=None):
 
     ..  container:: example
 
-        **Example 4.** Works with pattern input and inverted flag:
+        Works with pattern input and inverted flag:
 
         ::
 

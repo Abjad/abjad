@@ -92,21 +92,21 @@ class QSchema(AbjadObject):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __getitem__(self, i):
-        r'''Gets item `i` in QSchema.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
         '''
-        assert isinstance(i, int) and 0 <= i
+        assert isinstance(argument, int) and 0 <= argument
         result = {}
         for field in self._lookups:
-            lookup = self._lookups[field].get(i)
+            lookup = self._lookups[field].get(argument)
             if lookup is not None:
                 result[field] = lookup
             else:
                 keys = sorted(self._lookups[field].keys())
-                idx = bisect.bisect(keys, i)
+                idx = bisect.bisect(keys, argument)
                 if len(keys) == idx:
                     key = keys[-1]
-                elif i < keys[idx]:
+                elif argument < keys[idx]:
                     key = keys[idx - 1]
                 result[field] = self._lookups[field][key]
         return result

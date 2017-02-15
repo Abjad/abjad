@@ -7,7 +7,7 @@ def sustain_all(inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Without mask:
+        Without mask:
 
             >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
             ...     tuplet_ratios=[(3, 1)],
@@ -63,7 +63,7 @@ def sustain_all(inverted=None):
 
     ..  container:: example
 
-        **Example 2.** With mask:
+        With mask:
 
         ::
 

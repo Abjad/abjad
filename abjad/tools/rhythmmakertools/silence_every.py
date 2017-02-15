@@ -12,7 +12,7 @@ def silence_every(
 
     ..  container:: example
 
-        **Example 1.** Silences every second division:
+        Silences every second division:
 
         ::
 
@@ -65,7 +65,7 @@ def silence_every(
 
     ..  container:: example
 
-        **Example 2.** Silences every second and third division:
+        Silences every second and third division:
 
         ::
 
@@ -118,7 +118,7 @@ def silence_every(
 
     ..  container:: example
 
-        **Example 3.** Silences every division except the last:
+        Silences every division except the last:
 
         ::
 

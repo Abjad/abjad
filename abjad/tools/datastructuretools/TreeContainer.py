@@ -120,8 +120,8 @@ class TreeContainer(TreeNode):
             node._set_parent(None)
         self._mark_entire_tree_for_later_update()
 
-    def __getitem__(self, i):
-        r'''Gets node `i` in tree container.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         ::
 
@@ -185,13 +185,13 @@ class TreeContainer(TreeNode):
 
         Return `TreeNode` instance.
         '''
-        if isinstance(i, (int, slice)):
-            return self._children[i]
-        elif isinstance(i, str):
-            children = self._named_children[i]
+        if isinstance(argument, (int, slice)):
+            return self._children.__getitem__(argument)
+        elif isinstance(argument, str):
+            children = self._named_children.__getitem__(argument)
             if 1 == len(children):
                 return tuple(children)[0]
-        raise ValueError(repr(i))
+        raise ValueError(repr(argument))
 
     def __iter__(self):
         r'''Iterates tree container.

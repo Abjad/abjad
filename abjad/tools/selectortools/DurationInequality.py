@@ -8,12 +8,12 @@ from abjad.tools.selectortools.Inequality import Inequality
 
 
 class DurationInequality(Inequality):
-    r'''A duration inequality.
+    r'''Duration inequality.
 
     ::
 
         >>> inequality = selectortools.DurationInequality('<', (3, 4))
-        >>> print(format(inequality))
+        >>> f(inequality)
         selectortools.DurationInequality(
             operator_string='<',
             duration=durationtools.Duration(3, 4),
@@ -44,6 +44,8 @@ class DurationInequality(Inequality):
         '_duration',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -66,17 +68,17 @@ class DurationInequality(Inequality):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
-        r'''Calls duration inequality on `expr`.
+    def __call__(self, argument):
+        r'''Calls duration inequality on `argument`.
 
         Returns true or false.
         '''
-        if isinstance(expr, scoretools.Component):
-            duration = inspect_(expr).get_duration()
-        elif isinstance(expr, selectiontools.Selection):
-            duration = expr.get_duration()
+        if isinstance(argument, scoretools.Component):
+            duration = inspect_(argument).get_duration()
+        elif isinstance(argument, selectiontools.Selection):
+            duration = argument.get_duration()
         else:
-            duration = durationtools.Duration(expr)
+            duration = durationtools.Duration(argument)
         result = self._operator_function(duration, self._duration)
         return result
 

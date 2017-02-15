@@ -53,7 +53,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
             number = 0
         elif isinstance(interval_class_token, str):
             number = float(interval_class_token)
-            if mathtools.is_integer_equivalent_expr(number):
+            if mathtools.is_integer_equivalent(number):
                 number = int(number)
         else:
             message = 'can not initialize {}: {!r}.'

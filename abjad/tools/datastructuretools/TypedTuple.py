@@ -57,16 +57,16 @@ class TypedTuple(TypedCollection):
             return False
         return self._collection.__contains__(item)
 
-    def __getitem__(self, i):
-        '''Gets `i` from typed tuple.
+    def __getitem__(self, argument):
+        '''Gets item or slice identified by `argument`.
 
-        Returns item.
+        Returns item or new typed tuple.
         '''
-        result = self._collection.__getitem__(i)
+        item = self._collection.__getitem__(argument)
         try:
-            return type(self)(result)
+            return type(self)(item)
         except TypeError:
-            return result
+            return item
 
     def __hash__(self):
         r'''Hashes typed tuple.

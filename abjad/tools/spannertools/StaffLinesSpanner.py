@@ -59,8 +59,8 @@ class StaffLinesSpanner(Spanner):
             )
         if isinstance(lines, int) and 0 < lines:
             self._lines = lines
-        elif isinstance(lines, (tuple, list)) \
-            and all(isinstance(x, (int, float)) for x in lines):
+        elif (isinstance(lines, (tuple, list)) and
+            all(isinstance(x, (int, float)) for x in lines)):
             self._lines = tuple(lines)
         else:
             message = 'must be integer or a sequence of integers: {!r}.'

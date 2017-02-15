@@ -7,7 +7,7 @@ def silence_all(inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 1.** Silences all divisions:
+        Silences all divisions:
 
         ::
 
@@ -60,7 +60,7 @@ def silence_all(inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 2.** Silences all divisions with multimeasure rests:
+        Silences all divisions with multimeasure rests:
 
         ::
 

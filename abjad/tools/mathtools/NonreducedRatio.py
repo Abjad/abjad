@@ -41,23 +41,23 @@ class NonreducedRatio(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, expr):
-        r'''Is true when ratio contains `expr`. Otherwise false.
+    def __contains__(self, argument):
+        r'''Is true when ratio contains `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        return expr in self._numbers
+        return argument in self._numbers
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a nonreduced ratio with numerator and
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a nonreduced ratio with numerator and
         denominator equal to those of this nonreduced ratio. Otherwise false.
 
         Returns true or false.
         '''
-        if not isinstance(expr, type(self)):
+        if not isinstance(argument, type(self)):
             return False
-        expr = type(self)(expr)
-        return self.numbers == expr.numbers
+        argument = type(self)(argument)
+        return self.numbers == argument.numbers
 
     def __format__(self, format_specification=''):
         r'''Formats duration.
@@ -80,8 +80,8 @@ class NonreducedRatio(AbjadValueObject):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __getitem__(self, i):
-        r'''Gets item at `i`.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         ..  container:: example
 
@@ -93,9 +93,9 @@ class NonreducedRatio(AbjadValueObject):
 
         Returns integer or tuple.
         '''
-        if isinstance(i, slice):
-            return tuple(self._numbers[i])
-        return self._numbers[i]
+        if isinstance(argument, slice):
+            return tuple(self._numbers.__getitem__(argument))
+        return self._numbers.__getitem__(argument)
 
     def __hash__(self):
         r'''Hashes non-reduced ratio.
@@ -147,19 +147,19 @@ class NonreducedRatio(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    def count(self, expr):
-        r'''Gets count of `expr` in ratio.
+    def count(self, argument):
+        r'''Gets count of `argument` in ratio.
 
         Returns integer.
         '''
-        return self._numbers.count(expr)
+        return self._numbers.count(argument)
 
-    def index(self, expr):
-        r'''Gets index of `expr` in ratio.
+    def index(self, argument):
+        r'''Gets index of `argument` in ratio.
 
         Returns integer.
         '''
-        return self._numbers.index(expr)
+        return self._numbers.index(argument)
 
     ### PRIVATE PROPERTIES ###
 

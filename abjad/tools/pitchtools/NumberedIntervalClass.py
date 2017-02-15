@@ -76,7 +76,7 @@ class NumberedIntervalClass(IntervalClass):
             number = 0
         elif isinstance(item, str):
             number = float(item)
-            if mathtools.is_integer_equivalent_expr(number):
+            if mathtools.is_integer_equivalent(number):
                 number = int(number)
             sign = mathtools.sign(number)
             abs_token = abs(number)

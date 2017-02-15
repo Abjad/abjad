@@ -6,7 +6,7 @@ from abjad.tools import sequencetools
 
 
 class PartitionByRatioCallback(AbjadValueObject):
-    r'''A ratio selector callback.
+    r'''Partition-by-ratio selector callback.
     '''
 
     ### CLASS VARIABLES ###
@@ -26,15 +26,15 @@ class PartitionByRatioCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Calls ratio selector callback on `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Calls ratio selector callback on `argument`.
 
         Returns tuple of selections.
         '''
-        assert isinstance(expr, tuple), repr(expr)
-        assert len(expr) == 1, repr(expr)
-        assert isinstance(expr[0], selectiontools.Selection), repr(expr)
-        selection = expr[0]
+        assert isinstance(argument, tuple), repr(argument)
+        assert len(argument) == 1, repr(argument)
+        assert isinstance(argument[0], selectiontools.Selection), repr(argument)
+        selection = argument[0]
         counts = mathtools.partition_integer_by_ratio(
             len(selection),
             self.ratio,

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import operator
 from abjad.tools import mathtools
 from abjad.tools.topleveltools.new import new
@@ -8,10 +9,14 @@ from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 class CompoundPattern(TypedTuple):
     r'''Compound pattern.
 
+    ::
+    
+        >>> import abjad
+
     ..  container:: example
 
-        **Example 1.** Matches every index that is (one of the first three
-        indices) OR (one of the last three indices):
+        Matches every index that is (one of the first three indices) OR (one of
+        the last three indices):
 
         ::
 
@@ -43,8 +48,8 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 2.** Matches every index that is (equal to 0 % 2) AND
-            (not one of the last three indices):
+            Matches every index that is (equal to 0 % 2) AND (not one of the
+            last three indices):
 
             ::
 
@@ -81,7 +86,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 3.** Sieve from opening of Xenakis's **Psappha**:
+            Sieve from opening of Xenakis's Psappha:
 
             ::
 
@@ -148,7 +153,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Flat grouping:
+            Flat grouping:
 
             ::
 
@@ -183,7 +188,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 2.** Nested grouping:
+            Nested grouping:
 
             ::
 
@@ -235,8 +240,8 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Matches every index that is (one of the first three
-            indices) or (one of the last three indices):
+            Matches every index that is (one of the first three indices) or
+            (one of the last three indices):
 
             ::
 
@@ -266,8 +271,8 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 2.** Matches every index that is NOT (one of the first
-            three indices) or (one of the last three indices):
+            Matches every index that is NOT (one of the first three indices) or
+            (one of the last three indices):
 
             ::
 
@@ -302,7 +307,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Flat grouping:
+            Flat grouping:
 
             ::
 
@@ -337,7 +342,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 2.** Nested grouping:
+            Nested grouping:
 
             ::
 
@@ -389,7 +394,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Flat grouping:
+            Flat grouping:
 
             ::
 
@@ -424,7 +429,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 2.** Nested grouping:
+            Nested grouping:
 
             ::
 
@@ -491,7 +496,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Two-part pattern with logical OR:
+            Two-part pattern with logical OR:
 
             ::
 
@@ -528,8 +533,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 2.** Two-part pattern with mixed periodic and inverted
-            parts:
+            Two-part pattern with mixed periodic and inverted parts:
 
             ::
 
@@ -567,8 +571,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 3.** Cyclic pattern that selects every fourth and fifth
-            item:
+            Cyclic pattern that selects every fourth and fifth item:
 
             ::
 
@@ -634,13 +637,39 @@ class CompoundPattern(TypedTuple):
             boolean_vector.append(int(result))
         return boolean_vector
 
+    def get_matching_items(self, sequence):
+        r'''Gets maching items from sequence.
+
+        ..  container:: example
+
+            ::
+
+                >>> pattern = abjad.select_first(1) | abjad.select_last(2)
+
+            ::
+
+                >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
+                Sequence(['a', 'y', 'z'])
+
+        Returns new sequence.
+        '''
+        import abjad
+        assert isinstance(sequence, collections.Iterable), repr(sequence)
+        length = len(sequence)
+        items = []
+        for i in range(length):
+            if self.matches_index(i, length):
+                item = sequence[i]
+                items.append(item)
+        return abjad.Sequence(items=items)
+
     def matches_index(self, index, total_length, rotation=None):
         r'''Is true when compound pattern matches `index` under
         `total_length`. Otherwise false.
 
         ..  container:: example
 
-            **Example 1.** Empty pattern:
+            Empty pattern:
 
             ::
 
@@ -708,7 +737,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 2.** Simple pattern:
+            Simple pattern:
 
             Logical OR:
 
@@ -818,7 +847,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 3.** Two-part pattern with logical OR:
+            Two-part pattern with logical OR:
 
             ::
 
@@ -897,7 +926,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 4.** Two-part pattern with logical AND:
+            Two-part pattern with logical AND:
 
             ::
 
@@ -976,7 +1005,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 5.** Two-part pattern with logical XOR:
+            Two-part pattern with logical XOR:
 
             ::
 
@@ -1055,8 +1084,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 6.** Two-part pattern with mixed periodic and inverted
-            parts:
+            Two-part pattern with mixed periodic and inverted parts:
 
             ::
 
@@ -1137,7 +1165,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 7.** Complex pattern with compound and simple parts:
+            Complex pattern with compound and simple parts:
 
             ::
 
@@ -1285,8 +1313,8 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Matches every index that is (equal to 0 % 2) AND
-            (not one of the last three indices):
+            Matches every index that is (equal to 0 % 2) AND (not one of the
+            last three indices):
 
             ::
 
@@ -1354,8 +1382,8 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Matches every index that is (equal to 0 % 2) AND
-            (not one of the last three indices):
+            Matches every index that is (equal to 0 % 2) AND (not one of the
+            last three indices):
 
             ::
 
@@ -1426,8 +1454,8 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Matches every index that is (one of the first three
-            indices) OR (one of the last three indices):
+            Matches every index that is (one of the first three indices) OR
+            (one of the last three indices):
 
             ::
 
@@ -1445,8 +1473,8 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 2.** Matches every index that is NOT (one of the first
-            three indices) OR (one of the last three indices):
+            Matches every index that is NOT (one of the first three indices) OR
+            (one of the last three indices):
 
             ::
 
@@ -1483,8 +1511,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Gets period of pattern that selects every fourth and
-            fifth element:
+            Gets period of pattern that selects every fourth and fifth element:
 
             ::
 
@@ -1516,7 +1543,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            **Example 2.** Returns none when pattern contains acyclic parts:
+            Returns none when pattern contains acyclic parts:
 
             ::
 

@@ -72,7 +72,7 @@ class SilenceMask(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Without multimeasure rests:
+            Without multimeasure rests:
 
             ::
 
@@ -87,11 +87,9 @@ class SilenceMask(AbjadValueObject):
                 >>> mask.use_multimeasure_rests
                 False
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** With multimeasure rests:
+            With multimeasure rests:
 
             ::
 

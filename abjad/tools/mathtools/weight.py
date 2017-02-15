@@ -1,15 +1,25 @@
 # -*- coding: utf-8 -*-
 
 
-def weight(sequence):
-    r'''Sum of the absolute value of the elements in `sequence`:
+def weight(argument):
+    r'''Gets weight of `argument`.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.weight([-1, -2, 3, 4, 5])
-        15
+        ::
+
+            >>> mathtools.weight([-1, -2, 3, 4, 5])
+            15
+
+    ..  container:: example
+
+        ::
+
+            >>> mathtools.weight([])
+            0
+
+    Defined equal to sum of the absolute value of items in `argument`.
 
     Returns nonnegative integer.
     '''
-
-    return sum([abs(element) for element in sequence])
+    return sum([abs(_) for _ in argument])

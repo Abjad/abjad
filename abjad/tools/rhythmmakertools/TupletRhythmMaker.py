@@ -14,7 +14,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        **Example 1.** Makes tuplets with ``3:2`` ratios:
+        Makes tuplets with ``3:2`` ratios:
 
         ::
 
@@ -68,8 +68,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        **Example 2.** Makes tuplets with alternating ``1:-1`` and ``3:1`` 
-        ratios:
+        Makes tuplets with alternating ``1:-1`` and ``3:1`` ratios:
 
         ::
 
@@ -178,7 +177,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Calls tuplet rhythm-maker with one ratio:
+            Calls tuplet rhythm-maker with one ratio:
 
             ::
 
@@ -232,7 +231,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Calls tuplet rhythm-maker on two ratios:
+            Calls tuplet rhythm-maker on two ratios:
 
             ::
 
@@ -300,7 +299,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Formats tuplet rhythm-maker with one ratio:
+            Formats tuplet rhythm-maker with one ratio:
 
             ::
 
@@ -319,7 +318,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Formats tuplet rhythm-maker with two ratios:
+            Formats tuplet rhythm-maker with two ratios:
 
             ::
 
@@ -371,8 +370,7 @@ class TupletRhythmMaker(RhythmMaker):
                 pass
             elif preferred_denominator == 'divisions':
                 tuplet.preferred_denominator = division.numerator
-            elif isinstance(
-                preferred_denominator, durationtools.Duration):
+            elif isinstance(preferred_denominator, durationtools.Duration):
                 unit_duration = preferred_denominator
                 assert unit_duration.numerator == 1
                 duration = inspect_(tuplet).get_duration()
@@ -413,7 +411,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Beams each division:
+            Beams each division:
 
             ::
 
@@ -480,7 +478,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Beams divisions together:
+            Beams divisions together:
 
             ::
 
@@ -571,7 +569,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Beams nothing:
+            Beams nothing:
 
             ::
 
@@ -652,7 +650,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No division masks:
+            No division masks:
 
             ::
 
@@ -710,7 +708,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Masks every other output division:
+            Masks every other output division:
 
             ::
 
@@ -776,10 +774,9 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Tuplet numerators and denominators are reduced to
-            numbers that are relatively prime when `preferred_denominator` is
-            set to none. This means that ratios like ``6:4`` and ``10:8`` do
-            not arise:
+            Tuplet numerators and denominators are reduced to numbers that are
+            relatively prime when `preferred_denominator` is set to none. This
+            means that ratios like ``6:4`` and ``10:8`` do not arise:
 
             ::
 
@@ -836,16 +833,13 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** The preferred denominator of each tuplet is set to
-            the numerator of the division that generates the tuplet when
-            `preferred_denominator` is set to the string ``'divisions'``. This
-            means that the tuplet numerator and denominator are not necessarily
-            relatively prime. This also means that ratios like ``6:4`` and
-            ``10:8`` may arise:
+            The preferred denominator of each tuplet is set to the numerator of
+            the division that generates the tuplet when `preferred_denominator`
+            is set to the string ``'divisions'``. This means that the tuplet
+            numerator and denominator are not necessarily relatively prime.
+            This also means that ratios like ``6:4`` and ``10:8`` may arise:
 
             ::
 
@@ -904,9 +898,9 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** The preferred denominator of each tuplet is set in
-            terms of a unit duration when `preferred_denominator` is set to a
-            duration. The setting does not affect the first tuplet:
+            The preferred denominator of each tuplet is set in terms of a unit
+            duration when `preferred_denominator` is set to a duration. The
+            setting does not affect the first tuplet:
 
             ::
 
@@ -965,8 +959,8 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Sets the preferred denominator of each tuplet in 
-            terms 32nd notes. The setting affects all tuplets:
+            Sets the preferred denominator of each tuplet in terms 32nd notes.
+            The setting affects all tuplets:
 
             ::
 
@@ -1025,8 +1019,8 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Sets the preferred denominator each tuplet in terms
-            64th notes. The setting affects all tuplets:
+            Sets the preferred denominator each tuplet in terms 64th notes. The
+            setting affects all tuplets:
 
             ::
 
@@ -1085,10 +1079,10 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 6.** The preferred denominator of each tuplet is set
-            directly when `preferred_denominator` is set to a positive integer.
-            This example sets the preferred denominator of each tuplet to
-            ``8``. Setting does not affect the third tuplet:
+            The preferred denominator of each tuplet is set directly when
+            `preferred_denominator` is set to a positive integer. This example
+            sets the preferred denominator of each tuplet to ``8``. Setting
+            does not affect the third tuplet:
 
             ::
 
@@ -1147,8 +1141,8 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 7.** Sets the preferred denominator of each tuplet to
-            ``12``. Setting affects all tuplets:
+            Sets the preferred denominator of each tuplet to ``12``. Setting
+            affects all tuplets:
 
             ::
 
@@ -1207,8 +1201,8 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 8.** Sets the preferred denominator of each tuplet to
-            ``13``. Setting does not affect any tuplet:
+            Sets the preferred denominator of each tuplet to ``13``. Setting
+            does not affect any tuplet:
 
             ::
 
@@ -1277,7 +1271,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Ties nothing:
+            Ties nothing:
 
             ::
 
@@ -1326,11 +1320,9 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Ties across all divisions:
+            Ties across all divisions:
 
             ::
 
@@ -1381,7 +1373,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Ties across every other division:
+            Ties across every other division:
 
             ::
 
@@ -1454,7 +1446,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Makes tuplets with ``3:2`` ratios:
+            Makes tuplets with ``3:2`` ratios:
 
             ::
 
@@ -1508,8 +1500,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Makes tuplets with alternating ``1:-1`` and ``3:1`` 
-            ratios:
+            Makes tuplets with alternating ``1:-1`` and ``3:1`` ratios:
 
             ::
 
@@ -1576,7 +1567,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Makes diminished tuplets and does not avoid dots:
+            Makes diminished tuplets and does not avoid dots:
 
             ::
 
@@ -1625,11 +1616,9 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Makes diminished tuplets and avoids dots:
+            Makes diminished tuplets and avoids dots:
 
             ::
 
@@ -1682,7 +1671,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Makes augmented tuplets and does not avoid dots:
+            Makes augmented tuplets and does not avoid dots:
 
             ::
 
@@ -1733,7 +1722,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Makes augmented tuplets and avoids dots:
+            Makes augmented tuplets and avoids dots:
 
             ::
 
@@ -1786,7 +1775,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Does not simplify tuplets:
+            Does not simplify tuplets:
 
             ::
 
@@ -1844,7 +1833,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 6.** Simplifies tuplets:
+            Simplifies tuplets:
 
             ::
 
@@ -1900,8 +1889,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 7.** Leaves trivial tuplets enclosed in curly braces in
-            LilyPond output:
+            Leaves trivial tuplets enclosed in curly braces in LilyPond output:
 
             ::
 
@@ -1963,11 +1951,11 @@ class TupletRhythmMaker(RhythmMaker):
 
             Runs of eighth notes are enclosed in a first set of curly braces
             (representing trivial tuplets) and a second set of curly braces
-            (representing measures). This is default behavior.
+            (representing measures).
 
         ..  container:: example
 
-            **Example 8.** Flattens trivial tuplets:
+            Flattens trivial tuplets:
 
             ::
 

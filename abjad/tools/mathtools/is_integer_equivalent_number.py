@@ -2,26 +2,25 @@
 import numbers
 
 
-def is_integer_equivalent_number(expr):
-    '''Is true when `expr` is a number and `expr` is equivalent to an integer.
+def is_integer_equivalent_number(argument):
+    '''Is true when `argument` is a number and `argument` is equivalent to an
+    integer. Otherwise false.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.is_integer_equivalent_number(12.0)
-        True
+        ::
 
-    Otherwise false:
+            >>> mathtools.is_integer_equivalent_number(12.0)
+            True
 
-    ::
+        ::
 
-        >>> mathtools.is_integer_equivalent_number(Duration(1, 2))
-        False
+            >>> mathtools.is_integer_equivalent_number(Duration(1, 2))
+            False
 
     Returns true or false.
     '''
-
-    if isinstance(expr, numbers.Number):
-        if int(expr) == expr:
+    if isinstance(argument, numbers.Number):
+        if int(argument) == argument:
             return True
-
     return False

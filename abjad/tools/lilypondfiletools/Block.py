@@ -69,7 +69,7 @@ class Block(AbjadObject):
         return str(self)
 
     def __getitem__(self, name):
-        r'''Gets block item with `name`.
+        r'''Gets item with `name`.
 
         ..  container:: example
 
@@ -85,6 +85,8 @@ class Block(AbjadObject):
 
                 >>> block['Red Example Score']
                 Score(is_simultaneous=True)
+
+        Returns item.
 
         Raises key error when no item with `name` is found.
         '''

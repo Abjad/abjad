@@ -6,7 +6,7 @@ def select(indices=None, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Selects index 2:
+        Selects index 2:
 
         ::
 
@@ -21,7 +21,7 @@ def select(indices=None, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Selects indices 2, 3 and 5:
+        Selects indices 2, 3 and 5:
 
         ::
 

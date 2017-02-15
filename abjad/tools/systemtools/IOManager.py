@@ -45,12 +45,13 @@ class IOManager(AbjadObject):
     @staticmethod
     def _make_score_package(
         score_package_path,
-        score_title,
-        year,
-        composer_full_name,
-        composer_email,
-        composer_github_username,
-        composer_library_package_name,
+        composer_email=None,
+        composer_full_name=None,
+        composer_last_name=None,
+        composer_github_username=None,
+        composer_library_package_name=None,
+        score_title=None,
+        year=None,
         ):
         from abjad.tools import systemtools
         configuration = systemtools.AbjadConfiguration()
@@ -91,11 +92,12 @@ class IOManager(AbjadObject):
                     template = file_pointer.read()
                 try:
                     completed_template = template.format(
-                        score_package_name=score_package_name,
                         composer_email=composer_email,
                         composer_full_name=composer_full_name,
                         composer_github_username=composer_github_username,
+                        composer_last_name=composer_last_name,
                         composer_library_package_name=composer_library_package_name,
+                        score_package_name=score_package_name,
                         score_title=score_title,
                         year=year,
                         )
@@ -104,11 +106,12 @@ class IOManager(AbjadObject):
                     for i, line in enumerate(lines):
                         try:
                             lines[i] = line.format(
-                                score_package_name=score_package_name,
                                 composer_email=composer_email,
                                 composer_full_name=composer_full_name,
                                 composer_github_username=composer_github_username,
+                                composer_last_name=composer_last_name,
                                 composer_library_package_name=composer_library_package_name,
+                                score_package_name=score_package_name,
                                 score_title=score_title,
                                 year=year,
                                 )
@@ -164,7 +167,7 @@ class IOManager(AbjadObject):
         ):
         '''Counts function calls required to execute `expr`.
 
-        Wraps ``IOManager.profile_expr(expr)``.
+        Wraps ``IOManager.profile(expr)``.
 
         Returns nonnegative integer.
         '''
@@ -177,7 +180,7 @@ class IOManager(AbjadObject):
             last_result, current_result = 'foo', 'bar'
             while current_result != last_result:
                 last_result = current_result
-                current_result = IOManager.profile_expr(
+                current_result = IOManager.profile(
                     expr,
                     print_to_terminal=False,
                     global_context=global_context,
@@ -185,7 +188,7 @@ class IOManager(AbjadObject):
                     )
                 current_result = extract_count(current_result)
             return current_result
-        result = IOManager.profile_expr(
+        result = IOManager.profile(
             expr,
             print_to_terminal=False,
             global_context=global_context,
@@ -501,7 +504,7 @@ class IOManager(AbjadObject):
             print(message)
 
     @staticmethod
-    def profile_expr(
+    def profile(
         expr,
         sort_by='cumulative',
         line_count=12, strip_dirs=True,
@@ -518,7 +521,7 @@ class IOManager(AbjadObject):
             ::
 
                 >>> expr = 'Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
-                >>> systemtools.IOManager.profile_expr(
+                >>> systemtools.IOManager.profile(
                 ...     expr,
                 ...     global_context=globals(),
                 ...     ) # doctest: +SKIP

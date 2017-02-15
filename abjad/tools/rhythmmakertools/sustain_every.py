@@ -7,7 +7,7 @@ def sustain_every(indices, period, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Sustains every second division:
+        Sustains every second division:
 
         ::
 
@@ -60,7 +60,7 @@ def sustain_every(indices, period, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Sustains every second and third division:
+        Sustains every second and third division:
 
         ::
 

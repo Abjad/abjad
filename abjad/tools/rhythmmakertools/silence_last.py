@@ -7,7 +7,7 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 1.** Silences last division:
+        Silences last division:
 
         ::
 
@@ -59,7 +59,7 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 2.** Silences last two divisions:
+        Silences last two divisions:
 
         ::
 
@@ -111,7 +111,7 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 3.** Silences no last divisions:
+        Silences no last divisions:
 
         ::
 

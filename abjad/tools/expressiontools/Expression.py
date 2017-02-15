@@ -512,11 +512,11 @@ class Expression(AbjadObject):
         message = message.format(type(self).__name__, name)
         raise AttributeError(message)
 
-    def __getitem__(self, i):
+    def __getitem__(self, argument):
         r'''Gets proxy method.
         '''
         proxy_method = self.__getattr__('__getitem__')
-        return proxy_method(i)
+        return proxy_method(argument)
 
     def __hash__(self):
         r'''Hashes expression.

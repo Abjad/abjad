@@ -59,22 +59,26 @@ class TupletSpellingSpecifier(AbjadValueObject):
             divisions = len(tuplets) * [None]
         assert len(selections) == len(divisions)
         assert len(tuplets) == len(divisions)
+        preferred_denominator = self.preferred_denominator
+        if isinstance(preferred_denominator, tuple):
+            preferred_denominator = durationtools.Duration(
+                preferred_denominator,
+                )
         for tuplet, division in zip(tuplets, divisions):
-            if self.preferred_denominator == 'divisions':
+            if preferred_denominator == 'divisions':
                 tuplet.preferred_denominator = division.numerator
-            elif isinstance(
-                self.preferred_denominator, durationtools.Duration):
-                unit_duration = self.preferred_denominator
+            elif isinstance(preferred_denominator, durationtools.Duration):
+                unit_duration = preferred_denominator
                 assert unit_duration.numerator == 1
                 duration = inspect_(tuplet).get_duration()
                 denominator = unit_duration.denominator
                 nonreduced_fraction = duration.with_denominator(denominator)
                 tuplet.preferred_denominator = nonreduced_fraction.numerator
-            elif mathtools.is_positive_integer(self.preferred_denominator):
-                tuplet.preferred_denominator = self.preferred_denominator
+            elif mathtools.is_positive_integer(preferred_denominator):
+                tuplet.preferred_denominator = preferred_denominator
             else:
                 message = 'invalid value for preferred denominator: {!r}.'
-                message = message.format(self.preferred_denominator)
+                message = message.format(preferred_denominator)
                 raise Exception(message)
 
     def _do_simplify_redundant_tuplets(self, selections):
@@ -129,11 +133,498 @@ class TupletSpellingSpecifier(AbjadValueObject):
     def preferred_denominator(self):
         r'''Gets preferred denominator.
 
+        ..  container:: example
+
+            Tuplet numerators and denominators are reduced to numbers that are
+            relatively prime when `preferred_denominator` is set to none. This
+            means that ratios like ``6:4`` and ``10:8`` do not arise:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 4)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         preferred_denominator=None,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+                >>> selections = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 4/5 {
+                            c'16
+                            c'4
+                        }
+                    }
+                    {
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8
+                            c'2
+                        }
+                    }
+                    {
+                        \time 8/16
+                        \times 4/5 {
+                            c'8
+                            c'2
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            The preferred denominator of each tuplet is set to the numerator of
+            the division that generates the tuplet when `preferred_denominator`
+            is set to the string ``'divisions'``. This means that the tuplet
+            numerator and denominator are not necessarily relatively prime.
+            This also means that ratios like ``6:4`` and ``10:8`` may arise:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 4)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         preferred_denominator='divisions',
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+                >>> selections = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 4/5 {
+                            c'16
+                            c'4
+                        }
+                    }
+                    {
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 6/10 {
+                            c'8
+                            c'2
+                        }
+                    }
+                    {
+                        \time 8/16
+                        \times 8/10 {
+                            c'8
+                            c'2
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            The preferred denominator of each tuplet is set in terms of a unit
+            duration when `preferred_denominator` is set to a duration. The
+            setting does not affect the first tuplet:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 4)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         preferred_denominator=Duration(1, 16),
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+                >>> selections = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 4/5 {
+                            c'16
+                            c'4
+                        }
+                    }
+                    {
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 6/10 {
+                            c'8
+                            c'2
+                        }
+                    }
+                    {
+                        \time 8/16
+                        \times 8/10 {
+                            c'8
+                            c'2
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            Sets the preferred denominator of each tuplet in terms 32nd notes.
+            The setting affects all tuplets:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 4)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         preferred_denominator=Duration(1, 32),
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+                >>> selections = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 8/10 {
+                            c'16
+                            c'4
+                        }
+                    }
+                    {
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 12/20 {
+                            c'8
+                            c'2
+                        }
+                    }
+                    {
+                        \time 8/16
+                        \times 16/20 {
+                            c'8
+                            c'2
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            Sets the preferred denominator each tuplet in terms 64th notes. The
+            setting affects all tuplets:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 4)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         preferred_denominator=Duration(1, 64),
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+                >>> selections = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 2/16
+                        \times 8/10 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 16/20 {
+                            c'16
+                            c'4
+                        }
+                    }
+                    {
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 24/40 {
+                            c'8
+                            c'2
+                        }
+                    }
+                    {
+                        \time 8/16
+                        \times 32/40 {
+                            c'8
+                            c'2
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            The preferred denominator of each tuplet is set directly when
+            `preferred_denominator` is set to a positive integer. This example
+            sets the preferred denominator of each tuplet to ``8``. Setting
+            does not affect the third tuplet:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 4)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         preferred_denominator=8,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+                >>> selections = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 2/16
+                        \times 8/10 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 8/10 {
+                            c'16
+                            c'4
+                        }
+                    }
+                    {
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8
+                            c'2
+                        }
+                    }
+                    {
+                        \time 8/16
+                        \times 8/10 {
+                            c'8
+                            c'2
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            Sets the preferred denominator of each tuplet to ``12``. Setting
+            affects all tuplets:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 4)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         preferred_denominator=12,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+                >>> selections = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 2/16
+                        \times 12/15 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 12/15 {
+                            c'16
+                            c'4
+                        }
+                    }
+                    {
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 12/20 {
+                            c'8
+                            c'2
+                        }
+                    }
+                    {
+                        \time 8/16
+                        \times 12/15 {
+                            c'8
+                            c'2
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            Sets the preferred denominator of each tuplet to ``13``. Setting
+            does not affect any tuplet:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(1, 4)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         preferred_denominator=13,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
+                >>> selections = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 2/16
+                        \times 4/5 {
+                            c'32 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/16
+                        \times 4/5 {
+                            c'16
+                            c'4
+                        }
+                    }
+                    {
+                        \time 6/16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'8
+                            c'2
+                        }
+                    }
+                    {
+                        \time 8/16
+                        \times 4/5 {
+                            c'8
+                            c'2
+                        }
+                    }
+                }
+
         Defaults to none.
 
-        Set to ``'divisions'``, duration, integer or none.
+        Set to ``'divisions'``, duration, positive integer or none.
 
-        Returns ``'divisions'``, duration, integer or none.
+        Returns ``'divisions'``, duration, positive integer or none.
         '''
         return self._preferred_denominator
 

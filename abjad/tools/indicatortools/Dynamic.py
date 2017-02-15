@@ -120,6 +120,7 @@ class Dynamic(AbjadValueObject):
         'spp',
         'sfz',
         'sffz',
+        'sfffz',
         'sffp',
         'sffpp',
         'sfp',

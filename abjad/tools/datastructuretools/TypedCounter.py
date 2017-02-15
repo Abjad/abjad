@@ -92,13 +92,13 @@ class TypedCounter(TypedCollection):
         if item in self._collection:
             dict.__delitem__(self._collection, item)
 
-    def __getitem__(self, item):
-        r'''Gets `item` from typed counter.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
-        Returns item.
+        Returns item or slice.
         '''
-        item = self._item_coercer(item)
-        return self._collection[item]
+        argument = self._item_coercer(argument)
+        return self._collection.__getitem__(argument)
 
     # TODO: This method is never accessed.
     def __missing__(self, item):

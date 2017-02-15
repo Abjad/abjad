@@ -6,7 +6,7 @@ def select_all(inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Selects all divisions for tie creation:
+        Selects all divisions for tie creation:
 
         ::
 

@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class LogicalMeasureSelectorCallback(AbjadValueObject):
-    r'''A logical measure selector callback.
+    r'''Logical measure selector callback.
 
     ..  container:: example
 
@@ -102,14 +102,14 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         Returns tuple of selections.
         '''
-        assert isinstance(expr, tuple), repr(expr)
+        assert isinstance(argument, tuple), repr(argument)
         selections = []
-        for subexpr in expr:
+        for subexpr in argument:
             selections_ = self._group(subexpr)
             selections.extend(selections_)
         return tuple(selections)
@@ -117,26 +117,26 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
     ### PRIVATE METHODS ###
 
 
-    def _get_first_component(self, expr):
+    def _get_first_component(self, argument):
         from abjad.tools import scoretools
-        if isinstance(expr, scoretools.Component):
-            return expr
+        if isinstance(argument, scoretools.Component):
+            return argument
         else:
-            component = expr[0]
+            component = argument[0]
             assert isinstance(component, scoretools.Component)
             return component
 
-    def _get_logical_measure_number(self, expr):
-        first_component = self._get_first_component(expr)
+    def _get_logical_measure_number(self, argument):
+        first_component = self._get_first_component(argument)
         assert first_component._logical_measure_number is not None
         return first_component._logical_measure_number
 
-    def _group(self, expr):
+    def _group(self, argument):
         selections = []
-        first_component = self._get_first_component(expr)
+        first_component = self._get_first_component(argument)
         first_component._update_logical_measure_numbers()
         pairs = itertools.groupby(
-            expr,
+            argument,
             lambda _: self._get_logical_measure_number(_),
             )
         for value, group in pairs:

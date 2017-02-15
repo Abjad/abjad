@@ -10,7 +10,7 @@ class TrillSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 1.** Attaches unpitched trill spanner to all notes in staff:
+        Attaches unpitched trill spanner to all notes in staff:
 
         ::
 
@@ -31,7 +31,7 @@ class TrillSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 2.** Attaches pitched trill spanner to all notes in staff:
+        Attaches pitched trill spanner to all notes in staff:
 
         ::
 
@@ -53,7 +53,7 @@ class TrillSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 3.** Requires at least two leaves:
+        Requires at least two leaves:
 
         ::
 
@@ -150,7 +150,7 @@ class TrillSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Attaches semitone trill:
+            Attaches semitone trill:
 
             ::
 
@@ -174,7 +174,7 @@ class TrillSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 2.** Attaches whole tone trill:
+            Attaches whole tone trill:
 
             ::
 
@@ -211,7 +211,7 @@ class TrillSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Attaches harmonic trill:
+            Attaches harmonic trill:
 
             ::
 
@@ -249,7 +249,7 @@ class TrillSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Returns pitch when trill spanner is pitched:
+            Returns pitch when trill spanner is pitched:
 
             ::
 
@@ -276,7 +276,7 @@ class TrillSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 2.** Returns none when trill spanner is unpitched:
+            Returns none when trill spanner is unpitched:
 
             ::
 
@@ -316,7 +316,7 @@ class TrillSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Returns pitch when trill spanner is pitched:
+            Returns pitch when trill spanner is pitched:
 
             ::
 
@@ -343,7 +343,7 @@ class TrillSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 2.** Returns none when trill spanner is unpitched:
+            Returns none when trill spanner is unpitched:
 
             ::
 

@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class ExtraLeafSelectorCallback(AbjadValueObject):
-    r'''An extra leaf selector callback.
+    r'''Extra leaf selector callback.
     '''
 
     ### CLASS VARIABLES ###
@@ -27,22 +27,25 @@ class ExtraLeafSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         Returns tuple in which each item is a selection or component.
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools.topleveltools import select
-        assert isinstance(expr, tuple), repr(expr)
+        assert isinstance(argument, tuple), repr(argument)
         result = []
-        for subexpr in expr:
+        for subexpr in argument:
             if isinstance(subexpr, scoretools.Leaf):
                 subexpr = selectiontools.Selection([subexpr])
             subresult = []
             if self.with_previous_leaf:
-                first_leaf = subexpr[0]
+                if isinstance(subexpr[0], selectiontools.LogicalTie):
+                    first_leaf = subexpr[0].head
+                else:
+                    first_leaf = subexpr[0]
                 previous_leaf = first_leaf._get_leaf(-1)
                 if previous_leaf is not None:
                     subresult.append(previous_leaf)
@@ -51,7 +54,10 @@ class ExtraLeafSelectorCallback(AbjadValueObject):
             else:
                 subresult.append(subexpr)
             if self.with_next_leaf:
-                last_leaf = subexpr[-1]
+                if isinstance(subexpr[-1], selectiontools.LogicalTie):
+                    last_leaf = subexpr[-1].tail
+                else:
+                    last_leaf = subexpr[-1]
                 next_leaf = last_leaf._get_leaf(1)
                 if next_leaf is not None:
                     subresult.append(next_leaf)

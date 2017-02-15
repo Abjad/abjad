@@ -9,8 +9,8 @@ class PartitionTable(TypedOrderedDict):
 
     ..  container:: example
 
-        **Example 1.** Partitions integers roughly ``1:1`` (restricted to
-        assignable values) with larger half on left:
+        Partitions integers roughly ``1:1`` (restricted to assignable values)
+        with larger half on left:
 
         ::
 
@@ -47,8 +47,8 @@ class PartitionTable(TypedOrderedDict):
 
     ..  container:: example
 
-        **Example 2.** Partitions integers roughly ``1:1`` (restricted to
-        assignable values) with larger half on right:
+        Partitions integers roughly ``1:1`` (restricted to assignable values)
+        with larger half on right:
 
         ::
 
@@ -107,7 +107,7 @@ class PartitionTable(TypedOrderedDict):
 
         ..  container:: example
 
-            **Example 1.** Respells divisions according to table:
+            Respells divisions according to table:
 
             ::
 
@@ -142,7 +142,7 @@ class PartitionTable(TypedOrderedDict):
 
         ..  container:: example
 
-            **Example 2.** Respells divisions according to another table:
+            Respells divisions according to another table:
 
             ::
 

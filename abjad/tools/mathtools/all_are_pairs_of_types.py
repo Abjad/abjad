@@ -1,39 +1,42 @@
 # -*- coding: utf-8 -*-
 
 
-def all_are_pairs_of_types(expr, first_type, second_type):
-    r'''Is true when `expr` is a sequence whose members are all sequences of
-    length 2, and where the first member of each pair is an instance of
-    `first_type` and where the second member of each pair is an instance
-    of `second_type`.
+def all_are_pairs_of_types(argument, first_type, second_type):
+    r'''Is true when `argument` is an iterable collection whose members are all
+    of length 2, and where the first member of each pair is an instance of
+    `first_type` and where the second member of each pair is an instance of
+    `second_type`. Otherwise false.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.all_are_pairs_of_types([(1., 'a'), (2.1, 'b'), (3.45, 'c')], float, str)
-        True
+        ::
 
-    Is true when `expr` is an empty sequence:
+            >>> items = [(1., 'a'), (2.1, 'b'), (3.45, 'c')]
+            >>> mathtools.all_are_pairs_of_types(items, float, str)
+            True
 
-    ::
+        ::
 
-        >>> mathtools.all_are_pairs_of_types([], float, str)
-        True
+            >>> mathtools.all_are_pairs_of_types('foo', float, str)
+            False
 
-    Otherwise false:
+    ..  container:: example
 
-    ::
+        Is true when `argument` is empty:
 
-        >>> mathtools.all_are_pairs_of_types('foo', float, str)
-        False
+        ::
+
+            >>> mathtools.all_are_pairs_of_types([], float, str)
+            True
 
     Returns true or false.
     '''
-
     try:
-        return all(len(x) == 2 and \
-            isinstance(x[0], first_type) and \
-            isinstance(x[1], second_type) for x in expr)
-    except TypeError:
-        return False
-    except KeyError:
+        return all(
+            (len(_) == 2 and
+            isinstance(_[0], first_type) and
+            isinstance(_[1], second_type))
+            for _ in argument
+            )
+    except (KeyError, TypeError):
         return False

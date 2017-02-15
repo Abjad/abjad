@@ -21,7 +21,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        **Example 1.** Repeats talea of 1/16, 2/16, 3/16, 4/16:
+        Repeats talea of 1/16, 2/16, 3/16, 4/16:
 
         ::
 
@@ -75,7 +75,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        **Example 2.** Formats rhythm-maker:
+        Formats rhythm-maker:
 
         ::
 
@@ -282,7 +282,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Formats talea rhythm-maker:
+            Formats talea rhythm-maker:
 
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -303,7 +303,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Storage formats talea rhythm-maker:
+            Storage formats talea rhythm-maker:
 
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -679,7 +679,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Beams each division:
+            Beams each division:
 
             ::
 
@@ -749,11 +749,9 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Beams divisions together:
+            Beams divisions together:
 
             ::
 
@@ -881,7 +879,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Beams nothing:
+            Beams nothing:
 
             ::
 
@@ -954,7 +952,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Does not beam rests:
+            Does not beam rests:
 
             ::
 
@@ -1026,7 +1024,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Does beam rests:
+            Does beam rests:
 
             ::
 
@@ -1099,7 +1097,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 6.** Beams rests with stemlets:
+            Beams rests with stemlets:
 
             ::
 
@@ -1191,8 +1189,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Forces the first leaf and the last two leaves to be
-            rests:
+            Forces the first leaf and the last two leaves to be rests:
 
             ::
 
@@ -1253,8 +1250,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Forces the first leaf of every division to be a
-            rest:
+            Forces the first leaf of every division to be a rest:
 
             ::
 
@@ -1322,7 +1318,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No division masks:
+            No division masks:
 
             ::
 
@@ -1376,7 +1372,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every other output division:
+            Silences every other output division:
 
             ::
 
@@ -1429,7 +1425,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Sustains every other output division:
+            Sustains every other output division:
 
             ::
 
@@ -1480,7 +1476,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Silences every other secondary output division:
+            Silences every other secondary output division:
 
             ::
 
@@ -1544,7 +1540,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Sustains every other secondary output division:
+            Sustains every other secondary output division:
 
             ::
 
@@ -1619,8 +1615,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Spells nonassignable durations with monontonically
-            decreasing durations:
+            Spells nonassignable durations with monontonically decreasing
+            durations:
 
             ::
 
@@ -1669,12 +1665,10 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Spells nonassignable durations with monontonically
-            increasing durations:
+            Spells nonassignable durations with monontonically increasing
+            durations:
 
             ::
 
@@ -1725,7 +1719,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Forbids no durations:
+            Forbids no durations:
 
             ::
 
@@ -1772,11 +1766,9 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 4.** Forbids durations equal to ``1/4`` or greater:
+            Forbids durations equal to ``1/4`` or greater:
 
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -1829,7 +1821,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Spells all durations metrically:
+            Spells all durations metrically:
 
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -1883,7 +1875,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 6.** Spells unassignable durations metrically:
+            Spells unassignable durations metrically:
 
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -1933,7 +1925,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 7.** Rewrites meter:
+            Rewrites meter:
 
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -1995,7 +1987,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No extra counts per division:
+            No extra counts per division:
 
             ::
 
@@ -2049,7 +2041,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Adds one extra count to every other division:
+            Adds one extra count to every other division:
 
             ::
 
@@ -2112,7 +2104,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Adds two extra counts to every other division:
+            Adds two extra counts to every other division:
 
             ::
 
@@ -2180,7 +2172,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Removes one count from every other division:
+            Removes one count from every other division:
 
             ::
 
@@ -2265,7 +2257,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Silences every third logical tie:
+            Silences every third logical tie:
 
             ::
 
@@ -2319,7 +2311,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences the first and last logical ties:
+            Silences the first and last logical ties:
 
             ::
 
@@ -2383,7 +2375,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Reads talea cyclically:
+            Reads talea cyclically:
 
             ::
 
@@ -2434,7 +2426,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Reads talea once only:
+            Reads talea once only:
 
             ::
 
@@ -2479,7 +2471,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Does not rest tied notes:
+            Does not rest tied notes:
 
             ::
 
@@ -2530,7 +2522,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Rests tied notes:
+            Rests tied notes:
 
             ::
 
@@ -2596,9 +2588,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Here's a talea equal to two thirty-second notes
-            repeating indefinitely. Output equals four divisions of 12
-            thirty-second notes each:
+            Here's a talea equal to two thirty-second notes repeating
+            indefinitely. Output equals four divisions of 12 thirty-second
+            notes each:
 
             ::
 
@@ -2660,10 +2652,10 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Here's the same talea with secondary divisions set
-            to split the divisions every 17 thirty-second notes. The rhythm_maker
-            makes six divisions with durations equal, respectively, to 12, 5,
-            7, 10, 2 and 12 thirty-second notes.
+            Here's the same talea with secondary divisions set to split the
+            divisions every 17 thirty-second notes. The rhythm_maker makes six
+            divisions with durations equal, respectively, to 12, 5, 7, 10, 2
+            and 12 thirty-second notes.
 
             Note that ``12 + 5 = 17`` and ``7 + 10 = 17``:
 
@@ -2733,10 +2725,9 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** This example adds one extra thirty-second note to
-            every other division. The durations of the divisions remain the
-            same as in the previous example. But now every other division is
-            tupletted:
+            This example adds one extra thirty-second note to every other
+            division. The durations of the divisions remain the same as in the
+            previous example. But now every other division is tupletted:
 
             ::
 
@@ -2828,7 +2819,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No talea:
+            No talea:
 
             ::
 
@@ -2865,8 +2856,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Talea equal to durations ``1/16``, ``2/16``,
-            ``3/16``, ``4/16`` repeating indefinitely:
+            Talea equal to durations ``1/16``, ``2/16``, ``3/16``, ``4/16``
+            repeating indefinitely:
 
             ::
 
@@ -2927,7 +2918,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Does not tie across divisions:
+            Does not tie across divisions:
 
             ::
 
@@ -2976,11 +2967,9 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Ties across divisions:
+            Ties across divisions:
 
             ::
 
@@ -3034,7 +3023,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Patterns ties across divisions:
+            Patterns ties across divisions:
 
             ::
 
@@ -3092,7 +3081,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Uses Messiaen-style ties:
+            Uses Messiaen-style ties:
 
             ::
 
@@ -3147,7 +3136,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Ties consecutive notes:
+            Ties consecutive notes:
 
             ::
 
@@ -3225,7 +3214,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Redudant tuplets with no tuplet spelling specifier:
+            Redudant tuplets with no tuplet spelling specifier:
 
             ::
 
@@ -3283,7 +3272,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Simplifies redundant tuplets:
+            Simplifies redundant tuplets:
 
             ::
 
@@ -3344,8 +3333,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Rest-filled tuplets with no tuplet spelling
-            specifier:
+            Rest-filled tuplets with no tuplet spelling specifier:
 
             ::
 
@@ -3408,7 +3396,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Rewrites rest-filled tuplets:
+            Rewrites rest-filled tuplets:
 
             ::
 

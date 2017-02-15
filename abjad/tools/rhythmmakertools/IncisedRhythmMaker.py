@@ -482,7 +482,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No division masks:
+            No division masks:
 
             ::
 
@@ -534,7 +534,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Masks every other output division:
+            Masks every other output division:
 
             ::
 
@@ -599,7 +599,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Spells durations with the fewest number of glyphs:
+            Spells durations with the fewest number of glyphs:
 
             ::
 
@@ -647,8 +647,8 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Forbids notes with written duration greater than or
-            equal to ``1/2``:
+            Forbids notes with written duration greater than or equal to
+            ``1/2``:
 
             ::
 
@@ -703,8 +703,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Spells all divisions metrically when
-            `spell_metrically` is true:
+            Spells all divisions metrically when `spell_metrically` is true:
 
             ::
 
@@ -757,7 +756,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Spells only unassignable durations metrically when
+            Spells only unassignable durations metrically when
             `spell_metrically` is ``'unassignable'``:
 
             ::
@@ -809,7 +808,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Rewrites meter:
+            Rewrites meter:
 
             ::
 
@@ -886,7 +885,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Doesn't incise:
+            Doesn't incise:
 
             ::
 
@@ -923,8 +922,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Fills divisions with notes. 
-            Incises outer divisions only:
+            Fills divisions with notes. Incises outer divisions only:
 
             ::
 
@@ -976,8 +974,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Fills divisions with rests. Incises outer divisions
-            only:
+            Fills divisions with rests. Incises outer divisions only:
 
             ::
 
@@ -1038,7 +1035,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No logical tie masks:
+            No logical tie masks:
 
             ::
 
@@ -1090,7 +1087,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every other logical tie:
+            Silences every other logical tie:
 
             ::
 
@@ -1159,7 +1156,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Does not replace rests with skips:
+            Does not replace rests with skips:
 
             ::
 
@@ -1213,7 +1210,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Does replace rests with skips:
+            Does replace rests with skips:
 
             ::
 
@@ -1288,7 +1285,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Does not tie across divisions:
+            Does not tie across divisions:
 
             ::
 
@@ -1334,11 +1331,9 @@ class IncisedRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Ties across divisions:
+            Ties across divisions:
 
             ::
 
@@ -1389,7 +1384,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Patterns ties across divisions:
+            Patterns ties across divisions:
 
             ::
 
@@ -1444,7 +1439,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Uses Messiaen-style ties:
+            Uses Messiaen-style ties:
 
             ::
 
@@ -1496,7 +1491,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Strips all ties:
+            Strips all ties:
 
             ::
 
@@ -1547,8 +1542,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 6.** Spells durations metrically and then strips all
-            ties:
+            Spells durations metrically and then strips all ties:
 
             ::
 
@@ -1601,8 +1595,6 @@ class IncisedRhythmMaker(RhythmMaker):
                         r8
                     }
                 }
-
-        Defaults to none.
 
         Set to tie specifier or none.
 

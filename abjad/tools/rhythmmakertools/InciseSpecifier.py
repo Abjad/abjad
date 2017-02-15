@@ -9,8 +9,8 @@ class InciseSpecifier(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Specifies one sixteenth rest cut out of the beginning
-        of every division:
+        Specifies one sixteenth rest cut out of the beginning of every
+        division:
 
         ::
 
@@ -22,8 +22,8 @@ class InciseSpecifier(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Specifies sixteenth rests cut out of the beginning and
-        end of each division:
+        Specifies sixteenth rests cut out of the beginning and end of each
+        division:
 
         ::
 
@@ -116,7 +116,7 @@ class InciseSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Formats incise specifier:
+            Formats incise specifier:
 
             ::
 
@@ -137,7 +137,7 @@ class InciseSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Formats incise specifier:
+            Formats incise specifier:
 
             ::
 
@@ -219,7 +219,7 @@ class InciseSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Divides middle part of every division ``1:1``:
+            Divides middle part of every division ``1:1``:
 
             ::
 

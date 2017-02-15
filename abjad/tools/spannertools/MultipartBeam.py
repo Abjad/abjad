@@ -5,18 +5,16 @@ from abjad.tools.spannertools.Beam import Beam
 class MultipartBeam(Beam):
     r'''Multipart beam.
 
+    Beams together everything that can be beamed and ignores everything else.
+
     ..  container:: example
 
         ::
 
             >>> staff = Staff("c'8 d'8 e'4 f'8 g'8 r4")
-            >>> set_(staff).auto_beaming = False
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
             >>> beam = spannertools.MultipartBeam()
             >>> attach(beam, staff[:])
+            >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -28,6 +26,31 @@ class MultipartBeam(Beam):
                 c'8 [
                 d'8 ]
                 e'4
+                f'8 [
+                g'8 ]
+                r4
+            }
+
+    ..  container:: example
+
+        ::
+
+            >>> staff = Staff("c'8 r8 d'8 r8 f'8 g'8 r4")
+            >>> beam = spannertools.MultipartBeam()
+            >>> attach(beam, staff[:])
+            >>> set_(staff).auto_beaming = False
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                c'8
+                r8
+                d'8
+                r8
                 f'8 [
                 g'8 ]
                 r4
@@ -66,14 +89,14 @@ class MultipartBeam(Beam):
 
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        if not self._is_beamable_component(leaf, beam_rests=self.beam_rests):
+        if not self._is_beamable(leaf, beam_rests=self.beam_rests):
             return lilypond_format_bundle
         direction_string = ''
         if self.direction is not None:
             direction_string = '{} '.format(self.direction)
         beamable_leaf_count = 0
         for leaf_ in self._get_leaves():
-            if self._is_beamable_component(leaf_, beam_rests=self.beam_rests):
+            if self._is_beamable(leaf_, beam_rests=self.beam_rests):
                 beamable_leaf_count += 1
         if 2 <= beamable_leaf_count:
             previous_leaf = leaf._get_leaf(-1)
@@ -86,37 +109,37 @@ class MultipartBeam(Beam):
             stop_piece = None
             if self._is_my_first_leaf(leaf):
                 if next_leaf is not None:
-                    if self._is_beamable_component(
+                    if self._is_beamable(
                         next_leaf,
                         beam_rests=self.beam_rests,
                         ):
                         start_piece = '{}['.format(direction_string)
             else:
                 if previous_leaf is not None:
-                    if not self._is_beamable_component(
+                    if not self._is_beamable(
                         previous_leaf,
                         beam_rests=self.beam_rests,
                         ):
-                        if self._is_beamable_component(
+                        if self._is_beamable(
                             next_leaf,
                             beam_rests=self.beam_rests,
                             ):
                             start_piece = '{}['.format(direction_string)
             if self._is_my_last_leaf(leaf):
                 if previous_leaf is not None:
-                    if self._is_beamable_component(
+                    if self._is_beamable(
                         previous_leaf,
                         beam_rests=self.beam_rests,
                         ):
                         stop_piece = ']'
             else:
-                if self._is_beamable_component(
+                if self._is_beamable(
                     previous_leaf,
                     beam_rests=self.beam_rests,
                     ):
                     next_leaf = leaf._get_leaf(1)
                     if next_leaf is not None:
-                        if not self._is_beamable_component(
+                        if not self._is_beamable(
                             next_leaf,
                             beam_rests=self.beam_rests,
                             ):

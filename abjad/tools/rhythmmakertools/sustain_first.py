@@ -7,7 +7,7 @@ def sustain_first(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Sustains first division:
+        Sustains first division:
 
         ::
 
@@ -82,7 +82,7 @@ def sustain_first(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Sustains first two divisions:
+        Sustains first two divisions:
 
         ::
 

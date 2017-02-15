@@ -45,6 +45,7 @@ from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Multiplier
 from abjad.tools.durationtools import Offset
 from abjad.tools.datastructuretools import CyclicTuple
+from abjad.tools.datastructuretools import TypedOrderedDict
 from abjad.tools.expressiontools import Expression
 from abjad.tools.indicatortools import Accelerando
 from abjad.tools.indicatortools import Annotation
@@ -66,9 +67,11 @@ from abjad.tools.indicatortools import KeySignature
 from abjad.tools.indicatortools import LaissezVibrer
 from abjad.tools.indicatortools import LilyPondCommand
 from abjad.tools.indicatortools import LilyPondComment
+from abjad.tools.indicatortools import LilyPondLiteral
 from abjad.tools.indicatortools import LineSegment
 from abjad.tools.indicatortools import MetricModulation
 from abjad.tools.indicatortools import PageBreak
+from abjad.tools.indicatortools import RehearsalMark
 from abjad.tools.indicatortools import Repeat
 from abjad.tools.indicatortools import Ritardando
 from abjad.tools.indicatortools import StaffChange
@@ -84,6 +87,7 @@ from abjad.tools.lilypondfiletools import LilyPondFile
 from abjad.tools.markuptools import Markup
 from abjad.tools.markuptools import MarkupList
 from abjad.tools.mathtools import Infinity
+Infinity = Infinity()
 from abjad.tools.mathtools import NonreducedFraction
 from abjad.tools.mathtools import NonreducedRatio
 from abjad.tools.mathtools import Ratio
@@ -117,10 +121,12 @@ from abjad.tools.schemetools import SchemeSymbol
 from abjad.tools.schemetools import SchemeVector
 from abjad.tools.scoretools import Chord
 from abjad.tools.scoretools import Cluster
+from abjad.tools.scoretools import Component
 from abjad.tools.scoretools import Container
 from abjad.tools.scoretools import Context
 from abjad.tools.scoretools import FixedDurationTuplet
 from abjad.tools.scoretools import GraceContainer
+from abjad.tools.scoretools import Leaf
 from abjad.tools.scoretools import Measure
 from abjad.tools.scoretools import Measure
 from abjad.tools.scoretools import MultimeasureRest
@@ -152,6 +158,7 @@ from abjad.tools.spannertools import MeasuredComplexBeam
 from abjad.tools.spannertools import MultipartBeam
 from abjad.tools.spannertools import OctavationSpanner
 from abjad.tools.spannertools import PhrasingSlur
+from abjad.tools.spannertools import PianoPedalSpanner
 from abjad.tools.spannertools import Slur
 from abjad.tools.spannertools import Spanner
 from abjad.tools.spannertools import StaffLinesSpanner
@@ -215,11 +222,11 @@ del tools
 from abjad._version import __version_info__, __version__
 del _version
 
-def f(expr):
-    if hasattr(expr, '_publish_storage_format'):
-        print(format(expr, 'storage'))
+def f(argument):
+    if hasattr(argument, '_publish_storage_format'):
+        print(format(argument, 'storage'))
     else:
-        print(format(expr, 'lilypond'))
+        print(format(argument, 'lilypond'))
 
 from abjad import demos
 from abjad import ext

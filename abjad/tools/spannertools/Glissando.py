@@ -56,7 +56,7 @@ class Glissando(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_allow_repeated_pitches',
+        '_allow_repeat_pitches',
         '_allow_ties',
         '_parenthesize_repeated_pitches',
         )
@@ -65,7 +65,7 @@ class Glissando(Spanner):
 
     def __init__(
         self,
-        allow_repeated_pitches=False,
+        allow_repeat_pitches=False,
         allow_ties=False,
         overrides=None,
         parenthesize_repeated_pitches=False,
@@ -75,10 +75,10 @@ class Glissando(Spanner):
             overrides=overrides,
             )
         allow_ties = bool(allow_ties)
-        allow_repeated_pitches = bool(allow_repeated_pitches)
+        allow_repeat_pitches = bool(allow_repeat_pitches)
         parenthesize_repeated_pitches = bool(parenthesize_repeated_pitches)
         self._allow_ties = allow_ties
-        self._allow_repeated_pitches = allow_repeated_pitches
+        self._allow_repeat_pitches = allow_repeat_pitches
         self._parenthesize_repeated_pitches = parenthesize_repeated_pitches
 
     ### PRIVATE METHODS ###
@@ -88,7 +88,7 @@ class Glissando(Spanner):
 
     def _copy_keyword_args(self, new):
         Spanner._copy_keyword_args(self, new)
-        new._allow_repeated_pitches = self.allow_repeated_pitches
+        new._allow_repeat_pitches = self.allow_repeat_pitches
         new._allow_ties = self.allow_ties
         new._parenthesize_repeated_pitches = self.parenthesize_repeated_pitches
 
@@ -117,15 +117,15 @@ class Glissando(Spanner):
             pass
         elif not isinstance(leaf, prototype):
             pass
-        elif self.allow_repeated_pitches and self.allow_ties:
+        elif self.allow_repeat_pitches and self.allow_ties:
             should_attach_glissando = True
-        elif self.allow_repeated_pitches and not self.allow_ties:
+        elif self.allow_repeat_pitches and not self.allow_ties:
             should_attach_glissando = self._is_last_in_tie_chain(leaf)
-        elif not self.allow_repeated_pitches and self.allow_ties:
+        elif not self.allow_repeat_pitches and self.allow_ties:
             if self._next_leaf_changes_current_pitch(leaf):
                 should_attach_glissando = True
         elif (
-            not self.allow_repeated_pitches and
+            not self.allow_repeat_pitches and
             not self.allow_ties):
             if self._next_leaf_changes_current_pitch(leaf):
                 if self._is_last_in_tie_chain(leaf):
@@ -176,19 +176,19 @@ class Glissando(Spanner):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def allow_repeated_pitches(self):
+    def allow_repeat_pitches(self):
         r'''Is true when glissando should allow repeated pitches.
         Otherwise false.
 
         ..  container:: example
 
-            **Example 1.** Does not allow repeated pitches:
+            Does not allow repeated pitches:
 
             ::
 
                 >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
                 >>> glissando = Glissando(
-                ...     allow_repeated_pitches=False,
+                ...     allow_repeat_pitches=False,
                 ...     )
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
@@ -211,13 +211,13 @@ class Glissando(Spanner):
 
         ..  container:: example
 
-            **Example 2.** Allows repeated pitches (but not ties):
+            Allows repeated pitches (but not ties):
 
             ::
 
                 >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
                 >>> glissando = Glissando(
-                ...     allow_repeated_pitches=True,
+                ...     allow_repeat_pitches=True,
                 ...     )
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
@@ -238,13 +238,13 @@ class Glissando(Spanner):
 
         ..  container:: example
 
-            **Example 3.** Allows both repeated pitches and ties:
+            Allows both repeated pitches and ties:
 
             ::
 
                 >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
                 >>> glissando = Glissando(
-                ...     allow_repeated_pitches=True,
+                ...     allow_repeat_pitches=True,
                 ...     allow_ties=True,
                 ...     )
                 >>> attach(glissando, staff[:])
@@ -269,7 +269,7 @@ class Glissando(Spanner):
 
         Defaults to false.
         '''
-        return self._allow_repeated_pitches
+        return self._allow_repeat_pitches
 
     @property
     def allow_ties(self):
@@ -277,13 +277,13 @@ class Glissando(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Does not allow repeated pitches (including ties):
+            Does not allow repeated pitches (including ties):
 
             ::
 
                 >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
                 >>> glissando = Glissando(
-                ...     allow_repeated_pitches=False,
+                ...     allow_repeat_pitches=False,
                 ...     )
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
@@ -306,13 +306,13 @@ class Glissando(Spanner):
 
         ..  container:: example
 
-            **Example 2.** Allows repeated pitches (but not ties):
+            Allows repeated pitches (but not ties):
 
             ::
 
                 >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
                 >>> glissando = Glissando(
-                ...     allow_repeated_pitches=True,
+                ...     allow_repeat_pitches=True,
                 ...     )
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
@@ -333,13 +333,13 @@ class Glissando(Spanner):
 
         ..  container:: example
 
-            **Example 3.** Allows both repeated pitches and ties:
+            Allows both repeated pitches and ties:
 
             ::
 
                 >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
                 >>> glissando = Glissando(
-                ...     allow_repeated_pitches=True,
+                ...     allow_repeat_pitches=True,
                 ...     allow_ties=True,
                 ...     )
                 >>> attach(glissando, staff[:])
@@ -373,7 +373,7 @@ class Glissando(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Does not parenthesize repeated pitches:
+            Does not parenthesize repeated pitches:
 
             ::
 
@@ -400,13 +400,13 @@ class Glissando(Spanner):
 
         ..  container:: example
 
-            **Example 2.** Spans and parenthesizes repeated pitches:
+            Spans and parenthesizes repeated pitches:
 
             ::
 
                 >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
                 >>> glissando = Glissando(
-                ...     allow_repeated_pitches=True,
+                ...     allow_repeat_pitches=True,
                 ...     parenthesize_repeated_pitches=True,
                 ...     )
                 >>> attach(glissando, staff[:])
@@ -432,7 +432,7 @@ class Glissando(Spanner):
 
         ..  container:: example
 
-            **Example 3.** Parenthesizes (but does not span) repeated pitches:
+            Parenthesizes (but does not span) repeated pitches:
 
             ::
 

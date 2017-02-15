@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class PitchSelectorCallback(AbjadValueObject):
-    r'''A pitch selector callback.
+    r'''Pitch selector callback.
     '''
 
     ### CLASS VARIABLES ###
@@ -33,15 +33,15 @@ class PitchSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         Returns tuple in which each item is a selection or component.
         '''
         if not self.pitches:
             return ()
         result = []
-        for subexpr in expr:
+        for subexpr in argument:
             pitch_set = pitchtools.PitchSet.from_selection(
                 subexpr,
                 item_class=pitchtools.NumberedPitch,

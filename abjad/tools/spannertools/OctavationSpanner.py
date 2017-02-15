@@ -8,7 +8,7 @@ class OctavationSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 1.** Spans four notes:
+        Spans four notes:
 
         ::
 
@@ -31,7 +31,7 @@ class OctavationSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 2.** Spans one note:
+        Spans one note:
 
         ::
 
@@ -155,8 +155,7 @@ class OctavationSpanner(Spanner):
                 #       create & attach new spanner instead
                 self._start = 1
                 if quindecisima_breakpoint is not None:
-                    if quindecisima_breakpoint <= \
-                        max_numbered_diatonic_pitch:
+                    if quindecisima_breakpoint <= max_numbered_diatonic_pitch:
                         self._start = 2
 
     ### PUBLIC PROPERTIES ###

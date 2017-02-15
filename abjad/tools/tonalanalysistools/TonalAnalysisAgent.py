@@ -87,9 +87,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             ordered_npcs, item_class=pitchtools.NamedPitchClass)
         for x in range(len(ordered_npcs)):
             ordered_npcs = ordered_npcs.rotate(1)
-            segment = \
-                pitchtools.IntervalClassSegment(
-                    items=mathtools.difference_series(ordered_npcs),
+            segment = pitchtools.IntervalClassSegment(
+                    items=mathtools.difference_series(list(ordered_npcs)),
                     item_class=pitchtools.NamedInversionEquivalentIntervalClass,
                     )
             if segment.is_tertian:

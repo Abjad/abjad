@@ -7,7 +7,7 @@ def silence_first(n=1, inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 1.** Silences first division:
+        Silences first division:
 
         ::
 
@@ -59,7 +59,7 @@ def silence_first(n=1, inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 2.** Silences first two divisions:
+        Silences first two divisions:
 
         ::
 
@@ -111,7 +111,7 @@ def silence_first(n=1, inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 3.** Silences no first divisions:
+        Silences no first divisions:
 
         ::
 

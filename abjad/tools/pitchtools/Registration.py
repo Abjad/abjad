@@ -193,6 +193,8 @@ class Registration(TypedList):
                         pitch -= 12
                     return pitch
                 else:
-                    raise ValueError
-        raise Exception('how did we get here?')
-        #return pitch
+                    raise ValueError(pitch, self)
+        else:
+            message = 'pitch {} not in {}.'
+            message = message.format(pitch, self)
+            raise ValueError(message)

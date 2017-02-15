@@ -10,8 +10,7 @@ class ClefSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 1.** Attaches percussion clef spanner to notes in middle of
-        staff:
+        Attaches percussion clef spanner to notes in middle of staff:
 
         ::
 
@@ -41,8 +40,8 @@ class ClefSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 2.** Attaches two clef spanners to notes in middle of staff.
-        Only the first clef spanner formats a new clef:
+        Attaches two clef spanners to notes in middle of staff. Only the first
+        clef spanner formats a new clef:
 
         ::
 

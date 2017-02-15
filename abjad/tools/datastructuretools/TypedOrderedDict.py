@@ -168,12 +168,12 @@ class TypedOrderedDict(TypedCollection):
         argument = type(self)(argument)
         return self._collection.__ge__(argument._collection)
 
-    def __getitem__(self, i):
-        r'''Aliases OrderedDict.__getitem__().
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
-        Returns item.
+        Returns item or slice.
         '''
-        return self._collection[i]
+        return self._collection.__getitem__(argument)
 
     def __gt__(self, argument):
         r'''Is true when typed ordered dictionary is greater than `argument`.

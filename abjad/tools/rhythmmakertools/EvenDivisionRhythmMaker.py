@@ -59,7 +59,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         denominators = tuple(denominators)
         self._denominators = denominators
         if extra_counts_per_division is not None:
-            assert mathtools.all_are_integer_equivalent_exprs(
+            assert mathtools.all_are_integer_equivalent(
                 extra_counts_per_division), repr(extra_counts_per_division)
             extra_counts_per_division = [
                 int(_) for _ in extra_counts_per_division
@@ -79,8 +79,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Fills divisions with alternating eighth and
-            sixteenth notes:
+            Fills divisions with alternating eighth and sixteenth notes:
 
             ::
 
@@ -149,8 +148,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Adds extra counts per division according to a
-            pattern of three elements:
+            Adds extra counts per division according to a pattern of three
+            elements:
 
             ::
 
@@ -494,8 +493,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Forces the first leaf and the last two leaves to be
-            rests:
+            Forces the first leaf and the last two leaves to be rests:
 
             ::
 
@@ -591,8 +589,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Forces the first leaf of every division to be a
-            rest:
+            Forces the first leaf of every division to be a rest:
 
             ::
 
@@ -663,7 +660,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Fills divisions with 16th notes:
+            Fills divisions with 16th notes:
 
             ::
 
@@ -726,7 +723,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Fills divisions with 8th notes:
+            Fills divisions with 8th notes:
 
             ::
 
@@ -781,7 +778,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Fills divisions with quarter notes:
+            Fills divisions with quarter notes:
 
             ::
 
@@ -831,7 +828,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Fills divisions with half notes:
+            Fills divisions with half notes:
 
             ::
 
@@ -888,7 +885,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No division masks:
+            No division masks:
 
             ::
 
@@ -946,7 +943,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every other division:
+            Silences every other division:
 
             ::
 
@@ -998,7 +995,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Sustains every other division:
+            Sustains every other division:
 
             ::
 
@@ -1050,7 +1047,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Silences every output division:
+            Silences every output division:
 
             ::
 
@@ -1128,7 +1125,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example -4.** Four missing counts per division:
+            Four missing counts per division:
 
             ::
 
@@ -1196,7 +1193,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example -3.** Three missing counts per division:
+            Three missing counts per division:
 
             ::
 
@@ -1264,7 +1261,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example -2.** Two missing counts per division:
+            Two missing counts per division:
 
             ::
 
@@ -1331,7 +1328,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example -1.** One missing count per division:
+            One missing count per division:
 
             ::
 
@@ -1399,7 +1396,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 0.** Neither missing nor extra counts per division:
+            Neither missing nor extra counts per division:
 
             ::
 
@@ -1467,7 +1464,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** One extra count per division:
+            One extra count per division:
 
             ::
 
@@ -1541,7 +1538,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Two extra counts per division:
+            Two extra counts per division:
 
             ::
 
@@ -1617,7 +1614,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Three extra counts per division:
+            Three extra counts per division:
 
             ::
 
@@ -1694,7 +1691,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Four extra counts per division:
+            Four extra counts per division:
 
             ::
 
@@ -1778,7 +1775,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No logical tie masks:
+            No logical tie masks:
 
             ::
 
@@ -1836,7 +1833,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every third logical tie:
+            Silences every third logical tie:
 
             ::
 
@@ -1898,8 +1895,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Silences every logical tie except the first two and
-            last two:
+            Silences every logical tie except the first two and last two:
 
             ::
 
@@ -1964,7 +1960,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** With ties across divisions:
+            With ties across divisions:
 
             ::
 
@@ -2102,7 +2098,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No preferred denominator:
+            No preferred denominator:
 
             ::
 
@@ -2199,7 +2195,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2a.** Preferred denominator equal to 4:
+            Preferred denominator equal to 4:
 
             ::
 
@@ -2291,7 +2287,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 2b.** Preferred denominator equal to 8:
+            Preferred denominator equal to 8:
 
             ::
 
@@ -2383,7 +2379,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 2c.** Preferred denominator equal to 16:
+            Preferred denominator equal to 16:
 
             ::
 
@@ -2477,8 +2473,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Preferred denominator taken from count of elements
-            in tuplet:
+            Preferred denominator taken from count of elements in tuplet:
 
             ::
 
@@ -2569,9 +2564,6 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         }
                     }
                 }
-
-            This is default behavior.
-
 
         Defaults to none.
 

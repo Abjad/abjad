@@ -9,7 +9,7 @@ class PhrasingSlur(Spanner):
 
     ..  container:: example
 
-        **Example 1.** Spans four notes:
+        Spans four notes:
 
         ::
 
@@ -30,7 +30,7 @@ class PhrasingSlur(Spanner):
 
     ..  container:: example
 
-        **Example 2.** Requires at least two leaves:
+        Requires at least two leaves:
 
         ::
 

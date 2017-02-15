@@ -6,7 +6,7 @@ def select_first(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Selects first division for tie creation:
+        Selects first division for tie creation:
 
         ::
 
@@ -59,7 +59,7 @@ def select_first(n=1, inverted=None):
             
     ..  container:: example
 
-        **Example 2.** Selects first two divisions for tie creation:
+        Selects first two divisions for tie creation:
 
         ::
 
@@ -112,7 +112,7 @@ def select_first(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 3.** Selects no divisions for tie creation:
+        Selects no divisions for tie creation:
 
         ::
 

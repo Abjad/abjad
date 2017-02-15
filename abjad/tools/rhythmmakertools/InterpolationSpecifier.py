@@ -38,8 +38,7 @@ class InterpolationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Changes accelerando specifier to ritardando
-            specifier:
+            Changes accelerando specifier to ritardando specifier:
 
             ::
 
@@ -58,8 +57,7 @@ class InterpolationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Changes ritardando specifier to accelerando
-            specifier:
+            Changes ritardando specifier to accelerando specifier:
 
             ::
 

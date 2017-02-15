@@ -55,6 +55,7 @@ class BeamSpecifier(AbjadValueObject):
         '_beam_divisions_together',
         '_beam_each_division',
         '_beam_rests',
+        '_hide_nibs',
         '_stemlet_length',
         '_use_feather_beams',
         )
@@ -68,6 +69,7 @@ class BeamSpecifier(AbjadValueObject):
         beam_each_division=True,
         beam_divisions_together=None,
         beam_rests=None,
+        hide_nibs=None,
         stemlet_length=None,
         use_feather_beams=None,
         ):
@@ -80,6 +82,9 @@ class BeamSpecifier(AbjadValueObject):
         if beam_rests is not None:
             beam_rests = bool(beam_rests)
         self._beam_rests = beam_rests
+        if hide_nibs is not None:
+            hide_nibs = bool(hide_nibs)
+        self._hide_nibs = hide_nibs
         if stemlet_length is not None:
             assert isinstance(stemlet_length, (int, float))
         self._stemlet_length = stemlet_length
@@ -95,18 +100,21 @@ class BeamSpecifier(AbjadValueObject):
         Returns none.
         '''
         if self.beam_divisions_together:
-            durations = []
-            for selection in selections:
-                if isinstance(selection, selectiontools.Selection):
-                    duration = selection.get_duration()
-                else:
-                    duration = selection._get_duration()
-                durations.append(duration)
-            beam = spannertools.DuratedComplexBeam(
-                beam_rests=self.beam_rests,
-                durations=durations,
-                span_beam_count=1,
-                )
+            if self.hide_nibs:
+                beam = spannertools.MultipartBeam(beam_rests=self.beam_rests)
+            else:
+                durations = []
+                for selection in selections:
+                    if isinstance(selection, selectiontools.Selection):
+                        duration = selection.get_duration()
+                    else:
+                        duration = selection._get_duration()
+                    durations.append(duration)
+                beam = spannertools.DuratedComplexBeam(
+                    beam_rests=self.beam_rests,
+                    durations=durations,
+                    span_beam_count=1,
+                    )
             components = []
             for selection in selections:
                 if isinstance(selection, selectiontools.Selection):
@@ -572,6 +580,105 @@ class BeamSpecifier(AbjadValueObject):
         Returns true, false or none.
         '''
         return self._beam_rests
+
+    @property
+    def hide_nibs(self):
+        r'''Is true when specifier hides nibs.
+
+        ..  container:: example
+
+            Does not hide nibs:
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 r c'16 c' c' c' c'8 r c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_divisions_together=True,
+                ...     beam_rests=False,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #1
+                    c'8 [ ]
+                    r8
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #2
+                    c'16 [
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #1
+                    c'16
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #2
+                    c'16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #1
+                    c'16
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    c'8 ]
+                    r8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    c'8 [
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #0
+                    c'8 ]
+                }
+
+        ..  container:: example
+
+            Hides nibs:
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 r c'16 c' c' c' c'8 r c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_divisions_together=True,
+                ...     beam_rests=False,
+                ...     hide_nibs=True,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    c'8
+                    r8
+                    c'16 [
+                    c'16
+                    c'16
+                    c'16
+                    c'8 ]
+                    r8
+                    c'8 [
+                    c'8 ]
+                }
+
+        Set to true, false or none.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._hide_nibs
 
     @property
     def stemlet_length(self):

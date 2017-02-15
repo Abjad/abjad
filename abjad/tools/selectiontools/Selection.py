@@ -84,12 +84,12 @@ class Selection(object):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __getitem__(self, expr):
-        r'''Gets item `expr` from selection.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         Returns component from selection.
         '''
-        result = self._music.__getitem__(expr)
+        result = self._music.__getitem__(argument)
         if isinstance(result, tuple):
             selection = type(self)()
             selection._music = result[:]

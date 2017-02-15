@@ -533,7 +533,7 @@ class Component(AbjadObject):
         return markup
 
     def _get_nth_component_in_time_order_from(self, n):
-        assert mathtools.is_integer_equivalent_expr(n)
+        assert mathtools.is_integer_equivalent(n)
 
         def next(component):
             if component is not None:

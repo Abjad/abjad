@@ -8,7 +8,7 @@ def silence_except(indices=None):
 
     ..  container:: example
 
-        **Example 1.** Silences divisions except 1 and 2:
+        Silences divisions except 1 and 2:
 
         ::
 
@@ -62,7 +62,7 @@ def silence_except(indices=None):
 
     ..  container:: example
 
-        **Example 2.** Silences divisions except -1 and -2:
+        Silences divisions except -1 and -2:
 
         ::
 
@@ -117,7 +117,7 @@ def silence_except(indices=None):
 
     ..  container:: example
 
-        **Example 3.** Works with pattern input:
+        Works with pattern input:
 
         ::
 

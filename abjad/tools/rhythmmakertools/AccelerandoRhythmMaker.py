@@ -18,7 +18,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        **Example 1.** Makes accelerando for each input division:
+        Makes accelerando for each input division:
 
         ::
 
@@ -230,7 +230,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        **Example 2.** Makes ritardando for each input division:
+        Makes ritardando for each input division:
 
         ::
 
@@ -848,7 +848,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Feather beams each division:
+            Feather beams each division:
 
             ::
 
@@ -1061,7 +1061,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Beams divisions together (without feathering):
+            Beams divisions together (without feathering):
 
             ::
 
@@ -1325,7 +1325,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Makes no beams:
+            Makes no beams:
 
             ::
 
@@ -1543,7 +1543,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No division masks:
+            No division masks:
 
             ::
 
@@ -1756,7 +1756,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every other division:
+            Silences every other division:
 
             ::
 
@@ -1905,7 +1905,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Makes accelerando for each input division:
+            Makes accelerando for each input division:
 
             ::
 
@@ -2117,8 +2117,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Makes accelerandi and ritardandi on alternate
-            divisions:
+            Makes accelerandi and ritardandi on alternate divisions:
 
             ::
 
@@ -2339,8 +2338,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Makes a single note in the case that interpolation
-            would take too long for a given division:
+            Makes a single note in the case that interpolation would take too
+            long for a given division:
 
             ::
 
@@ -2482,7 +2481,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Silences first and last logical tie:
+            Silences first and last logical tie:
 
             ::
 
@@ -2717,7 +2716,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every third logical tie:
+            Silences every third logical tie:
 
             ::
 
@@ -2963,7 +2962,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Does not tie across divisions:
+            Does not tie across divisions:
 
             ::
 
@@ -3178,7 +3177,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Ties across divisions:
+            Ties across divisions:
 
             ::
 
@@ -3393,7 +3392,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Patterns ties across divisions:
+            Patterns ties across divisions:
 
             ::
 
@@ -3621,7 +3620,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Tuplets use note duration bracket:
+            Tuplets use note duration bracket:
 
             ::
 
@@ -3836,7 +3835,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Tuplets do not use note duration bracket:
+            Tuplets do not use note duration bracket:
 
             ::
 

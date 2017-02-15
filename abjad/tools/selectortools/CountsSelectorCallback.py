@@ -6,7 +6,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class CountsSelectorCallback(AbjadValueObject):
-    r'''A counts selector callback.
+    r'''Counts selector callback.
 
     ..  container:: example
 
@@ -15,7 +15,7 @@ class CountsSelectorCallback(AbjadValueObject):
         ::
 
             >>> callback = selectortools.CountsSelectorCallback([3])
-            >>> print(format(callback))
+            >>> f(callback)
             selectortools.CountsSelectorCallback(
                 counts=datastructuretools.CyclicTuple(
                     [3]
@@ -67,6 +67,8 @@ class CountsSelectorCallback(AbjadValueObject):
         '_nonempty',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -88,12 +90,12 @@ class CountsSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         Returns tuple in which each item is a selection or component.
         '''
-        assert isinstance(expr, tuple), repr(expr)
+        assert isinstance(argument, tuple), repr(argument)
         if rotation is None:
             rotation = 0
         rotation = int(rotation)
@@ -102,7 +104,7 @@ class CountsSelectorCallback(AbjadValueObject):
         if self.rotate:
             counts = sequencetools.Sequence(counts).rotate(n=-rotation)
             counts = datastructuretools.CyclicTuple(counts)
-        for subexpr in expr:
+        for subexpr in argument:
             groups = sequencetools.Sequence(subexpr).partition_by_counts(
                 [abs(_) for _ in counts],
                 cyclic=self.cyclic,

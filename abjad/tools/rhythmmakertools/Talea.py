@@ -48,8 +48,8 @@ class Talea(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __getitem__(self, item):
-        r'''Gets nonreduced fraction at `item` cyclically.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         ..  container:: example
 
@@ -86,15 +86,17 @@ class Talea(AbjadValueObject):
         Returns nonreduced fraction or nonreduced fractions.
         '''
         counts = datastructuretools.CyclicTuple(self.counts)
-        if isinstance(item, int):
-            count = counts[item]
+        if isinstance(argument, int):
+            count = counts.__getitem__(argument)
             return mathtools.NonreducedFraction(count, self.denominator)
-        elif isinstance(item, slice):
-            counts = counts[item]
-            result = [mathtools.NonreducedFraction(count, self.denominator)
-                for count in counts]
+        elif isinstance(argument, slice):
+            counts = counts.__getitem__(argument)
+            result = [
+                mathtools.NonreducedFraction(count, self.denominator)
+                for count in counts
+                ]
             return result
-        raise ValueError(item)
+        raise ValueError(argument)
 
     def __iter__(self):
         r'''Iterates talea.

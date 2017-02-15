@@ -178,7 +178,7 @@ class LilyPondFile(AbjadObject):
         return str(self)
 
     def __getitem__(self, name):
-        r'''Gets LilyPond file item with `name`.
+        r'''Gets item with `name`.
 
         ..  container:: example
 
@@ -271,6 +271,8 @@ class LilyPondFile(AbjadObject):
 
                 >>> lilypond_file[Voice]
                 Voice("c''4 b'4 a'4 g'4")
+
+        Returns item.
 
         Raises key error when no item with `name` is found.
         '''

@@ -55,12 +55,12 @@ class CyclicTuple(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, i):
+    def __contains__(self, item):
         r'''Is true when cyclic tuple contains `item`.
 
         Returns true or false.
         '''
-        return self._items.__contains__(i)
+        return self._items.__contains__(item)
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a tuple with items equal to those of this
@@ -74,8 +74,8 @@ class CyclicTuple(AbjadObject):
             return self._items == argument._items
         return False
 
-    def __getitem__(self, i):
-        r'''Gets `i` from cyclic tuple.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         ..  container:: example
 
@@ -99,22 +99,22 @@ class CyclicTuple(AbjadObject):
                 >>> tuple_[:15]
                 (0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2)
 
-        Raises index error when `i` can not be found in cyclic tuple.
+        Raises index error when `argument` can not be found in cyclic tuple.
 
         Returns item.
         '''
-        if isinstance(i, slice):
-            if ((i.stop is not None and i.stop < 0) or
-                (i.start is not None and i.start < 0)):
-                return self._items.__getitem__(i)
+        if isinstance(argument, slice):
+            if ((argument.stop is not None and argument.stop < 0) or
+                (argument.start is not None and argument.start < 0)):
+                return self._items.__getitem__(argument)
             else:
-                return self._get_slice(i.start, i.stop)
+                return self._get_slice(argument.start, argument.stop)
         if not self:
             message = 'cyclic tuple is empty: {!r}.'
             message = message.format(self)
             raise IndexError(message)
-        i = i % len(self)
-        return self._items.__getitem__(i)
+        argument = argument % len(self)
+        return self._items.__getitem__(argument)
 
     def __hash__(self):
         r'''Hashes cyclic tuple.

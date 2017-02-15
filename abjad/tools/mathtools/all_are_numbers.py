@@ -2,33 +2,34 @@
 import numbers
 
 
-def all_are_numbers(expr):
-    '''Is true when `expr` is a sequence and all elements in `expr`
-    are numbers:
+def all_are_numbers(argument):
+    '''Is true when `argument` is an iterable collection of numbers.
+    Otherwise false.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.all_are_numbers([1, 2, 3.0, Fraction(13, 8)])
-        True
+        ::
 
-    Is true when `expr` is an empty sequence:
+            >>> mathtools.all_are_numbers([1, 2, 3.0, Fraction(13, 8)])
+            True
 
-    ::
+        ::
 
-        >>> mathtools.all_are_numbers([])
-        True
+            >>> mathtools.all_are_numbers(17)
+            False
 
-    Otherwise false:
+    ..  container:: example
 
-    ::
+        Is true when `argument` is empty:
 
-        >>> mathtools.all_are_numbers(17)
-        False
+        ::
+
+            >>> mathtools.all_are_numbers([])
+            True
 
     Returns true or false.
     '''
-
     try:
-        return all(isinstance(x, numbers.Number) for x in expr)
+        return all(isinstance(_, numbers.Number) for _ in argument)
     except TypeError:
         return False

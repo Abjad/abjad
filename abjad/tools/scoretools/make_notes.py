@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import numbers
 from abjad import Fraction
 from abjad.tools import durationtools
@@ -13,7 +14,6 @@ def make_notes(
     use_messiaen_style_ties=False,
     ):
     r'''Makes notes according to `pitches` and `durations`.
-
 
     ..  container:: example
 
@@ -33,7 +33,7 @@ def make_notes(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'16
                 c'8
@@ -61,7 +61,7 @@ def make_notes(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'16
                 d'8
@@ -87,7 +87,7 @@ def make_notes(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'16
                 \tweak edge-height #'(0.7 . 0)
@@ -119,7 +119,7 @@ def make_notes(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'2. ~
                 c'16
@@ -147,7 +147,7 @@ def make_notes(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'16 ~
                 c'2.
@@ -169,10 +169,33 @@ def make_notes(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'2.
                 c'16 \repeatTie
+            }
+
+    ..  container:: example
+
+        **Example 7.** Works with pitch segments:
+
+        ::
+
+            >>> segment = PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
+            >>> notes = scoretools.make_notes(segment, [(1, 8)])
+            >>> staff = Staff(notes)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                bf8
+                bqf8
+                fs'8
+                g'8
+                bqf8
+                g'8
             }
 
     Set `pitches` to a single pitch or a sequence of pitches.
@@ -185,7 +208,7 @@ def make_notes(
     from abjad.tools import selectiontools
     if isinstance(pitches, str):
         pitches = pitches.split()
-    if not isinstance(pitches, list):
+    if not isinstance(pitches, collections.Iterable):
         pitches = [pitches]
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]

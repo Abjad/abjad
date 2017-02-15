@@ -141,7 +141,8 @@ class IntervalSegment(Segment):
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        intervals = (-x for x in mathtools.difference_series(pitch_segment))
+        pitches = [_ for _ in pitch_segment]
+        intervals = (-x for x in mathtools.difference_series(pitches))
         return class_(
             items=intervals,
             item_class=item_class,

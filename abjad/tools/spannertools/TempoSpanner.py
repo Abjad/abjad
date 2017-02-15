@@ -12,7 +12,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 1.** With tempo indicators only:
+        With tempo indicators only:
 
         ::
 
@@ -122,7 +122,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 2.** With an accelerando:
+        With an accelerando:
 
         ::
 
@@ -263,7 +263,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 3.** With a ritardando:
+        With a ritardando:
 
         ::
 
@@ -404,7 +404,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 4.** With both an accelerando and a ritardando:
+        With both an accelerando and a ritardando:
 
         ::
 
@@ -571,7 +571,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 5.** Implicit start to (music-initial) accelerando:
+        Implicit start to (music-initial) accelerando:
 
         ::
 
@@ -699,7 +699,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 6.** Implicit start to (music-initial) ritardando:
+        Implicit start to (music-initial) ritardando:
 
         ::
 
@@ -827,7 +827,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 7.** Implicit start to (midmusic) accelerando:
+        Implicit start to (midmusic) accelerando:
 
         ::
 
@@ -975,7 +975,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 8.** Implicit start to (midmusic) ritardando:
+        Implicit start to (midmusic) ritardando:
 
         ::
 
@@ -1123,7 +1123,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 9.** With an accelerando over a line break:
+        With an accelerando over a line break:
 
         ::
 
@@ -1235,7 +1235,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 10.** With a ritardando over a line break:
+        With a ritardando over a line break:
 
         ::
 
@@ -1347,7 +1347,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 11.** With a metric modulation:
+        With a metric modulation:
 
         ::
 
@@ -1500,7 +1500,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 12.** With a metric modulation and an accelerando:
+        With a metric modulation and an accelerando:
 
         ::
 
@@ -2058,7 +2058,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 1.** With left broken padding set to none:
+            With left broken padding set to none:
 
             ::
 
@@ -2172,7 +2172,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 2.** With left broken padding set explicitly:
+            With left broken padding set explicitly:
 
             ::
 
@@ -2295,7 +2295,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 1.** With left broken text set to none:
+            With left broken text set to none:
 
             ::
 
@@ -2410,7 +2410,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 2.** With left broken text set explicitly:
+            With left broken text set explicitly:
 
             ::
 
@@ -2529,7 +2529,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Does not start with parenthesized tempo:
+            Does not start with parenthesized tempo:
 
             ::
 
@@ -2660,7 +2660,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 2.** Starts with parenthesized tempo:
+            Starts with parenthesized tempo:
 
             ::
 

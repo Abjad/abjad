@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Inequality(AbjadValueObject):
-    '''An inequality.
+    '''Inequality.
     '''
 
     ### CLASS VARIABLES ###
@@ -46,8 +46,8 @@ class Inequality(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     @abc.abstractmethod
-    def __call__(self, expr):
-        r'''Calls inequality on `expr`.
+    def __call__(self, argument):
+        r'''Calls inequality on `argument`.
 
         Returns true or false.
         '''

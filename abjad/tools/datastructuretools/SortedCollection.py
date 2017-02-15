@@ -96,12 +96,12 @@ class SortedCollection(object):
         j = bisect.bisect_right(self._keys, k)
         return item in self._items[i:j]
 
-    def __getitem__(self, i):
-        r'''Gets `i` in sorted collection.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identifier by `argument`.
 
         Returns item.
         '''
-        return self._items[i]
+        return self._items.__getitem__(argument)
 
     def __iter__(self):
         r'''Iterates sorted collection.

@@ -10,7 +10,7 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        **Example 1.** Ties four notes:
+        Ties four notes:
 
         ::
 
@@ -30,7 +30,7 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        **Example 2.** Fails attachment test when pitches differ:
+        Fails attachment test when pitches differ:
 
         ::
 
@@ -42,7 +42,7 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        **Example 3.** Ties consecutive chords if all adjacent pairs have at least one pitch in common:
+        Ties consecutive chords if all adjacent pairs have at least one pitch in common:
 
         ::
 
@@ -249,7 +249,7 @@ class Tie(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Default values for Messiaen-style ties:
+            Default values for Messiaen-style ties:
 
             ::
 

@@ -92,7 +92,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Calls rhythm-maker on divisions:
+            Calls rhythm-maker on divisions:
 
             ::
 
@@ -270,7 +270,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Beams each division:
+            Beams each division:
 
             ::
 
@@ -305,11 +305,9 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Beams divisions together:
+            Beams divisions together:
 
             ::
 
@@ -354,7 +352,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Makes no beams:
+            Makes no beams:
 
             ::
 
@@ -401,7 +399,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Burnishes nothing:
+            Burnishes nothing:
 
             ::
 
@@ -442,7 +440,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Forces leaves of first division to be rests:
+            Forces leaves of first division to be rests:
 
             ::
 
@@ -489,7 +487,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Forces leaves of first two divisions to be rests:
+            Forces leaves of first two divisions to be rests:
 
             ::
 
@@ -536,7 +534,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Forces leaves of first and last divisions to rests:
+            Forces leaves of first and last divisions to rests:
 
             ::
 
@@ -595,7 +593,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No division masks:
+            No division masks:
 
             ::
 
@@ -635,7 +633,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every other division:
+            Silences every other division:
 
             ::
 
@@ -681,7 +679,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Silences every output division:
+            Silences every output division:
 
             ::
 
@@ -723,8 +721,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Silences every output division and uses
-            multimeasure rests:
+            Silences every output division and uses multimeasure rests:
 
             ::
 
@@ -770,8 +767,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Silences every other output division except for the
-            first and last:
+            Silences every other output division except for the first and last:
 
             ::
 
@@ -832,7 +828,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Spells durations with the fewest number of glyphs:
+            Spells durations with the fewest number of glyphs:
 
             ::
 
@@ -865,8 +861,8 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Forbids notes with written duration greater than or
-            equal to ``1/2``:
+            Forbids notes with written duration greater than or equal to
+            ``1/2``:
 
             ::
 
@@ -904,8 +900,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Spells all divisions metrically when
-            `spell_metrically` is true:
+            Spells all divisions metrically when `spell_metrically` is true:
 
             ::
 
@@ -950,7 +945,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Spells only unassignable durations metrically when
+            Spells only unassignable durations metrically when
             `spell_metrically` is ``'unassignable'``:
 
             ::
@@ -997,7 +992,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Spells durations with custom partition table:
+            Spells durations with custom partition table:
 
             ::
 
@@ -1045,7 +1040,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Rewrites meter:
+            Rewrites meter:
 
             ::
 
@@ -1094,7 +1089,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No logical tie masks:
+            No logical tie masks:
 
             ::
 
@@ -1134,7 +1129,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every other logical tie:
+            Silences every other logical tie:
 
             ::
 
@@ -1176,7 +1171,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Silences all logical ties:
+            Silences all logical ties:
 
             ::
 
@@ -1227,7 +1222,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Does not tie across divisions:
+            Does not tie across divisions:
 
             ::
 
@@ -1269,11 +1264,9 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Ties across divisions:
+            Ties across divisions:
 
             ::
 
@@ -1317,7 +1310,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Patterns ties across divisions:
+            Patterns ties across divisions:
 
             ::
 
@@ -1365,7 +1358,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Uses Messiaen-style ties:
+            Uses Messiaen-style ties:
 
             ::
 
@@ -1412,7 +1405,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Strips all ties:
+            Strips all ties:
 
             ::
 
@@ -1453,8 +1446,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 6.** Spells durations metrically and then strips all
-            ties:
+            Spells durations metrically and then strips all ties:
 
             ::
 
@@ -1509,7 +1501,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Spells tuplets as diminutions:
+            Spells tuplets as diminutions:
 
             ::
 
@@ -1546,11 +1538,9 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is the default behavior.
-
         ..  container:: example
 
-            **Example 2.** Spells tuplets as augmentations:
+            Spells tuplets as augmentations:
 
             ::
 

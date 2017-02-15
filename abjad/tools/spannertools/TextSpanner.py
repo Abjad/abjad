@@ -13,7 +13,7 @@ class TextSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 1.** A text spanner with no grob overrides:
+        A text spanner with no grob overrides:
 
         ::
 
@@ -36,7 +36,7 @@ class TextSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 2.** A text spanner with a grob override for left text:
+        A text spanner with a grob override for left text:
 
         ::
 
@@ -67,8 +67,8 @@ class TextSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 3.** Text spanner interacting with annotated markup.
-        At the beginning of the spanner:
+        Text spanner interacting with annotated markup. At the beginning of the
+        spanner:
 
         ::
 
@@ -93,8 +93,8 @@ class TextSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 4.** Text spanner interacting with annotated markup.
-        At the end of the spanner:
+        Text spanner interacting with annotated markup. At the end of the
+        spanner:
 
         ::
 
@@ -119,8 +119,8 @@ class TextSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 5.** Text spanner interacting with annotated markup.
-        At the beginning and the end of the spanner:
+        Text spanner interacting with annotated markup. At the beginning and
+        the end of the spanner:
 
         ::
 
@@ -147,7 +147,7 @@ class TextSpanner(Spanner):
         
     ..  container:: example
 
-        **Example 6.** Requires at least two leaves:
+        Requires at least two leaves:
 
         ::
 
@@ -163,16 +163,20 @@ class TextSpanner(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_skip_attachment_test_all',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, overrides=None):
         Spanner.__init__(self, overrides=overrides)
+        self._skip_attachment_test_all = False
 
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, expr):
+        if self._skip_attachment_test_all:
+            return True
         return self._at_least_two_leaves(expr)
 
     def _get_annotations(self, leaf):

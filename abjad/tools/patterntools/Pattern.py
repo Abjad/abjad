@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools.new import new
@@ -9,7 +10,7 @@ class Pattern(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Matches three indices out of every eight:
+        Matches three indices out of every eight:
 
         ::
 
@@ -44,7 +45,7 @@ class Pattern(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Matches three indices out of every sixteen:
+        Matches three indices out of every sixteen:
 
         ::
 
@@ -79,7 +80,7 @@ class Pattern(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Works with improper indices:
+        Works with improper indices:
 
         ::
 
@@ -151,8 +152,6 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> pattern_1 = patterntools.select_first(3)
@@ -183,8 +182,6 @@ class Pattern(AbjadValueObject):
         r'''Inverts pattern.
 
         ..  container:: example
-
-            **Example.**
 
             ::
 
@@ -225,7 +222,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Gets length of cyclic pattern:
+            Gets length of cyclic pattern:
 
             ::
 
@@ -243,7 +240,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets length of acyclic pattern:
+            Gets length of acyclic pattern:
 
             ::
 
@@ -261,7 +258,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Gets length of pattern with negative indices:
+            Gets length of pattern with negative indices:
 
             ::
 
@@ -298,8 +295,6 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> pattern_1 = patterntools.select_first(3)
@@ -330,8 +325,6 @@ class Pattern(AbjadValueObject):
         r'''Logical XOR of two patterns.
 
         ..  container:: example
-
-            **Example.**
 
             ::
 
@@ -367,7 +360,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Matches three indices out of every five:
+            Matches three indices out of every five:
 
             ::
 
@@ -399,7 +392,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Matches three indices out of every six:
+            Matches three indices out of every six:
 
             ::
 
@@ -447,7 +440,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Gets boolean vector of acyclic pattern:
+            Gets boolean vector of acyclic pattern:
 
             ::
 
@@ -480,7 +473,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets vector of cyclic pattern:
+            Gets vector of cyclic pattern:
 
             ::
 
@@ -513,7 +506,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Gets vector of inverted pattern:
+            Gets vector of inverted pattern:
 
             ::
 
@@ -553,13 +546,55 @@ class Pattern(AbjadValueObject):
             boolean_vector.append(int(result))
         return boolean_vector
 
+    def get_matching_items(self, sequence):
+        r'''Gets maching items from sequence.
+
+        ..  container:: example
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[4, 5, 6, 7],
+                ...     )
+
+            ::
+
+                >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
+                Sequence(['e', 'f', 'g', 'h'])
+
+        ..  container:: example
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[8, 9],
+                ...     period=10,
+                ...     )
+
+            ::
+
+                >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
+                Sequence(['i', 'j', 's', 't'])
+
+        Returns new sequence.
+        '''
+        import abjad
+        assert isinstance(sequence, collections.Iterable), repr(sequence)
+        length = len(sequence)
+        items = []
+        for i in range(length):
+            if self.matches_index(i, length):
+                item = sequence[i]
+                items.append(item)
+        return abjad.Sequence(items=items)
+
     def matches_index(self, index, total_length, rotation=None):
         r'''Is true when pattern matches `index` taken under `total_length`.
         Otherwise false.
 
         ..  container:: example
 
-            **Example 1a.** Matches three indices out of every eight:
+            Matches three indices out of every eight:
 
             ::
 
@@ -592,8 +627,7 @@ class Pattern(AbjadValueObject):
                 14
                 15 True
 
-            **Example 1b.** Matches three indices out of every eight, offset
-            ``1`` to the left:
+            Matches three indices out of every eight, offset ``1`` to the left:
 
             ::
 
@@ -630,8 +664,8 @@ class Pattern(AbjadValueObject):
                 14 True
                 15 True
 
-            **Example 1c.** Matches three indices out of every eight, offset
-            ``2`` to the left:
+             Matches three indices out of every eight, offset ``2`` to the
+             left:
 
             ::
 
@@ -670,7 +704,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2a.** Matches three indices out of every sixteen:
+            Matches three indices out of every sixteen:
 
             ::
 
@@ -703,8 +737,8 @@ class Pattern(AbjadValueObject):
                 14
                 15
 
-            **Example 2b.** Matches three indices out of every sixteen, offset
-            ``1`` to the left:
+            Matches three indices out of every sixteen, offset ``1`` to the
+            left:
 
             ::
 
@@ -741,8 +775,8 @@ class Pattern(AbjadValueObject):
                 14
                 15 True
 
-            **Example 2c.** Matches three indices out of every sixteen, offset
-            ``2`` to the left:
+            Matches three indices out of every sixteen, offset ``2`` to the
+            left:
 
             ::
 
@@ -813,7 +847,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Matches three indices out of every eight:
+            Matches three indices out of every eight:
 
             ::
 
@@ -848,7 +882,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Reverses pattern:
+            Reverses pattern:
 
             ::
 
@@ -900,7 +934,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Matches three indices out of every eight:
+            Matches three indices out of every eight:
 
             ::
 
@@ -977,8 +1011,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Matches three indices out of every eight with
-            negative indices:
+            Matches three indices out of every eight with negative indices:
 
             ::
 
@@ -1066,7 +1099,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Matches three indices out of every eight:
+            Matches three indices out of every eight:
 
             ::
 
@@ -1082,7 +1115,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Matches three indices out of every sixteen:
+            Matches three indices out of every sixteen:
 
             ::
 
@@ -1112,7 +1145,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Matches three indices out of every eight:
+            Matches three indices out of every eight:
 
             ::
 
@@ -1152,8 +1185,8 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Pattern that rejects three indices from every eight;
-            equivalently, pattern matches ``8-3=5`` indices out of every eight:
+            Pattern that rejects three indices from every eight; equivalently,
+            pattern matches ``8-3=5`` indices out of every eight:
 
             ::
 
@@ -1206,7 +1239,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern with rhythm-maker payload assigned to three
+            Pattern with rhythm-maker payload assigned to three
             of every eight indices:
 
             ::
@@ -1253,7 +1286,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern with a period of eight:
+            Pattern with a period of eight:
 
             ::
 
@@ -1293,7 +1326,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Same pattern with a period of sixteen:
+            Same pattern with a period of sixteen:
 
             ::
 
@@ -1345,7 +1378,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Gets weight of cyclic pattern:
+            Gets weight of cyclic pattern:
 
             ::
 
@@ -1361,7 +1394,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets weight of acyclic pattern:
+            Gets weight of acyclic pattern:
 
             ::
 

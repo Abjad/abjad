@@ -15,6 +15,7 @@ def make_leaves(
     forbidden_written_duration=None,
     is_diminution=True,
     metrical_hiearchy=None,
+    skips_instead_of_rests=False,
     use_messiaen_style_ties=False,
     use_multimeasure_rests=False,
     ):
@@ -447,6 +448,21 @@ def make_leaves(
                 fs'16
             }
 
+    ..  container:: example
+
+        **Example 17.** Makes skips instead of rests:
+
+        ::
+
+            >>> pitches = [None]
+            >>> durations = [Duration(13, 16)]
+            >>> scoretools.make_leaves(
+            ...     pitches,
+            ...     durations,
+            ...     skips_instead_of_rests=True
+            ...     )
+            Selection([Skip('s2.'), Skip('s16')])
+
     Returns selection of leaves.
     '''
     from abjad.tools import scoretools
@@ -480,6 +496,7 @@ def make_leaves(
                     duration,
                     decrease_durations_monotonically=decrease_durations_monotonically,
                     forbidden_written_duration=forbidden_written_duration,
+                    skips_instead_of_rests=skips_instead_of_rests,
                     use_multimeasure_rests=use_multimeasure_rests,
                     use_messiaen_style_ties=use_messiaen_style_ties,
                     )
@@ -500,6 +517,7 @@ def make_leaves(
                     duration,
                     decrease_durations_monotonically=\
                         decrease_durations_monotonically,
+                    skips_instead_of_rests=skips_instead_of_rests,
                     use_multimeasure_rests=use_multimeasure_rests,
                     use_messiaen_style_ties=use_messiaen_style_ties,
                     )
@@ -519,6 +537,7 @@ def _make_leaf_on_pitch(
     duration,
     decrease_durations_monotonically=True,
     forbidden_written_duration=None,
+    skips_instead_of_rests=False,
     use_multimeasure_rests=False,
     use_messiaen_style_ties=False,
     ):
@@ -550,6 +569,15 @@ def _make_leaf_on_pitch(
             pitches=pitch,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
+    elif isinstance(pitch, rest_prototype) and skips_instead_of_rests:
+        leaves = scoretools.make_tied_leaf(
+            scoretools.Skip,
+            duration,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
+            pitches=None,
+            use_messiaen_style_ties=use_messiaen_style_ties,
+            )
     elif isinstance(pitch, rest_prototype) and not use_multimeasure_rests:
         leaves = scoretools.make_tied_leaf(
             scoretools.Rest,
@@ -567,7 +595,7 @@ def _make_leaf_on_pitch(
             multimeasure_rest,
             )
     else:
-        message = 'unknown pitch {!r}.'
+        message = 'unknown pitch: {!r}.'
         message = message.format(pitch)
         raise ValueError(message)
     return leaves

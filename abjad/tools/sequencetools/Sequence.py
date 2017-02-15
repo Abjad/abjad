@@ -409,7 +409,7 @@ class Sequence(abctools.AbjadValueObject):
         string_template_callback='_make___getitem___string_template',
         )
     def __getitem__(self, argument):
-        r'''Gets item at index or slice `argument` from sequence.
+        r'''Gets item or slice identified by `argument`.
 
         ..  container:: example
 
@@ -3517,6 +3517,10 @@ class Sequence(abctools.AbjadValueObject):
         from abjad.tools import sequencetools
         if self._expression:
             return self._update_expression(inspect.currentframe())
+        if not all(isinstance(_, int) and 0 <= _ for _ in counts):
+            message = 'invalid counts: {!r}.'
+            message = message.format(counts)
+            raise Exception(counts)
         sequence = self
         if reversed_:
             sequence = type(self)(reversed(sequence))
@@ -3539,9 +3543,9 @@ class Sequence(abctools.AbjadValueObject):
         result = []
         if cyclic:
             if overhang:
-                counts = type(self)(counts).repeat_to_weight(len(sequence))
+                counts = Sequence(counts).repeat_to_weight(len(sequence))
             else:
-                counts = type(self)(counts).repeat_to_weight( 
+                counts = Sequence(counts).repeat_to_weight( 
                     len(sequence), 
                     allow_total=Less,
                     )
@@ -4268,6 +4272,7 @@ class Sequence(abctools.AbjadValueObject):
             result.append(item_)
         return type(self)(items=result)
 
+    # TODO: change input to pattern
     def remove(self, indices=None, period=None):
         '''Removes items at `indices`.
 
@@ -4772,6 +4777,7 @@ class Sequence(abctools.AbjadValueObject):
                 items.append(item)
         return type(self)(items=items)
 
+    # TODO: change input to pattern
     def retain(self, indices=None, period=None):
         '''Retains items at `indices`.
 
@@ -5308,7 +5314,7 @@ class Sequence(abctools.AbjadValueObject):
         current_index = 0
         current_piece = []
         if cyclic:
-            weights = type(self)(weights).repeat_to_weight(
+            weights = Sequence(weights).repeat_to_weight(
                 mathtools.weight(self),
                 allow_total=Less,
                 )

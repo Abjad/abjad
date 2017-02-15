@@ -1311,10 +1311,7 @@ class PitchClassSegment(Segment):
                 precedence=100,
                 )
         superclass = super(PitchClassSegment, self)
-        result = superclass.__getitem__(argument)
-        if not isinstance(result, Segment):
-            return result
-        return result
+        return superclass.__getitem__(argument)
 
     def __illustrate__(self, expression_markup_direction=Up, **keywords):
         r'''Illustrates segment.

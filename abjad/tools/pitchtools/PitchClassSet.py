@@ -50,6 +50,67 @@ class PitchClassSet(Set):
         '''
         return hash(repr(self))
 
+    def __illustrate__(self):
+        r'''Illustrates pitch-class set.
+
+        ..  container:: example
+
+            Illustrates numbered segment:
+
+            ::
+
+                >>> set_ = PitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+                >>> show(set_) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = set_.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    <fs' g' bf' bqf'>1
+                }
+
+        ..  container:: example
+
+            Illustrates named set:
+
+            ::
+
+                >>> items = ['c', 'ef', 'bqs,', 'd']
+                >>> set_ = PitchClassSet(
+                ...     items=items,
+                ...     item_class=NamedPitchClass,
+                ...     )
+                >>> show(set_) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = set_.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    <c' d' ef' bqs'>1
+                }
+
+        ..  container:: example
+
+            Returns LilyPond file:
+
+            ::
+
+                >>> prototype = lilypondfiletools.LilyPondFile
+                >>> isinstance(set_.__illustrate__(), prototype)
+                True
+
+        '''
+        import abjad
+        chord = abjad.Chord(self, abjad.Duration(1))
+        voice = abjad.Voice([chord])
+        staff = abjad.Staff([voice])
+        score = abjad.Score([staff])
+        lilypond_file = abjad.LilyPondFile.new(score)
+        lilypond_file.header_block.tagline = False
+        return lilypond_file
+
     def __str__(self):
         r'''Gets string representation of pitch-class set.
 
@@ -61,7 +122,7 @@ class PitchClassSet(Set):
 
                 >>> pc_set = PitchClassSet([6, 7, 10, 10.5])
                 >>> str(pc_set)
-                '{6, 7, 10, 10.5}'
+                'PC{6, 7, 10, 10.5}'
 
         ..  container:: example
 
@@ -71,12 +132,16 @@ class PitchClassSet(Set):
 
                 >>> pc_set = PitchClassSet([10.5, 10, 7, 6])
                 >>> str(pc_set)
-                '{6, 7, 10, 10.5}'
+                'PC{6, 7, 10, 10.5}'
 
         Returns string.
         '''
-        superclass = super(PitchClassSet, self)
-        return superclass.__str__()
+        import abjad
+        items = [str(_) for _ in sorted(self)]
+        separator = ' '
+        if self.item_class is abjad.NumberedPitchClass:
+            separator = ', '
+        return 'PC{{{}}}'.format(separator.join(items))
 
     ### PRIVATE PROPERTIES ###
 

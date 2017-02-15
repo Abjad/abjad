@@ -416,7 +416,7 @@ class RhythmMaker(AbjadValueObject):
         dummy_division = divisions.pop()
         lcd = dummy_division.denominator
         multiplier = lcd / talea_denominator
-        assert mathtools.is_integer_equivalent_expr(multiplier), repr(multiplier)
+        assert mathtools.is_integer_equivalent(multiplier), repr(multiplier)
         multiplier = int(multiplier)
         scaled_taleas = []
         for talea in taleas:

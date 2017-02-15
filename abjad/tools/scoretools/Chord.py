@@ -274,7 +274,7 @@ class Chord(Leaf):
         tremolo = inspect_(self).get_indicator(indicatortools.Tremolo)
         reattack_duration = self._get_tremolo_reattack_duration()
         repeat_count = self.written_duration / reattack_duration / 2
-        if not mathtools.is_integer_equivalent_expr(repeat_count):
+        if not mathtools.is_integer_equivalent(repeat_count):
             message = 'can not tremolo duration {} with {} beams.'
             message = message.format(self.written_duration, tremolo.beam_count)
             raise Exception(message)

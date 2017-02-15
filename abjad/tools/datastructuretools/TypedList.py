@@ -104,12 +104,12 @@ class TypedList(TypedCollection):
         self._on_removal(self._collection[i])
         del(self._collection[i])
 
-    def __getitem__(self, i):
-        r'''Aliases list.__getitem__().
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified  by `argument`.
 
-        Returns item.
+        Returns item or slice.
         '''
-        return self._collection[i]
+        return self._collection.__getitem__(argument)
 
     def __iadd__(self, argument):
         r'''Adds `argument` in place to typed list.

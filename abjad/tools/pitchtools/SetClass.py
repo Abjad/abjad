@@ -920,6 +920,7 @@ class SetClass(AbjadValueObject):
         '''
         string = 'SC({}-{}){!s}'
         string = string.format(self.cardinality, self.rank, self.prime_form)
+        string = string.replace('PC', '')
         return string
 
     ### PRIVATE METHODS ###

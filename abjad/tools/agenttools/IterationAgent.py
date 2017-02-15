@@ -2874,10 +2874,10 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> prototype = (Note, Chord)
-                    >>> for group in iterate(staff[:]).by_run(
+                    >>> for run in iterate(staff[:]).by_run(
                     ...     prototype=prototype,
                     ...     ):
-                    ...     group
+                    ...     run
                     ...
                     (Note("g'8"), Note("a'8"))
                     (Chord("<b' d''>8"), Chord("<c'' e''>8"))
@@ -2889,8 +2889,8 @@ class IterationAgent(abctools.AbjadObject):
                     >>> prototype = (Note, Chord)
                     >>> expression = iterate()
                     >>> expression = expression.by_run(prototype=prototype)
-                    >>> for group in expression(staff[:]):
-                    ...     group
+                    >>> for run in expression(staff[:]):
+                    ...     run
                     ...
                     (Note("g'8"), Note("a'8"))
                     (Chord("<b' d''>8"), Chord("<c'' e''>8"))
@@ -2936,10 +2936,10 @@ class IterationAgent(abctools.AbjadObject):
 
                     >>> leaves = iterate(staff).by_leaf()
                     >>> prototype = (Note, Chord)
-                    >>> for group in iterate(leaves).by_run(
+                    >>> for run in iterate(leaves).by_run(
                     ...     prototype=prototype,
                     ...     ):
-                    ...     group
+                    ...     run
                     ...
                     (Note("c'8"), Note("d'8"))
                     (Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8"))
@@ -2953,31 +2953,62 @@ class IterationAgent(abctools.AbjadObject):
                     >>> prototype = (Note, Chord)
                     >>> expression = iterate()
                     >>> expression = expression.by_run(prototype=prototype)
-                    >>> for group in expression(leaves):
-                    ...     group
+                    >>> for run in expression(leaves):
+                    ...     run
                     ...
                     (Note("c'8"), Note("d'8"))
                     (Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8"))
                     (Chord("<b' d''>8"), Chord("<c'' e''>8"))
 
+        ..  container:: example
+
+            Interprets none prototype equal to leaves:
+
+            ..  container:: example
+
+                ::
+
+                    >>> components = [
+                    ...     Note("c'4"),
+                    ...     Note("d'4"),
+                    ...     Staff(),
+                    ...     Note("e'4"),
+                    ...     Note("f'4"),
+                    ...     Staff(),
+                    ...     Rest('r4'),
+                    ...     ]
+
+            ..  container:: example
+
+                ::
+
+                    >>> for run in iterate(components).by_run():
+                    ...     run
+                    ...
+                    (Note("c'4"), Note("d'4"))
+                    (Note("e'4"), Note("f'4"))
+                    (Rest('r4'),)
+
         Returns generator.
         '''
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         if self._expression:
             return self._update_expression(inspect.currentframe())
+        prototype = prototype or scoretools.Leaf
         if not isinstance(prototype, collections.Sequence):
             prototype = (prototype,)
         sequence = selectiontools.Selection(self._client)
         def _closure():
-            current_group = ()
-            for group in sequence.group_by(type):
-                if isinstance(group[0], prototype):
-                    current_group = current_group + group
-                elif current_group:
-                    yield current_group
-                    current_group = ()
-            if current_group:
-                yield current_group
+            current_run = ()
+            for run in sequence.group_by(type):
+                if isinstance(run[0], prototype):
+                    current_run = current_run + run
+                elif current_run:
+                    yield current_run
+                    current_run = ()
+            if current_run:
+                yield current_run
         return _closure()
 
     def by_semantic_voice(

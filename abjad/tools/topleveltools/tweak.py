@@ -28,7 +28,7 @@ def tweak(argument):
                 f'4
             }
 
-        Suvives copy:
+        Survives copy:
 
         ::
 

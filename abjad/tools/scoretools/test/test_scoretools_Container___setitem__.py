@@ -44,7 +44,7 @@ def test_scoretools_Container___setitem___02():
 
     voice = Voice("c'8 [ d'8 ] e'8 f'8")
     leaves = iterate(voice).by_leaf()
-    glissando = Glissando(allow_repeated_pitches=True)
+    glissando = Glissando(allow_repeat_pitches=True)
     attach(glissando, list(leaves))
 
     assert format(voice) == stringtools.normalize(

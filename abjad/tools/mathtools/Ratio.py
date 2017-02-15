@@ -42,8 +42,68 @@ class Ratio(NonreducedRatio):
 
     ### SPECIAL METHODS ###
 
-    def __getitem__(self, i):
-        r'''Gets item at `i`.
+    def __eq__(self, argument):
+        r'''Is true when `argument` equals ratio.
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio_1 = mathtools.Ratio((1, 2, 1))
+                >>> ratio_2 = mathtools.Ratio((1, 2, 1))
+                >>> ratio_3 = mathtools.Ratio((2, 3, 3))
+
+            ::
+
+                >>> ratio_1 == ratio_1
+                True
+
+            ::
+
+                >>> ratio_1 == ratio_2
+                True
+
+            ::
+
+                >>> ratio_1 == ratio_3
+                False
+
+            ::
+
+                >>> ratio_2 == ratio_1
+                True
+
+            ::
+
+                >>> ratio_2 == ratio_2
+                True
+
+            ::
+
+                >>> ratio_2 == ratio_3
+                False
+
+            ::
+
+                >>> ratio_3 == ratio_1
+                False
+
+            ::
+
+                >>> ratio_3 == ratio_2
+                False
+
+            ::
+
+                >>> ratio_3 == ratio_3
+                True
+            
+        '''
+        superclass = super(Ratio, self)
+        return superclass.__eq__(argument)
+
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         ..  container:: example
 
@@ -55,9 +115,18 @@ class Ratio(NonreducedRatio):
 
         Returns integer or tuple.
         '''
-        if isinstance(i, slice):
-            return tuple(self._numbers[i])
-        return self._numbers[i]
+        if isinstance(argument, slice):
+            return tuple(self._numbers.__getitem__(argument))
+        return self._numbers.__getitem__(argument)
+
+    def __hash__(self):
+        r'''Hashes ratio.
+
+        Required to be explicitly redefined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(Ratio, self).__hash__()
 
     def __len__(self):
         r'''Gets length of ratio.

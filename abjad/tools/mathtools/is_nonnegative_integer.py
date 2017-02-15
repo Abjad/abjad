@@ -2,32 +2,30 @@
 import numbers
 
 
-def is_nonnegative_integer(expr):
-    '''Is true when `expr` equals a nonnegative integer.
+def is_nonnegative_integer(argument):
+    '''Is true when `argument` equals a nonnegative integer. Otherwise false.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.is_nonnegative_integer(99)
-        True
+        ::
 
-    ::
+            >>> mathtools.is_nonnegative_integer(99)
+            True
 
-        >>> mathtools.is_nonnegative_integer(0)
-        True
+        ::
 
-    Otherwise false:
+            >>> mathtools.is_nonnegative_integer(0)
+            True
 
-    ::
+        ::
 
-        >>> mathtools.is_nonnegative_integer(-1)
-        False
+            >>> mathtools.is_nonnegative_integer(-1)
+            False
 
     Returns true or false.
     '''
-
-    if isinstance(expr, numbers.Number):
-        if expr == int(expr):
-            if 0 <= expr:
+    if isinstance(argument, numbers.Number):
+        if argument == int(argument):
+            if 0 <= argument:
                 return True
-
     return False

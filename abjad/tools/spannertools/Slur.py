@@ -10,7 +10,7 @@ class Slur(Spanner):
 
     ..  container:: example
 
-        **Example 1.** Slurs four notes:
+        Slurs four notes:
 
         ::
 
@@ -30,7 +30,7 @@ class Slur(Spanner):
 
     ..  container:: example
 
-        **Example 2.** Requires at least two leaves:
+        Requires at least two leaves:
 
         ::
 

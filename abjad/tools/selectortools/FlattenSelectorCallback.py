@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class FlattenSelectorCallback(AbjadValueObject):
-    r'''A flatten selector callback.
+    r'''Flatten selector callback.
     '''
 
     ### CLASS VARIABLES ###

@@ -267,31 +267,31 @@ class Container(Component):
             components._withdraw_from_crossing_spanners()
         components._set_parents(None)
 
-    def __getitem__(self, i):
-        r'''Gets container at index or slice `i`.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         Traverses top-level items only.
 
         Returns component.
         '''
-        if isinstance(i, int):
-            return self._music[i]
-        elif isinstance(i, slice) and not self.is_simultaneous:
-            return selectiontools.Selection(self._music[i])
-        elif isinstance(i, slice) and self.is_simultaneous:
-            return selectiontools.Selection(self._music[i])
-        elif isinstance(i, str):
-            if i not in self._named_children:
+        if isinstance(argument, int):
+            return self._music.__getitem__(argument)
+        elif isinstance(argument, slice) and not self.is_simultaneous:
+            return selectiontools.Selection(self._music.__getitem__(argument))
+        elif isinstance(argument, slice) and self.is_simultaneous:
+            return selectiontools.Selection(self._music.__getitem__(argument))
+        elif isinstance(argument, str):
+            if argument not in self._named_children:
                 message = 'can not find component named {!r}.'
-                message = message.format(i)
+                message = message.format(argument)
                 raise ValueError(message)
-            elif 1 < len(self._named_children[i]):
+            elif 1 < len(self._named_children.__getitem__(argument)):
                 message = 'multiple components named {!r}.'
-                message = message.format(i)
+                message = message.format(argument)
                 raise ValueError(message)
-            return self._named_children[i][0]
-        message = 'can not get container item {!r}.'
-        message = message.format(i)
+            return self._named_children.__getitem__(argument)[0]
+        message = 'can not get container at {!r}.'
+        message = message.format(argument)
         raise ValueError(message)
 
     def __graph__(self, spanner=None, **kwargs):

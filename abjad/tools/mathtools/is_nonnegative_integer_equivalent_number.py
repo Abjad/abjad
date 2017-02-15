@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
 
 
-def is_nonnegative_integer_equivalent_number(expr):
-    '''Is true when `expr` is a nonnegative integer-equivalent number.
-    Otherwise false:
+def is_nonnegative_integer_equivalent_number(argument):
+    '''Is true when `argument` is a nonnegative integer-equivalent number.
+    Otherwise false.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.is_nonnegative_integer_equivalent_number(Duration(4, 2))
-        True
+        ::
+
+            >>> duration = Duration(4, 2)
+            >>> mathtools.is_nonnegative_integer_equivalent_number(duration)
+            True
 
     Returns true or false.
     '''
     from abjad.tools import mathtools
-
-    return mathtools.is_integer_equivalent_number(expr) and 0 <= expr
+    return mathtools.is_integer_equivalent_number(argument) and 0 <= argument

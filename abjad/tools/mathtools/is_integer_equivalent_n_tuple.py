@@ -1,24 +1,29 @@
 # -*- coding: utf-8 -*-
 
 
-def is_integer_equivalent_n_tuple(expr, n):
-    r'''Is true when `expr` is a tuple of `n` integer-equivalent expressions.
+def is_integer_equivalent_n_tuple(argument, n):
+    r'''Is true when `argument` is a tuple of `n` integer-equivalent items.
+    Otherwise false.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.is_integer_equivalent_n_tuple((2.0, '3', Fraction(4, 1)), 3)
-        True
+        ::
 
-    Otherwise false:
+            >>> tuple_ = (2.0, '3', Fraction(4, 1))
+            >>> mathtools.is_integer_equivalent_n_tuple(tuple_, 3)
+            True
 
-    ::
+        ::
 
-        >>> mathtools.is_integer_equivalent_n_tuple((2.5, '3', Fraction(4, 1)), 3)
-        False
+            >>> tuple_ = (2.5, '3', Fraction(4, 1))
+            >>> mathtools.is_integer_equivalent_n_tuple(tuple_, 3)
+            False
 
     Returns true or false.
     '''
     from abjad.tools import mathtools
-
-    return isinstance(expr, tuple) and len(expr) == n and \
-        all(mathtools.is_integer_equivalent_expr(x) for x in expr)
+    return (
+        isinstance(argument, tuple) and
+        len(argument) == n and
+        all(mathtools.is_integer_equivalent(_) for _ in argument)
+        )

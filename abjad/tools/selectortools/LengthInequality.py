@@ -4,12 +4,12 @@ from abjad.tools.selectortools.Inequality import Inequality
 
 
 class LengthInequality(Inequality):
-    r'''A length inequality.
+    r'''Length inequality.
 
     ::
 
         >>> inequality = selectortools.LengthInequality('<', 4)
-        >>> print(format(inequality))
+        >>> f(inequality)
         selectortools.LengthInequality(
             operator_string='<',
             length=4,
@@ -40,6 +40,8 @@ class LengthInequality(Inequality):
         '_length',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -62,12 +64,12 @@ class LengthInequality(Inequality):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
-        r'''Calls length inequality on `expr`.
+    def __call__(self, argument):
+        r'''Calls length inequality on `argument`.
 
         Returns true or false.
         '''
-        length = len(expr)
+        length = len(argument)
         result = self._operator_function(length, self._length)
         return result
 

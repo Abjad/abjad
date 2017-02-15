@@ -2,21 +2,14 @@
 
 
 def factors(n):
-    r'''Prime factors less than or equal to positive integer `n` 
-    in increasing order.
+    r'''Gets prime factors less than or equal to `n` .
 
     ..  container:: example
-
-        **Example 1.** Factors 84: 
 
         ::
 
             >>> mathtools.factors(84)
             [2, 2, 3, 7]
-
-    ..  container:: example
-
-        **Example 2.** Factors the number 10 through 19, inclusive:
 
         ::
 
@@ -34,25 +27,23 @@ def factors(n):
             18 [2, 3, 3]
             19 [19]
 
-    Raises type error on noninteger `n`.
+    `n` must be a positive integer.
 
-    Raises value error on nonpositive `n`.
+    Returns factors in increasing order.
 
-    Returns list of one or more positive integers.
+    Returns list of positive integers.
     '''
     from abjad.tools import mathtools
-
     if not mathtools.is_positive_integer(n):
         message = 'must be positive integer: {!r}.'
         message = message.format(n)
         raise TypeError(message)
-
-    d = 2
+    factor = 2
     factors = []
     while 1 < n:
-        if n % d == 0:
-            factors.append(d)
-            n = n/d
+        if n % factor == 0:
+            factors.append(factor)
+            n = n / factor
         else:
-            d = d + 1
+            factor = factor + 1
     return factors

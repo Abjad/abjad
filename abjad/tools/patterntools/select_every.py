@@ -6,7 +6,7 @@ def select_every(indices, period=None, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Selects every second division:
+        Selects every second division:
 
         ::
 
@@ -57,7 +57,7 @@ def select_every(indices, period=None, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Selects every second and third division:
+        Selects every second and third division:
 
         ::
 

@@ -304,8 +304,8 @@ class TwelveToneRow(PitchClassSegment):
         result = type(pitch_classes)(new_pitch_classes)
         return result
         
-    def __getitem__(self, i):
-        r'''Gets row at index or slice `i`.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         ..  container:: example
 
@@ -375,14 +375,14 @@ class TwelveToneRow(PitchClassSegment):
 
         '''
         from abjad.tools import pitchtools
-        result = self._collection.__getitem__(i)
+        item = self._collection.__getitem__(argument)
         try:
             return PitchClassSegment(
-                items=result,
+                items=item,
                 item_class=pitchtools.NumberedPitchClass,
                 )
         except TypeError:
-            return result
+            return item
 
     def __illustrate__(self, **keywords):
         r'''Illustrates row.

@@ -210,7 +210,7 @@ class GeneralizedBeam(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         from abjad.tools import lilypondnametools
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        if not self._is_beamable_component(leaf):
+        if not self._is_beamable(leaf):
             return lilypond_format_bundle
         elif not self.use_stemlets and (
             not hasattr(leaf, 'written_pitch') and
@@ -270,12 +270,14 @@ class GeneralizedBeam(Spanner):
             direction_string = \
                 stringtools.expr_to_tridirectional_lilypond_symbol(
                     self.vertical_direction)
-        previous_leaf_is_beamable = \
-            self._is_beamable_component(previous_leaf) and \
+        previous_leaf_is_beamable = (
+            self._is_beamable(previous_leaf) and
             id(previous_leaf) in leaf_ids
-        next_leaf_is_beamable = \
-            self._is_beamable_component(next_leaf) and \
+            )
+        next_leaf_is_beamable = (
+            self._is_beamable(next_leaf) and
             id(next_leaf) in leaf_ids
+            )
         if not previous_leaf_is_beamable:
             if not next_leaf_is_beamable:
                 if self.isolated_nib_direction is not None:
@@ -287,7 +289,7 @@ class GeneralizedBeam(Spanner):
             stop_piece = ']'
         return start_piece, stop_piece
 
-    def _is_beamable_component(self, expr, beam_rests=False):
+    def _is_beamable(self, expr, beam_rests=False):
         r'''Is true when `expr` is beamable. Otherwise false.
         '''
         from abjad.tools import scoretools
@@ -323,12 +325,12 @@ class GeneralizedBeam(Spanner):
         if id(leaf) not in leaf_ids:
             return False
         if hasattr(leaf, 'written_pitch') or hasattr(leaf, 'written_pitches'):
-            if self._is_beamable_component(leaf):
+            if self._is_beamable(leaf):
                 return True
             elif self.include_long_duration_notes:
                 return True
         else:
-            if self._is_beamable_component(leaf) and self.use_stemlets:
+            if self._is_beamable(leaf) and self.use_stemlets:
                 return True
             elif self.include_long_duration_rests:
                 return True

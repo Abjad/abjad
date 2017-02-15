@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class LengthSelectorCallback(AbjadValueObject):
-    r'''A length selector callback.
+    r'''Length selector callback.
     '''
 
     ### CLASS VARIABLES ###
@@ -30,13 +30,13 @@ class LengthSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         Returns tuple in which each item is a selection or component.
         '''
         from abjad.tools import selectortools
-        assert isinstance(expr, tuple), repr(expr)
+        assert isinstance(argument, tuple), repr(argument)
         inequality = self.length
         if not isinstance(inequality, selectortools.LengthInequality):
             inequality = selectortools.LengthInequality(
@@ -44,7 +44,7 @@ class LengthSelectorCallback(AbjadValueObject):
                 operator_string='==',
                 )
         result = []
-        for subexpr in expr:
+        for subexpr in argument:
             if inequality(subexpr):
                 result.append(subexpr)
         return tuple(result)

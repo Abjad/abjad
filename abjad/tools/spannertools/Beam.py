@@ -107,7 +107,7 @@ class Beam(Spanner):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def _is_beamable_component(expr, beam_rests=False):
+    def _is_beamable(expr, beam_rests=False):
         '''Is true when `expr` is a beamable component. Otherwise false.
 
         ..  container:: example
@@ -124,7 +124,7 @@ class Beam(Spanner):
 
                 >>> for leaf in staff:
                 ...     beam = spannertools.Beam
-                ...     result = beam._is_beamable_component(leaf)
+                ...     result = beam._is_beamable(leaf)
                 ...     print('{:<8}\t{}'.format(leaf, result))
                 ... 
                 r32     False
@@ -150,7 +150,7 @@ class Beam(Spanner):
 
                 >>> for leaf in staff:
                 ...     beam = spannertools.Beam
-                ...     result = beam._is_beamable_component(
+                ...     result = beam._is_beamable(
                 ...         leaf,
                 ...         beam_rests=True,
                 ...         )
@@ -172,13 +172,13 @@ class Beam(Spanner):
             ::
 
                 >>> skip = Skip((1, 32))
-                >>> Beam._is_beamable_component(skip, beam_rests=True)
+                >>> Beam._is_beamable(skip, beam_rests=True)
                 True
 
             ::
 
                 >>> skip = Skip((1))
-                >>> Beam._is_beamable_component(skip, beam_rests=True)
+                >>> Beam._is_beamable(skip, beam_rests=True)
                 True
 
         ..  container:: example
@@ -188,13 +188,13 @@ class Beam(Spanner):
             ::
 
                 >>> rest = Rest((1, 32))
-                >>> Beam._is_beamable_component(rest, beam_rests=True)
+                >>> Beam._is_beamable(rest, beam_rests=True)
                 True
 
             ::
 
                 >>> rest = Rest((1))
-                >>> Beam._is_beamable_component(rest, beam_rests=True)
+                >>> Beam._is_beamable(rest, beam_rests=True)
                 True
 
         Returns true or false.

@@ -7,7 +7,7 @@ def sustain_last(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Sustains last division:
+        Sustains last division:
 
         ::
 
@@ -62,7 +62,7 @@ def sustain_last(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Sustains last two divisions:
+        Sustains last two divisions:
 
         ::
 
@@ -117,7 +117,7 @@ def sustain_last(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 3.** Sustains no last divisions:
+        Sustains no last divisions:
 
         ::
 

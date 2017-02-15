@@ -7,7 +7,7 @@ class PatternInventory(TypedTuple):
 
     ..  container:: example
 
-        **Example 1.** Inventory of three patterns:
+        Inventory of three patterns:
 
         ::
 
@@ -46,7 +46,7 @@ class PatternInventory(TypedTuple):
 
     ..  container:: example
 
-        **Example 2.** Inventory of two patterns:
+        Inventory of two patterns:
 
         ::
 
@@ -103,7 +103,7 @@ class PatternInventory(TypedTuple):
                 ...         ),
                 ...     ])
 
-            **Example 1a.** Gets patterns that match the first ten indices:
+            Gets patterns that match the first ten indices:
 
             ::
 
@@ -124,7 +124,7 @@ class PatternInventory(TypedTuple):
 
             Last three indices match the second pattern.
 
-            **Example 1b.** Gets patterns that match next ten indices:
+            Gets patterns that match next ten indices:
 
             ::
 
@@ -147,8 +147,8 @@ class PatternInventory(TypedTuple):
 
         ..  container:: example
 
-            **Example 2a.** Gets patterns that match the first ten indices,
-            with rotation set to ``1``:
+            Gets patterns that match the first ten indices, with rotation set
+            to ``1``:
 
             ::
 
@@ -169,8 +169,8 @@ class PatternInventory(TypedTuple):
 
             Matching indices of first pattern offset by ``1``.
 
-            **Example 2b.** Gets patterns that match next ten indices with
-            rotation set to ``1``:
+            Gets patterns that match next ten indices with rotation set to
+            ``1``:
 
             ::
 
@@ -193,7 +193,7 @@ class PatternInventory(TypedTuple):
 
         ..  container:: example
 
-            **Example 3.** With inverted patterns:
+            With inverted patterns:
 
             ::
 
@@ -241,8 +241,8 @@ class PatternInventory(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Inventory of two patterns. Underlying notes with
-            even divisions assigned to the last three indices:
+            Inventory of two patterns. Underlying notes with even divisions
+            assigned to the last three indices:
 
             ::
 

@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
 
 
-def is_singleton(expr):
-    r'''Is true when `expr` is a tuple of length ``1``.
+def is_singleton(argument):
+    r'''Is true when `argument` is a tuple of length 1. Otherwise false.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.is_singleton((19,))
-        True
+        ::
 
-    Otherwise false:
+            >>> mathtools.is_singleton((19,))
+            True
 
-    ::
+        ::
 
-        >>> mathtools.is_singleton((19, 20, 21))
-        False
+            >>> mathtools.is_singleton((19, 20, 21))
+            False
 
     Returns true or false.
     '''
-
-    return isinstance(expr, tuple) and len(expr) == 1
+    return isinstance(argument, tuple) and len(argument) == 1
