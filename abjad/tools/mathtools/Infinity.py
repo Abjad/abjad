@@ -58,6 +58,9 @@ class Infinity(AbjadObject):
             return self._value == expr._value
         return False
 
+    def __float__(self):
+        return self._value
+
     def __ge__(self, expr):
         r''' True for all values of `expr`. Otherwise false.
 
