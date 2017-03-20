@@ -56,7 +56,10 @@ class TestCase(unittest.TestCase):
             if '__pycache__' not in path.parts and
             path.suffix != '.pyc'
             )
-        assert actual_files == expected_files
+        self.compare_strings(
+            '\n'.join(str(_) for _ in actual_files),
+            '\n'.join(str(_) for _ in expected_files),
+            )
 
     def compare_strings(self, expected, actual):
         actual = self.normalize(self.ansi_escape.sub('', actual))
