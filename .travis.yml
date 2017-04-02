@@ -13,6 +13,11 @@ python:
     - 3.5
     - pypy
 
+matrix:
+    include:
+        python: "3.5"
+        env: ACCELERATED=true
+
 addons:
     apt:
         packages:
@@ -48,6 +53,8 @@ install:
     - abjad/scr/devel/prime-parser-tables
     # then install development and ipython dependencies.
     - pip install -e .[development,ipython]
+    # install accelerated dependencies if requested
+    - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
     - abjad/scr/ajv doctest --diff experimental

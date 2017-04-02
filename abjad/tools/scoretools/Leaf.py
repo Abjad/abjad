@@ -582,7 +582,7 @@ class Leaf(Component):
         try:
             notes = [scoretools.Note(0, x) for x in written_durations]
         except AssignabilityError:
-            denominator = target_duration._denominator
+            denominator = target_duration.denominator
             note_durations = [
                 durationtools.Duration(_, denominator)
                 for _ in proportions.numbers

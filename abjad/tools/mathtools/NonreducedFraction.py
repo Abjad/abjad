@@ -59,6 +59,8 @@ class NonreducedFraction(AbjadObject, Fraction):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_numerator',
+        '_denominator',
         )
 
     ### CONSTRUCTOR ###
@@ -688,7 +690,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         Returns zero.
         '''
-        return Fraction.imag.fget(self)
+        return 0
 
     @property
     def numerator(self):
