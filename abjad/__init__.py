@@ -26,6 +26,11 @@ try:
 except ImportError:
     pass
 
+try:
+    from quicktions import Fraction
+except ImportError:
+    from fractions import Fraction
+
 # ensure that the ~/.abjad directory and friends are setup,
 # and instantiate Abjad's configuration singleton
 from abjad.tools.systemtools.AbjadConfiguration import AbjadConfiguration
@@ -75,7 +80,6 @@ from abjad.tools.spannertools import Hairpin
 from abjad.tools.spannertools import Slur
 from abjad.tools.spannertools import Tie
 from abjad.tools.timespantools import Timespan
-from fractions import Fraction
 
 # import some frequently used functions for direct user access
 from abjad.tools.topleveltools import attach

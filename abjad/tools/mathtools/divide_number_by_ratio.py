@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import fractions
 import numbers
+from abjad import Fraction
 
 
 def divide_number_by_ratio(number, ratio):
@@ -39,7 +39,7 @@ def divide_number_by_ratio(number, ratio):
 
     # find factors and multiply by factors
     factors = [
-        fractions.Fraction(p, sum(ratio.numbers)) 
+        Fraction(p, sum(ratio.numbers))
         for p in ratio.numbers
         ]
     result = [factor * number for factor in factors]

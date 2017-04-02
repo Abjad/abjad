@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import abc
-import fractions
+from abjad import Fraction
 from abjad.tools import abctools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -181,7 +181,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
 
     @preprolated_duration.setter
     def preprolated_duration(self, arg):
-        if not isinstance(arg, fractions.Fraction):
+        if not isinstance(arg, Fraction):
             arg = durationtools.Duration(arg)
         assert 0 < arg
         self._duration = arg

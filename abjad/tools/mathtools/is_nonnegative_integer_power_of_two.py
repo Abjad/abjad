@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import fractions
+from abjad import Fraction
 
 
 def is_nonnegative_integer_power_of_two(expr):
@@ -9,7 +9,7 @@ def is_nonnegative_integer_power_of_two(expr):
 
         >>> for n in range(10):
         ...     print(n, mathtools.is_nonnegative_integer_power_of_two(n))
-        ... 
+        ...
         0 True
         1 True
         2 True
@@ -28,7 +28,7 @@ def is_nonnegative_integer_power_of_two(expr):
 
     if isinstance(expr, int):
         return not bool(expr & (expr - 1))
-    elif isinstance(expr, fractions.Fraction):
+    elif isinstance(expr, Fraction):
         return is_nonnegative_integer_power_of_two(expr.numerator * expr.denominator)
     else:
         return False

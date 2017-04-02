@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import collections
-import fractions
 import numbers
+from abjad import Fraction
 from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
@@ -1577,7 +1577,7 @@ class Markup(AbjadValueObject):
             number = int(rational)
             markup = Markup(number)
             return markup
-        assert isinstance(rational, fractions.Fraction), repr(rational)
+        assert isinstance(rational, Fraction), repr(rational)
         integer_part = int(rational)
         fraction_part = rational - integer_part
         integer_markup = Markup(integer_part)

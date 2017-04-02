@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import fractions
+from abjad import Fraction
 from abjad.tools import durationtools
 from abjad.tools import selectiontools
 
@@ -81,7 +81,7 @@ def make_repeated_notes_with_shorter_notes_at_end(
     written_duration = durationtools.Duration(written_duration)
     total_duration = durationtools.Duration(total_duration)
     prolation = durationtools.Duration(prolation)
-    prolation = fractions.Fraction(prolation)
+    prolation = Fraction(prolation)
 
     duration = prolation * written_duration
     current_duration = durationtools.Duration(0)

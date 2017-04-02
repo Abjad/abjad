@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import fractions
 import math
+from abjad import Fraction
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
@@ -663,7 +663,7 @@ class Tuplet(Container):
                 for x in written_durations
                 ]
         except AssignabilityError:
-            denominator = duration._denominator
+            denominator = duration.denominator
             note_durations = [
                 durationtools.Duration(x, denominator)
                 for x in ratio.numbers
@@ -2112,7 +2112,7 @@ class Tuplet(Container):
 
     @multiplier.setter
     def multiplier(self, expr):
-        if isinstance(expr, (int, fractions.Fraction)):
+        if isinstance(expr, (int, Fraction)):
             rational = durationtools.Multiplier(expr)
         elif isinstance(expr, tuple):
             rational = durationtools.Multiplier(expr)

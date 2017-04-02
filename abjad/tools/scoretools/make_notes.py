@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import fractions
 import numbers
+from abjad import Fraction
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -246,7 +246,7 @@ def make_notes(
             denominator = duration[0].denominator
             numerator = mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
-            ratio = 1 / fractions.Fraction(*multiplier)
+            ratio = 1 / Fraction(*multiplier)
             duration = [ratio * durationtools.Duration(d) for d in duration]
             ns = _make_unprolated_notes(
                 ps,

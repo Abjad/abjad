@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import copy
-import fractions
 import math
 import re
+from abjad import Fraction
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -10,7 +10,7 @@ from abjad.tools.topleveltools.override import override
 from abjad.tools.topleveltools.set_ import set_
 
 
-class Duration(AbjadObject, fractions.Fraction):
+class Duration(AbjadObject, Fraction):
     r'''Duration.
 
     ..  container:: example
@@ -141,33 +141,33 @@ class Duration(AbjadObject, fractions.Fraction):
             if type(arg) is class_:
                 return arg
             if isinstance(arg, mathtools.NonreducedFraction):
-                return fractions.Fraction.__new__(class_, *arg.pair)
+                return Fraction.__new__(class_, *arg.pair)
             try:
-                return fractions.Fraction.__new__(class_, *arg)
+                return Fraction.__new__(class_, *arg)
             except (AttributeError, TypeError):
                 pass
             try:
-                return fractions.Fraction.__new__(class_, arg)
+                return Fraction.__new__(class_, arg)
             except (AttributeError, TypeError):
                 pass
             if mathtools.is_fraction_equivalent_pair(arg):
-                return fractions.Fraction.__new__(
+                return Fraction.__new__(
                     class_, int(arg[0]), int(arg[1]))
             if hasattr(arg, 'duration'):
-                return fractions.Fraction.__new__(class_, arg.duration)
+                return Fraction.__new__(class_, arg.duration)
             if isinstance(arg, str) and '/' not in arg:
                 result = Duration._initialize_from_lilypond_duration_string(
                     arg)
-                return fractions.Fraction.__new__(class_, result)
+                return Fraction.__new__(class_, result)
             if mathtools.is_integer_equivalent_singleton(arg):
-                return fractions.Fraction.__new__(class_, int(arg[0]))
+                return Fraction.__new__(class_, int(arg[0]))
         else:
             try:
-                return fractions.Fraction.__new__(class_, *args)
+                return Fraction.__new__(class_, *args)
             except TypeError:
                 pass
             if mathtools.all_are_integer_equivalent_numbers(args):
-                return fractions.Fraction.__new__(
+                return Fraction.__new__(
                     class_,
                     *[int(x) for x in args]
                     )
@@ -182,7 +182,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns nonnegative duration.
         '''
-        return type(self)(fractions.Fraction.__abs__(self, *args))
+        return type(self)(Fraction.__abs__(self, *args))
 
     def __add__(self, *args):
         r'''Adds duration to `args`.
@@ -218,7 +218,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ):
             result = args[0].__radd__(self)
         else:
-            result = type(self)(fractions.Fraction.__add__(self, *args))
+            result = type(self)(Fraction.__add__(self, *args))
         return result
 
     def __div__(self, *args):
@@ -228,13 +228,13 @@ class Duration(AbjadObject, fractions.Fraction):
         '''
         from abjad.tools import durationtools
         if len(args) == 1 and isinstance(args[0], type(self)):
-            fraction = fractions.Fraction.__truediv__(self, *args)
+            fraction = Fraction.__truediv__(self, *args)
             result = durationtools.Multiplier(fraction)
         elif len(args) == 1 and isinstance(
             args[0], mathtools.NonreducedFraction):
             result = args[0].__rdiv__(self)
         else:
-            result = type(self)(fractions.Fraction.__truediv__(self, *args))
+            result = type(self)(Fraction.__truediv__(self, *args))
         return result
 
     def __divmod__(self, *args):
@@ -242,7 +242,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns pair.
         '''
-        truncated, residue = fractions.Fraction.__divmod__(self, *args)
+        truncated, residue = Fraction.__divmod__(self, *args)
         truncated = type(self)(truncated)
         residue = type(self)(residue)
         return truncated, residue
@@ -253,7 +253,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns true or false.
         '''
-        return fractions.Fraction.__eq__(self, arg)
+        return Fraction.__eq__(self, arg)
 
     def __format__(self, format_specification=''):
         r'''Formats duration.
@@ -274,7 +274,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns true or false.
         '''
-        return fractions.Fraction.__ge__(self, arg)
+        return Fraction.__ge__(self, arg)
 
     def __gt__(self, arg):
         r'''Is true when duration is greater than `arg`.
@@ -282,7 +282,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns true or false.
         '''
-        return fractions.Fraction.__gt__(self, arg)
+        return Fraction.__gt__(self, arg)
 
     def __hash__(self):
         r'''Hashes duration.
@@ -299,7 +299,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns true or false.
         '''
-        return fractions.Fraction.__le__(self, arg)
+        return Fraction.__le__(self, arg)
 
     def __lt__(self, arg):
         r'''Is true when duration is less than `arg`.
@@ -307,14 +307,14 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns true or false.
         '''
-        return fractions.Fraction.__lt__(self, arg)
+        return Fraction.__lt__(self, arg)
 
     def __mod__(self, *args):
         r'''Modulus operator applied to duration.
 
         Returns duration.
         '''
-        return type(self)(fractions.Fraction.__mod__(self, *args))
+        return type(self)(Fraction.__mod__(self, *args))
 
     def __mul__(self, *args):
         r'''Duration multiplied by `args`.
@@ -350,7 +350,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ):
             result = args[0].__rmul__(self)
         else:
-            result = type(self)(fractions.Fraction.__mul__(self, *args))
+            result = type(self)(Fraction.__mul__(self, *args))
         return result
 
     def __ne__(self, arg):
@@ -359,47 +359,47 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns true or false.
         '''
-        return fractions.Fraction.__ne__(self, arg)
+        return Fraction.__ne__(self, arg)
 
     def __neg__(self, *args):
         r'''Negates duration.
 
         Returns new duration.
         '''
-        return type(self)(fractions.Fraction.__neg__(self, *args))
+        return type(self)(Fraction.__neg__(self, *args))
 
     def __pos__(self, *args):
         r'''Get positive duration.
 
         Returns new duration.
         '''
-        return type(self)(fractions.Fraction.__pos__(self, *args))
+        return type(self)(Fraction.__pos__(self, *args))
 
     def __pow__(self, *args):
         r'''Raises duration to `args` power.
 
         Returns new duration.
         '''
-        return type(self)(fractions.Fraction.__pow__(self, *args))
+        return type(self)(Fraction.__pow__(self, *args))
 
     def __radd__(self, *args):
         r'''Adds `args` to duration.
 
         Returns new duration.
         '''
-        return type(self)(fractions.Fraction.__radd__(self, *args))
+        return type(self)(Fraction.__radd__(self, *args))
 
     def __rdiv__(self, *args):
         r'''Divides `args` by duration.
 
         Returns new duration.
         '''
-        return type(self)(fractions.Fraction.__rdiv__(self, *args))
+        return type(self)(Fraction.__rdiv__(self, *args))
 
     def __rdivmod__(self, *args):
         r'''Documentation required.
         '''
-        return type(self)(fractions.Fraction.__rdivmod__(self, *args))
+        return type(self)(Fraction.__rdivmod__(self, *args))
 
     def __reduce__(self):
         r'''Documentation required.
@@ -414,35 +414,35 @@ class Duration(AbjadObject, fractions.Fraction):
     def __rmod__(self, *args):
         r'''Documentation required.
         '''
-        return type(self)(fractions.Fraction.__rmod__(self, *args))
+        return type(self)(Fraction.__rmod__(self, *args))
 
     def __rmul__(self, *args):
         r'''Multiplies `args` by duration.
 
         Returns new duration.
         '''
-        return type(self)(fractions.Fraction.__rmul__(self, *args))
+        return type(self)(Fraction.__rmul__(self, *args))
 
     def __rpow__(self, *args):
         r'''Raises `args` to the power of duration.
 
         Returns new duration.
         '''
-        return type(self)(fractions.Fraction.__rpow__(self, *args))
+        return type(self)(Fraction.__rpow__(self, *args))
 
     def __rsub__(self, *args):
         r'''Subtracts duration from `args`.
 
         Returns new duration.
         '''
-        return type(self)(fractions.Fraction.__rsub__(self, *args))
+        return type(self)(Fraction.__rsub__(self, *args))
 
     def __rtruediv__(self, *args):
         r'''Documentation required.
 
         Returns new duration.
         '''
-        return type(self)(fractions.Fraction.__rtruediv__(self, *args))
+        return type(self)(Fraction.__rtruediv__(self, *args))
 
     def __sub__(self, *args):
         r'''Subtracts `args` from duration.
@@ -455,7 +455,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ):
             return args[0].__rsub__(self)
         else:
-            return type(self)(fractions.Fraction.__sub__(self, *args))
+            return type(self)(Fraction.__sub__(self, *args))
 
     def __truediv__(self, *args):
         r'''Documentation required.
@@ -511,14 +511,14 @@ class Duration(AbjadObject, fractions.Fraction):
         body_string, dots_string = match.groups()
         try:
             body_denominator = int(body_string)
-            body_duration = fractions.Fraction(1, body_denominator)
+            body_duration = Fraction(1, body_denominator)
         except ValueError:
             if body_string == r'\breve':
-                body_duration = fractions.Fraction(2)
+                body_duration = Fraction(2)
             elif body_string == r'\longa':
-                body_duration = fractions.Fraction(4)
+                body_duration = Fraction(4)
             elif body_string == r'\maxima':
-                body_duration = fractions.Fraction(8)
+                body_duration = Fraction(8)
             else:
                 message = 'unknown body string: {!r}.'
                 message = message.format(body_string)
@@ -527,7 +527,7 @@ class Duration(AbjadObject, fractions.Fraction):
         for n in range(len(dots_string)):
             exponent = n + 1
             denominator = 2 ** exponent
-            multiplier = fractions.Fraction(1, denominator)
+            multiplier = Fraction(1, denominator)
             addend = multiplier * body_duration
             rational += addend
         return rational
