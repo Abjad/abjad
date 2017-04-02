@@ -579,7 +579,7 @@ class IOManager(AbjadObject):
         stats_stream = StringIO()
         stats = pstats.Stats(profile, stream=stats_stream)
         if sort_by == 'cum':
-            if platform.python_version() == '2.7.5':
+            if platform.python_version() == '2.7.5':  # why so specific?
                 sort_by = 'cumulative'
         if strip_dirs:
             stats.strip_dirs().sort_stats(sort_by).print_stats(line_count)
