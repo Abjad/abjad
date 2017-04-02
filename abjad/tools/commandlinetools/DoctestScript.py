@@ -57,7 +57,7 @@ class DoctestScript(CommandlineScript):
                         current_root, directory, '__init__.py')):
                         directories.remove(directory)
                 for file_name in files[:]:
-                    if not file_name.endswith('.py'):
+                    if not file_name.endswith(('.py', '.pyx')):
                         continue
                     file_path = os.path.join(current_root, file_name)
                     file_paths.append(file_path)

@@ -137,11 +137,11 @@ class ImportManager(AbjadObject):
             module_path = os.path.join(path, name)
             if not os.path.isfile(module_path):
                 continue
-            elif not module_path.endswith('.py'):
+            elif not module_path.endswith(('.py', '.pyx')):
                 continue
             elif name.startswith(('.', '_')):
                 continue
-            name = name.replace('.py', '')
+            name = name.rpartition('.py')[0]
             module_path = '.'.join((
                 package_path,
                 name,
@@ -181,7 +181,7 @@ class ImportManager(AbjadObject):
             if os.path.isfile(os.path.join(path, element)):
                 if element.startswith('_'):
                     continue
-                if not element.endswith('.py'):
+                if not element.endswith(('.py', '.pyx')):
                     continue
                 # import functions inside module
                 name = os.path.splitext(element)[0]
