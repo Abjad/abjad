@@ -59,6 +59,10 @@ class Infinity(AbjadObject):
         return False
 
     def __float__(self):
+        r'''Convert infinity to float.
+
+        Returns float.
+        '''
         return self._value
 
     def __ge__(self, expr):
