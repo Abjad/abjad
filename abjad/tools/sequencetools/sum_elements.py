@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
-import fractions
+from abjad import Fraction
 
 
 def sum_elements(
@@ -49,7 +49,7 @@ def sum_elements(
     sequence_type = type(sequence)
 
     assert all(
-        isinstance(x, (int, float, fractions.Fraction)) for x in sequence)
+        isinstance(x, (int, float, Fraction)) for x in sequence)
     assert isinstance(period, (int, type(None)))
     assert isinstance(overhang, bool)
 

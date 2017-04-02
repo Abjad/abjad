@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-import fractions
 from ply import lex
+from abjad import Fraction
 from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from abjad.tools import lilypondfiletools
@@ -1224,7 +1224,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_fraction__UNSIGNED__Chr47__UNSIGNED(self, p):
         "fraction : UNSIGNED '/' UNSIGNED"
-        p[0] = fractions.Fraction(p[1], p[3])
+        p[0] = Fraction(p[1], p[3])
 
     ### full_markup ###
 
@@ -2218,7 +2218,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
                 p[1].duration, p[1].multiplier * p[3])
         else:
             p[0] = lilypondparsertools.LilyPondDuration(
-                p[1].duration, fractions.Fraction(p[3].numerator, p[3].denominator))
+                p[1].duration, Fraction(p[3].numerator, p[3].denominator))
 
     def p_multiplied_duration__multiplied_duration__Chr42__bare_unsigned(self, p):
         "multiplied_duration : multiplied_duration '*' bare_unsigned"

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import fractions
+from abjad import Fraction
 
 
 def arithmetic_mean(sequence):
@@ -33,7 +33,7 @@ def arithmetic_mean(sequence):
     if isinstance(sum_l, float):
         return sum_l / len_l
 
-    result = fractions.Fraction(sum(sequence), len(sequence))
+    result = Fraction(sum(sequence), len(sequence))
 
     int_result = int(result)
     if int_result == result:

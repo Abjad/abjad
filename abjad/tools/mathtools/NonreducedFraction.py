@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-import fractions
+from abjad import Fraction
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class NonreducedFraction(AbjadObject, fractions.Fraction):
+class NonreducedFraction(AbjadObject, Fraction):
     r'''Initializes with an integer numerator and integer denominator:
 
     ::
@@ -91,7 +91,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             raise ValueError(message)
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)
-        self = fractions.Fraction.__new__(class_, numerator, denominator)
+        self = Fraction.__new__(class_, numerator, denominator)
         self._numerator = numerator
         self._denominator = denominator
         return self
@@ -613,7 +613,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns fraction.
         '''
-        return fractions.Fraction(self.numerator, self.denominator)
+        return Fraction(self.numerator, self.denominator)
 
     def with_denominator(self, denominator):
         r'''Returns new nonreduced fraction with integer `denominator`.
@@ -688,7 +688,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns zero.
         '''
-        return fractions.Fraction.imag.fget(self)
+        return Fraction.imag.fget(self)
 
     @property
     def numerator(self):

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import fractions
+from abjad import Fraction
 
 
 def fraction_to_proper_fraction(rational):
@@ -13,7 +13,7 @@ def fraction_to_proper_fraction(rational):
     Returns pair.
     '''
 
-    if not isinstance(rational, fractions.Fraction):
+    if not isinstance(rational, Fraction):
         raise TypeError
 
     quotient = int(rational)

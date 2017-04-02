@@ -69,6 +69,9 @@ if StrictVersion(version) < StrictVersion('3.3.0'):
     install_requires.append('mock')
 
 extras_require = {
+    'accelerated': [
+        'quicktions>=1.3',
+        ],
     'development': [
         'pytest>=3.0.0',
         'sphinx>=1.4',

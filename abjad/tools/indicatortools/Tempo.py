@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import collections
-import fractions
 import functools
 import math
 import numbers
+from abjad import Fraction
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import schemetools
@@ -202,7 +202,7 @@ class Tempo(AbjadValueObject):
         prototype = (
             int,
             float,
-            fractions.Fraction,
+            Fraction,
             collections.Sequence,
             type(None),
             )
@@ -495,14 +495,14 @@ class Tempo(AbjadValueObject):
         elif isinstance(self.units_per_minute, (int, float)):
             string = '{}={}'
             string = string.format(self._dotted, self.units_per_minute)
-        elif (isinstance(self.units_per_minute, fractions.Fraction) and
+        elif (isinstance(self.units_per_minute, Fraction) and
             not mathtools.is_integer_equivalent_number(self.units_per_minute)):
             integer_part = int(self.units_per_minute)
             remainder = self.units_per_minute - integer_part
-            remainder = fractions.Fraction(remainder)
+            remainder = Fraction(remainder)
             string = '{}={}+{}'
             string = string.format(self._dotted, integer_part, remainder)
-        elif (isinstance(self.units_per_minute, fractions.Fraction) and
+        elif (isinstance(self.units_per_minute, Fraction) and
             mathtools.is_integer_equivalent_number(self.units_per_minute)):
             string = '{}={}'
             integer = int(self.units_per_minute)
@@ -757,7 +757,7 @@ class Tempo(AbjadValueObject):
         multipliers = [durationtools.Multiplier(_) for _ in pairs]
         multipliers = [
             _ for _ in multipliers
-            if fractions.Fraction(1, 2) <= _ <= fractions.Fraction(2)
+            if Fraction(1, 2) <= _ <= Fraction(2)
             ]
         multipliers.sort()
         multipliers = sequencetools.remove_repeated_elements(multipliers)
@@ -1100,7 +1100,7 @@ class Tempo(AbjadValueObject):
         lhs_score_markup = durationtools.Duration._to_score_markup(selection)
         lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
         equal_markup = markuptools.Markup('=')
-        if (isinstance(units_per_minute, fractions.Fraction) and
+        if (isinstance(units_per_minute, Fraction) and
             not mathtools.is_integer_equivalent_number(units_per_minute)):
             rhs_markup = markuptools.Markup.make_improper_fraction_markup(
                 units_per_minute)
@@ -1180,7 +1180,7 @@ class Tempo(AbjadValueObject):
                 self.units_per_minute[1],
                 )
             return string
-        elif isinstance(self.units_per_minute, (float, fractions.Fraction)):
+        elif isinstance(self.units_per_minute, (float, Fraction)):
             markup = Tempo.make_tempo_equation_markup(
                 self.reference_duration,
                 self.units_per_minute,
@@ -1415,7 +1415,7 @@ class Tempo(AbjadValueObject):
             return (low, high)
         result = durationtools.Duration(1, 4) / self.reference_duration * \
             self.units_per_minute
-        return fractions.Fraction(result)
+        return Fraction(result)
 
     @property
     def reference_duration(self):
