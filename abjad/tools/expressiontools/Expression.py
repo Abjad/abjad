@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+try:
+    import funcsigs
+except ImportError:
+    import inspect as funcsigs
 import inspect
 import numbers
 from abjad.tools.abctools import AbjadObject
@@ -1091,7 +1095,6 @@ class Expression(AbjadObject):
             function = getattr(function_self, function_name)
             if not getattr(function, 'has_signature_decorator', False):
                 return {'markup_expression': None, 'string_template': None}
-            signature = inspect.signature(function)
             argument_names = values.args[1:]
             argument_values = {}
             for argument_name in argument_names:
@@ -1102,8 +1105,8 @@ class Expression(AbjadObject):
             if markup_expression_callback is not None:
                 string_template_callback = Expression._get_callback(
                     'string_template_callback', function, function_self)
-                markup_expression = \
-                    markup_expression_callback(**argument_values)
+                markup_expression = markup_expression_callback(
+                    **argument_values)
                 string_template = string_template_callback(**argument_values)
             elif getattr(function, 'is_operator', None):
                 method_name = Expression._get_method_name(
@@ -1122,7 +1125,8 @@ class Expression(AbjadObject):
                 string_template = Expression._make_operator_string_template(
                     method_name=method_name,
                     subscript=subscript,
-                    superscript=superscript)
+                    superscript=superscript,
+                    )
             else:
                 method_name = Expression._get_method_name(
                     function_name, function, function_self, argument_values)
@@ -1204,13 +1208,15 @@ class Expression(AbjadObject):
             if static_class:
                 method_name = frame.f_code.co_name
                 static_method = getattr(static_class, method_name)
-                signature = inspect.signature(static_method)
+                #signature = inspect.signature(static_method)
+                signature = funcsigs.signature(static_method)
                 argument_names = values.args[:]
             else:
                 assert values.args[0] == 'self'
                 self = values.locals['self']
                 function = getattr(self, function_name)
-                signature = inspect.signature(function)
+                #signature = inspect.signature(function)
+                signature = funcsigs.signature(function)
                 argument_names = values.args[1:]
             argument_strings = []
             for argument_name in argument_names:
