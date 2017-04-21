@@ -18,6 +18,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
         >>> meter = metertools.Meter((4, 4))
         >>> proxy = abjadbooktools.GraphvizOutputProxy(meter)
         >>> print(format(proxy))
+        ...
         abjadbooktools.GraphvizOutputProxy(
             documentationtools.GraphvizGraph(
                 attributes={
@@ -285,7 +286,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             >>> for node in proxy.as_docutils():
             ...     print(node.pformat())
             ...
-            <abjad_output_block image_layout_specifier="True" image_render_specifier="True" layout="dot" renderer="graphviz" xml:space="preserve">
+            <abjad_output_block image_layout_specifier... image_render_specifier... layout="dot" renderer="graphviz" xml:space="preserve">
                 digraph G {
                     graph [bgcolor=transparent,
                         fontname=Arial,

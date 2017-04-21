@@ -3119,10 +3119,11 @@ class IterationAgent(abctools.AbjadObject):
                 ...
                 Voice("c'4. d'4 e'16 f'4 g'16")
 
-        Returns generator.
+        Note: returns list.
         '''
         if self._expression:
             return self._update_expression(inspect.currentframe())
+        result = []
         for voice in self.by_class(
             scoretools.Voice,
             reverse=reverse,
@@ -3130,7 +3131,9 @@ class IterationAgent(abctools.AbjadObject):
             stop=stop,
             ):
             if not voice.is_nonsemantic:
-                yield voice
+                #yield voice
+                result.append(voice)
+        return result
 
     def by_spanner(
         self,

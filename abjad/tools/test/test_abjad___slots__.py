@@ -3,6 +3,7 @@ import inspect
 import pytest
 from abjad.tools import abjadbooktools
 from abjad.tools import documentationtools
+from abjad.tools import expressiontools
 from abjad.tools import systemtools
 
 
@@ -11,6 +12,7 @@ ignored_classes = (
     abjadbooktools.CodeOutputProxy,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.LilyPondOutputProxy,
+    expressiontools.Expression,
     systemtools.StorageFormatAgent,
     systemtools.FormatSpecification,
     )

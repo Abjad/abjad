@@ -616,7 +616,7 @@ class Tempo(AbjadValueObject):
                 self.units_per_minute[1],
                 )
             return string
-        elif isinstance(self.units_per_minute, (float, fractions.Fraction)):
+        elif isinstance(self.units_per_minute, (float, Fraction)):
             markup = Tempo.make_tempo_equation_markup(
                 self.reference_duration,
                 self.units_per_minute,
@@ -869,7 +869,7 @@ class Tempo(AbjadValueObject):
             return (low, high)
         result = durationtools.Duration(1, 4) / self.reference_duration * \
             self.units_per_minute
-        return fractions.Fraction(result)
+        return Fraction(result)
 
     @property
     def reference_duration(self):
@@ -1097,7 +1097,7 @@ class Tempo(AbjadValueObject):
         multipliers = [durationtools.Multiplier(_) for _ in pairs]
         multipliers = [
             _ for _ in multipliers
-            if fractions.Fraction(1, 2) <= _ <= fractions.Fraction(2)
+            if Fraction(1, 2) <= _ <= Fraction(2)
             ]
         multipliers.sort()
         multipliers = sequencetools.Sequence(multipliers).remove_repeats()
@@ -1440,7 +1440,7 @@ class Tempo(AbjadValueObject):
         lhs_score_markup = durationtools.Duration._to_score_markup(selection)
         lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
         equal_markup = markuptools.Markup('=')
-        if (isinstance(units_per_minute, fractions.Fraction) and
+        if (isinstance(units_per_minute, Fraction) and
             not mathtools.is_integer_equivalent_number(units_per_minute)):
             rhs_markup = markuptools.Markup.make_improper_fraction_markup(
                 units_per_minute)

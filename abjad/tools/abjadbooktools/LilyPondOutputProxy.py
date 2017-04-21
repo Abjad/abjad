@@ -164,7 +164,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             >>> for node in proxy.as_docutils():
             ...     print(node.pformat())
             ...
-            <abjad_output_block image_layout_specifier="True" image_render_specifier="True" renderer="lilypond" xml:space="preserve">
+            <abjad_output_block image_layout_specifier... image_render_specifier... renderer="lilypond" xml:space="preserve">
                 \version "2.19.0"
                 \language "english"
             <BLANKLINE>
