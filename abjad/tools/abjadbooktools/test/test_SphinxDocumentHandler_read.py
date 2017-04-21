@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import platform
 import unittest
+import sys
 from abjad.tools import abjadbooktools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
@@ -108,6 +109,10 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target
 
+    @unittest.skipIf(
+        sys.version[0] != '3',
+        'Only for Python 3',
+        )
     def test_on_doctree_read_02(self):
         source = r'''
         ..  abjad::
@@ -171,6 +176,10 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target
 
+    @unittest.skipIf(
+        sys.version[0] != '3',
+        'Only for Python 3',
+        )
     def test_on_doctree_read_03(self):
         source = r'''
         ..  abjad::
@@ -227,6 +236,10 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target
 
+    @unittest.skipIf(
+        sys.version[0] != '3',
+        'Only for Python 3',
+        )
     def test_on_doctree_read_04(self):
         source = r'''
         ..  container:: example

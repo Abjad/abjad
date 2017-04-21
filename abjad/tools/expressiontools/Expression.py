@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+try:
+    import funcsigs
+except ImportError:
+    import inspect as funcsigs
 import inspect
 import numbers
 from abjad.tools.abctools import AbjadObject
@@ -387,6 +391,15 @@ class Expression(AbjadObject):
                     result = expression(result, **keywords)
         return result
 
+    def __dict__(self):
+        r'''Gets attributes.
+
+        Trivial implementation defined equal to ``dir(self)`` to satisfy PyPy.
+
+        Returns list or strings.
+        '''
+        return dir(self)
+
     def __eq__(self, argument):
         r'''Is true when expression storage format equals `argument` storage
         format. Otherwise false.
@@ -493,10 +506,21 @@ class Expression(AbjadObject):
 
         Returns normally when proxy class is not set.
         '''
-        if self.__getattribute__('_proxy_class') is not None:
+        #if self.__getattribute__('_proxy_class') is not None:
+        has_proxy_class = False
+        # by-hand attribute testing to make PyPy happy:
+        try:
+            proxy_class = self._proxy_class
+            has_proxy_class = True
+        except AttributeError:
+            pass
+        if has_proxy_class:
             if hasattr(self._proxy_class, name):
                 proxy_object = self._proxy_class()
-                assert hasattr(proxy_object, name)
+                if not hasattr(proxy_object, name):
+                    message = 'proxy object {!r} has no attribute {!r}.'
+                    message = message.format(proxy_object, name)
+                    raise Exception(message)
                 if not hasattr(proxy_object, '_expression'):
                     class_name = proxy_object.__name__
                     message = 'does not implement expression protocol: {}.'
@@ -1091,7 +1115,6 @@ class Expression(AbjadObject):
             function = getattr(function_self, function_name)
             if not getattr(function, 'has_signature_decorator', False):
                 return {'markup_expression': None, 'string_template': None}
-            signature = inspect.signature(function)
             argument_names = values.args[1:]
             argument_values = {}
             for argument_name in argument_names:
@@ -1102,8 +1125,8 @@ class Expression(AbjadObject):
             if markup_expression_callback is not None:
                 string_template_callback = Expression._get_callback(
                     'string_template_callback', function, function_self)
-                markup_expression = \
-                    markup_expression_callback(**argument_values)
+                markup_expression = markup_expression_callback(
+                    **argument_values)
                 string_template = string_template_callback(**argument_values)
             elif getattr(function, 'is_operator', None):
                 method_name = Expression._get_method_name(
@@ -1122,7 +1145,8 @@ class Expression(AbjadObject):
                 string_template = Expression._make_operator_string_template(
                     method_name=method_name,
                     subscript=subscript,
-                    superscript=superscript)
+                    superscript=superscript,
+                    )
             else:
                 method_name = Expression._get_method_name(
                     function_name, function, function_self, argument_values)
@@ -1204,13 +1228,15 @@ class Expression(AbjadObject):
             if static_class:
                 method_name = frame.f_code.co_name
                 static_method = getattr(static_class, method_name)
-                signature = inspect.signature(static_method)
+                #signature = inspect.signature(static_method)
+                signature = funcsigs.signature(static_method)
                 argument_names = values.args[:]
             else:
                 assert values.args[0] == 'self'
                 self = values.locals['self']
                 function = getattr(self, function_name)
-                signature = inspect.signature(function)
+                #signature = inspect.signature(function)
+                signature = funcsigs.signature(function)
                 argument_names = values.args[1:]
             argument_strings = []
             for argument_name in argument_names:

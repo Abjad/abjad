@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+try:
+    import builtins
+except ImportError:
+    import __builtin__ as builtins
 import collections
 import inspect
 import itertools
@@ -5672,7 +5676,7 @@ class Sequence(abctools.AbjadValueObject):
 
         Returns new sequence.
         '''
-        builtin_sum = __builtins__['sum']
+        builtin_sum = builtins.sum
         if weight is not None:
             if weight < 0:
                 raise ValueError
@@ -5700,7 +5704,7 @@ class Sequence(abctools.AbjadValueObject):
                     if total < sum:
                         items.append(item)
                     else:
-                        items.append(sum - builtin_sum(items))
+                        items.append(sum - builtins.sum(items))
                         break
         return type(self)(items=items)
 

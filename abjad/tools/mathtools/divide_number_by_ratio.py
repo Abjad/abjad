@@ -28,6 +28,7 @@ def divide_number_by_ratio(number, ratio):
     from abjad.tools import mathtools
     assert isinstance(number, numbers.Number)
     ratio = mathtools.Ratio(ratio)
-    factors = [Fraction(_, sum(ratio.numbers)) for _ in ratio.numbers]
-    result = [factor * number for factor in factors]
+    denominator = sum(ratio.numbers)
+    factors = [Fraction(_, denominator) for _ in ratio.numbers]
+    result = [_ * number for _ in factors]
     return result
