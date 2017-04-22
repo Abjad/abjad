@@ -1446,7 +1446,9 @@ class Tuplet(Container):
                 for x in written_durations
                 ]
         except AssignabilityError:
-            denominator = duration._denominator
+            # changed in hopes of removing Python 3.5 ACCELERATED=True error
+            #denominator = duration._denominator
+            denominator = duration.denominator
             note_durations = [
                 durationtools.Duration(x, denominator)
                 for x in ratio.numbers
