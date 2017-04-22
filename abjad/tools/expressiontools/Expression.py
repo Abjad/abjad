@@ -500,7 +500,10 @@ class Expression(AbjadObject):
         if self.__getattribute__('_proxy_class') is not None:
             if hasattr(self._proxy_class, name):
                 proxy_object = self._proxy_class()
-                assert hasattr(proxy_object, name)
+                if not hasattr(proxy_object, name):
+                    message = 'proxy object {!r} has no attribute {!r}.'
+                    message = message.format(proxy_object, name)
+                    raise Exception(message)
                 if not hasattr(proxy_object, '_expression'):
                     class_name = proxy_object.__name__
                     message = 'does not implement expression protocol: {}.'
