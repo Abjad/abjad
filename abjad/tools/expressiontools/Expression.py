@@ -391,6 +391,15 @@ class Expression(AbjadObject):
                     result = expression(result, **keywords)
         return result
 
+    def __dict__(self):
+        r'''Gets attributes.
+
+        Trivial implementation defined equal to ``dir(self)`` to satisfy PyPy.
+
+        Returns list or strings.
+        '''
+        return dir(self)
+
     def __eq__(self, argument):
         r'''Is true when expression storage format equals `argument` storage
         format. Otherwise false.
@@ -497,7 +506,15 @@ class Expression(AbjadObject):
 
         Returns normally when proxy class is not set.
         '''
-        if self.__getattribute__('_proxy_class') is not None:
+        #if self.__getattribute__('_proxy_class') is not None:
+        has_proxy_class = False
+        # by-hand attribute testing to make PyPy happy:
+        try:
+            proxy_class = self._proxy_class
+            has_proxy_class = True
+        except AttributeError:
+            pass
+        if has_proxy_class:
             if hasattr(self._proxy_class, name):
                 proxy_object = self._proxy_class()
                 if not hasattr(proxy_object, name):
