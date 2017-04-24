@@ -17,7 +17,7 @@ class Percussion(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Percussion }
             \set Staff.shortInstrumentName = \markup { Perc. }
@@ -121,7 +121,7 @@ class Percussion(Instrument):
             ::
 
                 >>> percussion.allowable_clefs
-                ClefInventory([Clef(name='percussion')])
+                ClefList([Clef(name='percussion')])
 
             ::
 
@@ -155,7 +155,7 @@ class Percussion(Instrument):
             ::
 
                 >>> percussion.instrument_name_markup
-                Markup(contents=('Percussion',))
+                Markup(contents=['Percussion'])
 
             ::
 
@@ -208,7 +208,7 @@ class Percussion(Instrument):
             ::
 
                 >>> percussion.short_instrument_name_markup
-                Markup(contents=('Perc.',))
+                Markup(contents=['Perc.'])
 
             ::
 

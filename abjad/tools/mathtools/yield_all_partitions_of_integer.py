@@ -2,7 +2,7 @@
 
 
 def yield_all_partitions_of_integer(n):
-    r'''Yields all partitions of positive integer `n` in descending lex order:
+    r'''Yields all partitions of positive integer `n` in descending lex order.
 
     ::
 
@@ -25,18 +25,16 @@ def yield_all_partitions_of_integer(n):
         (2, 1, 1, 1, 1, 1)
         (1, 1, 1, 1, 1, 1, 1)
 
-    Returns generator of positive integer tuples of length at least ``1``.
+    Returns generator of positive integer tuples of length at least 1.
     '''
     from abjad.tools import mathtools
-
     if not isinstance(n, int):
         message = 'must be integer.'
         raise TypeError(message)
     if not 0 < n:
         message = 'must be positive.'
         raise ValueError(message)
-
-    partition = (n, )
+    partition = (n,)
     while partition is not None:
         yield partition
         partition = mathtools.next_integer_partition(partition)

@@ -11,7 +11,7 @@ class IntervalSegment(Segment):
 
     ..  container:: example
 
-        **Example 1.** Initializes from string:
+        Initializes from string:
 
         ::
 
@@ -21,7 +21,7 @@ class IntervalSegment(Segment):
 
     ..  container:: example
 
-        **Example 2.** Initializes from pitch segment:
+        Initializes from pitch segment:
 
         ::
 
@@ -46,7 +46,7 @@ class IntervalSegment(Segment):
         from abjad.tools import pitchtools
         if isinstance(items, pitchtools.PitchSegment):
             intervals = []
-            for one, two in sequencetools.iterate_sequence_nwise(items):
+            for one, two in sequencetools.Sequence(items).nwise():
                 intervals.append(one - two)
             items = intervals
         Segment.__init__(
@@ -54,40 +54,6 @@ class IntervalSegment(Segment):
             items=items,
             item_class=item_class,
             )
-
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
-        r'''Makes interval segment from component `selection`.
-
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-            >>> pitchtools.IntervalSegment.from_selection(
-            ...     staff, item_class=pitchtools.NumberedInterval)
-            IntervalSegment([2, 2, 1, 2, 2, 2, 1])
-
-        Returns interval segment.
-        '''
-        from abjad.tools import pitchtools
-        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        intervals = (-x for x in mathtools.difference_series(pitch_segment))
-        return class_(
-            items=intervals,
-            item_class=item_class,
-            )
-
-    def rotate(self, n):
-        r'''Rotates interval segment by `n`.
-
-        Returns new interval segment.
-        '''
-        return new(self, self[-n:] + self[:-n])
 
     ### PRIVATE PROPERTIES ###
 
@@ -107,29 +73,6 @@ class IntervalSegment(Segment):
         return pitchtools.Interval
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def has_duplicates(self):
-        r'''True if segment has duplicate items. Otherwise false.
-
-        ::
-
-            >>> intervals = 'm2 M3 -aug4 m2 P5'
-            >>> segment = pitchtools.IntervalSegment(intervals)
-            >>> segment.has_duplicates
-            True
-
-        ::
-
-            >>> intervals = 'M3 -aug4 m2 P5'
-            >>> segment = pitchtools.IntervalSegment(intervals)
-            >>> segment.has_duplicates
-            False
-
-        Returns true or false.
-        '''
-        from abjad.tools import pitchtools
-        return len(pitchtools.IntervalSet(self)) < len(self)
 
     @property
     def slope(self):
@@ -176,3 +119,60 @@ class IntervalSegment(Segment):
             if current < minimum:
                 minimum = current
         return pitchtools.NumberedInterval(maximum - minimum)
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_selection(
+        class_,
+        selection,
+        item_class=None,
+        ):
+        r'''Makes interval segment from component `selection`.
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+            >>> pitchtools.IntervalSegment.from_selection(
+            ...     staff, item_class=pitchtools.NumberedInterval)
+            IntervalSegment([2, 2, 1, 2, 2, 2, 1])
+
+        Returns interval segment.
+        '''
+        from abjad.tools import pitchtools
+        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
+        pitches = [_ for _ in pitch_segment]
+        intervals = (-x for x in mathtools.difference_series(pitches))
+        return class_(
+            items=intervals,
+            item_class=item_class,
+            )
+
+    def has_duplicates(self):
+        r'''True if segment has duplicate items. Otherwise false.
+
+        ::
+
+            >>> intervals = 'm2 M3 -aug4 m2 P5'
+            >>> segment = pitchtools.IntervalSegment(intervals)
+            >>> segment.has_duplicates()
+            True
+
+        ::
+
+            >>> intervals = 'M3 -aug4 m2 P5'
+            >>> segment = pitchtools.IntervalSegment(intervals)
+            >>> segment.has_duplicates()
+            False
+
+        Returns true or false.
+        '''
+        from abjad.tools import pitchtools
+        return len(pitchtools.IntervalSet(self)) < len(self)
+
+    def rotate(self, n=0):
+        r'''Rotates interval segment by index `n`.
+
+        Returns new interval segment.
+        '''
+        return new(self, self[-n:] + self[:-n])

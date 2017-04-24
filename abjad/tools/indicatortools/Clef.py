@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Clef(AbjadValueObject):
-    r'''A clef.
+    r'''Clef.
 
     ..  container:: example
 
@@ -139,12 +139,12 @@ class Clef(AbjadValueObject):
         Returns string.
         '''
         if format_specification == 'lilypond':
-            return self._lilypond_format
+            return self._get_lilypond_format()
         superclass = super(Clef, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __ne__(self, arg):
-        r'''Is true when clef of `arg` does not equal clef name of clef.
+    def __ne__(self, argument):
+        r'''Is true when clef of `argument` does not equal clef name of clef.
         Otherwise false.
 
         ..  container:: example
@@ -168,7 +168,30 @@ class Clef(AbjadValueObject):
         Returns true or false.
         '''
         superclass = super(Clef, self)
-        return superclass.__ne__(arg)
+        return superclass.__ne__(argument)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _clef_name_to_staff_position_zero(self, clef_name):
+        from abjad.tools import pitchtools
+        return {
+            'treble': pitchtools.NamedPitch('B4'),
+            'alto': pitchtools.NamedPitch('C4'),
+            'tenor': pitchtools.NamedPitch('A3'),
+            'bass': pitchtools.NamedPitch('D3'),
+            'french': pitchtools.NamedPitch('D5'),
+            'soprano': pitchtools.NamedPitch('G4'),
+            'mezzosoprano': pitchtools.NamedPitch('E4'),
+            'baritone': pitchtools.NamedPitch('F3'),
+            'varbaritone': pitchtools.NamedPitch('F3'),
+            'percussion': None,
+            'tab': None,
+            }[clef_name]
+
+    @property
+    def _contents_repr_string(self):
+        return repr(self._name)
 
     ### PRIVATE METHODS ###
 
@@ -197,6 +220,9 @@ class Clef(AbjadValueObject):
         else:
             base_name = clef_name
         return self._clef_name_to_middle_c_position[base_name] + alteration
+
+    def _get_lilypond_format(self):
+        return r'\clef "{}"'.format(self._name)
 
     @classmethod
     def _list_clef_names(cls):
@@ -246,33 +272,6 @@ class Clef(AbjadValueObject):
             return Clef('bass')
         else:
             return Clef('treble')
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _clef_name_to_staff_position_zero(self, clef_name):
-        from abjad.tools import pitchtools
-        return {
-            'treble': pitchtools.NamedPitch('B4'),
-            'alto': pitchtools.NamedPitch('C4'),
-            'tenor': pitchtools.NamedPitch('A3'),
-            'bass': pitchtools.NamedPitch('D3'),
-            'french': pitchtools.NamedPitch('D5'),
-            'soprano': pitchtools.NamedPitch('G4'),
-            'mezzosoprano': pitchtools.NamedPitch('E4'),
-            'baritone': pitchtools.NamedPitch('F3'),
-            'varbaritone': pitchtools.NamedPitch('F3'),
-            'percussion': None,
-            'tab': None,
-            }[clef_name]
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self._name)
-
-    @property
-    def _lilypond_format(self):
-        return r'\clef "{}"'.format(self._name)
 
     ### PUBLIC PROPERTIES ###
 

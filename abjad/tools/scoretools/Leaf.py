@@ -201,7 +201,7 @@ class Leaf(Component):
         return result
 
     def _get_format_pieces(self):
-        return self._lilypond_format.split('\n')
+        return self._get_lilypond_format().split('\n')
 
     def _get_format_specification(self):
         summary = self._compact_representation
@@ -237,8 +237,9 @@ class Leaf(Component):
             if new_component is None:
                 return
             candidates = new_component._get_descendants_stopping_with()
-            candidates = \
-                [x for x in candidates if isinstance(x, scoretools.Leaf)]
+            candidates = [
+                x for x in candidates if isinstance(x, scoretools.Leaf)
+                ]
             for candidate in candidates:
                 if Selection._all_are_components_in_same_logical_voice(
                     [component, candidate]):
@@ -401,16 +402,14 @@ class Leaf(Component):
         from abjad.tools import spannertools
         durations = [durationtools.Duration(x) for x in durations]
         if cyclic:
-            durations = sequencetools.repeat_sequence_to_weight(
-                durations, self._get_duration())
+            durations = sequencetools.Sequence(durations)
+            durations = durations.repeat_to_weight(self._get_duration())
         durations = [durationtools.Duration(x) for x in durations]
         if sum(durations) < self._get_duration():
             last_duration = self._get_duration() - sum(durations)
             durations.append(last_duration)
-        sequencetools.truncate_sequence(
-            durations,
-            weight=self._get_duration(),
-            )
+        weight = self._get_duration()
+        durations = sequencetools.Sequence(durations).truncate(weight=weight)
         result = []
         leaf_prolation = self._get_parentage(include_self=False).prolation
         timespan = self._get_timespan()
@@ -437,7 +436,7 @@ class Leaf(Component):
                 start_offset = stop_offset
             shard = [x._get_parentage().root for x in shard]
             result.append(shard)
-        flattened_result = sequencetools.flatten_sequence(result)
+        flattened_result = sequencetools.Sequence(result).flatten()
         flattened_result = selectiontools.Selection(flattened_result)
         prototype = (spannertools.Tie,)
         parentage = self._get_parentage()
@@ -487,11 +486,10 @@ class Leaf(Component):
         detach(object, last_leaf)
         # tie split notes, rests and chords as specified
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
-            flattened_result_leaves = iterate(flattened_result).by_class(
-                scoretools.Leaf)
+            flattened_result_leaves = iterate(flattened_result).by_leaf()
             # TODO: implement Selection._attach_tie_spanner_to_leaves()
-            for leaf_pair in sequencetools.iterate_sequence_nwise(
-                flattened_result_leaves):
+            pairs = sequencetools.Sequence(flattened_result_leaves).nwise()
+            for leaf_pair in pairs:
                 selection = selectiontools.Selection(leaf_pair)
                 selection._attach_tie_spanner_to_leaf_pair(
                     use_messiaen_style_ties=use_messiaen_style_ties,

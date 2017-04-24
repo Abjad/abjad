@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondGrobOverride(AbjadObject):
-    r'''A LilyPond grob override.
+    r'''LilyPond grob override.
 
     ::
 
@@ -386,7 +386,7 @@ class LilyPondGrobOverride(AbjadObject):
             ...    value=Markup(r'\bold { over pressure }'),
             ...    )
             >>> override.value
-            Markup(contents=(MarkupCommand('bold', ['over', 'pressure']),))
+            Markup(contents=[MarkupCommand('bold', ['over', 'pressure'])])
 
         Returns arbitrary object.
         '''

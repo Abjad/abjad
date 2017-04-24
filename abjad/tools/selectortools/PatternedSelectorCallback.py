@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class PatternedSelectorCallback(AbjadValueObject):
-    r'''A patterned selector callback.
+    r'''Patterned selector callback.
     '''
 
     ### CLASS VARIABLES ###
@@ -33,8 +33,8 @@ class PatternedSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         Returns tuple in which each item is a selection or component.
         '''
@@ -42,10 +42,10 @@ class PatternedSelectorCallback(AbjadValueObject):
             rotation = 0
         rotation = int(rotation)
         if not self.pattern:
-            return expr
+            return argument
         result = []
         if self.apply_to_each:
-            for subexpr in expr:
+            for subexpr in argument:
                 subresult = []
                 length = len(subexpr)
                 for index, item in enumerate(subexpr):
@@ -59,8 +59,8 @@ class PatternedSelectorCallback(AbjadValueObject):
                     subresult = selectiontools.Selection(subresult)
                     result.append(subresult)
         else:
-            length = len(expr)
-            for index, item in enumerate(expr):
+            length = len(argument)
+            for index, item in enumerate(argument):
                 if self.pattern.matches_index(
                     index,
                     length,

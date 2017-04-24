@@ -9,8 +9,8 @@ class PartitionTable(TypedOrderedDict):
 
     ..  container:: example
 
-        **Example 1.** Partitions integers roughly ``1:1`` (restricted to
-        assignable values) with larger half on left:
+        Partitions integers roughly ``1:1`` (restricted to assignable values)
+        with larger half on left:
 
         ::
 
@@ -23,7 +23,7 @@ class PartitionTable(TypedOrderedDict):
 
         ::
 
-            >>> print(format(table))
+            >>> f(table)
             abjad.rhythmmakertools.PartitionTable(
                 [
                     (
@@ -47,8 +47,8 @@ class PartitionTable(TypedOrderedDict):
 
     ..  container:: example
 
-        **Example 2.** Partitions integers roughly ``1:1`` (restricted to
-        assignable values) with larger half on right:
+        Partitions integers roughly ``1:1`` (restricted to assignable values)
+        with larger half on right:
 
         ::
 
@@ -61,7 +61,7 @@ class PartitionTable(TypedOrderedDict):
 
         ::
 
-            >>> print(format(table))
+            >>> f(table)
             abjad.rhythmmakertools.PartitionTable(
                 [
                     (
@@ -89,7 +89,10 @@ class PartitionTable(TypedOrderedDict):
 
     __documentation_section__ = 'Specifiers'
 
-    __slots__ = ()
+    __slots__ = (
+        )
+
+    _publish_storage_format = True
 
     ### PRIVATE METHODS ###
 
@@ -104,7 +107,7 @@ class PartitionTable(TypedOrderedDict):
 
         ..  container:: example
 
-            **Example 1.** Respells divisions according to table:
+            Respells divisions according to table:
 
             ::
 
@@ -139,7 +142,7 @@ class PartitionTable(TypedOrderedDict):
 
         ..  container:: example
 
-            **Example 2.** Respells divisions according to another table:
+            Respells divisions according to another table:
 
             ::
 

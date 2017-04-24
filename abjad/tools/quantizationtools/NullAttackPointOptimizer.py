@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.quantizationtools.AttackPointOptimizer \
-	import AttackPointOptimizer
+    import AttackPointOptimizer
 
 
 class NullAttackPointOptimizer(AttackPointOptimizer):

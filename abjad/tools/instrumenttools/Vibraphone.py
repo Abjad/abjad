@@ -17,7 +17,7 @@ class Vibraphone(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Vibraphone }
             \set Staff.shortInstrumentName = \markup { Vibr. }
@@ -72,7 +72,7 @@ class Vibraphone(Instrument):
             ::
 
                 >>> vibraphone.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 
@@ -106,7 +106,7 @@ class Vibraphone(Instrument):
             ::
 
                 >>> vibraphone.instrument_name_markup
-                Markup(contents=('Vibraphone',))
+                Markup(contents=['Vibraphone'])
 
             ::
 
@@ -159,7 +159,7 @@ class Vibraphone(Instrument):
             ::
 
                 >>> vibraphone.short_instrument_name_markup
-                Markup(contents=('Vibr.',))
+                Markup(contents=['Vibr.'])
 
             ::
 

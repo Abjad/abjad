@@ -1,36 +1,38 @@
 # -*- coding: utf-8 -*-
 
 
-def all_are_positive_integer_powers_of_two(expr):
-    '''Is true when `expr` is a sequence and all elements in `expr`
-    are positive integer powers of two.
+def all_are_positive_integer_powers_of_two(argument):
+    '''Is true when `argument` is an iterable collection of positive integer
+    powers of two. Otherwise false.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.all_are_nonnegative_integer_powers_of_two([1, 1, 1, 2, 4, 32, 32])
-        True
+        ::
 
-    Is true when `expr` is an empty sequence:
+            >>> items = [1, 1, 1, 2, 4, 32, 32]
+            >>> mathtools.all_are_nonnegative_integer_powers_of_two(items)
+            True
 
-    ::
+        ::
 
-        >>> mathtools.all_are_nonnegative_integer_powers_of_two([])
-        True
+            >>> mathtools.all_are_nonnegative_integer_powers_of_two(17)
+            False
 
-    Otherwise false:
+    ..  container:: example
 
-    ::
+        Is true when `argument` is empty:
 
-        >>> mathtools.all_are_nonnegative_integer_powers_of_two(17)
-        False
+        ::
+
+            >>> mathtools.all_are_nonnegative_integer_powers_of_two([])
+            True
 
     Returns true or false.
     '''
     from abjad.tools import mathtools
-
     try:
         return all(
-            mathtools.is_positive_integer_power_of_two(x) for x in expr
+            mathtools.is_positive_integer_power_of_two(_) for _ in argument
             )
     except TypeError:
         return False

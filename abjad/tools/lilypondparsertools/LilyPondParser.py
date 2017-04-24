@@ -275,8 +275,8 @@ class LilyPondParser(abctools.Parser):
         first_leaf = None
         if leaves:
             first_leaf = leaves[0]
-        for leaf, next_leaf in \
-            sequencetools.iterate_sequence_nwise(leaves, wrapped=True):
+        pairs = sequencetools.Sequence(leaves).nwise(wrapped=True)
+        for leaf, next_leaf in pairs:
 
             span_events = _get_span_events(leaf)
             directed_events = {}
@@ -825,11 +825,11 @@ class LilyPondParser(abctools.Parser):
         if not isinstance(pitch_c, pitchtools.NamedPitch):
             pitch_c = pitchtools.NamedPitch(pitch_c)
         scale = [0., 2., 4., 5., 7., 9., 11.]
-        a_oct, a_step, a_alt = pitch_a.octave_number, \
+        a_oct, a_step, a_alt = pitch_a.octave.number, \
             pitch_a.diatonic_pitch_class_number, pitch_a.accidental.semitones
-        b_oct, b_step, b_alt = pitch_b.octave_number, \
+        b_oct, b_step, b_alt = pitch_b.octave.number, \
             pitch_b.diatonic_pitch_class_number, pitch_b.accidental.semitones
-        c_oct, c_step, c_alt = pitch_c.octave_number, \
+        c_oct, c_step, c_alt = pitch_c.octave.number, \
             pitch_c.diatonic_pitch_class_number, pitch_c.accidental.semitones
         d_oct, d_step, d_alt, d_tones = b_oct - a_oct, b_step - a_step, \
             b_alt - a_alt, float(pitch_b) - float(pitch_a)
@@ -1369,7 +1369,7 @@ class LilyPondParser(abctools.Parser):
             >>> parser = lilypondparsertools.LilyPondParser()
             >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
             >>> parser(string)
-            Markup(contents=(MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
+            Markup(contents=[MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz'])])
 
         `signature` should be a sequence of zero or more type-predicate names,
         as understood by LilyPond.  Consult LilyPond's documentation for a

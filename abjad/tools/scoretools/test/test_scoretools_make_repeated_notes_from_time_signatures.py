@@ -6,10 +6,11 @@ def test_scoretools_make_repeated_notes_from_time_signatures_01():
     r'''Make repeated notes from list of integer pairs.
     '''
 
-    notes = scoretools.make_repeated_notes_from_time_signatures([(2, 8), (3, 32)], pitch = "d''")
+    notes = scoretools.make_repeated_notes_from_time_signatures(
+        [(2, 8), (3, 32)], pitch = "d''")
     assert len(notes) == 2
 
-    notes = sequencetools.flatten_sequence(notes)
+    notes = Sequence(notes).flatten()
     staff = Staff(notes)
 
     assert format(staff) == stringtools.normalize(

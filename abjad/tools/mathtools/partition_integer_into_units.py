@@ -2,31 +2,37 @@
 
 
 def partition_integer_into_units(n):
-    r'''Partitions positive integer into units:
+    r'''Partitions integer `n` into units.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.partition_integer_into_units(6)
-        [1, 1, 1, 1, 1, 1]
+        With positive integer:
 
-    Partitions negative integer into units:
+        ::
 
-    ::
+            >>> mathtools.partition_integer_into_units(6)
+            [1, 1, 1, 1, 1, 1]
 
-        >>> mathtools.partition_integer_into_units(-5)
-        [-1, -1, -1, -1, -1]
+    ..  container:: example
 
-    Partitions ``0`` into units:
+        With negative integer:
 
-    ::
+        ::
 
-        >>> mathtools.partition_integer_into_units(0)
-        []
+            >>> mathtools.partition_integer_into_units(-5)
+            [-1, -1, -1, -1, -1]
 
-    Returns list of zero or more parts with absolute value equal to ``1``.
+    ..  container:: example
+
+        With zero:
+
+        ::
+
+            >>> mathtools.partition_integer_into_units(0)
+            []
+
+    Returns list of zero or more parts with absolute value equal to 1.
     '''
     from abjad.tools import mathtools
-
     result = abs(n) * [mathtools.sign(n) * 1]
-
     return result

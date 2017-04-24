@@ -17,7 +17,7 @@ class Xylophone(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Xylophone }
             \set Staff.shortInstrumentName = \markup { Xyl. }
@@ -72,7 +72,7 @@ class Xylophone(Instrument):
             ::
 
                 >>> xylophone.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 
@@ -106,7 +106,7 @@ class Xylophone(Instrument):
             ::
 
                 >>> xylophone.instrument_name_markup
-                Markup(contents=('Xylophone',))
+                Markup(contents=['Xylophone'])
 
             ::
 
@@ -159,7 +159,7 @@ class Xylophone(Instrument):
             ::
 
                 >>> xylophone.short_instrument_name_markup
-                Markup(contents=('Xyl.',))
+                Markup(contents=['Xyl.'])
 
             ::
 

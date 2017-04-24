@@ -10,11 +10,12 @@ from abjad.tools.scoretools.Component import Component
 
 
 class Container(Component):
-    r'''An iterable container of music.
+    r'''A container.
 
     ..  container:: example
 
-        **Example 1.** A container:
+        Intializes from string:
+
         ::
 
             >>> container = Container("c'4 e'4 d'4 e'8 f'8")
@@ -22,7 +23,7 @@ class Container(Component):
 
         ..  doctest::
 
-            >>> print(format(container))
+            >>> f(container)
             {
                 c'4
                 e'4
@@ -33,7 +34,89 @@ class Container(Component):
 
     ..  container:: example
 
-        **Example 2.** Containers are iterables:
+        Intializes from components:
+
+        ::
+
+            >>> notes = [
+            ...     Note("c'4"),
+            ...     Note("e'4"),
+            ...     Note("d'4"), 
+            ...     Note("e'8"),
+            ...     Note("f'8"),
+            ...     ]
+            >>> container = Container(notes)
+            >>> show(container) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(container)
+            {
+                c'4
+                e'4
+                d'4
+                e'8
+                f'8
+            }
+
+    ..  container:: example
+
+        Intializes from selections:
+
+        ::
+
+            >>> notes = [
+            ...     Note("c'4"),
+            ...     Note("e'4"),
+            ...     Note("d'4"), 
+            ...     Note("e'8"),
+            ...     Note("f'8"),
+            ...     ]
+            >>> selection = select(notes)
+            >>> container = Container(selection)
+            >>> show(container) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(container)
+            {
+                c'4
+                e'4
+                d'4
+                e'8
+                f'8
+            }
+
+    ..  container:: example
+
+        Intializes from mixed components and selections:
+
+        ::
+
+            >>> items = [
+            ...     Note("c'4"),
+            ...     select(Note("e'4")),
+            ...     select(Note("d'4")), 
+            ...     Note("e'8"),
+            ...     Note("f'8"),
+            ...     ]
+            >>> container = Container(items)
+            >>> show(container) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(container)
+            {
+                c'4
+                e'4
+                d'4
+                e'8
+                f'8
+            }
+
+    ..  container:: example
+
+        Containers are iterables:
 
         ::
 
@@ -42,16 +125,16 @@ class Container(Component):
             >>> isinstance(container, collections.Iterable)
             True
 
-        But containers are not sequences:
+    ..  container:: example
+
+        Containers are not sequences because containers do not implement
+        reverse:
 
         ::
 
             >>> container = Container("c'4 e'4 d'4 e'8 f'8")
             >>> isinstance(container, collections.Sequence)
             False
-
-        Containers are not sequences because containers do not implement a
-        ``__reversed__()`` special method.
 
     '''
 
@@ -99,14 +182,14 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Deletes first tuplet in voice:
+            Deletes first tuplet in voice:
 
             ::
 
                 >>> voice = Voice()
                 >>> voice.append(Tuplet((2, 3), "c'4 d'4 e'4"))
                 >>> voice.append(Tuplet((2, 3), "e'4 d'4 c'4"))
-                >>> leaves = iterate(voice).by_class(scoretools.Leaf)
+                >>> leaves = iterate(voice).by_leaf()
                 >>> attach(Slur(), list(leaves))
                 >>> show(voice) # doctest: +SKIP
 
@@ -184,31 +267,31 @@ class Container(Component):
             components._withdraw_from_crossing_spanners()
         components._set_parents(None)
 
-    def __getitem__(self, i):
-        r'''Gets container `i`.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         Traverses top-level items only.
 
         Returns component.
         '''
-        if isinstance(i, int):
-            return self._music[i]
-        elif isinstance(i, slice) and not self.is_simultaneous:
-            return selectiontools.Selection(self._music[i])
-        elif isinstance(i, slice) and self.is_simultaneous:
-            return selectiontools.Selection(self._music[i])
-        elif isinstance(i, str):
-            if i not in self._named_children:
+        if isinstance(argument, int):
+            return self._music.__getitem__(argument)
+        elif isinstance(argument, slice) and not self.is_simultaneous:
+            return selectiontools.Selection(self._music.__getitem__(argument))
+        elif isinstance(argument, slice) and self.is_simultaneous:
+            return selectiontools.Selection(self._music.__getitem__(argument))
+        elif isinstance(argument, str):
+            if argument not in self._named_children:
                 message = 'can not find component named {!r}.'
-                message = message.format(i)
+                message = message.format(argument)
                 raise ValueError(message)
-            elif 1 < len(self._named_children[i]):
+            elif 1 < len(self._named_children.__getitem__(argument)):
                 message = 'multiple components named {!r}.'
-                message = message.format(i)
+                message = message.format(argument)
                 raise ValueError(message)
-            return self._named_children[i][0]
-        message = 'can not get container item {!r}.'
-        message = message.format(i)
+            return self._named_children.__getitem__(argument)[0]
+        message = 'can not get container at {!r}.'
+        message = message.format(argument)
         raise ValueError(message)
 
     def __graph__(self, spanner=None, **kwargs):
@@ -273,8 +356,8 @@ class Container(Component):
         graph._node_order = node_order
 
         if spanner:
-            for component_one, component_two in \
-                sequencetools.iterate_sequence_nwise(spanner.components):
+            pairs = sequencetools.Sequence(spanner.components).nwise()
+            for component_one, component_two in pairs:
                 node_one = node_mapping[component_one]
                 node_two = node_mapping[component_two]
                 edge = documentationtools.GraphvizEdge(
@@ -304,7 +387,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Abjad containers are iterables:
+            Abjad containers are iterables:
 
             ::
 
@@ -315,7 +398,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 2.** Abjad containers are not sequences:
+            Abjad containers are not sequences:
 
             ::
 
@@ -715,15 +798,21 @@ class Container(Component):
                 return False
         return True
 
+    @staticmethod
+    def _flatten_selections(music):
+        components = []
+        for item in music:
+            if isinstance(item, selectiontools.Selection):
+                components.extend(item)
+            else:
+                components.append(item)
+        return components
+
     def _initialize_music(self, music):
         Selection = selectiontools.Selection
-        if music is None:
-            music = []
-        if all(isinstance(_, Selection) for _ in music):
-            result = []
-            for _ in music:
-                result.extend(_)
-            music = result
+        music = music or []
+        if isinstance(music, list):
+            music = self._flatten_selections(music)
         if self._all_are_orphan_components(music):
             self._music = list(music)
             self[:]._set_parents(self)
@@ -957,7 +1046,7 @@ class Container(Component):
         # in order to start upward crawl through duration-crossing containers
         else:
             duration_crossing_containers = duration_crossing_descendants[:]
-            for leaf in iterate(bottom).by_class(scoretools.Leaf):
+            for leaf in iterate(bottom).by_leaf():
                 if leaf._get_timespan().start_offset == global_split_point:
                     leaf_right_of_split = leaf
                     leaf_left_of_split = leaf_right_of_split._get_leaf(-1)
@@ -1033,7 +1122,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Appends note to container:
+            Appends note to container:
 
             ::
 
@@ -1073,7 +1162,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Extends container with three notes:
+            Extends container with three notes:
 
             ::
 
@@ -1119,7 +1208,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Gets index of last element in container:
+            Gets index of last element in container:
 
             ::
 
@@ -1162,7 +1251,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Inserts note. Does not fracture spanners:
+            Inserts note. Does not fracture spanners:
 
             ::
 
@@ -1218,7 +1307,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 2.** Inserts note. Fractures spanners:
+            Inserts note. Fractures spanners:
 
             ::
 
@@ -1298,7 +1387,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Pops last element from container:
+            Pops last element from container:
 
             ::
 
@@ -1341,7 +1430,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Removes note from container:
+            Removes note from container:
 
             ::
 
@@ -1388,7 +1477,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Reverses staff:
+            Reverses staff:
 
             ::
 
@@ -1427,54 +1516,6 @@ class Container(Component):
         spanners = self._get_descendants()._get_spanners()
         for s in spanners:
             s._components.sort(key=lambda x: x._get_timespan().start_offset)
-
-#    def select_leaves(
-#        self,
-#        start=0,
-#        stop=None,
-#        leaf_classes=None,
-#        recurse=True,
-#        allow_discontiguous_leaves=False,
-#        ):
-#        r'''Selects leaves in container.
-#
-#        ..  todo:: Deprecated. Use ``iterate().by_class()`` instead.
-#
-#        ..  container:: example
-#
-#            **Example 1.** Selects leaves from container:
-#
-#            ::
-#
-#                >>> container = Container("c'8 d'8 r8 e'8")
-#
-#            ::
-#
-#                >>> selector = select().by_leaf(flatten=True)
-#                >>> selector(container)
-#                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
-#
-#        Returns contiguous leaf selection or free leaf selection.
-#        '''
-#        from abjad.tools import scoretools
-#        from abjad.tools import selectiontools
-#        Selection = selectiontools.Selection
-#        leaf_classes = leaf_classes or (scoretools.Leaf,)
-#        expr = self
-#        if recurse:
-#            expr = iterate(expr).by_class(scoretools.Leaf)
-#        music = [
-#            component for component in expr
-#            if isinstance(component, leaf_classes)
-#            ]
-#        music = music[start:stop]
-#        if allow_discontiguous_leaves:
-#            selection = selectiontools.Selection(music=music)
-#        else:
-#            assert Selection._all_are_contiguous_components_in_same_logical_voice(
-#                music)
-#            selection = selectiontools.Selection(music=music)
-#        return selection
 
     ### PRIVATE PROPERTIES ###
 
@@ -1518,7 +1559,7 @@ class Container(Component):
                 [x._get_duration(in_seconds=True) for x in self])
         else:
             duration = durationtools.Duration(0)
-            for leaf in iterate(self).by_class(scoretools.Leaf):
+            for leaf in iterate(self).by_leaf():
                 duration += leaf._get_duration(in_seconds=True)
             return duration
 
@@ -1534,7 +1575,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Gets simultaneity status of container:
+            Gets simultaneity status of container:
 
             ::
 
@@ -1564,7 +1605,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 2.** Sets simultaneity status of container:
+            Sets simultaneity status of container:
 
             ::
 
@@ -1633,7 +1674,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Gets container name:
+            Gets container name:
 
             ::
 
@@ -1657,7 +1698,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 2.** Sets container name:
+            Sets container name:
 
             ::
 

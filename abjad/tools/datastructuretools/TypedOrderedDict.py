@@ -27,12 +27,12 @@ class TypedOrderedDict(TypedCollection):
                     (
                         'directive',
                         markuptools.Markup(
-                            contents=(
+                            contents=[
                                 markuptools.MarkupCommand(
                                     'italic',
                                     'Allegretto'
                                     ),
-                                ),
+                                ],
                             ),
                         ),
                     ]
@@ -61,12 +61,12 @@ class TypedOrderedDict(TypedCollection):
                     (
                         'directive',
                         markuptools.Markup(
-                            contents=(
+                            contents=[
                                 markuptools.MarkupCommand(
                                     'italic',
                                     'Allegretto'
                                     ),
-                                ),
+                                ],
                             ),
                         ),
                     ]
@@ -95,12 +95,12 @@ class TypedOrderedDict(TypedCollection):
                     (
                         'directive',
                         markuptools.Markup(
-                            contents=(
+                            contents=[
                                 markuptools.MarkupCommand(
                                     'italic',
                                     'Allegretto'
                                     ),
-                                ),
+                                ],
                             ),
                         ),
                     ]
@@ -136,13 +136,13 @@ class TypedOrderedDict(TypedCollection):
 
     ### SPECIAL METHODS ###
 
-    def __cmp__(self, expr):
+    def __cmp__(self, argument):
         r'''Aliases OrderedDict.__cmp__().
 
         Returns true or false.
         '''
-        assert isinstance(expr, type(self))
-        ordered_dictionary = expr._collection
+        assert isinstance(argument, type(self))
+        ordered_dictionary = argument._collection
         return self._collection.__cmp__(ordered_dictionary)
 
     def __contains__(self, key):
@@ -159,56 +159,56 @@ class TypedOrderedDict(TypedCollection):
         '''
         del(self._collection[i])
 
-    def __ge__(self, expr):
+    def __ge__(self, argument):
         r'''Is true when typed ordered dictionary is greater than or equal
-        to `expr`. Otherwise false.
+        to `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        expr = type(self)(expr)
-        return self._collection.__ge__(expr._collection)
+        argument = type(self)(argument)
+        return self._collection.__ge__(argument._collection)
 
-    def __getitem__(self, i):
-        r'''Aliases OrderedDict.__getitem__().
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
-        Returns item.
+        Returns item or slice.
         '''
-        return self._collection[i]
+        return self._collection.__getitem__(argument)
 
-    def __gt__(self, expr):
-        r'''Is true when typed ordered dictionary is greater than `expr`.
+    def __gt__(self, argument):
+        r'''Is true when typed ordered dictionary is greater than `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        expr = type(self)(expr)
-        return self._collection.__gt__(expr._collection)
+        argument = type(self)(argument)
+        return self._collection.__gt__(argument._collection)
 
-    def __le__(self, expr):
+    def __le__(self, argument):
         r'''Is true when typed ordered dictionary is less than or equal
-        to `expr`. Otherwise false.
+        to `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        expr = type(self)(expr)
-        return self._collection.__le__(expr._collection)
+        argument = type(self)(argument)
+        return self._collection.__le__(argument._collection)
 
-    def __lt__(self, expr):
-        r'''Is true when typed ordered dictionary is less than `expr`.
+    def __lt__(self, argument):
+        r'''Is true when typed ordered dictionary is less than `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        expr = type(self)(expr)
-        return self._collection.__lt__(expr._collection)
+        argument = type(self)(argument)
+        return self._collection.__lt__(argument._collection)
 
-    def __ne__(self, expr):
-        r'''Is true when typed ordered dictionary is not equal to `expr`.
+    def __ne__(self, argument):
+        r'''Is true when typed ordered dictionary is not equal to `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return not self == expr
+        return not self == argument
 
     def __reversed__(self):
         r'''Aliases OrderedDict.__reversed__().
@@ -217,12 +217,12 @@ class TypedOrderedDict(TypedCollection):
         '''
         return self._collection.__reversed__()
 
-    def __setitem__(self, i, expr):
-        r'''Changes items in `expr` to items and sets.
+    def __setitem__(self, i, argument):
+        r'''Changes items in `argument` to items and sets.
 
         Returns none.
         '''
-        new_item = self._item_coercer(expr)
+        new_item = self._item_coercer(argument)
         self._collection[i] = new_item
 
     ### PRIVATE METHODS ###
@@ -311,12 +311,12 @@ class TypedOrderedDict(TypedCollection):
         '''
         return self._collection.setdefault(key, default)
 
-    def update(self, *args, **kwargs):
+    def update(self, *arguments, **keywords):
         r'''Aliases OrderedDict.update().
 
         Returns none.
         '''
-        return self._collection.update(*args, **kwargs)
+        return self._collection.update(*arguments, **keywords)
 
     def values(self):
         r'''Aliases OrderedDict.values().

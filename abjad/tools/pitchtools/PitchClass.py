@@ -178,16 +178,14 @@ class PitchClass(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats component.
+        r'''Formats pitch-class.
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 
         Returns string.
         '''
         from abjad.tools import systemtools
-        if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
-        elif format_specification == 'storage':
+        if format_specification in ('', 'storage'):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
@@ -208,115 +206,6 @@ class PitchClass(AbjadValueObject):
             template_names=['pitch_class_name'],
             )
 
-    ### PUBLIC METHODS ###
-
-    @abc.abstractmethod
-    def apply_accidental(self, accidental=None):
-        r'''Applies `accidental` to pitch-class.
-
-        Returns new pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def invert(self, axis=None):
-        r'''Inverts pitch-class about `axis`.
-
-        Returns new pitch-class.
-        '''
-        raise NotImplementedError
-
-    @staticmethod
-    def is_diatonic_pitch_class_name(expr):
-        '''Is true when `expr` is a diatonic pitch-class name. Otherwise false.
-
-        ::
-
-            >>> pitchtools.PitchClass.is_diatonic_pitch_class_name('c')
-            True
-
-        The regex ``^[a-g,A-G]$`` underlies this predicate.
-
-        Returns true or false.
-        '''
-        if not isinstance(expr, str):
-            return False
-        return bool(PitchClass._diatonic_pitch_class_name_regex.match(expr))
-
-    @staticmethod
-    def is_diatonic_pitch_class_number(expr):
-        '''Is true when `expr` is a diatonic pitch-class number. Otherwise false.
-
-        ::
-
-            >>> pitchtools.PitchClass.is_diatonic_pitch_class_number(0)
-            True
-
-        ::
-
-            >>> pitchtools.PitchClass.is_diatonic_pitch_class_number(-5)
-            False
-
-        The diatonic pitch-class numbers are equal to the set
-        ``[0, 1, 2, 3, 4, 5, 6]``.
-
-        Returns true or false.
-        '''
-        if expr in range(7):
-            return True
-        return False
-
-    @staticmethod
-    def is_pitch_class_name(expr):
-        '''Is true when `expr` is a pitch-class name. Otherwise false.
-
-        ::
-
-            >>> pitchtools.PitchClass.is_pitch_class_name('fs')
-            True
-
-        The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies
-        this predicate.
-
-        Returns true or false.
-        '''
-        if not isinstance(expr, str):
-            return False
-        return bool(PitchClass._pitch_class_name_regex.match(expr))
-
-    @staticmethod
-    def is_pitch_class_number(expr):
-        '''True `expr` is a pitch-class number. Otherwise false.
-
-        ::
-
-            >>> pitchtools.PitchClass.is_pitch_class_number(1)
-            True
-
-        The pitch-class numbers are equal to the set
-        ``[0, 0.5, ..., 11, 11.5]``.
-
-        Returns true or false.
-        '''
-
-        return expr in [(n).__truediv__(2) for n in range(24)]
-
-    @abc.abstractmethod
-    def multiply(self, n=1):
-        r'''Multiplies pitch-class by `n`.
-
-        Returns new pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def transpose(self, expr):
-        r'''Transposes pitch-class by `n`'.
-
-        Returns new pitch-class.
-        '''
-        raise NotImplementedError
-
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
@@ -324,15 +213,6 @@ class PitchClass(AbjadValueObject):
         r'''Accidental of pitch-class.
         '''
         raise NotImplementedError
-
-    @property
-    def accidental_spelling(self):
-        r'''Accidental spelling of pitch-class.
-
-        Returns string.
-        '''
-        from abjad import abjad_configuration
-        return abjad_configuration['accidental_spelling']
 
     @abc.abstractproperty
     def alteration_in_semitones(self):
@@ -379,5 +259,114 @@ class PitchClass(AbjadValueObject):
     @abc.abstractproperty
     def pitch_class_number(self):
         r'''Pitch-class number of pitch-class.
+        '''
+        raise NotImplementedError
+
+    ### PUBLIC METHODS ###
+
+    @abc.abstractmethod
+    def apply_accidental(self, accidental=None):
+        r'''Applies `accidental` to pitch-class.
+
+        Returns new pitch-class.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def invert(self, axis=None):
+        r'''Inverts pitch-class about `axis`.
+
+        Returns new pitch-class.
+        '''
+        raise NotImplementedError
+
+    @staticmethod
+    def is_diatonic_pitch_class_name(argument):
+        '''Is true when `argument` is a diatonic pitch-class name. Otherwise false.
+
+        ::
+
+            >>> pitchtools.PitchClass.is_diatonic_pitch_class_name('c')
+            True
+
+        The regex ``^[a-g,A-G]$`` underlies this predicate.
+
+        Returns true or false.
+        '''
+        if not isinstance(argument, str):
+            return False
+        return bool(PitchClass._diatonic_pitch_class_name_regex.match(argument))
+
+    @staticmethod
+    def is_diatonic_pitch_class_number(argument):
+        '''Is true when `argument` is a diatonic pitch-class number. Otherwise false.
+
+        ::
+
+            >>> pitchtools.PitchClass.is_diatonic_pitch_class_number(0)
+            True
+
+        ::
+
+            >>> pitchtools.PitchClass.is_diatonic_pitch_class_number(-5)
+            False
+
+        The diatonic pitch-class numbers are equal to the set
+        ``[0, 1, 2, 3, 4, 5, 6]``.
+
+        Returns true or false.
+        '''
+        if argument in range(7):
+            return True
+        return False
+
+    @staticmethod
+    def is_pitch_class_name(argument):
+        '''Is true when `argument` is a pitch-class name. Otherwise false.
+
+        ::
+
+            >>> pitchtools.PitchClass.is_pitch_class_name('fs')
+            True
+
+        The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies
+        this predicate.
+
+        Returns true or false.
+        '''
+        if not isinstance(argument, str):
+            return False
+        return bool(PitchClass._pitch_class_name_regex.match(argument))
+
+    @staticmethod
+    def is_pitch_class_number(argument):
+        '''True `argument` is a pitch-class number. Otherwise false.
+
+        ::
+
+            >>> pitchtools.PitchClass.is_pitch_class_number(1)
+            True
+
+        The pitch-class numbers are equal to the set
+        ``[0, 0.5, ..., 11, 11.5]``.
+
+        Returns true or false.
+        '''
+
+        return argument in [(n).__truediv__(2) for n in range(24)]
+
+    @abc.abstractmethod
+    def multiply(self, n=1):
+        r'''Multiplies pitch-class by `n`.
+
+        Returns new pitch-class.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def transpose(self, n=0):
+        r'''Transposes pitch-class by index `n`.
+
+        Returns new pitch-class.
         '''
         raise NotImplementedError

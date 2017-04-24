@@ -19,17 +19,18 @@ class AbjadObject(AbstractBase):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when ID of `expr` equals ID of Abjad object.
+    def __eq__(self, argument):
+        r'''Is true when ID of `argument` equals ID of Abjad object.
         Otherwise false.
 
         Returns true or false.
         '''
-        return id(self) == id(expr)
+        return id(self) == id(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats Abjad object.
@@ -70,13 +71,13 @@ class AbjadObject(AbstractBase):
         '''
         return super(AbjadObject, self).__hash__()
 
-    def __ne__(self, expr):
-        r'''Is true when Abjad object does not equal `expr`.
+    def __ne__(self, argument):
+        r'''Is true when Abjad object does not equal `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return not self == expr
+        return not self == argument
 
     def __repr__(self):
         r'''Gets interpreter representation of Abjad object.
@@ -118,9 +119,3 @@ class AbjadObject(AbstractBase):
     def _get_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.FormatSpecification(client=self)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _one_line_menu_summary(self):
-        return str(self)

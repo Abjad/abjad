@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import select
 
 
 class SliceSelectorCallback(AbjadValueObject):
-    r'''A slice selector callback.
+    r'''Slice selector callback.
     '''
 
     ### CLASS VARIABLES ###
@@ -30,8 +30,8 @@ class SliceSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         ..  container:: example
 
@@ -62,11 +62,11 @@ class SliceSelectorCallback(AbjadValueObject):
 
         Returns tuple of selections or tuple of selections with offset.
         '''
-        assert isinstance(expr, tuple), repr(expr)
+        assert isinstance(argument, tuple), repr(argument)
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
         if self.apply_to_each:
-            for subexpr in expr:
+            for subexpr in argument:
                 try:
                     subresult = self._get_item(subexpr)
                     if not isinstance(subresult, prototype):
@@ -80,7 +80,7 @@ class SliceSelectorCallback(AbjadValueObject):
                     pass
         else:
             try:
-                subresult = self._get_item(expr)
+                subresult = self._get_item(argument)
                 subresult = select(subresult)
                 if isinstance(subresult, selectiontools.Selection):
                     if subresult:
@@ -93,9 +93,9 @@ class SliceSelectorCallback(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_item(self, expr):
+    def _get_item(self, argument):
         slice_ = slice(self.start, self.stop)
-        result = expr.__getitem__(slice_)
+        result = argument.__getitem__(slice_)
         return result
 
     ### PUBLIC PROPERTIES ###

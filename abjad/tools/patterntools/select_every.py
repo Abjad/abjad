@@ -6,7 +6,7 @@ def select_every(indices, period=None, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Selects every second division:
+        Selects every second division:
 
         ::
 
@@ -16,7 +16,7 @@ def select_every(indices, period=None, inverted=None):
 
             >>> print(format(mask))
             patterntools.Pattern(
-                indices=(1,),
+                indices=[1],
                 period=2,
                 )
 
@@ -35,8 +35,7 @@ def select_every(indices, period=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -58,7 +57,7 @@ def select_every(indices, period=None, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Selects every second and third division:
+        Selects every second and third division:
 
         ::
 
@@ -68,7 +67,7 @@ def select_every(indices, period=None, inverted=None):
 
             >>> print(format(mask))
             patterntools.Pattern(
-                indices=(1, 2),
+                indices=[1, 2],
                 period=3,
                 )
 
@@ -87,8 +86,7 @@ def select_every(indices, period=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

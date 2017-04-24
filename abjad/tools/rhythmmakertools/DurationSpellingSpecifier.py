@@ -19,6 +19,8 @@ class DurationSpellingSpecifier(AbjadValueObject):
         '_spell_metrically',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -58,7 +60,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> print(format(specifier))
+                >>> f(specifier)
                 rhythmmakertools.DurationSpellingSpecifier(
                     decrease_durations_monotonically=True,
                     )
@@ -140,8 +142,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         from abjad.tools.topleveltools import select
         meters = [metertools.Meter(_) for _ in meters]
         durations = [durationtools.Duration(_) for _ in meters]
-        selections = sequencetools.flatten_sequence(selections)
-        assert isinstance(selections, list), repr(selections)
+        selections = sequencetools.Sequence(selections).flatten()
         meter_duration = sum(durations)
         music_duration = sum(inspect_(_).get_duration() for _ in selections)
         if not meter_duration == music_duration:
@@ -162,14 +163,13 @@ class DurationSpellingSpecifier(AbjadValueObject):
         #return selections
         components = mutate(voice).eject_contents()
         component_durations = [inspect_(_).get_duration() for _ in components]
-        parts = sequencetools.partition_sequence_by_weights(
-            component_durations,
+        parts = sequencetools.Sequence(component_durations)
+        parts = parts.partition_by_weights(
             weights=durations,
             allow_part_weights=Exact,
             )
         part_lengths = [len(_) for _ in parts]
-        parts = sequencetools.partition_sequence_by_counts(
-            components,
+        parts = sequencetools.Sequence(components).partition_by_counts(
             counts=part_lengths,
             overhang=Exact,
             )

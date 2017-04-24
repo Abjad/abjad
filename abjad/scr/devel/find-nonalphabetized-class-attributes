@@ -47,7 +47,9 @@ def main():
                     attribute_definition_lines.append(line)
                 if line.startswith('    ### '):
                     sorted_attribute_definition_lines = \
-                        list(sorted(attribute_definition_lines))
+                        attribute_definition_lines[:]
+                    sorted_attribute_definition_lines.sort(
+                        key=lambda x: x.lower())
                     if not attribute_definition_lines == \
                         sorted_attribute_definition_lines:
                         nonalphabetized_module_names.append(file_path)
@@ -65,7 +67,9 @@ def main():
                     continue
             else:
                 sorted_attribute_definition_lines = \
-                    list(sorted(attribute_definition_lines))
+                    attribute_definition_lines[:]
+                sorted_attribute_definition_lines.sort(
+                    key=lambda x: x.lower())
                 if not attribute_definition_lines == \
                     list(sorted(attribute_definition_lines)):
                     nonalphabetized_module_names.append(file_path)

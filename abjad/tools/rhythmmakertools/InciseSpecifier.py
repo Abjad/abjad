@@ -9,12 +9,12 @@ class InciseSpecifier(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Specifies one sixteenth rest cut out of the beginning
-        of every division:
+        Specifies one sixteenth rest cut out of the beginning of every
+        division:
 
         ::
 
-            >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+            >>> specifier = rhythmmakertools.InciseSpecifier(
             ...     prefix_talea=[-1],
             ...     prefix_counts=[1],
             ...     talea_denominator=16,
@@ -22,12 +22,12 @@ class InciseSpecifier(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Specifies sixteenth rests cut out of the beginning and
-        end of each division:
+        Specifies sixteenth rests cut out of the beginning and end of each
+        division:
 
         ::
 
-            >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+            >>> specifier = rhythmmakertools.InciseSpecifier(
             ...     prefix_talea=[-1],
             ...     prefix_counts=[1],
             ...     suffix_talea=[-1],
@@ -51,6 +51,8 @@ class InciseSpecifier(AbjadValueObject):
         '_suffix_talea',
         '_talea_denominator',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -114,11 +116,11 @@ class InciseSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Formats incise specifier:
+            Formats incise specifier:
 
             ::
 
-                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                >>> specifier = rhythmmakertools.InciseSpecifier(
                 ...     prefix_talea=[-1],
                 ...     prefix_counts=[1],
                 ...     talea_denominator=16,
@@ -126,20 +128,20 @@ class InciseSpecifier(AbjadValueObject):
 
             ::
 
-                >>> print(format(incise_specifier))
+                >>> f(specifier)
                 rhythmmakertools.InciseSpecifier(
-                    prefix_talea=(-1,),
-                    prefix_counts=(1,),
+                    prefix_talea=[-1],
+                    prefix_counts=[1],
                     talea_denominator=16,
                     )
 
         ..  container:: example
 
-            **Example 2.** Formats incise specifier:
+            Formats incise specifier:
 
             ::
 
-                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                >>> specifier = rhythmmakertools.InciseSpecifier(
                 ...     prefix_talea=[-1],
                 ...     prefix_counts=[0, 1],
                 ...     suffix_talea=[-1],
@@ -149,12 +151,12 @@ class InciseSpecifier(AbjadValueObject):
 
             ::
 
-                >>> print(format(incise_specifier))
+                >>> f(specifier)
                 rhythmmakertools.InciseSpecifier(
-                    prefix_talea=(-1,),
-                    prefix_counts=(0, 1),
-                    suffix_talea=(-1,),
-                    suffix_counts=(1,),
+                    prefix_talea=[-1],
+                    prefix_counts=[0, 1],
+                    suffix_talea=[-1],
+                    suffix_counts=[1],
                     talea_denominator=16,
                     )
 
@@ -174,7 +176,7 @@ class InciseSpecifier(AbjadValueObject):
                 continue
             if not getattr(self, name):
                 names.remove(name)
-        # TODO: kwargs defaults checking
+        # TODO: keywords defaults checking
         if self.fill_with_notes:
             names.remove('fill_with_notes')
         return systemtools.FormatSpecification(
@@ -183,31 +185,31 @@ class InciseSpecifier(AbjadValueObject):
             )
 
     @staticmethod
-    def _is_integer_tuple(expr):
-        if expr is None:
+    def _is_integer_tuple(argument):
+        if argument is None:
             return True
-        if all(isinstance(x, int) for x in expr):
+        if all(isinstance(x, int) for x in argument):
             return True
         return False
 
     @staticmethod
-    def _is_length_tuple(expr):
-        if expr is None:
+    def _is_length_tuple(argument):
+        if argument is None:
             return True
-        if mathtools.all_are_nonnegative_integer_equivalent_numbers(expr):
-            if isinstance(expr, (tuple, list)):
+        if mathtools.all_are_nonnegative_integer_equivalent_numbers(argument):
+            if isinstance(argument, (tuple, list)):
                 return True
         return False
 
     @staticmethod
-    def _reverse_tuple(expr):
-        if expr is not None:
-            return tuple(reversed(expr))
+    def _reverse_tuple(argument):
+        if argument is not None:
+            return tuple(reversed(argument))
 
     @staticmethod
-    def _rotate_tuple(expr, n):
-        if expr is not None:
-            return tuple(sequencetools.rotate_sequence(expr, n))
+    def _rotate_tuple(argument, n):
+        if argument is not None:
+            return tuple(sequencetools.Sequence(argument).rotate(n=n))
 
     ### PUBLIC PROPERTIES ###
 
@@ -217,11 +219,11 @@ class InciseSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Divides middle part of every division ``1:1``:
+            Divides middle part of every division ``1:1``:
 
             ::
 
-                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                >>> specifier = rhythmmakertools.InciseSpecifier(
                 ...     prefix_talea=[-1],
                 ...     prefix_counts=[0, 1],
                 ...     suffix_talea=[-1],
@@ -230,7 +232,7 @@ class InciseSpecifier(AbjadValueObject):
                 ...     body_ratio=mathtools.Ratio((1, 1)),
                 ...     )
                 >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
-                ...     incise_specifier=incise_specifier,
+                ...     incise_specifier=specifier,
                 ...     )
 
             ::
@@ -245,8 +247,7 @@ class InciseSpecifier(AbjadValueObject):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/16
@@ -317,7 +318,8 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._prefix_counts
+        if self._prefix_counts:
+            return list(self._prefix_counts)
 
     @property
     def prefix_talea(self):
@@ -327,7 +329,8 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._prefix_talea
+        if self._prefix_talea:
+            return list(self._prefix_talea)
 
     @property
     def suffix_counts(self):
@@ -337,7 +340,8 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._suffix_counts
+        if self._suffix_counts:
+            return list(self._suffix_counts)
 
     @property
     def suffix_talea(self):
@@ -347,7 +351,8 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._suffix_talea
+        if self._suffix_talea:
+            return list(self._suffix_talea)
 
     @property
     def talea_denominator(self):

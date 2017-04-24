@@ -192,6 +192,24 @@ class Measure(FixedDurationContainer):
         FixedDurationContainer.__setitem__(self, i, expr)
         self._conditionally_adjust_time_signature(old_denominator)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _compact_representation(self):
+        if not self:
+            return '| {!s} |'.format(self.time_signature)
+        return '| {!s} {} |'.format(
+            self.time_signature,
+            self._contents_summary,
+            )
+
+    @property
+    def _preprolated_duration(self):
+        time_signature_prolation = 1
+        if self.implicit_scaling:
+            time_signature_prolation = self.time_signature.implied_prolation
+        return time_signature_prolation * self._contents_duration
+
     ### PRIVATE METHODS ###
 
     def _all_contents_are_scalable_by_multiplier(self, multiplier):
@@ -359,19 +377,23 @@ class Measure(FixedDurationContainer):
         from abjad.tools import sequencetools
         assert all(isinstance(x, scoretools.Component) for x in components)
         logical_tie_duration_numerators = []
-        for expr in \
-            iterate(components).by_topmost_logical_ties_and_components():
-            if isinstance(expr, selectiontools.LogicalTie):
-                logical_tie_duration = expr._preprolated_duration
-                logical_tie_duration_numerators.append(
-                    logical_tie_duration.numerator)
-        if len(sequencetools.remove_repeated_elements(
-            logical_tie_duration_numerators)) == 1:
+        items = iterate(components).by_topmost_logical_ties_and_components()
+        for item in items:
+            if isinstance(item, selectiontools.LogicalTie):
+                logical_tie_duration = item._preprolated_duration
+                numerator = logical_tie_duration.numerator
+                logical_tie_duration_numerators.append(numerator)
+        numerators = sequencetools.Sequence(logical_tie_duration_numerators)
+        if len(numerators.remove_repeats()) == 1:
             numerator = logical_tie_duration_numerators[0]
             denominator = mathtools.greatest_power_of_two_less_equal(numerator)
-            likely_multiplier = durationtools.Multiplier(
-                numerator, denominator)
+            pair = (numerator, denominator)
+            likely_multiplier = durationtools.Multiplier(*pair)
             return likely_multiplier
+
+    def _get_lilypond_format(self):
+        self._check_duration()
+        return self._format_component()
 
     # TODO: see if self._scale can be combined with
     #       with self.scale_and_adjust_time_signature()
@@ -381,8 +403,8 @@ class Measure(FixedDurationContainer):
             return
         multiplier = durationtools.Multiplier(multiplier)
         old_time_signature = self.time_signature
-        if mathtools.is_nonnegative_integer_power_of_two(multiplier) and \
-            1 <= multiplier:
+        if (mathtools.is_nonnegative_integer_power_of_two(multiplier) and
+            1 <= multiplier):
             old_numerator = old_time_signature.numerator
             old_denominator = old_time_signature.denominator
             new_denominator = old_denominator // multiplier.numerator
@@ -405,173 +427,6 @@ class Measure(FixedDurationContainer):
         pair = (multiplier.numerator, contents_multiplier_denominator)
         contents_multiplier = durationtools.Multiplier(*pair)
         self._scale_contents(contents_multiplier)
-
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_selections(class_, selections, time_signatures=None):
-        r'''Makes a selection of measures from `selections`.
-
-        Returns selections.
-        '''
-        from abjad.tools import scoretools
-        assert len(selections)
-        if not time_signatures:
-            time_signatures = [_.get_duration() for _ in selections]
-        assert len(selections) == len(time_signatures)
-        assert [_.get_duration() for _ in selections] == \
-            [durationtools.Duration(_) for _ in time_signatures]
-        measures = scoretools.make_spacer_skip_measures(time_signatures)
-        temporary_voice = scoretools.Voice(measures)
-        mutate(temporary_voice).replace_measure_contents(selections)
-        temporary_voice[:] = []
-        return measures
-
-    # TODO: see if self._scale can be combined with
-    #       with self.scale_and_adjust_time_signature()
-    def scale_and_adjust_time_signature(self, multiplier=None):
-        r'''Scales `measure` by `multiplier` and adjusts time signature.
-
-        ..  container:: example
-
-            Scales measure by non-power-of-two multiplier:
-
-            ::
-
-                >>> measure = Measure((3, 8), "c'8 d'8 e'8")
-                >>> measure.implicit_scaling = True
-                >>> show(measure) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(measure))
-                {
-                    \time 3/8
-                    c'8
-                    d'8
-                    e'8
-                }
-
-            ::
-
-                >>> measure.scale_and_adjust_time_signature(Multiplier(2, 3))
-                >>> show(measure) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(measure))
-                {
-                    \time 3/12
-                    \scaleDurations #'(2 . 3) {
-                        c'8
-                        d'8
-                        e'8
-                    }
-                }
-
-        Returns none.
-        '''
-        from abjad.tools import indicatortools
-        if multiplier == 0:
-            raise ZeroDivisionError
-        old_time_signature = self.time_signature
-        old_pair = \
-            (old_time_signature.numerator, old_time_signature.denominator)
-        old_multiplier = old_time_signature.implied_prolation
-        old_multiplier_pair = \
-            (old_multiplier.numerator, old_multiplier.denominator)
-        multiplied_pair = mathtools.NonreducedFraction(old_multiplier_pair)
-        multiplied_pair = multiplied_pair.multiply_without_reducing(multiplier)
-        multiplied_pair = multiplied_pair.pair
-        reduced_pair = mathtools.NonreducedFraction(old_multiplier_pair)
-        reduced_pair = reduced_pair.multiply_with_cross_cancelation(multiplier)
-        reduced_pair = reduced_pair.pair
-        if reduced_pair != multiplied_pair:
-            new_pair = mathtools.NonreducedFraction(old_pair)
-            new_pair = \
-                new_pair.multiply_with_numerator_preservation(multiplier)
-            new_time_signature = indicatortools.TimeSignature(new_pair)
-            detach(indicatortools.TimeSignature, self)
-            attach(new_time_signature, self)
-            remaining_multiplier = durationtools.Multiplier(reduced_pair)
-            if remaining_multiplier != durationtools.Multiplier(1):
-                self._scale_contents(remaining_multiplier)
-        elif self._all_contents_are_scalable_by_multiplier(multiplier):
-            self._scale_contents(multiplier)
-            if (
-                old_time_signature.has_non_power_of_two_denominator or
-                not mathtools.is_nonnegative_integer_power_of_two(multiplier)
-                ):
-                new_pair = mathtools.NonreducedFraction(old_pair)
-                new_pair = new_pair.multiply_with_cross_cancelation(multiplier)
-                new_pair = new_pair.pair
-            # multiplier is a negative power of two, like 1/2, 1/4, etc.
-            elif multiplier < durationtools.Multiplier(0):
-                new_pair = \
-                    mathtools.NonreducedFraction.multiply_without_reducing(
-                        old_pair, multiplier)
-            # multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
-            elif durationtools.Multiplier(0) < multiplier:
-                new_pair = mathtools.NonreducedFraction(old_pair)
-                new_pair = new_pair.multiply_with_numerator_preservation(
-                    multiplier)
-            elif multiplier == durationtools.Multiplier(0):
-                raise ZeroDivisionError
-            new_time_signature = indicatortools.TimeSignature(new_pair)
-            detach(indicatortools.TimeSignature, self)
-            attach(new_time_signature, self)
-            if new_time_signature.has_non_power_of_two_denominator:
-                self.implicit_scaling = True
-        else:
-            new_pair = mathtools.NonreducedFraction(old_pair)
-            new_pair = new_pair.multiply_with_numerator_preservation(
-                multiplier)
-            new_time_signature = indicatortools.TimeSignature(new_pair)
-            detach(indicatortools.TimeSignature, self)
-            attach(new_time_signature, self)
-            if new_time_signature.has_non_power_of_two_denominator:
-                self.implicit_scaling = True
-            remaining_multiplier = \
-                multiplier / new_time_signature.implied_prolation
-            if remaining_multiplier != durationtools.Multiplier(1):
-                self._scale_contents(remaining_multiplier)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_representation(self):
-        if not self:
-            return '| {!s} |'.format(self.time_signature)
-        return '| {!s} {} |'.format(
-            self.time_signature,
-            self._contents_summary,
-            )
-
-    @property
-    def _lilypond_format(self):
-        self._check_duration()
-        return self._format_component()
-
-    @property
-    def _one_line_input_string(self):
-        time_signature = self.time_signature
-        pair = (time_signature.numerator, time_signature.denominator)
-        contents_string = ' '.join([str(x) for x in self])
-        result = '{}({}, {!r}, implicit_scaling={})'
-        result = result.format(
-            type(self).__name__,
-            pair,
-            contents_string,
-            self.implicit_scaling,
-            )
-        return result
-
-    @property
-    def _preprolated_duration(self):
-        time_signature_prolation = 1
-        if self.implicit_scaling:
-            time_signature_prolation = self.time_signature.implied_prolation
-        return time_signature_prolation * self._contents_duration
 
     ### PUBLIC PROPERTIES ###
 
@@ -941,3 +796,133 @@ class Measure(FixedDurationContainer):
         '''
         from abjad.tools import indicatortools
         return self._get_effective(indicatortools.TimeSignature)
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_selections(class_, selections, time_signatures=None):
+        r'''Makes a selection of measures from `selections`.
+
+        Returns selections.
+        '''
+        from abjad.tools import scoretools
+        assert len(selections)
+        if not time_signatures:
+            time_signatures = [_.get_duration() for _ in selections]
+        assert len(selections) == len(time_signatures)
+        assert [_.get_duration() for _ in selections] == \
+            [durationtools.Duration(_) for _ in time_signatures]
+        measures = scoretools.make_spacer_skip_measures(time_signatures)
+        temporary_voice = scoretools.Voice(measures)
+        mutate(temporary_voice).replace_measure_contents(selections)
+        temporary_voice[:] = []
+        return measures
+
+    # TODO: see if self._scale can be combined with
+    #       with self.scale_and_adjust_time_signature()
+    def scale_and_adjust_time_signature(self, multiplier=None):
+        r'''Scales `measure` by `multiplier` and adjusts time signature.
+
+        ..  container:: example
+
+            Scales measure by non-power-of-two multiplier:
+
+            ::
+
+                >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+                >>> measure.implicit_scaling = True
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 3/8
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            ::
+
+                >>> measure.scale_and_adjust_time_signature(Multiplier(2, 3))
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 3/12
+                    \scaleDurations #'(2 . 3) {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                }
+
+        Returns none.
+        '''
+        from abjad.tools import indicatortools
+        if multiplier == 0:
+            raise ZeroDivisionError
+        old_time_signature = self.time_signature
+        old_pair = \
+            (old_time_signature.numerator, old_time_signature.denominator)
+        old_multiplier = old_time_signature.implied_prolation
+        old_multiplier_pair = \
+            (old_multiplier.numerator, old_multiplier.denominator)
+        multiplied_pair = mathtools.NonreducedFraction(old_multiplier_pair)
+        multiplied_pair = multiplied_pair.multiply_without_reducing(multiplier)
+        multiplied_pair = multiplied_pair.pair
+        reduced_pair = mathtools.NonreducedFraction(old_multiplier_pair)
+        reduced_pair = reduced_pair.multiply_with_cross_cancelation(multiplier)
+        reduced_pair = reduced_pair.pair
+        if reduced_pair != multiplied_pair:
+            new_pair = mathtools.NonreducedFraction(old_pair)
+            new_pair = \
+                new_pair.multiply_with_numerator_preservation(multiplier)
+            new_time_signature = indicatortools.TimeSignature(new_pair)
+            detach(indicatortools.TimeSignature, self)
+            attach(new_time_signature, self)
+            remaining_multiplier = durationtools.Multiplier(reduced_pair)
+            if remaining_multiplier != durationtools.Multiplier(1):
+                self._scale_contents(remaining_multiplier)
+        elif self._all_contents_are_scalable_by_multiplier(multiplier):
+            self._scale_contents(multiplier)
+            if (
+                old_time_signature.has_non_power_of_two_denominator or
+                not mathtools.is_nonnegative_integer_power_of_two(multiplier)
+                ):
+                new_pair = mathtools.NonreducedFraction(old_pair)
+                new_pair = new_pair.multiply_with_cross_cancelation(multiplier)
+                new_pair = new_pair.pair
+            # multiplier is a negative power of two, like 1/2, 1/4, etc.
+            elif multiplier < durationtools.Multiplier(0):
+                new_pair = \
+                    mathtools.NonreducedFraction.multiply_without_reducing(
+                        old_pair, multiplier)
+            # multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
+            elif durationtools.Multiplier(0) < multiplier:
+                new_pair = mathtools.NonreducedFraction(old_pair)
+                new_pair = new_pair.multiply_with_numerator_preservation(
+                    multiplier)
+            elif multiplier == durationtools.Multiplier(0):
+                raise ZeroDivisionError
+            new_time_signature = indicatortools.TimeSignature(new_pair)
+            detach(indicatortools.TimeSignature, self)
+            attach(new_time_signature, self)
+            if new_time_signature.has_non_power_of_two_denominator:
+                self.implicit_scaling = True
+        else:
+            new_pair = mathtools.NonreducedFraction(old_pair)
+            new_pair = new_pair.multiply_with_numerator_preservation(
+                multiplier)
+            new_time_signature = indicatortools.TimeSignature(new_pair)
+            detach(indicatortools.TimeSignature, self)
+            attach(new_time_signature, self)
+            if new_time_signature.has_non_power_of_two_denominator:
+                self.implicit_scaling = True
+            remaining_multiplier = \
+                multiplier / new_time_signature.implied_prolation
+            if remaining_multiplier != durationtools.Multiplier(1):
+                self._scale_contents(remaining_multiplier)

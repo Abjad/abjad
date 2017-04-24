@@ -99,8 +99,8 @@ class Scale(PitchClassSegment):
             pitch_range = pitchtools.PitchRange(
                 float(pitchtools.NamedPitch(pitch_range[0])),
                 float(pitchtools.NamedPitch(pitch_range[1])))
-        low = pitch_range.start_pitch.octave_number
-        high = pitch_range.stop_pitch.octave_number
+        low = pitch_range.start_pitch.octave.number
+        high = pitch_range.stop_pitch.octave.number
         pitches = []
         octave = low
         while octave <= high:
@@ -137,7 +137,7 @@ class Scale(PitchClassSegment):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8
                 d'8
@@ -164,7 +164,7 @@ class Scale(PitchClassSegment):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 5/4
                 c'4 ~
@@ -196,10 +196,11 @@ class Scale(PitchClassSegment):
 
             >>> scale = tonalanalysistools.Scale('E', 'major')
             >>> score = scale.make_score()
+            >>> show(score) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 tempoWholesPerMinute = #(ly:make-moment 30 1)
             } <<
@@ -222,10 +223,6 @@ class Scale(PitchClassSegment):
                     e'4
                 }
             >>
-
-        ::
-
-            >>> show(score) # doctest: +SKIP
 
         Returns score.
         '''
@@ -294,10 +291,10 @@ class Scale(PitchClassSegment):
 
             >>> scale = tonalanalysistools.Scale('c', 'major')
             >>> scale_degrees = [1, 3, ('flat', 5), 7, ('sharp', 9)]
-            >>> pitches = scale.voice_scale_degrees_in_open_position(
+            >>> segment = scale.voice_scale_degrees_in_open_position(
             ...     scale_degrees)
-            >>> pitches
-            PitchSegment(["c'", "e'", "gf'", "b'", "ds''"])
+            >>> segment
+            PitchSegment("c' e' gf' b' ds''")
 
         Return pitch segment.
         '''
@@ -365,8 +362,7 @@ class Scale(PitchClassSegment):
         Returns interval-class segment.
         '''
         dics = []
-        for left, right in \
-            sequencetools.iterate_sequence_nwise(self, wrapped=True):
+        for left, right in sequencetools.Sequence(self).nwise(wrapped=True):
             dic = left - right
             dics.append(dic)
         dicg = pitchtools.IntervalClassSegment(

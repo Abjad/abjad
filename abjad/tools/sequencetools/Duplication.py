@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import collections
+from abjad.tools import abctools
 from abjad.tools.topleveltools import new
-from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Duplication(AbjadValueObject):
-    r'''Duplication operator.
+class Duplication(abctools.AbjadValueObject):
+    r'''Duplication.
 
     ..  container:: example:
 
@@ -59,8 +59,8 @@ class Duplication(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
-        r'''Calls rotation on `expr`.
+    def __call__(self, argument):
+        r'''Calls rotation on `argument`.
 
         ..  container:: example
 
@@ -168,14 +168,14 @@ class Duplication(AbjadValueObject):
                 >>> operator_(pitch_classes)
                 PitchClassSegment([0, 1, 1, 4, 4, 4, 7, 7, 7, 7, 9])
                 
-        Returns new object with type equal to that of `expr`.
+        Returns new object with type equal to that of `argument`.
         '''
         from abjad.tools import datastructuretools
         from abjad.tools import patterntools
         from abjad.tools import sequencetools
 
-        if not isinstance(expr, collections.Sequence):
-            expr = (expr,)
+        if not isinstance(argument, collections.Sequence):
+            argument = (argument,)
 
         counts = self.counts
         if isinstance(counts, int):
@@ -185,17 +185,17 @@ class Duplication(AbjadValueObject):
 
         if not self.period and not self.indices:
             if isinstance(counts, int):
-                return type(expr)(expr * counts)
+                return type(argument)(argument * counts)
             else:
                 counts = datastructuretools.CyclicTuple(counts)
                 result = []
-                for i, x in enumerate(expr):
+                for i, x in enumerate(argument):
                     count = counts[i]
                     result.extend([x] * count)
-                if isinstance(expr, datastructuretools.TypedCollection):
-                    result = new(expr, items=result)
+                if isinstance(argument, datastructuretools.TypedCollection):
+                    result = new(argument, items=result)
                 else:
-                    result = type(expr)(result)
+                    result = type(argument)(result)
                 return result
 
         if isinstance(counts, int):
@@ -203,14 +203,17 @@ class Duplication(AbjadValueObject):
         counts = datastructuretools.CyclicTuple(counts)
 
         if not self.indices:
-            if isinstance(expr, datastructuretools.TypedCollection):
-                result = new(expr, items=())
+            if isinstance(argument, datastructuretools.TypedCollection):
+                result = new(argument, items=())
             else:
-                result = type(expr)()
-            iterator = sequencetools.partition_sequence_by_counts(
-                expr, [self.period], cyclic=True, overhang=True)
+                result = type(argument)()
+            iterator = sequencetools.Sequence(argument).partition_by_counts(
+                [self.period],
+                cyclic=True,
+                overhang=True,
+                )
             for i, shard in enumerate(iterator):
-                shard = type(expr)(shard) * counts[i]
+                shard = type(argument)(shard) * counts[i]
                 result = result + shard
             return result
 
@@ -219,19 +222,19 @@ class Duplication(AbjadValueObject):
             period=self.period,
             )
         result = []
-        length = len(expr)
+        length = len(argument)
         j = 0
-        for i, x in enumerate(expr):
+        for i, x in enumerate(argument):
             if pattern.matches_index(i, length):
                 count = counts[j]
                 result.extend([x] * count)
                 j += 1
             else:
                 result.append(x)
-        if isinstance(expr, datastructuretools.TypedCollection):
-            result = new(expr, items=result)
+        if isinstance(argument, datastructuretools.TypedCollection):
+            result = new(argument, items=result)
         else:
-            result = type(expr)(result)
+            result = type(argument)(result)
         return result
 
     ### PUBLIC PROPERTIES ###

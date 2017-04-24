@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_scoretools_NoteHeadInventory___setitem___01():
-    r'''Set note head with pitch number.
+    r'''Set note-head with pitch number.
     '''
 
     chord = Chord("<c' d'>4")
@@ -13,7 +13,7 @@ def test_scoretools_NoteHeadInventory___setitem___01():
 
 
 def test_scoretools_NoteHeadInventory___setitem___02():
-    '''Set note head with pitch.
+    '''Set note-head with pitch.
     '''
 
     chord = Chord("<c' d'>4")
@@ -23,7 +23,7 @@ def test_scoretools_NoteHeadInventory___setitem___02():
 
 
 def test_scoretools_NoteHeadInventory___setitem___03():
-    r'''Set note head with tweaked note head.
+    r'''Set note-head with tweaked note-head.
     '''
 
     chord = Chord("<c' cs'' f''>4")

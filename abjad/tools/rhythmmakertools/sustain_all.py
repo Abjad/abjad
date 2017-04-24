@@ -7,7 +7,7 @@ def sustain_all(inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Without mask:
+        Without mask:
 
             >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
             ...     tuplet_ratios=[(3, 1)],
@@ -25,8 +25,7 @@ def sustain_all(inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -64,7 +63,7 @@ def sustain_all(inverted=None):
 
     ..  container:: example
 
-        **Example 2.** With mask:
+        With mask:
 
         ::
 
@@ -72,10 +71,10 @@ def sustain_all(inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
-                    indices=(0,),
+                    indices=[0],
                     period=1,
                     ),
                 )
@@ -99,8 +98,7 @@ def sustain_all(inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

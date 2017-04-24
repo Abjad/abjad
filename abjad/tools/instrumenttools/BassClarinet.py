@@ -17,7 +17,7 @@ class BassClarinet(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { "Bass clarinet" }
             \set Staff.shortInstrumentName = \markup { "Bass cl." }
@@ -63,7 +63,7 @@ class BassClarinet(Instrument):
             'clarinettist',
             'clarinetist',
             ])
-        self._starting_clefs = indicatortools.ClefInventory(['treble'])
+        self._starting_clefs = type(self.allowable_clefs)(['treble'])
 
     ### PUBLIC PROPERTIES ###
 
@@ -76,7 +76,7 @@ class BassClarinet(Instrument):
             ::
 
                 >>> bass_clarinet.allowable_clefs
-                ClefInventory([Clef(name='treble'), Clef(name='bass')])
+                ClefList([Clef(name='treble'), Clef(name='bass')])
 
             ::
 
@@ -110,7 +110,7 @@ class BassClarinet(Instrument):
             ::
 
                 >>> bass_clarinet.instrument_name_markup
-                Markup(contents=('Bass clarinet',))
+                Markup(contents=['Bass clarinet'])
 
             ::
 
@@ -163,7 +163,7 @@ class BassClarinet(Instrument):
             ::
 
                 >>> bass_clarinet.short_instrument_name_markup
-                Markup(contents=('Bass cl.',))
+                Markup(contents=['Bass cl.'])
 
             ::
 

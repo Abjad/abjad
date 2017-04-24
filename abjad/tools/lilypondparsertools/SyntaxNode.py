@@ -25,15 +25,15 @@ class SyntaxNode(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __getitem__(self, item):
-        r'''Gets `item` from syntax node.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
-        Returns item.
+        Returns item or slice.
         '''
         if isinstance(self.value, (list, tuple)):
-            return self.value[item]
+            return self.value.__getitem__(argument)
         message = 'can not get: {!r}.'
-        message = message.format(item)
+        message = message.format(argument)
         raise Exception(message)
 
     def __len__(self):

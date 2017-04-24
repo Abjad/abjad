@@ -17,7 +17,7 @@ class EnglishHorn(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { "English horn" }
             \set Staff.shortInstrumentName = \markup { "Eng. hn." }
@@ -74,7 +74,7 @@ class EnglishHorn(Instrument):
             ::
 
                 >>> english_horn.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 
@@ -108,7 +108,7 @@ class EnglishHorn(Instrument):
             ::
 
                 >>> english_horn.instrument_name_markup
-                Markup(contents=('English horn',))
+                Markup(contents=['English horn'])
 
             ::
 
@@ -161,7 +161,7 @@ class EnglishHorn(Instrument):
             ::
 
                 >>> english_horn.short_instrument_name_markup
-                Markup(contents=('Eng. hn.',))
+                Markup(contents=['Eng. hn.'])
 
             ::
 

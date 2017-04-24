@@ -17,7 +17,7 @@ class BassSaxophone(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { "Bass saxophone" }
             \set Staff.shortInstrumentName = \markup { "Bass sax." }
@@ -74,7 +74,7 @@ class BassSaxophone(Instrument):
             ::
 
                 >>> bass_saxophone.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 
@@ -108,7 +108,7 @@ class BassSaxophone(Instrument):
             ::
 
                 >>> bass_saxophone.instrument_name_markup
-                Markup(contents=('Bass saxophone',))
+                Markup(contents=['Bass saxophone'])
 
             ::
 
@@ -161,7 +161,7 @@ class BassSaxophone(Instrument):
             ::
 
                 >>> bass_saxophone.short_instrument_name_markup
-                Markup(contents=('Bass sax.',))
+                Markup(contents=['Bass sax.'])
 
             ::
 

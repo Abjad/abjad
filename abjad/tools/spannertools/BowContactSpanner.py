@@ -53,7 +53,7 @@ class BowContactSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 \override BarLine.transparent = ##t
                 \override Dots.staff-position = #-8
@@ -166,7 +166,7 @@ class BowContactSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 \override BarLine.transparent = ##t
                 \override Dots.staff-position = #-8
@@ -327,9 +327,10 @@ class BowContactSpanner(Spanner):
                 ).get_indicators(indicatortools.BowContactPoint)
             if previous_contact_points:
                 previous_contact_point = previous_contact_points[0]
-        if self._is_my_first_leaf(leaf) or \
-            previous_contact_point is None or \
-            previous_contact_point.contact_point is None:
+        if (self._is_my_first_leaf(leaf) or
+            previous_contact_point is None or
+            previous_contact_point.contact_point is None
+            ):
             if this_contact_point < next_contact_point:
                 direction_change = Down
             elif next_contact_point < this_contact_point:

@@ -7,7 +7,7 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 1.** Silences last division:
+        Silences last division:
 
         ::
 
@@ -15,10 +15,10 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(-1,),
+                    indices=[-1],
                     ),
                 )
 
@@ -37,8 +37,7 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -60,7 +59,7 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 2.** Silences last two divisions:
+        Silences last two divisions:
 
         ::
 
@@ -68,10 +67,10 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(-2, -1),
+                    indices=[-2, -1],
                     ),
                 )
 
@@ -90,8 +89,7 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -113,7 +111,7 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
     ..  container:: example
 
-        **Example 3.** Silences no last divisions:
+        Silences no last divisions:
 
         ::
 
@@ -121,10 +119,10 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(),
+                    indices=[],
                     ),
                 )
 
@@ -143,8 +141,7 @@ def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

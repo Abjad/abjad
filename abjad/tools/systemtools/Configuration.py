@@ -57,12 +57,12 @@ class Configuration(AbjadObject):
         '''
         del(self._settings[i])
 
-    def __getitem__(self, i):
-        r'''Gets item `i` from configuration.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
-        Returns none.
+        Returns item or slice.
         '''
-        return self._settings[i]
+        return self._settings.__getitem__(argument)
 
     def __iter__(self):
         r'''Iterates configuration settings.

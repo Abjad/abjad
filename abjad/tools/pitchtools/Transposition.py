@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -7,84 +8,225 @@ class Transposition(AbjadValueObject):
 
     ..  container:: example
 
-        **Example.**
+        ::
+
+            >>> Transposition()
+            Transposition(n=0)
+
+    ..  container:: example
 
         ::
 
-            >>> operator_ = pitchtools.Transposition(2)
+            >>> Transposition(n=2)
+            Transposition(n=2)
 
-        ::
-
-            >>> print(format(operator_))
-            pitchtools.Transposition(
-                index=2,
-                )
-
-    Object model of the twelve-tone tranposition operator.
+    Object model of twelve-tone transposition operator.
     '''
 
     ### CLASS VARIABLES ##
 
     __slots__ = (
-        '_index',
+        '_n',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, index=0):
-        self._index = index
+    def __init__(self, n=0):
+        self._n = n
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
-        r'''Calls tranposition on `expr`.
+    def __add__(self, operator):
+        r'''Composes transposition and `operator`.
 
         ..  container:: example
 
-            **Example 1.** Transposes numbered pitch-class up two semitones:
+            Example segment:
 
             ::
 
-                >>> operator_ = pitchtools.Transposition(index=2)
-                >>> pc = pitchtools.NumberedPitchClass(1)
-                >>> operator_(pc)
+                >>> items = [0, 2, 4, 5]
+                >>> segment = PitchClassSegment(items=items)
+                >>> show(segment) # doctest: +SKIP
+    
+            Example operators:
+
+            ::
+
+                >>> T_1 = Transposition(n=1)
+                >>> T_3 = Transposition(n=3)
+
+        ..  container:: example
+
+            Successive transposition:
+
+            ::
+
+                >>> operator = T_1 + T_3
+                >>> str(operator)
+                'T1T3'
+
+            ::
+
+                >>> segment_ = operator(segment)
+                >>> show(segment_) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment_.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    e'8
+                    fs'8
+                    af'8
+                    a'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Same as above because transposition commutes:
+
+            ::
+
+                >>> operator = T_3 + T_1
+                >>> str(operator)
+                'T3T1'
+
+            ::
+
+                >>> segment_ = operator(segment)
+                >>> show(segment_) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment_.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    e'8
+                    fs'8
+                    af'8
+                    a'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        Returns compound operator.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.CompoundOperator._compose_operators(self, operator)
+
+    def __call__(self, argument):
+        r'''Calls transposition on `argument`.
+
+        ..  container:: example
+
+            Transposes pitch-class:
+
+            ::
+
+                >>> transposition = Transposition(n=2)
+                >>> pitch_class = NumberedPitchClass(1)
+                >>> transposition(pitch_class)
                 NumberedPitchClass(3)
 
         ..  container:: example
 
-            **Example 2.** Transposes numbered pitch up two semitones:
+            Transposes pitch:
 
             ::
 
-                >>> operator_ = pitchtools.Transposition(index=2)
-                >>> pitch = pitchtools.NumberedPitch(15)
-                >>> operator_(pitch)
+                >>> transposition = Transposition(n=2)
+                >>> pitch = NumberedPitch(15)
+                >>> transposition(pitch)
                 NumberedPitch(17)
 
-        Returns new object with type equal to that of `expr`.
+        ..  container:: example
+
+            Transposes list of pitches:
+
+            ::
+
+                >>> transposition = Transposition(n=2)
+                >>> pitches = [NumberedPitch(_) for _ in [15, 16]]
+                >>> transposition(pitches)
+                [NumberedPitch(17), NumberedPitch(18)]
+
+        Returns new object with type equal to that of `argument`.
         '''
-        if hasattr(expr, 'transpose'):
-            result = expr.transpose(self.index)
+        if hasattr(argument, 'transpose'):
+            result = argument.transpose(self.n)
+        elif isinstance(argument, collections.Iterable):
+            items = []
+            for item in argument:
+                item = item.transpose(self.n)
+                items.append(item)
+            result = type(argument)(items)
         else:
             message = 'do not know how to transpose: {!r}.'
-            message = message.format(expr)
+            message = message.format(argument)
             raise TypeError(message)
         return result
 
+    def __str__(self):
+        r'''Gets string representation of operator.
+
+        ..  container:: example
+
+            ::
+
+                >>> str(Transposition())
+                'T0'
+
+        ..  container:: example
+
+            ::
+
+                >>> str(Transposition(n=2))
+                'T2'
+
+        '''
+        string = 'T{}'
+        string = string.format(self.n)
+        return string
+
+    ### PRIVATE METHODS ###
+
+    def _get_markup(self, direction=None):
+        from abjad.tools import markuptools
+        operator = markuptools.Markup('T', direction=None)
+        subscript = markuptools.Markup(self.n).sub()
+        markup = markuptools.Markup.concat([operator, subscript])
+        return markup
+
+    def _is_identity_operator(self):
+        if self.n == 0:
+            return True
+        return False
+        
     ### PUBLIC PROPERTIES ###
 
     @property
-    def index(self):
+    def n(self):
         r'''Gets index of transposition.
 
         ..  container:: example
 
             ::
 
-                >>> operator_ = pitchtools.Transposition(index=2)
-                >>> operator_.index
+                >>> transposition = Transposition()
+                >>> transposition.n
+                0
+
+        ..  container:: example
+
+            ::
+
+                >>> transposition = Transposition(n=2)
+                >>> transposition.n
                 2
 
         Set to integer, interval or none.
         '''
-        return self._index
+        return self._n

@@ -6,18 +6,53 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 
 class LilyPondGrobNameManager(LilyPondNameManager):
     '''LilyPond grob name manager.
+
+    ..  container:: example
+
+        Initializes with toplevel override function:
+
+        ::
+
+            >>> note = Note("c'4")
+            >>> override(note)
+            LilyPondGrobNameManager()
+
     '''
-
-    ### CLASS VARIABLES ###
-
-    skeleton_string_prefix = 'override__'
 
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
-        r'''Gets attribute `name` from LilyPond grob name manager.
+        r'''Gets LilyPond name manager keyed to `name`.
 
-        Returns string.
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> override(staff).note_head.color = 'red'
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override NoteHead.color = #red
+                } {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        ..  container:: example
+
+            Returns LilyPond name manager:
+
+            ::
+
+                >>> override(staff).note_head
+                LilyPondNameManager(('color', 'red'))
+
         '''
         from abjad import ly
         from abjad.tools import lilypondnametools
@@ -84,18 +119,6 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                             )
                         result.append(quadruple)
         return tuple(result)
-
-    def _get_skeleton_strings(self):
-        skeleton_strings = []
-        grob_override_tuples = self._get_attribute_tuples()
-        for grob_override_tuple in grob_override_tuples:
-            most = '__'.join(grob_override_tuple[:-1])
-            value = grob_override_tuple[-1]
-            attribute_name = '_tools_package_qualified_repr'
-            value = getattr(value, attribute_name, repr(value))
-            string = 'override__{}={}'.format(most, value)
-            skeleton_strings.append(string)
-        return tuple(skeleton_strings)
 
     def _list_format_contributions(self, contribution_type, is_once=False):
         from abjad.tools import systemtools

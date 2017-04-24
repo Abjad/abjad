@@ -8,7 +8,7 @@ class StaffPosition(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Initializes staff position at middle line of staff:
+        Initializes staff position at middle line of staff:
 
         ::
 
@@ -17,8 +17,7 @@ class StaffPosition(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Initializes staff position one space below middle line
-        of staff:
+        Initializes staff position one space below middle line of staff:
 
         ::
 
@@ -27,8 +26,7 @@ class StaffPosition(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Initializes staff position one line below middle line
-        of staff:
+        Initializes staff position one line below middle line of staff:
 
         ::
 

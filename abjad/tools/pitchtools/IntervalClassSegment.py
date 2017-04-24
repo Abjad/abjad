@@ -9,7 +9,7 @@ class IntervalClassSegment(Segment):
 
     ..  container:: example
 
-        **Example 1.** An interval-class segment:
+        An interval-class segment:
 
         ::
 
@@ -19,7 +19,7 @@ class IntervalClassSegment(Segment):
 
     ..  container:: example
 
-        **Example 2.** Another interval-class segment:
+        Another interval-class segment:
 
         ::
 
@@ -34,30 +34,6 @@ class IntervalClassSegment(Segment):
 
     __slots__ = (
         )
-
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_selection(class_, selection, item_class=None):
-        r'''Initialize interval-class segment from component selection:
-
-        ::
-
-            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
-            >>> staff_2 = Staff("c4. r8 g2")
-            >>> selection = select((staff_1, staff_2))
-            >>> pitchtools.IntervalClassSegment.from_selection(selection)
-            IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
-
-        Returns interval-class segment.
-        '''
-        from abjad.tools import pitchtools
-        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        intervals = mathtools.difference_series(pitch_segment)
-        return class_(
-            items=intervals,
-            item_class=item_class,
-            )
 
     ### PRIVATE PROPERTIES ###
 
@@ -77,30 +53,6 @@ class IntervalClassSegment(Segment):
         return pitchtools.IntervalClass
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def has_duplicates(self):
-        r'''True if segment contains duplicate items:
-
-        ::
-
-            >>> intervals = 'm2 M3 -aug4 m2 P5'
-            >>> segment = pitchtools.IntervalClassSegment(intervals)
-            >>> segment.has_duplicates
-            True
-
-        ::
-
-            >>> intervals = 'M3 -aug4 m2 P5'
-            >>> segment = pitchtools.IntervalClassSegment(intervals)
-            >>> segment.has_duplicates
-            False
-
-        Returns true or false.
-        '''
-        from abjad.tools import pitchtools
-        return len(pitchtools.IntervalClassSet(
-            self, item_class=self.item_class)) < len(self)
 
     @property
     def is_tertian(self):
@@ -127,3 +79,51 @@ class IntervalClassSegment(Segment):
             if not interval.number == 3:
                 return False
         return True
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_selection(class_, selection, item_class=None):
+        r'''Initialize interval-class segment from component selection:
+
+        ::
+
+            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
+            >>> staff_2 = Staff("c4. r8 g2")
+            >>> selection = select((staff_1, staff_2))
+            >>> pitchtools.IntervalClassSegment.from_selection(selection)
+            IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
+
+        Returns interval-class segment.
+        '''
+        from abjad.tools import pitchtools
+        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
+        pitches = [_ for _ in pitch_segment]
+        intervals = mathtools.difference_series(pitches)
+        return class_(
+            items=intervals,
+            item_class=item_class,
+            )
+
+    def has_duplicates(self):
+        r'''Is true when segment contains duplicates. Otherwise false.
+
+        ::
+
+            >>> intervals = 'm2 M3 -aug4 m2 P5'
+            >>> segment = pitchtools.IntervalClassSegment(intervals)
+            >>> segment.has_duplicates()
+            True
+
+        ::
+
+            >>> intervals = 'M3 -aug4 m2 P5'
+            >>> segment = pitchtools.IntervalClassSegment(intervals)
+            >>> segment.has_duplicates()
+            False
+
+        Returns true or false.
+        '''
+        from abjad.tools import pitchtools
+        return len(pitchtools.IntervalClassSet(
+            self, item_class=self.item_class)) < len(self)

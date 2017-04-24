@@ -37,7 +37,7 @@ class TypedCounter(TypedCollection):
         self,
         items=None,
         item_class=None,
-        **kwargs
+        **keywords
         ):
         TypedCollection.__init__(
             self,
@@ -45,7 +45,7 @@ class TypedCounter(TypedCollection):
             items=items,
             )
         self._collection = collections.Counter()
-        self.update(items, **kwargs)
+        self.update(items, **keywords)
 
     ### SPECIAL METHODS ###
 
@@ -59,28 +59,28 @@ class TypedCounter(TypedCollection):
     __lt__
     '''
 
-    def __add__(self, expr):
-        r'''Adds typed counter to `expr`.
+    def __add__(self, argument):
+        r'''Adds typed counter to `argument`.
 
         Returns new typed counter.
         '''
-        if not isinstance(expr, type(self)) \
-            or not self.item_class == expr.item_class:
+        if not isinstance(argument, type(self)) \
+            or not self.item_class == argument.item_class:
             return NotImplemented
         result = type(self)()
-        result._collection = self._collection + expr._collection
+        result._collection = self._collection + argument._collection
         return result
 
-    def __and__(self, expr):
-        r'''Logical AND of typed counter and `expr`.
+    def __and__(self, argument):
+        r'''Logical AND of typed counter and `argument`.
 
         Returns new typed counter.
         '''
-        if not isinstance(expr, type(self)) \
-            or not self.item_class == expr.item_class:
+        if not isinstance(argument, type(self)) \
+            or not self.item_class == argument.item_class:
             return NotImplemented
         result = type(self)()
-        result._collection = self._collection & expr._collection
+        result._collection = self._collection & argument._collection
         return result
 
     def __delitem__(self, item):
@@ -92,13 +92,13 @@ class TypedCounter(TypedCollection):
         if item in self._collection:
             dict.__delitem__(self._collection, item)
 
-    def __getitem__(self, item):
-        r'''Gets `item` from typed counter.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
-        Returns item.
+        Returns item or slice.
         '''
-        item = self._item_coercer(item)
-        return self._collection[item]
+        argument = self._item_coercer(argument)
+        return self._collection.__getitem__(argument)
 
     # TODO: This method is never accessed.
     def __missing__(self, item):
@@ -108,16 +108,16 @@ class TypedCounter(TypedCollection):
         '''
         return 0
 
-    def __or__(self, expr):
-        r'''Logical OR of typed counter and `expr`.
+    def __or__(self, argument):
+        r'''Logical OR of typed counter and `argument`.
 
         Returns new typed counter.
         '''
-        if not isinstance(expr, type(self)) \
-            or not self.item_class == expr.item_class:
+        if not isinstance(argument, type(self)) \
+            or not self.item_class == argument.item_class:
             return NotImplemented
         result = type(self)()
-        result._collection = self._collection | expr._collection
+        result._collection = self._collection | argument._collection
         return result
 
     def __reduce__(self):
@@ -135,21 +135,21 @@ class TypedCounter(TypedCollection):
         item = self._item_coercer(item)
         self._collection.__setitem__(item, value)
 
-    def __sub__(self, expr):
-        r'''Subtracts `expr` from typed counter.
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from typed counter.
 
         Returns new typed counter.
         '''
-        if not isinstance(expr, type(self)) \
-            or not self.item_class == expr.item_class:
+        if not isinstance(argument, type(self)) \
+            or not self.item_class == argument.item_class:
             return NotImplemented
         result = type(self)()
-        result._collection = self._collection - expr._collection
+        result._collection = self._collection - argument._collection
         return result
 
     ### PRIVATE METHODS ###
 
-    def _coerce_arguments(self, items=None, **kwargs):
+    def _coerce_arguments(self, items=None, **keywords):
         def _coerce_mapping(items):
             the_items = {}
             for item, count in items.items():
@@ -166,7 +166,7 @@ class TypedCounter(TypedCollection):
                 the_items = []
                 for item in items:
                     the_items.append(self._item_coercer(item))
-        itemdict = _coerce_mapping(kwargs)
+        itemdict = _coerce_mapping(keywords)
         return the_items, itemdict
 
     def _get_format_specification(self):
@@ -240,16 +240,16 @@ class TypedCounter(TypedCollection):
         '''
         return self._collection(n=n)
 
-    def subtract(self, iterable=None, **kwargs):
+    def subtract(self, iterable=None, **keywords):
         r'''Stracts `iterable` from typed counter.
         '''
-        items, itemdict = self._coerce_arguments(iterable, **kwargs)
+        items, itemdict = self._coerce_arguments(iterable, **keywords)
         self._collection.subtract(items, **itemdict)
 
-    def update(self, iterable=None, **kwargs):
+    def update(self, iterable=None, **keywords):
         r'''Updates typed counter with `iterable`.
         '''
-        items, itemdict = self._coerce_arguments(iterable, **kwargs)
+        items, itemdict = self._coerce_arguments(iterable, **keywords)
         self._collection.update(items, **itemdict)
 
     def values(self):

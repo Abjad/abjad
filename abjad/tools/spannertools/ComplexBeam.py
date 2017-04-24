@@ -16,7 +16,7 @@ class ComplexBeam(Beam):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -35,7 +35,7 @@ class ComplexBeam(Beam):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -90,7 +90,7 @@ class ComplexBeam(Beam):
 
     def _format_before_leaf(self, leaf):
         result = []
-        if self._is_beamable_component(leaf, beam_rests=self.beam_rests):
+        if self._is_beamable(leaf, beam_rests=self.beam_rests):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)
             elif self._is_exterior_leaf(leaf):
@@ -107,7 +107,7 @@ class ComplexBeam(Beam):
 
     def _format_right_of_leaf(self, leaf):
         result = []
-        if self._is_beamable_component(leaf, beam_rests=self.beam_rests):
+        if self._is_beamable(leaf, beam_rests=self.beam_rests):
             previous_leaf = leaf._get_leaf(-1)
             next_leaf = leaf._get_leaf(1)
             # isolated_nib_direction
@@ -119,11 +119,13 @@ class ComplexBeam(Beam):
                     else:
                         result.append('[')
             # otherwise
-            elif self._is_my_first_leaf(leaf) or not previous_leaf or \
-                not self._is_beamable_component(
+            elif (self._is_my_first_leaf(leaf) or
+                not previous_leaf or
+                not self._is_beamable(
                     previous_leaf,
                     beam_rests=self.beam_rests,
-                    ):
+                    )
+                ):
                 if self.direction is not None:
                     string = '{} ['.format(self.direction)
                     result.append(string)
@@ -134,9 +136,13 @@ class ComplexBeam(Beam):
                 if self.isolated_nib_direction:
                     result.append(']')
             # otherwise
-            elif self._is_my_last_leaf(leaf) or not next_leaf or \
-                not self._is_beamable_component(
-                next_leaf, beam_rests=self.beam_rests):
+            elif (self._is_my_last_leaf(leaf) or
+                not next_leaf or
+                not self._is_beamable(
+                    next_leaf,
+                    beam_rests=self.beam_rests,
+                    )
+                ):
                 result.append(']')
         return result
 
@@ -165,6 +171,7 @@ class ComplexBeam(Beam):
         Interior leaves may be surrounded by unbeamable leaves.
         Four cases total for beamability of surrounding leaves.
         '''
+        import abjad
         previous_leaf = leaf._get_leaf(-1)
         previous_written = previous_leaf.written_duration
         current_written = leaf.written_duration
@@ -173,31 +180,59 @@ class ComplexBeam(Beam):
         previous_flag_count = previous_written.flag_count
         current_flag_count = current_written.flag_count
         next_flag_count = next_written.flag_count
+        rest_prototype = (
+            abjad.MultimeasureRest,
+            abjad.Rest,
+            abjad.Skip,
+            )
+        #print(previous_leaf, leaf, next_leaf)
         # [unbeamable leaf beamable]
-        if not self._is_beamable_component(
-            previous_leaf, beam_rests=self.beam_rests) and \
-            self._is_beamable_component(
-            next_leaf, beam_rests=self.beam_rests):
+        if (not self._is_beamable(
+                previous_leaf,
+                beam_rests=self.beam_rests,
+                ) and
+            self._is_beamable(
+                next_leaf,
+                beam_rests=self.beam_rests,
+                )
+            ):
             left = current_flag_count
             right = min(current_flag_count, next_flag_count)
+        # TODO: should be following be elif instead of if?
         # [beamable leaf unbeamable]
-        if self._is_beamable_component(
-            previous_leaf, beam_rests=self.beam_rests) and \
-            not self._is_beamable_component(
-            next_leaf, beam_rests=self.beam_rests):
+        if (self._is_beamable(
+                previous_leaf,
+                beam_rests=self.beam_rests,
+                ) and
+            not self._is_beamable(
+                next_leaf,
+                beam_rests=self.beam_rests,
+                )
+            ):
             left = min(current_flag_count, previous_flag_count)
             right = current_flag_count
         # [unbeamable leaf unbeamable]
-        elif not self._is_beamable_component(
-            previous_leaf, beam_rests=self.beam_rests) and \
-            not self._is_beamable_component(
-            next_leaf, beam_rests=self.beam_rests):
+        elif (not self._is_beamable(
+                previous_leaf,
+                beam_rests=self.beam_rests,
+                ) and
+            not self._is_beamable(
+                next_leaf,
+                beam_rests=self.beam_rests,
+                )
+            ):
             left = current_flag_count
             right = current_flag_count
         # [beamable leaf beamable]
         else:
-            left = min(current_flag_count, previous_flag_count)
-            right = min(current_flag_count, next_flag_count)
+            if isinstance(previous_leaf, rest_prototype):
+                left = current_flag_count
+            else:
+                left = min(current_flag_count, previous_flag_count)
+            if isinstance(next_leaf, rest_prototype):
+                right = current_flag_count
+            else:
+                right = min(current_flag_count, next_flag_count)
             if left != current_flag_count and right != current_flag_count:
                 left = current_flag_count
         return left, right
@@ -244,7 +279,7 @@ class ComplexBeam(Beam):
 
         ..  container:: example
 
-            **Example 1.** Does not beam rests:
+            Does not beam rests:
 
             ::
 
@@ -271,7 +306,7 @@ class ComplexBeam(Beam):
 
         ..  container:: example
 
-            **Example 2.** Does beam rests:
+            Does beam rests:
 
             ::
 
@@ -300,7 +335,7 @@ class ComplexBeam(Beam):
 
         ..  container:: example
 
-            **Example 3.** Does not beam skips:
+            Does not beam skips:
 
             ::
 
@@ -327,7 +362,7 @@ class ComplexBeam(Beam):
 
         ..  container:: example
 
-            **Example 4.** Does beam skips:
+            Does beam skips:
 
             ::
 
@@ -379,7 +414,7 @@ class ComplexBeam(Beam):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 1/16
                     \set stemLeftBeamCount = #2
@@ -400,7 +435,7 @@ class ComplexBeam(Beam):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 1/16
                     \set stemLeftBeamCount = #0
@@ -421,7 +456,7 @@ class ComplexBeam(Beam):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 1/16
                     \set stemLeftBeamCount = #2
@@ -442,7 +477,7 @@ class ComplexBeam(Beam):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 1/16
                     c'16

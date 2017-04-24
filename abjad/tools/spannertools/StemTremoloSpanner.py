@@ -59,8 +59,8 @@ class StemTremoloSpanner(Spanner):
         if not isinstance(leaf, prototype):
             return lilypond_format_bundle
         logical_tie = inspect_(leaf).get_logical_tie()
-        if self.minimum_duration is not None and \
-            logical_tie.get_duration() < self.minimum_duration:
+        if (self.minimum_duration is not None and
+            logical_tie.get_duration() < self.minimum_duration):
             return lilypond_format_bundle
         flag_count = leaf.written_duration.flag_count
         tremolo_count = 32

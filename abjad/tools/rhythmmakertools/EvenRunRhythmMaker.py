@@ -35,8 +35,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 4/8
@@ -129,7 +128,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print(format(rhythm_maker))
+                >>> f(rhythm_maker)
                 rhythmmakertools.EvenRunRhythmMaker()
 
         Set `format_specification` to `''` or `'storage'`.
@@ -232,8 +231,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -276,8 +274,8 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Makes even run of notes with durations
-            equal to ``1/(2**0 * d)`` or ``1/d``:
+            Makes even run of notes with durations equal to ``1/(2**0 * d)`` or
+            ``1/d``:
 
             ::
 
@@ -297,8 +295,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -331,12 +328,10 @@ class EvenRunRhythmMaker(RhythmMaker):
             Input division denominators ``8``, ``4``, ``4`` result in notes
             with durations ``1/8``, ``1/4``, ``1/4``.
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Makes even run of notes with durations
-            equal to ``1/(2**1 * d)`` or ``1/(2d)``:
+            Makes even run of notes with durations equal to ``1/(2**1 * d)`` or
+            ``1/(2d)``:
 
             ::
 
@@ -356,8 +351,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -401,8 +395,8 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Makes even run of notes with durations
-            equal to ``1/(2**2 * d)`` or ``1/(4d)``:
+            Makes even run of notes with durations equal to ``1/(2**2 * d)`` or
+            ``1/(4d)``:
 
             ::
 
@@ -422,8 +416,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -497,7 +490,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Do not tie across any divisions:
+            Do not tie across any divisions:
 
             ::
 
@@ -520,8 +513,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -561,7 +553,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Ties across all divisions:
+            Ties across all divisions:
 
             ::
 
@@ -584,8 +576,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -625,8 +616,8 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Ties across every other pair of divisions (starting
-            with the first):
+            Ties across every other pair of divisions (starting with the
+            first):
 
             ::
 
@@ -649,8 +640,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8

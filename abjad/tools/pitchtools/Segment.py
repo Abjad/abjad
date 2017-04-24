@@ -2,6 +2,7 @@
 import abc
 import collections
 import types
+from abjad.tools import expressiontools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools import TypedTuple
@@ -14,6 +15,8 @@ class Segment(TypedTuple):
     ### CLASS VARIABLES ##
 
     __slots__ = (
+        '_equivalence_markup',
+        '_expression',
         )
 
     ### INITIALIZER ###
@@ -24,6 +27,7 @@ class Segment(TypedTuple):
         item_class=None,
         ):
         from abjad.tools import datastructuretools
+        from abjad.tools import markuptools
         prototype = (
             collections.Iterator,
             types.GeneratorType,
@@ -31,12 +35,12 @@ class Segment(TypedTuple):
         if isinstance(items, str):
             items = items.split()
         elif isinstance(items, prototype):
-            items = [item for item in items]
+            items = [_ for _ in items]
         if item_class is None:
             item_class = self._named_item_class
             if items is not None:
-                if isinstance(items, datastructuretools.TypedCollection) and \
-                    issubclass(items.item_class, self._parent_item_class):
+                if (isinstance(items, datastructuretools.TypedCollection) and
+                    issubclass(items.item_class, self._parent_item_class)):
                     item_class = items.item_class
                 elif len(items):
                     if isinstance(items, collections.Set):
@@ -47,73 +51,84 @@ class Segment(TypedTuple):
                         item_class = self._numbered_item_class
                     elif isinstance(items[0], self._parent_item_class):
                         item_class = type(items[0])
+        if isinstance(item_class, str):
+            import abjad
+            globals_ = {'abjad': abjad}
+            globals_.update(abjad.__dict__.copy())
+            item_class = eval(item_class, globals_)
         assert issubclass(item_class, self._parent_item_class)
         TypedTuple.__init__(
             self,
             items=items,
             item_class=item_class,
             )
+        self._equivalence_markup = None
+        self._expression = None
 
     ### SPECIAL METHODS ###
 
-    def __illustrate__(self, **kwargs):
+    def __illustrate__(
+        self,
+        markup_direction=Up,
+        figure_name=None,
+        **keywords
+        ):
         r'''Illustrates segment.
 
         Returns LilyPond file.
         '''
-        from abjad.tools import durationtools
-        from abjad.tools import indicatortools
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
-        from abjad.tools import scoretools
-        from abjad.tools import schemetools
-        from abjad.tools.topleveltools import attach
-        from abjad.tools.topleveltools import override
-        from abjad.tools.topleveltools import select
-        from abjad.tools.topleveltools import set_
+        import abjad
         notes = []
         for item in self:
-            note = scoretools.Note(item, durationtools.Duration(1, 8))
+            note = abjad.Note(item, abjad.Duration(1, 8))
             notes.append(note)
-        voice = scoretools.Voice(notes)
-        staff = scoretools.Staff([voice])
-        score = scoretools.Score([staff])
+        markup = None
+        if self._equivalence_markup:
+            markup = self._equivalence_markup
+        if isinstance(figure_name, str):
+            figure_name = abjad.Markup(figure_name)
+        if figure_name is not None:
+            markup = figure_name
+        if markup is not None:
+            direction = markup_direction
+            markup = abjad.new(markup, direction=direction)
+            abjad.attach(markup, notes[0])
+        voice = abjad.Voice(notes)
+        staff = abjad.Staff([voice])
+        score = abjad.Score([staff])
         score.add_final_bar_line()
-        override(score).bar_line.transparent = True
-        override(score).bar_number.stencil = False
-        override(score).beam.stencil = False
-        override(score).flag.stencil = False
-        override(score).stem.stencil = False
-        override(score).time_signature.stencil = False
+        abjad.override(score).bar_line.transparent = True
+        abjad.override(score).bar_number.stencil = False
+        abjad.override(score).beam.stencil = False
+        abjad.override(score).flag.stencil = False
+        abjad.override(score).stem.stencil = False
+        abjad.override(score).time_signature.stencil = False
         string = 'override Score.BarLine.transparent = ##f'
-        command = indicatortools.LilyPondCommand(string, format_slot='after')
-        last_leaf = select().by_leaf()(score)[-1][-1]
-        attach(command, last_leaf)
-        moment = schemetools.SchemeMoment((1, 12))
-        set_(score).proportional_notation_duration = moment
-        lilypond_file = lilypondfiletools.LilyPondFile.new(
-            global_staff_size=12,
-            music=score,
-            )
-        if 'title' in kwargs:
-            title = kwargs.get('title')
-            if not isinstance(title, markuptools.Markup):
-                title = markuptools.Markup(title)
+        command = abjad.LilyPondCommand(string, format_slot='after')
+        last_leaf = abjad.select().by_leaf()(score)[-1][-1]
+        abjad.attach(command, last_leaf)
+        moment = abjad.schemetools.SchemeMoment((1, 12))
+        abjad.set_(score).proportional_notation_duration = moment
+        lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(music=score)
+        if 'title' in keywords:
+            title = keywords.get('title')
+            if not isinstance(title, abjad.Markup):
+                title = abjad.Markup(title)
             lilypond_file.header_block.title = title
-        if 'subtitle' in kwargs:
-            markup = markuptools.Markup(kwargs.get('subtitle'))
+        if 'subtitle' in keywords:
+            markup = abjad.Markup(keywords.get('subtitle'))
             lilypond_file.header_block.subtitle = markup
-        command = indicatortools.LilyPondCommand('accidentalStyle forget')
+        command = abjad.LilyPondCommand('accidentalStyle forget')
         lilypond_file.layout_block.items.append(command)
         lilypond_file.layout_block.indent = 0
         string = 'markup-system-spacing.padding = 8'
-        command = indicatortools.LilyPondCommand(string, prefix='')
+        command = abjad.LilyPondCommand(string, prefix='')
         lilypond_file.paper_block.items.append(command)
         string = 'system-system-spacing.padding = 10'
-        command = indicatortools.LilyPondCommand(string, prefix='')
+        command = abjad.LilyPondCommand(string, prefix='')
         lilypond_file.paper_block.items.append(command)
         string = 'top-markup-spacing.padding = 4'
-        command = indicatortools.LilyPondCommand(string, prefix='')
+        command = abjad.LilyPondCommand(string, prefix='')
         lilypond_file.paper_block.items.append(command)
         return lilypond_file
 
@@ -122,8 +137,26 @@ class Segment(TypedTuple):
 
         Returns string.
         '''
-        parts = [str(x) for x in self]
-        return '<{}>'.format(', '.join(parts))
+        items = [str(_) for _ in self]
+        return '<{}>'.format(', '.join(items))
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_coercer(self):
+        return self._item_class
+
+    @abc.abstractproperty
+    def _named_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _numbered_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _parent_item_class(self):
+        raise NotImplementedError
 
     ### PRIVATE METHODS ###
 
@@ -145,12 +178,29 @@ class Segment(TypedTuple):
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=False,
-            repr_kwargs_names=[],
+            repr_kwargs_names=['name'],
             repr_args_values=[items],
             storage_format_args_values=[tuple(self._collection)],
             )
 
+    def _get_padded_string(self, width=2):
+        strings = []
+        for item in self:
+            string = '{{!s:>{}}}'
+            string = string.format(width)
+            string = string.format(item)
+            strings.append(string)
+        return '<{}>'.format(', '.join(strings))
+
     ### PUBLIC METHODS ###
+
+    @abc.abstractmethod
+    def has_duplicates(self):
+        r'''Is true when segment has duplicates. Otherwise false.
+
+        Returns true or false.
+        '''
+        raise NotImplementedError
 
     @abc.abstractmethod
     def from_selection(
@@ -161,33 +211,5 @@ class Segment(TypedTuple):
         r'''Makes segment from `selection`.
 
         Returns new segment.
-        '''
-        raise NotImplementedError
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _item_coercer(self):
-        return self._item_class
-
-    @abc.abstractproperty
-    def _named_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _numbered_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _parent_item_class(self):
-        raise NotImplementedError
-
-    ### PUBLIC PROPERTIES ###
-
-    @abc.abstractproperty
-    def has_duplicates(self):
-        r'''Is true when segment has duplicates. Otherwise false.
-
-        Returns true or false.
         '''
         raise NotImplementedError

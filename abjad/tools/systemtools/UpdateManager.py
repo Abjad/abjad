@@ -70,16 +70,14 @@ class UpdateManager(AbjadObject):
         if isinstance(score_root, scoretools.Context):
             contexts = iterate(score_root).by_class(scoretools.Context)
             for context in contexts:
-                for leaf_index, leaf in enumerate(
-                    iterate(context).by_class(scoretools.Leaf)):
+                for leaf_index, leaf in enumerate(iterate(context).by_leaf()):
                     leaf._leaf_index = leaf_index
                 for measure_index, measure in enumerate(
                     iterate(context).by_class(scoretools.Measure)):
                     measure_number = measure_index + 1
                     measure._measure_number = measure_number
         else:
-            for leaf_index, leaf in enumerate(
-                iterate(score_root).by_class(scoretools.Leaf)):
+            for leaf_index, leaf in enumerate(iterate(score_root).by_leaf()):
                 leaf._leaf_index = leaf_index
             for measure_index, measure in enumerate(
                 iterate(score_root).by_class(scoretools.Measure)):
@@ -259,8 +257,7 @@ class UpdateManager(AbjadObject):
         dummy_last_pair = (score_stop_offset, None)
         pairs.append(dummy_last_pair)
         measure_start_offsets = []
-        pairs = sequencetools.iterate_sequence_nwise(pairs, n=2)
-        for current_pair, next_pair in pairs:
+        for current_pair, next_pair in sequencetools.Sequence(pairs).nwise():
             current_start_offset, current_time_signature = current_pair
             next_start_offset, next_time_signature = next_pair
             measure_start_offset = current_start_offset
@@ -283,10 +280,8 @@ class UpdateManager(AbjadObject):
         logical_measure_number_start_offsets = \
             logical_measure_number_start_offsets[:]
         logical_measure_number_start_offsets.append(mathtools.Infinity())
-        pairs = sequencetools.iterate_sequence_nwise(
-            logical_measure_number_start_offsets,
-            n=2,
-            )
+        pairs = sequencetools.Sequence(logical_measure_number_start_offsets)
+        pairs = pairs.nwise()
         for logical_measure_index, pair in enumerate(pairs):
             if pair[0] <= component_start_offset < pair[-1]:
                 logical_measure_number = logical_measure_index + 1

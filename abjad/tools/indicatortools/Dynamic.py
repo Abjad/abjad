@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Dynamic(AbjadValueObject):
-    r'''A dynamic.
+    r'''Dynamic.
 
     ..  container:: example
 
@@ -120,6 +120,7 @@ class Dynamic(AbjadValueObject):
         'spp',
         'sfz',
         'sffz',
+        'sfffz',
         'sffp',
         'sffpp',
         'sfp',
@@ -197,9 +198,15 @@ class Dynamic(AbjadValueObject):
                 message = 'dynamic name {!r} is not a LilyPond dynamic command.'
                 message = message.format(self.name)
                 raise Exception(message)
-            return self._lilypond_format
+            return self._get_lilypond_format()
         superclass = super(Dynamic, self)
         return superclass.__format__(format_specification=format_specification)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return repr(self._name)
 
     ### PRIVATE METHODS ###
 
@@ -210,6 +217,9 @@ class Dynamic(AbjadValueObject):
         if self.name not in self._lilypond_dynamic_commands:
             return False
         return True
+
+    def _get_lilypond_format(self):
+        return r'\{}'.format(self.name)
 
     ### PUBLIC METHODS ###
 
@@ -302,8 +312,8 @@ class Dynamic(AbjadValueObject):
             return Dynamic._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]
 
     @staticmethod
-    def is_dynamic_name(arg):
-        r'''Is true when `arg` is dynamic name. Otherwise false.
+    def is_dynamic_name(argument):
+        r'''Is true when `argument` is dynamic name. Otherwise false.
 
         ..  container:: example
 
@@ -330,17 +340,7 @@ class Dynamic(AbjadValueObject):
 
         Returns true or false.
         '''
-        return arg in Dynamic._dynamic_names
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self._name)
-
-    @property
-    def _lilypond_format(self):
-        return r'\{}'.format(self.name)
+        return argument in Dynamic._dynamic_names
 
     ### PUBLIC PROPERTIES ###
 

@@ -39,22 +39,14 @@ def partition_integer_into_parts_less_than_double(n, m):
     Returns tuple of one or more integers.
     '''
     from abjad.tools import mathtools
-
-    # check input
     assert mathtools.is_positive_integer_equivalent_number(n)
     assert mathtools.is_positive_integer_equivalent_number(m)
     n, m = int(n), int(m)
-
-    # initialize values
     result = []
     current_value = n
     double_m = 2 * m
-
-    # partition n
     while double_m <= current_value:
         result.append(m)
         current_value -= m
     result.append(current_value)
-
-    # return result
     return tuple(result)

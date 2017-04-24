@@ -9,7 +9,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
     ..  container:: example
 
-        **Example 1.** Initializes from integer:
+        Initializes from integer:
 
         ::
 
@@ -18,7 +18,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
     ..  container:: example
 
-        **Example 2.** Initializes from string:
+        Initializes from string:
 
         ::
 
@@ -53,7 +53,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
             number = 0
         elif isinstance(interval_class_token, str):
             number = float(interval_class_token)
-            if mathtools.is_integer_equivalent_expr(number):
+            if mathtools.is_integer_equivalent(number):
                 number = int(number)
         else:
             message = 'can not initialize {}: {!r}.'
@@ -77,13 +77,13 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         '''
         return type(self)(self.number)
 
-    def __lt__(self, arg):
-        r'''Is true when `arg` is a numbered inversion-equivalent
+    def __lt__(self, argument):
+        r'''Is true when `argument` is a numbered inversion-equivalent
         interval-class with a number less than this numbered
         inversion-equivalent interval-class.
         '''
-        if isinstance(arg, type(self)):
-            return self.number < arg.number
+        if isinstance(argument, type(self)):
+            return self.number < argument.number
         return False
 
     def __neg__(self):

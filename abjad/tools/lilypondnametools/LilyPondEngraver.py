@@ -3,7 +3,7 @@ from abjad.tools import abctools
 
 
 class LilyPondEngraver(abctools.AbjadValueObject):
-    r'''A LilyPond engraver.
+    r'''LilyPond engraver.
 
     ::
 

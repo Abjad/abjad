@@ -8,7 +8,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     ..  container:: example
 
-        **Example 1.** Initializes from string:
+        Initializes from string:
 
         ::
 
@@ -27,42 +27,42 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, *arguments):
         from abjad.tools import pitchtools
-        if len(args) == 1 and isinstance(args[0], type(self)):
-            self._initialize_by_self_reference(args[0])
-        elif len(args) == 1 and isinstance(args[0], str):
-            self._initialize_by_string(args[0])
-        elif len(args) == 1 and isinstance(args[0],
+        if len(arguments) == 1 and isinstance(arguments[0], type(self)):
+            self._initialize_by_self_reference(arguments[0])
+        elif len(arguments) == 1 and isinstance(arguments[0], str):
+            self._initialize_by_string(arguments[0])
+        elif len(arguments) == 1 and isinstance(arguments[0],
             pitchtools.NamedIntervalClass):
-            self._initialize_by_string(str(args[0]))
-        elif len(args) == 1 and isinstance(args[0],
+            self._initialize_by_string(str(arguments[0]))
+        elif len(arguments) == 1 and isinstance(arguments[0],
             pitchtools.NamedInterval):
-            interval_class = pitchtools.NamedIntervalClass(args[0])
+            interval_class = pitchtools.NamedIntervalClass(arguments[0])
             self._initialize_by_string(str(interval_class))
-        elif len(args) == 1 and isinstance(args[0], tuple):
-            self._initialize_by_quality_string_and_number(*args[0])
-        elif len(args) == 2:
-            self._initialize_by_quality_string_and_number(*args)
-        elif len(args) == 0:
+        elif len(arguments) == 1 and isinstance(arguments[0], tuple):
+            self._initialize_by_quality_string_and_number(*arguments[0])
+        elif len(arguments) == 2:
+            self._initialize_by_quality_string_and_number(*arguments)
+        elif len(arguments) == 0:
             self._initialize_by_string('P1')
         else:
             message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, args)
+            message = message.format(type(self).__name__, arguments)
             raise ValueError(message)
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a named inversion-equivalent interval-class with
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a named inversion-equivalent interval-class with
         quality string and number equal to those of this named
         inversion-equivalent interval-class. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.quality_string == arg.quality_string:
-                if self.number == arg.number:
+        if isinstance(argument, type(self)):
+            if self.quality_string == argument.quality_string:
+                if self.number == argument.number:
                     return True
         return False
 
@@ -74,13 +74,13 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         '''
         return super(NamedInversionEquivalentIntervalClass, self).__hash__()
 
-    def __ne__(self, arg):
+    def __ne__(self, argument):
         r'''Is true when named inversion-equivalent interval-class does not equal
-        `arg`. Otherwise false.
+        `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     ### PRIVATE METHODS ###
 
@@ -134,9 +134,9 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             }
         return inversions[quality_string]
 
-    def _is_representative_number(self, arg):
-        if isinstance(arg, numbers.Number):
-            if 1 <= arg <= 4 or arg == 8:
+    def _is_representative_number(self, argument):
+        if isinstance(argument, numbers.Number):
+            if 1 <= argument <= 4 or argument == 8:
                 return True
         return False
 

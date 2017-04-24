@@ -6,7 +6,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class CountsSelectorCallback(AbjadValueObject):
-    r'''A counts selector callback.
+    r'''Counts selector callback.
 
     ..  container:: example
 
@@ -15,7 +15,7 @@ class CountsSelectorCallback(AbjadValueObject):
         ::
 
             >>> callback = selectortools.CountsSelectorCallback([3])
-            >>> print(format(callback))
+            >>> f(callback)
             selectortools.CountsSelectorCallback(
                 counts=datastructuretools.CyclicTuple(
                     [3]
@@ -67,6 +67,8 @@ class CountsSelectorCallback(AbjadValueObject):
         '_nonempty',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -88,26 +90,27 @@ class CountsSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         Returns tuple in which each item is a selection or component.
         '''
-        assert isinstance(expr, tuple), repr(expr)
+        assert isinstance(argument, tuple), repr(argument)
         if rotation is None:
             rotation = 0
         rotation = int(rotation)
         result = []
         counts = self.counts
         if self.rotate:
-            counts = sequencetools.rotate_sequence(counts, -rotation)
-        for subexpr in expr:
-            groups = sequencetools.partition_sequence_by_counts(
-                subexpr,
+            counts = sequencetools.Sequence(counts).rotate(n=-rotation)
+            counts = datastructuretools.CyclicTuple(counts)
+        for subexpr in argument:
+            groups = sequencetools.Sequence(subexpr).partition_by_counts(
                 [abs(_) for _ in counts],
                 cyclic=self.cyclic,
                 overhang=self.overhang,
                 )
+            groups = list(groups)
             if self.overhang and self.fuse_overhang and 1 < len(groups):
                 last_count = counts[(len(groups) - 1) % len(counts)]
                 if len(groups[-1]) != last_count:
@@ -115,7 +118,10 @@ class CountsSelectorCallback(AbjadValueObject):
                     groups[-1] += last_group
             subresult = []
             for i, group in enumerate(groups):
-                count = counts[i]
+                try:
+                    count = counts[i]
+                except:
+                    raise Exception(counts, i)
                 if count < 0:
                     continue
                 items = selectiontools.Selection(group)
@@ -125,7 +131,8 @@ class CountsSelectorCallback(AbjadValueObject):
                 subresult.append(group)
             result.extend(subresult)
             if self.rotate:
-                counts = sequencetools.rotate_sequence(counts, -1)
+                counts = sequencetools.Sequence(counts).rotate(n=-1)
+                counts = datastructuretools.CyclicTuple(counts)
         return tuple(result)
 
     ### PUBLIC PROPERTIES ###

@@ -95,7 +95,7 @@ class Component(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
+            return self._get_lilypond_format()
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
@@ -112,8 +112,8 @@ class Component(AbjadObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.LilyPondFile.new(self)
+        import abjad
+        lilypond_file = abjad.LilyPondFile.new(self)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 
@@ -516,6 +516,10 @@ class Component(AbjadObject):
         matching_indicators = tuple(matching_indicators)
         return matching_indicators
 
+    def _get_lilypond_format(self):
+        self._update_now(indicators=True)
+        return self._format_component()
+
     def _get_lineage(self):
         return selectiontools.Lineage(self)
 
@@ -529,7 +533,7 @@ class Component(AbjadObject):
         return markup
 
     def _get_nth_component_in_time_order_from(self, n):
-        assert mathtools.is_integer_equivalent_expr(n)
+        assert mathtools.is_integer_equivalent(n)
 
         def next(component):
             if component is not None:
@@ -879,13 +883,6 @@ class Component(AbjadObject):
             offsets_in_seconds=offsets_in_seconds,
             indicators=indicators,
             )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        self._update_now(indicators=True)
-        return self._format_component()
 
     ### PUBLIC PROPERTIES ###
 

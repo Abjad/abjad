@@ -4,7 +4,7 @@ import copy
 
 
 def test_scoretools_Chord___deepcopy___01():
-    r'''Chord deepchopies note heads.
+    r'''Chord deepchopies note-heads.
     '''
 
     chord_1 = Chord("<c' e' g'>4")

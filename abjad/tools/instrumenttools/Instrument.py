@@ -44,6 +44,7 @@ class Instrument(AbjadValueObject):
         pitch_range=None,
         sounding_pitch_of_written_middle_c=None,
         ):
+        from abjad.tools import instrumenttools
         from abjad.tools import scoretools
         self._do_not_format = False
         if instrument_name is not None:
@@ -60,7 +61,7 @@ class Instrument(AbjadValueObject):
             assert isinstance(short_instrument_name_markup, prototype)
         self._short_instrument_name_markup = short_instrument_name_markup
         allowable_clefs = allowable_clefs or ['treble']
-        allowable_clefs = indicatortools.ClefInventory(allowable_clefs)
+        allowable_clefs = instrumenttools.ClefList(allowable_clefs)
         self._allowable_clefs = allowable_clefs
         if isinstance(pitch_range, str):
             pitch_range = pitchtools.PitchRange(pitch_range)
@@ -82,6 +83,24 @@ class Instrument(AbjadValueObject):
         self._performer_names = ['instrumentalist']
         self._starting_clefs = copy.copy(allowable_clefs)
 
+    ### PRIVATE PROPERTIES ###
+
+    @staticmethod
+    def _default_instrument_name_to_instrument_class(default_instrument_name):
+        for instrument_class in Instrument._list_instruments():
+            instrument = instrument_class()
+            if instrument.instrument_name == default_instrument_name:
+                return instrument_class
+
+    @property
+    def _scope_name(self):
+        if isinstance(self._default_scope, type):
+            return self._default_scope.__name__
+        elif isinstance(self._default_scope, str):
+            return self._default_scope
+        else:
+            return type(self._default_scope).__name__
+
     ### PRIVATE METHODS ###
 
     def _get_default_performer_name(self):
@@ -98,6 +117,38 @@ class Instrument(AbjadValueObject):
             repr_is_indented=False,
             repr_kwargs_names=[],
             )
+
+    # TODO: _scope_name needs to be taken from IndicatorExpression!
+    #       should not be stored on instrument.
+    def _get_lilypond_format(self):
+        result = []
+        if self._do_not_format:
+            return result
+        instrument_name_markup = self.instrument_name_markup
+        if instrument_name_markup.direction is not None:
+            instrument_name_markup = new(
+                instrument_name_markup,
+                direction=None,
+                )
+        line = r'\set {!s}.instrumentName = {!s}'
+        line = line.format(
+            self._scope_name,
+            instrument_name_markup,
+            )
+        result.append(line)
+        line = r'\set {!s}.shortInstrumentName = {!s}'
+        short_instrument_name_markup = self.short_instrument_name_markup
+        if short_instrument_name_markup.direction is not None:
+            short_instrument_name_markup = new(
+                short_instrument_name_markup,
+                direction=None,
+                )
+        line = line.format(
+            self._scope_name,
+            short_instrument_name_markup,
+            )
+        result.append(line)
+        return result
 
     def _get_performer_names(self):
         if self._performer_names is None:
@@ -201,108 +252,6 @@ class Instrument(AbjadValueObject):
                 secondary_instruments.append(instrument_class)
         return secondary_instruments
 
-    ### PUBLIC METHODS ###
-
-    def transpose_from_sounding_pitch_to_written_pitch(self, note_or_chord):
-        r'''Transposes `note_or_chord` from sounding pitch of instrument to
-        written pitch of instrument.
-
-        Returns `note_or_chord` with adjusted pitches.
-        '''
-        from abjad.tools import scoretools
-        sounding_pitch = self.sounding_pitch_of_written_middle_c
-        interval = pitchtools.NamedPitch('C4') - sounding_pitch
-        interval *= -1
-        if isinstance(note_or_chord, scoretools.Note):
-            pitch = note_or_chord.written_pitch
-            pitch = interval.transpose(pitch)
-            note_or_chord.written_pitch = pitch
-        elif isinstance(note_or_chord, scoretools.Chord):
-            pitches = [
-                interval.transpose(pitch)
-                for pitch in note_or_chord.written_pitches
-                ]
-            note_or_chord.written_pitches = pitches
-        else:
-            message = 'must be note or chord: {!r}.'
-            message = message.format(note_or_chord)
-            raise TypeError(message)
-
-    def transpose_from_written_pitch_to_sounding_pitch(self, note_or_chord):
-        r'''Transposes `expr` from written pitch of instrument to sounding
-        pitch of instrument.
-
-        Returns `note_or_chord` with adjusted pitches.
-        '''
-        from abjad.tools import scoretools
-        sounding_pitch = self.sounding_pitch_of_written_middle_c
-        interval = pitchtools.NamedPitch('C4') - sounding_pitch
-        if isinstance(note_or_chord, scoretools.Note):
-            pitch = note_or_chord.written_pitch
-            pitch = interval.transpose(pitch)
-            note_or_chord.written_pitch = pitch
-        elif isinstance(note_or_chord, scoretools.Chord):
-            pitches = [
-                interval.transpose(pitch)
-                for pitch in note_or_chord.written_pitches
-                ]
-            note_or_chord.written_pitches = pitches
-
-    ### PRIVATE PROPERTIES ###
-
-    @staticmethod
-    def _default_instrument_name_to_instrument_class(default_instrument_name):
-        for instrument_class in Instrument._list_instruments():
-            instrument = instrument_class()
-            if instrument.instrument_name == default_instrument_name:
-                return instrument_class
-
-    # TODO: _scope_name needs to be taken from IndicatorExpression!
-    #       should not be stored on instrument.
-    @property
-    def _lilypond_format(self):
-        result = []
-        if self._do_not_format:
-            return result
-        instrument_name_markup = self.instrument_name_markup
-        if instrument_name_markup.direction is not None:
-            instrument_name_markup = new(
-                instrument_name_markup,
-                direction=None,
-                )
-        line = r'\set {!s}.instrumentName = {!s}'
-        line = line.format(
-            self._scope_name,
-            instrument_name_markup,
-            )
-        result.append(line)
-        line = r'\set {!s}.shortInstrumentName = {!s}'
-        short_instrument_name_markup = self.short_instrument_name_markup
-        if short_instrument_name_markup.direction is not None:
-            short_instrument_name_markup = new(
-                short_instrument_name_markup,
-                direction=None,
-                )
-        line = line.format(
-            self._scope_name,
-            short_instrument_name_markup,
-            )
-        result.append(line)
-        return result
-
-    @property
-    def _one_line_menu_summary(self):
-        return self.instrument_name
-
-    @property
-    def _scope_name(self):
-        if isinstance(self._default_scope, type):
-            return self._default_scope.__name__
-        elif isinstance(self._default_scope, str):
-            return self._default_scope
-        else:
-            return type(self._default_scope).__name__
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -312,7 +261,7 @@ class Instrument(AbjadValueObject):
         Returns clef inventory.
         '''
         if self._allowable_clefs is None:
-            self._allowable_clefs = indicatortools.ClefInventory('treble')
+            self._allowable_clefs = instrumenttools.ClefList('treble')
         return self._allowable_clefs
 
     @property
@@ -376,3 +325,50 @@ class Instrument(AbjadValueObject):
         Returns named pitch.
         '''
         return self._sounding_pitch_of_written_middle_c
+
+    ### PUBLIC METHODS ###
+
+    def transpose_from_sounding_pitch_to_written_pitch(self, note_or_chord):
+        r'''Transposes `note_or_chord` from sounding pitch of instrument to
+        written pitch of instrument.
+
+        Returns `note_or_chord` with adjusted pitches.
+        '''
+        from abjad.tools import scoretools
+        sounding_pitch = self.sounding_pitch_of_written_middle_c
+        interval = pitchtools.NamedPitch('C4') - sounding_pitch
+        interval *= -1
+        if isinstance(note_or_chord, scoretools.Note):
+            pitch = note_or_chord.written_pitch
+            pitch = interval.transpose(pitch)
+            note_or_chord.written_pitch = pitch
+        elif isinstance(note_or_chord, scoretools.Chord):
+            pitches = [
+                interval.transpose(pitch)
+                for pitch in note_or_chord.written_pitches
+                ]
+            note_or_chord.written_pitches = pitches
+        else:
+            message = 'must be note or chord: {!r}.'
+            message = message.format(note_or_chord)
+            raise TypeError(message)
+
+    def transpose_from_written_pitch_to_sounding_pitch(self, note_or_chord):
+        r'''Transposes `expr` from written pitch of instrument to sounding
+        pitch of instrument.
+
+        Returns `note_or_chord` with adjusted pitches.
+        '''
+        from abjad.tools import scoretools
+        sounding_pitch = self.sounding_pitch_of_written_middle_c
+        interval = pitchtools.NamedPitch('C4') - sounding_pitch
+        if isinstance(note_or_chord, scoretools.Note):
+            pitch = note_or_chord.written_pitch
+            pitch = interval.transpose(pitch)
+            note_or_chord.written_pitch = pitch
+        elif isinstance(note_or_chord, scoretools.Chord):
+            pitches = [
+                interval.transpose(pitch)
+                for pitch in note_or_chord.written_pitches
+                ]
+            note_or_chord.written_pitches = pitches

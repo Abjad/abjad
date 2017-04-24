@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 
 
 def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
-    r'''Make `count` repeated notes with note head-assignable `duration`:
+    r'''Make `count` repeated notes with note-head-assignable `duration`:
 
     ::
 

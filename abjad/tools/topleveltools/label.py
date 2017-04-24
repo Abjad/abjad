@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 
-def label(expr=None):
-    r'''Labels `expr` or makes label expression.
+def label(client=None):
+    r'''Makes label agent or label expression.
 
     ..  container:: example
 
-        **Example 1.** Labels logical ties with start offsets:
+        Labels logical ties with start offsets:
 
         ::
 
@@ -18,7 +18,7 @@ def label(expr=None):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 \override TextScript.staff-padding = #4
                 \override TupletBracket.staff-padding = #0
@@ -34,9 +34,25 @@ def label(expr=None):
 
         See the ``LabelAgent`` API entry for many more examples.
 
-    ..  container:: example
-        
-        **Example 2.** Makes label expression:
+    ..  container:: example expression
+
+        Initializes positionally:
+
+        ::
+
+            >>> expression = label()
+            >>> expression(staff)
+            LabelAgent(client=<Staff{3}>)
+
+        Initializes from keyword:
+
+        ::
+
+            >>> expression = label()
+            >>> expression(client=staff)
+            LabelAgent(client=<Staff{3}>)
+
+        Makes label expression:
 
             >>> expression = label()
             >>> expression = expression.with_start_offsets()
@@ -51,7 +67,7 @@ def label(expr=None):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 \override TextScript.staff-padding = #4
                 \override TupletBracket.staff-padding = #0
@@ -65,15 +81,16 @@ def label(expr=None):
                 ef'4 ^ \markup { 3/4 }
             }
 
-        See the ``LabelExpression`` API entry for many more examples.
+        See the ``LabelAgent`` API entry for many more examples.
 
-    Returns label agent when `expr` is not none.
+    Returns label agent when `client` is not none.
 
-    Returns label expression when `expr` is none.
+    Returns label expression when `client` is none.
     '''
     from abjad.tools import agenttools
     from abjad.tools import expressiontools
-    if expr is None:
-        return expressiontools.LabelExpression()
-    else:
-        return agenttools.LabelAgent(expr)
+    if client is not None:
+        return agenttools.LabelAgent(client=client)
+    expression = expressiontools.Expression()
+    expression = expression.label()
+    return expression

@@ -186,8 +186,8 @@ class GuileProxy(AbjadObject):
         r'''Handles LilyPond ``\times`` command.
         '''
         n, d  = fraction.numerator, fraction.denominator
-        if not isinstance(music, scoretools.Context) and \
-            not isinstance(music, scoretools.Leaf):
+        if (not isinstance(music, scoretools.Context) and
+            not isinstance(music, scoretools.Leaf)):
             return scoretools.Tuplet((n, d), music[:])
         return scoretools.Tuplet((n, d), [music])
 
@@ -277,18 +277,18 @@ class GuileProxy(AbjadObject):
         if pitch.pitch_class_number > \
             reference.pitch_class_number:
             up_pitch = pitchtools.NamedPitch(
-                pitch.pitch_class_name, reference.octave_number)
+                pitch.pitch_class_name, reference.octave.number)
             down_pitch = pitchtools.NamedPitch(
-                pitch.pitch_class_name, reference.octave_number - 1)
+                pitch.pitch_class_name, reference.octave.number - 1)
             up_octave, down_octave = \
-                up_pitch.octave_number, down_pitch.octave_number
+                up_pitch.octave.number, down_pitch.octave.number
         else:
             up_pitch = pitchtools.NamedPitch(
-                pitch.pitch_class_name, reference.octave_number + 1)
+                pitch.pitch_class_name, reference.octave.number + 1)
             down_pitch = pitchtools.NamedPitch(
-                pitch.pitch_class_name, reference.octave_number)
+                pitch.pitch_class_name, reference.octave.number)
             up_octave, down_octave = \
-                up_pitch.octave_number, down_pitch.octave_number
+                up_pitch.octave.number, down_pitch.octave.number
         if abs(
                 float(up_pitch.diatonic_pitch_number) -
                 float(reference.diatonic_pitch_number)) < \
@@ -297,9 +297,9 @@ class GuileProxy(AbjadObject):
                 float(reference.diatonic_pitch_number)):
             pitch = pitchtools.NamedPitch(
                 up_pitch.named_pitch_class,
-                up_octave + pitch.octave_number - 3)
+                up_octave + pitch.octave.number - 3)
         else:
             pitch = pitchtools.NamedPitch(
                 down_pitch.named_pitch_class,
-                down_octave + pitch.octave_number - 3)
+                down_octave + pitch.octave.number - 3)
         return pitch

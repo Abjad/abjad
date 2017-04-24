@@ -4,7 +4,7 @@ from abjad.tools.topleveltools.new import new
 
 
 class Accelerando(AbjadValueObject):
-    r'''An accelerando.
+    r'''Accelerando.
 
     ..  container:: example
 
@@ -106,7 +106,22 @@ class Accelerando(AbjadValueObject):
         '''
         return str(self._to_markup())
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return str(self)
+
+    @property
+    def _default_markup(self):
+        from abjad.tools import markuptools
+        contents = r'\large \upright accel.'
+        return markuptools.Markup(contents=contents)
+
     ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
+        return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
@@ -122,22 +137,6 @@ class Accelerando(AbjadValueObject):
             return self.markup
         return self._default_markup
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return str(self)
-
-    @property
-    def _default_markup(self):
-        from abjad.tools import markuptools
-        contents = r'\large \upright accel.'
-        return markuptools.Markup(contents=contents)
-
-    @property
-    def _lilypond_format(self):
-        return str(self)
-        
     ### PUBLIC PROPERTIES ###
 
     @property

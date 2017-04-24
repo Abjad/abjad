@@ -8,7 +8,7 @@ def sustain(indices=None, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Sustains divisions 1 and 2:
+        Sustains divisions 1 and 2:
 
         ::
 
@@ -16,10 +16,10 @@ def sustain(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
-                    indices=(1, 2),
+                    indices=[1, 2],
                     ),
                 )
 
@@ -41,8 +41,7 @@ def sustain(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -64,7 +63,7 @@ def sustain(indices=None, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Sustains divisions -1 and -2:
+        Sustains divisions -1 and -2:
 
         ::
 
@@ -72,10 +71,10 @@ def sustain(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
-                    indices=(-1, -2),
+                    indices=[-1, -2],
                     ),
                 )
 
@@ -97,8 +96,7 @@ def sustain(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -120,7 +118,7 @@ def sustain(indices=None, inverted=None):
 
     ..  container:: example
 
-        **Example 3.** Works with pattern input:
+        Works with pattern input:
 
         ::
 
@@ -132,19 +130,19 @@ def sustain(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=1,
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             ),
                         patterntools.Pattern(
-                            indices=(-1,),
+                            indices=[-1],
                             ),
                         ),
                     operator='xor',
@@ -169,8 +167,7 @@ def sustain(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -192,7 +189,7 @@ def sustain(indices=None, inverted=None):
 
     ..  container:: example
 
-        **Example 4.** Works with pattern input and inverted flag:
+        Works with pattern input and inverted flag:
 
         ::
 
@@ -204,19 +201,19 @@ def sustain(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=1,
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             ),
                         patterntools.Pattern(
-                            indices=(-1,),
+                            indices=[-1],
                             ),
                         ),
                     inverted=True,
@@ -242,8 +239,7 @@ def sustain(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

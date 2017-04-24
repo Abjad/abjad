@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class StorageFormatSpecification(AbjadObject):
-    r'''Specifies the storage format of a given object.
+    r'''Storage format specification.
     '''
 
     ### CLASS VARIABLES ###
@@ -60,7 +60,7 @@ class StorageFormatSpecification(AbjadObject):
 
     @property
     def repr_text(self):
-        r'''Body text of storage specification.
+        r'''Gets interpreter representation of storage specification.
 
         Returns string.
         '''
@@ -68,7 +68,7 @@ class StorageFormatSpecification(AbjadObject):
 
     @property
     def instance(self):
-        r'''Instance of storage specification.
+        r'''Gets instance of storage specification.
 
         Returns string.
         '''
@@ -101,7 +101,7 @@ class StorageFormatSpecification(AbjadObject):
 
     @property
     def keyword_argument_names(self):
-        r'''Keyword argument names of storage format.
+        r'''Gets keyword argument names of storage format.
 
         Returns tuple.
         '''
@@ -109,7 +109,7 @@ class StorageFormatSpecification(AbjadObject):
 
     @property
     def positional_argument_values(self):
-        r'''Positional argument values.
+        r'''Gets positional argument values.
 
         Returns tuple.
         '''
@@ -117,7 +117,7 @@ class StorageFormatSpecification(AbjadObject):
 
     @property
     def storage_format_text(self):
-        r'''Storage format pieces.
+        r'''Gets storage format text.
 
         Returns tuple.
         '''

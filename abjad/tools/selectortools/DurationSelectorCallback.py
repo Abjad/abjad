@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class DurationSelectorCallback(AbjadValueObject):
-    r'''A duration selector callback.
+    r'''Duration selector callback.
     '''
 
     ### CLASS VARIABLES ###
@@ -36,14 +36,14 @@ class DurationSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         Returns tuple in which each item is a selection or component.
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectortools
-        assert isinstance(expr, tuple), repr(expr)
+        assert isinstance(argument, tuple), repr(argument)
         inequality = self.duration
         if not isinstance(inequality, selectortools.DurationInequality):
             inequality = selectortools.DurationInequality(
@@ -51,7 +51,7 @@ class DurationSelectorCallback(AbjadValueObject):
                 operator_string='==',
                 )
         result = []
-        for subexpr in expr:
+        for subexpr in argument:
             if not self.preprolated:
                 if isinstance(subexpr, scoretools.Component):
                     duration = subexpr._get_duration()

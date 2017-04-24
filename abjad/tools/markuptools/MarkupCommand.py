@@ -5,11 +5,11 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class MarkupCommand(AbjadValueObject):
-    r'''A LilyPond markup command.
+    r'''LilyPond markup command.
 
     ..  container:: example
 
-        **Example 1.** A complex LilyPond markup command:
+        Initializes a complex LilyPond markup command:
 
         ::
 
@@ -35,9 +35,6 @@ class MarkupCommand(AbjadValueObject):
                     #2.5
                     #0.1
                     ##f
-
-        Insert a markup command in markup in order to attach it to
-        score components:
 
         ::
 
@@ -68,7 +65,7 @@ class MarkupCommand(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Works with the LilyPond ``\score`` markup command:
+        Works with the LilyPond ``\score`` markup command:
 
         ::
 
@@ -153,33 +150,130 @@ class MarkupCommand(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, command=None, *args):
+    def __init__(self, command=None, *arguments):
         if command is None:
-            # TODO: Generalize these arbitrary default args away.
+            # TODO: Generalize these arbitrary default arguments away.
             command = 'draw-circle'
-            assert len(args) == 0
+            assert len(arguments) == 0
         assert isinstance(command, str) \
             and len(command) and command.find(' ') == -1
         self._command = command
-        self._args = tuple(args)
+        self._args = tuple(arguments)
         self._force_quotes = False
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a markup command with command and
-        args equal to those of this markup command. Otherwise false.
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a markup command with command and
+        arguments equal to those of this markup command. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> command_1 = markuptools.MarkupCommand('box')
+                >>> command_2 = markuptools.MarkupCommand('box')
+                >>> command_3 = markuptools.MarkupCommand('line')
+
+            ::
+            
+                >>> command_1 == command_1
+                True
+                >>> command_1 == command_2
+                True
+                >>> command_1 == command_3
+                False
+                >>> command_2 == command_1
+                True
+                >>> command_2 == command_2
+                True
+                >>> command_2 == command_3
+                False
+                >>> command_3 == command_1
+                False
+                >>> command_3 == command_2
+                False
+                >>> command_3 == command_3
+                True
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            if self.command == expr.command:
-                if self.args == expr.args:
+        if isinstance(argument, type(self)):
+            if self.command == argument.command:
+                if self.arguments == argument.arguments:
                     return True
         return False
 
     def __format__(self, format_specification=''):
         r'''Formats markup command.
+
+        ..  container:: example
+
+            Prints storage format:
+
+            ::
+
+                >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
+                >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
+                >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
+                >>> rotate = markuptools.MarkupCommand('rotate', 60, line)
+                >>> combine = markuptools.MarkupCommand('combine', rotate, circle)
+
+            ::
+
+                >>> print(format(combine, 'storage'))
+                markuptools.MarkupCommand(
+                    'combine',
+                    markuptools.MarkupCommand(
+                        'rotate',
+                        60,
+                        markuptools.MarkupCommand(
+                            'line',
+                            [
+                                markuptools.MarkupCommand(
+                                    'rounded-box',
+                                    'hello?'
+                                    ),
+                                'wow!',
+                                ]
+                            )
+                        ),
+                    markuptools.MarkupCommand(
+                        'draw-circle',
+                        2.5,
+                        0.1,
+                        False
+                        )
+                    )
+
+        ..  container:: example
+
+            Prints LilyPond format:
+
+            ::
+
+                >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
+                >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
+                >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
+                >>> rotate = markuptools.MarkupCommand('rotate', 60, line)
+                >>> combine = markuptools.MarkupCommand('combine', rotate, circle)
+
+            ::
+
+                >>> print(format(combine, 'lilypond'))
+                \combine
+                    \rotate
+                        #60
+                        \line
+                            {
+                                \rounded-box
+                                    hello?
+                                wow!
+                            }
+                    \draw-circle
+                        #2.5
+                        #0.1
+                        ##f
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
@@ -190,7 +284,7 @@ class MarkupCommand(AbjadValueObject):
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         elif format_specification == 'lilypond':
-            return self._lilypond_format
+            return self._get_lilypond_format()
         return str(self)
 
     def __hash__(self):
@@ -202,12 +296,68 @@ class MarkupCommand(AbjadValueObject):
         '''
         return super(MarkupCommand, self).__hash__()
 
-    def __str__(self):
-        r'''Gets string representation of markup command.
+    def __repr__(self):
+        r'''Gets markup command interpreter representation.
+
+        ..  container:: example
+
+            Interpreter representation is evaluable.
+
+            ::
+
+                >>> command = markuptools.MarkupCommand('hspace', 0)
+                >>> command
+                markuptools.MarkupCommand(
+                    'hspace',
+                    0
+                    )
+
+            ::
+
+                >>> eval(repr(command))
+                markuptools.MarkupCommand(
+                    'hspace',
+                    0
+                    )
 
         Returns string.
         '''
-        return self._lilypond_format
+        superclass = super(MarkupCommand, self)
+        return superclass.__format__()
+
+    def __str__(self):
+        r'''Gets string representation of markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
+                >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
+                >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
+                >>> rotate = markuptools.MarkupCommand('rotate', 60, line)
+                >>> combine = markuptools.MarkupCommand('combine', rotate, circle)
+
+            ::
+
+                >>> print(str(combine))
+                \combine
+                    \rotate
+                        #60
+                        \line
+                            {
+                                \rounded-box
+                                    hello?
+                                wow!
+                            }
+                    \draw-circle
+                        #2.5
+                        #0.1
+                        ##f
+
+        Returns string.
+        '''
+        return self._get_lilypond_format()
 
     ### PRIVATE METHODS ###
 
@@ -250,89 +400,34 @@ class MarkupCommand(AbjadValueObject):
         from abjad.tools import systemtools
         indent = systemtools.LilyPondFormatManager.indent
         parts = [r'\{}'.format(self.command)]
-        parts.extend(recurse(self.args))
+        parts.extend(recurse(self.arguments))
         return parts
 
     def _get_format_specification(self):
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=False,
-            storage_format_args_values=(self.command,) + self.args,
+            storage_format_args_values=(self.command,) + self.arguments,
             storage_format_kwargs_names=[],
             )
 
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def combine_markup_commands(*commands):
-        r'''Combine MarkupCommand and/or string objects.
-
-        LilyPond's '\combine' markup command can only take two arguments, so in
-        order to combine more than two stencils, a cascade of '\combine'
-        commands must be employed.  `combine_markup_commands` simplifies this
-        process.
-
-        ..  container:: example
-
-            ::
-
-                >>> markup_a = markuptools.MarkupCommand(
-                ...     'draw-circle',
-                ...     4,
-                ...     0.4,
-                ...     False,
-                ...     )
-                >>> markup_b = markuptools.MarkupCommand(
-                ...     'filled-box',
-                ...     schemetools.SchemePair(-4, 4),
-                ...     schemetools.SchemePair(-0.5, 0.5), 1)
-                >>> markup_c = "some text"
-
-            ::
-
-                >>> markup = markuptools.MarkupCommand.combine_markup_commands(
-                ...     markup_a,
-                ...     markup_b,
-                ...     markup_c,
-                ...     )
-                >>> result = format(markup, 'lilypond')
-
-            ::
-
-                >>> print(result)
-                \combine \combine \draw-circle #4 #0.4 ##f
-                    \filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 "some text"
-
-        Returns a markup command instance, or a string if that was the only
-        argument.
-        '''
-        from abjad.tools import markuptools
-
-        assert len(commands)
-        assert all(
-            isinstance(command, (markuptools.MarkupCommand, str))
-            for command in commands
-            )
-
-        if 1 == len(commands):
-            return commands[0]
-
-        combined = MarkupCommand('combine', commands[0], commands[1])
-        for command in commands[2:]:
-            combined = MarkupCommand('combine', combined, command)
-        return combined
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
+    def _get_lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def args(self):
-        r'''Markup command arguments.
+    def arguments(self):
+        r'''Gets markup command arguments.
+
+        ..  container:: example
+
+            ::
+
+                >>> arguments = ('draw-circle', 1, 0.1, False)
+                >>> command = markuptools.MarkupCommand(*arguments)
+                >>> command.arguments
+                (1, 0.1, False)
 
         Returns tuple.
         '''
@@ -341,7 +436,16 @@ class MarkupCommand(AbjadValueObject):
     # TODO: change to MarkupCommand.name
     @property
     def command(self):
-        r'''Markup command name.
+        r'''Gets markup command name.
+
+        ..  container:: example
+
+            ::
+
+                >>> arguments = ('draw-circle', 1, 0.1, False)
+                >>> command = markuptools.MarkupCommand(*arguments)
+                >>> command.command
+                'draw-circle'
 
         Returns string.
         '''
@@ -410,6 +514,67 @@ class MarkupCommand(AbjadValueObject):
         return self._force_quotes
 
     @force_quotes.setter
-    def force_quotes(self, arg):
-        assert isinstance(arg, bool), repr(arg)
-        self._force_quotes = arg
+    def force_quotes(self, argument):
+        assert isinstance(argument, bool), repr(argument)
+        self._force_quotes = argument
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def combine_markup_commands(*commands):
+        r'''Combines markup command and / or strings.
+
+        LilyPond's '\combine' markup command can only take two arguments, so in
+        order to combine more than two stencils, a cascade of '\combine'
+        commands must be employed.  `combine_markup_commands` simplifies this
+        process.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup_a = markuptools.MarkupCommand(
+                ...     'draw-circle',
+                ...     4,
+                ...     0.4,
+                ...     False,
+                ...     )
+                >>> markup_b = markuptools.MarkupCommand(
+                ...     'filled-box',
+                ...     schemetools.SchemePair(-4, 4),
+                ...     schemetools.SchemePair(-0.5, 0.5), 1)
+                >>> markup_c = "some text"
+
+            ::
+
+                >>> markup = markuptools.MarkupCommand.combine_markup_commands(
+                ...     markup_a,
+                ...     markup_b,
+                ...     markup_c,
+                ...     )
+                >>> result = format(markup, 'lilypond')
+
+            ::
+
+                >>> print(result)
+                \combine \combine \draw-circle #4 #0.4 ##f
+                    \filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 "some text"
+
+        Returns a markup command instance, or a string if that was the only
+        argument.
+        '''
+        from abjad.tools import markuptools
+
+        assert len(commands)
+        assert all(
+            isinstance(command, (markuptools.MarkupCommand, str))
+            for command in commands
+            )
+
+        if 1 == len(commands):
+            return commands[0]
+
+        combined = MarkupCommand('combine', commands[0], commands[1])
+        for command in commands[2:]:
+            combined = MarkupCommand('combine', combined, command)
+        return combined

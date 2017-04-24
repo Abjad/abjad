@@ -109,13 +109,15 @@ class BurnishSpecifier(AbjadValueObject):
     __documentation_section__ = 'Specifiers'
 
     __slots__ = (
+        '_left_classes',
         '_left_counts',
-        '_lefts',
-        '_middles',
+        '_middle_classes',
         '_outer_divisions_only',
         '_right_counts',
-        '_rights',
+        '_right_classes',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -147,9 +149,9 @@ class BurnishSpecifier(AbjadValueObject):
         assert self._is_sign_tuple(right_classes)
         assert self._is_length_tuple(left_counts)
         assert self._is_length_tuple(right_counts)
-        self._lefts = left_classes
-        self._middles = middle_classes
-        self._rights = right_classes
+        self._left_classes = left_classes
+        self._middle_classes = middle_classes
+        self._right_classes = right_classes
         self._left_counts = left_counts
         self._right_counts = right_counts
 
@@ -180,13 +182,13 @@ class BurnishSpecifier(AbjadValueObject):
 
             ::
 
-                >>> print(format(burnish_specifier))
+                >>> f(burnish_specifier)
                 rhythmmakertools.BurnishSpecifier(
-                    left_classes=(
+                    left_classes=[
                         scoretools.Rest,
                         0,
-                        ),
-                    left_counts=(1,),
+                        ],
+                    left_counts=[1],
                     )
 
         Returns string.
@@ -211,7 +213,7 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier
-                BurnishSpecifier(left_classes=(Rest, 0), left_counts=(1,))
+                BurnishSpecifier(left_classes=[Rest, 0], left_counts=[1])
 
         Returns string.
         '''
@@ -264,9 +266,8 @@ class BurnishSpecifier(AbjadValueObject):
             else:
                 middle = middle_count * [0]
             right = right[:right_count]
-            left_part, middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                    division,
+            left_part, middle_part, right_part = sequencetools.Sequence(
+                    division).partition_by_counts(
                     [left_count, middle_count, right_count],
                     cyclic=False,
                     overhang=False,
@@ -313,9 +314,8 @@ class BurnishSpecifier(AbjadValueObject):
             middle = [middle_classes[0]]
             middle = middle_count * middle
             right = right[:right_count]
-            left_part, middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                    divisions[0],
+            left_part, middle_part, right_part = sequencetools.Sequence(
+                    divisions[0]).partition_by_counts(
                     [left_count, middle_count, right_count],
                     cyclic=False,
                     overhang=Exact,
@@ -335,9 +335,8 @@ class BurnishSpecifier(AbjadValueObject):
                 middle_classes = [1]
             middle = [middle_classes[0]]
             middle = middle_count * middle
-            left_part, middle_part = \
-                sequencetools.partition_sequence_by_counts(
-                    divisions[0],
+            left_part, middle_part = sequencetools.Sequence(
+                    divisions[0]).partition_by_counts(
                     [left_count, middle_count],
                     cyclic=False,
                     overhang=Exact,
@@ -362,9 +361,8 @@ class BurnishSpecifier(AbjadValueObject):
             middle_count = len(divisions[-1]) - right_count
             right = right[:right_count]
             middle = middle_count * [middle_classes[0]]
-            middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                    divisions[-1],
+            middle_part, right_part = sequencetools.Sequence(
+                    divisions[-1]).partition_by_counts(
                     [middle_count, right_count],
                     cyclic=False,
                     overhang=Exact,
@@ -393,29 +391,29 @@ class BurnishSpecifier(AbjadValueObject):
             )
 
     @staticmethod
-    def _is_length_tuple(expr):
-        if expr is None:
+    def _is_length_tuple(argument):
+        if argument is None:
             return True
-        if mathtools.all_are_nonnegative_integer_equivalent_numbers(expr):
-            if isinstance(expr, tuple):
+        if mathtools.all_are_nonnegative_integer_equivalent_numbers(argument):
+            if isinstance(argument, tuple):
                 return True
         return False
 
     @staticmethod
-    def _is_sign_tuple(expr):
+    def _is_sign_tuple(argument):
         from abjad.tools import scoretools
-        if expr is None:
+        if argument is None:
             return True
-        if isinstance(expr, tuple):
+        if isinstance(argument, tuple):
             prototype = (-1, 0, 1, scoretools.Note, scoretools.Rest)
-            return all(_ in prototype for _ in expr)
+            return all(_ in prototype for _ in argument)
         return False
 
-    def _none_to_trivial_helper(self, expr):
-        if expr is None:
-            expr = self._trivial_helper
-        assert callable(expr)
-        return expr
+    def _none_to_trivial_helper(self, argument):
+        if argument is None:
+            argument = self._trivial_helper
+        assert callable(argument)
+        return argument
 
     def _rotate_input(self, helper_functions=None, rotation=None):
         helper_functions = helper_functions or {}
@@ -439,7 +437,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     def _trivial_helper(self, sequence_, rotation):
         if isinstance(rotation, int) and len(sequence_):
-            return sequencetools.rotate_sequence(sequence_, rotation)
+            return sequencetools.Sequence(sequence_).rotate(n=rotation)
         return sequence_
 
     ### PUBLIC PROPERTIES ###
@@ -462,11 +460,12 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier.left_classes
-                (<class 'abjad.tools.scoretools.Rest.Rest'>, 0)
+                [<class 'abjad.tools.scoretools.Rest.Rest'>, 0]
 
         Returns tuple or none.
         '''
-        return self._lefts
+        if self._left_classes:
+            return list(self._left_classes)
 
     @property
     def left_counts(self):
@@ -486,11 +485,12 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier.left_counts
-                (2,)
+                [2]
 
         Returns tuple or none.
         '''
-        return self._left_counts
+        if self._left_counts:
+            return list(self._left_counts)
 
     @property
     def middle_classes(self):
@@ -514,7 +514,8 @@ class BurnishSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._middles
+        if self._middle_classes:
+            return list(self._middle_classes)
 
     @property
     def outer_divisions_only(self):
@@ -547,11 +548,12 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier.right_classes
-                (<class 'abjad.tools.scoretools.Rest.Rest'>, <class 'abjad.tools.scoretools.Rest.Rest'>, 0)
+                [<class 'abjad.tools.scoretools.Rest.Rest'>, <class 'abjad.tools.scoretools.Rest.Rest'>, 0]
 
         Returns tuple or none.
         '''
-        return self._rights
+        if self._right_classes:
+            return list(self._right_classes)
 
     @property
     def right_counts(self):
@@ -571,8 +573,9 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier.right_counts
-                (1,)
+                [1]
 
         Returns tuple or none.
         '''
-        return self._right_counts
+        if self._right_counts:
+            return list(self._right_counts)

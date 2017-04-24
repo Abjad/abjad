@@ -9,7 +9,7 @@ class PhrasingSlur(Spanner):
 
     ..  container:: example
 
-        **Example 1.** Spans four notes:
+        Spans four notes:
 
         ::
 
@@ -30,7 +30,7 @@ class PhrasingSlur(Spanner):
 
     ..  container:: example
 
-        **Example 2.** Requires at least two leaves:
+        Requires at least two leaves:
 
         ::
 
@@ -38,7 +38,7 @@ class PhrasingSlur(Spanner):
             >>> phrasing_slur = spannertools.PhrasingSlur()
             >>> attach(phrasing_slur, staff[:1])
             Traceback (most recent call last):
-            ...
+                ...
             Exception: PhrasingSlur() attachment test fails for Selection([Note("c'8")]).
 
     Formats LilyPond ``\(`` command on first leaf in spanner.
@@ -109,7 +109,7 @@ class PhrasingSlur(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 ^ \(
                     d'8
@@ -130,7 +130,7 @@ class PhrasingSlur(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 _ \(
                     d'8
@@ -151,7 +151,7 @@ class PhrasingSlur(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 \(
                     d'8

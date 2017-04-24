@@ -17,7 +17,7 @@ class Contrabass(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { Contrabass }
@@ -66,7 +66,7 @@ class Contrabass(Instrument):
             'bassist',
             ])
         self._is_primary_instrument = True
-        self._starting_clefs = indicatortools.ClefInventory(['bass'])
+        self._starting_clefs = type(self.allowable_clefs)(['bass'])
         self._default_tuning = indicatortools.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
@@ -80,7 +80,7 @@ class Contrabass(Instrument):
             ::
 
                 >>> contrabass.allowable_clefs
-                ClefInventory([Clef(name='bass'), Clef(name='treble')])
+                ClefList([Clef(name='bass'), Clef(name='treble')])
 
             ::
 
@@ -127,7 +127,7 @@ class Contrabass(Instrument):
             ::
 
                 >>> contrabass.instrument_name_markup
-                Markup(contents=('Contrabass',))
+                Markup(contents=['Contrabass'])
 
             ::
 
@@ -180,7 +180,7 @@ class Contrabass(Instrument):
             ::
 
                 >>> contrabass.short_instrument_name_markup
-                Markup(contents=('Cb.',))
+                Markup(contents=['Cb.'])
 
             ::
 

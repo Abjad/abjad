@@ -7,7 +7,7 @@ from abjad.tools.topleveltools.new import new
 
 
 class MetricModulation(AbjadValueObject):
-    r'''A metric modulation.
+    r'''Metric modulation.
 
     ..  container:: example
 
@@ -567,8 +567,8 @@ class MetricModulation(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true `expr` is another metric modulation with the same ratio as
+    def __eq__(self, argument):
+        r'''Is true `argument` is another metric modulation with the same ratio as
         this metric modulation. Otherwise false.
 
         ..  container:: example
@@ -627,8 +627,8 @@ class MetricModulation(AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            if self.ratio == expr.ratio:
+        if isinstance(argument, type(self)):
+            if self.ratio == argument.ratio:
                 return True
         return False
 
@@ -762,8 +762,8 @@ class MetricModulation(AbjadValueObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.LilyPondFile.new()
+        import abjad
+        lilypond_file = abjad.LilyPondFile.new()
         lilypond_file.header_block.tagline = False
         lilypond_file.items.append(self._get_markup())
         return lilypond_file
@@ -852,6 +852,12 @@ class MetricModulation(AbjadValueObject):
         '''
         return str(self._get_markup())
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return str(self)
+
     ### PRIVATE METHODS ###
 
     def _get_left_markup(self):
@@ -859,6 +865,9 @@ class MetricModulation(AbjadValueObject):
             return self.left_markup
         markup = durationtools.Duration._to_score_markup(self.left_rhythm)
         return markup
+
+    def _get_lilypond_format(self):
+        return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
@@ -901,16 +910,6 @@ class MetricModulation(AbjadValueObject):
             raise TypeError(message)
         assert isinstance(selection, selectiontools.Selection)
         return selection
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return str(self)
-
-    @property
-    def _lilypond_format(self):
-        return str(self)
 
     ### PUBLIC PROPERTIES ###
 

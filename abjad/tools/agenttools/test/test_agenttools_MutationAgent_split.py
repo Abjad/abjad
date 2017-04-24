@@ -282,7 +282,7 @@ def test_agenttools_MutationAgent_split_05():
         tie_split_notes=False,
         )
 
-    music = sequencetools.flatten_sequence(result)
+    music = Sequence(result).flatten()
     staff = Staff(music)
 
     assert format(staff) == stringtools.normalize(
@@ -855,7 +855,7 @@ def test_agenttools_MutationAgent_split_14():
         fracture_spanners=True,
         )
 
-    music = sequencetools.flatten_sequence(result)
+    music = Sequence(result).flatten()
     staff = Staff(music)
 
     assert format(staff) == stringtools.normalize(
@@ -894,7 +894,7 @@ def test_agenttools_MutationAgent_split_15():
         tie_split_notes=False,
         )
 
-    music = sequencetools.flatten_sequence(result)
+    music = Sequence(result).flatten()
     staff = Staff(music)
 
     assert format(staff) == stringtools.normalize(
@@ -1476,7 +1476,7 @@ def test_agenttools_MutationAgent_split_24():
         tie_split_notes=False,
         )
 
-    notes = sequencetools.flatten_sequence(result)
+    notes = Sequence(result).flatten()
     staff = Staff(notes)
 
     assert format(staff) == stringtools.normalize(

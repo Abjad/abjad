@@ -23,7 +23,7 @@ def test_pitchtools_Accidental___eq___02():
     assert pitchtools.Accidental() == pitchtools.Accidental('')
 
 
-def test_pitchtools_Accidental___eq___04():
+def test_pitchtools_Accidental___eq___03():
     r'''Accidentals do not compare equal to a naked string.
     '''
     assert not pitchtools.Accidental('s') == 's'

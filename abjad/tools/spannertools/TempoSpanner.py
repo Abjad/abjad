@@ -12,7 +12,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 1.** With tempo indicators only:
+        With tempo indicators only:
 
         ::
 
@@ -45,7 +45,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
             } <<
@@ -122,7 +122,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 2.** With an accelerando:
+        With an accelerando:
 
         ::
 
@@ -161,7 +161,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -263,7 +263,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 3.** With a ritardando:
+        With a ritardando:
 
         ::
 
@@ -302,7 +302,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -404,7 +404,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 4.** With both an accelerando and a ritardando:
+        With both an accelerando and a ritardando:
 
         ::
 
@@ -445,7 +445,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -571,7 +571,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 5.** Implicit start to (music-initial) accelerando:
+        Implicit start to (music-initial) accelerando:
 
         ::
 
@@ -608,7 +608,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -699,7 +699,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 6.** Implicit start to (music-initial) ritardando:
+        Implicit start to (music-initial) ritardando:
 
         ::
 
@@ -736,7 +736,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -827,7 +827,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 7.** Implicit start to (midmusic) accelerando:
+        Implicit start to (midmusic) accelerando:
 
         ::
 
@@ -867,7 +867,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -975,7 +975,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 8.** Implicit start to (midmusic) ritardando:
+        Implicit start to (midmusic) ritardando:
 
         ::
 
@@ -1015,7 +1015,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -1123,7 +1123,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 9.** With an accelerando over a line break:
+        With an accelerando over a line break:
 
         ::
 
@@ -1160,7 +1160,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -1235,7 +1235,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 10.** With a ritardando over a line break:
+        With a ritardando over a line break:
 
         ::
 
@@ -1272,7 +1272,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -1347,7 +1347,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 11.** With a metric modulation:
+        With a metric modulation:
 
         ::
 
@@ -1382,7 +1382,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -1500,7 +1500,7 @@ class TempoSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 12.** With a metric modulation and an accelerando:
+        With a metric modulation and an accelerando:
 
         ::
 
@@ -1538,7 +1538,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -1743,7 +1743,7 @@ class TempoSpanner(Spanner):
         modulation_markup = metric_modulation._get_markup(
             music_scale_pair=(0.5, 0.5),
             )
-        modulation_markup = modulation_markup.line()
+        modulation_markup = modulation_markup.line([modulation_markup])
         modulation_markup = modulation_markup.parenthesize()
         modulation_markup = modulation_markup.override(('padding', 0.5))
         modulation_markup = modulation_markup.general_align('Y', Down)
@@ -2028,10 +2028,9 @@ class TempoSpanner(Spanner):
         current_tempo_trend,
         previous_tempo,
         ):
-        #
         if self.start_with_parenthesized_tempo and previous_tempo:
             markup = previous_tempo._to_markup()
-            markup = markup.line()
+            markup = markup.line([markup])
             markup = markup.parenthesize()
             markup = markup.override(('padding', 0.45))
             markup = markup + markup.hspace(0.75)
@@ -2059,7 +2058,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 1.** With left broken padding set to none:
+            With left broken padding set to none:
 
             ::
 
@@ -2096,7 +2095,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3
@@ -2173,7 +2172,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 2.** With left broken padding set explicitly:
+            With left broken padding set explicitly:
 
             ::
 
@@ -2213,7 +2212,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3
@@ -2296,7 +2295,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 1.** With left broken text set to none:
+            With left broken text set to none:
 
             ::
 
@@ -2333,7 +2332,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3
@@ -2411,7 +2410,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 2.** With left broken text set explicitly:
+            With left broken text set explicitly:
 
             ::
 
@@ -2452,7 +2451,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3
@@ -2530,7 +2529,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Does not start with parenthesized tempo:
+            Does not start with parenthesized tempo:
 
             ::
 
@@ -2570,7 +2569,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3
@@ -2661,7 +2660,7 @@ class TempoSpanner(Spanner):
 
         ..  container:: example
 
-            **Example 2.** Starts with parenthesized tempo:
+            Starts with parenthesized tempo:
 
             ::
 
@@ -2701,7 +2700,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3

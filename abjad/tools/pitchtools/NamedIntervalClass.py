@@ -8,21 +8,21 @@ class NamedIntervalClass(IntervalClass):
 
     ..  container:: example
 
-        **Example 1.** Initializes descending major second from string:
+        Initializes descending major second from string:
 
         ::
 
-            >>> pitchtools.NamedIntervalClass('-M9')
+            >>> NamedIntervalClass('-M9')
             NamedIntervalClass('-M2')
 
     ..  container:: example
 
-        **Example 2.** Initializes descending major second from quality string
-        and number of semitones:
+        Initializes descending major second from quality string and number of
+        semitones:
 
         ::
 
-            >>> pitchtools.NamedIntervalClass(('major', -9))
+            >>> NamedIntervalClass(('major', -9))
             NamedIntervalClass('-M2')
 
     '''
@@ -71,20 +71,20 @@ class NamedIntervalClass(IntervalClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, *arguments):
         from abjad.tools import pitchtools
-        if len(args) == 1 and \
-            isinstance(args[0], (pitchtools.NamedInterval,
+        if len(arguments) == 1 and \
+            isinstance(arguments[0], (pitchtools.NamedInterval,
                 pitchtools.NamedIntervalClass)):
-            quality_string = args[0]._quality_string
-            number = args[0].number
-        elif len(args) == 1 and isinstance(args[0], str):
+            quality_string = arguments[0]._quality_string
+            number = arguments[0].number
+        elif len(arguments) == 1 and isinstance(arguments[0], str):
             match = \
                 pitchtools.Interval._interval_name_abbreviation_regex.match(
-                args[0])
+                arguments[0])
             if match is None:
                 message = '{!r} does not have the form of an abbreviation.'
-                message = message.format(args[0])
+                message = message.format(arguments[0])
                 raise ValueError(message)
             direction_string, quality_abbreviation, number_string = \
                 match.groups()
@@ -92,16 +92,16 @@ class NamedIntervalClass(IntervalClass):
                 NamedIntervalClass._quality_abbreviation_to_quality_string[
                     quality_abbreviation]
             number = int(direction_string + number_string)
-        elif len(args) == 1 and mathtools.is_pair(args[0]):
-            quality_string, number = args[0]
-        elif len(args) == 2:
-            quality_string, number = args
-        elif len(args) == 0:
+        elif len(arguments) == 1 and mathtools.is_pair(arguments[0]):
+            quality_string, number = arguments[0]
+        elif len(arguments) == 2:
+            quality_string, number = arguments
+        elif len(arguments) == 0:
             quality_string = 'perfect'
             number = 1
         else:
             message = 'bad input: {!r}.'
-            message = message.format(args)
+            message = message.format(arguments)
             raise TypeError(message)
         if quality_string not in \
             NamedIntervalClass._acceptable_quality_strings:
@@ -138,17 +138,17 @@ class NamedIntervalClass(IntervalClass):
         '''
         return type(self)(abs(self._number))
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a named interval-class with direction number,
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a named interval-class with direction number,
         quality string and number equal to those of this named interval-class.
         Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.direction_number == arg.direction_number:
-                if self._quality_string == arg._quality_string:
-                    if self.number == arg.number:
+        if isinstance(argument, type(self)):
+            if self.direction_number == argument.direction_number:
+                if self._quality_string == argument._quality_string:
+                    if self.number == argument.number:
                         return True
         return False
 
@@ -173,25 +173,25 @@ class NamedIntervalClass(IntervalClass):
         '''
         return self._number
 
-    def __lt__(self, arg):
-        r'''Is true when `arg` is a named interval class with a number greater
+    def __lt__(self, argument):
+        r'''Is true when `argument` is a named interval class with a number greater
         than that of this named interval.
         '''
         from abjad.tools import pitchtools
-        if isinstance(arg, type(self)):
-            if self.number == arg.number:
+        if isinstance(argument, type(self)):
+            if self.number == argument.number:
                 return pitchtools.NamedInterval(self).semitones < \
-                    pitchtools.NamedInterval(arg).semitones
-            return self.number < arg.number
+                    pitchtools.NamedInterval(argument).semitones
+            return self.number < argument.number
         return False
 
-    def __ne__(self, arg):
-        r'''Is true when named interval-class does not equal `arg`. Otherwise
+    def __ne__(self, argument):
+        r'''Is true when named interval-class does not equal `argument`. Otherwise
         false.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     def __str__(self):
         r'''String representation of named interval-class.
@@ -203,28 +203,6 @@ class NamedIntervalClass(IntervalClass):
             self._quality_abbreviation,
             abs(self.number),
             )
-
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Makes named interval-class from `pitch_carrier_1` and
-        `pitch_carrier_2`.
-
-        ::
-
-            >>> pitchtools.NamedIntervalClass.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
-            ...     )
-            NamedIntervalClass('+M2')
-
-        Returns named interval-class.
-        '''
-        from abjad.tools import pitchtools
-        named_interval = pitchtools.NamedInterval.from_pitch_carriers(
-            pitch_carrier_1, pitch_carrier_2)
-        return class_(named_interval)
 
     ### PRIVATE PROPERTIES ###
 
@@ -300,3 +278,25 @@ class NamedIntervalClass(IntervalClass):
         Returns string.
         '''
         return self._quality_string
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
+        '''Makes named interval-class from `pitch_carrier_1` and
+        `pitch_carrier_2`.
+
+        ::
+
+            >>> NamedIntervalClass.from_pitch_carriers(
+            ...     NamedPitch(-2),
+            ...     NamedPitch(12),
+            ...     )
+            NamedIntervalClass('+M2')
+
+        Returns named interval-class.
+        '''
+        from abjad.tools import pitchtools
+        named_interval = pitchtools.NamedInterval.from_pitch_carriers(
+            pitch_carrier_1, pitch_carrier_2)
+        return class_(named_interval)

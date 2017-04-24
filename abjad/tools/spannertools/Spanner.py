@@ -80,14 +80,15 @@ class Spanner(AbjadObject):
         new._name = self.name
         return new
 
-    def __getitem__(self, expr):
-        r'''Gets item from spanner.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         Returns component.
         '''
-        if isinstance(expr, slice):
-            return selectiontools.Selection(self._components.__getitem__(expr))
-        return self._components.__getitem__(expr)
+        if isinstance(argument, slice):
+            components = self._components.__getitem__(argument)
+            return selectiontools.Selection(components)
+        return self._components.__getitem__(argument)
 
     def __getnewargs__(self):
         r'''Gets new arguments of spanner.
@@ -381,11 +382,11 @@ class Spanner(AbjadObject):
         return lilypond_format_bundle
 
     def _get_my_first_leaf(self):
-        for leaf in iterate(self).by_class(scoretools.Leaf):
+        for leaf in iterate(self).by_leaf():
             return leaf
 
     def _get_my_last_leaf(self):
-        for leaf in iterate(self).by_class(scoretools.Leaf, reverse=True):
+        for leaf in iterate(self).by_leaf(reverse=True):
             return leaf
 
     def _get_my_nth_leaf(self, n):
@@ -393,12 +394,12 @@ class Spanner(AbjadObject):
         if not isinstance(n, int):
             raise TypeError
         if 0 <= n:
-            leaves = iterate(self).by_class(scoretools.Leaf)
+            leaves = iterate(self).by_leaf()
             for leaf_index, leaf in enumerate(leaves):
                 if leaf_index == n:
                     return leaf
         else:
-            leaves = iterate(self).by_class(scoretools.Leaf, reverse=True)
+            leaves = iterate(self).by_leaf(reverse=True)
             for leaf_index, leaf in enumerate(leaves):
                 leaf_number = -leaf_index - 1
                 if leaf_number == n:
@@ -408,10 +409,10 @@ class Spanner(AbjadObject):
     def _get_timespan(self, in_seconds=False):
         from abjad.tools import durationtools
         if len(self):
-            start_offset = \
-                self[0]._get_timespan(in_seconds=in_seconds)._start_offset
-            stop_offset = \
-                self[-1]._get_timespan(in_seconds=in_seconds)._stop_offset
+            start_offset = self[0]._get_timespan(
+                in_seconds=in_seconds)._start_offset
+            stop_offset = self[-1]._get_timespan(
+                in_seconds=in_seconds)._stop_offset
         else:
             start_offset = durationtools.Duration(0)
             stop_offset = durationtools.Duration(0)

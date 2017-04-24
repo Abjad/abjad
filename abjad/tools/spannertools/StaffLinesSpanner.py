@@ -17,7 +17,7 @@ class StaffLinesSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8
                 \stopStaff
@@ -59,8 +59,8 @@ class StaffLinesSpanner(Spanner):
             )
         if isinstance(lines, int) and 0 < lines:
             self._lines = lines
-        elif isinstance(lines, (tuple, list)) \
-            and all(isinstance(x, (int, float)) for x in lines):
+        elif (isinstance(lines, (tuple, list)) and
+            all(isinstance(x, (int, float)) for x in lines)):
             self._lines = tuple(lines)
         else:
             message = 'must be integer or a sequence of integers: {!r}.'
@@ -126,7 +126,11 @@ class StaffLinesSpanner(Spanner):
             ...     forbid_restarting=True,
             ...     )
             >>> attach(spanner, staff[:])
-            >>> print(format(staff))
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
             \new Staff {
                 \stopStaff
                 \once \override Staff.StaffSymbol.line-count = 1

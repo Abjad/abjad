@@ -6,7 +6,7 @@ def select_last(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Selects last two divisions for tie creation:
+        Selects last two divisions for tie creation:
 
         ::
 
@@ -16,7 +16,7 @@ def select_last(n=1, inverted=None):
 
             >>> print(format(pattern))
             patterntools.Pattern(
-                indices=(-2, -1),
+                indices=[-2, -1],
                 )
 
         ::
@@ -37,8 +37,7 @@ def select_last(n=1, inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -63,7 +62,7 @@ def select_last(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Selects no divisions for tie creation:
+        Selects no divisions for tie creation:
 
         ::
 
@@ -73,7 +72,7 @@ def select_last(n=1, inverted=None):
 
             >>> print(format(pattern))
             patterntools.Pattern(
-                indices=(),
+                indices=[],
                 )
 
         ::
@@ -94,8 +93,7 @@ def select_last(n=1, inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

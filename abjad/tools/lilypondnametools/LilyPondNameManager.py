@@ -3,7 +3,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondNameManager(AbjadObject):
-    r'''Base class from which LilyPond grob and setting managers inherit.
+    r'''LilyPond name manager.
+    
+    Base class from which grob, context setting and tweak managers inherit.
     '''
 
     ### SPECIAL METHODS ###
@@ -39,11 +41,9 @@ class LilyPondNameManager(AbjadObject):
         Returns string.
         '''
         body_string = ''
-        strings = self._get_skeleton_strings()
-        if strings:
-            prefix = getattr(self, 'skeleton_string_prefix', '')
-            strings = [x.replace(prefix, '') for x in strings]
-            body_string = ', '.join(strings)
+        pairs = self._get_attribute_pairs()
+        pairs = [str(_) for _ in pairs]
+        body_string = ''.join(pairs)
         return '{}({})'.format(type(self).__name__, body_string)
 
     def __setstate__(self, state):
@@ -56,10 +56,3 @@ class LilyPondNameManager(AbjadObject):
 
     def _get_attribute_pairs(self):
         return tuple(sorted(vars(self).items()))
-
-    def _get_skeleton_strings(self):
-        result = []
-        for attribute_name, attribute_value in self._get_attribute_pairs():
-            string = '{} = {}'.format(attribute_name, repr(attribute_value))
-            result.append(string)
-        return result

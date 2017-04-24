@@ -4,8 +4,9 @@ from abjad.tools.topleveltools import select
 
 
 class ContiguitySelectorCallback(AbjadValueObject):
-    r'''A contiguity selector callback.
+    r'''Contiguity selector callback.
     '''
+
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Callbacks'
@@ -15,13 +16,13 @@ class ContiguitySelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
         '''
         result = []
         subresult = []
-        subresult.extend(expr[:1])
-        for subexpr in expr[1:]:
+        subresult.extend(argument[:1])
+        for subexpr in argument[1:]:
             try:
                 that_timespan = subresult[-1]._get_timespan()
             except AttributeError:

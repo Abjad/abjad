@@ -19,8 +19,7 @@ class MeterManager(abctools.AbjadObject):
         while len(offset_inventory) <= depth:
             new_offsets = []
             old_offsets = offset_inventory[-1]
-            for first, second in \
-                sequencetools.iterate_sequence_nwise(old_offsets):
+            for first, second in sequencetools.Sequence(old_offsets).nwise():
                 new_offsets.append(first)
                 difference = second - first
                 half = (first + second) / 2

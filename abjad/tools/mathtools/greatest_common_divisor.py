@@ -4,21 +4,20 @@
 def greatest_common_divisor(*integers):
     '''Calculates greatest common divisor of `integers`.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.greatest_common_divisor(84, -94, -144)
-        2
+        ::
+
+            >>> mathtools.greatest_common_divisor(84, -94, -144)
+            2
 
     Allows nonpositive input.
 
-    Raises type error on noninteger input.
-
-    Raises not implemented error when ``0`` is included in input.
+    Raises not implemented error when zero is included in input.
 
     Returns positive integer.
     '''
     from abjad.tools import mathtools
-
     common_divisors = None
     for positive_integer in integers:
         all_divisors = set(mathtools.divisors(positive_integer))

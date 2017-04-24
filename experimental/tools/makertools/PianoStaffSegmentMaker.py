@@ -109,7 +109,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
             'stylesheets',
             'stylesheet.ily',
             )
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+        lilypond_file = lilypondfiletools.LilyPondFile.new(
             music=score,
             includes=(
                 stylesheet_path,
@@ -124,7 +124,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
             x for x in self._test_pitch_numbers
             if x in pitch_range
             ]
-        pitch_numbers = sequencetools.remove_repeated_elements(pitch_numbers)
+        pitch_numbers = sequencetools.Sequence(pitch_numbers).remove_repeats()
         pitch_numbers = datastructuretools.CyclicTuple(pitch_numbers)
         logical_ties = iterate(voice).by_logical_tie(pitched=True)
         for i, logical_tie in enumerate(logical_ties):

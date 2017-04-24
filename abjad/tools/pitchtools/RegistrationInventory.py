@@ -7,7 +7,7 @@ class RegistrationInventory(TypedList):
 
     ..  container:: example
 
-        **Example.** Inventory with two registrations:
+        Inventory with two registrations:
         
         ::
 
@@ -23,7 +23,7 @@ class RegistrationInventory(TypedList):
 
         ::
 
-            >>> print(format(inventory))
+            >>> f(inventory)
             pitchtools.RegistrationInventory(
                 [
                     pitchtools.Registration(

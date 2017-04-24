@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class PostscriptOperator(AbjadValueObject):
-    r'''A Postscript operator.
+    r'''Postscript operator.
 
     ..  container:: example
 

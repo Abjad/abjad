@@ -6,18 +6,53 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 
 class LilyPondSettingNameManager(LilyPondNameManager):
     '''LilyPond setting name manager.
+
+    ..  container:: example
+
+        Initializes with toplevel function:
+
+        ::
+
+            >>> note = Note("c'4")
+            >>> set_(note)
+            LilyPondSettingNameManager()
+
     '''
-
-    ### CLASS VARIABLES ###
-
-    skeleton_string_prefix = 'set__'
 
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
-        r'''Gets setting `name` from LilyPond setting name manager.
+        r'''Gets arbitrary object keyed to `name`.
 
-        Returns string.
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> set_(staff).instrument_name = Markup('Vn. I')
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    instrumentName = \markup { "Vn. I" }
+                } {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        ..  container:: example
+
+            Returns arbitrary object keyed to `name`:
+
+            ::
+
+                >>> set_(staff).instrument_name
+                Markup(contents=['Vn. I'])
+
         '''
         from abjad import ly
         from abjad.tools import lilypondnametools
@@ -61,22 +96,4 @@ class LilyPondSettingNameManager(LilyPondNameManager):
             else:
                 attribute_name, attribute_value = name, value
                 result.append((attribute_name, attribute_value))
-        return result
-
-    def _get_skeleton_strings(self):
-        result = []
-        for attribute_tuple in self._get_attribute_tuples():
-            if len(attribute_tuple) == 2:
-                attribute_name, attribute_value = attribute_tuple
-                string = '{}={}'.format(attribute_name, repr(attribute_value))
-                result.append(string)
-            elif len(attribute_tuple) == 3:
-                context_name, attribute_name, attribute_value = attribute_tuple
-                key = '__'.join((context_name, attribute_name))
-                string = '{}={}'.format(key, repr(attribute_value))
-                result.append(string)
-            else:
-                message = 'attribute tuple must have length 2 or 3.'
-                raise ValueError(message)
-        result = ['set__' + x for x in result]
         return result

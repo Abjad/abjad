@@ -8,18 +8,32 @@ class TwelveToneRow(PitchClassSegment):
 
     ..  container:: example
 
-        **Example 1.** Initializes row from integers:
+        Initializes from defaults:
 
         ::
 
-            >>> pitchtools.TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
-            TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
+            >>> row = TwelveToneRow()
+            >>> show(row) # doctest: +SKIP
 
-    Twelve-tone rows validate pitch-classes at initialization.
+    ..  container:: example
 
-    Twelve-tone rows inherit canonical operators from pitch-class segment.
+        Initializes from integers:
 
-    Twelve-tone rows return numbered pitch-class segments on calls to getslice.
+        ::
+
+            >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+            >>> row = TwelveToneRow(numbers)
+            >>> show(row) # doctest: +SKIP
+
+    ..  container:: example
+
+        Interpreter representation:
+
+        ::
+
+            >>> row
+            TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
+
     '''
 
     ### CLASS VARIABLES ###
@@ -31,7 +45,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def __init__(
         self,
-        items=(0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8),
+        items=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
         ):
         from abjad.tools import pitchtools
         assert items is not None
@@ -44,31 +58,637 @@ class TwelveToneRow(PitchClassSegment):
 
     ### SPECIAL METHODS ###
 
-    def __getslice__(self, start, stop):
-        r'''Gets items from `start` to `stop` in twelve-tone row.
+    def __call__(self, pitch_classes):
+        r'''Calls row on `pitch_classes`.
 
-        Returns pitch-class segment.
+        ..  container:: example
+
+            Example row:
+
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+        ..  container:: example
+
+            Permutes pitch-classes:
+            
+            ::
+
+                >>> row([NumberedPitchClass(2)])
+                [NumberedPitchClass(9)]
+
+            ::
+
+                >>> row([NumberedPitchClass(3)])
+                [NumberedPitchClass(3)]
+
+            ::
+
+                >>> row([NumberedPitchClass(4)])
+                [NumberedPitchClass(6)]
+
+        ..  container:: example
+
+            Permutes pitch-class segment:
+            
+            ::
+
+                >>> items = [-2, -1, 6, 7, -1, 7]
+                >>> segment = PitchClassSegment(items=items)
+                >>> show(segment) # doctest: +SKIP
+
+            ::
+
+                >>> segment_ = row(segment)
+                >>> show(segment_) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment_.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    af'8
+                    c'8
+                    f'8
+                    e'8
+                    c'8
+                    e'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Permutes row:
+
+            ::
+
+                >>> numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                >>> row_2 = TwelveToneRow(numbers)
+                >>> show(row_2) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = row_2.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                    af'8
+                    a'8
+                    bf'8
+                    b'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> row_3 = row(row_2)
+                >>> show(row_3) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = row_3.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Permutes row:
+
+            ::
+
+                >>> numbers = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+                >>> row_2 = TwelveToneRow(numbers)
+                >>> show(row_2) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = row_2.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    b'8
+                    bf'8
+                    a'8
+                    af'8
+                    g'8
+                    fs'8
+                    f'8
+                    e'8
+                    ef'8
+                    d'8
+                    cs'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> row_3 = row(row_2)
+                >>> show(row_3) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = row_3.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    af'8
+                    d'8
+                    bf'8
+                    e'8
+                    f'8
+                    g'8
+                    fs'8
+                    ef'8
+                    a'8
+                    b'8
+                    cs'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Permutes row:
+
+            ::
+
+                >>> numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
+                >>> row_2 = TwelveToneRow(numbers)
+                >>> show(row_2) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = row_2.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    bf'8
+                    c'8
+                    d'8
+                    fs'8
+                    af'8
+                    g'8
+                    f'8
+                    ef'8
+                    cs'8
+                    a'8
+                    e'8
+                    b'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> row_3 = row(row_2)
+                >>> show(row_3) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = row_3.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    af'8
+                    cs'8
+                    a'8
+                    f'8
+                    bf'8
+                    e'8
+                    g'8
+                    ef'8
+                    b'8
+                    d'8
+                    fs'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+        
+
+        Returns permuted pitch-classes in object of type `pitch_classes`.
         '''
         from abjad.tools import pitchtools
-        items = self._collection[start:stop]
-        return PitchClassSegment(
-            items=items,
-            item_class=pitchtools.NumberedPitchClass,
-            )
+        new_pitch_classes = []
+        for pitch_class in pitch_classes:
+            pitch_class = pitchtools.NumberedPitchClass(pitch_class)
+            i = pitch_class.pitch_class_number
+            new_pitch_class = self[i]
+            new_pitch_classes.append(new_pitch_class)
+        result = type(pitch_classes)(new_pitch_classes)
+        return result
+        
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
-    def __mul__(self, expr):
-        r'''Multiplies twelve-tone row by `expr`.
+        ..  container:: example
+
+            Example row:
+
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+        ..  container:: example
+
+            Gets first hexachord:
+
+            ::
+
+                >>> show(row[:6]) # doctest: +SKIP
+                PitchClassSegment([0, 1, 11, 9, 3, 6])
+
+            ..  doctest::
+
+                >>> lilypond_file = row[:6].__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Gets second hexachord:
+
+            ::
+
+                >>> show(row[-6:]) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = row[-6:].__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Returns pitch-class segment:
+
+            ::
+
+                >>> row[-6:]
+                PitchClassSegment([5, 4, 10, 2, 8, 0])
+
+        '''
+        from abjad.tools import pitchtools
+        item = self._collection.__getitem__(argument)
+        try:
+            return PitchClassSegment(
+                items=item,
+                item_class=pitchtools.NumberedPitchClass,
+                )
+        except TypeError:
+            return item
+
+    def __illustrate__(self, **keywords):
+        r'''Illustrates row.
+
+        ..  container:: example
+
+            Illustrates row:
+
+            ::
+
+                >>> row = TwelveToneRow()
+                >>> show(row) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = row.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                    af'8
+                    a'8
+                    bf'8
+                    b'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+
+        ..  container:: example
+
+            Illustrates row:
+
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = row.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Returns LilyPond file:
+
+            ::
+
+                >>> type(row.__illustrate__())
+                <class 'abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile'>
+
+        '''
+        superclass = super(PitchClassSegment, self)
+        return superclass.__illustrate__(**keywords)
+
+    def __mul__(self, argument):
+        r'''Multiplies row by `argument`.
+
+        ..  container:: example
+
+            Multiplies row:
+
+            ::
+
+                >>> row = TwelveToneRow()
+                >>> show(row) # doctest: +SKIP
+
+            ::
+
+                >>> segment = row * 2
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                    af'8
+                    a'8
+                    bf'8
+                    b'8
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                    af'8
+                    a'8
+                    bf'8
+                    b'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Multiplies row:
+
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+            ::
+
+                >>> segment = row * 2
+                >>> show(segment) # doctest: +SKIP
+
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Returns pitch-class segment:
+
+            ::
+
+                >>> segment
+                PitchClassSegment([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
         Returns pitch-class segment.
         '''
-        return PitchClassSegment(self) * expr
+        return PitchClassSegment(self) * argument
 
-    def __rmul__(self, expr):
-        r'''Multiplies `expr` by twelve-tone row.
+    def __rmul__(self, argument):
+        r'''Multiplies `argument` by row.
 
-        Returns pitch-class segment.
+        ..  container:: example
+
+            Multiplies integer by row:
+
+            ::
+
+                >>> row = TwelveToneRow()
+                >>> show(row) # doctest: +SKIP
+
+            ::
+
+                >>> segment = 2 * row
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                    af'8
+                    a'8
+                    bf'8
+                    b'8
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                    af'8
+                    a'8
+                    bf'8
+                    b'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Multiplies integer by row:
+
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+            ::
+
+                >>> segment = 2 * row
+                >>> show(segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = segment.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Returns pitch-class segment:
+
+            ::
+
+                >>> segment
+                PitchClassSegment([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
+
         '''
-        return PitchClassSegment(self) * expr
+        return PitchClassSegment(self) * argument
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_string(self):
+        return ', '.join([str(abs(pc)) for pc in self])
 
     ### PRIVATE METHODS ###
 
@@ -81,7 +701,177 @@ class TwelveToneRow(PitchClassSegment):
             message = message.format(pitch_classes)
             raise ValueError(message)
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def item_class(self):
+        r'''Gets item class of row.
+
+        ..  container:: example
+
+            Gets item class:
+
+            ::
+
+                >>> row = TwelveToneRow()
+                >>> show(row) # doctest: +SKIP
+
+            ::
+
+                >>> row.item_class
+                <class 'abjad.tools.pitchtools.NumberedPitchClass.NumberedPitchClass'>
+
+        ..  container:: example
+
+            Gets item class:
+
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+            ::
+
+                >>> row.item_class
+                <class 'abjad.tools.pitchtools.NumberedPitchClass.NumberedPitchClass'>
+
+        ..  container:: example
+
+            Returns numbered pitch-class class:
+
+            ::
+
+                >>> type(row.item_class)
+                <class 'abc.ABCMeta'>
+
+        '''
+        superclass = super(PitchClassSegment, self)
+        return superclass.item_class
+
+    @property
+    def items(self):
+        r'''Gets items in row.
+
+        ..  container:: example
+
+            Gets items in row:
+        
+            ::
+
+                >>> row = TwelveToneRow()
+                >>> show(row) # doctest: +SKIP
+
+
+            ::
+
+                >>> for item in row.items:
+                ...     item
+                NumberedPitchClass(0)
+                NumberedPitchClass(1)
+                NumberedPitchClass(2)
+                NumberedPitchClass(3)
+                NumberedPitchClass(4)
+                NumberedPitchClass(5)
+                NumberedPitchClass(6)
+                NumberedPitchClass(7)
+                NumberedPitchClass(8)
+                NumberedPitchClass(9)
+                NumberedPitchClass(10)
+                NumberedPitchClass(11)
+
+        ..  container:: example
+
+            Gets items in row:
+
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+            ::
+                
+                >>> for item in row.items:
+                ...     item
+                NumberedPitchClass(1)
+                NumberedPitchClass(11)
+                NumberedPitchClass(9)
+                NumberedPitchClass(3)
+                NumberedPitchClass(6)
+                NumberedPitchClass(7)
+                NumberedPitchClass(5)
+                NumberedPitchClass(4)
+                NumberedPitchClass(10)
+                NumberedPitchClass(2)
+                NumberedPitchClass(8)
+                NumberedPitchClass(0)
+
+        ..  container:: example
+
+            Returns list:
+
+            ::
+
+                >>> isinstance(row.items, list)
+                True
+
+        '''
+        superclass = super(PitchClassSegment, self)
+        return superclass.items
+
     ### PUBLIC METHODS ###
+
+    def count(self, item):
+        r'''Counts `item` in row.
+
+        ..  container:: example
+
+            Example row:
+        
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+        ..  container:: example
+
+            Counts pitch-class 11 in row:
+        
+                >>> row.count(11)
+                1
+
+        ..  container:: example
+
+            Counts pitch-class 9 in row:
+
+            ::
+                
+                >>> row.count(9)
+                1
+
+        ..  container:: example
+
+            Counts string in row:
+
+            ::
+                
+                >>> row.count('text')
+                0
+
+        ..  container:: example
+
+            Returns nonnegative integer equal to 0 or 1:
+
+            ::
+
+                >>> isinstance(row.count('text'), int)
+                True
+
+        '''
+        superclass = super(TwelveToneRow, self)
+        return superclass.count(item)
 
     @classmethod
     def from_selection(
@@ -89,81 +879,249 @@ class TwelveToneRow(PitchClassSegment):
         selection,
         item_class=None,
         ):
-        r'''Makes twelve-tone row from `selection`.
+        r'''Makes row from `selection`.
+
+        Not yet implemented.
 
         Returns twelve-tone row.
         '''
         raise NotImplementedError
 
+    def has_duplicates(self):
+        r'''Is false for all rows.
+
+        ..  container:: example
+
+            Is false:
+
+            ::
+            
+                >>> row = TwelveToneRow()
+                >>> show(row) # doctest: +SKIP
+
+            ::
+
+                >>> row.has_duplicates()
+                False
+
+        ..  container:: example
+
+            Is false:
+
+            ::
+            
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+            ::
+
+                >>> row.has_duplicates()
+                False
+
+        Twelve-tone rows have no duplicates.
+
+        Returns false.
+        '''
+        superclass = super(TwelveToneRow, self)
+        return superclass.has_duplicates()
+
+    def index(self, item):
+        r'''Gets index of `item` in row.
+
+        ..  container:: example
+
+            Example row:
+        
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+        ..  container:: example
+
+            Gets index of pitch-class 11:
+        
+            ::
+
+                >>> row.index(11)
+                1
+
+        ..  container:: example
+
+            Gets index of pitch-class 9:
+
+            ::
+                
+                >>> row.index(9)
+                2
+
+        ..  container:: example
+
+            Returns nonnegative integer less than 12:
+
+            ::
+                
+                >>> isinstance(row.index(9), int)
+                True
+
+        '''
+        superclass = super(TwelveToneRow, self)
+        return superclass.index(item)
+
     def invert(self, axis=None):
-        r'''Inverts twelve-tone row about `axis`.
+        r'''Inverts row about optional `axis`.
 
         ..  container:: example
 
-            **Example 1.** Inverts twelve-tone row about first pitch-class
-            in row when `axis` is none:
+            Example row:
 
             ::
 
-                >>> row = pitchtools.TwelveToneRow(
-                ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                ...     )
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+        ..  container:: example
+
+            Inverts row about first pitch-class when `axis` is none:
 
             ::
 
-                >>> row.invert()
+                >>> inversion = row.invert()
+                >>> show(inversion) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = inversion.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    ef'8
+                    f'8
+                    b'8
+                    af'8
+                    g'8
+                    a'8
+                    bf'8
+                    e'8
+                    c'8
+                    fs'8
+                    d'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            First pitch-classes are equal:
+
+            ::
+
+                >>> row[0] == inversion[0]
+                True
+
+        ..  container:: example
+
+            Inverts row about pitch-class 1:
+
+            ::
+
+                >>> inversion = row.invert(axis=1)
+                >>> show(inversion) # doctest: +SKIP
                 TwelveToneRow([1, 3, 5, 11, 8, 7, 9, 10, 4, 0, 6, 2])
 
-            First pitch-classes of prime form and inversion are equal.
+            ..  doctest::
+
+                >>> lilypond_file = inversion.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    ef'8
+                    f'8
+                    b'8
+                    af'8
+                    g'8
+                    a'8
+                    bf'8
+                    e'8
+                    c'8
+                    fs'8
+                    d'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            Same result as above.
 
         ..  container:: example
 
-            **Example 2.** Inverts twelve-tone row about pitch-class 1:
+            Inverts row about pitch-class 0:
 
             ::
 
-                >>> row = pitchtools.TwelveToneRow(
-                ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                ...     )
+                >>> inversion = row.invert(axis=0)
+                >>> show(inversion) # doctest: +SKIP
 
-            ::
+            ..  doctest::
 
-                >>> row.invert(axis=1)
-                TwelveToneRow([1, 3, 5, 11, 8, 7, 9, 10, 4, 0, 6, 2])
-
-            Same result as above because 1 is the first pitch-class in row.
+                >>> lilypond_file = inversion.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    b'8
+                    cs'8
+                    ef'8
+                    a'8
+                    fs'8
+                    f'8
+                    g'8
+                    af'8
+                    d'8
+                    bf'8
+                    e'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
 
         ..  container:: example
 
-            **Example 3.** Inverts twelve-tone row about pitch-class 0:
+            Inverts row about pitch-class 5:
 
             ::
 
-                >>> row = pitchtools.TwelveToneRow(
-                ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                ...     )
+                >>> inversion = row.invert(axis=5)
+                >>> show(inversion) # doctest: +SKIP
 
-            ::
+            ..  doctest::
 
-                >>> row.invert(axis=0)
-                TwelveToneRow([11, 1, 3, 9, 6, 5, 7, 8, 2, 10, 4, 0])
+                >>> lilypond_file = inversion.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    a'8
+                    b'8
+                    cs'8
+                    g'8
+                    e'8
+                    ef'8
+                    f'8
+                    fs'8
+                    c'8
+                    af'8
+                    d'8
+                    bf'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
 
         ..  container:: example
 
-            **Example 4.** Inverts twelve-tone row about pitch-class 5:
+            Returns twelve-tone row:
 
             ::
 
-                >>> row = pitchtools.TwelveToneRow(
-                ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                ...     )
-
-            ::
-
-                >>> row.invert(axis=5)
+                >>> inversion
                 TwelveToneRow([9, 11, 1, 7, 4, 3, 5, 6, 0, 8, 2, 10])
 
-        Returns new twelve-tone row.
         '''
         from abjad.tools import pitchtools
         if axis is None:
@@ -171,43 +1129,481 @@ class TwelveToneRow(PitchClassSegment):
         items = [pc.invert(axis=axis) for pc in self]
         return new(self, items=items)
 
-    def permute(self, pitches):
-        r'''Permutes `pitches` by twelve-tone row.
+    def multiply(self, n=1):
+        r'''Multiplies pitch-classes in row by `n`.
 
         ..  container:: example
 
+            Example row:
+
             ::
 
-                >>> notes = scoretools.make_notes([17, -10, -2, 11], [Duration(1, 4)])
-                >>> row = pitchtools.TwelveToneRow([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
-                >>> row.permute(notes)
-                [Note('bf4'), Note('d4'), Note("f''4"), Note("b'4")]
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
 
-        Method works by reference. No objects are copied.
+        ..  container:: example
 
-        Returns list.
+            Multiplies pitch-classes in row by 5:
+
+            ::
+
+                >>> multiplication = row.multiply(n=5)
+                >>> show(multiplication) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = multiplication.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    f'8
+                    g'8
+                    a'8
+                    ef'8
+                    fs'8
+                    b'8
+                    cs'8
+                    af'8
+                    d'8
+                    bf'8
+                    e'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Multiplies pitch-classes in row by 7:
+
+            ::
+
+                >>> multiplication = row.multiply(n=7)
+                >>> show(multiplication) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = multiplication.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    g'8
+                    f'8
+                    ef'8
+                    a'8
+                    fs'8
+                    cs'8
+                    b'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Multiplies pitch-classes in row by 1:
+
+            ::
+
+                >>> multiplication = row.multiply(n=1)
+                >>> show(multiplication) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = multiplication.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Returns twelve-tone row:
+
+            ::
+
+                >>> multiplication
+                TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
+
         '''
-        from abjad.tools import pitchtools
-        from abjad.tools import scoretools
-        result = []
-        for pc in self:
-            matching_pitches = []
-            for pitch in pitches:
-                if isinstance(pitch, pitchtools.NamedPitch):
-                    if pitch.numbered_pitch_class == pc:
-                        matching_pitches.append(pitch)
-                elif isinstance(pitch, scoretools.Note):
-                    if pitchtools.NumberedPitchClass(pitch.written_pitch) == pc:
-                        matching_pitches.append(pitch)
-                else:
-                    message = 'must be pitch or note: {!r}'
-                    message = message.format(pitch)
-                    raise TypeError(message)
-            result.extend(matching_pitches)
-        return result
+        superclass = super(TwelveToneRow, self)
+        return superclass.multiply(n=n)
+    
+    def retrograde(self):
+        r'''Gets retrograde of row.
 
-    ### PRIVATE PROPERTIES ###
+        ..  container:: example
 
-    @property
-    def _contents_string(self):
-        return ', '.join([str(abs(pc)) for pc in self])
+            Example row:
+
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+        ..  container:: example
+
+            Gets retrograde of row:
+
+            ::
+
+                >>> retrograde = row.retrograde()
+                >>> show(retrograde) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = retrograde.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    af'8
+                    d'8
+                    bf'8
+                    e'8
+                    f'8
+                    g'8
+                    fs'8
+                    ef'8
+                    a'8
+                    b'8
+                    cs'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Gets retrograde of retrograde of row:
+
+            ::
+
+                >>> retrograde = row.retrograde().retrograde()
+                >>> show(retrograde) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = retrograde.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> retrograde == row
+                True
+
+        ..  container:: example
+
+            Returns row:
+
+            ::
+
+                >>> retrograde
+                TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
+
+        '''
+        superclass = super(TwelveToneRow, self)
+        return superclass.retrograde()
+
+    def rotate(self, n=0, stravinsky=False):
+        r'''Rotates row by index `n`.
+
+        ..  container:: example
+
+            Example row:
+
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+        ..  container:: example
+
+            Rotates row to the right:
+
+            ::
+
+                >>> rotation = row.rotate(n=1)
+                >>> show(rotation) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = rotation.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Rotates row to the left:
+
+            ::
+
+                >>> rotation = row.rotate(n=-1)
+                >>> show(rotation) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = rotation.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    cs'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Rotates row by zero:
+
+            ::
+
+                >>> rotation = row.rotate(n=0)
+                >>> show(rotation) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = rotation.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> rotation == row
+                True
+
+        ..  container:: example
+
+            Stravinsky-style rotation back-transposes row to zero:
+
+            ::
+
+                >>> rotation = row.rotate(n=-1, stravinsky=True)
+                >>> show(rotation) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = rotation.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    bf'8
+                    e'8
+                    g'8
+                    af'8
+                    fs'8
+                    f'8
+                    b'8
+                    ef'8
+                    a'8
+                    cs'8
+                    d'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Returns row:
+
+            ::
+
+                >>> rotation
+                TwelveToneRow([0, 10, 4, 7, 8, 6, 5, 11, 3, 9, 1, 2])
+
+        '''
+        superclass = super(TwelveToneRow, self)
+        return superclass.rotate(n=n, stravinsky=stravinsky)
+
+    def transpose(self, n=0):
+        r'''Transposes row by index `n`.
+
+        ..  container:: example
+
+            Example row:
+
+            ::
+
+                >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+                >>> row = TwelveToneRow(numbers)
+                >>> show(row) # doctest: +SKIP
+
+        ..  container:: example
+
+            Transposes row by positive index:
+
+            ::
+
+                >>> transposition = row.transpose(n=13)
+                >>> show(transposition) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = transposition.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    d'8
+                    c'8
+                    bf'8
+                    e'8
+                    g'8
+                    af'8
+                    fs'8
+                    f'8
+                    b'8
+                    ef'8
+                    a'8
+                    cs'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Transposes row by negative index:
+
+            ::
+
+                >>> transposition = row.transpose(n=-13)
+                >>> show(transposition) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = transposition.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    c'8
+                    bf'8
+                    af'8
+                    d'8
+                    f'8
+                    fs'8
+                    e'8
+                    ef'8
+                    a'8
+                    cs'8
+                    g'8
+                    b'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        ..  container:: example
+
+            Transposes row by zero index:
+
+            ::
+
+                >>> transposition = row.transpose(n=0)
+                >>> show(transposition) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = transposition.__illustrate__()
+                >>> f(lilypond_file[Voice])
+                \new Voice {
+                    cs'8
+                    b'8
+                    a'8
+                    ef'8
+                    fs'8
+                    g'8
+                    f'8
+                    e'8
+                    bf'8
+                    d'8
+                    af'8
+                    c'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+            ::
+
+                >>> transposition == row
+                True
+
+        ..  container:: example
+
+            Returns row:
+
+            ::
+
+                >>> transposition
+                TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
+
+        '''
+        superclass = super(TwelveToneRow, self)
+        return superclass.transpose(n=n)

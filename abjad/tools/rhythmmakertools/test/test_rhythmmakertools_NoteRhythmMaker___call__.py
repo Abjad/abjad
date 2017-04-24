@@ -8,7 +8,7 @@ def test_rhythmmakertools_NoteRhythmMaker___call___01():
 
     divisions = [(5, 16), (3, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -42,7 +42,7 @@ def test_rhythmmakertools_NoteRhythmMaker___call___02():
 
     divisions = [(5, 16), (3, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)

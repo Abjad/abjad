@@ -43,8 +43,7 @@ class BeatwiseQTarget(QTarget):
         voice.extend(components)
 
         # generate the rest pairwise, comparing tempi
-        for beat_one, beat_two in \
-            sequencetools.iterate_sequence_nwise(self.items):
+        for beat_one, beat_two in sequencetools.Sequence(self.items).nwise():
             components = beat_two.q_grid(beat_two.beatspan)
             if (beat_two.tempo != beat_one.tempo) and attach_tempos:
                 attachment_target = components[0]

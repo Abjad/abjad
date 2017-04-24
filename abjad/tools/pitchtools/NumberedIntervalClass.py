@@ -9,29 +9,29 @@ class NumberedIntervalClass(IntervalClass):
 
     ..  container:: example
 
-        **Example 1.** Initializes from integer:
+        Initializes from integer:
 
         ::
 
-            >>> pitchtools.NumberedIntervalClass(-14)
+            >>> NumberedIntervalClass(-14)
             NumberedIntervalClass(-2)
 
     ..  container:: example
 
-        **Example 2.** Initializes from float:
+        Initializes from float:
 
         ::
 
-            >>> pitchtools.NumberedIntervalClass(-14.5)
+            >>> NumberedIntervalClass(-14.5)
             NumberedIntervalClass(-2.5)
 
     ..  container:: example
 
-        **Example 3.** Initializes from string:
+        Initializes from string:
 
         ::
 
-            >>> pitchtools.NumberedIntervalClass('-14.5')
+            >>> NumberedIntervalClass('-14.5')
             NumberedIntervalClass(-2.5)
 
     '''
@@ -76,7 +76,7 @@ class NumberedIntervalClass(IntervalClass):
             number = 0
         elif isinstance(item, str):
             number = float(item)
-            if mathtools.is_integer_equivalent_expr(number):
+            if mathtools.is_integer_equivalent(number):
                 number = int(number)
             sign = mathtools.sign(number)
             abs_token = abs(number)
@@ -100,14 +100,14 @@ class NumberedIntervalClass(IntervalClass):
         '''
         return type(self)(abs(self._number))
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a numbered interval-class with number equal to
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a numbered interval-class with number equal to
         that of this numbered interval-class. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.number == arg.number:
+        if isinstance(argument, type(self)):
+            if self.number == argument.number:
                 return True
         return False
 
@@ -133,30 +133,6 @@ class NumberedIntervalClass(IntervalClass):
         Returns integer.
         '''
         return self._number
-
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Makes numbered interval-class from `pitch_carrier_1` and
-        `pitch_carrier_2`.
-
-        ::
-
-            >>> pitchtools.NumberedIntervalClass.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
-            ...     )
-            NumberedIntervalClass(2)
-
-        Returns numbered interval-class.
-        '''
-        from abjad.tools import pitchtools
-        # get numbered interval
-        interval = pitchtools.NumberedInterval.from_pitch_carriers(
-            pitch_carrier_1, pitch_carrier_2)
-        # return numbered interval-class
-        return class_(interval)
 
     ### PRIVATE PROPERTIES ###
 
@@ -202,3 +178,27 @@ class NumberedIntervalClass(IntervalClass):
             return ''
         else:
             return 'ascending'
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
+        '''Makes numbered interval-class from `pitch_carrier_1` and
+        `pitch_carrier_2`.
+
+        ::
+
+            >>> NumberedIntervalClass.from_pitch_carriers(
+            ...     NamedPitch(-2),
+            ...     NamedPitch(12),
+            ...     )
+            NumberedIntervalClass(2)
+
+        Returns numbered interval-class.
+        '''
+        from abjad.tools import pitchtools
+        # get numbered interval
+        interval = pitchtools.NumberedInterval.from_pitch_carriers(
+            pitch_carrier_1, pitch_carrier_2)
+        # return numbered interval-class
+        return class_(interval)

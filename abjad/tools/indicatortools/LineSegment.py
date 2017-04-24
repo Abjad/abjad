@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class LineSegment(AbjadValueObject):
-    r'''A line segment.
+    r'''Line segment.
 
     Line segments format as text spanners.
 

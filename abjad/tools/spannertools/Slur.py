@@ -10,7 +10,7 @@ class Slur(Spanner):
 
     ..  container:: example
 
-        **Example 1.** Slurs four notes:
+        Slurs four notes:
 
         ::
 
@@ -30,14 +30,14 @@ class Slur(Spanner):
 
     ..  container:: example
 
-        **Example 2.** Requires at least two leaves:
+        Requires at least two leaves:
 
         ::
 
             >>> staff = Staff("c'4 d' e' f'")
             >>> attach(Slur(), staff[:1])
             Traceback (most recent call last):
-            ...
+                ...
             Exception: Slur() attachment test fails for Selection([Note("c'4")]).
 
     Formats LilyPond ``(`` command on first leaf in spanner.

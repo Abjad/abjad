@@ -7,7 +7,7 @@ def sustain_every(indices, period, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Sustains every second division:
+        Sustains every second division:
 
         ::
 
@@ -15,10 +15,10 @@ def sustain_every(indices, period, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
-                    indices=(1,),
+                    indices=[1],
                     period=2,
                     ),
                 )
@@ -38,8 +38,7 @@ def sustain_every(indices, period, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -61,7 +60,7 @@ def sustain_every(indices, period, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Sustains every second and third division:
+        Sustains every second and third division:
 
         ::
 
@@ -69,10 +68,10 @@ def sustain_every(indices, period, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
-                    indices=(1, 2),
+                    indices=[1, 2],
                     period=3,
                     ),
                 )
@@ -92,8 +91,7 @@ def sustain_every(indices, period, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

@@ -4,36 +4,43 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Infinity(AbjadObject):
-    r'''Object-oriented infinity.
+    r'''Infinity.
 
-    All numbers compare less than infinity:
+    ..  container:: example
 
-    ::
+        All numbers compare less than infinity:
 
-        >>> 9999999 < Infinity
-        True
+        ::
 
-    ::
+            >>> 9999999 < Infinity
+            True
 
-        >>> 2**38 < Infinity
-        True
+        ::
 
-    Infinity compares equal to itself:
+            >>> 2**38 < Infinity
+            True
 
-    ::
+    ..  container:: example
 
-        >>> Infinity == Infinity
-        True
+        Infinity compares equal to itself:
 
-    Negative infinity compares less than infinity:
+        ::
 
-    ::
+            >>> Infinity == Infinity
+            True
 
-        >>> NegativeInfinity < Infinity
-        True
+    ..  container:: example
 
-    Infinity is initialized at start-up and is available in the
-    global Abjad namespace.
+        Negative infinity compares less than infinity:
+
+        ::
+
+            >>> NegativeInfinity < Infinity
+            True
+    
+    Initializes as a system singleton at start-up.
+
+    Available as a built-in after Abjad starts.
     '''
 
     ### CLASS VARIABLES ###
@@ -49,13 +56,13 @@ class Infinity(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is also infinity. Otherwise false.
+    def __eq__(self, argument):
+        r'''Is true when `argument` is also infinity. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            return self._value == expr._value
+        if isinstance(argument, type(self)):
+            return self._value == argument._value
         return False
 
     def __float__(self):
@@ -65,19 +72,19 @@ class Infinity(AbjadObject):
         '''
         return self._value
 
-    def __ge__(self, expr):
-        r''' True for all values of `expr`. Otherwise false.
+    def __ge__(self, argument):
+        r'''Is true for all values of `argument`.
+
+        Returns true.
+        '''
+        return self._value >= argument
+
+    def __gt__(self, argument):
+        r'''Is true for all noninfinite values of `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        return self._value >= expr
-
-    def __gt__(self, expr):
-        r'''True for all noninfinite values of `expr`. Otherwise false.
-
-        Returns true or false.
-        '''
-        return self._value > expr
+        return self._value > argument
 
     def __hash__(self):
         r'''Hashes infinity.
@@ -88,26 +95,26 @@ class Infinity(AbjadObject):
         '''
         return super(Infinity, self).__hash__()
 
-    def __le__(self, expr):
-        r'''Is true when `expr` is infinite. Otherwise false.
+    def __le__(self, argument):
+        r'''Is true when `argument` is infinite. Otherwise false.
 
         Returns true or false.
         '''
-        return self._value <= expr
+        return self._value <= argument
 
-    def __lt__(self, expr):
-        r'''True for no values of `expr`.
+    def __lt__(self, argument):
+        r'''Is true for no values of `argument`.
 
         Returns true or false.
         '''
-        return self._value < expr
+        return self._value < argument
 
-    def __sub__(self, expr):
-        r'''Subtracts `expr` from infinity.
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from infinity.
 
-        Returns infinity or 0 if `expr` is also infinity.
+        Returns infinity or 0 if `argument` is also infinity.
         '''
-        if expr is self:
+        if argument is self:
             return 0
         return self
 

@@ -7,7 +7,7 @@ class PitchClassVector(Vector):
 
     ..  container:: example
 
-        **Example 1.**
+        Pitch-class vector:
 
         ::
 
@@ -49,7 +49,7 @@ class PitchClassVector(Vector):
 
             ::
 
-                >>> print(format(vector))
+                >>> f(vector)
                 pitchtools.PitchClassVector(
                     {
                         pitchtools.NumberedPitchClass(0): 1,
@@ -75,8 +75,7 @@ class PitchClassVector(Vector):
 
         ..  container:: example
 
-            **Example 1.** Gets interpreter representation of pitch-class
-            vector:
+            Gets interpreter representation of pitch-class vector:
 
             ::
 
@@ -92,8 +91,7 @@ class PitchClassVector(Vector):
 
         ..  container:: example
 
-            **Example 2.** Initializes from interpreter representation of
-            pitch-class vector:
+            Initializes from interpreter representation of pitch-class vector:
 
 
                 >>> pitchtools.PitchClassVector(vector)
@@ -103,6 +101,23 @@ class PitchClassVector(Vector):
         '''
         superclass = super(PitchClassVector, self)
         return superclass.__repr__()
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitchClass
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitchClass
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.PitchClass
 
     ### PUBLIC METHODS ###
 
@@ -122,20 +137,3 @@ class PitchClassVector(Vector):
             pitch_segment,
             item_class=item_class,
             )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitchClass
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedPitchClass
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.PitchClass

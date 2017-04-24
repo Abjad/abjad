@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BendAfter(AbjadValueObject):
-    r'''A fall or doit.
+    r'''Fall or doit.
 
     ..  container:: example
 
@@ -73,23 +73,22 @@ class BendAfter(AbjadValueObject):
         '''
         return r"- \bendAfter #'{}".format(self.bend_amount)
 
-    ### PRIVATE METHODS ###
-
-    def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.articulations.append(str(self))
-        return lilypond_format_bundle
-
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
         return str(self.bend_amount)
 
-    @property
-    def _lilypond_format(self):
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
         return str(self)
+
+    def _get_lilypond_format_bundle(self, component=None):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle.right.articulations.append(str(self))
+        return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
 

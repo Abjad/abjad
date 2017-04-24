@@ -28,8 +28,7 @@ class SkipRhythmMaker(RhythmMaker):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 1/4
@@ -78,7 +77,7 @@ class SkipRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print(format(rhythm_maker))
+                >>> f(rhythm_maker)
                 rhythmmakertools.SkipRhythmMaker()
 
         Returns string.

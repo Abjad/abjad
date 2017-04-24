@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
-from abjad import Score, Staff, Voice
-from abjad.tools import abctools
+import abjad
 
 
-class ScoreTemplate(abctools.AbjadObject):
+class ScoreTemplate(abjad.abctools.AbjadObject):
+    r'''Score template.
+    '''
 
     def __call__(self):
-        voice = Voice(name='Example Voice')
-        staff = Staff([voice], name='Example Staff')
-        score = Score([staff], name='Example Score')
+        r'''Calls score template.
+
+        Returns score.
+        '''
+        voice = abjad.Voice(name='Example Voice')
+        staff = abjad.Staff([voice], name='Example Staff')
+        score = abjad.Score([staff], name='Example Score')
         return score

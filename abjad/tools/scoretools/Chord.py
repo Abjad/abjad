@@ -21,7 +21,7 @@ class Chord(Leaf):
 
         ..  doctest::
 
-            >>> print(format(chord))
+            >>> f(chord)
             <e' cs'' f''>4
 
     '''
@@ -122,6 +122,24 @@ class Chord(Leaf):
         Returns tuple.
         '''
         return (self.written_pitches, self.written_duration)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _compact_representation(self):
+        return '<{}>{}'.format(self._summary, self._formatted_duration)
+
+    @property
+    def _compact_representation_with_tie(self):
+        logical_tie = self._get_logical_tie()
+        if 1 < len(logical_tie) and self is not logical_tie[-1]:
+            return '{} ~'.format(self._body[0])
+        else:
+            return self._body[0]
+
+    @property
+    def _summary(self):
+        return ' '.join([str(x) for x in self.note_heads])
 
     ### PRIVATE METHODS ###
 
@@ -256,7 +274,7 @@ class Chord(Leaf):
         tremolo = inspect_(self).get_indicator(indicatortools.Tremolo)
         reattack_duration = self._get_tremolo_reattack_duration()
         repeat_count = self.written_duration / reattack_duration / 2
-        if not mathtools.is_integer_equivalent_expr(repeat_count):
+        if not mathtools.is_integer_equivalent(repeat_count):
             message = 'can not tremolo duration {} with {} beams.'
             message = message.format(self.written_duration, tremolo.beam_count)
             raise Exception(message)
@@ -264,10 +282,13 @@ class Chord(Leaf):
         command = r'\repeat tremolo {}'.format(repeat_count)
         return command
 
+    def _get_lilypond_format(self):
+        return super(Chord, self)._get_lilypond_format()
+
     def _get_sounding_pitches(self):
         from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
-        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
+        if 'sounding pitch' in inspect_(self).get_indicators(str):
             return self.written_pitches
         else:
             instrument = self._get_effective(
@@ -293,28 +314,6 @@ class Chord(Leaf):
         reattack_duration = durationtools.Duration(1, denominator)
         return reattack_duration
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_representation(self):
-        return '<{}>{}'.format(self._summary, self._formatted_duration)
-
-    @property
-    def _compact_representation_with_tie(self):
-        logical_tie = self._get_logical_tie()
-        if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            return '{} ~'.format(self._body[0])
-        else:
-            return self._body[0]
-
-    @property
-    def _lilypond_format(self):
-        return super(Chord, self)._lilypond_format
-
-    @property
-    def _summary(self):
-        return ' '.join([str(x) for x in self.note_heads])
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -323,7 +322,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 1.** Get note heads in chord:
+            **Example 1.** Get note-heads in chord:
 
             ::
 
@@ -332,7 +331,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> print(format(chord.note_heads))
+                >>> f(chord.note_heads)
                 scoretools.NoteHeadInventory(
                     [
                         scoretools.NoteHead(
@@ -349,7 +348,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 2.** Set note heads with pitch names:
+            **Example 2.** Set note-heads with pitch names:
 
             ::
 
@@ -363,12 +362,12 @@ class Chord(Leaf):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 <c' d' fs'>4
 
         ..  container:: example
 
-            **Example 3.** Set note heads with pitch numbers:
+            **Example 3.** Set note-heads with pitch numbers:
 
                 >>> chord = Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
@@ -380,10 +379,10 @@ class Chord(Leaf):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 <e'' f'' g''>4
 
-        Set note heads with any iterable.
+        Set note-heads with any iterable.
 
         Returns tuple.
         '''
@@ -452,7 +451,7 @@ class Chord(Leaf):
             ::
 
                 >>> chord.written_pitches
-                PitchSegment(["g'", "c''", "e''"])
+                PitchSegment("g' c'' e''")
 
         ..  container:: example
 
@@ -470,13 +469,13 @@ class Chord(Leaf):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 <f' b' d''>4
 
             ::
 
                 >>> chord.written_pitches
-                PitchSegment(["f'", "b'", "d''"])
+                PitchSegment("f' b' d''")
 
         Set written pitches with any iterable.
 

@@ -18,7 +18,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4
                 d'4
@@ -39,7 +39,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4
                 d'4
@@ -87,9 +87,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             ordered_npcs, item_class=pitchtools.NamedPitchClass)
         for x in range(len(ordered_npcs)):
             ordered_npcs = ordered_npcs.rotate(1)
-            segment = \
-                pitchtools.IntervalClassSegment(
-                    items=mathtools.difference_series(ordered_npcs),
+            segment = pitchtools.IntervalClassSegment(
+                    items=mathtools.difference_series(list(ordered_npcs)),
                     item_class=pitchtools.NamedInversionEquivalentIntervalClass,
                     )
             if segment.is_tertian:
@@ -425,8 +424,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         '''
         from abjad.tools import scoretools
         direction_string = None
-        for left, right in sequencetools.iterate_sequence_nwise(
-            iterate(self._client).by_class(scoretools.Note)):
+        notes = iterate(self._client).by_class(scoretools.Note)
+        for left, right in sequencetools.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -457,8 +456,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns true or false.
         '''
         from abjad.tools import scoretools
-        for left, right in sequencetools.iterate_sequence_nwise(
-            iterate(self._client).by_class(scoretools.Note)):
+        notes = iterate(self._client).by_class(scoretools.Note)
+        for left, right in sequencetools.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -495,8 +494,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns true or false.
         '''
         from abjad.tools import scoretools
-        for left, right in sequencetools.iterate_sequence_nwise(
-            iterate(self._client).by_class(scoretools.Note)):
+        notes = iterate(self._client).by_class(scoretools.Note)
+        for left, right in sequencetools.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -525,8 +524,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns true or false.
         '''
         from abjad.tools import scoretools
-        for left, right in sequencetools.iterate_sequence_nwise(
-            iterate(self._client).by_class(scoretools.Note)):
+        notes = iterate(self._client).by_class(scoretools.Note)
+        for left, right in sequencetools.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 hdi = pitchtools.NamedInterval.from_pitch_carriers(

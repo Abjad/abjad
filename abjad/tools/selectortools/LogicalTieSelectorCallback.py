@@ -6,7 +6,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class LogicalTieSelectorCallback(AbjadValueObject):
-    r'''A logical tie selector callback.
+    r'''Logical tie selector callback.
     '''
 
     ### CLASS VARIABLES ###
@@ -33,23 +33,23 @@ class LogicalTieSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         Returns tuple of selections.
         '''
-        assert isinstance(expr, tuple), repr(expr)
+        assert isinstance(argument, tuple), repr(argument)
         result = []
         if self.flatten:
             visited_logical_ties = set()
-            for subexpr in expr:
+            for subexpr in argument:
                 for logical_tie in self._iterate_expr(subexpr):
                     if logical_tie in visited_logical_ties:
                         continue
                     result.append(logical_tie)
                     visited_logical_ties.add(logical_tie)
         else:
-            for subexpr in expr:
+            for subexpr in argument:
                 subresult = []
                 visited_logical_ties = set()
                 for logical_tie in self._iterate_expr(subexpr):
@@ -63,13 +63,13 @@ class LogicalTieSelectorCallback(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _iterate_expr(self, expr):
+    def _iterate_expr(self, argument):
         from abjad.tools import scoretools
         prototype = scoretools.Leaf
         if self.pitched:
             prototype = (scoretools.Chord, scoretools.Note)
         current_tie_spanner = None
-        leaves = tuple(iterate(expr).by_class(prototype))
+        leaves = tuple(iterate(argument).by_class(prototype))
         for leaf in leaves:
             tie_spanners = tuple(leaf._get_spanners(spannertools.Tie))
             if not tie_spanners or \

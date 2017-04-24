@@ -63,13 +63,13 @@ class Block(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
+            return self._get_lilypond_format()
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, name):
-        r'''Gets block item with `name`.
+        r'''Gets item with `name`.
 
         ..  container:: example
 
@@ -86,12 +86,28 @@ class Block(AbjadObject):
                 >>> block['Red Example Score']
                 Score(is_simultaneous=True)
 
+        Returns item.
+
         Raises key error when no item with `name` is found.
         '''
         for item in self.items:
             if getattr(item, 'name', None) == name:
                 return item
         raise KeyError
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _formatted_context_blocks(self):
+        from abjad.tools import lilypondfiletools
+        result = []
+        context_blocks = []
+        for item in self.items:
+            if isinstance(item, lilypondfiletools.ContextBlock):
+                context_blocks.append(item)
+        for context_block in context_blocks:
+            result.extend(context_block._get_format_pieces())
+        return result
 
     ### PRIVATE METHODS ###
 
@@ -120,10 +136,10 @@ class Block(AbjadObject):
         from abjad.tools import systemtools
         indent = systemtools.LilyPondFormatManager.indent
         result = []
-        if not self._get_formatted_user_attributes() and \
-            not getattr(self, 'contexts', None) and \
-            not getattr(self, 'context_blocks', None) and \
-            not len(self.items):
+        if (not self._get_formatted_user_attributes() and
+            not getattr(self, 'contexts', None) and
+            not getattr(self, 'context_blocks', None) and
+            not len(self.items)):
             if self.name == 'score':
                 return ''
             string = '{} {{}}'.format(self._escaped_name)
@@ -143,12 +159,11 @@ class Block(AbjadObject):
         result.extend(formatted_attributes)
         formatted_context_blocks = getattr(
             self, '_formatted_context_blocks', [])
-        formatted_context_blocks = [indent + x for x in formatted_context_blocks]
+        formatted_context_blocks = [
+            indent + x for x in formatted_context_blocks]
         result.extend(formatted_context_blocks)
         result.append('}')
         return result
-
-    ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         return systemtools.FormatSpecification(
@@ -203,30 +218,8 @@ class Block(AbjadObject):
                 result.extend(formatted_value[1:])
         return result
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _formatted_context_blocks(self):
-        from abjad.tools import lilypondfiletools
-        result = []
-        context_blocks = []
-        for item in self.items:
-            if isinstance(item, lilypondfiletools.ContextBlock):
-                context_blocks.append(item)
-        for context_block in context_blocks:
-            result.extend(context_block._get_format_pieces())
-        return result
-
-    @property
-    def _lilypond_format(self):
+    def _get_lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
-
-    @property
-    def _user_attributes(self):
-        all_attributes = list(vars(self).keys())
-        user_attributes = [x for x in all_attributes if not x.startswith('_')]
-        user_attributes.sort()
-        return user_attributes
 
     ### PUBLIC PROPERTIES ###
 
@@ -245,7 +238,7 @@ class Block(AbjadObject):
             ::
 
                 >>> block.items
-                [Markup(contents=('foo',))]
+                [Markup(contents=['foo'])]
 
         Returns list.
         '''

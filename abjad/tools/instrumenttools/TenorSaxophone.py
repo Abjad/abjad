@@ -17,7 +17,7 @@ class TenorSaxophone(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { "Tenor saxophone" }
             \set Staff.shortInstrumentName = \markup { "Ten. sax." }
@@ -74,7 +74,7 @@ class TenorSaxophone(Instrument):
             ::
 
                 >>> tenor_saxophone.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 
@@ -108,7 +108,7 @@ class TenorSaxophone(Instrument):
             ::
 
                 >>> tenor_saxophone.instrument_name_markup
-                Markup(contents=('Tenor saxophone',))
+                Markup(contents=['Tenor saxophone'])
 
             ::
 
@@ -161,7 +161,7 @@ class TenorSaxophone(Instrument):
             ::
 
                 >>> tenor_saxophone.short_instrument_name_markup
-                Markup(contents=('Ten. sax.',))
+                Markup(contents=['Ten. sax.'])
 
             ::
 

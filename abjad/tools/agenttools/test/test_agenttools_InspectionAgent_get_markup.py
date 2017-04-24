@@ -19,8 +19,14 @@ def test_agenttools_InspectionAgent_get_markup_01():
                 - \markup {
                     \column
                         {
-                            foo
-                            bar
+                            \line
+                                {
+                                    foo
+                                }
+                            \line
+                                {
+                                    bar
+                                }
                         }
                     }
             d'8

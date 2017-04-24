@@ -41,8 +41,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 5/16
@@ -317,20 +316,16 @@ class IncisedRhythmMaker(RhythmMaker):
         middle = numerator - prefix_weight - suffix_weight
         if numerator < prefix_weight:
             weights = [numerator]
-            prefix = sequencetools.split_sequence(
-                prefix, weights, cyclic=False, overhang=False)[0]
+            prefix = sequencetools.Sequence(prefix)
+            prefix = prefix.split(weights, cyclic=False, overhang=False)[0]
         middle = self._make_middle_of_numeric_map_part(middle)
         suffix_space = numerator - prefix_weight
         if suffix_space <= 0:
             suffix = ()
         elif suffix_space < suffix_weight:
             weights = [suffix_space]
-            suffix = sequencetools.split_sequence(
-                suffix,
-                weights,
-                cyclic=False,
-                overhang=False,
-                )[0]
+            suffix = sequencetools.Sequence(suffix)
+            suffix = suffix.split(weights, cyclic=False, overhang=False)[0]
         numeric_map_part = prefix + middle + suffix
         return [durationtools.Duration(x) for x in numeric_map_part]
 
@@ -487,7 +482,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No division masks:
+            No division masks:
 
             ::
 
@@ -511,8 +506,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -540,7 +534,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Masks every other output division:
+            Masks every other output division:
 
             ::
 
@@ -570,8 +564,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -606,7 +599,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Spells durations with the fewest number of glyphs:
+            Spells durations with the fewest number of glyphs:
 
             ::
 
@@ -633,8 +626,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -655,8 +647,8 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Forbids notes with written duration greater than or
-            equal to ``1/2``:
+            Forbids notes with written duration greater than or equal to
+            ``1/2``:
 
             ::
 
@@ -686,8 +678,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -712,8 +703,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Spells all divisions metrically when
-            `spell_metrically` is true:
+            Spells all divisions metrically when `spell_metrically` is true:
 
             ::
 
@@ -743,8 +733,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -767,7 +756,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Spells only unassignable durations metrically when
+            Spells only unassignable durations metrically when
             `spell_metrically` is ``'unassignable'``:
 
             ::
@@ -798,8 +787,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -820,7 +808,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Rewrites meter:
+            Rewrites meter:
 
             ::
 
@@ -850,8 +838,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -881,7 +868,8 @@ class IncisedRhythmMaker(RhythmMaker):
 
         Returns tuple or none.
         '''
-        return self._extra_counts_per_division
+        if self._extra_counts_per_division:
+            return list(self._extra_counts_per_division)
 
     @property
     def helper_functions(self):
@@ -897,7 +885,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Doesn't incise:
+            Doesn't incise:
 
             ::
 
@@ -915,8 +903,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -935,8 +922,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Fills divisions with notes. 
-            Incises outer divisions only:
+            Fills divisions with notes. Incises outer divisions only:
 
             ::
 
@@ -964,8 +950,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -989,8 +974,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Fills divisions with rests. Incises outer divisions
-            only:
+            Fills divisions with rests. Incises outer divisions only:
 
             ::
 
@@ -1019,8 +1003,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -1052,7 +1035,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No logical tie masks:
+            No logical tie masks:
 
             ::
 
@@ -1079,8 +1062,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1105,7 +1087,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every other logical tie:
+            Silences every other logical tie:
 
             ::
 
@@ -1135,8 +1117,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1175,7 +1156,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Does not replace rests with skips:
+            Does not replace rests with skips:
 
             ::
 
@@ -1201,8 +1182,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1230,7 +1210,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Does replace rests with skips:
+            Does replace rests with skips:
 
             ::
 
@@ -1256,8 +1236,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1306,7 +1285,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Does not tie across divisions:
+            Does not tie across divisions:
 
             ::
 
@@ -1333,8 +1312,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -1353,11 +1331,9 @@ class IncisedRhythmMaker(RhythmMaker):
                     }
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Ties across divisions:
+            Ties across divisions:
 
             ::
 
@@ -1387,8 +1363,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -1409,7 +1384,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Patterns ties across divisions:
+            Patterns ties across divisions:
 
             ::
 
@@ -1443,8 +1418,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -1465,7 +1439,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Uses Messiaen-style ties:
+            Uses Messiaen-style ties:
 
             ::
 
@@ -1496,8 +1470,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -1518,7 +1491,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** Strips all ties:
+            Strips all ties:
 
             ::
 
@@ -1548,8 +1521,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -1570,8 +1542,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 6.** Spells durations metrically and then strips all
-            ties:
+            Spells durations metrically and then strips all ties:
 
             ::
 
@@ -1604,8 +1575,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 8/8
@@ -1625,8 +1595,6 @@ class IncisedRhythmMaker(RhythmMaker):
                         r8
                     }
                 }
-
-        Defaults to none.
 
         Set to tie specifier or none.
 

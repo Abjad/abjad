@@ -17,7 +17,7 @@ class AltoSaxophone(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { "Alto saxophone" }
             \set Staff.shortInstrumentName = \markup { "Alt. sax." }
@@ -82,12 +82,12 @@ class AltoSaxophone(Instrument):
                     instrument_name='alto saxophone',
                     short_instrument_name='alt. sax.',
                     instrument_name_markup=markuptools.Markup(
-                        contents=('Alto saxophone',),
+                        contents=['Alto saxophone'],
                         ),
                     short_instrument_name_markup=markuptools.Markup(
-                        contents=('Alt. sax.',),
+                        contents=['Alt. sax.'],
                         ),
-                    allowable_clefs=indicatortools.ClefInventory(
+                    allowable_clefs=instrumenttools.ClefList(
                         [
                             indicatortools.Clef(
                                 name='treble',
@@ -116,7 +116,7 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_saxophone.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 
@@ -150,7 +150,7 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_saxophone.instrument_name_markup
-                Markup(contents=('Alto saxophone',))
+                Markup(contents=['Alto saxophone'])
 
             ::
 
@@ -203,7 +203,7 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_saxophone.short_instrument_name_markup
-                Markup(contents=('Alt. sax.',))
+                Markup(contents=['Alt. sax.'])
 
             ::
 

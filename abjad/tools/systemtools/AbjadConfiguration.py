@@ -20,35 +20,38 @@ class AbjadConfiguration(Configuration):
             >>> abjad_configuration['accidental_spelling']
             'mixed'
 
-    `AbjadConfiguration` creates the `$HOME/.abjad/` directory
-    on instantiation.
+    ..  container:: example
 
-    `AbjadConfiguration` then attempts to read an `abjad.cfg` file in
-    that directory and parse the file as a `ConfigParser` configuration.
+        Behavior at instantiation:
 
-    `AbjadConfiguration` generates a default configuration if no file
-    is found.
+        * Looks for ``$HOME/.abjad/``.
 
-    `AbjadConfiguration` validates the `ConfigParser` instance
-    and replaces key-value pairs which fail validation with default values.
+        * Creates ``$HOME/.abjad/`` if directory does not exist.
+        
+        * Looks for ``$HOME/.abjad/abjad.cfg``.
+        
+        * Creates ``$HOME/.abjad/abjad.cfg`` if file does not exist.
 
-    If the validated configuration differs from the original on disk,
-    `AbjadConfiguration` writes the validated configuration back to disk.
+        * Parses ``$HOME/.abjad/abjad.cfg``.
 
-    The Abjad output directory is created the from
-    `abjad_output_directory` key if it does not already exist.
+        * Provides default key-value pairs for pairs which fail validation.
 
-    `AbjadConfiguration` supports the mutable mapping interface
-    and can be subscripted as a dictionary.
+        * Writes configuration changes to disk.
+
+        * Creates Abjad output directory if directory does not exist.
+
+    Supports mutable mapping dictionary interface.
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'System configuration'
 
-    _lilypond_version_string = None  # For caching.
+    # for caching
+    _lilypond_version_string = None
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

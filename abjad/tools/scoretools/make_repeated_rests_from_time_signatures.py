@@ -5,14 +5,14 @@ from abjad.tools import selectiontools
 def make_repeated_rests_from_time_signatures(time_signatures):
     r'''Make repeated rests from `time_signatures`:
 
-    ::
+    ..  container:: example
 
-        scoretools.make_repeated_rests_from_time_signatures([(2, 8), (3, 32)])
-        [[Rest('r8'), Rest('r8')], [Rest('r32'), Rest('r32'), Rest('r32')]]
+        ::
+
+            scoretools.make_repeated_rests_from_time_signatures([(2, 8), (3, 32)])
+            [[Rest('r8'), Rest('r8')], [Rest('r32'), Rest('r32'), Rest('r32')]]
 
     Returns two-dimensional list of newly constructed rest lists.
-
-    Use ``sequencetools.flatten_sequence()`` to flatten output if required.
     '''
     from abjad.tools import scoretools
 

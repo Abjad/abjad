@@ -51,7 +51,7 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical_voice_02():
-    r'''True for strictly contiguous leaves in same staff.
+    r'''Is true for strictly contiguous leaves in same staff.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -59,8 +59,9 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical_voice_03():
-    r'''True for orphan components when allow_orphans is True.
-        False for orphan components when allow_orphans is False.'''
+    r'''Is true for orphan components when allow_orphans is true.
+    Is false for orphan components when allow_orphans is False.
+    '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     assert Selection._all_are_contiguous_components_in_same_logical_voice(notes)
@@ -68,7 +69,7 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical_voice_04():
-    r'''False for time reordered leaves in staff.
+    r'''Is false for time-reordered leaves in staff.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -76,14 +77,14 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical_voice_05():
-    r'''True for unincorporated component.
+    r'''Is true for unincorporated component.
     '''
 
     assert Selection._all_are_contiguous_components_in_same_logical_voice([Staff("c'8 d'8 e'8 f'8")])
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical_voice_06():
-    r'''True for empty list.
+    r'''Is true for empty list.
     '''
 
     assert Selection._all_are_contiguous_components_in_same_logical_voice([])

@@ -3,42 +3,44 @@ import itertools
 
 
 def yield_all_compositions_of_integer(n):
-    r'''Yields all compositions of positive integer `n`
-    in descending lex order:
+    r'''Yields all compositions of positive integer `n`.
 
-    ::
+    ..  container:: example
 
-        >>> for integer_composition in mathtools.yield_all_compositions_of_integer(5):
-        ...     integer_composition
-        ...
-        (5,)
-        (4, 1)
-        (3, 2)
-        (3, 1, 1)
-        (2, 3)
-        (2, 2, 1)
-        (2, 1, 2)
-        (2, 1, 1, 1)
-        (1, 4)
-        (1, 3, 1)
-        (1, 2, 2)
-        (1, 2, 1, 1)
-        (1, 1, 3)
-        (1, 1, 2, 1)
-        (1, 1, 1, 2)
-        (1, 1, 1, 1, 1)
+        ::
 
-    Integer compositions are ordered integer partitions.
+            >>> for tuple_ in mathtools.yield_all_compositions_of_integer(5):
+            ...     tuple_
+            ...
+            (5,)
+            (4, 1)
+            (3, 2)
+            (3, 1, 1)
+            (2, 3)
+            (2, 2, 1)
+            (2, 1, 2)
+            (2, 1, 1, 1)
+            (1, 4)
+            (1, 3, 1)
+            (1, 2, 2)
+            (1, 2, 1, 1)
+            (1, 1, 3)
+            (1, 1, 2, 1)
+            (1, 1, 1, 2)
+            (1, 1, 1, 1, 1)
 
-    Returns generator of positive integer tuples of length at least ``1``.
+    Lists parts in descending lex order.
+
+    Parts sum to `n`.
+
+    Finds small values of `n` easily.
+
+    Takes around 4 seconds for `n` equal to 17.
+
+    Returns integer tuple generator.
     '''
     from abjad.tools import mathtools
-
-    # Finds small values of n easily.
-    # Takes ca. 4 seconds for n = 17.
-
     compositions = []
-
     x = 0
     string_length = n
     while x < 2 ** (n - 1):
@@ -53,6 +55,5 @@ def yield_all_compositions_of_integer(n):
         composition = tuple(sublengths)
         compositions.append(composition)
         x += 1
-
     for composition in reversed(sorted(compositions)):
         yield composition

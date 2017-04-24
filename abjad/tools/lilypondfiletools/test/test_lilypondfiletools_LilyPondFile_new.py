@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_lilypondfiletools_make_basic_lily_file_01():
+def test_lilypondfiletools_LilyPondFile_new_01():
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
     lilypond_file = lilypondfiletools.LilyPondFile.new(
@@ -16,7 +16,7 @@ def test_lilypondfiletools_make_basic_lily_file_01():
     lilypond_file.paper_block.top_margin = 15
     lilypond_file.paper_block.left_margin = 15
 
-    assert lilypond_file.score_block.items[0] is score
+    assert lilypond_file[Score] is score
 
     assert format(lilypond_file) == stringtools.normalize(
         r'''

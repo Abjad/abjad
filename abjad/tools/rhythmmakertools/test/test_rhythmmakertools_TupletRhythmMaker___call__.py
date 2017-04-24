@@ -13,7 +13,7 @@ def test_rhythmmakertools_TupletRhythmMaker___call___01():
 
     divisions = [(1, 5), (1, 4), (1, 6), (7, 9)]
     tuplet_lists = maker(divisions)
-    tuplets = sequencetools.flatten_sequence(tuplet_lists)
+    tuplets = Sequence(tuplet_lists).flatten()
     staff = Staff(tuplets)
 
     assert format(staff) == stringtools.normalize(

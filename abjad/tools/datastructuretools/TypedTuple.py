@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import new
 
 
 class TypedTuple(TypedCollection):
-    r'''A typed tuple.
+    r'''Typed tuple.
     '''
 
     ### CLASS VARIABLES ###
@@ -15,7 +15,11 @@ class TypedTuple(TypedCollection):
 
     ### INITIALIZER ###
 
-    def __init__(self, items=None, item_class=None):
+    def __init__(
+        self,
+        items=None,
+        item_class=None,
+        ):
         TypedCollection.__init__(
             self,
             item_class=item_class,
@@ -27,22 +31,23 @@ class TypedTuple(TypedCollection):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
-        r'''Adds typed tuple to `expr`.
+    def __add__(self, argument):
+        r'''Adds typed tuple to `argument`.
 
         Returns new typed tuple.
         '''
-        if isinstance(expr, type(self)):
-            items = expr._collection
+        if isinstance(argument, type(self)):
+            items = argument._collection
             return new(self, items=self._collection[:] + items)
-        elif isinstance(expr, type(self._collection)):
-            items = expr[:]
+        elif isinstance(argument, type(self._collection)):
+            items = argument[:]
             return new(self, items=self._collection[:] + items)
         raise NotImplementedError
 
     def __contains__(self, item):
-        r'''Change `item` to item and return true if item exists in
-        collection.
+        r'''Is true if typed tuple contains `item`.
+
+        Coerces `item`.
 
         Returns none.
         '''
@@ -52,21 +57,16 @@ class TypedTuple(TypedCollection):
             return False
         return self._collection.__contains__(item)
 
-    def __getitem__(self, i):
-        '''Gets `i` from type tuple.
+    def __getitem__(self, argument):
+        '''Gets item or slice identified by `argument`.
 
-        Returns item.
+        Returns item or new typed tuple.
         '''
-        if type(i) == slice:
-            return self.__getslice__(i.start, i.stop)
-        return self._collection[i]
-
-    def __getslice__(self, start, stop):
-        r'''Gets slice from `start` to `stop` in typed tuple.
-
-        Returns new typed tuple.
-        '''
-        return new(self, items=self._collection[start:stop])
+        item = self._collection.__getitem__(argument)
+        try:
+            return type(self)(item)
+        except TypeError:
+            return item
 
     def __hash__(self):
         r'''Hashes typed tuple.
@@ -79,41 +79,48 @@ class TypedTuple(TypedCollection):
             self.item_class,
             ))
 
-    def __mul__(self, expr):
-        r'''Multiplies typed tuple by `expr`.
+    def __mul__(self, argument):
+        r'''Multiplies typed tuple by `argument`.
 
         Returns new typed tuple.
         '''
-        items = self._collection * expr
+        items = self._collection * argument
         return new(self, items=items)
 
-    def __radd__(self, expr):
-        r'''Right-adds `expr` to typed tuple.
+    def __radd__(self, argument):
+        r'''Right-adds `argument` to typed tuple.
         '''
-        items = expr + self._collection
+        items = argument + self._collection
         return new(self, items=items)
 
-    def __rmul__(self, expr):
-        r'''Multiplies `expr` by typed tuple.
+    def __rmul__(self, argument):
+        r'''Multiplies `argument` by typed tuple.
 
         Returns new typed tuple.
         '''
-        return self.__mul__(expr)
+        return self.__mul__(argument)
 
     ### PUBLIC METHODS ###
 
     def count(self, item):
-        r'''Changes `item` to item.
+        r'''Counts `item` in collection.
 
-        Returns count in collection.
+        Coerces `item`.
+
+        Returns nonnegative integer.
         '''
-        item = self._item_coercer(item)
+        try:
+            item = self._item_coercer(item)
+        except TypeError:
+            return 0
         return self._collection.count(item)
 
     def index(self, item):
-        r'''Changes `item` to item.
+        r'''Gets index of `item` in collection.
 
-        Returns index in collection.
+        Coerces `item`.
+
+        Returns nonnegative integer.
         '''
         item = self._item_coercer(item)
         return self._collection.index(item)

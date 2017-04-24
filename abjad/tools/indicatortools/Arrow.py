@@ -3,7 +3,7 @@ from abjad.tools.indicatortools.LineSegment import LineSegment
 
 
 class Arrow(LineSegment):
-    r'''An arrow.
+    r'''Arrow.
 
     ..  container:: example
 
@@ -848,12 +848,12 @@ class Arrow(LineSegment):
                         arrow_width=0.25,
                         dash_fraction=1,
                         left_broken_text=markuptools.Markup(
-                            contents=(
+                            contents=[
                                 markuptools.MarkupCommand(
                                     'upright',
                                     '(pont./ord.)'
                                     ),
-                                ),
+                                ],
                             ),
                         left_hspace=0.25,
                         left_stencil_align_direction_y=Center,

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 
 
 def test_scoretools_make_repeated_skips_from_time_signatures_01():
@@ -10,7 +9,7 @@ def test_scoretools_make_repeated_skips_from_time_signatures_01():
     rests = scoretools.make_repeated_rests_from_time_signatures([(2, 8), (3, 32)])
     assert len(rests) == 2
 
-    rests = sequencetools.flatten_sequence(rests)
+    rests = Sequence(rests).flatten()
     staff = Staff(rests)
 
     r'''

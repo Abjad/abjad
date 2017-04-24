@@ -51,8 +51,8 @@ class TreeContainer(TreeNode):
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, expr):
-        r'''True if expr is in container. Otherwise false:
+    def __contains__(self, argument):
+        r'''True if argument is in container. Otherwise false:
 
         ::
 
@@ -74,7 +74,7 @@ class TreeContainer(TreeNode):
         Returns true or false.
         '''
         for x in self._children:
-            if x is expr:
+            if x is argument:
                 return True
         return False
 
@@ -120,8 +120,8 @@ class TreeContainer(TreeNode):
             node._set_parent(None)
         self._mark_entire_tree_for_later_update()
 
-    def __getitem__(self, i):
-        r'''Gets node `i` in tree container.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         ::
 
@@ -185,13 +185,13 @@ class TreeContainer(TreeNode):
 
         Return `TreeNode` instance.
         '''
-        if isinstance(i, (int, slice)):
-            return self._children[i]
-        elif isinstance(i, str):
-            children = self._named_children[i]
+        if isinstance(argument, (int, slice)):
+            return self._children.__getitem__(argument)
+        elif isinstance(argument, str):
+            children = self._named_children.__getitem__(argument)
             if 1 == len(children):
                 return tuple(children)[0]
-        raise ValueError(repr(i))
+        raise ValueError(repr(argument))
 
     def __iter__(self):
         r'''Iterates tree container.
@@ -206,10 +206,10 @@ class TreeContainer(TreeNode):
         '''
         return len(self._children)
 
-    def __setitem__(self, i, expr):
-        r'''Sets `expr` in self at nonnegative integer index `i`, or set `expr`
-        in self at slice i. Replace contents of `self[i]` with `expr`.
-        Attach parentage to contents of `expr`, and detach parentage
+    def __setitem__(self, i, argument):
+        r'''Sets `argument` in self at nonnegative integer index `i`, or set `argument`
+        in self at slice i. Replace contents of `self[i]` with `argument`.
+        Attach parentage to contents of `argument`, and detach parentage
         of any replaced nodes:
 
         ::
@@ -254,30 +254,30 @@ class TreeContainer(TreeNode):
         proper_parentage = self.proper_parentage
 
         if isinstance(i, int):
-            assert isinstance(expr, self._node_class)
+            assert isinstance(argument, self._node_class)
             old = self[i]
-            assert expr not in proper_parentage
+            assert argument not in proper_parentage
             old._set_parent(None)
-            expr._set_parent(self)
-            self._children.insert(i, expr)
+            argument._set_parent(self)
+            self._children.insert(i, argument)
         else:
-            if isinstance(expr, TreeContainer):
+            if isinstance(argument, TreeContainer):
                 # Prevent mutating while iterating by copying.
-                expr = expr[:]
-            assert all(isinstance(x, self._node_class) for x in expr)
+                argument = argument[:]
+            assert all(isinstance(x, self._node_class) for x in argument)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0
             else:
                 start, stop, stride = i.indices(len(self))
             old = self[start:stop]
-            for node in expr:
+            for node in argument:
                 assert node not in proper_parentage
             for node in old:
                 node._set_parent(None)
-            for node in expr:
+            for node in argument:
                 node._set_parent(self)
-            self._children.__setitem__(slice(start, start), expr)
+            self._children.__setitem__(slice(start, start), argument)
         self._mark_entire_tree_for_later_update()
 
     ### PRIVATE METHODS ###
@@ -295,6 +295,7 @@ class TreeContainer(TreeNode):
             storage_format_kwargs_names=names,
             template_names=template_names,
             )
+
     ### PUBLIC METHODS ###
 
     def append(self, node):
@@ -339,8 +340,8 @@ class TreeContainer(TreeNode):
             [node]
             )
 
-    def extend(self, expr):
-        r'''Extendes `expr` against tree container.
+    def extend(self, argument):
+        r'''Extendes `argument` against tree container.
 
         ::
 
@@ -368,7 +369,7 @@ class TreeContainer(TreeNode):
         '''
         self.__setitem__(
             slice(len(self), len(self)),
-            expr
+            argument
             )
 
     def index(self, node):

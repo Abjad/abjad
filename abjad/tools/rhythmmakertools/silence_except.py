@@ -8,7 +8,7 @@ def silence_except(indices=None):
 
     ..  container:: example
 
-        **Example 1.** Silences divisions except 1 and 2:
+        Silences divisions except 1 and 2:
 
         ::
 
@@ -16,10 +16,10 @@ def silence_except(indices=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(1, 2),
+                    indices=[1, 2],
                     inverted=True,
                     ),
                 )
@@ -39,8 +39,8 @@ def silence_except(indices=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> staff = lilypond_file[Staff]
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -62,7 +62,7 @@ def silence_except(indices=None):
 
     ..  container:: example
 
-        **Example 2.** Silences divisions except -1 and -2:
+        Silences divisions except -1 and -2:
 
         ::
 
@@ -70,10 +70,10 @@ def silence_except(indices=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(-1, -2),
+                    indices=[-1, -2],
                     inverted=True,
                     ),
                 )
@@ -95,8 +95,7 @@ def silence_except(indices=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -118,7 +117,7 @@ def silence_except(indices=None):
 
     ..  container:: example
 
-        **Example 3.** Works with pattern input:
+        Works with pattern input:
 
         ::
 
@@ -130,19 +129,19 @@ def silence_except(indices=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=1,
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             ),
                         patterntools.Pattern(
-                            indices=(-1,),
+                            indices=[-1],
                             ),
                         ),
                     inverted=True,
@@ -167,8 +166,7 @@ def silence_except(indices=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

@@ -10,12 +10,10 @@ class Talea(AbjadValueObject):
 
     ..  container:: example
 
-        **Example.**
-
         ::
 
             >>> talea = rhythmmakertools.Talea(
-            ...    counts=(2, 1, 3, 2, 4, 1, 1),
+            ...    counts=[2, 1, 3, 2, 4, 1, 1],
             ...    denominator=16,
             ...    )
 
@@ -50,17 +48,17 @@ class Talea(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __getitem__(self, item):
-        r'''Gets nonreduced fraction at `item` cyclically.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         ..  container:: example
 
-            **Example 1.** Gets item at index:
+            Gets item at index:
 
             ::
 
                 >>> talea = rhythmmakertools.Talea(
-                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
 
@@ -71,7 +69,7 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets items in slice:
+            Gets items in slice:
 
             ::
 
@@ -88,27 +86,27 @@ class Talea(AbjadValueObject):
         Returns nonreduced fraction or nonreduced fractions.
         '''
         counts = datastructuretools.CyclicTuple(self.counts)
-        if isinstance(item, int):
-            count = counts[item]
+        if isinstance(argument, int):
+            count = counts.__getitem__(argument)
             return mathtools.NonreducedFraction(count, self.denominator)
-        elif isinstance(item, slice):
-            counts = counts[item]
-            result = [mathtools.NonreducedFraction(count, self.denominator)
-                for count in counts]
+        elif isinstance(argument, slice):
+            counts = counts.__getitem__(argument)
+            result = [
+                mathtools.NonreducedFraction(count, self.denominator)
+                for count in counts
+                ]
             return result
-        raise ValueError(item)
+        raise ValueError(argument)
 
     def __iter__(self):
         r'''Iterates talea.
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> talea = rhythmmakertools.Talea(
-                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
 
@@ -136,12 +134,10 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> talea = rhythmmakertools.Talea(
-                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
 
@@ -164,27 +160,26 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> talea = rhythmmakertools.Talea(
-                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
 
             ::
 
                 >>> talea.counts
-                (2, 1, 3, 2, 4, 1, 1)
+                [2, 1, 3, 2, 4, 1, 1]
 
         Set to integers.
 
-        Defaults to `(1,)`.
+        Defaults to `[1]`.
 
         Returns tuple.
         '''
-        return self._counts
+        if self._counts:
+            return list(self._counts)
 
     @property
     def denominator(self):
@@ -192,12 +187,10 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> talea = rhythmmakertools.Talea(
-                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
 

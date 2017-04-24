@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class Postscript(AbjadValueObject):
-    r'''A Postscript session.
+    r'''Postscript session.
 
     ..  note::
 
@@ -95,14 +95,14 @@ class Postscript(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
-        r'''Adds postscript to `expr`.
+    def __add__(self, argument):
+        r'''Adds postscript to `argument`.
 
         Returns new postscript.
         '''
-        assert isinstance(expr, type(self))
+        assert isinstance(argument, type(self))
         self_operators = self.operators or ()
-        expr_operators = expr.operators or ()
+        expr_operators = argument.operators or ()
         operators = self_operators + expr_operators
         operators = operators or None
         return type(self)(operators)
@@ -112,8 +112,8 @@ class Postscript(AbjadValueObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import markuptools
-        markup = markuptools.Markup.postscript(self)
+        import abjad
+        markup = abjad.Markup.postscript(self)
         return markup.__illustrate__()
 
     def __str__(self):

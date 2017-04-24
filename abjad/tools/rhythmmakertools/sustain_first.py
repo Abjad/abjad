@@ -7,7 +7,7 @@ def sustain_first(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 1.** Sustains first division:
+        Sustains first division:
 
         ::
 
@@ -15,10 +15,10 @@ def sustain_first(n=1, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
-                    indices=(0,),
+                    indices=[0],
                     ),
                 )
 
@@ -38,8 +38,7 @@ def sustain_first(n=1, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -83,7 +82,7 @@ def sustain_first(n=1, inverted=None):
 
     ..  container:: example
 
-        **Example 2.** Sustains first two divisions:
+        Sustains first two divisions:
 
         ::
 
@@ -91,10 +90,10 @@ def sustain_first(n=1, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
-                    indices=(0, 1),
+                    indices=[0, 1],
                     ),
                 )
 
@@ -114,8 +113,7 @@ def sustain_first(n=1, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

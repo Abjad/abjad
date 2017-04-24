@@ -17,7 +17,7 @@ class Flute(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Flute }
             \set Staff.shortInstrumentName = \markup { Fl. }
@@ -74,7 +74,7 @@ class Flute(Instrument):
             ::
 
                 >>> flute.allowable_clefs
-                ClefInventory([Clef(name='treble')])
+                ClefList([Clef(name='treble')])
 
             ::
 
@@ -108,7 +108,7 @@ class Flute(Instrument):
             ::
 
                 >>> flute.instrument_name_markup
-                Markup(contents=('Flute',))
+                Markup(contents=['Flute'])
 
             ::
 
@@ -161,7 +161,7 @@ class Flute(Instrument):
             ::
 
                 >>> flute.short_instrument_name_markup
-                Markup(contents=('Fl.',))
+                Markup(contents=['Fl.'])
 
             ::
 

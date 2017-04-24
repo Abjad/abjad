@@ -1,46 +1,47 @@
 # -*- coding: utf-8 -*-
+import collections
 import numbers
 
 
-def are_relatively_prime(numbers_):
-    '''Is true when `numbers_` is a sequence comprising zero or more numbers,
-    all of which are relatively prime.
+def are_relatively_prime(argument):
+    '''Is true when `argument` is an iterable collection of relative primes.
+    Otherwise false.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.are_relatively_prime([13, 14, 15])
-        True
+        ::
 
-    Otherwise false:
+            >>> mathtools.are_relatively_prime([13, 14, 15])
+            True
 
-    ::
+        ::
 
-        >>> mathtools.are_relatively_prime([13, 14, 15, 16])
-        False
+            >>> mathtools.are_relatively_prime([13, 14, 15, 16])
+            False
 
-    Returns true when `numbers_` is an empty sequence:
+        ::
 
-    ::
+            >>> mathtools.are_relatively_prime('text')
+            False
 
-        >>> mathtools.are_relatively_prime([])
-        True
+    ..  container:: example
 
-    Returns false when `numbers_` is nonsensical type:
+        Returns true when `argument` is empty:
 
-    ::
+        ::
 
-        >>> mathtools.are_relatively_prime('foo')
-        False
+            >>> mathtools.are_relatively_prime([])
+            True
 
     Returns true or false.
     '''
     from abjad.tools import mathtools
-
-    if not all(isinstance(_, numbers.Number) for _ in numbers_):
+    if not isinstance(argument, collections.Iterable):
         return False
-
+    if not all(isinstance(_, numbers.Number) for _ in argument):
+        return False
     all_factors = set([])
-    for number in numbers_:
+    for number in argument:
         current_factors = mathtools.factors(number)
         current_factors = set(current_factors)
         if all_factors & current_factors:

@@ -3,31 +3,33 @@ import numbers
 
 
 def integer_equivalent_number_to_integer(number):
-    '''Integer-equivalent `number` to integer.
+    '''Changes integer-equivalent `number` to integer.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.integer_equivalent_number_to_integer(17.0)
-        17
+        Returns integer-equivalent number as integer:
 
-    Returns noninteger-equivalent number unchanged:
+        ::
 
-    ::
+            >>> mathtools.integer_equivalent_number_to_integer(17.0)
+            17
 
-        >>> mathtools.integer_equivalent_number_to_integer(17.5)
-        17.5
+    ..  container:: example
 
-    Raises type error on nonnumber input.
+        Returns noninteger-equivalent number unchanged:
+
+        ::
+
+            >>> mathtools.integer_equivalent_number_to_integer(17.5)
+            17.5
 
     Returns number.
     '''
     from abjad.tools import mathtools
-
     if not isinstance(number, numbers.Number):
         message = 'must be number: {!r}.'
         message = message.format(number)
         raise TypeError(message)
-
     if mathtools.is_integer_equivalent_number(number):
         return int(number)
     else:

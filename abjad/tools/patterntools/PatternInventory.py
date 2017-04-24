@@ -7,7 +7,7 @@ class PatternInventory(TypedTuple):
 
     ..  container:: example
 
-        **Example 1.** Inventory of three patterns:
+        Inventory of three patterns:
 
         ::
 
@@ -31,14 +31,14 @@ class PatternInventory(TypedTuple):
             patterntools.PatternInventory(
                 (
                     patterntools.Pattern(
-                        indices=(0, 1, 7),
+                        indices=[0, 1, 7],
                         period=10,
                         ),
                     patterntools.Pattern(
-                        indices=(-2, -1),
+                        indices=[-2, -1],
                         ),
                     patterntools.Pattern(
-                        indices=(2,),
+                        indices=[2],
                         period=3,
                         ),
                     )
@@ -46,7 +46,7 @@ class PatternInventory(TypedTuple):
 
     ..  container:: example
 
-        **Example 2.** Inventory of two patterns:
+        Inventory of two patterns:
 
         ::
 
@@ -66,11 +66,11 @@ class PatternInventory(TypedTuple):
             patterntools.PatternInventory(
                 (
                     patterntools.Pattern(
-                        indices=(1,),
+                        indices=[1],
                         period=2,
                         ),
                     patterntools.Pattern(
-                        indices=(-3, -2, -1),
+                        indices=[-3, -2, -1],
                         ),
                     )
                 )
@@ -103,7 +103,7 @@ class PatternInventory(TypedTuple):
                 ...         ),
                 ...     ])
 
-            **Example 1a.** Gets patterns that match the first ten indices:
+            Gets patterns that match the first ten indices:
 
             ::
 
@@ -112,19 +112,19 @@ class PatternInventory(TypedTuple):
                 ...     print(i, match)
                 ...
                 0 None
-                1 Pattern(indices=(1,), period=2)
+                1 Pattern(indices=[1], period=2)
                 2 None
-                3 Pattern(indices=(1,), period=2)
+                3 Pattern(indices=[1], period=2)
                 4 None
-                5 Pattern(indices=(1,), period=2)
+                5 Pattern(indices=[1], period=2)
                 6 None
-                7 Pattern(indices=(-3, -2, -1))
-                8 Pattern(indices=(-3, -2, -1))
-                9 Pattern(indices=(-3, -2, -1))
+                7 Pattern(indices=[-3, -2, -1])
+                8 Pattern(indices=[-3, -2, -1])
+                9 Pattern(indices=[-3, -2, -1])
 
             Last three indices match the second pattern.
 
-            **Example 1b.** Gets patterns that match next ten indices:
+            Gets patterns that match next ten indices:
 
             ::
 
@@ -133,22 +133,22 @@ class PatternInventory(TypedTuple):
                 ...     print(i, match)
                 ...
                 10 None
-                11 Pattern(indices=(1,), period=2)
+                11 Pattern(indices=[1], period=2)
                 12 None
-                13 Pattern(indices=(1,), period=2)
+                13 Pattern(indices=[1], period=2)
                 14 None
-                15 Pattern(indices=(1,), period=2)
+                15 Pattern(indices=[1], period=2)
                 16 None
-                17 Pattern(indices=(1,), period=2)
+                17 Pattern(indices=[1], period=2)
                 18 None
-                19 Pattern(indices=(1,), period=2)
+                19 Pattern(indices=[1], period=2)
 
             Last three indices no longer match the second pattern.
 
         ..  container:: example
 
-            **Example 2a.** Gets patterns that match the first ten indices,
-            with rotation set to ``1``:
+            Gets patterns that match the first ten indices, with rotation set
+            to ``1``:
 
             ::
 
@@ -156,21 +156,21 @@ class PatternInventory(TypedTuple):
                 ...     match = inventory.get_matching_pattern(i, 10, rotation=1)
                 ...     print(i, match)
                 ...
-                0 Pattern(indices=(1,), period=2)
+                0 Pattern(indices=[1], period=2)
                 1 None
-                2 Pattern(indices=(1,), period=2)
+                2 Pattern(indices=[1], period=2)
                 3 None
-                4 Pattern(indices=(1,), period=2)
+                4 Pattern(indices=[1], period=2)
                 5 None
-                6 Pattern(indices=(1,), period=2)
-                7 Pattern(indices=(-3, -2, -1))
-                8 Pattern(indices=(-3, -2, -1))
-                9 Pattern(indices=(-3, -2, -1))
+                6 Pattern(indices=[1], period=2)
+                7 Pattern(indices=[-3, -2, -1])
+                8 Pattern(indices=[-3, -2, -1])
+                9 Pattern(indices=[-3, -2, -1])
 
             Matching indices of first pattern offset by ``1``.
 
-            **Example 2b.** Gets patterns that match next ten indices with
-            rotation set to ``1``:
+            Gets patterns that match next ten indices with rotation set to
+            ``1``:
 
             ::
 
@@ -178,22 +178,22 @@ class PatternInventory(TypedTuple):
                 ...     match = inventory.get_matching_pattern(i, 10, rotation=1)
                 ...     print(i, match)
                 ...
-                10 Pattern(indices=(1,), period=2)
+                10 Pattern(indices=[1], period=2)
                 11 None
-                12 Pattern(indices=(1,), period=2)
+                12 Pattern(indices=[1], period=2)
                 13 None
-                14 Pattern(indices=(1,), period=2)
+                14 Pattern(indices=[1], period=2)
                 15 None
-                16 Pattern(indices=(1,), period=2)
+                16 Pattern(indices=[1], period=2)
                 17 None
-                18 Pattern(indices=(1,), period=2)
+                18 Pattern(indices=[1], period=2)
                 19 None
 
             Matching indices of first pattern offset by ``1``.
 
         ..  container:: example
 
-            **Example 3.** With inverted patterns:
+            With inverted patterns:
 
             ::
 
@@ -210,16 +210,16 @@ class PatternInventory(TypedTuple):
                 ...     match = inventory.get_matching_pattern(i, 10)
                 ...     print(i, match)
                 ...
-                0 Pattern(indices=(-3,), inverted=True)
-                1 Pattern(indices=(-3,), inverted=True)
-                2 Pattern(indices=(-3,), inverted=True)
-                3 Pattern(indices=(-3,), inverted=True)
-                4 Pattern(indices=(-3,), inverted=True)
-                5 Pattern(indices=(-3,), inverted=True)
-                6 Pattern(indices=(-3,), inverted=True)
+                0 Pattern(indices=[-3], inverted=True)
+                1 Pattern(indices=[-3], inverted=True)
+                2 Pattern(indices=[-3], inverted=True)
+                3 Pattern(indices=[-3], inverted=True)
+                4 Pattern(indices=[-3], inverted=True)
+                5 Pattern(indices=[-3], inverted=True)
+                6 Pattern(indices=[-3], inverted=True)
                 7 None
-                8 Pattern(indices=(-3,), inverted=True)
-                9 Pattern(indices=(-3,), inverted=True)
+                8 Pattern(indices=[-3], inverted=True)
+                9 Pattern(indices=[-3], inverted=True)
 
         Returns pattern or none.
         '''
@@ -241,8 +241,8 @@ class PatternInventory(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Inventory of two patterns. Underlying notes with
-            even divisions assigned to the last three indices:
+            Inventory of two patterns. Underlying notes with even divisions
+            assigned to the last three indices:
 
             ::
 
@@ -273,9 +273,9 @@ class PatternInventory(TypedTuple):
                 4 NoteRhythmMaker()
                 5 NoteRhythmMaker()
                 6 NoteRhythmMaker()
-                7 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
-                8 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
-                9 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
+                7 EvenDivisionRhythmMaker(denominators=[8], preferred_denominator='from_counts')
+                8 EvenDivisionRhythmMaker(denominators=[8], preferred_denominator='from_counts')
+                9 EvenDivisionRhythmMaker(denominators=[8], preferred_denominator='from_counts')
 
             Over fifteen indices:
 
@@ -297,9 +297,9 @@ class PatternInventory(TypedTuple):
                 9 NoteRhythmMaker()
                 10 NoteRhythmMaker()
                 11 NoteRhythmMaker()
-                12 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
-                13 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
-                14 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
+                12 EvenDivisionRhythmMaker(denominators=[8], preferred_denominator='from_counts')
+                13 EvenDivisionRhythmMaker(denominators=[8], preferred_denominator='from_counts')
+                14 EvenDivisionRhythmMaker(denominators=[8], preferred_denominator='from_counts')
 
         '''
         pattern = self.get_matching_pattern(index, total_length, rotation=rotation)

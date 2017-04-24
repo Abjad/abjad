@@ -7,11 +7,11 @@ def test_pitchtools_PitchSegment_has_duplicates_01():
     '''
 
     assert pitchtools.PitchSegment.from_selection(
-        Chord([13, 13, 14], (1, 4))).has_duplicates
+        Chord([13, 13, 14], (1, 4))).has_duplicates()
     assert not pitchtools.PitchSegment.from_selection(
-        Chord([13, 14], (1, 4))).has_duplicates
+        Chord([13, 14], (1, 4))).has_duplicates()
     assert not pitchtools.PitchSegment.from_selection(
-        Chord([], (1, 4))).has_duplicates
+        Chord([], (1, 4))).has_duplicates()
 
 
 def test_pitchtools_PitchSegment_has_duplicates_02():
@@ -19,11 +19,11 @@ def test_pitchtools_PitchSegment_has_duplicates_02():
     '''
 
     assert not pitchtools.PitchSegment.from_selection(
-        Note(13, (1, 4))).has_duplicates
+        Note(13, (1, 4))).has_duplicates()
     assert not pitchtools.PitchSegment.from_selection(
-        Rest((1, 4))).has_duplicates
+        Rest((1, 4))).has_duplicates()
     assert not pitchtools.PitchSegment.from_selection(
-        scoretools.Skip((1, 4))).has_duplicates
+        scoretools.Skip((1, 4))).has_duplicates()
 
 
 def test_pitchtools_PitchSegment_has_duplicates_03():
@@ -31,7 +31,7 @@ def test_pitchtools_PitchSegment_has_duplicates_03():
     '''
 
     staff = Staff("c'8 c'8 c'8 c'8")
-    assert pitchtools.PitchSegment.from_selection(staff).has_duplicates
+    assert pitchtools.PitchSegment.from_selection(staff).has_duplicates()
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    assert not pitchtools.PitchSegment.from_selection(staff).has_duplicates
+    assert not pitchtools.PitchSegment.from_selection(staff).has_duplicates()

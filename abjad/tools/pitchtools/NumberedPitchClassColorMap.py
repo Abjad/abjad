@@ -8,7 +8,7 @@ class NumberedPitchClassColorMap(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Maps pitch-classes to red, green and blue:
+        Maps pitch-classes to red, green and blue:
 
         ::
 
@@ -44,8 +44,8 @@ class NumberedPitchClassColorMap(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __getitem__(self, pc):
-        r'''Gets color corresponding to `pc` in color map.
+    def __getitem__(self, pitch_class):
+        r'''Gets `pitch_class` color.
 
         ::
 
@@ -55,9 +55,8 @@ class NumberedPitchClassColorMap(AbjadValueObject):
         Returns string.
         '''
         from abjad.tools import pitchtools
-        pc = pitchtools.NumberedPitchClass(pc)
-        color = self._color_dictionary[pc.pitch_class_number]
-        return color
+        pitch_class = pitchtools.NumberedPitchClass(pitch_class)
+        return self._color_dictionary[pitch_class.pitch_class_number]
 
     ### PRIVATE METHODS ###
 
@@ -72,25 +71,6 @@ class NumberedPitchClassColorMap(AbjadValueObject):
                     message = message.format(pc)
                     raise KeyError(message)
                 self._color_dictionary[pc.pitch_class_number] = color
-
-    ### PUBLIC METHODS ###
-
-    def get(self, key, alternative=None):
-        r'''Gets `key` from color map.
-
-        ::
-
-            >>> color_map.get(11)
-            'green'
-
-        Returns `alternative` when `key` is not found.
-
-        Returns string.
-        '''
-        try:
-            return self[key]
-        except (KeyError, TypeError, ValueError):
-            return alternative
 
     ### PUBLIC PROPERTIES ###
 
@@ -174,3 +154,22 @@ class NumberedPitchClassColorMap(AbjadValueObject):
         Returns ?
         '''
         return self._pitch_iterables
+
+    ### PUBLIC METHODS ###
+
+    def get(self, key, alternative=None):
+        r'''Gets `key` from color map.
+
+        ::
+
+            >>> color_map.get(11)
+            'green'
+
+        Returns `alternative` when `key` is not found.
+
+        Returns string.
+        '''
+        try:
+            return self[key]
+        except (KeyError, TypeError, ValueError):
+            return alternative

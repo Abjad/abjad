@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class KeySignature(AbjadValueObject):
-    r'''A key signature.
+    r'''Key signature.
 
     ..  container:: example
 
@@ -106,8 +106,9 @@ class KeySignature(AbjadValueObject):
     def _contents_repr_string(self):
         return '{!r}, {!r}'.format(self.tonic, self.mode)
 
-    @property
-    def _lilypond_format(self):
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
         return r'\key {!s} \{!s}'.format(self.tonic, self.mode)
 
     ### PUBLIC PROPERTIES ###

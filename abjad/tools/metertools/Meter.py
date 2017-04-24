@@ -634,7 +634,7 @@ class Meter(AbjadObject):
                 edge.attach(leaf_two_node, offset_node)
         from abjad.tools import metertools
         offsets = metertools.MetricAccentKernel.count_offsets_in_expr(
-            sequencetools.flatten_sequence(self.depthwise_offset_inventory))
+            sequencetools.Sequence(self.depthwise_offset_inventory).flatten())
         graph = documentationtools.GraphvizGraph(
             name='G',
             attributes={
@@ -677,7 +677,7 @@ class Meter(AbjadObject):
             )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
-        for one, two in sequencetools.iterate_sequence_nwise(leaves):
+        for one, two in sequencetools.Sequence(leaves).nwise():
             offset = one.stop_offset
             make_offset_node(offset, one, two)
         offset = leaves[-1].stop_offset
@@ -838,12 +838,11 @@ class Meter(AbjadObject):
         # negative rhythm numbers
         rhythm_number = rhythm_number % rhythm_count
         # find binary representation of rhythm
-        binary_representation = \
-            mathtools.integer_to_binary_string(rhythm_number)
+        binary_representation = mathtools.integer_to_binary_string(
+            rhythm_number)
         binary_representation = binary_representation.zfill(grid_length)
         # partition binary representation of rhythm
-        parts = sequencetools.partition_sequence_by_value_of_elements(
-            binary_representation)
+        parts = sequencetools.Sequence(binary_representation).group_by()
         # find durations
         durations = [
             durationtools.Duration(len(part), denominator)
@@ -972,8 +971,7 @@ class Meter(AbjadObject):
         for _ in range(extra_depth):
             old_offsets = inventory[-1]
             new_offsets = []
-            for first, second in \
-                sequencetools.iterate_sequence_nwise(old_offsets):
+            for first, second in sequencetools.Sequence(old_offsets).nwise():
                 new_offsets.append(first)
                 new_offsets.append((first + second) / 2)
             new_offsets.append(old_offsets[-1])

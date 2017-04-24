@@ -84,12 +84,12 @@ class Selection(object):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __getitem__(self, expr):
-        r'''Gets item `expr` from selection.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
         Returns component from selection.
         '''
-        result = self._music.__getitem__(expr)
+        result = self._music.__getitem__(argument)
         if isinstance(result, tuple):
             selection = type(self)()
             selection._music = result[:]
@@ -102,11 +102,15 @@ class Selection(object):
         Returns dictionary.
         '''
         if hasattr(self, '__dict__'):
-            return vars(self)
-        state = {}
+            state = vars(self).copy()
+        else:
+            state = {}
         for class_ in type(self).__mro__:
             for slot in getattr(class_, '__slots__', ()):
-                state[slot] = getattr(self, slot, None)
+                try:
+                    state[slot] = getattr(self, slot)
+                except AttributeError:
+                    pass
         return state
 
     def __hash__(self):
@@ -135,22 +139,18 @@ class Selection(object):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import pitchtools
-        from abjad.tools import scoretools
-        from abjad.tools.topleveltools import iterate
-        from abjad.tools.topleveltools import mutate
-        music = mutate(self).copy()
-        staff = scoretools.Staff(music)
+        import abjad
+        music = abjad.mutate(self).copy()
+        staff = abjad.Staff(music)
         found_different_pitch = False
-        for pitch in iterate(staff).by_pitch():
-            if pitch != pitchtools.NamedPitch("c'"):
+        for pitch in abjad.iterate(staff).by_pitch():
+            if pitch != abjad.NamedPitch("c'"):
                 found_different_pitch = True
                 break
         if not found_different_pitch:
             staff.context_name = 'RhythmicStaff'
-        score = scoretools.Score([staff])
-        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+        score = abjad.Score([staff])
+        lilypond_file = abjad.LilyPondFile.new(score)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 
@@ -622,7 +622,7 @@ class Selection(object):
         # trim governor copy forwards from first leaf
         found_start_leaf = False
         while not found_start_leaf:
-            leaf = next(iterate(governor_copy).by_class(scoretools.Leaf))
+            leaf = next(iterate(governor_copy).by_leaf())
             if leaf is start_leaf:
                 found_start_leaf = True
             else:
@@ -630,8 +630,7 @@ class Selection(object):
         # trim governor copy backwards from last leaf
         found_stop_leaf = False
         while not found_stop_leaf:
-            reverse_iterator = iterate(governor_copy).by_class(
-                scoretools.Leaf, reverse=True)
+            reverse_iterator = iterate(governor_copy).by_leaf(reverse=True)
             leaf = next(reverse_iterator)
             if leaf is stop_leaf:
                 found_stop_leaf = True
@@ -745,8 +744,8 @@ class Selection(object):
             message = 'unknown tuplet type.'
             raise TypeError(message)
         wrapped = False
-        if self[0]._get_parentage().root is not \
-            self[-1]._get_parentage().root:
+        if (self[0]._get_parentage().root is not
+            self[-1]._get_parentage().root):
             dummy_container = scoretools.Container(self)
             wrapped = True
         mutate(self).swap(new_tuplet)

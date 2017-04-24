@@ -213,14 +213,17 @@ class Timespan(BoundedObject):
         hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
         return hash(hash_values)
 
-    def __illustrate__(self, range_=None):
+    def __illustrate__(self, range_=None, scale=None):
         r'''Illustrates timespan.
 
         Returns LilyPond file.
         '''
-        from abjad.tools import timespantools
-        timespan_inventory = timespantools.TimespanInventory([self])
-        return timespan_inventory.__illustrate__(range_=range_)
+        import abjad
+        timespan_inventory = abjad.timespantools.TimespanInventory([self])
+        return timespan_inventory.__illustrate__(
+            range_=range_,
+            scale=scale,
+            )
 
     def __le__(self, expr):
         r'''Is true when `expr` start offset is less than or equal to
@@ -930,8 +933,7 @@ class Timespan(BoundedObject):
             [self._start_offset] + part_durations,
             start=None,
             )
-        offset_pairs = sequencetools.iterate_sequence_nwise(
-            start_offsets)
+        offset_pairs = sequencetools.Sequence(start_offsets).nwise()
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 
@@ -2333,7 +2335,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_closed(self):
-        r'''False for all timespans.
+        r'''Is false for all timespans.
 
         ::
 
@@ -2346,7 +2348,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_half_closed(self):
-        r'''True for all timespans.
+        r'''Is true for all timespans.
 
         ::
 
@@ -2359,7 +2361,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_half_open(self):
-        r'''True for all timespans.
+        r'''Is true for all timespans.
 
         ::
 
@@ -2372,7 +2374,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_left_closed(self):
-        r'''True for all timespans.
+        r'''Is true for all timespans.
 
         ::
 
@@ -2385,7 +2387,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_left_open(self):
-        r'''False for all timespans.
+        r'''Is false for all timespans.
 
         ::
 
@@ -2398,7 +2400,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_open(self):
-        r'''False for all timespans.
+        r'''Is false for all timespans.
 
         ::
 
@@ -2411,7 +2413,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_right_closed(self):
-        r'''False for all timespans.
+        r'''Is false for all timespans.
 
         ::
 
@@ -2424,7 +2426,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_right_open(self):
-        r'''True for all timespans.
+        r'''Is true for all timespans.
 
         ::
 

@@ -3,7 +3,7 @@ from abjad.tools import abctools
 
 
 class LilyPondContext(abctools.AbjadValueObject):
-    r'''A LilyPond context.
+    r'''LilyPond context.
 
     ::
 

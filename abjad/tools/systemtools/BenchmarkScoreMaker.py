@@ -40,8 +40,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequenc(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -70,8 +69,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -100,8 +98,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
@@ -130,8 +127,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -156,8 +152,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -182,8 +177,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
@@ -227,8 +221,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import sequencetools
         from abjad.tools import topleveltools
         staff = scoretools.Staff(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            staff[:],
+        for part in sequencetools.Sequence(staff[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -255,8 +248,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import sequencetools
         from abjad.tools import topleveltools
         staff = scoretools.Staff(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            staff[:],
+        for part in sequencetools.Sequence(staff[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -307,8 +299,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -335,8 +326,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -363,8 +353,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
@@ -388,8 +377,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -413,8 +401,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -438,8 +425,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
@@ -463,8 +449,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
@@ -488,8 +473,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
@@ -513,8 +497,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools import topleveltools
         voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.partition_sequence_by_counts(
-            voice[:],
+        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):

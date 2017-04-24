@@ -11,7 +11,7 @@ class AbjadDirective(Directive):
 
     Represents a portion of an interactive session.
 
-    Generates a ``abjad_input_block`` node.
+    Generates an ``abjad_input_block`` node.
     '''
 
     ### CLASS VARIABLES ###

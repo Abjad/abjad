@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import iterate
 
 
 class RunSelectorCallback(AbjadValueObject):
-    r'''A run selector callback.
+    r'''Run selector callback.
     '''
 
     ### CLASS VARIABLES ###
@@ -29,17 +29,17 @@ class RunSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Iterates tuple `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Iterates tuple `argument`.
 
         Returns tuple of selections.
         '''
-        assert isinstance(expr, tuple), repr(expr)
+        assert isinstance(argument, tuple), repr(argument)
         result = []
         prototype = self.prototype
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
-        for subexpr in expr:
+        for subexpr in argument:
             for run in iterate(subexpr).by_run(prototype):
                 run = selectiontools.Selection(run)
                 result.append(run)

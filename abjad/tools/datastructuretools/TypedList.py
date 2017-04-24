@@ -7,52 +7,60 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 class TypedList(TypedCollection):
     r'''A typed list.
 
-    Ordered collection of objects, which optionally coerces its contents
-    to the same type:
+    ..  container:: example
 
-    ::
+        No item coercion:
 
-        >>> object_collection = datastructuretools.TypedList()
-        >>> object_collection.append(23)
-        >>> object_collection.append('foo')
-        >>> object_collection.append(False)
-        >>> object_collection.append((1, 2, 3))
-        >>> object_collection.append(3.14159)
+        ::
 
-    ::
+            >>> list_ = datastructuretools.TypedList()
+            >>> list_.append(23)
+            >>> list_.append('foo')
+            >>> list_.append(False)
+            >>> list_.append((1, 2, 3))
+            >>> list_.append(3.14159)
 
-        >>> print(format(object_collection))
-        datastructuretools.TypedList(
-            [
-                23,
-                'foo',
-                False,
-                (1, 2, 3),
-                3.14159,
-                ]
-            )
+        ::
 
-    ::
+            >>> f(list_)
+            datastructuretools.TypedList(
+                [
+                    23,
+                    'foo',
+                    False,
+                    (1, 2, 3),
+                    3.14159,
+                    ]
+                )
 
-        >>> pitch_collection = datastructuretools.TypedList(
-        ...     item_class=NamedPitch)
-        >>> pitch_collection.append(0)
-        >>> pitch_collection.append("d'")
-        >>> pitch_collection.append(('e', 4))
-        >>> pitch_collection.append(NamedPitch("f'"))
+    ..  container:: example
 
-    ::
+        Named pitch item coercion:
 
-        >>> print(format(pitch_collection))
-        datastructuretools.TypedList(
-            [
-                pitchtools.NamedPitch("c'"),
-                pitchtools.NamedPitch("d'"),
-                pitchtools.NamedPitch("e'"),
-                pitchtools.NamedPitch("f'"),
-                ],
-            item_class=pitchtools.NamedPitch,
-            )
+        ::
+
+            >>> pitch_list = datastructuretools.TypedList(
+            ...     item_class=NamedPitch,
+            ...     )
+            >>> pitch_list.append(0)
+            >>> pitch_list.append("d'")
+            >>> pitch_list.append(('e', 4))
+            >>> pitch_list.append(NamedPitch("f'"))
+
+        ::
+
+            >>> f(pitch_list)
+            datastructuretools.TypedList(
+                [
+                    pitchtools.NamedPitch("c'"),
+                    pitchtools.NamedPitch("d'"),
+                    pitchtools.NamedPitch("e'"),
+                    pitchtools.NamedPitch("f'"),
+                    ],
+                item_class=pitchtools.NamedPitch,
+                )
+
+    Ordered collection with optional item coercion.
 
     Implements the list interface.
     '''
@@ -77,7 +85,8 @@ class TypedList(TypedCollection):
             items=items,
             )
         self._collection = []
-        assert isinstance(keep_sorted, bool), repr(keep_sorted)
+        if keep_sorted is not None:
+            assert isinstance(keep_sorted, bool), repr(keep_sorted)
         self._keep_sorted = keep_sorted
         items = items or []
         the_items = []
@@ -95,50 +104,51 @@ class TypedList(TypedCollection):
         self._on_removal(self._collection[i])
         del(self._collection[i])
 
-    def __getitem__(self, i):
-        r'''Aliases list.__getitem__().
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified  by `argument`.
 
-        Returns item.
+        Returns item or slice.
         '''
-        return self._collection[i]
+        return self._collection.__getitem__(argument)
 
-    def __iadd__(self, expr):
-        r'''Changes items in `expr` to items and extends.
+    def __iadd__(self, argument):
+        r'''Adds `argument` in place to typed list.
 
-        ::
+        ..  container:: example
 
-            >>> dynamic_collection = datastructuretools.TypedList(
-            ...     item_class=Dynamic)
-            >>> dynamic_collection.append('ppp')
-            >>> dynamic_collection += ['p', 'mp', 'mf', 'fff']
+            ::
 
-        ::
+                >>> dynamic_list = datastructuretools.TypedList(item_class=Dynamic)
+                >>> dynamic_list.append('ppp')
+                >>> dynamic_list += ['p', 'mp', 'mf', 'fff']
 
-            >>> print(format(dynamic_collection))
-            datastructuretools.TypedList(
-                [
-                    indicatortools.Dynamic(
-                        name='ppp',
-                        ),
-                    indicatortools.Dynamic(
-                        name='p',
-                        ),
-                    indicatortools.Dynamic(
-                        name='mp',
-                        ),
-                    indicatortools.Dynamic(
-                        name='mf',
-                        ),
-                    indicatortools.Dynamic(
-                        name='fff',
-                        ),
-                    ],
-                item_class=indicatortools.Dynamic,
-                )
+            ::
 
-        Returns collection.
+                >>> f(dynamic_list)
+                datastructuretools.TypedList(
+                    [
+                        indicatortools.Dynamic(
+                            name='ppp',
+                            ),
+                        indicatortools.Dynamic(
+                            name='p',
+                            ),
+                        indicatortools.Dynamic(
+                            name='mp',
+                            ),
+                        indicatortools.Dynamic(
+                            name='mf',
+                            ),
+                        indicatortools.Dynamic(
+                            name='fff',
+                            ),
+                        ],
+                    item_class=indicatortools.Dynamic,
+                    )
+
+        Returns typed list.
         '''
-        self.extend(expr)
+        self.extend(argument)
         return self
 
     def __reversed__(self):
@@ -148,51 +158,69 @@ class TypedList(TypedCollection):
         '''
         return self._collection.__reversed__()
 
-    def __setitem__(self, i, expr):
-        r'''Changes items in `expr` to items and sets.
+    def __setitem__(self, i, argument):
+        r'''Sets item `i` equal to `argument`.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_collection[-1] = 'gqs,'
-            >>> print(format(pitch_collection))
-            datastructuretools.TypedList(
-                [
-                    pitchtools.NamedPitch("c'"),
-                    pitchtools.NamedPitch("d'"),
-                    pitchtools.NamedPitch("e'"),
-                    pitchtools.NamedPitch('gqs,'),
-                    ],
-                item_class=pitchtools.NamedPitch,
-                )
+            Sets item:
 
-        ::
+            ::
 
-            >>> pitch_collection[-1:] = ["f'", "g'", "a'", "b'", "c''"]
-            >>> print(format(pitch_collection))
-            datastructuretools.TypedList(
-                [
-                    pitchtools.NamedPitch("c'"),
-                    pitchtools.NamedPitch("d'"),
-                    pitchtools.NamedPitch("e'"),
-                    pitchtools.NamedPitch("f'"),
-                    pitchtools.NamedPitch("g'"),
-                    pitchtools.NamedPitch("a'"),
-                    pitchtools.NamedPitch("b'"),
-                    pitchtools.NamedPitch("c''"),
-                    ],
-                item_class=pitchtools.NamedPitch,
-                )
+                >>> pitch_list = datastructuretools.TypedList(
+                ...     item_class=NamedPitch,
+                ...     )
+                >>> pitch_list.append(0)
+                >>> pitch_list.append("d'")
+                >>> pitch_list.append(('e', 4))
+                >>> pitch_list.append(NamedPitch("f'"))
+
+            ::
+
+                >>> pitch_list[-1] = 'gqs,'
+                >>> f(pitch_list)
+                datastructuretools.TypedList(
+                    [
+                        pitchtools.NamedPitch("c'"),
+                        pitchtools.NamedPitch("d'"),
+                        pitchtools.NamedPitch("e'"),
+                        pitchtools.NamedPitch('gqs,'),
+                        ],
+                    item_class=pitchtools.NamedPitch,
+                    )
+
+        ..  container:: example
+
+            Sets slice:
+
+            ::
+
+                >>> pitch_list[-1:] = ["f'", "g'", "a'", "b'", "c''"]
+                >>> f(pitch_list)
+                datastructuretools.TypedList(
+                    [
+                        pitchtools.NamedPitch("c'"),
+                        pitchtools.NamedPitch("d'"),
+                        pitchtools.NamedPitch("e'"),
+                        pitchtools.NamedPitch("f'"),
+                        pitchtools.NamedPitch("g'"),
+                        pitchtools.NamedPitch("a'"),
+                        pitchtools.NamedPitch("b'"),
+                        pitchtools.NamedPitch("c''"),
+                        ],
+                    item_class=pitchtools.NamedPitch,
+                    )
 
         Returns none.
         '''
         if isinstance(i, int):
-            new_item = self._item_coercer(expr)
+            new_item = self._item_coercer(argument)
             old_item = self._collection[i]
             self._on_removal(old_item)
             self._on_insertion(new_item)
             self._collection[i] = new_item
         elif isinstance(i, slice):
-            new_items = [self._item_coercer(item) for item in expr]
+            new_items = [self._item_coercer(item) for item in argument]
             old_items = self._collection[i]
             for old_item in old_items:
                 self._on_removal(old_item)
@@ -221,22 +249,18 @@ class TypedList(TypedCollection):
     ### PUBLIC METHODS ###
 
     def append(self, item):
-        r'''Changes `item` to item and appends.
+        r'''Appends `item` to typed list.
 
-        ::
+        ..  container:: example
 
-            >>> integer_collection = datastructuretools.TypedList(
-            ...     item_class=int)
-            >>> integer_collection[:]
-            []
+            ::
 
-        ::
-
-            >>> integer_collection.append('1')
-            >>> integer_collection.append(2)
-            >>> integer_collection.append(3.4)
-            >>> integer_collection[:]
-            [1, 2, 3]
+                >>> integer_list = datastructuretools.TypedList(item_class=int)
+                >>> integer_list.append('1')
+                >>> integer_list.append(2)
+                >>> integer_list.append(3.4)
+                >>> integer_list[:]
+                [1, 2, 3]
 
         Returns none.
         '''
@@ -247,36 +271,40 @@ class TypedList(TypedCollection):
             self.sort()
 
     def count(self, item):
-        r'''Changes `item` to item and returns count.
+        r'''Gets count of `item` in typed list.
 
-        ::
+        ..  container:: example
 
-            >>> integer_collection = datastructuretools.TypedList(
-            ...     items=[0, 0., '0', 99],
-            ...     item_class=int)
-            >>> integer_collection[:]
-            [0, 0, 0, 99]
+            ::
 
-        ::
+                >>> integer_list = datastructuretools.TypedList(item_class=int)
+                >>> integer_list.extend([0, 0., '0', 99])
 
-            >>> integer_collection.count(0)
-            3
+            ::
 
-        Returns count.
+                >>> integer_list.count(0)
+                3
+                >>> integer_list.count(1)
+                0
+                >>> integer_list.count(99)
+                1
+
+        Returns nonnegative integer.
         '''
         item = self._item_coercer(item)
         return self._collection.count(item)
 
     def extend(self, items):
-        r'''Changes `items` to items and extends.
+        r'''Extends typed list with `items`.
+        
+        ..  container:: example
 
-        ::
+            ::
 
-            >>> integer_collection = datastructuretools.TypedList(
-            ...     item_class=int)
-            >>> integer_collection.extend(('0', 1.0, 2, 3.14159))
-            >>> integer_collection[:]
-            [0, 1, 2, 3]
+                >>> integer_list = datastructuretools.TypedList(item_class=int)
+                >>> integer_list.extend(['0', 1.0, 2, 3.14159])
+                >>> integer_list
+                TypedList([0, 1, 2, 3], item_class=int)
 
         Returns none.
         '''
@@ -286,43 +314,58 @@ class TypedList(TypedCollection):
             self.sort()
 
     def index(self, item):
-        r'''Changes `item` to item and returns index.
+        r'''Gets index of `item` in typed list.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_collection = datastructuretools.TypedList(
-            ...     items=('cqf', "as'", 'b,', 'dss'),
-            ...     item_class=NamedPitch)
-            >>> pitch_collection.index("as'")
-            1
+            ::
 
-        Returns index.
+                >>> pitch_list = datastructuretools.TypedList(
+                ...     item_class=NamedPitch,
+                ...     )
+                >>> pitch_list.extend(['cqf', "as'", 'b,', 'dss'])
+
+            ::
+
+                >>> pitch_list.index(NamedPitch('cqf'))
+                0
+                >>> pitch_list.index(NamedPitch("as'"))
+                1
+                >>> pitch_list.index('b,')
+                2
+                >>> pitch_list.index('dss')
+                3
+
+        Returns nonnegative integer.
         '''
         item = self._item_coercer(item)
         return self._collection.index(item)
 
     def insert(self, i, item):
-        r'''Changes `item` to item and inserts.
+        r'''Insert `item` into typed list.
 
-        ::
+        ..  container:: example
 
-            >>> integer_collection = datastructuretools.TypedList(
-            ...     item_class=int)
-            >>> integer_collection.extend(('1', 2, 4.3))
-            >>> integer_collection[:]
-            [1, 2, 4]
+            Inserts into typed list.
 
-        ::
+            ::
 
-            >>> integer_collection.insert(0, '0')
-            >>> integer_collection[:]
-            [0, 1, 2, 4]
+                >>> integer_list = datastructuretools.TypedList(item_class=int)
+                >>> integer_list.extend(['1', 2, 4.3])
+                >>> integer_list
+                TypedList([1, 2, 4], item_class=int)
 
-        ::
+            ::
 
-            >>> integer_collection.insert(1, '9')
-            >>> integer_collection[:]
-            [0, 9, 1, 2, 4]
+                >>> integer_list.insert(0, '0')
+                >>> integer_list
+                TypedList([0, 1, 2, 4], item_class=int)
+
+            ::
+
+                >>> integer_list.insert(1, '9')
+                >>> integer_list
+                TypedList([0, 9, 1, 2, 4], item_class=int)
 
         Returns none.
         '''
@@ -334,7 +377,9 @@ class TypedList(TypedCollection):
         return result
 
     def pop(self, i=-1):
-        r'''Aliases list.pop().
+        r'''Pops item `i` from typed list.
+
+        Returns item.
         '''
         result = self._collection.pop(i)
         self._on_removal(result)
@@ -343,21 +388,22 @@ class TypedList(TypedCollection):
         return result
 
     def remove(self, item):
-        r'''Changes `item` to item and removes.
+        r'''Removes `item` from typed list.
 
-        ::
+        ..  container:: example
 
-            >>> integer_collection = datastructuretools.TypedList(
-            ...     item_class=int)
-            >>> integer_collection.extend(('0', 1.0, 2, 3.14159))
-            >>> integer_collection[:]
-            [0, 1, 2, 3]
+            ::
 
-        ::
+                >>> integer_list = datastructuretools.TypedList(item_class=int)
+                >>> integer_list.extend(('0', 1.0, 2, 3.14159))
+                >>> integer_list[:]
+                [0, 1, 2, 3]
 
-            >>> integer_collection.remove('1')
-            >>> integer_collection[:]
-            [0, 2, 3]
+            ::
+
+                >>> integer_list.remove('1')
+                >>> integer_list[:]
+                [0, 2, 3]
 
         Returns none.
         '''
@@ -370,12 +416,12 @@ class TypedList(TypedCollection):
             self.sort()
 
     def reverse(self):
-        r'''Aliases list.reverse().
+        r'''Reverses items in typed list.
         '''
         self._collection.reverse()
 
     def sort(self, cmp=None, key=None, reverse=False):
-        r'''Aliases list.sort().
+        r'''Sorts items in typed list.
         '''
         if cmp is not None:
             def cmp_to_key(comparator):
@@ -384,26 +430,26 @@ class TypedList(TypedCollection):
                 '''
                 class CmpToKey(object):
 
-                    def __init__(self, object_):
-                        self.object_ = object_
+                    def __init__(self, argument):
+                        self.argument = argument
 
                     def __lt__(self, other):
-                        return comparator(self.object_, other.object_) < 0
+                        return comparator(self.argument, other.argument) < 0
 
                     def __gt__(self, other):
-                        return comparator(self.object_, other.object_) > 0
+                        return comparator(self.argument, other.argument) > 0
 
                     def __eq__(self, other):
-                        return comparator(self.object_, other.object_) == 0
+                        return comparator(self.argument, other.argument) == 0
 
                     def __le__(self, other):
-                        return comparator(self.object_, other.object_) <= 0
+                        return comparator(self.argument, other.argument) <= 0
 
                     def __ge__(self, other):
-                        return comparator(self.object_, other.object_) >= 0
+                        return comparator(self.argument, other.argument) >= 0
 
                     def __ne__(self, other):
-                        return comparator(self.object_, other.object_) != 0
+                        return comparator(self.argument, other.argument) != 0
 
                 return CmpToKey
             key = cmp_to_key(cmp)
@@ -413,14 +459,20 @@ class TypedList(TypedCollection):
 
     @property
     def keep_sorted(self):
-        r'''Sorts collection on mutation if true.
+        r'''Is true when typed list keeps items sorted. Otherwise false.
+
+        Defaults to none.
+
+        Set to true, false or none.
+
+        Returns true, false or none.
         '''
         return self._keep_sorted
 
     @keep_sorted.setter
-    def keep_sorted(self, expr):
-        assert isinstance(expr, (bool, type(None)))
-        self._keep_sorted = expr
+    def keep_sorted(self, argument):
+        assert isinstance(argument, (bool, type(None)))
+        self._keep_sorted = argument
 
 
 collections.MutableSequence.register(TypedList)

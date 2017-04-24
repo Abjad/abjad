@@ -30,7 +30,7 @@ def test_scoretools_NoteHead_written_pitch_02():
 
 
 def test_scoretools_NoteHead_written_pitch_03():
-    r'''Can not set note head pitch to none.
+    r'''Can not set note-head pitch to none.
     '''
 
     note = Note(13, (1, 4))
@@ -39,7 +39,7 @@ def test_scoretools_NoteHead_written_pitch_03():
 
 
 def test_scoretools_NoteHead_written_pitch_04():
-    r'''Set note head pitch from another note or note head.
+    r'''Set note-head pitch from another note or note-head.
     Make sure this does not cause reference problems.
     '''
 

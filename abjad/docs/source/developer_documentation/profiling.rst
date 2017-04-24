@@ -2,11 +2,11 @@ Profiling code
 ==============
 
 
-Profile code with ``profile_expr()`` in the ``systemtools`` package:
+Profile code with ``profile()`` in the ``systemtools`` package:
 
 ::
 
-    >>> systemtools.IOManager.profile_expr(
+    >>> systemtools.IOManager.profile(
     ...     'Note(0, (1, 4))',
     ...     global_context=globals(),
     ...     )

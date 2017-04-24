@@ -44,7 +44,7 @@ def test_scoretools_Chord___copy___03():
 
 
 def test_scoretools_Chord___copy___04():
-    r'''Chord copies tweaked note heads.
+    r'''Chord copies tweaked note-heads.
     '''
 
     chord_1 = Chord("<c' e' g'>4")

@@ -11,9 +11,51 @@ def attach(
     ):
     r'''Attaches `indicator` to `component_expression`.
 
+    ..  container:: example
+
+        Attaches clef to first note in staff:
+
+        ::
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> attach(Clef('alto'), staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "alto"
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Attaches accent to last two notes in staff:
+
+        ::
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> attach(Articulation('>'), staff[-2])
+            >>> attach(Articulation('>'), staff[-1])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                d'4
+                e'4 -\accent
+                f'4 -\accent
+            }
+
     Derives scope from the default scope of `indicator` when `scope` is none.
 
-    Attached indicator is treated as annotative when `is_annotation` is true.
+    Treats indicator as annotation when `is_annotation` is true.
 
     Returns none.
     '''
@@ -50,9 +92,11 @@ def attach(
         return
 
     component = component_expression
-    #assert isinstance(component, scoretools.Component), repr(component)
     prototype = (scoretools.Component, spannertools.Spanner)
-    assert isinstance(component, prototype), repr(component)
+    if not isinstance(component, prototype):
+        message = 'must be component or spanner: {!r}.'
+        message = message.format(component)
+        raise Exception(message)
 
     if isinstance(indicator, indicatortools.IndicatorExpression):
         is_annotation = is_annotation or indicator.is_annotation

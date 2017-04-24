@@ -18,7 +18,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___01():
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(leaves)
@@ -70,7 +70,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___02():
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(leaves)
@@ -122,7 +122,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___03():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(leaves)
@@ -164,7 +164,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___04():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -208,7 +208,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -261,7 +261,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -323,7 +323,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___07():
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -377,7 +377,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___08():
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -431,7 +431,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___09():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -476,7 +476,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___10():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -521,7 +521,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -577,7 +577,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -641,7 +641,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___13():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -691,7 +691,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___14():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -734,7 +734,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___15():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -781,7 +781,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -834,7 +834,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -894,7 +894,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -945,7 +945,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___19():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -989,7 +989,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___20():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -1037,7 +1037,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
@@ -1091,7 +1091,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = sequencetools.flatten_sequence(leaf_lists)
+    leaves = Sequence(leaf_lists).flatten()
 
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)

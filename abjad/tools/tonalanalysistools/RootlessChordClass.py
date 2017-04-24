@@ -224,21 +224,21 @@ class RootlessChordClass(IntervalSegment):
     @staticmethod
     def _invert_chord_quality(intervals, inversion):
         if isinstance(inversion, int):
-            intervals = sequencetools.rotate_sequence(intervals, -inversion)
+            intervals = sequencetools.Sequence(intervals).rotate(n=-inversion)
             rotation = -inversion
         elif inversion == 'root':
             rotation = 0
         elif inversion == 'first':
-            intervals = sequencetools.rotate_sequence(intervals, -1)
+            intervals = sequencetools.Sequence(intervals).rotate(n=-1)
             rotation = -1
         elif inversion == 'second':
-            intervals = sequencetools.rotate_sequence(intervals, -2)
+            intervals = sequencetools.Sequence(intervals).rotate(n-2)
             rotation = -2
         elif inversion == 'third':
-            intervals = sequencetools.rotate_sequence(intervals, -3)
+            intervals = sequencetools.Sequence(intervals).rotate(n=-3)
             rotation = -3
         elif inversion == 'fourth':
-            intervals = sequencetools.rotate_sequence(intervals, -4)
+            intervals = sequencetools.Sequence(intervals).rotate(n=-4)
             rotation = -4
         else:
             message = 'unknown chord inversion: {!r}.'

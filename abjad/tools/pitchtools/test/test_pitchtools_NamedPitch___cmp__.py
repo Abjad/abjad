@@ -69,7 +69,7 @@ def test_pitchtools_NamedPitch___cmp___05():
 
 
 def test_pitchtools_NamedPitch___cmp___06():
-    r'''Pitches test False for equality against unlike instances.
+    r'''Pitches test false for equality against unlike instances.
     Other pitch comparisons raise ValueError against unlike instances.
     '''
 

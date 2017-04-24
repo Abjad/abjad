@@ -177,7 +177,7 @@ class Scheme(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
+            return self._get_lilypond_format()
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
@@ -198,6 +198,16 @@ class Scheme(AbjadValueObject):
             return self._quoting + self._formatted_value
         return self._formatted_value
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _formatted_value(self):
+        return Scheme.format_scheme_value(
+            self._value,
+            force_quotes=self.force_quotes,
+            verbatim=self.verbatim,
+            )
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -217,6 +227,37 @@ class Scheme(AbjadValueObject):
             storage_format_args_values=values,
             storage_format_kwargs_names=names,
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def force_quotes(self):
+        r'''Is true when quotes should be forced in output. Otherwise false.
+
+        Returns true or false.
+        '''
+        return self._force_quotes
+
+    @property
+    def quoting(self):
+        r'''Gets Scheme quoting string.
+
+        Returns string.
+        '''
+        return self._quoting
+
+    @property
+    def verbatim(self):
+        r'''Is true when formatting should format value absolutely verbatim.
+        Whitespace, quotes, and all other parts of value are left intact.
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._verbatim
 
     ### PUBLIC METHODS ###
 
@@ -332,49 +373,7 @@ class Scheme(AbjadValueObject):
             return '#f'
         return str(value)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _formatted_value(self):
-        return Scheme.format_scheme_value(
-            self._value,
-            force_quotes=self.force_quotes,
-            verbatim=self.verbatim,
-            )
-
-    @property
-    def _lilypond_format(self):
+    def _get_lilypond_format(self):
         if self._quoting is not None:
             return '#' + self._quoting + self._formatted_value
         return '#' + self._formatted_value
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def force_quotes(self):
-        r'''Is true when quotes should be forced in output. Otherwise false.
-
-        Returns true or false.
-        '''
-        return self._force_quotes
-
-    @property
-    def quoting(self):
-        r'''Gets Scheme quoting string.
-
-        Returns string.
-        '''
-        return self._quoting
-
-    @property
-    def verbatim(self):
-        r'''Is true when formatting should format value absolutely verbatim.
-        Whitespace, quotes, and all other parts of value are left intact.
-
-        Defaults to false.
-
-        Set to true or false.
-
-        Returns true or false.
-        '''
-        return self._verbatim

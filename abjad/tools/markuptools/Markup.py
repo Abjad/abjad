@@ -1,80 +1,171 @@
 # -*- coding: utf-8 -*-
 import collections
+import inspect
 import numbers
 from abjad import Fraction
+from abjad.tools import expressiontools
 from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.markuptools.MarkupCommand import MarkupCommand
+from abjad.tools.markuptools.Postscript import Postscript
 
 
 class Markup(AbjadValueObject):
-    r'''A LilyPond markup.
+    r'''LilyPond markup.
 
     ..  container:: example
 
-        **Example 1.** Initializes from string:
+        Initializes from string:
 
-        ::
+        ..  container:: example
 
-            >>> string = r'\bold { "This is markup text." }'
-            >>> markup = Markup(string)
-            >>> show(markup) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> string = r'\italic { "Allegro assai" }'
+                >>> markup = Markup(string)
+                >>> f(markup)
+                \markup { \italic { "Allegro assai" } }
 
-            >>> print(format(markup))
-            \markup { \bold { "This is markup text." } }
+            ::
 
-    ..  container:: example
+                >>> show(markup) # doctest: +SKIP
 
-        **Example 2.** Initializes from other markup:
+        ..  container:: example expression
 
-        ::
+            ::
 
-            >>> markup_1 = Markup('foo', direction=Up)
-            >>> markup_2 = Markup(markup_1, direction=Down)
-            >>> show(markup_2) # doctest: +SKIP
+                >>> expression = Expression().markup()
+                >>> string = r'\italic { "Allegro assai" }'
+                >>> markup = expression(string)
+                >>> f(markup)
+                \markup { \italic { "Allegro assai" } }
 
-        ..  doctest::
+            ::
 
-            >>> print(format(markup_1))
-            ^ \markup { foo }
-
-        ..  doctest::
-
-            >>> print(format(markup_2))
-            _ \markup { foo }
+                >>> show(markup) # doctest: +SKIP
 
     ..  container:: example
 
-        **Example 3.** Attaches markup to score components:
+        Initializes from other markup:
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> string = r'\italic { "This is also markup text." }'
-            >>> markup = Markup(string, direction=Up)
-            >>> attach(markup, staff[0])
-            >>> show(staff) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> markup = Markup('Allegro assai', direction=Up)
+                >>> markup = markup.italic()
+                >>> markup = Markup(markup, direction=Down)
+                >>> f(markup)
+                _ \markup {
+                    \italic
+                        "Allegro assai"
+                    }
 
-            >>> print(format(staff))
-            \new Staff {
-                c'8
-                    ^ \markup {
-                        \italic
-                            {
-                                "This is also markup text."
-                            }
+            ::
+            
+                >>> show(markup) # doctest: +SKIP
+
+        ..  container:: example expression
+
+            ::
+
+                >>> expression = Expression().markup()
+                >>> markup = Markup('Allegro assai', direction=Up)
+                >>> markup = markup.italic()
+                >>> markup = expression(markup, direction=Down)
+                >>> f(markup)
+                _ \markup {
+                    \italic
+                        "Allegro assai"
+                    }
+
+            ::
+            
+                >>> show(markup) # doctest: +SKIP
+
+    ..  container:: example
+
+        Attaches markup to score components:
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> string = r'\italic { "Allegro assai" }'
+                >>> markup = Markup(string, direction=Up)
+                >>> f(markup)
+                ^ \markup {
+                    \italic
+                        {
+                            "Allegro assai"
                         }
-                d'8
-                e'8
-                f'8
-            }
+                    }
+
+            ::
+
+                >>> attach(markup, staff[0])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                        ^ \markup {
+                            \italic
+                                {
+                                    "Allegro assai"
+                                }
+                            }
+                    d'8
+                    e'8
+                    f'8
+                }
+
+        ..  container:: example expression
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> string = r'\italic { "Allegro assai" }'
+                >>> expression = Expression().markup()
+                >>> markup = expression(string, direction=Up)
+                >>> f(markup)
+                ^ \markup {
+                    \italic
+                        {
+                            "Allegro assai"
+                        }
+                    }
+
+            ::
+
+                >>> attach(markup, staff[0])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                        ^ \markup {
+                            \italic
+                                {
+                                    "Allegro assai"
+                                }
+                            }
+                    d'8
+                    e'8
+                    f'8
+                }
+
+    ..  note:: Make sure all static markup methods implement a direction
+        keyword when extending this class.
 
     Set `direction` to ``Up``, ``Down``, ``'neutral'``,
     ``'^'``, ``'_'``, ``'-'`` or None.
@@ -88,8 +179,14 @@ class Markup(AbjadValueObject):
         '_annotation',
         '_contents',
         '_direction',
+        '_expression',
         '_format_slot',
+        '_lilypond_tweak_manager',
         '_stack_priority',
+        )
+
+    _private_attributes_to_copy = (
+        '_lilypond_tweak_manager',
         )
 
     ### INITIALIZER ###
@@ -100,7 +197,6 @@ class Markup(AbjadValueObject):
         direction=None,
         stack_priority=0,
         ):
-        from abjad.tools import markuptools
         from abjad.tools.topleveltools import parse
         self._annotation = None
         if contents is None:
@@ -112,20 +208,20 @@ class Markup(AbjadValueObject):
                 new_contents = (' '.join(parsed.contents),)
             else:
                 new_contents = tuple(parsed.contents)
-        elif isinstance(contents, markuptools.MarkupCommand):
+        elif isinstance(contents, MarkupCommand):
             new_contents = (contents,)
         elif isinstance(contents, type(self)):
             direction = direction or contents._direction
             new_contents = tuple(contents._contents)
         elif isinstance(contents, collections.Sequence) and 0 < len(contents):
             new_contents = []
-            for arg in contents:
-                if isinstance(arg, (str, markuptools.MarkupCommand)):
-                    new_contents.append(arg)
-                elif isinstance(arg, type(self)):
-                    new_contents.extend(arg.contents)
+            for argument in contents:
+                if isinstance(argument, (str, MarkupCommand)):
+                    new_contents.append(argument)
+                elif isinstance(argument, type(self)):
+                    new_contents.extend(argument.contents)
                 else:
-                    new_contents.append(str(arg))
+                    new_contents.append(str(argument))
             new_contents = tuple(new_contents)
         else:
             new_contents = (str(contents),)
@@ -134,151 +230,483 @@ class Markup(AbjadValueObject):
         direction = stringtools.expr_to_tridirectional_ordinal_constant(
             direction)
         self._direction = direction
+        self._expression = None
+        self._lilypond_tweak_manager = None
         assert isinstance(stack_priority, int), repr(stack_priority)
         self._stack_priority = stack_priority
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
-        r'''Adds contents of this markup to `expr`.
+    def __add__(self, argument):
+        r'''Adds markup to `argument`.
 
         ..  container:: example
 
-            **Example 1.** Adds markup to markup:
+            Adds markup to markup:
 
-            ::
+            ..  container:: example
 
-                >>> Markup('foo') + Markup('bar')
-                Markup(contents=('foo', 'bar'))
+                ::
+
+                    >>> markup = Markup('Allegro') + Markup('assai')
+                    >>> f(markup)
+                    \markup {
+                        Allegro
+                        assai
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = expressiontools.Expression()
+                    >>> expression = expression.markup()
+                    >>> expression = expression + Markup('assai')
+                    >>> markup = expression('Allegro')
+                    >>> f(markup)
+                    \markup {
+                        Allegro
+                        assai
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         ..  container:: example
 
-            **Example 2.** Adds markup command to markup:
+            Adds markup command to markup:
 
-            ::
+            ..  container:: example
 
-                >>> Markup('foo') + Markup.hspace(0.75)
-                Markup(contents=('foo', MarkupCommand('hspace', 0.75)))
+                ::
+
+                    >>> markup = Markup('Allegro') + Markup.hspace(0.75)
+                    >>> markup = markup + Markup('assai')
+                    >>> f(markup)
+                    \markup {
+                        Allegro
+                        \hspace
+                            #0.75
+                        assai
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = expressiontools.Expression()
+                    >>> expression = expression.markup()
+                    >>> expression = expression + Markup.hspace(0.75)
+                    >>> expression = expression + Markup('assai')
+                    >>> markup = expression('Allegro')
+                    >>> f(markup)
+                    \markup {
+                        Allegro
+                        \hspace
+                            #0.75
+                        assai
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         commands = list(self.contents)
-        if isinstance(expr, type(self)):
-            commands.extend(expr.contents)
-        elif isinstance(expr, markuptools.MarkupCommand):
-            commands.append(expr)
+        if isinstance(argument, type(self)):
+            commands.extend(argument.contents)
+        elif isinstance(argument, MarkupCommand):
+            commands.append(argument)
         else:
             message = 'must be markup or markup command: {!r}.'
-            message = message.format(expr)
+            message = message.format(argument)
             raise TypeError(message)
-        markup = type(self)(contents=commands)
+        markup = type(self)(contents=commands, direction=self.direction)
         return markup
+
+    def __copy__(self, *arguments):
+        r'''Copies markup.
+
+        ::
+
+            >>> import copy
+
+        ..  container:: example
+
+            ::
+
+                >>> markup_1 = Markup('Allegro assai', direction=Up)
+                >>> markup_2 = copy.copy(markup_1)
+
+            ::
+
+                >>> markup_1
+                Markup(contents=['Allegro assai'], direction=Up)
+
+            ::
+
+                >>> markup_2
+                Markup(contents=['Allegro assai'], direction=Up)
+
+            ::
+
+                >>> markup_1 == markup_2
+                True
+
+            ::
+
+                >>> markup_1 is markup_2
+                False
+
+        Returns new markup.
+        '''
+        superclass = super(Markup, self)
+        return superclass.__copy__(*arguments)
+
+    def __eq__(self, argument):
+        r'''Is true markup equals `argument`.
+
+        ..  container:: example
+
+            Without keywords:
+
+            ::
+
+                >>> markup_1 = Markup('Allegro')
+                >>> markup_2 = Markup('Allegro')
+                >>> markup_3 = Markup('Allegro assai')
+
+            ::
+
+                >>> markup_1 == markup_1
+                True
+                >>> markup_1 == markup_2
+                True
+                >>> markup_1 == markup_3
+                False
+                >>> markup_2 == markup_1
+                True
+                >>> markup_2 == markup_2
+                True
+                >>> markup_2 == markup_3
+                False
+                >>> markup_3 == markup_1
+                False
+                >>> markup_3 == markup_2
+                False
+                >>> markup_3 == markup_3
+                True
+
+        ..  container:: example
+
+            With keywords:
+
+            ::
+
+                >>> markup_1 = Markup('Allegro')
+                >>> markup_2 = Markup('Allegro', direction=Up)
+
+            ::
+
+                >>> markup_1 == markup_1
+                True
+                >>> markup_1 == markup_2
+                False
+                >>> markup_2 == markup_1
+                False
+                >>> markup_2 == markup_2
+                True
+
+        Returns new markup.
+        '''
+        superclass = super(Markup, self)
+        return superclass.__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats markup.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> string = r'\bold { allegro ma non troppo }'
-                >>> markup = Markup(string)
-                >>> print(format(markup))
-                \markup {
-                    \bold
-                        {
-                            allegro
-                            ma
-                            non
-                            troppo
+                Formats markup:
+
+                ::
+
+                    >>> string = r'\italic { Allegro assai }'
+                    >>> markup = Markup(string)
+                    >>> f(markup)
+                    \markup {
+                        \italic
+                            {
+                                Allegro
+                                assai
+                            }
                         }
-                    }
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
-        Interprets `''` equal to `'lilypond'`.
+
+            ..  container:: example expression
+
+                Formats markup expression:
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> f(expression)
+                    expressiontools.Expression(
+                        callbacks=[
+                            expressiontools.Expression(
+                                evaluation_template='abjad.markuptools.Markup',
+                                is_initializer=True,
+                                ),
+                            ],
+                        proxy_class=markuptools.Markup,
+                        )
 
         Returns string.
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
+            return self._get_lilypond_format()
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
+
+    def __hash__(self):
+        r'''Hashes markup.
+
+        ..  container:: example
+
+            Without keywords:
+
+            ::
+
+                >>> hash_1 = hash(Markup('Allegro'))
+                >>> hash_2 = hash(Markup('Allegro'))
+                >>> hash_3 = hash(Markup('Allegro assai'))
+
+            ::
+
+                >>> hash_1 == hash_1
+                True
+                >>> hash_1 == hash_2
+                True
+                >>> hash_1 == hash_3
+                False
+                >>> hash_2 == hash_1
+                True
+                >>> hash_2 == hash_2
+                True
+                >>> hash_2 == hash_3
+                False
+                >>> hash_3 == hash_1
+                False
+                >>> hash_3 == hash_2
+                False
+                >>> hash_3 == hash_3
+                True
+
+        ..  container:: example
+
+            With keywords:
+
+            ::
+
+                >>> hash_1 = hash(Markup('Allegro'))
+                >>> hash_2 = hash(Markup('Allegro', direction=Up))
+
+            ::
+
+                >>> hash_1 == hash_1
+                True
+                >>> hash_1 == hash_2
+                False
+                >>> hash_2 == hash_1
+                False
+                >>> hash_2 == hash_2
+                True
+
+        '''
+        superclass = super(Markup, self)
+        return superclass.__hash__()
 
     def __illustrate__(self):
         r'''Illustrates markup.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> string = r'\bold { allegro ma non troppo }'
-                >>> markup = Markup(string)
-                >>> show(markup) # doctest: +SKIP
+                ::
 
-            ..  doctest::
-
-                >>> lilypond_file = markup.__illustrate__()
-                >>> markup = lilypond_file.items[-1]
-                >>> print(format(markup))
-                \markup {
-                    \bold
-                        {
-                            allegro
-                            ma
-                            non
-                            troppo
+                    >>> string = r'\italic { Allegro assai }'
+                    >>> markup = Markup(string)
+                    >>> f(markup)
+                    \markup {
+                        \italic
+                            {
+                                Allegro
+                                assai
+                            }
                         }
-                    }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = markup.__illustrate__()
+                    >>> f(lilypond_file.items[-1])
+                    \markup {
+                        \italic
+                            {
+                                Allegro
+                                assai
+                            }
+                        }
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> string = r'\italic { Allegro assai }'
+                    >>> markup = expression(string)
+                    >>> f(markup)
+                    \markup {
+                        \italic
+                            {
+                                Allegro
+                                assai
+                            }
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> lilypond_file = markup.__illustrate__()
+                    >>> f(lilypond_file.items[-1])
+                    \markup {
+                        \italic
+                            {
+                                Allegro
+                                assai
+                            }
+                        }
 
         Returns LilyPond file.
         '''
-        from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.LilyPondFile.new()
+        import abjad
+        lilypond_file = abjad.LilyPondFile.new()
         lilypond_file.header_block.tagline = False
         markup = new(self, direction=None)
         lilypond_file.items.append(markup)
         return lilypond_file
+
+    def __lt__(self, argument):
+        r'''Is true when markup contents compare less than `argument` contents.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup_1 = Markup('Allegro')
+                >>> markup_2 = Markup('assai')
+
+            ::
+
+                >>> markup_1 < markup_2
+                True
+                >>> markup_2 < markup_1
+                False
+
+        Raises type error when `argument` is not markup.
+
+        Returns true or false.
+        '''
+        if not isinstance(argument, type(self)):
+            message = 'can only compare markup to markup: {!r}.'
+            message = message.format(argument)
+            raise TypeError(message)
+        return self.contents < argument.contents 
 
     def __str__(self):
         r'''Gets string representation of markup.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> string = r'\bold { allegro ma non troppo }'
-                >>> markup = Markup(string)
-                >>> print(str(markup))
-                \markup {
-                    \bold
-                        {
-                            allegro
-                            ma
-                            non
-                            troppo
+                ::
+
+                    >>> string = r'\italic { Allegro assai }'
+                    >>> markup = Markup(string)
+                    >>> print(str(markup))
+                    \markup {
+                        \italic
+                            {
+                                Allegro
+                                assai
+                            }
                         }
-                    }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> string = r'\italic { Allegro assai }'
+                    >>> markup = expression(string)
+                    >>> print(str(markup))
+                    \markup {
+                        \italic
+                            {
+                                Allegro
+                                assai
+                            }
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns string.
         '''
-        return self._lilypond_format
+        return self._get_lilypond_format()
 
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
         from abjad.tools import systemtools
+        if self._lilypond_tweak_manager is None:
+            tweaks = []
+        else:
+            tweaks = self._lilypond_tweak_manager._list_format_contributions()
         indent = systemtools.LilyPondFormatManager.indent
         direction = ''
         if self.direction is not None:
             direction = stringtools.expr_to_tridirectional_lilypond_symbol(
                 self.direction)
-        # none
-        if self.contents is None:
-            return [r'\markup {}']
-        # a single string
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
             content = schemetools.Scheme.format_scheme_value(content)
@@ -287,9 +715,8 @@ class Markup(AbjadValueObject):
             else:
                 content = '{}'
             if direction:
-                return [r'{} \markup {}'.format(direction, content)]
-            return [r'\markup {}'.format(content)]
-        # multiple strings or markup commands
+                return tweaks + [r'{} \markup {}'.format(direction, content)]
+            return tweaks + [r'\markup {}'.format(content)]
         if direction:
             pieces = [r'{} \markup {{'.format(direction)]
         else:
@@ -302,7 +729,7 @@ class Markup(AbjadValueObject):
                 pieces.extend(['{}{}'.format(indent, x) for x in
                     content._get_format_pieces()])
         pieces.append('{}}}'.format(indent))
-        return pieces
+        return tweaks + pieces
 
     def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
@@ -314,21 +741,235 @@ class Markup(AbjadValueObject):
             storage_format_kwargs_names=names,
             )
 
+    def _get_lilypond_format(self):
+        return '\n'.join(self._get_format_pieces())
+
+    @staticmethod
+    def _make_static_callback(frozen_expression, frame):
+        Expression = expressiontools.Expression
+        template = Expression._frame_to_evaluation_template(
+            frame,
+            static_class=Markup,
+            )
+        callback = abjad.Expression.make_callback(
+            evaluation_template=template,
+            )
+        return frozen_expression.append_callback(callback)
+
     @staticmethod
     def _parse_markup_command_argument(argument):
-        from abjad.tools import markuptools
         if isinstance(argument, Markup):
             if len(argument.contents) == 1:
                 contents = argument.contents[0]
             else:
                 contents = list(argument.contents)
-        elif isinstance(argument, (str, markuptools.MarkupCommand)):
+        elif isinstance(argument, (str, MarkupCommand)):
             contents = argument
         else:
             message = 'must be markup, markup command or string: {!r}.'
             message = message.format(argument)
             raise TypeError(argument)
         return contents
+
+    def _update_expression(self, frame):
+        callback = expressiontools.Expression._frame_to_callback(frame)
+        return self._expression.append_callback(callback)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def contents(self):
+        r'''Gets contents of markup.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                Initializes contents positionally:
+
+                ::
+
+                    >>> Markup('Allegro assai')
+                    Markup(contents=['Allegro assai'])
+
+                Initializes contents from keyword:
+
+                ::
+
+                    >>> Markup(contents='Allegro assai')
+                    Markup(contents=['Allegro assai'])
+
+            ..  container:: example expression
+
+                Initializes contents positionally:
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression('Allegro assai')
+                    Markup(contents=['Allegro assai'])
+
+                Initializes contents from keyword:
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression(contents='Allegro assai')
+                    Markup(contents=['Allegro assai'])
+
+        Returns tuple.
+        '''
+        return list(self._contents)
+
+    @property
+    def direction(self):
+        r'''Gets direction of markup.
+
+        ..  container:: example
+
+            ..  container:: example
+
+                Initializes without direction:
+
+                ::
+
+                    >>> Markup('Allegro')
+                    Markup(contents=['Allegro'])
+
+                Initializes with direction:
+
+                ::
+
+                    >>> Markup('Allegro', direction=Up)
+                    Markup(contents=['Allegro'], direction=Up)
+
+            ..  container:: example expression
+
+                Initializes without direction:
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression('Allegro')
+                    Markup(contents=['Allegro'])
+
+                Sets direction at initialization:
+
+                ::
+
+                    >>> expression = Expression().markup(direction=Up)
+                    >>> expression('Allegro')
+                    Markup(contents=['Allegro'], direction=Up)
+
+                Sets direction at evaluation:
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression('Allegro', direction=Down)
+                    Markup(contents=['Allegro'], direction=Down)
+
+                Overrides direction at evaluation:
+
+                ::
+
+                    >>> expression = Expression().markup(direction=Up)
+                    >>> expression('Allegro', direction=Down)
+                    Markup(contents=['Allegro'], direction=Down)
+
+        Defaults to none.
+
+        Set to up, down, center or none.
+
+        Returns up, down, center or none.
+        '''
+        return self._direction
+
+    @property
+    def stack_priority(self):
+        r'''Gets stack priority of markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> attach(Markup(('Non',  'troppo'), stack_priority=1000), staff[1])
+                >>> attach(Markup('allegro', stack_priority=0), staff[1])
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest:
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                        - \markup {
+                            \column
+                                {
+                                    \line
+                                        {
+                                            Non
+                                            troppo
+                                        }
+                                    \line
+                                        {
+                                            allegro
+                                        }
+                                }
+                            }
+                    e'8
+                    f'8
+                }
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> attach(Markup(('non',  'troppo'), stack_priority=0), staff[1])
+                >>> attach(Markup('Allegro', stack_priority=1000), staff[1])
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest:
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                        - \markup {
+                            \column
+                                {
+                                    \line
+                                        {
+                                            Allegro
+                                        }
+                                    \line
+                                        {
+                                            non
+                                            troppo
+                                        }
+                                }
+                            }
+                    e'8
+                    f'8
+                }
+
+        Higher priority equals greater absolute distance from staff.
+
+        Defaults to zero.
+
+        Set to integer.
+
+        Returns integer.
+        '''
+        return self._stack_priority
 
     ### PUBLIC METHODS ###
 
@@ -337,28 +978,46 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.bold()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.bold()
+                    >>> f(markup)
+                    \markup {
+                        \bold
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \bold
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = expressiontools.Expression()
+                    >>> expression = expression.markup()
+                    >>> expression = expression.bold()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \bold
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
+        command = MarkupCommand(
             'bold',
             contents,
             )
@@ -369,58 +1028,90 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default box:
+            Default box:
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.box()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.box()
+                    >>> f(markup)
+                    \markup {
+                        \box
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \box
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.box()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \box
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         ..  container:: example
 
-            **Example 2.** Customized box:
+            Customized box:
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.box()
-                >>> markup = markup.override(('box-padding', 0.5))
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.box()
+                    >>> markup = markup.override(('box-padding', 0.5))
+                    >>> f(markup)
+                    \markup {
+                        \override
+                            #'(box-padding . 0.5)
+                            \box
+                                "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \override
-                        #'(box-padding . 0.5)
-                        \box
-                            "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
 
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.box()
+                    >>> expression = expression.override(('box-padding', 0.5))
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \override
+                            #'(box-padding . 0.5)
+                            \box
+                                "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'box',
-            contents,
-            )
+        command = MarkupCommand('box', contents)
         return new(self, contents=command)
 
     def bracket(self):
@@ -428,31 +1119,45 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.bracket()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.bracket()
+                    >>> f(markup)
+                    \markup {
+                        \bracket
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \bracket
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.bracket()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \bracket
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'bracket',
-            contents,
-            )
+        command = MarkupCommand('bracket', contents)
         return new(self, contents=command)
 
     def caps(self):
@@ -460,31 +1165,45 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.caps()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.caps()
+                    >>> f(markup)
+                    \markup {
+                        \caps
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \caps
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.caps()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \caps
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'caps',
-            contents,
-            )
+        command = MarkupCommand('caps', contents)
         return new(self, contents=command)
 
     def center_align(self):
@@ -492,42 +1211,67 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup_a = Markup('one')
-                >>> markup_b = Markup('two').center_align()
-                >>> markup_c = Markup('three')
-                >>> markup = Markup.column([markup_a, markup_b, markup_c])
+                ::
 
-            ::
-
-                >>> print(format(markup))
-                \markup {
-                    \column
-                        {
-                            one
-                            \center-align
-                                two
-                            three
+                    >>> markup_a = Markup('allegro')
+                    >>> markup_b = Markup('non').center_align()
+                    >>> markup_c = Markup('troppo')
+                    >>> markup = Markup.column([markup_a, markup_b, markup_c])
+                    >>> f(markup)
+                    \markup {
+                        \column
+                            {
+                                allegro
+                                \center-align
+                                    non
+                                troppo
+                            }
                         }
-                    }
 
-            ::
+                ::
 
-                >>> show(markup) # doctest: +SKIP
+                    >>> show(markup) # doctest: +SKIP
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.center_align()
+                    >>> markup_a = Markup('allegro')
+                    >>> markup_b = expression('non')
+                    >>> markup_c = Markup('troppo')
+                    >>> markups = [markup_a, markup_b, markup_c]
+                    >>> markup_list = MarkupList()
+                    >>> markup_list.extend([markup_a, markup_b, markup_c])
+                    >>> markup = markup_list.column()
+                    >>> f(markup)
+                    \markup {
+                        \column
+                            {
+                                allegro
+                                \center-align
+                                    non
+                                troppo
+                            }
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'center-align',
-            contents,
-            )
+        command = MarkupCommand('center-align', contents)
         return new(self, contents=command)
 
     @staticmethod
-    def center_column(markups, direction=None):
+    def center_column(markup_list, direction=None):
         r'''LilyPond ``\center-column`` markup command.
 
         ..  container:: example
@@ -537,10 +1281,7 @@ class Markup(AbjadValueObject):
                 >>> city = Markup('Los Angeles')
                 >>> date = Markup('May - August 2014')
                 >>> markup = Markup.center_column([city, date])
-
-            ::
-
-                >>> print(format(markup))
+                >>> f(markup)
                 \markup {
                     \center-column
                         {
@@ -562,10 +1303,7 @@ class Markup(AbjadValueObject):
                 >>> city = 'Los Angeles'
                 >>> date = 'May - August 2014'
                 >>> markup = Markup.center_column([city, date])
-
-            ::
-
-                >>> print(format(markup))
+                >>> f(markup)
                 \markup {
                     \center-column
                         {
@@ -574,16 +1312,16 @@ class Markup(AbjadValueObject):
                         }
                     }
 
+            ::
+
+                >>> show(markup) # doctest: +SKIP    
+
         Returns new markup.
         '''
-        from abjad.tools import markuptools
         contents = []
-        for markup in markups:
+        for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = markuptools.MarkupCommand(
-            'center-column',
-            contents,
-            )
+        command = MarkupCommand('center-column', contents)
         return Markup(contents=command, direction=direction)
 
     def circle(self):
@@ -591,40 +1329,59 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup.fraction(3, 5)
-                >>> markup = markup.circle()
-                >>> markup = markup.override(('circle-padding', 0.45))
+                ::
 
-            ::
+                    >>> markup = Markup.fraction(3, 5)
+                    >>> markup = markup.circle()
+                    >>> markup = markup.override(('circle-padding', 0.45))
+                    >>> f(markup)
+                    \markup {
+                        \override
+                            #'(circle-padding . 0.45)
+                            \circle
+                                \fraction
+                                    3
+                                    5
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \override
-                        #'(circle-padding . 0.45)
-                        \circle
-                            \fraction
-                                3
-                                5
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.circle()
+                    >>> expression = expression.override(('circle-padding', 0.45))
+                    >>> markup = expression(Markup.fraction(3, 5))
+                    >>> f(markup)
+                    \markup {
+                        \override
+                            #'(circle-padding . 0.45)
+                            \circle
+                                \fraction
+                                    3
+                                    5
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'circle',
-            contents,
-            )
+        command = MarkupCommand('circle', contents)
         return new(self, contents=command)
 
     @staticmethod
-    def column(markups, direction=None):
+    def column(markup_list, direction=None):
         r'''LilyPond ``\column`` markup command.
 
         ..  container:: example
@@ -634,10 +1391,7 @@ class Markup(AbjadValueObject):
                 >>> city = Markup('Los Angeles')
                 >>> date = Markup('May - August 2014')
                 >>> markup = Markup.column([city, date])
-
-            ::
-
-                >>> print(format(markup))
+                >>> f(markup)
                 \markup {
                     \column
                         {
@@ -652,33 +1406,30 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
         contents = []
-        for markup in markups:
+        for markup in markup_list:
             contents.extend(markup.contents)
-        command = markuptools.MarkupCommand(
-            'column',
-            contents,
-            )
+        command = MarkupCommand('column', contents)
         return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def combine(markup_one, markup_two):
+    def combine(markup_list, direction=None):
         r'''LilyPond ``\combine`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup_one = Markup('a few words')
-                >>> markup_two = Markup.draw_line(10, 0)
-                >>> markup = Markup.combine(markup_one, markup_two)
-                >>> print(format(markup))
-                \markup {
+                >>> markup_one = Markup('Allegro assai')
+                >>> markup_two = Markup.draw_line(13, 0)
+                >>> markup_list = [markup_one, markup_two]
+                >>> markup = Markup.combine(markup_list, direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \combine
-                        "a few words"
+                        "Allegro assai"
                         \draw-line
-                            #'(10 . 0)
+                            #'(13 . 0)
                     }
 
             ::
@@ -687,72 +1438,75 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
-        contents_one = Markup._parse_markup_command_argument(markup_one)
-        contents_two = Markup._parse_markup_command_argument(markup_two)
-        command = markuptools.MarkupCommand(
-            'combine',
-            contents_one,
-            contents_two,
-            )
-        return Markup(contents=command)
+        if not len(markup_list) == 2:
+            message = 'markup list must be length 2: {!r}.'
+            message = message.format(markup_list)
+            raise Exception(message)
+        markup_1, markup_2 = markup_list
+        contents_1 = Markup._parse_markup_command_argument(markup_1)
+        contents_2 = Markup._parse_markup_command_argument(markup_2)
+        command = MarkupCommand('combine', contents_1, contents_2)
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def concat(markup_list):
+    def concat(markup_list, direction=None):
         r'''LilyPond ``\concat`` markup command.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> downbow = Markup.musicglyph('scripts.downbow')
-                >>> hspace = Markup.hspace(1)
-                >>> upbow = Markup.musicglyph('scripts.upbow')
-                >>> markup = Markup.concat([downbow, hspace, upbow])
-                >>> print(format(markup))
-                \markup {
-                    \concat
-                        {
-                            \musicglyph
-                                #"scripts.downbow"
-                            \hspace
-                                #1
-                            \musicglyph
-                                #"scripts.upbow"
+                ::
+
+                    >>> downbow = Markup.musicglyph('scripts.downbow')
+                    >>> hspace = Markup.hspace(1)
+                    >>> upbow = Markup.musicglyph('scripts.upbow')
+                    >>> markup_list = [downbow, hspace, upbow]
+                    >>> markup = Markup.concat(markup_list, direction=Up)
+                    >>> f(markup)
+                    ^ \markup {
+                        \concat
+                            {
+                                \musicglyph
+                                    #"scripts.downbow"
+                                \hspace
+                                    #1
+                                \musicglyph
+                                    #"scripts.upbow"
+                            }
                         }
-                    }
 
-            ::
+                ::
 
-                >>> show(markup) # doctest: +SKIP
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        expression = Markup.concat.__dict__.pop('frozen_expression', None)
+        if expression:
+            frame = inspect.currentframe()
+            return Markup._make_static_callback(
+                expression,
+                inspect.currentframe(),
+                )
         result = []
         for markup in markup_list:
             contents = Markup._parse_markup_command_argument(markup)
             result.append(contents)
-        command = markuptools.MarkupCommand(
-            'concat',
-            result,
-            )
-        return Markup(contents=command)
+        command = MarkupCommand('concat', result)
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def draw_circle(radius, thickness, filled=False):
+    def draw_circle(radius, thickness, direction=None, filled=False):
         r'''LilyPond ``\draw-circle`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.draw_circle(10, 1.5)
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.draw_circle(10, 1.5, direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \draw-circle
                         #10
                         #1.5
@@ -765,29 +1519,20 @@ class Markup(AbjadValueObject):
 
         Returns new markup
         '''
-        from abjad.tools import markuptools
-        command = markuptools.MarkupCommand(
-            'draw-circle',
-            radius,
-            thickness,
-            filled,
-            )
-        return Markup(contents=command)
+        command = MarkupCommand('draw-circle', radius, thickness, filled)
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def draw_line(x, y):
+    def draw_line(x, y, direction=None):
         r'''LilyPond ``\draw-line`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.draw_line(5, -2.5)
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.draw_line(5, -2.5, direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \draw-line
                         #'(5 . -2.5)
                     }
@@ -798,57 +1543,67 @@ class Markup(AbjadValueObject):
 
         Returns new markup
         '''
-        from abjad.tools import markuptools
         pair = schemetools.SchemePair(x, y)
-        command = markuptools.MarkupCommand(
-            'draw-line',
-            pair,
-            )
-        return Markup(contents=command)
+        command = MarkupCommand('draw-line', pair)
+        return Markup(contents=command, direction=direction)
 
     def dynamic(self):
         r'''LilyPond ``\dynamic`` markup command.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('sffz')
-                >>> markup = markup.dynamic()
+                ::
 
-            ::
+                    >>> markup = Markup('sffz')
+                    >>> markup = markup.dynamic()
+                    >>> f(markup)
+                    \markup {
+                        \dynamic
+                            sffz
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \dynamic
-                        sffz
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.dynamic()
+                    >>> markup = expression('sffz')
+                    >>> f(markup)
+                    \markup {
+                        \dynamic
+                            sffz
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'dynamic',
-            contents,
-            )
+        command = MarkupCommand('dynamic', contents)
         return new(self, contents=command)
 
     @staticmethod
-    def filled_box(x_extent, y_extent, blot=0):
+    def filled_box(x_extent, y_extent, blot=0, direction=None):
         r'''LilyPond ``filled-box`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.filled_box((0, 10), (2, 5), 1.5)
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.filled_box((0, 10), (2, 5), 1.5, direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \filled-box
                         #'(0 . 10)
                         #'(2 . 5)
@@ -861,64 +1616,69 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
         x_extent = schemetools.SchemePair(x_extent)
         y_extent = schemetools.SchemePair(y_extent)
         blot = float(blot)
-        command = markuptools.MarkupCommand(
-            'filled-box',
-            x_extent,
-            y_extent,
-            blot,
-            )
-        return Markup(command)
+        command = MarkupCommand('filled-box', x_extent, y_extent, blot)
+        return Markup(command, direction=direction)
 
     def finger(self):
         r'''LilyPond ``\finger`` markup command.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup(1)
-                >>> markup = markup.finger()
+                ::
 
-            ::
+                    >>> markup = Markup(1)
+                    >>> markup = markup.finger()
+                    >>> f(markup)
+                    \markup {
+                        \finger
+                            1
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \finger
-                        1
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.finger()
+                    >>> markup = expression(1)
+                    >>> f(markup)
+                    \markup {
+                        \finger
+                            1
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'finger',
-            contents,
-            )
+        command = MarkupCommand('finger', contents)
         return new(self, contents=command)
 
     @staticmethod
-    def flat():
+    def flat(direction=None):
         r'''LilyPond ``\flat`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.flat()
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.flat(direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \flat
                     }
 
@@ -928,154 +1688,196 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
-        command = markuptools.MarkupCommand('flat')
-        return Markup(contents=command)
+        expression = Markup.flat.__dict__.pop('frozen_expression', None)
+        if expression:
+            return Markup._make_static_callback(
+                expression, inspect.currentframe(),
+                )
+        command = MarkupCommand('flat')
+        return Markup(contents=command, direction=direction)
 
     def fontsize(self, fontsize):
         r'''LilyPond ``\fontsize`` markup command.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('foo')
-                >>> markup = markup.fontsize(-3)
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.fontsize(-3)
+                    >>> f(markup)
+                    \markup {
+                        \fontsize #-3
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \fontsize #-3
-                        foo
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.fontsize(-3)
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \fontsize #-3
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         fontsize = float(fontsize)
         fontsize = mathtools.integer_equivalent_number_to_integer(fontsize)
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'fontsize',
-            fontsize,
-            contents,
-            )
+        command = MarkupCommand('fontsize', fontsize, contents)
         return new(self, contents=command)
 
     @staticmethod
-    def fraction(numerator, denominator):
+    def fraction(numerator, denominator, direction=None):
         r'''LilyPond ``\fraction`` markup command.
 
         ..  container:: example
 
-            **Example 1.** Fraction with integer numerator and denominator:
+            Fraction with integer numerator and denominator:
 
             ::
 
-                >>> markup = Markup.fraction(1, 4)
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.fraction(1, 4, direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \fraction
                         1
                         4
                     }
 
-        ..  container:: example
-
-            **Example 2.** Fraction with string numerator and integer
-            denominator:
-
-            ::
-
-                >>> markup = Markup.fraction('π', 4)
-
             ::
 
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+        ..  container:: example
 
-                >>> print(format(markup))
+            Fraction with string numerator and integer denominator:
+
+            ::
+
+                >>> markup = Markup.fraction('π', 4)
+                >>> f(markup)
                 \markup {
                     \fraction
                         π
                         4
                     }
 
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
         Returns new markup
         '''
-        from abjad.tools import markuptools
-        command = markuptools.MarkupCommand(
-            'fraction',
-            str(numerator),
-            str(denominator),
-            )
-        return Markup(contents=command)
+        command = MarkupCommand('fraction', str(numerator), str(denominator))
+        return Markup(contents=command, direction=direction)
 
     def general_align(self, axis, direction):
         r'''LilyPond ``\general-align`` markup command.
 
         ..  container:: example
 
-            **Example 1.** With Abjad direction constant:
+            With Abjad direction constant:
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.general_align('Y', Up)
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.general_align('Y', Up)
+                    >>> f(markup)
+                    \markup {
+                        \general-align
+                            #Y
+                            #UP
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \general-align
-                        #Y
-                        #UP
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.general_align('Y', Up)
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \general-align
+                            #Y
+                            #UP
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         ..  container:: example
 
-            **Example 2.** With numeric direction value:
+            With numeric direction value:
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.general_align('Y', 0.75)
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.general_align('Y', 0.75)
+                    >>> f(markup)
+                    \markup {
+                        \general-align
+                            #Y
+                            #0.75
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \general-align
-                        #Y
-                        #0.75
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.general_align('Y', 0.75)
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \general-align
+                            #Y
+                            #0.75
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         axis = schemetools.Scheme(axis)
         # TODO: make schemetools.Scheme(Up) work
@@ -1091,12 +1893,7 @@ class Markup(AbjadValueObject):
             message = 'unknown direction: {!r}.'
             message = message.format(direction)
             raise ValueError(message)
-        command = markuptools.MarkupCommand(
-            'general-align',
-            axis,
-            direction,
-            contents,
-            )
+        command = MarkupCommand('general-align', axis, direction, contents)
         return new(self, contents=command)
 
     def halign(self, direction):
@@ -1104,33 +1901,47 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.halign(0)
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.halign(0)
+                    >>> f(markup)
+                    \markup {
+                        \halign
+                            #0
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \halign
-                        #0
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.halign(0)
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \halign
+                            #0
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'halign',
-            direction,
-            contents,
-            )
+        command = MarkupCommand('halign', direction, contents)
         return new(self, contents=command)
 
     def hcenter_in(self, length):
@@ -1138,49 +1949,60 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.hcenter_in(12)
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.hcenter_in(12)
+                    >>> f(markup)
+                    \markup {
+                        \hcenter-in
+                            #12
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \hcenter-in
-                        #12
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.hcenter_in(12)
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \hcenter-in
+                            #12
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'hcenter-in',
-            length,
-            contents,
-            )
+        command = MarkupCommand('hcenter-in', length, contents)
         return new(self, contents=command)
 
     @staticmethod
-    def hspace(amount):
+    def hspace(amount, direction=None):
         r'''LilyPond ``\hspace`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.hspace(0.75)
-
-            ::
-
+                >>> markup = Markup.hspace(0.75, direction=Up)
                 >>> f(markup)
-                \markup {
+                ^ \markup {
                     \hspace
                         #0.75
                     }
@@ -1191,43 +2013,53 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
-        command = markuptools.MarkupCommand(
-            'hspace',
-            amount,
-            )
-        return Markup(contents=command)
+        command = MarkupCommand('hspace', amount)
+        return Markup(contents=command, direction=direction)
 
     def huge(self):
         r'''LilyPond ``\huge`` markup command.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.huge()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.huge()
+                    >>> f(markup)
+                    \markup {
+                        \huge
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \huge
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.huge()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \huge
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'huge',
-            contents,
-            )
+        command = MarkupCommand('huge', contents)
         return new(self, contents=command)
 
     def italic(self):
@@ -1235,31 +2067,46 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.italic()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.italic()
+                    >>> f(markup)
+                    \markup {
+                        \italic
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \italic
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.italic()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \italic
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'italic',
-            contents,
-            )
+        command = MarkupCommand('italic', contents)
         return new(self, contents=command)
 
     def larger(self):
@@ -1267,35 +2114,49 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.larger()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.larger()
+                    >>> f(markup)
+                    \markup {
+                        \larger
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \larger
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.larger()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \larger
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'larger',
-            contents,
-            )
+        command = MarkupCommand('larger', contents)
         return new(self, contents=command)
 
     @staticmethod
-    def left_column(markups, direction=None):
+    def left_column(markup_list, direction=None):
         r'''LilyPond ``\left-column`` markup command.
 
         ..  container:: example
@@ -1305,10 +2166,7 @@ class Markup(AbjadValueObject):
                 >>> city = Markup('Los Angeles')
                 >>> date = Markup('May - August 2014')
                 >>> markup = Markup.left_column([city, date])
-
-            ::
-
-                >>> print(format(markup))
+                >>> f(markup)
                 \markup {
                     \left-column
                         {
@@ -1323,35 +2181,29 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
         contents = []
-        for markup in markups:
+        for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = markuptools.MarkupCommand(
-            'left-column',
-            contents,
-            )
+        command = MarkupCommand('left-column', contents)
         return Markup(contents=command, direction=direction)
 
-    def line(self, *markups):
+    @staticmethod
+    def line(markup_list, direction=None):
         r'''LilyPond ``\line`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.line(Markup('ma'), Markup('non troppo'))
-
-            ::
-
-                >>> print(format(markup))
+                >>> markups = ['Allegro', 'assai']
+                >>> markups = [Markup(_) for _ in markups]
+                >>> markup = Markup.line(markups)
+                >>> f(markup)
                 \markup {
                     \line
                         {
-                            "Allegro assai"
-                            ma
-                            "non troppo"
+                            Allegro
+                            assai
                         }
                     }
 
@@ -1362,187 +2214,28 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
         contents = []
-        contents.extend(self.contents)
-        for markup in markups:
+        for markup in markup_list:
             contents.extend(markup.contents)
-        command = markuptools.MarkupCommand(
-            'line',
-            contents,
-            )
-        return new(self, contents=command)
+        command = MarkupCommand('line', contents)
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def make_big_centered_page_number_markup(text=None):
-        r'''Makes big centered page number markup.
-
-        ..  container:: example
-
-            ::
-
-                >>> markup = Markup.make_big_centered_page_number_markup()
-
-            ::
-
-                >>> print(format(markup, 'lilypond'))
-                \markup {
-                    \fill-line
-                        {
-                            \bold
-                                \fontsize
-                                    #3
-                                    \concat
-                                        {
-                                            \on-the-fly
-                                                #print-page-number-check-first
-                                                \fromproperty
-                                                    #'page:page-number-string
-                                        }
-                        }
-                    }
-
-        Returns markup.
-        '''
-        assert isinstance(text, (str, type(None))), repr(text)
-        if text is None:
-            contents = r'''
-            \fill-line {
-            \bold \fontsize #3 \concat {
-            \on-the-fly #print-page-number-check-first
-            \fromproperty #'page:page-number-string } }'''
-        else:
-            contents = r'''
-            \fill-line {{
-            \bold \fontsize #3 \concat {{
-            {} " " \char #x2014 " "
-            \on-the-fly #print-page-number-check-first
-            \fromproperty #'page:page-number-string }} }}'''
-            contents = contents.format(text)
-        markup = Markup(contents)
-        return markup
-
-    @staticmethod
-    def make_blank_line_markup():
-        r'''Makes blank line markup.
-
-        ..  container:: example
-
-            ::
-
-                >>> markup = Markup.make_blank_line_markup()
-
-            ::
-
-                >>> print(format(markup))
-                \markup { \fill-line { " " } }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        return Markup(r'\fill-line { " " }')
-
-    @staticmethod
-    def make_centered_title_markup(
-        title,
-        font_name='Times New Roman',
-        font_size=18,
-        vspace_before=6,
-        vspace_after=12,
-        ):
-        r'''Makes centered `title` markup.
-
-        ..  container:: example
-
-            ::
-
-                >>> markup = Markup.make_centered_title_markup('String Quartet')
-
-            ::
-
-                >>> print(format(markup, 'lilypond'))
-                \markup {
-                    \override
-                        #'(font-name . "Times New Roman")
-                        \fontsize
-                            #18
-                            \column
-                                {
-                                    \center-align
-                                        {
-                                            {
-                                                \vspace
-                                                    #6
-                                                \line
-                                                    {
-                                                        "String Quartet"
-                                                    }
-                                                \vspace
-                                                    #12
-                                            }
-                                        }
-                                }
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        assert isinstance(title, (str, list))
-        assert isinstance(font_name, str)
-        assert isinstance(font_size, (int, float))
-        if isinstance(title, str):
-            title_lines = [title]
-        else:
-            title_lines = title
-        title_lines_string = ''
-        for title_line in title_lines:
-            line = '                    \\line {{ "{}" }}\n'
-            line = line.format(title_line)
-            title_lines_string += line
-        title_lines_string = title_lines_string.strip('\n')
-        contents = r'''
-            \override #'(font-name . "{}")
-            \fontsize #{}
-            \column {{
-                \center-align {{
-                    {{
-                        \vspace #{}
-                        {}
-                        \vspace #{}
-                    }}
-                }}
-            }}'''
-        contents = contents.format(
-            font_name,
-            font_size,
-            vspace_before,
-            title_lines_string,
-            vspace_after,
-            )
-        return Markup(contents)
-
-    @staticmethod
-    def make_improper_fraction_markup(rational):
+    def make_improper_fraction_markup(rational, direction=None):
         r'''Makes improper fraction markup.
 
         ..  container:: example
 
-            **Example 1.** With integer-equivalent number:
+            With integer-equivalent number:
 
             ::
 
-                >>> markup = Markup.make_improper_fraction_markup(Fraction(6, 3))
-
-            ::
-
-                >>> print(format(markup))
-                \markup { 2 }
+                >>> markup = Markup.make_improper_fraction_markup(
+                ...     Fraction(6, 3),
+                ...     direction=Up,
+                ...     )
+                >>> f(markup)
+                ^ \markup { 2 }
 
             ::
 
@@ -1550,15 +2243,12 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** With non-integer-equivalent number:
+            With non-integer-equivalent number:
 
             ::
 
                 >>> markup = Markup.make_improper_fraction_markup(Fraction(7, 3))
-
-            ::
-
-                >>> print(format(markup))
+                >>> f(markup)
                 \markup {
                     2
                     \tiny
@@ -1575,82 +2265,21 @@ class Markup(AbjadValueObject):
         from abjad.tools import mathtools
         if mathtools.is_integer_equivalent_number(rational):
             number = int(rational)
-            markup = Markup(number)
+            markup = Markup(number, direction=direction)
             return markup
         assert isinstance(rational, Fraction), repr(rational)
         integer_part = int(rational)
         fraction_part = rational - integer_part
-        integer_markup = Markup(integer_part)
+        integer_markup = Markup(integer_part, direction=direction)
         numerator = fraction_part.numerator
         denominator = fraction_part.denominator
-        fraction_markup = Markup.fraction(numerator, denominator)
+        fraction_markup = Markup.fraction(
+            numerator,
+            denominator,
+            )
         fraction_markup = fraction_markup.tiny()
         markup = integer_markup + fraction_markup
         return markup
-
-    @staticmethod
-    def make_vertically_adjusted_composer_markup(
-        composer,
-        font_name='Times New Roman',
-        font_size=3,
-        space_above=20,
-        space_right=0,
-        ):
-        r'''Makes vertically adjusted `composer` markup.
-
-        ..  container:: example
-
-            ::
-
-                >>> markup = Markup.make_vertically_adjusted_composer_markup(
-                ...     'Josquin Desprez',
-                ...     )
-
-            ::
-
-                >>> print(format(markup, 'lilypond'))
-                \markup {
-                    \override
-                        #'(font-name . "Times New Roman")
-                        {
-                            \hspace
-                                #0
-                            \raise
-                                #-20
-                                \fontsize
-                                    #3
-                                    "Josquin Desprez"
-                            \hspace
-                                #0
-                        }
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
-
-        Returns markup.
-        '''
-        assert isinstance(composer, str)
-        assert isinstance(font_name, str)
-        assert isinstance(font_size, (int, float))
-        assert isinstance(space_above, (int, float))
-        assert isinstance(space_right, (int, float))
-        contents = r'''
-            \override #'(font-name . "{}") {{
-                \hspace #0
-                \raise #-{} \fontsize #{} "{}"
-                \hspace #{}
-            }}
-        '''
-        contents = contents.format(
-            font_name,
-            space_above,
-            font_size,
-            composer,
-            space_right,
-            )
-        return Markup(contents)
 
     @staticmethod
     def musicglyph(glyph_name=None, direction=None):
@@ -1660,12 +2289,12 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.musicglyph('accidentals.sharp')
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.musicglyph(
+                ...     'accidentals.sharp',
+                ...     direction=Up,
+                ...     )
+                >>> f(markup)
+                ^ \markup {
                     \musicglyph
                         #"accidentals.sharp"
                     }
@@ -1677,31 +2306,24 @@ class Markup(AbjadValueObject):
         Returns new markup.
         '''
         from abjad.ly import music_glyphs
-        from abjad.tools import markuptools
         glyph_name = glyph_name or 'accidentals.sharp'
         message = 'not a valid LilyPond glyph name.'
         assert glyph_name in music_glyphs, message
         glyph_scheme = schemetools.Scheme(glyph_name, force_quotes=True)
-        command = markuptools.MarkupCommand(
-            'musicglyph',
-            glyph_scheme,
-            )
-        return markuptools.Markup(contents=command, direction=direction)
+        command = MarkupCommand('musicglyph', glyph_scheme)
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def natural():
+    def natural(direction=None):
         r'''LilyPond ``\natural`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.natural()
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.natural(direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \natural
                     }
 
@@ -1711,9 +2333,8 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
-        command = markuptools.MarkupCommand('natural')
-        return Markup(contents=command)
+        command = MarkupCommand('natural')
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
     def note_by_number(log, dot_count, stem_direction, direction=None):
@@ -1723,12 +2344,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.note_by_number(3, 2, 1)
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.note_by_number(3, 2, 1, direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \note-by-number
                         #3
                         #2
@@ -1741,8 +2359,7 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
-        command = markuptools.MarkupCommand(
+        command = MarkupCommand(
             'note-by-number',
             log,
             dot_count,
@@ -1759,10 +2376,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> markup = Markup.null()
-
-            ::
-
-                >>> print(format(markup))
+                >>> f(markup)
                 \markup {
                     \null
                     }
@@ -1773,14 +2387,11 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
-        command = markuptools.MarkupCommand(
-            'null',
-            )
+        command = MarkupCommand('null')
         return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def overlay(markups, direction=None):
+    def overlay(markup_list, direction=None):
         r'''LilyPond ``\overlay`` markup command.
 
         ..  container:: example
@@ -1789,12 +2400,9 @@ class Markup(AbjadValueObject):
 
                 >>> city = Markup('Los Angeles')
                 >>> date = Markup('May - August 2014')
-                >>> markup = Markup.overlay([city, date])
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.overlay([city, date], direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \overlay
                         {
                             "Los Angeles"
@@ -1808,14 +2416,10 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
         contents = []
-        for markup in markups:
+        for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = markuptools.MarkupCommand(
-            'overlay',
-            contents,
-            )
+        command = MarkupCommand('overlay', contents)
         return Markup(contents=command, direction=direction)
 
     def override(self, new_property):
@@ -1823,36 +2427,52 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.parenthesize()
-                >>> markup = markup.override(('padding', 0.75))
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.parenthesize()
+                    >>> markup = markup.override(('padding', 0.75))
+                    >>> f(markup)
+                    \markup {
+                        \override
+                            #'(padding . 0.75)
+                            \parenthesize
+                                "Allegro assai"
+                        }
 
-                >>> f(markup)
-                \markup {
-                    \override
-                        #'(padding . 0.75)
-                        \parenthesize
-                            "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.parenthesize()
+                    >>> expression = expression.override(('padding', 0.75))
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \override
+                            #'(padding . 0.75)
+                            \parenthesize
+                                "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         new_property = schemetools.SchemePair(new_property)
-        command = markuptools.MarkupCommand(
-            'override',
-            new_property,
-            contents,
-            )
+        command = MarkupCommand('override', new_property, contents)
         return new(self, contents=command)
 
     def pad_around(self, padding):
@@ -1860,35 +2480,51 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.pad_around(10)
-                >>> markup = markup.box()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.pad_around(10)
+                    >>> markup = markup.box()
+                    >>> f(markup)
+                    \markup {
+                        \box
+                            \pad-around
+                                #10
+                                "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \box
-                        \pad-around
-                            #10
-                            "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.pad_around(10)
+                    >>> expression = expression.box()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \box
+                            \pad-around
+                                #10
+                                "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'pad-around',
-            padding,
-            contents,
-            )
+        command = MarkupCommand('pad-around', padding, contents)
         return new(self, contents=command)
 
     def pad_to_box(self, x_extent, y_extent):
@@ -1896,7 +2532,7 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Positive extents.
+            Positive extents.
 
             The following postscript describes a filled box between the
             x-coordinates of 0 and 10 and the y-coordinates of 0 and 10.
@@ -1914,7 +2550,7 @@ class Markup(AbjadValueObject):
                 >>> up_postscript = up_postscript.setgray(0.75)
                 >>> up_postscript = up_postscript.fill()
                 >>> up_postscript_markup = up_postscript.as_markup()
-                >>> print(format(up_postscript_markup))
+                >>> f(up_postscript_markup)
                 \markup {
                     \postscript
                         #"
@@ -1960,9 +2596,58 @@ class Markup(AbjadValueObject):
 
                 >>> show(up_postscript_markup.box()) # doctest: +SKIP
 
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.pad_to_box((0, 10), (0, 10))
+
+                ::
+
+                    >>> up_postscript = markuptools.Postscript()
+                    >>> up_postscript = up_postscript.newpath()
+                    >>> up_postscript = up_postscript.moveto(0, 0)
+                    >>> up_postscript = up_postscript.rlineto(10, 0)
+                    >>> up_postscript = up_postscript.rlineto(0, 10)
+                    >>> up_postscript = up_postscript.rlineto(-10, 0)
+                    >>> up_postscript = up_postscript.closepath()
+                    >>> up_postscript = up_postscript.setgray(0.75)
+                    >>> up_postscript = up_postscript.fill()
+                    >>> up_postscript_markup = up_postscript.as_markup()
+
+                ::
+
+                    >>> up_postscript_markup = expression(up_postscript_markup)
+                    >>> f(up_postscript_markup)
+                    \markup {
+                        \pad-to-box
+                            #'(0 . 10)
+                            #'(0 . 10)
+                            \postscript
+                                #"
+                                newpath
+                                0 0 moveto
+                                10 0 rlineto
+                                0 10 rlineto
+                                -10 0 rlineto
+                                closepath
+                                0.75 setgray
+                                fill
+                                "
+                        }
+
+                ::
+
+                    >>> show(up_postscript_markup) # doctest: +SKIP
+
+                ::
+
+                    >>> show(up_postscript_markup.box()) # doctest: +SKIP
+
         ..  container:: example
 
-            **Example 2.** Negative extents.
+            Negative extents.
 
             LilyPond does not appear to handle negative extents in the same was
             as it handles positive extents.
@@ -1983,7 +2668,7 @@ class Markup(AbjadValueObject):
                 >>> down_postscript = down_postscript.setgray(0.75)
                 >>> down_postscript = down_postscript.fill()
                 >>> down_postscript_markup = down_postscript.as_markup()
-                >>> print(format(down_postscript_markup))
+                >>> f(down_postscript_markup)
                 \markup {
                     \postscript
                         #"
@@ -2041,16 +2726,12 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         x_extent = schemetools.SchemePair(x_extent)
         y_extent = schemetools.SchemePair(y_extent)
-        command = markuptools.MarkupCommand(
-            'pad-to-box',
-            x_extent,
-            y_extent,
-            contents,
-            )
+        command = MarkupCommand('pad-to-box', x_extent, y_extent, contents)
         return new(self, contents=command)
 
     def parenthesize(self):
@@ -2058,35 +2739,49 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.parenthesize()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.parenthesize()
+                    >>> f(markup)
+                    \markup {
+                        \parenthesize
+                            "Allegro assai"
+                        }
 
-                >>> f(markup)
-                \markup {
-                    \parenthesize
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.parenthesize()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \parenthesize
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'parenthesize',
-            contents,
-            )
+        command = MarkupCommand('parenthesize', contents)
         return new(self, contents=command)
 
     @staticmethod
-    def postscript(postscript):
+    def postscript(postscript, direction=None):
         r'''LilyPond ``\postscript`` markup command.
 
         ..  container:: example
@@ -2099,12 +2794,9 @@ class Markup(AbjadValueObject):
                 >>> postscript = postscript.setdash((2, 1))
                 >>> postscript = postscript.lineto(3, -4)
                 >>> postscript = postscript.stroke()
-                >>> markup = markuptools.Markup.postscript(postscript)
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = markuptools.Markup.postscript(postscript, direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \postscript
                         #"
                         1 1 moveto
@@ -2121,52 +2813,62 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
-        if isinstance(postscript, markuptools.Postscript):
+        if isinstance(postscript, Postscript):
             postscript = str(postscript)
         assert isinstance(postscript, str)
-        command = markuptools.MarkupCommand(
-            'postscript',
-            postscript,
-            )
-        return Markup(contents=command)
+        command = MarkupCommand('postscript', postscript)
+        return Markup(contents=command, direction=direction)
 
     def raise_(self, amount):
         r'''LilyPond ``\raise`` markup command.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.raise_(0.35)
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.raise_(0.35)
+                    >>> f(markup)
+                    \markup {
+                        \raise
+                            #0.35
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \raise
-                        #0.35
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.raise_(0.35)
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \raise
+                            #0.35
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'raise',
-            amount,
-            contents,
-            )
+        command = MarkupCommand('raise', amount, contents)
         return new(self, contents=command)
 
     @staticmethod
-    def right_column(markups, direction=None):
+    def right_column(markup_list, direction=None):
         r'''LilyPond ``\right-column`` markup command.
 
         ..  container:: example
@@ -2175,12 +2877,9 @@ class Markup(AbjadValueObject):
 
                 >>> city = Markup('Los Angeles')
                 >>> date = Markup('May - August 2014')
-                >>> markup = Markup.right_column([city, date])
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.right_column([city, date], direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \right-column
                         {
                             "Los Angeles"
@@ -2194,14 +2893,10 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
         contents = []
-        for markup in markups:
+        for markup in markup_list:
             contents.append(Markup._parse_markup_command_argument(markup))
-        command = markuptools.MarkupCommand(
-            'right-column',
-            contents,
-            )
+        command = MarkupCommand('right-column', contents)
         return Markup(contents=command, direction=direction)
 
     def rotate(self, angle):
@@ -2209,33 +2904,47 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.rotate(45)
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.rotate(45)
+                    >>> f(markup)
+                    \markup {
+                        \rotate
+                            #45
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \rotate
-                        #45
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.rotate(45)
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \rotate
+                            #45
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'rotate',
-            angle,
-            contents,
-            )
+        command = MarkupCommand('rotate', angle, contents)
         return new(self, contents=command)
 
     def sans(self):
@@ -2243,31 +2952,45 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.sans()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.sans()
+                    >>> f(markup)
+                    \markup {
+                        \sans
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \sans
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.sans()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \sans
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'sans',
-            contents,
-            )
+        command = MarkupCommand('sans', contents)
         return new(self, contents=command)
 
     def scale(self, factor_pair):
@@ -2275,50 +2998,61 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.scale((0.75, 0.75))
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.scale((0.75, 0.75))
+                    >>> f(markup)
+                    \markup {
+                        \scale
+                            #'(0.75 . 0.75)
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \scale
-                        #'(0.75 . 0.75)
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.scale((0.75, 0.75))
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \scale
+                            #'(0.75 . 0.75)
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         factor_pair = schemetools.SchemePair(factor_pair)
-        command = markuptools.MarkupCommand(
-            'scale',
-            factor_pair,
-            contents,
-            )
+        command = MarkupCommand('scale', factor_pair, contents)
         return new(self, contents=command)
 
     @staticmethod
-    def sharp():
+    def sharp(direction=None):
         r'''LilyPond ``\sharp`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.sharp()
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.sharp(direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \sharp
                     }
 
@@ -2328,40 +3062,53 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
-        command = markuptools.MarkupCommand('sharp')
-        return Markup(contents=command)
+        command = MarkupCommand('sharp')
+        return Markup(contents=command, direction=direction)
 
     def small(self):
         r'''LilyPond ``\small`` markup command.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.small()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.small()
+                    >>> f(markup)
+                    \markup {
+                        \small
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \small
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.small()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \small
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'small',
-            contents,
-            )
+        command = MarkupCommand('small', contents)
         return new(self, contents=command)
 
     def smaller(self):
@@ -2369,31 +3116,45 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.smaller()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.smaller()
+                    >>> f(markup)
+                    \markup {
+                        \smaller
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \smaller
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.smaller()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \smaller
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'smaller',
-            contents,
-            )
+        command = MarkupCommand('smaller', contents)
         return new(self, contents=command)
 
     def sub(self):
@@ -2401,71 +3162,116 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markups = [Markup('A'), Markup('j').sub()]
-                >>> markup = Markup.concat(markups)
+                ::
 
-            ::
-
-                >>> print(format(markup))
-                \markup {
-                    \concat
-                        {
-                            A
-                            \sub
-                                j
+                    >>> markup_list = [Markup('A'), Markup('j').sub()]
+                    >>> markup = Markup.concat(markup_list)
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                A
+                                \sub
+                                    j
+                            }
                         }
-                    }
 
-            ::
+                ::
 
-                >>> show(markup) # doctest: +SKIP
+                    >>> show(markup) # doctest: +SKIP
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.sub()
+                    >>> expression = expression.wrap_in_list()
+                    >>> expression = expression.markup_list()
+                    >>> expression = expression.insert(0, 'A')
+                    >>> expression = expression.concat()
+                    >>> markup = expression('j')
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                A
+                                \sub
+                                    j
+                            }
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'sub',
-            contents,
-            )
+        command = MarkupCommand('sub', contents)
         return new(self, contents=command)
 
-    def super_(self):
+    def super(self):
         r'''LilyPond ``\super`` markup command.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markups = [Markup('1'), Markup('st').super_()]
-                >>> markup = Markup.concat(markups)
+                ::
 
-            ::
-
-                >>> print(format(markup))
-                \markup {
-                    \concat
-                        {
-                            1
-                            \super
-                                st
+                    >>> markups = [Markup('1'), Markup('st').super()]
+                    >>> markup_list = MarkupList(markups)
+                    >>> markup = markup_list.concat()
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                1
+                                \super
+                                    st
+                            }
                         }
-                    }
 
-            ::
+                ::
 
-                >>> show(markup) # doctest: +SKIP
+                    >>> show(markup) # doctest: +SKIP
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.super()
+                    >>> expression = expression.wrap_in_list()
+                    >>> expression = expression.markup_list()
+                    >>> expression = expression.insert(0, 1)
+                    >>> expression = expression.concat()
+                    >>> markup = expression('st')
+                    >>> f(markup)
+                    \markup {
+                        \concat
+                            {
+                                1
+                                \super
+                                    st
+                            }
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'super',
-            contents,
-            )
+        command = MarkupCommand('super', contents)
         return new(self, contents=command)
 
     def tiny(self):
@@ -2473,31 +3279,45 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.tiny()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.tiny()
+                    >>> f(markup)
+                    \markup {
+                        \tiny
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \tiny
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.tiny()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \tiny
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'tiny',
-            contents,
-            )
+        command = MarkupCommand('tiny', contents)
         return new(self, contents=command)
 
     def translate(self, offset_pair):
@@ -2505,50 +3325,61 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.translate((2, 1))
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.translate((2, 1))
+                    >>> f(markup)
+                    \markup {
+                        \translate
+                            #'(2 . 1)
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \translate
-                        #'(2 . 1)
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.translate((2, 1))
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \translate
+                            #'(2 . 1)
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         offset_pair = schemetools.SchemePair(offset_pair)
-        command = markuptools.MarkupCommand(
-            'translate',
-            offset_pair,
-            contents,
-            )
+        command = MarkupCommand('translate', offset_pair, contents)
         return new(self, contents=command)
 
     @staticmethod
-    def triangle(is_filled=True):
+    def triangle(direction=None, is_filled=True):
         r'''LilyPond ``\triangle`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.triangle()
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
+                >>> markup = Markup.triangle(direction=Up)
+                >>> f(markup)
+                ^ \markup {
                     \triangle
                         ##t
                     }
@@ -2559,43 +3390,53 @@ class Markup(AbjadValueObject):
 
         Returns new markup
         '''
-        from abjad.tools import markuptools
-        command = markuptools.MarkupCommand(
-            'triangle',
-            bool(is_filled),
-            )
-        return Markup(contents=command)
+        command = MarkupCommand('triangle', bool(is_filled))
+        return Markup(contents=command, direction=direction)
 
     def upright(self):
         r'''LilyPond ``\upright`` markup command.
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.upright()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.upright()
+                    >>> f(markup)
+                    \markup {
+                        \upright
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \upright
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.upright()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \upright
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'upright',
-            contents,
-            )
+        command = MarkupCommand('upright', contents)
         return new(self, contents=command)
 
     def vcenter(self):
@@ -2603,47 +3444,58 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.vcenter()
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.vcenter()
+                    >>> f(markup)
+                    \markup {
+                        \vcenter
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \vcenter
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.vcenter()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \vcenter
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'vcenter',
-            contents,
-            )
+        command = MarkupCommand('vcenter', contents)
         return new(self, contents=command)
 
     @staticmethod
-    def vspace(amount):
+    def vspace(amount, direction=None):
         r'''LilyPond ``\vspace`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.vspace(0.75)
-
-            ::
-
+                >>> markup = Markup.vspace(0.75, direction=Up)
                 >>> f(markup)
-                \markup {
+                ^ \markup {
                     \vspace
                         #0.75
                     }
@@ -2654,24 +3506,53 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
-        command = markuptools.MarkupCommand(
-            'vspace',
-            amount,
-            )
-        return Markup(contents=command)
+        command = MarkupCommand('vspace', amount)
+        return Markup(contents=command, direction=direction)
 
     def whiteout(self):
         r'''LilyPond ``\whiteout`` markup command.
 
+        ..  container:: example
+
+            ..  container:: example
+
+                ::
+
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.whiteout()
+                    >>> f(markup)
+                    \markup {
+                        \whiteout
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.whiteout()
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \whiteout
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        command = markuptools.MarkupCommand(
-            'whiteout',
-            contents,
-            )
+        command = MarkupCommand('whiteout', contents)
         return new(self, contents=command)
 
     def with_color(self, color):
@@ -2679,34 +3560,48 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            ::
+            ..  container:: example
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.with_color('blue')
+                ::
 
-            ::
+                    >>> markup = Markup('Allegro assai')
+                    >>> markup = markup.with_color('blue')
+                    >>> f(markup)
+                    \markup {
+                        \with-color
+                            #blue
+                            "Allegro assai"
+                        }
 
-                >>> print(format(markup))
-                \markup {
-                    \with-color
-                        #blue
-                        "Allegro assai"
-                    }
+                ::
 
-            ::
+                    >>> show(markup) # doctest: +SKIP
 
-                >>> show(markup) # doctest: +SKIP
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = Expression().markup()
+                    >>> expression = expression.with_color('blue')
+                    >>> markup = expression('Allegro assai')
+                    >>> f(markup)
+                    \markup {
+                        \with-color
+                            #blue
+                            "Allegro assai"
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         color = schemetools.Scheme(color)
-        command = markuptools.MarkupCommand(
-            'with-color',
-            color,
-            contents,
-            )
+        command = MarkupCommand('with-color', color, contents)
         return new(self, contents=command)
 
     def with_dimensions(self, x_extent, y_extent):
@@ -2718,8 +3613,6 @@ class Markup(AbjadValueObject):
             discussion of setting explicit markup extents.
 
         ..  container:: example
-
-            **Example 1.**
 
             ::
 
@@ -2759,8 +3652,6 @@ class Markup(AbjadValueObject):
                 >>> show(up_markup) # doctest: +SKIP
 
         ..  container:: example
-
-            **Example 2.**
 
             ::
 
@@ -2803,139 +3694,15 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        from abjad.tools import markuptools
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
         x_extent = schemetools.SchemePair(x_extent)
         y_extent = schemetools.SchemePair(y_extent)
-        command = markuptools.MarkupCommand(
+        command = MarkupCommand(
             'with-dimensions',
             x_extent,
             y_extent,
             contents,
             )
         return new(self, contents=command)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        return '\n'.join(self._get_format_pieces())
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def contents(self):
-        r'''Gets contents of markup.
-
-        ..  container:: example
-
-            ::
-
-                >>> string = r'\bold { "This is markup text." }'
-                >>> markup = Markup(string)
-                >>> show(markup) # doctest: +SKIP
-
-            ::
-
-                >>> markup.contents
-                (MarkupCommand('bold', ['This is markup text.']),)
-
-        Returns tuple.
-        '''
-        return self._contents
-
-    @property
-    def direction(self):
-        r'''Gets direction of markup.
-
-        ..  container:: example
-
-            ::
-
-                >>> string = r'\bold { "This is markup text." }'
-                >>> markup = Markup(string, direction=Up)
-                >>> show(markup) # doctest: +SKIP
-
-            ::
-
-                >>> markup.direction
-                Up
-
-        Returns up, down, center or none.
-        '''
-        return self._direction
-
-    @property
-    def stack_priority(self):
-        r'''Gets stack priority of markup.
-
-        ..  container:: example
-
-            **Example 1.** ``'foo'`` appears higher in stack than ``'bar'``:
-
-            ::
-
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> attach(Markup('foo', stack_priority=1000), staff[1])
-                >>> attach(Markup('bar', stack_priority=0), staff[1])
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest:
-
-                >>> f(staff)
-                \new Staff {
-                    c'8
-                    d'8
-                        - \markup {
-                            \column
-                                {
-                                    foo
-                                    bar
-                                }
-                            }
-                    e'8
-                    f'8
-                }
-
-        ..  container:: example
-
-            **Example 2.** ``'foo'`` appears lower in stack than ``'bar'``:
-
-            ::
-
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> attach(Markup('foo', stack_priority=0), staff[1])
-                >>> attach(Markup('bar', stack_priority=1000), staff[1])
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest:
-
-                >>> f(staff)
-                \new Staff {
-                    c'8
-                    d'8
-                        - \markup {
-                            \column
-                                {
-                                    bar
-                                    foo
-                                }
-                            }
-                    e'8
-                    f'8
-                }
-
-
-        Higher priority equals higher position.
-
-        Defaults to zero.
-
-        Set to integer.
-        '''
-        return self._stack_priority

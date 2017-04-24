@@ -9,7 +9,7 @@ from abjad.tools.topleveltools import select
 
 
 class ItemSelectorCallback(AbjadValueObject):
-    r'''An item selector callback.
+    r'''Item selector callback.
     '''
 
     ### CLASS VARIABLES ###
@@ -30,26 +30,27 @@ class ItemSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
-        r'''Gets item from `expr`.
+    def __call__(self, argument, rotation=None):
+        r'''Gets item from `argument`.
 
         Returns item.
         '''
-        assert isinstance(expr, tuple), repr(expr)
+        import abjad
+        assert isinstance(argument, (abjad.Selection, tuple)), repr(argument)
         if self.apply_to_each:
             result = []
-            for element in expr:
-                result_ = self._get_item(element)
+            for item in argument:
+                result_ = self._get_item(item)
                 result.append(result_)
             result = tuple(result)
         else:
-            result = self._get_item(expr)
+            result = self._get_item(argument)
         return result
 
     ### PRIVATE METHODS ###
 
-    def _get_item(self, expr):
-        result = expr.__getitem__(self.item)
+    def _get_item(self, argument):
+        result = argument.__getitem__(self.item)
         return result
 
     ### PUBLIC PROPERTIES ###

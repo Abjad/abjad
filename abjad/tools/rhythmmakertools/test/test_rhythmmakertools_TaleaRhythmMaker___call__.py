@@ -5,18 +5,18 @@ from abjad import *
 def test_rhythmmakertools_TaleaRhythmMaker___call___01():
 
     talea = rhythmmakertools.Talea(
-        counts=(-1, 4, -2, 3),
+        counts=[-1, 4, -2, 3],
         denominator=16,
         )
     rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         talea=talea,
-        extra_counts_per_division=(3, 4),
+        extra_counts_per_division=[3, 4],
         )
 
     divisions = [(2, 8), (5, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = sequencetools.flatten_sequence(selections)
+    selections = Sequence(selections).flatten()
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)
@@ -52,19 +52,19 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
 def test_rhythmmakertools_TaleaRhythmMaker___call___02():
 
     talea = rhythmmakertools.Talea(
-        counts=(-1, 4, -2, 3),
+        counts=[-1, 4, -2, 3],
         denominator=16,
         )
     rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         talea=talea,
-        extra_counts_per_division=(3, 4),
-        split_divisions_by_counts=(6,),
+        extra_counts_per_division=[3, 4],
+        split_divisions_by_counts=[6],
         )
 
     divisions = [(2, 8), (5, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = sequencetools.flatten_sequence(selections)
+    selections = Sequence(selections).flatten()
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)

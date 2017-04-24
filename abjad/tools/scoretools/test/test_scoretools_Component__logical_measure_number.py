@@ -38,7 +38,7 @@ def test_scoretools_Component__logical_measure_number_02():
     assert staff[2]._logical_measure_number == 3
     assert staff[3]._logical_measure_number == 4
 
-    leaves = iterate(staff).by_class(scoretools.Leaf)
+    leaves = iterate(staff).by_leaf()
     leaves = list(leaves)
     assert leaves[0]._logical_measure_number == 1
     assert leaves[1]._logical_measure_number == 1

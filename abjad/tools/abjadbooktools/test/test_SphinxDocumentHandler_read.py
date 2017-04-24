@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import platform
 import unittest
+import sys
 from abjad.tools import abjadbooktools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
@@ -108,6 +109,10 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target
 
+    @unittest.skipIf(
+        sys.version[0] != '3',
+        'Only for Python 3',
+        )
     def test_on_doctree_read_02(self):
         source = r'''
         ..  abjad::
@@ -143,10 +148,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         tagline = ##f
                     }
 
-                    \layout {}
-
-                    \paper {}
-
                     \score {
                         {
                             c'1
@@ -164,10 +165,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         tagline = ##f
                     }
 
-                    \layout {}
-
-                    \paper {}
-
                     \score {
                         {
                             g'1
@@ -179,6 +176,10 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target
 
+    @unittest.skipIf(
+        sys.version[0] != '3',
+        'Only for Python 3',
+        )
     def test_on_doctree_read_03(self):
         source = r'''
         ..  abjad::
@@ -211,10 +212,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         tagline = ##f
                     }
 
-                    \layout {}
-
-                    \paper {}
-
                     \score {
                         {
                             c'1
@@ -228,10 +225,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         tagline = ##f
                     }
 
-                    \layout {}
-
-                    \paper {}
-
                     \score {
                         {
                             g'1
@@ -243,6 +236,10 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target
 
+    @unittest.skipIf(
+        sys.version[0] != '3',
+        'Only for Python 3',
+        )
     def test_on_doctree_read_04(self):
         source = r'''
         ..  container:: example
@@ -454,18 +451,60 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             <document source="test">
                 <literal_block xml:space="preserve">
                     >>> [x for x in dir() if not x.startswith('_')]
-                    ['Accelerando', 'Articulation', 'Beam',
-                    'Chord', 'Clef', 'Container', 'Context',
-                    'Crescendo', 'Decrescendo', 'Duration',
-                    'Dynamic', 'Fermata', 'Fraction',
-                    'Glissando', 'Hairpin', 'KeySignature',
-                    'LilyPondCommand', 'LilyPondFile',
-                    'Markup', 'Measure', 'MultimeasureRest', 
-                    'Multiplier', 'NamedPitch', 'Note',
-                    'Offset', 'Ratio', 'Rest', 'Ritardando',
-                    'Score', 'Sequence', 'Skip', 'Slur',
-                    'Staff', 'StaffGroup', 'Tempo', 'Tie',
-                    'TimeSignature', 'Timespan', 'Tuplet',
+                    ['Accelerando', 'Annotation',
+                    'Arpeggio', 'Arrow', 'Articulation',
+                    'BarLine', 'Beam', 'BendAfter',
+                    'BowContactPoint', 'BowContactSpanner',
+                    'BowMotionTechnique', 'BowPressure',
+                    'BreathMark', 'Chord', 'Clef',
+                    'ClefSpanner', 'Cluster',
+                    'ColorFingering', 'ComplexBeam',
+                    'ComplexTrillSpanner', 'Component',
+                    'Container', 'Context', 'Crescendo',
+                    'CyclicTuple', 'Decrescendo',
+                    'DuratedComplexBeam', 'Duration',
+                    'Dynamic', 'Expression', 'Fermata',
+                    'FixedDurationTuplet', 'Fraction',
+                    'GeneralizedBeam', 'Glissando',
+                    'GraceContainer', 'Hairpin',
+                    'HiddenStaffSpanner',
+                    'HorizontalBracketSpanner', 'Infinity',
+                    'Inversion', 'KeyCluster',
+                    'KeySignature', 'LaissezVibrer', 'Leaf',
+                    'LilyPondCommand', 'LilyPondComment',
+                    'LilyPondFile', 'LilyPondLiteral',
+                    'LineSegment', 'Markup', 'MarkupList',
+                    'Measure', 'MeasuredComplexBeam',
+                    'Meter', 'MetricModulation',
+                    'MultimeasureRest', 'MultipartBeam',
+                    'Multiplication', 'Multiplier',
+                    'NamedInterval', 'NamedIntervalClass',
+                    'NamedPitch', 'NamedPitchClass',
+                    'NonreducedFraction', 'NonreducedRatio',
+                    'Note', 'NumberedInterval',
+                    'NumberedIntervalClass',
+                    'NumberedPitch', 'NumberedPitchClass',
+                    'OctavationSpanner', 'Offset',
+                    'PageBreak', 'Pattern', 'PhrasingSlur',
+                    'PianoPedalSpanner',
+                    'PitchClassSegment', 'PitchClassSet',
+                    'PitchRange', 'PitchSegment',
+                    'PitchSet', 'Ratio', 'Registration',
+                    'RehearsalMark', 'Repeat', 'Rest',
+                    'Retrograde', 'Ritardando', 'Rotation',
+                    'Scheme', 'SchemeMoment', 'SchemePair',
+                    'SchemeSymbol', 'SchemeVector', 'Score',
+                    'Selection', 'Selector', 'Sequence',
+                    'SetClass', 'Skip', 'Slur', 'Spanner',
+                    'Staff', 'StaffChange', 'StaffGroup',
+                    'StaffLinesSpanner', 'StemTremolo',
+                    'StemTremoloSpanner',
+                    'StringContactPoint', 'StringNumber',
+                    'SystemBreak', 'Tempo', 'TempoSpanner',
+                    'TextSpanner', 'Tie', 'TimeSignature',
+                    'Timespan', 'Transposition', 'Tremolo',
+                    'TrillSpanner', 'Tuning', 'Tuplet',
+                    'TwelveToneRow', 'TypedOrderedDict',
                     'Voice', 'abctools',
                     'abjad_configuration', 'agenttools',
                     'attach', 'commandlinetools',
@@ -485,12 +524,20 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     'print_function', 'quantizationtools',
                     'rhythmmakertools', 'rhythmtreetools',
                     'schemetools', 'scoretools', 'select',
+                    'select_all', 'select_every',
+                    'select_first', 'select_last',
                     'selectiontools', 'selectortools',
                     'sequence', 'sequencetools', 'set_',
-                    'show', 'spannertools', 'stringtools',
-                    'systemtools', 'templatetools',
-                    'timespantools', 'tonalanalysistools',
-                    'topleveltools']
+                    'show', 'silence', 'silence_all',
+                    'silence_every', 'silence_except',
+                    'silence_first', 'silence_last',
+                    'spannertools', 'stringtools',
+                    'sustain', 'sustain_all',
+                    'sustain_every', 'sustain_first',
+                    'sustain_last', 'systemtools',
+                    'templatetools', 'timespantools',
+                    'tonalanalysistools', 'topleveltools',
+                    'tweak']
             """)
         assert actual == target, \
             systemtools.TestManager.diff(actual, target, 'Diff:')
@@ -558,10 +605,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         \header {
                             tagline = ##f
                         }
-
-                        \layout {}
-
-                        \paper {}
 
                         \score {
                             \new Staff {

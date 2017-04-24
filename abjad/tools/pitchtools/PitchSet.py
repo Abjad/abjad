@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Set import Set
 from abjad.tools.topleveltools import new
@@ -7,152 +8,155 @@ from abjad.tools.topleveltools import new
 class PitchSet(Set):
     r'''Pitch set.
 
-    ::
+    ..  container:: example
 
-        >>> numbered_pitch_set = pitchtools.PitchSet(
-        ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-        ...     item_class=pitchtools.NumberedPitch,
-        ...     )
-        >>> numbered_pitch_set
-        PitchSet([-2, -1.5, 6, 7])
+        Numbered pitch set:
 
-    ::
+        ::
 
-        >>> print(format(numbered_pitch_set))
-        pitchtools.PitchSet(
-            [-2, -1.5, 6, 7]
-            )
+            >>> set_ = PitchSet(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=NumberedPitch,
+            ...     )
+            >>> set_
+            PitchSet([-2, -1.5, 6, 7])
 
-    ::
+        ::
 
-        >>> named_pitch_set = pitchtools.PitchSet(
-        ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
-        ...     item_class=NamedPitch,
-        ...     )
-        >>> named_pitch_set
-        PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
+            >>> f(set_)
+            pitchtools.PitchSet(
+                [-2, -1.5, 6, 7]
+                )
 
-    ::
+    ..  container:: example
 
-        >>> print(format(named_pitch_set))
-        pitchtools.PitchSet(
-            ['bf,', 'aqs', 'bqf', "fs'", "g'"]
-            )
+        Named pitch set:
+
+        ::
+
+            >>> set_ = PitchSet(
+            ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
+            ...     item_class=NamedPitch,
+            ...     )
+            >>> set_
+            PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
+
+        ::
+
+            >>> f(set_)
+            pitchtools.PitchSet(
+                ['bf,', 'aqs', 'bqf', "fs'", "g'"]
+                )
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
-    ### PRIVATE METHODS ###
+    ### SPECIAL METHODS ###
 
-    def _sort_self(self):
-        from abjad.tools import pitchtools
-        return sorted(pitchtools.PitchSegment(tuple(self)))
-
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_selection(
-        class_,
-        selection,
-        item_class=None,
-        ):
-        r'''Makes pitch set from `selection`.
-
-        ::
-
-            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
-            >>> staff_2 = Staff("c4. r8 g2")
-            >>> selection = select((staff_1, staff_2))
-            >>> pitchtools.PitchSet.from_selection(selection)
-            PitchSet(['c', 'g', 'b', "c'", "d'", "fs'", "a'"])
-
-        Returns pitch set.
-        '''
-        from abjad.tools import pitchtools
-        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        return class_(
-            items=pitch_segment,
-            item_class=item_class,
-            )
-
-    def invert(self, axis):
-        r'''Inverts pitch set about `axis`.
-
-        Returns new pitch set.
-        '''
-        items = (pitch.invert(axis) for pitch in self)
-        return new(self, items=items)
-
-    def is_equivalent_under_transposition(self, expr):
-        r'''True if pitch set is equivalent to `expr` under transposition.
-        Otherwise false.
-
-        Returns true or false.
-        '''
-        from abjad.tools import pitchtools
-        if not isinstance(expr, type(self)):
-            return False
-        if not len(self) == len(expr):
-            return False
-        difference = -(pitchtools.NamedPitch(expr[0], 4) -
-            pitchtools.NamedPitch(self[0], 4))
-        new_pitches = (x + difference for x in self)
-        new_pitches = new(self, items=new_pitch)
-        return expr == new_pitches
-
-    def register(self, pitch_classes):
-        '''Registers `pitch_classes` by pitch set.
+    def __illustrate__(self):
+        r'''Illustrates pitch set.
 
         ..  container:: example
 
+            Treble and bass pitches:
+
             ::
 
-                >>> pitch_set = pitchtools.PitchSet(
-                ...     items=[10, 19, 20, 23, 24, 26, 27, 29, 30, 33, 37, 40],
-                ...     item_class=pitchtools.NumberedPitch,
+                >>> set_ = PitchSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=NumberedPitch,
                 ...     )
-                >>> pitch_classes = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
-                >>> pitches = pitch_set.register(pitch_classes)
-                >>> for pitch in pitches:
-                ...     pitch
-                NumberedPitch(10)
-                NumberedPitch(24)
-                NumberedPitch(26)
-                NumberedPitch(30)
-                NumberedPitch(20)
-                NumberedPitch(19)
-                NumberedPitch(29)
-                NumberedPitch(27)
-                NumberedPitch(37)
-                NumberedPitch(33)
-                NumberedPitch(40)
-                NumberedPitch(23)
 
-        Returns list of zero or more numbered pitches.
+            ::
+            
+                >>> show(set_) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = set_.__illustrate__()
+                >>> f(lilypond_file[Score])
+                \new Score <<
+                    \new PianoStaff <<
+                        \new Staff {
+                            \new Voice {
+                                <fs' g'>1
+                            }
+                        }
+                        \new Staff {
+                            \new Voice {
+                                <bf bqf>1
+                            }
+                        }
+                    >>
+                >>
+
+        ..  container:: example
+
+            Treble pitches only:
+
+            ::
+
+                >>> set_ = PitchSet(
+                ...     items=[6, 7, 7],
+                ...     item_class=NumberedPitch,
+                ...     )
+
+            ::
+            
+                >>> show(set_) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = set_.__illustrate__()
+                >>> f(lilypond_file[Score])
+                \new Score <<
+                    \new PianoStaff <<
+                        \new Staff {
+                            \new Voice {
+                                <fs' g'>1
+                            }
+                        }
+                        \new Staff {
+                            \new Voice {
+                                s1
+                            }
+                        }
+                    >>
+                >>
+
+        Returns LilyPond file.
         '''
-        if isinstance(pitch_classes, list):
-            result = [
-                [_ for _ in self if _.pitch_number % 12 == pc]
-                for pc in [x % 12 for x in pitch_classes]
-                ]
-            result = sequencetools.flatten_sequence(result)
-        elif isinstance(pitch_classes, int):
-            result = [p for p in pitch_classes if p % 12 == pitch_classes][0]
+        import abjad
+        upper, lower = [], []
+        for pitch in self:
+            if pitch < 0:
+                lower.append(pitch)
+            else:
+                upper.append(pitch)
+        if upper:
+            upper = abjad.Chord(upper, abjad.Duration(1))
         else:
-            message = 'must be pitch-class or list of pitch-classes.'
-            raise TypeError(message)
-        return result
-
-    def transpose(self, expr):
-        r'''Transposes all pitches in pitch set by `expr`.
-
-        Returns new pitch set.
-        '''
-        items = (pitch.transpose(expr) for pitch in self)
-        return new(self, items=items)
+            upper = abjad.Skip((1, 1))
+        if lower:
+            lower = abjad.Chord(lower, abjad.Duration(1))
+        else:
+            lower = abjad.Skip((1, 1))
+        upper_voice = abjad.Voice([upper])
+        upper_staff = abjad.Staff([upper_voice])
+        lower_voice = abjad.Voice([lower])
+        lower_staff = abjad.Staff([lower_voice])
+        staff_group = abjad.StaffGroup(
+            [upper_staff, lower_staff],
+            context_name='PianoStaff',
+            )
+        score = abjad.Score([staff_group])
+        lilypond_file = abjad.LilyPondFile.new(score)
+        lilypond_file.header_block.tagline = False
+        return lilypond_file
 
     ### PRIVATE PROPERTIES ###
 
@@ -171,11 +175,34 @@ class PitchSet(Set):
         from abjad.tools import pitchtools
         return pitchtools.Pitch
 
+    ### PRIVATE METHODS ###
+
+    def _is_equivalent_under_transposition(self, argument):
+        r'''True if pitch set is equivalent to `argument` under transposition.
+        Otherwise false.
+
+        Returns true or false.
+        '''
+        from abjad.tools import pitchtools
+        if not isinstance(argument, type(self)):
+            return False
+        if not len(self) == len(argument):
+            return False
+        difference = -(pitchtools.NamedPitch(argument[0], 4) -
+            pitchtools.NamedPitch(self[0], 4))
+        new_pitches = (x + difference for x in self)
+        new_pitches = new(self, items=new_pitch)
+        return argument == new_pitches
+
+    def _sort_self(self):
+        from abjad.tools import pitchtools
+        return sorted(pitchtools.PitchSegment(tuple(self)))
+
     ### PUBLIC PROPERTIES ###
 
     @property
     def duplicate_pitch_classes(self):
-        r'''Duplicate pitch-classes in pitch set.
+        r'''Gets duplicate pitch-classes in pitch set.
 
         Returns pitch-class set.
         '''
@@ -196,11 +223,13 @@ class PitchSet(Set):
     def hertz(self):
         r'''Gets hertz of pitches in pitch segment.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_set = pitchtools.PitchSet('c e g b')
-            >>> sorted(pitch_set.hertz)
-            [130.81..., 164.81..., 195.99..., 246.94...]
+            ::
+
+                >>> pitch_set = PitchSet('c e g b')
+                >>> sorted(pitch_set.hertz)
+                [130.81..., 164.81..., 195.99..., 246.94...]
 
         Returns set.
         '''
@@ -216,3 +245,91 @@ class PitchSet(Set):
         numbered_pitch_class_set = pitchtools.PitchClassSet(
             self, item_class=pitchtools.NumberedPitchClass)
         return len(self) == len(numbered_pitch_class_set)
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_selection(
+        class_,
+        selection,
+        item_class=None,
+        ):
+        r'''Makes pitch set from `selection`.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
+                >>> staff_2 = Staff("c4. r8 g2")
+                >>> selection = select((staff_1, staff_2))
+                >>> PitchSet.from_selection(selection)
+                PitchSet(['c', 'g', 'b', "c'", "d'", "fs'", "a'"])
+
+        Returns pitch set.
+        '''
+        from abjad.tools import pitchtools
+        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
+        return class_(
+            items=pitch_segment,
+            item_class=item_class,
+            )
+
+    def invert(self, axis):
+        r'''Inverts pitch set about `axis`.
+
+        Returns new pitch set.
+        '''
+        items = (pitch.invert(axis) for pitch in self)
+        return new(self, items=items)
+
+    def register(self, pitch_classes):
+        '''Registers `pitch_classes` by pitch set.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch_set = PitchSet(
+                ...     items=[10, 19, 20, 23, 24, 26, 27, 29, 30, 33, 37, 40],
+                ...     item_class=NumberedPitch,
+                ...     )
+                >>> pitch_classes = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
+                >>> pitches = pitch_set.register(pitch_classes)
+                >>> for pitch in pitches:
+                ...     pitch
+                NumberedPitch(10)
+                NumberedPitch(24)
+                NumberedPitch(26)
+                NumberedPitch(30)
+                NumberedPitch(20)
+                NumberedPitch(19)
+                NumberedPitch(29)
+                NumberedPitch(27)
+                NumberedPitch(37)
+                NumberedPitch(33)
+                NumberedPitch(40)
+                NumberedPitch(23)
+
+        Returns list of zero or more numbered pitches.
+        '''
+        if isinstance(pitch_classes, collections.Iterable):
+            result = [
+                [_ for _ in self if _.pitch_number % 12 == pc]
+                for pc in [x % 12 for x in pitch_classes]
+                ]
+            result = sequencetools.Sequence(result).flatten()
+        elif isinstance(pitch_classes, int):
+            result = [p for p in pitch_classes if p % 12 == pitch_classes][0]
+        else:
+            message = 'must be pitch-class or list of pitch-classes.'
+            raise TypeError(message)
+        return result
+
+    def transpose(self, n=0):
+        r'''Transposes pitch set by index `n`.
+
+        Returns new pitch set.
+        '''
+        items = (pitch.transpose(n=n) for pitch in self)
+        return new(self, items=items)

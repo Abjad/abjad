@@ -117,7 +117,7 @@ def test_agenttools_IterationAgent_by_class_07():
         ''',
         )
 
-    leaves = iterate(staff).by_class(scoretools.Leaf, reverse=True)
+    leaves = iterate(staff).by_leaf(reverse=True)
     leaves = list(leaves)
 
     assert leaves[0] is staff[2][1]
@@ -133,7 +133,7 @@ def test_agenttools_IterationAgent_by_class_08():
     '''
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = iterate(staff).by_class(scoretools.Leaf, start=3, reverse=True)
+    leaves = iterate(staff).by_leaf(start=3, reverse=True)
     leaves = list(leaves)
 
     assert leaves[0] is staff[1][0]
@@ -141,8 +141,7 @@ def test_agenttools_IterationAgent_by_class_08():
     assert leaves[2] is staff[0][0]
     assert len(leaves) == 3
 
-    leaves = iterate(staff).by_class(
-        scoretools.Leaf, start=0, stop=3, reverse=True)
+    leaves = iterate(staff).by_leaf(start=0, stop=3, reverse=True)
     leaves = list(leaves)
 
     assert leaves[0] is staff[2][1]
@@ -150,8 +149,7 @@ def test_agenttools_IterationAgent_by_class_08():
     assert leaves[2] is staff[1][1]
     assert len(leaves) == 3
 
-    leaves = iterate(staff).by_class(
-        scoretools.Leaf, start=2, stop=4, reverse=True)
+    leaves = iterate(staff).by_leaf(start=2, stop=4, reverse=True)
     leaves = list(leaves)
 
     assert leaves[0] is staff[1][1]
@@ -183,7 +181,7 @@ def test_agenttools_IterationAgent_by_class_09():
         ''',
         )
 
-    leaves = iterate(staff).by_class(scoretools.Leaf)
+    leaves = iterate(staff).by_leaf()
     leaves = list(leaves)
 
     assert leaves[0] is staff[0][0]
@@ -199,7 +197,7 @@ def test_agenttools_IterationAgent_by_class_10():
     '''
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = iterate(staff).by_class(scoretools.Leaf, start=3)
+    leaves = iterate(staff).by_leaf(start=3)
     leaves = list(leaves)
 
     assert leaves[0] is staff[1][1]
@@ -207,7 +205,7 @@ def test_agenttools_IterationAgent_by_class_10():
     assert leaves[2] is staff[2][1]
     assert len(leaves) == 3
 
-    leaves = iterate(staff).by_class(scoretools.Leaf, start=0, stop=3)
+    leaves = iterate(staff).by_leaf(start=0, stop=3)
     leaves = list(leaves)
 
     assert leaves[0] is staff[0][0]
@@ -215,7 +213,7 @@ def test_agenttools_IterationAgent_by_class_10():
     assert leaves[2] is staff[1][0]
     assert len(leaves) == 3
 
-    leaves = iterate(staff).by_class(scoretools.Leaf, start=2, stop=4)
+    leaves = iterate(staff).by_leaf(start=2, stop=4)
     leaves = list(leaves)
 
     assert leaves[0] is staff[1][0]

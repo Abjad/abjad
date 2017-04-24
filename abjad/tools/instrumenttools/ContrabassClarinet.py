@@ -17,7 +17,7 @@ class ContrabassClarinet(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { "Contrabass clarinet" }
             \set Staff.shortInstrumentName = \markup { "Cbass. cl." }
@@ -75,7 +75,7 @@ class ContrabassClarinet(Instrument):
             ::
 
                 >>> contrabass_clarinet.allowable_clefs
-                ClefInventory([Clef(name='treble'), Clef(name='bass')])
+                ClefList([Clef(name='treble'), Clef(name='bass')])
 
             ::
 
@@ -109,7 +109,7 @@ class ContrabassClarinet(Instrument):
             ::
 
                 >>> contrabass_clarinet.instrument_name_markup
-                Markup(contents=('Contrabass clarinet',))
+                Markup(contents=['Contrabass clarinet'])
 
             ::
 
@@ -162,7 +162,7 @@ class ContrabassClarinet(Instrument):
             ::
 
                 >>> contrabass_clarinet.short_instrument_name_markup
-                Markup(contents=('Cbass. cl.',))
+                Markup(contents=['Cbass. cl.'])
 
             ::
 

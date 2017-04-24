@@ -8,7 +8,7 @@ class IntervalClassVector(Vector):
 
     ..  container:: example
 
-        **Example 1.** An interval-class vector:
+        An interval-class vector:
 
         ::
 
@@ -48,7 +48,8 @@ class IntervalClassVector(Vector):
         if isinstance(items, prototype):
             intervals = []
             items = tuple(items)
-            pairs = sequencetools.yield_all_unordered_pairs_of_sequence(items)
+            enumeration = sequencetools.Enumeration(items)
+            pairs = enumeration.yield_pairs()
             for first, second in pairs:
                 intervals.append(second - first)
             items = intervals
@@ -65,8 +66,7 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
-            **Example 1.** Gets interpreter representation of interval-class
-            vector:
+            Gets interpreter representation of interval-class vector:
 
             ::
 
@@ -85,8 +85,8 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
-            **Example 2.** Initializes from interpreter representation of
-            interval-class vector:
+            Initializes from interpreter representation of interval-class
+            vector:
 
             ::
 
@@ -97,6 +97,38 @@ class IntervalClassVector(Vector):
         '''
         superclass = super(IntervalClassVector, self)
         return superclass.__repr__()
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _label(self):
+        counts = []
+        for i in range(7):
+            counts.append(self[i])
+        counts = ''.join([str(x) for x in counts])
+        if len(self) == 13:
+            quartertones = []
+            for i in range(6):
+                quartertones.append(self[i + 0.5])
+            quartertones = ''.join([str(x) for x in quartertones])
+            return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
+        else:
+            return r'\tiny %s' % counts
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedIntervalClass
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedIntervalClass
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.IntervalClass
 
     ### PUBLIC METHODS ###
 
@@ -110,8 +142,8 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
-            **Example 1.** Makes numbered inversion-equivalent interval-class
-            vector from selection:
+            Makes numbered inversion-equivalent interval-class vector from
+            selection:
 
             ::
 
@@ -124,7 +156,7 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
-            **Example 2.** Makes numbered interval-class vector from selection:
+            Makes numbered interval-class vector from selection:
 
             ::
 
@@ -140,7 +172,7 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
-            **Example 3.** Makes named interval-class vector from selection:
+            Makes named interval-class vector from selection:
 
             ::
 
@@ -162,20 +194,3 @@ class IntervalClassVector(Vector):
             pitch_segment,
             item_class=item_class,
             )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedIntervalClass
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedIntervalClass
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.IntervalClass

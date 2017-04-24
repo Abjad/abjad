@@ -158,7 +158,7 @@ class PersistenceAgent(abctools.AbjadObject):
         result.extend(import_statements)
         result.extend(('', ''))
         if (
-            '_storage_format_specification' in dir(self._client) or
+            '_get_storage_format_specification' in dir(self._client) or
             '_get_format_specification' in dir(self._client)
             ):
             storage_pieces = format(self._client, 'storage')

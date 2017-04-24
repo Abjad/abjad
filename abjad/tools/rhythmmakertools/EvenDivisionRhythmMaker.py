@@ -59,7 +59,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         denominators = tuple(denominators)
         self._denominators = denominators
         if extra_counts_per_division is not None:
-            assert mathtools.all_are_integer_equivalent_exprs(
+            assert mathtools.all_are_integer_equivalent(
                 extra_counts_per_division), repr(extra_counts_per_division)
             extra_counts_per_division = [
                 int(_) for _ in extra_counts_per_division
@@ -79,8 +79,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Fills divisions with alternating eighth and
-            sixteenth notes:
+            Fills divisions with alternating eighth and sixteenth notes:
 
             ::
 
@@ -101,8 +100,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -150,8 +148,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Adds extra counts per division according to a
-            pattern of three elements:
+            Adds extra counts per division according to a pattern of three
+            elements:
 
             ::
 
@@ -173,8 +171,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -255,20 +252,22 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         left_counts = self.burnish_specifier.left_counts
         right_counts = self.burnish_specifier.right_counts
         left_classes = left_classes or ()
-        left_classes = sequencetools.rotate_sequence(left_classes, rotation)
+        left_classes = sequencetools.Sequence(left_classes).rotate(n=rotation)
         left_classes = datastructuretools.CyclicTuple(left_classes)
         if middle_classes == () or middle_classes is None:
             middle_classes = (0,)
-        middle_classes = sequencetools.rotate_sequence(middle_classes, rotation)
+        middle_classes = sequencetools.Sequence(
+            middle_classes).rotate(n=rotation)
         middle_classes = datastructuretools.CyclicTuple(middle_classes)
         right_classes = right_classes or ()
-        right_classes = sequencetools.rotate_sequence(right_classes, rotation)
+        right_classes = sequencetools.Sequence(
+            right_classes).rotate(n=rotation)
         right_classes = datastructuretools.CyclicTuple(right_classes)
         left_counts = left_counts or (0,)
-        left_counts = sequencetools.rotate_sequence(left_counts, rotation)
+        left_counts = sequencetools.Sequence(left_counts).rotate(n=rotation)
         left_counts = datastructuretools.CyclicTuple(left_counts)
         right_counts = right_counts or (0,)
-        right_counts = sequencetools.rotate_sequence(right_counts, rotation)
+        right_counts = sequencetools.Sequence(right_counts).rotate(n=rotation)
         right_counts = datastructuretools.CyclicTuple(right_counts)
         if self.burnish_specifier.outer_divisions_only:
             procedure = self._burnish_outer_selections
@@ -328,9 +327,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             left = left[:left_length]
             middle = middle_length * [middle_classes[selection_index]]
             right = right[:right_length]
-            left_part, middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                    leaves,
+            left_part, middle_part, right_part = sequencetools.Sequence(
+                    leaves).partition_by_counts(
                     [left_length, middle_length, right_length],
                     cyclic=False,
                     overhang=False,
@@ -383,9 +381,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             middle_classes = [1]
         middle = [middle_classes[0]]
         middle = middle_length * middle
-        left_part, middle_part = \
-            sequencetools.partition_sequence_by_counts(
-                leaves,
+        left_part, middle_part = sequencetools.Sequence(
+                leaves).partition_by_counts(
                 [left_length, middle_length],
                 cyclic=False,
                 overhang=False,
@@ -415,9 +412,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         middle_length = len(leaves) - right_length
         right = right[:right_length]
         middle = middle_length * [middle_classes[0]]
-        middle_part, right_part = \
-            sequencetools.partition_sequence_by_counts(
-                leaves,
+        middle_part, right_part = sequencetools.Sequence(
+                leaves).partition_by_counts(
                 [middle_length, right_length],
                 cyclic=False,
                 overhang=False,
@@ -497,8 +493,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Forces the first leaf and the last two leaves to be
-            rests:
+            Forces the first leaf and the last two leaves to be rests:
 
             ::
 
@@ -524,8 +519,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -577,8 +571,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/8
@@ -596,8 +589,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Forces the first leaf of every division to be a
-            rest:
+            Forces the first leaf of every division to be a rest:
 
             ::
 
@@ -620,8 +612,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -669,7 +660,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Fills divisions with 16th notes:
+            Fills divisions with 16th notes:
 
             ::
 
@@ -690,8 +681,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -733,7 +723,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Fills divisions with 8th notes:
+            Fills divisions with 8th notes:
 
             ::
 
@@ -754,8 +744,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -789,7 +778,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Fills divisions with quarter notes:
+            Fills divisions with quarter notes:
 
             ::
 
@@ -810,8 +799,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -840,7 +828,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Fills divisions with half notes:
+            Fills divisions with half notes:
 
             ::
 
@@ -861,8 +849,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -889,7 +876,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         Returns tuple of nonnegative integer powers of two.
         '''
-        return self._denominators
+        if self._denominators:
+            return list(self._denominators)
 
     @property
     def division_masks(self):
@@ -897,7 +885,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No division masks:
+            No division masks:
 
             ::
 
@@ -915,8 +903,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -956,7 +943,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every other division:
+            Silences every other division:
 
             ::
 
@@ -978,8 +965,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1009,7 +995,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Sustains every other division:
+            Sustains every other division:
 
             ::
 
@@ -1031,8 +1017,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1062,7 +1047,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Silences every output division:
+            Silences every output division:
 
             ::
 
@@ -1082,8 +1067,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1141,7 +1125,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example -4.** Four missing counts per division:
+            Four missing counts per division:
 
             ::
 
@@ -1163,8 +1147,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1210,7 +1193,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example -3.** Three missing counts per division:
+            Three missing counts per division:
 
             ::
 
@@ -1232,8 +1215,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1279,7 +1261,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example -2.** Two missing counts per division:
+            Two missing counts per division:
 
             ::
 
@@ -1301,8 +1283,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1347,7 +1328,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example -1.** One missing count per division:
+            One missing count per division:
 
             ::
 
@@ -1369,8 +1350,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1416,7 +1396,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 0.** Neither missing nor extra counts per division:
+            Neither missing nor extra counts per division:
 
             ::
 
@@ -1438,8 +1418,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1485,7 +1464,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** One extra count per division:
+            One extra count per division:
 
             ::
 
@@ -1507,8 +1486,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1560,7 +1538,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Two extra counts per division:
+            Two extra counts per division:
 
             ::
 
@@ -1582,8 +1560,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1637,7 +1614,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Three extra counts per division:
+            Three extra counts per division:
 
             ::
 
@@ -1659,8 +1636,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1715,7 +1691,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Four extra counts per division:
+            Four extra counts per division:
 
             ::
 
@@ -1737,8 +1713,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1791,7 +1766,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         Returns (possibly empty) tuple of integers or none.
         '''
-        return self._extra_counts_per_division
+        if self._extra_counts_per_division:
+            return list(self._extra_counts_per_division)
 
     @property
     def logical_tie_masks(self):
@@ -1799,7 +1775,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No logical tie masks:
+            No logical tie masks:
 
             ::
 
@@ -1817,8 +1793,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1858,7 +1833,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every third logical tie:
+            Silences every third logical tie:
 
             ::
 
@@ -1880,8 +1855,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1921,8 +1895,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Silences every logical tie except the first two and
-            last two:
+            Silences every logical tie except the first two and last two:
 
             ::
 
@@ -1947,8 +1920,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1988,7 +1960,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** With ties across divisions:
+            With ties across divisions:
 
             ::
 
@@ -2010,8 +1982,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2075,8 +2046,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2128,7 +2098,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No preferred denominator:
+            No preferred denominator:
 
             ::
 
@@ -2150,8 +2120,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2226,7 +2195,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2a.** Preferred denominator equal to 4:
+            Preferred denominator equal to 4:
 
             ::
 
@@ -2248,8 +2217,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2319,7 +2287,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 2b.** Preferred denominator equal to 8:
+            Preferred denominator equal to 8:
 
             ::
 
@@ -2341,8 +2309,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2412,7 +2379,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 2c.** Preferred denominator equal to 16:
+            Preferred denominator equal to 16:
 
             ::
 
@@ -2434,8 +2401,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2507,8 +2473,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Preferred denominator taken from count of elements
-            in tuplet:
+            Preferred denominator taken from count of elements in tuplet:
 
             ::
 
@@ -2530,8 +2495,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2600,9 +2564,6 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         }
                     }
                 }
-
-            This is default behavior.
-
 
         Defaults to none.
 

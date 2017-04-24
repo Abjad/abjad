@@ -224,8 +224,8 @@ class RhythmTreeMixin(abctools.AbjadObject):
         '''
         prolations = [durationtools.Multiplier(1)]
         improper_parentage = self.improper_parentage
-        for child, parent in \
-            sequencetools.iterate_sequence_nwise(improper_parentage):
+        pairs = sequencetools.Sequence(improper_parentage).nwise()
+        for child, parent in pairs:
             prolations.append(durationtools.Multiplier(
                 parent.preprolated_duration, parent._contents_duration))
         return tuple(prolations)

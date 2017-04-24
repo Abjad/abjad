@@ -15,10 +15,10 @@ class SilenceMask(AbjadValueObject):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(0, 1, 7),
+                    indices=[0, 1, 7],
                     period=16,
                     ),
                 )
@@ -33,6 +33,8 @@ class SilenceMask(AbjadValueObject):
         '_pattern',
         '_use_multimeasure_rests',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -70,7 +72,7 @@ class SilenceMask(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Without multimeasure rests:
+            Without multimeasure rests:
 
             ::
 
@@ -85,11 +87,9 @@ class SilenceMask(AbjadValueObject):
                 >>> mask.use_multimeasure_rests
                 False
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** With multimeasure rests:
+            With multimeasure rests:
 
             ::
 

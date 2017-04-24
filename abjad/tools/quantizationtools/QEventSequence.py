@@ -162,12 +162,12 @@ class QEventSequence(AbjadObject):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __getitem__(self, expr):
-        r'''Gets `expr` from q-event sequence.
+    def __getitem__(self, argument):
+        r'''Gets item or slice identified by `argument`.
 
-        Returns item.
+        Returns item or slice.
         '''
-        return self._sequence[expr]
+        return self._sequence.__getitem__(argument)
 
     def __hash__(self):
         r'''Hashes q-event sequence.
@@ -256,9 +256,11 @@ class QEventSequence(AbjadObject):
         '''
         from abjad.tools import quantizationtools
         if fuse_silences:
-            durations = [x for x in \
-                sequencetools.sum_consecutive_elements_by_sign(
-                    milliseconds, sign=[-1]) if x]
+            durations = [
+                x for x in
+                sequencetools.Sequence(milliseconds).sum_by_sign(sign=[-1])
+                if x
+                ]
         else:
             durations = milliseconds
         offsets = mathtools.cumulative_sums([abs(x) for x in durations])
@@ -475,13 +477,13 @@ class QEventSequence(AbjadObject):
         from abjad.tools import quantizationtools
         durations = [durationtools.Duration(x) for x in durations]
         assert isinstance(tempo, indicatortools.Tempo)
-        durations = [x for x in
-            sequencetools.sum_consecutive_elements_by_sign(
-                durations,
-                sign=[-1],
-                ) if x]
-        durations = [tempo.duration_to_milliseconds(x) for x in durations]
-        offsets = mathtools.cumulative_sums(abs(x) for x in durations)
+        durations = [
+            x for x in
+            sequencetools.Sequence(durations).sum_by_sign(sign=[-1])
+            if x
+            ]
+        durations = [tempo.duration_to_milliseconds(_) for _ in durations]
+        offsets = mathtools.cumulative_sums([abs(_) for _ in durations])
         q_events = []
         for pair in zip(offsets, durations):
             offset = durationtools.Offset(pair[0])

@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_scoretools_NoteHeadInventory___getitem___01():
-    '''Gets note head from chord.
+    '''Gets note-head from chord.
     '''
 
     chord = Chord("<ef' cs'' f''>4")

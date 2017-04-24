@@ -24,14 +24,31 @@ class IntervalClassSet(Set):
             )
         if isinstance(items, prototype):
             items = list(items)
-            pairs = sequencetools.yield_all_unordered_pairs_of_sequence(
-                items)
+            enumeration = sequencetools.Enumeration(items)
+            pairs = enumeration.yield_pairs()
             items = [second - first for first, second in pairs]
         Set.__init__(
             self,
             items=items,
             item_class=item_class,
             )
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedIntervalClass
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedIntervalClass
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.IntervalClass
 
     ### PUBLIC METHODS ###
 
@@ -75,20 +92,3 @@ class IntervalClassSet(Set):
             items=interval_set,
             item_class=item_class,
             )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedIntervalClass
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedIntervalClass
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.IntervalClass

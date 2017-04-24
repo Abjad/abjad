@@ -10,7 +10,7 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        **Example 1.** Ties four notes:
+        Ties four notes:
 
         ::
 
@@ -30,19 +30,19 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        **Example 2.** Fails attachment test when pitches differ:
+        Fails attachment test when pitches differ:
 
         ::
 
             >>> staff = Staff("c'4 d' e' f'")
             >>> attach(Tie(), staff[:])
             Traceback (most recent call last):
-            ...
+                ...
             Exception: Tie() attachment test fails for Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]).
 
     ..  container:: example
 
-        **Example 3.** Ties consecutive chords if all adjacent pairs have at least one pitch in common:
+        Ties consecutive chords if all adjacent pairs have at least one pitch in common:
 
         ::
 
@@ -108,7 +108,7 @@ class Tie(Spanner):
                 written_pitches.append(set(component.written_pitches))
             else:
                 return False
-        for pair in sequencetools.iterate_sequence_nwise(written_pitches):
+        for pair in sequencetools.Sequence(written_pitches).nwise():
             if not set.intersection(*pair):
                 return False
         return True
@@ -169,7 +169,7 @@ class Tie(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 ^ ~
                     c'8 ^ ~
@@ -195,7 +195,7 @@ class Tie(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 _ ~
                     c'8 _ ~
@@ -221,7 +221,7 @@ class Tie(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 ~
                     c'8 ~
@@ -249,7 +249,7 @@ class Tie(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Default values for Messiaen-style ties:
+            Default values for Messiaen-style ties:
 
             ::
 
@@ -260,7 +260,7 @@ class Tie(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8
                     c'8 ^ \repeatTie

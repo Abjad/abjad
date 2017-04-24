@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class PageBreak(AbjadValueObject):
-    r'''A page break.
+    r'''Page break.
 
     ..  container:: example
 
@@ -48,10 +48,9 @@ class PageBreak(AbjadValueObject):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Staff
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _lilypond_format(self):
+    def _get_lilypond_format(self):
         return r'\pageBreak'
 
     ### PUBLIC PROPERTIES ###

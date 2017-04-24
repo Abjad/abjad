@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BarLine(AbjadValueObject):
-    r'''A bar line.
+    r'''Bar line.
 
     ..  container:: example
 
@@ -52,6 +52,12 @@ class BarLine(AbjadValueObject):
         self._abbreviation = abbreviation
         self._default_scope = scoretools.Staff
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return repr(self.abbreviation)
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -61,14 +67,7 @@ class BarLine(AbjadValueObject):
             storage_format_args_values=[self.abbreviation],
             )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self.abbreviation)
-
-    @property
-    def _lilypond_format(self):
+    def _get_lilypond_format(self):
         return r'\bar "{}"'.format(self.abbreviation)
 
     ## PUBLIC PROPERTIES ##

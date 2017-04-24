@@ -11,7 +11,7 @@ class Octave(AbjadValueObject):
 
     ..  container:: example:
 
-        **Example 1.** Initializes octave from integer:
+        Initializes octave from integer:
 
         ::
 
@@ -20,7 +20,7 @@ class Octave(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Initializes octave from octave-tick string:
+        Initializes octave from octave-tick string:
 
         ::
 
@@ -29,7 +29,7 @@ class Octave(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Initializes octave from named pitch:
+        Initializes octave from named pitch:
 
         ::
 
@@ -38,7 +38,7 @@ class Octave(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 4.** Initializes octave from other octave:
+        Initializes octave from other octave:
 
         ::
 
@@ -61,40 +61,40 @@ class Octave(AbjadValueObject):
         )
 
     __slots__ = (
-        '_octave_number',
+        '_number',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, octave_number=None):
+    def __init__(self, number=None):
         from abjad.tools import pitchtools
-        expr = octave_number
-        if isinstance(expr, numbers.Number):
-            octave_number = int(expr)
-        elif isinstance(expr, str):
-            match = self._octave_tick_regex.match(expr)
+        argument = number
+        if isinstance(argument, numbers.Number):
+            number = int(argument)
+        elif isinstance(argument, str):
+            match = self._octave_tick_regex.match(argument)
             if match is None:
                 message = 'can not instantiate octave: {!r}.'
-                message = message.format(expr)
+                message = message.format(argument)
                 raise Exception(message)
             group = match.group()
             if group == '':
-                octave_number = 3
+                number = 3
             elif group.startswith("'"):
-                octave_number = 3 + len(group)
+                number = 3 + len(group)
             else:
-                octave_number = 3 - len(group)
-        elif isinstance(expr, pitchtools.Pitch):
-            octave_number = expr.octave_number
-        elif isinstance(expr, type(self)):
-            octave_number = expr.octave_number
-        elif expr is None:
-            octave_number = 4
+                number = 3 - len(group)
+        elif isinstance(argument, pitchtools.Pitch):
+            number = argument.octave.number
+        elif isinstance(argument, type(self)):
+            number = argument.number
+        elif argument is None:
+            number = 4
         else:
             message = 'can not instantiate {}: {!r}.'
-            message = message.format(type(self), expr)
+            message = message.format(type(self), argument)
             raise Exception(message)
-        self._octave_number = octave_number
+        self._number = number
 
     ### SPECIAL METHODS ###
 
@@ -124,7 +124,7 @@ class Octave(AbjadValueObject):
         '''
         try:
             other = type(self)(other)
-            return self.octave_number == other.octave_number
+            return self.number == other.number
         except:
             return False
 
@@ -140,7 +140,7 @@ class Octave(AbjadValueObject):
 
         Returns floating-point number.
         '''
-        return float(self.octave_number)
+        return float(self.number)
 
     def __hash__(self):
         r'''Hashes octave.
@@ -161,7 +161,7 @@ class Octave(AbjadValueObject):
 
         Returns integer.
         '''
-        return self.octave_number
+        return self.number
 
     def __str__(self):
         r'''Gets string representation of octave.
@@ -187,10 +187,10 @@ class Octave(AbjadValueObject):
 
         Returns string.
         '''
-        if 3 < self.octave_number:
-            return "'" * (self.octave_number - 3)
-        elif self.octave_number < 3:
-            return ',' * abs(3 - self.octave_number)
+        if 3 < self.number:
+            return "'" * (self.number - 3)
+        elif self.number < 3:
+            return ',' * abs(3 - self.number)
         return ''
 
     ### PRIVATE METHODS ###
@@ -200,9 +200,96 @@ class Octave(AbjadValueObject):
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
-            storage_format_args_values=[self.octave_number],
+            storage_format_args_values=[self.number],
             storage_format_kwargs_names=[],
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def number(self):
+        r'''Gets octave number.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitchtools.Octave(5).number
+                5
+
+        Returns integer.
+        '''
+        return self._number
+
+    @property
+    def tick_string(self):
+        r"""Gets LilyPond octave tick string.
+
+        ..  container:: example
+
+            ::
+
+                >>> for i in range(-1, 9):
+                ...     print(i, pitchtools.Octave(i).tick_string)
+                -1 ,,,,
+                0  ,,,
+                1  ,,
+                2  ,
+                3
+                4  '
+                5  ''
+                6  '''
+                7  ''''
+                8  '''''
+
+        Returns string.
+        """
+        return str(self)
+
+    @property
+    def pitch_number(self):
+        r'''Gets pitch number of first note in octave.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitchtools.Octave(4).pitch_number
+                0
+
+            ::
+
+                >>> pitchtools.Octave(5).pitch_number
+                12
+
+            ::
+
+                >>> pitchtools.Octave(3).pitch_number
+                -12
+
+        Returns integer.
+        '''
+        return (self.number - 4) * 12
+
+    @property
+    def pitch_range(self):
+        r'''Gets pitch range of octave.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitchtools.Octave(5).pitch_range
+                PitchRange(range_string='[C5, C6)')
+
+        Returns pitch range.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.PitchRange(
+            '[C{}, C{})'.format(
+                self.number,
+                self.number + 1,
+                ))
 
     ### PUBLIC METHODS ###
 
@@ -243,111 +330,75 @@ class Octave(AbjadValueObject):
 
         Returns octave.
         '''
-        octave_number = int(math.floor(pitch_number / 12)) + 4
-        return class_(octave_number)
+        number = int(math.floor(pitch_number / 12)) + 4
+        return class_(number)
 
     @classmethod
-    def is_octave_tick_string(class_, expr):
-        '''Is true when `expr` is an octave tick string. Otherwise false.
+    def is_tick_string(class_, argument):
+        r"""Is true when `argument` is an octave tick string.
+        Otherwise false.
 
         ..  container:: example
 
             ::
 
-                >>> pitchtools.Octave.is_octave_tick_string(',,,')
+                >>> pitchtools.Octave.is_tick_string(',,,')
                 True
+
+            ::
+
+                >>> pitchtools.Octave.is_tick_string(',,,')
+                True
+
+            ::
+            
+                >>> pitchtools.Octave.is_tick_string(',,')
+                True
+
+            ::
+
+                >>> pitchtools.Octave.is_tick_string(',')
+                True
+
+            ::
+
+                >>> pitchtools.Octave.is_tick_string('')
+                True
+
+            ::
+
+                >>> pitchtools.Octave.is_tick_string("")
+                True
+
+            ::
+
+                >>> pitchtools.Octave.is_tick_string("'")
+                True
+
+            ::
+
+                >>> pitchtools.Octave.is_tick_string("''")
+                True
+
+            ::
+
+                >>> pitchtools.Octave.is_tick_string("'''")
+                True
+
+            ::
+
+                >>> pitchtools.Octave.is_tick_string('foo')
+                False
+
+            ::
+
+                >>> pitchtools.Octave.is_tick_string(8)
+                False
 
         The regex ``^,+|'+|$`` underlies this predicate.
 
         Returns true or false.
-        '''
-        if not isinstance(expr, str):
-            return False
-        return bool(class_._octave_tick_regex.match(expr))
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def octave_number(self):
-        r'''Gets octave number of octave.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Octave(5).octave_number
-                5
-
-        Returns integer.
-        '''
-        return self._octave_number
-
-    @property
-    def octave_tick_string(self):
-        r"""Gets LilyPond octave tick representation of octave.
-
-        ..  container:: example
-
-            ::
-
-                >>> for i in range(-1, 9):
-                ...     print(i, pitchtools.Octave(i).octave_tick_string)
-                -1 ,,,,
-                0  ,,,
-                1  ,,
-                2  ,
-                3
-                4  '
-                5  ''
-                6  '''
-                7  ''''
-                8  '''''
-
-        Returns string.
         """
-        return str(self)
-
-    @property
-    def pitch_number(self):
-        r'''Gets pitch number of first note in octave.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Octave(4).pitch_number
-                0
-
-            ::
-
-                >>> pitchtools.Octave(5).pitch_number
-                12
-
-            ::
-
-                >>> pitchtools.Octave(3).pitch_number
-                -12
-
-        Returns integer.
-        '''
-        return (self.octave_number - 4) * 12
-
-    @property
-    def pitch_range(self):
-        r'''Gets pitch range of octave.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Octave(5).pitch_range
-                PitchRange(range_string='[C5, C6)')
-
-        Returns pitch range.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.PitchRange(
-            '[C{}, C{})'.format(
-                self.octave_number,
-                self.octave_number + 1,
-                ))
+        if not isinstance(argument, str):
+            return False
+        return bool(class_._octave_tick_regex.match(argument))

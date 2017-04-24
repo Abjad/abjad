@@ -33,7 +33,10 @@ class InspectionAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         prototype = (scoretools.Component, spannertools.Spanner, type(None))
-        assert isinstance(client, prototype), repr(client)
+        if not isinstance(client, prototype):
+            message = 'must be component, spanner or none: {!r}.'
+            message = message.format(client)
+            raise TypeError(message)
         self._client = client
 
     ### PUBLIC METHODS ###
@@ -494,19 +497,14 @@ class InspectionAgent(abctools.AbjadObject):
         if isinstance(self._client, scoretools.Leaf):
             return self._client._get_leaf(n=n)
         if 0 <= n:
-            leaves = iterate(self._client).by_class(
-                scoretools.Leaf,
-                start=0,
-                stop=n+1,
-                )
+            leaves = iterate(self._client).by_leaf(start=0, stop=n+1)
             leaves = list(leaves)
             if len(leaves) < n + 1:
                 return
             leaf = leaves[n]
             return leaf
         else:
-            leaves = iterate(self._client).by_class(
-                scoretools.Leaf,
+            leaves = iterate(self._client).by_leaf(
                 start=0,
                 stop=abs(n),
                 reverse=True,

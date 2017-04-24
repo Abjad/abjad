@@ -113,21 +113,21 @@ class OrdinalConstant(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __lt__(self, expr):
-        r'''Is true when `expr` is an ordinal with value greater than that of
+    def __lt__(self, argument):
+        r'''Is true when `argument` is an ordinal with value greater than that of
         this ordinal constant. Otherwise false.
 
         Returns true or false.
         '''
-        self._check_comparator(expr)
-        return self._value < expr._value
+        self._check_comparator(argument)
+        return self._value < argument._value
 
     ### PRIVATE METHODS ###
 
     # can only compare like-dimensioned ordinal constants
-    def _check_comparator(self, expr):
-        if not isinstance(expr, type(self)) or \
-            self._dimension != expr._dimension:
+    def _check_comparator(self, argument):
+        if not isinstance(argument, type(self)) or \
+            self._dimension != argument._dimension:
             message = 'can only compare like-dimensioned ordinal constants.'
             raise Exception(message)
 

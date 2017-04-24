@@ -69,20 +69,20 @@ Set the written pitches of a chord like this:
     show(chord)
 
 
-Getting chord note heads
+Getting chord note-heads
 ------------------------
 
-Get the note heads of a chord like this:
+Get the note-heads of a chord like this:
 
 ..  abjad::
 
     for note_head in chord.note_heads: note_head
 
 
-Appending note heads to a chord
+Appending note-heads to a chord
 -------------------------------
 
-Use ``append()`` to add one note head to a chord.
+Use ``append()`` to add one note-head to a chord.
 
 You can append with a pitch name:
 
@@ -107,7 +107,7 @@ Or with a pitch number:
 Extending chords
 ----------------
 
-Use ``extend()`` to add multiple note heads to a chord.
+Use ``extend()`` to add multiple note-heads to a chord.
 
 You can extend with pitch names:
 
@@ -129,10 +129,10 @@ Or with pitch numbers:
     show(chord)
 
 
-Deleting chord note heads
+Deleting chord note-heads
 -------------------------
 
-Delete chord note heads with ``del()``.
+Delete chord note-heads with ``del()``.
 
 ..  abjad::
 
@@ -145,10 +145,10 @@ Delete chord note heads with ``del()``.
     show(chord)
 
 
-Tweaking chord note heads
+Tweaking chord note-heads
 -------------------------
 
-Tweak chord note heads like this:
+Tweak chord note-heads like this:
 
 ..  abjad::
 

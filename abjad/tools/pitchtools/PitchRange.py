@@ -3,7 +3,6 @@ import collections
 import copy
 import numbers
 import re
-from abjad.tools import indicatortools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.pitchtools.Pitch import Pitch
 from abjad.tools.topleveltools import inspect_
@@ -17,12 +16,12 @@ class PitchRange(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Pitches from C3 to C7, inclusive:
+        Pitches from C3 to C7, inclusive:
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange('[C3, C7]')
-            >>> print(format(pitch_range))
+            >>> pitch_range = PitchRange('[C3, C7]')
+            >>> f(pitch_range)
             pitchtools.PitchRange(
                 range_string='[C3, C7]',
                 )
@@ -43,6 +42,13 @@ class PitchRange(AbjadValueObject):
     """
 
     ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_start',
+        '_stop',
+        )
+
+    _publish_storage_format = True
 
     _range_string_regex_body = '''
         (?P<open_bracket>
@@ -71,10 +77,15 @@ class PitchRange(AbjadValueObject):
         re.VERBOSE,
         )
 
-    __slots__ = (
-        '_start',
-        '_stop',
-        )
+    _start_punctuation_to_inclusivity_string = {
+        '[': 'inclusive',
+        '(': 'exclusive',
+        }
+
+    _stop_punctuation_to_inclusivity_string = {
+        ']': 'inclusive',
+        ')': 'exclusive',
+        }
 
     ### INITIALIZER ###
 
@@ -85,57 +96,57 @@ class PitchRange(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, arg):
-        r'''Is true when pitch range contains `arg`. Otherwise false.
+    def __contains__(self, argument):
+        r'''Is true when pitch range contains `argument`. Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         if (
-            hasattr(arg, '_has_effective_indicator') and
-            arg._has_effective_indicator(indicatortools.IsUnpitched)
+            hasattr(argument, '_has_effective_indicator') and
+            'unpitched' in inspect_(argument).get_indicators(str)
             ):
             return True
-        elif isinstance(arg, (int, float)):
-            pitch = pitchtools.NamedPitch(arg)
+        elif isinstance(argument, (int, float)):
+            pitch = pitchtools.NamedPitch(argument)
             return self._contains_pitch(pitch)
-        elif isinstance(arg, pitchtools.NamedPitch):
-            return self._contains_pitch(arg)
-        elif isinstance(arg, scoretools.Note):
-            sounding_pitch = inspect_(arg).get_sounding_pitch()
+        elif isinstance(argument, pitchtools.NamedPitch):
+            return self._contains_pitch(argument)
+        elif isinstance(argument, scoretools.Note):
+            sounding_pitch = inspect_(argument).get_sounding_pitch()
             return self._contains_pitch(sounding_pitch)
-        elif isinstance(arg, scoretools.Chord):
-            sounding_pitches = inspect_(arg).get_sounding_pitches()
+        elif isinstance(argument, scoretools.Chord):
+            sounding_pitches = inspect_(argument).get_sounding_pitches()
             return all(self._contains_pitch(x) for x in sounding_pitches)
             try:
-                arg = type(self)(arg)
-                return self.__lt__(arg)
+                argument = type(self)(argument)
+                return self.__lt__(argument)
             except TypeError:
                 pass
-        elif isinstance(arg, (scoretools.Rest, scoretools.Skip)):
+        elif isinstance(argument, (scoretools.Rest, scoretools.Skip)):
             return True
-        elif isinstance(arg, scoretools.Container):
-            return all(x in self for x in iterate(arg).by_leaf())
+        elif isinstance(argument, scoretools.Container):
+            return all(x in self for x in iterate(argument).by_leaf())
         else:
-            pitches = list(iterate(arg).by_pitch())
+            pitches = list(iterate(argument).by_pitch())
             if pitches:
                 return all(self._contains_pitch(x) for x in pitches)
             else:
                 try:
-                    return all(self._contains_pitch(x) for x in arg)
+                    return all(self._contains_pitch(x) for x in argument)
                 except TypeError:
                     return False
         return False
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a pitch range with start and stop equal
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a pitch range with start and stop equal
         to those of this pitch range. Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, expr)
+        return systemtools.TestManager.compare_objects(self, argument)
 
     def __format__(self, format_specification=''):
         r'''Formats pitch range.
@@ -150,30 +161,30 @@ class PitchRange(AbjadValueObject):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __ge__(self, arg):
+    def __ge__(self, argument):
         r'''Is true when start pitch of pitch range is greater than or equal to
-        `arg`. Otherwise false.
+        `argument`. Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
         try:
-            pitch = pitchtools.NamedPitch(arg)
+            pitch = pitchtools.NamedPitch(argument)
             if self.start_pitch is None:
                 return False
             return pitch <= self.start_pitch
         except (TypeError, ValueError):
             return False
 
-    def __gt__(self, arg):
-        r'''Is true when start pitch of pitch range is greater than `arg`.
+    def __gt__(self, argument):
+        r'''Is true when start pitch of pitch range is greater than `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
         try:
-            pitch = pitchtools.NamedPitch(arg)
+            pitch = pitchtools.NamedPitch(argument)
             if self.start_pitch is None:
                 return False
             return pitch < self.start_pitch
@@ -200,100 +211,97 @@ class PitchRange(AbjadValueObject):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import durationtools
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        from abjad.tools.topleveltools import attach
-        from abjad.tools.topleveltools import iterate
-        from abjad.tools.topleveltools import override
-        start_pitch_clef = indicatortools.Clef.from_selection(self.start_pitch)
-        stop_pitch_clef = indicatortools.Clef.from_selection(self.stop_pitch)
-        start_note = scoretools.Note(self.start_pitch, 1)
-        stop_note = scoretools.Note(self.stop_pitch, 1)
-        glissando = spannertools.Glissando()
+        import abjad
+        start_pitch_clef = abjad.Clef.from_selection(self.start_pitch)
+        stop_pitch_clef = abjad.Clef.from_selection(self.stop_pitch)
+        start_note = abjad.Note(self.start_pitch, 1)
+        stop_note = abjad.Note(self.stop_pitch, 1)
+        glissando = abjad.Glissando()
         if start_pitch_clef == stop_pitch_clef:
-            if start_pitch_clef == indicatortools.Clef('bass'):
-                bass_staff = scoretools.Staff()
-                attach(indicatortools.Clef('bass'), bass_staff)
+            if start_pitch_clef == abjad.Clef('bass'):
+                bass_staff = abjad.Staff()
+                abjad.attach(abjad.Clef('bass'), bass_staff)
                 bass_staff.extend([start_note, stop_note])
                 bass_leaves = select(bass_staff).by_leaf()
-                attach(glissando, bass_leaves)
-                score = scoretools.Score([bass_staff])
+                abjad.attach(glissando, bass_leaves)
+                score = abjad.Score([bass_staff])
             else:
-                treble_staff = scoretools.Staff()
-                attach(indicatortools.Clef('treble'), treble_staff)
+                treble_staff = abjad.Staff()
+                abjad.attach(abjad.Clef('treble'), treble_staff)
                 treble_staff.extend([start_note, stop_note])
                 treble_leaves = select(treble_staff).by_leaf()
-                attach(glissando, treble_leaves)
-                score = scoretools.Score([treble_staff])
+                abjad.attach(glissando, treble_leaves)
+                score = abjad.Score([treble_staff])
         else:
-            result = scoretools.make_empty_piano_score()
+            result = abjad.scoretools.make_empty_piano_score()
             score, treble_staff, bass_staff = result
             bass_staff.extend([start_note, stop_note])
-            treble_staff.extend(scoretools.Skip(1) * 2)
+            treble_staff.extend(abjad.Skip(1) * 2)
             bass_leaves = select(bass_staff).by_leaf()
-            attach(glissando, bass_leaves)
-            attach(indicatortools.StaffChange(treble_staff), bass_staff[1])
-        for leaf in iterate(score).by_class(scoretools.Leaf):
-            attach(durationtools.Multiplier(1, 4), leaf)
-        override(score).bar_line.stencil = False
-        override(score).span_bar.stencil = False
-        override(score).glissando.thickness = 2
-        override(score).time_signature.stencil = False
-        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+            abjad.attach(glissando, bass_leaves)
+            abjad.attach(abjad.StaffChange(treble_staff), bass_staff[1])
+        for leaf in abjad.iterate(score).by_leaf():
+            abjad.attach(abjad.Multiplier(1, 4), leaf)
+        abjad.override(score).bar_line.stencil = False
+        abjad.override(score).span_bar.stencil = False
+        abjad.override(score).glissando.thickness = 2
+        abjad.override(score).time_signature.stencil = False
+        lilypond_file = abjad.LilyPondFile.new(score)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 
-    def __le__(self, arg):
+    def __le__(self, argument):
         r'''Is true when stop pitch of pitch-range is less than or equal
-        to `arg`. Otherwise false.
+        to `argument`. Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
         try:
-            pitch = pitchtools.NamedPitch(arg)
+            pitch = pitchtools.NamedPitch(argument)
             if self.stop_pitch is None:
                 return False
             return self.stop_pitch <= pitch
         except (TypeError, ValueError):
             return False
 
-    def __lt__(self, arg):
-        r'''Is true when stop pitch of pitch-range is less than `arg`.
+    def __lt__(self, argument):
+        r'''Is true when stop pitch of pitch-range is less than `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
         from abjad.tools import pitchtools
         try:
-            pitch = pitchtools.NamedPitch(arg)
+            pitch = pitchtools.NamedPitch(argument)
             if self.stop_pitch is None:
                 return False
             return self.stop_pitch < pitch
         except (TypeError, ValueError):
             return False
 
-    def __ne__(self, arg):
-        r'''Is true when pitch range does not equal `arg`. Otherwise false.
+    def __ne__(self, argument):
+        r'''Is true when pitch range does not equal `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
-    ### PRIVATE CLASS VARIABLES ###
+    ### PRIVATE PROPERTIES ###
 
-    _start_punctuation_to_inclusivity_string = {
-        '[': 'inclusive',
-        '(': 'exclusive',
-        }
+    @property
+    def _close_bracket_string(self):
+        if self.stop_pitch_is_included_in_range:
+            return ']'
+        else:
+            return ')'
 
-    _stop_punctuation_to_inclusivity_string = {
-        ']': 'inclusive',
-        ')': 'exclusive',
-        }
+    @property
+    def _open_bracket_string(self):
+        if self.start_pitch_is_included_in_range:
+            return '['
+        else:
+            return '('
 
     ### PRIVATE METHODS ###
 
@@ -326,6 +334,32 @@ class PitchRange(AbjadValueObject):
                     return self.start_pitch < pitch <= self.stop_pitch
                 else:
                     return self.start_pitch < pitch < self.stop_pitch
+
+    def _get_named_range_string(self):
+        result = []
+        result.append(self._open_bracket_string)
+        if self.start_pitch:
+            result.append(self.start_pitch.pitch_class_octave_label)
+        else:
+            result.append('-inf')
+        result.append(', ')
+        if self.stop_pitch:
+            result.append(self.stop_pitch.pitch_class_octave_label)
+        else:
+            result.append('+inf')
+        result.append(self._close_bracket_string)
+        result = ''.join(result)
+        return result
+
+    def _get_numbered_range_string(self):
+        result = []
+        result.append(self._open_bracket_string)
+        result.append(str(self.start_pitch.pitch_number))
+        result.append(', ')
+        result.append(str(self.stop_pitch.pitch_number))
+        result.append(self._close_bracket_string)
+        result = ''.join(result)
+        return result
 
     def _list_numeric_octave_transpositions(self, pitch_number_list):
         result = []
@@ -384,272 +418,22 @@ class PitchRange(AbjadValueObject):
         stop_pair = (stop_pitch, stop_inclusivity_string)
         return start_pair, stop_pair
 
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def from_pitches(
-        start_pitch,
-        stop_pitch,
-        start_pitch_is_included_in_range=True,
-        stop_pitch_is_included_in_range=True,
-        ):
-        r'''Initializes pitch range from numbers.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.PitchRange.from_pitches(-18, 19)
-                PitchRange(range_string='[F#2, G5]')
-
-        Returns pitch range.
-        '''
-        from abjad.tools import pitchtools
-        if start_pitch is None:
-            start_pitch_string = '-inf'
-        else:
-            start_pitch_string = str(pitchtools.NamedPitch(start_pitch))
-        if stop_pitch is None:
-            stop_pitch_string = '+inf'
-        else:
-            stop_pitch_string = str(pitchtools.NamedPitch(stop_pitch))
-        start_containment = '['
-        if not start_pitch_is_included_in_range:
-            start_containment = '('
-        stop_containment = ']'
-        if not stop_pitch_is_included_in_range:
-            stop_containment = ')'
-        string = '{}{}, {}{}'
-        string = string.format(
-            start_containment,
-            start_pitch_string,
-            stop_pitch_string,
-            stop_containment,
-            )
-        pitch_range = PitchRange(string)
-        return pitch_range
-
-    @classmethod
-    def is_range_string(class_, expr):
-        '''Is true when `expr` is a symbolic pitch range string.
-        Otherwise false:
-
-        ..  container:: example
-
-            **Example 1.** Returns true:
-
-            ::
-
-                >>> pitchtools.PitchRange.is_range_string('[A0, C8]')
-                True
-
-        ..  container:: example
-
-            **Example 2.** Returns false:
-
-            ::
-
-                >>> pitchtools.PitchRange.is_range_string('text')
-                False
-
-        The regex that underlies this predicate matches against two
-        comma-separated pitches enclosed in some combination of square
-        brackets and round parentheses.
-
-        Returns true or false.
-        '''
-        if not isinstance(expr, str):
-            return False
-        return bool(class_._range_string_regex.match(expr))
-
-    def list_octave_transpositions(self, pitch_carrier):
-        r"""Lists octave transpositions of `pitch_carrier` in pitch range.
-
-        ..  container:: example
-
-            **Example 1.** Lists octave transpositions of three-pitch chord:
-
-            ::
-
-                >>> chord = Chord("<c' d' e'>4")
-                >>> pitch_range = pitchtools.PitchRange.from_pitches(0, 48)
-                >>> result = pitch_range.list_octave_transpositions(chord)
-
-            ::
-
-                >>> for chord in result:
-                ...     chord
-                ...
-                Chord("<c' d' e'>4")
-                Chord("<c'' d'' e''>4")
-                Chord("<c''' d''' e'''>4")
-                Chord("<c'''' d'''' e''''>4")
-
-        Returns a list of `pitch_carrier` objects.
-        """
-        from abjad.tools import pitchtools
-        from abjad.tools import scoretools
-        if isinstance(pitch_carrier, collections.Iterable):
-            if all(isinstance(x, (int, float)) for x in pitch_carrier):
-                return self._list_numeric_octave_transpositions(pitch_carrier)
-        prototype = (scoretools.Chord, pitchtools.PitchSet)
-        if not isinstance(pitch_carrier, prototype):
-            message = 'must be chord or pitch-set: {!r}'
-            message = message.format(pitch_carrier)
-            raise TypeError(message)
-        result = []
-        interval = pitchtools.NumberedInterval(-12)
-        while True:
-            pitch_carrier_copy = copy.copy(pitch_carrier)
-            candidate = interval.transpose(pitch_carrier_copy)
-            if candidate in self:
-                result.append(candidate)
-                interval -= pitchtools.NumberedInterval(12)
-            else:
-                break
-        result.reverse()
-        interval = pitchtools.NumberedInterval(0)
-        while True:
-            pitch_carrier_copy = copy.copy(pitch_carrier)
-            candidate = interval.transpose(pitch_carrier_copy)
-            if candidate in self:
-                result.append(candidate)
-                interval += pitchtools.NumberedInterval(12)
-            else:
-                break
-        return result
-
-    def voice_pitch_class(self, pitch_class):
-        r"""Voices `pitch_class`:
-
-        ..  container:: example
-
-            **Example 1.** Voices C three times:
-
-            ::
-
-                >>> pitch_range = pitchtools.PitchRange('[C4, C6]')
-                >>> pitch_range.voice_pitch_class('c')
-                (NamedPitch("c'"), NamedPitch("c''"), NamedPitch("c'''"))
-
-        ..  container:: example
-
-            **Example 2.** Voices B two times:
-
-            ::
-
-                >>> pitch_range = pitchtools.PitchRange('[C4, C6]')
-                >>> pitch_range.voice_pitch_class('b')
-                (NamedPitch("b'"), NamedPitch("b''"))
-
-        ..  container:: example
-
-            **Example 3.** Returns empty because B can not voice:
-
-            ::
-
-                >>> pitch_range = pitchtools.PitchRange('[C4, A4)')
-                >>> pitch_range.voice_pitch_class('b')
-                ()
-
-        Returns tuple of zero or more named pitches.
-        """
-        from abjad.tools import pitchtools
-        named_pitch_class = pitchtools.NamedPitchClass(pitch_class)
-        named_pitch = pitchtools.NamedPitch(
-            named_pitch_class,
-            self.start_pitch.octave_number,
-            )
-        result = []
-        while named_pitch <= self.stop_pitch:
-            if named_pitch in self:
-                result.append(named_pitch)
-            named_pitch += 12
-        return tuple(result)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _close_bracket_string(self):
-        if self.stop_pitch_is_included_in_range:
-            return ']'
-        else:
-            return ')'
-
-    @property
-    def _one_line_menu_summary(self):
-        return self.one_line_named_pitch_repr
-
-    @property
-    def _open_bracket_string(self):
-        if self.start_pitch_is_included_in_range:
-            return '['
-        else:
-            return '('
-
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def one_line_named_pitch_repr(self):
-        r'''One-line named pitch representation of pitch range.
-
-        ::
-
-            >>> pitch_range = pitchtools.PitchRange('[C3, C7]')
-            >>> pitch_range.one_line_named_pitch_repr
-            '[C3, C7]'
-
-        Returns string.
-        '''
-        result = []
-        result.append(self._open_bracket_string)
-        if self.start_pitch:
-            result.append(self.start_pitch.pitch_class_octave_label)
-        else:
-            result.append('-inf')
-        result.append(', ')
-        if self.stop_pitch:
-            result.append(self.stop_pitch.pitch_class_octave_label)
-        else:
-            result.append('+inf')
-        result.append(self._close_bracket_string)
-        result = ''.join(result)
-        return result
-
-    @property
-    def one_line_numbered_pitch_repr(self):
-        r'''One-line numbered pitch representation of pitch range.
-
-        ::
-
-            >>> pitch_range.one_line_numbered_pitch_repr
-            '[-12, 36]'
-
-        Returns string.
-        '''
-        result = []
-        result.append(self._open_bracket_string)
-        result.append(str(self.start_pitch.pitch_number))
-        result.append(', ')
-        result.append(str(self.stop_pitch.pitch_number))
-        result.append(self._close_bracket_string)
-        result = ''.join(result)
-        return result
 
     @property
     def range_string(self):
         r'''Gets range string of pitch range.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_range.range_string
-            '[C3, C7]'
+            ::
 
-        Aliased to `one_line_named_pitch_repr`.
+                >>> pitch_range.range_string
+                '[C3, C7]'
 
         Returns string.
         '''
-        return self.one_line_named_pitch_repr
+        return self._get_named_range_string()
 
     @property
     def start_pitch(self):
@@ -712,3 +496,186 @@ class PitchRange(AbjadValueObject):
         if self._stop is None:
             return True
         return self._stop[1] == 'inclusive'
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_pitches(
+        start_pitch,
+        stop_pitch,
+        start_pitch_is_included_in_range=True,
+        stop_pitch_is_included_in_range=True,
+        ):
+        r'''Initializes pitch range from numbers.
+
+        ..  container:: example
+
+            ::
+
+                >>> PitchRange.from_pitches(-18, 19)
+                PitchRange(range_string='[F#2, G5]')
+
+        Returns pitch range.
+        '''
+        from abjad.tools import pitchtools
+        if start_pitch is None:
+            start_pitch_string = '-inf'
+        else:
+            start_pitch_string = str(pitchtools.NamedPitch(start_pitch))
+        if stop_pitch is None:
+            stop_pitch_string = '+inf'
+        else:
+            stop_pitch_string = str(pitchtools.NamedPitch(stop_pitch))
+        start_containment = '['
+        if not start_pitch_is_included_in_range:
+            start_containment = '('
+        stop_containment = ']'
+        if not stop_pitch_is_included_in_range:
+            stop_containment = ')'
+        string = '{}{}, {}{}'
+        string = string.format(
+            start_containment,
+            start_pitch_string,
+            stop_pitch_string,
+            stop_containment,
+            )
+        pitch_range = PitchRange(string)
+        return pitch_range
+
+    @classmethod
+    def is_range_string(class_, argument):
+        '''Is true when `argument` is a symbolic pitch range string.
+        Otherwise false:
+
+        ..  container:: example
+
+            Returns true:
+
+            ::
+
+                >>> PitchRange.is_range_string('[A0, C8]')
+                True
+
+        ..  container:: example
+
+            Returns false:
+
+            ::
+
+                >>> PitchRange.is_range_string('text')
+                False
+
+        The regex that underlies this predicate matches against two
+        comma-separated pitches enclosed in some combination of square
+        brackets and round parentheses.
+
+        Returns true or false.
+        '''
+        if not isinstance(argument, str):
+            return False
+        return bool(class_._range_string_regex.match(argument))
+
+    def list_octave_transpositions(self, pitch_carrier):
+        r"""Lists octave transpositions of `pitch_carrier` in pitch range.
+
+        ..  container:: example
+
+            Lists octave transpositions of three-pitch chord:
+
+            ::
+
+                >>> chord = Chord("<c' d' e'>4")
+                >>> pitch_range = PitchRange.from_pitches(0, 48)
+                >>> result = pitch_range.list_octave_transpositions(chord)
+
+            ::
+
+                >>> for chord in result:
+                ...     chord
+                ...
+                Chord("<c' d' e'>4")
+                Chord("<c'' d'' e''>4")
+                Chord("<c''' d''' e'''>4")
+                Chord("<c'''' d'''' e''''>4")
+
+        Returns a list of `pitch_carrier` objects.
+        """
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        if isinstance(pitch_carrier, collections.Iterable):
+            if all(isinstance(x, (int, float)) for x in pitch_carrier):
+                return self._list_numeric_octave_transpositions(pitch_carrier)
+        prototype = (scoretools.Chord, pitchtools.PitchSet)
+        if not isinstance(pitch_carrier, prototype):
+            message = 'must be chord or pitch-set: {!r}'
+            message = message.format(pitch_carrier)
+            raise TypeError(message)
+        result = []
+        interval = pitchtools.NumberedInterval(-12)
+        while True:
+            pitch_carrier_copy = copy.copy(pitch_carrier)
+            candidate = interval.transpose(pitch_carrier_copy)
+            if candidate in self:
+                result.append(candidate)
+                interval -= pitchtools.NumberedInterval(12)
+            else:
+                break
+        result.reverse()
+        interval = pitchtools.NumberedInterval(0)
+        while True:
+            pitch_carrier_copy = copy.copy(pitch_carrier)
+            candidate = interval.transpose(pitch_carrier_copy)
+            if candidate in self:
+                result.append(candidate)
+                interval += pitchtools.NumberedInterval(12)
+            else:
+                break
+        return result
+
+    def voice_pitch_class(self, pitch_class):
+        r"""Voices `pitch_class`:
+
+        ..  container:: example
+
+            Voices C three times:
+
+            ::
+
+                >>> pitch_range = PitchRange('[C4, C6]')
+                >>> pitch_range.voice_pitch_class('c')
+                (NamedPitch("c'"), NamedPitch("c''"), NamedPitch("c'''"))
+
+        ..  container:: example
+
+            Voices B two times:
+
+            ::
+
+                >>> pitch_range = PitchRange('[C4, C6]')
+                >>> pitch_range.voice_pitch_class('b')
+                (NamedPitch("b'"), NamedPitch("b''"))
+
+        ..  container:: example
+
+            Returns empty because B can not voice:
+
+            ::
+
+                >>> pitch_range = PitchRange('[C4, A4)')
+                >>> pitch_range.voice_pitch_class('b')
+                ()
+
+        Returns tuple of zero or more named pitches.
+        """
+        from abjad.tools import pitchtools
+        named_pitch_class = pitchtools.NamedPitchClass(pitch_class)
+        named_pitch = pitchtools.NamedPitch(
+            named_pitch_class,
+            self.start_pitch.octave.number,
+            )
+        result = []
+        while named_pitch <= self.stop_pitch:
+            if named_pitch in self:
+                result.append(named_pitch)
+            named_pitch += 12
+        return tuple(result)

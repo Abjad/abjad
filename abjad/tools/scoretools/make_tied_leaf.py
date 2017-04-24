@@ -5,9 +5,8 @@ from abjad.tools import selectiontools
 from abjad.tools.topleveltools import attach
 
 
-# TODO: change 'kind' to 'class_'
 def make_tied_leaf(
-    kind,
+    class_,
     duration,
     decrease_durations_monotonically=True,
     forbidden_written_duration=None,
@@ -15,7 +14,7 @@ def make_tied_leaf(
     tie_parts=True,
     use_messiaen_style_ties=False,
     ):
-    r'''Makes tied `kind` with `duration`.
+    r'''Makes tied `class_` with `duration`.
 
     ..  container:: example
 
@@ -174,8 +173,8 @@ def make_tied_leaf(
         assert forbidden_written_duration.numerator == 1
 
     # find preferred numerator of written durations if necessary
-    if forbidden_written_duration is not None and \
-        forbidden_written_duration <= duration:
+    if (forbidden_written_duration is not None and
+        forbidden_written_duration <= duration):
         denominators = [
             2 * forbidden_written_duration.denominator,
             duration.denominator,
@@ -194,8 +193,8 @@ def make_tied_leaf(
     # make written duration numerators
     numerators = []
     parts = mathtools.partition_integer_into_canonic_parts(duration.numerator)
-    if forbidden_written_duration is not None and \
-        forbidden_written_duration <= duration:
+    if (forbidden_written_duration is not None and
+        forbidden_written_duration <= duration):
         for part in parts:
             if forbidden_numerator <= part:
                 better_parts = \
@@ -214,17 +213,19 @@ def make_tied_leaf(
     # make one leaf per written duration
     result = []
     for numerator in numerators:
-        written_duration = \
-            durationtools.Duration(numerator, duration.denominator)
+        written_duration = durationtools.Duration(
+            numerator,
+            duration.denominator,
+            )
         if not pitches is None:
             args = (pitches, written_duration)
         else:
             args = (written_duration, )
-        result.append(kind(*args))
+        result.append(class_(*args))
 
     # apply tie spanner if required
     if tie_parts and 1 < len(result):
-        if not issubclass(kind, (scoretools.Rest, scoretools.Skip)):
+        if not issubclass(class_, (scoretools.Rest, scoretools.Skip)):
             tie = spannertools.Tie(
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )

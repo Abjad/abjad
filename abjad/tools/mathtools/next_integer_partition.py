@@ -1,50 +1,49 @@
 # -*- coding: utf-8 -*-
 
 
+# TODO: make private and add to yield_all_integer_partitions()
 def next_integer_partition(integer_partition):
-    r'''Next integer partition following `integer_partition`
+    r'''Gets next integer partition following `integer_partition`
     in descending lex order.
 
-    ::
+    ..  container:: example
 
-        >>> mathtools.next_integer_partition((8, 3))
-        (8, 2, 1)
+        ::
 
-    ::
+            >>> mathtools.next_integer_partition((8, 3))
+            (8, 2, 1)
 
-        >>> mathtools.next_integer_partition((8, 2, 1))
-        (8, 1, 1, 1)
+        ::
 
-    ::
+            >>> mathtools.next_integer_partition((8, 2, 1))
+            (8, 1, 1, 1)
 
-        >>> mathtools.next_integer_partition((8, 1, 1, 1))
-        (7, 4)
+        ::
 
-    Input `integer_partition` must be sequence of positive integers.
+            >>> mathtools.next_integer_partition((8, 1, 1, 1))
+            (7, 4)
 
-    Returns integer partition as tuple of positive integers.
+    `integer_partition` must be tuple of positive integers.
+
+    Returns new integer partition tuple.
     '''
-
     _validate_input(integer_partition)
-
-    left_half, right_half = _split_into_left_and_right_halves(integer_partition)
-
+    left_half, right_half = _split_into_left_and_right_halves(
+        integer_partition
+        )
     # if input was all 1s like (1, 1, 1, 1) then we're done
     if not left_half:
         return None
-
     new_left_half = left_half[:-1] + [left_half[-1] - 1]
-
     new_right_weight = sum(right_half) + 1
-    new_right_half = _as_special_sequence(new_right_weight, new_left_half[-1])
-
+    new_right_half = _rewrite(new_right_weight, new_left_half[-1])
     result = new_left_half + new_right_half
     result = tuple(result)
     return result
 
 
 def _split_into_left_and_right_halves(integer_partition):
-    r'''split not-1s (left half) from 1s (right half):
+    r'''Splits not-1s (left half) from 1s (right half).
 
     _split_into_left_and_right_halves((8, 3))
     [8, 3], []
@@ -54,8 +53,8 @@ def _split_into_left_and_right_halves(integer_partition):
 
     _split_into_left_and_right_halves((8, 1, 1, 1))
     [8], [1, 1, 1]
-    '''
 
+    '''
     left_half = []
     right_half = []
     for part in integer_partition:
@@ -67,7 +66,7 @@ def _split_into_left_and_right_halves(integer_partition):
 
 
 def _validate_input(integer_partition):
-    r'''Must be monotonically decreasing iterable of positive integers.
+    r'''Ensures monotonically decreasing iterable of positive integers.
 
     (8, 2, 2, 1) is OK.
     (8, 1, 2, 2) is not.
@@ -87,24 +86,24 @@ def _validate_input(integer_partition):
                 raise ValueError(message)
 
 
-def _as_special_sequence(n, m):
-    r'''Write positive integer n as the sum of many m in a row,
-    followed either by nothing or by a final positive integer
-    p such that p is strictly less than m.
+def _rewrite(n, m):
+    r'''Write positive integer n as the sum of many m in a row, followed either
+    by nothing or by a final positive integer p such that p is strictly less
+    than m.
 
-        _as_special_sequence(8, 4)
+        _rewrite(8, 4)
         (4, 4)
 
-        _as_special_sequence(8, 3)
+        _rewrite(8, 3)
         (3, 3, 2)
 
-        _as_special_sequence(8, 2)
+        _rewrite(8, 2)
         (2, 2, 2, 2)
 
-        _as_special_sequence(8, 1)
+        _rewrite(8, 1)
         (1, 1, 1, 1, 1, 1, 1, 1)
-    '''
 
+    '''
     quotient = int(n / m)
     remainder = n % m
     if remainder:

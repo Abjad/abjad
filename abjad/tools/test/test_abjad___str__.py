@@ -16,9 +16,7 @@ _allowed_to_be_empty_string = (
     indicatortools.Articulation,
     markuptools.Postscript,
     pitchtools.Accidental,
-    pitchtools.PitchArray,
-    pitchtools.PitchArrayColumn,
-    pitchtools.PitchArrayRow,
+    pitchtools.CompoundOperator,
     schemetools.SchemeColor,
     tonalanalysistools.ChordSuspension,
     )

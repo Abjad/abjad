@@ -4,7 +4,7 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.topleveltools import iterate
 from abjad.tools.quantizationtools.AttackPointOptimizer \
-	import AttackPointOptimizer
+    import AttackPointOptimizer
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):

@@ -25,7 +25,7 @@ def test_pitchtools_NamedPitchClass___init___02():
 
 
 def test_pitchtools_NamedPitchClass___init___03():
-    r'''Initialize from note head instance.
+    r'''Initialize from note-head instance.
     '''
 
     chord = Chord([0, 2, 3], (1, 4))

@@ -13,7 +13,7 @@ from abjad.tools.topleveltools import new
 
 @functools.total_ordering
 class Tempo(AbjadValueObject):
-    r'''Tempo indicator.
+    r'''Tempo.
 
     ..  container:: example
 
@@ -225,8 +225,8 @@ class Tempo(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
-        r'''Adds tempo to `expr`.
+    def __add__(self, argument):
+        r'''Adds tempo to `argument`.
 
         ..  container:: example
 
@@ -239,7 +239,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Returns none when `expr` is not a tempo:
+            **Example 2.** Returns none when `argument` is not a tempo:
 
             ::
 
@@ -248,13 +248,13 @@ class Tempo(AbjadValueObject):
 
         Returns new tempo or none.
         '''
-        if isinstance(expr, type(self)):
-            if self.is_imprecise or expr.is_imprecise:
+        if isinstance(argument, type(self)):
+            if self.is_imprecise or argument.is_imprecise:
                 raise ImpreciseTempoError
             new_quarters_per_minute = \
-                self.quarters_per_minute + expr.quarters_per_minute
+                self.quarters_per_minute + argument.quarters_per_minute
             minimum_denominator = \
-                min((self.reference_duration.denominator, expr.reference_duration.denominator))
+                min((self.reference_duration.denominator, argument.reference_duration.denominator))
             nonreduced_fraction = \
                 mathtools.NonreducedFraction(new_quarters_per_minute / 4)
             nonreduced_fraction = \
@@ -269,8 +269,8 @@ class Tempo(AbjadValueObject):
                 )
             return new_tempo
 
-    def __div__(self, expr):
-        r'''Divides tempo by `expr`.
+    def __div__(self, argument):
+        r'''Divides tempo by `argument`.
 
         ..  container:: example
 
@@ -294,18 +294,18 @@ class Tempo(AbjadValueObject):
         '''
         if self.is_imprecise:
             raise ImpreciseTempoError
-        if getattr(expr, 'is_imprecise', False):
+        if getattr(argument, 'is_imprecise', False):
             raise ImpreciseTempoError
-        if isinstance(expr, type(self)):
-            result = self.quarters_per_minute / expr.quarters_per_minute
+        if isinstance(argument, type(self)):
+            result = self.quarters_per_minute / argument.quarters_per_minute
             return durationtools.Multiplier(result)
-        elif isinstance(expr, numbers.Number):
-            units_per_minute = self.units_per_minute / expr
+        elif isinstance(argument, numbers.Number):
+            units_per_minute = self.units_per_minute / argument
             result = new(self, units_per_minute=units_per_minute)
             return result
         else:
             message = 'must be number or tempo indication: {!r}.'
-            message = message.format(expr)
+            message = message.format(argument)
             raise TypeError(message)
 
     def __format__(self, format_specification=''):
@@ -341,12 +341,12 @@ class Tempo(AbjadValueObject):
                     reference_duration=durationtools.Duration(1, 4),
                     units_per_minute=84,
                     custom_markup=markuptools.Markup(
-                        contents=(
+                        contents=[
                             markuptools.MarkupCommand(
                                 'italic',
                                 ['Allegro']
                                 ),
-                            ),
+                            ],
                         ),
                     )
 
@@ -356,17 +356,17 @@ class Tempo(AbjadValueObject):
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         elif format_specification == 'lilypond':
-            return self._lilypond_format
+            return self._get_lilypond_format()
         return str(self)
 
-    def __lt__(self, arg):
-        r'''Is true when `arg` is a tempo with quarters per minute greater than
+    def __lt__(self, argument):
+        r'''Is true when `argument` is a tempo with quarters per minute greater than
         that of this tempo. Otherwise false.
 
         Returns true or false.
         '''
-        assert isinstance(arg, type(self)), repr(arg)
-        return self.quarters_per_minute < arg.quarters_per_minute
+        assert isinstance(argument, type(self)), repr(argument)
+        return self.quarters_per_minute < argument.quarters_per_minute
 
     def __mul__(self, multiplier):
         r'''Multiplies tempo by `multiplier`.
@@ -520,8 +520,8 @@ class Tempo(AbjadValueObject):
             raise TypeError(message)
         return string
 
-    def __sub__(self, expr):
-        r'''Subtracts `expr` from tempo.
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from tempo.
 
         ..  container:: example
 
@@ -545,17 +545,17 @@ class Tempo(AbjadValueObject):
 
         Returns new tempo.
         '''
-        if not isinstance(expr, type(self)):
+        if not isinstance(argument, type(self)):
             message = 'must be tempo: {!r}.'
-            message = message.format(expr)
+            message = message.format(argument)
             raise Exception(message)
-        if self.is_imprecise or expr.is_imprecise:
+        if self.is_imprecise or argument.is_imprecise:
             raise ImpreciseTempoError
         new_quarters_per_minute = self.quarters_per_minute - \
-            expr.quarters_per_minute
+            argument.quarters_per_minute
         minimum_denominator = min((
             self.reference_duration.denominator,
-            expr.reference_duration.denominator,
+            argument.reference_duration.denominator,
             ))
         nonreduced_fraction = mathtools.NonreducedFraction(
             new_quarters_per_minute / 4)
@@ -571,8 +571,8 @@ class Tempo(AbjadValueObject):
             )
         return new_tempo
 
-    def __truediv__(self, expr):
-        r'''Divides tempo by `expr`. Operator required by Python 3.
+    def __truediv__(self, argument):
+        r'''Divides tempo by `argument`. Operator required by Python 3.
 
         ..  container:: example
 
@@ -596,9 +596,57 @@ class Tempo(AbjadValueObject):
 
         Returns new tempo.
         '''
-        return self.__div__(expr)
+        return self.__div__(argument)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _dotted(self):
+        return self.reference_duration.lilypond_duration_string
+
+    @property
+    def _equation(self):
+        if self.reference_duration is None:
+            return
+        if isinstance(self.units_per_minute, tuple):
+            string = '{}={}-{}'
+            string = string.format(
+                self._dotted,
+                self.units_per_minute[0],
+                self.units_per_minute[1],
+                )
+            return string
+        elif isinstance(self.units_per_minute, (float, Fraction)):
+            markup = Tempo.make_tempo_equation_markup(
+                self.reference_duration,
+                self.units_per_minute,
+                )
+            string = str(markup)
+            return string
+        string = '{}={}'
+        string = string.format(self._dotted, self.units_per_minute)
+        return string
 
     ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
+        text, equation = None, None
+        if self.textual_indication is not None:
+            text = self.textual_indication
+            text = schemetools.Scheme.format_scheme_value(text)
+        if (self.reference_duration is not None and
+            self.units_per_minute is not None):
+            equation = self._equation
+        if self.custom_markup is not None:
+            return r'\tempo {}'.format(self.custom_markup)
+        elif text and equation:
+            return r'\tempo {} {}'.format(text, equation)
+        elif equation:
+            return r'\tempo {}'.format(equation)
+        elif text:
+            return r'\tempo {}'.format(text)
+        else:
+            return r'\tempo \default'
 
     def _make_lhs_score_markup(self, reference_duration=None):
         from abjad.tools import scoretools
@@ -627,6 +675,299 @@ class Tempo(AbjadValueObject):
         rhs = rhs.upright()
         markup = lhs + rhs
         return markup
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def custom_markup(self):
+        r'''Gets custom markup of tempo.
+
+        ..  container:: example
+
+            **Example 1.** With custom markup:
+
+            ::
+
+                >>> markup = Tempo.make_tempo_equation_markup(
+                ...     Duration(1, 4),
+                ...     67.5,
+                ...     )
+                >>> markup = markup.with_color('red')
+                >>> tempo = Tempo(
+                ...     reference_duration=Duration(1, 4),
+                ...     units_per_minute=67.5,
+                ...     custom_markup=markup,
+                ...     )
+                >>> staff = Staff("c'4 d'4 e'4 f'4")
+                >>> score = Score([staff])
+                >>> attach(tempo, staff)
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        \tempo \markup {
+                        \with-color
+                            #red
+                            {
+                                \scale
+                                    #'(0.75 . 0.75)
+                                    \score
+                                        {
+                                            \new Score \with {
+                                                \override SpacingSpanner.spacing-increment = #0.5
+                                                proportionalNotationDuration = ##f
+                                            } <<
+                                                \new RhythmicStaff \with {
+                                                    \remove Time_signature_engraver
+                                                    \remove Staff_symbol_engraver
+                                                    \override Stem.direction = #up
+                                                    \override Stem.length = #5
+                                                    \override TupletBracket.bracket-visibility = ##t
+                                                    \override TupletBracket.direction = #up
+                                                    \override TupletBracket.padding = #1.25
+                                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
+                                                    tupletFullLength = ##t
+                                                } {
+                                                    c'4
+                                                }
+                                            >>
+                                            \layout {
+                                                indent = #0
+                                                ragged-right = ##t
+                                            }
+                                        }
+                                =
+                                \general-align
+                                    #Y
+                                    #-0.5
+                                    67.5
+                            }
+                        }
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                >>
+
+        Set to markup or none.
+
+        Defaults to none.
+
+        Returns markup or none.
+        '''
+        return self._custom_markup
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of tempo.
+
+        ..  container:: example
+
+            **Example 1.** Fifty-two eighth notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 8), 52)
+                >>> tempo.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
+
+        ..  container:: example
+
+            **Example 2.** Ninety quarter notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
+                >>> tempo.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
+
+        Returns score.
+        '''
+        return self._default_scope
+
+    @property
+    def is_imprecise(self):
+        r'''Is true if tempo is entirely textual or if tempo's
+        units_per_minute is a range. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Imprecise tempos:
+
+            ::
+
+                >>> Tempo(Duration(1, 4), 60).is_imprecise
+                False
+                >>> Tempo(4, 60, 'Langsam').is_imprecise
+                False
+                >>> Tempo(textual_indication='Langsam').is_imprecise
+                True
+                >>> Tempo(4, (35, 50), 'Langsam').is_imprecise
+                True
+                >>> Tempo(Duration(1, 4), (35, 50)).is_imprecise
+                True
+
+        ..  container:: example
+
+            **Example 2.** Precise tempo:
+
+            ::
+
+                >>> Tempo(Duration(1, 4), 60).is_imprecise
+                False
+
+        Returns true or false.
+        '''
+        if self.reference_duration is not None:
+            if self.units_per_minute is not None:
+                if not isinstance(self.units_per_minute, tuple):
+                    return False
+        return True
+
+    @property
+    def quarters_per_minute(self):
+        r'''Gets quarters per minute of tempo.
+
+        ..  container:: example
+
+            **Example 1.** Fifty-two eighth notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 8), 52)
+                >>> tempo.quarters_per_minute
+                Fraction(104, 1)
+
+        ..  container:: example
+
+            **Example 2.** Ninety quarter notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
+                >>> tempo.quarters_per_minute
+                Fraction(90, 1)
+
+        Returns tuple when tempo `units_per_minute` is a range.
+
+        Returns none when tempo is imprecise.
+
+        Returns fraction otherwise.
+        '''
+        if self.is_imprecise:
+            return None
+        if isinstance(self.units_per_minute, tuple):
+            low = durationtools.Duration(1, 4) / self.reference_duration * \
+                self.units_per_minute[0]
+            high = durationtools.Duration(1, 4) / self.reference_duration * \
+                self.units_per_minute[1]
+            return (low, high)
+        result = durationtools.Duration(1, 4) / self.reference_duration * \
+            self.units_per_minute
+        return Fraction(result)
+
+    @property
+    def reference_duration(self):
+        r'''Gets reference duration of tempo.
+
+        ..  container:: example
+
+            **Example 1.** Fifty-two eighth notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 8), 52)
+                >>> tempo.reference_duration
+                Duration(1, 8)
+
+        ..  container:: example
+
+            **Example 2.** Ninety quarter notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
+                >>> tempo.reference_duration
+                Duration(1, 4)
+
+        Returns duration.
+        '''
+        return self._reference_duration
+
+    @property
+    def textual_indication(self):
+        r'''Gets optional textual indication of tempo.
+
+        ..  container:: example
+
+            **Example 1.** Fifty-two eighth notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 8), 52)
+                >>> tempo.textual_indication is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Ninety quarter notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
+                >>> tempo.textual_indication is None
+                True
+
+        Returns string or none.
+        '''
+        return self._textual_indication
+
+    @property
+    def units_per_minute(self):
+        r'''Gets units per minute of tempo.
+
+        ..  container:: example
+
+            **Example 1.** Integer-valued tempo:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
+                >>> tempo.units_per_minute
+                90
+
+        ..  container:: example
+
+            **Example 2.** Float-valued tempo:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90.1)
+                >>> tempo.units_per_minute
+                90.1
+
+
+
+            **Example 3.** Rational-valued tempo:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), Fraction(181, 2))
+                >>> tempo.units_per_minute
+                Fraction(181, 2)
+
+        Set to number or none.
+
+        Defaults to none
+
+        Returns number or none.
+        '''
+        return self._units_per_minute
 
     ### PUBLIC METHODS ###
 
@@ -750,17 +1091,16 @@ class Tempo(AbjadValueObject):
         from abjad.tools import sequencetools
         allowable_numerators = range(1, maximum_numerator + 1)
         allowable_denominators = range(1, maximum_denominator + 1)
-        pairs = sequencetools.yield_outer_product_of_sequences([
-            allowable_numerators,
-            allowable_denominators,
-            ])
+        numbers = [allowable_numerators, allowable_denominators]
+        enumeration = sequencetools.Enumeration(numbers)
+        pairs = enumeration.yield_outer_product()
         multipliers = [durationtools.Multiplier(_) for _ in pairs]
         multipliers = [
             _ for _ in multipliers
             if Fraction(1, 2) <= _ <= Fraction(2)
             ]
         multipliers.sort()
-        multipliers = sequencetools.remove_repeated_elements(multipliers)
+        multipliers = sequencetools.Sequence(multipliers).remove_repeats()
         pairs = []
         for multiplier in multipliers:
             new_units_per_minute = multiplier * self.units_per_minute
@@ -1161,357 +1501,3 @@ class Tempo(AbjadValueObject):
         tempo_ratio = new_tempo / self
         new_duration = tempo_ratio * duration
         return new_duration
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _dotted(self):
-        return self.reference_duration.lilypond_duration_string
-
-    @property
-    def _equation(self):
-        if self.reference_duration is None:
-            return
-        if isinstance(self.units_per_minute, tuple):
-            string = '{}={}-{}'
-            string = string.format(
-                self._dotted,
-                self.units_per_minute[0],
-                self.units_per_minute[1],
-                )
-            return string
-        elif isinstance(self.units_per_minute, (float, Fraction)):
-            markup = Tempo.make_tempo_equation_markup(
-                self.reference_duration,
-                self.units_per_minute,
-                )
-            string = str(markup)
-            return string
-        string = '{}={}'
-        string = string.format(self._dotted, self.units_per_minute)
-        return string
-
-    @property
-    def _lilypond_format(self):
-        text, equation = None, None
-        if self.textual_indication is not None:
-            text = self.textual_indication
-            text = schemetools.Scheme.format_scheme_value(text)
-        if (self.reference_duration is not None and
-            self.units_per_minute is not None):
-            equation = self._equation
-        if self.custom_markup is not None:
-            return r'\tempo {}'.format(self.custom_markup)
-        elif text and equation:
-            return r'\tempo {} {}'.format(text, equation)
-        elif equation:
-            return r'\tempo {}'.format(equation)
-        elif text:
-            return r'\tempo {}'.format(text)
-        else:
-            return r'\tempo \default'
-
-    @property
-    def _one_line_menu_summary(self):
-        result = self._lilypond_format
-        if result.startswith(r'\tempo '):
-            result = result[7:]
-        elif result.startswith(r'\markup '):
-            result = result[8:]
-        else:
-            raise ValueError(result)
-        return result
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def custom_markup(self):
-        r'''Gets custom markup of tempo.
-
-        ..  container:: example
-
-            **Example 1.** With custom markup:
-
-            ::
-
-                >>> markup = Tempo.make_tempo_equation_markup(
-                ...     Duration(1, 4),
-                ...     67.5,
-                ...     )
-                >>> markup = markup.with_color('red')
-                >>> tempo = Tempo(
-                ...     reference_duration=Duration(1, 4),
-                ...     units_per_minute=67.5,
-                ...     custom_markup=markup,
-                ...     )
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> score = Score([staff])
-                >>> attach(tempo, staff)
-                >>> show(score) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(score)
-                \new Score <<
-                    \new Staff {
-                        \tempo \markup {
-                        \with-color
-                            #red
-                            {
-                                \scale
-                                    #'(0.75 . 0.75)
-                                    \score
-                                        {
-                                            \new Score \with {
-                                                \override SpacingSpanner.spacing-increment = #0.5
-                                                proportionalNotationDuration = ##f
-                                            } <<
-                                                \new RhythmicStaff \with {
-                                                    \remove Time_signature_engraver
-                                                    \remove Staff_symbol_engraver
-                                                    \override Stem.direction = #up
-                                                    \override Stem.length = #5
-                                                    \override TupletBracket.bracket-visibility = ##t
-                                                    \override TupletBracket.direction = #up
-                                                    \override TupletBracket.padding = #1.25
-                                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                                    tupletFullLength = ##t
-                                                } {
-                                                    c'4
-                                                }
-                                            >>
-                                            \layout {
-                                                indent = #0
-                                                ragged-right = ##t
-                                            }
-                                        }
-                                =
-                                \general-align
-                                    #Y
-                                    #-0.5
-                                    67.5
-                            }
-                        }
-                        c'4
-                        d'4
-                        e'4
-                        f'4
-                    }
-                >>
-
-        Set to markup or none.
-
-        Defaults to none.
-
-        Returns markup or none.
-        '''
-        return self._custom_markup
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of tempo.
-
-        ..  container:: example
-
-            **Example 1.** Fifty-two eighth notes per minute:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
-
-        ..  container:: example
-
-            **Example 2.** Ninety quarter notes per minute:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> tempo.default_scope
-                <class 'abjad.tools.scoretools.Score.Score'>
-
-        Returns score.
-        '''
-        return self._default_scope
-
-    @property
-    def is_imprecise(self):
-        r'''Is true if tempo is entirely textual or if tempo's
-        units_per_minute is a range. Otherwise false.
-
-        ..  container:: example
-
-            **Example 1.** Imprecise tempos:
-
-            ::
-
-                >>> Tempo(Duration(1, 4), 60).is_imprecise
-                False
-                >>> Tempo(4, 60, 'Langsam').is_imprecise
-                False
-                >>> Tempo(textual_indication='Langsam').is_imprecise
-                True
-                >>> Tempo(4, (35, 50), 'Langsam').is_imprecise
-                True
-                >>> Tempo(Duration(1, 4), (35, 50)).is_imprecise
-                True
-
-        ..  container:: example
-
-            **Example 2.** Precise tempo:
-
-            ::
-
-                >>> Tempo(Duration(1, 4), 60).is_imprecise
-                False
-
-        Returns true or false.
-        '''
-        if self.reference_duration is not None:
-            if self.units_per_minute is not None:
-                if not isinstance(self.units_per_minute, tuple):
-                    return False
-        return True
-
-    @property
-    def quarters_per_minute(self):
-        r'''Gets quarters per minute of tempo.
-
-        ..  container:: example
-
-            **Example 1.** Fifty-two eighth notes per minute:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.quarters_per_minute
-                Fraction(104, 1)
-
-        ..  container:: example
-
-            **Example 2.** Ninety quarter notes per minute:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> tempo.quarters_per_minute
-                Fraction(90, 1)
-
-        Returns tuple when tempo `units_per_minute` is a range.
-
-        Returns none when tempo is imprecise.
-
-        Returns fraction otherwise.
-        '''
-        if self.is_imprecise:
-            return None
-        if isinstance(self.units_per_minute, tuple):
-            low = durationtools.Duration(1, 4) / self.reference_duration * \
-                self.units_per_minute[0]
-            high = durationtools.Duration(1, 4) / self.reference_duration * \
-                self.units_per_minute[1]
-            return (low, high)
-        result = durationtools.Duration(1, 4) / self.reference_duration * \
-            self.units_per_minute
-        return Fraction(result)
-
-    @property
-    def reference_duration(self):
-        r'''Gets reference duration of tempo.
-
-        ..  container:: example
-
-            **Example 1.** Fifty-two eighth notes per minute:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.reference_duration
-                Duration(1, 8)
-
-        ..  container:: example
-
-            **Example 2.** Ninety quarter notes per minute:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> tempo.reference_duration
-                Duration(1, 4)
-
-        Returns duration.
-        '''
-        return self._reference_duration
-
-    @property
-    def textual_indication(self):
-        r'''Gets optional textual indication of tempo.
-
-        ..  container:: example
-
-            **Example 1.** Fifty-two eighth notes per minute:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.textual_indication is None
-                True
-
-        ..  container:: example
-
-            **Example 2.** Ninety quarter notes per minute:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> tempo.textual_indication is None
-                True
-
-        Returns string or none.
-        '''
-        return self._textual_indication
-
-    @property
-    def units_per_minute(self):
-        r'''Gets units per minute of tempo.
-
-        ..  container:: example
-
-            **Example 1.** Integer-valued tempo:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> tempo.units_per_minute
-                90
-
-        ..  container:: example
-
-            **Example 2.** Float-valued tempo:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 4), 90.1)
-                >>> tempo.units_per_minute
-                90.1
-
-
-        ..  container:: example
-
-            **Example 3.** Rational-valued tempo:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 4), Fraction(181, 2))
-                >>> tempo.units_per_minute
-                Fraction(181, 2)
-
-        Set to number or none.
-
-        Defaults to none
-
-        Returns number or none.
-        '''
-        return self._units_per_minute

@@ -323,7 +323,7 @@ def test_scoretools_fuse_measures_08():
 def test_scoretools_fuse_measures_09():
     r'''Fusing measures with power-of-two denominators
     to measures without power-of-two denominators.
-    With change in number of note heads because of non-power-of-two multiplier.
+    With change in number of note-heads because of non-power-of-two multiplier.
     '''
 
     staff = Staff()

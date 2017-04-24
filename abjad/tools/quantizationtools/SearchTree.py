@@ -80,7 +80,7 @@ class SearchTree(AbjadObject):
         indices, subdivisions = [], []
         leaves = list(q_grid.leaves)
         i = 0
-        for leaf_one, leaf_two in sequencetools.iterate_sequence_nwise(leaves):
+        for leaf_one, leaf_two in sequencetools.Sequence(leaves).nwise():
             if leaf_one.is_divisible:
                 succeeding_proxies = leaf_one.succeeding_q_event_proxies
                 preceding_proxies = leaf_two.preceding_q_event_proxies
@@ -108,9 +108,9 @@ class SearchTree(AbjadObject):
             self._find_divisible_leaf_indices_and_subdivisions(q_grid)
         if not indices:
             return ()
-        combinations = [tuple(x)
-            for x in sequencetools.yield_outer_product_of_sequences(
-            subdivisions)]
+        enumeration = sequencetools.Enumeration(subdivisions)
+        combinations = enumeration.yield_outer_product()
+        combinations = [tuple(_) for _ in combinations]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
 
     @abc.abstractmethod

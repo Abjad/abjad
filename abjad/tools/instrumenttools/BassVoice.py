@@ -19,7 +19,7 @@ class BassVoice(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { Bass }
@@ -76,7 +76,7 @@ class BassVoice(Instrument):
             ::
 
                 >>> bass.allowable_clefs
-                ClefInventory([Clef(name='bass')])
+                ClefList([Clef(name='bass')])
 
             ::
 
@@ -110,7 +110,7 @@ class BassVoice(Instrument):
             ::
 
                 >>> bass.instrument_name_markup
-                Markup(contents=('Bass',))
+                Markup(contents=['Bass'])
 
             ::
 
@@ -163,7 +163,7 @@ class BassVoice(Instrument):
             ::
 
                 >>> bass.short_instrument_name_markup
-                Markup(contents=('Bass',))
+                Markup(contents=['Bass'])
 
             ::
 

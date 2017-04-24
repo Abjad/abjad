@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class RehearsalMark(AbjadValueObject):
-    r'''A rehearsal mark.
+    r'''Rehearsal mark.
 
     ..  container:: example
 
@@ -115,24 +115,17 @@ class RehearsalMark(AbjadValueObject):
 
         Returns string.
         '''
-        return self._lilypond_format
+        return self._get_lilypond_format()
 
-    ### PRIVATE METHODS ###
-
-    def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.opening.commands.append(str(self))
-        return lilypond_format_bundle
-        
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
         return str(self)
 
-    @property
-    def _lilypond_format(self):
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
         if self.markup is not None:
             result = r'\mark {}'.format(self.markup)
         elif self.number is not None:
@@ -141,6 +134,12 @@ class RehearsalMark(AbjadValueObject):
             result = r'\mark \default'
         return result
 
+    def _get_lilypond_format_bundle(self, component=None):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle.opening.commands.append(str(self))
+        return lilypond_format_bundle
+        
     ### PUBLIC PROPERTIES ###
 
     @property

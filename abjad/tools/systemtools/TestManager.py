@@ -189,8 +189,8 @@ class TestManager(AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import topleveltools
         # configure multiple-voice rhythmic staves
-        for staff in topleveltools.iterate(lilypond_file.score_block.items[0]
-            ).by_class(scoretools.Staff):
+        score = lilypond_file[Score]
+        for staff in topleveltools.iterate(score).by_class(scoretools.Staff):
             if staff.is_simultaneous:
                 assert len(staff) == 2
                 voice_1 = staff[0]
@@ -203,8 +203,8 @@ class TestManager(AbjadObject):
                 manager = topleveltools.override(staff)
                 manager.vertical_axis_group.staff_staff_spacing = spacing_vector
         # provide more space between staves with pitched notes
-        for staff in topleveltools.iterate(
-            lilypond_file.score_block.items[0]).by_class(scoretools.Staff):
+        score = lilypond_file[Score]
+        for staff in topleveltools.iterate(score).by_class(scoretools.Staff):
             if not (isinstance(staff, scoretools.Staff) and
                 staff.context_name == 'RhythmicStaff'):
                 for item in lilypond_file.layout_block.items:
@@ -356,9 +356,9 @@ class TestManager(AbjadObject):
             Diff:
               rhythmmakertools.TaleaRhythmMaker(
                   talea=rhythmmakertools.Talea(
-            -         counts=(1, 2, 3),
+            -         counts=[1, 2, 3],
             ?                    ^
-            +         counts=(1, 5, 3),
+            +         counts=[1, 5, 3],
             ?                    ^
             -         denominator=8,
             ?                     ^
@@ -453,10 +453,8 @@ class TestManager(AbjadObject):
             title_lines.append(parts.pop(0))
         lengths = [len(part) for part in parts]
         if 35 < sum(lengths):
-            halves = sequencetools.partition_sequence_by_ratio_of_weights(
-                lengths,
-                [1, 1],
-                )
+            halves = baca.Sequence(halves)
+            halves = halves.partition_by_ratio_of_weights(ratio=[1, 1])
             left_count = len(halves[0])
             right_count = len(halves[-1])
             assert left_count + right_count == len(lengths)
@@ -474,60 +472,3 @@ class TestManager(AbjadObject):
             title = '{}{}{}'.format(title_words, space, test_number)
             title_lines.append(title)
         return title_lines
-
-    @staticmethod
-    def write_test_output(
-        output,
-        full_file_name,
-        test_function_name,
-        cache_ly=False,
-        cache_pdf=False,
-        go=False,
-        render_pdf=False,
-        ):
-        r'''Writes test output.
-
-        Returns none.
-        '''
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
-        from abjad.tools import scoretools
-        from abjad.tools import topleveltools
-        if go:
-            cache_ly = cache_pdf = render_pdf = True
-        if not any([cache_ly, cache_pdf, render_pdf]):
-            return
-        if isinstance(output, scoretools.Score):
-            lilypond_file = \
-                lilypondfiletools.make_floating_time_signature_lilypond_file(
-                    output)
-            TestManager.apply_additional_layout(lilypond_file)
-            score = output
-        elif isinstance(output, lilypondfiletools.LilyPondFile):
-            lilypond_file = output
-            score = lilypond_file.score_block[0]
-        else:
-            message = 'output must be score or LilyPond file: {!r}.'
-            message = message.format(output)
-            raise TypeError(message)
-        title_lines = TestManager.test_function_name_to_title_lines(
-            test_function_name)
-        lilypond_file.header_block.title = \
-            markuptools.make_centered_title_markup(
-                title_lines,
-                font_size=6,
-                vspace_before=2,
-                vspace_after=4,
-                )
-        parent_directory_name = os.path.dirname(full_file_name)
-        if render_pdf:
-            topleveltools.show(lilypond_file)
-        if cache_pdf:
-            file_name = '{}.pdf'.format(test_function_name)
-            pdf_path_name = os.path.join(parent_directory_name, file_name)
-            topleveltools.persist(lilypond_file).as_pdf(pdf_path_name)
-        if cache_ly:
-            file_name = '{}.ly'.format(test_function_name)
-            ly_path_name = os.path.join(parent_directory_name, file_name)
-            with open(ly_path_name, 'w') as f:
-                f.write(format(score))

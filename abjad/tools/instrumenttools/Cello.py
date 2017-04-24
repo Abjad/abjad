@@ -19,7 +19,7 @@ class Cello(Instrument):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { Cello }
@@ -66,7 +66,7 @@ class Cello(Instrument):
             'string player',
             'cellist',
             ])
-        self._starting_clefs = indicatortools.ClefInventory(['bass'])
+        self._starting_clefs = type(self.allowable_clefs)(['bass'])
         self._is_primary_instrument = True
         self._default_tuning = indicatortools.Tuning(default_tuning)
 
@@ -81,7 +81,7 @@ class Cello(Instrument):
             ::
 
                 >>> cello.allowable_clefs
-                ClefInventory([Clef(name='bass'), Clef(name='tenor'), Clef(name='treble')])
+                ClefList([Clef(name='bass'), Clef(name='tenor'), Clef(name='treble')])
 
             ::
 
@@ -128,7 +128,7 @@ class Cello(Instrument):
             ::
 
                 >>> cello.instrument_name_markup
-                Markup(contents=('Cello',))
+                Markup(contents=['Cello'])
 
             ::
 
@@ -181,7 +181,7 @@ class Cello(Instrument):
             ::
 
                 >>> cello.short_instrument_name_markup
-                Markup(contents=('Vc.',))
+                Markup(contents=['Vc.'])
 
             ::
 

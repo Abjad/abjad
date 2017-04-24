@@ -73,12 +73,12 @@ class Interval(AbjadValueObject):
         message = message.format(type(self))
         raise NotImplementedError(message)
 
-    def __ne__(self, arg):
-        r'''Is true when interval does not equal `arg`.
+    def __ne__(self, argument):
+        r'''Is true when interval does not equal `argument`.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     def __neg__(self):
         r'''Negates interval.
@@ -92,6 +92,23 @@ class Interval(AbjadValueObject):
 
         Returns string.
         '''
+        return str(self.number)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _direction_symbol(self):
+        if self.direction_number == -1:
+            return '-'
+        elif self.direction_number == 0:
+            return ''
+        elif self.direction_number == 1:
+            return '+'
+        else:
+            raise ValueError
+
+    @property
+    def _format_string(self):
         return str(self.number)
 
     ### PRIVATE METHODS ###
@@ -112,11 +129,21 @@ class Interval(AbjadValueObject):
             template_names=['direction_number', 'interval_number'],
             )
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def cents(self):
+        r'''Cents of interval.
+
+        Returns nonnegative number.
+        '''
+        return 100 * self.semitones
+
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def is_named_interval_abbreviation(expr):
-        '''Is true when `expr` is a named interval abbreviation.
+    def is_named_interval_abbreviation(argument):
+        '''Is true when `argument` is a named interval abbreviation.
         Otherwise false:
 
         ::
@@ -128,13 +155,13 @@ class Interval(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(expr, str):
+        if not isinstance(argument, str):
             return False
-        return bool(Interval._interval_name_abbreviation_regex.match(expr))
+        return bool(Interval._interval_name_abbreviation_regex.match(argument))
 
     @staticmethod
-    def is_named_interval_quality_abbreviation(expr):
-        '''Is true when `expr` is a named-interval quality abbreviation. Otherwise
+    def is_named_interval_quality_abbreviation(argument):
+        '''Is true when `argument` is a named-interval quality abbreviation. Otherwise
         false:
 
         ::
@@ -146,34 +173,7 @@ class Interval(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(expr, str):
+        if not isinstance(argument, str):
             return False
         return bool(Interval._named_interval_quality_abbreviation_regex.match(
-            expr))
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _direction_symbol(self):
-        if self.direction_number == -1:
-            return '-'
-        elif self.direction_number == 0:
-            return ''
-        elif self.direction_number == 1:
-            return '+'
-        else:
-            raise ValueError
-
-    @property
-    def _format_string(self):
-        return str(self.number)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def cents(self):
-        r'''Cents of interval.
-
-        Returns nonnegative number.
-        '''
-        return 100 * self.semitones
+            argument))

@@ -51,13 +51,27 @@ class Set(TypedFrozenset):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''String representation of set.
+        r'''Gets string representation.
 
         Returns string.
         '''
         items = self._get_sorted_repr_items()
         items = [str(_) for _ in items]
         return '{{{}}}'.format(', '.join(items))
+
+    ### PRIVATE PROPERTIES ###
+
+    @abc.abstractproperty
+    def _named_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _numbered_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _parent_item_class(self):
+        raise NotImplementedError
 
     ### PRIVATE METHODS ###
 
@@ -112,18 +126,4 @@ class Set(TypedFrozenset):
 
         Returns set.
         '''
-        raise NotImplementedError
-
-    ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _named_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _numbered_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _parent_item_class(self):
         raise NotImplementedError

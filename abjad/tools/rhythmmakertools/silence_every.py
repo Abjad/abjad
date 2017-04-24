@@ -12,7 +12,7 @@ def silence_every(
 
     ..  container:: example
 
-        **Example 1.** Silences every second division:
+        Silences every second division:
 
         ::
 
@@ -20,10 +20,10 @@ def silence_every(
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(1,),
+                    indices=[1],
                     period=2,
                     ),
                 )
@@ -43,8 +43,7 @@ def silence_every(
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -66,7 +65,7 @@ def silence_every(
 
     ..  container:: example
 
-        **Example 2.** Silences every second and third division:
+        Silences every second and third division:
 
         ::
 
@@ -74,10 +73,10 @@ def silence_every(
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(1, 2),
+                    indices=[1, 2],
                     period=3,
                     ),
                 )
@@ -97,8 +96,7 @@ def silence_every(
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -120,7 +118,7 @@ def silence_every(
 
     ..  container:: example
 
-        **Example 3.** Silences every division except the last:
+        Silences every division except the last:
 
         ::
 
@@ -128,10 +126,10 @@ def silence_every(
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(-1,),
+                    indices=[-1],
                     inverted=True,
                     ),
                 )
@@ -151,8 +149,7 @@ def silence_every(
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

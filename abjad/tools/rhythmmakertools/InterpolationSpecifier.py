@@ -17,6 +17,8 @@ class InterpolationSpecifier(AbjadValueObject):
         '_written_duration',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -36,18 +38,17 @@ class InterpolationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Changes accelerando specifier to ritardando
-            specifier:
+            Changes accelerando specifier to ritardando specifier:
 
             ::
 
-                >>> accelerando_specifier = rhythmmakertools.InterpolationSpecifier(
+                >>> specifier = rhythmmakertools.InterpolationSpecifier(
                 ...     start_duration=Duration(1, 4),
                 ...     stop_duration=Duration(1, 16),
                 ...     written_duration=Duration(1, 16),
                 ...     )
-                >>> ritardando_specifier = accelerando_specifier.reverse()
-                >>> print(format(ritardando_specifier))
+                >>> specifier = specifier.reverse()
+                >>> f(specifier)
                 rhythmmakertools.InterpolationSpecifier(
                     start_duration=durationtools.Duration(1, 16),
                     stop_duration=durationtools.Duration(1, 4),
@@ -56,18 +57,17 @@ class InterpolationSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Changes ritardando specifier to accelerando
-            specifier:
+            Changes ritardando specifier to accelerando specifier:
 
             ::
 
-                >>> accelerando_specifier = rhythmmakertools.InterpolationSpecifier(
+                >>> specifier = rhythmmakertools.InterpolationSpecifier(
                 ...     start_duration=Duration(1, 16),
                 ...     stop_duration=Duration(1, 4),
                 ...     written_duration=Duration(1, 16),
                 ...     )
-                >>> ritardando_specifier = accelerando_specifier.reverse()
-                >>> print(format(ritardando_specifier))
+                >>> specifier = specifier.reverse()
+                >>> f(specifier)
                 rhythmmakertools.InterpolationSpecifier(
                     start_duration=durationtools.Duration(1, 4),
                     stop_duration=durationtools.Duration(1, 16),

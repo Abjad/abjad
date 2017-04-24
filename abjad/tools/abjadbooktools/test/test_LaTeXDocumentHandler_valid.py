@@ -4,6 +4,7 @@ import platform
 import shutil
 import unittest
 from abjad.tools import abjadbooktools
+from abjad.tools import stringtools
 
 
 @unittest.skipIf(
@@ -27,16 +28,16 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     expected_asset_names = (
         'graphviz-31410f5aefd17473e91ebc219ddff36e.dot',
         'graphviz-31410f5aefd17473e91ebc219ddff36e.pdf',
-        'lilypond-159af81bc32aca4b263146c9052b99ec.ly',
-        'lilypond-159af81bc32aca4b263146c9052b99ec.pdf',
-        'lilypond-71f63c1f11f143bb0f7a2f7ddbc77d75.ly',
-        'lilypond-71f63c1f11f143bb0f7a2f7ddbc77d75.pdf',
-        'lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.ly',
-        'lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.pdf',
-        'lilypond-9e8d4612a88db8a2f31e974c78fc915d.ly',
-        'lilypond-9e8d4612a88db8a2f31e974c78fc915d.pdf',
-        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.ly',
-        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.pdf',
+        'lilypond-0b731cedacea34e85fbb92b66b42b40b.ly',
+        'lilypond-0b731cedacea34e85fbb92b66b42b40b.pdf',
+        'lilypond-0fa8f7f49d6d92ffcb7dd54b5b8e851c.ly',
+        'lilypond-0fa8f7f49d6d92ffcb7dd54b5b8e851c.pdf',
+        'lilypond-412bd86b762d452fb787992613b02ae1.ly',
+        'lilypond-412bd86b762d452fb787992613b02ae1.pdf',
+        'lilypond-6737d707e144fd1f0af98dd8007ebb4b.ly',
+        'lilypond-6737d707e144fd1f0af98dd8007ebb4b.pdf',
+        'lilypond-8812fc9449c0c47bf22dbf11bdfaeb7b.ly',
+        'lilypond-8812fc9449c0c47bf22dbf11bdfaeb7b.pdf',
         )
 
     stylesheet_path = os.path.join(test_directory, 'stylesheet.ily')
@@ -46,16 +47,16 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     styled_asset_names = (
         'graphviz-31410f5aefd17473e91ebc219ddff36e.dot',
         'graphviz-31410f5aefd17473e91ebc219ddff36e.pdf',
-        'lilypond-181e079044c9ede879fdab4c6210e307.ly',
-        'lilypond-181e079044c9ede879fdab4c6210e307.pdf',
-        'lilypond-596920d02e0ba6b487db5620c653dff0.ly',
-        'lilypond-596920d02e0ba6b487db5620c653dff0.pdf',
-        'lilypond-65094681fb26989d1bb5d8de316375ad.ly',
-        'lilypond-65094681fb26989d1bb5d8de316375ad.pdf',
-        'lilypond-e2e00802e4b3461b91fe02a3b7154dcf.ly',
-        'lilypond-e2e00802e4b3461b91fe02a3b7154dcf.pdf',
-        'lilypond-f3953b1da413b83e0a2f0291cbeece1e.ly',
-        'lilypond-f3953b1da413b83e0a2f0291cbeece1e.pdf',
+        'lilypond-29a694fcaa88ad2e66126db254f6e44c.ly',
+        'lilypond-29a694fcaa88ad2e66126db254f6e44c.pdf',
+        'lilypond-60a8aa65d1dc86d7b3b3396d1dd25fa6.ly',
+        'lilypond-60a8aa65d1dc86d7b3b3396d1dd25fa6.pdf',
+        'lilypond-65404525b3a554691b49772ace1d914c.ly',
+        'lilypond-65404525b3a554691b49772ace1d914c.pdf',
+        'lilypond-8d473a765e713b5eb5d0a95f35161666.ly',
+        'lilypond-8d473a765e713b5eb5d0a95f35161666.pdf',
+        'lilypond-ef7d9d5db77fdbbf21122f8479e9e338.ly',
+        'lilypond-ef7d9d5db77fdbbf21122f8479e9e338.pdf',
         )
 
     configuration_path = os.path.join(test_directory, 'configuration.cfg')
@@ -84,7 +85,8 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         document_handler()
         with open(self.source_valid_path, 'r') as file_pointer:
             target_valid_contents = file_pointer.read()
-        assert str(target_valid_contents) == str(self.expected_valid_contents)
+        assert stringtools.normalize(str(target_valid_contents)) == \
+            stringtools.normalize(str(self.expected_valid_contents))
         document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler(clean=True)
