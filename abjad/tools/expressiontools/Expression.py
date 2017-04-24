@@ -506,15 +506,7 @@ class Expression(AbjadObject):
 
         Returns normally when proxy class is not set.
         '''
-        #if self.__getattribute__('_proxy_class') is not None:
-        has_proxy_class = False
-        # by-hand attribute testing to make PyPy happy:
-        try:
-            proxy_class = self._proxy_class
-            has_proxy_class = True
-        except AttributeError:
-            pass
-        if has_proxy_class:
+        if self.__getattribute__('_proxy_class') is not None:
             if hasattr(self._proxy_class, name):
                 proxy_object = self._proxy_class()
                 if not hasattr(proxy_object, name):
