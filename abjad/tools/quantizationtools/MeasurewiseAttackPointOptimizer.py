@@ -56,14 +56,14 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, argument):
         r'''Calls measurewise attack-point optimizer.
 
         Returns none.
         '''
-        assert isinstance(expr, scoretools.Measure)
-        meter = metertools.Meter(expr)
-        mutate(expr[:]).rewrite_meter(
+        assert isinstance(argument, scoretools.Measure)
+        meter = metertools.Meter(argument)
+        mutate(argument[:]).rewrite_meter(
             meter,
             boundary_depth=1,
             )

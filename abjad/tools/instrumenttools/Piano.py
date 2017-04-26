@@ -93,7 +93,7 @@ class Piano(Instrument):
 
                 >>> show(piano.allowable_clefs) # doctest: +SKIP
 
-        Returns clef inventory.
+        Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
 

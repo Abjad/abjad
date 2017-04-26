@@ -414,17 +414,17 @@ class CodeBlock(abctools.AbjadValueObject):
 
     def graph(
         self,
-        expr,
+        argument,
         layout='dot',
         graph_attributes=None,
         node_attributes=None,
         edge_attributes=None,
-        **kwargs
+        **keywords
         ):
         r'''Proxies Abjad's toplevel `graph()` function.
         '''
         from abjad.tools import abjadbooktools
-        graph = expr.__graph__(**kwargs)
+        graph = argument.__graph__(**keywords)
         if graph_attributes:
             graph.attributes.update(graph_attributes)
         if node_attributes:
@@ -439,12 +439,12 @@ class CodeBlock(abctools.AbjadValueObject):
             )
         self.push_asset_output_proxy(output_proxy)
 
-    def play(self, expr):
+    def play(self, argument):
         r'''Proxies Abjad's toplevel `play()` function.
         '''
         pass
 
-    def print(self, *args, **kwargs):
+    def print(self, *arguments, **keywords):
         r'''Proxies Python's builtin `print()` function.
 
         Proxying `print()` is necessary because the original print function
@@ -456,18 +456,18 @@ class CodeBlock(abctools.AbjadValueObject):
         Note that this will produce unexpected results if attempting to do
         fancy operations like overwriting the current line.
         '''
-        self.write(' '.join(str(_) for _ in args))
+        self.write(' '.join(str(_) for _ in arguments))
 
     def quit(self):
         r'''Proxies Python's builtin `quit()` function.
         '''
         pass
 
-    def show(self, expr, return_timing=False, **kwargs):
+    def show(self, argument, return_timing=False, **keywords):
         r'''Proxies Abjad's toplevel `show()` function.
         '''
         from abjad.tools import abjadbooktools
-        illustration = expr.__illustrate__(**kwargs)
+        illustration = argument.__illustrate__(**keywords)
         default_stylesheet = None
         if (
             self._console is not None and

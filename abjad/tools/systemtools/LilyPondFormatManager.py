@@ -334,34 +334,34 @@ class LilyPondFormatManager(AbjadObject):
         return result
 
     @staticmethod
-    def format_lilypond_value(expr):
-        r'''Formats LilyPond `expr` according to Scheme formatting
+    def format_lilypond_value(argument):
+        r'''Formats LilyPond `argument` according to Scheme formatting
         conventions.
 
         Returns string.
         '''
         from abjad.tools import schemetools
-        if '_get_lilypond_format' in dir(expr) and not isinstance(expr, str):
+        if '_get_lilypond_format' in dir(argument) and not isinstance(argument, str):
             pass
-        elif expr in (True, False):
-            expr = schemetools.Scheme(expr)
-        elif expr in (Up, Down, Left, Right, Center):
-            expr = schemetools.Scheme(repr(expr).lower())
-        elif isinstance(expr, int) or isinstance(expr, float):
-            expr = schemetools.Scheme(expr)
-        elif expr in LilyPondFormatManager.lilypond_color_constants:
-            expr = schemetools.Scheme(expr)
-        elif isinstance(expr, str) and '::' in expr:
-            expr = schemetools.Scheme(expr)
-        elif isinstance(expr, tuple) and len(expr) == 2:
-            expr = schemetools.SchemePair(expr[0], expr[1])
-        elif isinstance(expr, str) and ' ' not in expr:
-            expr = schemetools.Scheme(expr, quoting="'")
-        elif isinstance(expr, str) and ' ' in expr:
-            expr = schemetools.Scheme(expr)
+        elif argument in (True, False):
+            argument = schemetools.Scheme(argument)
+        elif argument in (Up, Down, Left, Right, Center):
+            argument = schemetools.Scheme(repr(argument).lower())
+        elif isinstance(argument, int) or isinstance(argument, float):
+            argument = schemetools.Scheme(argument)
+        elif argument in LilyPondFormatManager.lilypond_color_constants:
+            argument = schemetools.Scheme(argument)
+        elif isinstance(argument, str) and '::' in argument:
+            argument = schemetools.Scheme(argument)
+        elif isinstance(argument, tuple) and len(argument) == 2:
+            argument = schemetools.SchemePair(argument[0], argument[1])
+        elif isinstance(argument, str) and ' ' not in argument:
+            argument = schemetools.Scheme(argument, quoting="'")
+        elif isinstance(argument, str) and ' ' in argument:
+            argument = schemetools.Scheme(argument)
         else:
-            expr = schemetools.Scheme(expr, quoting="'")
-        return format(expr, 'lilypond')
+            argument = schemetools.Scheme(argument, quoting="'")
+        return format(argument, 'lilypond')
 
     @staticmethod
     def make_lilypond_override_string(

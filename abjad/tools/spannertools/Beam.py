@@ -68,7 +68,7 @@ class Beam(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.expr_to_tridirectional_lilypond_symbol(
+        direction = stringtools.to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
 
@@ -107,8 +107,8 @@ class Beam(Spanner):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def _is_beamable(expr, beam_rests=False):
-        '''Is true when `expr` is a beamable component. Otherwise false.
+    def _is_beamable(argument, beam_rests=False):
+        '''Is true when `argument` is a beamable component. Otherwise false.
 
         ..  container:: example
 
@@ -201,15 +201,15 @@ class Beam(Spanner):
         '''
         from abjad.tools import scoretools
         prototype = (scoretools.Note, scoretools.Chord)
-        if isinstance(expr, prototype):
-            if 0 < expr.written_duration.flag_count:
+        if isinstance(argument, prototype):
+            if 0 < argument.written_duration.flag_count:
                 return True
         prototype = (
             scoretools.MultimeasureRest,
             scoretools.Rest,
             scoretools.Skip,
             )
-        if beam_rests and isinstance(expr, prototype):
+        if beam_rests and isinstance(argument, prototype):
             return True
         return False
 

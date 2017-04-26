@@ -5,5 +5,5 @@ if __name__ == '__main__':
     import sys
     from abjad.tools import commandlinetools
     script = commandlinetools.RunDoctestsScript()
-    args = sys.argv[1:]
-    script(args)
+    arguments = sys.argv[1:]
+    script(arguments)

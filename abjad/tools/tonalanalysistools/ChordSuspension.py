@@ -28,22 +28,22 @@ class ChordSuspension(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        if len(args) == 0:
+    def __init__(self, *arguments):
+        if len(arguments) == 0:
             start, stop = self._initialize_empty()
-        elif len(args) == 1 and args[0] in (None, ''):
+        elif len(arguments) == 1 and arguments[0] in (None, ''):
             start, stop = self._initialize_empty()
-        elif len(args) == 1 and isinstance(args[0], type(self)):
-            start, stop = self._initialize_by_reference(*args)
-        elif len(args) == 1 and isinstance(args[0], str):
-            start, stop = self._initialize_by_symbolic_string(*args)
-        elif len(args) == 1 and isinstance(args[0], tuple):
-            start, stop = self._initialize_by_pair(*args)
-        elif len(args) == 2:
-            start, stop = self._initialize_by_start_and_stop(*args)
+        elif len(arguments) == 1 and isinstance(arguments[0], type(self)):
+            start, stop = self._initialize_by_reference(*arguments)
+        elif len(arguments) == 1 and isinstance(arguments[0], str):
+            start, stop = self._initialize_by_symbolic_string(*arguments)
+        elif len(arguments) == 1 and isinstance(arguments[0], tuple):
+            start, stop = self._initialize_by_pair(*arguments)
+        elif len(arguments) == 2:
+            start, stop = self._initialize_by_start_and_stop(*arguments)
         else:
             message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, args)
+            message = message.format(type(self).__name__, arguments)
             raise ValueError(message)
         self._start = start
         self._stop = stop

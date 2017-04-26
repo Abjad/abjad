@@ -277,8 +277,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
             timespan_2.start_offset, timespan_2.stop_offset)
         return truth_value
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` equals time relation. Otherwise false:
+    def __eq__(self, argument):
+        r'''Is true when `argument` equals time relation. Otherwise false:
 
         ::
 
@@ -300,10 +300,10 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            if self.inequality == expr.inequality:
-                if self.timespan_1 == expr.timespan_1:
-                    if self.timespan_2 == expr.timespan_2:
+        if isinstance(argument, type(self)):
+            if self.inequality == argument.inequality:
+                if self.timespan_1 == argument.timespan_1:
+                    if self.timespan_2 == argument.timespan_2:
                         return True
         return False
 

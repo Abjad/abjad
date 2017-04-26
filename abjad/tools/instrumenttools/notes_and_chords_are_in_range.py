@@ -5,8 +5,8 @@ from abjad.tools import scoretools
 from abjad.tools.topleveltools import iterate
 
 
-def notes_and_chords_are_in_range(expr):
-    '''Is true when notes and chords in `expr` are within traditional
+def notes_and_chords_are_in_range(argument):
+    '''Is true when notes and chords in `argument` are within traditional
     instrument ranges.
 
     ..  todo:: Move to WellformednessManager.
@@ -47,7 +47,7 @@ def notes_and_chords_are_in_range(expr):
     '''
     from abjad.tools import instrumenttools
     prototype = (scoretools.Note, scoretools.Chord)
-    for note_or_chord in iterate(expr).by_class(prototype):
+    for note_or_chord in iterate(argument).by_class(prototype):
         instrument = note_or_chord._get_effective(instrumenttools.Instrument)
         if note_or_chord not in instrument.pitch_range:
             return False

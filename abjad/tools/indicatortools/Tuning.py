@@ -259,7 +259,7 @@ class Tuning(AbjadValueObject):
 
                 >>> pitch_ranges = indicator.pitch_ranges
                 >>> print(format(pitch_ranges))
-                pitchtools.PitchRangeInventory(
+                pitchtools.PitchRangeList(
                     [
                         pitchtools.PitchRange(
                             range_string='[G3, G5]',
@@ -276,14 +276,14 @@ class Tuning(AbjadValueObject):
                         ]
                     )
 
-        Returns pitch-range inventory.
+        Returns pitch-range list.
         '''
         from abjad.tools import pitchtools
         result = []
         for pitch in self.pitches:
             pitch_range = pitchtools.PitchRange.from_pitches(pitch, pitch + 24)
             result.append(pitch_range)
-        result = pitchtools.PitchRangeInventory(result)
+        result = pitchtools.PitchRangeList(result)
         return result
 
     @property

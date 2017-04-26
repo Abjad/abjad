@@ -60,7 +60,7 @@ class CodeBlockTests(unittest.TestCase):
             assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
-                        u'def example_function(expr):',
+                        u'def example_function(argument):',
                         u"    r'''This is a multiline docstring.",
                         u'',
                         u'    This is the third line of the docstring.',
@@ -68,10 +68,10 @@ class CodeBlockTests(unittest.TestCase):
                         u'    # This is a comment.',
                         u"    print('Entering example function.')",
                         u'    try:',
-                        u'        expr = expr + 1',
+                        u'        argument = argument + 1',
                         u'    except TypeError:',
                         u"        print('Wrong type!')",
-                        u'    print(expr)',
+                        u'    print(argument)',
                         u"    print('Leaving example function.')",
                         ),
                     executed_lines=(
@@ -84,7 +84,7 @@ class CodeBlockTests(unittest.TestCase):
             assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
-                        'def example_function(expr):',
+                        'def example_function(argument):',
                         "    r'''This is a multiline docstring.",
                         '',
                         '    This is the third line of the docstring.',
@@ -92,10 +92,10 @@ class CodeBlockTests(unittest.TestCase):
                         '    # This is a comment.',
                         "    print('Entering example function.')",
                         '    try:',
-                        '        expr = expr + 1',
+                        '        argument = argument + 1',
                         '    except TypeError:',
                         "        print('Wrong type!')",
-                        '    print(expr)',
+                        '    print(argument)',
                         "    print('Leaving example function.')",
                         ),
                     executed_lines=(
@@ -118,7 +118,7 @@ class CodeBlockTests(unittest.TestCase):
             assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
-                        u'def example_function(expr):',
+                        u'def example_function(argument):',
                         u"    r'''This is a multiline docstring.",
                         u'',
                         u'    This is the third line of the docstring.',
@@ -126,10 +126,10 @@ class CodeBlockTests(unittest.TestCase):
                         u'    # This is a comment.',
                         u"    print('Entering example function.')",
                         u'    try:',
-                        u'        expr = expr + 1',
+                        u'        argument = argument + 1',
                         u'    except TypeError:',
                         u"        print('Wrong type!')",
-                        u'    print(expr)',
+                        u'    print(argument)',
                         u"    print('Leaving example function.')",
                         ),
                     code_block_specifier=abjadbooktools.CodeBlockSpecifier(
@@ -145,7 +145,7 @@ class CodeBlockTests(unittest.TestCase):
             assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
-                        'def example_function(expr):',
+                        'def example_function(argument):',
                         "    r'''This is a multiline docstring.",
                         '',
                         '    This is the third line of the docstring.',
@@ -153,10 +153,10 @@ class CodeBlockTests(unittest.TestCase):
                         '    # This is a comment.',
                         "    print('Entering example function.')",
                         '    try:',
-                        '        expr = expr + 1',
+                        '        argument = argument + 1',
                         '    except TypeError:',
                         "        print('Wrong type!')",
-                        '    print(expr)',
+                        '    print(argument)',
                         "    print('Leaving example function.')",
                         ),
                     code_block_specifier=abjadbooktools.CodeBlockSpecifier(

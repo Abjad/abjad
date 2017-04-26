@@ -47,25 +47,25 @@ class RomanNumeral(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        if len(args) == 1 and isinstance(args[0], type(self)):
+    def __init__(self, *arguments):
+        if len(arguments) == 1 and isinstance(arguments[0], type(self)):
             scale_degree, quality, extent, inversion, suspension = \
-                self._initialize_by_reference(args[0])
-        elif len(args) == 1 and isinstance(args[0], str):
+                self._initialize_by_reference(arguments[0])
+        elif len(arguments) == 1 and isinstance(arguments[0], str):
             scale_degree, quality, extent, inversion, suspension = \
-                self._initialize_by_symbolic_string(args[0])
-        elif len(args) == 4:
+                self._initialize_by_symbolic_string(arguments[0])
+        elif len(arguments) == 4:
             scale_degree, quality, extent, inversion, suspension = \
-                self._initialize_by_scale_degree_quality_extent_and_inversion(*args)
-        elif len(args) == 5:
+                self._initialize_by_scale_degree_quality_extent_and_inversion(*arguments)
+        elif len(arguments) == 5:
             scale_degree, quality, extent, inversion, suspension = \
-                self._initialize_with_suspension(*args)
-        elif len(args) == 0:
+                self._initialize_with_suspension(*arguments)
+        elif len(arguments) == 0:
             scale_degree, quality, extent, inversion, suspension = \
                 self._initialize_by_symbolic_string('I')
         else:
             message = 'can not initialize tonal function: {!r}.'
-            message = message.format(args)
+            message = message.format(arguments)
             raise ValueError(message)
         self._scale_degree = scale_degree
         self._quality = quality
@@ -152,14 +152,14 @@ class RomanNumeral(AbjadValueObject):
             raise ValueError
 
     def _initialize_by_reference(self, tonal_function):
-        args = (tonal_function.scale_degree, tonal_function.quality,
+        arguments = (tonal_function.scale_degree, tonal_function.quality,
             tonal_function.extent, tonal_function.inversion)
         return self._initialize_by_scale_degree_quality_extent_and_inversion(
-            self, *args)
+            self, *arguments)
 
-    def _initialize_by_scale_degree_quality_extent_and_inversion(self, *args):
+    def _initialize_by_scale_degree_quality_extent_and_inversion(self, *arguments):
         from abjad.tools import tonalanalysistools
-        scale_degree, quality, extent, inversion = args
+        scale_degree, quality, extent, inversion = arguments
         scale_degree = tonalanalysistools.ScaleDegree(scale_degree)
         quality = tonalanalysistools.ChordQuality(quality)
         extent = tonalanalysistools.ChordExtent(extent)
@@ -192,11 +192,11 @@ class RomanNumeral(AbjadValueObject):
             suspension = tonalanalysistools.ChordSuspension(suspension[0])
         return scale_degree, quality, extent, inversion, suspension
 
-    def _initialize_with_suspension(self, *args):
+    def _initialize_with_suspension(self, *arguments):
         from abjad.tools import tonalanalysistools
         scale_degree, quality, extent, inversion, suspension = \
-            self._initialize_by_scale_degree_quality_extent_and_inversion(*args[:-1])
-        suspension = args[-1]
+            self._initialize_by_scale_degree_quality_extent_and_inversion(*arguments[:-1])
+        suspension = arguments[-1]
         suspension = tonalanalysistools.ChordSuspension(suspension)
         return scale_degree, quality, extent, inversion, suspension
 

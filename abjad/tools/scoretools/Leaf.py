@@ -679,8 +679,8 @@ class Leaf(Component):
         return self._written_duration
 
     @written_duration.setter
-    def written_duration(self, expr):
-        rational = durationtools.Duration(expr)
+    def written_duration(self, argument):
+        rational = durationtools.Duration(argument)
         if not rational.is_assignable:
             message = 'not assignable duration: {!r}.'
             message = message.format(rational)

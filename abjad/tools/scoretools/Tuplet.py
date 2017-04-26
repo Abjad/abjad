@@ -1000,20 +1000,20 @@ class Tuplet(Container):
         return self._multiplier
 
     @multiplier.setter
-    def multiplier(self, expr):
-        if isinstance(expr, (int, Fraction)):
-            rational = durationtools.Multiplier(expr)
-        elif isinstance(expr, tuple):
-            rational = durationtools.Multiplier(expr)
+    def multiplier(self, argument):
+        if isinstance(argument, (int, Fraction)):
+            rational = durationtools.Multiplier(argument)
+        elif isinstance(argument, tuple):
+            rational = durationtools.Multiplier(argument)
         else:
             message = 'can not set tuplet multiplier: {!r}.'
-            message = message.format(expr)
+            message = message.format(argument)
             raise ValueError(message)
         if 0 < rational:
             self._multiplier = rational
         else:
             message = 'tuplet multiplier must be positive: {!r}.'
-            message = message.format(expr)
+            message = message.format(argument)
             raise ValueError(message)
 
     @property

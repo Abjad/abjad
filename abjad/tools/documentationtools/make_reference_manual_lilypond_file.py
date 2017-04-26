@@ -4,7 +4,7 @@ from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import set_
 
 
-def make_reference_manual_lilypond_file(music=None, **kwargs):
+def make_reference_manual_lilypond_file(music=None, **keywords):
     r'''Makes reference manual LilyPond file.
 
         >>> score = Score([Staff('c d e f')])
@@ -63,7 +63,7 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
     from abjad.tools import schemetools
 
     assert hasattr(music, '__illustrate__')
-    lilypond_file = music.__illustrate__(**kwargs)
+    lilypond_file = music.__illustrate__(**keywords)
 
     blocks = [_ for _ in lilypond_file.items
         if isinstance(_, lilypondfiletools.Block)

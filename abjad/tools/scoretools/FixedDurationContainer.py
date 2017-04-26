@@ -38,8 +38,8 @@ class FixedDurationContainer(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, target_duration=None, music=None, **kwargs):
-        Container.__init__(self, music=music, **kwargs)
+    def __init__(self, target_duration=None, music=None, **keywords):
+        Container.__init__(self, music=music, **keywords)
         target_duration = target_duration or durationtools.Duration(1, 4)
         target_duration = durationtools.Duration(target_duration)
         assert 0 < target_duration

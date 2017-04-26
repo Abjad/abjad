@@ -132,8 +132,8 @@ class GraphvizEdge(GraphvizMixin):
         return self._head_port_position
 
     @head_port_position.setter
-    def head_port_position(self, expr):
-        self._head_port_position = expr
+    def head_port_position(self, argument):
+        self._head_port_position = argument
 
     @property
     def is_directed(self):
@@ -160,5 +160,5 @@ class GraphvizEdge(GraphvizMixin):
         return self._tail_port_position
 
     @tail_port_position.setter
-    def tail_port_position(self, expr):
-        self._tail_port_position = expr
+    def tail_port_position(self, argument):
+        self._tail_port_position = argument

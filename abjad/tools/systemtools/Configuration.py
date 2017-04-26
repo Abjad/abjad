@@ -170,10 +170,10 @@ class Configuration(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def get(self, *args, **kwargs):
+    def get(self, *arguments, **keywords):
         r'''Get a key.
         '''
-        return self._settings.get(*args, **kwargs)
+        return self._settings.get(*arguments, **keywords)
 
     ### PRIVATE PROPERTIES ###
 

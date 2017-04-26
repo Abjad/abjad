@@ -372,7 +372,7 @@ class RhythmMaker(AbjadValueObject):
             masks = (masks,)
         if isinstance(masks, prototype):
             masks = (masks,)
-        masks = patterntools.PatternInventory(
+        masks = patterntools.PatternList(
             items=masks,
             )
         return masks

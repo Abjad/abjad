@@ -42,8 +42,8 @@ def test_agenttools_InspectionAgent_select_vertical_moment_01():
         '''
         )
 
-    def staff_group_moment(expr):
-        return inspect_(expr).get_vertical_moment(governor=staff_group)
+    def staff_group_moment(argument):
+        return inspect_(argument).get_vertical_moment(governor=staff_group)
 
     moment = staff_group_moment(staff_group[1][0])
     assert moment.leaves == (staff_group[0][0], staff_group[1][0])

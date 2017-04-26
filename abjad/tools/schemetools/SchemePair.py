@@ -24,20 +24,20 @@ class SchemePair(Scheme):
 
     ### INITIALIZER ##
 
-    def __init__(self, *args, **kwargs):
-        if len(args) == 1 and isinstance(args[0], SchemePair):
-            args = args[0]._value
-        elif len(args) == 1 and isinstance(args[0], tuple):
-            args = args[0][:]
-        elif len(args) == 2:
-            args = args
-        elif len(args) == 0:
-            args = (0, 1)
+    def __init__(self, *arguments, **keywords):
+        if len(arguments) == 1 and isinstance(arguments[0], SchemePair):
+            arguments = arguments[0]._value
+        elif len(arguments) == 1 and isinstance(arguments[0], tuple):
+            arguments = arguments[0][:]
+        elif len(arguments) == 2:
+            arguments = arguments
+        elif len(arguments) == 0:
+            arguments = (0, 1)
         else:
             message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, args)
+            message = message.format(type(self).__name__, arguments)
             raise TypeError(message)
-        Scheme.__init__(self, *args, **kwargs)
+        Scheme.__init__(self, *arguments, **keywords)
 
     ### SPECIAL METHODS ###
 

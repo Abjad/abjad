@@ -151,26 +151,26 @@ class Offset(Duration):
 
     ### CONSTRUCTOR ###
 
-    def __new__(class_, *args, **kwargs):
+    def __new__(class_, *arguments, **keywords):
         grace_displacement = None
-        for arg in args:
+        for arg in arguments:
             if hasattr(arg, 'grace_displacement'):
                 grace_displacement = getattr(arg, 'grace_displacement')
                 break
-        grace_displacement = grace_displacement or kwargs.get(
+        grace_displacement = grace_displacement or keywords.get(
             'grace_displacement')
         if grace_displacement is not None:
             grace_displacement = Duration(grace_displacement)
         grace_displacement = grace_displacement or None
-        if len(args) == 1 and isinstance(args[0], Duration):
-            args = args[0].pair
-        self = Duration.__new__(class_, *args)
+        if len(arguments) == 1 and isinstance(arguments[0], Duration):
+            arguments = arguments[0].pair
+        self = Duration.__new__(class_, *arguments)
         self._grace_displacement = grace_displacement
         return self
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
+    def __copy__(self, *arguments):
         r'''Copies offset.
 
         ::
@@ -220,7 +220,7 @@ class Offset(Duration):
             grace_displacement=self.grace_displacement
             )
 
-    def __deepcopy__(self, *args):
+    def __deepcopy__(self, *arguments):
         r'''Deep copies offset.
 
         ::
@@ -264,7 +264,7 @@ class Offset(Duration):
 
         Returns new offset.
         '''
-        return self.__copy__(*args)
+        return self.__copy__(*arguments)
 
     def __eq__(self, arg):
         r'''Is true when offset equals `arg`.
@@ -707,7 +707,7 @@ class Offset(Duration):
         '''
         return super(Offset, self).__repr__()
 
-    def __sub__(self, expr):
+    def __sub__(self, argument):
         '''Offset taken from offset returns duration:
 
         ::
@@ -722,7 +722,7 @@ class Offset(Duration):
             >>> durationtools.Offset(2) - durationtools.Duration(1, 2)
             Offset(3, 2)
 
-        Coerce `expr` to offset when `expr` is neither offset nor duration:
+        Coerce `argument` to offset when `argument` is neither offset nor duration:
 
         ::
 
@@ -731,13 +731,13 @@ class Offset(Duration):
 
         Returns duration or offset.
         '''
-        if isinstance(expr, type(self)):
-            return Duration(super(Offset, self).__sub__(expr))
-        elif isinstance(expr, Duration):
-            return super(Offset, self).__sub__(expr)
+        if isinstance(argument, type(self)):
+            return Duration(super(Offset, self).__sub__(argument))
+        elif isinstance(argument, Duration):
+            return super(Offset, self).__sub__(argument)
         else:
-            expr = type(self)(expr)
-            return self - expr
+            argument = type(self)(argument)
+            return self - argument
 
     ### PRIVATE METHODS ###
 

@@ -304,28 +304,28 @@ class ManageBuildTargetScript(ScorePackageScript):
         for path in paths_to_open:
             systemtools.IOManager.open_file(str(path))
 
-    def _process_args(self, args):
-        self._setup_paths(args.score_path)
-        if args.distribute:
-            self._handle_distribute(args.distribute)
-        if args.list_:
+    def _process_args(self, arguments):
+        self._setup_paths(arguments.score_path)
+        if arguments.distribute:
+            self._handle_distribute(arguments.distribute)
+        if arguments.list_:
             self._handle_list()
-        if args.new:
+        if arguments.new:
             self._handle_create(
-                force=args.force,
-                orientation=args.orientation,
-                paper_size=args.paper_size,
-                target_name=args.new,
+                force=arguments.force,
+                orientation=arguments.orientation,
+                paper_size=arguments.paper_size,
+                target_name=arguments.new,
                 )
-        if args.render:
+        if arguments.render:
             self._handle_render(
-                render_back_cover=args.back_cover,
-                render_front_cover=args.front_cover,
-                render_music=args.music,
-                render_parts=args.parts,
-                render_preface=args.preface,
-                render_score=args.score,
-                target_name=args.render,
+                render_back_cover=arguments.back_cover,
+                render_front_cover=arguments.front_cover,
+                render_music=arguments.music,
+                render_parts=arguments.parts,
+                render_preface=arguments.preface,
+                render_score=arguments.score,
+                target_name=arguments.render,
                 )
 
     def _render_back_cover(self, build_target_path):

@@ -202,7 +202,7 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
             new_edge.attach(mapping[tail], mapping[head])
         return copied_node
 
-    def __graph__(self, **kwargs):
+    def __graph__(self, **keywords):
         r'''Gets graphviz graph.
 
         Returns graphviz graph.

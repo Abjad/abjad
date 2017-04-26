@@ -163,8 +163,8 @@ class IterationAgent(abctools.AbjadObject):
             yield pair
 
     @staticmethod
-    def _list_unordered_pitch_pairs(expr):
-        pitches = sorted(iterate(expr).by_pitch())
+    def _list_unordered_pitch_pairs(argument):
+        pitches = sorted(iterate(argument).by_pitch())
         enumeration = sequencetools.Enumeration(pitches)
         for pair in enumeration.yield_pairs():
             yield pair
@@ -737,26 +737,26 @@ class IterationAgent(abctools.AbjadObject):
                 )
         pitched_prototype = (scoretools.Note, scoretools.Chord)
 
-        def component_iterator(expr, prototype, reverse=False):
-            if isinstance(expr, prototype):
+        def component_iterator(argument, prototype, reverse=False):
+            if isinstance(argument, prototype):
                 if pitched is None:
-                    yield expr
-                elif pitched is True and isinstance(expr, pitched_prototype):
-                    yield expr
+                    yield argument
+                elif pitched is True and isinstance(argument, pitched_prototype):
+                    yield argument
                 elif (
                     pitched is not True and not
-                    isinstance(expr, pitched_prototype)
+                    isinstance(argument, pitched_prototype)
                     ):
-                    yield expr
+                    yield argument
             if (
-                isinstance(expr, (list, tuple, spannertools.Spanner)) or
-                hasattr(expr, '_music')
+                isinstance(argument, (list, tuple, spannertools.Spanner)) or
+                hasattr(argument, '_music')
                 ):
-                if hasattr(expr, '_music'):
-                    expr = expr._music
+                if hasattr(argument, '_music'):
+                    argument = argument._music
                 if reverse:
-                    expr = reversed(expr)
-                for component in expr:
+                    argument = reversed(argument)
+                for component in argument:
                     for x in component_iterator(
                         component,
                         prototype,
@@ -4254,13 +4254,13 @@ class IterationAgent(abctools.AbjadObject):
                     if component:
                         _buffer_components_starting_with(
                             component[0], buffer, stop_offsets)
-        def _iterate_vertical_moments_forward_in_expr(expr):
-            #if not isinstance(expr, scoretools.Component):
+        def _iterate_vertical_moments(argument):
+            #if not isinstance(argument, scoretools.Component):
             #    raise TypeError
-            governors = (expr,)
+            governors = (argument,)
             current_offset, stop_offsets, buffer = \
                 durationtools.Offset(0), [], []
-            _buffer_components_starting_with(expr, buffer, stop_offsets)
+            _buffer_components_starting_with(argument, buffer, stop_offsets)
             while buffer:
                 vertical_moment = selectiontools.VerticalMoment()
                 offset = durationtools.Offset(current_offset)
@@ -4304,7 +4304,7 @@ class IterationAgent(abctools.AbjadObject):
                     stop_offsets.append(component._get_timespan().stop_offset)
         def _closure():
             if not reverse:
-                for x in _iterate_vertical_moments_forward_in_expr(self._client):
+                for x in _iterate_vertical_moments(self._client):
                     yield x
             else:
                 moments_in_governor = []

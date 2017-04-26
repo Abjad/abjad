@@ -162,17 +162,17 @@ class Container(Component):
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, expr):
-        r'''Is true when `expr` appears in container.
+    def __contains__(self, argument):
+        r'''Is true when `argument` appears in container.
         Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(expr, str):
-            return expr in self._named_children
+        if isinstance(argument, str):
+            return argument in self._named_children
         else:
             for x in self._music:
-                if x is expr:
+                if x is argument:
                     return True
             else:
                 return False
@@ -294,7 +294,7 @@ class Container(Component):
         message = message.format(argument)
         raise ValueError(message)
 
-    def __graph__(self, spanner=None, **kwargs):
+    def __graph__(self, spanner=None, **keywords):
         r'''Graphviz graph representation of container.
 
         Returns Graphviz graph.
@@ -420,16 +420,16 @@ class Container(Component):
         '''
         return len(self._music)
 
-    def __setitem__(self, i, expr):
-        r'''Sets container `i` equal to `expr`.
+    def __setitem__(self, i, argument):
+        r'''Sets container `i` equal to `argument`.
         Finds spanners that dominate self[i] and children of self[i].
-        Replaces contents at self[i] with 'expr'.
+        Replaces contents at self[i] with 'argument'.
         Reattaches spanners to new contents.
         Always leaves score tree in tact.
 
         Returns none.
         '''
-        return self._set_item(i, expr)
+        return self._set_item(i, argument)
 
     ### PRIVATE METHODS ###
 
@@ -496,7 +496,7 @@ class Container(Component):
         '''Not composer-safe.
         '''
         self._set_item(slice(len(self), len(self)), [component],
-            withdraw_components_in_expr_from_crossing_spanners=False)
+            withdraw_components_from_crossing_spanners=False)
 
     def _as_graphviz_node(self):
         from abjad.tools import graphtools
@@ -694,62 +694,62 @@ class Container(Component):
         return recurse(self)
 
     def _scale_contents(self, multiplier):
-        for expr in iterate(self[:]).by_topmost_logical_ties_and_components():
-            expr._scale(multiplier)
+        for argument in iterate(self[:]).by_topmost_logical_ties_and_components():
+            argument._scale(multiplier)
 
     def _set_item(
         self,
         i,
-        expr,
-        withdraw_components_in_expr_from_crossing_spanners=True,
+        argument,
+        withdraw_components_from_crossing_spanners=True,
         ):
         r'''This method exists because __setitem__ can not accept keywords.
 
         Note that setting
-        withdraw_components_in_expr_from_crossing_spanners=False constitutes a
+        withdraw_components_from_crossing_spanners=False constitutes a
         composer-unsafe use of this method.
 
         Only private methods should set this keyword.
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        # cache indicators attached to components in expr
+        # cache indicators attached to components in argument
         expr_indicators = []
-        for component in iterate(expr).by_class():
+        for component in iterate(argument).by_class():
             indicators = component._get_indicators(unwrap=False)
             expr_indicators.extend(indicators)
         # item assignment
         if isinstance(i, int):
-            if isinstance(expr, str):
-                expr = self._parse_string(expr)[:]
-                assert len(expr) == 1, repr(expr)
-                expr = expr[0]
+            if isinstance(argument, str):
+                argument = self._parse_string(argument)[:]
+                assert len(argument) == 1, repr(argument)
+                argument = argument[0]
             else:
-                expr = [expr]
+                argument = [argument]
             if i < 0:
                 i = len(self) + i
             i = slice(i, i + 1)
         else:
-            if isinstance(expr, str):
-                expr = self._parse_string(expr)[:]
-            elif (isinstance(expr, list) and
-                len(expr) == 1 and
-                isinstance(expr[0], str)):
-                expr = self._parse_string(expr[0])[:]
+            if isinstance(argument, str):
+                argument = self._parse_string(argument)[:]
+            elif (isinstance(argument, list) and
+                len(argument) == 1 and
+                isinstance(argument[0], str)):
+                argument = self._parse_string(argument[0])[:]
         prototype = (scoretools.Component, selectiontools.Selection)
-        assert all(isinstance(x, prototype) for x in expr)
+        assert all(isinstance(x, prototype) for x in argument)
         new_expr = []
-        for item in expr:
+        for item in argument:
             if isinstance(item, selectiontools.Selection):
                 new_expr.extend(item)
             else:
                 new_expr.append(item)
-        expr = new_expr
-        assert all(isinstance(x, scoretools.Component) for x in expr)
-        if any(isinstance(x, scoretools.GraceContainer) for x in expr):
+        argument = new_expr
+        assert all(isinstance(x, scoretools.Component) for x in argument)
+        if any(isinstance(x, scoretools.GraceContainer) for x in argument):
             message = 'must attach grace container to note or chord.'
             raise Exception(message)
-        if self._check_for_cycles(expr):
+        if self._check_for_cycles(argument):
             raise ParentageError('Attempted to induce cycles.')
         if (
             i.start == i.stop and
@@ -762,7 +762,7 @@ class Container(Component):
             start, stop, stride = i.indices(len(self))
         old = self[start:stop]
         spanners_receipt = self._get_spanners_that_dominate_slice(start, stop)
-        #print('RECEIPT', spanners_receipt, self, expr)
+        #print('RECEIPT', spanners_receipt, self, argument)
         for component in old:
             for child in iterate([component]).by_class():
                 for spanner in child._get_spanners():
@@ -770,16 +770,16 @@ class Container(Component):
         del(self[start:stop])
         # must withdraw before setting in self!
         # otherwise circular withdraw ensues!
-        if withdraw_components_in_expr_from_crossing_spanners:
-            selection = selectiontools.Selection(expr)
+        if withdraw_components_from_crossing_spanners:
+            selection = selectiontools.Selection(argument)
             if selection._all_are_contiguous_components_in_same_logical_voice(
                 selection):
                 selection._withdraw_from_crossing_spanners()
-        self._music.__setitem__(slice(start, start), expr)
-        for component in expr:
+        self._music.__setitem__(slice(start, start), argument)
+        for component in argument:
             component._set_parent(self)
         for spanner, index in spanners_receipt:
-            for component in reversed(expr):
+            for component in reversed(argument):
                 spanner._insert(index, component)
                 component._spanners.add(spanner)
         for indicator in expr_indicators:
@@ -789,9 +789,9 @@ class Container(Component):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _all_are_orphan_components(expr):
+    def _all_are_orphan_components(argument):
         from abjad.tools import scoretools
-        for component in expr:
+        for component in argument:
             if not isinstance(component, scoretools.Component):
                 return False
             if not component._get_parentage().is_orphan:
@@ -1157,8 +1157,8 @@ class Container(Component):
         '''
         self.__setitem__(slice(len(self), len(self)), [component])
 
-    def extend(self, expr):
-        r'''Extends container with `expr`.
+    def extend(self, argument):
+        r'''Extends container with `argument`.
 
         ..  container:: example
 
@@ -1200,7 +1200,7 @@ class Container(Component):
         '''
         self.__setitem__(
             slice(len(self), len(self)),
-            expr.__getitem__(slice(0, len(expr)))
+            argument.__getitem__(slice(0, len(argument)))
             )
 
     def index(self, component):
@@ -1655,16 +1655,16 @@ class Container(Component):
         return self._is_simultaneous
 
     @is_simultaneous.setter
-    def is_simultaneous(self, expr):
+    def is_simultaneous(self, argument):
         from abjad.tools import scoretools
-        if expr is None:
+        if argument is None:
             return
-        assert isinstance(expr, bool), repr(expr)
+        assert isinstance(argument, bool), repr(argument)
         prototype = scoretools.Context
-        if expr and not all(isinstance(x, prototype) for x in self):
+        if argument and not all(isinstance(x, prototype) for x in self):
             message = 'simultaneous containers must contain only contexts.'
             raise ValueError(message)
-        self._is_simultaneous = expr
+        self._is_simultaneous = argument
         self._update_later(offsets=True)
 
     @property

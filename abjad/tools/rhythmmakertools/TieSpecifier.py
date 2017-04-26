@@ -46,7 +46,7 @@ class TieSpecifier(AbjadValueObject):
             bool,
             collections.Sequence,
             patterntools.Pattern,
-            patterntools.PatternInventory,
+            patterntools.PatternList,
             )
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions

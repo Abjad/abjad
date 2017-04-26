@@ -29,26 +29,26 @@ class Skip(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, *arguments):
         from abjad.tools.topleveltools import parse
         input_leaf = None
         written_duration = None
-        if len(args) == 1 and isinstance(args[0], str):
-            string = '{{ {} }}'.format(args[0])
+        if len(arguments) == 1 and isinstance(arguments[0], str):
+            string = '{{ {} }}'.format(arguments[0])
             parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             input_leaf = parsed[0]
             written_duration = input_leaf.written_duration
-        elif len(args) == 1 and isinstance(args[0], Leaf):
-            written_duration = args[0].written_duration
-            input_leaf = args[0]
-        elif len(args) == 1 and not isinstance(args[0], str):
-            written_duration = args[0]
-        elif len(args) == 0:
+        elif len(arguments) == 1 and isinstance(arguments[0], Leaf):
+            written_duration = arguments[0].written_duration
+            input_leaf = arguments[0]
+        elif len(arguments) == 1 and not isinstance(arguments[0], str):
+            written_duration = arguments[0]
+        elif len(arguments) == 0:
             written_duration = durationtools.Duration(1, 4)
         else:
             message = 'can not initialize skip from {!r}.'
-            message = message.format(args)
+            message = message.format(arguments)
             raise ValueError(message)
         Leaf.__init__(self, written_duration)
         if input_leaf is not None:

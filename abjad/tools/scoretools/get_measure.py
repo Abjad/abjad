@@ -2,8 +2,8 @@
 from abjad.tools.topleveltools import select
 
 
-def get_measure(expr, measure_number):
-    r'''Gets measure `measure_number` in `expr`.
+def get_measure(argument, measure_number):
+    r'''Gets measure `measure_number` in `argument`.
 
     ::
 
@@ -48,5 +48,5 @@ def get_measure(expr, measure_number):
     measure_index = measure_number - 1
 
     # return measure
-    selection = select(expr)
+    selection = select(argument)
     return selection._get_component(scoretools.Measure, measure_index)

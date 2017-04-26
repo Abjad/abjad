@@ -47,7 +47,7 @@ class MeterFittingSession(AbjadValueObject):
         self._maximum_run_length = maximum_run_length
         if offset_counter:
             self._offset_counter = \
-                metertools.MetricAccentKernel.count_offsets_in_expr(
+                metertools.MetricAccentKernel.count_offsets(
                     offset_counter)
         else:
             self._offset_counter = {}
@@ -73,7 +73,7 @@ class MeterFittingSession(AbjadValueObject):
     def __call__(self):
         r'''Fits meters.
 
-        Returns meter inventory.
+        Returns meter list.
         '''
         from abjad.tools import metertools
         selected_kernels = []
@@ -113,7 +113,7 @@ class MeterFittingSession(AbjadValueObject):
             selected_kernels.append(winning_kernel)
             current_offset += winning_kernel.duration
         selected_meters = (self.kernels[_] for _ in selected_kernels)
-        selected_meters = metertools.MeterInventory(selected_meters)
+        selected_meters = metertools.MeterList(selected_meters)
         return selected_meters
 
     ### PRIVATE METHODS ###

@@ -575,7 +575,7 @@ class MutationAgent(abctools.AbjadObject):
                     indicatortools.TimeSignature(current_time_signature)
                 detach(indicatortools.TimeSignature, current_measure)
                 attach(current_time_signature, current_measure)
-                scoretools.append_spacer_skips_to_underfull_measures_in_expr(
+                scoretools.append_spacer_skips_to_underfull_measures(
                     [current_measure])
                 current_measure = scoretools.get_next_measure_from_component(
                     current_measure)
@@ -591,7 +591,7 @@ class MutationAgent(abctools.AbjadObject):
             indicatortools.TimeSignature(current_time_signature)
         detach(indicatortools.TimeSignature, current_measure)
         attach(current_time_signature, current_measure)
-        scoretools.append_spacer_skips_to_underfull_measures_in_expr(
+        scoretools.append_spacer_skips_to_underfull_measures(
             current_measure)
         # return iterated measures
         return result
@@ -2769,8 +2769,8 @@ class MutationAgent(abctools.AbjadObject):
         donors._give_dominant_spanners([container])
         donors._give_position_in_parent_to_container(container)
 
-    def transpose(self, expr):
-        r'''Transposes notes and chords in mutation client by `expr`.
+    def transpose(self, argument):
+        r'''Transposes notes and chords in mutation client by `argument`.
 
         ..  todo:: Move to pitchtools package.
 
@@ -2832,7 +2832,7 @@ class MutationAgent(abctools.AbjadObject):
         '''
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        named_interval = pitchtools.NamedInterval(expr)
+        named_interval = pitchtools.NamedInterval(argument)
         for x in iterate(self._client).by_class(
             (scoretools.Note, scoretools.Chord)):
             if isinstance(x, scoretools.Note):

@@ -10,7 +10,7 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, argument):
         r'''Calls null attack-point optimizer.
         '''
         pass

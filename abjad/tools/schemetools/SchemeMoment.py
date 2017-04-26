@@ -27,21 +27,21 @@ class SchemeMoment(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
-        if len(args) == 1 and durationtools.Duration.is_token(args[0]):
-            args = durationtools.Duration(args[0])
-        elif len(args) == 1 and isinstance(args[0], type(self)):
-            args = args[0].duration
-        elif len(args) == 2 and \
-            isinstance(args[0], int) and isinstance(args[1], int):
-            args = durationtools.Duration(args)
-        elif len(args) == 0:
-            args = durationtools.Duration((1, 4))
+    def __init__(self, *arguments, **keywords):
+        if len(arguments) == 1 and durationtools.Duration.is_token(arguments[0]):
+            arguments = durationtools.Duration(arguments[0])
+        elif len(arguments) == 1 and isinstance(arguments[0], type(self)):
+            arguments = arguments[0].duration
+        elif len(arguments) == 2 and \
+            isinstance(arguments[0], int) and isinstance(arguments[1], int):
+            arguments = durationtools.Duration(arguments)
+        elif len(arguments) == 0:
+            arguments = durationtools.Duration((1, 4))
         else:
             message = 'can not intialize {}: {!r}.'
-            message = message.format(type(self).__name__, args)
+            message = message.format(type(self).__name__, arguments)
             raise TypeError(message)
-        Scheme.__init__(self, args, **kwargs)
+        Scheme.__init__(self, arguments, **keywords)
 
     ### SPECIAL METHODS ###
 

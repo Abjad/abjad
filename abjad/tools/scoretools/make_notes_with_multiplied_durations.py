@@ -12,8 +12,8 @@ def make_notes_with_multiplied_durations(
 
     ::
 
-        >>> args = [0, Duration(1, 4), [(1, 2), (1, 3), (1, 4), (1, 5)]]
-        >>> scoretools.make_notes_with_multiplied_durations(*args)
+        >>> arguments = [0, Duration(1, 4), [(1, 2), (1, 3), (1, 4), (1, 5)]]
+        >>> scoretools.make_notes_with_multiplied_durations(*arguments)
         Selection([Note("c'4 * 2"), Note("c'4 * 4/3"), Note("c'4 * 1"), Note("c'4 * 4/5")])
 
     Useful for making spatially positioned notes.

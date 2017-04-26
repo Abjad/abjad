@@ -36,24 +36,24 @@ class Chord(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, *arguments):
         from abjad.ly import drums
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import parse
-        assert len(args) in (0, 1, 2)
-        self._note_heads = scoretools.NoteHeadInventory(
+        assert len(arguments) in (0, 1, 2)
+        self._note_heads = scoretools.NoteHeadList(
             client=self,
             )
-        if len(args) == 1 and isinstance(args[0], str):
-            string = '{{ {} }}'.format(args[0])
+        if len(arguments) == 1 and isinstance(arguments[0], str):
+            string = '{{ {} }}'.format(arguments[0])
             parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            args = [parsed[0]]
+            arguments = [parsed[0]]
         are_cautionary = []
         are_forced = []
         are_parenthesized = []
-        if len(args) == 1 and isinstance(args[0], Leaf):
-            leaf = args[0]
+        if len(arguments) == 1 and isinstance(arguments[0], Leaf):
+            leaf = arguments[0]
             written_pitches = []
             written_duration = leaf.written_duration
             if 'written_pitch' in dir(leaf):
@@ -68,18 +68,18 @@ class Chord(Leaf):
                 are_forced = [x.is_forced for x in leaf.note_heads]
                 are_parenthesized = [x.is_parenthesized for x in
                     leaf.note_heads]
-        elif len(args) == 2:
-            written_pitches, written_duration = args
+        elif len(arguments) == 2:
+            written_pitches, written_duration = arguments
             if isinstance(written_pitches, str):
                 written_pitches = [x for x in written_pitches.split() if x]
             elif isinstance(written_pitches, type(self)):
                 written_pitches = written_pitches.written_pitches
-        elif len(args) == 0:
+        elif len(arguments) == 0:
             written_pitches = [0, 4, 7]
             written_duration = durationtools.Duration(1, 4)
         else:
             message = 'can not initialize chord from {!r}.'
-            message = message.format(args)
+            message = message.format(arguments)
             raise ValueError(message)
         Leaf.__init__(self, written_duration)
         if not are_cautionary:
@@ -111,8 +111,8 @@ class Chord(Leaf):
                     is_parenthesized=is_parenthesized,
                     )
             self._note_heads.append(note_head)
-        if len(args) == 1 and isinstance(args[0], Leaf):
-            self._copy_override_and_set_from_leaf(args[0])
+        if len(arguments) == 1 and isinstance(arguments[0], Leaf):
+            self._copy_override_and_set_from_leaf(arguments[0])
 
     ### SPECIAL METHODS ###
 
@@ -318,11 +318,11 @@ class Chord(Leaf):
 
     @property
     def note_heads(self):
-        r'''Note heads in chord.
+        r'''Gets note-heads in chord.
 
         ..  container:: example
 
-            **Example 1.** Get note-heads in chord:
+            Gets note-heads in chord:
 
             ::
 
@@ -332,7 +332,7 @@ class Chord(Leaf):
             ::
 
                 >>> f(chord.note_heads)
-                scoretools.NoteHeadInventory(
+                scoretools.NoteHeadList(
                     [
                         scoretools.NoteHead(
                             written_pitch=pitchtools.NamedPitch("g'"),
@@ -348,7 +348,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 2.** Set note-heads with pitch names:
+            SetS note-heads with pitch names:
 
             ::
 
@@ -367,7 +367,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 3.** Set note-heads with pitch numbers:
+            Sets note-heads with pitch numbers:
 
                 >>> chord = Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
@@ -384,7 +384,7 @@ class Chord(Leaf):
 
         Set note-heads with any iterable.
 
-        Returns tuple.
+        Returns note-head list.
         '''
         return self._note_heads
 
@@ -397,7 +397,7 @@ class Chord(Leaf):
 
     @property
     def written_duration(self):
-        r'''Written duration of chord.
+        r'''Gets written duration of chord.
 
         ..  container:: example
 
@@ -434,8 +434,8 @@ class Chord(Leaf):
         return Leaf.written_duration.fget(self)
 
     @written_duration.setter
-    def written_duration(self, expr):
-        Leaf.written_duration.fset(self, expr)
+    def written_duration(self, argument):
+        Leaf.written_duration.fset(self, argument)
 
     @property
     def written_pitches(self):

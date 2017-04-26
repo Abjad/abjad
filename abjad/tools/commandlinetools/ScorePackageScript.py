@@ -284,7 +284,7 @@ class ScorePackageScript(CommandlineScript):
             return {}
         try:
             with open(str(path), 'r') as file_pointer:
-                expr = json.loads(file_pointer.read())
+                argument = json.loads(file_pointer.read())
         except:
             if verbose:
                 print('JSON is corrupted.')
@@ -293,7 +293,7 @@ class ScorePackageScript(CommandlineScript):
             return {}
         if verbose:
             print('OK!')
-        return expr
+        return argument
 
     def _read_score_metadata_json(self, score_path=None, verbose=True):
         if score_path:
@@ -313,8 +313,8 @@ class ScorePackageScript(CommandlineScript):
         listing_path = score_path.joinpath('segments', 'metadata.json')
         segment_paths = self._list_segment_subpackages(score_path)
         valid_segment_names = [_.name for _ in segment_paths]
-        expr = self._read_json(listing_path, verbose=verbose)
-        segment_names = expr.get('segments', [])
+        argument = self._read_json(listing_path, verbose=verbose)
+        segment_names = argument.get('segments', [])
         if not isinstance(segment_names, list):
             if verbose:
                 print('    Segments listing is malformed.')
@@ -348,31 +348,31 @@ class ScorePackageScript(CommandlineScript):
         self._materials_path = self._score_package_path.joinpath('materials')
 
     @classmethod
-    def _template_file(cls, file_path, **kwargs):
+    def _template_file(cls, file_path, **keywords):
         file_path = str(file_path)
         with open(file_path, 'r') as file_pointer:
             template = file_pointer.read()
         try:
-            completed_template = template.format(**kwargs)
+            completed_template = template.format(**keywords)
         except (IndexError, KeyError):
             #traceback.print_exc()
             lines = template.splitlines()
             for i, line in enumerate(lines):
                 try:
-                    lines[i] = line.format(**kwargs)
+                    lines[i] = line.format(**keywords)
                 except (KeyError, IndexError, ValueError):
                     pass
             completed_template = '\n'.join(lines)
         with open(file_path, 'w') as file_pointer:
             file_pointer.write(completed_template)
 
-    def _write_json(self, expr, path, verbose=True):
+    def _write_json(self, argument, path, verbose=True):
         if verbose:
             message = '    Writing {!s}'
             path_to_print = path.relative_to(self._score_repository_path)
             print(message.format(path_to_print))
         contents = json.dumps(
-            expr,
+            argument,
             sort_keys=True,
             indent=4,
             separators=(',', ': '),
@@ -430,13 +430,13 @@ class ScorePackageScript(CommandlineScript):
         print('OK!')
         self._report_time(timer, prefix='LilyPond runtime')
 
-    def _write_score_metadata_json(self, score_path=None, verbose=True, **kwargs):
+    def _write_score_metadata_json(self, score_path=None, verbose=True, **keywords):
         if score_path:
             score_path = self._path_to_score_package_path(score_path)
         else:
             score_path = self._score_package_path
         metadata_path = score_path.joinpath('metadata.json')
-        self._write_json(kwargs, metadata_path, verbose=verbose)
+        self._write_json(keywords, metadata_path, verbose=verbose)
 
     def _write_segments_list_json(self, segment_names, score_path=None, verbose=True):
         if score_path:
@@ -447,5 +447,5 @@ class ScorePackageScript(CommandlineScript):
         segment_paths = self._list_segment_subpackages(score_path)
         valid_segment_names = set(_.name for _ in segment_paths)
         segment_names = [_ for _ in segment_names if _ in valid_segment_names]
-        expr = {'segments': segment_names}
-        self._write_json(expr, listing_path, verbose=verbose)
+        argument = {'segments': segment_names}
+        self._write_json(argument, listing_path, verbose=verbose)

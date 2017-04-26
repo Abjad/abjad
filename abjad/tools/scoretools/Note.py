@@ -38,21 +38,21 @@ class Note(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, *arguments):
         from abjad.ly import drums
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import parse
-        assert len(args) in (0, 1, 2)
-        if len(args) == 1 and isinstance(args[0], str):
-            string = '{{ {} }}'.format(args[0])
+        assert len(arguments) in (0, 1, 2)
+        if len(arguments) == 1 and isinstance(arguments[0], str):
+            string = '{{ {} }}'.format(arguments[0])
             parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            args = [parsed[0]]
+            arguments = [parsed[0]]
         is_cautionary = False
         is_forced = False
         is_parenthesized = False
-        if len(args) == 1 and isinstance(args[0], Leaf):
-            leaf = args[0]
+        if len(arguments) == 1 and isinstance(arguments[0], Leaf):
+            leaf = arguments[0]
             written_pitch = None
             written_duration = leaf.written_duration
             if 'written_pitch' in dir(leaf):
@@ -67,14 +67,14 @@ class Note(Leaf):
                     is_cautionary = leaf.note_heads[0].is_cautionary
                     is_forced = leaf.note_heads[0].is_forced
                     is_parenthesized = leaf.note_heads[0].is_parenthesized
-        elif len(args) == 2:
-            written_pitch, written_duration = args
-        elif len(args) == 0:
+        elif len(arguments) == 2:
+            written_pitch, written_duration = arguments
+        elif len(arguments) == 0:
             written_pitch = 'C4'
             written_duration = durationtools.Duration(1, 4)
         else:
             message = 'can not initialize note from {!r}.'
-            raise ValueError(message.format(args))
+            raise ValueError(message.format(arguments))
         Leaf.__init__(self, written_duration)
         if written_pitch is not None:
             if written_pitch not in drums:
@@ -93,8 +93,8 @@ class Note(Leaf):
                     )
         else:
             self.note_head = None
-        if len(args) == 1 and isinstance(args[0], Leaf):
-            self._copy_override_and_set_from_leaf(args[0])
+        if len(arguments) == 1 and isinstance(arguments[0], Leaf):
+            self._copy_override_and_set_from_leaf(arguments[0])
 
     ### SPECIAL METHODS ###
 
@@ -248,8 +248,8 @@ class Note(Leaf):
         return Leaf.written_duration.fget(self)
 
     @written_duration.setter
-    def written_duration(self, expr):
-        return Leaf.written_duration.fset(self, expr)
+    def written_duration(self, argument):
+        return Leaf.written_duration.fset(self, argument)
 
     @property
     def written_pitch(self):

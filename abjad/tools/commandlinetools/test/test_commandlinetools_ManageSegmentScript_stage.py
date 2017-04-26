@@ -13,7 +13,7 @@ except ImportError:
 
 class Test(ScorePackageScriptTestCase):
 
-    def side_effect(self, command, **kwargs):
+    def side_effect(self, command, **keywords):
         _, file_name = command.split()
         contents = stringtools.normalize('''
         segment_c

@@ -64,7 +64,7 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
         total_duration = pulse_duration * self.preprolated_duration
         return scoretools.make_notes(0, total_duration)
 
-    def __graph__(self, **kwargs):
+    def __graph__(self, **keywords):
         r'''Graphviz graph of q-grid leaf.
 
         Returns Graphviz graph.

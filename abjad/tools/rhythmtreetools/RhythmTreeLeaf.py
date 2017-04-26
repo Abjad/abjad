@@ -77,7 +77,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
             return scoretools.make_notes(0, total_duration)
         return scoretools.make_rests(total_duration)
 
-    def __graph__(self, **kwargs):
+    def __graph__(self, **keywords):
         r'''Graphviz graph of rhythm tree leaf.
         '''
         graph = graphtools.GraphvizGraph(name='G')

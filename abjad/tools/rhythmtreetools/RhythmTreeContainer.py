@@ -129,8 +129,8 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
-        r'''Concatenate containers self and expr. The operation c = a + b
+    def __add__(self, argument):
+        r'''Concatenate containers self and argument. The operation c = a + b
         returns a new RhythmTreeContainer c with the content of both a and b,
         and a preprolated_duration equal to the sum of the durations
         of a and b. The operation is non-commutative: the content of the
@@ -183,15 +183,15 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         '''
         from abjad.tools.rhythmtreetools.RhythmTreeParser \
             import RhythmTreeParser
-        if isinstance(expr, str):
-            expr = RhythmTreeParser()(expr)
-            assert 1 == len(expr) and isinstance(expr[0], type(self))
-            expr = expr[0]
+        if isinstance(argument, str):
+            argument = RhythmTreeParser()(argument)
+            assert 1 == len(argument) and isinstance(argument[0], type(self))
+            argument = argument[0]
         container = type(self)(
             preprolated_duration=self.preprolated_duration +
-            expr.preprolated_duration)
+            argument.preprolated_duration)
         container.extend(self[:])
-        container.extend(expr[:])
+        container.extend(argument[:])
         return container
 
     def __call__(self, pulse_duration):
@@ -238,7 +238,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
                     component._extract()
         return result
 
-    def __graph__(self, **kwargs):
+    def __graph__(self, **keywords):
         r'''The GraphvizGraph representation of the RhythmTreeContainer:
 
         ::
@@ -313,11 +313,11 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             self.duration.denominator,
             )
 
-    def __setitem__(self, i, expr):
-        r'''Set `expr` in self at nonnegative integer index `i`,
-        or set `expr` in self at slice i.
-        Replace contents of `self[i]` with `expr`.
-        Attach parentage to contents of `expr`,
+    def __setitem__(self, i, argument):
+        r'''Set `argument` in self at nonnegative integer index `i`,
+        or set `argument` in self at slice i.
+        Replace contents of `self[i]` with `argument`.
+        Attach parentage to contents of `argument`,
         and detach parentage of any replaced nodes.
 
         ::
@@ -364,38 +364,38 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         proper_parentage = self.proper_parentage
 
         if isinstance(i, int):
-            if isinstance(expr, str):
-                expr = RhythmTreeParser()(expr)[0]
-                assert len(expr) == 1
-                expr = expr[0]
+            if isinstance(argument, str):
+                argument = RhythmTreeParser()(argument)[0]
+                assert len(argument) == 1
+                argument = argument[0]
             else:
-                assert isinstance(expr, self._node_class)
+                assert isinstance(argument, self._node_class)
             old = self[i]
-            assert expr not in proper_parentage
+            assert argument not in proper_parentage
             old._set_parent(None)
-            expr._set_parent(self)
-            self._children.insert(i, expr)
+            argument._set_parent(self)
+            self._children.insert(i, argument)
         else:
-            if isinstance(expr, str):
-                expr = RhythmTreeParser()(expr)
-            elif isinstance(expr, list) and len(expr) == 1 and \
-                isinstance(expr[0], str):
-                expr = RhythmTreeParser()(expr[0])
+            if isinstance(argument, str):
+                argument = RhythmTreeParser()(argument)
+            elif isinstance(argument, list) and len(argument) == 1 and \
+                isinstance(argument[0], str):
+                argument = RhythmTreeParser()(argument[0])
             else:
-                assert all(isinstance(x, self._node_class) for x in expr)
+                assert all(isinstance(x, self._node_class) for x in argument)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0
             else:
                 start, stop, stride = i.indices(len(self))
             old = self[start:stop]
-            for node in expr:
+            for node in argument:
                 assert node not in proper_parentage
             for node in old:
                 node._set_parent(None)
-            for node in expr:
+            for node in argument:
                 node._set_parent(self)
-            self._children.__setitem__(slice(start, start), expr)
+            self._children.__setitem__(slice(start, start), argument)
         self._mark_entire_tree_for_later_update()
 
     ### PRIVATE PROPERTIES ###

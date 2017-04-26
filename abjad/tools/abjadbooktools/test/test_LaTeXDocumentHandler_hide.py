@@ -17,9 +17,9 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         input_file_contents = [
             '\\begin{comment}',
             '<abjad>[hide=true]',
-            'def do_something(expr):',
+            'def do_something(argument):',
             "    print('before')",
-            '    print(expr + 1)',
+            '    print(argument + 1)',
             "    print('after')",
             '',
             '</abjad>',
@@ -42,9 +42,9 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         input_file_contents = [
             '\\begin{comment}',
             '<abjad>[hide=true]',
-            'def do_something(expr):',
+            'def do_something(argument):',
             "    print('before')",
-            '    print(expr + 1)',
+            '    print(argument + 1)',
             "    print('after')",
             '',
             '</abjad>',
@@ -64,9 +64,9 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             """
             \\begin{comment}
             <abjad>[hide=true]
-            def do_something(expr):
+            def do_something(argument):
                 print('before')
-                print(expr + 1)
+                print(argument + 1)
                 print('after')
 
             </abjad>

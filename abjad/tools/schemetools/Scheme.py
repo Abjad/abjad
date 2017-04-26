@@ -121,17 +121,17 @@ class Scheme(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
-        if len(args) == 1:
-            if isinstance(args[0], type(self)):
-                value = args[0]._value
+    def __init__(self, *arguments, **keywords):
+        if len(arguments) == 1:
+            if isinstance(arguments[0], type(self)):
+                value = arguments[0]._value
             else:
-                value = args[0]
+                value = arguments[0]
         else:
-            value = args
-        quoting = kwargs.get('quoting')
-        force_quotes = kwargs.get('force_quotes')
-        verbatim = kwargs.get('verbatim')
+            value = arguments
+        quoting = keywords.get('quoting')
+        force_quotes = keywords.get('force_quotes')
+        verbatim = keywords.get('verbatim')
         if quoting is not None:
             assert isinstance(quoting, str)
             assert all(character in r"',@`#" for character in quoting)

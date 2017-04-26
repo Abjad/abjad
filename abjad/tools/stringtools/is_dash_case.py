@@ -10,8 +10,8 @@ hyphen_delimited_lowercase_regex = re.compile(
     )
 
 
-def is_dash_case(expr):
-    r'''Is true when `expr` is a string and is hyphen delimited lowercase.
+def is_dash_case(argument):
+    r'''Is true when `argument` is a string and is hyphen delimited lowercase.
 
     ..  container:: example
 
@@ -31,6 +31,6 @@ def is_dash_case(expr):
 
     Returns true or false.
     '''
-    if not isinstance(expr, six.string_types):
+    if not isinstance(argument, six.string_types):
         return False
-    return bool(hyphen_delimited_lowercase_regex.match(expr))
+    return bool(hyphen_delimited_lowercase_regex.match(argument))

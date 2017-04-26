@@ -62,8 +62,8 @@ class MetricAccentKernel(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
-        r'''Calls metrical accent kernal on `expr`.
+    def __call__(self, argument):
+        r'''Calls metrical accent kernal on `argument`.
 
         ::
 
@@ -79,7 +79,7 @@ class MetricAccentKernel(AbjadValueObject):
 
         Returns float.
         '''
-        offset_count = self.count_offsets_in_expr(expr)
+        offset_count = self.count_offsets(argument)
         response = durationtools.Multiplier(0, 1)
         for offset, count in offset_count.items():
             if offset in self._kernel:
@@ -88,14 +88,14 @@ class MetricAccentKernel(AbjadValueObject):
                 response += weighted_count
         return response
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a metrical accent kernal with a kernal equal
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a metrical accent kernal with a kernal equal
         to that of this metrical accent kernel. Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(expr):
-            if self._kernel == expr._kernel:
+        if type(self) == type(argument):
+            if self._kernel == argument._kernel:
                 return True
         return False
 
@@ -121,8 +121,8 @@ class MetricAccentKernel(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def count_offsets_in_expr(expr):
-        r'''Count offsets in `expr`.
+    def count_offsets(argument):
+        r'''Count offsets in `argument`.
 
         ..  container:: example
 
@@ -161,7 +161,7 @@ class MetricAccentKernel(AbjadValueObject):
                 >>> MetricAccentKernel = metertools.MetricAccentKernel
                 >>> selector = select().by_leaf(flatten=True)
                 >>> leaves = selector(score)
-                >>> counter = MetricAccentKernel.count_offsets_in_expr(leaves)
+                >>> counter = MetricAccentKernel.count_offsets(leaves)
                 >>> for offset, count in sorted(counter.items()):
                 ...     offset, count
                 ...
@@ -184,7 +184,7 @@ class MetricAccentKernel(AbjadValueObject):
 
             ::
 
-                >>> counter = MetricAccentKernel.count_offsets_in_expr((a, b, c))
+                >>> counter = MetricAccentKernel.count_offsets((a, b, c))
                 >>> for offset, count in sorted(counter.items()):
                 ...     offset, count
                 ...
@@ -197,7 +197,7 @@ class MetricAccentKernel(AbjadValueObject):
         Returns counter.
         '''
         from abjad.tools import metertools
-        return metertools.OffsetCounter(expr)
+        return metertools.OffsetCounter(argument)
 
     @staticmethod
     def from_meter(meter, denominator=32, normalize=True):

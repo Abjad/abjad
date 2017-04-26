@@ -5,10 +5,10 @@ from abjad.tools.topleveltools import iterate
 
 
 def notes_and_chords_are_on_expected_clefs(
-    expr,
+    argument,
     percussion_clef_is_allowed=True,
     ):
-    r'''Is true when notes and chords in `expr` are on expected clefs.
+    r'''Is true when notes and chords in `argument` are on expected clefs.
 
     ..  todo:: Move to WellformednessManager.
 
@@ -94,7 +94,7 @@ def notes_and_chords_are_on_expected_clefs(
     '''
     from abjad.tools import instrumenttools
     prototype = (scoretools.Note, scoretools.Chord)
-    for note_or_chord in iterate(expr).by_class(prototype):
+    for note_or_chord in iterate(argument).by_class(prototype):
         instrument = note_or_chord._get_effective(instrumenttools.Instrument)
         if not instrument:
             return False

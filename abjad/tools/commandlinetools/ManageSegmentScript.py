@@ -303,27 +303,27 @@ class ManageSegmentScript(ScorePackageScript):
             output_directory_path=segment_directory_path,
             )
 
-    def _process_args(self, args):
-        self._setup_paths(args.score_path)
-        if args.collect:
+    def _process_args(self, arguments):
+        self._setup_paths(arguments.score_path)
+        if arguments.collect:
             self._handle_collect()
-        if args.edit is not None:
-            self._handle_edit(segment_name=args.edit)
-        if args.illustrate is not None:
+        if arguments.edit is not None:
+            self._handle_edit(segment_name=arguments.edit)
+        if arguments.illustrate is not None:
             self._handle_illustrate(
-                segment_name=args.illustrate,
-                unstaged=args.unstaged,
+                segment_name=arguments.illustrate,
+                unstaged=arguments.unstaged,
                 )
-        if args.list_:
+        if arguments.list_:
             self._handle_list()
-        if args.new:
-            self._handle_create(force=args.force, segment_name=args.new)
-        if args.render is not None:
+        if arguments.new:
+            self._handle_create(force=arguments.force, segment_name=arguments.new)
+        if arguments.render is not None:
             self._handle_render(
-                segment_name=args.render,
-                unstaged=args.unstaged,
+                segment_name=arguments.render,
+                unstaged=arguments.unstaged,
                 )
-        if args.stage:
+        if arguments.stage:
             self._handle_stage()
 
     def _process_illustration_contents(self, ly_path):

@@ -159,7 +159,7 @@ class CompoundInequality(TypedList):
         '''
         from abjad.tools import timespantools
         from abjad.tools import timespantools
-        timespans = timespantools.TimespanInventory()
+        timespans = timespantools.TimespanList()
         for element in self:
             # TODO: compress the following two branches
             if isinstance(element, type(self)):
@@ -197,15 +197,15 @@ class CompoundInequality(TypedList):
     @property
     def _item_coercer(self):
         from abjad.tools import timespantools
-        def coerce_(expr):
-            if isinstance(expr, str):
-                return timespantools.Inequality(expr)
-            elif isinstance(expr, timespantools.Inequality):
-                return expr
-            elif isinstance(expr, timespantools.CompoundInequality):
-                return expr
+        def coerce_(argument):
+            if isinstance(argument, str):
+                return timespantools.Inequality(argument)
+            elif isinstance(argument, timespantools.Inequality):
+                return argument
+            elif isinstance(argument, timespantools.CompoundInequality):
+                return argument
             else:
-                raise TypeError(expr)
+                raise TypeError(argument)
         return coerce_
 
     ### PUBLIC PROPERTIES ###

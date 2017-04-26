@@ -22,7 +22,7 @@ class AttackPointOptimizer(AbjadObject):
     ### SPECIAL METHODS ###
 
     @abc.abstractmethod
-    def __call__(self, expr):
+    def __call__(self, argument):
         r'''Calls attack-point optimizer.
         '''
         raise NotImplementedError

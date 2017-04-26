@@ -159,8 +159,8 @@ class Measure(FixedDurationContainer):
             else:
                 return '{}()'.format(class_name)
 
-    def __setitem__(self, i, expr):
-        r'''Sets measure item `i` to `expr`.
+    def __setitem__(self, i, argument):
+        r'''Sets measure item `i` to `argument`.
 
         ..  container:: example
 
@@ -189,7 +189,7 @@ class Measure(FixedDurationContainer):
         '''
         old_time_signature = self.time_signature
         old_denominator = getattr(old_time_signature, 'denominator', None)
-        FixedDurationContainer.__setitem__(self, i, expr)
+        FixedDurationContainer.__setitem__(self, i, argument)
         self._conditionally_adjust_time_signature(old_denominator)
 
     ### PRIVATE PROPERTIES ###
@@ -451,9 +451,9 @@ class Measure(FixedDurationContainer):
         return self._always_format_time_signature
 
     @always_format_time_signature.setter
-    def always_format_time_signature(self, expr):
-        assert isinstance(expr, bool)
-        self._always_format_time_signature = expr
+    def always_format_time_signature(self, argument):
+        assert isinstance(argument, bool)
+        self._always_format_time_signature = argument
 
     @property
     def automatically_adjust_time_signature(self):
@@ -480,9 +480,9 @@ class Measure(FixedDurationContainer):
         return self._automatically_adjust_time_signature
 
     @automatically_adjust_time_signature.setter
-    def automatically_adjust_time_signature(self, expr):
-        assert isinstance(expr, bool)
-        self._automatically_adjust_time_signature = expr
+    def automatically_adjust_time_signature(self, argument):
+        assert isinstance(argument, bool)
+        self._automatically_adjust_time_signature = argument
 
     @property
     def has_non_power_of_two_denominator(self):

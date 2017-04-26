@@ -28,7 +28,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             'from abjad.tools.abjadbooktools import example_function',
             )
         assert code_block.input_file_contents == (
-            'def example_function(expr):',
+            'def example_function(argument):',
             "    r'''This is a multiline docstring.",
             '',
             '    This is the third line of the docstring.',
@@ -36,10 +36,10 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             '    # This is a comment.',
             "    print('Entering example function.')",
             '    try:',
-            '        expr = expr + 1',
+            '        argument = argument + 1',
             '    except TypeError:',
             "        print('Wrong type!')",
-            '    print(expr)',
+            '    print(argument)',
             "    print('Leaving example function.')",
             )
 
@@ -73,7 +73,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
 
             %%% ABJADBOOK START %%%
             \\begin{lstlisting}
-            def example_function(expr):
+            def example_function(argument):
                 r'''This is a multiline docstring.
 
                 This is the third line of the docstring.
@@ -81,10 +81,10 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
                 # This is a comment.
                 print('Entering example function.')
                 try:
-                    expr = expr + 1
+                    argument = argument + 1
                 except TypeError:
                     print('Wrong type!')
-                print(expr)
+                print(argument)
                 print('Leaving example function.')
             \\end{lstlisting}
             %%% ABJADBOOK END %%%

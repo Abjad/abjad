@@ -78,7 +78,7 @@ class Component(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
+    def __copy__(self, *arguments):
         r'''Copies component with indicators but without children of component
         or spanners attached to component.
 
@@ -269,10 +269,10 @@ class Component(AbjadObject):
         pass
 
     def _get_components(self, prototype=None, include_self=True):
-        expr = self
+        argument = self
         if include_self:
-            expr = [self]
-        components = iterate(expr).by_class(prototype)
+            argument = [self]
+        components = iterate(argument).by_class(prototype)
         return selectiontools.Selection(components)
 
     def _get_contents(self, include_self=True):

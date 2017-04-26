@@ -92,33 +92,33 @@ class DoctestScript(CommandlineScript):
         globs
         return globs
 
-    def _get_optionflags(self, args):
+    def _get_optionflags(self, arguments):
         optionflags = (
             doctest.NORMALIZE_WHITESPACE |
             doctest.ELLIPSIS
             )
-        if args and args.diff:
+        if arguments and arguments.diff:
             optionflags = optionflags | doctest.REPORT_NDIFF
-        if args and args.x:
+        if arguments and arguments.x:
             optionflags = optionflags | doctest.REPORT_ONLY_FIRST_FAILURE
         return optionflags
 
     def _process_args(
         self,
-        args=None,
+        arguments=None,
         file_paths=None,
         print_to_terminal=True,
         ):
-        assert not (args and file_paths)
+        assert not (arguments and file_paths)
         result = []
-        globs = self._get_namespace(abjad_only=args.abjad_only)
-        optionflags = self._get_optionflags(args)
+        globs = self._get_namespace(abjad_only=arguments.abjad_only)
+        optionflags = self._get_optionflags(arguments)
         total_failures = 0
         total_modules = 0
         total_tests = 0
         failed_file_paths = []
         error_messages = []
-        file_paths = file_paths or self._get_file_paths(args.path)
+        file_paths = file_paths or self._get_file_paths(arguments.path)
         try:
             for file_path in sorted(file_paths):
                 total_modules += 1
@@ -146,7 +146,7 @@ class DoctestScript(CommandlineScript):
                         result_code = 'FAILED'
                         string = '{} {}'.format(relative_path, result_code)
                         result.append(string)
-                    if args and args.x:
+                    if arguments and arguments.x:
                         break
                 else:
                     if print_to_terminal:

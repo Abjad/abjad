@@ -62,7 +62,7 @@ class Slur(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.expr_to_tridirectional_lilypond_symbol(
+        direction = stringtools.to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
 

@@ -63,11 +63,11 @@ class RootedChordClass(PitchClassSet):
 
     ### INITIALIZER ###
 
-    def __init__(self, root=None, *args):
+    def __init__(self, root=None, *arguments):
         from abjad.tools import tonalanalysistools
         root = root or 'c'
         root = pitchtools.NamedPitchClass(root)
-        chord_quality = tonalanalysistools.RootlessChordClass(*args)
+        chord_quality = tonalanalysistools.RootlessChordClass(*arguments)
         npcs = []
         for hdi in chord_quality:
             mdi = pitchtools.NamedInterval(hdi)

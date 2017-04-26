@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 
 
-def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
+def move_full_measure_tuplet_prolation_to_measure_time_signature(argument):
     r'''Moves prolation of full-measure tuplet to time signature of measure.
 
     Measures usually become non-power-of-two as as result.
@@ -37,7 +37,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
     from abjad.tools import indicatortools
     from abjad.tools import scoretools
 
-    for measure in iterate(expr).by_class(scoretools.Measure):
+    for measure in iterate(argument).by_class(scoretools.Measure):
         if len(measure) == 1:
             if isinstance(measure[0], scoretools.Tuplet):
                 tuplet = measure[0]

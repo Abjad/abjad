@@ -99,20 +99,20 @@ class QEventSequence(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, expr):
-        r'''Is true when q-event sequence contains `expr`. Otherwise false.
+    def __contains__(self, argument):
+        r'''Is true when q-event sequence contains `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        return expr in self._sequence
+        return argument in self._sequence
 
-    def __eq__(self, expr):
-        r'''Is true when q-event sequence equals `expr`. Otherwise false.
+    def __eq__(self, argument):
+        r'''Is true when q-event sequence equals `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(expr):
-            if self.sequence == expr.sequence:
+        if type(self) == type(argument):
+            if self.sequence == argument.sequence:
                 return True
         return False
 

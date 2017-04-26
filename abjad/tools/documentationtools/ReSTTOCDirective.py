@@ -53,14 +53,14 @@ class ReSTTOCDirective(ReSTDirective):
 
     ### SPECIAL METHODS ###
 
-    def __setitem__(self, i, expr):
-        r'''Sets `i` to `expr`.
+    def __setitem__(self, i, argument):
+        r'''Sets `i` to `argument`.
 
         Returns none.
         '''
         from abjad.tools import documentationtools
         newexpr = []
-        for x in expr:
+        for x in argument:
             if isinstance(x, str):
                 newexpr.append(documentationtools.ReSTTOCItem(text=x))
             else:

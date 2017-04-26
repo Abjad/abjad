@@ -3,15 +3,13 @@ from abjad import *
 
 
 def test_datastructuretools_TypedList___format___01():
-    r'''Empty inventory. No keywords.
-    '''
 
-    inventory = datastructuretools.TypedList()
+    list_ = datastructuretools.TypedList()
 
-    assert format(repr(inventory)) == stringtools.normalize(
+    assert format(repr(list_)) == stringtools.normalize(
         'TypedList([])',
         )
-    assert format(inventory) == stringtools.normalize(
+    assert format(list_) == stringtools.normalize(
         '''
         datastructuretools.TypedList(
             []
@@ -21,10 +19,8 @@ def test_datastructuretools_TypedList___format___01():
 
 
 def test_datastructuretools_TypedList___format___02():
-    r'''Populated inventory. Without keywords.
-    '''
 
-    inventory = datastructuretools.TypedList([
+    list_ = datastructuretools.TypedList([
         'foo',
         instrumenttools.Flute(),
         'bar',
@@ -32,7 +28,7 @@ def test_datastructuretools_TypedList___format___02():
         'blah',
         ])
 
-    assert format(inventory) == stringtools.normalize(
+    assert format(list_) == stringtools.normalize(
         r'''
         datastructuretools.TypedList(
             [
@@ -70,10 +66,10 @@ def test_datastructuretools_TypedList___format___02():
 
 
 def test_datastructuretools_TypedList___format___03():
-    r'''Populated inventory. With keywords.
+    r'''Populated list. With keywords.
     '''
 
-    inventory = datastructuretools.TypedList([
+    list_ = datastructuretools.TypedList([
         'foo',
         instrumenttools.Flute(),
         'bar',
@@ -81,7 +77,7 @@ def test_datastructuretools_TypedList___format___03():
         'blah'],
         )
 
-    assert format(inventory) == stringtools.normalize(
+    assert format(list_) == stringtools.normalize(
         r'''
         datastructuretools.TypedList(
             [

@@ -12,9 +12,9 @@ class LilyPondEvent(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name=None, **kwargs):
+    def __init__(self, name=None, **keywords):
         self.name = name
-        for k, v in kwargs.items():
+        for k, v in keywords.items():
             if k != 'name':
                 setattr(self, k, v)
 

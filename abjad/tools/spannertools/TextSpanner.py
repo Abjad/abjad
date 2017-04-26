@@ -174,10 +174,10 @@ class TextSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _attachment_test_all(self, expr):
+    def _attachment_test_all(self, argument):
         if self._skip_attachment_test_all:
             return True
-        return self._at_least_two_leaves(expr)
+        return self._at_least_two_leaves(argument)
 
     def _get_annotations(self, leaf):
         inspector = inspect_(leaf)

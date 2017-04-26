@@ -54,17 +54,17 @@ class AbjadBookScript(commandlinetools.CommandlineScript):
 
     ### PRIVATE METHODS ###
 
-    def _process_args(self, args):
+    def _process_args(self, arguments):
         from abjad.tools import abjadbooktools
-        assets_directory = args.assets_directory
-        clean = args.clean
-        configuration = self._read_config(args.config)
-        input_file_path = args.input_file_path
-        latex_root_directory = args.latex_root_directory
-        output_file_path = args.output_file_path
-        skip_rendering = args.skip_rendering
-        stylesheet = args.stylesheet
-        verbose = args.verbose
+        assets_directory = arguments.assets_directory
+        clean = arguments.clean
+        configuration = self._read_config(arguments.config)
+        input_file_path = arguments.input_file_path
+        latex_root_directory = arguments.latex_root_directory
+        output_file_path = arguments.output_file_path
+        skip_rendering = arguments.skip_rendering
+        stylesheet = arguments.stylesheet
+        verbose = arguments.verbose
         if 1 < len(input_file_path):
             document_handlers = []
             for path in input_file_path:

@@ -52,19 +52,19 @@ class Spanner(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, expr):
-        r'''Is true when spanner contains `expr`.
+    def __contains__(self, argument):
+        r'''Is true when spanner contains `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
         for x in self._components:
-            if x is expr:
+            if x is argument:
                 return True
         else:
             return False
 
-    def __copy__(self, *args):
+    def __copy__(self, *arguments):
         r'''Copies spanner.
 
         Does not copy spanner components.
@@ -115,16 +115,16 @@ class Spanner(AbjadObject):
         '''
         return len(self.components)
 
-    def __lt__(self, expr):
-        r'''Is true when spanner is less than `expr`. Otherwise false.
+    def __lt__(self, argument):
+        r'''Is true when spanner is less than `argument`. Otherwise false.
 
         Trivial comparison to allow doctests to work.
 
         Returns true or false.
         '''
-        if not isinstance(expr, Spanner):
+        if not isinstance(argument, Spanner):
             raise TypeError
-        return repr(self) < repr(expr)
+        return repr(self) < repr(argument)
 
     ### PRIVATE METHODS ###
 

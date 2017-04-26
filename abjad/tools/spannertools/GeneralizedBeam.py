@@ -268,7 +268,7 @@ class GeneralizedBeam(Spanner):
         direction_string = ''
         if self.vertical_direction is not None:
             direction_string = \
-                stringtools.expr_to_tridirectional_lilypond_symbol(
+                stringtools.to_tridirectional_lilypond_symbol(
                     self.vertical_direction)
         previous_leaf_is_beamable = (
             self._is_beamable(previous_leaf) and
@@ -289,17 +289,17 @@ class GeneralizedBeam(Spanner):
             stop_piece = ']'
         return start_piece, stop_piece
 
-    def _is_beamable(self, expr, beam_rests=False):
-        r'''Is true when `expr` is beamable. Otherwise false.
+    def _is_beamable(self, argument, beam_rests=False):
+        r'''Is true when `argument` is beamable. Otherwise false.
         '''
         from abjad.tools import scoretools
         prototype = (scoretools.Rest, scoretools.Skip)
-        if beam_rests and isinstance(expr, prototype):
+        if beam_rests and isinstance(argument, prototype):
             return True
-        if isinstance(expr, scoretools.Leaf):
-            if 0 < expr.written_duration.flag_count:
-                if (hasattr(expr, 'written_pitch') or
-                    hasattr(expr, 'written_pitches')):
+        if isinstance(argument, scoretools.Leaf):
+            if 0 < argument.written_duration.flag_count:
+                if (hasattr(argument, 'written_pitch') or
+                    hasattr(argument, 'written_pitches')):
                     return True
                 elif self.use_stemlets:
                     return True

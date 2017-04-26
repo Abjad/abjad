@@ -11,15 +11,18 @@ class OffsetCounter(TypedCounter):
 
         ::
 
-            >>> timespan_inventory = timespantools.TimespanInventory([
+            >>> timespans = timespantools.TimespanList([
             ...     timespantools.Timespan(0, 16),
             ...     timespantools.Timespan(5, 12),
             ...     timespantools.Timespan(-2, 8),
             ...     ])
             >>> timespan_operand = timespantools.Timespan(6, 10)
-            >>> timespan_inventory = timespan_inventory - timespan_operand
-            >>> offset_counter = metertools.OffsetCounter(timespan_inventory)
-            >>> print(format(offset_counter))
+            >>> timespans = timespans - timespan_operand
+            >>> offset_counter = metertools.OffsetCounter(timespans)
+
+        ::
+
+            >>> f(offset_counter)
             metertools.OffsetCounter(
                 {
                     durationtools.Offset(-2, 1): 1,
@@ -68,21 +71,125 @@ class OffsetCounter(TypedCounter):
 
             ::
 
-                >>> timespan_inventory = timespantools.TimespanInventory([
+                >>> timespans = timespantools.TimespanList([
                 ...     timespantools.Timespan(0, 16),
                 ...     timespantools.Timespan(5, 12),
                 ...     timespantools.Timespan(-2, 8),
                 ...     ])
                 >>> timespan_operand = timespantools.Timespan(6, 10)
-                >>> timespan_inventory = timespan_inventory - timespan_operand
-                >>> offset_counter = metertools.OffsetCounter(
-                ...     timespan_inventory,
-                ...     )
+                >>> timespans = timespans - timespan_operand
+                >>> offset_counter = metertools.OffsetCounter(timespans)
                 >>> show(offset_counter, scale=0.5) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> illustration = offset_counter.__illustrate__()
+                >>> lilypond_file = offset_counter.__illustrate__()
+                >>> f(lilypond_file)
+                % ...
+                <BLANKLINE>
+                \header {
+                    tagline = ##f
+                }
+                <BLANKLINE>
+                \layout {}
+                <BLANKLINE>
+                \paper {}
+                <BLANKLINE>
+                \markup {
+                    \overlay
+                        {
+                            \postscript
+                                #"
+                                0.2 setlinewidth
+                                [ 2 1 ] 0 setdash
+                                1 -1 moveto
+                                0 -2 rlineto
+                                stroke
+                                17.666666666666668 -1 moveto
+                                0 -2 rlineto
+                                stroke
+                                59.33333333333334 -1 moveto
+                                0 -2 rlineto
+                                stroke
+                                67.66666666666667 -1 moveto
+                                0 -8 rlineto
+                                stroke
+                                101.00000000000001 -1 moveto
+                                0 -5 rlineto
+                                stroke
+                                117.66666666666667 -1 moveto
+                                0 -2 rlineto
+                                stroke
+                                151 -1 moveto
+                                0 -2 rlineto
+                                stroke
+                                "
+                            \translate
+                                #'(1.0 . 1)
+                                \sans
+                                    \fontsize
+                                        #-3
+                                        \center-align
+                                            \fraction
+                                                -2
+                                                1
+                            \translate
+                                #'(17.666666666666668 . 1)
+                                \sans
+                                    \fontsize
+                                        #-3
+                                        \center-align
+                                            \fraction
+                                                0
+                                                1
+                            \translate
+                                #'(59.33333333333334 . 1)
+                                \sans
+                                    \fontsize
+                                        #-3
+                                        \center-align
+                                            \fraction
+                                                5
+                                                1
+                            \translate
+                                #'(67.66666666666667 . 1)
+                                \sans
+                                    \fontsize
+                                        #-3
+                                        \center-align
+                                            \fraction
+                                                6
+                                                1
+                            \translate
+                                #'(101.00000000000001 . 1)
+                                \sans
+                                    \fontsize
+                                        #-3
+                                        \center-align
+                                            \fraction
+                                                10
+                                                1
+                            \translate
+                                #'(117.66666666666667 . 1)
+                                \sans
+                                    \fontsize
+                                        #-3
+                                        \center-align
+                                            \fraction
+                                                12
+                                                1
+                            \translate
+                                #'(151.0 . 1)
+                                \sans
+                                    \fontsize
+                                        #-3
+                                        \center-align
+                                            \fraction
+                                                16
+                                                1
+                        }
+                    }
+
 
         Returns LilyPond file.
         '''

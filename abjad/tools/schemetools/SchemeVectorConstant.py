@@ -32,8 +32,8 @@ class SchemeVectorConstant(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        Scheme.__init__(self, *args, quoting="'#")
+    def __init__(self, *arguments):
+        Scheme.__init__(self, *arguments, quoting="'#")
 
     ### PRIVATE METHODS ###
 

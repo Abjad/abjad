@@ -32,14 +32,14 @@ class GraphvizMixin(AbjadObject):
         agent = systemtools.StorageFormatAgent(node)
         edges = set(getattr(node, '_edges', ()))
         mapping = dict()
-        args = agent.get_template_dict()
-        if 'children' not in args:
+        arguments = agent.get_template_dict()
+        if 'children' not in arguments:
             copied_node = new(node)
             mapping[node] = copied_node
         else:
             copied_node = new(node, children=None)
             mapping[node] = copied_node
-            for child in args['children']:
+            for child in arguments['children']:
                 (
                     copied_child,
                     child_edges,

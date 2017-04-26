@@ -79,7 +79,7 @@ class Trumpet(Instrument):
 
                 >>> show(trumpet.allowable_clefs) # doctest: +SKIP
 
-        Returns clef inventory.
+        Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
 

@@ -10,7 +10,7 @@ class Show(object):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, argument):
         r'''A replacement for Ajbad's show function for IPython Notebook.
         '''
         from abjad.tools import systemtools
@@ -18,13 +18,13 @@ class Show(object):
         from IPython.core.display import display_png
         assert systemtools.IOManager.find_executable('lilypond')
         assert systemtools.IOManager.find_executable('convert')
-        assert hasattr(expr, '__illustrate__')
+        assert hasattr(argument, '__illustrate__')
         temporary_directory = tempfile.mkdtemp()
         temporary_file_path = os.path.join(
             temporary_directory,
             'output.png',
             )
-        result = topleveltools.persist(expr).as_png(temporary_file_path)
+        result = topleveltools.persist(argument).as_png(temporary_file_path)
         pngs = []
         for file_path in result[0]:
             command = 'convert {file_path} -trim {file_path}'

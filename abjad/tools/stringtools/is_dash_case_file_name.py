@@ -16,8 +16,8 @@ hyphen_delimited_lowercase_file_name_regex = re.compile(
     )
 
 
-def is_dash_case_file_name(expr):
-    r'''Is true when `expr` is a string and is hyphen-delimited lowercase 
+def is_dash_case_file_name(argument):
+    r'''Is true when `argument` is a string and is hyphen-delimited lowercase 
     file name with extension.
 
     ..  container:: example
@@ -38,8 +38,8 @@ def is_dash_case_file_name(expr):
 
     Returns true or false.
     '''
-    if not isinstance(expr, six.string_types):
+    if not isinstance(argument, six.string_types):
         return False
-    if expr == '':
+    if argument == '':
         return True
-    return bool(hyphen_delimited_lowercase_file_name_regex.match(expr))
+    return bool(hyphen_delimited_lowercase_file_name_regex.match(argument))

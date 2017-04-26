@@ -76,9 +76,9 @@ class MeterManager(abctools.AbjadObject):
         return True
 
     @staticmethod
-    def iterate_rewrite_inputs(expr):
+    def iterate_rewrite_inputs(argument):
         r'''Iterates topmost masked logical ties, rest groups and containers
-        in `expr`, masked by `expr`.
+        in `argument`, masked by `argument`.
 
         ::
 
@@ -179,7 +179,7 @@ class MeterManager(abctools.AbjadObject):
         current_leaf_group = None
         current_leaf_group_is_silent = False
 
-        for x in expr:
+        for x in argument:
             if isinstance(x, (scoretools.Note, scoretools.Chord)):
                 this_tie_spanner = x._get_spanners(spannertools.Tie) or None
                 if current_leaf_group is None:
