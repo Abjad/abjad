@@ -99,7 +99,7 @@ give them a 6/4 time signature, just so they line up properly.
 ..  abjad::
     :stylesheet: non-proportional.ly
 
-    staff = Staff(sequencetools.flatten_sequence(descents))
+    staff = Staff(sequence(descents).flatten())
     time_signature = TimeSignature((6, 4))
     attach(time_signature, staff)
     show(staff)
@@ -119,7 +119,7 @@ Let's look at the second violins too:
 ..  abjad::
     :stylesheet: non-proportional.ly
 
-    staff = Staff(sequencetools.flatten_sequence(descents))
+    staff = Staff(sequence(descents).flatten())
     time_signature = TimeSignature((6, 4))
     attach(time_signature, staff)
     show(staff)
@@ -141,7 +141,7 @@ the bar lines accidentally:
 ..  abjad::
     :stylesheet: non-proportional.ly
 
-    staff = Staff(sequencetools.flatten_sequence(descents))
+    staff = Staff(sequence(descents).flatten())
     shards = mutate(staff[:]).split([(3, 2)], cyclic=True)
     time_signature = indicatortools.TimeSignature((6, 4))
     attach(time_signature, staff)

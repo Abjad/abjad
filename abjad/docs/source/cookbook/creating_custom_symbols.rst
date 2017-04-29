@@ -8,7 +8,7 @@ Building basic shapes with markup
 
     mallet_stick = Markup.draw_line(0, -6)
     mallet_head = Markup.filled_box((-1, 1), (-1, 1))
-    square_mallet = Markup.combine(mallet_stick, mallet_head)
+    square_mallet = Markup.combine([mallet_stick, mallet_head])
     print(format(square_mallet))
     show(square_mallet)
 
@@ -16,7 +16,7 @@ Building basic shapes with markup
 
     mallet_stick = Markup.draw_line(0, -6)
     mallet_head = Markup.filled_box((-1, 1), (-1, 1), blot=1)
-    square_mallet = Markup.combine(mallet_stick, mallet_head)
+    square_mallet = Markup.combine([mallet_stick, mallet_head])
     print(format(square_mallet))
     show(square_mallet)
 
@@ -24,7 +24,7 @@ Building basic shapes with markup
 
     mallet_stick = Markup.draw_line(0, -6)
     mallet_head = Markup.draw_circle(2, 0.5)
-    round_mallet = Markup.combine(mallet_stick, mallet_head)
+    round_mallet = Markup.combine([mallet_stick, mallet_head])
     print(format(round_mallet))
     show(round_mallet)
 
@@ -32,7 +32,7 @@ Building basic shapes with markup
 
     mallet_stick = Markup.draw_line(0, -5).translate((0, -1))
     mallet_head = Markup.draw_circle(1, 0.25)
-    round_mallet = Markup.combine(mallet_stick, mallet_head)
+    round_mallet = Markup.combine([mallet_stick, mallet_head])
     print(format(round_mallet))
     show(round_mallet)
 
@@ -139,27 +139,27 @@ Working directly with Postscript
 
 ..  abjad::
 
-    diagram = Markup.combine(text, outline)
+    diagram = Markup.combine([text, outline])
     show(diagram)
 
 ..  abjad::
 
-    diagram = Markup.combine(text, outline.vcenter())
+    diagram = Markup.combine([text, outline.vcenter()])
     show(diagram)
 
 ..  abjad::
 
-    diagram = Markup.combine(text, outline.vcenter())
+    diagram = Markup.combine([text.vcenter(), outline])
     show(diagram)
 
 ..  abjad::
 
-    diagram = Markup.combine(text.vcenter(), outline.vcenter())
+    diagram = Markup.combine([text.vcenter(), outline.vcenter()])
     show(diagram)
 
 ..  abjad::
 
-    diagram = Markup.combine(text.vcenter().translate((1, 0)), outline.vcenter())
+    diagram = Markup.combine([text.vcenter().translate((1, 0)), outline.vcenter()])
     show(diagram)
     print(format(diagram))
 

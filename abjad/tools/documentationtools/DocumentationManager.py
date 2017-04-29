@@ -37,24 +37,6 @@ class DocumentationManager(abctools.AbjadObject):
 
     tools_packages_package_path = 'abjad.tools'
 
-    r'''NOTE:
-
-    Use of the module.__package__ property is risky.
-
-    Python does not set the module.__package__ property consistently.
-
-    Python only sets the module.__package__ property when module imports
-    some other module. Otherwise Python sets the module.__package__ property
-    to none.
-
-    See:
-
-    http://stackoverflow.com/questions/4437394/package-is-none-when-importing-a-python-module
-
-    This is why the implementation here uses module.__name__ instead of
-    module.__package__.
-    '''
-
     ### PRIVATE METHODS ###
 
     def _build_attribute_section(
@@ -184,6 +166,7 @@ class DocumentationManager(abctools.AbjadObject):
 
     def _collect_class_attributes(self, cls):
         ignored_special_methods = (
+            '__dict__',
             '__getattribute__',
             '__getnewargs__',
             '__getstate__',
@@ -397,24 +380,10 @@ class DocumentationManager(abctools.AbjadObject):
             ))
         document.extend(self._build_attribute_section(
             cls,
-            sorted(class_methods + static_methods,
-                key=lambda x: x.name,
-                ),
+            sorted(class_methods + static_methods, key=lambda x: x.name),
             'automethod',
             'Class & static methods',
             ))
-#        document.extend(self._build_attribute_section(
-#            cls,
-#            class_methods,
-#            'automethod',
-#            'Class methods',
-#            ))
-#        document.extend(self._build_attribute_section(
-#            cls,
-#            static_methods,
-#            'automethod',
-#            'Static methods',
-#            ))
         document.extend(self._build_attribute_section(
             cls,
             special_methods,
@@ -466,6 +435,7 @@ class DocumentationManager(abctools.AbjadObject):
             abjadbooktools.abjad_output_block,
             abjadbooktools.abjad_reveal_block,
             abjadbooktools.abjad_thumbnail_block,
+            systemtools.TestCase,
             ])
         return ignored_classes
 

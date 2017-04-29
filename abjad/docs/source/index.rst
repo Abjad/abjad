@@ -176,7 +176,7 @@ Upcoming Events
 `CCRMA Summer Workshop`_ 
 ````````````````````````
 
-July 11-15, 2016 | Palo Alto, CA
+August 07-11, 2017 | Palo Alto, CA
 
 Introduction to the production of professionally engraved musical scores
 using the Python programming language and the Abjad API for Formalized
@@ -199,12 +199,6 @@ Topics covered include:
 -   controlling the details of musical typography programmatically.
 
 Taught by Jeff Treviño, Trevor Bača, and Josiah Wolf Oberholtzer.
-
-..  note::
-
-    For information on the Women in Computer Music Scholarship for the
-    Formalized Score Control workshop, please visit `this page.
-    <https://ccrma.stanford.edu/workshops/women-in-computer-music-abjad-scholarship>`_
 
 Texts on Abjad
 --------------
@@ -257,7 +251,6 @@ examples to see these features in action:
 
     for_beginners/index
     literature_examples/index
-    cookbook/index
     core_concepts/index
     reference_manual/index
 
