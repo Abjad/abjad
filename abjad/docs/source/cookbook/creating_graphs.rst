@@ -15,14 +15,14 @@ Key points:
 
     def create_context_graph():
         # Create context graph with subgraphs and styling.
-        context_graph = documentationtools.GraphvizGraph(
+        context_graph = graphtools.GraphvizGraph(
             name='All Contexts',
             children=[
-                documentationtools.GraphvizSubgraph(name='Global Contexts'),
-                documentationtools.GraphvizSubgraph(name='Score Contexts'),
-                documentationtools.GraphvizSubgraph(name='StaffGroup Contexts'),
-                documentationtools.GraphvizSubgraph(name='Staff Contexts'),
-                documentationtools.GraphvizSubgraph(name='Bottom Contexts'),
+                graphtools.GraphvizSubgraph(name='Global Contexts'),
+                graphtools.GraphvizSubgraph(name='Score Contexts'),
+                graphtools.GraphvizSubgraph(name='StaffGroup Contexts'),
+                graphtools.GraphvizSubgraph(name='Staff Contexts'),
+                graphtools.GraphvizSubgraph(name='Bottom Contexts'),
                 ],
             attributes=dict(
                 bgcolor='transparent',
@@ -55,7 +55,7 @@ Key points:
             fillcolor = i % 9 + 1
             label = r'\n'.join(stringtools.delimit_words(name))
             node_attributes = {'label': label}
-            node = documentationtools.GraphvizNode(
+            node = graphtools.GraphvizNode(
                 name=context.name,
                 attributes=dict(fillcolor=fillcolor, label=label),
                 )
@@ -75,7 +75,7 @@ Key points:
         for parent_context, parent_node in context_mapping.items():
             for child_context in parent_context.accepts:
                 child_node = context_mapping[child_context]
-                edge = documentationtools.GraphvizEdge()
+                edge = graphtools.GraphvizEdge()
                 if (
                     parent_context.default_child is not None and
                     child_context is parent_context.default_child
@@ -99,14 +99,14 @@ Graph basics
 
 ..  abjad::
 
-    my_graph = documentationtools.GraphvizGraph()
+    my_graph = graphtools.GraphvizGraph()
 
 ..  abjad::
 
-    node_a = documentationtools.GraphvizNode(name='A', attributes={'label': 'A'})
-    node_b = documentationtools.GraphvizNode(name='B', attributes={'label': 'B'})
-    node_c = documentationtools.GraphvizNode(name='C', attributes={'label': 'C'})
-    node_d = documentationtools.GraphvizNode(name='D', attributes={'label': 'D'})
+    node_a = graphtools.GraphvizNode(name='A', attributes={'label': 'A'})
+    node_b = graphtools.GraphvizNode(name='B', attributes={'label': 'B'})
+    node_c = graphtools.GraphvizNode(name='C', attributes={'label': 'C'})
+    node_d = graphtools.GraphvizNode(name='D', attributes={'label': 'D'})
 
 ..  abjad::
 
@@ -156,15 +156,15 @@ Populating the graph
 
 ..  abjad::
 
-    context_graph = documentationtools.GraphvizGraph(name='All Contexts')
+    context_graph = graphtools.GraphvizGraph(name='All Contexts')
 
 ..  abjad::
 
-    global_subgraph = documentationtools.GraphvizSubgraph(name='Global Contexts')
-    score_subgraph = documentationtools.GraphvizSubgraph(name='Score Contexts')
-    staff_group_subgraph = documentationtools.GraphvizSubgraph(name='StaffGroup Contexts')
-    staff_subgraph = documentationtools.GraphvizSubgraph(name='Staff Contexts')
-    bottom_subgraph = documentationtools.GraphvizSubgraph(name='Bottom Contexts')
+    global_subgraph = graphtools.GraphvizSubgraph(name='Global Contexts')
+    score_subgraph = graphtools.GraphvizSubgraph(name='Score Contexts')
+    staff_group_subgraph = graphtools.GraphvizSubgraph(name='StaffGroup Contexts')
+    staff_subgraph = graphtools.GraphvizSubgraph(name='Staff Contexts')
+    bottom_subgraph = graphtools.GraphvizSubgraph(name='Bottom Contexts')
 
 ..  abjad::
 
@@ -180,7 +180,7 @@ Populating the graph
 
     context_mapping = {}
     for context in lilypondnametools.LilyPondContext.list_all_contexts():
-        node = documentationtools.GraphvizNode(
+        node = graphtools.GraphvizNode(
             name=context.name,
             attributes={'label': context.name},
             )
@@ -205,7 +205,7 @@ Populating the graph
     for parent_context, parent_node in context_mapping.items():
         for child_context in parent_context.accepts:
             child_node = context_mapping[child_context]
-            edge = documentationtools.GraphvizEdge()
+            edge = graphtools.GraphvizEdge()
             if (
                 parent_context.default_child is not None and
                 child_context is parent_context.default_child

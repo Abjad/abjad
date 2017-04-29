@@ -29,10 +29,10 @@ class GraphvizGroup(TreeContainer):
 
     @property
     def _node_class(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         prototype = (
-            documentationtools.GraphvizField,
-            documentationtools.GraphvizGroup,
+            graphtools.GraphvizField,
+            graphtools.GraphvizGroup,
             )
         return prototype
 

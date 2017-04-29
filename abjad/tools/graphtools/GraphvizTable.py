@@ -7,15 +7,15 @@ class GraphvizTable(TreeContainer):
 
     ::
 
-        >>> table = documentationtools.GraphvizTable(
+        >>> table = graphtools.GraphvizTable(
         ...     attributes={'style': 'rounded'},
         ...     )
-        >>> row_1 = documentationtools.GraphvizTableRow()
-        >>> row_1.append(documentationtools.GraphvizTableCell(label='foo'))
-        >>> row_1.append(documentationtools.GraphvizTableVerticalRule())
-        >>> row_1.append(documentationtools.GraphvizTableCell(label='bar'))
-        >>> row_2 = documentationtools.GraphvizTableRow()
-        >>> row_2.append(documentationtools.GraphvizTableCell(label='quux'))
+        >>> row_1 = graphtools.GraphvizTableRow()
+        >>> row_1.append(graphtools.GraphvizTableCell(label='foo'))
+        >>> row_1.append(graphtools.GraphvizTableVerticalRule())
+        >>> row_1.append(graphtools.GraphvizTableCell(label='bar'))
+        >>> row_2 = graphtools.GraphvizTableRow()
+        >>> row_2.append(graphtools.GraphvizTableCell(label='quux'))
         >>> table.extend([row_1, row_2])
         >>> print(table)
         <
@@ -32,7 +32,7 @@ class GraphvizTable(TreeContainer):
 
     ::
 
-        >>> node = documentationtools.GraphvizNode()
+        >>> node = graphtools.GraphvizNode()
         >>> node.append(table)
         >>> print(node)
         node_0 [label=<
@@ -109,10 +109,10 @@ class GraphvizTable(TreeContainer):
 
     @property
     def _node_class(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         prototype = (
-            documentationtools.GraphvizTableRow,
-            documentationtools.GraphvizTableHorizontalRule,
+            graphtools.GraphvizTableRow,
+            graphtools.GraphvizTableHorizontalRule,
             )
         return prototype
 

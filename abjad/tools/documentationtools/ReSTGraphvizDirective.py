@@ -18,9 +18,9 @@ class ReSTGraphvizDirective(ReSTDirective):
         name=None,
         options=None,
         ):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         if graph is not None:
-            assert isinstance(graph, documentationtools.GraphvizGraph)
+            assert isinstance(graph, graphtools.GraphvizGraph)
         self._graph = graph
         ReSTDirective.__init__(
             self,

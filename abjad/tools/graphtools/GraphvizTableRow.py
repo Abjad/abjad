@@ -44,9 +44,9 @@ class GraphvizTableRow(TreeContainer):
 
     @property
     def _node_class(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         prototype = (
-            documentationtools.GraphvizTableCell,
-            documentationtools.GraphvizTableVerticalRule,
+            graphtools.GraphvizTableCell,
+            graphtools.GraphvizTableVerticalRule,
             )
         return prototype

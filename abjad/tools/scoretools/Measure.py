@@ -231,15 +231,15 @@ class Measure(FixedDurationContainer):
             self.time_signature.denominator,
             )
         node[0].extend([
-            documentationtools.GraphvizTableRow([
-                documentationtools.GraphvizTableCell(
+            graphtools.GraphvizTableRow([
+                graphtools.GraphvizTableCell(
                     label=type(self).__name__,
                     attributes={'border': 0},
                     ),
                 ]),
-            documentationtools.GraphvizTableHorizontalRule(),
-            documentationtools.GraphvizTableRow([
-                documentationtools.GraphvizTableCell(
+            graphtools.GraphvizTableHorizontalRule(),
+            graphtools.GraphvizTableRow([
+                graphtools.GraphvizTableCell(
                     label=str(fraction),
                     attributes={'border': 0},
                     ),

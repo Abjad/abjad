@@ -187,15 +187,15 @@ class Tuplet(Container):
         from abjad.tools import scoretools
         node = scoretools.Component._as_graphviz_node(self)
         node[0].extend([
-            documentationtools.GraphvizTableRow([
-                documentationtools.GraphvizTableCell(
+            graphtools.GraphvizTableRow([
+                graphtools.GraphvizTableCell(
                     label=type(self).__name__,
                     attributes={'border': 0},
                     ),
                 ]),
-            documentationtools.GraphvizTableHorizontalRule(),
-            documentationtools.GraphvizTableRow([
-                documentationtools.GraphvizTableCell(
+            graphtools.GraphvizTableHorizontalRule(),
+            graphtools.GraphvizTableRow([
+                graphtools.GraphvizTableCell(
                     label='* {!s}'.format(self.multiplier),
                     attributes={'border': 0},
                     ),

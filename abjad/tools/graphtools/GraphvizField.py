@@ -74,9 +74,9 @@ class GraphvizField(TreeNode):
     def struct(self):
         r'''Gets the parent struct.
         '''
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         parent = self.parent
         while parent is not None:
-            if isinstance(parent, documentationtools.GraphvizNode):
+            if isinstance(parent, graphtools.GraphvizNode):
                 return parent
             parent = parent.parent

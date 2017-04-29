@@ -51,9 +51,9 @@ class GraphvizMixin(AbjadObject):
         return copied_node, edges, mapping
 
     def _format_attribute(self, name, value):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         result = []
-        if isinstance(value, documentationtools.GraphvizTable):
+        if isinstance(value, graphtools.GraphvizTable):
             result.extend(str(value).splitlines())
             result[0] = '{}={}'.format(name, result[0])
         else:

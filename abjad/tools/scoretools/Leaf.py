@@ -57,21 +57,21 @@ class Leaf(Component):
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         lilypond_format = self._compact_representation
         lilypond_format = lilypond_format.replace('<', '&lt;')
         lilypond_format = lilypond_format.replace('>', '&gt;')
         node = Component._as_graphviz_node(self)
         node[0].extend([
-            documentationtools.GraphvizTableRow([
-                documentationtools.GraphvizTableCell(
+            graphtools.GraphvizTableRow([
+                graphtools.GraphvizTableCell(
                     label=type(self).__name__,
                     attributes={'border': 0},
                     ),
                 ]),
-            documentationtools.GraphvizTableHorizontalRule(),
-            documentationtools.GraphvizTableRow([
-                documentationtools.GraphvizTableCell(
+            graphtools.GraphvizTableHorizontalRule(),
+            graphtools.GraphvizTableRow([
+                graphtools.GraphvizTableCell(
                     label=lilypond_format,
                     attributes={'border': 0},
                     ),
@@ -473,7 +473,6 @@ class Leaf(Component):
                     index = spanner._index(middle_shard[-1])
                     spanner._fracture(index, direction=Right)
         # adjust first leaf
-        first_leaf = flattened_result[0]
         self._detach_grace_containers(kind='after')
         # adjust any middle leaves
         for middle_leaf in flattened_result[1:-1]:
@@ -507,7 +506,6 @@ class Leaf(Component):
         tie_split_notes=True,
         use_messiaen_style_ties=False,
         ):
-        from abjad.tools import indicatortools
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         # check input
@@ -612,7 +610,8 @@ class Leaf(Component):
         from abjad.tools import indicatortools
         tempo = self._get_effective(indicatortools.Tempo)
         if tempo is not None and not tempo.is_imprecise:
-            result = (self._get_duration() /
+            result = (
+                self._get_duration() /
                 tempo.reference_duration /
                 tempo.units_per_minute * 60
                 )

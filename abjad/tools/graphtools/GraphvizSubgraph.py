@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.documentationtools.GraphvizGraph import GraphvizGraph
+from abjad.tools.graphtools.GraphvizGraph import GraphvizGraph
 
 
 class GraphvizSubgraph(GraphvizGraph):
@@ -46,10 +46,10 @@ class GraphvizSubgraph(GraphvizGraph):
 
     @property
     def _node_class(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         return (
-            documentationtools.GraphvizSubgraph,
-            documentationtools.GraphvizNode,
+            graphtools.GraphvizSubgraph,
+            graphtools.GraphvizNode,
             )
 
     ### PUBLIC PROPERTIES ###

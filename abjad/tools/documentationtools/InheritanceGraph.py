@@ -199,11 +199,11 @@ class InheritanceGraph(AbjadObject):
     def __graph__(self, **kwargs):
         r'''Graphviz graph of inheritance graph.
         '''
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
 
         class_nodes = {}
 
-        graph = documentationtools.GraphvizGraph(
+        graph = graphtools.GraphvizGraph(
             name='InheritanceGraph',
             attributes={
                 'bgcolor': 'transparent',
@@ -237,7 +237,7 @@ class InheritanceGraph(AbjadObject):
             try:
                 cluster = graph[pieces[0]]
             except KeyError:
-                cluster = documentationtools.GraphvizSubgraph(
+                cluster = graphtools.GraphvizSubgraph(
                     name=pieces[0],
                     attributes={
                         'label': pieces[0],
@@ -249,7 +249,7 @@ class InheritanceGraph(AbjadObject):
                 current_class.__module__,
                 current_class.__name__,
                 )
-            node = documentationtools.GraphvizNode(
+            node = graphtools.GraphvizNode(
                 name=node_name,
                 #name='.'.join(pieces),
                 )
@@ -320,7 +320,7 @@ class InheritanceGraph(AbjadObject):
                 if ok_to_join:
                     parent_node = class_nodes[parent]
                     child_node = class_nodes[child]
-                    documentationtools.GraphvizEdge().attach(
+                    graphtools.GraphvizEdge().attach(
                         parent_node, child_node)
 
         for i, cluster in enumerate(
@@ -340,13 +340,9 @@ class InheritanceGraph(AbjadObject):
 
         return graph
 
-
     ### PRIVATE METHODS ###
 
     def _build_basic_mappings(self, classes):
-        child_parents_mapping = {}
-        parent_children_mapping = {}
-        invalid_classes = set([])
         def recurse(current_class):
             if current_class in child_parents_mapping:
                 return True
@@ -364,6 +360,9 @@ class InheritanceGraph(AbjadObject):
             for parent in parents:
                 parent_children_mapping[parent].add(current_class)
             return True
+        child_parents_mapping = {}
+        parent_children_mapping = {}
+        invalid_classes = set([])
         for current_class in classes:
             recurse(current_class)
         return child_parents_mapping, parent_children_mapping
@@ -413,11 +412,6 @@ class InheritanceGraph(AbjadObject):
         return all_classes, immediate_classes, tuple(cached_addresses)
 
     def _find_lineage_distances(self):
-        if not self.lineage_classes:
-            return None
-        if not self.lineage_prune_distance:
-            return None
-        distance_mapping = {}
         def recurse_downward(current_class, distance=0):
             if current_class not in self.parent_children_mapping:
                 return
@@ -428,6 +422,11 @@ class InheritanceGraph(AbjadObject):
                 elif (distance + 1) < distance_mapping[child]:
                     distance_mapping[child] = distance + 1
                     recurse_downward(child, distance + 1)
+        if not self.lineage_classes:
+            return None
+        if not self.lineage_prune_distance:
+            return None
+        distance_mapping = {}
         for current_class in self.lineage_classes:
             recurse_downward(current_class)
         return distance_mapping

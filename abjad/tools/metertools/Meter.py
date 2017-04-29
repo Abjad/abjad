@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import documentationtools
 from abjad.tools import durationtools
+from abjad.tools import graphtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools
@@ -595,7 +595,7 @@ class Meter(AbjadObject):
             is_last=False,
             ):
             if not is_last:
-                offset_node = documentationtools.GraphvizNode(
+                offset_node = graphtools.GraphvizNode(
                     attributes={
                         'shape': 'Mrecord',
                         'style': 'filled',
@@ -606,36 +606,36 @@ class Meter(AbjadObject):
                         },
                     )
             else:
-                offset_node = documentationtools.GraphvizNode(
+                offset_node = graphtools.GraphvizNode(
                     attributes={
                         'shape': 'Mrecord',
                         },
                     )
-            offset_field = documentationtools.GraphvizField(
+            offset_field = graphtools.GraphvizField(
                 label=str(offset),
                 )
-            weight_field = documentationtools.GraphvizField(
+            weight_field = graphtools.GraphvizField(
                 label='+' * offsets[offset],
                 )
-            group = documentationtools.GraphvizGroup()
+            group = graphtools.GraphvizGroup()
             group.extend([offset_field, weight_field])
             offset_node.append(group)
             offset_subgraph.append(offset_node)
             leaf_one_node = node_mapping[leaf_one]
-            edge = documentationtools.GraphvizEdge(
+            edge = graphtools.GraphvizEdge(
                 attributes={'style': 'dotted'},
                 )
             edge.attach(leaf_one_node, offset_node)
             if leaf_two:
                 leaf_two_node = node_mapping[leaf_two]
-                edge = documentationtools.GraphvizEdge(
+                edge = graphtools.GraphvizEdge(
                     attributes={'style': 'dotted'},
                     )
                 edge.attach(leaf_two_node, offset_node)
         from abjad.tools import metertools
         offsets = metertools.MetricAccentKernel.count_offsets_in_expr(
             sequencetools.Sequence(self.depthwise_offset_inventory).flatten())
-        graph = documentationtools.GraphvizGraph(
+        graph = graphtools.GraphvizGraph(
             name='G',
             attributes={
                 'bgcolor': 'transparent',
@@ -654,7 +654,7 @@ class Meter(AbjadObject):
             )
         node_mapping = {}
         for node in self._root_node.nodes:
-            graphviz_node = documentationtools.GraphvizNode()
+            graphviz_node = graphtools.GraphvizNode()
             graphviz_node.attributes['label'] = str(node.preprolated_duration)
             if isinstance(node, rhythmtreetools.RhythmTreeContainer):
                 graphviz_node.attributes['shape'] = 'triangle'
@@ -663,13 +663,13 @@ class Meter(AbjadObject):
             graph.append(graphviz_node)
             node_mapping[node] = graphviz_node
             if node.parent is not None:
-                documentationtools.GraphvizEdge().attach(
+                graphtools.GraphvizEdge().attach(
                     node_mapping[node.parent],
                     node_mapping[node],
                     )
         leaves = self._root_node.leaves
         offset = leaves[0].start_offset
-        offset_subgraph = documentationtools.GraphvizSubgraph(
+        offset_subgraph = graphtools.GraphvizSubgraph(
             name='cluster_offsets',
             attributes={
                 'style': 'rounded',
