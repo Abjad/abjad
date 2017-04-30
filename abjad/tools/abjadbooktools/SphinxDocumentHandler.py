@@ -220,11 +220,15 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def on_build_finished(app, exc):
         try:
             SphinxDocumentHandler.render_thumbnails(app)
+        except KeyboardInterrupt:
+            sys.exit(1)
         except:
             traceback.print_exc()
         try:
             SphinxDocumentHandler.cleanup_graphviz_svg(app)
             pass
+        except KeyboardInterrupt:
+            sys.exit(1)
         except:
             traceback.print_exc()
 
@@ -313,6 +317,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def on_env_updated(app, env):
         try:
             SphinxDocumentHandler.install_lightbox_static_files(app)
+        except KeyboardInterrupt:
+            sys.exit(1)
         except:
             traceback.print_exc()
 
@@ -908,6 +914,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             message = bold(red('Found abjad_import_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
             #print(stringtools.normalize(node.pformat()))
+        except KeyboardInterrupt:
+            sys.exit(1)
         except:
             traceback.print_exc()
         raise nodes.SkipNode
@@ -919,6 +927,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             message = bold(red('Found abjad_input_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
             #print(stringtools.normalize(node.pformat()))
+        except KeyboardInterrupt:
+            sys.exit(1)
         except:
             traceback.print_exc()
         raise nodes.SkipNode
@@ -1002,6 +1012,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                         )
                     result = stringtools.normalize(result)
                     self.body.append(result)
+        except KeyboardInterrupt:
+            sys.exit(1)
         except:
             traceback.print_exc()
         raise nodes.SkipNode
@@ -1017,6 +1029,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             message = bold(red('Found abjad_reveal_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
             #print(stringtools.normalize(node.pformat()))
+        except KeyboardInterrupt:
+            sys.exit(1)
         except:
             traceback.print_exc()
         raise nodes.SkipNode
@@ -1050,6 +1064,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 title=title,
                 )
             self.body.append(output)
+        except KeyboardInterrupt:
+            sys.exit(1)
         except:
             traceback.print_exc()
         raise nodes.SkipNode
@@ -1061,6 +1077,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             message = bold(red('Found abjad_thumbnail_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
             print(stringtools.normalize(node.pformat()))
+        except KeyboardInterrupt:
+            sys.exit(1)
         except:
             traceback.print_exc()
         raise nodes.SkipNode
