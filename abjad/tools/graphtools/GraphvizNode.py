@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools import TreeContainer
-from abjad.tools.documentationtools.GraphvizMixin import GraphvizMixin
+from abjad.tools.graphtools.GraphvizMixin import GraphvizMixin
 
 
 class GraphvizNode(GraphvizMixin, TreeContainer):
@@ -53,9 +53,9 @@ class GraphvizNode(GraphvizMixin, TreeContainer):
 
         ::
 
-            >>> my_graph = documentationtools.GraphvizGraph()
-            >>> node_one = documentationtools.GraphvizNode(attributes={'label': 'One'})
-            >>> node_two = documentationtools.GraphvizNode(attributes={'label': 'Two'})
+            >>> my_graph = graphtools.GraphvizGraph()
+            >>> node_one = graphtools.GraphvizNode(attributes={'label': 'One'})
+            >>> node_two = graphtools.GraphvizNode(attributes={'label': 'Two'})
             >>> my_graph.extend([node_one, node_two])
             >>> edge = node_one.attach(node_two)
             >>> graph(my_graph)  # doctest: +SKIP
@@ -71,8 +71,8 @@ class GraphvizNode(GraphvizMixin, TreeContainer):
 
         Returns GraphvizEdge.
         '''
-        from abjad.tools import documentationtools
-        edge = documentationtools.GraphvizEdge()
+        from abjad.tools import graphtools
+        edge = graphtools.GraphvizEdge()
         edge.attach(self, other)
         return edge
 
@@ -80,14 +80,14 @@ class GraphvizNode(GraphvizMixin, TreeContainer):
 
     @property
     def _graphviz_format_contributions(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
 
         node_def = self._format_value(self.canonical_name)
         attributes = self.attributes
 
         if len(self) == 1 and not isinstance(self[0], (
-            documentationtools.GraphvizField,
-            documentationtools.GraphvizGroup,
+            graphtools.GraphvizField,
+            graphtools.GraphvizGroup,
             )):
             attributes['label'] = self[0]
         elif len(self):
@@ -105,11 +105,11 @@ class GraphvizNode(GraphvizMixin, TreeContainer):
 
     @property
     def _node_class(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         prototype = (
-            documentationtools.GraphvizField,
-            documentationtools.GraphvizGroup,
-            documentationtools.GraphvizTable,
+            graphtools.GraphvizField,
+            graphtools.GraphvizGroup,
+            graphtools.GraphvizTable,
             )
         return prototype
 
@@ -130,15 +130,15 @@ class GraphvizNode(GraphvizMixin, TreeContainer):
         r'''Gets edges of this node and those of any field in its field
         subtree.
         '''
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         edges = set(self.edges)
         prototype = (
-            documentationtools.GraphvizGroup,
-            documentationtools.GraphvizTable,
-            documentationtools.GraphvizTableCell,
-            documentationtools.GraphvizTableRow,
-            documentationtools.GraphvizTableHorizontalRule,
-            documentationtools.GraphvizTableVerticalRule,
+            graphtools.GraphvizGroup,
+            graphtools.GraphvizTable,
+            graphtools.GraphvizTableCell,
+            graphtools.GraphvizTableRow,
+            graphtools.GraphvizTableHorizontalRule,
+            graphtools.GraphvizTableVerticalRule,
             )
         for node in self.nodes[1:]:
             if isinstance(node, prototype):

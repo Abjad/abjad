@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import subprocess
 from abjad.tools.datastructuretools import TreeContainer
-from abjad.tools.documentationtools.GraphvizMixin import GraphvizMixin
+from abjad.tools.graphtools.GraphvizMixin import GraphvizMixin
 from abjad.tools.topleveltools import new
 
 
@@ -10,24 +10,24 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
 
     ::
 
-        >>> graph = documentationtools.GraphvizGraph(name='G')
+        >>> graph = graphtools.GraphvizGraph(name='G')
 
     Create other graphviz objects to insert into the graph:
 
     ::
 
-        >>> cluster_0 = documentationtools.GraphvizSubgraph(name='0')
-        >>> cluster_1 = documentationtools.GraphvizSubgraph(name='1')
-        >>> a0 = documentationtools.GraphvizNode(name='a0')
-        >>> a1 = documentationtools.GraphvizNode(name='a1')
-        >>> a2 = documentationtools.GraphvizNode(name='a2')
-        >>> a3 = documentationtools.GraphvizNode(name='a3')
-        >>> b0 = documentationtools.GraphvizNode(name='b0')
-        >>> b1 = documentationtools.GraphvizNode(name='b1')
-        >>> b2 = documentationtools.GraphvizNode(name='b2')
-        >>> b3 = documentationtools.GraphvizNode(name='b3')
-        >>> start = documentationtools.GraphvizNode(name='start')
-        >>> end = documentationtools.GraphvizNode(name='end')
+        >>> cluster_0 = graphtools.GraphvizSubgraph(name='0')
+        >>> cluster_1 = graphtools.GraphvizSubgraph(name='1')
+        >>> a0 = graphtools.GraphvizNode(name='a0')
+        >>> a1 = graphtools.GraphvizNode(name='a1')
+        >>> a2 = graphtools.GraphvizNode(name='a2')
+        >>> a3 = graphtools.GraphvizNode(name='a3')
+        >>> b0 = graphtools.GraphvizNode(name='b0')
+        >>> b1 = graphtools.GraphvizNode(name='b1')
+        >>> b2 = graphtools.GraphvizNode(name='b2')
+        >>> b3 = graphtools.GraphvizNode(name='b3')
+        >>> start = graphtools.GraphvizNode(name='start')
+        >>> end = graphtools.GraphvizNode(name='end')
 
     Group objects together into a tree:
 
@@ -41,19 +41,19 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
 
     ::
 
-        >>> documentationtools.GraphvizEdge().attach(start, a0)
-        >>> documentationtools.GraphvizEdge().attach(start, b0)
-        >>> documentationtools.GraphvizEdge().attach(a0, a1)
-        >>> documentationtools.GraphvizEdge().attach(a1, a2)
-        >>> documentationtools.GraphvizEdge().attach(a1, b3)
-        >>> documentationtools.GraphvizEdge().attach(a2, a3)
-        >>> documentationtools.GraphvizEdge().attach(a3, a0)
-        >>> documentationtools.GraphvizEdge().attach(a3, end)
-        >>> documentationtools.GraphvizEdge().attach(b0, b1)
-        >>> documentationtools.GraphvizEdge().attach(b1, b2)
-        >>> documentationtools.GraphvizEdge().attach(b2, b3)
-        >>> documentationtools.GraphvizEdge().attach(b2, a3)
-        >>> documentationtools.GraphvizEdge().attach(b3, end)
+        >>> graphtools.GraphvizEdge().attach(start, a0)
+        >>> graphtools.GraphvizEdge().attach(start, b0)
+        >>> graphtools.GraphvizEdge().attach(a0, a1)
+        >>> graphtools.GraphvizEdge().attach(a1, a2)
+        >>> graphtools.GraphvizEdge().attach(a1, b3)
+        >>> graphtools.GraphvizEdge().attach(a2, a3)
+        >>> graphtools.GraphvizEdge().attach(a3, a0)
+        >>> graphtools.GraphvizEdge().attach(a3, end)
+        >>> graphtools.GraphvizEdge().attach(b0, b1)
+        >>> graphtools.GraphvizEdge().attach(b1, b2)
+        >>> graphtools.GraphvizEdge().attach(b2, b3)
+        >>> graphtools.GraphvizEdge().attach(b2, a3)
+        >>> graphtools.GraphvizEdge().attach(b3, end)
 
     Add attributes to style the objects:
 
@@ -124,16 +124,16 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
 
     ::
 
-        >>> graph = documentationtools.GraphvizGraph()
-        >>> graph.append(documentationtools.GraphvizSubgraph())
-        >>> graph[0].append(documentationtools.GraphvizNode())
-        >>> graph[0].append(documentationtools.GraphvizNode())
-        >>> graph[0].append(documentationtools.GraphvizNode())
-        >>> graph[0].append(documentationtools.GraphvizSubgraph())
-        >>> graph[0][-1].append(documentationtools.GraphvizNode())
-        >>> graph.append(documentationtools.GraphvizNode())
-        >>> documentationtools.GraphvizEdge().attach(graph[0][1], graph[1])
-        >>> documentationtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
+        >>> graph = graphtools.GraphvizGraph()
+        >>> graph.append(graphtools.GraphvizSubgraph())
+        >>> graph[0].append(graphtools.GraphvizNode())
+        >>> graph[0].append(graphtools.GraphvizNode())
+        >>> graph[0].append(graphtools.GraphvizNode())
+        >>> graph[0].append(graphtools.GraphvizSubgraph())
+        >>> graph[0][-1].append(graphtools.GraphvizNode())
+        >>> graph.append(graphtools.GraphvizNode())
+        >>> graphtools.GraphvizEdge().attach(graph[0][1], graph[1])
+        >>> graphtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
 
     ::
 
@@ -214,18 +214,18 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
 
         Returns string.
         '''
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
 
         edges = set([])
         for node in self.nodes[1:]:
             if isinstance(node, (
-                documentationtools.GraphvizField,
-                documentationtools.GraphvizGroup,
+                graphtools.GraphvizField,
+                graphtools.GraphvizGroup,
                 )):
                 continue
-            if isinstance(node, documentationtools.GraphvizSubgraph):
+            if isinstance(node, graphtools.GraphvizSubgraph):
                 edges.update(node._edges)
-            elif isinstance(node, documentationtools.GraphvizNode):
+            elif isinstance(node, graphtools.GraphvizNode):
                 edges.update(node.all_edges)
         edges = sorted(edges, key=lambda edge: (
             edge.tail.graph_order, edge.head.graph_order,
@@ -301,10 +301,10 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
 
     @property
     def _node_class(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         prototype = (
-            documentationtools.GraphvizSubgraph,
-            documentationtools.GraphvizNode,
+            graphtools.GraphvizSubgraph,
+            graphtools.GraphvizNode,
             )
         return prototype
 

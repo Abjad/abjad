@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import graphtools
 from abjad.tools import scoretools
 from abjad.tools.datastructuretools.TreeNode import TreeNode
 from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
@@ -79,9 +80,8 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
     def __graph__(self, **kwargs):
         r'''Graphviz graph of rhythm tree leaf.
         '''
-        from abjad.tools import documentationtools
-        graph = documentationtools.GraphvizGraph(name='G')
-        node = documentationtools.GraphvizNode(
+        graph = graphtools.GraphvizGraph(name='G')
+        node = graphtools.GraphvizNode(
             attributes={
                 'label': str(self.preprolated_duration),
                 'shape': 'box'

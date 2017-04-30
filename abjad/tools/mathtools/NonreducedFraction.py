@@ -6,7 +6,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class NonreducedFraction(AbjadObject, Fraction):
     r'''Nonereduced fraction.
-    
+
     ..  container:: example
 
         Initializes with an integer numerator and integer denominator:
@@ -338,7 +338,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         ..  container:: example
 
-            :: 
+            ::
 
                 >>> NonreducedFraction(3, 6) ** -1
                 NonreducedFraction(6, 3)
@@ -519,95 +519,6 @@ class NonreducedFraction(AbjadObject, Fraction):
             numerator = int(string)
             denominator = 1
         return numerator, denominator
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def denominator(self):
-        r'''Gets denominator of nonreduced fraction.
-
-        ..  container:: example
-
-            ::
-
-                >>> fraction = NonreducedFraction(-6, 3)
-
-            ::
-
-                >>> fraction.denominator
-                3
-
-        Returns positive integer.
-        '''
-        return self._denominator
-
-    @property
-    def imag(self):
-        r'''Nonreduced fractions have no imaginary part.
-
-        ..  container:: example
-
-            :: 
-
-                >>> fraction.imag
-                0
-
-        Returns zero.
-        '''
-        return fractions.Fraction.imag.fget(self)
-
-    @property
-    def numerator(self):
-        r'''Gets numerator of nonreduced fraction.
-
-        ..  container:: example
-
-            ::
-
-                >>> fraction = NonreducedFraction(-6, 3)
-
-            ::
-
-                >>> fraction.numerator
-                -6
-
-        Returns integer.
-        '''
-        return self._numerator
-
-    @property
-    def pair(self):
-        r'''Gets pair of numerator and denominator.
-
-        ..  container:: example
-
-            ::
-
-                >>> fraction = NonreducedFraction(-6, 3)
-
-            ::
-
-                >>> fraction.pair
-                (-6, 3)
-
-        Returns integer pair.
-        '''
-        return self.numerator, self.denominator
-
-    @property
-    def real(self):
-        r'''Nonreduced fractions are their own real component.
-
-        ..  container:: example
-
-            ::
-
-                >>> fraction.real
-                NonreducedFraction(-6, 3)
-
-        Returns nonreduced fraction.
-        '''
-        return self
 
     ### PUBLIC METHODS ###
 

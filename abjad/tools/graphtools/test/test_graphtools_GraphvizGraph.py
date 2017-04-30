@@ -1,57 +1,57 @@
 # -*- coding: utf-8 -*-
-from abjad import documentationtools
+from abjad import graphtools
 from abjad import stringtools
 
 
 def test_documentationtools_GraphvizGraph_01():
 
-    graph = documentationtools.GraphvizGraph()
+    graph = graphtools.GraphvizGraph()
     graph.node_attributes['shape'] = 'record'
 
-    struct_1 = documentationtools.GraphvizNode()
-    struct_1_field_0 = documentationtools.GraphvizField(label='left')
+    struct_1 = graphtools.GraphvizNode()
+    struct_1_field_0 = graphtools.GraphvizField(label='left')
     struct_1.append(struct_1_field_0)
-    struct_1_field_1 = documentationtools.GraphvizField(label='middle')
+    struct_1_field_1 = graphtools.GraphvizField(label='middle')
     struct_1.append(struct_1_field_1)
-    struct_1_field_2 = documentationtools.GraphvizField(label='right')
+    struct_1_field_2 = graphtools.GraphvizField(label='right')
     struct_1.append(struct_1_field_2)
 
-    struct_2 = documentationtools.GraphvizNode()
-    struct_2_field_0 = documentationtools.GraphvizField(label='one')
+    struct_2 = graphtools.GraphvizNode()
+    struct_2_field_0 = graphtools.GraphvizField(label='one')
     struct_2.append(struct_2_field_0)
-    struct_2_field_1 = documentationtools.GraphvizField(label='two')
+    struct_2_field_1 = graphtools.GraphvizField(label='two')
     struct_2.append(struct_2_field_1)
 
-    struct_3 = documentationtools.GraphvizNode()
-    struct_3_field_hello = documentationtools.GraphvizField(
+    struct_3 = graphtools.GraphvizNode()
+    struct_3_field_hello = graphtools.GraphvizField(
         label='hello')
     struct_3.append(struct_3_field_hello)
-    outer_group = documentationtools.GraphvizGroup()
+    outer_group = graphtools.GraphvizGroup()
     struct_3.append(outer_group)
-    struct_3_field_b = documentationtools.GraphvizField(label='b')
+    struct_3_field_b = graphtools.GraphvizField(label='b')
     outer_group.append(struct_3_field_b)
-    inner_group = documentationtools.GraphvizGroup()
+    inner_group = graphtools.GraphvizGroup()
     outer_group.append(inner_group)
-    struct_3_field_c = documentationtools.GraphvizField(label='c')
+    struct_3_field_c = graphtools.GraphvizField(label='c')
     inner_group.append(struct_3_field_c)
-    struct_3_field_d = documentationtools.GraphvizField(label='d')
+    struct_3_field_d = graphtools.GraphvizField(label='d')
     inner_group.append(struct_3_field_d)
-    struct_3_field_e = documentationtools.GraphvizField(label='e')
+    struct_3_field_e = graphtools.GraphvizField(label='e')
     inner_group.append(struct_3_field_e)
-    struct_3_field_f = documentationtools.GraphvizField(label='f')
+    struct_3_field_f = graphtools.GraphvizField(label='f')
     outer_group.append(struct_3_field_f)
-    struct_3_field_g = documentationtools.GraphvizField(label='g')
+    struct_3_field_g = graphtools.GraphvizField(label='g')
     struct_3.append(struct_3_field_g)
-    struct_3_field_h = documentationtools.GraphvizField(label='h')
+    struct_3_field_h = graphtools.GraphvizField(label='h')
     struct_3.append(struct_3_field_h)
 
     graph.extend((struct_1, struct_2, struct_3))
 
-    documentationtools.GraphvizEdge().attach(
+    graphtools.GraphvizEdge().attach(
         struct_1_field_1,
         struct_2_field_0,
         )
-    documentationtools.GraphvizEdge().attach(
+    graphtools.GraphvizEdge().attach(
         struct_1_field_2,
         struct_3_field_d,
         )

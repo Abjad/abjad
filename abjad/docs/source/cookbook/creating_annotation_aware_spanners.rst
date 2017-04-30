@@ -511,19 +511,17 @@ via rotation:
     :strip-prompt:
 
     def make_fancy_staff(rotation=0):
-        annotations = datastructuretools.CyclicTuple([
+        annotations = datastructuretools.CyclicTuple(sequence([
             OscillationSpanner.Size.LARGE,
             OscillationSpanner.Size.MEDIUM,
             OscillationSpanner.Size.SMALL,
             OscillationSpanner.Size.NONE,
-            ])
-        annotations = sequencetools.rotate_sequence(annotations, rotation)
+            ]).rotate(rotation))
         divisions = [(5, 8), (7, 8), (4, 8), (6, 8), (5, 4), (4, 4), (3, 4)]
-        divisions = sequencetools.rotate_sequence(divisions, rotation)
-        pitches = datastructuretools.CyclicTuple(
+        divisions = sequence(divisions).rotate(rotation)
+        pitches = datastructuretools.CyclicTuple(sequence(
             ["b'", "d''", "g'", "f''", "b'", "g'", "c'", "e'", "g'"],
-            )
-        pitches = sequencetools.rotate_sequence(pitches, rotation)
+            ).rotate(rotation))
         selections = talea_rhythm_maker(divisions, rotation=rotation)
         measures = Measure.from_selections(selections, time_signatures=divisions)
         staff = Staff(measures)

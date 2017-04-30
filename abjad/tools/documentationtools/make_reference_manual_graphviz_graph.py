@@ -7,10 +7,8 @@ def make_reference_manual_graphviz_graph(graph):
 
     Returns GraphvizGraph instance.
     '''
-
-    from abjad.tools import documentationtools
-
-    if not isinstance(graph, documentationtools.GraphvizGraph):
+    from abjad.tools import graphtools
+    if not isinstance(graph, graphtools.GraphvizGraph):
         try:
             graph = graph.__graph__()
         except:

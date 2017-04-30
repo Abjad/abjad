@@ -13,7 +13,7 @@ def graph(
     **kwargs
     ):
     r'''Graphs `argument`.
-    
+
     ..  container:: example
 
         Graphs staff:
@@ -26,21 +26,21 @@ def graph(
         ..  doctest::
 
             >>> print(format(staff.__graph__()))
-            documentationtools.GraphvizGraph(
+            graphtools.GraphvizGraph(
                 attributes={
                     'style': 'rounded',
                     },
                 children=(
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'margin': 0.05,
                             },
                         children=(
-                            documentationtools.GraphvizTable(
+                            graphtools.GraphvizTable(
                                 children=(
-                                    documentationtools.GraphvizTableRow(
+                                    graphtools.GraphvizTableRow(
                                         children=(
-                                            documentationtools.GraphvizTableCell(
+                                            graphtools.GraphvizTableCell(
                                                 label='Staff',
                                                 attributes={
                                                     'border': 0,
@@ -58,22 +58,22 @@ def graph(
                             ),
                         name='Staff',
                         ),
-                    documentationtools.GraphvizSubgraph(
+                    graphtools.GraphvizSubgraph(
                         attributes={
                             'color': 'grey75',
                             'penwidth': 2,
                             },
                         children=(
-                            documentationtools.GraphvizNode(
+                            graphtools.GraphvizNode(
                                 attributes={
                                     'margin': 0.05,
                                     },
                                 children=(
-                                    documentationtools.GraphvizTable(
+                                    graphtools.GraphvizTable(
                                         children=(
-                                            documentationtools.GraphvizTableRow(
+                                            graphtools.GraphvizTableRow(
                                                 children=(
-                                                    documentationtools.GraphvizTableCell(
+                                                    graphtools.GraphvizTableCell(
                                                         label='Note',
                                                         attributes={
                                                             'border': 0,
@@ -81,10 +81,10 @@ def graph(
                                                         ),
                                                     ),
                                                 ),
-                                            documentationtools.GraphvizTableHorizontalRule(),
-                                            documentationtools.GraphvizTableRow(
+                                            graphtools.GraphvizTableHorizontalRule(),
+                                            graphtools.GraphvizTableRow(
                                                 children=(
-                                                    documentationtools.GraphvizTableCell(
+                                                    graphtools.GraphvizTableCell(
                                                         label="c'4",
                                                         attributes={
                                                             'border': 0,
@@ -102,16 +102,16 @@ def graph(
                                     ),
                                 name='Note_0',
                                 ),
-                            documentationtools.GraphvizNode(
+                            graphtools.GraphvizNode(
                                 attributes={
                                     'margin': 0.05,
                                     },
                                 children=(
-                                    documentationtools.GraphvizTable(
+                                    graphtools.GraphvizTable(
                                         children=(
-                                            documentationtools.GraphvizTableRow(
+                                            graphtools.GraphvizTableRow(
                                                 children=(
-                                                    documentationtools.GraphvizTableCell(
+                                                    graphtools.GraphvizTableCell(
                                                         label='Note',
                                                         attributes={
                                                             'border': 0,
@@ -119,10 +119,10 @@ def graph(
                                                         ),
                                                     ),
                                                 ),
-                                            documentationtools.GraphvizTableHorizontalRule(),
-                                            documentationtools.GraphvizTableRow(
+                                            graphtools.GraphvizTableHorizontalRule(),
+                                            graphtools.GraphvizTableRow(
                                                 children=(
-                                                    documentationtools.GraphvizTableCell(
+                                                    graphtools.GraphvizTableCell(
                                                         label="d'4",
                                                         attributes={
                                                             'border': 0,
@@ -140,16 +140,16 @@ def graph(
                                     ),
                                 name='Note_1',
                                 ),
-                            documentationtools.GraphvizNode(
+                            graphtools.GraphvizNode(
                                 attributes={
                                     'margin': 0.05,
                                     },
                                 children=(
-                                    documentationtools.GraphvizTable(
+                                    graphtools.GraphvizTable(
                                         children=(
-                                            documentationtools.GraphvizTableRow(
+                                            graphtools.GraphvizTableRow(
                                                 children=(
-                                                    documentationtools.GraphvizTableCell(
+                                                    graphtools.GraphvizTableCell(
                                                         label='Note',
                                                         attributes={
                                                             'border': 0,
@@ -157,10 +157,10 @@ def graph(
                                                         ),
                                                     ),
                                                 ),
-                                            documentationtools.GraphvizTableHorizontalRule(),
-                                            documentationtools.GraphvizTableRow(
+                                            graphtools.GraphvizTableHorizontalRule(),
+                                            graphtools.GraphvizTableRow(
                                                 children=(
-                                                    documentationtools.GraphvizTableCell(
+                                                    graphtools.GraphvizTableCell(
                                                         label="e'4",
                                                         attributes={
                                                             'border': 0,
@@ -178,16 +178,16 @@ def graph(
                                     ),
                                 name='Note_2',
                                 ),
-                            documentationtools.GraphvizNode(
+                            graphtools.GraphvizNode(
                                 attributes={
                                     'margin': 0.05,
                                     },
                                 children=(
-                                    documentationtools.GraphvizTable(
+                                    graphtools.GraphvizTable(
                                         children=(
-                                            documentationtools.GraphvizTableRow(
+                                            graphtools.GraphvizTableRow(
                                                 children=(
-                                                    documentationtools.GraphvizTableCell(
+                                                    graphtools.GraphvizTableCell(
                                                         label='Note',
                                                         attributes={
                                                             'border': 0,
@@ -195,10 +195,10 @@ def graph(
                                                         ),
                                                     ),
                                                 ),
-                                            documentationtools.GraphvizTableHorizontalRule(),
-                                            documentationtools.GraphvizTableRow(
+                                            graphtools.GraphvizTableHorizontalRule(),
+                                            graphtools.GraphvizTableRow(
                                                 children=(
-                                                    documentationtools.GraphvizTableCell(
+                                                    graphtools.GraphvizTableCell(
                                                         label="f'4",
                                                         attributes={
                                                             'border': 0,
@@ -248,37 +248,37 @@ def graph(
         ..  doctest::
 
             >>> print(format(rhythm_tree.__graph__()))
-            documentationtools.GraphvizGraph(
+            graphtools.GraphvizGraph(
                 attributes={
                     'bgcolor': 'transparent',
                     'truecolor': True,
                     },
                 children=(
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'label': '3',
                             'shape': 'triangle',
                             },
                         ),
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'label': '2',
                             'shape': 'triangle',
                             },
                         ),
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'label': '2',
                             'shape': 'box',
                             },
                         ),
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'label': '1',
                             'shape': 'box',
                             },
                         ),
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'label': '2',
                             'shape': 'box',
@@ -294,7 +294,7 @@ def graph(
                 )
 
     Creates GraphViz object.
-    
+
     Opens image in default image viewer.
 
     Returns none.

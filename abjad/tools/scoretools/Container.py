@@ -41,7 +41,7 @@ class Container(Component):
             >>> notes = [
             ...     Note("c'4"),
             ...     Note("e'4"),
-            ...     Note("d'4"), 
+            ...     Note("d'4"),
             ...     Note("e'8"),
             ...     Note("f'8"),
             ...     ]
@@ -68,7 +68,7 @@ class Container(Component):
             >>> notes = [
             ...     Note("c'4"),
             ...     Note("e'4"),
-            ...     Note("d'4"), 
+            ...     Note("d'4"),
             ...     Note("e'8"),
             ...     Note("f'8"),
             ...     ]
@@ -96,7 +96,7 @@ class Container(Component):
             >>> items = [
             ...     Note("c'4"),
             ...     select(Note("e'4")),
-            ...     select(Note("d'4")), 
+            ...     select(Note("d'4")),
             ...     Note("e'8"),
             ...     Note("f'8"),
             ...     ]
@@ -305,7 +305,7 @@ class Container(Component):
             node_order = [component_node.name]
             if isinstance(component, scoretools.Container):
                 graph.append(component_node)
-                this_leaf_cluster = documentationtools.GraphvizSubgraph(
+                this_leaf_cluster = graphtools.GraphvizSubgraph(
                     name=component_node.name,
                     attributes={
                         'color': 'grey75',
@@ -320,7 +320,7 @@ class Container(Component):
                     child_node, child_node_order = recurse(
                         child, this_leaf_cluster)
                     pending_node_order.extend(child_node_order)
-                    edge = documentationtools.GraphvizEdge()
+                    edge = graphtools.GraphvizEdge()
                     edge.attach(component_node, child_node)
                 if all_are_leaves:
                     pending_node_order.reverse()
@@ -331,11 +331,11 @@ class Container(Component):
                 leaf_cluster.append(component_node)
             return component_node, node_order
 
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         from abjad.tools import scoretools
         node_order = []
         node_mapping = {}
-        graph = documentationtools.GraphvizGraph(
+        graph = graphtools.GraphvizGraph(
             name='G',
             attributes={
                 'style': 'rounded',
@@ -347,7 +347,7 @@ class Container(Component):
                 'shape': 'none',
                 },
             )
-        leaf_cluster = documentationtools.GraphvizSubgraph(name='leaves')
+        leaf_cluster = graphtools.GraphvizSubgraph(name='leaves')
         component_node, node_order = recurse(self, leaf_cluster)
         if len(leaf_cluster) == 1:
             graph.append(leaf_cluster[0])
@@ -360,7 +360,7 @@ class Container(Component):
             for component_one, component_two in pairs:
                 node_one = node_mapping[component_one]
                 node_two = node_mapping[component_two]
-                edge = documentationtools.GraphvizEdge(
+                edge = graphtools.GraphvizEdge(
                     attributes={
                         'constraint': False,
                         'penwidth': 5,
@@ -499,11 +499,11 @@ class Container(Component):
             withdraw_components_in_expr_from_crossing_spanners=False)
 
     def _as_graphviz_node(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         node = Component._as_graphviz_node(self)
         node[0].append(
-            documentationtools.GraphvizTableRow([
-                documentationtools.GraphvizTableCell(
+            graphtools.GraphvizTableRow([
+                graphtools.GraphvizTableCell(
                     label=type(self).__name__,
                     attributes={'border': 0},
                     ),
@@ -1553,7 +1553,6 @@ class Container(Component):
 
     @property
     def _duration_in_seconds(self):
-        from abjad.tools import scoretools
         if self.is_simultaneous:
             return max([durationtools.Duration(0)] +
                 [x._get_duration(in_seconds=True) for x in self])

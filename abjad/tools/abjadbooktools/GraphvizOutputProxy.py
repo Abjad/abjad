@@ -20,7 +20,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
         >>> print(format(proxy))
         ...
         abjadbooktools.GraphvizOutputProxy(
-            documentationtools.GraphvizGraph(
+            graphtools.GraphvizGraph(
                 attributes={
                     'bgcolor': 'transparent',
                     'fontname': 'Arial',
@@ -28,42 +28,42 @@ class GraphvizOutputProxy(ImageOutputProxy):
                     'truecolor': True,
                     },
                 children=(
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'label': '4/4',
                             'shape': 'triangle',
                             },
                         ),
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'label': '1/4',
                             'shape': 'box',
                             },
                         ),
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'label': '1/4',
                             'shape': 'box',
                             },
                         ),
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'label': '1/4',
                             'shape': 'box',
                             },
                         ),
-                    documentationtools.GraphvizNode(
+                    graphtools.GraphvizNode(
                         attributes={
                             'label': '1/4',
                             'shape': 'box',
                             },
                         ),
-                    documentationtools.GraphvizSubgraph(
+                    graphtools.GraphvizSubgraph(
                         attributes={
                             'style': 'rounded',
                             },
                         children=(
-                            documentationtools.GraphvizNode(
+                            graphtools.GraphvizNode(
                                 attributes={
                                     'color': 'white',
                                     'fillcolor': 'black',
@@ -73,19 +73,19 @@ class GraphvizOutputProxy(ImageOutputProxy):
                                     'style': 'filled',
                                     },
                                 children=(
-                                    documentationtools.GraphvizGroup(
+                                    graphtools.GraphvizGroup(
                                         children=(
-                                            documentationtools.GraphvizField(
+                                            graphtools.GraphvizField(
                                                 label='0',
                                                 ),
-                                            documentationtools.GraphvizField(
+                                            graphtools.GraphvizField(
                                                 label='++',
                                                 ),
                                             ),
                                         ),
                                     ),
                                 ),
-                            documentationtools.GraphvizNode(
+                            graphtools.GraphvizNode(
                                 attributes={
                                     'color': 'white',
                                     'fillcolor': 'black',
@@ -95,19 +95,19 @@ class GraphvizOutputProxy(ImageOutputProxy):
                                     'style': 'filled',
                                     },
                                 children=(
-                                    documentationtools.GraphvizGroup(
+                                    graphtools.GraphvizGroup(
                                         children=(
-                                            documentationtools.GraphvizField(
+                                            graphtools.GraphvizField(
                                                 label='1/4',
                                                 ),
-                                            documentationtools.GraphvizField(
+                                            graphtools.GraphvizField(
                                                 label='+',
                                                 ),
                                             ),
                                         ),
                                     ),
                                 ),
-                            documentationtools.GraphvizNode(
+                            graphtools.GraphvizNode(
                                 attributes={
                                     'color': 'white',
                                     'fillcolor': 'black',
@@ -117,19 +117,19 @@ class GraphvizOutputProxy(ImageOutputProxy):
                                     'style': 'filled',
                                     },
                                 children=(
-                                    documentationtools.GraphvizGroup(
+                                    graphtools.GraphvizGroup(
                                         children=(
-                                            documentationtools.GraphvizField(
+                                            graphtools.GraphvizField(
                                                 label='1/2',
                                                 ),
-                                            documentationtools.GraphvizField(
+                                            graphtools.GraphvizField(
                                                 label='+',
                                                 ),
                                             ),
                                         ),
                                     ),
                                 ),
-                            documentationtools.GraphvizNode(
+                            graphtools.GraphvizNode(
                                 attributes={
                                     'color': 'white',
                                     'fillcolor': 'black',
@@ -139,29 +139,29 @@ class GraphvizOutputProxy(ImageOutputProxy):
                                     'style': 'filled',
                                     },
                                 children=(
-                                    documentationtools.GraphvizGroup(
+                                    graphtools.GraphvizGroup(
                                         children=(
-                                            documentationtools.GraphvizField(
+                                            graphtools.GraphvizField(
                                                 label='3/4',
                                                 ),
-                                            documentationtools.GraphvizField(
+                                            graphtools.GraphvizField(
                                                 label='+',
                                                 ),
                                             ),
                                         ),
                                     ),
                                 ),
-                            documentationtools.GraphvizNode(
+                            graphtools.GraphvizNode(
                                 attributes={
                                     'shape': 'Mrecord',
                                     },
                                 children=(
-                                    documentationtools.GraphvizGroup(
+                                    graphtools.GraphvizGroup(
                                         children=(
-                                            documentationtools.GraphvizField(
+                                            graphtools.GraphvizField(
                                                 label='1',
                                                 ),
-                                            documentationtools.GraphvizField(
+                                            graphtools.GraphvizField(
                                                 label='++',
                                                 ),
                                             ),
@@ -220,7 +220,6 @@ class GraphvizOutputProxy(ImageOutputProxy):
             image_layout_specifier=image_layout_specifier,
             image_render_specifier=image_render_specifier,
             )
-        #payload = pickle.loads(pickle.dumps(payload))
         graphviz_graph = copy.deepcopy(payload.__graph__())
         self._payload = graphviz_graph
         self._layout = layout

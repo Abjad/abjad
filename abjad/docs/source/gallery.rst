@@ -9,6 +9,29 @@ for many of these scores is also available for pedagogical purposes.
     Click on any image to zoom in.
 
 
+Demarest/Lloyd (2016)
+`````````````````````
+
+- For eleven percussionists
+- Composed by `Josiah Wolf Oberholtzer`_.
+- Written for the 50th anniversary of the Boston University Tanglewood
+  Institute.
+- Source available from https://github.com/josiah-wolf-oberholtzer/demarest/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/oberholtzer-demarest-page19.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 19 of Demarest/Lloyd,
+                by Josiah Wolf Oberholtzer.
+        
+    ..  thumbnail:: gallery/oberholtzer-demarest-page28.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 28 of Demarest/Lloyd,
+                by Josiah Wolf Oberholtzer.
+
 Al-kitab al-khamr (2015)
 ````````````````````````
 
@@ -16,6 +39,12 @@ Al-kitab al-khamr (2015)
 - Composed by `Trevor Bača`_.
 - Written for Ensemble Dal Niente.
 - Source available from https://github.com/trevorbaca/khamr/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230978308&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
 
 ..  container:: table-row
 
@@ -66,6 +95,12 @@ Ins wasser eingeschrieben (2015)
 - Composed by `Trevor Bača`_.
 - Written for John Pickford Richards and Elizabeth Weisser.
 - Source available from https://github.com/trevorbaca/ins-wasser/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230977561&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
 
 ..  container:: table-row
 
@@ -146,6 +181,12 @@ Huitzil (2014)
 - Written for Alan Toda-Ambaras.
 - Source available from https://github.com/trevorbaca/huitzil/.
 
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/243890076&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
+
 ..  container:: table-row
 
     ..  thumbnail:: gallery/baca-huitzil-page12.png
@@ -195,6 +236,12 @@ Krummzeit (2014)
 - Composed by `Trevor Bača`_.
 - Written for Ensemble Mosaik.
 - Source available from https://github.com/trevorbaca/krummzeit/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230976447&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
 
 ..  container:: table-row
 
@@ -274,6 +321,12 @@ Traiettorie inargentate (2013)
 - Written for Séverine Ballon.
 - Source available from https://github.com/trevorbaca/traiettorie/.
 
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230973560&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
+
 ..  container:: table-row
 
     ..  thumbnail:: gallery/baca-traiettorie-page6.png
@@ -333,6 +386,12 @@ L'archipel du corps (2011)
 - Written for Carin Levine, Jürgen Ruck, Stefan Hussong and Marta Klimasara.
 - Source available from https://github.com/trevorbaca/archipel/.
 
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230779736&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
+
 ..  container:: table-row
 
     ..  thumbnail:: gallery/baca-archipel-page9.png
@@ -354,6 +413,12 @@ L'imaginaire (2010)
 - Composed by `Trevor Bača`_.
 - Written for Corrado Rojac.
 - Source available from https://github.com/trevorbaca/imaginaire/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230778361&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
 
 ..  container:: table-row
 
@@ -398,6 +463,12 @@ Mon seul désir (2009)
 - Written for Either/Or.
 - Source available from https://github.com/trevorbaca/desir/.
 
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230777254&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
+
 ..  container:: table-row
 
     ..  thumbnail:: gallery/baca-desir-page14.png
@@ -419,6 +490,12 @@ Lidércfény (2008)
 - Composed by `Trevor Bača`_.
 - Written for Ensemble InFrequencies.
 - Source available from https://github.com/trevorbaca/lidercfeny/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230683931&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
 
 ..  container:: table-row
 
@@ -446,6 +523,7 @@ Sekka (2007)
 
     <p>
     <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230676212&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
 
 ..  container:: table-row
 
@@ -473,6 +551,7 @@ Sekka (2007)
 
     <p>
     <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230674427&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
 
 ..  container:: table-row
 

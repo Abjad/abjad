@@ -69,9 +69,9 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
 
         Returns Graphviz graph.
         '''
-        from abjad.tools import documentationtools
-        graph = documentationtools.GraphvizGraph(name='G')
-        node = documentationtools.GraphvizNode(
+        from abjad.tools import graphtools
+        graph = graphtools.GraphvizGraph(name='G')
+        node = graphtools.GraphvizNode(
             attributes={
                 'label': str(self.preprolated_duration),
                 'shape': 'box'

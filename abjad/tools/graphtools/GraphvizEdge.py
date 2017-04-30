@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.documentationtools.GraphvizMixin import GraphvizMixin
+from abjad.tools.graphtools.GraphvizMixin import GraphvizMixin
 
 
 class GraphvizEdge(GraphvizMixin):
@@ -52,13 +52,13 @@ class GraphvizEdge(GraphvizMixin):
         self._head = None
 
     def _get_highest_parent(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         highest_parent = None
-        if isinstance(self.tail, documentationtools.GraphvizField):
+        if isinstance(self.tail, graphtools.GraphvizField):
             tail_parentage = list(self.tail.struct.proper_parentage)
         else:
             tail_parentage = list(self.tail.proper_parentage)
-        if isinstance(self.head, documentationtools.GraphvizField):
+        if isinstance(self.head, graphtools.GraphvizField):
             head_parentage = list(self.head.struct.proper_parentage)
         else:
             head_parentage = list(self.head.proper_parentage)
@@ -77,11 +77,11 @@ class GraphvizEdge(GraphvizMixin):
     def attach(self, tail, head):
         r'''Attaches edge from `tail` to `head`.
         '''
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         prototype = (
-            documentationtools.GraphvizSubgraph,
-            documentationtools.GraphvizNode,
-            documentationtools.GraphvizField,
+            graphtools.GraphvizSubgraph,
+            graphtools.GraphvizNode,
+            graphtools.GraphvizField,
             )
         assert isinstance(tail, prototype)
         assert isinstance(head, prototype)

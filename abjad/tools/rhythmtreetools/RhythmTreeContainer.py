@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import documentationtools
+from abjad.tools import graphtools
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
@@ -278,7 +278,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
         Return `GraphvizGraph` instance.
         '''
-        graph = documentationtools.GraphvizGraph(
+        graph = graphtools.GraphvizGraph(
             name='G',
             attributes={
                 'bgcolor': 'transparent',
@@ -287,7 +287,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             )
         node_mapping = {}
         for node in self.nodes:
-            graphviz_node = documentationtools.GraphvizNode()
+            graphviz_node = graphtools.GraphvizNode()
             graphviz_node.attributes['label'] = str(node.preprolated_duration)
             if isinstance(node, type(self)):
                 graphviz_node.attributes['shape'] = 'triangle'
@@ -296,7 +296,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             graph.append(graphviz_node)
             node_mapping[node] = graphviz_node
             if node.parent is not None:
-                documentationtools.GraphvizEdge().attach(
+                graphtools.GraphvizEdge().attach(
                     node_mapping[node.parent],
                     node_mapping[node],
                     )

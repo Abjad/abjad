@@ -150,7 +150,7 @@ class Component(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
-        from abjad.tools import documentationtools
+        from abjad.tools import graphtools
         score_index = self._get_parentage().score_index
         score_index = '_'.join(str(_) for _ in score_index)
         class_name = type(self).__name__
@@ -158,13 +158,13 @@ class Component(AbjadObject):
             name = '{}_{}'.format(class_name, score_index)
         else:
             name = class_name
-        node = documentationtools.GraphvizNode(
+        node = graphtools.GraphvizNode(
             name=name,
             attributes={
                 'margin': 0.05,
                 },
             )
-        table = documentationtools.GraphvizTable(
+        table = graphtools.GraphvizTable(
             attributes={
                 'border': 2,
                 'cellpadding': 5,

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import documentationtools
+from abjad.tools import graphtools
 from abjad.tools import stringtools
 
 
 def test_documentationtools_GraphvizGraph_deepcopy_01():
-    graph = documentationtools.GraphvizGraph()
+    graph = graphtools.GraphvizGraph()
     assert str(graph) == stringtools.normalize(
         r'''
         digraph G {
@@ -16,8 +16,8 @@ def test_documentationtools_GraphvizGraph_deepcopy_01():
 
 
 def test_documentationtools_GraphvizGraph_deepcopy_02():
-    graph = documentationtools.GraphvizGraph()
-    graph.append(documentationtools.GraphvizSubgraph())
+    graph = graphtools.GraphvizGraph()
+    graph.append(graphtools.GraphvizSubgraph())
     assert str(graph) == stringtools.normalize(
         r'''
         digraph G {
@@ -30,9 +30,9 @@ def test_documentationtools_GraphvizGraph_deepcopy_02():
 
 
 def test_documentationtools_GraphvizGraph_deepcopy_03():
-    graph = documentationtools.GraphvizGraph()
-    graph.append(documentationtools.GraphvizNode())
-    graph.append(documentationtools.GraphvizNode())
+    graph = graphtools.GraphvizGraph()
+    graph.append(graphtools.GraphvizNode())
+    graph.append(graphtools.GraphvizNode())
     assert str(graph) == stringtools.normalize(
         r'''
         digraph G {
@@ -45,10 +45,10 @@ def test_documentationtools_GraphvizGraph_deepcopy_03():
 
 
 def test_documentationtools_GraphvizGraph_deepcopy_04():
-    graph = documentationtools.GraphvizGraph()
-    graph.append(documentationtools.GraphvizNode())
-    graph.append(documentationtools.GraphvizNode())
-    documentationtools.GraphvizEdge().attach(graph[0], graph[1])
+    graph = graphtools.GraphvizGraph()
+    graph.append(graphtools.GraphvizNode())
+    graph.append(graphtools.GraphvizNode())
+    graphtools.GraphvizEdge().attach(graph[0], graph[1])
     assert str(graph) == stringtools.normalize(
         r'''
         digraph G {
@@ -62,16 +62,16 @@ def test_documentationtools_GraphvizGraph_deepcopy_04():
 
 
 def test_documentationtools_GraphvizGraph_deepcopy_05():
-    graph = documentationtools.GraphvizGraph()
-    graph.append(documentationtools.GraphvizSubgraph())
-    graph[0].append(documentationtools.GraphvizNode())
-    graph[0].append(documentationtools.GraphvizNode())
-    graph[0].append(documentationtools.GraphvizNode())
-    graph[0].append(documentationtools.GraphvizSubgraph())
-    graph[0][-1].append(documentationtools.GraphvizNode())
-    graph.append(documentationtools.GraphvizNode())
-    documentationtools.GraphvizEdge().attach(graph[0][1], graph[1])
-    documentationtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
+    graph = graphtools.GraphvizGraph()
+    graph.append(graphtools.GraphvizSubgraph())
+    graph[0].append(graphtools.GraphvizNode())
+    graph[0].append(graphtools.GraphvizNode())
+    graph[0].append(graphtools.GraphvizNode())
+    graph[0].append(graphtools.GraphvizSubgraph())
+    graph[0][-1].append(graphtools.GraphvizNode())
+    graph.append(graphtools.GraphvizNode())
+    graphtools.GraphvizEdge().attach(graph[0][1], graph[1])
+    graphtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
     assert str(graph) == stringtools.normalize(
         r'''
         digraph G {
