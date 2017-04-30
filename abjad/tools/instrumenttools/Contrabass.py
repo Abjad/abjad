@@ -86,7 +86,7 @@ class Contrabass(Instrument):
 
                 >>> show(contrabass.allowable_clefs) # doctest: +SKIP
 
-        Returns clef inventory.
+        Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
 

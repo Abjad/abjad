@@ -34,10 +34,10 @@ def fix_test_case_block_comments():
                 elif open_match:
                     total_broken_comments += 1
                     contained_broken_comment = True
-                    whitespace, open_quote, expr = open_match.groups()
+                    whitespace, open_quote, argument = open_match.groups()
                     new_line = whitespace + open_quote + '\n'
                     new_lines.append(new_line)
-                    new_line = whitespace + expr + '\n'
+                    new_line = whitespace + argument + '\n'
                     new_lines.append(new_line)
                 elif close_match:
                     groups = close_match.groups()

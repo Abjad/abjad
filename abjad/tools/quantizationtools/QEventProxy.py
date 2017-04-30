@@ -39,40 +39,40 @@ class QEventProxy(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, *arguments):
         from abjad.tools import quantizationtools
-        if len(args) == 2:
-            q_event, offset = args[0], durationtools.Offset(args[1])
+        if len(arguments) == 2:
+            q_event, offset = arguments[0], durationtools.Offset(arguments[1])
             assert isinstance(q_event, quantizationtools.QEvent)
             assert 0 <= offset <= 1
-        elif len(args) == 3:
-            q_event, minimum, maximum = args[0], \
-                durationtools.Offset(args[1]), \
-                durationtools.Offset(args[2])
+        elif len(arguments) == 3:
+            q_event, minimum, maximum = arguments[0], \
+                durationtools.Offset(arguments[1]), \
+                durationtools.Offset(arguments[2])
             assert isinstance(q_event, quantizationtools.QEvent)
             assert minimum <= q_event.offset <= maximum
             offset = (q_event.offset - minimum) / (maximum - minimum)
-        elif len(args) == 0:
+        elif len(arguments) == 0:
             q_event = None
             offset = durationtools.Offset(0)
         else:
             message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, args)
+            message = message.format(type(self).__name__, arguments)
             raise ValueError(message)
         self._q_event = q_event
         self._offset = durationtools.Offset(offset)
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a q-event proxy with offset and q-event
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a q-event proxy with offset and q-event
         equal to those of this q-event proxy. Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(expr):
-            if self.offset == expr.offset:
-                if self.q_event == expr.q_event:
+        if type(self) == type(argument):
+            if self.offset == argument.offset:
+                if self.q_event == argument.q_event:
                     return True
         return False
 

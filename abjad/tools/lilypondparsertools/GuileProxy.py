@@ -25,17 +25,17 @@ class GuileProxy(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, function_name, args):
-        r'''Calls Guile proxy on `function_name` with `args`.
+    def __call__(self, function_name, arguments):
+        r'''Calls Guile proxy on `function_name` with `arguments`.
 
         Returns function output.
         '''
         if hasattr(self, function_name[1:]):
-            result = getattr(self, function_name[1:])(*args)
+            result = getattr(self, function_name[1:])(*arguments)
             return result
         elif function_name[1:] in self._function_name_mapping:
             function_name = function_name[1:]
-            result = getattr(self, function_name)(*args)
+            result = getattr(self, function_name)(*arguments)
             return result
         message = 'LilyPondParser can not emulate music function: {}.'
         message = message.format(function_name)

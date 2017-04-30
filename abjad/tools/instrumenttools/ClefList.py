@@ -6,37 +6,62 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class ClefList(TypedList):
-    r'''An ordered list of clefs.
+    r'''Clef list.
 
-    ::
+    ..  container:: example
 
-        >>> inventory = instrumenttools.ClefList(['treble', 'bass'])
+        ::
 
-    ::
+            >>> clefs = instrumenttools.ClefList(['treble', 'bass'])
 
-        >>> inventory
-        ClefList([Clef(name='treble'), Clef(name='bass')])
+        ::
 
-    ::
+            >>> f(clefs)
+            instrumenttools.ClefList(
+                [
+                    indicatortools.Clef(
+                        name='treble',
+                        ),
+                    indicatortools.Clef(
+                        name='bass',
+                        ),
+                    ]
+                )
 
-        >>> 'treble' in inventory
-        True
+        ::
 
-    ::
+            >>> 'treble' in clefs
+            True
 
-        >>> Clef('treble') in inventory
-        True
+        ::
 
-    ::
+            >>> Clef('treble') in clefs
+            True
 
-        >>> 'alto' in inventory
-        False
+        ::
 
-    ::
+            >>> 'alto' in clefs
+            False
 
-        >>> show(inventory) # doctest: +SKIP
+        ::
 
-    Clef inventories implement the list interface and are mutable.
+            >>> show(clefs) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> lilypond_file = clefs.__illustrate__()
+            >>> f(lilypond_file[Staff])
+            \new Staff \with {
+                \override Clef.full-size-change = ##t
+                \override Rest.transparent = ##t
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "treble"
+                r8
+                \clef "bass"
+                r8
+            }
+
     '''
 
     ### CLASS VARIABLES ###
@@ -47,11 +72,28 @@ class ClefList(TypedList):
     ### SPECIAL METHODS ###
 
     def __illustrate__(self):
-        r'''Illustrates clef inventory.
+        r'''Illustrates clefs.
 
-        ::
+        ..  container:: example
 
-            >>> show(inventory) # doctest: +SKIP
+            ::
+
+                >>> show(clefs) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = clefs.__illustrate__()
+                >>> f(lilypond_file[Staff])
+                \new Staff \with {
+                    \override Clef.full-size-change = ##t
+                    \override Rest.transparent = ##t
+                    \override TimeSignature.stencil = ##f
+                } {
+                    \clef "treble"
+                    r8
+                    \clef "bass"
+                    r8
+                }
 
         Returns LilyPond file.
         '''

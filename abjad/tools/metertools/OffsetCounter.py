@@ -11,15 +11,18 @@ class OffsetCounter(TypedCounter):
 
         ::
 
-            >>> timespan_inventory = timespantools.TimespanInventory([
+            >>> timespans = timespantools.TimespanList([
             ...     timespantools.Timespan(0, 16),
             ...     timespantools.Timespan(5, 12),
             ...     timespantools.Timespan(-2, 8),
             ...     ])
             >>> timespan_operand = timespantools.Timespan(6, 10)
-            >>> timespan_inventory = timespan_inventory - timespan_operand
-            >>> offset_counter = metertools.OffsetCounter(timespan_inventory)
-            >>> print(format(offset_counter))
+            >>> timespans = timespans - timespan_operand
+            >>> offset_counter = metertools.OffsetCounter(timespans)
+
+        ::
+
+            >>> f(offset_counter)
             metertools.OffsetCounter(
                 {
                     durationtools.Offset(-2, 1): 1,
@@ -68,21 +71,15 @@ class OffsetCounter(TypedCounter):
 
             ::
 
-                >>> timespan_inventory = timespantools.TimespanInventory([
+                >>> timespans = timespantools.TimespanList([
                 ...     timespantools.Timespan(0, 16),
                 ...     timespantools.Timespan(5, 12),
                 ...     timespantools.Timespan(-2, 8),
                 ...     ])
                 >>> timespan_operand = timespantools.Timespan(6, 10)
-                >>> timespan_inventory = timespan_inventory - timespan_operand
-                >>> offset_counter = metertools.OffsetCounter(
-                ...     timespan_inventory,
-                ...     )
+                >>> timespans = timespans - timespan_operand
+                >>> offset_counter = metertools.OffsetCounter(timespans)
                 >>> show(offset_counter, scale=0.5) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> illustration = offset_counter.__illustrate__()
 
         Returns LilyPond file.
         '''

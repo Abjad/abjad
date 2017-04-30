@@ -80,7 +80,7 @@ class BassSaxophone(Instrument):
 
                 >>> show(bass_saxophone.allowable_clefs) # doctest: +SKIP
 
-        Returns clef inventory.
+        Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
 

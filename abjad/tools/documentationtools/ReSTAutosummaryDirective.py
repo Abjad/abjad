@@ -45,14 +45,14 @@ class ReSTAutosummaryDirective(ReSTDirective):
 
     ### SPECIAL METHODS ###
 
-    def __setitem__(self, i, expr):
-        r'''Sets item `i` to `expr`.
+    def __setitem__(self, i, argument):
+        r'''Sets item `i` to `argument`.
 
         Returns none.
         '''
         from abjad.tools import documentationtools
         newexpr = []
-        for x in expr:
+        for x in argument:
             if isinstance(x, str):
                 newexpr.append(documentationtools.ReSTAutosummaryItem(text=x))
             else:

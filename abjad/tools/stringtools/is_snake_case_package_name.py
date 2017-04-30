@@ -19,8 +19,8 @@ underscore_delimited_lowercase_package_regex = re.compile(
     )
 
 
-def is_snake_case_package_name(expr):
-    r'''Is true when `expr` is a string and is underscore-delimited lowercase
+def is_snake_case_package_name(argument):
+    r'''Is true when `argument` is a string and is underscore-delimited lowercase
     package name.
 
     ..  container:: example
@@ -41,6 +41,6 @@ def is_snake_case_package_name(expr):
 
     Returns true or false.
     '''
-    if not isinstance(expr, six.string_types):
+    if not isinstance(argument, six.string_types):
         return False
-    return bool(underscore_delimited_lowercase_package_regex.match(expr))
+    return bool(underscore_delimited_lowercase_package_regex.match(argument))

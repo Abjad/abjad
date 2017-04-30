@@ -33,14 +33,14 @@ class QEvent(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __lt__(self, expr):
+    def __lt__(self, argument):
         r'''Is true when `epxr` is a q-event with offset greater than that of this
         q-event. Otherwise false.
 
         Returns true or false.
         '''
         if type(self) == type(self):
-            if self.offset < expr.offset:
+            if self.offset < argument.offset:
                 return True
         return False
 

@@ -64,7 +64,7 @@ class NoteHead(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
+    def __copy__(self, *arguments):
         r'''Copies note-head.
 
         ::
@@ -77,15 +77,15 @@ class NoteHead(AbjadObject):
         '''
         return type(self)(*self.__getnewargs__())
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a note-head with written pitch equal to
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a note-head with written pitch equal to
         that of this note-head. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            return self.written_pitch == expr.written_pitch
-        return self.written_pitch == expr
+        if isinstance(argument, type(self)):
+            return self.written_pitch == argument.written_pitch
+        return self.written_pitch == argument
 
     def __format__(self, format_specification=''):
         r'''Formats note-head.
@@ -104,7 +104,7 @@ class NoteHead(AbjadObject):
 
         Returns tuple.
         '''
-        args = (
+        arguments = (
             self.written_pitch,
             None,
             self.is_cautionary,
@@ -112,7 +112,7 @@ class NoteHead(AbjadObject):
             self.is_parenthesized,
             self.tweak._get_attribute_pairs(),
             )
-        return args
+        return arguments
 
     def __hash__(self):
         r'''Hashes note-head.
@@ -123,19 +123,19 @@ class NoteHead(AbjadObject):
         '''
         return super(NoteHead, self).__hash__()
 
-    def __lt__(self, expr):
-        r'''Is true when `expr` is a note-head with written pitch greater than
+    def __lt__(self, argument):
+        r'''Is true when `argument` is a note-head with written pitch greater than
         that of this note-head. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            return self.written_pitch < expr.written_pitch
+        if isinstance(argument, type(self)):
+            return self.written_pitch < argument.written_pitch
         try:
-            expr = type(self)(expr)
+            argument = type(self)(argument)
         except (ValueError, TypeError):
             return False
-        return self.written_pitch < expr.written_pitch
+        return self.written_pitch < argument.written_pitch
 
     def __repr__(self):
         r'''Gets interpreter representation of note-head.
@@ -189,10 +189,10 @@ class NoteHead(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        args = [repr(self._format_string)]
-        args.extend(self.tweak._get_attribute_pairs())
-        args = ', '.join([str(x) for x in args])
-        repr_text = '{}({})'.format(type(self).__name__, args)
+        arguments = [repr(self._format_string)]
+        arguments.extend(self.tweak._get_attribute_pairs())
+        arguments = ', '.join([str(x) for x in arguments])
+        repr_text = '{}({})'.format(type(self).__name__, arguments)
         agent = systemtools.StorageFormatAgent(self)
         names = list(agent.signature_keyword_names)
         if 'client' in names:

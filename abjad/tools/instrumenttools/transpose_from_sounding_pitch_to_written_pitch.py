@@ -6,8 +6,8 @@ from abjad.tools import pitchtools
 from abjad.tools.topleveltools import iterate
 
 
-def transpose_from_sounding_pitch_to_written_pitch(expr):
-    r'''Transpose notes and chords in `expr` from sounding pitch
+def transpose_from_sounding_pitch_to_written_pitch(argument):
+    r'''Transpose notes and chords in `argument` from sounding pitch
     to written pitch:
 
     ::
@@ -50,7 +50,7 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
     '''
     from abjad.tools import instrumenttools
     prototype = (scoretools.Note, scoretools.Chord)
-    for note_or_chord in iterate(expr).by_class(prototype):
+    for note_or_chord in iterate(argument).by_class(prototype):
         instrument = note_or_chord._get_effective(instrumenttools.Instrument)
         if not instrument:
             continue

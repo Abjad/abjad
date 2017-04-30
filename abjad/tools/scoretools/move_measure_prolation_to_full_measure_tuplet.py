@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 
 
-def move_measure_prolation_to_full_measure_tuplet(expr):
+def move_measure_prolation_to_full_measure_tuplet(argument):
     '''Move measure prolation to full-measure tuplet.
 
     Turn non-power-of-two measures into power-of-two measures containing
@@ -18,7 +18,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     from abjad.tools import indicatortools
     from abjad.tools import scoretools
 
-    for measure in iterate(expr).by_class(scoretools.Measure):
+    for measure in iterate(argument).by_class(scoretools.Measure):
         effective_time_signature = measure.time_signature
         if effective_time_signature.has_non_power_of_two_denominator:
 

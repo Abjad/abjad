@@ -218,10 +218,10 @@ def make_tied_leaf(
             duration.denominator,
             )
         if not pitches is None:
-            args = (pitches, written_duration)
+            arguments = (pitches, written_duration)
         else:
-            args = (written_duration, )
-        result.append(class_(*args))
+            arguments = (written_duration, )
+        result.append(class_(*arguments))
 
     # apply tie spanner if required
     if tie_parts and 1 < len(result):

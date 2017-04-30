@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def show(argument, return_timing=False, **kwargs):
+def show(argument, return_timing=False, **keywords):
     r'''Shows `argument`.
 
     ..  container:: example
@@ -53,7 +53,7 @@ def show(argument, return_timing=False, **kwargs):
         message = 'must have __illustrate__ method: {!r}.'
         message = message.format(argument)
         raise Exception(message)
-    result = abjad.persist(argument).as_pdf(**kwargs)
+    result = abjad.persist(argument).as_pdf(**keywords)
     pdf_file_path = result[0]
     abjad_formatting_time = result[1]
     lilypond_rendering_time = result[2]

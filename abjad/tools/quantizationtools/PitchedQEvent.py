@@ -47,18 +47,18 @@ class PitchedQEvent(QEvent):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a pitched q-event with offset, pitches,
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a pitched q-event with offset, pitches,
         attachments and index equal to those of this pitched q-event. Otherwise
         false.
 
         Returns true or false.
         '''
-        if type(self) == type(expr) and \
-            self.offset == expr.offset and \
-            self.pitches == expr.pitches and \
-            self.attachments == expr.attachments and \
-            self.index == expr.index:
+        if type(self) == type(argument) and \
+            self.offset == argument.offset and \
+            self.pitches == argument.pitches and \
+            self.attachments == argument.attachments and \
+            self.index == argument.index:
             return True
         return False
 

@@ -66,21 +66,21 @@ class CommandlineScript(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, args=None):
+    def __call__(self, arguments=None):
         r'''Calls developer script.
 
         Returns none.
         '''
         self._config_parser = self._read_config_files()
-        if args is None:
-            args = self.argument_parser.parse_args()
+        if arguments is None:
+            arguments = self.argument_parser.parse_args()
         else:
-            if isinstance(args, str):
-                args = args.split()
-            elif not isinstance(args, (list, tuple)):
+            if isinstance(arguments, str):
+                arguments = arguments.split()
+            elif not isinstance(arguments, (list, tuple)):
                 raise ValueError
-            args = self.argument_parser.parse_args(args)
-        self._process_args(args)
+            arguments = self.argument_parser.parse_args(arguments)
+        self._process_args(arguments)
 
     def __getstate__(self):
         r'''Gets object state.
@@ -96,7 +96,7 @@ class CommandlineScript(abctools.AbjadObject):
         return False
 
     @abc.abstractmethod
-    def _process_args(self, args):
+    def _process_args(self, arguments):
         raise NotImplementedError
 
     def _read_config_files(self):

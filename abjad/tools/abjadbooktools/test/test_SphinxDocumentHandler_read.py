@@ -85,7 +85,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 <literal_block xml:space="preserve">
                     >>> string = 'Hello, world!'
                 <literal_block xml:space="preserve">
-                    def example_function(expr):
+                    def example_function(argument):
                         r'''This is a multiline docstring.
 
                         This is the third line of the docstring.
@@ -93,10 +93,10 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         # This is a comment.
                         print('Entering example function.')
                         try:
-                            expr = expr + 1
+                            argument = argument + 1
                         except TypeError:
                             print('Wrong type!')
-                        print(expr)
+                        print(argument)
                         print('Leaving example function.')
                 <literal_block xml:space="preserve">
                     >>> print(string)

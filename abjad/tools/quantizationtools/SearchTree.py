@@ -49,14 +49,14 @@ class SearchTree(AbjadObject):
             new_q_grids.append(new_q_grid)
         return new_q_grids
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a search tree with definition equal to that of
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a search tree with definition equal to that of
         this search tree. Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(expr):
-            if self.definition == expr.definition:
+        if type(self) == type(argument):
+            if self.definition == argument.definition:
                 return True
         return False
 

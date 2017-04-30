@@ -15,8 +15,8 @@ def make_repeated_notes_with_shorter_notes_at_end(
 
     ::
 
-        >>> args = [0, Duration(1, 16), Duration(1, 4)]
-        >>> notes = scoretools.make_repeated_notes_with_shorter_notes_at_end(*args)
+        >>> arguments = [0, Duration(1, 16), Duration(1, 4)]
+        >>> notes = scoretools.make_repeated_notes_with_shorter_notes_at_end(*arguments)
         >>> voice = Voice(notes)
 
     ..  doctest::
@@ -33,8 +33,8 @@ def make_repeated_notes_with_shorter_notes_at_end(
 
     ::
 
-        >>> args = [0, Duration(1, 16), Duration(9, 32)]
-        >>> notes = scoretools.make_repeated_notes_with_shorter_notes_at_end(*args)
+        >>> arguments = [0, Duration(1, 16), Duration(9, 32)]
+        >>> notes = scoretools.make_repeated_notes_with_shorter_notes_at_end(*arguments)
         >>> voice = Voice(notes)
 
     ..  doctest::
@@ -52,8 +52,8 @@ def make_repeated_notes_with_shorter_notes_at_end(
 
     ::
 
-        >>> args = [0, Duration(1, 16), Duration(4, 10)]
-        >>> notes = scoretools.make_repeated_notes_with_shorter_notes_at_end(*args)
+        >>> arguments = [0, Duration(1, 16), Duration(4, 10)]
+        >>> notes = scoretools.make_repeated_notes_with_shorter_notes_at_end(*arguments)
         >>> voice = Voice(notes)
 
     ..  doctest::

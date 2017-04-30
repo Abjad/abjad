@@ -124,18 +124,18 @@ class QuantizationJob(AbjadObject):
 
         self._q_grids = tuple(old_q_grids)
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a quantization job with job ID, search tree,
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a quantization job with job ID, search tree,
         q-event proxies and q-grids equal to those of this quantization job.
         Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(expr):
-            if self.job_id == expr.job_id:
-                if self.search_tree == expr.search_tree:
-                    if self.q_event_proxies == expr.q_event_proxies:
-                        if self.q_grids == expr.q_grids:
+        if type(self) == type(argument):
+            if self.job_id == argument.job_id:
+                if self.search_tree == argument.search_tree:
+                    if self.q_event_proxies == argument.q_event_proxies:
+                        if self.q_grids == argument.q_grids:
                             return True
         return False
 

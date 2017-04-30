@@ -31,10 +31,10 @@ class SchemeAssociativeList(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *arguments, **keywords):
         from abjad.tools import schemetools
         args_as_pairs = []
-        for arg in args:
+        for arg in arguments:
             if not isinstance(arg, (tuple, schemetools.SchemePair)):
                 message = 'must be Python pair or Scheme pair: "%s".'
                 raise TypeError(message % arg)

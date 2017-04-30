@@ -31,16 +31,16 @@ class Scale(PitchClassSegment):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        if len(args) == 0:
+    def __init__(self, *arguments):
+        if len(arguments) == 0:
             key_signature = indicatortools.KeySignature('c', 'major')
-        elif len(args) == 1 and isinstance(
-            args[0], indicatortools.KeySignature):
-            key_signature = args[0]
-        elif len(args) == 1 and isinstance(args[0], Scale):
-            key_signature = args[0].key_signature
-        elif len(args) == 2:
-            key_signature = indicatortools.KeySignature(*args)
+        elif len(arguments) == 1 and isinstance(
+            arguments[0], indicatortools.KeySignature):
+            key_signature = arguments[0]
+        elif len(arguments) == 1 and isinstance(arguments[0], Scale):
+            key_signature = arguments[0].key_signature
+        elif len(arguments) == 2:
+            key_signature = indicatortools.KeySignature(*arguments)
         else:
             raise TypeError
         npcs = [key_signature.tonic]
@@ -67,15 +67,15 @@ class Scale(PitchClassSegment):
                 ],
             )
 
-    def _set_ascending_named_diatonic_pitches_on_logical_ties_in_expr(
-        self, expr):
+    def _set_ascending_named_diatonic_pitches_on_logical_ties(
+        self, argument):
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         dicg = self.named_interval_class_segment
         length = len(dicg)
         octave_number = 4
         pitch = pitchtools.NamedPitch(self[0], octave_number)
-        for i, logical_tie in enumerate(iterate(expr).by_logical_tie()):
+        for i, logical_tie in enumerate(iterate(argument).by_logical_tie()):
             if isinstance(logical_tie[0], scoretools.Note):
                 for note in logical_tie:
                     note.written_pitch = pitch
@@ -185,7 +185,7 @@ class Scale(PitchClassSegment):
         '''
         written_duration = written_duration or durationtools.Duration(1, 8)
         result = scoretools.make_notes(n * [0], [written_duration])
-        self._set_ascending_named_diatonic_pitches_on_logical_ties_in_expr(
+        self._set_ascending_named_diatonic_pitches_on_logical_ties(
             result)
         return result
 
@@ -240,13 +240,13 @@ class Scale(PitchClassSegment):
         set_(score).tempo_wholes_per_minute = schemetools.SchemeMoment(30)
         return score
 
-    def named_pitch_class_to_scale_degree(self, *args):
+    def named_pitch_class_to_scale_degree(self, *arguments):
         r'''Changes named pitch-class to scale degree.
 
         Returns scale degree.
         '''
         from abjad.tools import tonalanalysistools
-        foreign_pitch_class = pitchtools.NamedPitchClass(*args)
+        foreign_pitch_class = pitchtools.NamedPitchClass(*arguments)
         letter = foreign_pitch_class.diatonic_pitch_class_name
         for i, pc in enumerate(self):
             if pc.diatonic_pitch_class_name == letter:
@@ -259,7 +259,7 @@ class Scale(PitchClassSegment):
         accidental = foreign_pitch.accidental - native_pitch.accidental
         return tonalanalysistools.ScaleDegree(accidental, scale_degree_number)
 
-    def scale_degree_to_named_pitch_class(self, *args):
+    def scale_degree_to_named_pitch_class(self, *arguments):
         r'''Changes scale degree to named pitch-class.
 
         ::
@@ -278,7 +278,7 @@ class Scale(PitchClassSegment):
         Returns named pitch-class.
         '''
         from abjad.tools import tonalanalysistools
-        scale_degree = tonalanalysistools.ScaleDegree(*args)
+        scale_degree = tonalanalysistools.ScaleDegree(*arguments)
         scale_index = (scale_degree.number - 1) % 7
         pitch_class = self[scale_index]
         pitch_class = pitch_class.apply_accidental(scale_degree.accidental)

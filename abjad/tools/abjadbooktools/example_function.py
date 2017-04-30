@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def example_function(expr):
+def example_function(argument):
     r'''This is a multiline docstring.
 
     This is the third line of the docstring.
@@ -9,8 +9,8 @@ def example_function(expr):
     # This is a comment.
     print('Entering example function.')
     try:
-        expr = expr + 1
+        argument = argument + 1
     except TypeError:
         print('Wrong type!')
-    print(expr)
+    print(argument)
     print('Leaving example function.')

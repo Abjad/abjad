@@ -40,8 +40,8 @@ class TimeRelation(AbjadObject):
         pass
 
     @abc.abstractmethod
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a equal-valued time relation.
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a equal-valued time relation.
         Otherwise false.
 
         Returns true or false.

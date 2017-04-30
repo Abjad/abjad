@@ -17,9 +17,9 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         input_file_contents = [
             '\\begin{comment}',
             '<abjad>[strip_prompt=true]',
-            'def do_something(expr):',
+            'def do_something(argument):',
             "    print('before')",
-            '    print(expr + 1)',
+            '    print(argument + 1)',
             "    print('after')",
             '',
             '</abjad>',
@@ -42,9 +42,9 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         input_file_contents = [
             '\\begin{comment}',
             '<abjad>[strip_prompt=true]',
-            'def do_something(expr):',
+            'def do_something(argument):',
             "    print('before')",
-            '    print(expr + 1)',
+            '    print(argument + 1)',
             "    print('after')",
             '',
             '</abjad>',
@@ -64,9 +64,9 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             """
             \\begin{comment}
             <abjad>[strip_prompt=true]
-            def do_something(expr):
+            def do_something(argument):
                 print('before')
-                print(expr + 1)
+                print(argument + 1)
                 print('after')
 
             </abjad>
@@ -74,9 +74,9 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
 
             %%% ABJADBOOK START %%%
             \\begin{lstlisting}
-            def do_something(expr):
+            def do_something(argument):
                 print('before')
-                print(expr + 1)
+                print(argument + 1)
                 print('after')
             \\end{lstlisting}
             %%% ABJADBOOK END %%%

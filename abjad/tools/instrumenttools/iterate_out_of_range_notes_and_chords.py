@@ -5,8 +5,8 @@ from abjad.tools import scoretools
 from abjad.tools.topleveltools import iterate
 
 
-def iterate_out_of_range_notes_and_chords(expr):
-    '''Iterates notes and chords in `expr` outside traditional instrument
+def iterate_out_of_range_notes_and_chords(argument):
+    '''Iterates notes and chords in `argument` outside traditional instrument
     ranges.
 
     ..  todo:: Move to WellformednessManager.
@@ -33,7 +33,7 @@ def iterate_out_of_range_notes_and_chords(expr):
     '''
     from abjad.tools import instrumenttools
     prototype = (scoretools.Note, scoretools.Chord)
-    for note_or_chord in iterate(expr).by_class(prototype):
+    for note_or_chord in iterate(argument).by_class(prototype):
         instrument = note_or_chord._get_effective(
             instrumenttools.Instrument)
         if instrument is None:

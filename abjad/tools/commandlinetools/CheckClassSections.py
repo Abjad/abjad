@@ -58,26 +58,26 @@ under PROPERTIES sections, and vice-versa.'''
             nargs='?',
             )
 
-    def _process_args(self, args):
+    def _process_args(self, arguments):
         failed_files = 0
         checked_files = 0
         line_divider = '=' * 79
         file_list = []
-        if os.path.isdir(args.path):
-            relative_path_name = os.path.relpath(args.path)
+        if os.path.isdir(arguments.path):
+            relative_path_name = os.path.relpath(arguments.path)
             print('Recursively scanning {} for errors...'.format(
                 'current working directory' if relative_path_name == '.'
                 else relative_path_name
                 )
             )
-            for path, dirs, files in os.walk(args.path):
+            for path, dirs, files in os.walk(arguments.path):
                 for f in sorted(files):
                     file_list.append(os.path.abspath(os.path.join(path, f)))
-        elif os.path.isfile(args.path):
-            print('Scanning {} for errors...'.format(args.path))
-            file_list.append(args.path)
+        elif os.path.isfile(arguments.path):
+            print('Scanning {} for errors...'.format(arguments.path))
+            file_list.append(arguments.path)
         else:
-            print('{} is not a valid directory or file'.format(args.path))
+            print('{} is not a valid directory or file'.format(arguments.path))
             sys.exit(1)
         for test_file in file_list:
             # Skip links and non-.py files

@@ -227,7 +227,7 @@ class Markup(AbjadValueObject):
             new_contents = (str(contents),)
         self._contents = new_contents
         self._format_slot = 'right'
-        direction = stringtools.expr_to_tridirectional_ordinal_constant(
+        direction = stringtools.to_tridirectional_ordinal_constant(
             direction)
         self._direction = direction
         self._expression = None
@@ -705,7 +705,7 @@ class Markup(AbjadValueObject):
         indent = systemtools.LilyPondFormatManager.indent
         direction = ''
         if self.direction is not None:
-            direction = stringtools.expr_to_tridirectional_lilypond_symbol(
+            direction = stringtools.to_tridirectional_lilypond_symbol(
                 self.direction)
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]

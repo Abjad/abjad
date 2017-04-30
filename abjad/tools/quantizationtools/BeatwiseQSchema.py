@@ -102,7 +102,7 @@ class BeatwiseQSchema(QSchema):
 
     Per-time-step settings can be applied in a variety of ways.
 
-    Instantiating the schema via ``*args`` with a series of either
+    Instantiating the schema via ``*arguments`` with a series of either
     ``BeatwiseQSchemaItem`` instances, or dictionaries which could be used to
     instantiate ``BeatwiseQSchemaItem`` instances, will apply those settings
     sequentially, starting from time-step ``0``:
@@ -138,7 +138,7 @@ class BeatwiseQSchema(QSchema):
         Duration(1, 8)
 
     Similarly, instantiating the schema from a single dictionary, consisting
-    of integer:specification pairs, or a sequence via ``*args`` of (integer,
+    of integer:specification pairs, or a sequence via ``*arguments`` of (integer,
     specification) pairs, allows for applying settings to  non-sequential
     time-steps:
 
@@ -278,20 +278,20 @@ class BeatwiseQSchema(QSchema):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *arguments, **keywords):
         from abjad.tools import quantizationtools
         self._beatspan = durationtools.Duration(
-            kwargs.get('beatspan',
+            keywords.get('beatspan',
                 (1, 4)))
-        search_tree = kwargs.get('search_tree',
+        search_tree = keywords.get('search_tree',
             quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
-        tempo = kwargs.get('tempo', ((1, 4), 60))
+        tempo = keywords.get('tempo', ((1, 4), 60))
         if isinstance(tempo, tuple):
             tempo = indicatortools.Tempo(*tempo)
         self._tempo = tempo
-        QSchema.__init__(self, *args, **kwargs)
+        QSchema.__init__(self, *arguments, **keywords)
 
     ### PRIVATE METHODS ###
 

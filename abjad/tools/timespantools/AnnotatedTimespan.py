@@ -85,5 +85,5 @@ class AnnotatedTimespan(Timespan):
         return self._annotation
 
     @annotation.setter
-    def annotation(self, expr):
-        self._annotation = expr
+    def annotation(self, argument):
+        self._annotation = argument

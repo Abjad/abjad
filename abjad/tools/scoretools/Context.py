@@ -213,12 +213,12 @@ class Context(Container):
         return self._context_name
 
     @context_name.setter
-    def context_name(self, expr):
-        if expr is None:
-            expr = type(self).__name__
+    def context_name(self, argument):
+        if argument is None:
+            argument = type(self).__name__
         else:
-            expr = str(expr)
-        self._context_name = expr
+            argument = str(argument)
+        self._context_name = argument
 
     @property
     def is_nonsemantic(self):

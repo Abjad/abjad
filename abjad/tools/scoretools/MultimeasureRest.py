@@ -21,11 +21,11 @@ class MultimeasureRest(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, *arguments):
         from abjad.tools import scoretools
-        if len(args) == 0:
-            args = ((1, 4),)
-        rest = scoretools.Rest(*args)
+        if len(arguments) == 0:
+            arguments = ((1, 4),)
+        rest = scoretools.Rest(*arguments)
         Leaf.__init__(
             self,
             rest.written_duration,

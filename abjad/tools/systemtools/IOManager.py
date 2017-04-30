@@ -160,14 +160,14 @@ class IOManager(AbjadObject):
 
     @staticmethod
     def count_function_calls(
-        expr,
+        argument,
         global_context=None,
         local_context=None,
         fixed_point=True,
         ):
-        '''Counts function calls required to execute `expr`.
+        '''Counts function calls required to execute `argument`.
 
-        Wraps ``IOManager.profile(expr)``.
+        Wraps ``IOManager.profile(argument)``.
 
         Returns nonnegative integer.
         '''
@@ -181,7 +181,7 @@ class IOManager(AbjadObject):
             while current_result != last_result:
                 last_result = current_result
                 current_result = IOManager.profile(
-                    expr,
+                    argument,
                     print_to_terminal=False,
                     global_context=global_context,
                     local_context=local_context,
@@ -189,7 +189,7 @@ class IOManager(AbjadObject):
                 current_result = extract_count(current_result)
             return current_result
         result = IOManager.profile(
-            expr,
+            argument,
             print_to_terminal=False,
             global_context=global_context,
             local_context=local_context,
@@ -505,7 +505,7 @@ class IOManager(AbjadObject):
 
     @staticmethod
     def profile(
-        expr,
+        argument,
         sort_by='cumulative',
         line_count=12, strip_dirs=True,
         print_callers=False,
@@ -514,15 +514,15 @@ class IOManager(AbjadObject):
         local_context=None,
         print_to_terminal=True,
         ):
-        r'''Profiles `expr`.
+        r'''Profiles `argument`.
 
         ..  container:: example
 
             ::
 
-                >>> expr = 'Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
+                >>> argument = 'Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
                 >>> systemtools.IOManager.profile(
-                ...     expr,
+                ...     argument,
                 ...     global_context=globals(),
                 ...     ) # doctest: +SKIP
                 Tue Apr  5 20:32:40 2011    _tmp_abj_profile
@@ -547,7 +547,7 @@ class IOManager(AbjadObject):
 
         Wraps the built-in Python ``cProfile`` module.
 
-        Set `expr` to any string of Abjad input.
+        Set `argument` to any string of Abjad input.
 
         Set `sort_by` to `'cumulative'`, `'time'` or `'calls'`.
 
@@ -568,11 +568,11 @@ class IOManager(AbjadObject):
         profile = cProfile.Profile()
         if global_context is None:
             profile = profile.run(
-                expr,
+                argument,
                 )
         else:
             profile = profile.runctx(
-                expr,
+                argument,
                 global_context,
                 local_context,
                 )

@@ -27,14 +27,14 @@ class TerminalQEvent(QEvent):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a terminal q-event with offset equal to that
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a terminal q-event with offset equal to that
         of this terminal q-event. Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(expr) and \
-            self.offset == expr.offset:
+        if type(self) == type(argument) and \
+            self.offset == argument.offset:
             return True
         return False
 

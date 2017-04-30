@@ -59,9 +59,9 @@ class StatsScript(CommandlineScript):
             )
         print(result)
 
-    def _process_args(self, args):
+    def _process_args(self, arguments):
         from abjad.tools import documentationtools
-        path = args.path
+        path = arguments.path
         if not os.path.isdir(path):
             path = os.path.dirname(path)
         counts = self._setup_counts()

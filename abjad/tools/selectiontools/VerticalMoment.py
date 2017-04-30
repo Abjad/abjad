@@ -68,7 +68,7 @@ class VerticalMoment(Selection):
             self._components = ()
             self._governors = ()
             return
-        governors, components = self._from_expr_and_offset(music, offset)
+        governors, components = self._from_offset(music, offset)
         offset = durationtools.Offset(offset)
         assert isinstance(governors, tuple)
         assert isinstance(components, tuple)
@@ -80,15 +80,15 @@ class VerticalMoment(Selection):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a vertical moment with the same components as
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a vertical moment with the same components as
         this vertical moment. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(expr, VerticalMoment):
-            if len(self) == len(expr):
-                for c, d in zip(self.components, expr.components):
+        if isinstance(argument, VerticalMoment):
+            if len(self) == len(argument):
+                for c, d in zip(self.components, argument.components):
                     if c is not d:
                         return False
                 else:
@@ -115,13 +115,13 @@ class VerticalMoment(Selection):
         '''
         return len(self.components)
 
-    def __ne__(self, expr):
-        r'''Is true when `expr` does not equal this vertical moment. Otherwise
+    def __ne__(self, argument):
+        r'''Is true when `argument` does not equal this vertical moment. Otherwise
         false.
 
         Returns true or false.
         '''
-        return not self == expr
+        return not self == argument
 
     def __repr__(self):
         r'''Gets interpreter representation of vertical moment.
@@ -161,18 +161,18 @@ class VerticalMoment(Selection):
         return lo - 1
 
     @staticmethod
-    def _from_expr_and_offset(expr, offset):
+    def _from_offset(argument, offset):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         offset = durationtools.Offset(offset)
         governors = []
         prototype = (list, tuple, selectiontools.Selection)
         message = 'must be component or of Abjad components: {!r}.'
-        message = message.format(expr)
-        if isinstance(expr, scoretools.Component):
-            governors.append(expr)
-        elif isinstance(expr, prototype):
-            for x in expr:
+        message = message.format(argument)
+        if isinstance(argument, scoretools.Component):
+            governors.append(argument)
+        elif isinstance(argument, prototype):
+            for x in argument:
                 if isinstance(x, scoretools.Component):
                     governors.append(x)
                 else:

@@ -35,26 +35,26 @@ class QSchema(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, *args, **kwargs):
-        if 1 == len(args) and isinstance(args[0], type(self)):
-            items = copy.copy(args[0].items)
-        elif 1 == len(args) and isinstance(args[0], dict):
-            items = list(args[0].items())
+    def __init__(self, *arguments, **keywords):
+        if 1 == len(arguments) and isinstance(arguments[0], type(self)):
+            items = copy.copy(arguments[0].items)
+        elif 1 == len(arguments) and isinstance(arguments[0], dict):
+            items = list(arguments[0].items())
             if mathtools.all_are_pairs_of_types(items, int, dict):
                 items = [(x, self.item_class(**y)) for x, y in items]
             assert mathtools.all_are_pairs_of_types(
                 items, int, self.item_class)
             items = dict(items)
-        elif mathtools.all_are_pairs_of_types(args, int, self.item_class):
-            items = dict(args)
-        elif mathtools.all_are_pairs_of_types(args, int, dict):
-            items = [(x, self.item_class(**y)) for x, y in args]
+        elif mathtools.all_are_pairs_of_types(arguments, int, self.item_class):
+            items = dict(arguments)
+        elif mathtools.all_are_pairs_of_types(arguments, int, dict):
+            items = [(x, self.item_class(**y)) for x, y in arguments]
             items = dict(items)
-        elif all(isinstance(x, self.item_class) for x in args):
-            items = [(i, x) for i, x in enumerate(args)]
+        elif all(isinstance(x, self.item_class) for x in arguments):
+            items = [(i, x) for i, x in enumerate(arguments)]
             items = dict(items)
-        elif all(isinstance(x, dict) for x in args):
-            items = [(i, self.item_class(**x)) for i, x in enumerate(args)]
+        elif all(isinstance(x, dict) for x in arguments):
+            items = [(i, self.item_class(**x)) for i, x in enumerate(arguments)]
             items = dict(items)
         else:
             raise ValueError

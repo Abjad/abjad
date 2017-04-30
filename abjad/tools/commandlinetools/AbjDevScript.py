@@ -27,20 +27,20 @@ class AbjDevScript(CommandlineScript):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, args=None):
+    def __call__(self, arguments=None):
         r'''Calls script.
         '''
-        if args is None:
-            args = self.argument_parser.parse_known_args()
+        if arguments is None:
+            arguments = self.argument_parser.parse_known_args()
         else:
-            if isinstance(args, str):
-                args = args.split()
-            elif not isinstance(args, (list, tuple)):
+            if isinstance(arguments, str):
+                arguments = arguments.split()
+            elif not isinstance(arguments, (list, tuple)):
                 message = 'must be str, list, tuple or none: {!r}.'
-                message = message.format(args)
+                message = message.format(arguments)
                 raise ValueError(message)
-            args = self.argument_parser.parse_known_args(args)
-        self._process_args(args)
+            arguments = self.argument_parser.parse_known_args(arguments)
+        self._process_args(arguments)
 
     ### PRIVATE METHODS ###
 
@@ -96,20 +96,20 @@ class AbjDevScript(CommandlineScript):
                 print(message)
             print()
 
-    def _process_args(self, args):
-        args, unknown_args = args
-        if args.subparser_name == 'help':
+    def _process_args(self, arguments):
+        arguments, unknown_args = arguments
+        if arguments.subparser_name == 'help':
             self._handle_help_command(unknown_args)
-        elif args.subparser_name == 'list':
+        elif arguments.subparser_name == 'list':
             self._handle_list_command()
         else:
-            if hasattr(args, 'subsubparser_name'):
+            if hasattr(arguments, 'subsubparser_name'):
                 commandline_script_class = self.commandline_script_aliases[
-                    args.subparser_name][args.subsubparser_name]
-            elif getattr(args, 'subparser_name'):
+                    arguments.subparser_name][arguments.subsubparser_name]
+            elif getattr(arguments, 'subparser_name'):
                 commandline_script_class = \
-                    self.commandline_script_aliases[args.subparser_name]
-            elif getattr(args, 'subparser_name') is None:
+                    self.commandline_script_aliases[arguments.subparser_name]
+            elif getattr(arguments, 'subparser_name') is None:
                 self(['--help'])
                 return
             instance = commandline_script_class()

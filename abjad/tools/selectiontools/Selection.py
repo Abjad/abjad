@@ -38,37 +38,37 @@ class Selection(object):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
-        r'''Cocatenates `expr` to selection.
+    def __add__(self, argument):
+        r'''Cocatenates `argument` to selection.
 
         Returns new selection.
         '''
-        assert isinstance(expr, (type(self), list, tuple))
-        if isinstance(expr, type(self)):
-            music = self._music + expr._music
+        assert isinstance(argument, (type(self), list, tuple))
+        if isinstance(argument, type(self)):
+            music = self._music + argument._music
             return type(self)(music)
-        elif isinstance(expr, (tuple, list)):
-            music = self._music + tuple(expr)
+        elif isinstance(argument, (tuple, list)):
+            music = self._music + tuple(argument)
         return type(self)(music)
 
-    def __contains__(self, expr):
-        r'''Is true when `expr` is in selection. Otherwise false.
+    def __contains__(self, argument):
+        r'''Is true when `argument` is in selection. Otherwise false.
 
         Returns true or false.
         '''
-        return expr in self._music
+        return argument in self._music
 
-    def __eq__(self, expr):
-        r'''Is true when selection and `expr` are of the same type
-        and when music of selection equals music of `expr`.
+    def __eq__(self, argument):
+        r'''Is true when selection and `argument` are of the same type
+        and when music of selection equals music of `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            return self._music == expr._music
-        elif isinstance(expr, collections.Sequence):
-            return self._music == tuple(expr)
+        if isinstance(argument, type(self)):
+            return self._music == argument._music
+        elif isinstance(argument, collections.Sequence):
+            return self._music == tuple(argument)
         return False
 
     def __format__(self, format_specification=''):
@@ -161,24 +161,24 @@ class Selection(object):
         '''
         return len(self._music)
 
-    def __ne__(self, expr):
-        r'''Is true when selection does not equal `expr`. Otherwise false.
+    def __ne__(self, argument):
+        r'''Is true when selection does not equal `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        return not self == expr
+        return not self == argument
 
-    def __radd__(self, expr):
-        r'''Concatenates selection to `expr`.
+    def __radd__(self, argument):
+        r'''Concatenates selection to `argument`.
 
         Returns newly created selection.
         '''
-        assert isinstance(expr, (type(self), list, tuple))
-        if isinstance(expr, type(self)):
-            music = expr._music + self._music
+        assert isinstance(argument, (type(self), list, tuple))
+        if isinstance(argument, type(self)):
+            music = argument._music + self._music
             return type(self)(music)
-        elif isinstance(expr, (tuple, list)):
-            music = tuple(expr) + self._music
+        elif isinstance(argument, (tuple, list)):
+            music = tuple(argument) + self._music
         return type(self)(music)
 
     def __repr__(self):
@@ -200,7 +200,7 @@ class Selection(object):
 
     @staticmethod
     def _all_are_components_in_same_logical_voice(
-        expr, prototype=None, allow_orphans=True):
+        argument, prototype=None, allow_orphans=True):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         allowable_types = (
@@ -209,17 +209,17 @@ class Selection(object):
             types.GeneratorType,
             selectiontools.Selection,
             )
-        if not isinstance(expr, allowable_types):
+        if not isinstance(argument, allowable_types):
             return False
         prototype = prototype or (scoretools.Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype, )
         assert isinstance(prototype, tuple)
-        if len(expr) == 0:
+        if len(argument) == 0:
             return True
         all_are_orphans_of_correct_type = True
         if allow_orphans:
-            for component in expr:
+            for component in argument:
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
@@ -228,7 +228,7 @@ class Selection(object):
                     break
             if all_are_orphans_of_correct_type:
                 return True
-        first = expr[0]
+        first = argument[0]
         if not isinstance(first, prototype):
             return False
         orphan_components = True
@@ -236,7 +236,7 @@ class Selection(object):
             orphan_components = False
         same_logical_voice = True
         first_signature = first._get_parentage().logical_voice
-        for component in expr[1:]:
+        for component in argument[1:]:
             parentage = component._get_parentage()
             if not parentage.is_orphan:
                 orphan_components = False
@@ -253,7 +253,7 @@ class Selection(object):
 
     @staticmethod
     def _all_are_contiguous_components_in_same_logical_voice(
-        expr, prototype=None, allow_orphans=True):
+        argument, prototype=None, allow_orphans=True):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         allowable_types = (
@@ -262,17 +262,17 @@ class Selection(object):
             types.GeneratorType,
             selectiontools.Selection,
             )
-        if not isinstance(expr, allowable_types):
+        if not isinstance(argument, allowable_types):
             return False
         prototype = prototype or (scoretools.Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype, )
         assert isinstance(prototype, tuple)
-        if len(expr) == 0:
+        if len(argument) == 0:
             return True
         all_are_orphans_of_correct_type = True
         if allow_orphans:
-            for component in expr:
+            for component in argument:
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
@@ -282,16 +282,16 @@ class Selection(object):
             if all_are_orphans_of_correct_type:
                 return True
         if not allow_orphans:
-            if any(x._get_parentage().is_orphan for x in expr):
+            if any(x._get_parentage().is_orphan for x in argument):
                 return False
-        first = expr[0]
+        first = argument[0]
         if not isinstance(first, prototype):
             return False
         first_parentage = first._get_parentage()
         first_logical_voice = first_parentage.logical_voice
         first_root = first_parentage.root
         previous = first
-        for current in expr[1:]:
+        for current in argument[1:]:
             current_parentage = current._get_parentage()
             current_logical_voice = \
                 current_parentage.logical_voice
@@ -310,7 +310,7 @@ class Selection(object):
 
     @staticmethod
     def _all_are_contiguous_components_in_same_parent(
-        expr, prototype=None, allow_orphans=True):
+        argument, prototype=None, allow_orphans=True):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         allowable_types = (
@@ -319,17 +319,17 @@ class Selection(object):
             types.GeneratorType,
             selectiontools.Selection,
             )
-        if not isinstance(expr, allowable_types):
+        if not isinstance(argument, allowable_types):
             return False
         prototype = prototype or (scoretools.Component, )
         if not isinstance(prototype, tuple):
             prototype = (prototype, )
         assert isinstance(prototype, tuple)
-        if len(expr) == 0:
+        if len(argument) == 0:
             return True
         all_are_orphans_of_correct_type = True
         if allow_orphans:
-            for component in expr:
+            for component in argument:
                 if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
@@ -338,7 +338,7 @@ class Selection(object):
                     break
             if all_are_orphans_of_correct_type:
                 return True
-        first = expr[0]
+        first = argument[0]
         if not isinstance(first, prototype):
             return False
         first_parent = first._parent
@@ -350,7 +350,7 @@ class Selection(object):
         same_parent = True
         strictly_contiguous = True
         previous = first
-        for current in expr[1:]:
+        for current in argument[1:]:
             if not isinstance(current, prototype):
                 return False
             if not current._get_parentage().is_orphan:

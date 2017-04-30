@@ -243,7 +243,7 @@ class FixedDurationTuplet(Tuplet):
             return None
 
     @multiplier.setter
-    def multiplier(self, expr):
+    def multiplier(self, argument):
         pass
 
     @property
@@ -282,7 +282,7 @@ class FixedDurationTuplet(Tuplet):
         return self._target_duration
 
     @target_duration.setter
-    def target_duration(self, expr):
-        target_duration = durationtools.Duration(expr)
+    def target_duration(self, argument):
+        target_duration = durationtools.Duration(argument)
         assert 0 < target_duration
         self._target_duration = target_duration

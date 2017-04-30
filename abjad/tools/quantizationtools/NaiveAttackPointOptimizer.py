@@ -18,12 +18,12 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, argument):
         r'''Calls naive attack-point optimizer.
 
         Returns none.
         '''
-        for logical_tie in iterate(expr).by_logical_tie(reverse=True):
+        for logical_tie in iterate(argument).by_logical_tie(reverse=True):
             sub_logical_ties = []
             current_sub_logical_tie = []
             for leaf in logical_tie:

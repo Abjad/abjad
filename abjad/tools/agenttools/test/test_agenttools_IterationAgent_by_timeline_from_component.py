@@ -3,9 +3,9 @@ from abjad import *
 
 
 def test_agenttools_IterationAgent_by_timeline_from_component_01():
-    r'''Yields component class instances in score of expr,
+    r'''Yields component class instances in score of argument,
     sorted backward by score offset stop time,
-    and starting from expr.
+    and starting from argument.
     '''
 
     score = Score()
@@ -44,9 +44,9 @@ def test_agenttools_IterationAgent_by_timeline_from_component_01():
 
 
 def test_agenttools_IterationAgent_by_timeline_from_component_02():
-    r'''Yields component class instances in score of expr,
+    r'''Yields component class instances in score of argument,
     sorted backward by score offset stop time,
-    and starting from expr.
+    and starting from argument.
     '''
 
     score = Score()
@@ -87,9 +87,9 @@ def test_agenttools_IterationAgent_by_timeline_from_component_02():
 
 
 def test_agenttools_IterationAgent_by_timeline_from_component_03():
-    r'''Yields component class instances in score of expr,
+    r'''Yields component class instances in score of argument,
     sorted by score offset and score index,
-    and starting from expr.
+    and starting from argument.
     '''
 
     score = Score()
@@ -126,9 +126,9 @@ def test_agenttools_IterationAgent_by_timeline_from_component_03():
 
 
 def test_agenttools_IterationAgent_by_timeline_from_component_04():
-    r'''Yields component class instances in score of expr,
+    r'''Yields component class instances in score of argument,
     sorted by score offset and score index,
-    and starting from expr.
+    and starting from argument.
     '''
 
     score = Score()

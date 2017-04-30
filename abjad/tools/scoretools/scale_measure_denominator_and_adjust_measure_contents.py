@@ -69,7 +69,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
         factor=factor,
         )
 
-    # scale contents of measures in expr
+    # scale contents of measures in argument
     multiplier = new_time_signature.implied_prolation.reciprocal
     measure._scale(multiplier)
 

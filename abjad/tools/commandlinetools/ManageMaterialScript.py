@@ -170,18 +170,18 @@ class ManageMaterialScript(ScorePackageScript):
             output_directory_path=material_directory_path,
             )
 
-    def _process_args(self, args):
-        self._setup_paths(args.score_path)
-        if args.edit is not None:
-            self._handle_edit(material_name=args.edit)
-        if args.illustrate is not None:
-            self._handle_illustrate(material_name=args.illustrate)
-        if args.list_:
+    def _process_args(self, arguments):
+        self._setup_paths(arguments.score_path)
+        if arguments.edit is not None:
+            self._handle_edit(material_name=arguments.edit)
+        if arguments.illustrate is not None:
+            self._handle_illustrate(material_name=arguments.illustrate)
+        if arguments.list_:
             self._handle_list()
-        if args.new:
-            self._handle_create(force=args.force, material_name=args.new)
-        if args.render is not None:
-            self._handle_render(material_name=args.render)
+        if arguments.new:
+            self._handle_create(force=arguments.force, material_name=arguments.new)
+        if arguments.render is not None:
+            self._handle_render(material_name=arguments.render)
 
     def _render_one_material(self, material_directory_path):
         print('Rendering {path!s}{sep}'.format(

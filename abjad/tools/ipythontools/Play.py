@@ -15,19 +15,19 @@ class Play(object):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
-        '''Render `expr` as audio and display it in the IPython notebook
+    def __call__(self, argument):
+        '''Render `argument` as audio and display it in the IPython notebook
         as an <audio> tag.
         '''
         from abjad.tools import systemtools
         from abjad.tools import topleveltools
-        assert hasattr(expr, '__illustrate__')
+        assert hasattr(argument, '__illustrate__')
         assert systemtools.IOManager.find_executable('lilypond')
         assert systemtools.IOManager.find_executable('timidity')
         has_vorbis = self._check_for_vorbis()
         temp_directory = tempfile.mkdtemp()
         midi_file_path = os.path.join(temp_directory, 'out.midi')
-        result = topleveltools.persist(expr).as_midi(midi_file_path)
+        result = topleveltools.persist(argument).as_midi(midi_file_path)
         midi_file_path, format_time, render_time = result
         if has_vorbis:
             audio_file_path = os.path.join(temp_directory, 'out.ogg')

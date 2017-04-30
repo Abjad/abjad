@@ -144,15 +144,15 @@ class Multiplier(Duration):
 
     ### SPECIAL METHODS ###
 
-    def __mul__(self, *args):
+    def __mul__(self, *arguments):
         r'''Multiplier times duration gives duration.
 
         Returns duration.
         '''
-        if len(args) == 1 and type(args[0]) is Duration:
-            return Duration(Duration.__mul__(self, *args))
+        if len(arguments) == 1 and type(arguments[0]) is Duration:
+            return Duration(Duration.__mul__(self, *arguments))
         else:
-            return Duration.__mul__(self, *args)
+            return Duration.__mul__(self, *arguments)
 
     ### PUBLIC PROPERTIES ###
 

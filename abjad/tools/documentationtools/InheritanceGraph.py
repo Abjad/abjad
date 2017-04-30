@@ -196,7 +196,7 @@ class InheritanceGraph(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __graph__(self, **kwargs):
+    def __graph__(self, **keywords):
         r'''Graphviz graph of inheritance graph.
         '''
         from abjad.tools import graphtools

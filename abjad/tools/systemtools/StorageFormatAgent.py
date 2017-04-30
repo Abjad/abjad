@@ -523,7 +523,7 @@ class StorageFormatAgent(AbjadValueObject):
                     tuplet_ratios=[
                         mathtools.Ratio((3, 2)),
                         ],
-                    division_masks=patterntools.PatternInventory(
+                    division_masks=patterntools.PatternList(
                         (
                             rhythmmakertools.SilenceMask(
                                 pattern=patterntools.Pattern(

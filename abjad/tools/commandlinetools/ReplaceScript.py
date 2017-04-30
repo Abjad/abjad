@@ -34,7 +34,7 @@ class ReplaceScript(CommandlineScript):
 
     ### PRIVATE METHODS ###
 
-    def _get_naive_search_callable(self, args):
+    def _get_naive_search_callable(self, arguments):
 
         class NaiveSearch(object):
 
@@ -47,9 +47,9 @@ class ReplaceScript(CommandlineScript):
                     return index, len(self.pattern)
                 return -1, 0
 
-        return NaiveSearch(args.old)
+        return NaiveSearch(arguments.old)
 
-    def _get_regex_search_callable(self, args):
+    def _get_regex_search_callable(self, arguments):
 
         class RegexSearch(object):
 
@@ -81,28 +81,28 @@ class ReplaceScript(CommandlineScript):
                 return match.start(), match.end() - match.start()
 
         return RegexSearch(
-            args.old,
-            escaped=not args.regex,
-            whole_words_only=args.whole_words_only,
+            arguments.old,
+            escaped=not arguments.regex,
+            whole_words_only=arguments.whole_words_only,
             )
 
-    def _process_args(self, args):
-        print('Replacing {!r} with {!r} ...'.format(args.old, args.new))
-        skipped_dirs_patterns = self.skipped_directories + args.without_dirs
-        skipped_files_patterns = self.skipped_files + args.without_files
-        if args.regex or (not args.regex and args.whole_words_only):
-            args.old = self._get_regex_search_callable(args)
-            index, length = args.old('', 0)
+    def _process_args(self, arguments):
+        print('Replacing {!r} with {!r} ...'.format(arguments.old, arguments.new))
+        skipped_dirs_patterns = self.skipped_directories + arguments.without_dirs
+        skipped_files_patterns = self.skipped_files + arguments.without_files
+        if arguments.regex or (not arguments.regex and arguments.whole_words_only):
+            arguments.old = self._get_regex_search_callable(arguments)
+            index, length = arguments.old('', 0)
             if 0 <= index:
                 message = 'regex pattern {!r} matches the empty string.'
-                message = message.format(args.old.pattern.pattern)
+                message = message.format(arguments.old.pattern.pattern)
                 raise ValueError(message)
         else:
-            args.old = self._get_naive_search_callable(args)
+            arguments.old = self._get_naive_search_callable(arguments)
         changed_file_count = 0
         changed_line_count = 0
         changed_item_count = 0
-        for root, dirs, files in os.walk(args.path):
+        for root, dirs, files in os.walk(arguments.path):
             dirs_to_remove = []
             for dir in dirs:
                 for pattern in skipped_dirs_patterns:
@@ -120,7 +120,7 @@ class ReplaceScript(CommandlineScript):
                 if not valid:
                     continue
                 changed_lines, changed_items = self._process_file(
-                    args, os.path.join(root, file))
+                    arguments, os.path.join(root, file))
                 if changed_lines:
                     changed_file_count += 1
                     changed_line_count += changed_lines
@@ -140,7 +140,7 @@ class ReplaceScript(CommandlineScript):
             )
         print(message)
 
-    def _process_file(self, args, path):
+    def _process_file(self, arguments, path):
         changed_items = 0
         changed_lines = 0
         try:
@@ -152,7 +152,7 @@ class ReplaceScript(CommandlineScript):
         results = []
         for i, line in enumerate(lines):
             line, changes = self._process_line(
-                line, i, path, args.old, args.new, args.force, args.verbose)
+                line, i, path, arguments.old, arguments.new, arguments.force, arguments.verbose)
             results.append(line)
             if changes:
                 changed_items += changes

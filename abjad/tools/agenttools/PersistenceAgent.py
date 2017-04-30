@@ -42,7 +42,7 @@ class PersistenceAgent(abctools.AbjadObject):
         self,
         ly_file_path=None,
         illustrate_function=None,
-        **kwargs
+        **keywords
         ):
         r'''Persists client as LilyPond file.
 
@@ -65,7 +65,7 @@ class PersistenceAgent(abctools.AbjadObject):
         if illustrate_function is None:
             assert hasattr(self._client, '__illustrate__')
             illustrate_function = self._client.__illustrate__
-        illustration = illustrate_function(**kwargs)
+        illustration = illustrate_function(**keywords)
         if ly_file_path is None:
             ly_file_name = systemtools.IOManager.get_next_output_file_name()
             ly_file_path = os.path.join(
@@ -85,7 +85,7 @@ class PersistenceAgent(abctools.AbjadObject):
             file_pointer.write(lilypond_format)
         return ly_file_path, abjad_formatting_time
 
-    def as_midi(self, midi_file_path=None, remove_ly=False, **kwargs):
+    def as_midi(self, midi_file_path=None, remove_ly=False, **keywords):
         r'''Persists client as MIDI file.
 
         Autogenerates file path when `midi_file_path` is none.
@@ -106,7 +106,7 @@ class PersistenceAgent(abctools.AbjadObject):
         from abjad.tools import lilypondfiletools
         from abjad.tools import systemtools
         assert hasattr(self._client, '__illustrate__')
-        illustration = self._client.__illustrate__(**kwargs)
+        illustration = self._client.__illustrate__(**keywords)
         assert hasattr(illustration, 'score_block')
         block = lilypondfiletools.Block(name='midi')
         illustration.score_block.items.append(block)
@@ -116,7 +116,7 @@ class PersistenceAgent(abctools.AbjadObject):
             ly_file_path = '{}.ly'.format(without_extension)
         else:
             ly_file_path = None
-        result = type(self)(illustration).as_ly(ly_file_path, **kwargs)
+        result = type(self)(illustration).as_ly(ly_file_path, **keywords)
         ly_file_path, abjad_formatting_time = result
         timer = systemtools.Timer()
         with timer:
@@ -139,14 +139,14 @@ class PersistenceAgent(abctools.AbjadObject):
 
         ::
 
-            >>> inventory = timespantools.TimespanInventory([
+            >>> timespans = timespantools.TimespanList([
             ...     timespantools.Timespan(0, 1),
             ...     timespantools.Timespan(2, 4),
             ...     timespantools.Timespan(6, 8),
             ...     ])
-            >>> persist(inventory).as_module( # doctest: +SKIP
+            >>> persist(timespans).as_module( # doctest: +SKIP
             ...     '~/example.py',
-            ...     'inventory',
+            ...     'timespans',
             ...     )
 
         Returns none.
@@ -184,7 +184,7 @@ class PersistenceAgent(abctools.AbjadObject):
         pdf_file_path=None,
         illustrate_function=None,
         remove_ly=False,
-        **kwargs
+        **keywords
         ):
         r'''Persists client as PDF.
 
@@ -215,7 +215,7 @@ class PersistenceAgent(abctools.AbjadObject):
         result = self.as_ly(
             ly_file_path,
             illustrate_function=illustrate_function,
-            **kwargs
+            **keywords
             )
         ly_file_path, abjad_formatting_time = result
         without_extension = os.path.splitext(ly_file_path)[0]
@@ -238,7 +238,7 @@ class PersistenceAgent(abctools.AbjadObject):
         png_file_path=None,
         remove_ly=False,
         illustrate_function=None,
-        **kwargs
+        **keywords
         ):
         r'''Persists client as PNG.
 
@@ -289,7 +289,7 @@ class PersistenceAgent(abctools.AbjadObject):
         result = self.as_ly(
             ly_file_path,
             illustrate_function=illustrate_function,
-            **kwargs
+            **keywords
             )
 
         ly_file_path, abjad_formatting_time = result

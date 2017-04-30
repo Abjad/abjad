@@ -76,22 +76,22 @@ class ScaleDegree(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        if len(args) == 0:
+    def __init__(self, *arguments):
+        if len(arguments) == 0:
             accidental, number = self._initialize_by_number(1)
-        elif len(args) == 1 and isinstance(args[0], type(self)):
-            accidental, number = self._initialize_by_scale_degree(*args)
-        elif len(args) == 1 and args[0] in self._acceptable_numbers:
-            accidental, number = self._initialize_by_number(*args)
-        elif len(args) == 1 and isinstance(args[0], tuple):
-            accidental, number = self._initialize_by_pair(*args)
-        elif len(args) == 1 and isinstance(args[0], str):
-            accidental, number = self._initialize_by_symbolic_string(*args)
-        elif len(args) == 2 and args[1] in self._acceptable_numbers:
+        elif len(arguments) == 1 and isinstance(arguments[0], type(self)):
+            accidental, number = self._initialize_by_scale_degree(*arguments)
+        elif len(arguments) == 1 and arguments[0] in self._acceptable_numbers:
+            accidental, number = self._initialize_by_number(*arguments)
+        elif len(arguments) == 1 and isinstance(arguments[0], tuple):
+            accidental, number = self._initialize_by_pair(*arguments)
+        elif len(arguments) == 1 and isinstance(arguments[0], str):
+            accidental, number = self._initialize_by_symbolic_string(*arguments)
+        elif len(arguments) == 2 and arguments[1] in self._acceptable_numbers:
             accidental, number = \
-                self._initialize_by_accidental_and_number(*args)
+                self._initialize_by_accidental_and_number(*arguments)
         else:
-            arg_string = ', '.join([str(x) for x in args])
+            arg_string = ', '.join([str(x) for x in arguments])
             message = 'can not initialize scale degree: {}.'
             raise ValueError(message.format(arg_string))
         self._accidental = accidental

@@ -259,7 +259,7 @@ class Instrument(AbjadValueObject):
     def allowable_clefs(self):
         r'''Gets allowable clefs of instrument.
 
-        Returns clef inventory.
+        Returns clef list.
         '''
         if self._allowable_clefs is None:
             self._allowable_clefs = instrumenttools.ClefList('treble')
@@ -355,7 +355,7 @@ class Instrument(AbjadValueObject):
             raise TypeError(message)
 
     def transpose_from_written_pitch_to_sounding_pitch(self, note_or_chord):
-        r'''Transposes `expr` from written pitch of instrument to sounding
+        r'''Transposes `argument` from written pitch of instrument to sounding
         pitch of instrument.
 
         Returns `note_or_chord` with adjusted pitches.

@@ -1952,9 +1952,9 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         markup = p[2]
         for item in reversed(p[1]):
             command = item[0][1:]
-            args = item[1:]
-            args.append(markup)
-            markup = markuptools.MarkupCommand(command, *args)
+            arguments = item[1:]
+            arguments.append(markup)
+            markup = markuptools.MarkupCommand(command, *arguments)
         p[0] = markup
 
 
@@ -2036,9 +2036,9 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         markup = p[2]
         for item in reversed(p[1]):
             command = item[0][1:]
-            args = item[1:]
-            args.append(markup)
-            markup = markuptools.MarkupCommand(command, *args)
+            arguments = item[1:]
+            arguments.append(markup)
+            markup = markuptools.MarkupCommand(command, *arguments)
         p[0] = markup
 
 
@@ -2122,9 +2122,9 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         markup = p[2]
         for item in reversed(p[1]):
             command = item[0][1:]
-            args = item[1:]
-            args.append(markup)
-            markup = markuptools.MarkupCommand(command, *args)
+            arguments = item[1:]
+            arguments.append(markup)
+            markup = markuptools.MarkupCommand(command, *arguments)
         p[0] = markup
 
 
@@ -2648,7 +2648,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[2].direction = p[1]
         except AttributeError:
             direction = \
-                stringtools.expr_to_tridirectional_ordinal_constant(p[1])
+                stringtools.to_tridirectional_ordinal_constant(p[1])
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]
@@ -2664,7 +2664,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[2].direction = p[1]
         except AttributeError:
             direction = \
-                stringtools.expr_to_tridirectional_ordinal_constant(p[1])
+                stringtools.to_tridirectional_ordinal_constant(p[1])
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]
@@ -3019,8 +3019,8 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_simple_markup__MARKUP_FUNCTION__markup_command_basic_arguments(self, p):
         'simple_markup : MARKUP_FUNCTION markup_command_basic_arguments'
         command = p[1][1:]
-        args = p[2]
-        p[0] = markuptools.MarkupCommand(command, *args)
+        arguments = p[2]
+        p[0] = markuptools.MarkupCommand(command, *arguments)
 
     def p_simple_markup__MARKUP_IDENTIFIER(self, p):
         'simple_markup : MARKUP_IDENTIFIER'

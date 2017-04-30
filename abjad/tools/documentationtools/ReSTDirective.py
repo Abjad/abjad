@@ -98,8 +98,8 @@ class ReSTDirective(TreeContainer):
         return self._directive
 
     @directive.setter
-    def directive(self, expr):
-        self._directive = str(expr)
+    def directive(self, argument):
+        self._directive = str(argument)
 
     @property
     def node_class(self):

@@ -9,8 +9,8 @@ uppercamelcase_regex = re.compile(
     )
 
 
-def is_upper_camel_case(expr):
-    r'''Is true when `expr` is a string and is uppercamelcase.
+def is_upper_camel_case(argument):
+    r'''Is true when `argument` is a string and is uppercamelcase.
 
     ..  container:: example
 
@@ -30,6 +30,6 @@ def is_upper_camel_case(expr):
 
     Returns true or false.
     '''
-    if not isinstance(expr, six.string_types):
+    if not isinstance(argument, six.string_types):
         return False
-    return bool(uppercamelcase_regex.match(expr))
+    return bool(uppercamelcase_regex.match(argument))

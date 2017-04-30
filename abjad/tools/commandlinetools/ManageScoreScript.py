@@ -92,17 +92,17 @@ class ManageScoreScript(ScorePackageScript):
             path=score_package_name,
             sep=os.path.sep))
 
-    def _process_args(self, args):
-        if args.new:
+    def _process_args(self, arguments):
+        if arguments.new:
             self._handle_create(
-                title=args.new,
-                year=int(args.year),
-                composer_email=args.composer_email,
-                composer_github=args.composer_github,
-                composer_library=args.composer_library,
-                composer_name=args.composer_name,
-                composer_website=args.composer_website,
-                force=args.force,
+                title=arguments.new,
+                year=int(arguments.year),
+                composer_email=arguments.composer_email,
+                composer_github=arguments.composer_github,
+                composer_library=arguments.composer_library,
+                composer_name=arguments.composer_name,
+                composer_website=arguments.composer_website,
+                force=arguments.force,
                 )
 
     def _setup_argument_parser(self, parser):

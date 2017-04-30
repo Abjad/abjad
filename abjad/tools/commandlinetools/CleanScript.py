@@ -19,34 +19,43 @@ class CleanScript(CommandlineScript):
 
     alias = 'clean'
     short_description = (
-        'Clean *.pyc, *.swp, __pycache__ and tmp* '
+        'Clean *.pyc, *.swp, .cache,  __pycache__ and tmp* '
         'files and folders from PATH.'
         )
 
     ### PRIVATE METHODS ###
 
-    def _process_args(self, args):
-        if not args.pyc and not args.pycache and \
-            not args.swp and not args.tmp:
-            args.pyc, args.pycache, args.swp, args.tmp = True, True, True, True
-
+    def _process_args(self, arguments):
+        if (not arguments.cache and
+            not arguments.pyc and
+            not arguments.pycache and
+            not arguments.swp and
+            not arguments.tmp):
+            arguments.cache = True,
+            arguments.pyc = True
+            arguments.pycache = True
+            arguments.swp = True
+            arguments.tmp = True
         print('Cleaning...')
-        if args.pyc:
+        if arguments.pyc:
             print('\t*.pyc files')
-        if args.swp:
+        if arguments.swp:
             print('\t*.swp files')
-        if args.pycache:
+        if arguments.cache:
+            print('\t.cache directories')
+        if arguments.pycache:
             print('\t__pycache__ directories')
-        if args.tmp:
+        if arguments.tmp:
             print('\ttmp* directories')
 
-        for root_directory, directory_names, file_names in os.walk(args.path):
+        for root_directory, directory_names, file_names in os.walk(
+            arguments.path):
             if '.svn' in directory_names:
                 directory_names.remove('.svn')
             extensions = ()
-            if args.pyc:
+            if arguments.pyc:
                 extensions += ('.pyc',)
-            if args.swp:
+            if arguments.swp:
                 extensions += ('.swp',)
             for file_name in file_names:
                 if file_name.endswith(extensions):
@@ -62,10 +71,13 @@ class CleanScript(CommandlineScript):
                     directory_name,
                     )
                 should_remove = False
-                if args.pycache:
+                if arguments.cache:
+                    if directory_name == '.cache':
+                        should_remove = True
+                if arguments.pycache:
                     if directory_name == '__pycache__':
                         should_remove = True
-                if args.tmp:
+                if arguments.tmp:
                     if directory_name.startswith('tmp'):
                         should_remove = True
                 if not os.listdir(directory):
@@ -83,6 +95,11 @@ class CleanScript(CommandlineScript):
             help='directory tree to be recursed over',
             nargs='?',
             type=self._validate_path,
+            )
+        parser.add_argument(
+            '--cache',
+            action='store_true',
+            help='delete *.cache folders',
             )
         parser.add_argument(
             '--pyc',

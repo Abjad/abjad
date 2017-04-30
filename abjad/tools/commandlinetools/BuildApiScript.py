@@ -213,41 +213,41 @@ class BuildApiScript(CommandlineScript):
             )
         return path
 
-    def _process_args(self, args):
-        api_format = args.format
-        clean = args.clean
-        rst_only = args.rst_only
+    def _process_args(self, arguments):
+        api_format = arguments.format
+        clean = arguments.clean
+        rst_only = arguments.rst_only
         paths = []
         prototype = (
-            args.experimental,
-            args.ide,
-            args.mainline,
-            args.score_library,
+            arguments.experimental,
+            arguments.ide,
+            arguments.mainline,
+            arguments.score_library,
             )
         if not any(prototype):
-            args.mainline = True
-        if args.experimental:
+            arguments.mainline = True
+        if arguments.experimental:
             path = self._build_experimental_api(
                 api_format=api_format,
                 clean=clean,
                 rst_only=rst_only,
                 )
             paths.append(path)
-        if args.ide:
+        if arguments.ide:
             path = self._build_ide_api(
                 api_format=api_format,
                 clean=clean,
                 rst_only=rst_only,
                 )
             paths.append(path)
-        if args.mainline:
+        if arguments.mainline:
             path = self._build_mainline_api(
                 api_format=api_format,
                 clean=clean,
                 rst_only=rst_only,
                 )
             paths.append(path)
-        if args.score_library:
+        if arguments.score_library:
             messages = [
                 'Must specify all of ...',
                 '    --api-title',
@@ -256,22 +256,22 @@ class BuildApiScript(CommandlineScript):
                 '... when building -S or --score-library.',
                 ]
             if not all((
-                args.api_title,
-                args.docs_directory,
-                args.packages_to_document,
+                arguments.api_title,
+                arguments.docs_directory,
+                arguments.packages_to_document,
                 )):
                 for message in messages:
                     print(message)
                 return
             path = self._build_score_library_api(
-                args.api_title,
-                args.docs_directory,
-                args.packages_to_document,
+                arguments.api_title,
+                arguments.docs_directory,
+                arguments.packages_to_document,
                 api_format=api_format,
                 clean=clean,
                 rst_only=rst_only,
                 )
-        if api_format == 'html' and args.openinbrowser and not rst_only:
+        if api_format == 'html' and arguments.openinbrowser and not rst_only:
             for path in paths:
                 if path.startswith('/'):
                     path = 'file://' + path

@@ -30,16 +30,16 @@ class SilentQEvent(QEvent):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a silent q-event with offset, attachments and
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a silent q-event with offset, attachments and
         index equal to those of this silent q-event. Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(expr) and \
-            self._offset == expr._offset and \
-            self._attachments == expr._attachments and \
-            self._index == expr._index:
+        if type(self) == type(argument) and \
+            self._offset == argument._offset and \
+            self._attachments == argument._attachments and \
+            self._index == argument._index:
             return True
         return False
 

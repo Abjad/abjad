@@ -423,14 +423,14 @@ class Meter(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a meter with an rtm format equal to that of
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a meter with an rtm format equal to that of
         this meter. Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(expr):
-            if self.rtm_format == expr.rtm_format:
+        if type(self) == type(argument):
+            if self.rtm_format == argument.rtm_format:
                 return True
         return False
 
@@ -459,7 +459,7 @@ class Meter(AbjadObject):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __graph__(self, **kwargs):
+    def __graph__(self, **keywords):
         r'''Gets Graphviz format of meter.
 
         ..  container:: example
@@ -633,7 +633,7 @@ class Meter(AbjadObject):
                     )
                 edge.attach(leaf_two_node, offset_node)
         from abjad.tools import metertools
-        offsets = metertools.MetricAccentKernel.count_offsets_in_expr(
+        offsets = metertools.MetricAccentKernel.count_offsets(
             sequencetools.Sequence(self.depthwise_offset_inventory).flatten())
         graph = graphtools.GraphvizGraph(
             name='G',
@@ -857,7 +857,7 @@ class Meter(AbjadObject):
 
     @staticmethod
     def fit_meters_to_expr(
-        expr,
+        argument,
         meters,
         denominator=32,
         discard_final_orphan_downbeat=True,
@@ -865,7 +865,7 @@ class Meter(AbjadObject):
         starting_offset=None,
         ):
         r'''Finds the best-matching sequence of meters for the offsets
-        contained in `expr`.
+        contained in `argument`.
 
         ..  container:: example
 
@@ -880,9 +880,9 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> expr = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
+                >>> argument = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
                 >>> for x in metertools.Meter.fit_meters_to_expr(
-                ...     expr, meters):
+                ...     argument, meters):
                 ...     print(x.implied_time_signature)
                 ...
                 4/4
@@ -896,9 +896,9 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> expr = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
+                >>> argument = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
                 >>> for x in metertools.Meter.fit_meters_to_expr(
-                ...     expr, meters):
+                ...     argument, meters):
                 ...     print(x.implied_time_signature)
                 ...
                 3/4
@@ -907,11 +907,10 @@ class Meter(AbjadObject):
                 5/4
                 5/4
 
-        Coerces offsets from `expr` via
-        `MetricAccentKernel.count_offsets_in_expr()`.
+        Coerces offsets from `argument` via
+        `MetricAccentKernel.count_offsets()`.
 
-        Coerces MetricalHierarchies from `meters` via
-        `MetricalHierarchyInventory`.
+        Coerces Meters from `meters` via `MeterList`.
 
         Returns list.
         '''
@@ -920,7 +919,7 @@ class Meter(AbjadObject):
             kernel_denominator=denominator,
             maximum_run_length=maximum_run_length,
             meters=meters,
-            offset_counter=expr,
+            offset_counter=argument,
             )
         meters = session()
         return meters

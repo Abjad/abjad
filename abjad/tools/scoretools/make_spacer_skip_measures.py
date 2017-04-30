@@ -45,7 +45,7 @@ def make_spacer_skip_measures(time_signatures, implicit_scaling=False):
             implicit_scaling=implicit_scaling,
             )
         measures.append(measure)
-    scoretools.fill_measures_in_expr_with_full_measure_spacer_skips(measures)
+    scoretools.fill_measures_with_full_measure_spacer_skips(measures)
 
     # return measures
     measures = selectiontools.Selection(measures)

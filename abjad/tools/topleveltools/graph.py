@@ -10,7 +10,7 @@ def graph(
     graph_attributes=None,
     node_attributes=None,
     edge_attributes=None,
-    **kwargs
+    **keywords
     ):
     r'''Graphs `argument`.
 
@@ -306,7 +306,7 @@ def graph(
         graphviz_format = argument
     else:
         assert hasattr(argument, '__graph__')
-        graphviz_graph = argument.__graph__(**kwargs)
+        graphviz_graph = argument.__graph__(**keywords)
         if graph_attributes:
             graphviz_graph.attributes.update(graph_attributes)
         if node_attributes:

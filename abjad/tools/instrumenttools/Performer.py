@@ -20,7 +20,7 @@ class Performer(AbjadObject):
             >>> print(format(performer))
             instrumenttools.Performer(
                 name='flutist',
-                instruments=instrumenttools.InstrumentInventory(
+                instruments=instrumenttools.InstrumentList(
                     [
                         instrumenttools.Flute(
                             instrument_name='flute',
@@ -75,21 +75,21 @@ class Performer(AbjadObject):
 
     def __init__(self, name=None, instruments=None):
         from abjad.tools import instrumenttools
-        self._instruments = instrumenttools.InstrumentInventory()
+        self._instruments = instrumenttools.InstrumentList()
         self.name = name
         self.instruments = instruments
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a performer with name and instruments equal to
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a performer with name and instruments equal to
         those of this performer. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            if self.name == expr.name:
-                if self.instruments == expr.instruments:
+        if isinstance(argument, type(self)):
+            if self.name == argument.name:
+                if self.instruments == argument.instruments:
                     return True
         return False
 
@@ -566,10 +566,11 @@ class Performer(AbjadObject):
 
                 >>> for instrument in performer.instruments:
                 ...     instrument
+                ...
                 Flute()
                 Piccolo()
 
-        Returns instrument inventory.
+        Returns instrument list.
         '''
         return self._instruments
 

@@ -13,23 +13,23 @@ class Graph(object):
 
     def __call__(
         self,
-        expr,
+        argument,
         layout='dot',
         graph_attributes=None,
         node_attributes=None,
         edge_attributes=None,
-        **kwargs
+        **keywords
         ):
         r'''A replacement for Ajbad's graph function for IPython Notebook.
         '''
         from abjad.tools import systemtools
         from IPython.core.display import display_png
 
-        if isinstance(expr, str):
-            graphviz_format = expr
+        if isinstance(argument, str):
+            graphviz_format = argument
         else:
-            assert hasattr(expr, '__graph__')
-            graphviz_graph = expr.__graph__(**kwargs)
+            assert hasattr(argument, '__graph__')
+            graphviz_graph = argument.__graph__(**keywords)
             if graph_attributes:
                 graphviz_graph.attributes.update(graph_attributes)
             if node_attributes:

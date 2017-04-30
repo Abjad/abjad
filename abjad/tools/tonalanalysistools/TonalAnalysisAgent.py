@@ -70,9 +70,9 @@ class TonalAnalysisAgent(abctools.AbjadObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _analyze_chord(expr):
+    def _analyze_chord(argument):
         from abjad.tools import tonalanalysistools
-        pitches = pitchtools.PitchSegment.from_selection(expr)
+        pitches = pitchtools.PitchSegment.from_selection(argument)
         npcset = pitchtools.PitchClassSet(
             pitches,
             item_class=pitchtools.NamedPitchClass,
@@ -108,9 +108,9 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             )
 
     @staticmethod
-    def _analyze_incomplete_chord(expr):
+    def _analyze_incomplete_chord(argument):
         from abjad.tools import tonalanalysistools
-        pitches = pitchtools.PitchSegment.from_selection(expr)
+        pitches = pitchtools.PitchSegment.from_selection(argument)
         npcset = pitchtools.PitchClassSet(
             pitches, item_class=pitchtools.NamedPitchClass)
         dicv = pitchtools.IntervalClassVector(
@@ -159,12 +159,12 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             )
 
     @staticmethod
-    def _analyze_incomplete_tonal_function(expr, key_signature):
+    def _analyze_incomplete_tonal_function(argument, key_signature):
         from abjad.tools import tonalanalysistools
-        if isinstance(expr, tonalanalysistools.RootedChordClass):
-            chord_class = expr
+        if isinstance(argument, tonalanalysistools.RootedChordClass):
+            chord_class = argument
         else:
-            selection = tonalanalysistools.select(expr)
+            selection = tonalanalysistools.select(argument)
             chord_classes = selection.analyze_incomplete_chords()
             assert len(chord_classes) == 1
             chord_class = chord_classes[0]
@@ -182,12 +182,12 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             )
 
     @staticmethod
-    def _analyze_tonal_function(expr, key_signature):
+    def _analyze_tonal_function(argument, key_signature):
         from abjad.tools import tonalanalysistools
-        if isinstance(expr, tonalanalysistools.RootedChordClass):
-            chord_class = expr
+        if isinstance(argument, tonalanalysistools.RootedChordClass):
+            chord_class = argument
         else:
-            selection = tonalanalysistools.select(expr)
+            selection = tonalanalysistools.select(argument)
             chord_classes = selection.analyze_chords()
             assert len(chord_classes) == 1
             chord_class = chord_classes[0]

@@ -131,7 +131,7 @@ class QGrid(AbjadObject):
                 attach(annotation, result_leaf)
         return result
 
-    def __copy__(self, *args):
+    def __copy__(self, *arguments):
         r'''Copies q-grid.
 
         Returns new q-grid.
@@ -139,15 +139,15 @@ class QGrid(AbjadObject):
         root_node, next_downbeat = self._root_node, self._next_downbeat
         return type(self)(copy.copy(root_node), copy.copy(next_downbeat))
 
-    def __eq__(self, expr):
-        r'''True if `expr` is a q-grid with root node and next downbeat equal
+    def __eq__(self, argument):
+        r'''True if `argument` is a q-grid with root node and next downbeat equal
         to those of this q-grid. Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(expr):
-            if self.root_node == expr.root_node:
-                if self.next_downbeat == expr.next_downbeat:
+        if type(self) == type(argument):
+            if self.root_node == argument.root_node:
+                if self.next_downbeat == argument.next_downbeat:
                     return True
         return False
 

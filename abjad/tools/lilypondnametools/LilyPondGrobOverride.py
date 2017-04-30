@@ -76,12 +76,12 @@ class LilyPondGrobOverride(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a LilyPond grob override with equivalent
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a LilyPond grob override with equivalent
         keyword values.
         '''
         from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, expr)
+        return systemtools.TestManager.compare_objects(self, argument)
 
     def __hash__(self):
         r'''Hashes LilyPond grob override.
