@@ -547,7 +547,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     for attribute in attributes:
                         classes_to_attributes[cls][attribute.name] = attribute
                 if inspect.isabstract(cls):
-                    labelnode = addnodes.only(argument='html')
+                    labelnode = addnodes.only(expr='html')
                     labelnode.append(nodes.emphasis(
                         'abstract ',
                         'abstract ',
@@ -561,7 +561,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     continue
                 attr = getattr(cls, attr_name)
                 inspected_attr = classes_to_attributes[cls][attr_name]
-                label_node = addnodes.only(argument='html')
+                label_node = addnodes.only(expr='html')
                 defining_class = inspected_attr.defining_class
                 if defining_class != cls:
                     addname_node = signature_node.traverse(
@@ -585,11 +585,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                         '{}'.format(defining_class.__name__),
                         classes=['descclassname'],
                         ))
-                    html_only_class_name_node = addnodes.only(argument='html')
+                    html_only_class_name_node = addnodes.only(expr='html')
                     html_only_class_name_node.append(nodes.Text('('))
                     html_only_class_name_node.append(xref_node)
                     html_only_class_name_node.append(nodes.Text(').'))
-                    latex_only_class_name_node = addnodes.only(argument='latex')
+                    latex_only_class_name_node = addnodes.only(expr='latex')
                     latex_only_class_name_node.append(nodes.Text(
                         '({}).'.format(defining_class.__name__),
                         ))
