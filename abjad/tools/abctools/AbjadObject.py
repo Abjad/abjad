@@ -50,7 +50,7 @@ class AbjadObject(AbstractBase):
 
         Returns dictionary.
         '''
-        if hasattr(self, '__dict__'):
+        if hasattr(self, '__dict__') and hasattr(vars(self), 'copy'):
             state = vars(self).copy()
         else:
             state = {}
