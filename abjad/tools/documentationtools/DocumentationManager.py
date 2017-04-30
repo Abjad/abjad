@@ -4,7 +4,6 @@ import enum
 import inspect
 import importlib
 import os
-import re
 import shutil
 import traceback
 import types
@@ -24,6 +23,21 @@ class DocumentationManager(abctools.AbjadObject):
 
     api_title = 'Abjad API'
 
+    ignored_special_methods = (
+        '__dict__',
+        '__getattribute__',
+        '__getnewargs__',
+        '__getstate__',
+        '__init__',
+        '__reduce__',
+        '__reduce_ex__',
+        '__setstate__',
+        '__sizeof__',
+        '__subclasshook__',
+        'fromkeys',
+        'pipe_cloexec',
+        )
+
     lineage_graph_addresses = (
         'abjad',
         'abjad.tools.abjadbooktools',
@@ -41,93 +55,77 @@ class DocumentationManager(abctools.AbjadObject):
 
     def _build_attribute_section(
         self,
-        cls,
-        attrs,
+        class_,
+        attributes,
         directive,
         title,
         ):
         from abjad.tools import documentationtools
         result = []
-        if attrs:
-            result.append(documentationtools.ReSTHeading(
-                level=3,
-                text=title,
-                ))
-            for attr in attrs:
-                options = {
-                    #'noindex': True,
-                    }
-                autodoc = documentationtools.ReSTAutodocDirective(
-                    argument='{}.{}.{}'.format(
-                        cls.__module__,
-                        cls.__name__,
-                        attr.name,
-                        ),
-                    directive=directive,
-                    options=options,
+        if not attributes:
+            return result
+        heading = documentationtools.ReSTHeading(level=3, text=title)
+        result.append(heading)
+        for attributes in attributes:
+            autodoc = documentationtools.ReSTAutodocDirective(
+                argument='{}.{}.{}'.format(
+                    class_.__module__,
+                    class_.__name__,
+                    attributes.name,
+                    ),
+                directive=directive,
+                )
+            if class_ is attributes.defining_class:
+                result.append(autodoc)
+            else:
+                container = documentationtools.ReSTDirective(
+                    argument='inherited',
+                    directive='container',
                     )
-                if cls is attr.defining_class:
-                    result.append(autodoc)
-                else:
-                    container = documentationtools.ReSTDirective(
-                        argument='inherited',
-                        directive='container',
-                        )
-                    container.append(autodoc)
-                    html_only = documentationtools.ReSTDirective(
-                        argument='html',
-                        directive='only',
-                        )
-                    html_only.append(container)
-                    result.append(html_only)
+                container.append(autodoc)
+                html_only = documentationtools.ReSTDirective(
+                    argument='html',
+                    directive='only',
+                    )
+                html_only.append(container)
+                result.append(html_only)
         return result
 
-    def _build_attributes_autosummary(
-        self,
-        cls,
-        class_methods,
-        data,
-        inherited_attributes,
-        methods,
-        readonly_properties,
-        readwrite_properties,
-        special_methods,
-        static_methods,
-        ):
+    def _build_attributes_autosummary(self, cls, attributes):
         from abjad.tools import documentationtools
         result = []
-        attributes = []
-        attributes.extend(readonly_properties)
-        attributes.extend(readwrite_properties)
-        attributes.extend(methods)
-        attributes.extend(class_methods)
-        attributes.extend(static_methods)
-        attributes.sort(key=lambda x: x.name)
-        attributes.extend(special_methods)
-        if attributes:
-            autosummary = documentationtools.ReSTAutosummaryDirective()
-            for attribute in attributes:
-                autosummary.append('~{}.{}.{}'.format(
-                    cls.__module__,
-                    cls.__name__,
-                    attribute.name,
-                    ))
-            html_only = documentationtools.ReSTOnlyDirective(argument='html')
-            html_only.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Attribute summary',
+        sorted_attributes = []
+        for key, value in attributes.items():
+            if key == 'special_methods':
+                continue
+            sorted_attributes.extend(value)
+        sorted_attributes.sort(key=lambda x: x.name)
+        if 'special_methods' in attributes:
+            special_methods = attributes['special_methods']
+            special_methods = sorted(special_methods, key=lambda x: x.name)
+            sorted_attributes.extend(special_methods)
+        if not sorted_attributes:
+            return result
+        autosummary = documentationtools.ReSTAutosummaryDirective()
+        for attribute in sorted_attributes:
+            autosummary.append('~{}.{}.{}'.format(
+                cls.__module__,
+                cls.__name__,
+                attribute.name,
                 ))
-            html_only.append(autosummary)
-            result.append(html_only)
+        html_only = documentationtools.ReSTOnlyDirective(argument='html')
+        text = 'Attribute summary'
+        heading = documentationtools.ReSTHeading(level=3, text=text)
+        html_only.append(heading)
+        html_only.append(autosummary)
+        result.append(html_only)
         return result
 
     def _build_bases_section(self, cls):
         from abjad.tools import documentationtools
         result = []
-        result.append(documentationtools.ReSTHeading(
-            level=3,
-            text='Bases',
-            ))
+        heading = documentationtools.ReSTHeading(level=3, text='Bases')
+        result.append(heading)
         mro = inspect.getmro(cls)[1:]
         for cls in mro:
             parts = cls.__module__.split('.') + [cls.__name__]
@@ -148,96 +146,59 @@ class DocumentationManager(abctools.AbjadObject):
         if not issubclass(cls, enum.Enum):
             return result
         items = sorted(cls, key=lambda x: x.name)
-        if items:
-            result.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Enumeration Items',
-                ))
-            for item in items:
-                name = item.name
-                value = item.value
-                line = '- `{}`: {}'.format(name, value)
-                paragraph = documentationtools.ReSTParagraph(
-                    text=line,
-                    wrap=False,
-                    )
-                result.append(paragraph)
+        if not items:
+            return result
+        text = 'Enumeration Items'
+        heading = documentationtools.ReSTHeading(level=3, text=text)
+        result.append(heading)
+        for item in items:
+            name = item.name
+            value = item.value
+            line = '- ``{}``: {}'.format(name, value)
+            paragraph = documentationtools.ReSTParagraph(
+                text=line,
+                wrap=False,
+                )
+            result.append(paragraph)
         return result
 
     def _collect_class_attributes(self, cls):
-        ignored_special_methods = (
-            '__dict__',
-            '__getattribute__',
-            '__getnewargs__',
-            '__getstate__',
-            '__init__',
-            '__reduce__',
-            '__reduce_ex__',
-            '__setstate__',
-            '__sizeof__',
-            '__subclasshook__',
-            'fromkeys',
-            'pipe_cloexec',
-            )
-        class_methods = []
-        data = []
-        inherited_attributes = []
-        methods = []
-        readonly_properties = []
-        readwrite_properties = []
-        special_methods = []
-        static_methods = []
-        attrs = inspect.classify_class_attrs(cls)
-        for attr in attrs:
+        attributes = {}
+        for attr in inspect.classify_class_attrs(cls):
             if attr.defining_class is object:
                 continue
+            elif attr.name in self.ignored_special_methods:
+                continue
             if attr.defining_class is not cls:
-                inherited_attributes.append(attr)
+                attributes.setdefault('inherited_attributes', []).append(attr)
             if attr.kind == 'method':
-                if attr.name not in ignored_special_methods:
-                    if attr.name.startswith('__'):
-                        special_methods.append(attr)
-                    elif not attr.name.startswith('_'):
-                        methods.append(attr)
+                if attr.name.startswith('__'):
+                    attributes.setdefault('special_methods', []).append(attr)
+                elif not attr.name.startswith('_'):
+                    attributes.setdefault('methods', []).append(attr)
             elif attr.kind == 'class method':
-                if attr.name not in ignored_special_methods:
-                    if attr.name.startswith('__'):
-                        special_methods.append(attr)
-                    elif not attr.name.startswith('_'):
-                        class_methods.append(attr)
+                if attr.name.startswith('__'):
+                    attributes.setdefault('special_methods', []).append(attr)
+                elif not attr.name.startswith('_'):
+                    attributes.setdefault('class_methods', []).append(attr)
             elif attr.kind == 'static method':
-                if attr.name not in ignored_special_methods:
-                    if attr.name.startswith('__'):
-                        special_methods.append(attr)
-                    elif not attr.name.startswith('_'):
-                        static_methods.append(attr)
+                if attr.name.startswith('__'):
+                    attributes.setdefault('special_methods', []).append(attr)
+                elif not attr.name.startswith('_'):
+                    attributes.setdefault('static_methods', []).append(attr)
             elif attr.kind == 'property' and not attr.name.startswith('_'):
                 if attr.object.fset is None:
-                    readonly_properties.append(attr)
+                    attributes.setdefault('readonly_properties', []).append(
+                        attr)
                 else:
-                    readwrite_properties.append(attr)
+                    attributes.setdefault('readwrite_properties', []).append(
+                        attr)
             elif attr.kind == 'data' and not attr.name.startswith('_') \
                 and attr.name not in getattr(cls, '__slots__', ()):
-                data.append(attr)
-        class_methods = tuple(sorted(class_methods))
-        data = tuple(sorted(data))
-        inherited_attributes = tuple(sorted(inherited_attributes))
-        methods = tuple(sorted(methods))
-        readonly_properties = tuple(sorted(readonly_properties))
-        readwrite_properties = tuple(sorted(readwrite_properties))
-        special_methods = tuple(sorted(special_methods))
-        static_methods = tuple(sorted(static_methods))
-        result = (
-            class_methods,
-            data,
-            inherited_attributes,
-            methods,
-            readonly_properties,
-            readwrite_properties,
-            special_methods,
-            static_methods,
-            )
-        return result
+                attributes.setdefault('data', []).append(attr)
+        for key, value in attributes.items():
+            attributes[key] = tuple(sorted(value))
+        return attributes
 
     def _ensure_directory(self, path):
         path = os.path.dirname(path)
@@ -299,16 +260,7 @@ class DocumentationManager(abctools.AbjadObject):
         import abjad
         module_name, _, class_name = cls.__module__.rpartition('.')
         tools_package_python_path = '.'.join(cls.__module__.split('.')[:-1])
-        (
-            class_methods,
-            data,
-            inherited_attributes,
-            methods,
-            readonly_properties,
-            readwrite_properties,
-            special_methods,
-            static_methods,
-            ) = self._collect_class_attributes(cls)
+        attributes = self._collect_class_attributes(cls)
         document = abjad.documentationtools.ReSTDocument()
         module_directive = abjad.documentationtools.ReSTDirective(
             directive='currentmodule',
@@ -349,62 +301,42 @@ class DocumentationManager(abctools.AbjadObject):
                 traceback.print_exc()
         document.extend(self._build_bases_section(cls))
         document.extend(self._build_enumeration_section(cls))
-        document.extend(self._build_attributes_autosummary(
-            cls,
-            class_methods,
-            data,
-            inherited_attributes,
-            methods,
-            readonly_properties,
-            readwrite_properties,
-            special_methods,
-            static_methods,
-            ))
+        document.extend(self._build_attributes_autosummary(cls, attributes))
         document.extend(self._build_attribute_section(
             cls,
-            readonly_properties,
+            attributes.get('readonly_properties'),
             'autoattribute',
             'Read-only properties',
             ))
         document.extend(self._build_attribute_section(
             cls,
-            readwrite_properties,
+            attributes.get('readwrite_properties'),
             'autoattribute',
             'Read/write properties',
             ))
         document.extend(self._build_attribute_section(
             cls,
-            methods,
+            attributes.get('methods'),
             'automethod',
             'Methods',
             ))
         document.extend(self._build_attribute_section(
             cls,
-            sorted(class_methods + static_methods, key=lambda x: x.name),
+            sorted(
+                attributes.get('class_methods', ()) +
+                attributes.get('static_methods', ()),
+                key=lambda x: x.name
+            ),
             'automethod',
             'Class & static methods',
             ))
         document.extend(self._build_attribute_section(
             cls,
-            special_methods,
+            attributes.get('special_methods'),
             'automethod',
             'Special methods',
             ))
         return document
-
-    def _get_class_summary(self, cls):
-        doc = cls.__doc__
-        if doc is None:
-            doc = ''
-        doc = doc.splitlines()
-        m = re.search(r"^([A-Z].*?\.)(?:\s|$)", " ".join(doc).strip())
-        if m:
-            summary = m.group(1).strip()
-        elif doc:
-            summary = doc[0].strip()
-        else:
-            summary = ''
-        return summary
 
     def _get_function_rst(self, function):
         import abjad
@@ -556,15 +488,11 @@ class DocumentationManager(abctools.AbjadObject):
             )
         document = documentationtools.ReSTDocument()
         if self.__class__.__name__.startswith('ScoreLibrary'):
-            heading = documentationtools.ReSTHeading(
-                level=2,
-                text=tools_package.__name__,
-                )
+            text = tools_package.__name__
+            heading = documentationtools.ReSTHeading(level=2, text=text)
         else:
-            heading = documentationtools.ReSTHeading(
-                level=2,
-                text=tools_package.__name__.split('.')[-1],
-                )
+            text = tools_package.__name__.split('.')[-1]
+            heading = documentationtools.ReSTHeading(level=2, text=text)
         document.append(heading)
         automodule_directive = documentationtools.ReSTAutodocDirective(
             argument=tools_package.__name__,
@@ -601,9 +529,8 @@ class DocumentationManager(abctools.AbjadObject):
                     None,
                     )
                 if documentation_section is None:
-                    #if issubclass(cls, enum.Enum):
-                    #    documentation_section = 'Enumerations'
-                    #elif issubclass(cls, Exception):
+                    if issubclass(cls, enum.Enum):
+                        documentation_section = 'Enumerations'
                     if issubclass(cls, Exception):
                         documentation_section = 'Errors'
                     else:
@@ -629,60 +556,45 @@ class DocumentationManager(abctools.AbjadObject):
                     )
                 document.append(heading)
                 toc = documentationtools.ReSTTOCDirective(
-                    options={
-                        'hidden': True,
-                        },
+                    options={'hidden': True},
                     )
                 for cls in sections[section_name]:
                     class_name = cls.__name__
                     if class_name == 'Index':
                         class_name = '_Index'
-                    toc_item = documentationtools.ReSTTOCItem(
-                        text=class_name,
-                        )
+                    text = class_name
+                    toc_item = documentationtools.ReSTTOCItem(text=text)
                     toc.append(toc_item)
                 document.append(toc)
                 autosummary = documentationtools.ReSTAutosummaryDirective(
-                    options={
-                        'nosignatures': True,
-                        },
+                    options={'nosignatures': True},
                     )
                 for cls in sections[section_name]:
-                    item = documentationtools.ReSTAutosummaryItem(
-                        text=cls.__name__,
-                        )
+                    text = cls.__name__
+                    item = documentationtools.ReSTAutosummaryItem(text=text)
                     autosummary.append(item)
                 document.append(autosummary)
         if functions:
             if classes:
                 rule = documentationtools.ReSTHorizontalRule()
                 document.append(rule)
-            section_name = 'Functions'
-            heading = documentationtools.ReSTHeading(
-                level=3,
-                text=section_name,
-                )
+            text = 'Functions'
+            heading = documentationtools.ReSTHeading(level=3, text=text)
             document.append(heading)
             toc = documentationtools.ReSTTOCDirective(
-                options={
-                    'hidden': True,
-                    },
+                options={'hidden': True},
                 )
             for function in functions:
-                toc_item = documentationtools.ReSTTOCItem(
-                    text=function.__name__,
-                    )
+                text = function.__name__
+                toc_item = documentationtools.ReSTTOCItem(text=text)
                 toc.append(toc_item)
             document.append(toc)
             autosummary = documentationtools.ReSTAutosummaryDirective(
-                options={
-                    'nosignatures': True,
-                    },
+                options={'nosignatures': True},
                 )
             for function in functions:
-                item = documentationtools.ReSTAutosummaryItem(
-                    text=function.__name__,
-                    )
+                text = function.__name__
+                item = documentationtools.ReSTAutosummaryItem(text=text)
                 autosummary.append(item)
             document.append(autosummary)
         return document
@@ -754,11 +666,6 @@ class DocumentationManager(abctools.AbjadObject):
         parts.insert(0, self._get_api_directory_path(source_directory))
         path = os.path.join(*parts)
         return path
-
-    def _remove_api_directory(self):
-        path = self._get_api_directory_path()
-        if os.path.exists(path):
-            shutil.rmtree(path)
 
     def _write(self, file_path, string, rewritten_files):
         if not string.endswith('\n'):
