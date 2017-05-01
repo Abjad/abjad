@@ -17,9 +17,9 @@ class TestCase(systemtools.TestCase):
             ..  automodule:: abjad.tools.scoretools
 
             ..  container:: graphviz
-            
+
                 ..  graphviz::
-            
+
                     digraph InheritanceGraph {
                         graph [bgcolor=transparent,
                             color=lightslategrey,
