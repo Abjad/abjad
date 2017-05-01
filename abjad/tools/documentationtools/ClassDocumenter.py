@@ -13,14 +13,14 @@ class ClassDocumenter(Documenter):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_attributes',
+        '_members',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, manager, client):
         Documenter.__init__(self, manager, client)
-        self._attributes = self._collect_class_attributes()
+        self._members = self._collect_members()
 
     ### PRIVATE METHODS ###
 
@@ -28,13 +28,13 @@ class ClassDocumenter(Documenter):
         from abjad.tools import documentationtools
         result = []
         sorted_attributes = []
-        for key, value in sorted(self.attributes.items()):
+        for key, value in sorted(self.members.items()):
             if key in ('special_methods', 'inherited_attributes', 'data'):
                 continue
             sorted_attributes.extend(value)
         sorted_attributes.sort(key=lambda x: x.name)
-        if 'special_methods' in self.attributes:
-            special_methods = self.attributes['special_methods']
+        if 'special_methods' in self.members:
+            special_methods = self.members['special_methods']
             special_methods = sorted(special_methods, key=lambda x: x.name)
             sorted_attributes.extend(special_methods)
         if not sorted_attributes:
@@ -108,8 +108,8 @@ class ClassDocumenter(Documenter):
     def _build_classmethod_and_staticmethod_section_rst(self):
         return self._build_attribute_section_rst(
             sorted(
-                self.attributes.get('class_methods', ()) +
-                self.attributes.get('static_methods', ()),
+                self.members.get('class_methods', ()) +
+                self.members.get('static_methods', ()),
                 key=lambda x: x.name
             ),
             'automethod',
@@ -118,28 +118,28 @@ class ClassDocumenter(Documenter):
 
     def _build_methods_section_rst(self):
         return self._build_attribute_section_rst(
-            self.attributes.get('methods'),
+            self.members.get('methods'),
             'automethod',
             'Methods',
             )
 
     def _build_readonly_properties_section_rst(self):
         return self._build_attribute_section_rst(
-            self.attributes.get('readonly_properties'),
+            self.members.get('readonly_properties'),
             'autoattribute',
             'Read-only properties',
             )
 
     def _build_readwrite_properties_section_rst(self):
         return self._build_attribute_section_rst(
-            self.attributes.get('readwrite_properties'),
+            self.members.get('readwrite_properties'),
             'autoattribute',
             'Read/write properties',
             )
 
     def _build_special_methods_section_rst(self):
         return self._build_attribute_section_rst(
-            self.attributes.get('special_methods'),
+            self.members.get('special_methods'),
             'automethod',
             'Special methods',
             )
@@ -236,8 +236,8 @@ class ClassDocumenter(Documenter):
         result.append(graphviz_container)
         return result
 
-    def _collect_class_attributes(self):
-        attributes = {}
+    def _collect_members(self):
+        members = {}
         for attr in inspect.classify_class_attrs(self.client):
             if attr.defining_class is object:
                 continue
@@ -246,37 +246,37 @@ class ClassDocumenter(Documenter):
             elif attr.name.startswith('_') and not attr.name.startswith('__'):
                 continue
             if attr.defining_class is not self.client:
-                attributes.setdefault('inherited_attributes', []).append(attr)
+                members.setdefault('inherited_attributes', []).append(attr)
             if attr.kind == 'method':
                 if attr.name.startswith('__'):
-                    attributes.setdefault('special_methods', []).append(attr)
+                    members.setdefault('special_methods', []).append(attr)
                 else:
-                    attributes.setdefault('methods', []).append(attr)
+                    members.setdefault('methods', []).append(attr)
             elif attr.kind == 'class method':
                 if attr.name.startswith('__'):
-                    attributes.setdefault('special_methods', []).append(attr)
+                    members.setdefault('special_methods', []).append(attr)
                 else:
-                    attributes.setdefault('class_methods', []).append(attr)
+                    members.setdefault('class_methods', []).append(attr)
             elif attr.kind == 'static method':
                 if attr.name.startswith('__'):
-                    attributes.setdefault('special_methods', []).append(attr)
+                    members.setdefault('special_methods', []).append(attr)
                 else:
-                    attributes.setdefault('static_methods', []).append(attr)
+                    members.setdefault('static_methods', []).append(attr)
             elif attr.kind == 'property' and not attr.name.startswith('_'):
                 if attr.object.fset is None:
-                    attributes.setdefault('readonly_properties', []).append(
+                    members.setdefault('readonly_properties', []).append(
                         attr)
                 else:
-                    attributes.setdefault('readwrite_properties', []).append(
+                    members.setdefault('readwrite_properties', []).append(
                         attr)
             elif (
                 attr.kind == 'data' and
                 attr.name not in getattr(self.client, '__slots__', ())
                 ):
-                attributes.setdefault('data', []).append(attr)
-        for key, value in attributes.items():
-            attributes[key] = tuple(sorted(value))
-        return attributes
+                members.setdefault('data', []).append(attr)
+        for key, value in members.items():
+            members[key] = tuple(sorted(value))
+        return members
 
     ### PUBLIC METHODS ###
 
@@ -314,8 +314,8 @@ class ClassDocumenter(Documenter):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def attributes(self):
+    def members(self):
         """
-        Gets sorted attributes of documenter's class.
+        Gets sorted members of documenter's class.
         """
-        return self._attributes
+        return self._members
