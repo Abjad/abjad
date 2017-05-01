@@ -33,8 +33,8 @@ class ClassDocumenter(abctools.AbjadObject):
         heading = documentationtools.ReSTHeading(level=3, text='Bases')
         result.append(heading)
         mro = inspect.getmro(self.client)[1:]
-        for self.client in mro:
-            parts = self.client.__module__.split('.') + [self.client.__name__]
+        for base in mro:
+            parts = base.__module__.split('.') + [base.__name__]
             while 1 < len(parts) and parts[-1] == parts[-2]:
                 parts.pop()
             packagesystem_path = '.'.join(parts)
