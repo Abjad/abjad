@@ -53,7 +53,7 @@ class DocumentationManager(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _build_attribute_section(
+    def _build_class_attribute_section(
         self,
         class_,
         attributes,
@@ -91,7 +91,7 @@ class DocumentationManager(abctools.AbjadObject):
                 result.append(html_only)
         return result
 
-    def _build_attributes_autosummary(self, cls, attributes):
+    def _build_class_attributes_autosummary(self, cls, attributes):
         from abjad.tools import documentationtools
         result = []
         sorted_attributes = []
@@ -121,7 +121,7 @@ class DocumentationManager(abctools.AbjadObject):
         result.append(html_only)
         return result
 
-    def _build_bases_section(self, cls):
+    def _build_class_bases_section(self, cls):
         from abjad.tools import documentationtools
         result = []
         heading = documentationtools.ReSTHeading(level=3, text='Bases')
@@ -140,7 +140,7 @@ class DocumentationManager(abctools.AbjadObject):
             result.append(paragraph)
         return result
 
-    def _build_enumeration_section(self, cls):
+    def _build_class_enumeration_section(self, cls):
         from abjad.tools import documentationtools
         result = []
         if not issubclass(cls, enum.Enum):
@@ -299,28 +299,28 @@ class DocumentationManager(abctools.AbjadObject):
                 document.append(graphviz_container)
             except:
                 traceback.print_exc()
-        document.extend(self._build_bases_section(cls))
-        document.extend(self._build_enumeration_section(cls))
-        document.extend(self._build_attributes_autosummary(cls, attributes))
-        document.extend(self._build_attribute_section(
+        document.extend(self._build_class_bases_section(cls))
+        document.extend(self._build_class_enumeration_section(cls))
+        document.extend(self._build_class_attributes_autosummary(cls, attributes))
+        document.extend(self._build_class_attribute_section(
             cls,
             attributes.get('readonly_properties'),
             'autoattribute',
             'Read-only properties',
             ))
-        document.extend(self._build_attribute_section(
+        document.extend(self._build_class_attribute_section(
             cls,
             attributes.get('readwrite_properties'),
             'autoattribute',
             'Read/write properties',
             ))
-        document.extend(self._build_attribute_section(
+        document.extend(self._build_class_attribute_section(
             cls,
             attributes.get('methods'),
             'automethod',
             'Methods',
             ))
-        document.extend(self._build_attribute_section(
+        document.extend(self._build_class_attribute_section(
             cls,
             sorted(
                 attributes.get('class_methods', ()) +
@@ -330,7 +330,7 @@ class DocumentationManager(abctools.AbjadObject):
             'automethod',
             'Class & static methods',
             ))
-        document.extend(self._build_attribute_section(
+        document.extend(self._build_class_attribute_section(
             cls,
             attributes.get('special_methods'),
             'automethod',
