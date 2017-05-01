@@ -244,10 +244,7 @@ class DocumentationManager(abctools.AbjadObject):
                 },
             )
         for tools_package in tools_packages:
-            if self.__class__.__name__.startswith('ScoreLibrary'):
-                tools_package_parts = tools_package.__name__.split('.')
-            else:
-                tools_package_parts = tools_package.__name__.split('.')[1:]
+            tools_package_parts = tools_package.__name__.split('.')[1:]
             tools_package_path = '/'.join(tools_package_parts)
             text = '{}/index'
             text = text.format(tools_package_path)
@@ -277,28 +274,27 @@ class DocumentationManager(abctools.AbjadObject):
             directive='autoclass',
             )
         document.append(autoclass_directive)
-        if not self.__class__.__name__.startswith('ScoreLibrary'):
-            try:
-                lineage_heading = abjad.documentationtools.ReSTHeading(
-                    level=3,
-                    text='Lineage',
+        try:
+            lineage_heading = abjad.documentationtools.ReSTHeading(
+                level=3,
+                text='Lineage',
+                )
+            document.append(lineage_heading)
+            lineage_graph = self._get_lineage_graph(cls)
+            lineage_graph.attributes['background'] = 'transparent'
+            lineage_graph.attributes['rankdir'] = 'LR'
+            graphviz_directive = \
+                abjad.documentationtools.ReSTGraphvizDirective(
+                    graph=lineage_graph,
                     )
-                document.append(lineage_heading)
-                lineage_graph = self._get_lineage_graph(cls)
-                lineage_graph.attributes['background'] = 'transparent'
-                lineage_graph.attributes['rankdir'] = 'LR'
-                graphviz_directive = \
-                    abjad.documentationtools.ReSTGraphvizDirective(
-                        graph=lineage_graph,
-                        )
-                graphviz_container = abjad.documentationtools.ReSTDirective(
-                    directive='container',
-                    argument='graphviz',
-                    )
-                graphviz_container.append(graphviz_directive)
-                document.append(graphviz_container)
-            except:
-                traceback.print_exc()
+            graphviz_container = abjad.documentationtools.ReSTDirective(
+                directive='container',
+                argument='graphviz',
+                )
+            graphviz_container.append(graphviz_directive)
+            document.append(graphviz_container)
+        except:
+            traceback.print_exc()
         document.extend(self._build_class_bases_section(cls))
         document.extend(self._build_class_enumeration_section(cls))
         document.extend(self._build_class_attributes_autosummary(cls, attributes))
@@ -487,12 +483,8 @@ class DocumentationManager(abctools.AbjadObject):
             tools_package,
             )
         document = documentationtools.ReSTDocument()
-        if self.__class__.__name__.startswith('ScoreLibrary'):
-            text = tools_package.__name__
-            heading = documentationtools.ReSTHeading(level=2, text=text)
-        else:
-            text = tools_package.__name__.split('.')[-1]
-            heading = documentationtools.ReSTHeading(level=2, text=text)
+        text = tools_package.__name__.split('.')[-1]
+        heading = documentationtools.ReSTHeading(level=2, text=text)
         document.append(heading)
         automodule_directive = documentationtools.ReSTAutodocDirective(
             argument=tools_package.__name__,
@@ -501,26 +493,24 @@ class DocumentationManager(abctools.AbjadObject):
         document.append(automodule_directive)
         ignored_classes = self._get_ignored_classes()
         classes = [_ for _ in classes if _ not in ignored_classes]
-        if not self.__class__.__name__.startswith('ScoreLibrary'):
-            if classes:
-                rule = documentationtools.ReSTHorizontalRule()
-                document.append(rule)
-                lineage_heading = documentationtools.ReSTHeading(
-                    level=3,
-                    text='Lineage',
-                    )
-                document.append(lineage_heading)
-                lineage_graph = self._get_tools_package_graph(tools_package)
-                graphviz_directive = documentationtools.ReSTGraphvizDirective(
-                    graph=lineage_graph,
-                    )
-                graphviz_container = documentationtools.ReSTDirective(
-                    directive='container',
-                    argument='graphviz',
-                    )
-                graphviz_container.append(graphviz_directive)
-                document.append(graphviz_container)
         if classes:
+            rule = documentationtools.ReSTHorizontalRule()
+            document.append(rule)
+            lineage_heading = documentationtools.ReSTHeading(
+                level=3,
+                text='Lineage',
+                )
+            document.append(lineage_heading)
+            lineage_graph = self._get_tools_package_graph(tools_package)
+            graphviz_directive = documentationtools.ReSTGraphvizDirective(
+                graph=lineage_graph,
+                )
+            graphviz_container = documentationtools.ReSTDirective(
+                directive='container',
+                argument='graphviz',
+                )
+            graphviz_container.append(graphviz_directive)
+            document.append(graphviz_container)
             sections = {}
             for cls in classes:
                 documentation_section = getattr(
@@ -647,12 +637,8 @@ class DocumentationManager(abctools.AbjadObject):
 
     def _module_path_to_file_path(self, module_path, source_directory):
         parts = module_path.split('.')
-        if not self.__class__.__name__.startswith('ScoreLibrary'):
-            parts = parts[1:]
-        if parts[-1] == 'Index':
-            parts[-1] = '_' + parts[-1] + '.rst'
-        else:
-            parts[-1] = parts[-1] + '.rst'
+        parts = parts[1:]
+        parts[-1] = parts[-1] + '.rst'
         parts.insert(0, self._get_api_directory_path(source_directory))
         path = os.path.join(*parts)
         return path
@@ -660,8 +646,7 @@ class DocumentationManager(abctools.AbjadObject):
     def _package_path_to_file_path(self, package_path, source_directory):
         assert isinstance(package_path, str), repr(package_path)
         parts = package_path.split('.')
-        if not self.__class__.__name__.startswith('ScoreLibrary'):
-            parts = parts[1:]
+        parts = parts[1:]
         parts.append('index.rst')
         parts.insert(0, self._get_api_directory_path(source_directory))
         path = os.path.join(*parts)
