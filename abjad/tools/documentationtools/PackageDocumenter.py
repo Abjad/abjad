@@ -112,19 +112,3 @@ class PackageDocumenter(ModuleDocumenter):
                 section = self._build_standard_section(key, members.pop(key))
                 document.extend(section)
         return document
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def members(self):
-        """
-        Gets sorted members of documenter's client.
-        """
-        return self._members
-
-    @property
-    def path(self):
-        """
-        Gets package path of documenter's client.
-        """
-        return self._path
