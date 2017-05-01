@@ -2,10 +2,10 @@
 import enum
 import importlib
 import inspect
-from abjad.tools import abctools
+from abjad.tools.documentationtools.Documenter import Documenter
 
 
-class ClassDocumenter(abctools.AbjadObject):
+class ClassDocumenter(Documenter):
     """
     A class documenter.
     """
@@ -14,15 +14,12 @@ class ClassDocumenter(abctools.AbjadObject):
 
     __slots__ = (
         '_attributes',
-        '_client',
-        '_manager',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, manager, client):
-        self._manager = manager
-        self._client = client
+        Documenter.__init__(self, manager, client)
         self._attributes = self._collect_class_attributes()
 
     ### PRIVATE METHODS ###
@@ -322,17 +319,3 @@ class ClassDocumenter(abctools.AbjadObject):
         Gets sorted attributes of documenter's class.
         """
         return self._attributes
-
-    @property
-    def client(self):
-        """
-        Gets client of documenter.
-        """
-        return self._client
-
-    @property
-    def manager(self):
-        """
-        Gets manager of documenter.
-        """
-        return self._manager
