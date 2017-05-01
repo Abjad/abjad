@@ -76,6 +76,27 @@ class PackageDocumenter(Documenter):
             autosummary.append(item)
         return [autosummary]
 
+    def _build_package_graph(self):
+        from abjad.tools import documentationtools
+        lineage_graph_addresses = self.manager._get_lineage_graph_addresses()
+        inheritance_graph = documentationtools.InheritanceGraph(
+            addresses=lineage_graph_addresses,
+            lineage_addresses=[self.client.__name__]
+            )
+        lineage_graph = inheritance_graph.__graph__()
+        lineage_graph.attributes['bgcolor'] = 'transparent'
+        lineage_graph.attributes['dpi'] = 72
+        lineage_graph.attributes['rankdir'] = 'LR'
+        graphviz_directive = documentationtools.ReSTGraphvizDirective(
+            graph=lineage_graph,
+            )
+        graphviz_container = documentationtools.ReSTDirective(
+            directive='container',
+            argument='graphviz',
+            )
+        graphviz_container.append(graphviz_directive)
+        return graphviz_container
+
     def _collect_members(self):
         members = {}
         ignored_classes = self.manager._get_ignored_classes()
@@ -133,6 +154,7 @@ class PackageDocumenter(Documenter):
             directive='automodule',
             )
         document.append(automodule_directive)
+        document.append(self._build_package_graph())
         members = self.members.copy()
         if 'Submodules' in members:
             section = self._build_submodule_section(
