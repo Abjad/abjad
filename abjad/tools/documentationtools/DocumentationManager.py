@@ -105,27 +105,6 @@ class DocumentationManager(abctools.AbjadObject):
         document.append(toc)
         return document
 
-    def _get_function_rst(self, function):
-        import abjad
-        document = abjad.documentationtools.ReSTDocument()
-        tools_package_python_path = '.'.join(function.__module__.split('.')[:-1])
-        module_directive = abjad.documentationtools.ReSTDirective(
-            directive='currentmodule',
-            argument=tools_package_python_path,
-            )
-        document.append(module_directive)
-        heading = abjad.documentationtools.ReSTHeading(
-            level=2,
-            text=function.__name__,
-            )
-        document.append(heading)
-        autodoc_directive = abjad.documentationtools.ReSTAutodocDirective(
-            argument=function.__name__,
-            directive='autofunction',
-            )
-        document.append(autodoc_directive)
-        return document
-
     def _get_ignored_classes(self):
         from abjad.tools import abjadbooktools
         ignored_classes = set([
@@ -463,7 +442,8 @@ class DocumentationManager(abctools.AbjadObject):
                             )
                         print(message)
                         continue
-                    documenter = documentationtools.ClassDocumenter(self, class_)
+                    documenter = documentationtools.ClassDocumenter(
+                        self, class_)
                     rst = documenter.build_rst()
                     self._write(file_path, rst.rest_format, rewritten_files)
                 for function in functions:
@@ -471,7 +451,9 @@ class DocumentationManager(abctools.AbjadObject):
                         function.__module__,
                         source_directory,
                         )
-                    rst = self._get_function_rst(function)
+                    documenter = documentationtools.FunctionDocumenter(
+                        self, function)
+                    rst = documenter.build_rst()
                     self._write(file_path, rst.rest_format, rewritten_files)
             for root, directory_names, file_names in os.walk(
                 self._get_api_directory_path(source_directory),

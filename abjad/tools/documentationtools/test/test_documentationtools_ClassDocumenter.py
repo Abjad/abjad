@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from abjad.tools import documentationtools
 from abjad.tools import scoretools
 from abjad.tools import systemtools
@@ -203,4 +204,4 @@ class TestCase(systemtools.TestCase):
                 ..  container:: inherited
 
                     ..  automethod:: abjad.tools.scoretools.Note.Note.__str__
-            """) + '\n' == rst.rest_format
+        """) + '\n' == rst.rest_format
