@@ -53,7 +53,7 @@ class DocumentationManager(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _build_class_attribute_section(
+    def _build_class_attribute_section_rst(
         self,
         class_,
         attributes,
@@ -91,7 +91,7 @@ class DocumentationManager(abctools.AbjadObject):
                 result.append(html_only)
         return result
 
-    def _build_class_attributes_autosummary(self, cls, attributes):
+    def _build_class_attributes_autosummary_rst(self, cls, attributes):
         from abjad.tools import documentationtools
         result = []
         sorted_attributes = []
@@ -121,7 +121,7 @@ class DocumentationManager(abctools.AbjadObject):
         result.append(html_only)
         return result
 
-    def _build_class_bases_section(self, cls):
+    def _build_class_bases_section_rst(self, cls):
         from abjad.tools import documentationtools
         result = []
         heading = documentationtools.ReSTHeading(level=3, text='Bases')
@@ -140,7 +140,7 @@ class DocumentationManager(abctools.AbjadObject):
             result.append(paragraph)
         return result
 
-    def _build_class_enumeration_section(self, cls):
+    def _build_class_enumeration_section_rst(self, cls):
         from abjad.tools import documentationtools
         result = []
         if not issubclass(cls, enum.Enum):
@@ -160,6 +160,31 @@ class DocumentationManager(abctools.AbjadObject):
                 wrap=False,
                 )
             result.append(paragraph)
+        return result
+
+    def _build_class_lineage_section_rst(self, cls):
+        from abjad.tools import documentationtools
+        result = []
+        try:
+            lineage_heading = documentationtools.ReSTHeading(
+                level=3,
+                text='Lineage',
+                )
+            result.append(lineage_heading)
+            lineage_graph = self._build_lineage_graph(cls)
+            lineage_graph.attributes['background'] = 'transparent'
+            lineage_graph.attributes['rankdir'] = 'LR'
+            graphviz_directive = \
+                documentationtools.ReSTGraphvizDirective(
+                    graph=lineage_graph,
+                    )
+            graphviz_container = documentationtools.ReSTDirective(
+                directive='container',
+                argument='graphviz',
+                )
+            graphviz_container.append(graphviz_directive)
+        except:
+            traceback.print_exc()
         return result
 
     def _collect_class_attributes(self, cls):
@@ -254,69 +279,36 @@ class DocumentationManager(abctools.AbjadObject):
         return document
 
     def _get_class_rst(self, cls):
-        import abjad
+        from abjad.tools import documentationtools
         module_name, _, class_name = cls.__module__.rpartition('.')
         tools_package_python_path = '.'.join(cls.__module__.split('.')[:-1])
         attributes = self._collect_class_attributes(cls)
-        document = abjad.documentationtools.ReSTDocument()
-        module_directive = abjad.documentationtools.ReSTDirective(
+        document = documentationtools.ReSTDocument()
+        module_directive = documentationtools.ReSTDirective(
             directive='currentmodule',
             argument=tools_package_python_path,
             )
         document.append(module_directive)
-        heading = abjad.documentationtools.ReSTHeading(
-            level=2,
-            text=class_name,
-            )
+        heading = documentationtools.ReSTHeading(level=2, text=class_name)
         document.append(heading)
-        autoclass_directive = abjad.documentationtools.ReSTAutodocDirective(
+        autoclass_directive = documentationtools.ReSTAutodocDirective(
             argument=cls.__name__,
             directive='autoclass',
             )
         document.append(autoclass_directive)
-        try:
-            lineage_heading = abjad.documentationtools.ReSTHeading(
-                level=3,
-                text='Lineage',
-                )
-            document.append(lineage_heading)
-            lineage_graph = self._get_lineage_graph(cls)
-            lineage_graph.attributes['background'] = 'transparent'
-            lineage_graph.attributes['rankdir'] = 'LR'
-            graphviz_directive = \
-                abjad.documentationtools.ReSTGraphvizDirective(
-                    graph=lineage_graph,
-                    )
-            graphviz_container = abjad.documentationtools.ReSTDirective(
-                directive='container',
-                argument='graphviz',
-                )
-            graphviz_container.append(graphviz_directive)
-            document.append(graphviz_container)
-        except:
-            traceback.print_exc()
-        document.extend(self._build_class_bases_section(cls))
-        document.extend(self._build_class_enumeration_section(cls))
-        document.extend(self._build_class_attributes_autosummary(cls, attributes))
-        document.extend(self._build_class_attribute_section(
-            cls,
-            attributes.get('readonly_properties'),
-            'autoattribute',
-            'Read-only properties',
-            ))
-        document.extend(self._build_class_attribute_section(
-            cls,
-            attributes.get('readwrite_properties'),
-            'autoattribute',
-            'Read/write properties',
-            ))
-        document.extend(self._build_class_attribute_section(
-            cls,
-            attributes.get('methods'),
-            'automethod',
-            'Methods',
-            ))
-        document.extend(self._build_class_attribute_section(
+        document.extend(self._build_class_lineage_section_rst(cls))
+        document.extend(self._build_class_bases_section_rst(cls))
+        document.extend(self._build_class_enumeration_section_rst(cls))
+        document.extend(self._build_class_attributes_autosummary_rst(cls, attributes))
+        document.extend(self._build_class_readonly_properties_section_rst(cls, attributes))
+        document.extend(self._build_class_readwrite_properties_section_rst(cls, attributes))
+        document.extend(self._build_class_methods_section_rst(cls, attributes))
+        document.extend(self._build_class_classmethod_and_staticmethod_section_rst(cls, attributes))
+        document.extend(self._build_class_special_methods_section_rst(cls, attributes))
+        return document
+
+    def _build_class_classmethod_and_staticmethod_section_rst(self, cls, attributes):
+        return self._build_class_attribute_section_rst(
             cls,
             sorted(
                 attributes.get('class_methods', ()) +
@@ -325,14 +317,39 @@ class DocumentationManager(abctools.AbjadObject):
             ),
             'automethod',
             'Class & static methods',
-            ))
-        document.extend(self._build_class_attribute_section(
+            )
+
+    def _build_class_methods_section_rst(self, cls, attributes):
+        return self._build_class_attribute_section_rst(
+            cls,
+            attributes.get('methods'),
+            'automethod',
+            'Methods',
+            )
+
+    def _build_class_readonly_properties_section_rst(self, cls, attributes):
+        return self._build_class_attribute_section_rst(
+            cls,
+            attributes.get('readonly_properties'),
+            'autoattribute',
+            'Read-only properties',
+            )
+
+    def _build_class_readwrite_properties_section_rst(self, cls, attributes):
+        return self._build_class_attribute_section_rst(
+            cls,
+            attributes.get('readwrite_properties'),
+            'autoattribute',
+            'Read/write properties',
+            )
+
+    def _build_class_special_methods_section_rst(self, cls, attributes):
+        return self._build_class_attribute_section_rst(
             cls,
             attributes.get('special_methods'),
             'automethod',
             'Special methods',
-            ))
-        return document
+            )
 
     def _get_function_rst(self, function):
         import abjad
@@ -367,7 +384,7 @@ class DocumentationManager(abctools.AbjadObject):
             ])
         return ignored_classes
 
-    def _get_lineage_graph(self, cls):
+    def _build_lineage_graph(self, cls):
         def get_node_name(original_name):
             parts = original_name.split('.')
             name = [parts[0]]
@@ -477,7 +494,7 @@ class DocumentationManager(abctools.AbjadObject):
         lineage_graph.attributes['rankdir'] = 'LR'
         return lineage_graph
 
-    def _get_tools_package_rst(self, tools_package):
+    def _build_tools_package_rst(self, tools_package):
         from abjad.tools import documentationtools
         classes, functions = self._get_tools_package_contents(
             tools_package,
@@ -686,6 +703,7 @@ class DocumentationManager(abctools.AbjadObject):
     def execute(self):
         r'''Executes documentation manager.
         '''
+        from abjad.tools import documentationtools
         message = 'Rebuilding documentation source ...'
         print(message)
         source_directory = self._get_source_directory()
@@ -714,7 +732,7 @@ class DocumentationManager(abctools.AbjadObject):
                 )
             ignored_classes = self._get_ignored_classes()
             for package in tools_packages:
-                tools_package_rst = self._get_tools_package_rst(package)
+                tools_package_rst = self._build_tools_package_rst(package)
                 tools_package_file_path = self._package_path_to_file_path(
                     package.__name__,
                     source_directory,
@@ -727,12 +745,12 @@ class DocumentationManager(abctools.AbjadObject):
                     )
                 classes, functions = \
                     self._get_tools_package_contents(package)
-                for cls in classes:
+                for class_ in classes:
                     file_path = self._module_path_to_file_path(
-                        cls.__module__,
+                        class_.__module__,
                         source_directory,
                         )
-                    if cls in ignored_classes:
+                    if class_ in ignored_classes:
                         message = '{}{}'
                         message = message.format(
                             self.prefix_ignored,
@@ -740,7 +758,8 @@ class DocumentationManager(abctools.AbjadObject):
                             )
                         print(message)
                         continue
-                    rst = self._get_class_rst(cls)
+                    documenter = documentationtools.ClassDocumenter(class_)
+                    rst = documenter.build_rst()
                     self._write(file_path, rst.rest_format, rewritten_files)
                 for function in functions:
                     file_path = self._module_path_to_file_path(
