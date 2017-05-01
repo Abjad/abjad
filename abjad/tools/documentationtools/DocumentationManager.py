@@ -5,7 +5,6 @@ import inspect
 import importlib
 import os
 import shutil
-import traceback
 import types
 from abjad.tools import abctools
 from abjad.tools import systemtools
@@ -152,39 +151,12 @@ class DocumentationManager(abctools.AbjadObject):
         heading = documentationtools.ReSTHeading(level=3, text=text)
         result.append(heading)
         for item in items:
-            name = item.name
-            value = item.value
-            line = '- ``{}``: {}'.format(name, value)
+            line = '- ``{}``: {}'.format(item.name, item.value)
             paragraph = documentationtools.ReSTParagraph(
                 text=line,
                 wrap=False,
                 )
             result.append(paragraph)
-        return result
-
-    def _build_class_lineage_section_rst(self, cls):
-        from abjad.tools import documentationtools
-        result = []
-        try:
-            lineage_heading = documentationtools.ReSTHeading(
-                level=3,
-                text='Lineage',
-                )
-            result.append(lineage_heading)
-            lineage_graph = self._build_lineage_graph(cls)
-            lineage_graph.attributes['background'] = 'transparent'
-            lineage_graph.attributes['rankdir'] = 'LR'
-            graphviz_directive = \
-                documentationtools.ReSTGraphvizDirective(
-                    graph=lineage_graph,
-                    )
-            graphviz_container = documentationtools.ReSTDirective(
-                directive='container',
-                argument='graphviz',
-                )
-            graphviz_container.append(graphviz_directive)
-        except:
-            traceback.print_exc()
         return result
 
     def _ensure_directory(self, path):
@@ -317,61 +289,6 @@ class DocumentationManager(abctools.AbjadObject):
             ])
         return ignored_classes
 
-    def _build_lineage_graph(self, cls):
-        def get_node_name(original_name):
-            parts = original_name.split('.')
-            name = [parts[0]]
-            for part in parts[1:]:
-                if part != name[-1]:
-                    name.append(part)
-            if name[0] in ('abjad', 'experimental', 'ide'):
-                return str('.'.join(name[2:]))
-            return str('.'.join(name))
-        from abjad.tools import documentationtools
-        module_name, _, class_name = cls.__module__.rpartition('.')
-        node_name = '{}.{}'.format(cls.__module__, cls.__name__)
-        importlib.import_module(module_name)
-        lineage_graph_addresses = self._get_lineage_graph_addresses()
-        lineage = documentationtools.InheritanceGraph(
-            addresses=lineage_graph_addresses,
-            lineage_addresses=((module_name, class_name),)
-            )
-        graph = lineage.__graph__()
-        maximum_node_count = 30
-        if maximum_node_count < len(graph.leaves):
-            lineage = documentationtools.InheritanceGraph(
-                addresses=lineage_graph_addresses,
-                lineage_addresses=((module_name, class_name),),
-                lineage_prune_distance=2,
-                )
-            graph = lineage.__graph__()
-        if maximum_node_count < len(graph.leaves):
-            lineage = documentationtools.InheritanceGraph(
-                addresses=lineage_graph_addresses,
-                lineage_addresses=((module_name, class_name),),
-                lineage_prune_distance=1,
-                )
-            graph = lineage.__graph__()
-        if maximum_node_count < len(graph.leaves):
-            lineage = documentationtools.InheritanceGraph(
-                addresses=((module_name, class_name),),
-                )
-            graph = lineage.__graph__()
-            graph_node = graph[node_name]
-            graph_node.attributes['color'] = 'black'
-            graph_node.attributes['fontcolor'] = 'white'
-            graph_node.attributes['style'] = ('filled', 'rounded')
-        graph_node = graph[node_name]
-        graph_node.attributes['label'] = \
-            '<<B>{}</B>>'.format(graph_node.attributes['label'])
-        return graph
-
-    def _get_lineage_graph_addresses(self):
-        lineage_graph_addresses = set(self.lineage_graph_addresses)
-        lineage_graph_addresses.add(self.root_package_name)
-        lineage_graph_addresses = sorted(lineage_graph_addresses)
-        return lineage_graph_addresses
-
     def _get_root_module(self):
         root_module = importlib.import_module(self.root_package_name)
         return root_module
@@ -413,6 +330,12 @@ class DocumentationManager(abctools.AbjadObject):
         functions.sort(key=lambda x: x.__name__)
         functions = tuple(functions)
         return classes, functions
+
+    def _get_lineage_graph_addresses(self):
+        lineage_graph_addresses = set(self.lineage_graph_addresses)
+        lineage_graph_addresses.add(self.root_package_name)
+        lineage_graph_addresses = sorted(lineage_graph_addresses)
+        return lineage_graph_addresses
 
     def _get_tools_package_graph(self, tools_package):
         from abjad.tools import documentationtools
