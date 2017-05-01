@@ -187,44 +187,6 @@ class DocumentationManager(abctools.AbjadObject):
             traceback.print_exc()
         return result
 
-    def _collect_class_attributes(self, cls):
-        attributes = {}
-        for attr in inspect.classify_class_attrs(cls):
-            if attr.defining_class is object:
-                continue
-            elif attr.name in self.ignored_special_methods:
-                continue
-            if attr.defining_class is not cls:
-                attributes.setdefault('inherited_attributes', []).append(attr)
-            if attr.kind == 'method':
-                if attr.name.startswith('__'):
-                    attributes.setdefault('special_methods', []).append(attr)
-                elif not attr.name.startswith('_'):
-                    attributes.setdefault('methods', []).append(attr)
-            elif attr.kind == 'class method':
-                if attr.name.startswith('__'):
-                    attributes.setdefault('special_methods', []).append(attr)
-                elif not attr.name.startswith('_'):
-                    attributes.setdefault('class_methods', []).append(attr)
-            elif attr.kind == 'static method':
-                if attr.name.startswith('__'):
-                    attributes.setdefault('special_methods', []).append(attr)
-                elif not attr.name.startswith('_'):
-                    attributes.setdefault('static_methods', []).append(attr)
-            elif attr.kind == 'property' and not attr.name.startswith('_'):
-                if attr.object.fset is None:
-                    attributes.setdefault('readonly_properties', []).append(
-                        attr)
-                else:
-                    attributes.setdefault('readwrite_properties', []).append(
-                        attr)
-            elif attr.kind == 'data' and not attr.name.startswith('_') \
-                and attr.name not in getattr(cls, '__slots__', ()):
-                attributes.setdefault('data', []).append(attr)
-        for key, value in attributes.items():
-            attributes[key] = tuple(sorted(value))
-        return attributes
-
     def _ensure_directory(self, path):
         path = os.path.dirname(path)
         if not os.path.exists(path):
@@ -276,35 +238,6 @@ class DocumentationManager(abctools.AbjadObject):
             toc_item = documentationtools.ReSTTOCItem(text=text)
             toc.append(toc_item)
         document.append(toc)
-        return document
-
-    def _get_class_rst(self, cls):
-        from abjad.tools import documentationtools
-        module_name, _, class_name = cls.__module__.rpartition('.')
-        tools_package_python_path = '.'.join(cls.__module__.split('.')[:-1])
-        attributes = self._collect_class_attributes(cls)
-        document = documentationtools.ReSTDocument()
-        module_directive = documentationtools.ReSTDirective(
-            directive='currentmodule',
-            argument=tools_package_python_path,
-            )
-        document.append(module_directive)
-        heading = documentationtools.ReSTHeading(level=2, text=class_name)
-        document.append(heading)
-        autoclass_directive = documentationtools.ReSTAutodocDirective(
-            argument=cls.__name__,
-            directive='autoclass',
-            )
-        document.append(autoclass_directive)
-        document.extend(self._build_class_lineage_section_rst(cls))
-        document.extend(self._build_class_bases_section_rst(cls))
-        document.extend(self._build_class_enumeration_section_rst(cls))
-        document.extend(self._build_class_attributes_autosummary_rst(cls, attributes))
-        document.extend(self._build_class_readonly_properties_section_rst(cls, attributes))
-        document.extend(self._build_class_readwrite_properties_section_rst(cls, attributes))
-        document.extend(self._build_class_methods_section_rst(cls, attributes))
-        document.extend(self._build_class_classmethod_and_staticmethod_section_rst(cls, attributes))
-        document.extend(self._build_class_special_methods_section_rst(cls, attributes))
         return document
 
     def _build_class_classmethod_and_staticmethod_section_rst(self, cls, attributes):
@@ -758,7 +691,7 @@ class DocumentationManager(abctools.AbjadObject):
                             )
                         print(message)
                         continue
-                    documenter = documentationtools.ClassDocumenter(class_)
+                    documenter = documentationtools.ClassDocumenter(self, class_)
                     rst = documenter.build_rst()
                     self._write(file_path, rst.rest_format, rewritten_files)
                 for function in functions:
