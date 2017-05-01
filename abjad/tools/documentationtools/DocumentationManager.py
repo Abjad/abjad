@@ -52,44 +52,6 @@ class DocumentationManager(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _build_class_attribute_section_rst(
-        self,
-        class_,
-        attributes,
-        directive,
-        title,
-        ):
-        from abjad.tools import documentationtools
-        result = []
-        if not attributes:
-            return result
-        heading = documentationtools.ReSTHeading(level=3, text=title)
-        result.append(heading)
-        for attributes in attributes:
-            autodoc = documentationtools.ReSTAutodocDirective(
-                argument='{}.{}.{}'.format(
-                    class_.__module__,
-                    class_.__name__,
-                    attributes.name,
-                    ),
-                directive=directive,
-                )
-            if class_ is attributes.defining_class:
-                result.append(autodoc)
-            else:
-                container = documentationtools.ReSTDirective(
-                    argument='inherited',
-                    directive='container',
-                    )
-                container.append(autodoc)
-                html_only = documentationtools.ReSTDirective(
-                    argument='html',
-                    directive='only',
-                    )
-                html_only.append(container)
-                result.append(html_only)
-        return result
-
     def _ensure_directory(self, path):
         path = os.path.dirname(path)
         if not os.path.exists(path):
@@ -142,50 +104,6 @@ class DocumentationManager(abctools.AbjadObject):
             toc.append(toc_item)
         document.append(toc)
         return document
-
-    def _build_class_classmethod_and_staticmethod_section_rst(self, cls, attributes):
-        return self._build_class_attribute_section_rst(
-            cls,
-            sorted(
-                attributes.get('class_methods', ()) +
-                attributes.get('static_methods', ()),
-                key=lambda x: x.name
-            ),
-            'automethod',
-            'Class & static methods',
-            )
-
-    def _build_class_methods_section_rst(self, cls, attributes):
-        return self._build_class_attribute_section_rst(
-            cls,
-            attributes.get('methods'),
-            'automethod',
-            'Methods',
-            )
-
-    def _build_class_readonly_properties_section_rst(self, cls, attributes):
-        return self._build_class_attribute_section_rst(
-            cls,
-            attributes.get('readonly_properties'),
-            'autoattribute',
-            'Read-only properties',
-            )
-
-    def _build_class_readwrite_properties_section_rst(self, cls, attributes):
-        return self._build_class_attribute_section_rst(
-            cls,
-            attributes.get('readwrite_properties'),
-            'autoattribute',
-            'Read/write properties',
-            )
-
-    def _build_class_special_methods_section_rst(self, cls, attributes):
-        return self._build_class_attribute_section_rst(
-            cls,
-            attributes.get('special_methods'),
-            'automethod',
-            'Special methods',
-            )
 
     def _get_function_rst(self, function):
         import abjad

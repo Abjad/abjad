@@ -57,6 +57,38 @@ class ClassDocumenter(abctools.AbjadObject):
         result.append(html_only)
         return result
 
+    def _build_attribute_section_rst(self, attributes, directive, title):
+        from abjad.tools import documentationtools
+        result = []
+        if not attributes:
+            return result
+        heading = documentationtools.ReSTHeading(level=3, text=title)
+        result.append(heading)
+        for attributes in attributes:
+            autodoc = documentationtools.ReSTAutodocDirective(
+                argument='{}.{}.{}'.format(
+                    self.client.__module__,
+                    self.client.__name__,
+                    attributes.name,
+                    ),
+                directive=directive,
+                )
+            if self.client is attributes.defining_class:
+                result.append(autodoc)
+            else:
+                container = documentationtools.ReSTDirective(
+                    argument='inherited',
+                    directive='container',
+                    )
+                container.append(autodoc)
+                html_only = documentationtools.ReSTDirective(
+                    argument='html',
+                    directive='only',
+                    )
+                html_only.append(container)
+                result.append(html_only)
+        return result
+
     def _build_bases_section_rst(self):
         from abjad.tools import documentationtools
         result = []
@@ -75,6 +107,45 @@ class ClassDocumenter(abctools.AbjadObject):
                 )
             result.append(paragraph)
         return result
+
+    def _build_classmethod_and_staticmethod_section_rst(self):
+        return self._build_attribute_section_rst(
+            sorted(
+                self.attributes.get('class_methods', ()) +
+                self.attributes.get('static_methods', ()),
+                key=lambda x: x.name
+            ),
+            'automethod',
+            'Class & static methods',
+            )
+
+    def _build_methods_section_rst(self):
+        return self._build_attribute_section_rst(
+            self.attributes.get('methods'),
+            'automethod',
+            'Methods',
+            )
+
+    def _build_readonly_properties_section_rst(self):
+        return self._build_attribute_section_rst(
+            self.attributes.get('readonly_properties'),
+            'autoattribute',
+            'Read-only properties',
+            )
+
+    def _build_readwrite_properties_section_rst(self):
+        return self._build_attribute_section_rst(
+            self.attributes.get('readwrite_properties'),
+            'autoattribute',
+            'Read/write properties',
+            )
+
+    def _build_special_methods_section_rst(self):
+        return self._build_attribute_section_rst(
+            self.attributes.get('special_methods'),
+            'automethod',
+            'Special methods',
+            )
 
     def _build_enumeration_section_rst(self):
         from abjad.tools import documentationtools
@@ -217,7 +288,6 @@ class ClassDocumenter(abctools.AbjadObject):
         Build ReST.
         """
         from abjad.tools import documentationtools
-        manager = documentationtools.DocumentationManager()
         module_name, _, class_name = self.client.__module__.rpartition('.')
         tools_package_python_path = '.'.join(self.client.__module__.split('.')[:-1])
         document = documentationtools.ReSTDocument()
@@ -237,11 +307,11 @@ class ClassDocumenter(abctools.AbjadObject):
         document.extend(self._build_bases_section_rst())
         document.extend(self._build_enumeration_section_rst())
         document.extend(self._build_attributes_autosummary_rst())
-        document.extend(manager._build_class_readonly_properties_section_rst(self.client, self.attributes))
-        document.extend(manager._build_class_readwrite_properties_section_rst(self.client, self.attributes))
-        document.extend(manager._build_class_methods_section_rst(self.client, self.attributes))
-        document.extend(manager._build_class_classmethod_and_staticmethod_section_rst(self.client, self.attributes))
-        document.extend(manager._build_class_special_methods_section_rst(self.client, self.attributes))
+        document.extend(self._build_readonly_properties_section_rst())
+        document.extend(self._build_readwrite_properties_section_rst())
+        document.extend(self._build_methods_section_rst())
+        document.extend(self._build_classmethod_and_staticmethod_section_rst())
+        document.extend(self._build_special_methods_section_rst())
         return document
 
     ### PUBLIC PROPERTIES ###
