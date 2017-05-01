@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+import enum
 import importlib
 import inspect
-import traceback
 from abjad.tools import abctools
 
 
@@ -27,6 +27,36 @@ class ClassDocumenter(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _build_attributes_autosummary_rst(self):
+        from abjad.tools import documentationtools
+        result = []
+        sorted_attributes = []
+        for key, value in sorted(self.attributes.items()):
+            if key in ('special_methods', 'inherited_attributes', 'data'):
+                continue
+            sorted_attributes.extend(value)
+        sorted_attributes.sort(key=lambda x: x.name)
+        if 'special_methods' in self.attributes:
+            special_methods = self.attributes['special_methods']
+            special_methods = sorted(special_methods, key=lambda x: x.name)
+            sorted_attributes.extend(special_methods)
+        if not sorted_attributes:
+            return result
+        autosummary = documentationtools.ReSTAutosummaryDirective()
+        for attribute in sorted_attributes:
+            autosummary.append('~{}.{}.{}'.format(
+                self.client.__module__,
+                self.client.__name__,
+                attribute.name,
+                ))
+        html_only = documentationtools.ReSTOnlyDirective(argument='html')
+        text = 'Attribute summary'
+        heading = documentationtools.ReSTHeading(level=3, text=text)
+        html_only.append(heading)
+        html_only.append(autosummary)
+        result.append(html_only)
+        return result
+
     def _build_bases_section_rst(self):
         from abjad.tools import documentationtools
         result = []
@@ -41,6 +71,26 @@ class ClassDocumenter(abctools.AbjadObject):
             text = '- :py:class:`{}`'.format(packagesystem_path)
             paragraph = documentationtools.ReSTParagraph(
                 text=text,
+                wrap=False,
+                )
+            result.append(paragraph)
+        return result
+
+    def _build_enumeration_section_rst(self):
+        from abjad.tools import documentationtools
+        result = []
+        if not issubclass(self.client, enum.Enum):
+            return result
+        items = sorted(self.client, key=lambda x: x.name)
+        if not items:
+            return result
+        text = 'Enumeration Items'
+        heading = documentationtools.ReSTHeading(level=3, text=text)
+        result.append(heading)
+        for item in items:
+            line = '- ``{}``: {}'.format(item.name, item.value)
+            paragraph = documentationtools.ReSTParagraph(
+                text=line,
                 wrap=False,
                 )
             result.append(paragraph)
@@ -98,26 +148,24 @@ class ClassDocumenter(abctools.AbjadObject):
     def _build_lineage_section_rst(self):
         from abjad.tools import documentationtools
         result = []
-        try:
-            lineage_heading = documentationtools.ReSTHeading(
-                level=3,
-                text='Lineage',
+        lineage_heading = documentationtools.ReSTHeading(
+            level=3,
+            text='Lineage',
+            )
+        result.append(lineage_heading)
+        lineage_graph = self._build_lineage_graph()
+        lineage_graph.attributes['background'] = 'transparent'
+        lineage_graph.attributes['rankdir'] = 'LR'
+        graphviz_directive = \
+            documentationtools.ReSTGraphvizDirective(
+                graph=lineage_graph,
                 )
-            result.append(lineage_heading)
-            lineage_graph = self._build_lineage_graph()
-            lineage_graph.attributes['background'] = 'transparent'
-            lineage_graph.attributes['rankdir'] = 'LR'
-            graphviz_directive = \
-                documentationtools.ReSTGraphvizDirective(
-                    graph=lineage_graph,
-                    )
-            graphviz_container = documentationtools.ReSTDirective(
-                directive='container',
-                argument='graphviz',
-                )
-            graphviz_container.append(graphviz_directive)
-        except:
-            traceback.print_exc()
+        graphviz_container = documentationtools.ReSTDirective(
+            directive='container',
+            argument='graphviz',
+            )
+        graphviz_container.append(graphviz_directive)
+        result.append(graphviz_container)
         return result
 
     def _collect_class_attributes(self):
@@ -127,22 +175,24 @@ class ClassDocumenter(abctools.AbjadObject):
                 continue
             elif attr.name in self.manager.ignored_special_methods:
                 continue
+            elif attr.name.startswith('_') and not attr.name.startswith('__'):
+                continue
             if attr.defining_class is not self.client:
                 attributes.setdefault('inherited_attributes', []).append(attr)
             if attr.kind == 'method':
                 if attr.name.startswith('__'):
                     attributes.setdefault('special_methods', []).append(attr)
-                elif not attr.name.startswith('_'):
+                else:
                     attributes.setdefault('methods', []).append(attr)
             elif attr.kind == 'class method':
                 if attr.name.startswith('__'):
                     attributes.setdefault('special_methods', []).append(attr)
-                elif not attr.name.startswith('_'):
+                else:
                     attributes.setdefault('class_methods', []).append(attr)
             elif attr.kind == 'static method':
                 if attr.name.startswith('__'):
                     attributes.setdefault('special_methods', []).append(attr)
-                elif not attr.name.startswith('_'):
+                else:
                     attributes.setdefault('static_methods', []).append(attr)
             elif attr.kind == 'property' and not attr.name.startswith('_'):
                 if attr.object.fset is None:
@@ -153,7 +203,6 @@ class ClassDocumenter(abctools.AbjadObject):
                         attr)
             elif (
                 attr.kind == 'data' and
-                not attr.name.startswith('_') and
                 attr.name not in getattr(self.client, '__slots__', ())
                 ):
                 attributes.setdefault('data', []).append(attr)
@@ -186,8 +235,8 @@ class ClassDocumenter(abctools.AbjadObject):
         document.append(autoclass_directive)
         document.extend(self._build_lineage_section_rst())
         document.extend(self._build_bases_section_rst())
-        document.extend(manager._build_class_enumeration_section_rst(self.client))
-        document.extend(manager._build_class_attributes_autosummary_rst(self.client, self.attributes))
+        document.extend(self._build_enumeration_section_rst())
+        document.extend(self._build_attributes_autosummary_rst())
         document.extend(manager._build_class_readonly_properties_section_rst(self.client, self.attributes))
         document.extend(manager._build_class_readwrite_properties_section_rst(self.client, self.attributes))
         document.extend(manager._build_class_methods_section_rst(self.client, self.attributes))
