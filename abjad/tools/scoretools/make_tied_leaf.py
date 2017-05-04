@@ -18,7 +18,7 @@ def make_tied_leaf(
 
     ..  container:: example
 
-        **Example 1.** Make note:
+        Makes note:
 
         ::
 
@@ -42,7 +42,7 @@ def make_tied_leaf(
 
     ..  container:: example
 
-        **Example 2.** Make note and forbid half notes:
+        Makes note and forbid half notes:
 
         ::
 
@@ -68,8 +68,8 @@ def make_tied_leaf(
 
     ..  container:: example
 
-        **Example 3.** Make tied note with half notes forbidden and
-        durations decreasing monotonically:
+        Makes tied note with half notes forbidden and durations decreasing
+        monotonically:
 
         ::
 
@@ -99,8 +99,8 @@ def make_tied_leaf(
 
     ..  container:: example
 
-        **Example 4.** Make tied note with half notes forbidden and
-        durations increasing monotonically:
+        Makes tied note with half notes forbidden and durations increasing
+        monotonically:
 
         ::
 
@@ -130,7 +130,7 @@ def make_tied_leaf(
 
     ..  container:: example
 
-        **Example 5.** Uses Messiaen-style ties:
+        Uses Messiaen-style ties:
 
         ::
 

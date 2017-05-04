@@ -13,7 +13,7 @@ def iterate_out_of_range_notes_and_chords(argument):
 
     ..  container:: example
 
-        **Example.** Iterates out-of-range notes and chords:
+        Iterates out-of-range notes and chords:
 
         ::
 

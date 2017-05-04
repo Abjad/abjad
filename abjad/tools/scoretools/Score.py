@@ -130,7 +130,7 @@ class Score(Context):
 
         ..  container:: example
 
-            **Example 1.** Adds markup to last leaf:
+            Adds markup to last leaf:
 
             ::
 
@@ -168,7 +168,7 @@ class Score(Context):
 
         ..  container:: example
 
-            **Example 2.** Adds markup to last multimeasure rest:
+            Adds markup to last multimeasure rest:
 
             ::
 

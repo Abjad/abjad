@@ -10,7 +10,7 @@ class Articulation(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Initializes from name:
+        Initializes from name:
 
         ::
 
@@ -19,7 +19,7 @@ class Articulation(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Initializes from abbreviation:
+        Initializes from abbreviation:
 
         ::
 
@@ -28,7 +28,7 @@ class Articulation(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Initializes from other articulation:
+        Initializes from other articulation:
 
         ::
 
@@ -38,7 +38,7 @@ class Articulation(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 4.** Initializes with direction:
+        Initializes with direction:
 
         ::
 
@@ -47,8 +47,7 @@ class Articulation(AbjadValueObject):
 
     .. container:: example
 
-        **Example 5.** Use `attach()` to attach articulations to notes, rests
-        or chords:
+        Use `attach()` to attach articulations to notes, rests or chords:
 
         ::
 
@@ -255,7 +254,7 @@ class Articulation(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Without direction:
+            Without direction:
 
             >>> articulation = Articulation('staccato')
             >>> articulation.direction is None
@@ -263,7 +262,7 @@ class Articulation(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** With direction:
+            With direction:
 
             >>> articulation = Articulation('staccato', direction=Up)
             >>> articulation.direction
@@ -279,7 +278,7 @@ class Articulation(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Staccato:
+            Staccato:
 
             ::
 
@@ -289,7 +288,7 @@ class Articulation(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Tenuto:
+            Tenuto:
 
             ::
 

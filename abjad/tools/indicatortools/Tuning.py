@@ -8,7 +8,7 @@ class Tuning(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Violin tuning:
+        Violin tuning:
 
         ::
 
@@ -62,7 +62,7 @@ class Tuning(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Violin tuning:
+            Violin tuning:
 
             ::
 
@@ -88,7 +88,7 @@ class Tuning(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Violin tuning:
+            Violin tuning:
 
             ::
 
@@ -116,8 +116,6 @@ class Tuning(AbjadValueObject):
         r"""Voices `pitch_classes`.
 
         ..  container:: example
-
-            **Example 1.**
 
             ::
 
@@ -233,7 +231,7 @@ class Tuning(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Violin tuning
+            Violin tuning
 
             ::
 
@@ -252,8 +250,6 @@ class Tuning(AbjadValueObject):
         r'''Gets two-octave pitch-ranges for each pitch in this tuning.
 
         ..  container:: example
-
-            **Example 1.**
 
             ::
 
@@ -291,8 +287,6 @@ class Tuning(AbjadValueObject):
         r'''Gets pitches of tuning.
 
         ..  container:: example
-
-            **Example 1.**
 
             ::
 

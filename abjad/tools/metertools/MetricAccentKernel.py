@@ -126,8 +126,6 @@ class MetricAccentKernel(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1:**
-
             ::
 
                 >>> upper_staff = Staff("c'8 d'4. e'8 f'4.")
@@ -173,8 +171,6 @@ class MetricAccentKernel(AbjadValueObject):
                 (Offset(1, 1), 2)
 
         ..  container:: example
-
-            **Example 2:**
 
             ::
 

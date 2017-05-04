@@ -8,7 +8,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 1.** Initializes from integer numerator:
+        Initializes from integer numerator:
 
         ::
 
@@ -17,7 +17,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 2.** Initializes from integer numerator and denominator:
+        Initializes from integer numerator and denominator:
 
         ::
 
@@ -26,7 +26,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 3.** Initializes from integer-equivalent numeric numerator:
+        Initializes from integer-equivalent numeric numerator:
 
         ::
 
@@ -35,8 +35,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 4.** Initializes from integer-equivalent numeric numerator
-        and denominator:
+        Initializes from integer-equivalent numeric numerator and denominator:
 
         ::
 
@@ -45,7 +44,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 5.** Initializes from integer-equivalent singleton:
+        Initializes from integer-equivalent singleton:
 
         ::
 
@@ -54,7 +53,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 6.** Initializes from integer-equivalent pair:
+        Initializes from integer-equivalent pair:
 
         ::
 
@@ -63,7 +62,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 7.** Initializes from duration:
+        Initializes from duration:
 
         ::
 
@@ -72,7 +71,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 8.** Initializes from other offset:
+        Initializes from other offset:
 
         ::
 
@@ -81,7 +80,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 9.** Initializes from other offset with grace displacement:
+        Initializes from other offset with grace displacement:
 
         ::
 
@@ -94,7 +93,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 10.** Intializes from fraction:
+        Intializes from fraction:
 
         ::
 
@@ -103,7 +102,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 11.** Initializes from solidus string:
+        Initializes from solidus string:
 
         ::
 
@@ -112,7 +111,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 12.** Initializes from nonreduced fraction:
+        Initializes from nonreduced fraction:
 
         ::
 
@@ -121,7 +120,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 13.** Offsets inherit from built-in fraction:
+        Offsets inherit from built-in fraction:
 
         ::
 
@@ -130,7 +129,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 14.** Offsets are numeric:
+        Offsets are numeric:
 
         ::
 
@@ -179,7 +178,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 1.** Copies offset with grace displacement:
+            Copies offset with grace displacement:
 
             ::
 
@@ -229,7 +228,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 1.** Copies offset with grace displacement:
+            Copies offset with grace displacement:
 
             ::
 
@@ -272,8 +271,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 1.** With equal numerators, denominators and grace
-            displacements:
+            With equal numerators, denominators and grace displacements:
 
             ::
 
@@ -293,8 +291,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 2.** With equal numerators and denominators but differing
-            grace displacements:
+            With equal numerators and denominators but differing grace
+            displacements:
 
             ::
 
@@ -314,8 +312,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 3.** With differing numerators and denominators. Ignores
-            grace displacements:
+            With differing numerators and denominators. Ignores grace
+            displacements:
 
             ::
 
@@ -346,8 +344,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 1.** With equal numerators, denominators and grace
-            displacements:
+            With equal numerators, denominators and grace displacements:
 
             ::
 
@@ -367,8 +364,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 2.** With equal numerators and denominators but differing
-            grace displacements:
+            With equal numerators and denominators but differing grace
+            displacements:
 
             ::
 
@@ -388,8 +385,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 3.** With differing numerators and denominators. Ignores
-            grace displacements:
+            With differing numerators and denominators. Ignores grace
+            displacements:
 
             ::
 
@@ -427,8 +424,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 1.** With equal numerators, denominators and grace
-            displacements:
+            With equal numerators, denominators and grace displacements:
 
             ::
 
@@ -448,8 +444,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 2.** With equal numerators and denominators but differing
-            grace displacements:
+            With equal numerators and denominators but differing grace
+            displacements:
 
             ::
 
@@ -469,8 +465,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 3.** With differing numerators and denominators. Ignores
-            grace displacements:
+            With differing numerators and denominators. Ignores grace
+            displacements:
 
             ::
 
@@ -515,8 +511,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 1.** With equal numerators, denominators and grace
-            displacements:
+            With equal numerators, denominators and grace displacements:
 
             ::
 
@@ -536,8 +531,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 2.** With equal numerators and denominators but differing
-            grace displacements:
+            With equal numerators and denominators but differing grace
+            displacements:
 
             ::
 
@@ -557,8 +552,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 3.** With differing numerators and denominators. Ignores
-            grace displacements:
+            With differing numerators and denominators. Ignores grace
+            displacements:
 
             ::
 
@@ -589,8 +584,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 1.** With equal numerators, denominators and grace
-            displacements:
+            With equal numerators, denominators and grace displacements:
 
             ::
 
@@ -610,8 +604,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 2.** With equal numerators and denominators but differing
-            nonzero grace displacements:
+            With equal numerators and denominators but differing nonzero grace
+            displacements:
 
             ::
 
@@ -631,8 +625,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 3.** With equal numerators and denominators but differing
-            zero-valued grace displacements:
+            With equal numerators and denominators but differing zero-valued
+            grace displacements:
 
             ::
 
@@ -652,8 +646,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 4.** With differing numerators and denominators. Ignores
-            grace displacements:
+            With differing numerators and denominators. Ignores grace
+            displacements:
 
             ::
 
@@ -683,8 +677,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 1.** Gets interpreter representation of offset without
-            grace displacement:
+            Gets interpreter representation of offset without grace
+            displacement:
 
             ::
 
@@ -693,8 +687,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 2.** Gets interpreter representation of offset with
-            grace displacement:
+            Gets interpreter representation of offset with grace displacement:
 
             ::
 
@@ -771,7 +764,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 1.** Gets grace displacement equal to none:
+            Gets grace displacement equal to none:
 
             ::
 
@@ -781,8 +774,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 2.** Gets grace displacement equal to a negative
-            sixteenth:
+            Gets grace displacement equal to a negative sixteenth:
 
             ::
 
@@ -792,7 +784,7 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 3.** Stores zero-valued grace displacement as none:
+            Stores zero-valued grace displacement as none:
 
             ::
 

@@ -8,7 +8,7 @@ class RehearsalMark(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Rehearsal A:
+        Rehearsal A:
 
         ::
 
@@ -37,7 +37,7 @@ class RehearsalMark(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Rehearsal B:
+        Rehearsal B:
 
         ::
 
@@ -95,7 +95,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Rehearsal A
+            Rehearsal A
 
             ::
 
@@ -105,7 +105,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Rehearsal B
+            Rehearsal B
 
             ::
 
@@ -148,7 +148,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Rehearsal A:
+            Rehearsal A:
 
             ::
 
@@ -158,7 +158,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Rehearsal B:
+            Rehearsal B:
 
             ::
 
@@ -178,7 +178,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Custom rehearsal A:
+            Custom rehearsal A:
 
             ::
 
@@ -201,7 +201,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Custom rehearsal B:
+            Custom rehearsal B:
 
             ::
 
@@ -232,7 +232,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Rehearsal A:
+            Rehearsal A:
 
             ::
 
@@ -242,7 +242,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Rehearsal B:
+            Rehearsal B:
 
             ::
 

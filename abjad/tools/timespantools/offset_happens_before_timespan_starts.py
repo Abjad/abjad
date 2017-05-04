@@ -11,8 +11,8 @@ def offset_happens_before_timespan_starts(
 
     ..  container:: example
 
-        **Example 1.** Makes time relation indicating that `offset`
-        happens before `timespan` starts:
+        Makes time relation indicating that `offset` happens before `timespan`
+        starts:
 
         ::
 
@@ -29,8 +29,8 @@ def offset_happens_before_timespan_starts(
 
     ..  container:: example
 
-        **Example 2.** Makes time relation indicating that offset ``1/2``
-        happens before `timespan` starts:
+        Makes time relation indicating that offset ``1/2`` happens before
+        `timespan` starts:
 
         ::
 
@@ -57,8 +57,8 @@ def offset_happens_before_timespan_starts(
 
     ..  container:: example
 
-        **Example 3.** Makes time relation indicating that `offset` happens
-        before timespan ``[2, 8)`` starts:
+        Makes time relation indicating that `offset` happens before timespan
+        ``[2, 8)`` starts:
 
         ::
 
@@ -88,8 +88,8 @@ def offset_happens_before_timespan_starts(
 
     ..  container:: example
 
-        **Example 4.** Makes time relation indicating that offset ``1/2``
-        happens before timespan ``[2, 8)`` starts:
+        Makes time relation indicating that offset ``1/2`` happens before
+        timespan ``[2, 8)`` starts:
 
         ::
 
@@ -118,8 +118,8 @@ def offset_happens_before_timespan_starts(
 
     ..  container:: example
 
-        **Example 5.** Evaluates time relation indicating that offset ``1/2``
-        happens before timespan ``[2, 8)`` starts:
+        Evaluates time relation indicating that offset ``1/2`` happens before
+        timespan ``[2, 8)`` starts:
 
         ::
 

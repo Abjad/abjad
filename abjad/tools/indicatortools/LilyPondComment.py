@@ -7,7 +7,7 @@ class LilyPondComment(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Two-word comment:
+        Two-word comment:
 
         ::
 
@@ -24,7 +24,7 @@ class LilyPondComment(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Three-word comment:
+        Three-word comment:
 
         ::
 
@@ -80,7 +80,7 @@ class LilyPondComment(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Two-word comment:
+            Two-word comment:
 
             ::
 
@@ -90,7 +90,7 @@ class LilyPondComment(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Three-word comment:
+            Three-word comment:
 
             ::
 
@@ -128,7 +128,7 @@ class LilyPondComment(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Two-word comment:
+            Two-word comment:
 
             ::
 
@@ -138,7 +138,7 @@ class LilyPondComment(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Three-word comment:
+            Three-word comment:
 
             ::
 
@@ -156,7 +156,7 @@ class LilyPondComment(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Two-word comment:
+            Two-word comment:
 
             ::
 
@@ -166,7 +166,7 @@ class LilyPondComment(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Three-word comment:
+            Three-word comment:
 
             ::
 
@@ -190,7 +190,7 @@ class LilyPondComment(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default:
+            Default:
 
                 >>> commands = indicatortools.LilyPondComment.list_allowable_format_slots()
                 >>> for command in commands:

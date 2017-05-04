@@ -7,7 +7,7 @@ class BendAfter(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** A fall:
+        A fall:
 
         ::
 
@@ -23,7 +23,7 @@ class BendAfter(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** A doit:
+        A doit:
 
         ::
 
@@ -98,7 +98,7 @@ class BendAfter(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Fall:
+            Fall:
 
             ::
 
@@ -108,7 +108,7 @@ class BendAfter(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Doit:
+            Doit:
 
             ::
 

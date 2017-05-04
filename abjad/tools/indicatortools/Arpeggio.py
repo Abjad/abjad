@@ -7,7 +7,7 @@ class Arpeggio(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Without direction arrow:
+        Without direction arrow:
 
         ::
 
@@ -23,7 +23,7 @@ class Arpeggio(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** With direction arrow:
+        With direction arrow:
 
         ::
 
@@ -96,7 +96,7 @@ class Arpeggio(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Without direction arrow:
+            Without direction arrow:
 
             ::
 
@@ -106,7 +106,7 @@ class Arpeggio(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** With direction arrow:
+            With direction arrow:
 
             ::
 

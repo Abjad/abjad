@@ -167,7 +167,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example.** Gets components' effective clef:
+            Gets components' effective clef:
 
             ::
 
@@ -254,7 +254,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Get all grace containers attached to note:
+            Get all grace containers attached to note:
 
             ::
 
@@ -295,7 +295,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Get only (proper) grace containers attached to note:
+            Get only (proper) grace containers attached to note:
 
             ::
 
@@ -304,7 +304,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3.** Get only after grace containers attached to note:
+            Get only after grace containers attached to note:
 
             ::
 
@@ -395,8 +395,8 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets leaf `n` **from** client of inspection agent
-            when client of inspection agent is a leaf.
+            Gets leaf `n` **from** client of inspection agent when client of
+            inspection agent is a leaf.
 
             With positive indices:
 
@@ -444,8 +444,8 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Gets leaf `n` **in** client of inspection agent
-            when client of inspection agent is a container.
+            Gets leaf `n` **in** client of inspection agent when client of
+            inspection agent is a container.
 
             With positive indices:
 
@@ -550,7 +550,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         .. container:: example
 
-            **Example 1.** Gets parentage without grace notes:
+            Gets parentage without grace notes:
 
             ::
 
@@ -584,7 +584,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         .. container:: example
 
-            **Example 2.** Gets parentage with grace notes:
+            Gets parentage with grace notes:
 
             ::
 
@@ -735,7 +735,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example.** Gets timespan of grace notes:
+            Gets timespan of grace notes:
 
             ::
 

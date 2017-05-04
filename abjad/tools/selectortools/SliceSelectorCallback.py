@@ -45,8 +45,6 @@ class SliceSelectorCallback(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.**
-
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.get_slice(start=-4)
                 >>> selections = selector(staff)

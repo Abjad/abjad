@@ -7,7 +7,7 @@ class BowMotionTechnique(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Jété:
+        Jété:
 
         ::
 
@@ -19,7 +19,7 @@ class BowMotionTechnique(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Ordinario:
+        Ordinario:
 
         ::
 

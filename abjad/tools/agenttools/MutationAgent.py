@@ -657,7 +657,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Respells notes in staff:
+            Respells notes in staff:
 
             ::
 
@@ -718,8 +718,8 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Rewrites the contents of a measure in a staff
-            using the default meter for that measure's time signature:
+            Rewrites the contents of a measure in a staff using the default
+            meter for that measure's time signature:
 
             ::
 
@@ -789,8 +789,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Rewrites the contents of a measure in a staff
-            using a custom meter:
+            Rewrites the contents of a measure in a staff using a custom meter:
 
             ::
 
@@ -859,7 +858,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3.** Limit the maximum number of dots per leaf using
+            Limit the maximum number of dots per leaf using
             `maximum_dot_count`:
 
             ::
@@ -981,9 +980,9 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 4.** Split logical ties at different depths of the
-            `Meter`, if those logical ties cross any offsets at that
-            depth, but do not also both begin and end at any of those offsets.
+            Split logical ties at different depths of the `Meter`, if those
+            logical ties cross any offsets at that depth, but do not also both
+            begin and end at any of those offsets.
 
             Consider the default meter for `9/8`:
 
@@ -1092,8 +1091,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 5.** Comparison of `3/4` and `6/8`, at `boundary_depths`
-            of 0 and 1:
+            Comparison of `3/4` and `6/8`, at `boundary_depths` of 0 and 1:
 
             ::
 
@@ -1354,8 +1352,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 6.** Establishing meter recursively in measures
-            with nested tuplets:
+            Establishing meter recursively in measures with nested tuplets:
 
             ::
 
@@ -1424,9 +1421,9 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 7a.** Default rewrite behavior doesn't subdivide the
-            first note in this measure because the first note in the measure
-            starts at the beginning of a level-0 beat in meter:
+            Default rewrite behavior doesn't subdivide the first note in this
+            measure because the first note in the measure starts at the
+            beginning of a level-0 beat in meter:
 
             ::
 
@@ -1445,8 +1442,8 @@ class MutationAgent(abctools.AbjadObject):
                     c'4
                 }
 
-            **Example 7b.** Setting boundary depth to 1 subdivides the first
-            note in this measure:
+            Setting boundary depth to 1 subdivides the first note in this
+            measure:
 
             ::
 
@@ -1466,8 +1463,8 @@ class MutationAgent(abctools.AbjadObject):
                     c'4
                 }
 
-            **Example 7c.** Another way of doing this is by setting preferred
-            boundary depth on the meter itself:
+            Another way of doing this is by setting preferred boundary depth on
+            the meter itself:
 
             ::
 
@@ -1495,7 +1492,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 8.** Uses Messiaen-style ties:
+            Uses Messiaen-style ties:
 
             ::
 
@@ -1536,7 +1533,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 9a.** Rewrites notes and tuplets:
+            Rewrites notes and tuplets:
 
             ::
 
@@ -1608,7 +1605,7 @@ class MutationAgent(abctools.AbjadObject):
             The tied note rewriting is good while the tuplet rewriting
             could use some adjustment.
 
-            **Example 9b.** Rewrites notes but not tuplets:
+            Rewrites notes but not tuplets:
 
             ::
 
@@ -1700,7 +1697,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1a.** Scales note duration by dot-generating multiplier:
+            Scales note duration by dot-generating multiplier:
 
             ::
 
@@ -1724,8 +1721,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1b.** Scales nontrivial logical tie by dot-generating
-            `multiplier`:
+            Scales nontrivial logical tie by dot-generating `multiplier`:
 
             ::
 
@@ -1761,7 +1757,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1c.** Scales container by dot-generating multiplier:
+            Scales container by dot-generating multiplier:
 
             ::
 
@@ -1795,7 +1791,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2a.** Scales note by tie-generating multiplier:
+            Scales note by tie-generating multiplier:
 
             ::
 
@@ -1820,8 +1816,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2b.** Scales nontrivial logical tie
-            by tie-generating `multiplier`:
+            Scales nontrivial logical tie by tie-generating `multiplier`:
 
             ::
 
@@ -1858,7 +1853,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2c.** Scales container by tie-generating multiplier:
+            Scales container by tie-generating multiplier:
 
             ::
 
@@ -1896,7 +1891,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3a.** Scales note by tuplet-generating multiplier:
+            Scales note by tuplet-generating multiplier:
 
             ::
 
@@ -1923,8 +1918,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3b.** Scales trivial logical tie by tuplet-generating
-            multiplier:
+            Scales trivial logical tie by tuplet-generating multiplier:
 
             ::
 
@@ -1956,7 +1950,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3c.** Scales container by tuplet-generating multiplier:
+            Scales container by tuplet-generating multiplier:
 
             ::
 
@@ -2002,8 +1996,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 4.** Scales note by tie- and tuplet-generating
-            multiplier:
+            Scales note by tie- and tuplet-generating multiplier:
 
             ::
 
@@ -2031,7 +2024,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 5.** Scales note carrying LilyPond multiplier:
+            Scales note carrying LilyPond multiplier:
 
             ::
 
@@ -2056,7 +2049,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 6.** Scales tuplet:
+            Scales tuplet:
 
             ::
 
@@ -2103,7 +2096,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 7.** Scales fixed-duration tuplet:
+            Scales fixed-duration tuplet:
 
             ::
 

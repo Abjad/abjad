@@ -10,8 +10,6 @@ class Parentage(Selection):
 
     ..  container:: example
 
-        **Example.**
-
         ::
 
             >>> score = Score()
@@ -168,7 +166,7 @@ class Parentage(Selection):
 
         .. container:: example
 
-            **Example.** Grace notes:
+            Grace notes:
 
             ::
 
@@ -230,7 +228,7 @@ class Parentage(Selection):
 
         ..  container:: example
 
-            **Example.** Gets logical voice of note:
+            Gets logical voice of note:
 
             ::
 
@@ -333,7 +331,7 @@ class Parentage(Selection):
 
         ..  container:: example
 
-            **Example.** Gets note score indices:
+            Gets note score indices:
 
             ::
 
@@ -375,7 +373,7 @@ class Parentage(Selection):
 
         ..  container:: example
 
-            **Example 1.** With grace notes:
+            With grace notes:
 
             ::
 
@@ -436,7 +434,7 @@ class Parentage(Selection):
 
         ..  container:: example
 
-            **Example.** Gets tuplet depth:
+            Gets tuplet depth:
 
             ::
 

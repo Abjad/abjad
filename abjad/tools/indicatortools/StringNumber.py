@@ -8,7 +8,7 @@ class StringNumber(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** String I:
+        String I:
 
         ::
 
@@ -20,7 +20,7 @@ class StringNumber(AbjadValueObject):
 
     ..  container:: example
         
-        **Example 2.** Strings II and III:
+        Strings II and III:
 
         ::
 
@@ -63,7 +63,7 @@ class StringNumber(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** String I:
+            String I:
 
             ::
 
@@ -73,7 +73,7 @@ class StringNumber(AbjadValueObject):
 
         ..  container:: example
             
-            **Example 2.** Strings II and III:
+            Strings II and III:
 
             ::
 
@@ -91,7 +91,7 @@ class StringNumber(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** String I:
+            String I:
 
             ::
 
@@ -101,7 +101,7 @@ class StringNumber(AbjadValueObject):
 
         ..  container:: example
             
-            **Example 2.** Strings II and III:
+            Strings II and III:
 
             ::
 
@@ -123,7 +123,7 @@ class StringNumber(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** String I:
+            String I:
 
             ::
 
@@ -133,7 +133,7 @@ class StringNumber(AbjadValueObject):
 
         ..  container:: example
             
-            **Example 2.** Strings II and III:
+            Strings II and III:
 
             ::
 

@@ -7,7 +7,7 @@ class Tremolo(AbjadValueObject):
     
     ..  container:: example
 
-        **Example 1.** With two beams:
+        With two beams:
 
         ::
 
@@ -26,7 +26,7 @@ class Tremolo(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** With three beams:
+        With three beams:
 
         ::
 
@@ -74,7 +74,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Copies tremolo:
+            Copies tremolo:
 
             ::
 
@@ -102,7 +102,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** With two beams:
+            With two beams:
 
             ::
 
@@ -114,7 +114,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** With three beams:
+            With three beams:
 
             ::
 
@@ -141,7 +141,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** With two beams:
+            With two beams:
 
             ::
 
@@ -151,7 +151,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** With three beams:
+            With three beams:
 
             ::
 
@@ -172,7 +172,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** With two beams:
+            With two beams:
 
             ::
 
@@ -191,7 +191,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** With three beams:
+            With three beams:
 
             ::
 
@@ -222,7 +222,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Without slur:
+            Without slur:
 
             ::
 
@@ -241,7 +241,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** With slur:
+            With slur:
 
             ::
 

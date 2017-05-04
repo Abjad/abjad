@@ -17,14 +17,14 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        **Example 1.** A tuplet:
+        A tuplet:
 
             >>> tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
             >>> show(tuplet) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> print(format(tuplet))
+            >>> f(tuplet)
             \times 2/3 {
                 c'8
                 d'8
@@ -33,7 +33,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        **Example 2.** A nested tuplet:
+        A nested tuplet:
 
             >>> second_tuplet = Tuplet((4, 7), "g'4. ( a'16 )")
             >>> tuplet.insert(1, second_tuplet)
@@ -41,7 +41,7 @@ class Tuplet(Container):
 
         ..  doctest::
 
-            >>> print(format(tuplet))
+            >>> f(tuplet)
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8
@@ -56,7 +56,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        **Example 3.** A doubly nested tuplet:
+        A doubly nested tuplet:
 
             >>> third_tuplet = Tuplet((4, 5), [])
             >>> third_tuplet.extend("e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
@@ -65,7 +65,7 @@ class Tuplet(Container):
 
         ..  doctest::
 
-            >>> print(format(tuplet))
+            >>> f(tuplet)
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8
@@ -371,7 +371,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Gets forced fraction formatting of tuplet:
+            Gets forced fraction formatting of tuplet:
 
             ::
 
@@ -380,7 +380,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \times 2/3 {
                     c'8
                     d'8
@@ -395,7 +395,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Sets forced fraction formatting of tuplet:
+            Sets forced fraction formatting of tuplet:
 
             ::
 
@@ -404,7 +404,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 2/3 {
                     c'8
@@ -414,8 +414,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 3.** Ignored when tuplet number text is overridden
-            explicitly:
+            Ignored when tuplet number text is overridden explicitly:
 
             ::
 
@@ -428,7 +427,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \override TupletNumber.text = \markup {
                         \score
@@ -486,9 +485,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Trivial tuplets normally print as a LilyPond
-            container enclosed in ``{`` and ``}`` but without the LilyPond
-            ``\times`` command:
+            Trivial tuplets normally print as a LilyPond container enclosed in
+            ``{`` and ``}`` but without the LilyPond ``\times`` command:
 
             ::
 
@@ -511,8 +509,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** But it is possible to force a trivial tuplet to
-            format the LilyPond ``\times`` command:
+            But it is possible to force a trivial tuplet to format the LilyPond
+            ``\times`` command:
 
             ::
 
@@ -533,8 +531,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 3.** This makes it possible to override tuplet number
-            text:
+            This makes it possible to override tuplet number text:
 
             ::
 
@@ -638,7 +635,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Augmented tuplet:
+            Augmented tuplet:
 
             ::
 
@@ -652,7 +649,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Diminished tuplet:
+            Diminished tuplet:
 
             ::
 
@@ -666,7 +663,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 3.** Trivial tuplet:
+            Trivial tuplet:
 
             ::
 
@@ -692,7 +689,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Augmented tuplet:
+            Augmented tuplet:
 
             ::
 
@@ -706,7 +703,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Diminished tuplet:
+            Diminished tuplet:
 
             ::
 
@@ -720,7 +717,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 3.** Trivial tuplet:
+            Trivial tuplet:
 
             ::
 
@@ -745,7 +742,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Gets tuplet invisibility flag:
+            Gets tuplet invisibility flag:
 
             ::
 
@@ -754,7 +751,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \times 2/3 {
                     c'8
                     d'8
@@ -768,7 +765,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Sets tuplet invisibility flag:
+            Sets tuplet invisibility flag:
 
             ::
 
@@ -779,7 +776,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \times 2/3 {
                         c'4
@@ -800,7 +797,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \scaleDurations #'(2 . 3) {
                         c'4
@@ -839,7 +836,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Redudant tuplet:
+            Redudant tuplet:
 
             ::
 
@@ -849,7 +846,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/8
                     \tweak text #tuplet-number::calc-fraction-text
@@ -871,7 +868,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/8
                     c'8.
@@ -880,7 +877,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Nonredundant tuplet:
+            Nonredundant tuplet:
 
             ::
 
@@ -890,7 +887,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/4
                     \tweak text #tuplet-number::calc-fraction-text
@@ -968,7 +965,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Gets tuplet multiplier:
+            Gets tuplet multiplier:
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
@@ -980,14 +977,14 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Sets tuplet multiplier:
+            Sets tuplet multiplier:
 
                 >>> tuplet.multiplier = Multiplier(4, 3)
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8
@@ -1022,7 +1019,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Gets preferred denominator of tuplet:
+            Gets preferred denominator of tuplet:
 
             ::
 
@@ -1033,7 +1030,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \times 2/3 {
                     c'8
                     d'8
@@ -1042,7 +1039,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Sets preferred denominator of tuplet:
+            Sets preferred denominator of tuplet:
 
             ::
 
@@ -1051,7 +1048,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \times 2/3 {
                     c'8
                     d'8
@@ -1065,7 +1062,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \times 4/6 {
                     c'8
                     d'8
@@ -1099,8 +1096,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Makes augmented tuplet from `duration` and
-            `ratio` and avoid dots.
+            Makes augmented tuplet from `duration` and `ratio` and avoid dots.
 
             Makes tupletted leaves strictly without dots when all
             `ratio` equal ``1``:
@@ -1120,7 +1116,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1151,7 +1147,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1183,7 +1179,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1198,8 +1194,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Makes augmented tuplet from `duration` and
-            `ratio` and encourages dots:
+            Makes augmented tuplet from `duration` and `ratio` and encourages
+            dots:
 
             ::
 
@@ -1216,7 +1212,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1248,7 +1244,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1261,8 +1257,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 3.** Makes diminished tuplet from `duration` and nonzero
-            integer `ratio`.
+            Makes diminished tuplet from `duration` and nonzero integer
+            `ratio`.
 
             Makes tupletted leaves strictly without dots when all
             `ratio` equal ``1``:
@@ -1282,7 +1278,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1313,7 +1309,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1345,7 +1341,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1360,8 +1356,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 4.** Makes diminished tuplet from `duration` and
-            `ratio` and encourages dots:
+            Makes diminished tuplet from `duration` and `ratio` and encourages
+            dots:
 
             ::
 
@@ -1378,7 +1374,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/16
                     \times 4/5 {
@@ -1408,7 +1404,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/16
                     \times 8/11 {
@@ -1487,7 +1483,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1a.** Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1503,14 +1499,14 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 {
                     c'8.
                 }
 
         ..  container:: example
 
-            **Example 1b.** Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1526,7 +1522,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 {
                     c'16
                     c'8
@@ -1534,7 +1530,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1c.** Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1550,7 +1546,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 8/5 {
                     c'64.
@@ -1560,7 +1556,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1d.** Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1576,7 +1572,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/2 {
                     c'64
@@ -1587,7 +1583,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1e.** Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1603,7 +1599,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 12/11 {
                     c'64
@@ -1615,7 +1611,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1f.** Changes leaf to augmented tuplets with `ratio`:
+            Changes leaf to augmented tuplets with `ratio`:
 
             ::
 
@@ -1631,7 +1627,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 8/5 {
                     c'128
@@ -1644,7 +1640,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2a.** Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1660,14 +1656,14 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 {
                     c'8.
                 }
 
         ..  container:: example
 
-            **Example 2b.** Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1683,7 +1679,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 {
                     c'16
                     c'8
@@ -1691,7 +1687,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2c.** Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1707,7 +1703,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \times 4/5 {
                     c'32.
                     c'16.
@@ -1716,7 +1712,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2d.** Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1732,7 +1728,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     c'32
@@ -1743,7 +1739,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2e.** Changes leaf to diminished tuplets with `ratio`:
+            Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1759,7 +1755,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 6/11 {
                     c'32
@@ -1771,8 +1767,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2f.** Changes leaf to diminished tuplets
-            with `ratio`:
+            Changes leaf to diminished tuplets with `ratio`:
 
             ::
 
@@ -1788,7 +1783,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \times 4/5 {
                     c'64
                     c'32
@@ -1807,13 +1802,16 @@ class Tuplet(Container):
         return tuplet
 
     @staticmethod
-    def from_nonreduced_ratio_and_nonreduced_fraction(ratio, fraction):
-        r'''Makes tuplet from nonreduced `ratio` and
-        nonreduced `fraction`.
+    def from_nonreduced_ratio_and_nonreduced_fraction(
+        ratio,
+        fraction,
+        allow_trivial=False,
+        ):
+        r'''Makes tuplet from nonreduced `ratio` and nonreduced `fraction`.
 
         ..  container:: example
 
-            **Example 1.** Makes container when no prolation is necessary:
+            Makes container when no prolation is necessary:
 
             ::
 
@@ -1828,7 +1826,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 7/16
                     {
@@ -1838,8 +1836,34 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Makes fixed-duration tuplet when
-            prolation is necessary:
+            Makes trivial tuplet when no prolation is necessary and
+            `allow_trivial` is true:
+
+            ::
+
+                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     NonreducedRatio((1,)),
+                ...     NonreducedFraction(7, 16),
+                ...     allow_trivial=True,
+                ...     )
+                >>> measure = Measure((7, 16), [tuplet])
+                >>> staff = Staff([measure])
+                >>> staff.context_name = 'RhythmicStaff'
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 7/16
+                    {
+                        c'4..
+                    }
+                }
+
+        ..  container:: example
+
+            Makes fixed-duration tuplet when prolation is necessary:
 
             ::
 
@@ -1854,7 +1878,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 7/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1877,7 +1901,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 7/16
                     {
@@ -1900,7 +1924,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 7/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1925,7 +1949,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 7/16
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1951,7 +1975,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 7/16
                     \times 1/2 {
@@ -1968,6 +1992,7 @@ class Tuplet(Container):
 
         Returns tuplet or container.
         '''
+        import abjad
         from abjad.tools import scoretools
         ratio = mathtools.NonreducedRatio(ratio)
         if isinstance(fraction, tuple):
@@ -1979,19 +2004,35 @@ class Tuplet(Container):
             if 0 < ratio.numbers[0]:
                 try:
                     note = scoretools.Note(0, duration)
-                    return scoretools.Container([note])
+                    if allow_trivial:
+                        duration = inspect_(note).get_duration()
+                        return scoretools.FixedDurationTuplet(duration, [note])
+                    else:
+                        return scoretools.Container([note])
                 except AssignabilityError:
                     notes = scoretools.make_notes(0, duration)
-                    return scoretools.Container(notes)
+                    if allow_trivial:
+                        duration = notes.get_duration()
+                        return scoretools.FixedDurationTuplet(duration, notes)
+                    else:
+                        return scoretools.Container(notes)
             elif ratio.numbers[0] < 0:
                 try:
                     rest = scoretools.Rest(duration)
-                    return scoretools.Container([rest])
+                    if allow_trivial:
+                        duration = inspect_(rest).get_duration()
+                        return scoretools.FixedDurationTuplet(duration, [rest])
+                    else:
+                        return scoretools.Container([rest])
                 except AssignabilityError:
                     rests = scoretools.make_rests(duration)
-                    return scoretools.Container(rests)
+                    if allow_trivial:
+                        duration = rests.get_duration()
+                        return scoretools.FixedDurationTuplet(duration, rests)
+                    else:
+                        return scoretools.Container(rests)
             else:
-                message = 'no divide zer values.'
+                message = 'no divide zero values.'
                 raise ValueError(message)
         if 1 < len(ratio.numbers):
             exponent = int(
@@ -2019,8 +2060,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Sets preferred denominator of tuplet to ``8`` at
-            least:
+            Sets preferred denominator of tuplet to ``8`` at least:
 
             ::
 
@@ -2029,7 +2069,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     c'4
@@ -2046,7 +2086,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 6/10 {
                     c'4
@@ -2075,7 +2115,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Changes tuplet to fixed-duration tuplet:
+            Changes tuplet to fixed-duration tuplet:
 
             ::
 
@@ -2111,7 +2151,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Changes augmented tuplet to diminished:
+            Changes augmented tuplet to diminished:
 
             ::
 
@@ -2120,7 +2160,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8
@@ -2135,7 +2175,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \times 2/3 {
                     c'4
                     d'4
@@ -2147,7 +2187,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Changes diminished tuplet to augmented:
+            Changes diminished tuplet to augmented:
 
             ::
 
@@ -2156,7 +2196,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \times 2/3 {
                     c'4
                     d'4
@@ -2170,7 +2210,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> print(format(tuplet))
+                >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8

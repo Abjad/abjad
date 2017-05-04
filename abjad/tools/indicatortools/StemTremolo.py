@@ -9,7 +9,7 @@ class StemTremolo(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Sixteenth-note tremolo:
+        Sixteenth-note tremolo:
 
         ::
 
@@ -25,7 +25,7 @@ class StemTremolo(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Thirty-second-note tremolo:
+        Thirty-second-note tremolo:
 
         ::
 
@@ -70,7 +70,7 @@ class StemTremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Sixteenth-note tremolo:
+            Sixteenth-note tremolo:
 
             ::
 
@@ -80,7 +80,7 @@ class StemTremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Thirty-second-note tremolo:
+            Thirty-second-note tremolo:
 
             ::
 
@@ -102,7 +102,7 @@ class StemTremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Sixteenth-note tremolo:
+            Sixteenth-note tremolo:
 
             ::
 
@@ -112,7 +112,7 @@ class StemTremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Thirty-second-note tremolo:
+            Thirty-second-note tremolo:
 
             ::
 
@@ -149,7 +149,7 @@ class StemTremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Sixteenth-note tremolo:
+            Sixteenth-note tremolo:
 
             ::
 
@@ -159,7 +159,7 @@ class StemTremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Thirty-second-note tremolo:
+            Thirty-second-note tremolo:
 
             ::
 
@@ -177,7 +177,7 @@ class StemTremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Sixteenth-note tremolo:
+            Sixteenth-note tremolo:
 
             ::
 
@@ -187,7 +187,7 @@ class StemTremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Thirty-second-note tremolo:
+            Thirty-second-note tremolo:
 
             ::
 

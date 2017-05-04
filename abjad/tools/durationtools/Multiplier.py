@@ -7,7 +7,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 1.** Initializes from integer numerator:
+        Initializes from integer numerator:
 
         ::
 
@@ -16,7 +16,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 2.** Initializes from integer numerator and denominator:
+        Initializes from integer numerator and denominator:
 
         ::
 
@@ -25,7 +25,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 3.** Initializes from integer-equivalent numeric numerator:
+        Initializes from integer-equivalent numeric numerator:
 
         ::
 
@@ -34,8 +34,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 4.** Initializes from integer-equivalent numeric numerator
-        and denominator:
+        Initializes from integer-equivalent numeric numerator and denominator:
 
         ::
 
@@ -44,7 +43,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 5.** Initializes from integer-equivalent singleton:
+        Initializes from integer-equivalent singleton:
 
         ::
 
@@ -53,7 +52,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 6.** Initializes from integer-equivalent pair:
+        Initializes from integer-equivalent pair:
 
         ::
 
@@ -62,7 +61,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 7.** Initializes from other duration:
+        Initializes from other duration:
 
         ::
 
@@ -71,7 +70,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 8.** Intializes from fraction:
+        Intializes from fraction:
 
         ::
 
@@ -80,7 +79,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 9.** Initializes from solidus string:
+        Initializes from solidus string:
 
         ::
 
@@ -89,7 +88,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 10.** Initializes from nonreduced fraction:
+        Initializes from nonreduced fraction:
 
         ::
 
@@ -98,7 +97,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 11.** Multipliers inherit from built-in fraction:
+        Multipliers inherit from built-in fraction:
 
         ::
 
@@ -107,7 +106,7 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 12.** Multipliers are numeric:
+        Multipliers are numeric:
 
         ::
 
@@ -120,8 +119,8 @@ class Multiplier(Duration):
 
     ..  container:: example
 
-        **Example 13.** Attaching a multiplier to a score component multiplies
-        that component's duration:
+        Attaching a multiplier to a score component multiplies that component's
+        duration:
 
         ::
 

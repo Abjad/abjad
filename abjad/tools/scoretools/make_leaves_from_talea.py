@@ -23,7 +23,7 @@ def make_leaves_from_talea(
 
     ..  container:: example
 
-        **Example 1.** Makes leaves from talea:
+        Makes leaves from talea:
 
         ::
 
@@ -49,7 +49,7 @@ def make_leaves_from_talea(
 
     ..  container:: example
 
-        **Example 2.** Increases durations monotonically:
+        Increases durations monotonically:
 
         ::
 
@@ -78,8 +78,7 @@ def make_leaves_from_talea(
 
     ..  container:: example
 
-        **Example 3.** Forbids written durations greater than or equal
-        to a half note:
+        Forbids written durations greater than or equal to a half note:
 
         ::
 
@@ -110,7 +109,7 @@ def make_leaves_from_talea(
 
     ..  container:: example
 
-        **Example 4.** Spells unassignable durations metrically:
+        Spells unassignable durations metrically:
 
         ::
 
@@ -139,7 +138,7 @@ def make_leaves_from_talea(
 
     ..  container:: example
 
-        **Example 5.** Uses Messiaen-style ties:
+        Uses Messiaen-style ties:
 
         ::
 

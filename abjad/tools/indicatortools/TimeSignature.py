@@ -10,7 +10,7 @@ class TimeSignature(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** First time signature:
+        First time signature:
 
         ::
 
@@ -31,7 +31,7 @@ class TimeSignature(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Second time signature:
+        Second time signature:
 
         ::
 
@@ -53,7 +53,7 @@ class TimeSignature(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Scoped to the score context:
+        Scoped to the score context:
 
         ::
 
@@ -155,15 +155,14 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Adds two time signatures with the same denominator:
+            Adds two time signatures with the same denominator:
 
             >>> TimeSignature((3, 4)) + TimeSignature((3, 4))
             TimeSignature((6, 4))
 
         ..  container:: example
 
-            **Example 2.** Adds two time signatures with different
-            denominators:
+            Adds two time signatures with different denominators:
 
             >>> TimeSignature((3, 4)) + TimeSignature((6, 8))
             TimeSignature((12, 8))
@@ -222,7 +221,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First time signature:
+            First time signature:
 
             ::
 
@@ -231,7 +230,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second time signature:
+            Second time signature:
 
             ::
 
@@ -305,14 +304,14 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Adds integer to first time signature:
+            Adds integer to first time signature:
 
             >>> TimeSignature((3, 8)) + TimeSignature((4, 4))
             TimeSignature((11, 8))
 
         ..  container:: example
 
-            **Example 2.** Adds integer to second time signature:
+            Adds integer to second time signature:
 
             >>> TimeSignature((4, 4)) + TimeSignature((3, 8))
             TimeSignature((11, 8))
@@ -326,7 +325,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First time signature:
+            First time signature:
 
             ::
 
@@ -335,7 +334,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second time signature:
+            Second time signature:
 
             ::
 
@@ -394,7 +393,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First time signature:
+            First time signature:
 
             ::
 
@@ -403,7 +402,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second time signature:
+            Second time signature:
 
             ::
 
@@ -420,7 +419,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First time signature:
+            First time signature:
 
             ::
 
@@ -429,7 +428,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second time signature:
+            Second time signature:
 
             ::
 
@@ -448,7 +447,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First time signature:
+            First time signature:
 
             ::
 
@@ -457,7 +456,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second time signature:
+            Second time signature:
 
             ::
 
@@ -475,7 +474,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** With non-power-of-two denominator:
+            With non-power-of-two denominator:
 
             ::
 
@@ -485,7 +484,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** With power-of-two denominator:
+            With power-of-two denominator:
 
             ::
 
@@ -503,8 +502,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Implied prolation of time signature with
-            power-of-two denominator:
+            Implied prolation of time signature with power-of-two denominator:
 
             ::
 
@@ -513,8 +511,8 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Implied prolation of time signature
-            with non-power-of-two denominator:
+            Implied prolation of time signature with non-power-of-two
+            denominator:
 
             ::
 
@@ -532,7 +530,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First time signature:
+            First time signature:
 
             ::
 
@@ -541,7 +539,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second time signature:
+            Second time signature:
 
             ::
 
@@ -560,7 +558,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First time signature:
+            First time signature:
 
             ::
 
@@ -569,7 +567,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second time signature:
+            Second time signature:
 
             ::
 
@@ -586,7 +584,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First time signature:
+            First time signature:
 
             ::
 
@@ -595,7 +593,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second time signature:
+            Second time signature:
 
             ::
 
@@ -618,7 +616,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First time signature:
+            First time signature:
 
             ::
 
@@ -627,7 +625,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second time signature:
+            Second time signature:
 
             ::
 
@@ -657,8 +655,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Non-power-of-two denominator with power-of-two
-            denominator:
+            Non-power-of-two denominator with power-of-two denominator:
 
                 >>> time_signature = TimeSignature((3, 12))
                 >>> time_signature.with_power_of_two_denominator()

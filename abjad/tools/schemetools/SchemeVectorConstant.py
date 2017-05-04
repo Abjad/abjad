@@ -9,7 +9,7 @@ class SchemeVectorConstant(Scheme):
 
     ..  container:: example
 
-        **Example 1.** Scheme vector constant of boolean values:
+        Scheme vector constant of boolean values:
 
         ::
 

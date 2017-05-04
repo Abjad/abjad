@@ -7,7 +7,7 @@ class PageBreak(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Default page break:
+        Default page break:
 
         ::
 
@@ -61,7 +61,7 @@ class PageBreak(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default page break:
+            Default page break:
 
             ::
 

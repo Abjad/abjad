@@ -9,7 +9,7 @@ class TypedOrderedDict(TypedCollection):
 
     ..  container:: example
 
-        **Example 1.** Initializes from list of pairs:
+        Initializes from list of pairs:
 
         ::
 
@@ -40,7 +40,7 @@ class TypedOrderedDict(TypedCollection):
 
     ..  container:: example
 
-        **Example 2.** Initializes from built-in dictionary:
+        Initializes from built-in dictionary:
 
         ::
 
@@ -74,7 +74,7 @@ class TypedOrderedDict(TypedCollection):
 
     ..  container:: example
 
-        **Example 3.** Initializes from other typed ordered dictionary:
+        Initializes from other typed ordered dictionary:
 
         ::
 

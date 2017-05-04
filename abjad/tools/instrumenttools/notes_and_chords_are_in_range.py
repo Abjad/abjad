@@ -13,7 +13,7 @@ def notes_and_chords_are_in_range(argument):
 
     ..  container:: example
 
-        **Example 1.** In range:
+        In range:
 
         ::
 
@@ -29,7 +29,7 @@ def notes_and_chords_are_in_range(argument):
 
     ..  container:: example
 
-        **Example 2.** Out of range:
+        Out of range:
 
         ::
 

@@ -41,7 +41,7 @@ class LaissezVibrer(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default:
+            Default:
 
             ::
 
@@ -71,7 +71,7 @@ class LaissezVibrer(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default:
+            Default:
 
             ::
 

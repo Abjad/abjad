@@ -17,8 +17,8 @@ def make_notes(
 
     ..  container:: example
 
-        **Example 1.** Cycles through `pitches` when the length of `pitches` is
-        less than the length of `durations`:
+        Cycles through `pitches` when the length of `pitches` is less than the
+        length of `durations`:
 
         ::
 
@@ -42,8 +42,8 @@ def make_notes(
 
     ..  container:: example
 
-        **Example 2.** Cycles through `durations` when the length of `durations`
-        is less than the length of `pitches`:
+        Cycles through `durations` when the length of `durations` is less than
+        the length of `pitches`:
 
         ::
 
@@ -72,7 +72,7 @@ def make_notes(
 
     ..  container:: example
 
-        **Example 3.** Creates ad hoc tuplets for nonassignable durations:
+        Creates ad hoc tuplets for nonassignable durations:
 
         ::
 
@@ -99,8 +99,8 @@ def make_notes(
 
     ..  container:: example
 
-        **Example 4.** Set ``decrease_durations_monotonically=True`` to express
-        tied values in decreasing duration:
+        Set ``decrease_durations_monotonically=True`` to express tied values in
+        decreasing duration:
 
         ::
 
@@ -127,8 +127,8 @@ def make_notes(
 
     ..  container:: example
 
-        **Example 5.** Set ``decrease_durations_monotonically=False`` to
-        express tied values in increasing duration:
+        Set ``decrease_durations_monotonically=False`` to express tied values
+        in increasing duration:
 
         ::
 
@@ -155,7 +155,7 @@ def make_notes(
 
     ..  container:: example
 
-        **Example 6.** Uses Messiaen-style ties:
+        Uses Messiaen-style ties:
 
         ::
 
@@ -177,7 +177,7 @@ def make_notes(
 
     ..  container:: example
 
-        **Example 7.** Works with pitch segments:
+        Works with pitch segments:
 
         ::
 

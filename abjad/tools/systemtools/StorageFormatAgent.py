@@ -348,8 +348,6 @@ class StorageFormatAgent(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.**
-
             ::
 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
@@ -373,8 +371,6 @@ class StorageFormatAgent(AbjadValueObject):
                 <class 'abjad.tools.scoretools.Rest.Rest'>
 
         ..  container:: example
-
-            **Example 2.**
 
             ::
 

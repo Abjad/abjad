@@ -7,7 +7,7 @@ class BowPressure(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Overpressure indicator:
+        Overpressure indicator:
 
         ..  container:: example
 
@@ -21,7 +21,7 @@ class BowPressure(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Underpressure indicator:
+        Underpressure indicator:
 
         ..  container:: example
 
@@ -75,7 +75,7 @@ class BowPressure(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Overpressure:
+            Overpressure:
 
             ::
 
@@ -85,7 +85,7 @@ class BowPressure(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Underpressure:
+            Underpressure:
 
             ::
 

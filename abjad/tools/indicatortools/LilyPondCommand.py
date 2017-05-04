@@ -9,7 +9,7 @@ class LilyPondCommand(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Dotted slur:
+        Dotted slur:
 
         ::
 
@@ -125,7 +125,7 @@ class LilyPondCommand(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default:
+            Default:
 
                 >>> commands = indicatortools.LilyPondCommand.list_allowable_format_slots()
                 >>> for command in commands:
@@ -148,7 +148,7 @@ class LilyPondCommand(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Dotted slur:
+            Dotted slur:
 
             ::
 
@@ -166,7 +166,7 @@ class LilyPondCommand(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Dotted slur:
+            Dotted slur:
 
             ::
 
@@ -186,7 +186,7 @@ class LilyPondCommand(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Dotted slur:
+            Dotted slur:
 
             ::
 

@@ -47,8 +47,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ..  container:: example
 
-       **Example 1:**
-
         ::
 
             >>> timespantools.timespan_2_happens_during_timespan_1(
@@ -58,8 +56,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
             False
 
     ..  container:: example
-
-       **Example 2:**
 
         ::
 
@@ -71,8 +67,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ..  container:: example
 
-       **Example 3:**
-
         ::
 
             >>> timespantools.timespan_2_is_congruent_to_timespan_1(
@@ -82,8 +76,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
             False
 
     ..  container:: example
-
-       **Example 4:**
 
         ::
 
@@ -95,8 +87,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ..  container:: example
 
-       **Example 5:**
-
         ::
 
             >>> timespantools.timespan_2_overlaps_start_of_timespan_1(
@@ -106,8 +96,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
             True
 
     ..  container:: example
-
-       **Example 6:**
 
         ::
 
@@ -119,8 +107,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ..  container:: example
 
-       **Example 7:**
-
         ::
 
             >>> timespantools.timespan_2_starts_after_timespan_1_starts(
@@ -130,8 +116,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
             False
 
     ..  container:: example
-
-       **Example 8:**
 
         ::
 
@@ -168,7 +152,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            **Example 1.** Evaluate time relation without substitution:
+            Evaluate time relation without substitution:
 
             ::
 
@@ -211,7 +195,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            **Example 2.** Substitute `timespan_1` during evaluation:
+            Substitute `timespan_1` during evaluation:
 
             ::
 
@@ -229,7 +213,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            **Example 3.** Substitute `timespan_2` during evaluation:
+            Substitute `timespan_2` during evaluation:
 
             ::
 
@@ -247,8 +231,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            **Example 4.** Substitute both `timespan_1` and `timespan_2`
-            during evaluation:
+            Substitute both `timespan_1` and `timespan_2` during evaluation:
 
             ::
 
@@ -389,8 +372,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            **Example 1.** Notes equal to ``staff[0:2]`` start
-            during timespan ``[0, 3/16)``:
+            Notes equal to ``staff[0:2]`` start during timespan ``[0, 3/16)``:
 
             ::
 
@@ -403,8 +385,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            **Example 2.** Notes equal to ``staff[2:8]`` start after timespan
-            ``[0, 3/16)`` stops:
+            Notes equal to ``staff[2:8]`` start after timespan ``[0, 3/16)``
+            stops:
 
             ::
 
