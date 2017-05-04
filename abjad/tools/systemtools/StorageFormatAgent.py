@@ -95,70 +95,6 @@ class StorageFormatAgent(AbjadValueObject):
             result = self._client.__name__
         return [result]
 
-    def _format_specced_object(self, as_storage_format=True):
-        formatting_keywords = self._get_formatting_keywords(as_storage_format)
-        args_values = formatting_keywords['args_values']
-        as_storage_format = formatting_keywords['as_storage_format']
-        is_bracketed = formatting_keywords['is_bracketed']
-        is_indented = formatting_keywords['is_indented']
-        kwargs_names = formatting_keywords['kwargs_names']
-        text = formatting_keywords['text']
-        result = []
-        if is_bracketed:
-            result.append('<')
-        if text is not None:
-            result.append(text)
-        else:
-            prefix, infix, suffix = self._get_whitespace(is_indented)
-            class_name_prefix = self.get_class_name_prefix(as_storage_format)
-            positional_argument_pieces = []
-            for value in args_values:
-                agent = type(self)(value)
-                pieces = agent._dispatch_formatting(
-                    as_storage_format=as_storage_format,
-                    is_indented=is_indented,
-                    )
-                for piece in pieces[:-1]:
-                    positional_argument_pieces.append(prefix + piece)
-                positional_argument_pieces.append(prefix + pieces[-1] + suffix)
-            keyword_argument_pieces = []
-            for name in kwargs_names:
-                value = self._get(name)
-                if value is None or isinstance(value, types.MethodType):
-                    continue
-                agent = type(self)(value)
-                pieces = agent._dispatch_formatting(
-                    as_storage_format=as_storage_format,
-                    is_indented=is_indented,
-                    )
-                pieces[0] = '{}={}'.format(name, pieces[0])
-                for piece in pieces[:-1]:
-                    keyword_argument_pieces.append(prefix + piece)
-                keyword_argument_pieces.append(prefix + pieces[-1] + suffix)
-            if not positional_argument_pieces and not keyword_argument_pieces:
-                result.append('{}()'.format(class_name_prefix))
-            else:
-                result.append('{}({}'.format(
-                    class_name_prefix,
-                    infix,
-                    ))
-                result.extend(positional_argument_pieces)
-                if positional_argument_pieces and not keyword_argument_pieces:
-                    result[-1] = result[-1].rstrip(suffix) + infix
-                else:
-                    result.extend(keyword_argument_pieces)
-                if not as_storage_format:
-                    result[-1] = result[-1].rstrip(suffix) + infix
-                if is_indented:
-                    result.append('{})'.format(prefix))
-                else:
-                    result.append(')')
-        if is_bracketed:
-            result.append('>')
-        if not is_indented:
-            return [''.join(result)]
-        return result
-
     def _format_mapping(self, as_storage_format, is_indented):
         result = []
         prefix, infix, suffix = \
@@ -238,6 +174,70 @@ class StorageFormatAgent(AbjadValueObject):
             else:
                 result[-1] = result[-1].rstrip()
         result.append(prefix + braces[1])
+        return result
+
+    def _format_specced_object(self, as_storage_format=True):
+        formatting_keywords = self._get_formatting_keywords(as_storage_format)
+        args_values = formatting_keywords['args_values']
+        as_storage_format = formatting_keywords['as_storage_format']
+        is_bracketed = formatting_keywords['is_bracketed']
+        is_indented = formatting_keywords['is_indented']
+        kwargs_names = formatting_keywords['kwargs_names']
+        text = formatting_keywords['text']
+        result = []
+        if is_bracketed:
+            result.append('<')
+        if text is not None:
+            result.append(text)
+        else:
+            prefix, infix, suffix = self._get_whitespace(is_indented)
+            class_name_prefix = self.get_class_name_prefix(as_storage_format)
+            positional_argument_pieces = []
+            for value in args_values:
+                agent = type(self)(value)
+                pieces = agent._dispatch_formatting(
+                    as_storage_format=as_storage_format,
+                    is_indented=is_indented,
+                    )
+                for piece in pieces[:-1]:
+                    positional_argument_pieces.append(prefix + piece)
+                positional_argument_pieces.append(prefix + pieces[-1] + suffix)
+            keyword_argument_pieces = []
+            for name in kwargs_names:
+                value = self._get(name)
+                if value is None or isinstance(value, types.MethodType):
+                    continue
+                agent = type(self)(value)
+                pieces = agent._dispatch_formatting(
+                    as_storage_format=as_storage_format,
+                    is_indented=is_indented,
+                    )
+                pieces[0] = '{}={}'.format(name, pieces[0])
+                for piece in pieces[:-1]:
+                    keyword_argument_pieces.append(prefix + piece)
+                keyword_argument_pieces.append(prefix + pieces[-1] + suffix)
+            if not positional_argument_pieces and not keyword_argument_pieces:
+                result.append('{}()'.format(class_name_prefix))
+            else:
+                result.append('{}({}'.format(
+                    class_name_prefix,
+                    infix,
+                    ))
+                result.extend(positional_argument_pieces)
+                if positional_argument_pieces and not keyword_argument_pieces:
+                    result[-1] = result[-1].rstrip(suffix) + infix
+                else:
+                    result.extend(keyword_argument_pieces)
+                if not as_storage_format:
+                    result[-1] = result[-1].rstrip(suffix) + infix
+                if is_indented:
+                    result.append('{})'.format(prefix))
+                else:
+                    result.append(')')
+        if is_bracketed:
+            result.append('>')
+        if not is_indented:
+            return [''.join(result)]
         return result
 
     def _get(self, name):
@@ -599,6 +599,9 @@ class StorageFormatAgent(AbjadValueObject):
             values = specification.positional_argument_values or ()
         return tuple(values)
 
+    def get_root_package_name(self):
+        return self._get_module_path_parts(self._client)[0]
+
     def get_storage_format(self):
         assert (
             '_get_storage_format_specification' in dir(self._client) or
@@ -658,9 +661,6 @@ class StorageFormatAgent(AbjadValueObject):
         for name in template_names:
             template_dict[name] = self._get(name)
         return template_dict
-
-    def get_root_package_name(self):
-        return self._get_module_path_parts(self._client)[0]
 
     def get_tools_package_name(self):
         parts = self._get_module_path_parts(self._client)
@@ -764,12 +764,12 @@ class StorageFormatAgent(AbjadValueObject):
         return self._signature_keyword_names
 
     @property
-    def signature_positional_names(self):
-        return self._signature_positional_names
-
-    @property
     def signature_names(self):
         return (
             self.signature_positional_names +
             self.signature_keyword_names
             )
+
+    @property
+    def signature_positional_names(self):
+        return self._signature_positional_names

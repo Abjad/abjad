@@ -195,14 +195,6 @@ class Segment(TypedTuple):
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
-    def has_duplicates(self):
-        r'''Is true when segment has duplicates. Otherwise false.
-
-        Returns true or false.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractmethod
     def from_selection(
         class_,
         selection,
@@ -211,5 +203,13 @@ class Segment(TypedTuple):
         r'''Makes segment from `selection`.
 
         Returns new segment.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def has_duplicates(self):
+        r'''Is true when segment has duplicates. Otherwise false.
+
+        Returns true or false.
         '''
         raise NotImplementedError

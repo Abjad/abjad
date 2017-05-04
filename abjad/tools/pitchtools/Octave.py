@@ -222,31 +222,6 @@ class Octave(AbjadValueObject):
         return self._number
 
     @property
-    def tick_string(self):
-        r"""Gets LilyPond octave tick string.
-
-        ..  container:: example
-
-            ::
-
-                >>> for i in range(-1, 9):
-                ...     print(i, pitchtools.Octave(i).tick_string)
-                -1 ,,,,
-                0  ,,,
-                1  ,,
-                2  ,
-                3
-                4  '
-                5  ''
-                6  '''
-                7  ''''
-                8  '''''
-
-        Returns string.
-        """
-        return str(self)
-
-    @property
     def pitch_number(self):
         r'''Gets pitch number of first note in octave.
 
@@ -290,6 +265,31 @@ class Octave(AbjadValueObject):
                 self.number,
                 self.number + 1,
                 ))
+
+    @property
+    def tick_string(self):
+        r"""Gets LilyPond octave tick string.
+
+        ..  container:: example
+
+            ::
+
+                >>> for i in range(-1, 9):
+                ...     print(i, pitchtools.Octave(i).tick_string)
+                -1 ,,,,
+                0  ,,,
+                1  ,,
+                2  ,
+                3
+                4  '
+                5  ''
+                6  '''
+                7  ''''
+                8  '''''
+
+        Returns string.
+        """
+        return str(self)
 
     ### PUBLIC METHODS ###
 

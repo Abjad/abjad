@@ -939,22 +939,6 @@ class Sequence(abctools.AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    # creates an iterator that can generate a flattened list,
-    # descending down into child elements to a depth given in the arguments.
-    # note that depth < 0 is effectively equivalent to infinity.
-    @staticmethod
-    def _flatten_helper(sequence, classes, depth):
-        if not isinstance(sequence, classes):
-            yield sequence
-        elif depth == 0:
-            for item in sequence:
-                yield item
-        else:
-            for item in sequence:
-                # flatten an iterable by one level
-                for item_ in Sequence._flatten_helper(item, classes, depth-1):
-                    yield item_
-
     @staticmethod
     def _flatten_at_indices_helper(sequence, indices, classes, depth):
         if classes is None:
@@ -979,6 +963,22 @@ class Sequence(abctools.AbjadValueObject):
             else:
                 result.append(item)
         return ltype(result)
+
+    # creates an iterator that can generate a flattened list,
+    # descending down into child elements to a depth given in the arguments.
+    # note that depth < 0 is effectively equivalent to infinity.
+    @staticmethod
+    def _flatten_helper(sequence, classes, depth):
+        if not isinstance(sequence, classes):
+            yield sequence
+        elif depth == 0:
+            for item in sequence:
+                yield item
+        else:
+            for item in sequence:
+                # flatten an iterable by one level
+                for item_ in Sequence._flatten_helper(item, classes, depth-1):
+                    yield item_
 
     @staticmethod
     def _make_map_markup_expression(operand):
@@ -1037,6 +1037,78 @@ class Sequence(abctools.AbjadValueObject):
         return indicator
 
     @classmethod
+    def _partition_sequence_cyclically_by_weights_at_least(
+        class_,
+        sequence,
+        weights,
+        overhang=False,
+        ):
+        l_copy = list(sequence)
+        result = []
+        current_part = []
+        target_weight_index = 0
+        len_weights = len(weights)
+        while l_copy:
+            target_weight = weights[target_weight_index % len_weights]
+            x = l_copy.pop(0)
+            current_part.append(x)
+            if target_weight <= mathtools.weight(current_part):
+                result.append(current_part)
+                current_part = []
+                target_weight_index += 1
+        assert not l_copy
+        if current_part:
+            if overhang:
+                result.append(current_part)
+        #return result
+        result = [class_(_) for _ in result]
+        return class_(items=result)
+
+    @classmethod
+    def _partition_sequence_cyclically_by_weights_at_most(
+        class_,
+        sequence,
+        weights,
+        overhang=False,
+        ):
+        result = []
+        current_part = []
+        current_target_weight_index = 0
+        current_target_weight = weights[current_target_weight_index]
+        l_copy = list(sequence)
+        while l_copy:
+            current_target_weight = weights[
+                current_target_weight_index % len(weights)]
+            x = l_copy.pop(0)
+            current_part_weight = mathtools.weight(current_part)
+            candidate_part_weight = current_part_weight + mathtools.weight([x])
+            if candidate_part_weight < current_target_weight:
+                current_part.append(x)
+            elif candidate_part_weight == current_target_weight:
+                current_part.append(x)
+                result.append(current_part)
+                current_part = []
+                current_target_weight_index += 1
+            elif current_target_weight < candidate_part_weight:
+                if current_part:
+                    l_copy.insert(0, x)
+                    result.append(current_part)
+                    current_part = []
+                    current_target_weight_index += 1
+                else:
+                    message = 'elements in sequence too big.'
+                    raise Exception(message)
+            else:
+                message = 'candidate and target rates must compare.'
+                raise ValueError(message)
+        if current_part:
+            if overhang:
+                result.append(current_part)
+        #return result
+        result = [class_(_) for _ in result]
+        return class_(items=result)
+
+    @classmethod
     def _partition_sequence_once_by_weights_at_least(
         class_,
         sequence,
@@ -1065,34 +1137,6 @@ class Sequence(abctools.AbjadValueObject):
         if l_copy:
             if overhang:
                 result.append(l_copy)
-        result = [class_(_) for _ in result]
-        return class_(items=result)
-
-    @classmethod
-    def _partition_sequence_cyclically_by_weights_at_least(
-        class_,
-        sequence,
-        weights,
-        overhang=False,
-        ):
-        l_copy = list(sequence)
-        result = []
-        current_part = []
-        target_weight_index = 0
-        len_weights = len(weights)
-        while l_copy:
-            target_weight = weights[target_weight_index % len_weights]
-            x = l_copy.pop(0)
-            current_part.append(x)
-            if target_weight <= mathtools.weight(current_part):
-                result.append(current_part)
-                current_part = []
-                target_weight_index += 1
-        assert not l_copy
-        if current_part:
-            if overhang:
-                result.append(current_part)
-        #return result
         result = [class_(_) for _ in result]
         return class_(items=result)
 
@@ -1138,50 +1182,6 @@ class Sequence(abctools.AbjadValueObject):
             left_over = current_part + l_copy
             if left_over:
                 result.append(left_over)
-        #return result
-        result = [class_(_) for _ in result]
-        return class_(items=result)
-
-    @classmethod
-    def _partition_sequence_cyclically_by_weights_at_most(
-        class_,
-        sequence,
-        weights,
-        overhang=False,
-        ):
-        result = []
-        current_part = []
-        current_target_weight_index = 0
-        current_target_weight = weights[current_target_weight_index]
-        l_copy = list(sequence)
-        while l_copy:
-            current_target_weight = weights[
-                current_target_weight_index % len(weights)]
-            x = l_copy.pop(0)
-            current_part_weight = mathtools.weight(current_part)
-            candidate_part_weight = current_part_weight + mathtools.weight([x])
-            if candidate_part_weight < current_target_weight:
-                current_part.append(x)
-            elif candidate_part_weight == current_target_weight:
-                current_part.append(x)
-                result.append(current_part)
-                current_part = []
-                current_target_weight_index += 1
-            elif current_target_weight < candidate_part_weight:
-                if current_part:
-                    l_copy.insert(0, x)
-                    result.append(current_part)
-                    current_part = []
-                    current_target_weight_index += 1
-                else:
-                    message = 'elements in sequence too big.'
-                    raise Exception(message)
-            else:
-                message = 'candidate and target rates must compare.'
-                raise ValueError(message)
-        if current_part:
-            if overhang:
-                result.append(current_part)
         #return result
         result = [class_(_) for _ in result]
         return class_(items=result)

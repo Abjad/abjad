@@ -90,6 +90,17 @@ class LilyPondCommand(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_format_specification(self):
+        names = []
+        if not self.format_slot == 'opening':
+            names.append('format_slot')
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=[self.name],
+            storage_format_kwargs_names=names,
+            storage_format_is_indented=False,
+            )
+
     def _get_lilypond_format(self):
         command = self._name
         if command.startswith('#'):
@@ -105,17 +116,6 @@ class LilyPondCommand(AbjadValueObject):
         format_slot = lilypond_format_bundle.get(self.format_slot)
         format_slot.commands.append(self._get_lilypond_format())
         return lilypond_format_bundle
-
-    def _get_format_specification(self):
-        names = []
-        if not self.format_slot == 'opening':
-            names.append('format_slot')
-        return systemtools.FormatSpecification(
-            client=self,
-            storage_format_args_values=[self.name],
-            storage_format_kwargs_names=names,
-            storage_format_is_indented=False,
-            )
 
     ### PUBLIC METHODS ###
 

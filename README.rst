@@ -85,7 +85,7 @@ Once you have Abjad installed, fire up Python and import it:
     Type "help", "copyright", "credits" or "license" for more information.
     >>> import abjad
     >>> abjad.__version__
-    '2.20'
+    '2.19'
 
 Congratulations!
 
@@ -107,7 +107,7 @@ command-line by running the following command:
 ..  code-block:: bash
 
     ~$ lilypond --version
-    GNU LilyPond 2.19.44
+    GNU LilyPond 2.19.20
 
     Copyright (c) 1996--2015 by
       Han-Wen Nienhuys <hanwen@xs4all.nl>
@@ -166,8 +166,7 @@ command-line by running the following command:
     dot - graphviz version 2.38.0 (20140413.2041)
 
 All of the graph images in Abjad's API documentation were created via
-`graphviz`_. See `topleveltools.graph()` for more
-details.
+`graphviz`_. See `topleveltools.graph()` for more details.
 
 Development installation
 ------------------------

@@ -228,6 +228,11 @@ class Scheme(AbjadValueObject):
             storage_format_kwargs_names=names,
             )
 
+    def _get_lilypond_format(self):
+        if self._quoting is not None:
+            return '#' + self._quoting + self._formatted_value
+        return '#' + self._formatted_value
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -372,8 +377,3 @@ class Scheme(AbjadValueObject):
         elif isinstance(value, type(None)):
             return '#f'
         return str(value)
-
-    def _get_lilypond_format(self):
-        if self._quoting is not None:
-            return '#' + self._quoting + self._formatted_value
-        return '#' + self._formatted_value
