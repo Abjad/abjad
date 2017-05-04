@@ -279,6 +279,25 @@ class LabelAgent(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def color_alternating(self, colors=['red', 'blue']):
+        r'''Colors client items in alternating `colors`.
+
+        Returns none.
+        '''
+        import abjad
+        colors = abjad.CyclicTuple(colors)
+        if isinstance(self._client, abjad.Component):
+            target = [self._client]
+        elif isinstance(self._client, abjad.selectiontools.LogicalTie):
+            target = [self._client]
+        elif isinstance(self._client, abjad.Selection):
+            target = self._client
+        else:
+            raise TypeError(self._client)
+        for i, item in enumerate(target):
+            color = colors[i]
+            abjad.label(item).color_leaves(color=color)
+
     def color_container(self, color='red'):
         r'''Colors contents of `container`.
 
@@ -659,25 +678,6 @@ class LabelAgent(abctools.AbjadObject):
                 if color is not None:
                     override(leaf).note_head.color = color
 
-    def color_alternating(self, colors=['red', 'blue']):
-        r'''Colors client items in alternating `colors`.
-
-        Returns none.
-        '''
-        import abjad
-        colors = abjad.CyclicTuple(colors)
-        if isinstance(self._client, abjad.Component):
-            target = [self._client]
-        elif isinstance(self._client, abjad.selectiontools.LogicalTie):
-            target = [self._client]
-        elif isinstance(self._client, abjad.Selection):
-            target = self._client
-        else:
-            raise TypeError(self._client)
-        for i, item in enumerate(target):
-            color = colors[i]
-            abjad.label(item).color_leaves(color=color)
-            
     def remove_markup(self):
         r'''Removes markup from leaves.
 
@@ -3801,7 +3801,7 @@ class LabelAgent(abctools.AbjadObject):
                     }
 
             ..  container:: example expression
-        
+
                 ::
 
                     >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."

@@ -188,6 +188,9 @@ class VerticalMoment(Selection):
         components = tuple(components)
         return governors, components
 
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(client=self)
+
     @staticmethod
     def _recurse(component, offset):
         result = []
@@ -203,9 +206,6 @@ class VerticalMoment(Selection):
                         VerticalMoment._find_index(component, offset)]
                     result.extend(VerticalMoment._recurse(child, offset))
         return result
-
-    def _get_format_specification(self):
-        return systemtools.FormatSpecification(client=self)
 
     ### PRIVATE PROPERTIES ###
 

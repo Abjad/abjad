@@ -59,12 +59,12 @@ class StorageFormatSpecification(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def repr_text(self):
-        r'''Gets interpreter representation of storage specification.
+    def include_abjad_namespace(self):
+        r'''Is true when storage specification includes Abjad namespace.
 
-        Returns string.
+        Returns true or false.
         '''
-        return self._repr_text
+        return self._include_abjad_namespace
 
     @property
     def instance(self):
@@ -73,14 +73,6 @@ class StorageFormatSpecification(AbjadObject):
         Returns string.
         '''
         return self._instance
-
-    @property
-    def include_abjad_namespace(self):
-        r'''Is true when storage specification includes Abjad namespace.
-
-        Returns true or false.
-        '''
-        return self._include_abjad_namespace
 
     @property
     def is_bracketed(self):
@@ -114,6 +106,14 @@ class StorageFormatSpecification(AbjadObject):
         Returns tuple.
         '''
         return self._positional_argument_values
+
+    @property
+    def repr_text(self):
+        r'''Gets interpreter representation of storage specification.
+
+        Returns string.
+        '''
+        return self._repr_text
 
     @property
     def storage_format_text(self):

@@ -433,65 +433,6 @@ class Container(Component):
 
     ### PRIVATE METHODS ###
 
-    def _get_abbreviated_string_format(self):
-        if 0 < len(self):
-            summary = str(len(self))
-        else:
-            summary = ''
-        if self.is_simultaneous:
-            open_bracket_string, close_bracket_string = '<<', '>>'
-        else:
-            open_bracket_string, close_bracket_string = '{', '}'
-        name = self.name
-        if name is not None:
-            name = '-"{}"'.format(name)
-        else:
-            name = ''
-        if hasattr(self, '_context_name'):
-            result = '<{}{}{}{}{}>'
-            result = result.format(
-                self.context_name,
-                name,
-                open_bracket_string,
-                summary,
-                close_bracket_string,
-                )
-        else:
-            result = '<{}{}{}{}>'
-            result = result.format(
-                name,
-                open_bracket_string,
-                summary,
-                close_bracket_string,
-                )
-        return result
-
-    def _get_format_specification(self):
-        from abjad.tools import scoretools
-        repr_text = None
-        repr_args_values = []
-        repr_kwargs_names = []
-        if self.is_simultaneous:
-            repr_kwargs_names.append('is_simultaneous')
-        storage_format_args_values = []
-        if self:
-            repr_args_values.append(self._contents_summary)
-            lilypond_format = ' '.join(format(x, 'lilypond') for x in self)
-            lilypond_format = lilypond_format.replace('\n', ' ')
-            lilypond_format = lilypond_format.replace('\t', ' ')
-            lilypond_format = lilypond_format.replace('  ', ' ')
-            storage_format_args_values.append(lilypond_format)
-            if not all(isinstance(x, scoretools.Leaf) for x in self):
-                repr_text = self._get_abbreviated_string_format()
-        return systemtools.FormatSpecification(
-            client=self,
-            repr_args_values=repr_args_values,
-            repr_kwargs_names=repr_kwargs_names,
-            repr_text=repr_text,
-            storage_format_args_values=storage_format_args_values,
-            storage_format_kwargs_names=[],
-            )
-
     def _append_without_withdrawing_from_crossing_spanners(self, component):
         '''Not composer-safe.
         '''
@@ -602,6 +543,65 @@ class Container(Component):
             result.append(
                 (contributor, tuple([indent + x for x in contributions])))
         return tuple(result)
+
+    def _get_abbreviated_string_format(self):
+        if 0 < len(self):
+            summary = str(len(self))
+        else:
+            summary = ''
+        if self.is_simultaneous:
+            open_bracket_string, close_bracket_string = '<<', '>>'
+        else:
+            open_bracket_string, close_bracket_string = '{', '}'
+        name = self.name
+        if name is not None:
+            name = '-"{}"'.format(name)
+        else:
+            name = ''
+        if hasattr(self, '_context_name'):
+            result = '<{}{}{}{}{}>'
+            result = result.format(
+                self.context_name,
+                name,
+                open_bracket_string,
+                summary,
+                close_bracket_string,
+                )
+        else:
+            result = '<{}{}{}{}>'
+            result = result.format(
+                name,
+                open_bracket_string,
+                summary,
+                close_bracket_string,
+                )
+        return result
+
+    def _get_format_specification(self):
+        from abjad.tools import scoretools
+        repr_text = None
+        repr_args_values = []
+        repr_kwargs_names = []
+        if self.is_simultaneous:
+            repr_kwargs_names.append('is_simultaneous')
+        storage_format_args_values = []
+        if self:
+            repr_args_values.append(self._contents_summary)
+            lilypond_format = ' '.join(format(x, 'lilypond') for x in self)
+            lilypond_format = lilypond_format.replace('\n', ' ')
+            lilypond_format = lilypond_format.replace('\t', ' ')
+            lilypond_format = lilypond_format.replace('  ', ' ')
+            storage_format_args_values.append(lilypond_format)
+            if not all(isinstance(x, scoretools.Leaf) for x in self):
+                repr_text = self._get_abbreviated_string_format()
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_args_values=repr_args_values,
+            repr_kwargs_names=repr_kwargs_names,
+            repr_text=repr_text,
+            storage_format_args_values=storage_format_args_values,
+            storage_format_kwargs_names=[],
+            )
 
     def _get_spanners_that_dominate_component_pair(self, left, right):
         r'''Returns spanners that dominant component pair.

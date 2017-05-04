@@ -115,12 +115,12 @@ class FormatSpecification(AbjadValueObject):
         return self._storage_format_args_values
 
     @property
-    def storage_format_is_bracketed(self):
-        return self._storage_format_is_bracketed
-
-    @property
     def storage_format_includes_root_package(self):
         return self._storage_format_includes_root_package
+
+    @property
+    def storage_format_is_bracketed(self):
+        return self._storage_format_is_bracketed
 
     @property
     def storage_format_is_indented(self):

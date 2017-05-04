@@ -84,21 +84,6 @@ class Vector(TypedCounter):
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self):
-        if self.item_class.__name__.startswith('Named'):
-            repr_items = {str(k): v for k, v in self.items()}
-        else:
-            repr_items = {
-                mathtools.integer_equivalent_number_to_integer(float(k)): v
-                for k, v in self.items()
-                }
-        return systemtools.FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            repr_args_values=[repr_items],
-            storage_format_args_values=[self._collection],
-            )
-
     def _dictionary_to_item_class(self, dictionary):
         if not len(dictionary):
             return self._named_item_class
@@ -119,6 +104,21 @@ class Vector(TypedCounter):
                 item = item_class(initializer_token)
                 items.append(item)
         return items
+
+    def _get_format_specification(self):
+        if self.item_class.__name__.startswith('Named'):
+            repr_items = {str(k): v for k, v in self.items()}
+        else:
+            repr_items = {
+                mathtools.integer_equivalent_number_to_integer(float(k)): v
+                for k, v in self.items()
+                }
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            repr_args_values=[repr_items],
+            storage_format_args_values=[self._collection],
+            )
 
     ### PUBLIC METHODS ###
 

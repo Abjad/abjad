@@ -285,4 +285,4 @@ Miscellaneous information
 ..  _Sphinx: http://sphinx-doc.org/
 ..  _Trevor Bača: http://www.trevorbaca.com/
 ..  _pip: https://pip.pypa.io/en/stable/
-..  _CCRMA Summer Workshop: https://ccrma.stanford.edu/workshops/abjad
+..  _CCRMA Summer Workshop: https://ccrma.stanford.edu/workshops/abjad-2017

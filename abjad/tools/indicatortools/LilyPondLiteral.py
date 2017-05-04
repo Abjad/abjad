@@ -84,16 +84,6 @@ class LilyPondLiteral(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_lilypond_format(self):
-        return self._name
-
-    def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        format_slot = lilypond_format_bundle.get(self.format_slot)
-        format_slot.commands.append(self._get_lilypond_format())
-        return lilypond_format_bundle
-
     def _get_format_specification(self):
         names = []
         if not self.format_slot == 'opening':
@@ -104,6 +94,16 @@ class LilyPondLiteral(AbjadValueObject):
             storage_format_kwargs_names=names,
             storage_format_is_indented=False,
             )
+
+    def _get_lilypond_format(self):
+        return self._name
+
+    def _get_lilypond_format_bundle(self, component=None):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        format_slot = lilypond_format_bundle.get(self.format_slot)
+        format_slot.commands.append(self._get_lilypond_format())
+        return lilypond_format_bundle
 
     ### PUBLIC METHODS ###
 

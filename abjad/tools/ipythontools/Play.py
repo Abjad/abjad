@@ -44,6 +44,18 @@ class Play(object):
 
     ### PRIVATE METHODS ###
 
+    def _check_for_vorbis(self):
+        has_vorbis = False
+        output = subprocess.check_output('timidity --help', shell=True)
+        if sys.version_info[0] == 3:
+            output = output.decode('utf-8')
+        for line in output.splitlines():
+            for part in line.split():
+                if part == '-Ov':
+                    has_vorbis = True
+                    break
+        return has_vorbis
+
     def _display_audio_tag(self, encoded_audio, has_vorbis):
         from IPython.core.display import display_html
         if has_vorbis:
@@ -86,15 +98,3 @@ class Play(object):
         with open(file_name, 'rb') as file_pointer:
             data = file_pointer.read()
             return base64.b64encode(data).decode('utf-8')
-
-    def _check_for_vorbis(self):
-        has_vorbis = False
-        output = subprocess.check_output('timidity --help', shell=True)
-        if sys.version_info[0] == 3:
-            output = output.decode('utf-8')
-        for line in output.splitlines():
-            for part in line.split():
-                if part == '-Ov':
-                    has_vorbis = True
-                    break
-        return has_vorbis

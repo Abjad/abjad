@@ -354,6 +354,18 @@ class TimeSignature(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_format_specification(self):
+        storage_format_is_indented = False
+        if self.partial is not None or self.suppress is not None:
+            storage_format_is_indented = True
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.pair],
+            storage_format_kwargs_names=['partial', 'suppress'],
+            storage_format_is_indented=storage_format_is_indented,
+            )
+
     def _get_lilypond_format(self):
         if self.suppress:
             return []
@@ -373,18 +385,6 @@ class TimeSignature(AbjadValueObject):
                 )
             result.append(string)
             return result
-
-    def _get_format_specification(self):
-        storage_format_is_indented = False
-        if self.partial is not None or self.suppress is not None:
-            storage_format_is_indented = True
-        return systemtools.FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_args_values=[self.pair],
-            storage_format_kwargs_names=['partial', 'suppress'],
-            storage_format_is_indented=storage_format_is_indented,
-            )
 
     ### PUBLIC PROPERTIES ###
 

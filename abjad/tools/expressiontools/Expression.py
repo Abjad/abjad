@@ -933,6 +933,14 @@ class Expression(AbjadObject):
     def _make___radd___string_template(argument):
         return str(argument) + ' + {}'
 
+    def _make_evaluable_keywords(self, keywords):
+        result = {}
+        for key, value in keywords.items():
+            if isinstance(value, type):
+                value = self._to_evaluable_string(value)
+            result[key] = value
+        return result
+
     # TODO: eventually do not pass frame
     @staticmethod
     def _make_function_markup_expression(
@@ -974,51 +982,6 @@ class Expression(AbjadObject):
         else:
             template = method_name + '({})'
         return template
-
-    @staticmethod
-    def _make_operator_markup_expression(
-        method_name=None,
-        subscript=None,
-        superscript=None,
-        ):
-        from abjad.tools import markuptools
-        expression = Expression()
-        expression = expression.markup()
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.insert(0, method_name)
-        if superscript is not None:
-            superscript = markuptools.Markup(str(superscript))
-            superscript = superscript.super()
-            expression = expression.insert(1, superscript)
-        if subscript is not None:
-            subscript = markuptools.Markup(str(subscript))
-            subscript = subscript.sub()
-            expression = expression.insert(1, subscript)
-        expression = expression.concat()
-        return expression
-
-    @staticmethod
-    def _make_operator_string_template(
-        method_name=None,
-        subscript=None,
-        superscript=None,
-        ):
-        template = method_name
-        if superscript is not None:
-            template += str(superscript)
-        if subscript is not None:
-            template += str(subscript)
-        template += '({})'
-        return template
-
-    def _make_evaluable_keywords(self, keywords):
-        result = {}
-        for key, value in keywords.items():
-            if isinstance(value, type):
-                value = self._to_evaluable_string(value)
-            result[key] = value
-        return result
 
     def _make_globals(self):
         import abjad
@@ -1062,6 +1025,43 @@ class Expression(AbjadObject):
             module_names=module_names,
             string_template=string_template,
             )
+
+    @staticmethod
+    def _make_operator_markup_expression(
+        method_name=None,
+        subscript=None,
+        superscript=None,
+        ):
+        from abjad.tools import markuptools
+        expression = Expression()
+        expression = expression.markup()
+        expression = expression.wrap_in_list()
+        expression = expression.markup_list()
+        expression = expression.insert(0, method_name)
+        if superscript is not None:
+            superscript = markuptools.Markup(str(superscript))
+            superscript = superscript.super()
+            expression = expression.insert(1, superscript)
+        if subscript is not None:
+            subscript = markuptools.Markup(str(subscript))
+            subscript = subscript.sub()
+            expression = expression.insert(1, subscript)
+        expression = expression.concat()
+        return expression
+
+    @staticmethod
+    def _make_operator_string_template(
+        method_name=None,
+        subscript=None,
+        superscript=None,
+        ):
+        template = method_name
+        if superscript is not None:
+            template += str(superscript)
+        if subscript is not None:
+            template += str(subscript)
+        template += '({})'
+        return template
 
     @staticmethod
     def _make_subscript_string(i, markup=False):
