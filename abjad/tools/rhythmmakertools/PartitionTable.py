@@ -28,19 +28,19 @@ class PartitionTable(TypedOrderedDict):
                 [
                     (
                         2,
-                        mathtools.NonreducedRatio((1, 1)),
+                        abjad.NonreducedRatio((1, 1)),
                         ),
                     (
                         3,
-                        mathtools.NonreducedRatio((2, 1)),
+                        abjad.NonreducedRatio((2, 1)),
                         ),
                     (
                         5,
-                        mathtools.NonreducedRatio((3, 2)),
+                        abjad.NonreducedRatio((3, 2)),
                         ),
                     (
                         7,
-                        mathtools.NonreducedRatio((4, 3)),
+                        abjad.NonreducedRatio((4, 3)),
                         ),
                     ]
                 )
@@ -66,19 +66,19 @@ class PartitionTable(TypedOrderedDict):
                 [
                     (
                         2,
-                        mathtools.NonreducedRatio((1, 1)),
+                        abjad.NonreducedRatio((1, 1)),
                         ),
                     (
                         3,
-                        mathtools.NonreducedRatio((1, 2)),
+                        abjad.NonreducedRatio((1, 2)),
                         ),
                     (
                         5,
-                        mathtools.NonreducedRatio((2, 3)),
+                        abjad.NonreducedRatio((2, 3)),
                         ),
                     (
                         7,
-                        mathtools.NonreducedRatio((3, 4)),
+                        abjad.NonreducedRatio((3, 4)),
                         ),
                     ]
                 )

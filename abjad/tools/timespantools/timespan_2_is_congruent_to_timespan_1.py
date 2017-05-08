@@ -12,12 +12,12 @@ def timespan_2_is_congruent_to_timespan_1(
     ::
 
         >>> relation = timespantools.timespan_2_is_congruent_to_timespan_1()
-        >>> print(format(relation))
-        timespantools.TimespanTimespanTimeRelation(
-            inequality=timespantools.CompoundInequality(
+        >>> f(relation)
+        abjad.TimespanTimespanTimeRelation(
+            inequality=abjad.CompoundInequality(
                 [
-                    timespantools.Inequality('timespan_1.start_offset == timespan_2.start_offset'),
-                    timespantools.Inequality('timespan_1.stop_offset == timespan_2.stop_offset'),
+                    abjad.Inequality('timespan_1.start_offset == timespan_2.start_offset'),
+                    abjad.Inequality('timespan_1.stop_offset == timespan_2.stop_offset'),
                     ],
                 logical_operator='and',
                 ),

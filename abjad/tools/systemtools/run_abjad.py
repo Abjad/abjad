@@ -16,6 +16,7 @@ def run_abjad():
 
     commands = (
         "from __future__ import print_function;",
+        "import abjad;",
         "from abjad import *;",
         "print(abjad_configuration.get_abjad_startup_string());",
         )

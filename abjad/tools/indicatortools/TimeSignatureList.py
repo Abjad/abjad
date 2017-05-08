@@ -12,17 +12,17 @@ class TimeSignatureList(TypedList):
 
         ::
 
-            >>> time_signatures = indicatortools.TimeSignatureList(
+            >>> time_signatures = abjad.TimeSignatureList(
             ...     [(5, 8), (4, 4)],
             ...     )
 
         ::
 
             >>> f(time_signatures)
-            indicatortools.TimeSignatureList(
+            abjad.TimeSignatureList(
                 [
-                    indicatortools.TimeSignature((5, 8)),
-                    indicatortools.TimeSignature((4, 4)),
+                    abjad.TimeSignature((5, 8)),
+                    abjad.TimeSignature((4, 4)),
                     ]
                 )
 
@@ -80,7 +80,7 @@ class TimeSignatureList(TypedList):
 
             ::
 
-                >>> time_signatures = indicatortools.TimeSignatureList(
+                >>> time_signatures = abjad.TimeSignatureList(
                 ...     [(5, 8), (4, 4)],
                 ...     )
 

@@ -18,7 +18,7 @@ def sustain(indices=None, inverted=None):
 
             >>> f(mask)
             rhythmmakertools.SustainMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[1, 2],
                     ),
                 )
@@ -73,7 +73,7 @@ def sustain(indices=None, inverted=None):
 
             >>> f(mask)
             rhythmmakertools.SustainMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[-1, -2],
                     ),
                 )
@@ -132,16 +132,16 @@ def sustain(indices=None, inverted=None):
 
             >>> f(mask)
             rhythmmakertools.SustainMask(
-                pattern=patterntools.CompoundPattern(
+                pattern=abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=1,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-1],
                             ),
                         ),
@@ -203,16 +203,16 @@ def sustain(indices=None, inverted=None):
 
             >>> f(mask)
             rhythmmakertools.SustainMask(
-                pattern=patterntools.CompoundPattern(
+                pattern=abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=1,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-1],
                             ),
                         ),

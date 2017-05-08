@@ -124,7 +124,7 @@ class Clef(AbjadValueObject):
 
                 >>> clef = Clef('treble')
                 >>> print(format(clef))
-                indicatortools.Clef(
+                abjad.Clef(
                     name='treble',
                     )
 

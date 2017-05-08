@@ -10,7 +10,7 @@ class TempoList(TypedList):
 
         ::
 
-            >>> tempos = indicatortools.TempoList([
+            >>> tempos = abjad.TempoList([
             ...     (Duration(1, 8), 72, 'Andante'),
             ...     (Duration(1, 8), 84, 'Allegro'),
             ...     ])
@@ -41,7 +41,7 @@ class TempoList(TypedList):
 
             ::
 
-                >>> tempos = indicatortools.TempoList([
+                >>> tempos = abjad.TempoList([
                 ...     (Duration(1, 8), 72),
                 ...     ((1, 8), 84, 'Allegro'),
                 ...     ])
@@ -83,7 +83,7 @@ class TempoList(TypedList):
 
             ::
 
-                >>> tempos = indicatortools.TempoList([
+                >>> tempos = abjad.TempoList([
                 ...     (Duration(1, 8), 72),
                 ...     ((1, 8), 84, 'Allegro'),
                 ...     ])
@@ -91,14 +91,14 @@ class TempoList(TypedList):
             ::
 
                 >>> f(tempos)
-                indicatortools.TempoList(
+                abjad.TempoList(
                     [
-                        indicatortools.Tempo(
-                            reference_duration=durationtools.Duration(1, 8),
+                        abjad.Tempo(
+                            reference_duration=abjad.Duration(1, 8),
                             units_per_minute=72,
                             ),
-                        indicatortools.Tempo(
-                            reference_duration=durationtools.Duration(1, 8),
+                        abjad.Tempo(
+                            reference_duration=abjad.Duration(1, 8),
                             units_per_minute=84,
                             textual_indication='Allegro',
                             ),

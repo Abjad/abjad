@@ -23,15 +23,15 @@ class OffsetCounter(TypedCounter):
         ::
 
             >>> f(offset_counter)
-            metertools.OffsetCounter(
+            abjad.OffsetCounter(
                 {
-                    durationtools.Offset(-2, 1): 1,
-                    durationtools.Offset(0, 1): 1,
-                    durationtools.Offset(5, 1): 1,
-                    durationtools.Offset(6, 1): 3,
-                    durationtools.Offset(10, 1): 2,
-                    durationtools.Offset(12, 1): 1,
-                    durationtools.Offset(16, 1): 1,
+                    abjad.Offset(-2, 1): 1,
+                    abjad.Offset(0, 1): 1,
+                    abjad.Offset(5, 1): 1,
+                    abjad.Offset(6, 1): 3,
+                    abjad.Offset(10, 1): 2,
+                    abjad.Offset(12, 1): 1,
+                    abjad.Offset(16, 1): 1,
                     }
                 )
 

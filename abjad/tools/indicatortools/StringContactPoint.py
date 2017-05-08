@@ -11,9 +11,9 @@ class StringContactPoint(AbjadValueObject):
 
         ::
 
-            >>> indicator = indicatortools.StringContactPoint('sul ponticello')
-            >>> print(format(indicator))
-            indicatortools.StringContactPoint(
+            >>> indicator = abjad.StringContactPoint('sul ponticello')
+            >>> f(indicator)
+            abjad.StringContactPoint(
                 contact_point='sul ponticello',
                 )
 
@@ -23,9 +23,9 @@ class StringContactPoint(AbjadValueObject):
 
         ::
 
-            >>> indicator = indicatortools.StringContactPoint('sul tasto')
-            >>> print(format(indicator))
-            indicatortools.StringContactPoint(
+            >>> indicator = abjad.StringContactPoint('sul tasto')
+            >>> f(indicator)
+            abjad.StringContactPoint(
                 contact_point='sul tasto',
                 )
 
@@ -38,6 +38,17 @@ class StringContactPoint(AbjadValueObject):
         '_default_scope',
         )
 
+    _contact_point_abbreviations = {
+        'dietro ponticello': 'd.p.',
+        'molto sul ponticello': 'm.s.p',
+        'molto sul tasto': 'm.s.t.',
+        'ordinario': 'ord.',
+        'pizzicato': 'pizz.',
+        'ponticello': 'p.',
+        'sul ponticello': 's.p.',
+        'sul tasto': 's.t.',
+        }
+
     _contact_points = (
         'dietro ponticello',
         'molto sul ponticello',
@@ -49,16 +60,7 @@ class StringContactPoint(AbjadValueObject):
         'sul tasto',
         )
 
-    _contact_point_abbreviations = {
-        'dietro ponticello': 'd.p.',
-        'molto sul ponticello': 'm.s.p',
-        'molto sul tasto': 'm.s.t.',
-        'ordinario': 'ord.',
-        'pizzicato': 'pizz.',
-        'ponticello': 'p.',
-        'sul ponticello': 's.p.',
-        'sul tasto': 's.t.',
-        }
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -83,7 +85,7 @@ class StringContactPoint(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringContactPoint('sul ponticello')
+                >>> indicator = abjad.StringContactPoint('sul ponticello')
                 >>> indicator.contact_point
                 'sul ponticello'
 
@@ -93,7 +95,7 @@ class StringContactPoint(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringContactPoint('sul tasto')
+                >>> indicator = abjad.StringContactPoint('sul tasto')
                 >>> indicator.contact_point
                 'sul tasto'
 
@@ -116,7 +118,7 @@ class StringContactPoint(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringContactPoint('sul ponticello')
+                >>> indicator = abjad.StringContactPoint('sul ponticello')
                 >>> indicator.default_scope is None
                 True
 
@@ -126,7 +128,7 @@ class StringContactPoint(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringContactPoint('sul tasto')
+                >>> indicator = abjad.StringContactPoint('sul tasto')
                 >>> indicator.default_scope is None
                 True
 
@@ -144,12 +146,12 @@ class StringContactPoint(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringContactPoint('sul ponticello')
+                >>> indicator = abjad.StringContactPoint('sul ponticello')
                 >>> show(indicator.markup) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print(format(indicator.markup))
+                >>> f(indicator.markup)
                 \markup {
                     \caps
                         S.P.
@@ -161,12 +163,12 @@ class StringContactPoint(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringContactPoint('sul tasto')
+                >>> indicator = abjad.StringContactPoint('sul tasto')
                 >>> show(indicator.markup) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print(format(indicator.markup))
+                >>> f(indicator.markup)
                 \markup {
                     \caps
                         S.T.

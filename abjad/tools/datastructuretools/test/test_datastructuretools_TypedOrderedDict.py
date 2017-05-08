@@ -66,34 +66,34 @@ def test_datastructuretools_TypedOrderedDict_04():
 
     assert format(dictionary_1) == abjad.stringtools.normalize(
         r'''
-        abjad.datastructuretools.TypedOrderedDict(
+        abjad.TypedOrderedDict(
             [
                 (
                     'soprano',
-                    indicatortools.Clef(
+                    abjad.Clef(
                         name='treble',
                         ),
                     ),
                 (
                     'alto',
-                    indicatortools.Clef(
+                    abjad.Clef(
                         name='alto',
                         ),
                     ),
                 (
                     'tenor',
-                    indicatortools.Clef(
+                    abjad.Clef(
                         name='tenor',
                         ),
                     ),
                 (
                     'bass',
-                    indicatortools.Clef(
+                    abjad.Clef(
                         name='bass',
                         ),
                     ),
                 ],
-            item_class=indicatortools.Clef,
+            item_class=abjad.Clef,
             )
         '''
         )

@@ -202,9 +202,9 @@ class TimeSignature(AbjadValueObject):
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a time signature with numerator and
-        denominator equal to this time signature. Also true when `argument` is a
-        tuple with first and second elements equal to numerator and denominator
-        of this time signature. Otherwise false.
+        denominator equal to this time signature. Also true when `argument` is
+        a tuple with first and second elements equal to numerator and
+        denominator of this time signature. Otherwise false.
 
         Returns true or false.
         '''
@@ -226,7 +226,7 @@ class TimeSignature(AbjadValueObject):
             ::
 
                 >>> print(format(TimeSignature((3, 8))))
-                indicatortools.TimeSignature((3, 8))
+                abjad.TimeSignature((3, 8))
 
         ..  container:: example
 
@@ -235,7 +235,7 @@ class TimeSignature(AbjadValueObject):
             ::
 
                 >>> print(format(TimeSignature((4, 4))))
-                indicatortools.TimeSignature((4, 4))
+                abjad.TimeSignature((4, 4))
 
         Returns string.
         '''

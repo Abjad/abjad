@@ -15,14 +15,14 @@ class QEventProxy(AbjadObject):
         >>> print(format(proxy, 'storage'))
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
-                offset=durationtools.Offset(130, 1),
+                offset=abjad.Offset(130, 1),
                 pitches=(
-                    pitchtools.NamedPitch("c'"),
-                    pitchtools.NamedPitch("cs'"),
-                    pitchtools.NamedPitch("e'"),
+                    abjad.NamedPitch("c'"),
+                    abjad.NamedPitch("cs'"),
+                    abjad.NamedPitch("e'"),
                     ),
                 ),
-            durationtools.Offset(1, 2)
+            abjad.Offset(1, 2)
             )
 
     Not composer-safe.

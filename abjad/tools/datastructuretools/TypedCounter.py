@@ -16,20 +16,23 @@ class TypedCounter(TypedCollection):
 
     ::
 
-        >>> print(format(counter))
-        datastructuretools.TypedCounter(
+        >>> f(counter)
+        abjad.TypedCounter(
             {
-                pitchtools.NumberedPitch(0): 2,
-                pitchtools.NumberedPitch(1): 4,
+                abjad.NumberedPitch(0): 2,
+                abjad.NumberedPitch(1): 4,
                 },
-            item_class=pitchtools.NumberedPitch,
+            item_class=abjad.NumberedPitch,
             )
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

@@ -17,16 +17,16 @@ class NoteHeadList(TypedList):
     ::
 
         >>> f(note_heads)
-        scoretools.NoteHeadList(
+        abjad.NoteHeadList(
             [
-                scoretools.NoteHead(
-                    written_pitch=pitchtools.NamedPitch("a'"),
+                abjad.NoteHead(
+                    written_pitch=abjad.NamedPitch("a'"),
                     ),
-                scoretools.NoteHead(
-                    written_pitch=pitchtools.NamedPitch("bf'"),
+                abjad.NoteHead(
+                    written_pitch=abjad.NamedPitch("bf'"),
                     ),
-                scoretools.NoteHead(
-                    written_pitch=pitchtools.NamedPitch("b'"),
+                abjad.NoteHead(
+                    written_pitch=abjad.NamedPitch("b'"),
                     ),
                 ]
             )

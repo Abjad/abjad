@@ -11,15 +11,15 @@ class PatternList(TypedTuple):
 
         ::
 
-            >>> patterns = patterntools.PatternList([
-            ...     patterntools.Pattern(
+            >>> patterns = abjad.PatternList([
+            ...     abjad.Pattern(
             ...         indices=[0, 1, 7],
             ...         period=10,
             ...         ),
-            ...     patterntools.Pattern(
+            ...     abjad.Pattern(
             ...         indices=[-2, -1],
             ...         ),
-            ...     patterntools.Pattern(
+            ...     abjad.Pattern(
             ...         indices=[2],
             ...         period=3,
             ...         ),
@@ -28,16 +28,16 @@ class PatternList(TypedTuple):
         ::
 
             >>> f(patterns)
-            patterntools.PatternList(
+            abjad.PatternList(
                 (
-                    patterntools.Pattern(
+                    abjad.Pattern(
                         indices=[0, 1, 7],
                         period=10,
                         ),
-                    patterntools.Pattern(
+                    abjad.Pattern(
                         indices=[-2, -1],
                         ),
-                    patterntools.Pattern(
+                    abjad.Pattern(
                         indices=[2],
                         period=3,
                         ),
@@ -50,12 +50,12 @@ class PatternList(TypedTuple):
 
         ::
 
-            >>> patterns = patterntools.PatternList([
-            ...     patterntools.Pattern(
+            >>> patterns = abjad.PatternList([
+            ...     abjad.Pattern(
             ...         indices=[1],
             ...         period=2,
             ...         ),
-            ...     patterntools.Pattern(
+            ...     abjad.Pattern(
             ...         indices=[-3, -2, -1],
             ...         ),
             ...     ])
@@ -63,13 +63,13 @@ class PatternList(TypedTuple):
         ::
 
             >>> f(patterns)
-            patterntools.PatternList(
+            abjad.PatternList(
                 (
-                    patterntools.Pattern(
+                    abjad.Pattern(
                         indices=[1],
                         period=2,
                         ),
-                    patterntools.Pattern(
+                    abjad.Pattern(
                         indices=[-3, -2, -1],
                         ),
                     )
@@ -93,12 +93,12 @@ class PatternList(TypedTuple):
 
             ::
 
-                >>> patterns = patterntools.PatternList([
-                ...     patterntools.Pattern(
+                >>> patterns = abjad.PatternList([
+                ...     abjad.Pattern(
                 ...         indices=[1],
                 ...         period=2,
                 ...         ),
-                ...     patterntools.Pattern(
+                ...     abjad.Pattern(
                 ...         indices=[-3, -2, -1],
                 ...         ),
                 ...     ])
@@ -197,8 +197,8 @@ class PatternList(TypedTuple):
 
             ::
 
-                >>> patterns = patterntools.PatternList([
-                ...     patterntools.Pattern(
+                >>> patterns = abjad.PatternList([
+                ...     abjad.Pattern(
                 ...         indices=[-3],
                 ...         inverted=True,
                 ...         ),
@@ -246,13 +246,13 @@ class PatternList(TypedTuple):
 
             ::
 
-                >>> patterns = patterntools.PatternList([
-                ...     patterntools.Pattern(
+                >>> patterns = abjad.PatternList([
+                ...     abjad.Pattern(
                 ...         indices=[0],
                 ...         payload=rhythmmakertools.NoteRhythmMaker(),
                 ...         period=1,
                 ...         ),
-                ...     patterntools.Pattern(
+                ...     abjad.Pattern(
                 ...         indices=[-3, -2, -1],
                 ...         payload=rhythmmakertools.EvenDivisionRhythmMaker(),
                 ...         ),

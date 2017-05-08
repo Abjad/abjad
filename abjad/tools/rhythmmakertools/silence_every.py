@@ -22,7 +22,7 @@ def silence_every(
 
             >>> f(mask)
             rhythmmakertools.SilenceMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[1],
                     period=2,
                     ),
@@ -75,7 +75,7 @@ def silence_every(
 
             >>> f(mask)
             rhythmmakertools.SilenceMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[1, 2],
                     period=3,
                     ),
@@ -128,7 +128,7 @@ def silence_every(
 
             >>> f(mask)
             rhythmmakertools.SilenceMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[-1],
                     inverted=True,
                     ),

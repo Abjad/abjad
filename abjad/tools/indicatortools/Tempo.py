@@ -322,8 +322,8 @@ class Tempo(AbjadValueObject):
 
                 >>> tempo = Tempo((1, 4), 84, 'Allegro')
                 >>> print(format(tempo))
-                indicatortools.Tempo(
-                    reference_duration=durationtools.Duration(1, 4),
+                abjad.Tempo(
+                    reference_duration=abjad.Duration(1, 4),
                     units_per_minute=84,
                     textual_indication='Allegro',
                     )
@@ -337,12 +337,12 @@ class Tempo(AbjadValueObject):
                 >>> markup = Markup(r'\italic { Allegro }')
                 >>> tempo = Tempo((1, 4), 84, custom_markup=markup)
                 >>> print(format(tempo))
-                indicatortools.Tempo(
-                    reference_duration=durationtools.Duration(1, 4),
+                abjad.Tempo(
+                    reference_duration=abjad.Duration(1, 4),
                     units_per_minute=84,
-                    custom_markup=markuptools.Markup(
+                    custom_markup=abjad.Markup(
                         contents=[
-                            markuptools.MarkupCommand(
+                            abjad.MarkupCommand(
                                 'italic',
                                 ['Allegro']
                                 ),

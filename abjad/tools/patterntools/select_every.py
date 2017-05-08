@@ -10,12 +10,12 @@ def select_every(indices, period=None, inverted=None):
 
         ::
 
-            >>> mask = patterntools.select_every(indices=[1], period=2)
+            >>> mask = abjad.select_every(indices=[1], period=2)
 
         ::
 
             >>> print(format(mask))
-            patterntools.Pattern(
+            abjad.Pattern(
                 indices=[1],
                 period=2,
                 )
@@ -61,12 +61,12 @@ def select_every(indices, period=None, inverted=None):
 
         ::
 
-            >>> mask = patterntools.select_every(indices=[1, 2], period=3)
+            >>> mask = abjad.select_every(indices=[1, 2], period=3)
 
         ::
 
             >>> print(format(mask))
-            patterntools.Pattern(
+            abjad.Pattern(
                 indices=[1, 2],
                 period=3,
                 )

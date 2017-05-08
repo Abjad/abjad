@@ -33,16 +33,16 @@ def test_topleveltools_new_01():
     assert format(old_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
-            ratio=mathtools.Ratio((1, 2, 3)),
+            ratio=abjad.Ratio((1, 2, 3)),
             )
         ''')
 
@@ -53,31 +53,31 @@ def test_topleveltools_new_01():
     assert format(old_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
-            ratio=mathtools.Ratio((1, 2, 3)),
+            ratio=abjad.Ratio((1, 2, 3)),
             )
         ''')
     assert format(new_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
-            ratio=mathtools.Ratio((1, 2, 3)),
+            ratio=abjad.Ratio((1, 2, 3)),
             )
         ''')
 
@@ -92,16 +92,16 @@ def test_topleveltools_new_02():
     assert format(old_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
-            ratio=mathtools.Ratio((1, 2, 3)),
+            ratio=abjad.Ratio((1, 2, 3)),
             )
         ''')
 
@@ -115,31 +115,31 @@ def test_topleveltools_new_02():
     assert format(old_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
-            ratio=mathtools.Ratio((1, 2, 3)),
+            ratio=abjad.Ratio((1, 2, 3)),
             )
         ''')
     assert format(new_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
-            ratio=mathtools.Ratio((4, 5)),
+            ratio=abjad.Ratio((4, 5)),
             )
         ''')
 
@@ -153,14 +153,14 @@ def test_topleveltools_new_03():
     assert format(old_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
             )
         ''')
@@ -176,29 +176,29 @@ def test_topleveltools_new_03():
     assert format(old_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
             )
         ''')
     assert format(new_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('af'),
-                    pitchtools.NamedPitch('bf'),
-                    pitchtools.NamedPitch('df'),
+                    abjad.NamedPitch('af'),
+                    abjad.NamedPitch('bf'),
+                    abjad.NamedPitch('df'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
-            ratio=mathtools.Ratio((5, 4)),
+            ratio=abjad.Ratio((5, 4)),
             )
         ''')
 
@@ -212,14 +212,14 @@ def test_topleveltools_new_04():
     assert format(old_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
             )
         ''')
@@ -235,30 +235,30 @@ def test_topleveltools_new_04():
     assert format(old_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
             )
         ''')
     assert format(new_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
-            ratio=mathtools.Ratio((4, 5)),
+            ratio=abjad.Ratio((4, 5)),
             )
         ''')
 
@@ -272,14 +272,14 @@ def test_topleveltools_new_05():
     assert format(old_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
             )
         ''')
@@ -295,29 +295,29 @@ def test_topleveltools_new_05():
     assert format(old_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
             )
         ''')
     assert format(new_aggregate) == stringtools.normalize(
         r'''
         test_topleveltools_new.Aggregate(
-            pitch_segment=pitchtools.PitchSegment(
+            pitch_segment=abjad.PitchSegment(
                 (
-                    pitchtools.NamedPitch('e'),
-                    pitchtools.NamedPitch('f'),
-                    pitchtools.NamedPitch('c'),
-                    pitchtools.NamedPitch('d'),
+                    abjad.NamedPitch('e'),
+                    abjad.NamedPitch('f'),
+                    abjad.NamedPitch('c'),
+                    abjad.NamedPitch('d'),
                     ),
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 ),
-            ratio=mathtools.Ratio((4, 5)),
+            ratio=abjad.Ratio((4, 5)),
             )
         ''')

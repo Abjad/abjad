@@ -23,8 +23,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print(format(q_schema_item))
         quantizationtools.MeasurewiseQSchemaItem(
-            tempo=indicatortools.Tempo(
-                reference_duration=durationtools.Duration(1, 4), 
+            tempo=abjad.Tempo(
+                reference_duration=abjad.Duration(1, 4), 
                 units_per_minute=60,
                 ),
             )
@@ -38,7 +38,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print(format(q_schema_item))
         quantizationtools.MeasurewiseQSchemaItem(
-            time_signature=indicatortools.TimeSignature((6, 8)),
+            time_signature=abjad.TimeSignature((6, 8)),
             )
 
     Test for beatspan, given a defined time signature:

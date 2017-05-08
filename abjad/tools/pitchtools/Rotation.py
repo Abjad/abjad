@@ -128,12 +128,12 @@ class Rotation(AbjadValueObject):
             ::
 
                 >>> f(operator)
-                pitchtools.CompoundOperator(
+                abjad.CompoundOperator(
                     operators=[
-                        pitchtools.Rotation(
+                        abjad.Rotation(
                             n=-1,
                             ),
-                        pitchtools.Transposition(
+                        abjad.Transposition(
                             n=3,
                             ),
                         ],

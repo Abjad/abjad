@@ -10,12 +10,12 @@ def select_last(n=1, inverted=None):
 
         ::
 
-            >>> pattern = patterntools.select_last(n=2)
+            >>> pattern = abjad.select_last(n=2)
 
         ::
 
             >>> print(format(pattern))
-            patterntools.Pattern(
+            abjad.Pattern(
                 indices=[-2, -1],
                 )
 
@@ -66,12 +66,12 @@ def select_last(n=1, inverted=None):
 
         ::
 
-            >>> pattern = patterntools.select_last(n=0)
+            >>> pattern = abjad.select_last(n=0)
 
         ::
 
             >>> print(format(pattern))
-            patterntools.Pattern(
+            abjad.Pattern(
                 indices=[],
                 )
 

@@ -15,7 +15,7 @@ def select(indices=None, inverted=None):
         ::
 
             >>> print(format(pattern))
-            patterntools.Pattern(
+            abjad.Pattern(
                 indices=[2],
                 )
 
@@ -30,7 +30,7 @@ def select(indices=None, inverted=None):
         ::
 
             >>> print(format(pattern))
-            patterntools.Pattern(
+            abjad.Pattern(
                 indices=[2, 3, 5],
                 )
 

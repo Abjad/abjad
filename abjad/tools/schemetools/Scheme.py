@@ -119,6 +119,8 @@ class Scheme(AbjadValueObject):
         '_verbatim',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(self, *arguments, **keywords):
@@ -168,8 +170,8 @@ class Scheme(AbjadValueObject):
 
             ::
 
-                >>> print(format(scheme, 'storage'))
-                schemetools.Scheme(
+                >>> f(scheme)
+                abjad.Scheme(
                     'foo'
                     )
 

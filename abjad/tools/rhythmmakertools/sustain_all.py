@@ -73,7 +73,7 @@ def sustain_all(inverted=None):
 
             >>> f(mask)
             rhythmmakertools.SustainMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[0],
                     period=1,
                     ),

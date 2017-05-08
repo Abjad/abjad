@@ -121,10 +121,10 @@ class Inversion(AbjadValueObject):
             ::
 
                 >>> f(operator)
-                pitchtools.CompoundOperator(
+                abjad.CompoundOperator(
                     operators=[
-                        pitchtools.Inversion(),
-                        pitchtools.Transposition(
+                        abjad.Inversion(),
+                        abjad.Transposition(
                             n=3,
                             ),
                         ],

@@ -12,11 +12,11 @@ def timespan_2_starts_when_timespan_1_starts(
     ::
 
         >>> relation = timespantools.timespan_2_starts_when_timespan_1_starts()
-        >>> print(format(relation))
-        timespantools.TimespanTimespanTimeRelation(
-            inequality=timespantools.CompoundInequality(
+        >>> f(relation)
+        abjad.TimespanTimespanTimeRelation(
+            inequality=abjad.CompoundInequality(
                 [
-                    timespantools.Inequality('timespan_1.start_offset == timespan_2.start_offset'),
+                    abjad.Inequality('timespan_1.start_offset == timespan_2.start_offset'),
                     ],
                 logical_operator='and',
                 ),

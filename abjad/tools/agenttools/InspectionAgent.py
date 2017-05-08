@@ -777,64 +777,65 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> for leaf in iterate(voice).by_leaf(with_grace_notes=True):
                 ...     timespan = inspect_(leaf).get_timespan()
                 ...     print(str(leaf) + ':')
-                ...     print(format(timespan, 'storage'))
+                ...     f(timespan)
+                ...
                 c'8:
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(1, 8),
+                abjad.Timespan(
+                    start_offset=abjad.Offset(0, 1),
+                    stop_offset=abjad.Offset(1, 8),
                     )
                 c'16:
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(
+                abjad.Timespan(
+                    start_offset=abjad.Offset(
                         (1, 8),
-                        grace_displacement=durationtools.Duration(-1, 8),
+                        grace_displacement=abjad.Duration(-1, 8),
                         ),
-                    stop_offset=durationtools.Offset(
+                    stop_offset=abjad.Offset(
                         (1, 8),
-                        grace_displacement=durationtools.Duration(-1, 16),
+                        grace_displacement=abjad.Duration(-1, 16),
                         ),
                     )
                 d'16:
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(
+                abjad.Timespan(
+                    start_offset=abjad.Offset(
                         (1, 8),
-                        grace_displacement=durationtools.Duration(-1, 16),
+                        grace_displacement=abjad.Duration(-1, 16),
                         ),
-                    stop_offset=durationtools.Offset(1, 8),
+                    stop_offset=abjad.Offset(1, 8),
                     )
                 d'8:
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(1, 8),
-                    stop_offset=durationtools.Offset(1, 4),
+                abjad.Timespan(
+                    start_offset=abjad.Offset(1, 8),
+                    stop_offset=abjad.Offset(1, 4),
                     )
                 e'16:
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(
+                abjad.Timespan(
+                    start_offset=abjad.Offset(
                         (1, 4),
-                        grace_displacement=durationtools.Duration(-1, 8),
+                        grace_displacement=abjad.Duration(-1, 8),
                         ),
-                    stop_offset=durationtools.Offset(
+                    stop_offset=abjad.Offset(
                         (1, 4),
-                        grace_displacement=durationtools.Duration(-1, 16),
+                        grace_displacement=abjad.Duration(-1, 16),
                         ),
                     )
                 f'16:
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(
+                abjad.Timespan(
+                    start_offset=abjad.Offset(
                         (1, 4),
-                        grace_displacement=durationtools.Duration(-1, 16),
+                        grace_displacement=abjad.Duration(-1, 16),
                         ),
-                    stop_offset=durationtools.Offset(1, 4),
+                    stop_offset=abjad.Offset(1, 4),
                     )
                 e'8:
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(1, 4),
-                    stop_offset=durationtools.Offset(3, 8),
+                abjad.Timespan(
+                    start_offset=abjad.Offset(1, 4),
+                    stop_offset=abjad.Offset(3, 8),
                     )
                 f'8:
-                timespantools.Timespan(
-                    start_offset=durationtools.Offset(3, 8),
-                    stop_offset=durationtools.Offset(1, 2),
+                abjad.Timespan(
+                    start_offset=abjad.Offset(3, 8),
+                    stop_offset=abjad.Offset(1, 2),
                     )
 
         Returns timespan.

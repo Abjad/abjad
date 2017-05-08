@@ -382,25 +382,25 @@ class Sequence(abctools.AbjadValueObject):
                 >>> expression = Expression(name='J')
                 >>> expression = expression.sequence()
                 >>> f(expression)
-                expressiontools.Expression(
+                abjad.Expression(
                     callbacks=[
-                        expressiontools.Expression(
+                        abjad.Expression(
                             evaluation_template='abjad.sequencetools.Sequence',
                             is_initializer=True,
-                            markup_expression=expressiontools.Expression(
+                            markup_expression=abjad.Expression(
                                 callbacks=[
-                                    expressiontools.Expression(
+                                    abjad.Expression(
                                         evaluation_template='abjad.markuptools.Markup',
                                         is_initializer=True,
                                         ),
                                     ],
-                                proxy_class=markuptools.Markup,
+                                proxy_class=abjad.Markup,
                                 ),
                             string_template='{}',
                             ),
                         ],
                     name='J',
-                    proxy_class=sequencetools.Sequence,
+                    proxy_class=abjad.Sequence,
                     )
 
         Returns string.

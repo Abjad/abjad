@@ -26,11 +26,11 @@ class RhythmTreeParser(Parser):
 
     ::
 
-        >>> print(format(rhythm_tree_container))
+        >>> f(rhythm_tree_container)
         rhythmtreetools.RhythmTreeContainer(
             children=(
                 rhythmtreetools.RhythmTreeLeaf(
-                    preprolated_duration=durationtools.Duration(1, 1),
+                    preprolated_duration=abjad.Duration(1, 1),
                     is_pitched=True,
                     ),
                 rhythmtreetools.RhythmTreeContainer(
@@ -38,37 +38,37 @@ class RhythmTreeParser(Parser):
                         rhythmtreetools.RhythmTreeContainer(
                             children=(
                                 rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=durationtools.Duration(1, 1),
+                                    preprolated_duration=abjad.Duration(1, 1),
                                     is_pitched=True,
                                     ),
                                 rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=durationtools.Duration(1, 1),
+                                    preprolated_duration=abjad.Duration(1, 1),
                                     is_pitched=True,
                                     ),
                                 rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=durationtools.Duration(1, 1),
+                                    preprolated_duration=abjad.Duration(1, 1),
                                     is_pitched=True,
                                     ),
                                 ),
-                            preprolated_duration=durationtools.Duration(2, 1),
+                            preprolated_duration=abjad.Duration(2, 1),
                             ),
                         rhythmtreetools.RhythmTreeLeaf(
-                            preprolated_duration=durationtools.Duration(2, 1),
+                            preprolated_duration=abjad.Duration(2, 1),
                             is_pitched=True,
                             ),
                         rhythmtreetools.RhythmTreeLeaf(
-                            preprolated_duration=durationtools.Duration(2, 1),
+                            preprolated_duration=abjad.Duration(2, 1),
                             is_pitched=True,
                             ),
                         rhythmtreetools.RhythmTreeLeaf(
-                            preprolated_duration=durationtools.Duration(1, 1),
+                            preprolated_duration=abjad.Duration(1, 1),
                             is_pitched=True,
                             ),
                         ),
-                    preprolated_duration=durationtools.Duration(1, 1),
+                    preprolated_duration=abjad.Duration(1, 1),
                     ),
                 ),
-            preprolated_duration=durationtools.Duration(3, 1),
+            preprolated_duration=abjad.Duration(3, 1),
             )
 
     ::

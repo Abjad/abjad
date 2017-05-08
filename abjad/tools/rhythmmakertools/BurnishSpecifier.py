@@ -185,7 +185,7 @@ class BurnishSpecifier(AbjadValueObject):
                 >>> f(burnish_specifier)
                 rhythmmakertools.BurnishSpecifier(
                     left_classes=[
-                        scoretools.Rest,
+                        abjad.Rest,
                         0,
                         ],
                     left_counts=[1],

@@ -22,20 +22,20 @@ class CompoundInequality(TypedList):
 
     ::
 
-        >>> print(format(compound_inequality))
-        timespantools.CompoundInequality(
+        >>> f(compound_inequality)
+        abjad.CompoundInequality(
             [
-                timespantools.CompoundInequality(
+                abjad.CompoundInequality(
                     [
-                        timespantools.Inequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                        timespantools.Inequality('timespan_2.start_offset < timespan_1.stop_offset'),
+                        abjad.Inequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                        abjad.Inequality('timespan_2.start_offset < timespan_1.stop_offset'),
                         ],
                     logical_operator='and',
                     ),
-                timespantools.CompoundInequality(
+                abjad.CompoundInequality(
                     [
-                        timespantools.Inequality('timespan_2.start_offset <= timespan_1.start_offset'),
-                        timespantools.Inequality('timespan_1.start_offset < timespan_2.stop_offset'),
+                        abjad.Inequality('timespan_2.start_offset <= timespan_1.start_offset'),
+                        abjad.Inequality('timespan_1.start_offset < timespan_2.stop_offset'),
                         ],
                     logical_operator='and',
                     ),

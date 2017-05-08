@@ -65,10 +65,9 @@ class DoctestScript(CommandlineScript):
 
     def _get_namespace(self, abjad_only=False):
         globs = {}
-        if abjad_only:
-            globs['abjad'] = importlib.import_module('abjad')
-            globs['f'] = getattr(globs['abjad'], 'f')
-        else:
+        globs['abjad'] = importlib.import_module('abjad')
+        globs['f'] = getattr(globs['abjad'], 'f')
+        if True:
             for module_name in self._module_names_for_globs:
                 try:
                     module = importlib.import_module(module_name)
@@ -112,6 +111,7 @@ class DoctestScript(CommandlineScript):
         assert not (arguments and file_paths)
         result = []
         globs = self._get_namespace(abjad_only=arguments.abjad_only)
+        #raise Exception(globs['abjad'])
         optionflags = self._get_optionflags(arguments)
         total_failures = 0
         total_modules = 0

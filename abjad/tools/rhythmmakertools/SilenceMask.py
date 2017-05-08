@@ -17,7 +17,7 @@ class SilenceMask(AbjadValueObject):
 
             >>> f(mask)
             rhythmmakertools.SilenceMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[0, 1, 7],
                     period=16,
                     ),

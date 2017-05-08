@@ -14,9 +14,9 @@ class DurationInequality(Inequality):
 
         >>> inequality = selectortools.DurationInequality('<', (3, 4))
         >>> f(inequality)
-        selectortools.DurationInequality(
+        abjad.DurationInequality(
             operator_string='<',
-            duration=durationtools.Duration(3, 4),
+            duration=abjad.Duration(3, 4),
             )
 
     ::

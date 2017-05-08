@@ -10,7 +10,7 @@ class LengthInequality(Inequality):
 
         >>> inequality = selectortools.LengthInequality('<', 4)
         >>> f(inequality)
-        selectortools.LengthInequality(
+        abjad.LengthInequality(
             operator_string='<',
             length=4,
             )

@@ -178,29 +178,29 @@ class QuantizationJob(AbjadObject):
             ... 
             quantizationtools.QEventProxy(
                 quantizationtools.PitchedQEvent(
-                    offset=durationtools.Offset(250, 1),
+                    offset=abjad.Offset(250, 1),
                     pitches=(
-                        pitchtools.NamedPitch("c'"),
-                        pitchtools.NamedPitch("cs'"),
+                        abjad.NamedPitch("c'"),
+                        abjad.NamedPitch("cs'"),
                         ),
                     ),
-                durationtools.Offset(1, 4)
+                abjad.Offset(1, 4)
                 )
             quantizationtools.QEventProxy(
                 quantizationtools.SilentQEvent(
-                    offset=durationtools.Offset(500, 1),
+                    offset=abjad.Offset(500, 1),
                     ),
-                durationtools.Offset(1, 2)
+                abjad.Offset(1, 2)
                 )
             quantizationtools.QEventProxy(
                 quantizationtools.PitchedQEvent(
-                    offset=durationtools.Offset(750, 1),
+                    offset=abjad.Offset(750, 1),
                     pitches=(
-                        pitchtools.NamedPitch("ef'"),
-                        pitchtools.NamedPitch("g'"),
+                        abjad.NamedPitch("ef'"),
+                        abjad.NamedPitch("g'"),
                         ),
                     ),
-                durationtools.Offset(3, 4)
+                abjad.Offset(3, 4)
                 )
 
         Returns tuple.

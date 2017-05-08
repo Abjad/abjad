@@ -189,7 +189,7 @@ class NumberedPitchClass(PitchClass):
             ::
 
                 >>> format(NumberedPitchClass(13))
-                'pitchtools.NumberedPitchClass(1)'
+                'abjad.NumberedPitchClass(1)'
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 

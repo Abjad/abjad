@@ -7,12 +7,12 @@ def timespan_2_delays_timespan_1(timespan_1=None, timespan_2=None, hold=False):
     ::
 
         >>> relation = timespantools.timespan_2_delays_timespan_1()
-        >>> print(format(relation))
-        timespantools.TimespanTimespanTimeRelation(
-            inequality=timespantools.CompoundInequality(
+        >>> f(relation)
+        abjad.TimespanTimespanTimeRelation(
+            inequality=abjad.CompoundInequality(
                 [
-                    timespantools.Inequality('timespan_2.start_offset <= timespan_1.start_offset'),
-                    timespantools.Inequality('timespan_1.start_offset < timespan_2.stop_offset'),
+                    abjad.Inequality('timespan_2.start_offset <= timespan_1.start_offset'),
+                    abjad.Inequality('timespan_1.start_offset < timespan_2.stop_offset'),
                     ],
                 logical_operator='and',
                 ),

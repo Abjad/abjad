@@ -13,7 +13,7 @@ class TypedList(TypedCollection):
 
         ::
 
-            >>> list_ = datastructuretools.TypedList()
+            >>> list_ = abjad.TypedList()
             >>> list_.append(23)
             >>> list_.append('foo')
             >>> list_.append(False)
@@ -23,7 +23,7 @@ class TypedList(TypedCollection):
         ::
 
             >>> f(list_)
-            datastructuretools.TypedList(
+            abjad.TypedList(
                 [
                     23,
                     'foo',
@@ -39,7 +39,7 @@ class TypedList(TypedCollection):
 
         ::
 
-            >>> pitch_list = datastructuretools.TypedList(
+            >>> pitch_list = abjad.TypedList(
             ...     item_class=NamedPitch,
             ...     )
             >>> pitch_list.append(0)
@@ -50,14 +50,14 @@ class TypedList(TypedCollection):
         ::
 
             >>> f(pitch_list)
-            datastructuretools.TypedList(
+            abjad.TypedList(
                 [
-                    pitchtools.NamedPitch("c'"),
-                    pitchtools.NamedPitch("d'"),
-                    pitchtools.NamedPitch("e'"),
-                    pitchtools.NamedPitch("f'"),
+                    abjad.NamedPitch("c'"),
+                    abjad.NamedPitch("d'"),
+                    abjad.NamedPitch("e'"),
+                    abjad.NamedPitch("f'"),
                     ],
-                item_class=pitchtools.NamedPitch,
+                item_class=abjad.NamedPitch,
                 )
 
     Ordered collection with optional item coercion.
@@ -118,32 +118,32 @@ class TypedList(TypedCollection):
 
             ::
 
-                >>> dynamic_list = datastructuretools.TypedList(item_class=Dynamic)
+                >>> dynamic_list = abjad.TypedList(item_class=Dynamic)
                 >>> dynamic_list.append('ppp')
                 >>> dynamic_list += ['p', 'mp', 'mf', 'fff']
 
             ::
 
                 >>> f(dynamic_list)
-                datastructuretools.TypedList(
+                abjad.TypedList(
                     [
-                        indicatortools.Dynamic(
+                        abjad.Dynamic(
                             name='ppp',
                             ),
-                        indicatortools.Dynamic(
+                        abjad.Dynamic(
                             name='p',
                             ),
-                        indicatortools.Dynamic(
+                        abjad.Dynamic(
                             name='mp',
                             ),
-                        indicatortools.Dynamic(
+                        abjad.Dynamic(
                             name='mf',
                             ),
-                        indicatortools.Dynamic(
+                        abjad.Dynamic(
                             name='fff',
                             ),
                         ],
-                    item_class=indicatortools.Dynamic,
+                    item_class=abjad.Dynamic,
                     )
 
         Returns typed list.
@@ -167,7 +167,7 @@ class TypedList(TypedCollection):
 
             ::
 
-                >>> pitch_list = datastructuretools.TypedList(
+                >>> pitch_list = abjad.TypedList(
                 ...     item_class=NamedPitch,
                 ...     )
                 >>> pitch_list.append(0)
@@ -179,14 +179,14 @@ class TypedList(TypedCollection):
 
                 >>> pitch_list[-1] = 'gqs,'
                 >>> f(pitch_list)
-                datastructuretools.TypedList(
+                abjad.TypedList(
                     [
-                        pitchtools.NamedPitch("c'"),
-                        pitchtools.NamedPitch("d'"),
-                        pitchtools.NamedPitch("e'"),
-                        pitchtools.NamedPitch('gqs,'),
+                        abjad.NamedPitch("c'"),
+                        abjad.NamedPitch("d'"),
+                        abjad.NamedPitch("e'"),
+                        abjad.NamedPitch('gqs,'),
                         ],
-                    item_class=pitchtools.NamedPitch,
+                    item_class=abjad.NamedPitch,
                     )
 
         ..  container:: example
@@ -197,18 +197,18 @@ class TypedList(TypedCollection):
 
                 >>> pitch_list[-1:] = ["f'", "g'", "a'", "b'", "c''"]
                 >>> f(pitch_list)
-                datastructuretools.TypedList(
+                abjad.TypedList(
                     [
-                        pitchtools.NamedPitch("c'"),
-                        pitchtools.NamedPitch("d'"),
-                        pitchtools.NamedPitch("e'"),
-                        pitchtools.NamedPitch("f'"),
-                        pitchtools.NamedPitch("g'"),
-                        pitchtools.NamedPitch("a'"),
-                        pitchtools.NamedPitch("b'"),
-                        pitchtools.NamedPitch("c''"),
+                        abjad.NamedPitch("c'"),
+                        abjad.NamedPitch("d'"),
+                        abjad.NamedPitch("e'"),
+                        abjad.NamedPitch("f'"),
+                        abjad.NamedPitch("g'"),
+                        abjad.NamedPitch("a'"),
+                        abjad.NamedPitch("b'"),
+                        abjad.NamedPitch("c''"),
                         ],
-                    item_class=pitchtools.NamedPitch,
+                    item_class=abjad.NamedPitch,
                     )
 
         Returns none.
@@ -255,7 +255,7 @@ class TypedList(TypedCollection):
 
             ::
 
-                >>> integer_list = datastructuretools.TypedList(item_class=int)
+                >>> integer_list = abjad.TypedList(item_class=int)
                 >>> integer_list.append('1')
                 >>> integer_list.append(2)
                 >>> integer_list.append(3.4)
@@ -277,7 +277,7 @@ class TypedList(TypedCollection):
 
             ::
 
-                >>> integer_list = datastructuretools.TypedList(item_class=int)
+                >>> integer_list = abjad.TypedList(item_class=int)
                 >>> integer_list.extend([0, 0., '0', 99])
 
             ::
@@ -301,7 +301,7 @@ class TypedList(TypedCollection):
 
             ::
 
-                >>> integer_list = datastructuretools.TypedList(item_class=int)
+                >>> integer_list = abjad.TypedList(item_class=int)
                 >>> integer_list.extend(['0', 1.0, 2, 3.14159])
                 >>> integer_list
                 TypedList([0, 1, 2, 3], item_class=int)
@@ -320,7 +320,7 @@ class TypedList(TypedCollection):
 
             ::
 
-                >>> pitch_list = datastructuretools.TypedList(
+                >>> pitch_list = abjad.TypedList(
                 ...     item_class=NamedPitch,
                 ...     )
                 >>> pitch_list.extend(['cqf', "as'", 'b,', 'dss'])
@@ -350,7 +350,7 @@ class TypedList(TypedCollection):
 
             ::
 
-                >>> integer_list = datastructuretools.TypedList(item_class=int)
+                >>> integer_list = abjad.TypedList(item_class=int)
                 >>> integer_list.extend(['1', 2, 4.3])
                 >>> integer_list
                 TypedList([1, 2, 4], item_class=int)
@@ -394,7 +394,7 @@ class TypedList(TypedCollection):
 
             ::
 
-                >>> integer_list = datastructuretools.TypedList(item_class=int)
+                >>> integer_list = abjad.TypedList(item_class=int)
                 >>> integer_list.extend(('0', 1.0, 2, 3.14159))
                 >>> integer_list[:]
                 [0, 1, 2, 3]

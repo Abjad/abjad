@@ -210,7 +210,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
                 >>> fraction = NonreducedFraction(-6, 3)
                 >>> print(format(fraction))
-                mathtools.NonreducedFraction(-6, 3)
+                abjad.NonreducedFraction(-6, 3)
 
         Returns string.
         '''

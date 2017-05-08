@@ -27,14 +27,14 @@ class QTargetBeat(AbjadObject):
 
         >>> print(format(q_target_beat))
         quantizationtools.QTargetBeat(
-            beatspan=durationtools.Duration(1, 8),
-            offset_in_ms=durationtools.Offset(1500, 1),
+            beatspan=abjad.Duration(1, 8),
+            offset_in_ms=abjad.Offset(1500, 1),
             search_tree=quantizationtools.UnweightedSearchTree(
                 definition={   3: None,
                     },
                 ),
-            tempo=indicatortools.Tempo(
-                reference_duration=durationtools.Duration(1, 4), 
+            tempo=abjad.Tempo(
+                reference_duration=abjad.Duration(1, 4), 
                 units_per_minute=56,
                 ),
             )

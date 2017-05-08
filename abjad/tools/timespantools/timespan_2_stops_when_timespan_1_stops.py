@@ -12,11 +12,11 @@ def timespan_2_stops_when_timespan_1_stops(
     ::
 
         >>> inequality = timespantools.timespan_2_stops_when_timespan_1_stops()
-        >>> print(format(inequality))
-        timespantools.TimespanTimespanTimeRelation(
-            inequality=timespantools.CompoundInequality(
+        >>> f(inequality)
+        abjad.TimespanTimespanTimeRelation(
+            inequality=abjad.CompoundInequality(
                 [
-                    timespantools.Inequality('timespan_2.stop_offset == timespan_1.stop_offset'),
+                    abjad.Inequality('timespan_2.stop_offset == timespan_1.stop_offset'),
                     ],
                 logical_operator='and',
                 ),

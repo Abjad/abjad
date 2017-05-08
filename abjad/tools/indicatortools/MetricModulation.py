@@ -15,7 +15,7 @@ class MetricModulation(AbjadValueObject):
 
         ::
 
-            >>> metric_modulation = indicatortools.MetricModulation(
+            >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=Note("c'4"),
             ...     right_rhythm=Note("c'4."),
             ...     )
@@ -95,7 +95,7 @@ class MetricModulation(AbjadValueObject):
 
         ::
 
-            >>> metric_modulation = indicatortools.MetricModulation(
+            >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=Tuplet((4, 5), "c'4"),
             ...     right_rhythm=Note("c'4"),
             ...     )
@@ -178,7 +178,7 @@ class MetricModulation(AbjadValueObject):
 
         ::
 
-            >>> metric_modulation = indicatortools.MetricModulation(
+            >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=Note("c16."),
             ...     right_rhythm=Tuplet((2, 3), "c8"),
             ...     )
@@ -262,7 +262,7 @@ class MetricModulation(AbjadValueObject):
         ::
 
             >>> notes = scoretools.make_notes([0], [Duration(5, 16)])
-            >>> metric_modulation = indicatortools.MetricModulation(
+            >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=Note("c'4"),
             ...     right_rhythm=notes,
             ...     )
@@ -345,7 +345,7 @@ class MetricModulation(AbjadValueObject):
 
             >>> notes = scoretools.make_notes([0], [Duration(5, 16)])
             >>> tuplet = Tuplet((2, 3), notes)
-            >>> metric_modulation = indicatortools.MetricModulation(
+            >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=Note("c'4"),
             ...     right_rhythm=tuplet,
             ...     )
@@ -436,7 +436,7 @@ class MetricModulation(AbjadValueObject):
 
         ::
 
-            >>> metric_modulation = indicatortools.MetricModulation(
+            >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=Note("c4"),
             ...     right_rhythm=Note("c8."),
             ...     )
@@ -537,6 +537,8 @@ class MetricModulation(AbjadValueObject):
         '_right_rhythm',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -575,16 +577,16 @@ class MetricModulation(AbjadValueObject):
 
             ::
 
-                >>> metric_modulation_1 = indicatortools.MetricModulation(
+                >>> metric_modulation_1 = abjad.MetricModulation(
                 ...     left_rhythm=Note("c'4"),
                 ...     right_rhythm=Note("c'4."),
                 ...     )
-                >>> metric_modulation_2 = indicatortools.MetricModulation(
+                >>> metric_modulation_2 = abjad.MetricModulation(
                 ...     left_rhythm=Tuplet((2, 3), [Note("c'4")]),
                 ...     right_rhythm=Note("c'4"),
                 ...     )
                 >>> notes = scoretools.make_notes([0], [Duration(5, 16)])
-                >>> metric_modulation_3 = indicatortools.MetricModulation(
+                >>> metric_modulation_3 = abjad.MetricModulation(
                 ...     left_rhythm=Note("c'4"),
                 ...     right_rhythm=notes,
                 ...     )
@@ -639,23 +641,23 @@ class MetricModulation(AbjadValueObject):
 
             ::
 
-                >>> metric_modulation = indicatortools.MetricModulation(
+                >>> metric_modulation = abjad.MetricModulation(
                 ...     left_rhythm=Note("c'4"),
                 ...     right_rhythm=Note("c'4."),
                 ...     )
 
             ::
 
-                >>> print(format(metric_modulation))
-                indicatortools.MetricModulation(
-                    left_rhythm=selectiontools.Selection(
+                >>> f(metric_modulation)
+                abjad.MetricModulation(
+                    left_rhythm=abjad.Selection(
                         [
-                            scoretools.Note("c'4"),
+                            abjad.Note("c'4"),
                             ]
                         ),
-                    right_rhythm=selectiontools.Selection(
+                    right_rhythm=abjad.Selection(
                         [
-                            scoretools.Note("c'4."),
+                            abjad.Note("c'4."),
                             ]
                         ),
                     )
@@ -684,7 +686,7 @@ class MetricModulation(AbjadValueObject):
 
             ::
 
-                >>> metric_modulation = indicatortools.MetricModulation(
+                >>> metric_modulation = abjad.MetricModulation(
                 ...     left_rhythm=Tuplet((2, 3), "c'4"),
                 ...     right_rhythm=Note("c'4."),
                 ...     )
@@ -775,7 +777,7 @@ class MetricModulation(AbjadValueObject):
 
             ::
 
-                >>> metric_modulation = indicatortools.MetricModulation(
+                >>> metric_modulation = abjad.MetricModulation(
                 ...     left_rhythm=Tuplet((2, 3), [Note("c'4")]),
                 ...     right_rhythm=Note("c'4"),
                 ...     )
@@ -921,7 +923,7 @@ class MetricModulation(AbjadValueObject):
 
             ::
 
-                >>> metric_modulation = indicatortools.MetricModulation(
+                >>> metric_modulation = abjad.MetricModulation(
                 ...     left_rhythm=Note("c'4"),
                 ...     right_rhythm=Note("c'4."),
                 ...     )
@@ -942,7 +944,7 @@ class MetricModulation(AbjadValueObject):
 
             ::
 
-                >>> metric_modulation = indicatortools.MetricModulation(
+                >>> metric_modulation = abjad.MetricModulation(
                 ...     left_rhythm=Note("c'4"),
                 ...     right_rhythm=Note("c'4."),
                 ...     )
@@ -960,7 +962,7 @@ class MetricModulation(AbjadValueObject):
 
             ::
 
-                >>> metric_modulation = indicatortools.MetricModulation(
+                >>> metric_modulation = abjad.MetricModulation(
                 ...     left_rhythm=Note("c'4"),
                 ...     right_rhythm=Note("c'4."),
                 ...     )
@@ -979,7 +981,7 @@ class MetricModulation(AbjadValueObject):
 
             ::
 
-                >>> metric_modulation = indicatortools.MetricModulation(
+                >>> metric_modulation = abjad.MetricModulation(
                 ...     left_rhythm=Tuplet((2, 3), [Note("c'4")]),
                 ...     right_rhythm=Note("c'4"),
                 ...     )
@@ -1002,7 +1004,7 @@ class MetricModulation(AbjadValueObject):
 
             ::
 
-                >>> metric_modulation = indicatortools.MetricModulation(
+                >>> metric_modulation = abjad.MetricModulation(
                 ...     left_rhythm=Note("c'4"),
                 ...     right_rhythm=Note("c'4."),
                 ...     )
@@ -1020,7 +1022,7 @@ class MetricModulation(AbjadValueObject):
 
             ::
 
-                >>> metric_modulation = indicatortools.MetricModulation(
+                >>> metric_modulation = abjad.MetricModulation(
                 ...     left_rhythm=Note("c'4"),
                 ...     right_rhythm=Note("c'4."),
                 ...     )

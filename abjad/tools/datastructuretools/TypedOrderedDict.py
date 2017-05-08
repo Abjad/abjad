@@ -13,22 +13,22 @@ class TypedOrderedDict(TypedCollection):
 
         ::
 
-            >>> dictionary = datastructuretools.TypedOrderedDict([
+            >>> dictionary = abjad.TypedOrderedDict([
             ...     ('color', 'red'),
             ...     ('directive', Markup(r'\italic Allegretto')),
             ...     ])
 
         ::
 
-            >>> print(format(dictionary))
-            abjad.datastructuretools.TypedOrderedDict(
+            >>> f(dictionary)
+            abjad.TypedOrderedDict(
                 [
                     ('color', 'red'),
                     (
                         'directive',
-                        markuptools.Markup(
+                        abjad.Markup(
                             contents=[
-                                markuptools.MarkupCommand(
+                                abjad.MarkupCommand(
                                     'italic',
                                     'Allegretto'
                                     ),
@@ -48,21 +48,21 @@ class TypedOrderedDict(TypedCollection):
             ...     'color': 'red',
             ...     'directive': Markup(r'\italic Allegretto'),
             ...     }
-            >>> dictionary = datastructuretools.TypedOrderedDict(
+            >>> dictionary = abjad.TypedOrderedDict(
             ...     dictionary
             ...     )
 
         ::
 
-            >>> print(format(dictionary))
-            abjad.datastructuretools.TypedOrderedDict(
+            >>> f(dictionary)
+            abjad.TypedOrderedDict(
                 [
                     ('color', 'red'),
                     (
                         'directive',
-                        markuptools.Markup(
+                        abjad.Markup(
                             contents=[
-                                markuptools.MarkupCommand(
+                                abjad.MarkupCommand(
                                     'italic',
                                     'Allegretto'
                                     ),
@@ -78,25 +78,25 @@ class TypedOrderedDict(TypedCollection):
 
         ::
 
-            >>> dictionary_1 = datastructuretools.TypedOrderedDict([
+            >>> dictionary_1 = abjad.TypedOrderedDict([
             ...     ('color', 'red'),
             ...     ('directive', Markup(r'\italic Allegretto')),
             ...     ])
-            >>> dictionary_2 = datastructuretools.TypedOrderedDict(
+            >>> dictionary_2 = abjad.TypedOrderedDict(
             ...     dictionary_1
             ...     )
 
         ::
 
-            >>> print(format(dictionary_2))
-            abjad.datastructuretools.TypedOrderedDict(
+            >>> f(dictionary_2)
+            abjad.TypedOrderedDict(
                 [
                     ('color', 'red'),
                     (
                         'directive',
-                        markuptools.Markup(
+                        abjad.Markup(
                             contents=[
-                                markuptools.MarkupCommand(
+                                abjad.MarkupCommand(
                                     'italic',
                                     'Allegretto'
                                     ),
@@ -112,6 +112,8 @@ class TypedOrderedDict(TypedCollection):
 
     __slots__ = (
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

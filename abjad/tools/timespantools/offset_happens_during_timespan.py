@@ -7,12 +7,12 @@ def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
     ::
 
         >>> relation = timespantools.offset_happens_during_timespan()
-        >>> print(format(relation))
-        timespantools.OffsetTimespanTimeRelation(
-            inequality=timespantools.CompoundInequality(
+        >>> f(relation)
+        abjad.OffsetTimespanTimeRelation(
+            inequality=abjad.CompoundInequality(
                 [
-                    timespantools.Inequality('timespan.start <= offset'),
-                    timespantools.Inequality('offset < timespan.stop'),
+                    abjad.Inequality('timespan.start <= offset'),
+                    abjad.Inequality('offset < timespan.stop'),
                     ],
                 logical_operator='and',
                 ),

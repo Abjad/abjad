@@ -15,10 +15,10 @@ class BowContactPoint(AbjadValueObject):
 
         ::
 
-            >>> point = indicatortools.BowContactPoint((1, 2))
-            >>> print(format(point))
-            indicatortools.BowContactPoint(
-                contact_point=durationtools.Multiplier(1, 2),
+            >>> point = abjad.BowContactPoint((1, 2))
+            >>> f(point)
+            abjad.BowContactPoint(
+                contact_point=abjad.Multiplier(1, 2),
                 )
 
     ..  container:: example
@@ -27,10 +27,10 @@ class BowContactPoint(AbjadValueObject):
 
         ::
 
-            >>> point = indicatortools.BowContactPoint((3, 5))
-            >>> print(format(point))
-            indicatortools.BowContactPoint(
-                contact_point=durationtools.Multiplier(3, 5),
+            >>> point = abjad.BowContactPoint((3, 5))
+            >>> f(point)
+            abjad.BowContactPoint(
+                contact_point=abjad.Multiplier(3, 5),
                 )
 
     Contact points are measured from frog to tip as a fraction between ``0`` 
@@ -43,6 +43,8 @@ class BowContactPoint(AbjadValueObject):
         '_contact_point',
         '_default_scope'
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -66,9 +68,9 @@ class BowContactPoint(AbjadValueObject):
 
             ::
 
-                >>> point_1 = indicatortools.BowContactPoint((1, 2))
-                >>> point_2 = indicatortools.BowContactPoint((1, 2))
-                >>> point_3 = indicatortools.BowContactPoint((2, 3))
+                >>> point_1 = abjad.BowContactPoint((1, 2))
+                >>> point_2 = abjad.BowContactPoint((1, 2))
+                >>> point_3 = abjad.BowContactPoint((2, 3))
 
             ::
 
@@ -115,7 +117,7 @@ class BowContactPoint(AbjadValueObject):
 
             ::
 
-                >>> point = indicatortools.BowContactPoint((1, 4))
+                >>> point = abjad.BowContactPoint((1, 4))
                 >>> point.contact_point
                 Multiplier(1, 4)
 
@@ -125,7 +127,7 @@ class BowContactPoint(AbjadValueObject):
 
             ::
 
-                >>> point = indicatortools.BowContactPoint((3, 5))
+                >>> point = abjad.BowContactPoint((3, 5))
                 >>> point.contact_point
                 Multiplier(3, 5)
 
@@ -143,7 +145,7 @@ class BowContactPoint(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.BowContactPoint((1, 4))
+                >>> indicator = abjad.BowContactPoint((1, 4))
                 >>> print(format(indicator.markup, 'lilypond'))
                 \markup {
                     \center-align
@@ -160,7 +162,7 @@ class BowContactPoint(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.BowContactPoint((3, 5))
+                >>> indicator = abjad.BowContactPoint((3, 5))
                 >>> print(format(indicator.markup, 'lilypond'))
                 \markup {
                     \center-align

@@ -34,7 +34,8 @@ class AltoTrombone(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -78,30 +79,30 @@ class AltoTrombone(Instrument):
             ::
 
                 >>> alto_trombone = instrumenttools.AltoTrombone()
-                >>> print(format(alto_trombone))
+                >>> f(alto_trombone)
                 instrumenttools.AltoTrombone(
                     instrument_name='alto trombone',
                     short_instrument_name='alt. trb.',
-                    instrument_name_markup=markuptools.Markup(
+                    instrument_name_markup=abjad.Markup(
                         contents=['Alto trombone'],
                         ),
-                    short_instrument_name_markup=markuptools.Markup(
+                    short_instrument_name_markup=abjad.Markup(
                         contents=['Alt. trb.'],
                         ),
                     allowable_clefs=instrumenttools.ClefList(
                         [
-                            indicatortools.Clef(
+                            abjad.Clef(
                                 name='bass',
                                 ),
-                            indicatortools.Clef(
+                            abjad.Clef(
                                 name='tenor',
                                 ),
                             ]
                         ),
-                    pitch_range=pitchtools.PitchRange(
+                    pitch_range=abjad.PitchRange(
                         range_string='[A2, Bb5]',
                         ),
-                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                    sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
                     )
 
         Returns string.

@@ -855,16 +855,16 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> f(J)
-                pitchtools.PitchClassSegment(
+                abjad.PitchClassSegment(
                     (
-                        pitchtools.NumberedPitchClass(10),
-                        pitchtools.NumberedPitchClass(10.5),
-                        pitchtools.NumberedPitchClass(6),
-                        pitchtools.NumberedPitchClass(7),
-                        pitchtools.NumberedPitchClass(10.5),
-                        pitchtools.NumberedPitchClass(7),
+                        abjad.NumberedPitchClass(10),
+                        abjad.NumberedPitchClass(10.5),
+                        abjad.NumberedPitchClass(6),
+                        abjad.NumberedPitchClass(7),
+                        abjad.NumberedPitchClass(10.5),
+                        abjad.NumberedPitchClass(7),
                         ),
-                    item_class=pitchtools.NumberedPitchClass,
+                    item_class=abjad.NumberedPitchClass,
                     )
 
             ::
@@ -901,14 +901,14 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> f(K)
-                pitchtools.PitchClassSegment(
+                abjad.PitchClassSegment(
                     (
-                        pitchtools.NamedPitchClass('c'),
-                        pitchtools.NamedPitchClass('ef'),
-                        pitchtools.NamedPitchClass('bqs'),
-                        pitchtools.NamedPitchClass('d'),
+                        abjad.NamedPitchClass('c'),
+                        abjad.NamedPitchClass('ef'),
+                        abjad.NamedPitchClass('bqs'),
+                        abjad.NamedPitchClass('d'),
                         ),
-                    item_class=pitchtools.NamedPitchClass,
+                    item_class=abjad.NamedPitchClass,
                     )
 
             ::

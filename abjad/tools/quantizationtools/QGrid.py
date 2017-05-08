@@ -22,11 +22,11 @@ class QGrid(AbjadObject):
         >>> print(format(q_grid, 'storage'))
         quantizationtools.QGrid(
             root_node=quantizationtools.QGridLeaf(
-                preprolated_duration=durationtools.Duration(1, 1),
+                preprolated_duration=abjad.Duration(1, 1),
                 is_divisible=True,
                 ),
             next_downbeat=quantizationtools.QGridLeaf(
-                preprolated_duration=durationtools.Duration(1, 1),
+                preprolated_duration=abjad.Duration(1, 1),
                 is_divisible=True,
                 ),
             )
@@ -57,12 +57,12 @@ class QGrid(AbjadObject):
         ...
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
-                offset=durationtools.Offset(250, 1),
+                offset=abjad.Offset(250, 1),
                 pitches=(
-                    pitchtools.NamedPitch("c'"),
+                    abjad.NamedPitch("c'"),
                     ),
                 ),
-            durationtools.Offset(1, 4)
+            abjad.Offset(1, 4)
             )
 
     ::
@@ -72,12 +72,12 @@ class QGrid(AbjadObject):
         ...
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
-                offset=durationtools.Offset(750, 1),
+                offset=abjad.Offset(750, 1),
                 pitches=(
-                    pitchtools.NamedPitch("cs'"),
+                    abjad.NamedPitch("cs'"),
                     ),
                 ),
-            durationtools.Offset(3, 4)
+            abjad.Offset(3, 4)
             )
 
     Used internally by the ``Quantizer``.

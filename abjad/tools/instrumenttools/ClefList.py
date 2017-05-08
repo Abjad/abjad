@@ -19,10 +19,10 @@ class ClefList(TypedList):
             >>> f(clefs)
             instrumenttools.ClefList(
                 [
-                    indicatortools.Clef(
+                    abjad.Clef(
                         name='treble',
                         ),
-                    indicatortools.Clef(
+                    abjad.Clef(
                         name='bass',
                         ),
                     ]

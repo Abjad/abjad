@@ -23,57 +23,57 @@ class InstrumentList(TypedList):
                     instrumenttools.Flute(
                         instrument_name='flute',
                         short_instrument_name='fl.',
-                        instrument_name_markup=markuptools.Markup(
+                        instrument_name_markup=abjad.Markup(
                             contents=['Flute'],
                             ),
-                        short_instrument_name_markup=markuptools.Markup(
+                        short_instrument_name_markup=abjad.Markup(
                             contents=['Fl.'],
                             ),
                         allowable_clefs=instrumenttools.ClefList(
                             [
-                                indicatortools.Clef(
+                                abjad.Clef(
                                     name='treble',
                                     ),
                                 ]
                             ),
-                        pitch_range=pitchtools.PitchRange(
+                        pitch_range=abjad.PitchRange(
                             range_string='[C4, D7]',
                             ),
-                        sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                        sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
                         ),
                     instrumenttools.Guitar(
                         instrument_name='guitar',
                         short_instrument_name='gt.',
-                        instrument_name_markup=markuptools.Markup(
+                        instrument_name_markup=abjad.Markup(
                             contents=['Guitar'],
                             ),
-                        short_instrument_name_markup=markuptools.Markup(
+                        short_instrument_name_markup=abjad.Markup(
                             contents=['Gt.'],
                             ),
                         allowable_clefs=instrumenttools.ClefList(
                             [
-                                indicatortools.Clef(
+                                abjad.Clef(
                                     name='treble',
                                     ),
                                 ]
                             ),
-                        default_tuning=indicatortools.Tuning(
-                            pitches=pitchtools.PitchSegment(
+                        default_tuning=abjad.Tuning(
+                            pitches=abjad.PitchSegment(
                                 (
-                                    pitchtools.NamedPitch('e,'),
-                                    pitchtools.NamedPitch('a,'),
-                                    pitchtools.NamedPitch('d'),
-                                    pitchtools.NamedPitch('g'),
-                                    pitchtools.NamedPitch('b'),
-                                    pitchtools.NamedPitch("e'"),
+                                    abjad.NamedPitch('e,'),
+                                    abjad.NamedPitch('a,'),
+                                    abjad.NamedPitch('d'),
+                                    abjad.NamedPitch('g'),
+                                    abjad.NamedPitch('b'),
+                                    abjad.NamedPitch("e'"),
                                     ),
-                                item_class=pitchtools.NamedPitch,
+                                item_class=abjad.NamedPitch,
                                 ),
                             ),
-                        pitch_range=pitchtools.PitchRange(
+                        pitch_range=abjad.PitchRange(
                             range_string='[E2, E5]',
                             ),
-                        sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('c'),
+                        sounding_pitch_of_written_middle_c=abjad.NamedPitch('c'),
                         ),
                     ]
                 )

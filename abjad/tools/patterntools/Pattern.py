@@ -14,7 +14,7 @@ class Pattern(AbjadValueObject):
 
         ::
 
-            >>> pattern = patterntools.Pattern(
+            >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
             ...     )
@@ -49,7 +49,7 @@ class Pattern(AbjadValueObject):
 
         ::
 
-            >>> pattern = patterntools.Pattern(
+            >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=16,
             ...     )
@@ -84,7 +84,7 @@ class Pattern(AbjadValueObject):
 
         ::
 
-            >>> pattern = patterntools.Pattern(
+            >>> pattern = abjad.Pattern(
             ...     indices=[16, 17, 23],
             ...     period=16,
             ...     )
@@ -124,6 +124,8 @@ class Pattern(AbjadValueObject):
         '_period',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -160,13 +162,13 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             ),
                         ),
@@ -186,16 +188,16 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = patterntools.select_first(3)
-                >>> print(format(pattern))
-                patterntools.Pattern(
+                >>> f(pattern)
+                abjad.Pattern(
                     indices=[0, 1, 2],
                     )
 
             ::
 
                 >>> pattern = ~pattern
-                >>> print(format(pattern))
-                patterntools.Pattern(
+                >>> f(pattern)
+                abjad.Pattern(
                     indices=[0, 1, 2],
                     inverted=True,
                     )
@@ -203,8 +205,8 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = ~pattern
-                >>> print(format(pattern))
-                patterntools.Pattern(
+                >>> f(pattern)
+                abjad.Pattern(
                     indices=[0, 1, 2],
                     inverted=False,
                     )
@@ -226,7 +228,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -244,7 +246,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 2, 3],
                 ...     )
 
@@ -262,7 +264,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[-3],
                 ...     )
 
@@ -303,13 +305,13 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             ),
                         ),
@@ -334,13 +336,13 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             ),
                         ),
@@ -365,9 +367,9 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = [1, 0, 0, 1, 1]
-                >>> pattern = patterntools.Pattern.from_vector(pattern)
-                >>> print(format(pattern))
-                patterntools.Pattern(
+                >>> pattern = abjad.Pattern.from_vector(pattern)
+                >>> f(pattern)
+                abjad.Pattern(
                     indices=[0, 3, 4],
                     period=5,
                     )
@@ -397,9 +399,9 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = [1, 0, 0, 1, 1, 0]
-                >>> pattern = patterntools.Pattern.from_vector(pattern)
-                >>> print(format(pattern))
-                patterntools.Pattern(
+                >>> pattern = abjad.Pattern.from_vector(pattern)
+                >>> f(pattern)
+                abjad.Pattern(
                     indices=[0, 3, 4],
                     period=6,
                     )
@@ -444,7 +446,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[4, 5, 6, 7],
                 ...     )
 
@@ -477,7 +479,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[4, 5, 6, 7],
                 ...     period=20,
                 ...     )
@@ -510,7 +512,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[4, 5, 6, 7],
                 ...     period=20,
                 ...     )
@@ -553,7 +555,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[4, 5, 6, 7],
                 ...     )
 
@@ -566,7 +568,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[8, 9],
                 ...     period=10,
                 ...     )
@@ -598,7 +600,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -631,7 +633,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -669,7 +671,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -708,7 +710,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -742,7 +744,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -780,7 +782,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -851,7 +853,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -886,7 +888,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -894,8 +896,8 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = pattern.reverse()
-                >>> print(format(pattern))
-                patterntools.Pattern(
+                >>> f(pattern)
+                abjad.Pattern(
                     indices=[-1, -2, -8],
                     period=8,
                     )
@@ -938,7 +940,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -971,7 +973,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -979,8 +981,8 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = pattern.rotate(n=2)
-                >>> print(format(pattern))
-                patterntools.Pattern(
+                >>> f(pattern)
+                abjad.Pattern(
                     indices=[2, 3, 9],
                     period=8,
                     )
@@ -1015,7 +1017,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[-3, -2, -1],
                 ...     period=8,
                 ...     )
@@ -1048,7 +1050,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[-3, -2, -1],
                 ...     period=8,
                 ...     )
@@ -1056,8 +1058,8 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = pattern.rotate(n=2)
-                >>> print(format(pattern))
-                patterntools.Pattern(
+                >>> f(pattern)
+                abjad.Pattern(
                     indices=[-1, 0, 1],
                     period=8,
                     )
@@ -1103,7 +1105,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -1119,7 +1121,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -1149,7 +1151,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -1190,7 +1192,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     inverted=True
@@ -1245,7 +1247,7 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker()
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     payload=maker,
                 ...     period=8,
@@ -1290,7 +1292,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -1330,7 +1332,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -1382,7 +1384,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -1398,7 +1400,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0, 2, 3],
                 ...     )
 

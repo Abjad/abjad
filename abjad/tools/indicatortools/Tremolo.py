@@ -12,13 +12,13 @@ class Tremolo(AbjadValueObject):
         ::
 
             >>> chord = Chord("<cs' e'>4")
-            >>> tremolo = indicatortools.Tremolo(beam_count=2)
+            >>> tremolo = abjad.Tremolo(beam_count=2)
             >>> attach(tremolo, chord)
             >>> show(chord) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> print(format(chord))
+            >>> f(chord)
             \repeat tremolo 2
             {
             cs'16 e'16
@@ -31,13 +31,13 @@ class Tremolo(AbjadValueObject):
         ::
 
             >>> chord = Chord("<cs' e'>4")
-            >>> tremolo = indicatortools.Tremolo(beam_count=3)
+            >>> tremolo = abjad.Tremolo(beam_count=3)
             >>> attach(tremolo, chord)
             >>> show(chord) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> print(format(chord))
+            >>> f(chord)
             \repeat tremolo 4
             {
             cs'32 e'32
@@ -79,7 +79,7 @@ class Tremolo(AbjadValueObject):
             ::
 
                 >>> import copy
-                >>> tremolo_1 = indicatortools.Tremolo(beam_count=2)
+                >>> tremolo_1 = abjad.Tremolo(beam_count=2)
                 >>> tremolo_2 = copy.copy(tremolo_1)
 
             ::
@@ -106,9 +106,9 @@ class Tremolo(AbjadValueObject):
 
             ::
 
-                >>> tremolo = indicatortools.Tremolo(beam_count=2)
+                >>> tremolo = abjad.Tremolo(beam_count=2)
                 >>> print(format(tremolo))
-                indicatortools.Tremolo(
+                abjad.Tremolo(
                     beam_count=2,
                     )
 
@@ -118,9 +118,9 @@ class Tremolo(AbjadValueObject):
 
             ::
 
-                >>> tremolo = indicatortools.Tremolo(beam_count=3)
+                >>> tremolo = abjad.Tremolo(beam_count=3)
                 >>> print(format(tremolo))
-                indicatortools.Tremolo(
+                abjad.Tremolo(
                     beam_count=3,
                     )
 
@@ -145,7 +145,7 @@ class Tremolo(AbjadValueObject):
 
             ::
 
-                >>> tremolo = indicatortools.Tremolo(beam_count=2)
+                >>> tremolo = abjad.Tremolo(beam_count=2)
                 >>> str(tremolo)
                 'Tremolo(beam_count=2)'
 
@@ -155,7 +155,7 @@ class Tremolo(AbjadValueObject):
 
             ::
 
-                >>> tremolo = indicatortools.Tremolo(beam_count=3)
+                >>> tremolo = abjad.Tremolo(beam_count=3)
                 >>> str(tremolo)
                 'Tremolo(beam_count=3)'
 
@@ -177,13 +177,13 @@ class Tremolo(AbjadValueObject):
             ::
 
                 >>> chord = Chord("<cs' e'>4")
-                >>> tremolo = indicatortools.Tremolo(beam_count=2)
+                >>> tremolo = abjad.Tremolo(beam_count=2)
                 >>> attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \repeat tremolo 2
                 {
                 cs'16 e'16
@@ -196,13 +196,13 @@ class Tremolo(AbjadValueObject):
             ::
 
                 >>> chord = Chord("<cs' e'>4")
-                >>> tremolo = indicatortools.Tremolo()
+                >>> tremolo = abjad.Tremolo()
                 >>> attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \repeat tremolo 4
                 {
                 cs'32 e'32
@@ -227,13 +227,13 @@ class Tremolo(AbjadValueObject):
             ::
 
                 >>> chord = Chord("<cs' e'>4")
-                >>> tremolo = indicatortools.Tremolo()
+                >>> tremolo = abjad.Tremolo()
                 >>> attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \repeat tremolo 4
                 {
                 cs'32 e'32
@@ -246,13 +246,13 @@ class Tremolo(AbjadValueObject):
             ::
 
                 >>> chord = Chord("<cs' e'>4")
-                >>> tremolo = indicatortools.Tremolo(is_slurred=True)
+                >>> tremolo = abjad.Tremolo(is_slurred=True)
                 >>> attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \repeat tremolo 4
                 {
                 cs'32 \( e'32 \)

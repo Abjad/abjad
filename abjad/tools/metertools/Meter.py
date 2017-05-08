@@ -25,7 +25,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meter = metertools.Meter((2, 4))
+            >>> meter = abjad.Meter((2, 4))
             >>> meter
             Meter('(2/4 (1/4 1/4))')
             >>> print(meter.pretty_rtm_format)
@@ -45,7 +45,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meter = metertools.Meter((3, 4))
+            >>> meter = abjad.Meter((3, 4))
             >>> print(meter.pretty_rtm_format)
             (3/4 (
                 1/4
@@ -64,7 +64,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meter = metertools.Meter((4, 4))
+            >>> meter = abjad.Meter((4, 4))
             >>> meter
             Meter('(4/4 (1/4 1/4 1/4 1/4))')
             >>> print(meter.pretty_rtm_format)
@@ -86,7 +86,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meter = metertools.Meter((6, 8))
+            >>> meter = abjad.Meter((6, 8))
             >>> print(meter.pretty_rtm_format)
             (6/8 (
                 (3/8 (
@@ -110,7 +110,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meter = metertools.Meter((12, 8))
+            >>> meter = abjad.Meter((12, 8))
             >>> print(meter.pretty_rtm_format)
             (12/8 (
                 (3/8 (
@@ -142,7 +142,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meter = metertools.Meter((5, 4))
+            >>> meter = abjad.Meter((5, 4))
             >>> print(meter.pretty_rtm_format)
             (5/4 (
                 (3/4 (
@@ -166,7 +166,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meter = metertools.Meter((7, 4))
+            >>> meter = abjad.Meter((7, 4))
             >>> print(meter.pretty_rtm_format)
             (7/4 (
                 (3/4 (
@@ -193,7 +193,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meter = metertools.Meter(
+            >>> meter = abjad.Meter(
             ...     (7, 4),
             ...     decrease_durations_monotonically=False,
             ...     )
@@ -222,7 +222,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meter = metertools.Meter((6, 4))
+            >>> meter = abjad.Meter((6, 4))
             >>> meter
             Meter('(6/4 ((3/4 (1/4 1/4 1/4)) (3/4 (1/4 1/4 1/4))))')
             >>> print(meter.pretty_rtm_format)
@@ -245,7 +245,7 @@ class Meter(AbjadObject):
         ::
 
             >>> parser = rhythmtreetools.RhythmTreeParser()
-            >>> meter = metertools.Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
+            >>> meter = abjad.Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
             >>> meter
             Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
             >>> print(meter.pretty_rtm_format)
@@ -442,9 +442,9 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((7, 4))
+                >>> meter = abjad.Meter((7, 4))
                 >>> print(format(meter))
-                metertools.Meter(
+                abjad.Meter(
                     '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
                     )
 
@@ -467,7 +467,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((7, 4))
+                >>> meter = abjad.Meter((7, 4))
                 >>> meter_graph = meter.__graph__()
                 >>> graph(meter_graph) # doctest: +SKIP
 
@@ -698,7 +698,7 @@ class Meter(AbjadObject):
             ::
 
 
-                >>> meter = metertools.Meter((5, 4))
+                >>> meter = abjad.Meter((5, 4))
                 >>> for x in meter:
                 ...    x
                 ...
@@ -740,7 +740,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> for numerator in range(1, 9):
-                ...     meter = metertools.Meter((numerator, 8))
+                ...     meter = abjad.Meter((numerator, 8))
                 ...     print(str(meter))
                 1/8
                 2/8
@@ -869,7 +869,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> meters = [(3, 4), (4, 4), (5, 4)]
-                >>> meters = [metertools.Meter(_) for _ in meters]
+                >>> meters = [abjad.Meter(_) for _ in meters]
 
         ..  container:: example
 
@@ -878,7 +878,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> argument = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-                >>> for x in metertools.Meter.fit_meters_to_expr(
+                >>> for x in abjad.Meter.fit_meters_to_expr(
                 ...     argument, meters):
                 ...     print(x.implied_time_signature)
                 ...
@@ -894,7 +894,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> argument = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-                >>> for x in metertools.Meter.fit_meters_to_expr(
+                >>> for x in abjad.Meter.fit_meters_to_expr(
                 ...     argument, meters):
                 ...     print(x.implied_time_signature)
                 ...
@@ -936,7 +936,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((4, 4))
+                >>> meter = abjad.Meter((4, 4))
                 >>> kernel = meter.generate_offset_kernel_to_denominator(8)
                 >>> for offset, weight in sorted(kernel.kernel.items()):
                 ...     print('{!s}\t{!s}'.format(offset, weight))
@@ -1001,7 +1001,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter(
+                >>> meter = abjad.Meter(
                 ...     (7, 4),
                 ...     decrease_durations_monotonically=True,
                 ...     )
@@ -1035,7 +1035,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter(
+                >>> meter = abjad.Meter(
                 ...     (7, 4),
                 ...     decrease_durations_monotonically=False,
                 ...     )
@@ -1072,7 +1072,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((7, 4))
+                >>> meter = abjad.Meter((7, 4))
                 >>> meter.denominator
                 4
 
@@ -1129,7 +1129,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> metertools.Meter((4, 4)).implied_time_signature
+                >>> abjad.Meter((4, 4)).implied_time_signature
                 TimeSignature((4, 4))
 
         Returns time signature.
@@ -1148,7 +1148,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> for numerator in range(1, 13):
-                ...     meter = metertools.Meter((numerator, 4))
+                ...     meter = abjad.Meter((numerator, 4))
                 ...     string = True if meter.is_compound else ''
                 ...     print(str(meter), string)
                 ...
@@ -1172,7 +1172,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> for numerator in range(1, 13):
-                ...     meter = metertools.Meter((numerator, 8))
+                ...     meter = abjad.Meter((numerator, 8))
                 ...     string = True if meter.is_compound else ''
                 ...     print(str(meter), string)
                 ...
@@ -1210,7 +1210,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> for numerator in range(1, 13):
-                ...     meter = metertools.Meter((numerator, 4))
+                ...     meter = abjad.Meter((numerator, 4))
                 ...     string = True if meter.is_simple else ''
                 ...     print(str(meter), string)
                 ...
@@ -1234,7 +1234,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> for numerator in range(1, 13):
-                ...     meter = metertools.Meter((numerator, 8))
+                ...     meter = abjad.Meter((numerator, 8))
                 ...     string = True if meter.is_simple else ''
                 ...     print(str(meter), string)
                 ...
@@ -1268,7 +1268,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((7, 4))
+                >>> meter = abjad.Meter((7, 4))
                 >>> meter.numerator
                 7
 
@@ -1284,7 +1284,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((6, 4))
+                >>> meter = abjad.Meter((6, 4))
                 >>> meter.pair
                 (6, 4)
 
@@ -1302,7 +1302,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> metertools.Meter((6, 8)).preferred_boundary_depth is None
+                >>> abjad.Meter((6, 8)).preferred_boundary_depth is None
                 True
 
         ..  container:: example
@@ -1311,7 +1311,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter(
+                >>> meter = abjad.Meter(
                 ...     (6, 8),
                 ...     preferred_boundary_depth=1,
                 ...     )
@@ -1336,7 +1336,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((7, 4))
+                >>> meter = abjad.Meter((7, 4))
                 >>> print(meter.pretty_rtm_format)
                 (7/4 (
                     (3/4 (
@@ -1362,55 +1362,55 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((7, 4))
+                >>> meter = abjad.Meter((7, 4))
                 >>> print(format(meter.root_node))
                 rhythmtreetools.RhythmTreeContainer(
                     children=(
                         rhythmtreetools.RhythmTreeContainer(
                             children=(
                                 rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
                                 rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
                                 rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
                                 ),
-                            preprolated_duration=mathtools.NonreducedFraction(3, 4),
+                            preprolated_duration=abjad.NonreducedFraction(3, 4),
                             ),
                         rhythmtreetools.RhythmTreeContainer(
                             children=(
                                 rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
                                 rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
                                 ),
-                            preprolated_duration=mathtools.NonreducedFraction(2, 4),
+                            preprolated_duration=abjad.NonreducedFraction(2, 4),
                             ),
                         rhythmtreetools.RhythmTreeContainer(
                             children=(
                                 rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
                                 rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=durationtools.Duration(1, 4),
+                                    preprolated_duration=abjad.Duration(1, 4),
                                     is_pitched=True,
                                     ),
                                 ),
-                            preprolated_duration=mathtools.NonreducedFraction(2, 4),
+                            preprolated_duration=abjad.NonreducedFraction(2, 4),
                             ),
                         ),
-                    preprolated_duration=mathtools.NonreducedFraction(7, 4),
+                    preprolated_duration=abjad.NonreducedFraction(7, 4),
                     )
 
         Returns rhythm tree node.
@@ -1425,7 +1425,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((7, 4))
+                >>> meter = abjad.Meter((7, 4))
                 >>> meter.rtm_format
                 '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
 

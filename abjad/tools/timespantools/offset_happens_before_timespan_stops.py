@@ -12,11 +12,11 @@ def offset_happens_before_timespan_stops(
     ::
 
         >>> relation = timespantools.offset_happens_before_timespan_stops()
-        >>> print(format(relation))
-        timespantools.OffsetTimespanTimeRelation(
-            inequality=timespantools.CompoundInequality(
+        >>> f(relation)
+        abjad.OffsetTimespanTimeRelation(
+            inequality=abjad.CompoundInequality(
                 [
-                    timespantools.Inequality('offset < timespan.stop'),
+                    abjad.Inequality('offset < timespan.stop'),
                     ],
                 logical_operator='and',
                 ),

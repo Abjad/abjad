@@ -11,9 +11,9 @@ class BowMotionTechnique(AbjadValueObject):
 
         ::
 
-            >>> bow_motion_technique = indicatortools.BowMotionTechnique('jete')
-            >>> print(format(bow_motion_technique))
-            indicatortools.BowMotionTechnique(
+            >>> bow_motion_technique = abjad.BowMotionTechnique('jete')
+            >>> f(bow_motion_technique)
+            abjad.BowMotionTechnique(
                 technique_name='jete',
                 )
 
@@ -23,9 +23,9 @@ class BowMotionTechnique(AbjadValueObject):
 
         ::
 
-            >>> bow_motion_technique = indicatortools.BowMotionTechnique('ordinario')
-            >>> print(format(bow_motion_technique))
-            indicatortools.BowMotionTechnique(
+            >>> bow_motion_technique = abjad.BowMotionTechnique('ordinario')
+            >>> f(bow_motion_technique)
+            abjad.BowMotionTechnique(
                 technique_name='ordinario',
                 )
 
@@ -38,6 +38,8 @@ class BowMotionTechnique(AbjadValueObject):
         '_default_scope',
         '_technique_name',
         )
+
+    _publish_storage_format = True
 
     _valid_technique_names = (
         'circular',
@@ -66,7 +68,7 @@ class BowMotionTechnique(AbjadValueObject):
 
             ::
 
-                >>> technique = indicatortools.BowMotionTechnique('jete')
+                >>> technique = abjad.BowMotionTechnique('jete')
                 >>> technique.default_scope is None
                 True
 

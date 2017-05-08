@@ -18,20 +18,20 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     ::
 
-        >>> print(format(time_relation))
-        timespantools.OffsetTimespanTimeRelation(
-            inequality=timespantools.CompoundInequality(
+        >>> f(time_relation)
+        abjad.OffsetTimespanTimeRelation(
+            inequality=abjad.CompoundInequality(
                 [
-                    timespantools.Inequality('timespan.start <= offset'),
-                    timespantools.Inequality('offset < timespan.stop'),
+                    abjad.Inequality('timespan.start <= offset'),
+                    abjad.Inequality('offset < timespan.stop'),
                     ],
                 logical_operator='and',
                 ),
-            timespan=timespantools.Timespan(
-                start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(10, 1),
+            timespan=abjad.Timespan(
+                start_offset=abjad.Offset(0, 1),
+                stop_offset=abjad.Offset(10, 1),
                 ),
-            offset=durationtools.Offset(5, 1),
+            offset=abjad.Offset(5, 1),
             )
 
     Offset / timespan time relations are immutable.
@@ -45,6 +45,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
         '_offset',
         '_timespan',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -117,20 +119,20 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> print(format(time_relation))
-            timespantools.OffsetTimespanTimeRelation(
-                inequality=timespantools.CompoundInequality(
+            >>> f(time_relation)
+            abjad.OffsetTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
                     [
-                        timespantools.Inequality('timespan.start <= offset'),
-                        timespantools.Inequality('offset < timespan.stop'),
+                        abjad.Inequality('timespan.start <= offset'),
+                        abjad.Inequality('offset < timespan.stop'),
                         ],
                     logical_operator='and',
                     ),
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(10, 1),
+                timespan=abjad.Timespan(
+                    start_offset=abjad.Offset(0, 1),
+                    stop_offset=abjad.Offset(10, 1),
                     ),
-                offset=durationtools.Offset(5, 1),
+                offset=abjad.Offset(5, 1),
                 )
 
         Returns string.

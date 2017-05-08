@@ -58,8 +58,8 @@ class SchemePair(Scheme):
 
         ::
 
-            >>> print(format(scheme_pair, 'storage'))
-            schemetools.SchemePair(-1, 1)
+            >>> f(scheme_pair)
+            abjad.SchemePair(-1, 1)
 
         Returns string.
         '''

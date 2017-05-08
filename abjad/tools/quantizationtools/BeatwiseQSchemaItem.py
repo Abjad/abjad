@@ -22,8 +22,8 @@ class BeatwiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print(format(q_schema_item))
         quantizationtools.BeatwiseQSchemaItem(
-            tempo=indicatortools.Tempo(
-                reference_duration=durationtools.Duration(1, 4), 
+            tempo=abjad.Tempo(
+                reference_duration=abjad.Duration(1, 4),
                 units_per_minute=60,
                 ),
             )
@@ -37,7 +37,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print(format(q_schema_item))
         quantizationtools.BeatwiseQSchemaItem(
-            beatspan=durationtools.Duration(1, 8),
+            beatspan=abjad.Duration(1, 8),
             )
 
     '''

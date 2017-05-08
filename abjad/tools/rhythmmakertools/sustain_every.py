@@ -17,7 +17,7 @@ def sustain_every(indices, period, inverted=None):
 
             >>> f(mask)
             rhythmmakertools.SustainMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[1],
                     period=2,
                     ),
@@ -70,7 +70,7 @@ def sustain_every(indices, period, inverted=None):
 
             >>> f(mask)
             rhythmmakertools.SustainMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[1, 2],
                     period=3,
                     ),
