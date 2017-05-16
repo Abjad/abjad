@@ -62,6 +62,7 @@ from abjad.tools.mathtools import NonreducedFraction
 from abjad.tools.mathtools import NonreducedRatio
 from abjad.tools.mathtools import Ratio
 from abjad.tools.metertools import Meter
+from abjad.tools.metertools import MeterList
 
 # scoretools classes (but not functions)
 from abjad.tools.scoretools import Chord

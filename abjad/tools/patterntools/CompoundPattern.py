@@ -20,12 +20,12 @@ class CompoundPattern(TypedTuple):
 
         ::
 
-            >>> pattern = patterntools.CompoundPattern(
+            >>> pattern = abjad.CompoundPattern(
             ...     [
-            ...         patterntools.Pattern(
+            ...         abjad.Pattern(
             ...             indices=[0, 1, 2],
             ...             ),
-            ...         patterntools.Pattern(
+            ...         abjad.Pattern(
             ...             indices=[-3, -2, -1],
             ...             ),
             ...         ],
@@ -33,13 +33,13 @@ class CompoundPattern(TypedTuple):
 
         ::
 
-            >>> print(format(pattern))
-            patterntools.CompoundPattern(
+            >>> f(pattern)
+            abjad.CompoundPattern(
                 (
-                    patterntools.Pattern(
+                    abjad.Pattern(
                         indices=[0, 1, 2],
                         ),
-                    patterntools.Pattern(
+                    abjad.Pattern(
                         indices=[-3, -2, -1],
                         ),
                     ),
@@ -53,13 +53,13 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             inverted=True,
                 ...             ),
@@ -69,14 +69,14 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=2,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             inverted=True,
                             ),
@@ -164,16 +164,16 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=2,
                             ),
@@ -199,21 +199,21 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.CompoundPattern(
+                        abjad.CompoundPattern(
                             (
-                                patterntools.Pattern(
+                                abjad.Pattern(
                                     indices=[0, 1, 2],
                                     ),
-                                patterntools.Pattern(
+                                abjad.Pattern(
                                     indices=[-3, -2, -1],
                                     ),
                                 ),
                             operator='and',
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=2,
                             ),
@@ -251,13 +251,13 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             ),
                         ),
@@ -277,13 +277,13 @@ class CompoundPattern(TypedTuple):
             ::
 
                 >>> pattern = ~pattern
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             ),
                         ),
@@ -318,16 +318,16 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=2,
                             ),
@@ -353,18 +353,18 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
-                        patterntools.CompoundPattern(
+                        abjad.CompoundPattern(
                             (
-                                patterntools.Pattern(
+                                abjad.Pattern(
                                     indices=[-3, -2, -1],
                                     ),
-                                patterntools.Pattern(
+                                abjad.Pattern(
                                     indices=[0],
                                     period=2,
                                     ),
@@ -405,16 +405,16 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=2,
                             ),
@@ -440,18 +440,18 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
-                        patterntools.CompoundPattern(
+                        abjad.CompoundPattern(
                             (
-                                patterntools.Pattern(
+                                abjad.Pattern(
                                     indices=[-3, -2, -1],
                                     ),
-                                patterntools.Pattern(
+                                abjad.Pattern(
                                     indices=[0],
                                     period=2,
                                     ),
@@ -500,12 +500,12 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -537,13 +537,13 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             inverted=True,
                 ...             ),
@@ -581,14 +581,14 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=4,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=5,
                             ),
@@ -673,7 +673,7 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern()
+                >>> pattern = abjad.CompoundPattern()
 
             Total length 16:
 
@@ -743,9 +743,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -777,9 +777,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -811,9 +811,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -851,12 +851,12 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -930,12 +930,12 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -1009,12 +1009,12 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -1088,13 +1088,13 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             inverted=True,
                 ...             ),
@@ -1169,23 +1169,23 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             inverted=True,
                 ...             ),
                 ...         ],
                 ...     operator='and',
                 ...     )
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
                 ...         pattern,
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -1195,22 +1195,22 @@ class CompoundPattern(TypedTuple):
             ::
 
                 >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                abjad.CompoundPattern(
                     (
-                        patterntools.CompoundPattern(
+                        abjad.CompoundPattern(
                             (
-                                patterntools.Pattern(
+                                abjad.Pattern(
                                     indices=[0],
                                     period=2,
                                     ),
-                                patterntools.Pattern(
+                                abjad.Pattern(
                                     indices=[-3, -2, -1],
                                     inverted=True,
                                     ),
                                 ),
                             operator='and',
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0, 1, 2],
                             ),
                         ),
@@ -1318,13 +1318,13 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             inverted=True,
                 ...             ),
@@ -1334,14 +1334,14 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=2,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             inverted=True,
                             ),
@@ -1354,14 +1354,14 @@ class CompoundPattern(TypedTuple):
             ::
 
                 >>> pattern = pattern.reverse()
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-1],
                             period=2,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[2, 1, 0],
                             inverted=True,
                             ),
@@ -1387,13 +1387,13 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = patterntools.CompoundPattern(
+                >>> pattern = abjad.CompoundPattern(
                 ...     [
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         patterntools.Pattern(
+                ...         abjad.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             inverted=True,
                 ...             ),
@@ -1403,14 +1403,14 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=2,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-3, -2, -1],
                             inverted=True,
                             ),
@@ -1423,14 +1423,14 @@ class CompoundPattern(TypedTuple):
             ::
 
                 >>> pattern = pattern.rotate(n=2)
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[2],
                             period=2,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-1, 0, 1],
                             inverted=True,
                             ),
@@ -1515,20 +1515,20 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = patterntools.Pattern([0], period=4)
-                >>> pattern_2 = patterntools.Pattern([0], period=5)
+                >>> pattern_1 = abjad.Pattern([0], period=4)
+                >>> pattern_2 = abjad.Pattern([0], period=5)
                 >>> pattern = pattern_1 | pattern_2
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=4,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=5,
                             ),
@@ -1547,20 +1547,20 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = patterntools.Pattern([0], period=4)
-                >>> pattern_2 = patterntools.Pattern([0])
+                >>> pattern_1 = abjad.Pattern([0], period=4)
+                >>> pattern_2 = abjad.Pattern([0])
                 >>> pattern = pattern_1 | pattern_2
 
             ::
 
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
+                >>> f(pattern)
+                abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=4,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             ),
                         ),

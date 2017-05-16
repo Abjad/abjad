@@ -14,12 +14,12 @@ class Arrow(LineSegment):
             >>> staff = Staff("c'4 d'4 e'4 f'4")
             >>> start_markup = Markup('pont.').upright()
             >>> stop_markup = Markup('ord.').upright()
-            >>> arrow = indicatortools.Arrow()
+            >>> arrow = abjad.Arrow()
 
         ::
 
-            >>> print(format(arrow))
-            indicatortools.Arrow(
+            >>> f(arrow)
+            abjad.Arrow(
                 arrow_width=0.25,
                 dash_fraction=1,
                 left_broken_text=False,
@@ -91,6 +91,8 @@ class Arrow(LineSegment):
         '_default_scope',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -144,7 +146,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(arrow_width=0.25)
+                >>> arrow = abjad.Arrow(arrow_width=0.25)
 
             ::
 
@@ -205,7 +207,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(arrow_width=0.5)
+                >>> arrow = abjad.Arrow(arrow_width=0.5)
 
             ::
 
@@ -264,7 +266,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(arrow_width=1)
+                >>> arrow = abjad.Arrow(arrow_width=1)
 
             ::
 
@@ -335,7 +337,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(dash_fraction=1)
+                >>> arrow = abjad.Arrow(dash_fraction=1)
 
             ::
 
@@ -395,7 +397,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(dash_fraction=0.5)
+                >>> arrow = abjad.Arrow(dash_fraction=0.5)
 
             ::
 
@@ -453,7 +455,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(dash_fraction=0.1)
+                >>> arrow = abjad.Arrow(dash_fraction=0.1)
 
             ::
 
@@ -521,7 +523,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(
+                >>> arrow = abjad.Arrow(
                 ...     dash_period=None,
                 ...     )
 
@@ -584,7 +586,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(
+                >>> arrow = abjad.Arrow(
                 ...     dash_fraction=0.25,
                 ...     dash_period=1,
                 ...     )
@@ -647,7 +649,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(
+                >>> arrow = abjad.Arrow(
                 ...     dash_fraction=0.25,
                 ...     dash_period=4,
                 ...     )
@@ -714,7 +716,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            >>> arrow = indicatortools.Arrow()
+            >>> arrow = abjad.Arrow()
             >>> arrow.default_scope is None
             True
 
@@ -744,12 +746,12 @@ class Arrow(LineSegment):
 
                     >>> start_markup = Markup('pont.').upright()
                     >>> stop_markup = Markup('ord.').upright()
-                    >>> arrow = indicatortools.Arrow()
+                    >>> arrow = abjad.Arrow()
 
                 ::
 
-                    >>> print(format(arrow))
-                    indicatortools.Arrow(
+                    >>> f(arrow)
+                    abjad.Arrow(
                         arrow_width=0.25,
                         dash_fraction=1,
                         left_broken_text=False,
@@ -835,19 +837,19 @@ class Arrow(LineSegment):
                     >>> start_markup = Markup('pont.').upright()
                     >>> stop_markup = Markup('ord.').upright()
                     >>> left_broken_markup = Markup('(pont./ord.)').upright()
-                    >>> arrow = indicatortools.Arrow(
+                    >>> arrow = abjad.Arrow(
                     ...     left_broken_text=left_broken_markup,
                     ... )
 
                 ::
 
-                    >>> print(format(arrow))
-                    indicatortools.Arrow(
+                    >>> f(arrow)
+                    abjad.Arrow(
                         arrow_width=0.25,
                         dash_fraction=1,
-                        left_broken_text=markuptools.Markup(
+                        left_broken_text=abjad.Markup(
                             contents=[
-                                markuptools.MarkupCommand(
+                                abjad.MarkupCommand(
                                     'upright',
                                     '(pont./ord.)'
                                     ),
@@ -943,12 +945,12 @@ class Arrow(LineSegment):
 
                     >>> start_markup = Markup('pont.').upright()
                     >>> stop_markup = Markup('ord.').upright()
-                    >>> arrow = indicatortools.Arrow()
+                    >>> arrow = abjad.Arrow()
 
                 ::
 
-                    >>> print(format(arrow))
-                    indicatortools.Arrow(
+                    >>> f(arrow)
+                    abjad.Arrow(
                         arrow_width=0.25,
                         dash_fraction=1,
                         left_broken_text=False,
@@ -1033,14 +1035,14 @@ class Arrow(LineSegment):
 
                     >>> start_markup = Markup('pont.').upright()
                     >>> stop_markup = Markup('ord.').upright()
-                    >>> arrow = indicatortools.Arrow(
+                    >>> arrow = abjad.Arrow(
                     ...     right_broken_arrow=False,
                     ... )
 
                 ::
 
-                    >>> print(format(arrow))
-                    indicatortools.Arrow(
+                    >>> f(arrow)
+                    abjad.Arrow(
                         arrow_width=0.25,
                         dash_fraction=1,
                         left_broken_text=False,
@@ -1123,7 +1125,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(style=None)
+                >>> arrow = abjad.Arrow(style=None)
 
             ::
 
@@ -1184,7 +1186,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(style='zigzag')
+                >>> arrow = abjad.Arrow(style='zigzag')
 
             ::
 
@@ -1242,7 +1244,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(style='trill')
+                >>> arrow = abjad.Arrow(style='trill')
 
             ::
 
@@ -1300,7 +1302,7 @@ class Arrow(LineSegment):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> start_markup = Markup('pont.').upright()
                 >>> stop_markup = Markup('ord.').upright()
-                >>> arrow = indicatortools.Arrow(style='dotted-line')
+                >>> arrow = abjad.Arrow(style='dotted-line')
 
             ::
 

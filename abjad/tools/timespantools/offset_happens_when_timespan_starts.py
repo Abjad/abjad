@@ -12,11 +12,11 @@ def offset_happens_when_timespan_starts(
     ::
 
         >>> relation = timespantools.offset_happens_when_timespan_starts()
-        >>> print(format(relation))
-        timespantools.OffsetTimespanTimeRelation(
-            inequality=timespantools.CompoundInequality(
+        >>> f(relation)
+        abjad.OffsetTimespanTimeRelation(
+            inequality=abjad.CompoundInequality(
                 [
-                    timespantools.Inequality('offset == timespan.start'),
+                    abjad.Inequality('offset == timespan.start'),
                     ],
                 logical_operator='and',
                 ),

@@ -95,14 +95,14 @@ class CompoundOperator(AbjadValueObject):
             ::
 
                 >>> f(operator_3)
-                pitchtools.CompoundOperator(
+                abjad.CompoundOperator(
                     operators=[
-                        pitchtools.Transposition(
+                        abjad.Transposition(
                             n=1,
                             ),
-                        pitchtools.Inversion(),
-                        pitchtools.Retrograde(),
-                        pitchtools.Inversion(),
+                        abjad.Inversion(),
+                        abjad.Retrograde(),
+                        abjad.Inversion(),
                         ],
                     )
 
@@ -359,12 +359,12 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.duplicate(counts=1)
                 >>> f(operator)
-                pitchtools.CompoundOperator(
+                abjad.CompoundOperator(
                     operators=[
-                        sequencetools.Duplication(
+                        abjad.Duplication(
                             counts=1,
                             ),
                         ],
@@ -386,13 +386,13 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.invert(axis=2)
                 >>> f(operator)
-                pitchtools.CompoundOperator(
+                abjad.CompoundOperator(
                     operators=[
-                        pitchtools.Inversion(
-                            axis=pitchtools.NamedPitch("d'"),
+                        abjad.Inversion(
+                            axis=abjad.NamedPitch("d'"),
                             ),
                         ],
                     )
@@ -410,12 +410,12 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.multiply(n=3)
                 >>> f(operator)
-                pitchtools.CompoundOperator(
+                abjad.CompoundOperator(
                     operators=[
-                        pitchtools.Multiplication(
+                        abjad.Multiplication(
                             n=3,
                             ),
                         ],
@@ -434,12 +434,12 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.retrograde()
                 >>> f(operator)
-                pitchtools.CompoundOperator(
+                abjad.CompoundOperator(
                     operators=[
-                        pitchtools.Retrograde(),
+                        abjad.Retrograde(),
                         ],
                     )
 
@@ -456,12 +456,12 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.rotate(n=-1)
                 >>> f(operator)
-                pitchtools.CompoundOperator(
+                abjad.CompoundOperator(
                     operators=[
-                        pitchtools.Rotation(
+                        abjad.Rotation(
                             n=-1,
                             ),
                         ],
@@ -490,9 +490,9 @@ class CompoundOperator(AbjadValueObject):
             ::
 
                 >>> f(operator)
-                pitchtools.CompoundOperator(
+                abjad.CompoundOperator(
                     operators=[
-                        pitchtools.Transposition(
+                        abjad.Transposition(
                             n=1,
                             ),
                         ],

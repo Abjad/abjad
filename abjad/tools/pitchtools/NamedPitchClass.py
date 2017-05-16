@@ -185,7 +185,7 @@ class NamedPitchClass(PitchClass):
             ::
 
                 >>> format(NamedPitchClass('cs'))
-                "pitchtools.NamedPitchClass('cs')"
+                "abjad.NamedPitchClass('cs')"
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 

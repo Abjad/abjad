@@ -66,13 +66,13 @@ class LabelAgent(abctools.AbjadObject):
                 >>> staff = Staff("c'4 e'4 d'4 f'4")
                 >>> expression = label().with_pitches()
                 >>> f(expression)
-                expressiontools.Expression(
+                abjad.Expression(
                     callbacks=[
-                        expressiontools.Expression(
+                        abjad.Expression(
                             evaluation_template='abjad.agenttools.LabelAgent',
                             is_initializer=True,
                             ),
-                        expressiontools.Expression(
+                        abjad.Expression(
                             evaluation_template='{}.with_pitches()',
                             ),
                         ],
@@ -158,13 +158,13 @@ class LabelAgent(abctools.AbjadObject):
                 >>> staff = Staff("c'4 e'4 d'4 f'4")
                 >>> expression = label().with_durations()
                 >>> f(expression)
-                expressiontools.Expression(
+                abjad.Expression(
                     callbacks=[
-                        expressiontools.Expression(
+                        abjad.Expression(
                             evaluation_template='abjad.agenttools.LabelAgent',
                             is_initializer=True,
                             ),
-                        expressiontools.Expression(
+                        abjad.Expression(
                             evaluation_template='{}.with_durations()',
                             ),
                         ],

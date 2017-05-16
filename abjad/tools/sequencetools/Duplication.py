@@ -15,8 +15,8 @@ class Duplication(abctools.AbjadValueObject):
 
         ::
 
-            >>> print(format(operator_))
-            sequencetools.Duplication(
+            >>> f(operator_)
+            abjad.Duplication(
                 counts=2,
                 period=4,
                 )
@@ -30,6 +30,8 @@ class Duplication(abctools.AbjadValueObject):
         '_indices',
         '_period',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

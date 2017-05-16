@@ -50,19 +50,19 @@ class PitchClassVector(Vector):
             ::
 
                 >>> f(vector)
-                pitchtools.PitchClassVector(
+                abjad.PitchClassVector(
                     {
-                        pitchtools.NumberedPitchClass(0): 1,
-                        pitchtools.NumberedPitchClass(1): 1,
-                        pitchtools.NumberedPitchClass(2): 1,
-                        pitchtools.NumberedPitchClass(3): 1,
-                        pitchtools.NumberedPitchClass(4): 2,
-                        pitchtools.NumberedPitchClass(6): 1,
-                        pitchtools.NumberedPitchClass(7): 1,
-                        pitchtools.NumberedPitchClass(9): 2,
-                        pitchtools.NumberedPitchClass(10): 1,
+                        abjad.NumberedPitchClass(0): 1,
+                        abjad.NumberedPitchClass(1): 1,
+                        abjad.NumberedPitchClass(2): 1,
+                        abjad.NumberedPitchClass(3): 1,
+                        abjad.NumberedPitchClass(4): 2,
+                        abjad.NumberedPitchClass(6): 1,
+                        abjad.NumberedPitchClass(7): 1,
+                        abjad.NumberedPitchClass(9): 2,
+                        abjad.NumberedPitchClass(10): 1,
                         },
-                    item_class=pitchtools.NumberedPitchClass,
+                    item_class=abjad.NumberedPitchClass,
                     )
 
         Returns string.

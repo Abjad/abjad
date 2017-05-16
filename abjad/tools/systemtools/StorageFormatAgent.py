@@ -27,6 +27,24 @@ class StorageFormatAgent(AbjadValueObject):
         '_signature_positional_names',
         )
 
+    _exclude_tools_package = (
+        'durationtools',
+        'datastructuretools',
+        'expressiontools',
+        'indicatortools',
+        'markuptools',
+        'mathtools',
+        'metertools',
+        'patterntools',
+        'pitchtools',
+        'schemetools',
+        'scoretools',
+        'selectiontools',
+        'selectortools',
+        'sequencetools',
+        'timespantools',
+        )
+
     _unindented_whitespace = '', '', ', '
 
     _indented_whitespace = '    ', '\n', ',\n'
@@ -77,8 +95,7 @@ class StorageFormatAgent(AbjadValueObject):
             collections.OrderedDict,
             datastructuretools.TypedOrderedDict,
             )):
-            return self._format_ordered_mapping(
-                as_storage_format, is_indented)
+            return self._format_ordered_mapping(as_storage_format, is_indented)
         elif isinstance(self._client, dict):
             return self._format_mapping(as_storage_format, is_indented)
         elif isinstance(self._client, float):
@@ -87,10 +104,17 @@ class StorageFormatAgent(AbjadValueObject):
 
     def _format_class(self, as_storage_format, is_indented):
         if as_storage_format:
-            result = '{}.{}'.format(
-                self.get_tools_package_name(),
-                self._client.__name__,
-                )
+            tools_package_name = self.get_tools_package_name()
+            if tools_package_name in self._exclude_tools_package:
+                result = '{}.{}'.format(
+                    self.get_root_package_name(),
+                    self._client.__name__,
+                    )
+            else:
+                result = '{}.{}'.format(
+                    tools_package_name,
+                    self._client.__name__,
+                    )
         else:
             result = self._client.__name__
         return [result]
@@ -485,8 +509,12 @@ class StorageFormatAgent(AbjadValueObject):
             class_name = self._client.__name__
         if as_storage_format:
             tools_package_name = agent.get_tools_package_name()
-            parts = [tools_package_name, class_name]
-            if self.format_specification.storage_format_includes_root_package:
+            if tools_package_name not in self._exclude_tools_package:
+                parts = [tools_package_name, class_name]
+            else:
+                parts = [class_name]
+            if (self.format_specification.storage_format_includes_root_package
+                or tools_package_name in self._exclude_tools_package):
                 parts.insert(0, self.get_root_package_name())
             return '.'.join(parts)
         return class_name
@@ -514,15 +542,15 @@ class StorageFormatAgent(AbjadValueObject):
                 ...         rhythmmakertools.silence_every([1], period=2),
                 ...         ],
                 ...     )
-                >>> print(format(rhythm_maker))
+                >>> f(rhythm_maker)
                 rhythmmakertools.TupletRhythmMaker(
                     tuplet_ratios=[
-                        mathtools.Ratio((3, 2)),
+                        abjad.Ratio((3, 2)),
                         ],
-                    division_masks=patterntools.PatternList(
+                    division_masks=abjad.PatternList(
                         (
                             rhythmmakertools.SilenceMask(
-                                pattern=patterntools.Pattern(
+                                pattern=abjad.Pattern(
                                     indices=[1],
                                     period=2,
                                     ),

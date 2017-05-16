@@ -75,6 +75,8 @@ class ColorFingering(AbjadValueObject):
 
     _format_slot = 'right'
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -97,8 +99,8 @@ class ColorFingering(AbjadValueObject):
         ::
 
             >>> fingering = indicatortools.ColorFingering(1)
-            >>> print(format(fingering))
-            indicatortools.ColorFingering(
+            >>> f(fingering)
+            abjad.ColorFingering(
                 number=1,
                 )
 

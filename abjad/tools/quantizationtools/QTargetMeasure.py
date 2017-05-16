@@ -27,14 +27,14 @@ class QTargetMeasure(AbjadObject):
 
         >>> print(format(q_target_measure, 'storage'))
         quantizationtools.QTargetMeasure(
-            offset_in_ms=durationtools.Offset(1000, 1),
+            offset_in_ms=abjad.Offset(1000, 1),
             search_tree=quantizationtools.UnweightedSearchTree(
                 definition={   2: None,
                     },
                 ),
-            time_signature=indicatortools.TimeSignature((4, 4)),
-            tempo=indicatortools.Tempo(
-                reference_duration=durationtools.Duration(1, 4), 
+            time_signature=abjad.TimeSignature((4, 4)),
+            tempo=abjad.Tempo(
+                reference_duration=abjad.Duration(1, 4), 
                 units_per_minute=60,
                 ),
             use_full_measure=False,
@@ -176,50 +176,50 @@ class QTargetMeasure(AbjadObject):
             ...     print(format(q_target_beat, 'storage'))
             ... 
             quantizationtools.QTargetBeat(
-                beatspan=durationtools.Duration(1, 4),
-                offset_in_ms=durationtools.Offset(1000, 1),
+                beatspan=abjad.Duration(1, 4),
+                offset_in_ms=abjad.Offset(1000, 1),
                 search_tree=quantizationtools.UnweightedSearchTree(
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(
-                    reference_duration=durationtools.Duration(1, 4), 
+                tempo=abjad.Tempo(
+                    reference_duration=abjad.Duration(1, 4), 
                     units_per_minute=60,
                     ),
                 )
             quantizationtools.QTargetBeat(
-                beatspan=durationtools.Duration(1, 4),
-                offset_in_ms=durationtools.Offset(2000, 1),
+                beatspan=abjad.Duration(1, 4),
+                offset_in_ms=abjad.Offset(2000, 1),
                 search_tree=quantizationtools.UnweightedSearchTree(
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(
-                    reference_duration=durationtools.Duration(1, 4), 
+                tempo=abjad.Tempo(
+                    reference_duration=abjad.Duration(1, 4), 
                     units_per_minute=60,
                     ),
                 )
             quantizationtools.QTargetBeat(
-                beatspan=durationtools.Duration(1, 4),
-                offset_in_ms=durationtools.Offset(3000, 1),
+                beatspan=abjad.Duration(1, 4),
+                offset_in_ms=abjad.Offset(3000, 1),
                 search_tree=quantizationtools.UnweightedSearchTree(
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(
-                    reference_duration=durationtools.Duration(1, 4), 
+                tempo=abjad.Tempo(
+                    reference_duration=abjad.Duration(1, 4), 
                     units_per_minute=60,
                     ),
                 )
             quantizationtools.QTargetBeat(
-                beatspan=durationtools.Duration(1, 4),
-                offset_in_ms=durationtools.Offset(4000, 1),
+                beatspan=abjad.Duration(1, 4),
+                offset_in_ms=abjad.Offset(4000, 1),
                 search_tree=quantizationtools.UnweightedSearchTree(
                     definition={   2: None,
                         },
                     ),
-                tempo=indicatortools.Tempo(
-                    reference_duration=durationtools.Duration(1, 4), 
+                tempo=abjad.Tempo(
+                    reference_duration=abjad.Duration(1, 4), 
                     units_per_minute=60,
                     ),
                 )

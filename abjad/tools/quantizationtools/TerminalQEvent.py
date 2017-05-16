@@ -8,7 +8,7 @@ class TerminalQEvent(QEvent):
         >>> q_event = quantizationtools.TerminalQEvent(1000)
         >>> print(format(q_event))
         quantizationtools.TerminalQEvent(
-            offset=durationtools.Offset(1000, 1),
+            offset=abjad.Offset(1000, 1),
             )
 
     Carries no significance outside the context of a ``QEventSequence``.

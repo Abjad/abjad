@@ -137,6 +137,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
         '_timespan_2',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(self, inequality=None, timespan_1=None, timespan_2=None):
@@ -169,22 +171,22 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> print(format(time_relation))
-                timespantools.TimespanTimespanTimeRelation(
-                    inequality=timespantools.CompoundInequality(
+                >>> f(time_relation)
+                abjad.TimespanTimespanTimeRelation(
+                    inequality=abjad.CompoundInequality(
                         [
-                            timespantools.Inequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                            timespantools.Inequality('timespan_2.start_offset < timespan_1.stop_offset'),
+                            abjad.Inequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                            abjad.Inequality('timespan_2.start_offset < timespan_1.stop_offset'),
                             ],
                         logical_operator='and',
                         ),
-                    timespan_1=timespantools.Timespan(
-                        start_offset=durationtools.Offset(5, 1),
-                        stop_offset=durationtools.Offset(15, 1),
+                    timespan_1=abjad.Timespan(
+                        start_offset=abjad.Offset(5, 1),
+                        stop_offset=abjad.Offset(15, 1),
                         ),
-                    timespan_2=timespantools.Timespan(
-                        start_offset=durationtools.Offset(10, 1),
-                        stop_offset=durationtools.Offset(20, 1),
+                    timespan_2=abjad.Timespan(
+                        start_offset=abjad.Offset(10, 1),
+                        stop_offset=abjad.Offset(20, 1),
                         ),
                     )
 

@@ -15,8 +15,6 @@ class Instrument(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    _format_slot = 'opening'
-
     __slots__ = (
         '_allowable_clefs',
         '_default_scope',
@@ -31,6 +29,10 @@ class Instrument(AbjadValueObject):
         '_sounding_pitch_of_written_middle_c',
         '_starting_clefs',
         )
+
+    _format_slot = 'opening'
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

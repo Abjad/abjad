@@ -10,9 +10,9 @@ class PostscriptOperator(AbjadValueObject):
 
         ::
 
-            >>> operator = markuptools.PostscriptOperator('rmoveto', 1, 1.5)
+            >>> operator = abjad.PostscriptOperator('rmoveto', 1, 1.5)
             >>> print(format(operator))
-            markuptools.PostscriptOperator('rmoveto', 1, 1.5)
+            abjad.PostscriptOperator('rmoveto', 1, 1.5)
 
     '''
 
@@ -40,7 +40,7 @@ class PostscriptOperator(AbjadValueObject):
 
         ::
 
-            >>> operator = markuptools.PostscriptOperator('rmoveto', 1, 1.5)
+            >>> operator = abjad.PostscriptOperator('rmoveto', 1, 1.5)
             >>> str(operator)
             '1 1.5 rmoveto'
 

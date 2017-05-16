@@ -17,7 +17,7 @@ class Performer(AbjadObject):
 
         ::
 
-            >>> print(format(performer))
+            >>> f(performer)
             instrumenttools.Performer(
                 name='flutist',
                 instruments=instrumenttools.InstrumentList(
@@ -25,44 +25,44 @@ class Performer(AbjadObject):
                         instrumenttools.Flute(
                             instrument_name='flute',
                             short_instrument_name='fl.',
-                            instrument_name_markup=markuptools.Markup(
+                            instrument_name_markup=abjad.Markup(
                                 contents=['Flute'],
                                 ),
-                            short_instrument_name_markup=markuptools.Markup(
+                            short_instrument_name_markup=abjad.Markup(
                                 contents=['Fl.'],
                                 ),
                             allowable_clefs=instrumenttools.ClefList(
                                 [
-                                    indicatortools.Clef(
+                                    abjad.Clef(
                                         name='treble',
                                         ),
                                     ]
                                 ),
-                            pitch_range=pitchtools.PitchRange(
+                            pitch_range=abjad.PitchRange(
                                 range_string='[C4, D7]',
                                 ),
-                            sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                            sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
                             ),
                         instrumenttools.Piccolo(
                             instrument_name='piccolo',
                             short_instrument_name='picc.',
-                            instrument_name_markup=markuptools.Markup(
+                            instrument_name_markup=abjad.Markup(
                                 contents=['Piccolo'],
                                 ),
-                            short_instrument_name_markup=markuptools.Markup(
+                            short_instrument_name_markup=abjad.Markup(
                                 contents=['Picc.'],
                                 ),
                             allowable_clefs=instrumenttools.ClefList(
                                 [
-                                    indicatortools.Clef(
+                                    abjad.Clef(
                                         name='treble',
                                         ),
                                     ]
                                 ),
-                            pitch_range=pitchtools.PitchRange(
+                            pitch_range=abjad.PitchRange(
                                 range_string='[D5, C8]',
                                 ),
-                            sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''"),
+                            sounding_pitch_of_written_middle_c=abjad.NamedPitch("c''"),
                             ),
                         ]
                     ),
@@ -70,6 +70,10 @@ class Performer(AbjadObject):
 
     Performer models instrument doublings.
     '''
+
+    ### CLASS VARIABLES ###
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

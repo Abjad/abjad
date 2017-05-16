@@ -26,19 +26,19 @@ class TimespanList(TypedList):
         ::
 
             >>> f(timespans)
-            timespantools.TimespanList(
+            abjad.TimespanList(
                 [
-                    timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(3, 1),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(0, 1),
+                        stop_offset=abjad.Offset(3, 1),
                         ),
-                    timespantools.Timespan(
-                        start_offset=durationtools.Offset(3, 1),
-                        stop_offset=durationtools.Offset(6, 1),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(3, 1),
+                        stop_offset=abjad.Offset(6, 1),
                         ),
-                    timespantools.Timespan(
-                        start_offset=durationtools.Offset(6, 1),
-                        stop_offset=durationtools.Offset(10, 1),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(6, 1),
+                        stop_offset=abjad.Offset(10, 1),
                         ),
                     ]
                 )
@@ -61,27 +61,27 @@ class TimespanList(TypedList):
         ::
 
             >>> f(timespans)
-            timespantools.TimespanList(
+            abjad.TimespanList(
                 [
-                    timespantools.Timespan(
-                        start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(16, 1),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(0, 1),
+                        stop_offset=abjad.Offset(16, 1),
                         ),
-                    timespantools.Timespan(
-                        start_offset=durationtools.Offset(5, 1),
-                        stop_offset=durationtools.Offset(12, 1),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(5, 1),
+                        stop_offset=abjad.Offset(12, 1),
                         ),
-                    timespantools.Timespan(
-                        start_offset=durationtools.Offset(-2, 1),
-                        stop_offset=durationtools.Offset(8, 1),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(-2, 1),
+                        stop_offset=abjad.Offset(8, 1),
                         ),
-                    timespantools.Timespan(
-                        start_offset=durationtools.Offset(15, 1),
-                        stop_offset=durationtools.Offset(20, 1),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(15, 1),
+                        stop_offset=abjad.Offset(20, 1),
                         ),
-                    timespantools.Timespan(
-                        start_offset=durationtools.Offset(24, 1),
-                        stop_offset=durationtools.Offset(30, 1),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(24, 1),
+                        stop_offset=abjad.Offset(30, 1),
                         ),
                     ]
                 )
@@ -132,19 +132,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(8, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(8, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -263,15 +263,15 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(~timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(8, 1),
-                            stop_offset=durationtools.Offset(15, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(8, 1),
+                            stop_offset=abjad.Offset(15, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(20, 1),
-                            stop_offset=durationtools.Offset(24, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(20, 1),
+                            stop_offset=abjad.Offset(24, 1),
                             ),
                         ]
                     )
@@ -323,23 +323,23 @@ class TimespanList(TypedList):
                 >>> timespan = timespantools.Timespan(5, 10)
                 >>> _ = timespans - timespan
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-2, 1),
-                            stop_offset=durationtools.Offset(5, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-2, 1),
+                            stop_offset=abjad.Offset(5, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(5, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(5, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(10, 1),
-                            stop_offset=durationtools.Offset(12, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(10, 1),
+                            stop_offset=abjad.Offset(12, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(10, 1),
-                            stop_offset=durationtools.Offset(16, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(10, 1),
+                            stop_offset=abjad.Offset(16, 1),
                             ),
                         ]
                     )
@@ -1011,15 +1011,15 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(result)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(5, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(5, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -1046,15 +1046,15 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(result)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(1, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(1, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(5, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(5, 1),
                             ),
                         ]
                     )
@@ -1082,15 +1082,15 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(result)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(7, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(7, 1),
                             ),
                         ]
                     )
@@ -1119,15 +1119,15 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(result)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-2, 1),
-                            stop_offset=durationtools.Offset(1, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-2, 1),
+                            stop_offset=abjad.Offset(1, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -1190,11 +1190,11 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -1219,11 +1219,11 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -1249,11 +1249,11 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(8, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(8, 1),
                             ),
                         ]
                     )
@@ -1310,11 +1310,11 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -1339,11 +1339,11 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(12, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(12, 1),
                             ),
                         ]
                     )
@@ -1369,11 +1369,11 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-2, 1),
-                            stop_offset=durationtools.Offset(12, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-2, 1),
+                            stop_offset=abjad.Offset(12, 1),
                             ),
                         ]
                     )
@@ -1398,15 +1398,15 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-2, 1),
-                            stop_offset=durationtools.Offset(2, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-2, 1),
+                            stop_offset=abjad.Offset(2, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(10, 1),
-                            stop_offset=durationtools.Offset(20, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(10, 1),
+                            stop_offset=abjad.Offset(20, 1),
                             ),
                         ]
                     )
@@ -1461,11 +1461,11 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -1490,15 +1490,15 @@ class TimespanList(TypedList):
             ..  doctest::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(5, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(5, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(10, 1),
-                            stop_offset=durationtools.Offset(12, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(10, 1),
+                            stop_offset=abjad.Offset(12, 1),
                             ),
                         ]
                     )
@@ -1524,19 +1524,19 @@ class TimespanList(TypedList):
             ..  doctest::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-2, 1),
-                            stop_offset=durationtools.Offset(0, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-2, 1),
+                            stop_offset=abjad.Offset(0, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(2, 1),
-                            stop_offset=durationtools.Offset(5, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(2, 1),
+                            stop_offset=abjad.Offset(5, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(10, 1),
-                            stop_offset=durationtools.Offset(12, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(10, 1),
+                            stop_offset=abjad.Offset(12, 1),
                             ),
                         ]
                     )
@@ -1561,15 +1561,15 @@ class TimespanList(TypedList):
             ..  doctest::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-2, 1),
-                            stop_offset=durationtools.Offset(2, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-2, 1),
+                            stop_offset=abjad.Offset(2, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(10, 1),
-                            stop_offset=durationtools.Offset(20, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(10, 1),
+                            stop_offset=abjad.Offset(20, 1),
                             ),
                         ]
                     )
@@ -1595,15 +1595,15 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(2, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(2, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(8, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(8, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -1822,19 +1822,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -1873,27 +1873,27 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(16, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(16, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(12, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(12, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-2, 1),
-                            stop_offset=durationtools.Offset(8, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-2, 1),
+                            stop_offset=abjad.Offset(8, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(15, 1),
-                            stop_offset=durationtools.Offset(20, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(15, 1),
+                            stop_offset=abjad.Offset(20, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(24, 1),
-                            stop_offset=durationtools.Offset(30, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(24, 1),
+                            stop_offset=abjad.Offset(30, 1),
                             ),
                         ]
                     )
@@ -1990,63 +1990,63 @@ class TimespanList(TypedList):
                 >>> for exploded_timespan_list in timespans.explode():
                 ...     f(exploded_timespan_list)
                 ...
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(13, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(13, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(17, 1),
-                            stop_offset=durationtools.Offset(19, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(17, 1),
+                            stop_offset=abjad.Offset(19, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(19, 1),
-                            stop_offset=durationtools.Offset(20, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(19, 1),
+                            stop_offset=abjad.Offset(20, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(34, 1),
-                            stop_offset=durationtools.Offset(37, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(34, 1),
+                            stop_offset=abjad.Offset(37, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(16, 1),
-                            stop_offset=durationtools.Offset(21, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(16, 1),
+                            stop_offset=abjad.Offset(21, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(25, 1),
-                            stop_offset=durationtools.Offset(30, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(25, 1),
+                            stop_offset=abjad.Offset(30, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(8, 1),
-                            stop_offset=durationtools.Offset(9, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(8, 1),
+                            stop_offset=abjad.Offset(9, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(15, 1),
-                            stop_offset=durationtools.Offset(23, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(15, 1),
+                            stop_offset=abjad.Offset(23, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(26, 1),
-                            stop_offset=durationtools.Offset(29, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(26, 1),
+                            stop_offset=abjad.Offset(29, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(32, 1),
-                            stop_offset=durationtools.Offset(34, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(32, 1),
+                            stop_offset=abjad.Offset(34, 1),
                             ),
                         ]
                     )
@@ -2062,59 +2062,59 @@ class TimespanList(TypedList):
                 ...     inventory_count=2):
                 ...     f(exploded_timespan_list)
                 ...
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(13, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(13, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(15, 1),
-                            stop_offset=durationtools.Offset(23, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(15, 1),
+                            stop_offset=abjad.Offset(23, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(25, 1),
-                            stop_offset=durationtools.Offset(30, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(25, 1),
+                            stop_offset=abjad.Offset(30, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(34, 1),
-                            stop_offset=durationtools.Offset(37, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(34, 1),
+                            stop_offset=abjad.Offset(37, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(8, 1),
-                            stop_offset=durationtools.Offset(9, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(8, 1),
+                            stop_offset=abjad.Offset(9, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(16, 1),
-                            stop_offset=durationtools.Offset(21, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(16, 1),
+                            stop_offset=abjad.Offset(21, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(17, 1),
-                            stop_offset=durationtools.Offset(19, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(17, 1),
+                            stop_offset=abjad.Offset(19, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(19, 1),
-                            stop_offset=durationtools.Offset(20, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(19, 1),
+                            stop_offset=abjad.Offset(20, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(26, 1),
-                            stop_offset=durationtools.Offset(29, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(26, 1),
+                            stop_offset=abjad.Offset(29, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(32, 1),
-                            stop_offset=durationtools.Offset(34, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(32, 1),
+                            stop_offset=abjad.Offset(34, 1),
                             ),
                         ]
                     )
@@ -2130,75 +2130,75 @@ class TimespanList(TypedList):
                 ...     inventory_count=6):
                 ...     f(exploded_timespan_list)
                 ...
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(16, 1),
-                            stop_offset=durationtools.Offset(21, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(16, 1),
+                            stop_offset=abjad.Offset(21, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(34, 1),
-                            stop_offset=durationtools.Offset(37, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(34, 1),
+                            stop_offset=abjad.Offset(37, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(15, 1),
-                            stop_offset=durationtools.Offset(23, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(15, 1),
+                            stop_offset=abjad.Offset(23, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(8, 1),
-                            stop_offset=durationtools.Offset(9, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(8, 1),
+                            stop_offset=abjad.Offset(9, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(17, 1),
-                            stop_offset=durationtools.Offset(19, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(17, 1),
+                            stop_offset=abjad.Offset(19, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(19, 1),
-                            stop_offset=durationtools.Offset(20, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(19, 1),
+                            stop_offset=abjad.Offset(20, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(26, 1),
-                            stop_offset=durationtools.Offset(29, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(26, 1),
+                            stop_offset=abjad.Offset(29, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(32, 1),
-                            stop_offset=durationtools.Offset(34, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(32, 1),
+                            stop_offset=abjad.Offset(34, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(13, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(13, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(25, 1),
-                            stop_offset=durationtools.Offset(30, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(25, 1),
+                            stop_offset=abjad.Offset(30, 1),
                             ),
                         ]
                     )
@@ -2336,15 +2336,15 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(result)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -2436,19 +2436,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -2458,27 +2458,27 @@ class TimespanList(TypedList):
                 >>> for timespan_list in timespans.partition():
                 ...     f(timespan_list)
                 ...
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -2501,27 +2501,27 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(16, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(16, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(12, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(12, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-2, 1),
-                            stop_offset=durationtools.Offset(8, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-2, 1),
+                            stop_offset=abjad.Offset(8, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(15, 1),
-                            stop_offset=durationtools.Offset(20, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(15, 1),
+                            stop_offset=abjad.Offset(20, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(24, 1),
-                            stop_offset=durationtools.Offset(30, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(24, 1),
+                            stop_offset=abjad.Offset(30, 1),
                             ),
                         ]
                     )
@@ -2531,31 +2531,31 @@ class TimespanList(TypedList):
                 >>> for timespan_list in timespans.partition():
                 ...     f(timespan_list)
                 ...
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-2, 1),
-                            stop_offset=durationtools.Offset(8, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-2, 1),
+                            stop_offset=abjad.Offset(8, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(16, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(16, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(12, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(12, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(15, 1),
-                            stop_offset=durationtools.Offset(20, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(15, 1),
+                            stop_offset=abjad.Offset(20, 1),
                             ),
                         ]
                     )
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(24, 1),
-                            stop_offset=durationtools.Offset(30, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(24, 1),
+                            stop_offset=abjad.Offset(30, 1),
                             ),
                         ]
                     )
@@ -2581,19 +2581,19 @@ class TimespanList(TypedList):
                 ...     ):
                 ...     f(timespan_list)
                 ...
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -2645,19 +2645,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(4, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(4, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(4, 1),
-                            stop_offset=durationtools.Offset(7, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(4, 1),
+                            stop_offset=abjad.Offset(7, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(7, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(7, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -2683,19 +2683,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(20, 1),
-                            stop_offset=durationtools.Offset(24, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(20, 1),
+                            stop_offset=abjad.Offset(24, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(24, 1),
-                            stop_offset=durationtools.Offset(27, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(24, 1),
+                            stop_offset=abjad.Offset(27, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(27, 1),
-                            stop_offset=durationtools.Offset(30, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(27, 1),
+                            stop_offset=abjad.Offset(30, 1),
                             ),
                         ]
                     )
@@ -2736,15 +2736,15 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(25, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(25, 1),
                             ),
                         ]
                     )
@@ -2779,27 +2779,27 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(10, 1),
-                            stop_offset=durationtools.Offset(13, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(10, 1),
+                            stop_offset=abjad.Offset(13, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(13, 1),
-                            stop_offset=durationtools.Offset(15, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(13, 1),
+                            stop_offset=abjad.Offset(15, 1),
                             ),
                         ]
                     )
@@ -2845,19 +2845,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(1, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(1, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(1, 1),
-                            stop_offset=durationtools.Offset(7, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(1, 1),
+                            stop_offset=abjad.Offset(7, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(7, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(7, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -2883,19 +2883,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(9, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(9, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(9, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(9, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -2951,19 +2951,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(rounded_timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(9, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(9, 1),
                             ),
                         ]
                     )
@@ -2989,19 +2989,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(rounded_timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(5, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(5, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -3030,19 +3030,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(rounded_timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-5, 1),
-                            stop_offset=durationtools.Offset(0, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-5, 1),
+                            stop_offset=abjad.Offset(0, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(5, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(5, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -3071,19 +3071,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(rounded_timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(0, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(0, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(5, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(5, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(5, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(5, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -3125,19 +3125,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(9, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(9, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(14, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(14, 1),
                             ),
                         ]
                     )
@@ -3163,19 +3163,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-3, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-3, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(2, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(2, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -3213,15 +3213,15 @@ class TimespanList(TypedList):
 
                 >>> show(left, range_=(0, 10), scale=0.5) # doctest: +SKIP
                 >>> f(left)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(4, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(4, 1),
                             ),
                         ]
                     )
@@ -3230,15 +3230,15 @@ class TimespanList(TypedList):
 
                 >>> show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
                 >>> f(right)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(4, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(4, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -3264,15 +3264,15 @@ class TimespanList(TypedList):
 
                 >>> show(left, range_=(0, 10), scale=0.5) # doctest: +SKIP
                 >>> f(left)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
                         ]
                     )
@@ -3281,11 +3281,11 @@ class TimespanList(TypedList):
 
                 >>> show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
                 >>> f(right)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -3316,19 +3316,19 @@ class TimespanList(TypedList):
 
                 >>> show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
                 >>> f(right)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(3, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(10, 1),
                             ),
                         ]
                     )
@@ -3378,42 +3378,7 @@ class TimespanList(TypedList):
                 ...     show(timespan_list, range_=(0, 20), scale=0.5) # doctest: +SKIP
                 ...     f(timespan_list)
                 ...
-                timespantools.TimespanList(
-                    [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(3, 1),
-                            ),
-                        ]
-                    )
-                timespantools.TimespanList(
-                    [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
-                            ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(4, 1),
-                            stop_offset=durationtools.Offset(6, 1),
-                            ),
-                        ]
-                    )
-                timespantools.TimespanList(
-                    [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(10, 1),
-                            ),
-                        ]
-                    )
-                timespantools.TimespanList(
-                    [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(15, 1),
-                            stop_offset=durationtools.Offset(20, 1),
-                            ),
-                        ]
-                    )
+
 
         ..  container:: example
 
@@ -3464,19 +3429,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(6, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(12, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(12, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(12, 1),
-                            stop_offset=durationtools.Offset(20, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(12, 1),
+                            stop_offset=abjad.Offset(20, 1),
                             ),
                         ]
                     )
@@ -3502,19 +3467,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-8, 1),
-                            stop_offset=durationtools.Offset(-2, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-8, 1),
+                            stop_offset=abjad.Offset(-2, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(-2, 1),
-                            stop_offset=durationtools.Offset(4, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(-2, 1),
+                            stop_offset=abjad.Offset(4, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(4, 1),
-                            stop_offset=durationtools.Offset(12, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(4, 1),
+                            stop_offset=abjad.Offset(12, 1),
                             ),
                         ]
                     )
@@ -3554,19 +3519,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(50, 1),
-                            stop_offset=durationtools.Offset(53, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(50, 1),
+                            stop_offset=abjad.Offset(53, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(53, 1),
-                            stop_offset=durationtools.Offset(56, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(53, 1),
+                            stop_offset=abjad.Offset(56, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(56, 1),
-                            stop_offset=durationtools.Offset(60, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(56, 1),
+                            stop_offset=abjad.Offset(60, 1),
                             ),
                         ]
                     )
@@ -3604,19 +3569,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(50, 1),
-                            stop_offset=durationtools.Offset(53, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(50, 1),
+                            stop_offset=abjad.Offset(53, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(53, 1),
-                            stop_offset=durationtools.Offset(56, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(53, 1),
+                            stop_offset=abjad.Offset(56, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(56, 1),
-                            stop_offset=durationtools.Offset(60, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(56, 1),
+                            stop_offset=abjad.Offset(60, 1),
                             ),
                         ]
                     )
@@ -3643,19 +3608,19 @@ class TimespanList(TypedList):
             ::
 
                 >>> f(timespans)
-                timespantools.TimespanList(
+                abjad.TimespanList(
                     [
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(23, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(0, 1),
+                            stop_offset=abjad.Offset(23, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(26, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(3, 1),
+                            stop_offset=abjad.Offset(26, 1),
                             ),
-                        timespantools.Timespan(
-                            start_offset=durationtools.Offset(6, 1),
-                            stop_offset=durationtools.Offset(30, 1),
+                        abjad.Timespan(
+                            start_offset=abjad.Offset(6, 1),
+                            stop_offset=abjad.Offset(30, 1),
                             ),
                         ]
                     )

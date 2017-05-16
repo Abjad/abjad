@@ -465,14 +465,14 @@ class Markup(AbjadValueObject):
 
                     >>> expression = Expression().markup()
                     >>> f(expression)
-                    expressiontools.Expression(
+                    abjad.Expression(
                         callbacks=[
-                            expressiontools.Expression(
+                            abjad.Expression(
                                 evaluation_template='abjad.markuptools.Markup',
                                 is_initializer=True,
                                 ),
                             ],
-                        proxy_class=markuptools.Markup,
+                        proxy_class=abjad.Markup,
                         )
 
         Returns string.

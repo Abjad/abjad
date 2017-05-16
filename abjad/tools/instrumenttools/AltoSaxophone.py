@@ -77,27 +77,27 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_sax = instrumenttools.AltoSaxophone()
-                >>> print(format(alto_sax))
+                >>> f(alto_sax)
                 instrumenttools.AltoSaxophone(
                     instrument_name='alto saxophone',
                     short_instrument_name='alt. sax.',
-                    instrument_name_markup=markuptools.Markup(
+                    instrument_name_markup=abjad.Markup(
                         contents=['Alto saxophone'],
                         ),
-                    short_instrument_name_markup=markuptools.Markup(
+                    short_instrument_name_markup=abjad.Markup(
                         contents=['Alt. sax.'],
                         ),
                     allowable_clefs=instrumenttools.ClefList(
                         [
-                            indicatortools.Clef(
+                            abjad.Clef(
                                 name='treble',
                                 ),
                             ]
                         ),
-                    pitch_range=pitchtools.PitchRange(
+                    pitch_range=abjad.PitchRange(
                         range_string='[Db3, A5]',
                         ),
-                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('ef'),
+                    sounding_pitch_of_written_middle_c=abjad.NamedPitch('ef'),
                     )
 
         Returns string.

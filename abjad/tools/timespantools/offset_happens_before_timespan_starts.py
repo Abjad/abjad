@@ -17,11 +17,11 @@ def offset_happens_before_timespan_starts(
         ::
 
             >>> relation = timespantools.offset_happens_before_timespan_starts()
-            >>> print(format(relation))
-            timespantools.OffsetTimespanTimeRelation(
-                inequality=timespantools.CompoundInequality(
+            >>> f(relation)
+            abjad.OffsetTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
                     [
-                        timespantools.Inequality('offset < timespan.start'),
+                        abjad.Inequality('offset < timespan.start'),
                         ],
                     logical_operator='and',
                     ),
@@ -44,15 +44,15 @@ def offset_happens_before_timespan_starts(
 
         ::
 
-            >>> print(format(relation))
-            timespantools.OffsetTimespanTimeRelation(
-                inequality=timespantools.CompoundInequality(
+            >>> f(relation)
+            abjad.OffsetTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
                     [
-                        timespantools.Inequality('offset < timespan.start'),
+                        abjad.Inequality('offset < timespan.start'),
                         ],
                     logical_operator='and',
                     ),
-                offset=durationtools.Offset(1, 2),
+                offset=abjad.Offset(1, 2),
                 )
 
     ..  container:: example
@@ -72,17 +72,17 @@ def offset_happens_before_timespan_starts(
 
         ::
 
-            >>> print(format(relation))
-            timespantools.OffsetTimespanTimeRelation(
-                inequality=timespantools.CompoundInequality(
+            >>> f(relation)
+            abjad.OffsetTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
                     [
-                        timespantools.Inequality('offset < timespan.start'),
+                        abjad.Inequality('offset < timespan.start'),
                         ],
                     logical_operator='and',
                     ),
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(2, 1),
-                    stop_offset=durationtools.Offset(8, 1),
+                timespan=abjad.Timespan(
+                    start_offset=abjad.Offset(2, 1),
+                    stop_offset=abjad.Offset(8, 1),
                     ),
                 )
 
@@ -101,19 +101,19 @@ def offset_happens_before_timespan_starts(
 
         ::
 
-            >>> print(format(relation))
-            timespantools.OffsetTimespanTimeRelation(
-                inequality=timespantools.CompoundInequality(
+            >>> f(relation)
+            abjad.OffsetTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
                     [
-                        timespantools.Inequality('offset < timespan.start'),
+                        abjad.Inequality('offset < timespan.start'),
                         ],
                     logical_operator='and',
                     ),
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(2, 1),
-                    stop_offset=durationtools.Offset(8, 1),
+                timespan=abjad.Timespan(
+                    start_offset=abjad.Offset(2, 1),
+                    stop_offset=abjad.Offset(8, 1),
                     ),
-                offset=durationtools.Offset(1, 2),
+                offset=abjad.Offset(1, 2),
                 )
 
     ..  container:: example

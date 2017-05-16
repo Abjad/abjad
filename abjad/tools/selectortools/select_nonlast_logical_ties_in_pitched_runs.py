@@ -10,27 +10,27 @@ def select_nonlast_logical_ties_in_pitched_runs(argument=None):
 
             >>> selector = selectortools.select_nonlast_logical_ties_in_pitched_runs()
             >>> f(selector)
-            selectortools.Selector(
+            abjad.Selector(
                 callbacks=(
-                    selectortools.PrototypeSelectorCallback(
-                        prototype=scoretools.Leaf,
+                    abjad.PrototypeSelectorCallback(
+                        prototype=abjad.Leaf,
                         ),
-                    selectortools.RunSelectorCallback(
+                    abjad.RunSelectorCallback(
                         prototype=(
-                            scoretools.Note,
-                            scoretools.Chord,
+                            abjad.Note,
+                            abjad.Chord,
                             ),
                         ),
-                    selectortools.LogicalTieSelectorCallback(
+                    abjad.LogicalTieSelectorCallback(
                         flatten=False,
                         pitched=False,
                         trivial=True,
                         ),
-                    selectortools.SliceSelectorCallback(
+                    abjad.SliceSelectorCallback(
                         stop=-1,
                         apply_to_each=True,
                         ),
-                    selectortools.FlattenSelectorCallback(
+                    abjad.FlattenSelectorCallback(
                         depth=1,
                         ),
                     ),

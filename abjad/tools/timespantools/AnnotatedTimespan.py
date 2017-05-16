@@ -12,10 +12,10 @@ class AnnotatedTimespan(Timespan):
         ...    start_offset=Offset(1, 4),
         ...    stop_offset=Offset(7, 8),
         ...    )
-        >>> print(format(annotated_timespan))
-        timespantools.AnnotatedTimespan(
-            start_offset=durationtools.Offset(1, 4),
-            stop_offset=durationtools.Offset(7, 8),
+        >>> f(annotated_timespan)
+        abjad.AnnotatedTimespan(
+            start_offset=abjad.Offset(1, 4),
+            stop_offset=abjad.Offset(7, 8),
             annotation=['a', 'b', 'c'],
             )
 
@@ -25,10 +25,10 @@ class AnnotatedTimespan(Timespan):
 
         >>> left, right = annotated_timespan.split_at_offset(Offset(1, 2))
         >>> left.annotation.append('foo')
-        >>> print(format(right))
-        timespantools.AnnotatedTimespan(
-            start_offset=durationtools.Offset(1, 2),
-            stop_offset=durationtools.Offset(7, 8),
+        >>> f(right)
+        abjad.AnnotatedTimespan(
+            start_offset=abjad.Offset(1, 2),
+            stop_offset=abjad.Offset(7, 8),
             annotation=['a', 'b', 'c', 'foo'],
             )
 

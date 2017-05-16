@@ -13,9 +13,9 @@ class BowPressure(AbjadValueObject):
 
             ::
 
-                >>> bow_pressure = indicatortools.BowPressure('overpressure')
-                >>> print(format(bow_pressure))
-                indicatortools.BowPressure(
+                >>> bow_pressure = abjad.BowPressure('overpressure')
+                >>> f(bow_pressure)
+                abjad.BowPressure(
                     pressure='overpressure',
                     )
 
@@ -27,9 +27,9 @@ class BowPressure(AbjadValueObject):
 
             ::
 
-                >>> bow_pressure = indicatortools.BowPressure('underpressure')
-                >>> print(format(bow_pressure))
-                indicatortools.BowPressure(
+                >>> bow_pressure = abjad.BowPressure('underpressure')
+                >>> f(bow_pressure)
+                abjad.BowPressure(
                     pressure='underpressure',
                     )
 
@@ -41,6 +41,8 @@ class BowPressure(AbjadValueObject):
         '_default_scope',
         '_pressure',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -61,7 +63,7 @@ class BowPressure(AbjadValueObject):
 
             ::
 
-                >>> bow_pressure = indicatortools.BowPressure('overpressure')
+                >>> bow_pressure = abjad.BowPressure('overpressure')
                 >>> bow_pressure.default_scope is None
                 True
 
@@ -79,7 +81,7 @@ class BowPressure(AbjadValueObject):
 
             ::
 
-                >>> bow_pressure = indicatortools.BowPressure('overpressure')
+                >>> bow_pressure = abjad.BowPressure('overpressure')
                 >>> bow_pressure.pressure
                 'overpressure'
 
@@ -89,7 +91,7 @@ class BowPressure(AbjadValueObject):
 
             ::
 
-                >>> bow_pressure = indicatortools.BowPressure('underpressure')
+                >>> bow_pressure = abjad.BowPressure('underpressure')
                 >>> bow_pressure.pressure
                 'underpressure'
 

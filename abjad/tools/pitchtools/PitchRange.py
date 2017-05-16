@@ -22,7 +22,7 @@ class PitchRange(AbjadValueObject):
 
             >>> pitch_range = PitchRange('[C3, C7]')
             >>> f(pitch_range)
-            pitchtools.PitchRange(
+            abjad.PitchRange(
                 range_string='[C3, C7]',
                 )
 

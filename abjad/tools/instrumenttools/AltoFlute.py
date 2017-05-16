@@ -76,27 +76,27 @@ class AltoFlute(Instrument):
             ::
 
                 >>> alto_flute = instrumenttools.AltoFlute()
-                >>> print(format(alto_flute))
+                >>> f(alto_flute)
                 instrumenttools.AltoFlute(
                     instrument_name='alto flute',
                     short_instrument_name='alt. fl.',
-                    instrument_name_markup=markuptools.Markup(
+                    instrument_name_markup=abjad.Markup(
                         contents=['Alto flute'],
                         ),
-                    short_instrument_name_markup=markuptools.Markup(
+                    short_instrument_name_markup=abjad.Markup(
                         contents=['Alt. fl.'],
                         ),
                     allowable_clefs=instrumenttools.ClefList(
                         [
-                            indicatortools.Clef(
+                            abjad.Clef(
                                 name='treble',
                                 ),
                             ]
                         ),
-                    pitch_range=pitchtools.PitchRange(
+                    pitch_range=abjad.PitchRange(
                         range_string='[G3, G6]',
                         ),
-                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('g'),
+                    sounding_pitch_of_written_middle_c=abjad.NamedPitch('g'),
                     )
 
         Returns string.

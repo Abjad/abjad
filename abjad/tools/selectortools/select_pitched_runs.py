@@ -10,15 +10,15 @@ def select_pitched_runs(argument=None):
 
             >>> selector = selectortools.select_pitched_runs()
             >>> f(selector)
-            selectortools.Selector(
+            abjad.Selector(
                 callbacks=(
-                    selectortools.PrototypeSelectorCallback(
-                        prototype=scoretools.Leaf,
+                    abjad.PrototypeSelectorCallback(
+                        prototype=abjad.Leaf,
                         ),
-                    selectortools.RunSelectorCallback(
+                    abjad.RunSelectorCallback(
                         prototype=(
-                            scoretools.Note,
-                            scoretools.Chord,
+                            abjad.Note,
+                            abjad.Chord,
                             ),
                         ),
                     ),

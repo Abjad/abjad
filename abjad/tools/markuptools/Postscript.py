@@ -30,20 +30,20 @@ class Postscript(AbjadValueObject):
 
         ::
 
-            >>> postscript = markuptools.Postscript()
+            >>> postscript = abjad.Postscript()
             >>> postscript = postscript.moveto(1, 1)
             >>> postscript = postscript.setlinewidth(2.5)
             >>> postscript = postscript.setdash((2, 1))
             >>> postscript = postscript.lineto(3, -4)
             >>> postscript = postscript.stroke()
             >>> print(format(postscript))
-            markuptools.Postscript(
+            abjad.Postscript(
                 operators=(
-                    markuptools.PostscriptOperator('moveto', 1.0, 1.0),
-                    markuptools.PostscriptOperator('setlinewidth', 2.5),
-                    markuptools.PostscriptOperator('setdash', (2.0, 1.0), 0.0),
-                    markuptools.PostscriptOperator('lineto', 3.0, -4.0),
-                    markuptools.PostscriptOperator('stroke'),
+                    abjad.PostscriptOperator('moveto', 1.0, 1.0),
+                    abjad.PostscriptOperator('setlinewidth', 2.5),
+                    abjad.PostscriptOperator('setdash', (2.0, 1.0), 0.0),
+                    abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                    abjad.PostscriptOperator('stroke'),
                     ),
                 )
 
@@ -58,7 +58,7 @@ class Postscript(AbjadValueObject):
 
         ::
 
-            >>> postscript = markuptools.Postscript()
+            >>> postscript = abjad.Postscript()
             >>> postscript = postscript.newpath()
             >>> postscript = postscript.moveto(0, 0)
             >>> postscript = postscript.rlineto(0, -10)
@@ -161,7 +161,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.newpath()
                 >>> postscript = postscript.moveto(100, 200)
                 >>> postscript = postscript.lineto(200, 250)
@@ -209,7 +209,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.findfont('Times Roman')
                 >>> postscript = postscript.scalefont(32)
                 >>> postscript = postscript.setfont()
@@ -255,7 +255,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.newpath()
                 >>> postscript = postscript.moveto(100, 200)
                 >>> postscript = postscript.lineto(200, 250)
@@ -295,7 +295,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.curveto(0, 1, 1.5, 2, 3, 6)
                 >>> print(str(postscript))
                 0 1 1.5 2 3 6 curveto
@@ -324,7 +324,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.newpath()
                 >>> postscript = postscript.moveto(100, 200)
                 >>> postscript = postscript.lineto(200, 250)
@@ -364,7 +364,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.findfont('Times Roman')
                 >>> postscript = postscript.scalefont(12)
                 >>> postscript = postscript.setfont()
@@ -395,7 +395,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.newpath()
                 >>> postscript = postscript.moveto(100, 200)
                 >>> postscript = postscript.lineto(200, 250)
@@ -435,7 +435,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.newpath()
                 >>> postscript = postscript.moveto(100, 200)
                 >>> postscript = postscript.lineto(200, 250)
@@ -475,7 +475,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.moveto(1, 1)
                 >>> postscript = postscript.lineto(3, -4)
                 >>> postscript = postscript.stroke()
@@ -499,16 +499,16 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.moveto(1, 1)
                 >>> postscript = postscript.lineto(3, -4)
                 >>> postscript = postscript.stroke()
                 >>> print(format(postscript))
-                markuptools.Postscript(
+                abjad.Postscript(
                     operators=(
-                        markuptools.PostscriptOperator('moveto', 1.0, 1.0),
-                        markuptools.PostscriptOperator('lineto', 3.0, -4.0),
-                        markuptools.PostscriptOperator('stroke'),
+                        abjad.PostscriptOperator('moveto', 1.0, 1.0),
+                        abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                        abjad.PostscriptOperator('stroke'),
                         ),
                     )
 
@@ -534,7 +534,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.newpath()
                 >>> postscript = postscript.moveto(100, 200)
                 >>> postscript = postscript.lineto(200, 250)
@@ -574,7 +574,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.rcurveto(0, 1, 1.5, 2, 3, 6)
                 >>> print(str(postscript))
                 0 1 1.5 2 3 6 rcurveto
@@ -603,16 +603,16 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.rmoveto(1, 1)
                 >>> postscript = postscript.rlineto(3, -4)
                 >>> postscript = postscript.stroke()
                 >>> print(format(postscript))
-                markuptools.Postscript(
+                abjad.Postscript(
                     operators=(
-                        markuptools.PostscriptOperator('rmoveto', 1.0, 1.0),
-                        markuptools.PostscriptOperator('rlineto', 3.0, -4.0),
-                        markuptools.PostscriptOperator('stroke'),
+                        abjad.PostscriptOperator('rmoveto', 1.0, 1.0),
+                        abjad.PostscriptOperator('rlineto', 3.0, -4.0),
+                        abjad.PostscriptOperator('stroke'),
                         ),
                     )
 
@@ -638,16 +638,16 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.rmoveto(1, 1)
                 >>> postscript = postscript.rlineto(3, -4)
                 >>> postscript = postscript.stroke()
                 >>> print(format(postscript))
-                markuptools.Postscript(
+                abjad.Postscript(
                     operators=(
-                        markuptools.PostscriptOperator('rmoveto', 1.0, 1.0),
-                        markuptools.PostscriptOperator('rlineto', 3.0, -4.0),
-                        markuptools.PostscriptOperator('stroke'),
+                        abjad.PostscriptOperator('rmoveto', 1.0, 1.0),
+                        abjad.PostscriptOperator('rlineto', 3.0, -4.0),
+                        abjad.PostscriptOperator('stroke'),
                         ),
                     )
 
@@ -673,7 +673,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.findfont('Times Roman')
                 >>> postscript = postscript.scalefont(32)
                 >>> postscript = postscript.setfont()
@@ -714,7 +714,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.findfont('Times Roman')
                 >>> postscript = postscript.scalefont(32)
                 >>> postscript = postscript.setfont()
@@ -756,7 +756,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.findfont('Times Roman')
                 >>> postscript = postscript.scalefont(12)
                 >>> postscript = postscript.setfont()
@@ -785,11 +785,11 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript().setdash([2, 1], 3)
+                >>> postscript = abjad.Postscript().setdash([2, 1], 3)
                 >>> print(format(postscript))
-                markuptools.Postscript(
+                abjad.Postscript(
                     operators=(
-                        markuptools.PostscriptOperator('setdash', (2.0, 1.0), 3.0),
+                        abjad.PostscriptOperator('setdash', (2.0, 1.0), 3.0),
                         ),
                     )
 
@@ -802,11 +802,11 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript().setdash()
+                >>> postscript = abjad.Postscript().setdash()
                 >>> print(format(postscript))
-                markuptools.Postscript(
+                abjad.Postscript(
                     operators=(
-                        markuptools.PostscriptOperator('setdash', (), 0.0),
+                        abjad.PostscriptOperator('setdash', (), 0.0),
                         ),
                     )
 
@@ -833,7 +833,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.findfont('Times Roman')
                 >>> postscript = postscript.scalefont(12)
                 >>> postscript = postscript.setfont()
@@ -861,7 +861,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.newpath()
                 >>> postscript = postscript.moveto(100, 200)
                 >>> postscript = postscript.lineto(200, 250)
@@ -903,18 +903,18 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.moveto(1, 1)
                 >>> postscript = postscript.setlinewidth(2.5)
                 >>> postscript = postscript.lineto(3, -4)
                 >>> postscript = postscript.stroke()
                 >>> print(format(postscript))
-                markuptools.Postscript(
+                abjad.Postscript(
                     operators=(
-                        markuptools.PostscriptOperator('moveto', 1.0, 1.0),
-                        markuptools.PostscriptOperator('setlinewidth', 2.5),
-                        markuptools.PostscriptOperator('lineto', 3.0, -4.0),
-                        markuptools.PostscriptOperator('stroke'),
+                        abjad.PostscriptOperator('moveto', 1.0, 1.0),
+                        abjad.PostscriptOperator('setlinewidth', 2.5),
+                        abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                        abjad.PostscriptOperator('stroke'),
                         ),
                     )
 
@@ -940,7 +940,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.newpath()
                 >>> postscript = postscript.moveto(100, 100)
                 >>> postscript = postscript.rlineto(0, 100)
@@ -998,7 +998,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.findfont('Times Roman')
                 >>> postscript = postscript.scalefont(12)
                 >>> postscript = postscript.setfont()
@@ -1027,14 +1027,14 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.lineto(3, -4)
                 >>> postscript = postscript.stroke()
                 >>> print(format(postscript))
-                markuptools.Postscript(
+                abjad.Postscript(
                     operators=(
-                        markuptools.PostscriptOperator('lineto', 3.0, -4.0),
-                        markuptools.PostscriptOperator('stroke'),
+                        abjad.PostscriptOperator('lineto', 3.0, -4.0),
+                        abjad.PostscriptOperator('stroke'),
                         ),
                     )
 
@@ -1057,7 +1057,7 @@ class Postscript(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.findfont('Times Roman')
                 >>> postscript = postscript.scalefont(32)
                 >>> postscript = postscript.setfont()

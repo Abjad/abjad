@@ -12,19 +12,19 @@ class Tuning(AbjadValueObject):
 
         ::
 
-            >>> indicator = indicatortools.Tuning(
+            >>> indicator = abjad.Tuning(
             ...     pitches=('G3', 'D4', 'A4', 'E5'),
             ...     )
-            >>> print(format(indicator))
-            indicatortools.Tuning(
-                pitches=pitchtools.PitchSegment(
+            >>> f(indicator)
+            abjad.Tuning(
+                pitches=abjad.PitchSegment(
                     (
-                        pitchtools.NamedPitch('g'),
-                        pitchtools.NamedPitch("d'"),
-                        pitchtools.NamedPitch("a'"),
-                        pitchtools.NamedPitch("e''"),
+                        abjad.NamedPitch('g'),
+                        abjad.NamedPitch("d'"),
+                        abjad.NamedPitch("a'"),
+                        abjad.NamedPitch("e''"),
                         ),
-                    item_class=pitchtools.NamedPitch,
+                    item_class=abjad.NamedPitch,
                     ),
                 )
 
@@ -36,6 +36,8 @@ class Tuning(AbjadValueObject):
         '_default_scope',
         '_pitches',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -66,8 +68,8 @@ class Tuning(AbjadValueObject):
 
             ::
 
-                >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
-                >>> string_number = indicatortools.StringNumber((2, 3))
+                >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
+                >>> string_number = abjad.StringNumber((2, 3))
                 >>> tuning.get_pitch_ranges_by_string_number(string_number)
                 (PitchRange(range_string='[A4, A6]'), PitchRange(range_string='[D4, D6]'))
 
@@ -92,8 +94,8 @@ class Tuning(AbjadValueObject):
 
             ::
 
-                >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
-                >>> string_number = indicatortools.StringNumber((2, 3))
+                >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
+                >>> string_number = abjad.StringNumber((2, 3))
                 >>> tuning.get_pitches_by_string_number(string_number)
                 (NamedPitch("a'"), NamedPitch("d'"))
 
@@ -119,7 +121,7 @@ class Tuning(AbjadValueObject):
 
             ::
 
-                >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
+                >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
                 >>> voicings = tuning.voice_pitch_classes(('a',))
                 >>> for voicing in voicings:
                 ...     voicing
@@ -235,7 +237,7 @@ class Tuning(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.Tuning(
+                >>> indicator = abjad.Tuning(
                 ...     pitches=('G3', 'D4', 'A4', 'E5'),
                 ...     )
                 >>> indicator.default_scope is None
@@ -254,19 +256,19 @@ class Tuning(AbjadValueObject):
             ::
 
                 >>> pitch_ranges = indicator.pitch_ranges
-                >>> print(format(pitch_ranges))
-                pitchtools.PitchRangeList(
+                >>> f(pitch_ranges)
+                abjad.PitchRangeList(
                     [
-                        pitchtools.PitchRange(
+                        abjad.PitchRange(
                             range_string='[G3, G5]',
                             ),
-                        pitchtools.PitchRange(
+                        abjad.PitchRange(
                             range_string='[D4, D6]',
                             ),
-                        pitchtools.PitchRange(
+                        abjad.PitchRange(
                             range_string='[A4, A6]',
                             ),
-                        pitchtools.PitchRange(
+                        abjad.PitchRange(
                             range_string='[E5, E7]',
                             ),
                         ]
@@ -291,15 +293,15 @@ class Tuning(AbjadValueObject):
             ::
 
                 >>> pitches = indicator.pitches
-                >>> print(format(pitches))
-                pitchtools.PitchSegment(
+                >>> f(pitches)
+                abjad.PitchSegment(
                     (
-                        pitchtools.NamedPitch('g'),
-                        pitchtools.NamedPitch("d'"),
-                        pitchtools.NamedPitch("a'"),
-                        pitchtools.NamedPitch("e''"),
+                        abjad.NamedPitch('g'),
+                        abjad.NamedPitch("d'"),
+                        abjad.NamedPitch("a'"),
+                        abjad.NamedPitch("e''"),
                         ),
-                    item_class=pitchtools.NamedPitch,
+                    item_class=abjad.NamedPitch,
                     )
 
         Returns pitch segment.

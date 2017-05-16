@@ -20,12 +20,12 @@ class PitchRangeList(TypedList):
         ::
 
             >>> f(ranges)
-            pitchtools.PitchRangeList(
+            abjad.PitchRangeList(
                 [
-                    pitchtools.PitchRange(
+                    abjad.PitchRange(
                         range_string='[C3, C6]',
                         ),
-                    pitchtools.PitchRange(
+                    abjad.PitchRange(
                         range_string='[C4, C6]',
                         ),
                     ]

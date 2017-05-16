@@ -16,8 +16,8 @@ class CountsSelectorCallback(AbjadValueObject):
 
             >>> callback = selectortools.CountsSelectorCallback([3])
             >>> f(callback)
-            selectortools.CountsSelectorCallback(
-                counts=datastructuretools.CyclicTuple(
+            abjad.CountsSelectorCallback(
+                counts=abjad.CyclicTuple(
                     [3]
                     ),
                 cyclic=True,

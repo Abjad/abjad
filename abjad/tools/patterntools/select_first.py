@@ -10,12 +10,12 @@ def select_first(n=1, inverted=None):
 
         ::
 
-            >>> pattern = patterntools.select_first()
+            >>> pattern = abjad.select_first()
 
         ::
 
             >>> print(format(pattern))
-            patterntools.Pattern(
+            abjad.Pattern(
                 indices=[0],
                 )
 
@@ -63,12 +63,12 @@ def select_first(n=1, inverted=None):
 
         ::
 
-            >>> pattern = patterntools.select_first(n=2)
+            >>> pattern = abjad.select_first(n=2)
 
         ::
 
             >>> print(format(pattern))
-            patterntools.Pattern(
+            abjad.Pattern(
                 indices=[0, 1],
                 )
 
@@ -116,12 +116,12 @@ def select_first(n=1, inverted=None):
 
         ::
 
-            >>> pattern = patterntools.select_first(n=0)
+            >>> pattern = abjad.select_first(n=0)
 
         ::
 
             >>> print(format(pattern))
-            patterntools.Pattern(
+            abjad.Pattern(
                 indices=[],
                 )
 

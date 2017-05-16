@@ -12,9 +12,9 @@ class StringNumber(AbjadValueObject):
 
         ::
 
-            >>> indicator = indicatortools.StringNumber(1)
-            >>> print(format(indicator))
-            indicatortools.StringNumber(
+            >>> indicator = abjad.StringNumber(1)
+            >>> f(indicator)
+            abjad.StringNumber(
                 numbers=(1,),
                 )
 
@@ -24,9 +24,9 @@ class StringNumber(AbjadValueObject):
 
         ::
 
-            >>> indicator = indicatortools.StringNumber((2, 3))
-            >>> print(format(indicator))
-            indicatortools.StringNumber(
+            >>> indicator = abjad.StringNumber((2, 3))
+            >>> f(indicator)
+            abjad.StringNumber(
                 numbers=(2, 3),
                 )
 
@@ -38,6 +38,8 @@ class StringNumber(AbjadValueObject):
         '_default_scope',
         '_numbers',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -67,7 +69,7 @@ class StringNumber(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringNumber(1)
+                >>> indicator = abjad.StringNumber(1)
                 >>> indicator.default_scope is None
                 True
 
@@ -77,7 +79,7 @@ class StringNumber(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringNumber((2, 3))
+                >>> indicator = abjad.StringNumber((2, 3))
                 >>> indicator.default_scope is None
                 True
 
@@ -95,7 +97,7 @@ class StringNumber(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringNumber(1)
+                >>> indicator = abjad.StringNumber(1)
                 >>> indicator.numbers
                 (1,)
 
@@ -105,7 +107,7 @@ class StringNumber(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringNumber((2, 3))
+                >>> indicator = abjad.StringNumber((2, 3))
                 >>> indicator.numbers
                 (2, 3)
 
@@ -127,7 +129,7 @@ class StringNumber(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringNumber(1)
+                >>> indicator = abjad.StringNumber(1)
                 >>> indicator.roman_numerals
                 ('i',)
 
@@ -137,7 +139,7 @@ class StringNumber(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.StringNumber((2, 3))
+                >>> indicator = abjad.StringNumber((2, 3))
                 >>> indicator.roman_numerals
                 ('ii', 'iii')
 

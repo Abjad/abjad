@@ -71,7 +71,7 @@ class NonreducedRatio(AbjadValueObject):
 
                 >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
                 >>> print(format(ratio))
-                mathtools.NonreducedRatio((2, 4, 2))
+                abjad.NonreducedRatio((2, 4, 2))
 
         Returns string.
         '''

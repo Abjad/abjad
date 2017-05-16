@@ -9,22 +9,22 @@ class MeterList(TypedList):
 
         ::
 
-            >>> meters = metertools.MeterList([
+            >>> meters = abjad.MeterList([
             ...     (3, 4), (5, 16), (7, 8),
             ...     ])
 
         ::
 
             >>> f(meters)
-            metertools.MeterList(
+            abjad.MeterList(
                 [
-                    metertools.Meter(
+                    abjad.Meter(
                         '(3/4 (1/4 1/4 1/4))'
                         ),
-                    metertools.Meter(
+                    abjad.Meter(
                         '(5/16 ((3/16 (1/16 1/16 1/16)) (2/16 (1/16 1/16))))'
                         ),
-                    metertools.Meter(
+                    abjad.Meter(
                         '(7/8 ((3/8 (1/8 1/8 1/8)) (2/8 (1/8 1/8)) (2/8 (1/8 1/8))))'
                         ),
                     ]
@@ -50,7 +50,7 @@ class MeterList(TypedList):
 
             ::
 
-                >>> meters = metertools.MeterList([
+                >>> meters = abjad.MeterList([
                 ...     (3, 4), (5, 16), (7, 8),
                 ...     ])
                 >>> show(meters, scale=0.5) # doctest: +SKIP

@@ -26,6 +26,8 @@ class Inequality(AbjadObject):
         '_template',
         )
 
+    _publish_storage_format = True
+
     templates = (
         'offset == timespan.start',
         'offset < timespan.start',
@@ -78,8 +80,8 @@ class Inequality(AbjadObject):
     def __format__(self, format_specification=''):
         r'''Formats inequality.
 
-            >>> print(format(inequality))
-            timespantools.Inequality('timespan_2.start_offset < timespan_1.start_offset')
+            >>> f(inequality)
+            abjad.Inequality('timespan_2.start_offset < timespan_1.start_offset')
 
         Returns string.
         '''

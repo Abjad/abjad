@@ -52,16 +52,16 @@ class WoodwindFingering(AbjadObject):
 
         >>> fingering_command = woodwind_fingering()
         >>> print(format(fingering_command))
-        markuptools.MarkupCommand(
+        abjad.MarkupCommand(
             'woodwind-diagram',
-            schemetools.Scheme(
+            abjad.Scheme(
                 'clarinet',
                 quoting="'",
                 ),
-            schemetools.Scheme(
-                schemetools.SchemePair('cc', ('one', 'two', 'three', 'five')),
-                schemetools.SchemePair('lh', ('R', 'thumb')),
-                schemetools.SchemePair('rh', ('e',)),
+            abjad.Scheme(
+                abjad.SchemePair('cc', ('one', 'two', 'three', 'five')),
+                abjad.SchemePair('lh', ('R', 'thumb')),
+                abjad.SchemePair('rh', ('e',)),
                 quoting="'",
                 )
             )
@@ -78,7 +78,7 @@ class WoodwindFingering(AbjadObject):
 
     ..  doctest::
 
-        >>> print(format(chord))
+        >>> f(chord)
         <ds' fs''>4
             _ \markup {
                 \woodwind-diagram
@@ -127,7 +127,7 @@ class WoodwindFingering(AbjadObject):
 
     ..  doctest::
 
-        >>> print(format(chord))
+        >>> f(chord)
         <e' as' gqf''>1
             _ \markup {
                 \override
@@ -163,7 +163,7 @@ class WoodwindFingering(AbjadObject):
 
     ..  doctest::
 
-        >>> print(format(chord))
+        >>> f(chord)
         <e' as' gqf''>1
             _ \markup {
                 \override

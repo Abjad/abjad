@@ -24,7 +24,7 @@ class PitchSet(Set):
         ::
 
             >>> f(set_)
-            pitchtools.PitchSet(
+            abjad.PitchSet(
                 [-2, -1.5, 6, 7]
                 )
 
@@ -44,7 +44,7 @@ class PitchSet(Set):
         ::
 
             >>> f(set_)
-            pitchtools.PitchSet(
+            abjad.PitchSet(
                 ['bf,', 'aqs', 'bqf', "fs'", "g'"]
                 )
 

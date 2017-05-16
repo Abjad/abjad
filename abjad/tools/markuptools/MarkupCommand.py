@@ -222,15 +222,15 @@ class MarkupCommand(AbjadValueObject):
             ::
 
                 >>> print(format(combine, 'storage'))
-                markuptools.MarkupCommand(
+                abjad.MarkupCommand(
                     'combine',
-                    markuptools.MarkupCommand(
+                    abjad.MarkupCommand(
                         'rotate',
                         60,
-                        markuptools.MarkupCommand(
+                        abjad.MarkupCommand(
                             'line',
                             [
-                                markuptools.MarkupCommand(
+                                abjad.MarkupCommand(
                                     'rounded-box',
                                     'hello?'
                                     ),
@@ -238,7 +238,7 @@ class MarkupCommand(AbjadValueObject):
                                 ]
                             )
                         ),
-                    markuptools.MarkupCommand(
+                    abjad.MarkupCommand(
                         'draw-circle',
                         2.5,
                         0.1,
@@ -307,7 +307,7 @@ class MarkupCommand(AbjadValueObject):
 
                 >>> command = markuptools.MarkupCommand('hspace', 0)
                 >>> command
-                markuptools.MarkupCommand(
+                abjad.MarkupCommand(
                     'hspace',
                     0
                     )
@@ -315,7 +315,7 @@ class MarkupCommand(AbjadValueObject):
             ::
 
                 >>> eval(repr(command))
-                markuptools.MarkupCommand(
+                abjad.MarkupCommand(
                     'hspace',
                     0
                     )

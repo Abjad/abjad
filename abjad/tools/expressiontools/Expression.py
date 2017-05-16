@@ -235,37 +235,37 @@ class Expression(AbjadObject):
                 ...     )
                 >>> expression = expression_1 + expression_2
                 >>> f(expression)
-                expressiontools.Expression(
+                abjad.Expression(
                     argument_count=2,
                     evaluation_template='{}.__add__({})',
                     is_composite=True,
-                    markup_expression=expressiontools.Expression(
+                    markup_expression=abjad.Expression(
                         callbacks=[
-                            expressiontools.Expression(
+                            abjad.Expression(
                                 argument_count=2,
                                 evaluation_template='[{}, {}]',
                                 ),
-                            expressiontools.Expression(
+                            abjad.Expression(
                                 evaluation_template='abjad.markuptools.MarkupList',
                                 is_initializer=True,
                                 ),
-                            expressiontools.Expression(
-                                evaluation_template="{}.insert(i=1, item=markuptools.Markup(\n    contents=['+'],\n    ))",
+                            abjad.Expression(
+                                evaluation_template="{}.insert(i=1, item=abjad.Markup(\n    contents=['+'],\n    ))",
                                 force_return=True,
                                 ),
-                            expressiontools.Expression(
+                            abjad.Expression(
                                 evaluation_template='{}.line()',
                                 ),
                             ],
-                        proxy_class=markuptools.MarkupList,
+                        proxy_class=abjad.MarkupList,
                         ),
                     string_template='{} + {}',
                     subexpressions=(
-                        expressiontools.Expression(
+                        abjad.Expression(
                             argument_count=3,
                             evaluation_template='{} + {} + {}',
                             ),
-                        expressiontools.Expression(
+                        abjad.Expression(
                             argument_count=2,
                             evaluation_template='{} + {}',
                             ),
@@ -464,7 +464,7 @@ class Expression(AbjadObject):
             ::
 
                 >>> f(expression)
-                expressiontools.Expression()
+                abjad.Expression()
 
         ..  container:: example expression
 
@@ -479,17 +479,17 @@ class Expression(AbjadObject):
             ::
 
                 >>> f(expression)
-                expressiontools.Expression(
+                abjad.Expression(
                     callbacks=[
-                        expressiontools.Expression(
+                        abjad.Expression(
                             evaluation_template='abjad.markuptools.Markup',
                             is_initializer=True,
                             ),
-                        expressiontools.Expression(
+                        abjad.Expression(
                             evaluation_template='{}.bold()',
                             ),
                         ],
-                    proxy_class=markuptools.Markup,
+                    proxy_class=abjad.Markup,
                     )
 
         Returns string.
@@ -2234,9 +2234,9 @@ class Expression(AbjadObject):
             ::
 
                 >>> f(expression)
-                expressiontools.Expression(
+                abjad.Expression(
                     callbacks=[
-                        expressiontools.Expression(
+                        abjad.Expression(
                             evaluation_template='[{}]',
                             ),
                         ],

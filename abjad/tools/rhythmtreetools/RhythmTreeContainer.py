@@ -18,9 +18,9 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
             >>> container = rhythmtreetools.RhythmTreeContainer(
             ...     preprolated_duration=1, children=[])
-            >>> print(format(container))
+            >>> f(container)
             rhythmtreetools.RhythmTreeContainer(
-                preprolated_duration=durationtools.Duration(1, 1),
+                preprolated_duration=abjad.Duration(1, 1),
                 )
 
     ..  container:: example
@@ -34,19 +34,19 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             >>> leaf_a = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
             >>> leaf_b = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
             >>> container.extend([leaf_a, leaf_b])
-            >>> print(format(container))
+            >>> f(container)
             rhythmtreetools.RhythmTreeContainer(
                 children=(
                     rhythmtreetools.RhythmTreeLeaf(
-                        preprolated_duration=durationtools.Duration(1, 1),
+                        preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
                     rhythmtreetools.RhythmTreeLeaf(
-                        preprolated_duration=durationtools.Duration(2, 1),
+                        preprolated_duration=abjad.Duration(2, 1),
                         is_pitched=True,
                         ),
                     ),
-                preprolated_duration=durationtools.Duration(1, 1),
+                preprolated_duration=abjad.Duration(1, 1),
                 )
 
         ::
@@ -57,28 +57,28 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             ...     rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3))
             >>> another_container.append(container[1])
             >>> container.append(another_container)
-            >>> print(format(container))
+            >>> f(container)
             rhythmtreetools.RhythmTreeContainer(
                 children=(
                     rhythmtreetools.RhythmTreeLeaf(
-                        preprolated_duration=durationtools.Duration(1, 1),
+                        preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
                     rhythmtreetools.RhythmTreeContainer(
                         children=(
                             rhythmtreetools.RhythmTreeLeaf(
-                                preprolated_duration=durationtools.Duration(3, 1),
+                                preprolated_duration=abjad.Duration(3, 1),
                                 is_pitched=True,
                                 ),
                             rhythmtreetools.RhythmTreeLeaf(
-                                preprolated_duration=durationtools.Duration(2, 1),
+                                preprolated_duration=abjad.Duration(2, 1),
                                 is_pitched=True,
                                 ),
                             ),
-                        preprolated_duration=durationtools.Duration(2, 1),
+                        preprolated_duration=abjad.Duration(2, 1),
                         ),
                     ),
-                preprolated_duration=durationtools.Duration(1, 1),
+                preprolated_duration=abjad.Duration(1, 1),
                 )
 
     ..  container:: example
@@ -116,6 +116,8 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         '_offsets_are_current',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(self, children=None, preprolated_duration=1, name=None):
@@ -152,31 +154,31 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
         ::
 
-            >>> print(format(c))
+            >>> f(c)
             rhythmtreetools.RhythmTreeContainer(
                 children=(
                     rhythmtreetools.RhythmTreeLeaf(
-                        preprolated_duration=durationtools.Duration(1, 1),
+                        preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
                     rhythmtreetools.RhythmTreeLeaf(
-                        preprolated_duration=durationtools.Duration(1, 1),
+                        preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
                     rhythmtreetools.RhythmTreeLeaf(
-                        preprolated_duration=durationtools.Duration(1, 1),
+                        preprolated_duration=abjad.Duration(1, 1),
                         is_pitched=True,
                         ),
                     rhythmtreetools.RhythmTreeLeaf(
-                        preprolated_duration=durationtools.Duration(3, 1),
+                        preprolated_duration=abjad.Duration(3, 1),
                         is_pitched=True,
                         ),
                     rhythmtreetools.RhythmTreeLeaf(
-                        preprolated_duration=durationtools.Duration(4, 1),
+                        preprolated_duration=abjad.Duration(4, 1),
                         is_pitched=True,
                         ),
                     ),
-                preprolated_duration=durationtools.Duration(3, 1),
+                preprolated_duration=abjad.Duration(3, 1),
                 )
 
         Returns new RhythmTreeContainer.

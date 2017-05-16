@@ -18,7 +18,7 @@ def silence_except(indices=None):
 
             >>> f(mask)
             rhythmmakertools.SilenceMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[1, 2],
                     inverted=True,
                     ),
@@ -72,7 +72,7 @@ def silence_except(indices=None):
 
             >>> f(mask)
             rhythmmakertools.SilenceMask(
-                pattern=patterntools.Pattern(
+                pattern=abjad.Pattern(
                     indices=[-1, -2],
                     inverted=True,
                     ),
@@ -131,16 +131,16 @@ def silence_except(indices=None):
 
             >>> f(mask)
             rhythmmakertools.SilenceMask(
-                pattern=patterntools.CompoundPattern(
+                pattern=abjad.CompoundPattern(
                     (
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             period=1,
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[0],
                             ),
-                        patterntools.Pattern(
+                        abjad.Pattern(
                             indices=[-1],
                             ),
                         ),

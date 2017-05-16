@@ -43,7 +43,8 @@ class Accordion(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -88,31 +89,30 @@ class Accordion(Instrument):
             ::
 
                 >>> accordion = instrumenttools.Accordion()
-
-                >>> print(format(accordion))
+                >>> f(accordion)
                 instrumenttools.Accordion(
                     instrument_name='accordion',
                     short_instrument_name='acc.',
-                    instrument_name_markup=markuptools.Markup(
+                    instrument_name_markup=abjad.Markup(
                         contents=['Accordion'],
                         ),
-                    short_instrument_name_markup=markuptools.Markup(
+                    short_instrument_name_markup=abjad.Markup(
                         contents=['Acc.'],
                         ),
                     allowable_clefs=instrumenttools.ClefList(
                         [
-                            indicatortools.Clef(
+                            abjad.Clef(
                                 name='treble',
                                 ),
-                            indicatortools.Clef(
+                            abjad.Clef(
                                 name='bass',
                                 ),
                             ]
                         ),
-                    pitch_range=pitchtools.PitchRange(
+                    pitch_range=abjad.PitchRange(
                         range_string='[E1, C8]',
                         ),
-                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                    sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
                     )
 
         Returns string.

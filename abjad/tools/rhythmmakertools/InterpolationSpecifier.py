@@ -50,9 +50,9 @@ class InterpolationSpecifier(AbjadValueObject):
                 >>> specifier = specifier.reverse()
                 >>> f(specifier)
                 rhythmmakertools.InterpolationSpecifier(
-                    start_duration=durationtools.Duration(1, 16),
-                    stop_duration=durationtools.Duration(1, 4),
-                    written_duration=durationtools.Duration(1, 16),
+                    start_duration=abjad.Duration(1, 16),
+                    stop_duration=abjad.Duration(1, 4),
+                    written_duration=abjad.Duration(1, 16),
                     )
 
         ..  container:: example
@@ -69,9 +69,9 @@ class InterpolationSpecifier(AbjadValueObject):
                 >>> specifier = specifier.reverse()
                 >>> f(specifier)
                 rhythmmakertools.InterpolationSpecifier(
-                    start_duration=durationtools.Duration(1, 4),
-                    stop_duration=durationtools.Duration(1, 16),
-                    written_duration=durationtools.Duration(1, 16),
+                    start_duration=abjad.Duration(1, 4),
+                    stop_duration=abjad.Duration(1, 16),
+                    written_duration=abjad.Duration(1, 16),
                     )
 
         Copies written duration from source.

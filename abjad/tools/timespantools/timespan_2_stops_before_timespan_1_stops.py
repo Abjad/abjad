@@ -12,11 +12,11 @@ def timespan_2_stops_before_timespan_1_stops(
     ::
 
         >>> time_relation = timespantools.timespan_2_stops_before_timespan_1_stops()
-        >>> print(format(time_relation))
-        timespantools.TimespanTimespanTimeRelation(
-            inequality=timespantools.CompoundInequality(
+        >>> f(time_relation)
+        abjad.TimespanTimespanTimeRelation(
+            inequality=abjad.CompoundInequality(
                 [
-                    timespantools.Inequality('timespan_2.stop_offset < timespan_1.stop_offset'),
+                    abjad.Inequality('timespan_2.stop_offset < timespan_1.stop_offset'),
                     ],
                 logical_operator='and',
                 ),

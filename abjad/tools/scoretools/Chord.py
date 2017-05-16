@@ -332,23 +332,23 @@ class Chord(Leaf):
             ::
 
                 >>> f(chord.note_heads)
-                scoretools.NoteHeadList(
+                abjad.NoteHeadList(
                     [
-                        scoretools.NoteHead(
-                            written_pitch=pitchtools.NamedPitch("g'"),
+                        abjad.NoteHead(
+                            written_pitch=abjad.NamedPitch("g'"),
                             ),
-                        scoretools.NoteHead(
-                            written_pitch=pitchtools.NamedPitch("c''"),
+                        abjad.NoteHead(
+                            written_pitch=abjad.NamedPitch("c''"),
                             ),
-                        scoretools.NoteHead(
-                            written_pitch=pitchtools.NamedPitch("e''"),
+                        abjad.NoteHead(
+                            written_pitch=abjad.NamedPitch("e''"),
                             ),
                         ]
                     )
 
         ..  container:: example
 
-            SetS note-heads with pitch names:
+            Sets note-heads with pitch names:
 
             ::
 

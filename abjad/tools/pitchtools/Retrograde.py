@@ -116,10 +116,10 @@ class Retrograde(AbjadValueObject):
             ::
 
                 >>> f(operator)
-                pitchtools.CompoundOperator(
+                abjad.CompoundOperator(
                     operators=[
-                        pitchtools.Retrograde(),
-                        pitchtools.Transposition(
+                        abjad.Retrograde(),
+                        abjad.Transposition(
                             n=3,
                             ),
                         ],

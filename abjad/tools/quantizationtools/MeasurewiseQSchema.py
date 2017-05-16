@@ -49,11 +49,11 @@ class MeasurewiseQSchema(QSchema):
                     13: None,
                     },
                 ),
-            tempo=indicatortools.Tempo(
-                reference_duration=durationtools.Duration(1, 4),
+            tempo=abjad.Tempo(
+                reference_duration=abjad.Duration(1, 4),
                 units_per_minute=60,
                 ),
-            time_signature=indicatortools.TimeSignature((4, 4)),
+            time_signature=abjad.TimeSignature((4, 4)),
             use_full_measure=False,
             )
 

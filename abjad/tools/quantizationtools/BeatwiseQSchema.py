@@ -19,7 +19,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> print(format(q_schema, 'storage'))
         quantizationtools.BeatwiseQSchema(
-            beatspan=durationtools.Duration(1, 4),
+            beatspan=abjad.Duration(1, 4),
             search_tree=quantizationtools.UnweightedSearchTree(
                 definition={
                     2: {
@@ -51,8 +51,8 @@ class BeatwiseQSchema(QSchema):
                     13: None,
                     },
                 ),
-            tempo=indicatortools.Tempo(
-                reference_duration=durationtools.Duration(1, 4),
+            tempo=abjad.Tempo(
+                reference_duration=abjad.Duration(1, 4),
                 units_per_minute=60,
                 ),
             )

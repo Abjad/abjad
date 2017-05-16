@@ -10,12 +10,12 @@ def select_all(inverted=None):
 
         ::
 
-            >>> pattern = patterntools.select_all()
+            >>> pattern = abjad.select_all()
 
         ::
 
             >>> print(format(pattern))
-            patterntools.Pattern(
+            abjad.Pattern(
                 indices=[0],
                 period=1,
                 )

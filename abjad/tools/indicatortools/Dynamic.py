@@ -175,7 +175,7 @@ class Dynamic(AbjadValueObject):
 
                 >>> dynamic = Dynamic('f')
                 >>> print(format(dynamic))
-                indicatortools.Dynamic(
+                abjad.Dynamic(
                     name='f',
                     )
 

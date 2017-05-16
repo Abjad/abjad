@@ -13,11 +13,11 @@ class PitchedQEvent(QEvent):
         >>> q_event = quantizationtools.PitchedQEvent(1000, pitches)
         >>> print(format(q_event, 'storage'))
         quantizationtools.PitchedQEvent(
-            offset=durationtools.Offset(1000, 1),
+            offset=abjad.Offset(1000, 1),
             pitches=(
-                pitchtools.NamedPitch("c'"),
-                pitchtools.NamedPitch("cs'"),
-                pitchtools.NamedPitch("e'"),
+                abjad.NamedPitch("c'"),
+                abjad.NamedPitch("cs'"),
+                abjad.NamedPitch("e'"),
                 ),
             )
 
