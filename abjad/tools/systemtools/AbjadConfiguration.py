@@ -256,7 +256,7 @@ class AbjadConfiguration(Configuration):
             ::
 
                 >>> abjad_configuration.get_text_editor() # doctest: +SKIP
-                'vim'
+                'vi'
 
         Returns string.
         '''
@@ -265,7 +265,7 @@ class AbjadConfiguration(Configuration):
         if text_editor is not None:
             return text_editor
         elif os.name == 'posix':
-            return 'vim'
+            return 'vi'
         else:
             return 'edit'
 
