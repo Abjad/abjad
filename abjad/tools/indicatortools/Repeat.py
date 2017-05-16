@@ -7,7 +7,7 @@ class Repeat(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Volta repeat:
+        Volta repeat:
 
         ::
 
@@ -35,7 +35,7 @@ class Repeat(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Unfold repeat:
+        Unfold repeat:
 
         ::
 
@@ -95,7 +95,7 @@ class Repeat(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Volta repeat:
+            Volta repeat:
 
             ::
 
@@ -104,7 +104,7 @@ class Repeat(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Unfold repeat:
+            Unfold repeat:
 
             ::
 
@@ -137,7 +137,7 @@ class Repeat(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Volta repeat:
+            Volta repeat:
 
             ::
 
@@ -147,7 +147,7 @@ class Repeat(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Unfold repeat:
+            Unfold repeat:
 
             ::
 
@@ -167,7 +167,7 @@ class Repeat(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Volta repeat:
+            Volta repeat:
 
             ::
 
@@ -177,7 +177,7 @@ class Repeat(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Unfold repeat:
+            Unfold repeat:
 
             ::
 
@@ -199,7 +199,7 @@ class Repeat(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Volta repeat:
+            Volta repeat:
 
             ::
 
@@ -209,7 +209,7 @@ class Repeat(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Unfold repeat:
+            Unfold repeat:
 
             ::
 

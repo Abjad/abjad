@@ -401,7 +401,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 1.** Get written duration:
+            Get written duration:
 
             ::
 
@@ -415,7 +415,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 2.** Set written duration:
+            Set written duration:
 
             ::
 
@@ -443,7 +443,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 1.** Get written pitches:
+            Get written pitches:
 
                 >>> chord = Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
@@ -455,7 +455,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 2.** Set written pitches with pitch names:
+            Set written pitches with pitch names:
 
             ::
 

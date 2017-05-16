@@ -10,7 +10,7 @@ class CountsSelectorCallback(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Initializes callback by hand:
+        Initializes callback by hand:
 
         ::
 
@@ -29,7 +29,7 @@ class CountsSelectorCallback(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Selects components:
+        Selects components:
 
         ::
 
@@ -42,7 +42,7 @@ class CountsSelectorCallback(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Selects objects:
+        Selects objects:
 
         ::
 

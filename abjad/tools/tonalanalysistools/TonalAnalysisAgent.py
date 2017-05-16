@@ -11,7 +11,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** Interface to conjunct selection:
+        Interface to conjunct selection:
 
             >>> staff = Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP
@@ -32,7 +32,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
     ..  container:: example
 
-        **Example 2.** Interface to disjunct selection:
+        Interface to disjunct selection:
 
             >>> staff = Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP

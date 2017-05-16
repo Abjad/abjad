@@ -8,7 +8,7 @@ class BarLine(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Final bar line:
+        Final bar line:
 
         ::
 

@@ -23,8 +23,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 1.** Integer and string elements in `pitches` result in
-        notes:
+        Integer and string elements in `pitches` result in notes:
 
         ::
 
@@ -46,7 +45,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 2.** Tuple elements in `pitches` result in chords:
+        Tuple elements in `pitches` result in chords:
 
         ::
 
@@ -66,7 +65,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 3.** None-valued elements in `pitches` result in rests:
+        None-valued elements in `pitches` result in rests:
 
         ::
 
@@ -89,7 +88,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 4.** You can mix and match values passed to `pitches`:
+        You can mix and match values passed to `pitches`:
 
         ::
 
@@ -111,8 +110,8 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 5.** Read `pitches` cyclically when the length of `pitches`
-        is less than the length of `durations`:
+        Reads `pitches` cyclically when the length of `pitches` is less than
+        the length of `durations`:
 
         ::
 
@@ -134,8 +133,8 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 6.** Read `durations` cyclically when the length of
-        `durations` is less than the length of `pitches`:
+        Reads `durations` cyclically when the length of `durations` is less
+        than the length of `pitches`:
 
         ::
 
@@ -157,8 +156,8 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 7.** Elements in `durations` with non-power-of-two
-        denominators result in tuplet-nested leaves:
+        Elements in `durations` with non-power-of-two denominators result in
+        tuplet-nested leaves:
 
         ::
 
@@ -181,8 +180,8 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 8.** Set `decrease_durations_monotonically` to true to
-        return nonassignable durations tied from greatest to least:
+        Set `decrease_durations_monotonically` to true to return nonassignable
+        durations tied from greatest to least:
 
         ::
 
@@ -205,8 +204,8 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 9.** Set `decrease_durations_monotonically` to false
-        to return nonassignable durations tied from least to greatest:
+        Set `decrease_durations_monotonically` to false to return nonassignable
+        durations tied from least to greatest:
 
         ::
 
@@ -233,8 +232,8 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 10.** Set `forbidden_written_duration` to avoid notes
-        greater than or equal to a certain written duration:
+        Set `forbidden_written_duration` to avoid notes greater than or equal
+        to a certain written duration:
 
         ::
 
@@ -265,7 +264,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 11.** You may set `forbidden_written_duration` and
+        You may set `forbidden_written_duration` and
         `decrease_durations_monotonically` together:
 
         ::
@@ -298,8 +297,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 12.** Set `is_diminution` to true to produce
-        diminished tuplets:
+        Set `is_diminution` to true to produce diminished tuplets:
 
         ::
 
@@ -331,8 +329,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 13.** Set `is_diminution` to false to produce
-        agumented tuplets:
+        Set `is_diminution` to false to produce agumented tuplets:
 
         ::
 
@@ -363,8 +360,8 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 14.** None-valued elements in `pitches` result in
-        multimeasure rests when the multimeasure rest keyword is set:
+        None-valued elements in `pitches` result in multimeasure rests when the
+        multimeasure rest keyword is set:
 
         ::
 
@@ -403,7 +400,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 15.** Uses Messiaen-style ties:
+        Uses Messiaen-style ties:
 
         ::
 
@@ -427,7 +424,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 16.** Works with numbered pitch-class:
+        Works with numbered pitch-class:
 
         ::
 
@@ -450,7 +447,7 @@ def make_leaves(
 
     ..  container:: example
 
-        **Example 17.** Makes skips instead of rests:
+        Makes skips instead of rests:
 
         ::
 

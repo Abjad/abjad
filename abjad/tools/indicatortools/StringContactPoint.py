@@ -7,7 +7,7 @@ class StringContactPoint(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Sul ponticello:
+        Sul ponticello:
 
         ::
 
@@ -19,7 +19,7 @@ class StringContactPoint(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Sul tasto:
+        Sul tasto:
 
         ::
 
@@ -79,7 +79,7 @@ class StringContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Sul ponticello:
+            Sul ponticello:
 
             ::
 
@@ -89,7 +89,7 @@ class StringContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Sul tasto:
+            Sul tasto:
 
             ::
 
@@ -112,7 +112,7 @@ class StringContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Sul ponticello:
+            Sul ponticello:
 
             ::
 
@@ -122,7 +122,7 @@ class StringContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Sul tasto:
+            Sul tasto:
 
             ::
 
@@ -140,7 +140,7 @@ class StringContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Sul ponticello:
+            Sul ponticello:
 
             ::
 
@@ -157,7 +157,7 @@ class StringContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Sul tasto:
+            Sul tasto:
 
             ::
 

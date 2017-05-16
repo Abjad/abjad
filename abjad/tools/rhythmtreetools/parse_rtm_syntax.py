@@ -7,7 +7,7 @@ def parse_rtm_syntax(rtm):
 
     ..  container:: example
 
-        **Example 1.** Parses tuplet:
+        Parses tuplet:
 
         ::
 
@@ -32,7 +32,7 @@ def parse_rtm_syntax(rtm):
 
     ..  container:: example
 
-        **Example 2.** Also supports fractional durations:
+        Also supports fractional durations:
 
         ::
 

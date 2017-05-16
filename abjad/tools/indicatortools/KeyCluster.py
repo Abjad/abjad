@@ -8,7 +8,7 @@ class KeyCluster(AbjadValueObject):
     ..  container:: example
 
         
-        **Example 1.** Default values:
+        Default values:
 
         ::
 
@@ -120,7 +120,7 @@ class KeyCluster(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Includes flat markup:
+            Includes flat markup:
 
             ::
 
@@ -155,7 +155,7 @@ class KeyCluster(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Does not include flat markup:
+            Does not include flat markup:
 
             ::
 
@@ -194,7 +194,7 @@ class KeyCluster(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Includes natural markup:
+            Includes natural markup:
 
             ::
 
@@ -229,7 +229,7 @@ class KeyCluster(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Does not include natural markup:
+            Does not include natural markup:
 
             ::
 
@@ -268,7 +268,7 @@ class KeyCluster(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Positions markup up:
+            Positions markup up:
 
             ::
 
@@ -303,7 +303,7 @@ class KeyCluster(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Positions markup down:
+            Positions markup down:
 
             ::
 
@@ -344,7 +344,7 @@ class KeyCluster(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Does not suppress markup:
+            Does not suppress markup:
 
             ::
 
@@ -379,7 +379,7 @@ class KeyCluster(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Does not suppress markup:
+            Does not suppress markup:
 
             ::
 

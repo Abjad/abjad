@@ -11,7 +11,7 @@ class LineSegment(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Default line segment:
+        Default line segment:
 
         ::
 

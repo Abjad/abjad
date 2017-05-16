@@ -8,7 +8,7 @@ class Ritardando(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Default ritardando:
+        Default ritardando:
 
         ::
 
@@ -37,7 +37,7 @@ class Ritardando(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Custom ritardando:
+        Custom ritardando:
 
         ::
 
@@ -103,7 +103,7 @@ class Ritardando(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default ritardando:
+            Default ritardando:
 
             ::
 
@@ -116,7 +116,7 @@ class Ritardando(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Custom ritardando:
+            Custom ritardando:
 
             ::
 
@@ -176,7 +176,7 @@ class Ritardando(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default ritardando:
+            Default ritardando:
 
             ::
 
@@ -186,7 +186,7 @@ class Ritardando(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Custom ritardando:
+            Custom ritardando:
 
             ::
 
@@ -207,7 +207,7 @@ class Ritardando(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default ritardando:
+            Default ritardando:
 
             ::
 
@@ -217,7 +217,7 @@ class Ritardando(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Custom ritardando:
+            Custom ritardando:
 
             ::
 

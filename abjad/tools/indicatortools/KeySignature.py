@@ -7,7 +7,7 @@ class KeySignature(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** E major:
+        E major:
 
         ::
 
@@ -29,7 +29,7 @@ class KeySignature(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** e minor:
+        e minor:
 
         ::
 
@@ -80,7 +80,7 @@ class KeySignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** E major:
+            E major:
 
             ::
 
@@ -89,7 +89,7 @@ class KeySignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** e minor:
+            e minor:
 
             ::
 
@@ -119,7 +119,7 @@ class KeySignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** E major:
+            E major:
 
             ::
 
@@ -129,7 +129,7 @@ class KeySignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** e minor:
+            e minor:
 
             ::
 
@@ -149,7 +149,7 @@ class KeySignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** E major:
+            E major:
 
             ::
 
@@ -159,7 +159,7 @@ class KeySignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** e minor:
+            e minor:
 
             ::
 
@@ -177,7 +177,7 @@ class KeySignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** E major:
+            E major:
 
             ::
 
@@ -187,7 +187,7 @@ class KeySignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** e minor:
+            e minor:
 
             ::
 
@@ -209,7 +209,7 @@ class KeySignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** E major:
+            E major:
 
             ::
 
@@ -219,7 +219,7 @@ class KeySignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** e minor:
+            e minor:
 
             ::
 

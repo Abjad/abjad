@@ -15,7 +15,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 1.** Initializes from integer numerator:
+        Initializes from integer numerator:
 
         ::
 
@@ -24,7 +24,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 2.** Initializes from integer numerator and denominator:
+        Initializes from integer numerator and denominator:
 
         ::
 
@@ -33,7 +33,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 3.** Initializes from integer-equivalent numeric numerator:
+        Initializes from integer-equivalent numeric numerator:
 
         ::
 
@@ -42,8 +42,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 4.** Initializes from integer-equivalent numeric numerator
-        and denominator:
+        Initializes from integer-equivalent numeric numerator and denominator:
 
         ::
 
@@ -52,7 +51,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 5.** Initializes from integer-equivalent singleton:
+        Initializes from integer-equivalent singleton:
 
         ::
 
@@ -61,7 +60,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 6.** Initializes from integer-equivalent pair:
+        Initializes from integer-equivalent pair:
 
         ::
 
@@ -70,7 +69,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 7.** Initializes from other duration:
+        Initializes from other duration:
 
         ::
 
@@ -79,7 +78,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 8.** Intializes from fraction:
+        Intializes from fraction:
 
         ::
 
@@ -88,7 +87,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 9.** Initializes from solidus string:
+        Initializes from solidus string:
 
         ::
 
@@ -97,7 +96,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 10.** Initializes from nonreduced fraction:
+        Initializes from nonreduced fraction:
 
         ::
 
@@ -106,7 +105,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 11.** Durations inherit from built-in fraction:
+        Durations inherit from built-in fraction:
 
         ::
 
@@ -115,7 +114,7 @@ class Duration(AbjadObject, Fraction):
 
     ..  container:: example
 
-        **Example 12.** Durations are numeric:
+        Durations are numeric:
 
         ::
 
@@ -189,7 +188,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 1.** Returns duration when `arguments` is a duration:
+            Returns duration when `arguments` is a duration:
 
             ::
 
@@ -200,8 +199,8 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 2.** Returns nonreduced fraction when `arguments` is a
-            nonreduced fraction:
+            Returns nonreduced fraction when `arguments` is a nonreduced
+            fraction:
 
             ::
 
@@ -321,7 +320,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 1.** Returns a new duration when `arguments` is a duration:
+            Returns a new duration when `arguments` is a duration:
 
             ::
 
@@ -332,8 +331,8 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 2.** Returns nonreduced fraction when `arguments` is a
-            nonreduced fraction:
+            Returns nonreduced fraction when `arguments` is a nonreduced
+            fraction:
 
             ::
 
@@ -576,7 +575,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets dot count:
+            Gets dot count:
 
             ::
 
@@ -631,7 +630,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets equal-or-greater assignable duration:
+            Gets equal-or-greater assignable duration:
 
             ::
 
@@ -675,7 +674,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets equal-or-greater power-of-two:
+            Gets equal-or-greater power-of-two:
 
             ::
 
@@ -713,7 +712,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets equal-or-lesser assignable duration:
+            Gets equal-or-lesser assignable duration:
 
             ::
 
@@ -758,7 +757,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets equal-or-lesser power-of-two:
+            Gets equal-or-lesser power-of-two:
 
             ::
 
@@ -796,7 +795,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets flag count:
+            Gets flag count:
 
             ::
 
@@ -839,7 +838,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Is true when duration has power-of-two denominator:
+            Is true when duration has power-of-two denominator:
 
             ::
 
@@ -876,7 +875,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets implied prolation:
+            Gets implied prolation:
 
             ::
 
@@ -915,7 +914,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Is true when duration is assignable:
+            Is true when duration is assignable:
 
             ::
 
@@ -957,7 +956,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets LilyPond duration string:
+            Gets LilyPond duration string:
 
                 >>> Duration(3, 16).lilypond_duration_string
                 '8.'
@@ -992,7 +991,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets pair:
+            Gets pair:
 
             ::
 
@@ -1009,7 +1008,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets prolation string:
+            Gets prolation string:
 
             ::
 
@@ -1047,7 +1046,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Gets reciprocal:
+            Gets reciprocal:
 
             ::
 
@@ -1067,7 +1066,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Changes durations to nonreduced fractions:
+            Changes durations to nonreduced fractions:
 
             ::
 
@@ -1098,7 +1097,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Initializes duration from LilyPond duration string:
+            Initializes duration from LilyPond duration string:
 
             ::
 
@@ -1118,7 +1117,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Is true when expression is a duration token:
+            Is true when expression is a duration token:
 
             ::
 
@@ -1138,7 +1137,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Changes duration to clock string:
+            Changes duration to clock string:
 
             ::
 
@@ -1174,7 +1173,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 1.** Changes assignable duration to score markup:
+            Changes assignable duration to score markup:
 
             ::
 
@@ -1215,7 +1214,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 2.** Changes nonassignable duration to score markup:
+            Changes nonassignable duration to score markup:
 
             ::
 
@@ -1257,7 +1256,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 3.** Override tuplet number text like this:
+            Override tuplet number text like this:
 
             ::
 
@@ -1329,7 +1328,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example.** Changes duration to nonreduced fraction:
+            Changes duration to nonreduced fraction:
 
             ::
 
@@ -1353,8 +1352,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 1.** Yields all positive durations in Cantor diagonalized
-            order:
+            Yields all positive durations in Cantor diagonalized order:
 
             ::
 
@@ -1381,8 +1379,8 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 2.** Yields all positive durations in Cantor diagonalized
-            order uniquely:
+            Yields all positive durations in Cantor diagonalized order
+            uniquely:
 
             ::
 
@@ -1427,7 +1425,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 1.** Yields durations equivalent to ``1/8``:
+            Yields durations equivalent to ``1/8``:
 
             ::
 
@@ -1445,7 +1443,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 2.** Yields durations equivalent to ``1/12``:
+            Yields durations equivalent to ``1/12``:
 
             ::
 

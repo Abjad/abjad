@@ -17,7 +17,7 @@ class Tempo(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Integer-valued tempo:
+        Integer-valued tempo:
 
         ::
 
@@ -43,7 +43,7 @@ class Tempo(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Float-valued tempo:
+        Float-valued tempo:
 
         ::
 
@@ -103,7 +103,7 @@ class Tempo(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Rational-valued tempo:
+        Rational-valued tempo:
 
         ::
 
@@ -230,7 +230,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Adds one tempo to another:
+            Adds one tempo to another:
 
             ::
 
@@ -239,7 +239,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Returns none when `argument` is not a tempo:
+            Returns none when `argument` is not a tempo:
 
             ::
 
@@ -274,7 +274,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Divides tempo by number:
+            Divides tempo by number:
 
             ::
 
@@ -283,7 +283,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Divides tempo by other tempo:
+            Divides tempo by other tempo:
 
             ::
 
@@ -316,7 +316,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Without custom markup:
+            Without custom markup:
 
             ::
 
@@ -330,7 +330,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** With custom markup:
+            With custom markup:
 
             ::
 
@@ -373,7 +373,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Doubles tempo:
+            Doubles tempo:
 
             ::
 
@@ -383,7 +383,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Triples tempo:
+            Triples tempo:
 
             ::
 
@@ -411,7 +411,7 @@ class Tempo(AbjadValueObject):
 
         ..  container::: example
 
-            **Example 1.** Doubles tempo:
+            Doubles tempo:
 
             ::
 
@@ -421,7 +421,7 @@ class Tempo(AbjadValueObject):
 
         ..  container::: example
 
-            **Example 2.** Triples tempo:
+            Triples tempo:
 
             ::
 
@@ -449,7 +449,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Integer-valued tempo:
+            Integer-valued tempo:
 
             ::
 
@@ -459,7 +459,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Float-valued tempo:
+            Float-valued tempo:
 
             ::
 
@@ -469,7 +469,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Rational-valued tempo:
+            Rational-valued tempo:
 
             ::
 
@@ -479,7 +479,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 4.** Ranged tempo:
+            Ranged tempo:
 
             ::
 
@@ -525,7 +525,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Same reference reference durations:
+            Same reference reference durations:
             ::
 
                 >>> tempo_1 = Tempo(Duration(1, 4), 90)
@@ -535,7 +535,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Different reference durations:
+            Different reference durations:
             ::
 
                 >>> tempo_1 = Tempo(Duration(1, 4), 90)
@@ -576,7 +576,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Divides tempo by number:
+            Divides tempo by number:
 
             ::
 
@@ -585,7 +585,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Divides tempo by other tempo:
+            Divides tempo by other tempo:
 
             ::
 
@@ -684,7 +684,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** With custom markup:
+            With custom markup:
 
             ::
 
@@ -768,7 +768,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Fifty-two eighth notes per minute:
+            Fifty-two eighth notes per minute:
 
             ::
 
@@ -778,7 +778,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Ninety quarter notes per minute:
+            Ninety quarter notes per minute:
 
             ::
 
@@ -797,7 +797,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Imprecise tempos:
+            Imprecise tempos:
 
             ::
 
@@ -814,7 +814,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Precise tempo:
+            Precise tempo:
 
             ::
 
@@ -835,7 +835,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Fifty-two eighth notes per minute:
+            Fifty-two eighth notes per minute:
 
             ::
 
@@ -845,7 +845,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Ninety quarter notes per minute:
+            Ninety quarter notes per minute:
 
             ::
 
@@ -877,7 +877,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Fifty-two eighth notes per minute:
+            Fifty-two eighth notes per minute:
 
             ::
 
@@ -887,7 +887,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Ninety quarter notes per minute:
+            Ninety quarter notes per minute:
 
             ::
 
@@ -905,7 +905,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Fifty-two eighth notes per minute:
+            Fifty-two eighth notes per minute:
 
             ::
 
@@ -915,7 +915,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Ninety quarter notes per minute:
+            Ninety quarter notes per minute:
 
             ::
 
@@ -933,7 +933,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Integer-valued tempo:
+            Integer-valued tempo:
 
             ::
 
@@ -943,7 +943,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Float-valued tempo:
+            Float-valued tempo:
 
             ::
 
@@ -953,7 +953,7 @@ class Tempo(AbjadValueObject):
 
 
 
-            **Example 3.** Rational-valued tempo:
+            Rational-valued tempo:
 
             ::
 
@@ -976,7 +976,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** One quarter lasts 1000 msec at quarter equals 60:
+            One quarter lasts 1000 msec at quarter equals 60:
 
             ::
 
@@ -986,8 +986,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Dotted sixteenth lasts 1500 msec at quarter equals
-            60:
+            Dotted sixteenth lasts 1500 msec at quarter equals 60:
 
             ::
 
@@ -1021,8 +1020,8 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Rewrites tempo ``4=58`` by ratios ``n:d`` such that
-            ``1 <= n <= 8`` and ``1 <= d <= 8``.
+            Rewrites tempo ``4=58`` by ratios ``n:d`` such that ``1 <= n <= 8``
+            and ``1 <= d <= 8``.
 
             ::
 
@@ -1063,7 +1062,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Integer-valued tempos only:
+            Integer-valued tempos only:
 
             ::
 
@@ -1122,7 +1121,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Integer-valued tempo:
+            Integer-valued tempo:
 
             ::
 
@@ -1170,7 +1169,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Float-valued tempo:
+            Float-valued tempo:
 
             ::
 
@@ -1218,7 +1217,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Rational-valued tempo:
+            Rational-valued tempo:
 
             ::
 
@@ -1274,7 +1273,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 4.** Reference duration expressed with ties:
+            Reference duration expressed with ties:
 
             ::
 
@@ -1323,7 +1322,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 5.** Reference duration expressed as a tuplet:
+            Reference duration expressed as a tuplet:
 
             ::
 
@@ -1374,7 +1373,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 6.** Reference duration passed in as explicit rhythm:
+            Reference duration passed in as explicit rhythm:
 
             ::
 
@@ -1456,7 +1455,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Consider the two tempo indicators below.
+            Consider the two tempo indicators below.
 
             ::
 

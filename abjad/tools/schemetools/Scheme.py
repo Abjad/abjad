@@ -10,7 +10,7 @@ class Scheme(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** A Scheme boolean value:
+        A Scheme boolean value:
 
         ::
 
@@ -20,7 +20,7 @@ class Scheme(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** A nested Scheme expession:
+        A nested Scheme expession:
 
         ::
 
@@ -33,7 +33,7 @@ class Scheme(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** A variable-length argument:
+        A variable-length argument:
 
         ::
 
@@ -46,7 +46,7 @@ class Scheme(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 4.** A quoted Scheme expression:
+        A quoted Scheme expression:
 
         ::
 
@@ -59,7 +59,7 @@ class Scheme(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 5.** A Scheme expression with forced quotes:
+        A Scheme expression with forced quotes:
 
         ::
 
@@ -73,7 +73,7 @@ class Scheme(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 6.** A Scheme expression of LilyPond functions:
+        A Scheme expression of LilyPond functions:
 
         ::
 
@@ -92,10 +92,10 @@ class Scheme(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 7.** A Scheme lambda expression of LilyPond function that
-        takes a markup with a quoted string argument. Setting verbatim to true
-        causes the expression to format exactly as-is without modifying quotes
-        or whitespace:
+        A Scheme lambda expression of LilyPond function that takes a markup
+        with a quoted string argument. Setting verbatim to true causes the
+        expression to format exactly as-is without modifying quotes or
+        whitespace:
 
         ::
 
@@ -154,7 +154,7 @@ class Scheme(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Scheme LilyPond format:
+            Scheme LilyPond format:
 
             ::
 
@@ -164,7 +164,7 @@ class Scheme(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Scheme storage format:
+            Scheme storage format:
 
             ::
 
@@ -290,7 +290,7 @@ class Scheme(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Some basic values:
+            Some basic values:
 
             ::
 
@@ -314,8 +314,8 @@ class Scheme(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Strings without whitespace can be forcibly quoted
-            via the `force_quotes` keyword:
+            Strings without whitespace can be forcibly quoted via the
+            `force_quotes` keyword:
 
             ::
 
@@ -327,8 +327,8 @@ class Scheme(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Set verbatim to true to format value exactly (with
-            only hash preprended):
+            Set verbatim to true to format value exactly (with only hash
+            preprended):
 
             ::
 
@@ -339,9 +339,8 @@ class Scheme(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 4.** Hash symbols in strings will result in quoted output
-            unless `verbatim` is True, in order to prevent LilyPond parsing
-            errors:
+            Hash symbols in strings will result in quoted output unless
+            `verbatim` is True, in order to prevent LilyPond parsing errors:
 
             ::
 

@@ -64,7 +64,7 @@ class Duplication(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Duplicates once without period.
+            Duplicates once without period:
 
             ::
 
@@ -75,7 +75,7 @@ class Duplication(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Duplicates twice without period.
+            Duplicates twice without period:
 
             ::
 
@@ -86,7 +86,7 @@ class Duplication(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Duplicates periodically.
+            Duplicates periodically:
 
             ::
 
@@ -114,7 +114,7 @@ class Duplication(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            **Example 4.** Duplicate indices.
+            Duplicate indices:
 
             ::
 
@@ -128,7 +128,7 @@ class Duplication(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            **Example 5.** Duplicate indices periodically.
+            Duplicate indices periodically:
 
             ::
 
@@ -143,8 +143,7 @@ class Duplication(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            **Example 6.** Duplicate indices periodically with different
-            counts.
+            Duplicate indices periodically with different counts:
 
             ::
 
@@ -159,7 +158,7 @@ class Duplication(abctools.AbjadValueObject):
 
         ..  container:: example
 
-            **Example 7.** Cyclic counts.
+            Cyclic counts:
 
             ::
 

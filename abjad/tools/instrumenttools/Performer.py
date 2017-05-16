@@ -130,7 +130,7 @@ class Performer(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets instrument with instrument name:
+            Gets instrument with instrument name:
 
             ::
 
@@ -139,7 +139,7 @@ class Performer(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Gets instrument with short instrument name:
+            Gets instrument with short instrument name:
 
             ::
 
@@ -148,7 +148,7 @@ class Performer(AbjadObject):
 
         ..  container:: example
 
-            **Example 3.** Gets instrument regardless of case:
+            Gets instrument regardless of case:
 
             ::
 
@@ -157,7 +157,7 @@ class Performer(AbjadObject):
 
         ..  container:: example
 
-            **Example 4.** Returns none when no match is found:
+            Returns none when no match is found:
 
             ::
 

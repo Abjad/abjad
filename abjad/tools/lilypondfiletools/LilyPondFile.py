@@ -384,7 +384,7 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Makes basic LilyPond file:
+            Makes basic LilyPond file:
 
             ::
 

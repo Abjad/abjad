@@ -215,7 +215,7 @@ class LogicalTie(Selection):
 
         ..  container:: example
 
-            **Example 1.** Change logical tie to diminished tuplet:
+            Change logical tie to diminished tuplet:
 
             ::
 
@@ -271,7 +271,7 @@ class LogicalTie(Selection):
 
         ..  container:: example
 
-            **Example 2.** Change logical tie to augmented tuplet:
+            Change logical tie to augmented tuplet:
 
             ::
 

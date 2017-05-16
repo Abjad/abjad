@@ -7,7 +7,7 @@ class Clef(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** At the beginning of a staff:
+        At the beginning of a staff:
 
         ::
 
@@ -22,7 +22,7 @@ class Clef(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Some available clefs:
+        Some available clefs:
 
         ::
 
@@ -299,7 +299,7 @@ class Clef(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Gets staff position of middle C in treble clef:
+            Gets staff position of middle C in treble clef:
 
             ::
 
@@ -308,7 +308,7 @@ class Clef(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets staff position of middle C in alto clef:
+            Gets staff position of middle C in alto clef:
 
             ::
 
@@ -325,7 +325,7 @@ class Clef(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Gets name treble clef:
+            Gets name treble clef:
 
             ::
 
@@ -334,7 +334,7 @@ class Clef(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets name of alto clef:
+            Gets name of alto clef:
 
             ::
 

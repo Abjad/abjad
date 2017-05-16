@@ -16,7 +16,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** One voice per staff:
+        One voice per staff:
 
         ::
 
@@ -46,7 +46,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
     ..  container:: example
 
-        **Example 2.** More than one voice per staff:
+        More than one voice per staff:
 
         ::
 
@@ -76,7 +76,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
     ..  container:: example
 
-        **Example 3.** With percussion clefs attached.
+        With percussion clefs attached.
 
             >>> template_3 = template_class(
             ...     staff_count=[2, 1, 2],
@@ -127,7 +127,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Call first template:
+            Call first template:
 
             ::
 
@@ -159,7 +159,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Call second template:
+            Call second template:
 
             ::
 

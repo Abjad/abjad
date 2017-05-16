@@ -11,7 +11,7 @@ class BowContactPoint(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Contact point exactly halfway from frog to tip of bow:
+        Contact point exactly halfway from frog to tip of bow:
 
         ::
 
@@ -23,7 +23,7 @@ class BowContactPoint(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Contact point 3/5 of the way from frog to tip of bow:
+        Contact point 3/5 of the way from frog to tip of bow:
 
         ::
 
@@ -111,7 +111,7 @@ class BowContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** One quarter of the way from frog to point:
+            One quarter of the way from frog to point:
 
             ::
 
@@ -121,7 +121,7 @@ class BowContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Three fifths of the way from frog to point:
+            Three fifths of the way from frog to point:
 
             ::
 
@@ -139,7 +139,7 @@ class BowContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** One quarter of the way from frog to point:
+            One quarter of the way from frog to point:
 
             ::
 
@@ -156,7 +156,7 @@ class BowContactPoint(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Three fifths of the way from frog to point:
+            Three fifths of the way from frog to point:
 
             ::
 

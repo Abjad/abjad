@@ -429,7 +429,7 @@ class Selection(object):
 
         ..  container:: example
 
-            **Example 1.** Copy components one time:
+            Copy components one time:
 
             ::
 
@@ -476,7 +476,7 @@ class Selection(object):
 
         ..  container:: example
 
-            **Example 2.** Copy components multiple times:
+            Copy components multiple times:
 
             Copy `components` a total of `n` times:
 
@@ -503,7 +503,7 @@ class Selection(object):
 
         ..  container:: example
 
-            **Example 3.** Copy leaves and include enclosing conatiners:
+            Copy leaves and include enclosing conatiners:
 
                 >>> voice = Voice(r"\times 2/3 { c'4 d'4 e'4 }")
                 >>> voice.append(r"\times 2/3 { f'4 e'4 d'4 }")

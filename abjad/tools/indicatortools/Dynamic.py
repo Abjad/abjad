@@ -8,7 +8,7 @@ class Dynamic(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Initializes from dynamic name:
+        Initializes from dynamic name:
 
         ::
 
@@ -32,7 +32,7 @@ class Dynamic(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Initializes from other dynamic:
+        Initializes from other dynamic:
 
         ::
 
@@ -51,7 +51,7 @@ class Dynamic(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Niente is possible, but provides no formatting.
+        Niente is possible, but provides no formatting.
 
         ::
 
@@ -169,7 +169,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Gets storage format of forte:
+            Gets storage format of forte:
 
             ::
 
@@ -181,7 +181,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets LilyPond format of forte:
+            Gets LilyPond format of forte:
 
             ::
 
@@ -229,7 +229,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Steady state of sfp is piano:
+            Steady state of sfp is piano:
 
             ::
 
@@ -238,7 +238,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Steady state of rfz is forte:
+            Steady state of rfz is forte:
 
             ::
 
@@ -256,7 +256,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Louder dynamics change to positive integers:
+            Louder dynamics change to positive integers:
 
             ::
 
@@ -265,7 +265,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Niente changes to negative infinity:
+            Niente changes to negative infinity:
 
             ::
 
@@ -287,7 +287,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Negative values change to quiet dynamics:
+            Negative values change to quiet dynamics:
 
             ::
 
@@ -296,7 +296,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Negative infinity changes to niente:
+            Negative infinity changes to niente:
 
             ::
 
@@ -317,7 +317,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Some usual dynamic names:
+            Some usual dynamic names:
 
             ::
 
@@ -331,7 +331,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Niente is also a dynamic name:
+            Niente is also a dynamic name:
 
             ::
 
@@ -350,7 +350,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Forte:
+            Forte:
 
             ::
 
@@ -360,7 +360,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Piano:
+            Piano:
 
             ::
 
@@ -380,7 +380,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Forte:
+            Forte:
 
             ::
 
@@ -389,7 +389,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Piano:
+            Piano:
 
             ::
 
@@ -398,7 +398,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Double sforzando:
+            Double sforzando:
 
             ::
 
@@ -407,7 +407,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 4.** Double sforzando-piano:
+            Double sforzando-piano:
 
             ::
 
@@ -424,7 +424,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Forte:
+            Forte:
 
             ::
 
@@ -433,7 +433,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Piano:
+            Piano:
 
             ::
 

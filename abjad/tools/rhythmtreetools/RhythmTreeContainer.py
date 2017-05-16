@@ -12,7 +12,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
     ..  container:: example
 
-        **Example 1.** Initializes a rhythm-tree container:
+        Initializes a rhythm-tree container:
 
         ::
 
@@ -25,9 +25,9 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
     ..  container:: example
 
-        **Example 2.** Similar to Abjad containers, `RhythmTreeContainer`
-        supports a list interface, and can be appended, extended, indexed and
-        so forth by other `RhythmTreeMixin` subclasses:
+        Similar to Abjad containers, `RhythmTreeContainer` supports a list
+        interface, and can be appended, extended, indexed and so forth by other
+        `RhythmTreeMixin` subclasses:
 
         ::
 
@@ -83,8 +83,8 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
     ..  container:: example
 
-        **Example 3.** Call `RhythmTreeContainer` with a preprolated_duration
-        to generate a tuplet structure:
+        Call `RhythmTreeContainer` with a preprolated_duration to generate a
+        tuplet structure:
 
         ::
 

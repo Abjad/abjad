@@ -7,7 +7,7 @@ class GraceContainer(Container):
 
     .. container:: example
 
-        **Example 1.** Grace notes:
+        Grace notes:
 
         ::
 
@@ -36,7 +36,7 @@ class GraceContainer(Container):
 
     ..  container:: example
 
-        **Example 2.** After-grace notes:
+        After-grace notes:
 
         ::
 
@@ -70,7 +70,7 @@ class GraceContainer(Container):
 
     ..  container:: example
 
-        **Example 3.** Detaches all grace containers:
+        Detaches all grace containers:
 
         ::
 
@@ -124,8 +124,8 @@ class GraceContainer(Container):
 
     ..  container:: example
 
-        **Example 4.** Detaches (proper) grace container but leaves after grace
-        container attached:
+        Detaches (proper) grace container but leaves after grace container
+        attached:
 
         ::
 
@@ -183,8 +183,8 @@ class GraceContainer(Container):
 
     ..  container:: example
 
-        **Example 5.** Detaches after grace container but leaves (proper) grace
-        container attached:
+        Detaches after grace container but leaves (proper) grace container
+        attached:
 
         ::
 
@@ -319,7 +319,7 @@ class GraceContainer(Container):
 
         .. container:: example
 
-            **Example 1.** Grace notes:
+            Grace notes:
 
             ::
 
@@ -350,7 +350,7 @@ class GraceContainer(Container):
 
         .. container:: example
 
-            **Example 2.** Acciaccatura:
+            Acciaccatura:
 
             ::
 
@@ -388,7 +388,7 @@ class GraceContainer(Container):
 
         .. container:: example
 
-            **Example 3.** Appoggiatura:
+            Appoggiatura:
 
             ::
 
@@ -422,7 +422,7 @@ class GraceContainer(Container):
 
         .. container:: example
 
-            **Example 4.** After-grace notes:
+            After-grace notes:
 
             ::
 

@@ -7,7 +7,7 @@ class Arrow(LineSegment):
 
     ..  container:: example
 
-        **Example 1.** String contact position spanner:
+        String contact position spanner:
             
         ::
 
@@ -137,7 +137,7 @@ class Arrow(LineSegment):
         
         ..  container:: example
 
-            **Example 1.** Arrow width equals ``0.25``:
+            Arrow width equals ``0.25``:
 
             ::
 
@@ -198,7 +198,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 2.** Arrow width equals ``0.5``:
+            Arrow width equals ``0.5``:
 
             ::
 
@@ -257,7 +257,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 3.** Arrow width equals ``1``:
+            Arrow width equals ``1``:
 
             ::
 
@@ -327,7 +327,7 @@ class Arrow(LineSegment):
         
         ..  container:: example
 
-            **Example 1.** Dash fraction equals 100% of dash period:
+            Dash fraction equals 100% of dash period:
 
 
             ::
@@ -387,7 +387,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 2.** Dash fraction equals 50% of dash period:
+            Dash fraction equals 50% of dash period:
 
 
             ::
@@ -445,7 +445,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 3.** Dash fraction equals 10% of dash period:
+            Dash fraction equals 10% of dash period:
 
 
             ::
@@ -514,7 +514,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 1.** Dash period equals none:
+            Dash period equals none:
 
             ::
 
@@ -577,8 +577,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 2.** Dash period equals ``1`` (with dash fraction equal
-            to 25%):
+            Dash period equals ``1`` (with dash fraction equal to 25%):
 
             ::
 
@@ -641,8 +640,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 3.** Dash period equals ``4`` (with dash fraction equal
-            to 25%):
+            Dash period equals ``4`` (with dash fraction equal to 25%):
 
             ::
 
@@ -730,7 +728,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 1.** Left broken text set to false:
+            Left broken text set to false:
 
             ..  container:: example
 
@@ -820,7 +818,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 2.** Left broken text set explicitly:
+            Left broken text set explicitly:
 
             ..  container:: example
 
@@ -929,7 +927,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 1.** Right broken arrow set to none:
+            Right broken arrow set to none:
 
             ..  container:: example
 
@@ -1019,7 +1017,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 2.** Right broken arrow set to false:
+            Right broken arrow set to false:
 
             ..  container:: example
 
@@ -1118,7 +1116,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 1.** Style equals none:
+            Style equals none:
 
             ::
 
@@ -1179,7 +1177,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 2.** Style equals zig-zag:
+            Style equals zig-zag:
 
             ::
 
@@ -1237,7 +1235,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 3.** Style equals trill:
+            Style equals trill:
 
             ::
 
@@ -1295,7 +1293,7 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            **Example 4.** Style equals dotted line:
+            Style equals dotted line:
 
             ::
 

@@ -9,7 +9,7 @@ class SchemeVector(Scheme):
 
     ..  container:: example
 
-        **Example 1.** Scheme vector of boolean values:
+        Scheme vector of boolean values:
 
         ::
 
@@ -21,7 +21,7 @@ class SchemeVector(Scheme):
 
     ..  container:: example
 
-        **Example 2.** Scheme vector of symbols:
+        Scheme vector of symbols:
 
         ::
 

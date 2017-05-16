@@ -21,7 +21,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Selects the leaves of every logical measure:
+        Selects the leaves of every logical measure:
 
         ::
 
@@ -38,7 +38,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Selects the first leaf of every logical measure:
+        Selects the first leaf of every logical measure:
 
         ::
 
@@ -51,7 +51,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Selects the last leaf of every logical measure:
+        Selects the last leaf of every logical measure:
 
         ::
 
@@ -64,7 +64,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 4.** Works with implicit time signatures:
+        Works with implicit time signatures:
 
         ::
 

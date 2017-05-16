@@ -14,7 +14,7 @@ def notes_and_chords_are_on_expected_clefs(
 
     ..  container:: example
 
-        **Example 1.** Expected clef:
+        Expected clef:
 
         ::
 
@@ -32,7 +32,7 @@ def notes_and_chords_are_on_expected_clefs(
 
     ..  container:: example
 
-        **Example 2.** Unexpected clef:
+        Unexpected clef:
 
         ::
 
@@ -50,7 +50,7 @@ def notes_and_chords_are_on_expected_clefs(
 
     ..  container:: example
 
-        **Example 3.** Allows percussion clef:
+        Allows percussion clef:
 
         ::
 
@@ -82,7 +82,7 @@ def notes_and_chords_are_on_expected_clefs(
 
     ..  container:: example
 
-        **Example 4.** Forbids percussion clef:
+        Forbids percussion clef:
 
         ::
 

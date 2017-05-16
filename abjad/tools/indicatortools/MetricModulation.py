@@ -11,7 +11,7 @@ class MetricModulation(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** With notes:
+        With notes:
 
         ::
 
@@ -91,7 +91,7 @@ class MetricModulation(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** With tuplets:
+        With tuplets:
 
         ::
 
@@ -174,7 +174,7 @@ class MetricModulation(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** With tuplets again:
+        With tuplets again:
 
         ::
 
@@ -257,7 +257,7 @@ class MetricModulation(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 4.** With ties:
+        With ties:
 
         ::
 
@@ -339,7 +339,7 @@ class MetricModulation(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 5.** With ties and tuplets:
+        With ties and tuplets:
 
         ::
 
@@ -426,7 +426,7 @@ class MetricModulation(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 6.** Attach metric modulations to generate score output:
+        Attach metric modulations to generate score output:
 
         ::
 

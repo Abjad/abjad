@@ -7,7 +7,7 @@ class Fermata(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** A short fermata:
+        A short fermata:
 
         ::
 
@@ -27,7 +27,7 @@ class Fermata(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** A fermata:
+        A fermata:
 
         ::
 
@@ -47,7 +47,7 @@ class Fermata(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** A long fermata:
+        A long fermata:
 
         ::
 
@@ -67,7 +67,7 @@ class Fermata(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 4.** A very long fermata:
+        A very long fermata:
 
         ::
 
@@ -118,7 +118,7 @@ class Fermata(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Fermata:
+            Fermata:
 
             ::
 
@@ -127,7 +127,7 @@ class Fermata(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Long fermata:
+            Long fermata:
 
             ::
 
@@ -163,7 +163,7 @@ class Fermata(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** All allowable commands:
+            All allowable commands:
 
             ::
 
@@ -187,7 +187,7 @@ class Fermata(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Fermata:
+            Fermata:
 
             ::
 
@@ -197,7 +197,7 @@ class Fermata(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Long fermata:
+            Long fermata:
 
             ::
 
@@ -215,7 +215,7 @@ class Fermata(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Fermata:
+            Fermata:
 
             ::
 
@@ -225,7 +225,7 @@ class Fermata(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Long fermata:
+            Long fermata:
 
             ::
 

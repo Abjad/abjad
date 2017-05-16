@@ -7,7 +7,7 @@ class BreathMark(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Attached to a single note:
+        Attached to a single note:
 
         ::
 
@@ -23,7 +23,7 @@ class BreathMark(AbjadValueObject):
 
     ..  container:: example
 
-        **Examle 2.** Attached to notes in a staff:
+        Attached to notes in a staff:
 
         ::
 

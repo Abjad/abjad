@@ -7,7 +7,7 @@ class SystemBreak(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Default system break:
+        Default system break:
 
         ::
 
@@ -56,7 +56,7 @@ class SystemBreak(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default system break:
+            Default system break:
 
             ::
 

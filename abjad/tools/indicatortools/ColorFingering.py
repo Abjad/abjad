@@ -12,7 +12,7 @@ class ColorFingering(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** First color fingering:
+        First color fingering:
 
         ::
 
@@ -38,7 +38,7 @@ class ColorFingering(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Second color fingering:
+        Second color fingering:
 
         ::
 
@@ -198,7 +198,7 @@ class ColorFingering(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First color fingering:
+            First color fingering:
 
             ::
 
@@ -215,7 +215,7 @@ class ColorFingering(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second color fingering:
+            Second color fingering:
 
             ::
 
@@ -246,7 +246,7 @@ class ColorFingering(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** First color fingering:
+            First color fingering:
 
             ::
 
@@ -256,7 +256,7 @@ class ColorFingering(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Second color fingering:
+            Second color fingering:
 
             ::
 

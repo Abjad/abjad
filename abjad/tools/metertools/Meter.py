@@ -21,7 +21,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** Duple meter:
+        Duple meter:
 
         ::
 
@@ -41,7 +41,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 2.** Triple meter:
+        Triple meter:
 
         ::
 
@@ -60,7 +60,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 3.** Quadruple meter:
+        Quadruple meter:
 
         ::
 
@@ -82,7 +82,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 3.** Compound triple meter:
+        Compound triple meter:
 
         ::
 
@@ -106,7 +106,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 4.** Another compound triple meter:
+        Another compound triple meter:
 
         ::
 
@@ -138,7 +138,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 5.** An asymmetric meter:
+        An asymmetric meter:
 
         ::
 
@@ -162,7 +162,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 6.** Another asymmetric meter:
+        Another asymmetric meter:
 
         ::
 
@@ -189,7 +189,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 7.** The same asymmetric meter structured differently:
+        The same asymmetric meter structured differently:
 
         ::
 
@@ -218,8 +218,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 8a.** Meter interpreted by default as containing two compound
-        beats:
+        Meter interpreted by default as containing two compound beats:
 
         ::
 
@@ -241,7 +240,7 @@ class Meter(AbjadObject):
 
             >>> graph(meter) # doctest: +SKIP
 
-        **Example 8b.** Same meter customized to contain four compound beats:
+        Same meter customized to contain four compound beats:
 
         ::
 
@@ -439,7 +438,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets storage format of ``7/4``:
+            Gets storage format of ``7/4``:
 
             ::
 
@@ -464,7 +463,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Graphs ``7/4``:
+            Graphs ``7/4``:
 
             ::
 
@@ -694,7 +693,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Iterates ``5/4``:
+            Iterates ``5/4``:
 
             ::
 
@@ -736,7 +735,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets string representation of meters over ``8``:
+            Gets string representation of meters over ``8``:
 
             ::
 
@@ -774,8 +773,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** The eight test rhythms that fit a length-``4``
-            grid:
+            The eight test rhythms that fit a length-``4`` grid:
 
             ::
 
@@ -797,8 +795,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** The sixteenth test rhythms for that a length-``5``
-            grid:
+            The sixteenth test rhythms for that a length-``5`` grid:
 
             ::
 
@@ -876,7 +873,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Matches a series of hypothetical ``4/4`` measures:
+            Matches a series of hypothetical ``4/4`` measures:
 
             ::
 
@@ -892,7 +889,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Matches a series of hypothetical ``5/4`` measures:
+            Matches a series of hypothetical ``5/4`` measures:
 
             ::
 
@@ -1000,8 +997,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** An asymmetric meter with beats arranged greatest to
-            least:
+            An asymmetric meter with beats arranged greatest to least:
 
             ::
 
@@ -1034,8 +1030,8 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** The same asymmetric meter with unequal beats
-            arranged least to greatest:
+            The same asymmetric meter with unequal beats arranged least to
+            greatest:
 
             ::
 
@@ -1147,7 +1143,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Compound meters written over ``4``:
+            Compound meters written over ``4``:
 
             ::
 
@@ -1171,7 +1167,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Compound meters written over ``8``:
+            Compound meters written over ``8``:
 
             ::
 
@@ -1209,7 +1205,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Simple meters written over ``4``:
+            Simple meters written over ``4``:
 
             ::
 
@@ -1233,7 +1229,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Simple meters written over ``8``:
+            Simple meters written over ``8``:
 
             ::
 
@@ -1302,7 +1298,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** No preferred boundary depth:
+            No preferred boundary depth:
 
             ::
 
@@ -1311,7 +1307,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Customized preferred boundary depth:
+            Customized preferred boundary depth:
 
             ::
 

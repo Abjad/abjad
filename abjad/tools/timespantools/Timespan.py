@@ -1280,7 +1280,7 @@ class Timespan(BoundedObject):
 
         ..  container:: example
 
-            **Example 1.** Reverse timespan about timespan axis:
+            Reverse timespan about timespan axis:
 
             ::
 
@@ -1289,7 +1289,7 @@ class Timespan(BoundedObject):
 
         ..  container:: example
 
-            **Example 2.** Reverse timespan about arbitrary axis:
+            Reverse timespan about arbitrary axis:
 
             ::
 
@@ -1368,7 +1368,7 @@ class Timespan(BoundedObject):
 
         ..  container:: example
 
-            **Example 1.** Scale timespan relative to timespan start offset:
+            Scale timespan relative to timespan start offset:
 
             ::
 
@@ -1377,7 +1377,7 @@ class Timespan(BoundedObject):
 
         ..  container:: example
 
-            **Example 2.** Scale timespan relative to timespan stop offset:
+            Scale timespan relative to timespan stop offset:
 
             ::
 
@@ -2169,7 +2169,7 @@ class Timespan(BoundedObject):
 
         .. container:: example
 
-            **Example 1.** Stretch relative to timespan start offset:
+            Stretch relative to timespan start offset:
 
             ::
 
@@ -2178,7 +2178,7 @@ class Timespan(BoundedObject):
 
         .. container:: example
 
-            **Example 2.** Stretch relative to timespan stop offset:
+            Stretch relative to timespan stop offset:
 
             ::
 
@@ -2187,7 +2187,7 @@ class Timespan(BoundedObject):
 
         .. container:: example
 
-            **Example 3.** Stretch relative to offset prior to timespan:
+            Stretch relative to offset prior to timespan:
 
             ::
 
@@ -2196,7 +2196,7 @@ class Timespan(BoundedObject):
 
         .. container:: example
 
-            **Example 4.** Stretch relative to offset after timespan:
+            Stretch relative to offset after timespan:
 
             ::
 
@@ -2205,7 +2205,7 @@ class Timespan(BoundedObject):
 
         .. container:: example
 
-            **Example 5.** Stretch relative to offset that happens during timespan:
+            Stretch relative to offset that happens during timespan:
 
             ::
 

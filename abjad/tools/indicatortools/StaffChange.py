@@ -7,7 +7,7 @@ class StaffChange(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Explicit staff change:
+        Explicit staff change:
 
         ::
 
@@ -70,7 +70,7 @@ class StaffChange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default staff change:
+            Default staff change:
 
             ::
 
@@ -80,7 +80,7 @@ class StaffChange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Explicit staff change:
+            Explicit staff change:
     
             ::
 
@@ -122,7 +122,7 @@ class StaffChange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default staff change:
+            Default staff change:
 
             ::
 
@@ -132,7 +132,7 @@ class StaffChange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Explicit staff change:
+            Explicit staff change:
     
             ::
 
@@ -152,7 +152,7 @@ class StaffChange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Default staff change:
+            Default staff change:
 
             ::
 
@@ -162,7 +162,7 @@ class StaffChange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Explicit staff change:
+            Explicit staff change:
     
             ::
 
