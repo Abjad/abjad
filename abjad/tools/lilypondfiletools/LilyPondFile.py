@@ -390,7 +390,7 @@ class LilyPondFile(AbjadObject):
 
                 >>> score = Score([Staff("c'8 d'8 e'8 f'8")])
                 >>> lilypond_file = LilyPondFile.new(score)
-                >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
+                >>> lilypond_file.header_block.title = Markup('Missa sexti toni')
                 >>> lilypond_file.header_block.composer = Markup('Josquin')
                 >>> lilypond_file.layout_block.indent = 0
                 >>> lilypond_file.paper_block.top_margin = 15
@@ -401,7 +401,7 @@ class LilyPondFile(AbjadObject):
                 >>> print(format(lilypond_file)) # doctest: +SKIP
                 \header {
                     composer = \markup { Josquin }
-                    title = \markup { Missa sexti tonus }
+                    title = \markup { Missa sexti toni }
                 }
 
                 \layout {
