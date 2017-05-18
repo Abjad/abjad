@@ -68,7 +68,7 @@ class LilyPondFile(AbjadObject):
 
             \header {
                 composer = \markup { Josquin }
-                title = \markup { Missa sexti tonus }
+                title = \markup { Missa sexti toni }
             }
 
             \layout {
