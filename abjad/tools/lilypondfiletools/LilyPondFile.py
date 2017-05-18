@@ -31,7 +31,7 @@ class LilyPondFile(AbjadObject):
         ::
 
             >>> lilypond_file.header_block.composer = Markup('Josquin')
-            >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
+            >>> lilypond_file.header_block.title = Markup('Missa sexti toni')
             >>> lilypond_file.layout_block.indent = 0
             >>> lilypond_file.layout_block.left_margin = 15
 
