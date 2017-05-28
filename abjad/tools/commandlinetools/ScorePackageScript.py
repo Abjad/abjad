@@ -188,10 +188,11 @@ class ScorePackageScript(CommandlineScript):
         return sorted(paths)
 
     def _list_segment_subpackages(self, score_path=None):
-        segments_path = self._segments_path
         if score_path:
             score_path = self._path_to_score_package_path(score_path)
             segments_path = score_path.joinpath('segments')
+        else:
+            segments_path = self._segments_path
         paths = [
             path for path in segments_path.glob('*')
             if path.is_dir() and path.joinpath('__init__.py').exists()
