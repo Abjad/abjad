@@ -9,7 +9,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class MeterFittingSession(AbjadValueObject):
     r'''A meter-fitting session.
 
-    Used internally by Meter.fit_meters_to_expr().
+    Used internally by Meter.fit_meters().
     '''
 
     ### CLASS VARIABLES ###

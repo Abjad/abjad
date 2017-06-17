@@ -589,11 +589,11 @@ def test_agenttools_MutationAgent_fuse_19():
 
     measure_1 = Measure((9, 80), [])
     measure_1.implicit_scaling = True
+    measure_1.extend(9 * Note("c'64"))
     measure_2 = Measure((2, 16), [])
     measure_2.implicit_scaling = True
+    measure_2.extend(2 * Note("c'16"))
     staff = Staff([measure_1, measure_2])
-    scoretools.fill_measures_with_time_signature_denominator_notes(
-        staff)
 
     assert format(staff) == stringtools.normalize(
         r'''

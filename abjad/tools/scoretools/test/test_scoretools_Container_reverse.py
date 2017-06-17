@@ -52,8 +52,11 @@ def test_scoretools_Container_reverse_04():
     attached to itself and with a parent.
     '''
 
-    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + \
-        scoretools.make_repeated_notes(2))
+    staff = Staff([
+        Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8"),
+        Note("c'8"),
+        Note("c'8"),
+        ])
     measure = staff[0]
     beam = Beam()
     attach(beam, measure[:])
@@ -68,8 +71,11 @@ def test_scoretools_Container_reverse_05():
     attached to its leaves and with a parent.
     '''
 
-    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] +
-        scoretools.make_repeated_notes(2))
+    staff = Staff([
+        Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8"),
+        Note("c'8"),
+        Note("c'8"),
+        ])
     measure = staff[0]
     beam = Beam()
     attach(beam, measure[:])

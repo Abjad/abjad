@@ -222,6 +222,19 @@ class Measure(FixedDurationContainer):
                     return False
         return True
 
+    def _append_spacer_skip(self):
+        from abjad.tools import scoretools
+        if not self.is_underfull:
+            return
+        target_duration = self.time_signature.duration
+        duration = self._get_duration()
+        skip = scoretools.Skip((1, 1))
+        time_signature_multiplier = self.time_signature.implied_prolation
+        new_duration = target_duration - duration
+        new_multiplier = new_duration.__div__(time_signature_multiplier)
+        attach(new_multiplier, skip)
+        self.append(skip)
+
     def _as_graphviz_node(self):
         from abjad.tools import documentationtools
         from abjad.tools import scoretools

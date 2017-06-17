@@ -4,7 +4,7 @@ from abjad import *
 
 def test_selectiontools_LogicalTie__all_leaves_are_in_same_parent_01():
 
-    staff = scoretools.make_repeated_notes(4)
+    staff = [Note("c'8"), Note("c'8"), Note("c'8"), Note("c'8")]
     tie = spannertools.Tie()
     attach(tie, staff[:])
 

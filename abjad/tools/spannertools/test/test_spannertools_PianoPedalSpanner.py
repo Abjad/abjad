@@ -5,7 +5,7 @@ from abjad import *
 
 def test_spannertools_PianoPedalSpanner_01():
 
-    staff = Staff(scoretools.make_repeated_notes(4))
+    staff = Staff([Note("c'8"), Note("c'8"), Note("c'8"), Note("c'8")])
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[:])
 
