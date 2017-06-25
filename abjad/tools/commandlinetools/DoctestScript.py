@@ -24,13 +24,14 @@ class DoctestScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    alias = 'doctest'
-    short_description = 'Run doctests on all modules in current path.'
-
     _module_names_for_globs = (
         'abjad',
         'experimental',
         )
+
+    alias = 'doctest'
+
+    short_description = 'Run doctests on all modules in current path.'
 
     ### PRIVATE METHODS ###
 
@@ -63,17 +64,26 @@ class DoctestScript(CommandlineScript):
                     file_paths.append(file_path)
         return file_paths
 
-    def _get_namespace(self, abjad_only=False):
+    def _get_namespace(self, abjad_only=False, external_modules=''):
         globs = {}
         globs['abjad'] = importlib.import_module('abjad')
         globs['f'] = getattr(globs['abjad'], 'f')
-        if True:
-            for module_name in self._module_names_for_globs:
-                try:
-                    module = importlib.import_module(module_name)
-                    globs.update(module.__dict__)
-                except:
-                    pass
+        for module_name in self._module_names_for_globs:
+            try:
+                module = importlib.import_module(module_name)
+                globs.update(module.__dict__)
+            except:
+                pass
+        external_modules = external_modules or ''
+        external_modules = external_modules.split(',')
+        for module_name in external_modules:
+            if not module_name:
+                continue
+            try:
+                module = importlib.import_module(module_name)
+                globs[module_name] = module
+            except ImportError:
+                pass
         try:
             ide_module = importlib.import_module('ide')
             globs['ide'] = ide_module
@@ -110,7 +120,10 @@ class DoctestScript(CommandlineScript):
         ):
         assert not (arguments and file_paths)
         result = []
-        globs = self._get_namespace(abjad_only=arguments.abjad_only)
+        globs = self._get_namespace(
+            abjad_only=arguments.abjad_only,
+            external_modules=arguments.external_modules,
+            )
         #raise Exception(globs['abjad'])
         optionflags = self._get_optionflags(arguments)
         total_failures = 0
@@ -245,6 +258,10 @@ class DoctestScript(CommandlineScript):
             '--diff',
             action='store_true',
             help='print diff-like output on failed tests.',
+            )
+        parser.add_argument(
+            '--external-modules',
+            help='comma-delimited list of modules names to import.',
             )
         parser.add_argument(
             '-x',
