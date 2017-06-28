@@ -12,6 +12,7 @@ class MutationAgent(abctools.AbjadObject):
 
         Creates mutation agent for last two notes in staff:
 
+
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
@@ -2683,7 +2684,7 @@ class MutationAgent(abctools.AbjadObject):
         result = selectiontools.Selection(result)
         result = result.partition_by_durations(durations_copy, fill=Exact)
         # return list of shards
-        result = [selectiontools.Selection(x) for x in result]
+        result = [selectiontools.Selection(_) for _ in result]
         return result
 
     def swap(self, container):

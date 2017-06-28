@@ -1378,15 +1378,559 @@ class Selection(object):
         in_seconds=False,
         overhang=False,
         ):
-        r'''Partitions `components` according to `durations`.
+        r'''Partitions selection by `durations`.
 
-        When `fill` is `Exact` then parts must equal `durations` exactly.
+        ..  container:: example
 
-        When `fill` is `Less` then parts must be
-        less than or equal to `durations`.
+            Cyclically partitions exactly 3/8 (of a whole note) with overhang
+            returned at end:
 
-        When `fill` is `More` then parts must be
-        greater or equal to `durations`.
+            ::
+
+                >>> staff = Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [Duration(3, 8)],
+                ...     cyclic=True,
+                ...     fill=Exact,
+                ...     in_seconds=False,
+                ...     overhang=True,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+                Selection([Note("b'8"), Note("c''8")])
+
+        ..  container:: example
+
+            Partitions exactly 3/8 (of a whole note) one time only:
+
+            ::
+
+                >>> staff = Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [Duration(3, 8)],
+                ...     cyclic=False,
+                ...     fill=Exact,
+                ...     in_seconds=False,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+
+        ..  container:: example
+
+            Cyclically partitions 3/16 and 1/16 (of a whole note) with part
+            durations allowed to be just more than 3/16 and 1/16 (of a whole
+            note) and with overhang returned at end:
+
+            ::
+
+                >>> staff = Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [Duration(3, 16), Duration(1, 16)],
+                ...     cyclic=True,
+                ...     fill=More,
+                ...     in_seconds=False,
+                ...     overhang=True,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8")])
+                Selection([Note("e'8")])
+                Selection([Note("f'8"), Note("g'8")])
+                Selection([Note("a'8")])
+                Selection([Note("b'8"), Note("c''8")])
+
+        ..  container:: example
+
+            Cyclically partitions 3/16 (of a whole note) with part durations
+            allowed to be just less than 3/16 (of a whole note):
+
+            ::
+
+                >>> staff = Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [Duration(3, 16)],
+                ...     cyclic=True,
+                ...     fill=Less,
+                ...     in_seconds=False,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8")])
+                Selection([Note("d'8")])
+                Selection([Note("e'8")])
+                Selection([Note("f'8")])
+                Selection([Note("g'8")])
+                Selection([Note("a'8")])
+                Selection([Note("b'8")])
+
+        ..  container:: example
+
+            Partitions 3/16 (of a whole note) just once with part duration
+            allowed to be just less than 3/16 (of a whole note):
+
+            ::
+
+                >>> staff = Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [Duration(3, 16)],
+                ...     cyclic=False,
+                ...     fill=Less,
+                ...     in_seconds=False,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8")])
+
+        Examples in seconds appear below.
+
+        ..  container:: example
+
+            Cyclically partitions exactly 1.5 seconds at a time:
+
+            ::
+
+                >>> staff = Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> tempo = Tempo(Duration(1, 4), 60)
+                >>> attach(tempo, staff, scope=Staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \tempo 4=60
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [1.5],
+                ...     cyclic=True,
+                ...     fill=Exact,
+                ...     in_seconds=True,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+
+        ..  container:: example
+
+            Cyclically partitions exactly 1.5 seconds at a time with overhang
+            returned at end:
+
+            ::
+
+                >>> staff = Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> tempo = Tempo(Duration(1, 4), 60)
+                >>> attach(tempo, staff, scope=Staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \tempo 4=60
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [1.5],
+                ...     cyclic=True,
+                ...     fill=Exact,
+                ...     in_seconds=True,
+                ...     overhang=True,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+                Selection([Note("b'8"), Note("c''8")])
+
+        ..  container:: example
+
+            Partitions exactly 1.5 seconds one time only:
+
+            ::
+
+                >>> staff = Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> tempo = Tempo(Duration(1, 4), 60)
+                >>> attach(tempo, staff, scope=Staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \tempo 4=60
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [1.5],
+                ...     cyclic=False,
+                ...     fill=Exact,
+                ...     in_seconds=True,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+
+        ..  container:: example
+
+            Cyclically partitions 0.75 seconds with part durations allowed to
+            be just less than 0.75 seconds:
+
+            ::
+
+                >>> staff = Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> tempo = Tempo(Duration(1, 4), 60)
+                >>> attach(tempo, staff, scope=Staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \tempo 4=60
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [0.75],
+                ...     cyclic=True,
+                ...     fill=Less,
+                ...     in_seconds=True,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8")])
+                Selection([Note("d'8")])
+                Selection([Note("e'8")])
+                Selection([Note("f'8")])
+                Selection([Note("g'8")])
+                Selection([Note("a'8")])
+                Selection([Note("b'8")])
+
+        ..  container:: example
+
+            Partitions 0.75 seconds just once with part duration allowed to be
+            just less than 0.75 seconds:
+
+            ::
+
+                >>> staff = Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> tempo = Tempo(Duration(1, 4), 60)
+                >>> attach(tempo, staff, scope=Staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \tempo 4=60
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [0.75],
+                ...     cyclic=False,
+                ...     fill=Less,
+                ...     in_seconds=True,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8")])
+
+        Parts must equal `durations` exactly when `fill` is `Exact`.
+
+        Parts must be less than or equal to `durations` when `fill` is `Less`.
+
+        Parts must be greater or equal to `durations` when `fill` is `More`.
 
         Reads `durations` cyclically when `cyclic` is true.
 
@@ -1394,15 +1938,18 @@ class Selection(object):
 
         Returns remaining components at end in final part when `overhang`
         is true.
+
+        Returns list of selections.
         '''
-        durations = [durationtools.Duration(x) for x in durations]
+        import abjad
+        durations = [abjad.Duration(_) for _ in durations]
         if cyclic:
-            durations = datastructuretools.CyclicTuple(durations)
+            durations = abjad.CyclicTuple(durations)
         result = []
         part = []
         current_duration_index = 0
         target_duration = durations[current_duration_index]
-        cumulative_duration = durationtools.Duration(0)
+        cumulative_duration = abjad.Duration(0)
         components_copy = list(self)
         while True:
             try:
@@ -1420,7 +1967,7 @@ class Selection(object):
                 part.append(component)
                 result.append(part)
                 part = []
-                cumulative_duration = durationtools.Duration(0)
+                cumulative_duration = abjad.Duration(0)
                 current_duration_index += 1
                 try:
                     target_duration = durations[current_duration_index]
@@ -1434,12 +1981,14 @@ class Selection(object):
                     result.append(part)
                     part = [component]
                     if in_seconds:
-                        cumulative_duration = \
-                            sum([x._get_duration(in_seconds=True)
-                            for x in part])
+                        cumulative_duration = sum([
+                            _._get_duration(in_seconds=True)
+                            for _ in part
+                            ])
                     else:
-                        cumulative_duration = \
-                            sum([x._get_duration() for x in part])
+                        cumulative_duration = sum([
+                            _._get_duration() for _ in part
+                            ])
                     current_duration_index += 1
                     try:
                         target_duration = durations[current_duration_index]
@@ -1457,7 +2006,7 @@ class Selection(object):
                     part.append(component)
                     result.append(part)
                     part = []
-                    cumulative_duration = durationtools.Duration(0)
+                    cumulative_duration = abjad.Duration(0)
                     current_duration_index += 1
                     try:
                         target_duration = durations[current_duration_index]
@@ -1469,6 +2018,7 @@ class Selection(object):
         if len(components_copy):
             if overhang:
                 result.append(components_copy)
+        result = [abjad.select(_) for _ in result]
         return result
 
     ### PRIVATE PROPERTIES ###

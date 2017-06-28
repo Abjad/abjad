@@ -8,20 +8,25 @@ class Block(AbjadObject):
 
     ..  container:: example
 
+        Blocks remember attribute assignment order.
+
+        Here right margin precedes left margin even though left margin
+        alphabetizes before right margin:
+
         ::
 
             >>> block = lilypondfiletools.Block(name='paper')
-            >>> block.left_margin = lilypondfiletools.LilyPondDimension(2, 'cm')
             >>> block.right_margin = lilypondfiletools.LilyPondDimension(2, 'cm')
+            >>> block.left_margin = lilypondfiletools.LilyPondDimension(2, 'cm')
             >>> block
             <Block(name='paper')>
 
         ::
 
-            >>> print(format(block))
+            >>> f(block)
             \paper {
-                left-margin = 2\cm
                 right-margin = 2\cm
+                left-margin = 2\cm
             }
 
     ..  container:: example
@@ -36,7 +41,7 @@ class Block(AbjadObject):
 
         ::
 
-            >>> print(format(block))
+            >>> f(block)
             \score {
                 {
                     \markup { foo }
@@ -53,6 +58,7 @@ class Block(AbjadObject):
         escaped_name = r'\{}'.format(name)
         self._escaped_name = escaped_name
         self._items = []
+        self._public_attribute_names = []
 
     ### SPECIAL METHODS ###
 
@@ -94,6 +100,28 @@ class Block(AbjadObject):
             if getattr(item, 'name', None) == name:
                 return item
         raise KeyError
+
+    def __setattr__(self, name, value):
+        r'''Sets block `name` to `value`.
+
+        Returns none.
+        '''
+        if (
+            not name.startswith('_') and
+            name not in self._public_attribute_names
+            ):
+            self._public_attribute_names.append(name)
+        object.__setattr__(self, name, value)
+
+    def __setstate__(self, state):
+        r'''Sets state of block.
+
+        Returns none.
+        '''
+        if not hasattr(self, '_public_attribute_names'):
+            self._public_attribute_names = []
+        for key, value in state.items():
+            setattr(self, key, value)
 
     ### PRIVATE PROPERTIES ###
 
@@ -139,7 +167,8 @@ class Block(AbjadObject):
         if (not self._get_formatted_user_attributes() and
             not getattr(self, 'contexts', None) and
             not getattr(self, 'context_blocks', None) and
-            not len(self.items)):
+            not len(self.items)
+            ):
             if self.name == 'score':
                 return ''
             string = '{} {{}}'.format(self._escaped_name)
@@ -178,44 +207,45 @@ class Block(AbjadObject):
         from abjad.tools import markuptools
         from abjad.tools import schemetools
         result = []
+        prototype = (
+            schemetools.Scheme,
+            indicatortools.LilyPondCommand,
+            )
         for value in self.items:
-            acceptable_types = (
-                schemetools.Scheme,
-                indicatortools.LilyPondCommand,
-                )
-            if isinstance(value, acceptable_types):
+            if isinstance(value, prototype):
                 result.append(format(value, 'lilypond'))
-        for key, value in sorted(vars(self).items()):
-            if not key.startswith('_'):
-                # format subkeys via double underscore
-                formatted_key = key.split('__')
-                for i, k in enumerate(formatted_key):
-                    formatted_key[i] = k.replace('_', '-')
-                    if 0 < i:
-                        string = "#'{}".format(formatted_key[i])
-                        formatted_key[i] = string
-                formatted_key = ' '.join(formatted_key)
-                # format value
-                accetable_types = (
-                    schemetools.Scheme,
-                    lilypondfiletools.LilyPondDimension,
-                    indicatortools.LilyPondCommand,
-                    )
-                if isinstance(value, markuptools.Markup):
-                    formatted_value = value._get_format_pieces()
-                elif isinstance(value, accetable_types):
-                    formatted_value = [format(value, 'lilypond')]
-                else:
-                    formatted_value = schemetools.Scheme(value)
-                    formatted_value = format(formatted_value, 'lilypond')
-                    formatted_value = [formatted_value]
-                setting = '{!s} = {!s}'
-                setting = setting.format(
-                    formatted_key,
-                    formatted_value[0],
-                    )
-                result.append(setting)
-                result.extend(formatted_value[1:])
+        prototype = (
+            schemetools.Scheme,
+            lilypondfiletools.LilyPondDimension,
+            indicatortools.LilyPondCommand,
+            )
+        for key in self._public_attribute_names:
+            assert not key.startswith('_'), repr(key)
+            value = getattr(self, key)
+            # format subkeys via double underscore
+            formatted_key = key.split('__')
+            for i, k in enumerate(formatted_key):
+                formatted_key[i] = k.replace('_', '-')
+                if 0 < i:
+                    string = "#'{}".format(formatted_key[i])
+                    formatted_key[i] = string
+            formatted_key = ' '.join(formatted_key)
+            # format value
+            if isinstance(value, markuptools.Markup):
+                formatted_value = value._get_format_pieces()
+            elif isinstance(value, prototype):
+                formatted_value = [format(value, 'lilypond')]
+            else:
+                formatted_value = schemetools.Scheme(value)
+                formatted_value = format(formatted_value, 'lilypond')
+                formatted_value = [formatted_value]
+            setting = '{!s} = {!s}'
+            setting = setting.format(
+                formatted_key,
+                formatted_value[0],
+                )
+            result.append(setting)
+            result.extend(formatted_value[1:])
         return result
 
     def _get_lilypond_format(self):

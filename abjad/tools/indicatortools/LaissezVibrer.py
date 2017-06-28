@@ -29,6 +29,8 @@ class LaissezVibrer(AbjadValueObject):
 
     _format_slot = 'right'
 
+    _split_direction = Right
+
     ### INITIALIZER ###
 
     def __init__(self):

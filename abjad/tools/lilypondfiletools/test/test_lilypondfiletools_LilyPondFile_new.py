@@ -29,8 +29,8 @@ def test_lilypondfiletools_LilyPondFile_new_01():
         }
 
         \paper {
-            left-margin = #15
             top-margin = #15
+            left-margin = #15
         }
 
         \score {

@@ -65,6 +65,9 @@ from abjad.tools.metertools import Meter
 from abjad.tools.metertools import MeterList
 
 # scoretools classes (but not functions)
+from abjad.tools.scoretools import AcciaccaturaContainer
+from abjad.tools.scoretools import AfterGraceContainer
+from abjad.tools.scoretools import AppoggiaturaContainer
 from abjad.tools.scoretools import Chord
 from abjad.tools.scoretools import Cluster
 from abjad.tools.scoretools import Component

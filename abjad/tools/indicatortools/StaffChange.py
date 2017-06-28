@@ -51,6 +51,8 @@ class StaffChange(AbjadValueObject):
 
     _format_slot = 'opening'
 
+    _split_direction = Right
+
     ### INITIALIZER ###
 
     def __init__(self, staff=None):

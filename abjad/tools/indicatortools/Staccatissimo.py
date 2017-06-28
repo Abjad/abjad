@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class BreathMark(AbjadValueObject):
-    r'''Breath mark.
+class Staccatissimo(AbjadValueObject):
+    r'''Staccatissimo.
 
     ..  container:: example
 
@@ -12,14 +13,14 @@ class BreathMark(AbjadValueObject):
         ::
 
             >>> note = Note("c'4")
-            >>> breath_mark = indicatortools.BreathMark()
-            >>> attach(breath_mark, note)
+            >>> staccatissimo = Staccatissimo()
+            >>> attach(staccatissimo, note)
             >>> show(note) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> print(format(note))
-            c'4 \breathe
+            >>> f(note)
+            c'4 \staccatissimo
 
     ..  container:: example
 
@@ -30,24 +31,24 @@ class BreathMark(AbjadValueObject):
             >>> staff = Staff("c'8 d' e' f' g' a' b' c''")
             >>> attach(Beam(), staff[:4])
             >>> attach(Beam(), staff[4:])
-            >>> attach(indicatortools.BreathMark(), staff[3])
-            >>> attach(indicatortools.BreathMark(), staff[7])
+            >>> attach(Staccatissimo(), staff[3])
+            >>> attach(Staccatissimo(), staff[7])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8 [
                 d'8
                 e'8
                 f'8 ]
-                \breathe
+                \staccatissimo
                 g'8 [
                 a'8
                 b'8
                 c''8 ]
-                \breathe
+                \staccatissimo
             }
 
     '''
@@ -55,33 +56,38 @@ class BreathMark(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
+        '_direction',
         )
 
-    _format_slot = 'after'
+    _default_scope = None
+
+    _format_slot = Right
 
     _split_direction = Right
 
     ### INITIALIZER ###
 
-    def __init__(self):
-        self._default_scope = None
+    def __init__(self, direction=None):
+        direction = stringtools.to_tridirectional_ordinal_constant(direction)
+        directions = (Up, Down, Center, None)
+        assert direction in directions, repr(direction)
+        self._direction = direction
 
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''Gets string representation of breath mark.
+        r'''Gets string representation of staccatissimo.
 
         ..  container:: example
 
             ::
 
-                >>> str(indicatortools.BreathMark())
-                '\\breathe'
+                >>> str(Staccatissimo())
+                '\\staccatissimo'
 
         Returns string.
         '''
-        return r'\breathe'
+        return r'\staccatissimo'
 
     ### PRIVATE PROPERTIES ###
 
@@ -104,14 +110,14 @@ class BreathMark(AbjadValueObject):
 
     @property
     def default_scope(self):
-        r'''Gets default scope of breath mark.
+        r'''Gets default scope of staccatissimo.
 
         ..  container:: example
 
             ::
 
-                >>> breath_mark = indicatortools.BreathMark()
-                >>> breath_mark.default_scope is None
+                >>> staccatissimo = Staccatissimo()
+                >>> staccatissimo.default_scope is None
                 True
 
         Returns none.

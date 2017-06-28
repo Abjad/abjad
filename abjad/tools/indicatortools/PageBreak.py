@@ -42,6 +42,8 @@ class PageBreak(AbjadValueObject):
 
     _format_slot = 'closing'
 
+    _split_direction = Right
+
     ### INITIALIZER ##
 
     def __init__(self):

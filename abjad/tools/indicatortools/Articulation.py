@@ -146,8 +146,7 @@ class Articulation(AbjadValueObject):
             direction, name = name.split('\\')
             direction = direction.strip()
             name = name.strip()
-        direction = \
-            stringtools.to_tridirectional_ordinal_constant(direction)
+        direction = stringtools.to_tridirectional_ordinal_constant(direction)
         directions = (Up, Down, Center, None)
         assert direction in directions, repr(direction)
         self._name = name
