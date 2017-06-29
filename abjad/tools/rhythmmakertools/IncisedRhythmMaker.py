@@ -185,8 +185,7 @@ class IncisedRhythmMaker(RhythmMaker):
             if not incise_specifier.outer_divisions_only:
                 if 0 < middle:
                     if incise_specifier.body_ratio is not None:
-                        shards = mathtools.divide_number_by_ratio(
-                            middle, incise_specifier.body_ratio)
+                        shards = middle / incise_specifier.body_ratio
                         return tuple(shards)
                     else:
                         return (middle,)

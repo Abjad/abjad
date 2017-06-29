@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+import fractions
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -127,6 +128,37 @@ class NonreducedRatio(AbjadValueObject):
         Returns integer.
         '''
         return len(self._numbers)
+
+    def __rtruediv__(self, number):
+        r'''Divides `number` by ratio.
+
+        ..  container:: example
+
+            ::
+
+                >>> 1 / Ratio((1, 1, 3))
+                [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
+
+        ..  container:: example
+
+            ::
+
+                >>> Fraction(1) / Ratio((1, 1, 3))
+                [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
+
+        ..  container:: example
+
+            ::
+
+                >>> 1.0 / Ratio((1, 1, 3))
+                [0.2, 0.2, 0.6]
+
+        Returns list of fractions or list of floats.
+        '''
+        denominator = sum(self.numbers)
+        factors = [fractions.Fraction(_, denominator) for _ in self.numbers]
+        result = [_ * number for _ in factors]
+        return result
 
     def __reversed__(self):
         r'''Iterates ratio in reverse.
