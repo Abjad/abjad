@@ -136,30 +136,30 @@ class Duration(AbjadObject, Fraction):
 
     def __new__(class_, *arguments):
         if len(arguments) == 1:
-            arg = arguments[0]
-            if type(arg) is class_:
-                return arg
-            if isinstance(arg, mathtools.NonreducedFraction):
-                return Fraction.__new__(class_, *arg.pair)
+            argument = arguments[0]
+            if type(argument) is class_:
+                return argument
+            if isinstance(argument, mathtools.NonreducedFraction):
+                return Fraction.__new__(class_, *argument.pair)
             try:
-                return Fraction.__new__(class_, *arg)
+                return Fraction.__new__(class_, *argument)
             except (AttributeError, TypeError):
                 pass
             try:
-                return Fraction.__new__(class_, arg)
+                return Fraction.__new__(class_, argument)
             except (AttributeError, TypeError):
                 pass
-            if mathtools.is_fraction_equivalent_pair(arg):
+            if mathtools.is_fraction_equivalent_pair(argument):
                 return Fraction.__new__(
-                    class_, int(arg[0]), int(arg[1]))
-            if hasattr(arg, 'duration'):
-                return Fraction.__new__(class_, arg.duration)
-            if isinstance(arg, str) and '/' not in arg:
+                    class_, int(argument[0]), int(argument[1]))
+            if hasattr(argument, 'duration'):
+                return Fraction.__new__(class_, argument.duration)
+            if isinstance(argument, str) and '/' not in argument:
                 result = Duration._initialize_from_lilypond_duration_string(
-                    arg)
+                    argument)
                 return Fraction.__new__(class_, result)
-            if mathtools.is_integer_equivalent_singleton(arg):
-                return Fraction.__new__(class_, int(arg[0]))
+            if mathtools.is_integer_equivalent_singleton(argument):
+                return Fraction.__new__(class_, int(argument[0]))
         else:
             try:
                 return Fraction.__new__(class_, *arguments)
@@ -246,13 +246,13 @@ class Duration(AbjadObject, Fraction):
         residue = type(self)(residue)
         return truncated, residue
 
-    def __eq__(self, arg):
-        r'''Is true when duration equals `arg`.
+    def __eq__(self, argument):
+        r'''Is true when duration equals `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__eq__(self, arg)
+        return Fraction.__eq__(self, argument)
 
     def __format__(self, format_specification=''):
         r'''Formats duration.
@@ -267,21 +267,21 @@ class Duration(AbjadObject, Fraction):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __ge__(self, arg):
-        r'''Is true when duration is greater than or equal to `arg`.
+    def __ge__(self, argument):
+        r'''Is true when duration is greater than or equal to `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__ge__(self, arg)
+        return Fraction.__ge__(self, argument)
 
-    def __gt__(self, arg):
-        r'''Is true when duration is greater than `arg`.
+    def __gt__(self, argument):
+        r'''Is true when duration is greater than `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__gt__(self, arg)
+        return Fraction.__gt__(self, argument)
 
     def __hash__(self):
         r'''Hashes duration.
@@ -292,21 +292,21 @@ class Duration(AbjadObject, Fraction):
         '''
         return super(Duration, self).__hash__()
 
-    def __le__(self, arg):
-        r'''Is true when duration is less than or equal to `arg`.
+    def __le__(self, argument):
+        r'''Is true when duration is less than or equal to `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__le__(self, arg)
+        return Fraction.__le__(self, argument)
 
-    def __lt__(self, arg):
-        r'''Is true when duration is less than `arg`.
+    def __lt__(self, argument):
+        r'''Is true when duration is less than `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__lt__(self, arg)
+        return Fraction.__lt__(self, argument)
 
     def __mod__(self, *arguments):
         r'''Modulus operator applied to duration.
@@ -352,13 +352,13 @@ class Duration(AbjadObject, Fraction):
             result = type(self)(Fraction.__mul__(self, *arguments))
         return result
 
-    def __ne__(self, arg):
-        r'''Is true when duration does not equal `arg`.
+    def __ne__(self, argument):
+        r'''Is true when duration does not equal `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__ne__(self, arg)
+        return Fraction.__ne__(self, argument)
 
     def __neg__(self, *arguments):
         r'''Negates duration.

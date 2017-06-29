@@ -86,5 +86,5 @@ class GraphvizSubgraph(GraphvizGraph):
         return self._is_cluster
 
     @is_cluster.setter
-    def is_cluster(self, arg):
-        self._is_cluster = bool(arg)
+    def is_cluster(self, argument):
+        self._is_cluster = bool(argument)

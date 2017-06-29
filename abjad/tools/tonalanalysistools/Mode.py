@@ -36,15 +36,15 @@ class Mode(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a mode with mode name equal to that of this
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a mode with mode name equal to that of this
         mode. Otherwise false.
 
         Returns true or false.
         '''
-        if not isinstance(arg, type(self)):
+        if not isinstance(argument, type(self)):
             return False
-        return self.mode_name == arg.mode_name
+        return self.mode_name == argument.mode_name
 
     def __hash__(self):
         r'''Hashes mode.
@@ -62,12 +62,12 @@ class Mode(AbjadObject):
         '''
         return len(self.named_interval_segment)
 
-    def __ne__(self, arg):
-        r'''Is true when `arg` does not equal mode. Otherwise false.
+    def __ne__(self, argument):
+        r'''Is true when `argument` does not equal mode. Otherwise false.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     def __str__(self):
         r'''String representation of mode.

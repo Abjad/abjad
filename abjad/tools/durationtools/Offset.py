@@ -152,9 +152,9 @@ class Offset(Duration):
 
     def __new__(class_, *arguments, **keywords):
         grace_displacement = None
-        for arg in arguments:
-            if hasattr(arg, 'grace_displacement'):
-                grace_displacement = getattr(arg, 'grace_displacement')
+        for argument in arguments:
+            if hasattr(argument, 'grace_displacement'):
+                grace_displacement = getattr(argument, 'grace_displacement')
                 break
         grace_displacement = grace_displacement or keywords.get(
             'grace_displacement')
@@ -265,8 +265,8 @@ class Offset(Duration):
         '''
         return self.__copy__(*arguments)
 
-    def __eq__(self, arg):
-        r'''Is true when offset equals `arg`.
+    def __eq__(self, argument):
+        r'''Is true when offset equals `argument`.
         Otherwise false.
 
         ..  container:: example
@@ -333,13 +333,13 @@ class Offset(Duration):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)) and self.pair == arg.pair:
+        if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() == \
-                arg._get_grace_displacement()
-        return super(Offset, self).__eq__(arg)
+                argument._get_grace_displacement()
+        return super(Offset, self).__eq__(argument)
 
-    def __ge__(self, arg):
-        r'''Is true when offset is greater than or equal to `arg`.
+    def __ge__(self, argument):
+        r'''Is true when offset is greater than or equal to `argument`.
         Otherwise false.
 
         ..  container:: example
@@ -406,10 +406,10 @@ class Offset(Duration):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)) and self.pair == arg.pair:
+        if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() >= \
-                arg._get_grace_displacement()
-        return super(Offset, self).__ge__(arg)
+                argument._get_grace_displacement()
+        return super(Offset, self).__ge__(argument)
 
     def __getnewargs__(self):
         r'''Gets new arguments.
@@ -418,8 +418,8 @@ class Offset(Duration):
         '''
         return self.pair
 
-    def __gt__(self, arg):
-        r'''Is true when offset is greater than `arg`.
+    def __gt__(self, argument):
+        r'''Is true when offset is greater than `argument`.
         Otherwise false.
 
         ..  container:: example
@@ -486,10 +486,10 @@ class Offset(Duration):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)) and self.pair == arg.pair:
+        if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() > \
-                arg._get_grace_displacement()
-        return Duration.__gt__(self, arg)
+                argument._get_grace_displacement()
+        return Duration.__gt__(self, argument)
 
     def __hash__(self):
         r'''Hashes duration.
@@ -505,8 +505,8 @@ class Offset(Duration):
             self.grace_displacement,
             ))
 
-    def __le__(self, arg):
-        r'''Is true when offset is less than or equal to `arg`.
+    def __le__(self, argument):
+        r'''Is true when offset is less than or equal to `argument`.
         Otherwise false.
 
         ..  container:: example
@@ -573,13 +573,13 @@ class Offset(Duration):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)) and self.pair == arg.pair:
+        if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() <= \
-                arg._get_grace_displacement()
-        return super(Offset, self).__le__(arg)
+                argument._get_grace_displacement()
+        return super(Offset, self).__le__(argument)
 
-    def __lt__(self, arg):
-        r'''Is true when offset is less than `arg`.
+    def __lt__(self, argument):
+        r'''Is true when offset is less than `argument`.
         Otherwise false.
 
         ..  container:: example
@@ -667,10 +667,10 @@ class Offset(Duration):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)) and self.pair == arg.pair:
+        if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() < \
-                arg._get_grace_displacement()
-        return super(Offset, self).__lt__(arg)
+                argument._get_grace_displacement()
+        return super(Offset, self).__lt__(argument)
 
     def __repr__(self):
         r'''Gets interpreter representation of offset.

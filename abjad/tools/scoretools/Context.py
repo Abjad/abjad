@@ -279,10 +279,10 @@ class Context(Container):
         return self._is_nonsemantic
 
     @is_nonsemantic.setter
-    def is_nonsemantic(self, arg):
-        if not isinstance(arg, bool):
+    def is_nonsemantic(self, argument):
+        if not isinstance(argument, bool):
             raise TypeError
-        self._is_nonsemantic = arg
+        self._is_nonsemantic = argument
 
     @property
     def is_semantic(self):

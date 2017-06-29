@@ -895,8 +895,8 @@ class Component(AbjadObject):
         return self._name
 
     @name.setter
-    def name(self, arg):
-        assert isinstance(arg, (str, type(None)))
+    def name(self, argument):
+        assert isinstance(argument, (str, type(None)))
         old_name = self._name
         for parent in self._get_parentage(include_self=False):
             named_children = parent._named_children
@@ -904,9 +904,9 @@ class Component(AbjadObject):
                 named_children[old_name].remove(self)
                 if not named_children[old_name]:
                     del named_children[old_name]
-            if arg is not None:
-                if arg not in named_children:
-                    named_children[arg] = [self]
+            if argument is not None:
+                if argument not in named_children:
+                    named_children[argument] = [self]
                 else:
-                    named_children[arg].append(self)
-        self._name = arg
+                    named_children[argument].append(self)
+        self._name = argument

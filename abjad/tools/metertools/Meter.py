@@ -291,12 +291,12 @@ class Meter(AbjadObject):
 
     def __init__(
         self,
-        arg=None,
+        argument=None,
         decrease_durations_monotonically=True,
         preferred_boundary_depth=None,
         ):
 
-        arg = arg or (4, 4)
+        argument = argument or (4, 4)
         assert isinstance(preferred_boundary_depth, (int, type(None)))
         self._preferred_boundary_depth = preferred_boundary_depth
 
@@ -365,36 +365,36 @@ class Meter(AbjadObject):
         decrease_durations_monotonically = \
             bool(decrease_durations_monotonically)
 
-        if isinstance(arg, type(self)):
-            root = arg.root_node
-            numerator, denominator = arg.numerator, arg.denominator
+        if isinstance(argument, type(self)):
+            root = argument.root_node
+            numerator, denominator = argument.numerator, argument.denominator
             decrease_durations_monotonically = \
-                arg.decrease_durations_monotonically
+                argument.decrease_durations_monotonically
 
-        elif isinstance(arg, (str, rhythmtreetools.RhythmTreeContainer)):
-            if isinstance(arg, str):
-                parsed = rhythmtreetools.RhythmTreeParser()(arg)
+        elif isinstance(argument, (str, rhythmtreetools.RhythmTreeContainer)):
+            if isinstance(argument, str):
+                parsed = rhythmtreetools.RhythmTreeParser()(argument)
                 assert len(parsed) == 1
                 root = parsed[0]
             else:
-                root = arg
+                root = argument
             for node in root.nodes:
                 assert node.prolation == 1
             numerator = root.preprolated_duration.numerator
             denominator = root.preprolated_duration.denominator
 
-        elif (isinstance(arg, (tuple, scoretools.Measure)) or
-            (hasattr(arg, 'numerator') and hasattr(arg, 'denominator'))):
-            if isinstance(arg, tuple):
-                fraction = mathtools.NonreducedFraction(arg)
-            elif isinstance(arg, scoretools.Measure):
-                time_signature = arg._get_effective(
+        elif (isinstance(argument, (tuple, scoretools.Measure)) or
+            (hasattr(argument, 'numerator') and hasattr(argument, 'denominator'))):
+            if isinstance(argument, tuple):
+                fraction = mathtools.NonreducedFraction(argument)
+            elif isinstance(argument, scoretools.Measure):
+                time_signature = argument._get_effective(
                     indicatortools.TimeSignature)
                 fraction = mathtools.NonreducedFraction(
                     time_signature.numerator, time_signature.denominator)
             else:
                 fraction = mathtools.NonreducedFraction(
-                    arg.numerator, arg.denominator)
+                    argument.numerator, argument.denominator)
             numerator, denominator = fraction.numerator, fraction.denominator
             factors = mathtools.factors(numerator)
             # group two nested levels of 2s into a 4
@@ -411,7 +411,7 @@ class Meter(AbjadObject):
 
         else:
             message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, arg)
+            message = message.format(type(self).__name__, argument)
             raise ValueError(message)
 
         self._root_node = root

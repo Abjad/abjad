@@ -139,5 +139,5 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
         return self._is_pitched
 
     @is_pitched.setter
-    def is_pitched(self, arg):
-        self._is_pitched = bool(arg)
+    def is_pitched(self, argument):
+        self._is_pitched = bool(argument)

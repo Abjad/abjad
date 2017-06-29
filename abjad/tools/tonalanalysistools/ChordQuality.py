@@ -41,14 +41,14 @@ class ChordQuality(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a chord quality with quality string equal to
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a chord quality with quality string equal to
         that of this chord quality. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.quality_string == arg.quality_string:
+        if isinstance(argument, type(self)):
+            if self.quality_string == argument.quality_string:
                 return True
         return False
 
@@ -61,12 +61,12 @@ class ChordQuality(AbjadObject):
         '''
         return super(ChordQuality, self).__hash__()
 
-    def __ne__(self, arg):
-        r'''Is true when chord quality does not equal `arg`. Otherwise false.
+    def __ne__(self, argument):
+        r'''Is true when chord quality does not equal `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     def __repr__(self):
         r'''Gets interpreter representation of chord quality.

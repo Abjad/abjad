@@ -470,12 +470,12 @@ class Tuplet(Container):
         return self._force_fraction
 
     @force_fraction.setter
-    def force_fraction(self, arg):
-        if isinstance(arg, (bool)):
-            self._force_fraction = arg
+    def force_fraction(self, argument):
+        if isinstance(argument, (bool)):
+            self._force_fraction = argument
         else:
             message = 'must be true or false: {!r}.'
-            message = message.format(arg)
+            message = message.format(argument)
             raise TypeError(message)
 
     @property
@@ -598,12 +598,12 @@ class Tuplet(Container):
         return self._force_times_command
 
     @force_times_command.setter
-    def force_times_command(self, arg):
-        if isinstance(arg, (bool, type(None))):
-            self._force_times_command = arg
+    def force_times_command(self, argument):
+        if isinstance(argument, (bool, type(None))):
+            self._force_times_command = argument
         else:
             message = 'must be true or false: {!r}.'
-            message = message.format(arg)
+            message = message.format(argument)
             raise TypeError(message)
 
     @property
@@ -820,9 +820,9 @@ class Tuplet(Container):
         return self._is_invisible
 
     @is_invisible.setter
-    def is_invisible(self, arg):
-        assert isinstance(arg, bool), repr(arg)
-        self._is_invisible = arg
+    def is_invisible(self, argument):
+        assert isinstance(argument, bool), repr(argument)
+        self._is_invisible = argument
 
     @property
     def is_redundant(self):
@@ -1074,13 +1074,13 @@ class Tuplet(Container):
         return self._preferred_denominator
 
     @preferred_denominator.setter
-    def preferred_denominator(self, arg):
-        if isinstance(arg, int):
-            if not 0 < arg:
-                raise ValueError(arg)
-        elif not isinstance(arg, type(None)):
-            raise TypeError(arg)
-        self._preferred_denominator = arg
+    def preferred_denominator(self, argument):
+        if isinstance(argument, int):
+            if not 0 < argument:
+                raise ValueError(argument)
+        elif not isinstance(argument, type(None)):
+            raise TypeError(argument)
+        self._preferred_denominator = argument
 
     ### PUBLIC METHODS ###
 

@@ -111,8 +111,8 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
         return self._is_divisible
 
     @is_divisible.setter
-    def is_divisible(self, arg):
-        self._is_divisible = bool(arg)
+    def is_divisible(self, argument):
+        self._is_divisible = bool(argument)
 
     @property
     def preceding_q_event_proxies(self):

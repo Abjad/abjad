@@ -272,10 +272,10 @@ class NoteHead(AbjadObject):
         return self._is_cautionary
 
     @is_cautionary.setter
-    def is_cautionary(self, arg):
-        if arg is not None:
-            arg = bool(arg)
-        self._is_cautionary = arg
+    def is_cautionary(self, argument):
+        if argument is not None:
+            argument = bool(argument)
+        self._is_cautionary = argument
 
     @property
     def is_forced(self):
@@ -301,10 +301,10 @@ class NoteHead(AbjadObject):
         return self._is_forced
 
     @is_forced.setter
-    def is_forced(self, arg):
-        if arg is not None:
-            arg = bool(arg)
-        self._is_forced = arg
+    def is_forced(self, argument):
+        if argument is not None:
+            argument = bool(argument)
+        self._is_forced = argument
 
     @property
     def is_parenthesized(self):
@@ -330,10 +330,10 @@ class NoteHead(AbjadObject):
         return self._is_parenthesized
 
     @is_parenthesized.setter
-    def is_parenthesized(self, arg):
-        if arg is not None:
-            arg = bool(arg)
-        self._is_parenthesized = arg
+    def is_parenthesized(self, argument):
+        if argument is not None:
+            argument = bool(argument)
+        self._is_parenthesized = argument
 
     @property
     def named_pitch(self):
@@ -392,7 +392,7 @@ class NoteHead(AbjadObject):
         return self._written_pitch
 
     @written_pitch.setter
-    def written_pitch(self, arg):
+    def written_pitch(self, argument):
         from abjad.tools import pitchtools
-        written_pitch = pitchtools.NamedPitch(arg)
+        written_pitch = pitchtools.NamedPitch(argument)
         self._written_pitch = written_pitch

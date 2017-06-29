@@ -180,11 +180,11 @@ class RhythmTreeMixin(abctools.AbjadObject):
         return self._duration
 
     @preprolated_duration.setter
-    def preprolated_duration(self, arg):
-        if not isinstance(arg, Fraction):
-            arg = durationtools.Duration(arg)
-        assert 0 < arg
-        self._duration = arg
+    def preprolated_duration(self, argument):
+        if not isinstance(argument, Fraction):
+            argument = durationtools.Duration(argument)
+        assert 0 < argument
+        self._duration = argument
         self._mark_entire_tree_for_later_update()
 
     @property

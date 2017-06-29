@@ -50,15 +50,15 @@ class ChordSuspension(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a chord suspension when start and stop equal
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a chord suspension when start and stop equal
         to those of this chord suspension. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.start == arg.start:
-                if self.stop == arg.stop:
+        if isinstance(argument, type(self)):
+            if self.start == argument.start:
+                if self.stop == argument.stop:
                     return True
         return False
 
@@ -71,13 +71,13 @@ class ChordSuspension(AbjadObject):
         '''
         return super(ChordSuspension, self).__hash__()
 
-    def __ne__(self, arg):
-        r'''Is true when `arg` does not equal chord suspension. Otherwise
+    def __ne__(self, argument):
+        r'''Is true when `argument` does not equal chord suspension. Otherwise
         false.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     def __str__(self):
         r'''String representation of chord suspension.

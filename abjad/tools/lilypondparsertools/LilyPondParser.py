@@ -1451,9 +1451,9 @@ class LilyPondParser(abctools.Parser):
         return self._default_language
 
     @default_language.setter
-    def default_language(self, arg):
-        assert arg in self.available_languages
-        self._default_language = arg
+    def default_language(self, argument):
+        assert argument in self.available_languages
+        self._default_language = argument
 
     @property
     def lexer_rules_object(self):

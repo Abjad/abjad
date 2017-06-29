@@ -45,8 +45,8 @@ class SchemeMoment(Scheme):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a scheme moment with the same value as that of
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a scheme moment with the same value as that of
         this scheme moment.
 
         ::
@@ -61,8 +61,8 @@ class SchemeMoment(Scheme):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self._value == arg._value:
+        if isinstance(argument, type(self)):
+            if self._value == argument._value:
                 return True
         return False
 
@@ -82,8 +82,8 @@ class SchemeMoment(Scheme):
         '''
         return super(SchemeMoment, self).__hash__()
 
-    def __lt__(self, arg):
-        r'''Is true when `arg` is a scheme moment with value greater than that of
+    def __lt__(self, argument):
+        r'''Is true when `argument` is a scheme moment with value greater than that of
         this scheme moment.
 
         ::
@@ -100,8 +100,8 @@ class SchemeMoment(Scheme):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self._value < arg._value:
+        if isinstance(argument, type(self)):
+            if self._value < argument._value:
                 return True
         return False
 

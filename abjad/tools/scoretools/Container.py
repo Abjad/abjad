@@ -1730,5 +1730,5 @@ class Container(Component):
         return Component.name.fget(self)
 
     @name.setter
-    def name(self, arg):
-        return Component.name.fset(self, arg)
+    def name(self, argument):
+        return Component.name.fset(self, argument)

@@ -297,12 +297,12 @@ class Hairpin(Spanner):
         return lilypond_format_bundle
 
     @staticmethod
-    def _is_hairpin_shape_string(arg):
-        return arg in Hairpin._hairpin_shape_strings
+    def _is_hairpin_shape_string(argument):
+        return argument in Hairpin._hairpin_shape_strings
 
     @staticmethod
-    def _is_hairpin_token(arg):
-        r'''Is true when `arg` is a hairpin token. Otherwise false:
+    def _is_hairpin_token(argument):
+        r'''Is true when `argument` is a hairpin token. Otherwise false:
 
         ::
 
@@ -317,15 +317,15 @@ class Hairpin(Spanner):
         Returns true or false.
         '''
         Dynamic = indicatortools.Dynamic
-        if (isinstance(arg, tuple) and
-            len(arg) == 3 and
-            (not arg[0] or indicatortools.Dynamic.is_dynamic_name(arg[0]))
-            and Hairpin._is_hairpin_shape_string(arg[1]) and
-            (not arg[2] or indicatortools.Dynamic.is_dynamic_name(arg[2]))):
-            if arg[0] and arg[2]:
-                start_ordinal = Dynamic.dynamic_name_to_dynamic_ordinal(arg[0])
-                stop_ordinal = Dynamic.dynamic_name_to_dynamic_ordinal(arg[2])
-                if arg[1] == '<':
+        if (isinstance(argument, tuple) and
+            len(argument) == 3 and
+            (not argument[0] or indicatortools.Dynamic.is_dynamic_name(argument[0]))
+            and Hairpin._is_hairpin_shape_string(argument[1]) and
+            (not argument[2] or indicatortools.Dynamic.is_dynamic_name(argument[2]))):
+            if argument[0] and argument[2]:
+                start_ordinal = Dynamic.dynamic_name_to_dynamic_ordinal(argument[0])
+                stop_ordinal = Dynamic.dynamic_name_to_dynamic_ordinal(argument[2])
+                if argument[1] == '<':
                     return start_ordinal < stop_ordinal
                 else:
                     return stop_ordinal < start_ordinal

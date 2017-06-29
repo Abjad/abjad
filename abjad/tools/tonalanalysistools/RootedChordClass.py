@@ -85,17 +85,17 @@ class RootedChordClass(PitchClassSet):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a rooted chord-class with root, chord quality
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a rooted chord-class with root, chord quality
         and inversion equal to those of this rooted chord-class. Otherwise
         false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.root == arg.root:
-                if self.chord_quality == arg.chord_quality:
-                    if self.inversion == arg.inversion:
+        if isinstance(argument, type(self)):
+            if self.root == argument.root:
+                if self.chord_quality == argument.chord_quality:
+                    if self.inversion == argument.inversion:
                         return True
         return False
 
@@ -108,13 +108,13 @@ class RootedChordClass(PitchClassSet):
         '''
         return super(RootedChordClass, self).__hash__()
 
-    def __ne__(self, arg):
-        r'''Is true when rooted chord-class does not equal `arg`. Otherwise
+    def __ne__(self, argument):
+        r'''Is true when rooted chord-class does not equal `argument`. Otherwise
         false.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     def __repr__(self):
         r'''Gets interpreter representation of rooted chord-class.

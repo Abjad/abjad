@@ -55,9 +55,9 @@ class AfterGraceContainer(GraceContainer):
         return self._kind
 
     @kind.setter
-    def kind(self, arg):
-        if arg not in self._allowable_kinds:
+    def kind(self, argument):
+        if argument not in self._allowable_kinds:
             message = 'unknown grace container kind: {!r}.'
-            message = message.format(arg)
+            message = message.format(argument)
             raise Exception(message)
-        self._kind = arg
+        self._kind = argument

@@ -335,8 +335,8 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
         return self._is_digraph
 
     @is_digraph.setter
-    def is_digraph(self, arg):
-        self._is_digraph = bool(arg)
+    def is_digraph(self, argument):
+        self._is_digraph = bool(argument)
 
     @property
     def node_attributes(self):

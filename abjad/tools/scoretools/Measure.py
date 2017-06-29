@@ -579,9 +579,9 @@ class Measure(FixedDurationContainer):
         return self._implicit_scaling
 
     @implicit_scaling.setter
-    def implicit_scaling(self, arg):
-        assert isinstance(arg, bool)
-        self._implicit_scaling = arg
+    def implicit_scaling(self, argument):
+        assert isinstance(argument, bool)
+        self._implicit_scaling = argument
 
     @property
     def implied_prolation(self):

@@ -209,14 +209,14 @@ class Note(Leaf):
         return self._note_head
 
     @note_head.setter
-    def note_head(self, arg):
+    def note_head(self, argument):
         from abjad.tools.scoretools.NoteHead import NoteHead
-        if isinstance(arg, type(None)):
+        if isinstance(argument, type(None)):
             self._note_head = None
-        elif isinstance(arg, NoteHead):
-            self._note_head = arg
+        elif isinstance(argument, NoteHead):
+            self._note_head = argument
         else:
-            note_head = NoteHead(client=self, written_pitch=arg)
+            note_head = NoteHead(client=self, written_pitch=argument)
             self._note_head = note_head
 
     @property
@@ -283,15 +283,15 @@ class Note(Leaf):
                 return self._note_head.written_pitch
 
     @written_pitch.setter
-    def written_pitch(self, arg):
+    def written_pitch(self, argument):
         from abjad.tools import pitchtools
         from abjad.tools.scoretools.NoteHead import NoteHead
-        if arg is None:
+        if argument is None:
             if self.note_head is not None:
                 self.note_head.written_pitch = None
         else:
             if self.note_head is None:
                 self.note_head = NoteHead(self, written_pitch=None)
             else:
-                pitch = pitchtools.NamedPitch(arg)
+                pitch = pitchtools.NamedPitch(argument)
                 self.note_head.written_pitch = pitch

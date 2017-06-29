@@ -75,19 +75,19 @@ class RomanNumeral(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a roman numeral with scale degree, quality,
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a roman numeral with scale degree, quality,
         extent, inversion and suspension equal to those of this roman numeral.
         Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.scale_degree == arg.scale_degree:
-                if self.quality == arg.quality:
-                    if self.extent == arg.extent:
-                        if self.inversion == arg.inversion:
-                            if self.suspension == arg.suspension:
+        if isinstance(argument, type(self)):
+            if self.scale_degree == argument.scale_degree:
+                if self.quality == argument.quality:
+                    if self.extent == argument.extent:
+                        if self.inversion == argument.inversion:
+                            if self.suspension == argument.suspension:
                                 return True
         return False
 
@@ -100,15 +100,15 @@ class RomanNumeral(AbjadValueObject):
         '''
         return super(RomanNumeral, self).__hash__()
 
-    def __ne__(self, arg):
-        r'''Is true when roman numeral does not equal `arg`. Otherwise false.
+    def __ne__(self, argument):
+        r'''Is true when roman numeral does not equal `argument`. Otherwise false.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     def __repr__(self):
-        r'''Gets interpreter representation of `arg`.
+        r'''Gets interpreter representation of `argument`.
 
         Returns string.
         '''

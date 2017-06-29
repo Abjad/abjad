@@ -51,11 +51,11 @@ class ChordInversion(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, number=0):
-        arg = number
-        if isinstance(arg, int):
-            number = arg
-        elif isinstance(arg, str):
-            number = self._inversion_name_to_inversion_number[arg]
+        argument = number
+        if isinstance(argument, int):
+            number = argument
+        elif isinstance(argument, str):
+            number = self._inversion_name_to_inversion_number[argument]
         else:
             message = 'can not initialize chord inversion.'
             raise ValueError(message)
@@ -63,14 +63,14 @@ class ChordInversion(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a chord inversion with number equal to that
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a chord inversion with number equal to that
         of this chord inversion. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.number == arg.number:
+        if isinstance(argument, type(self)):
+            if self.number == argument.number:
                 return True
         return False
 
@@ -83,12 +83,12 @@ class ChordInversion(AbjadObject):
         '''
         return super(ChordInversion, self).__hash__()
 
-    def __ne__(self, arg):
-        r'''Is true when chord inversion does not equal `arg`. Otherise false.
+    def __ne__(self, argument):
+        r'''Is true when chord inversion does not equal `argument`. Otherise false.
 
         Returns true or false.
         '''
-        return not self == arg
+        return not self == argument
 
     ### PUBLIC METHODS ###
 
