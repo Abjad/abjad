@@ -61,8 +61,33 @@ def attach(
     '''
     from abjad.tools import indicatortools
     from abjad.tools import scoretools
+    from abjad.tools import selectiontools
     from abjad.tools import spannertools
     from abjad.tools.topleveltools import iterate
+
+    # NOTE: uncomment the following when working on #824
+    #       "Restrict attachment to leaves".
+
+#    def _is_acceptable(component_expression):
+#        if isinstance(component_expression, scoretools.Leaf):
+#            return True
+#        ss = (list, selectiontools.Selection)
+#        if not isinstance(component_expression, ss):
+#            return False
+#        for item in component_expression:
+#            if not isinstance(item, scoretools.Leaf):
+#                return False
+#        return True
+#
+#    if (
+#        isinstance(indicator, indicatortools.TimeSignature) and
+#        isinstance(component_expression, scoretools.Measure)
+#        ):
+#        pass
+#    elif not _is_acceptable(component_expression):
+#        message = 'attach {!r} to a leaf (or selection of leaves) not to {!r}.'
+#        message = message.format(indicator, component_expression)
+#        raise Exception(message)
 
     if hasattr(indicator, '_attachment_test_all'):
         if not indicator._attachment_test_all(component_expression):

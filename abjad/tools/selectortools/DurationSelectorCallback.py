@@ -28,7 +28,8 @@ class DurationSelectorCallback(AbjadValueObject):
             durationtools.Duration,
             selectortools.DurationInequality,
             )
-        assert isinstance(duration, prototype)
+        if not isinstance(duration, prototype):
+            duration = durationtools.Duration(duration)
         self._duration = duration
         if preprolated is not None:
             preprolated = bool(preprolated)
