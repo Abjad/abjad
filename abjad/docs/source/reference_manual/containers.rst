@@ -143,7 +143,7 @@ Container names appear in LilyPond input:
 
 ..  abjad::
 
-    print(format(score))
+    f(score)
 
 And make it easy to retrieve containers later:
 

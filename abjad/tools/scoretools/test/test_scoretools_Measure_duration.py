@@ -20,8 +20,8 @@ def test_scoretools_Measure_duration_01():
         '''
         )
 
-    assert measure._contents_duration == Duration(3, 8)
-    assert measure._preprolated_duration == Duration(3, 8)
+    assert measure._get_contents_duration() == Duration(3, 8)
+    assert measure._get_preprolated_duration() == Duration(3, 8)
     assert inspect_(measure).get_duration() == Duration(3, 8)
 
 
@@ -45,8 +45,8 @@ def test_scoretools_Measure_duration_02():
         '''
         )
 
-    assert measure._contents_duration == Duration(3, 8)
-    assert measure._preprolated_duration == Duration(3, 10)
+    assert measure._get_contents_duration() == Duration(3, 8)
+    assert measure._get_preprolated_duration() == Duration(3, 10)
     assert inspect_(measure).get_duration() == Duration(3, 10)
 
 
@@ -58,8 +58,8 @@ def test_scoretools_Measure_duration_03():
 
     assert pytest.raises(OverfullContainerError, 'format(measure)')
 
-    assert measure._contents_duration == Duration(4, 8)
-    assert measure._preprolated_duration == Duration(4, 8)
+    assert measure._get_contents_duration() == Duration(4, 8)
+    assert measure._get_preprolated_duration() == Duration(4, 8)
     assert inspect_(measure).get_duration() == Duration(4, 8)
 
 
@@ -72,6 +72,6 @@ def test_scoretools_Measure_duration_04():
 
     assert pytest.raises(OverfullContainerError, 'format(measure)')
 
-    assert measure._contents_duration == Duration(4, 8)
-    assert measure._preprolated_duration == Duration(4, 10)
+    assert measure._get_contents_duration() == Duration(4, 8)
+    assert measure._get_preprolated_duration() == Duration(4, 10)
     assert inspect_(measure).get_duration() == Duration(4, 10)

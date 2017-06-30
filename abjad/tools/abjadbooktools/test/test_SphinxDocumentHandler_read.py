@@ -470,7 +470,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'Enumeration', 'Expression',
 #                    'ExtraLeafSelectorCallback',
 #                    'ExtraSpannerError', 'Fermata',
-#                    'FixedDurationTuplet',
 #                    'FlattenSelectorCallback', 'Fraction',
 #                    'GeneralizedBeam', 'Glissando',
 #                    'GraceContainer', 'GroupByPitchCallback',

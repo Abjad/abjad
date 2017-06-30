@@ -44,8 +44,7 @@ def test_selectiontools_VerticalMoment___eq___01():
 def test_selectiontools_VerticalMoment___eq___02():
 
     score = Score([])
-    score.append(Staff([scoretools.FixedDurationTuplet(
-        Duration(4, 8), "d''8 c''8 b'8")]))
+    score.append(Staff([Tuplet((4, 3), "d''8 c''8 b'8")]))
     staff_group = StaffGroup(r'''
         \new Staff {
             a'4

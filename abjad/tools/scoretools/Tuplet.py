@@ -126,59 +126,9 @@ class Tuplet(Container):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _compact_representation(self):
-        if not self:
-            return '{{ {!s} }}'.format(self.multiplier)
-        return '{{ {!s} {} }}'.format(self.multiplier, self._contents_summary)
-
-    @property
-    def _has_power_of_two_denominator(self):
-        if self.multiplier:
-            return mathtools.is_nonnegative_integer_power_of_two(
-                self.multiplier.numerator)
-        else:
-            return True
-
-    @property
     def _is_rest_filled(self):
         from abjad.tools import scoretools
         return all(isinstance(_, scoretools.Rest) for _ in self)
-
-    @property
-    def _multiplier_fraction_string(self):
-        if self.preferred_denominator is not None:
-            inverse_multiplier = durationtools.Multiplier(
-                self.multiplier.denominator, self.multiplier.numerator)
-            nonreduced_fraction = \
-                mathtools.NonreducedFraction(inverse_multiplier)
-            nonreduced_fraction = nonreduced_fraction.with_denominator(
-                self.preferred_denominator)
-            d, n = nonreduced_fraction.pair
-        else:
-            n, d = self.multiplier.numerator, self.multiplier.denominator
-        return '%s/%s' % (n, d)
-
-    @property
-    def _preprolated_duration(self):
-        return self.multiplied_duration
-
-    @property
-    def _ratio_string(self):
-        multiplier = self.multiplier
-        if multiplier is not None:
-            numerator = multiplier.numerator
-            denominator = multiplier.denominator
-            ratio_string = '{}:{}'.format(denominator, numerator)
-            return ratio_string
-        else:
-            return None
-
-    @property
-    def _summary(self):
-        if 0 < len(self):
-            return ', '.join([str(x) for x in self._music])
-        else:
-            return ''
 
     ### PRIVATE METHODS ###
 
@@ -253,8 +203,9 @@ class Tuplet(Container):
         if 'text' in vars(override(self).tuplet_number):
             return''
         if (self.is_augmentation or
-            not self._has_power_of_two_denominator or
-                self.force_fraction):
+            not self._get_power_of_two_denominator() or
+            self.force_fraction
+            ):
             return r"\tweak text #tuplet-number::calc-fraction-text"
         return ''
 
@@ -292,13 +243,21 @@ class Tuplet(Container):
         result.append(('commands', bundle.opening.commands))
         return self._format_slot_contributions_with_indent(result)
 
+    def _get_compact_representation(self):
+        if not self:
+            return '{{ {!s} }}'.format(self.multiplier)
+        return '{{ {!s} {} }}'.format(
+            self.multiplier,
+            self._get_contents_summary(),
+            )
+
     def _get_edge_height_tweak_string(self):
         from abjad.tools import scoretools
         parentage = inspect_(self).get_parentage()
         measure = parentage.get_first(scoretools.Measure)
         if measure and measure.implicit_scaling:
             return
-        duration = self._preprolated_duration
+        duration = self._get_preprolated_duration()
         denominator = duration.denominator
         if not mathtools.is_nonnegative_integer_power_of_two(denominator):
             return r"\tweak edge-height #'(0.7 . 0)"
@@ -306,7 +265,7 @@ class Tuplet(Container):
     def _get_format_specification(self):
         return systemtools.FormatSpecification(
             client=self,
-            repr_args_values=[self.multiplier, self._contents_summary],
+            repr_args_values=[self.multiplier, self._get_contents_summary()],
             storage_format_args_values=[self.multiplier, self[:]],
             storage_format_kwargs_names=[],
             )
@@ -315,15 +274,54 @@ class Tuplet(Container):
         self._update_now(indicators=True)
         return self._format_component()
 
+    def _get_multiplier_fraction_string(self):
+        if self.preferred_denominator is not None:
+            inverse_multiplier = durationtools.Multiplier(
+                self.multiplier.denominator, self.multiplier.numerator)
+            nonreduced_fraction = \
+                mathtools.NonreducedFraction(inverse_multiplier)
+            nonreduced_fraction = nonreduced_fraction.with_denominator(
+                self.preferred_denominator)
+            d, n = nonreduced_fraction.pair
+        else:
+            n, d = self.multiplier.numerator, self.multiplier.denominator
+        return '%s/%s' % (n, d)
+
+    def _get_power_of_two_denominator(self):
+        if self.multiplier:
+            return mathtools.is_nonnegative_integer_power_of_two(
+                self.multiplier.numerator)
+        else:
+            return True
+
+    def _get_preprolated_duration(self):
+        return self.multiplied_duration
+
+    def _get_ratio_string(self):
+        multiplier = self.multiplier
+        if multiplier is not None:
+            numerator = multiplier.numerator
+            denominator = multiplier.denominator
+            ratio_string = '{}:{}'.format(denominator, numerator)
+            return ratio_string
+        else:
+            return None
+
     def _get_scale_durations_command_string(self):
         multiplier = self.multiplier
         string = r"\scaleDurations #'({} . {}) {{"
         string = string.format(multiplier.numerator, multiplier.denominator)
         return string
 
+    def _get_summary(self):
+        if 0 < len(self):
+            return ', '.join([str(x) for x in self._music])
+        else:
+            return ''
+
     def _get_times_command_string(self):
         string = r'\times {} {{'.format(
-            self._multiplier_fraction_string
+            self._get_multiplier_fraction_string()
             )
         return string
 
@@ -957,7 +955,7 @@ class Tuplet(Container):
 
         Returns duration.
         '''
-        return self.multiplier * self._contents_duration
+        return self.multiplier * self._get_contents_duration()
 
     @property
     def multiplier(self):
@@ -1083,6 +1081,178 @@ class Tuplet(Container):
         self._preferred_denominator = argument
 
     ### PUBLIC METHODS ###
+
+    def append(self, component, preserve_duration=False):
+        r'''Appends `component` to tuplet.
+
+        ..  container:: example
+
+            Appends note to tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'4 (
+                    d'4
+                    f'4 )
+                }
+
+            ::
+
+                >>> tuplet.append(Note("e'4"))
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak edge-height #'(0.7 . 0)
+                \times 2/3 {
+                    c'4 (
+                    d'4
+                    f'4 )
+                    e'4
+                }
+
+        ..  container:: example
+
+            Appends note to tuplet and preserves tuplet duration:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'4 (
+                    d'4
+                    f'4 )
+                }
+
+            ::
+
+                >>> tuplet.append(Note("e'4"), preserve_duration=True)
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \times 1/2 {
+                    c'4 (
+                    d'4
+                    f'4 )
+                    e'4
+                }
+
+        Returns none.
+        '''
+        import abjad
+        if preserve_duration:
+            old_duration = abjad.inspect_(self).get_duration()
+        superclass = super(Tuplet, self)
+        superclass.append(component)
+        if preserve_duration:
+            new_duration = self._get_contents_duration()
+            multiplier = old_duration / new_duration
+            self.multiplier = multiplier
+            assert abjad.inspect_(self).get_duration() == old_duration
+
+    def extend(self, argument, preserve_duration=False):
+        r'''Extends tuplet with `argument`.
+
+        ..  container:: example
+
+            Extends tuplet with three notes:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'4 (
+                    d'4
+                    f'4 )
+                }
+
+            ::
+
+                >>> notes = [Note("e'32"), Note("d'32"), Note("e'16")]
+                >>> tuplet.extend(notes)
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak edge-height #'(0.7 . 0)
+                \times 2/3 {
+                    c'4 (
+                    d'4
+                    f'4 )
+                    e'32
+                    d'32
+                    e'16
+                }
+
+        ..  container:: example
+
+            Extends tuplet with three notes and preserves tuplet duration:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'4 (
+                    d'4
+                    f'4 )
+                }
+
+            ::
+
+                >>> notes = [Note("e'32"), Note("d'32"), Note("e'16")]
+                >>> tuplet.extend(notes, preserve_duration=True)
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \times 4/7 {
+                    c'4 (
+                    d'4
+                    f'4 )
+                    e'32
+                    d'32
+                    e'16
+                }
+
+        Returns none.
+        '''
+        import abjad
+        if preserve_duration:
+            old_duration = abjad.inspect_(self).get_duration()
+        superclass = super(Tuplet, self)
+        superclass.extend(argument)
+        if preserve_duration:
+            new_duration = self._get_contents_duration()
+            multiplier = old_duration / new_duration
+            self.multiplier = multiplier
+            assert abjad.inspect_(self).get_duration() == old_duration
 
     @staticmethod
     def from_duration_and_ratio(
@@ -2102,8 +2272,8 @@ class Tuplet(Container):
         Duration = durationtools.Duration
         self.force_fraction = True
         durations = [
-            self._contents_duration,
-            self._preprolated_duration,
+            self._get_contents_duration(),
+            self._get_preprolated_duration(),
             Duration(1, denominator),
             ]
         nonreduced_fractions = Duration.durations_to_nonreduced_fractions(
@@ -2140,7 +2310,7 @@ class Tuplet(Container):
         Returns new tuplet.
         '''
         from abjad.tools import scoretools
-        target_duration = self._preprolated_duration
+        target_duration = self._get_preprolated_duration()
         new_tuplet = scoretools.FixedDurationTuplet(target_duration, [])
         mutate(self).swap(new_tuplet)
         return new_tuplet

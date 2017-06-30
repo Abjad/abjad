@@ -112,7 +112,7 @@ Basic glissando functionality
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 ..  abjad::
     :strip-prompt:
@@ -132,7 +132,7 @@ Basic glissando functionality
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 Avoiding orphan and final leaves
 --------------------------------
@@ -168,7 +168,7 @@ Avoiding orphan and final leaves
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 Avoiding silences
 -----------------
@@ -200,7 +200,7 @@ Avoiding silences
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 Making object-oriented typographic overrides
 --------------------------------------------
@@ -210,7 +210,7 @@ Making object-oriented typographic overrides
     staff = Staff("c'4 d'4 e'4 f'4")
     override(staff[1]).note_head.style = 'cross'
     show(staff)
-    print(format(staff))
+    f(staff)
 
 ..  abjad::
 
@@ -222,7 +222,7 @@ Making object-oriented typographic overrides
         )
     attach(grob_override, staff[2])
     show(staff)
-    print(format(staff))
+    f(staff)
 
 ..  abjad::
 
@@ -277,7 +277,7 @@ Integrating overrides during formatting
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 A simple non-formatting annotation class
 ----------------------------------------
@@ -310,7 +310,7 @@ A simple non-formatting annotation class
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 Making the spanner annotation-aware
 -----------------------------------
@@ -377,7 +377,7 @@ Making the spanner annotation-aware
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 Refactoring the custom spanner class
 ------------------------------------

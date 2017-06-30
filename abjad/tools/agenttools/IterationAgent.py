@@ -2453,7 +2453,7 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> staff = Staff("c'8 d'8 e'8 f'8")
-                    >>> beam = spannertools.Beam()
+                    >>> beam = Beam()
                     >>> attach(beam, staff[:])
                     >>> show(staff) # doctest: +SKIP
 
@@ -2502,7 +2502,7 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> staff = Staff("c'8 d'8 e'8 f'8")
-                    >>> beam = spannertools.Beam()
+                    >>> beam = Beam()
                     >>> attach(beam, staff[:])
                     >>> show(staff) # doctest: +SKIP
 

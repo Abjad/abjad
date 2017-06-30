@@ -20,7 +20,7 @@ class Repeat(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     \repeat volta 2
@@ -48,7 +48,7 @@ class Repeat(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     \repeat unfold 2

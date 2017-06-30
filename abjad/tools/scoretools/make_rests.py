@@ -42,7 +42,7 @@ def make_rests(
 
     ..  doctest::
 
-        >>> print(format(voice))
+        >>> f(voice)
         \new Voice {
             r4
             r16

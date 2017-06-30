@@ -8,7 +8,7 @@ class LilyPondContext(abctools.AbjadValueObject):
     ::
 
         >>> context = lilypondnametools.LilyPondContext('MensuralStaff')
-        >>> print(format(context))
+        >>> f(context)
         lilypondnametools.LilyPondContext(
             name='MensuralStaff',
             )
@@ -72,6 +72,8 @@ class LilyPondContext(abctools.AbjadValueObject):
         )
 
     _identity_map = {}
+
+    _publish_storage_format = True
 
     ### CONSTRUCTOR ###
 

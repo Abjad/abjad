@@ -212,7 +212,8 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         Returns sequence of components.
         '''
         def recurse(node, tuplet_duration):
-            basic_prolated_duration = tuplet_duration / node._contents_duration
+            basic_prolated_duration = \
+                tuplet_duration / node._get_contents_duration()
             basic_written_duration = \
                 basic_prolated_duration.equal_or_greater_power_of_two
             tuplet = scoretools.FixedDurationTuplet(tuplet_duration, [])
@@ -402,8 +403,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _contents_duration(self):
+    def _get_contents_duration(self):
         r'''The total preprolated_duration of the children
         of a `RhythmTreeContainer` instance:
 
@@ -414,12 +414,12 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
         ::
 
-            >>> tree._contents_duration
+            >>> tree._get_contents_duration()
             Duration(5, 1)
 
         ::
 
-            >>> tree[1]._contents_duration
+            >>> tree[1]._get_contents_duration()
             Duration(3, 1)
 
         Returns int.

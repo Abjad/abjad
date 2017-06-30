@@ -14,7 +14,7 @@ def select_all(inverted=None):
 
         ::
 
-            >>> print(format(pattern))
+            >>> f(pattern)
             abjad.Pattern(
                 indices=[0],
                 period=1,

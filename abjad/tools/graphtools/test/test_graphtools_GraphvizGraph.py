@@ -3,7 +3,7 @@ from abjad import graphtools
 from abjad import stringtools
 
 
-def test_documentationtools_GraphvizGraph_01():
+def test_graphtools_GraphvizGraph_01():
 
     graph = graphtools.GraphvizGraph()
     graph.node_attributes['shape'] = 'record'

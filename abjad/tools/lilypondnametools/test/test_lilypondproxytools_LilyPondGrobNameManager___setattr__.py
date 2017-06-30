@@ -1261,7 +1261,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___55():
     r'''Override LilyPond TupletNumber grob.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     override(tuplet).tuplet_number.fraction = True
 
     assert format(tuplet) == stringtools.normalize(

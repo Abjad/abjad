@@ -46,7 +46,7 @@ class Clef(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \clef "treble"
                 c'8

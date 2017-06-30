@@ -449,7 +449,7 @@ class MetricModulation(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff \with {
                     \override TextScript.staff-padding = #2.5

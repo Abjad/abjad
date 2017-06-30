@@ -18,7 +18,7 @@ class Fermata(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4 \shortfermata
@@ -38,7 +38,7 @@ class Fermata(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4 \fermata
@@ -58,7 +58,7 @@ class Fermata(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4 \longfermata
@@ -78,7 +78,7 @@ class Fermata(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4 \verylongfermata

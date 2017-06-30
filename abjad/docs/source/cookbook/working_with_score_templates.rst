@@ -5,7 +5,7 @@ Working with score templates and LilyPond concatentation
 
     template = templatetools.TwoStaffPianoScoreTemplate()
     score = template()
-    print(format(score))
+    f(score)
 
 Creating a basic score template
 -------------------------------
@@ -54,7 +54,7 @@ Creating a basic score template
 
     template = StringTrioScoreTemplate()
     score = template()
-    print(format(score))
+    f(score)
     score['Violin Voice'].extend("c'2 d'2 e'2 f'2")
     score['Viola Voice'].extend("c'2 d'2 e'2 f'2")
     score['Cello Voice'].extend("c'2 d'2 e'2 f'2")

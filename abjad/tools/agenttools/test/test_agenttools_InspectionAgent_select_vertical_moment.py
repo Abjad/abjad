@@ -5,7 +5,7 @@ from abjad import *
 def test_agenttools_InspectionAgent_select_vertical_moment_01():
 
     score = Score([])
-    tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), "d''8 c''8 b'8")
+    tuplet = Tuplet((4, 3), "d''8 c''8 b'8")
     score.append(Staff([tuplet]))
     staff_group = StaffGroup(context_name='PianoStaff')
     staff_group.append(Staff("a'4 g'4"))
@@ -61,7 +61,7 @@ def test_agenttools_InspectionAgent_select_vertical_moment_01():
 def test_agenttools_InspectionAgent_select_vertical_moment_02():
 
     score = Score([])
-    tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), "d''8 c''8 b'8")
+    tuplet = Tuplet((4, 3), "d''8 c''8 b'8")
     score.append(Staff([tuplet]))
     staff_group = StaffGroup(context_name='PianoStaff')
     staff_group.append(Staff("a'4 g'4"))

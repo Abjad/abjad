@@ -441,7 +441,7 @@ class Selection(object):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \time 2/4
                     c'8 (
@@ -463,7 +463,7 @@ class Selection(object):
 
             ..  doctest::
 
-                >>> print(format(new_staff))
+                >>> f(new_staff)
                 \new Staff {
                     e'8 (
                     f'8 )
@@ -489,7 +489,7 @@ class Selection(object):
 
             ::
 
-                >>> print(format(new_staff))
+                >>> f(new_staff)
                 \new Staff {
                     e'8 (
                     f'8 )
@@ -512,7 +512,7 @@ class Selection(object):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \new Voice {
                         \times 2/3 {
@@ -538,7 +538,7 @@ class Selection(object):
 
             ..  doctest::
 
-                >>> print(format(new_staff))
+                >>> f(new_staff)
                 \new Staff {
                     \new Voice {
                         \tweak edge-height #'(0.7 . 0)
@@ -659,7 +659,7 @@ class Selection(object):
         leaves = self
         if len(leaves) <= 1:
             return leaves
-        total_preprolated = leaves._preprolated_duration
+        total_preprolated = leaves._get_preprolated_duration()
         for leaf in leaves[1:]:
             parent = leaf._parent
             if parent:
@@ -734,7 +734,8 @@ class Selection(object):
                 raise TypeError(message)
         if isinstance(first, scoretools.FixedDurationTuplet):
             total_contents_duration = sum(
-                [x._contents_duration for x in self])
+                [x._get_contents_duration() for x in self]
+                )
             new_target_duration = first_multiplier * total_contents_duration
             new_tuplet = scoretools.FixedDurationTuplet(
                 new_target_duration, [])
@@ -850,6 +851,9 @@ class Selection(object):
                 last_index = parent.index(last)
                 return parent, first_index, last_index
         return None, None, None
+
+    def _get_preprolated_duration(self):
+        return sum(component._get_preprolated_duration() for component in self)
 
     def _get_spanner(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
@@ -2020,11 +2024,5 @@ class Selection(object):
                 result.append(components_copy)
         result = [abjad.select(_) for _ in result]
         return result
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _preprolated_duration(self):
-        return sum(component._preprolated_duration for component in self)
 
 collections.Sequence.register(Selection)

@@ -1194,7 +1194,7 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> print(format(pattern))
+                >>> f(pattern)
                 abjad.CompoundPattern(
                     (
                         abjad.CompoundPattern(

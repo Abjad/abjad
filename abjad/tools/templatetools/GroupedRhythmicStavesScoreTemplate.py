@@ -22,7 +22,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
             >>> template_1 = template_class(staff_count=4)
             >>> score = template_1()
-            >>> print(format(score))
+            >>> f(score)
             \context Score = "Grouped Rhythmic Staves Score" <<
                 \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                     \context RhythmicStaff = "Staff 1" {
@@ -52,7 +52,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
             >>> template_2 = template_class(staff_count=[2, 1, 2])
             >>> score = template_2()
-            >>> print(format(score))
+            >>> f(score)
             \context Score = "Grouped Rhythmic Staves Score" <<
                 \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                     \context RhythmicStaff = "Staff 1" <<
@@ -83,7 +83,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
             ...     with_clefs=True,
             ...     )
             >>> score = template_3()
-            >>> print(format(score))
+            >>> f(score)
             \context Score = "Grouped Rhythmic Staves Score" <<
                 \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                     \context RhythmicStaff = "Staff 1" <<
@@ -135,7 +135,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
             ::
 
-                >>> print(format(score_1))
+                >>> f(score_1)
                 \context Score = "Grouped Rhythmic Staves Score" <<
                     \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                         \context RhythmicStaff = "Staff 1" {
@@ -167,7 +167,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
             ::
 
-                >>> print(format(score_2))
+                >>> f(score_2)
                 \context Score = "Grouped Rhythmic Staves Score" <<
                     \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                         \context RhythmicStaff = "Staff 1" <<

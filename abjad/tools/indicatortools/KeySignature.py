@@ -18,7 +18,7 @@ class KeySignature(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \key e \major
                 e'8
@@ -40,7 +40,7 @@ class KeySignature(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \key e \minor
                 e'8

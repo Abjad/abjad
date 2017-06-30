@@ -40,7 +40,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_03()
     r'''Tuplet and leaves all logical voice.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
 
     r'''
     \times 2/3 {
@@ -1382,51 +1382,6 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_35()
 
     assert Selection._all_are_components_in_same_logical_voice(
         select(container).by_class())
-
-
-def test_selectiontools_Selection__all_are_components_in_same_logical_voice_36():
-    r'''Tuplets and leaves all appear in same logical voice.
-    '''
-
-    a = scoretools.FixedDurationTuplet(
-        Duration(3, 8), "e'8 f'8 fs'8 g'8")
-    b = scoretools.FixedDurationTuplet(
-        Duration(3, 8), "d'8 ef'8 af'8 a'8")
-    t = scoretools.FixedDurationTuplet(
-        Duration(3, 8), "c'8 cs'8 bf'8 b'8")
-    b.insert(2, a)
-    t.insert(2, b)
-    b.target_duration = Duration(6, 8)
-    t.target_duration = Duration(9, 8)
-
-    assert format(t) == stringtools.normalize(
-        r'''
-        \tweak text #tuplet-number::calc-fraction-text
-        \times 9/10 {
-            c'8
-            cs'8
-            \tweak text #tuplet-number::calc-fraction-text
-            \times 6/7 {
-                d'8
-                ef'8
-                \tweak text #tuplet-number::calc-fraction-text
-                \times 3/4 {
-                    e'8
-                    f'8
-                    fs'8
-                    g'8
-                }
-                af'8
-                a'8
-            }
-            bf'8
-            b'8
-        }
-        '''
-        )
-
-    assert Selection._all_are_components_in_same_logical_voice(
-        select(t).by_class())
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_37():

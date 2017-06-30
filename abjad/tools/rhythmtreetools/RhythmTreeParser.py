@@ -80,7 +80,7 @@ class RhythmTreeParser(Parser):
 
     ..  doctest::
 
-        >>> print(format(tuplet))
+        >>> f(tuplet)
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
             c'2

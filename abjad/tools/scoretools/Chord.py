@@ -125,22 +125,6 @@ class Chord(Leaf):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _compact_representation(self):
-        return '<{}>{}'.format(self._summary, self._formatted_duration)
-
-    @property
-    def _compact_representation_with_tie(self):
-        logical_tie = self._get_logical_tie()
-        if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            return '{} ~'.format(self._body[0])
-        else:
-            return self._body[0]
-
-    @property
-    def _summary(self):
-        return ' '.join([str(x) for x in self.note_heads])
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -244,7 +228,7 @@ class Chord(Leaf):
             result.insert(0, '<')
             result.append('>')
             result = '\n'.join(result)
-            result += str(self._formatted_duration)
+            result += str(self._get_formatted_duration())
         elif inspect_(self).has_indicator(indicatortools.Tremolo):
             reattack_duration = self._get_tremolo_reattack_duration()
             duration_string = reattack_duration.lilypond_duration_string
@@ -259,7 +243,10 @@ class Chord(Leaf):
             result = ' '.join(durated_pitches)
         else:
             result.extend([format(_) for _ in note_heads])
-            result = '<%s>%s' % (' '.join(result), self._formatted_duration)
+            result = '<%s>%s' % (
+                ' '.join(result),
+                self._get_formatted_duration(),
+                )
         # single string, but wrapped in list bc contribution
         return ['nucleus', [result]]
 
@@ -282,6 +269,21 @@ class Chord(Leaf):
         command = r'\repeat tremolo {}'.format(repeat_count)
         return command
 
+    def _get_compact_representation(self):
+        return '<{}>{}'.format(
+            self._get_summary(),
+            self._get_formatted_duration(),
+            )
+
+    def _get_compact_representation_with_tie(self):
+        logical_tie = self._get_logical_tie()
+        if 1 < len(logical_tie) and self is not logical_tie[-1]:
+            #return '{} ~'.format(self._get_body()[0])
+            return '{} ~'.format(self._get_compact_representation())
+        else:
+            #return self._get_body()[0]
+            return self._get_compact_representation()
+
     def _get_lilypond_format(self):
         return super(Chord, self)._get_lilypond_format()
 
@@ -303,6 +305,9 @@ class Chord(Leaf):
                 for pitch in self.written_pitches
                 ]
             return tuple(sounding_pitches)
+
+    def _get_summary(self):
+        return ' '.join([str(x) for x in self.note_heads])
 
     def _get_tremolo_reattack_duration(self):
         tremolos = inspect_(self).get_indicators(indicatortools.Tremolo)

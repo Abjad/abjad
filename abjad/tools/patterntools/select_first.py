@@ -14,7 +14,7 @@ def select_first(n=1, inverted=None):
 
         ::
 
-            >>> print(format(pattern))
+            >>> f(pattern)
             abjad.Pattern(
                 indices=[0],
                 )
@@ -67,7 +67,7 @@ def select_first(n=1, inverted=None):
 
         ::
 
-            >>> print(format(pattern))
+            >>> f(pattern)
             abjad.Pattern(
                 indices=[0, 1],
                 )
@@ -120,7 +120,7 @@ def select_first(n=1, inverted=None):
 
         ::
 
-            >>> print(format(pattern))
+            >>> f(pattern)
             abjad.Pattern(
                 indices=[],
                 )

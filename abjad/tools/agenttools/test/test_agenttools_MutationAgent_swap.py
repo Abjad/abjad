@@ -32,7 +32,7 @@ def test_agenttools_MutationAgent_swap_01():
         '''
         )
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(3, 8), [])
+    tuplet = Tuplet((3, 4), [])
     mutate(voice[:2]).swap(tuplet)
 
     assert format(voice) == stringtools.normalize(
@@ -143,7 +143,7 @@ def test_agenttools_MutationAgent_swap_03():
         '''
         )
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(3, 16), [])
+    tuplet = Tuplet((3, 4), [])
     mutate(voice[1:2]).swap(tuplet)
 
 
@@ -194,7 +194,7 @@ def test_agenttools_MutationAgent_swap_05():
     beam = Beam()
     attach(beam, leaves)
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     assert pytest.raises(Exception, 'mutate(voice[1:2]).swap(tuplet)')
 
 
@@ -227,7 +227,7 @@ def test_agenttools_MutationAgent_swap_06():
         '''
         )
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(3, 8), [])
+    tuplet = Tuplet((2, 3), [])
     statement = 'mutate([voice[0], voice[2]]).swap(tuplet)'
     assert pytest.raises(Exception, statement)
 

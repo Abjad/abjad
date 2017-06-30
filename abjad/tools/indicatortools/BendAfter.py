@@ -18,7 +18,7 @@ class BendAfter(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4 - \bendAfter #'-4.0
 
     ..  container:: example
@@ -34,7 +34,7 @@ class BendAfter(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4 - \bendAfter #'2.0
 
     '''

@@ -35,7 +35,7 @@ class GroupedStavesScoreTemplate(AbjadObject):
 
         ::
 
-            >>> print(format(score))
+            >>> f(score)
             \context Score = "Grouped Staves Score" <<
                 \context StaffGroup = "Grouped Staves Staff Group" <<
                     \context Staff = "Staff 1" {

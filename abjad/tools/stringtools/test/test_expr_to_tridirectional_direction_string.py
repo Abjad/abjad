@@ -3,7 +3,7 @@ import pytest
 from abjad.tools import stringtools
 
 
-def test_to_tridirectional_direction_string_01():
+def test_expr_to_tridirectional_direction_string_01():
 
     assert stringtools.to_tridirectional_direction_string('^') == 'up'
     assert stringtools.to_tridirectional_direction_string('-') == 'center'

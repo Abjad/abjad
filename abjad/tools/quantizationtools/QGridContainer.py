@@ -11,7 +11,7 @@ class QGridContainer(RhythmTreeContainer):
 
     ::
 
-        >>> print(format(container))
+        >>> f(container)
         quantizationtools.QGridContainer(
             preprolated_duration=abjad.Duration(1, 1),
             )

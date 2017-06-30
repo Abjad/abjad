@@ -18,7 +18,7 @@ class Dynamic(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8 \f
                 d'8

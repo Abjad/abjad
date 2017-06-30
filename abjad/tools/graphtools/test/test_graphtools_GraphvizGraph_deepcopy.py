@@ -4,7 +4,7 @@ from abjad.tools import graphtools
 from abjad.tools import stringtools
 
 
-def test_documentationtools_GraphvizGraph_deepcopy_01():
+def test_graphtools_GraphvizGraph_deepcopy_01():
     graph = graphtools.GraphvizGraph()
     assert str(graph) == stringtools.normalize(
         r'''
@@ -15,7 +15,7 @@ def test_documentationtools_GraphvizGraph_deepcopy_01():
     assert str(graph) == str(copied)
 
 
-def test_documentationtools_GraphvizGraph_deepcopy_02():
+def test_graphtools_GraphvizGraph_deepcopy_02():
     graph = graphtools.GraphvizGraph()
     graph.append(graphtools.GraphvizSubgraph())
     assert str(graph) == stringtools.normalize(
@@ -29,7 +29,7 @@ def test_documentationtools_GraphvizGraph_deepcopy_02():
     assert str(graph) == str(copied)
 
 
-def test_documentationtools_GraphvizGraph_deepcopy_03():
+def test_graphtools_GraphvizGraph_deepcopy_03():
     graph = graphtools.GraphvizGraph()
     graph.append(graphtools.GraphvizNode())
     graph.append(graphtools.GraphvizNode())
@@ -44,7 +44,7 @@ def test_documentationtools_GraphvizGraph_deepcopy_03():
     assert str(graph) == str(copied)
 
 
-def test_documentationtools_GraphvizGraph_deepcopy_04():
+def test_graphtools_GraphvizGraph_deepcopy_04():
     graph = graphtools.GraphvizGraph()
     graph.append(graphtools.GraphvizNode())
     graph.append(graphtools.GraphvizNode())
@@ -61,7 +61,7 @@ def test_documentationtools_GraphvizGraph_deepcopy_04():
     assert str(graph) == str(copied)
 
 
-def test_documentationtools_GraphvizGraph_deepcopy_05():
+def test_graphtools_GraphvizGraph_deepcopy_05():
     graph = graphtools.GraphvizGraph()
     graph.append(graphtools.GraphvizSubgraph())
     graph[0].append(graphtools.GraphvizNode())

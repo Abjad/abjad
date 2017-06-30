@@ -881,7 +881,7 @@ class Meter(AbjadObject):
                 offset_inventory,
                 )
             #print('DEPTH:', depth)
-            logical_tie_duration = logical_tie._preprolated_duration
+            logical_tie_duration = logical_tie._get_preprolated_duration()
             logical_tie_timespan = logical_tie.get_timespan()
             logical_tie_start_offset = logical_tie_timespan.start_offset
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
@@ -977,7 +977,7 @@ class Meter(AbjadObject):
             components)
         if not isinstance(meter, metertools.Meter):
             meter = metertools.Meter(meter)
-        #assert sum([x._preprolated_duration for x in components]) == \
+        #assert sum([x._get_preprolated_duration() for x in components]) == \
         #    meter.preprolated_duration
         if boundary_depth is not None:
             boundary_depth = int(boundary_depth)
@@ -1022,8 +1022,9 @@ class Meter(AbjadObject):
                 pass
             else:
                 #print('DESCENDING:', item)
-                preprolated_duration = sum([
-                    x._preprolated_duration for x in item])
+                preprolated_duration = sum(
+                    [x._get_preprolated_duration() for x in item]
+                    )
                 if preprolated_duration.numerator == 1:
                     preprolated_duration = mathtools.NonreducedFraction(
                         preprolated_duration)

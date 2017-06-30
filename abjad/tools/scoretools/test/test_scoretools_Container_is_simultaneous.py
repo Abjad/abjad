@@ -9,7 +9,6 @@ def test_scoretools_Container_is_simultaneous_01():
     '''
 
     assert not Container().is_simultaneous
-    assert not scoretools.FixedDurationTuplet().is_simultaneous
     assert not Tuplet().is_simultaneous
     assert not Measure().is_simultaneous
     assert Score().is_simultaneous

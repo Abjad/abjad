@@ -14,7 +14,7 @@ class FixedDurationContainer(Container):
 
     ..  doctest::
 
-        >>> print(format(container))
+        >>> f(container)
         {
             c'8
             d'8
@@ -64,7 +64,7 @@ class FixedDurationContainer(Container):
 
     def _check_duration(self):
         from abjad.tools import indicatortools
-        preprolated_duration = self._contents_duration
+        preprolated_duration = self._get_contents_duration()
         if preprolated_duration < self.target_duration:
             raise UnderfullContainerError
         if self.target_duration < preprolated_duration:
@@ -83,7 +83,7 @@ class FixedDurationContainer(Container):
 
         Returns true or false.
         '''
-        return self._preprolated_duration == self.target_duration
+        return self._get_preprolated_duration() == self.target_duration
 
     @property
     def is_misfilled(self):
@@ -101,7 +101,7 @@ class FixedDurationContainer(Container):
 
         Returns true or false.
         '''
-        return self.target_duration < self._preprolated_duration
+        return self.target_duration < self._get_preprolated_duration()
 
     @property
     def is_underfull(self):
@@ -110,7 +110,7 @@ class FixedDurationContainer(Container):
 
         Returns true or false.
         '''
-        return self._preprolated_duration < self.target_duration
+        return self._get_preprolated_duration() < self.target_duration
 
     @property
     def target_duration(self):

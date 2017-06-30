@@ -34,7 +34,7 @@ def make_tied_leaf(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 2/4
                 cs''2
@@ -59,7 +59,7 @@ def make_tied_leaf(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 2/4
                 cs''4 ~
@@ -87,7 +87,7 @@ def make_tied_leaf(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 9/8
                 cs''4 ~
@@ -118,7 +118,7 @@ def make_tied_leaf(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 9/8
                 cs''8 ~
@@ -149,7 +149,7 @@ def make_tied_leaf(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 9/8
                 cs''8

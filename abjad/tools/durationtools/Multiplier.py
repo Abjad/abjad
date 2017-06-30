@@ -125,14 +125,14 @@ class Multiplier(Duration):
         ::
 
             >>> note = Note("c'1")
-            >>> print(format(note))
+            >>> f(note)
             c'1
 
         ::
 
             >>> multiplier = Multiplier(3, 8)
             >>> attach(multiplier, note)
-            >>> print(format(note))
+            >>> f(note)
             c'1 * 3/8
 
     '''

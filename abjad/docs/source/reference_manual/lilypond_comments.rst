@@ -54,7 +54,7 @@ You can add LilyPond comments before, after or to the right of any leaf:
 
 ..  abjad::
 
-    print(format(note))
+    f(note)
 
 
 Attaching LilyPond comments to containers
@@ -99,7 +99,7 @@ of any container:
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 
 Getting the LilyPond comments attached to a component
@@ -123,7 +123,7 @@ Use ``detach()`` to detach LilyPond comments:
 
 ..  abjad::
 
-    print(format(note))
+    f(note)
 
 ..  abjad::
 
@@ -132,7 +132,7 @@ Use ``detach()`` to detach LilyPond comments:
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 
 Getting the contents string of a LilyPond comment

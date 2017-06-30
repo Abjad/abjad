@@ -141,7 +141,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(time_signature, staff)
                 >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
-                >>> hairpin = spannertools.Hairpin('p < f')
+                >>> hairpin = Hairpin('p < f')
                 >>> selector = select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
                 >>> attach(hairpin, leaves)
@@ -192,7 +192,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(time_signature, staff)
                 >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
-                >>> hairpin = spannertools.Hairpin('p < f')
+                >>> hairpin = Hairpin('p < f')
                 >>> selector = select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
                 >>> attach(hairpin, leaves)
@@ -266,19 +266,16 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            Fuses parent-contiguous fixed-duration tuplets in selection:
+            Fuses parent-contiguous tuplets in selection:
 
             ::
 
-                >>> tuplet_1 = scoretools.FixedDurationTuplet(
-                ...     Duration(2, 8), [])
-                >>> tuplet_1.extend("c'8 d'8 e'8")
-                >>> beam = spannertools.Beam()
+                >>> tuplet_1 = Tuplet((2, 3), "c'8 d' e'")
+                >>> beam = Beam()
                 >>> attach(beam, tuplet_1[:])
                 >>> duration = Duration(2, 16)
-                >>> tuplet_2 = scoretools.FixedDurationTuplet(duration, [])
-                >>> tuplet_2.extend("c'16 d'16 e'16")
-                >>> slur = spannertools.Slur()
+                >>> tuplet_2 = Tuplet((2, 3), "c'16 d' e'")
+                >>> slur = Slur()
                 >>> attach(slur, tuplet_2[:])
                 >>> staff = Staff([tuplet_1, tuplet_2])
                 >>> show(staff) # doctest: +SKIP
@@ -303,7 +300,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> tuplets = staff[:]
                 >>> mutate(tuplets).fuse()
-                FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8 c'16 d'16 e'16")
+                Tuplet(Multiplier(2, 3), "c'8 d'8 e'8 c'16 d'16 e'16")
                 >>> show(staff) #doctest: +SKIP
 
             ..  doctest::
@@ -341,7 +338,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff()
                 >>> staff.append(Measure((1, 4), "c'8 d'8"))
                 >>> staff.append(Measure((2, 8), "e'8 f'8"))
-                >>> slur = spannertools.Slur()
+                >>> slur = Slur()
                 >>> leaves = select(staff).by_leaf()
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
@@ -407,11 +404,11 @@ class MutationAgent(abctools.AbjadObject):
                 >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
                 >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
                 >>> staff = Staff([tuplet_1, tuplet_2])
-                >>> hairpin = spannertools.Hairpin('p < f')
+                >>> hairpin = Hairpin('p < f')
                 >>> selector = select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
                 >>> attach(hairpin, leaves)
-                >>> slur = spannertools.Slur()
+                >>> slur = Slur()
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
@@ -562,7 +559,7 @@ class MutationAgent(abctools.AbjadObject):
             # find candidate duration of new element plus current measure
             current_element = new_contents[0]
             multiplier = current_time_signature.implied_prolation
-            preprolated_duration = current_element._preprolated_duration
+            preprolated_duration = current_element._get_preprolated_duration()
             duration = multiplier * preprolated_duration
             candidate_duration = current_measure._get_duration() + duration
             # if new element fits in current measure
@@ -2102,8 +2099,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff()
                 >>> time_signature = TimeSignature((4, 8))
                 >>> attach(time_signature, staff)
-                >>> tuplet = scoretools.FixedDurationTuplet((4, 8), [])
-                >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
+                >>> tuplet = Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
                 >>> staff.append(tuplet)
                 >>> show(staff) # doctest: +SKIP
 
@@ -2191,7 +2187,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff[:]
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> hairpin = Hairpin(descriptor='p < f')
                 >>> attach(hairpin, leaves)
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
@@ -2246,7 +2242,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> hairpin = Hairpin(descriptor='p < f')
                 >>> attach(hairpin, staff[:])
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
@@ -2304,7 +2300,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff[:]
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> hairpin = Hairpin(descriptor='p < f')
                 >>> attach(hairpin, leaves)
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
@@ -2363,7 +2359,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff[:]
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> hairpin = Hairpin(descriptor='p < f')
                 >>> attach(hairpin, leaves)
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
@@ -2426,7 +2422,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
                 >>> selector = select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
-                >>> slur = spannertools.Slur()
+                >>> slur = Slur()
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
@@ -2480,7 +2476,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'1 d'1")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> hairpin = Hairpin(descriptor='p < f')
                 >>> attach(hairpin, staff[:])
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
@@ -2523,7 +2519,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'1 d'1")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> hairpin = Hairpin(descriptor='p < f')
                 >>> attach(hairpin, staff[:])
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
 
@@ -2699,10 +2695,10 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff.append(Measure((3, 4), "d'4 e'4 f'4"))
                 >>> selector = select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
-                >>> hairpin = spannertools.Hairpin('p < f')
+                >>> hairpin = Hairpin('p < f')
                 >>> attach(hairpin, leaves)
                 >>> measures = staff[:]
-                >>> slur = spannertools.Slur()
+                >>> slur = Slur()
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 

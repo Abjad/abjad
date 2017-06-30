@@ -24,7 +24,7 @@ class BarLine(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4
                 d'4

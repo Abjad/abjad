@@ -18,7 +18,7 @@ class Arpeggio(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(chord))
+            >>> f(chord)
             <c' e' g' c''>4 \arpeggio
 
     ..  container:: example
@@ -34,7 +34,7 @@ class Arpeggio(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(chord))
+            >>> f(chord)
             \arpeggioArrowDown
             <c' e' g' c''>4 \arpeggio
 

@@ -24,7 +24,7 @@ class Measure(FixedDurationContainer):
 
     ..  doctest::
 
-        >>> print(format(measure))
+        >>> f(measure)
         {
             \time 4/8
             c'8
@@ -129,7 +129,7 @@ class Measure(FixedDurationContainer):
         indicator = self._get_indicator(indicatortools.TimeSignature)
         forced_time_signature = indicator
         forced_time_signature = forced_time_signature.pair
-        summary = self._contents_summary
+        summary = self._get_contents_summary()
         if forced_time_signature and len(self):
             if self.implicit_scaling:
                 result = '{}({!s}, {!r}, implicit_scaling=True)'
@@ -192,24 +192,6 @@ class Measure(FixedDurationContainer):
         FixedDurationContainer.__setitem__(self, i, argument)
         self._conditionally_adjust_time_signature(old_denominator)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_representation(self):
-        if not self:
-            return '| {!s} |'.format(self.time_signature)
-        return '| {!s} {} |'.format(
-            self.time_signature,
-            self._contents_summary,
-            )
-
-    @property
-    def _preprolated_duration(self):
-        time_signature_prolation = 1
-        if self.implicit_scaling:
-            time_signature_prolation = self.time_signature.implied_prolation
-        return time_signature_prolation * self._contents_duration
-
     ### PRIVATE METHODS ###
 
     def _all_contents_are_scalable_by_multiplier(self, multiplier):
@@ -267,14 +249,14 @@ class Measure(FixedDurationContainer):
             message = 'can not suppress time signature'
             message += ' with non-power-of-two denominator.'
             raise Exception(message)
-        if effective_time_signature.duration < self._preprolated_duration:
+        if effective_time_signature.duration < self._get_preprolated_duration():
             raise OverfullContainerError
-        if self._preprolated_duration < effective_time_signature.duration:
+        if self._get_preprolated_duration() < effective_time_signature.duration:
             raise UnderfullContainerError
 
     def _conditionally_adjust_time_signature(self, old_denominator):
         if self.automatically_adjust_time_signature:
-            naive_time_signature = self._preprolated_duration
+            naive_time_signature = self._get_preprolated_duration()
             better_time_signature = \
                 mathtools.NonreducedFraction(naive_time_signature)
             better_time_signature = \
@@ -365,6 +347,14 @@ class Measure(FixedDurationContainer):
         result.append(('indicators', bundle.opening.indicators))
         return self._format_slot_contributions_with_indent(result)
 
+    def _get_compact_representation(self):
+        if not self:
+            return '| {!s} |'.format(self.time_signature)
+        return '| {!s} {} |'.format(
+            self.time_signature,
+            self._get_contents_summary(),
+            )
+
     def _get_format_specification(self):
         names = []
         if self.implicit_scaling:
@@ -373,11 +363,11 @@ class Measure(FixedDurationContainer):
             client=self,
             repr_args_values=[
                 self.time_signature.pair,
-                self._contents_summary,
+                self._get_contents_summary(),
                 ],
             storage_format_args_values=[
                 self.time_signature,
-                self._contents_summary,
+                self._get_contents_summary(),
                 ],
             storage_format_kwargs_names=names,
             )
@@ -393,7 +383,7 @@ class Measure(FixedDurationContainer):
         items = iterate(components).by_topmost_logical_ties_and_components()
         for item in items:
             if isinstance(item, selectiontools.LogicalTie):
-                logical_tie_duration = item._preprolated_duration
+                logical_tie_duration = item._get_preprolated_duration()
                 numerator = logical_tie_duration.numerator
                 logical_tie_duration_numerators.append(numerator)
         numerators = sequencetools.Sequence(logical_tie_duration_numerators)
@@ -407,6 +397,12 @@ class Measure(FixedDurationContainer):
     def _get_lilypond_format(self):
         self._check_duration()
         return self._format_component()
+
+    def _get_preprolated_duration(self):
+        time_signature_prolation = 1
+        if self.implicit_scaling:
+            time_signature_prolation = self.time_signature.implied_prolation
+        return time_signature_prolation * self._get_contents_duration()
 
     # TODO: see if self._scale can be combined with
     #       with self.scale_and_adjust_time_signature()
@@ -745,7 +741,7 @@ class Measure(FixedDurationContainer):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 3/4
@@ -848,7 +844,7 @@ class Measure(FixedDurationContainer):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/8
                     c'8
@@ -863,7 +859,7 @@ class Measure(FixedDurationContainer):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/12
                     \scaleDurations #'(2 . 3) {

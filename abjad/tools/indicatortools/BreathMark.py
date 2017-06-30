@@ -18,7 +18,7 @@ class BreathMark(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4 \breathe
 
     ..  container:: example
@@ -36,7 +36,7 @@ class BreathMark(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8 [
                 d'8

@@ -56,14 +56,14 @@ def test_agenttools_InspectionAgent_get_timespan_06():
 
 def test_agenttools_InspectionAgent_get_timespan_07():
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
+    tuplet = Tuplet((2, 3), "c'8 c'8 c'8")
     for i, x in enumerate(tuplet):
         assert inspect_(x).get_timespan().start_offset == i * Offset(1, 12)
 
 
 def test_agenttools_InspectionAgent_get_timespan_08():
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
+    tuplet_1 = Tuplet((2, 3), "c'8 c'8 c'8")
     voice = Voice([Note(0, (1, 8)), tuplet_1, Note(0, (1, 8))])
     offset = 0
     durations = [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]
@@ -77,9 +77,8 @@ def test_agenttools_InspectionAgent_get_timespan_09():
     r'''Offset works on nested tuplets.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
-    tuplet = scoretools.FixedDurationTuplet(
-        Duration(2, 4), [Note("c'4"), tuplet_1, Note("c'4")])
+    tuplet_1 = Tuplet((2, 3), "c'8 c'8 c'8")
+    tuplet = Tuplet((2, 3), [Note("c'4"), tuplet_1, Note("c'4")])
     offset = 0
     durations = [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]
     leaves = select(tuplet).by_leaf()
@@ -229,7 +228,7 @@ def test_agenttools_InspectionAgent_get_timespan_20():
     r'''Offsets work on tuplets between notes.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
+    tuplet_1 = Tuplet((2, 3), "c'8 c'8 c'8")
     voice = Voice([Note(0, (1, 8)), tuplet_1, Note(0, (1, 8))])
     assert inspect_(voice[0]).get_timespan().start_offset == 0 * Offset(1, 8)
     assert inspect_(voice[1]).get_timespan().start_offset == 1 * Offset(1, 8)
@@ -240,9 +239,9 @@ def test_agenttools_InspectionAgent_get_timespan_21():
     r'''Offsets work on nested tuplets.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8 f'8")
+    tuplet_1 = Tuplet((1, 2), "c'8 d'8 e'8 f'8")
     contents = [Note("c'4"), tuplet_1, Note("c'4")]
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), contents)
+    tuplet = Tuplet((2, 3), contents)
     assert inspect_(tuplet[0]).get_timespan().start_offset == 0 * Offset(1, 6)
     assert inspect_(tuplet[1]).get_timespan().start_offset == 1 * Offset(1, 6)
     assert inspect_(tuplet[2]).get_timespan().start_offset == 2 * Offset(1, 6)

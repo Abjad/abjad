@@ -202,7 +202,7 @@ Score names appear in LilyPond input but not in notational output:
 
 ..  abjad::
 
-    print(format(score))
+    f(score)
 
 ..  abjad::
 

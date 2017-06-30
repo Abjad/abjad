@@ -18,7 +18,7 @@ class Rest(Leaf):
 
         ..  doctest::
 
-            >>> print(format(measure))
+            >>> f(measure)
             {
                 \time 3/16
                 r8.
@@ -70,12 +70,8 @@ class Rest(Leaf):
             markup(bass)
         return treble, bass
 
-    ### PRIVATE PROPERTIES ###
+    def _get_body(self):
+        return [self._get_compact_representation()]
 
-    @property
-    def _body(self):
-        return [self._compact_representation]
-
-    @property
-    def _compact_representation(self):
-        return 'r{}'.format(self._formatted_duration)
+    def _get_compact_representation(self):
+        return 'r{}'.format(self._get_formatted_duration())

@@ -312,19 +312,38 @@ class Spanner(AbjadObject):
             lilypond_format_bundle.grob_reverts.extend(contributions)
         return lilypond_format_bundle
 
+    def _get_compact_summary(self):
+        len_self = len(self)
+        if not len_self:
+            return ''
+        elif 0 < len_self <= 8:
+            return ', '.join([str(x) for x in self])
+        else:
+            left = ', '.join([str(x) for x in self[:2]])
+            right = ', '.join([str(x) for x in self[-2:]])
+            number_in_middle = len_self - 4
+            middle = ', ... [%s] ..., ' % number_in_middle
+            return left + middle + right
+
     def _get_duration(self, in_seconds=False):
         return sum(
             component._get_duration(in_seconds=in_seconds)
             for component in self
             )
 
+    def _get_duration_in_seconds(self):
+        duration = durationtools.Duration(0)
+        for leaf in self.leaves:
+            duration += leaf._get_duration(in_seconds=True)
+        return duration
+
     def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
         names = list(agent.signature_keyword_names)
-        if self._compact_summary == '':
+        if self._get_compact_summary() == '':
             values = []
         else:
-            values = [self._compact_summary]
+            values = [self._get_compact_summary()]
         if 'overrides' in names and not self.overrides:
             names.remove('overrides')
         return systemtools.FormatSpecification(
@@ -405,6 +424,17 @@ class Spanner(AbjadObject):
                 if leaf_number == n:
                     return leaf
         raise IndexError
+
+    def _get_preprolated_duration(self):
+        return sum([
+            component._get_preprolated_duration() for component in self]
+            )
+
+    def _get_summary(self):
+        if 0 < len(self):
+            return ', '.join([str(x) for x in self])
+        else:
+            return ' '
 
     def _get_timespan(self, in_seconds=False):
         from abjad.tools import durationtools
@@ -569,40 +599,6 @@ class Spanner(AbjadObject):
         r'''Not composer-safe.
         '''
         self._contiguity_constraint = None
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_summary(self):
-        len_self = len(self)
-        if not len_self:
-            return ''
-        elif 0 < len_self <= 8:
-            return ', '.join([str(x) for x in self])
-        else:
-            left = ', '.join([str(x) for x in self[:2]])
-            right = ', '.join([str(x) for x in self[-2:]])
-            number_in_middle = len_self - 4
-            middle = ', ... [%s] ..., ' % number_in_middle
-            return left + middle + right
-
-    @property
-    def _duration_in_seconds(self):
-        duration = durationtools.Duration(0)
-        for leaf in self.leaves:
-            duration += leaf._get_duration(in_seconds=True)
-        return duration
-
-    @property
-    def _preprolated_duration(self):
-        return sum([component._preprolated_duration for component in self])
-
-    @property
-    def _summary(self):
-        if 0 < len(self):
-            return ', '.join([str(x) for x in self])
-        else:
-            return ' '
 
     ### PUBLIC PROPERTIES ###
 

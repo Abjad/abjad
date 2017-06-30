@@ -14,7 +14,7 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
 
         >>> template = templatetools.StringOrchestraScoreTemplate()
         >>> score = template()
-        >>> print(format(score))
+        >>> f(score)
         \context Score = "Score" <<
             \tag #'(Violin1 Violin2 Violin3 Violin4 Violin5 Violin6 Viola1 Viola2 Viola3 Viola4 Cello1 Cello2 Cello3 Contrabass1 Contrabass2)
             \context TimeSignatureContext = "TimeSignatureContext" {
@@ -222,7 +222,7 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
         ...     contrabass_count=0,
         ...     )
         >>> score = template()
-        >>> print(format(score))
+        >>> f(score)
         \context Score = "Score" <<
             \tag #'(Violin1 Violin2 Viola Cello)
             \context TimeSignatureContext = "TimeSignatureContext" {
@@ -296,7 +296,7 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
         ...     contrabass_count=0,
         ...     )
         >>> score = template()
-        >>> print(format(score))
+        >>> f(score)
         \context Score = "Score" <<
             \tag #'(Cello)
             \context TimeSignatureContext = "TimeSignatureContext" {

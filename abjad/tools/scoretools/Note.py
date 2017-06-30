@@ -20,7 +20,7 @@ class Note(Leaf):
 
         ..  doctest::
 
-            >>> print(format(measure))
+            >>> f(measure)
             {
                 \time 3/16
                 cs''8.
@@ -131,6 +131,32 @@ class Note(Leaf):
             markup(bass)
         return treble, bass
 
+    def _get_body(self):
+        result = []
+        if self.note_head is not None and self.note_head.is_parenthesized:
+            result.append(r'\parenthesize')
+        body = ''
+        if self.written_pitch:
+            body += str(self.written_pitch)
+            if self.note_head.is_forced:
+                body += '!'
+            if self.note_head.is_cautionary:
+                body += '?'
+        body += self._get_formatted_duration()
+        result.append(body)
+        result = ['\n'.join(result)]
+        return result
+
+    def _get_compact_representation(self):
+        return self._get_body()[0]
+
+    def _get_compact_representation_with_tie(self):
+        logical_tie = self._get_logical_tie()
+        if 1 < len(logical_tie) and self is not logical_tie[-1]:
+            return '{} ~'.format(self._get_body()[0])
+        else:
+            return self._get_body()[0]
+
     def _get_sounding_pitch(self):
         from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
@@ -145,37 +171,6 @@ class Note(Leaf):
             interval = pitchtools.NamedPitch('C4') - sounding_pitch
             sounding_pitch = interval.transpose(self.written_pitch)
             return sounding_pitch
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _body(self):
-        result = []
-        if self.note_head is not None and self.note_head.is_parenthesized:
-            result.append(r'\parenthesize')
-        body = ''
-        if self.written_pitch:
-            body += str(self.written_pitch)
-            if self.note_head.is_forced:
-                body += '!'
-            if self.note_head.is_cautionary:
-                body += '?'
-        body += self._formatted_duration
-        result.append(body)
-        result = ['\n'.join(result)]
-        return result
-
-    @property
-    def _compact_representation(self):
-        return self._body[0]
-
-    @property
-    def _compact_representation_with_tie(self):
-        logical_tie = self._get_logical_tie()
-        if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            return '{} ~'.format(self._body[0])
-        else:
-            return self._body[0]
 
     ### PUBLIC PROPERTIES ###
 

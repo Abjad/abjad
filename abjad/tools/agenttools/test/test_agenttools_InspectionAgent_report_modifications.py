@@ -49,7 +49,7 @@ def test_agenttools_InspectionAgent_report_modifications_01():
 
 def test_agenttools_InspectionAgent_report_modifications_02():
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     comment = indicatortools.LilyPondComment('Example tuplet', 'before')
     attach(comment, tuplet)
     override(tuplet).note_head.color = 'red'

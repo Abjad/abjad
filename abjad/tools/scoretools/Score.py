@@ -19,7 +19,7 @@ class Score(Context):
 
     ..  doctest::
 
-        >>> print(format(score))
+        >>> f(score)
         \new Score <<
             \new Staff {
                 c'8
@@ -71,7 +71,7 @@ class Score(Context):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4
@@ -92,7 +92,7 @@ class Score(Context):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4
@@ -148,7 +148,7 @@ class Score(Context):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff {
                         c'4
@@ -187,7 +187,7 @@ class Score(Context):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff {
                         c'4

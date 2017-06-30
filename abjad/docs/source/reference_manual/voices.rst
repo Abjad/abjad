@@ -183,7 +183,7 @@ Voice names appear in LilyPond input but not in notation output:
 
 ..  abjad::
 
-    print(format(voice))
+    f(voice)
 
 ..  abjad::
 
@@ -214,4 +214,4 @@ based on a LilyPond voice:
 
 ..  abjad::
 
-    print(format(voice))
+    f(voice)

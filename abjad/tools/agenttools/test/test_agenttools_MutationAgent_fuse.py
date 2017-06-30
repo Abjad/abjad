@@ -88,13 +88,13 @@ def test_agenttools_MutationAgent_fuse_05():
 
 
 def test_agenttools_MutationAgent_fuse_06():
-    r'''Fuses two unincorporated fixed-duration tuplets with same multiplier.
+    r'''Fuses two unincorporated tuplets with same multiplier.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet_1 = Tuplet((2, 3), "c'8 d'8 e'8")
     beam = Beam()
     attach(beam, tuplet_1[:])
-    tuplet_2 = scoretools.FixedDurationTuplet((2, 16), "c'16 d'16 e'16")
+    tuplet_2 = Tuplet((2, 3), "c'16 d'16 e'16")
     slur = Slur()
     attach(slur, tuplet_2[:])
 
@@ -141,13 +141,13 @@ def test_agenttools_MutationAgent_fuse_06():
 
 
 def test_agenttools_MutationAgent_fuse_07():
-    r'''Fuses fixed-duration tuplets with same multiplier in score.
+    r'''Fuses tuplets with same multiplier in score.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet_1 = Tuplet((2, 3), "c'8 d'8 e'8")
     beam = Beam()
     attach(beam, tuplet_1[:])
-    tuplet_2 = scoretools.FixedDurationTuplet((2, 16), "c'16 d'16 e'16")
+    tuplet_2 = Tuplet((2, 3), "c'16 d'16 e'16")
     slur = Slur()
     attach(slur, tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
@@ -250,31 +250,19 @@ def test_agenttools_MutationAgent_fuse_09():
     r'''Tuplets must carry same multiplier.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 8), [])
-    tuplet_2.extend("c'8 d'8 e'8 f'8 g'8")
+    tuplet_1 = Tuplet((2, 3), "c'8 d'8 e'8")
+    tuplet_2 = Tuplet ((4, 5), "c'8 d'8 e'8 f'8 g'8")
     tuplets = select([tuplet_1, tuplet_2])
 
     assert pytest.raises(Exception, 'mutate(tuplets).fuse()')
 
 
 def test_agenttools_MutationAgent_fuse_10():
-    r'''Tuplets must be same type.
-    '''
-
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet_2 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
-    tuplets = select([tuplet_1, tuplet_2])
-
-    assert pytest.raises(Exception, 'mutate(tuplets).fuse()')
-
-
-def test_agenttools_MutationAgent_fuse_11():
     r'''Dominant spanners on contents are preserved.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 12), "c'8")
-    tuplet_2 = scoretools.FixedDurationTuplet(Duration(1, 6), "c'4")
+    tuplet_1 = Tuplet((2, 3), "c'8")
+    tuplet_2 = Tuplet((2, 3), "c'4")
     voice = Voice([tuplet_1, tuplet_2, Note("c'4")])
     leaves = select(voice).by_leaf()
     slur = Slur()
@@ -314,7 +302,7 @@ def test_agenttools_MutationAgent_fuse_11():
     assert inspect_(voice).is_well_formed()
 
 
-def test_agenttools_MutationAgent_fuse_12():
+def test_agenttools_MutationAgent_fuse_11():
     r'''Fuses unicorporated measures carrying
     time signatures with power-of-two denominators.
     '''
@@ -365,7 +353,7 @@ def test_agenttools_MutationAgent_fuse_12():
     assert inspect_(new).is_well_formed()
 
 
-def test_agenttools_MutationAgent_fuse_13():
+def test_agenttools_MutationAgent_fuse_12():
     r'''Fuses measures carrying time signatures with differing
     power-of-two denominators. Helpers selects minimum of two denominators.
     Beams are OK because they attach to leaves rather than containers.
@@ -412,7 +400,7 @@ def test_agenttools_MutationAgent_fuse_13():
     assert inspect_(voice).is_well_formed()
 
 
-def test_agenttools_MutationAgent_fuse_14():
+def test_agenttools_MutationAgent_fuse_13():
     r'''Fuses measures with differing power-of-two denominators.
     Helpers selects minimum of two denominators.
     Beam attaches to container rather than leaves.
@@ -459,7 +447,7 @@ def test_agenttools_MutationAgent_fuse_14():
     assert inspect_(voice).is_well_formed()
 
 
-def test_agenttools_MutationAgent_fuse_15():
+def test_agenttools_MutationAgent_fuse_14():
     r'''Fuses measures with power-of-two-denominators together with measures
     without power-of-two denominators.
     Helpers selects least common multiple of denominators.
@@ -511,7 +499,7 @@ def test_agenttools_MutationAgent_fuse_15():
     assert inspect_(voice).is_well_formed()
 
 
-def test_agenttools_MutationAgent_fuse_16():
+def test_agenttools_MutationAgent_fuse_15():
     r'''Fusing empty selection returns none.
     '''
 
@@ -520,7 +508,7 @@ def test_agenttools_MutationAgent_fuse_16():
     assert result == selectiontools.Selection()
 
 
-def test_agenttools_MutationAgent_fuse_17():
+def test_agenttools_MutationAgent_fuse_16():
     r'''Fusing selection of only one measure returns measure unaltered.
     '''
 
@@ -531,7 +519,7 @@ def test_agenttools_MutationAgent_fuse_17():
     assert new is measure
 
 
-def test_agenttools_MutationAgent_fuse_18():
+def test_agenttools_MutationAgent_fuse_17():
     r'''Fuses three measures.
     '''
 
@@ -581,7 +569,7 @@ def test_agenttools_MutationAgent_fuse_18():
     assert inspect_(voice).is_well_formed()
 
 
-def test_agenttools_MutationAgent_fuse_19():
+def test_agenttools_MutationAgent_fuse_18():
     r'''Fusing measures with power-of-two denominators
     to measures without power-of-two denominators.
     With change in number of note-heads because of non-power-of-two multiplier.

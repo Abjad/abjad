@@ -7,7 +7,7 @@ def test_agenttools_IterationAgent_by_topmost_logical_ties_and_components_01():
     '''
 
     staff = Staff(r"c'8 ~ c'32 g'8 ~ g'32 a'8 ~ a'32 b'8 ~ b'32")
-    tuplet = scoretools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     staff.insert(4, tuplet)
 
     assert format(staff) == stringtools.normalize(

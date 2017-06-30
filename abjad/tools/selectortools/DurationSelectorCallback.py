@@ -61,14 +61,14 @@ class DurationSelectorCallback(AbjadValueObject):
             else:
                 if isinstance(subexpr, scoretools.Component):
                     subexpr._update_now(offsets=True)
-                    duration = subexpr._preprolated_duration
+                    duration = subexpr._get_preprolated_duration()
                 else:
                     durations = []
                     for x in subexpr:
                         if isinstance(x, scoretools.Component):
                             x._update_now(offsets=True)
-                        duration = x._preprolated_duration
-                        durations.append(x._preprolated_duration)
+                        duration = x._get_preprolated_duration()
+                        durations.append(x._get_preprolated_duration())
                     duration = sum(durations)
             if inequality(duration):
                 result.append(subexpr)

@@ -31,18 +31,14 @@ class MultimeasureRest(Leaf):
             rest.written_duration,
             )
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _compact_representation(self):
-        return 'R%s' % self._formatted_duration
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def _body(self):
-        r'''List of string representation of body of rest.
+    def _get_body(self):
+        r'''Gets list of string representation of body of rest.
         Picked up as format contribution at format-time.
         '''
-        result = 'R' + str(self._formatted_duration)
+        result = 'R' + str(self._get_formatted_duration())
         return [result]
+
+    def _get_compact_representation(self):
+        return 'R%s' % self._get_formatted_duration()

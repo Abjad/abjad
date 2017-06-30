@@ -64,7 +64,7 @@ alone. But the LilyPond input makes this clear:
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 You can slur together the notes in the first voice:
 
@@ -125,7 +125,7 @@ logical voice. The LilyPond input code also makes this clear:
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 
 The importance of naming voices

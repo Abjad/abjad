@@ -20,7 +20,7 @@ class StemTremolo(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4 :16
 
     ..  container:: example
@@ -36,7 +36,7 @@ class StemTremolo(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4 :32
 
     '''

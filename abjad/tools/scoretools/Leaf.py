@@ -52,13 +52,13 @@ class Leaf(Component):
 
         Returns string.
         '''
-        return self._compact_representation
+        return self._get_compact_representation()
 
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
         from abjad.tools import graphtools
-        lilypond_format = self._compact_representation
+        lilypond_format = self._get_compact_representation()
         lilypond_format = lilypond_format.replace('<', '&lt;')
         lilypond_format = lilypond_format.replace('>', '&gt;')
         node = Component._as_graphviz_node(self)
@@ -186,7 +186,7 @@ class Leaf(Component):
         return ['self body', result]
 
     def _format_leaf_nucleus(self):
-        return ['nucleus', self._body]
+        return ['nucleus', self._get_body()]
 
     def _format_open_brackets_slot(self, bundle):
         return []
@@ -200,11 +200,14 @@ class Leaf(Component):
         result.append(('spanners', bundle.opening.spanners))
         return result
 
+    def _get_compact_representation(self):
+        return '({})'.format(self._get_formatted_duration())
+
     def _get_format_pieces(self):
         return self._get_lilypond_format().split('\n')
 
     def _get_format_specification(self):
-        summary = self._compact_representation
+        summary = self._get_compact_representation()
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=False,
@@ -511,7 +514,7 @@ class Leaf(Component):
         # check input
         duration = durationtools.Duration(duration)
         # calculate durations
-        leaf_multiplied_duration = self._multiplied_duration
+        leaf_multiplied_duration = self._get_multiplied_duration()
         prolation = self._get_parentage(include_self=False).prolation
         preprolated_duration = duration / prolation
         # handle boundary cases
@@ -560,6 +563,7 @@ class Leaf(Component):
         #    )
 
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
+        import abjad
         from abjad.tools import scoretools
         # check input
         proportions = mathtools.Ratio(proportions)
@@ -585,7 +589,10 @@ class Leaf(Component):
                 ]
             notes = scoretools.make_notes(0, note_durations)
         # make tuplet
-        tuplet = scoretools.FixedDurationTuplet(target_duration, notes)
+        notes = abjad.select(notes)
+        contents_duration = notes.get_duration()
+        multiplier = target_duration / contents_duration
+        tuplet = scoretools.Tuplet(multiplier, notes)
         # fix tuplet contents if necessary
         tuplet._fix()
         # change prolation if necessary
@@ -601,12 +608,7 @@ class Leaf(Component):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _compact_representation(self):
-        return '({})'.format(self._formatted_duration)
-
-    @property
-    def _duration_in_seconds(self):
+    def _get_duration_in_seconds(self):
         from abjad.tools import indicatortools
         tempo = self._get_effective(indicatortools.Tempo)
         if tempo is not None and not tempo.is_imprecise:
@@ -618,8 +620,7 @@ class Leaf(Component):
             return durationtools.Duration(result)
         raise MissingTempoError
 
-    @property
-    def _formatted_duration(self):
+    def _get_formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string
         multiplier = None
         multiplier_prototype = (
@@ -640,8 +641,7 @@ class Leaf(Component):
             result = duration_string
         return result
 
-    @property
-    def _multiplied_duration(self):
+    def _get_multiplied_duration(self):
         if self.written_duration:
             multiplier_prototype = (
                 durationtools.Multiplier,
@@ -662,9 +662,8 @@ class Leaf(Component):
         else:
             return None
 
-    @property
-    def _preprolated_duration(self):
-        return self._multiplied_duration
+    def _get_preprolated_duration(self):
+        return self._get_multiplied_duration()
 
     ### PUBLIC PROPERTIES ###
 

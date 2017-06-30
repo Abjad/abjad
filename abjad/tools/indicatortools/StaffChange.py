@@ -24,7 +24,7 @@ class StaffChange(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(staff_group))
+            >>> f(staff_group)
             \new PianoStaff <<
                 \context Staff = "RHStaff" {
                     c'8

@@ -22,7 +22,7 @@ def parse_rtm_syntax(rtm):
 
         ..  doctest::
 
-            >>> print(format(tuplet))
+            >>> f(tuplet)
             \times 2/3 {
                 c'8
                 c'16

@@ -123,10 +123,10 @@ def test_agenttools_InspectionAgent_get_leaf_04():
 
 
 def test_agenttools_InspectionAgent_get_leaf_05():
-    r'''Fixed-duration tuplet.
+    r'''Tuplet.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 cs'8 d'8")
+    tuplet = Tuplet((2, 3), "c'8 cs'8 d'8")
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -189,8 +189,8 @@ def test_agenttools_InspectionAgent_get_leaf_07():
     r'''Tuplets inside a voice.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 cs'8 d'8")
-    tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 8), "ef'8 e'8 f'8")
+    tuplet_1 = Tuplet((2, 3), "c'8 cs'8 d'8")
+    tuplet_2 = Tuplet((2, 3), "ef'8 e'8 f'8")
     voice = Voice([tuplet_1, tuplet_2])
 
     assert format(voice) == stringtools.normalize(
@@ -612,9 +612,9 @@ def test_agenttools_InspectionAgent_get_leaf_17():
     '''
 
     notes = [Note(i, Duration(1, 8)) for i in range(3)]
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), notes)
+    tuplet_1 = Tuplet((2, 3), notes)
     notes = [Note(i, Duration(1, 8)) for i in range(4, 7)]
-    tuplet_2 = scoretools.FixedDurationTuplet(Duration(1, 4), notes)
+    tuplet_2 = Tuplet((2, 3), notes)
     voice = Voice([tuplet_1, Note(3, (1, 8)), tuplet_2])
 
     assert format(voice) == stringtools.normalize(
@@ -646,9 +646,9 @@ def test_agenttools_InspectionAgent_get_leaf_18():
     r'''Does connect through asymmetrically nested tuplets.
     '''
 
-    inner_tuplet = scoretools.FixedDurationTuplet((1, 4), "c'8 c'8 c'8")
+    inner_tuplet = Tuplet((2, 3), "c'8 c'8 c'8")
     contents = [Note("c'4"), inner_tuplet, Note("c'4")]
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), contents)
+    tuplet = Tuplet((2, 3), contents)
 
     assert format(tuplet) == stringtools.normalize(
         r'''

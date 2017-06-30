@@ -15,7 +15,7 @@ LilyPond grobs control the typographic details of the score:
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 ..  abjad::
 
@@ -96,7 +96,7 @@ double-underscores:
 
     staff = Staff()
     override(staff).staff_grouper.staff_staff_spacing__basic_distance = 7
-    print(format(staff))
+    f(staff)
 
 Abjad will explode the double-underscore delimited Python property into a
 LilyPond property list.

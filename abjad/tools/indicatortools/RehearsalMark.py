@@ -22,7 +22,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 markFormatter = #format-mark-box-alphabet
             } <<
@@ -51,7 +51,7 @@ class RehearsalMark(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 markFormatter = #format-mark-box-alphabet
             } <<

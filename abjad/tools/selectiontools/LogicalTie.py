@@ -107,7 +107,7 @@ class LogicalTie(Selection):
             assert isinstance(durations[0], scoretools.Tuplet)
             fmtuplet = durations[0]
             new_logical_tie_written = \
-                fmtuplet[0]._get_logical_tie()._preprolated_duration
+                fmtuplet[0]._get_logical_tie()._get_preprolated_duration()
             self._add_or_remove_notes_to_achieve_written_duration(
                 new_logical_tie_written)
             multiplier = fmtuplet.multiplier
@@ -228,7 +228,7 @@ class LogicalTie(Selection):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -250,7 +250,7 @@ class LogicalTie(Selection):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -284,7 +284,7 @@ class LogicalTie(Selection):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -306,7 +306,7 @@ class LogicalTie(Selection):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -335,7 +335,7 @@ class LogicalTie(Selection):
         proportions = mathtools.Ratio(proportions)
 
         # find target duration of fixed-duration tuplet
-        target_duration = self._preprolated_duration
+        target_duration = self._get_preprolated_duration()
 
         # find duration of each note in tuplet
         prolated_duration = target_duration / sum(proportions.numbers)

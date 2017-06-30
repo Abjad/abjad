@@ -153,7 +153,9 @@ class RhythmTreeMixin(abctools.AbjadObject):
         node = self
         while node.parent is not None:
             result.append(
-                (node.preprolated_duration, node.parent._contents_duration))
+                (node.preprolated_duration,
+                node.parent._get_contents_duration())
+                )
             node = node.parent
         result.append(node.preprolated_duration)
         return tuple(reversed(result))
@@ -227,7 +229,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
         pairs = sequencetools.Sequence(improper_parentage).nwise()
         for child, parent in pairs:
             prolations.append(durationtools.Multiplier(
-                parent.preprolated_duration, parent._contents_duration))
+                parent.preprolated_duration, parent._get_contents_duration()))
         return tuple(prolations)
 
     @abc.abstractproperty

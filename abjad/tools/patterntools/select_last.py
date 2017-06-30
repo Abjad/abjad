@@ -14,7 +14,7 @@ def select_last(n=1, inverted=None):
 
         ::
 
-            >>> print(format(pattern))
+            >>> f(pattern)
             abjad.Pattern(
                 indices=[-2, -1],
                 )
@@ -70,7 +70,7 @@ def select_last(n=1, inverted=None):
 
         ::
 
-            >>> print(format(pattern))
+            >>> f(pattern)
             abjad.Pattern(
                 indices=[],
                 )

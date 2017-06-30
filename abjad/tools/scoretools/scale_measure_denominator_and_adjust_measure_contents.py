@@ -21,7 +21,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
 
         ..  doctest::
 
-            >>> print(format(measure))
+            >>> f(measure)
             {
                 \time 2/8
                 c'8 [
@@ -37,7 +37,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
 
         ..  doctest::
 
-            >>> print(format(measure))
+            >>> f(measure)
             {
                 \time 3/12
                 \scaleDurations #'(2 . 3) {

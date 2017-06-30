@@ -67,7 +67,7 @@ well as beams, slurs, ties, and articulations.
         c'4 ( d'4 <cs' e'>8 ) -. r8 
         <g' b' d''>4 ^ \marcato ~ <g' b' d''>1
         """)
-    print(format(staff))
+    f(staff)
 
 ..  abjad::
     :stylesheet: non-proportional.ly
@@ -221,7 +221,7 @@ to place LilyPond commands like "\break" relative to any score component:
     attach(command, container)
     command = indicatortools.LilyPondCommand('to-the-right-of-a-note', 'right')
     attach(command, container[2])
-    print(format(container))
+    f(container)
 
 Notice the second argument to each
 :py:class:`~abjad.tools.indicatortools.LilyPondCommand` above, like `before`

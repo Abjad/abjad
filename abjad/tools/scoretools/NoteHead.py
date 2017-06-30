@@ -163,6 +163,7 @@ class NoteHead(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
+    # TODO: change to method
     @property
     def _format_string(self):
         result = ''

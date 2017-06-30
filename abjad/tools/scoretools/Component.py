@@ -318,10 +318,10 @@ class Component(AbjadObject):
 
     def _get_duration(self, in_seconds=False):
         if in_seconds:
-            return self._duration_in_seconds
+            return self._get_duration_in_seconds()
         else:
             parentage = self._get_parentage(include_self=False)
-            return parentage.prolation * self._preprolated_duration
+            return parentage.prolation * self._get_preprolated_duration()
 
     def _get_effective(self, prototype=None, unwrap=True, n=0):
         from abjad.tools import indicatortools
@@ -421,7 +421,7 @@ class Component(AbjadObject):
 
     def _get_format_specification(self):
         values = []
-        summary = self._contents_summary
+        summary = self._get_contents_summary()
         if summary:
             values.append(summary)
         return systemtools.FormatSpecification(
@@ -737,8 +737,8 @@ class Component(AbjadObject):
                         x.target_duration *= adjusted_prolation
                     else:
                         if adjusted_prolation != 1:
-                            new_target = \
-                                x._preprolated_duration * adjusted_prolation
+                            new_target = x._get_preprolated_duration() * \
+                                adjusted_prolation
                             scoretools.FixedDurationTuplet(new_target, [x])
             parent = parent._parent
             i += 1

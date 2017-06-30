@@ -16,7 +16,7 @@ class Skip(Leaf):
 
         ..  doctest::
 
-            >>> print(format(skip))
+            >>> f(skip)
             s8.
 
     '''
@@ -54,14 +54,12 @@ class Skip(Leaf):
         if input_leaf is not None:
             self._copy_override_and_set_from_leaf(input_leaf)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _body(self):
+    def _get_body(self):
         result = []
-        result.append('s%s' % self._formatted_duration)
+        result.append('s%s' % self._get_formatted_duration())
         return result
 
-    @property
-    def _compact_representation(self):
-        return 's%s' % self._formatted_duration
+    def _get_compact_representation(self):
+        return 's%s' % self._get_formatted_duration()

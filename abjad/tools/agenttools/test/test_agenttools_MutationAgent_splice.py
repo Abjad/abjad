@@ -60,11 +60,11 @@ def test_agenttools_MutationAgent_splice_03():
     r'''Splices tuplet after tuplet.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     voice = Voice([tuplet])
     beam = Beam()
     attach(beam, tuplet[:])
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     result = mutate(voice[-1]).splice(
         [tuplet],
         grow_spanners=True,
@@ -245,11 +245,11 @@ def test_agenttools_MutationAgent_splice_09():
     r'''Splices tuplet left of tuplet.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     voice = Voice([tuplet])
     beam = Beam()
     attach(beam, tuplet[:])
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     result = mutate(voice[0]).splice(
         [tuplet],
         direction=Left,

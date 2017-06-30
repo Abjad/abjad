@@ -20,7 +20,7 @@ class Ritardando(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4
@@ -50,7 +50,7 @@ class Ritardando(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4

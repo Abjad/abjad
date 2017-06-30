@@ -16,7 +16,7 @@ def make_spacer_skip_measures(time_signatures, implicit_scaling=False):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 {
                     \time 1/8

@@ -8,7 +8,7 @@ def test_scoretools_Leaf__multiplied_duration_01():
 
     note = Note("c'4")
     attach(Multiplier(1, 2), note)
-    assert note._multiplied_duration == Duration(1, 8)
+    assert note._get_multiplied_duration() == Duration(1, 8)
 
 
 def test_scoretools_Leaf__multiplied_duration_02():
@@ -16,7 +16,7 @@ def test_scoretools_Leaf__multiplied_duration_02():
     '''
 
     note = Note("c'4")
-    assert note._multiplied_duration == Duration(1, 4)
+    assert note._get_multiplied_duration() == Duration(1, 4)
 
 
 def test_scoretools_Leaf__multiplied_duration_03():
@@ -29,11 +29,11 @@ def test_scoretools_Leaf__multiplied_duration_03():
 
     assert note.written_duration == Duration(3, 8)
     assert inspect_(note).get_indicator(Multiplier) == Multiplier(2, 3)
-    assert note._multiplied_duration == Duration(1, 4)
+    assert note._get_multiplied_duration() == Duration(1, 4)
 
     note.written_duration = Duration(1, 4)
     detach(Multiplier, note)
 
     assert note.written_duration == Duration(1, 4)
     assert inspect_(note).get_indicators(Multiplier) == ()
-    assert note._multiplied_duration == Duration(1, 4)
+    assert note._get_multiplied_duration() == Duration(1, 4)

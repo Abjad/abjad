@@ -264,7 +264,8 @@ class WellformednessManager(AbjadObject):
         for measure in iterate(argument).by_class(scoretools.Measure):
             time_signature = measure.time_signature
             if time_signature is not None:
-                if measure._preprolated_duration != time_signature.duration:
+                if measure._get_preprolated_duration() != \
+                    time_signature.duration:
                     violators.append(measure)
                     bad += 1
             total += 1

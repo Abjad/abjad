@@ -98,7 +98,7 @@ Abjad implements LilyPond multpliers as multiplier objects.
 
 ..  abjad::
 
-    print(format(note))
+    f(note)
 
 ..  abjad::
 

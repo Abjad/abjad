@@ -118,7 +118,7 @@ def test_scoretools_Note___init___10():
     r'''Initializes note from tupletized rest.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
+    tuplet = Tuplet((2, 3), 3 * Rest((1, 8)))
     d = tuplet[0].written_duration
     note = Note(tuplet[0])
 
@@ -163,7 +163,7 @@ def test_scoretools_Note___init___13():
     r'''Initializes note from tupletized skip.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), scoretools.Skip((1, 8)) * 3)
+    tuplet = Tuplet((2, 3), 3 * Skip((1, 8)))
     d = tuplet[0].written_duration
     note = Note(tuplet[0])
 

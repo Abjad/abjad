@@ -14,7 +14,7 @@ def select(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(pattern))
+            >>> f(pattern)
             abjad.Pattern(
                 indices=[2],
                 )
@@ -29,7 +29,7 @@ def select(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(pattern))
+            >>> f(pattern)
             abjad.Pattern(
                 indices=[2, 3, 5],
                 )

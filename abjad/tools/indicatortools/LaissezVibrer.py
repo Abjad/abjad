@@ -16,7 +16,7 @@ class LaissezVibrer(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(chord))
+            >>> f(chord)
             <c' e' g' c''>4 \laissezVibrer
 
     '''

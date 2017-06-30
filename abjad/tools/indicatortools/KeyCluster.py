@@ -19,7 +19,7 @@ class KeyCluster(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(chord))
+            >>> f(chord)
             \once \override Accidental.stencil = ##f
             \once \override AccidentalCautionary.stencil = ##f
             \once \override Arpeggio.X-offset = #-2
@@ -133,7 +133,7 @@ class KeyCluster(AbjadValueObject):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -168,7 +168,7 @@ class KeyCluster(AbjadValueObject):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -207,7 +207,7 @@ class KeyCluster(AbjadValueObject):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -242,7 +242,7 @@ class KeyCluster(AbjadValueObject):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -281,7 +281,7 @@ class KeyCluster(AbjadValueObject):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -316,7 +316,7 @@ class KeyCluster(AbjadValueObject):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -357,7 +357,7 @@ class KeyCluster(AbjadValueObject):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -392,7 +392,7 @@ class KeyCluster(AbjadValueObject):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2

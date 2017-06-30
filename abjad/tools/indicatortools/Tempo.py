@@ -30,7 +30,7 @@ class Tempo(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     \tempo 4=90
@@ -56,7 +56,7 @@ class Tempo(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     \tempo \markup {
@@ -116,7 +116,7 @@ class Tempo(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     \tempo \markup {

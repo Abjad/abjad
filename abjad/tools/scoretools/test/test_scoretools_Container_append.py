@@ -32,10 +32,10 @@ def test_scoretools_Container_append_02():
     r'''Append leaf to tuplet.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     beam = Beam()
     attach(beam, tuplet[:])
-    tuplet.append(Note(5, (1, 16)))
+    tuplet.append(Note(5, (1, 16)), preserve_duration=True)
 
     assert format(tuplet) == stringtools.normalize(
         r'''

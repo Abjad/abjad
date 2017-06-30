@@ -11,7 +11,7 @@ class Staff(Context):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             c'8
             d'8

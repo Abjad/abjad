@@ -21,7 +21,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 3/8
                 c'8
@@ -42,7 +42,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 4/4
                 c'4
@@ -65,7 +65,7 @@ class TimeSignature(AbjadValueObject):
 
         ::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 %%% \time 3/8 %%%
                 c'8
@@ -87,7 +87,7 @@ class TimeSignature(AbjadValueObject):
         ::
 
             >>> score = Score([staff])
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     \time 3/8

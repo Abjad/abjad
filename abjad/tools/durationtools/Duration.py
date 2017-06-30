@@ -1156,7 +1156,7 @@ class Duration(AbjadObject, Fraction):
 
             ..  doctest::
 
-                >>> print(format(note))
+                >>> f(note)
                 c'4 ^ \markup { 1'57'' }
 
         Rounds down to nearest second.

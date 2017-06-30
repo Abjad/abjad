@@ -15,7 +15,7 @@ class Lineage(Selection):
 
     ..  doctest::
 
-        >>> print(format(score))
+        >>> f(score)
         \new Score <<
             \context Staff = "Treble Staff" {
                 \context Voice = "Treble Voice" {

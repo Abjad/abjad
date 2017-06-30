@@ -45,7 +45,7 @@ class MarkupCommand(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4
                 - \markup {
                     \combine
@@ -111,7 +111,7 @@ class MarkupCommand(AbjadValueObject):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4
                     ^ \markup {

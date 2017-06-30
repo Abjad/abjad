@@ -17,7 +17,7 @@ class FixedDurationTuplet(Tuplet):
 
         ..  doctest::
 
-            >>> print(format(tuplet))
+            >>> f(tuplet)
             \times 2/3 {
                 c'8
                 d'8
@@ -31,7 +31,7 @@ class FixedDurationTuplet(Tuplet):
 
         ..  doctest::
 
-            >>> print(format(tuplet))
+            >>> f(tuplet)
             \times 2/5 {
                 c'8
                 d'8
@@ -81,7 +81,7 @@ class FixedDurationTuplet(Tuplet):
         result = result.format(
             type(self).__name__,
             self.target_duration,
-            self._contents_summary,
+            self._get_contents_summary(),
             )
         return result
 
@@ -90,7 +90,10 @@ class FixedDurationTuplet(Tuplet):
     def _get_format_specification(self):
         return systemtools.FormatSpecification(
             client=self,
-            repr_args_values=[self.target_duration, self._contents_summary],
+            repr_args_values=[
+                self.target_duration,
+                self._get_contents_summary(),
+                ],
             storage_format_args_values=[self.target_duration, self[:]],
             storage_format_kwargs_names=[],
             )
@@ -205,7 +208,7 @@ class FixedDurationTuplet(Tuplet):
             del(self[start])
         else:
             del(self[start:stop])
-        self.target_duration = old_multiplier * self._contents_duration
+        self.target_duration = old_multiplier * self._get_contents_duration()
 
     ### PUBLIC PROPERTIES ###
 
@@ -238,7 +241,8 @@ class FixedDurationTuplet(Tuplet):
         '''
         if 0 < len(self):
             return durationtools.Multiplier(
-                self.target_duration / self._contents_duration)
+                self.target_duration / self._get_contents_duration()
+                )
         else:
             return None
 
@@ -259,7 +263,7 @@ class FixedDurationTuplet(Tuplet):
 
         ..  doctest::
 
-            >>> print(format(tuplet))
+            >>> f(tuplet)
             \times 2/3 {
                 c'8
                 d'8
@@ -269,7 +273,7 @@ class FixedDurationTuplet(Tuplet):
         ::
 
             >>> tuplet.target_duration = Duration(5, 8)
-            >>> print(format(tuplet))
+            >>> f(tuplet)
             \tweak text #tuplet-number::calc-fraction-text
             \times 5/3 {
                 c'8

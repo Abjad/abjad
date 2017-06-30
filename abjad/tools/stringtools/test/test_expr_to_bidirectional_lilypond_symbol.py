@@ -3,7 +3,7 @@ import pytest
 from abjad.tools import stringtools
 
 
-def test_to_bidirectional_lilypond_symbol_01():
+def test_expr_to_bidirectional_lilypond_symbol_01():
 
     assert stringtools.to_bidirectional_lilypond_symbol('^') == '^'
     assert stringtools.to_bidirectional_lilypond_symbol('_') == '_'
