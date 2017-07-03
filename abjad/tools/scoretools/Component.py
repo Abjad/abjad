@@ -179,7 +179,9 @@ class Component(AbjadObject):
         if hasattr(self, '_named_children'):
             for name, children in self._named_children.items():
                 name_dictionary[name] = copy.copy(children)
-        if hasattr(self, 'name') and self.name is not None:
+        #if hasattr(self, 'name') and self.name is not None:
+        name = self.name
+        if name is not None:
             if self.name not in name_dictionary:
                 name_dictionary[self.name] = []
             name_dictionary[self.name].append(self)

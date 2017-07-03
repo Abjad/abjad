@@ -44,7 +44,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
                 message = 'must be between 0 and 6, inclusive.'
                 raise ValueError(message)
             number = interval_class_token
-        elif hasattr(interval_class_token, 'semitones'):
+        elif getattr(interval_class_token, 'semitones', None) is not None:
             number = interval_class_token.semitones
             number %= 12
             if 6 < number:

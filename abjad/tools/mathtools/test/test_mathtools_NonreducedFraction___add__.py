@@ -46,5 +46,5 @@ def test_mathtools_NonreducedFraction___add___03():
         assert result_one <= 80
         assert result_two <= 80
     else:
-        assert result_one <= 100
-        assert result_two <= 100
+        assert result_one <= 110
+        assert result_two <= 110

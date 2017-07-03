@@ -123,9 +123,9 @@ class ComplexTrillSpanner(Spanner):
             if self.interval is not None:
                 string = r'\pitchedTrill'
                 lilypond_format_bundle.opening.spanners.append(string)
-                if hasattr(leaf, 'written_pitch'):
+                if isinstance(leaf, scoretools.Note):
                     written_pitch = leaf.written_pitch
-                elif hasattr(leaf, 'written_pitches'):
+                elif isinstance(leaf, scoretools.Chord):
                     if 0 < self.interval.semitones:
                         written_pitch = max(leaf.written_pitches)
                     elif self.interval.semitones < 0:

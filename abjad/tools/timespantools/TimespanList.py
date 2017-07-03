@@ -394,25 +394,27 @@ class TimespanList(TypedList):
     @property
     def _item_coercer(self):
         from abjad.tools import timespantools
-        def coerce(argument):
+        def _coerce(argument):
             if isinstance(argument, timespantools.Timespan):
                 return argument
             elif isinstance(argument, tuple) and len(argument) == 2:
                 return timespantools.Timespan(*argument)
             else:
                 return timespantools.Timespan(argument)
-        return coerce
+        return _coerce
 
     ### PRIVATE METHODS ###
 
     def _get_offsets(self, argument):
-        if (hasattr(argument, 'start_offset') and
-            hasattr(argument, 'stop_offset')):
+        try:
             return argument.start_offset, argument.stop_offset
-        elif hasattr(argument, 'timespan'):
+        except AttributeError:
+            pass
+        try:
             return argument.timespan.offsets
-        else:
-            raise TypeError(argument)
+        except AttributeError:
+            pass
+        raise TypeError(argument)
 
     def _get_timespan(self, argument):
         from abjad.tools import timespantools

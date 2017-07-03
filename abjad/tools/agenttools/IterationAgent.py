@@ -2633,18 +2633,22 @@ class IterationAgent(abctools.AbjadObject):
                 pitch = pitchtools.NamedPitch.from_pitch_carrier(self._client)
                 yield pitch
             result = []
-            if hasattr(self._client, 'written_pitches'):
-                result.extend(self._client.written_pitches)
-            # for pitch arrays
-            elif hasattr(self._client, 'pitches'):
+            try:
                 result.extend(self._client.pitches)
+            except AttributeError:
+                pass
+            if isinstance(self._client, scoretools.Chord):
+                result.extend(self._client.written_pitches)
             elif isinstance(self._client, spannertools.Spanner):
                 for leaf in self._client._get_leaves():
-                    if (hasattr(leaf, 'written_pitch') and
-                        not isinstance(leaf, scoretools.Rest)):
+                    try:
                         result.append(leaf.written_pitch)
-                    elif hasattr(leaf, 'written_pitches'):
-                        result.extend(leaf.written_pitches)
+                    except AttributeError:
+                        pass
+                    try:
+                        result.extedn(leaf.written_pitches)
+                    except AttributeError:
+                        pass
             elif isinstance(self._client, pitchtools.PitchSet):
                 result.extend(sorted(list(self._client)))
             elif isinstance(self._client, (list, tuple, set)):
@@ -2653,11 +2657,14 @@ class IterationAgent(abctools.AbjadObject):
                         result.append(pitch_)
             else:
                 for leaf in iterate(self._client).by_leaf():
-                    if (hasattr(leaf, 'written_pitch') and
-                        not isinstance(leaf, scoretools.Rest)):
+                    try:
                         result.append(leaf.written_pitch)
-                    elif hasattr(leaf, 'written_pitches'):
-                        result.extend(leaf.written_pitches)
+                    except AttributeError:
+                        pass
+                    try:
+                        result.extedn(leaf.written_pitches)
+                    except AttributeError:
+                        pass
             for pitch in result:
                 yield pitch
         return _closure()

@@ -638,12 +638,12 @@ class MutationAgent(abctools.AbjadObject):
         '''
         from abjad.tools import scoretools
         for leaf in iterate(self._client).by_leaf():
-            if isinstance(leaf, scoretools.Chord):
-                for note_head in leaf.note_heads:
-                    note_head.written_pitch = \
-                        note_head.written_pitch.respell_with_flats()
-            elif hasattr(leaf, 'written_pitch'):
+            if isinstance(leaf, scoretools.Note):
                 leaf.written_pitch = leaf.written_pitch.respell_with_flats()
+            elif isinstance(leaf, scoretools.Chord):
+                for note_head in leaf.note_heads:
+                    pitch = note_head.written_pitch.respell_with_flats()
+                    note_head.written_pitch = pitch
 
     def respell_with_sharps(self):
         r'''Respells named pitches in mutation client with sharps.
@@ -692,12 +692,12 @@ class MutationAgent(abctools.AbjadObject):
         '''
         from abjad.tools import scoretools
         for leaf in iterate(self._client).by_leaf():
-            if isinstance(leaf, scoretools.Chord):
-                for note_head in leaf.note_heads:
-                    note_head.written_pitch = \
-                        note_head.written_pitch.respell_with_sharps()
-            elif hasattr(leaf, 'written_pitch'):
+            if isinstance(leaf, scoretools.Note):
                 leaf.written_pitch = leaf.written_pitch.respell_with_sharps()
+            elif isinstance(leaf, scoretools.Chord):
+                for note_head in leaf.note_heads:
+                    pitch = note_head.written_pitch.respell_with_sharps()
+                    note_head.written_pitch = pitch
 
     def rewrite_meter(
         self,

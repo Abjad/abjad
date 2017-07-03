@@ -209,12 +209,14 @@ class GeneralizedBeam(Spanner):
 
     def _get_lilypond_format_bundle(self, leaf):
         from abjad.tools import lilypondnametools
+        from abjad.tools import scoretools
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         if not self._is_beamable(leaf):
             return lilypond_format_bundle
         elif not self.use_stemlets and (
-            not hasattr(leaf, 'written_pitch') and
-            not hasattr(leaf, 'written_pitches')):
+            not isinstance(leaf, scoretools.Note) and
+            not isinstance(leaf, scoretools.Chord)
+            ):
             return lilypond_format_bundle
         leaf_ids = [id(x) for x in self._get_leaves()]
         previous_leaf = leaf._get_leaf(-1)
@@ -298,8 +300,7 @@ class GeneralizedBeam(Spanner):
             return True
         if isinstance(argument, scoretools.Leaf):
             if 0 < argument.written_duration.flag_count:
-                if (hasattr(argument, 'written_pitch') or
-                    hasattr(argument, 'written_pitches')):
+                if isinstance(argument, (scoretools.Note, scoretools.Chord)):
                     return True
                 elif self.use_stemlets:
                     return True
@@ -322,9 +323,10 @@ class GeneralizedBeam(Spanner):
         return False
 
     def _leaf_is_joinable(self, leaf, leaf_ids):
+        from abjad.tools import scoretools
         if id(leaf) not in leaf_ids:
             return False
-        if hasattr(leaf, 'written_pitch') or hasattr(leaf, 'written_pitches'):
+        if isinstance(leaf, (scoretools.Note, scoretools.Chord)):
             if self._is_beamable(leaf):
                 return True
             elif self.include_long_duration_notes:

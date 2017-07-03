@@ -47,10 +47,11 @@ class TreeNode(AbjadObject):
         if hasattr(self, '_named_children'):
             for name, children in self._named_children.items():
                 name_dictionary[name] = copy.copy(children)
-        if hasattr(self, 'name') and self.name is not None:
-            if self.name not in name_dictionary:
-                name_dictionary[self.name] = set([])
-            name_dictionary[self.name].add(self)
+        name = getattr(self, 'name', None)
+        if name is not None:
+            if name not in name_dictionary:
+                name_dictionary[name] = set([])
+            name_dictionary[name].add(self)
         return name_dictionary
 
     def _get_format_specification(self):
@@ -200,7 +201,7 @@ class TreeNode(AbjadObject):
             if node.depth not in inventory:
                 inventory[node.depth] = []
             inventory[node.depth].append(node)
-            if hasattr(node, 'children'):
+            if getattr(node, 'children', None) is not None:
                 for child in node.children:
                     recurse(child)
         inventory = {}

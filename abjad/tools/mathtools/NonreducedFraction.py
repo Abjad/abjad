@@ -78,10 +78,16 @@ class NonreducedFraction(AbjadObject, Fraction):
 
     def __new__(class_, *arguments):
         from abjad.tools import mathtools
-        if (len(arguments) == 1 and hasattr(arguments[0], 'numerator') and
-            hasattr(arguments[0], 'denominator')):
-            numerator = arguments[0].numerator
-            denominator = arguments[0].denominator
+        is_fraction_like = False
+        if len(arguments) == 1:
+            try:
+                numerator = arguments[0].numerator
+                denominator = arguments[0].denominator
+                is_fraction_like = True
+            except AttributeError:
+                pass
+        if is_fraction_like:
+            pass
         elif len(arguments) == 1 and isinstance(arguments[0], int):
             numerator = arguments[0]
             denominator = 1
@@ -148,22 +154,21 @@ class NonreducedFraction(AbjadObject, Fraction):
             numerator = self.numerator + argument * self.denominator
             pair = (numerator, self.denominator)
             return self._from_pair(pair)
-        elif hasattr(argument, 'denominator'):
-            if self.denominator == argument.denominator:
-                numerator = self.numerator + argument.numerator
-                pair = (numerator, self.denominator)
-                return self._from_pair(pair)
-            else:
-                denominators = [self.denominator, argument.denominator]
-                denominator = mathtools.least_common_multiple(*denominators)
-                self_multiplier = denominator // self.denominator
-                argument_multiplier = denominator // argument.denominator
-                self_numerator = self_multiplier * self.numerator
-                argument_numerator = argument_multiplier * argument.numerator
-                pair = (self_numerator + argument_numerator, denominator)
-                return self._from_pair(pair)
-        else:
+        if getattr(argument, 'denominator', 'foo') == 'foo':
             raise ValueError(argument)
+        if self.denominator == argument.denominator:
+            numerator = self.numerator + argument.numerator
+            pair = (numerator, self.denominator)
+            return self._from_pair(pair)
+        else:
+            denominators = [self.denominator, argument.denominator]
+            denominator = mathtools.least_common_multiple(*denominators)
+            self_multiplier = denominator // self.denominator
+            argument_multiplier = denominator // argument.denominator
+            self_numerator = self_multiplier * self.numerator
+            argument_numerator = argument_multiplier * argument.numerator
+            pair = (self_numerator + argument_numerator, denominator)
+            return self._from_pair(pair)
 
     def __div__(self, argument):
         r'''Divides nonreduced fraction by `argument`.

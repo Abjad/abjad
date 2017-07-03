@@ -619,7 +619,12 @@ class TreeContainer(TreeNode):
         def recurse(node):
             result = []
             for child in node:
-                if not hasattr(child, 'children'):
+                try:
+                    children = child.children
+                    has_children = True
+                except AttributeError:
+                    has_children = False
+                if not has_children:
                     if isinstance(child, self._leaf_class):
                         result.append(child)
                 elif not child.children:

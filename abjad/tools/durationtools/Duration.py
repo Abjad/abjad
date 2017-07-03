@@ -151,9 +151,14 @@ class Duration(AbjadObject, Fraction):
                 pass
             if mathtools.is_fraction_equivalent_pair(argument):
                 return Fraction.__new__(
-                    class_, int(argument[0]), int(argument[1]))
-            if hasattr(argument, 'duration'):
+                    class_,
+                    int(argument[0]),
+                    int(argument[1]),
+                    )
+            try:
                 return Fraction.__new__(class_, argument.duration)
+            except AttributeError:
+                pass
             if isinstance(argument, str) and '/' not in argument:
                 result = Duration._initialize_from_lilypond_duration_string(
                     argument)

@@ -482,12 +482,16 @@ class PitchSegment(Segment):
         if not isinstance(selection, abjad.Selection):
             selection = select(selection)
         named_pitches = []
-        for component in iterate(selection).by_class(
-            (abjad.Note, abjad.Chord)):
-            if hasattr(component, 'written_pitches'):
+        prototype = (abjad.Note, abjad.Chord)
+        for component in iterate(selection).by_class(prototype):
+            try:
                 named_pitches.extend(component.written_pitches)
-            elif hasattr(component, 'written_pitch'):
+            except AttributeError:
+                pass
+            try:
                 named_pitches.append(component.written_pitch)
+            except AttributeError:
+                pass
         return class_(
             items=named_pitches,
             item_class=item_class,

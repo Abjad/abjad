@@ -153,9 +153,11 @@ class Offset(Duration):
     def __new__(class_, *arguments, **keywords):
         grace_displacement = None
         for argument in arguments:
-            if hasattr(argument, 'grace_displacement'):
-                grace_displacement = getattr(argument, 'grace_displacement')
+            try:
+                grace_displacement = argument.grace_displacement
                 break
+            except AttributeError:
+                pass
         grace_displacement = grace_displacement or keywords.get(
             'grace_displacement')
         if grace_displacement is not None:

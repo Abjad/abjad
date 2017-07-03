@@ -39,7 +39,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
             container._offset = current_offset
             container._offsets_are_current = True
             for child in container:
-                if hasattr(child, 'children'):
+                if getattr(child, 'children', None) is not None:
                     current_offset = recurse(child, current_offset)
                 else:
                     child._offset = current_offset
@@ -48,7 +48,12 @@ class RhythmTreeMixin(abctools.AbjadObject):
             return current_offset
         offset = durationtools.Offset(0)
         root = self.root
-        if root is self and not hasattr(self, 'children'):
+        try:
+            children = self.children
+            has_children = True
+        except AttributeError:
+            has_children = False
+        if root is self and not has_children:
             self._offset = offset
             self._offsets_are_current = True
         else:

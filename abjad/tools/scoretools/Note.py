@@ -274,8 +274,9 @@ class Note(Leaf):
         Returns named pitch.
         '''
         if self.note_head is not None:
-            if hasattr(self.note_head, 'written_pitch'):
-                return self._note_head.written_pitch
+            #if hasattr(self.note_head, 'written_pitch'):
+            #    return self._note_head.written_pitch
+            return self.note_head.written_pitch
 
     @written_pitch.setter
     def written_pitch(self, argument):

@@ -127,3 +127,15 @@ def f(argument):
 from abjad import demos
 from abjad import ext
 from abjad import ly
+
+# HOUSECLEANING HELPER: uncomment below and run tests;
+#                       checks for hasattr() calls against properties:
+#def hasattr_warn(argument, name, original_hasattr=hasattr):
+#    if original_hasattr(argument.__class__, name):
+#        value = getattr(argument.__class__, name)
+#        if isinstance(value, property):
+#            message = 'WARNING: {}.{} is a property!'
+#            message = message.format(argument.__class__.__name__, name)
+#            raise Exception(message)
+#    return original_hasattr(argument, name)
+#__builtins__['hasattr'] = hasattr_warn

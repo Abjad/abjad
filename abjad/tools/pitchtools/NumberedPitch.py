@@ -29,9 +29,11 @@ class NumberedPitch(Pitch):
 
     def __init__(self, pitch_number=None):
         from abjad.tools import pitchtools
-        if hasattr(pitch_number, 'pitch_number'):
+        try:
             pitch_number = pitch_number.pitch_number
-        elif Pitch.is_pitch_number(pitch_number):
+        except AttributeError:
+            pass
+        if Pitch.is_pitch_number(pitch_number):
             pitch_number = pitch_number
         elif pitch_number is None:
             pitch_number = 0

@@ -598,9 +598,9 @@ class TaleaRhythmMaker(RhythmMaker):
                 prolated_divisions.append(division)
                 continue
             prolation_addendum = extra_counts_per_division[i]
-            if hasattr(division, 'numerator'):
+            try:
                 numerator = division.numerator
-            else:
+            except AttributeError:
                 numerator = division[0]
             if 0 <= prolation_addendum:
                 prolation_addendum %= numerator

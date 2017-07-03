@@ -365,6 +365,13 @@ class Meter(AbjadObject):
         decrease_durations_monotonically = \
             bool(decrease_durations_monotonically)
 
+        try:
+            numerator = argument.numerator
+            denominator = argument.denominator
+            is_fraction_like = True
+        except AttributeError:
+            is_fraction_like = False
+
         if isinstance(argument, type(self)):
             root = argument.root_node
             numerator, denominator = argument.numerator, argument.denominator
@@ -383,18 +390,24 @@ class Meter(AbjadObject):
             numerator = root.preprolated_duration.numerator
             denominator = root.preprolated_duration.denominator
 
-        elif (isinstance(argument, (tuple, scoretools.Measure)) or
-            (hasattr(argument, 'numerator') and hasattr(argument, 'denominator'))):
+        elif (
+            isinstance(argument, (tuple, scoretools.Measure)) or
+            is_fraction_like
+            ):
             if isinstance(argument, tuple):
                 fraction = mathtools.NonreducedFraction(argument)
             elif isinstance(argument, scoretools.Measure):
-                time_signature = argument._get_effective(
-                    indicatortools.TimeSignature)
+                prototype = indicatortools.TimeSignature
+                time_signature = argument._get_effective(prototype)
                 fraction = mathtools.NonreducedFraction(
-                    time_signature.numerator, time_signature.denominator)
+                    time_signature.numerator,
+                    time_signature.denominator,
+                    )
             else:
                 fraction = mathtools.NonreducedFraction(
-                    argument.numerator, argument.denominator)
+                    argument.numerator,
+                    argument.denominator,
+                    )
             numerator, denominator = fraction.numerator, fraction.denominator
             factors = mathtools.factors(numerator)
             # group two nested levels of 2s into a 4

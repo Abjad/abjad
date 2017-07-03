@@ -805,15 +805,17 @@ class Timespan(BoundedObject):
             )
 
     def _implements_timespan_interface(self, timespan):
-        if hasattr(timespan, 'start_offset') and \
-            hasattr(timespan, 'stop_offset'):
+        if (
+            getattr(timespan, 'start_offset', 'foo') != 'foo' and
+            getattr(timespan, 'stop_offset', 'foo') != 'foo'
+            ):
             return True
         if hasattr(timespan, '_get_timespan'):
             return True
         # TODO: remove this branch in favor of the _get_timespan above
         if hasattr(timespan, 'get_timespan'):
             return True
-        if hasattr(timespan, 'timespan'):
+        if getattr(timespan, 'timespan', 'foo') != 'foo':
             return True
         return False
 

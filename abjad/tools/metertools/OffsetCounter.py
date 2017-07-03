@@ -51,16 +51,16 @@ class OffsetCounter(TypedCounter):
         TypedCounter.__init__(self, item_class=durationtools.Offset)
         if items:
             for item in items:
-                if hasattr(item, 'start_offset') and \
-                    hasattr(item, 'stop_offset'):
+                try:
                     self[item.start_offset] += 1
                     self[item.stop_offset] += 1
-                elif hasattr(item, '_get_timespan'):
-                    self[item._get_timespan().start_offset] += 1
-                    self[item._get_timespan().stop_offset] += 1
-                else:
-                    offset = durationtools.Offset(item)
-                    self[offset] += 1
+                except:
+                    if hasattr(item, '_get_timespan'):
+                        self[item._get_timespan().start_offset] += 1
+                        self[item._get_timespan().stop_offset] += 1
+                    else:
+                        offset = durationtools.Offset(item)
+                        self[offset] += 1
 
     ### SPECIAL METHODS ###
 
