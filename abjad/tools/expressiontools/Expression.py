@@ -539,8 +539,7 @@ class Expression(AbjadObject):
 
         Returns integer.
         '''
-        superclass = super(Expression, self)
-        return superclass.__hash__()
+        return super(Expression, self).__hash__()
 
     def __iadd__(self, i):
         r'''Gets proxy method.

@@ -48,7 +48,10 @@ class PitchClassSet(Set):
 
         Returns integer.
         '''
-        return hash(repr(self))
+        #return hash(repr(self))
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
+        return hash(hash_values)
 
     def __illustrate__(self):
         r'''Illustrates pitch-class set.

@@ -686,7 +686,10 @@ class Meter(AbjadObject):
     def __hash__(self):
         r'''Hashes meter.
         '''
-        return hash((type(self), self.rtm_format))
+        #return hash((type(self), self.rtm_format))
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
+        return hash(hash_values)
 
     def __iter__(self):
         r'''Iterates meter.

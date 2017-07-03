@@ -53,8 +53,8 @@ class LilyPondContextSetting(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a LilyPond context setting with equivalent
-        keyword values.
+        r'''Is true when `argument` is a LilyPond context setting with
+        equivalent keyword values.
         '''
         from abjad.tools import systemtools
         return systemtools.TestManager.compare_objects(self, argument)

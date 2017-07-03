@@ -115,7 +115,11 @@ class Performer(AbjadObject):
 
         Returns string.
         '''
-        return hash((type(self).__name__, self.name, tuple(self.instruments)))
+        #return hash((type(self).__name__, self.name, tuple(self.instruments)))
+        from abjad.tools import systemtools
+        agent = systemtools.StorageFormatAgent(self)
+        hash_values = agent.get_hash_values()
+        return hash(hash_values)
 
     ### PUBLIC METHODS ###
 

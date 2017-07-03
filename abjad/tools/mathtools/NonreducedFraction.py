@@ -254,8 +254,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         Returns integer.
         '''
-        superclass = super(NonreducedFraction, self)
-        return superclass.__hash__()
+        return super(NonreducedFraction, self).__hash__()
 
     def __le__(self, argument):
         r'''Is true when nonreduced fraction is less than or equal to `argument`.

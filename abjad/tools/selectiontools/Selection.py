@@ -120,7 +120,10 @@ class Selection(object):
 
         Returns integer.
         '''
-        hash_values = (type(self), self._music)
+        #hash_values = (type(self), self._music)
+        #return hash(hash_values)
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
         return hash(hash_values)
 
     def __illustrate__(self):

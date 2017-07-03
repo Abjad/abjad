@@ -539,8 +539,7 @@ class Markup(AbjadValueObject):
                 True
 
         '''
-        superclass = super(Markup, self)
-        return superclass.__hash__()
+        return super(Markup, self).__hash__()
 
     def __illustrate__(self):
         r'''Illustrates markup.

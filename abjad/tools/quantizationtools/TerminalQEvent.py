@@ -33,8 +33,7 @@ class TerminalQEvent(QEvent):
 
         Returns true or false.
         '''
-        if type(self) == type(argument) and \
-            self.offset == argument.offset:
+        if type(self) == type(argument) and self.offset == argument.offset:
             return True
         return False
 

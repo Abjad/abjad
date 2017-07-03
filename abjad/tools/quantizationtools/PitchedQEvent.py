@@ -54,11 +54,11 @@ class PitchedQEvent(QEvent):
 
         Returns true or false.
         '''
-        if type(self) == type(argument) and \
-            self.offset == argument.offset and \
-            self.pitches == argument.pitches and \
-            self.attachments == argument.attachments and \
-            self.index == argument.index:
+        if (type(self) == type(argument) and
+            self.offset == argument.offset and
+            self.pitches == argument.pitches and
+            self.attachments == argument.attachments and
+            self.index == argument.index):
             return True
         return False
 

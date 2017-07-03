@@ -100,11 +100,14 @@ class VerticalMoment(Selection):
 
         Returns integer.
         '''
-        result = []
-        result.append(str(self.offset))
-        result.extend([str(id(x)) for x in self.governors])
-        result = '+'.join(result)
-        return hash(repr(result))
+#        result = []
+#        result.append(str(self.offset))
+#        result.extend([str(id(x)) for x in self.governors])
+#        result = '+'.join(result)
+#        return hash(repr(result))
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
+        return hash(hash_values)
 
     def __len__(self):
         r'''Length of vertical moment.

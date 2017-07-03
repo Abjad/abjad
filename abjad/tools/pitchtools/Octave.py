@@ -147,7 +147,10 @@ class Octave(AbjadValueObject):
 
         Returns integer.
         '''
-        return hash(repr(self))
+        #return hash(repr(self))
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
+        return hash(hash_values)
 
     def __int__(self):
         r'''Changes octave to integer.

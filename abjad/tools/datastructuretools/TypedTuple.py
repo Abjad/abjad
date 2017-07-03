@@ -73,11 +73,14 @@ class TypedTuple(TypedCollection):
 
         Returns integer.
         '''
-        return hash((
-            type(self),
-            self._collection,
-            self.item_class,
-            ))
+#        return hash((
+#            type(self),
+#            self._collection,
+#            self.item_class,
+#            ))
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
+        return hash(hash_values)
 
     def __mul__(self, argument):
         r'''Multiplies typed tuple by `argument`.
