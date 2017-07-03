@@ -95,6 +95,38 @@ class TimespanList(TypedList):
             >>> timespantools.TimespanList()
             TimespanList([])
 
+    ..  container:: example
+
+        Coerces input:
+
+        ::
+
+            >>> timespans = timespantools.TimespanList([
+            ...     Timespan(0, (1, 2)),
+            ...     ((1, 2), (3, 4)),
+            ...     Timespan((3, 4), 1),
+            ...     ])
+
+        ::
+
+            >>> f(timespans)
+            abjad.TimespanList(
+                [
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(0, 1),
+                        stop_offset=abjad.Offset(1, 2),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(1, 2),
+                        stop_offset=abjad.Offset(3, 4),
+                        ),
+                    abjad.Timespan(
+                        start_offset=abjad.Offset(3, 4),
+                        stop_offset=abjad.Offset(1, 1),
+                        ),
+                    ]
+                )
+
     Operations on timespan currently work in place.
     '''
 
@@ -357,10 +389,25 @@ class TimespanList(TypedList):
         self[:] = sorted(new_timespans)
         return self
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_coercer(self):
+        from abjad.tools import timespantools
+        def coerce(argument):
+            if isinstance(argument, timespantools.Timespan):
+                return argument
+            elif isinstance(argument, tuple) and len(argument) == 2:
+                return timespantools.Timespan(*argument)
+            else:
+                return timespantools.Timespan(argument)
+        return coerce
+
     ### PRIVATE METHODS ###
 
     def _get_offsets(self, argument):
-        if hasattr(argument, 'start_offset') and hasattr(argument, 'stop_offset'):
+        if (hasattr(argument, 'start_offset') and
+            hasattr(argument, 'stop_offset')):
             return argument.start_offset, argument.stop_offset
         elif hasattr(argument, 'timespan'):
             return argument.timespan.offsets
