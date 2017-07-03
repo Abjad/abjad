@@ -2569,8 +2569,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2614,8 +2614,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 51/64
                             c'16 * 65/64
                             c'16 * 85/64
-                            c'16 * 25/16 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2662,8 +2662,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2707,8 +2707,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 51/64
                             c'16 * 65/64
                             c'16 * 85/64
-                            r16 * 25/16 ]
                             \revert Staff.Stem.stemlet-length
+                            r16 * 25/16 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2804,8 +2804,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 33/32
                             r16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2848,8 +2848,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 51/64
                             r16 * 65/64
                             c'16 * 85/64
-                            c'16 * 25/16 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2895,8 +2895,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 33/32
                             c'16 * 57/64
                             r16 * 13/16
-                            c'16 * 25/32 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2940,8 +2940,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 51/64
                             c'16 * 65/64
                             r16 * 85/64
-                            c'16 * 25/16 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
                     }

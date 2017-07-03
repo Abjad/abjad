@@ -745,16 +745,16 @@ class BeamSpecifier(AbjadValueObject):
                     c'8 [
                     c'8
                     c'16
-                    c'16 ]
                     \revert Staff.Stem.stemlet-length
+                    c'16 ]
                     \override Staff.Stem.stemlet-length = #2
                     c'16 [
                     c'16
                     c'8
                     r8
                     c'8
-                    c'8 ]
                     \revert Staff.Stem.stemlet-length
+                    c'8 ]
                 }
 
         Stemlets appear only when `beam_rests` is set to true.

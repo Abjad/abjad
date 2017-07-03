@@ -795,6 +795,7 @@ class Component(AbjadObject):
         direction=Right,
         grow_spanners=True,
         ):
+        import abjad
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         assert all(isinstance(x, scoretools.Component) for x in components)
@@ -815,8 +816,10 @@ class Component(AbjadObject):
                     else:
                         insert_index = len(spanner)
                     for component in reversed(components):
-                        spanner._insert(insert_index, component)
-                        component._spanners.add(spanner)
+                        leaves = abjad.select(component).by_leaf()
+                        for leaf in reversed(leaves):
+                            spanner._insert(insert_index, leaf)
+                            leaf._spanners.add(spanner)
             selection = selectiontools.Selection(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
@@ -842,8 +845,10 @@ class Component(AbjadObject):
                         message = 'no component in spanner at offset.'
                         raise ValueError(message)
                     for component in reversed(components):
-                        spanner._insert(index, component)
-                        component._spanners.add(spanner)
+                        leaves = abjad.select(component).by_leaf()
+                        for leaf in reversed(leaves):
+                            spanner._insert(index, leaf)
+                            component._spanners.add(spanner)
             selection = selectiontools.Selection(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()

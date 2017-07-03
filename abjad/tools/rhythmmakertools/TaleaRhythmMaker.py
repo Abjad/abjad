@@ -1135,8 +1135,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'16
                         r16
                         c'16
-                        c'16 ]
                         \revert Staff.Stem.stemlet-length
+                        c'16 ]
                     }
                     {
                         \time 4/8
@@ -1148,8 +1148,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'16
                         r16
                         c'16
-                        c'16 ]
                         \revert Staff.Stem.stemlet-length
+                        c'16 ]
                     }
                     {
                         \time 3/8
@@ -1159,8 +1159,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'16
                         c'16
                         c'16
-                        r16 ]
                         \revert Staff.Stem.stemlet-length
+                        r16 ]
                     }
                     {
                         \time 4/8
@@ -1172,8 +1172,8 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'16
                         c'16
                         c'16
-                        r16 ]
                         \revert Staff.Stem.stemlet-length
+                        r16 ]
                     }
                 }
 

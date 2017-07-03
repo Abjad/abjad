@@ -18,7 +18,7 @@ class TextSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> text_spanner = spannertools.TextSpanner()
+            >>> text_spanner = TextSpanner()
             >>> attach(text_spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
@@ -41,7 +41,7 @@ class TextSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> text_spanner = spannertools.TextSpanner()
+            >>> text_spanner = TextSpanner()
             >>> markup = Markup('foo').italic().bold()
             >>> override(text_spanner).text_spanner.bound_details__left__text = markup
             >>> override(text_spanner).text_spanner.bound_details__left__stencil_align_dir_y = 0
@@ -61,8 +61,8 @@ class TextSpanner(Spanner):
                 c'4 \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan
                 \revert TextSpanner.bound-details
+                f'4 \stopTextSpan
             }
 
     ..  container:: example
@@ -75,7 +75,7 @@ class TextSpanner(Spanner):
             >>> staff = Staff("c'4 d'4 e'4 f'4")
             >>> markup = Markup('pont.')
             >>> attach(markup, staff[0], is_annotation=True)
-            >>> text_spanner = spannertools.TextSpanner()
+            >>> text_spanner = TextSpanner()
             >>> attach(text_spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
@@ -101,7 +101,7 @@ class TextSpanner(Spanner):
             >>> staff = Staff("c'4 d'4 e'4 f'4")
             >>> markup = Markup('tasto')
             >>> attach(markup, staff[-1], is_annotation=True)
-            >>> text_spanner = spannertools.TextSpanner()
+            >>> text_spanner = TextSpanner()
             >>> attach(text_spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
@@ -129,7 +129,7 @@ class TextSpanner(Spanner):
             >>> attach(markup, staff[0], is_annotation=True)
             >>> markup = Markup('tasto')
             >>> attach(markup, staff[-1], is_annotation=True)
-            >>> text_spanner = spannertools.TextSpanner()
+            >>> text_spanner = TextSpanner()
             >>> attach(text_spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
@@ -152,7 +152,7 @@ class TextSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'4 d' e' f'")
-            >>> text_spanner = spannertools.TextSpanner()
+            >>> text_spanner = TextSpanner()
             >>> attach(text_spanner, staff[:1])
             Traceback (most recent call last):
                 ...
@@ -326,3 +326,66 @@ class TextSpanner(Spanner):
         if spanner_is_open and self._is_my_last_leaf(leaf):
             return True
         return False
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def overrides(self):
+        r'''Gets text spanner overrides.
+
+        ..  container:: example
+
+            Enchained spanner regression test: red spanner reverts color before
+            default spanner begins:
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f' c' d' e' f'")
+                >>> text_spanner_1 = TextSpanner()
+                >>> markup = Markup('red').italic().bold()
+                >>> override(text_spanner_1).text_spanner.bound_details__left__text = markup
+                >>> override(text_spanner_1).text_spanner.bound_details__left__stencil_align_dir_y = 0
+                >>> override(text_spanner_1).text_spanner.bound_details__right__padding = 1
+                >>> override(text_spanner_1).text_spanner.color = 'red'
+                >>> attach(text_spanner_1, staff[:4])
+                >>> text_spanner_2 = TextSpanner()
+                >>> markup = Markup('default').italic().bold()
+                >>> override(text_spanner_2).text_spanner.bound_details__left__text = markup
+                >>> override(text_spanner_2).text_spanner.bound_details__left__stencil_align_dir_y = 0
+                >>> attach(text_spanner_2, staff[-5:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \override TextSpanner.bound-details.left.stencil-align-dir-y = #0
+                    \override TextSpanner.bound-details.left.text = \markup {
+                        \bold
+                            \italic
+                                red
+                        }
+                    \override TextSpanner.bound-details.right.padding = #1
+                    \override TextSpanner.color = #red
+                    c'4 \startTextSpan
+                    d'4
+                    e'4
+                    \revert TextSpanner.bound-details
+                    \revert TextSpanner.color
+                    \override TextSpanner.bound-details.left.stencil-align-dir-y = #0
+                    \override TextSpanner.bound-details.left.text = \markup {
+                        \bold
+                            \italic
+                                default
+                        }
+                    f'4 \stopTextSpan \startTextSpan
+                    c'4
+                    d'4
+                    e'4
+                    \revert TextSpanner.bound-details
+                    f'4 \stopTextSpan
+                }
+
+        '''
+        superclass = super(TextSpanner, self)
+        return superclass.overrides

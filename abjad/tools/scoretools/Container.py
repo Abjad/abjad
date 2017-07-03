@@ -849,13 +849,14 @@ class Container(Component):
 
         Only private methods should set this keyword.
         '''
+        import abjad
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        # cache indicators attached to components in argument
-        expr_indicators = []
+        # cache argument indicators
+        argument_indicators = []
         for component in iterate(argument).by_class():
             indicators = component._get_indicators(unwrap=False)
-            expr_indicators.extend(indicators)
+            argument_indicators.extend(indicators)
         # item assignment
         if isinstance(i, int):
             if isinstance(argument, str):
@@ -875,20 +876,20 @@ class Container(Component):
                 isinstance(argument[0], str)):
                 argument = self._parse_string(argument[0])[:]
         prototype = (scoretools.Component, selectiontools.Selection)
-        assert all(isinstance(x, prototype) for x in argument)
-        new_expr = []
+        assert all(isinstance(_, prototype) for _ in argument)
+        new_argument = []
         for item in argument:
             if isinstance(item, selectiontools.Selection):
-                new_expr.extend(item)
+                new_argument.extend(item)
             else:
-                new_expr.append(item)
-        argument = new_expr
-        assert all(isinstance(x, scoretools.Component) for x in argument)
-        if any(isinstance(x, scoretools.GraceContainer) for x in argument):
+                new_argument.append(item)
+        argument = new_argument
+        assert all(isinstance(_, scoretools.Component) for _ in argument)
+        if any(isinstance(_, scoretools.GraceContainer) for _ in argument):
             message = 'must attach grace container to note or chord.'
             raise Exception(message)
         if self._check_for_cycles(argument):
-            raise ParentageError('Attempted to induce cycles.')
+            raise ParentageError('attempted to induce cycles.')
         if (
             i.start == i.stop and
             i.start is not None and
@@ -898,10 +899,10 @@ class Container(Component):
             start, stop = 0, 0
         else:
             start, stop, stride = i.indices(len(self))
-        old = self[start:stop]
+        old_components = self[start:stop]
         spanners_receipt = self._get_spanners_that_dominate_slice(start, stop)
         #print('RECEIPT', spanners_receipt, self, argument)
-        for component in old:
+        for component in old_components:
             for child in iterate([component]).by_class():
                 for spanner in child._get_spanners():
                     spanner._remove(child)
@@ -918,9 +919,12 @@ class Container(Component):
             component._set_parent(self)
         for spanner, index in spanners_receipt:
             for component in reversed(argument):
-                spanner._insert(index, component)
-                component._spanners.add(spanner)
-        for indicator in expr_indicators:
+                # attach spanners only to leaves
+                leaves = abjad.select(component).by_leaf()
+                for leaf in reversed(leaves):
+                    spanner._insert(index, leaf)
+                    leaf._spanners.add(spanner)
+        for indicator in argument_indicators:
             if hasattr(indicator, '_update_effective_context'):
                 indicator._update_effective_context()
 

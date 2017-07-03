@@ -57,15 +57,17 @@ class LilyPondFormatManager(AbjadObject):
             # skip nonprinting indicators like annotation
             indicator = expression.indicator
             if (not hasattr(indicator, '_get_lilypond_format') and
-                not hasattr(indicator, '_get_lilypond_format_bundle')):
+                not hasattr(indicator, '_get_lilypond_format_bundle')
+                ):
                 continue
             elif expression.is_annotation:
                 continue
             # skip comments and commands unless attached directly to us
-            elif expression.scope is None and \
-                hasattr(expression.indicator, '_format_leaf_children') and \
-                not getattr(expression.indicator, '_format_leaf_children') and\
-                expression.component is not component:
+            elif (expression.scope is None and
+                hasattr(expression.indicator, '_format_leaf_children') and
+                not getattr(expression.indicator, '_format_leaf_children') and
+                expression.component is not component
+                ):
                 continue
             # store markup
             elif isinstance(expression.indicator, markuptools.Markup):
@@ -248,7 +250,7 @@ class LilyPondFormatManager(AbjadObject):
             spanner_bundle = spanner._get_lilypond_format_bundle(component)
             pair = (spanner, spanner_bundle)
             pairs.append(pair)
-        pairs.sort(key=lambda x: type(x[0]).__name__)
+        pairs.sort(key=lambda _: type(_[0]).__name__)
         for spanner, spanner_bundle in pairs:
             bundle.update(spanner_bundle)
 
@@ -479,31 +481,34 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def report_spanner_format_contributions(spanner):
-        r'''Reports spanner format contributions for every leaf
-        to which spanner attaches.
+        r'''Reports spanner format contributions for every leaf in `spanner`.
 
-            >>> staff = Staff("c8 d e f")
-            >>> spanner = spannertools.Beam()
-            >>> attach(spanner, staff[:])
+        ..  container:: example
 
-        ::
+            ::
 
-            >>> manager = systemtools.LilyPondFormatManager
-            >>> print(manager.report_spanner_format_contributions(spanner))
-            c8	systemtools.LilyPondFormatBundle(
-                    right=LilyPondFormatBundle.SlotContributions(
-                        spanner_starts=['['],
-                        ),
-                    )
-            d8	systemtools.LilyPondFormatBundle()
-            e8	systemtools.LilyPondFormatBundle()
-            f8	systemtools.LilyPondFormatBundle(
-                    right=LilyPondFormatBundle.SlotContributions(
-                        spanner_stops=[']'],
-                        ),
-                    )
+                >>> staff = Staff("c8 d e f")
+                >>> spanner = spannertools.Beam()
+                >>> attach(spanner, staff[:])
 
-        Returns none or return string.
+            ::
+
+                >>> manager = systemtools.LilyPondFormatManager
+                >>> print(manager.report_spanner_format_contributions(spanner))
+                c8	systemtools.LilyPondFormatBundle(
+                        right=LilyPondFormatBundle.SlotContributions(
+                            spanner_starts=['['],
+                            ),
+                        )
+                d8	systemtools.LilyPondFormatBundle()
+                e8	systemtools.LilyPondFormatBundle()
+                f8	systemtools.LilyPondFormatBundle(
+                        right=LilyPondFormatBundle.SlotContributions(
+                            spanner_stops=[']'],
+                            ),
+                        )
+
+        Returns string or none.
         '''
         result = []
         for leaf in spanner._get_leaves():

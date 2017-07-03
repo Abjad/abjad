@@ -1,4 +1,4 @@
-# -*-coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import copy
 from abjad.tools import durationtools
 from abjad.tools import scoretools
@@ -58,8 +58,8 @@ class Spanner(AbjadObject):
 
         Returns true or false.
         '''
-        for x in self._components:
-            if x is argument:
+        for leaf in self._components:
+            if leaf is argument:
                 return True
         else:
             return False
@@ -195,8 +195,8 @@ class Spanner(AbjadObject):
 
     def _copy(self, components):
         r'''Returns copy of spanner with `components`.
-        `components` must be an iterable of components already
-        contained in spanner.
+        `components` must be an iterable of components already contained in
+        spanner.
         '''
         my_components = self._components[:]
         self._components = []
@@ -299,17 +299,17 @@ class Spanner(AbjadObject):
     def _get_basic_lilypond_format_bundle(self, leaf):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        if self._is_my_last_leaf(leaf):
+            contributions = override(self)._list_format_contributions(
+                'revert',
+                )
+            lilypond_format_bundle.grob_reverts.extend(contributions)
         if self._is_my_first_leaf(leaf):
             contributions = override(self)._list_format_contributions(
                 'override',
                 is_once=False,
                 )
             lilypond_format_bundle.grob_overrides.extend(contributions)
-        if self._is_my_last_leaf(leaf):
-            contributions = override(self)._list_format_contributions(
-                'revert',
-                )
-            lilypond_format_bundle.grob_reverts.extend(contributions)
         return lilypond_format_bundle
 
     def _get_compact_summary(self):
@@ -457,6 +457,10 @@ class Spanner(AbjadObject):
     def _insert(self, i, component):
         r'''Not composer-safe.
         '''
+        if not isinstance(component, scoretools.Leaf):
+            message = 'spanners attach only to leaves: {!s}.'
+            message = message.format(component)
+            raise Exception(message)
         component._spanners.add(self)
         self._components.insert(i, component)
 
@@ -604,12 +608,18 @@ class Spanner(AbjadObject):
 
     @property
     def components(self):
-        r'''Gets components in spanner.
+        r'''Gets leaves in spanner.
 
-        Returns selection.
+        Returns selection of leaves.
         '''
         from abjad.tools import selectiontools
-        return selectiontools.Selection(self._components[:])
+        for leaf in self._components:
+            if not isinstance(leaf, scoretools.Leaf):
+                message = 'spanners attach only to leaves: {!s}.'
+                message = message.format(leaf)
+                raise Exception(message)
+        result = selectiontools.Selection(self._components[:])
+        return result
 
     @property
     def name(self):
@@ -623,7 +633,7 @@ class Spanner(AbjadObject):
     def overrides(self):
         r'''Gets overrides.
 
-        Returns dict.
+        Returns dictionary.
         '''
         manager = override(self)
         overrides = {}

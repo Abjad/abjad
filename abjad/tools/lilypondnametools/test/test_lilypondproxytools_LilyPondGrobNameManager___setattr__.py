@@ -114,8 +114,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___05():
             c'8 [
             d'8
             e'8
-            f'8 ]
             \revert Beam.positions
+            f'8 ]
         }
         '''
         )
@@ -225,8 +225,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___10():
             c'8 \< \p
             d'8
             e'8
-            f'8 \f
             \revert DynamicLineSpanner.staff-padding
+            f'8 \f
         }
         '''
         )
@@ -275,8 +275,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___12():
             c'8 \f [
             d'8
             e'8
-            f'8 ]
             \revert DynamicText.thickness
+            f'8 ]
         }
         '''
         )
@@ -346,8 +346,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___15():
             c'8 \glissando
             d'8 \glissando
             e'8 \glissando
-            f'8
             \revert Glissando.thickness
+            f'8
         }
         '''
         )
@@ -674,9 +674,9 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___30():
             c'8
             d'8
             e'8
+            \revert Staff.OttavaBracket.staff-position
             f'8
             \ottava #0
-            \revert Staff.OttavaBracket.staff-position
         }
         '''
         )
@@ -786,10 +786,10 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___35():
             c'8 [
             d'8
             e'8
-            f'8 ]
             \revert Score.SpacingSpanner.strict-grace-spacing
             \revert Score.SpacingSpanner.strict-note-spacing
             \revert Score.SpacingSpanner.uniform-stretching
+            f'8 ]
         }
         '''
         )
@@ -825,10 +825,10 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
             }
             {
                 e'8
-                f'8 ]
                 \revert Score.SpacingSpanner.strict-grace-spacing
                 \revert Score.SpacingSpanner.strict-note-spacing
                 \revert Score.SpacingSpanner.uniform-stretching
+                f'8 ]
             }
         }
         '''
@@ -1048,8 +1048,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___45():
             c'8
             d'8
             e'8
-            f'8
             \revert TextScript.color
+            f'8
         }
         '''
         )
@@ -1073,8 +1073,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___46():
             c'8 \startTextSpan
             c'8
             c'8
-            c'8 \stopTextSpan
             \revert TextSpanner.font-shape
+            c'8 \stopTextSpan
         }
         '''
         )
@@ -1201,8 +1201,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___52():
             c'8 \startTrillSpan
             d'8
             e'8
-            f'8 \stopTrillSpan
             \revert TrillSpanner.color
+            f'8 \stopTrillSpan
         }
         '''
         )

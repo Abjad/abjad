@@ -340,7 +340,7 @@ class LogicalTie(Selection):
         # find duration of each note in tuplet
         prolated_duration = target_duration / sum(proportions.numbers)
 
-        # find written duration of each notes in tuplet
+        # find written duration of each note in tuplet
         if is_diminution:
             if dotted:
                 basic_written_duration = \
@@ -363,7 +363,7 @@ class LogicalTie(Selection):
 
         # make tuplet notes
         try:
-            notes = [scoretools.Note(0, x) for x in written_durations]
+            notes = [scoretools.Note(0, _) for _ in written_durations]
         except AssignabilityError:
             denominator = target_duration._denominator
             note_durations = [
@@ -375,13 +375,13 @@ class LogicalTie(Selection):
         # make tuplet
         tuplet = scoretools.FixedDurationTuplet(target_duration, notes)
 
-        # replace logical tie with tuplet
-        mutate(self).replace(tuplet)
+        # remove tie spanner from leaves
+        for leaf in self:
+            for spanner in leaf._get_spanners(spannertools.Tie):
+                spanner._sever_all_components()
 
-        # untie tuplet
-        for spanner in tuplet._get_spanners(spannertools.Tie):
-            spanner._sever_all_components()
-        #detach(spannertools.Tie, tuplet)
+        # replace leaves with tuplet
+        mutate(self).replace(tuplet)
 
         # return tuplet
         return tuplet

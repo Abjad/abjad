@@ -58,10 +58,10 @@ def test_spannertools_Spanner__apply_overrides_01():
             c'4 \startTextSpan
             d'4
             e'4
-            f'4 \stopTextSpan
             \revert TextSpanner.bound-details
             \revert TextSpanner.dash-fraction
             \revert TextSpanner.dash-period
+            f'4 \stopTextSpan
         }
         '''
         ), format(staff)

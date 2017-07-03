@@ -26,8 +26,8 @@ def test_agenttools_InspectionAgent_report_modifications_01():
             c'8 [
             d'8
             e'8
-            f'8 ]
             \revert Beam.thickness
+            f'8 ]
         }
         '''
         )
@@ -68,8 +68,8 @@ def test_agenttools_InspectionAgent_report_modifications_02():
             \override Beam.thickness = #3
             c'8 [
             d'8
-            e'8 ]
             \revert Beam.thickness
+            e'8 ]
         }
         \revert NoteHead.color
         '''

@@ -26,8 +26,8 @@ def test_indicatortools_LilyPondComment_before_01():
             c'8 [
             d'8
             e'8
-            f'8 ]
             \revert Beam.thickness
+            f'8 ]
         }
         '''
         )

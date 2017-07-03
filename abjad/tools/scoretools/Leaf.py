@@ -118,7 +118,6 @@ class Leaf(Component):
     def _format_after_slot(self, bundle):
         result = []
         result.append(('spanners', bundle.after.spanners))
-        result.append(('grob reverts', bundle.grob_reverts))
         result.append(('indicators', bundle.after.indicators))
         result.append(('commands', bundle.after.commands))
         result.append(('comments', bundle.after.comments))
@@ -130,6 +129,7 @@ class Leaf(Component):
         result.append(('comments', bundle.before.comments))
         result.append(('commands', bundle.before.commands))
         result.append(('indicators', bundle.before.indicators))
+        result.append(('grob reverts', bundle.grob_reverts))
         result.append(('grob overrides', bundle.grob_overrides))
         result.append(('context settings', bundle.context_settings))
         result.append(('spanners', bundle.before.spanners))
