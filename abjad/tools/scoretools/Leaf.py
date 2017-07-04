@@ -48,7 +48,7 @@ class Leaf(Component):
         return (self.written_duration,)
 
     def __str__(self):
-        '''String representation of leaf.
+        '''Gets string representation of leaf.
 
         Returns string.
         '''
@@ -221,7 +221,6 @@ class Leaf(Component):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
-
         def next(component):
             new_component = component._get_nth_component_in_time_order_from(1)
             if new_component is None:
@@ -234,7 +233,6 @@ class Leaf(Component):
                 if Selection._all_are_components_in_same_logical_voice(
                     [component, candidate]):
                     return candidate
-
         def previous(component):
             new_component = component._get_nth_component_in_time_order_from(-1)
             if new_component is None:
@@ -247,7 +245,6 @@ class Leaf(Component):
                 if Selection._all_are_components_in_same_logical_voice(
                     [component, candidate]):
                     return candidate
-
         current_leaf = self
         if n < 0:
             for i in range(abs(n)):
@@ -399,15 +396,12 @@ class Leaf(Component):
         tie_split_notes=True,
         use_messiaen_style_ties=False,
         ):
-        from abjad.tools import pitchtools
-        from abjad.tools import selectiontools
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        durations = [durationtools.Duration(x) for x in durations]
+        import abjad
+        durations = [abjad.Duration(_) for _ in durations]
         if cyclic:
             durations = sequencetools.Sequence(durations)
             durations = durations.repeat_to_weight(self._get_duration())
-        durations = [durationtools.Duration(x) for x in durations]
+        durations = [abjad.Duration(_) for _ in durations]
         if sum(durations) < self._get_duration():
             last_duration = self._get_duration() - sum(durations)
             durations.append(last_duration)
@@ -425,7 +419,7 @@ class Leaf(Component):
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
             for x in shard:
-                if isinstance(x, scoretools.Leaf):
+                if isinstance(x, abjad.Leaf):
                     x_duration = x.written_duration * leaf_prolation
                 else:
                     x_duration = x.multiplied_duration * leaf_prolation
@@ -440,8 +434,8 @@ class Leaf(Component):
             shard = [x._get_parentage().root for x in shard]
             result.append(shard)
         flattened_result = sequencetools.Sequence(result).flatten()
-        flattened_result = selectiontools.Selection(flattened_result)
-        prototype = (spannertools.Tie,)
+        flattened_result = abjad.Selection(flattened_result)
+        prototype = (abjad.Tie,)
         parentage = self._get_parentage()
         if parentage._get_spanners(prototype=prototype):
             selection = select(flattened_result)
@@ -451,7 +445,7 @@ class Leaf(Component):
                     spanner._sever_all_components()
                 #detach(prototype, component)
         # replace leaf with flattened result
-        selection = selectiontools.Selection(self)
+        selection = abjad.Selection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent:
             parent.__setitem__(slice(start, stop + 1), flattened_result)
@@ -487,12 +481,12 @@ class Leaf(Component):
         last_leaf._detach_grace_containers(kind='grace')
         detach(object, last_leaf)
         # tie split notes, rests and chords as specified
-        if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
+        if abjad.Pitch.is_pitch_carrier(self) and tie_split_notes:
             flattened_result_leaves = iterate(flattened_result).by_leaf()
             # TODO: implement Selection._attach_tie_spanner_to_leaves()
             pairs = sequencetools.Sequence(flattened_result_leaves).nwise()
             for leaf_pair in pairs:
-                selection = selectiontools.Selection(leaf_pair)
+                selection = abjad.Selection(leaf_pair)
                 selection._attach_tie_spanner_to_leaf_pair(
                     use_messiaen_style_ties=use_messiaen_style_ties,
                     )
@@ -509,10 +503,11 @@ class Leaf(Component):
         tie_split_notes=True,
         use_messiaen_style_ties=False,
         ):
+        import abjad
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         # check input
-        duration = durationtools.Duration(duration)
+        duration = abjad.Duration(duration)
         # calculate durations
         leaf_multiplied_duration = self._get_multiplied_duration()
         prolation = self._get_parentage(include_self=False).prolation
@@ -547,8 +542,8 @@ class Leaf(Component):
                 index = spanner._index(leaf_left_of_split)
                 spanner._fracture(index, direction=Right)
         # tie split notes, rests and chords as specified
-        if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
-            selection = selectiontools.Selection(leaves_around_split)
+        if abjad.Pitch.is_pitch_carrier(self) and tie_split_notes:
+            selection = abjad.Selection(leaves_around_split)
             selection._attach_tie_spanner_to_leaf_pair(
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
@@ -580,11 +575,11 @@ class Leaf(Component):
             ]
         # make tuplet notes
         try:
-            notes = [scoretools.Note(0, x) for x in written_durations]
+            notes = [abjad.Note(0, x) for x in written_durations]
         except AssignabilityError:
             denominator = target_duration.denominator
             note_durations = [
-                durationtools.Duration(_, denominator)
+                abjad.Duration(_, denominator)
                 for _ in proportions.numbers
                 ]
             notes = scoretools.make_notes(0, note_durations)
@@ -592,7 +587,7 @@ class Leaf(Component):
         notes = abjad.select(notes)
         contents_duration = notes.get_duration()
         multiplier = target_duration / contents_duration
-        tuplet = scoretools.Tuplet(multiplier, notes)
+        tuplet = abjad.Tuplet(multiplier, notes)
         # fix tuplet contents if necessary
         tuplet._fix()
         # change prolation if necessary

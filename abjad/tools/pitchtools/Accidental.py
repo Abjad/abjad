@@ -189,12 +189,13 @@ class Accidental(AbjadValueObject):
         }
 
     __slots__ = (
+        '_arrow',
         '_semitones',
         )
 
     ### INITIALIZER ##
 
-    def __init__(self, argument=None):
+    def __init__(self, argument=None, arrow=None):
         if argument is None:
             semitones = 0
         elif isinstance(argument, str):
@@ -247,6 +248,11 @@ class Accidental(AbjadValueObject):
             raise ValueError(message)
         semitones = mathtools.integer_equivalent_number_to_integer(semitones)
         self._semitones = semitones
+        if arrow not in (None, Up, Down):
+            message = 'arrow must be none, up or down: {!r}.'
+            message = message.format(arrow)
+            raise TypeError(message)
+        self._arrow = arrow
 
     ### SPECIAL METHODS ###
 
@@ -388,6 +394,45 @@ class Accidental(AbjadValueObject):
         if remainder:
             abbreviation += 'q{}'.format(character)
         return abbreviation
+
+    @property
+    def arrow(self):
+        r'''Gets accidental arrow.
+
+        ..  container:: example
+
+            Most accidentals carry no arrow:
+
+            ::
+
+                >>> Accidental('sharp').arrow is None
+                True
+
+        ..  container:: example
+
+            Sharp with up-arrow:
+
+            ::
+
+                >>> Accidental('sharp', arrow=Up).arrow
+                Up
+
+        ..  container:: example
+
+            Sharp with down-arrow:
+
+            ::
+
+                >>> Accidental('sharp', arrow=Down).arrow
+                Down
+
+        Arrow property is currently a stub in the object model. You can set the
+        property but accidental math and formatting currently ignore the
+        setting.
+
+        Returns up, down or none.
+        '''
+        return self._arrow
 
     @property
     def is_adjusted(self):

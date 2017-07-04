@@ -17,6 +17,8 @@ class Pitch(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_alteration_in_semitones',
+        '_arrow',
         )
 
     _diatonic_pitch_name_regex_body = '''
@@ -178,6 +180,12 @@ class Pitch(AbjadValueObject):
     @abc.abstractproperty
     def alteration_in_semitones(self):
         r'''Gets alteration of pitch in semitones.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def arrow(self):
+        r'''Gets arrow attached to pitch.
         '''
         raise NotImplementedError
 

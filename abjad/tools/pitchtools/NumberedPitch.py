@@ -27,7 +27,7 @@ class NumberedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, pitch_number=None):
+    def __init__(self, pitch_number=None, arrow=None):
         from abjad.tools import pitchtools
         try:
             pitch_number = pitch_number.pitch_number
@@ -42,6 +42,11 @@ class NumberedPitch(Pitch):
         pitch_number = mathtools.integer_equivalent_number_to_integer(
             pitch_number)
         self._pitch_number = pitch_number
+        if arrow not in (Up, Down, None):
+            message = 'arrow must be up, down or none: {!r}.'
+            message = message.format(arrow)
+            raise TypeError(message)
+        self._arrow = arrow
 
     ### SPECIAL METHODS ###
 
@@ -144,6 +149,41 @@ class NumberedPitch(Pitch):
         Returns integer or float.
         '''
         return self.numbered_pitch_class.alteration_in_semitones
+
+    @property
+    def arrow(self):
+        r'''Gets arrow of numbered pitch.
+
+        ..  container:: example
+
+            Gets no arrow:
+
+            ::
+
+                >>> NumberedPitch(13).arrow is None
+                True
+
+        ..  container:: example
+
+            Gets up-arrow:
+
+            ::
+
+                >>> NumberedPitch(13, arrow=Up).arrow
+                Up
+
+        ..  container:: example
+
+            Gets down-arrow:
+
+            ::
+
+                >>> NumberedPitch(13, arrow=Down).arrow
+                Down
+
+        Returns up, down or none.
+        '''
+        return self._arrow
 
     @property
     def diatonic_pitch_class_name(self):

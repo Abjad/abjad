@@ -127,25 +127,35 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def _populate_grob_override_format_contributions(component, bundle):
+        from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        from abjad.tools.topleveltools.override import override
+        from abjad.tools import topleveltools
         result = []
         is_once = isinstance(component, scoretools.Leaf)
-        contributions = override(component)._list_format_contributions(
+        grob = topleveltools.override(component)
+        contributions = grob._list_format_contributions(
             'override',
             is_once=is_once,
             )
         for string in result[:]:
             if 'NoteHead' in string and 'pitch' in string:
                 contributions.remove(string)
+        try:
+            written_pitch = component.written_pitch
+            arrow = written_pitch.arrow
+        except AttributeError:
+            arrow = None
+        if arrow in (Up, Down):
+            contributions_ = written_pitch._list_format_contributions()
+            contributions.extend(contributions_)
         bundle.grob_overrides.extend(contributions)
 
     @staticmethod
     def _populate_grob_revert_format_contributions(component, bundle):
         from abjad.tools import scoretools
-        from abjad.tools.topleveltools.override import override
+        from abjad.tools import topleveltools
         if not isinstance(component, scoretools.Leaf):
-            manager = override(component)
+            manager = topleveltools.override(component)
             contributions = manager._list_format_contributions('revert')
             bundle.grob_reverts.extend(contributions)
 

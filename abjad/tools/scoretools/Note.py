@@ -41,11 +41,11 @@ class Note(Leaf):
     def __init__(self, *arguments):
         from abjad.ly import drums
         from abjad.tools import scoretools
-        from abjad.tools.topleveltools import parse
+        from abjad.tools import topleveltools
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = '{{ {} }}'.format(arguments[0])
-            parsed = parse(string)
+            parsed = topleveltools.parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = [parsed[0]]
         is_cautionary = False
@@ -274,20 +274,18 @@ class Note(Leaf):
         Returns named pitch.
         '''
         if self.note_head is not None:
-            #if hasattr(self.note_head, 'written_pitch'):
-            #    return self._note_head.written_pitch
             return self.note_head.written_pitch
 
     @written_pitch.setter
     def written_pitch(self, argument):
         from abjad.tools import pitchtools
-        from abjad.tools.scoretools.NoteHead import NoteHead
+        from abjad.tools import scoretools
         if argument is None:
             if self.note_head is not None:
                 self.note_head.written_pitch = None
         else:
             if self.note_head is None:
-                self.note_head = NoteHead(self, written_pitch=None)
+                self.note_head = scoretools.NoteHead(self, written_pitch=None)
             else:
                 pitch = pitchtools.NamedPitch(argument)
                 self.note_head.written_pitch = pitch

@@ -8,7 +8,7 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 
 class NamedPitch(Pitch):
-    '''Named pitch.
+    r'''Named pitch.
 
     ..  container:: example
 
@@ -19,6 +19,17 @@ class NamedPitch(Pitch):
             >>> pitch = NamedPitch("cs''")
             >>> show(pitch) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> staff = pitch.__illustrate__()[Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "treble"
+                cs''1 * 1/4
+            }
+
     ..  container:: example
 
         Initializes from pitch-class / octave string:
@@ -28,19 +39,51 @@ class NamedPitch(Pitch):
             >>> pitch = NamedPitch('C#5')
             >>> show(pitch) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> staff = pitch.__illustrate__()[Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "treble"
+                cs''1 * 1/4
+            }
+
+    ..  container:: example
+
+        Initializes arrowed pitch:
+
+        ::
+
+            >>> pitch = NamedPitch('C#5', arrow=Up)
+            >>> show(pitch) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = pitch.__illustrate__()[Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "treble"
+                \once \override Accidental.stencil = #ly:text-interface::print
+                \once \override Accidental.text = \markup { \musicglyph #"accidentals.sharp.arrowup" }
+                cs''1 * 1/4
+            }
+
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_alteration_in_semitones',
         '_diatonic_pitch_class_number',
         '_octave_number',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
+    def __init__(self, *arguments, **keywords):
         from abjad.tools import pitchtools
         if (
             arguments and
@@ -103,6 +146,13 @@ class NamedPitch(Pitch):
             message = 'can not initialize {}: {!r}.'
             message = message.format(type(self).__name__, arguments)
             raise ValueError(message)
+        arrow = keywords.get('arrow')
+        if arrow not in (Up, Down, None):
+            message = 'arrow must be up, down or none: {!r}.'
+            message = message.format(arrow)
+            raise TypeError(message)
+        if not hasattr(self, '_arrow'):
+            self._arrow = arrow
 
     ### SPECIAL METHODS ###
 
@@ -137,13 +187,16 @@ class NamedPitch(Pitch):
     def __copy__(self, *arguments):
         r'''Copies named pitch.
 
+        ::
+
+            >>> import copy
+
         ..  container:: example
 
             Copies C#5:
 
             ::
 
-                >>> import copy
                 >>> copy.copy(NamedPitch("cs''"))
                 NamedPitch("cs''")
 
@@ -156,9 +209,19 @@ class NamedPitch(Pitch):
                 >>> copy.copy(NamedPitch("df''"))
                 NamedPitch("df''")
 
+        ..  container:: example
+
+            Copies arrowed pitch:
+
+            ::
+
+                >>> pitch = NamedPitch("cs''", arrow=Up)
+                >>> copy.copy(pitch)
+                NamedPitch("cs''", arrow=Up)
+
         Returns new named pitch.
         '''
-        return type(self)(self)
+        return type(self)(self, arrow=self.arrow)
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a named pitch equal to this named pitch.
@@ -246,7 +309,8 @@ class NamedPitch(Pitch):
         return (self.pitch_name,)
 
     def __gt__(self, argument):
-        r'''Is true when named pitch is greater than `argument`. Otherwise false.
+        r'''Is true when named pitch is greater than `argument`.
+        Otherwise false.
 
         Returns true or false.
         '''
@@ -428,6 +492,17 @@ class NamedPitch(Pitch):
 
     ### PRIVATE METHODS ###
 
+    def _get_format_specification(self):
+        from abjad.tools import systemtools
+        agent = systemtools.StorageFormatAgent(self)
+        return systemtools.FormatSpecification(
+            self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.pitch_name],
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=['arrow'],
+            )
+
     def _get_lilypond_format(self):
         return str(self)
 
@@ -436,6 +511,7 @@ class NamedPitch(Pitch):
         self._diatonic_pitch_class_number = \
             named_pitch.diatonic_pitch_class_number
         self._octave_number = named_pitch.octave.number
+        self._arrow = named_pitch.arrow
 
     def _initialize_by_named_pitch_class_and_octave_number(
         self, named_pitch_class, octave_number):
@@ -507,6 +583,21 @@ class NamedPitch(Pitch):
         octave_number = int(octave_number)
         self._initialize_by_pitch_class_name_and_octave_number(
             pitch_class_name, octave_number)
+
+    def _list_format_contributions(self):
+        contributions = []
+        if self.arrow is None:
+            return contributions
+        override_string = r'\once \override Accidental.stencil ='
+        override_string += ' #ly:text-interface::print'
+        contributions.append(override_string)
+        string = 'accidentals.{}.arrow{}'
+        string = string.format(self.accidental.name, str(self.arrow).lower())
+        override_string = r'\once \override Accidental.text ='
+        override_string += r' \markup {{ \musicglyph #"{}" }}'
+        override_string = override_string.format(string)
+        contributions.append(override_string)
+        return contributions
 
     @staticmethod
     def _spell_pitch_number(pitch_number, diatonic_pitch_class_name):
@@ -596,6 +687,50 @@ class NamedPitch(Pitch):
         Returns integer or float.
         '''
         return self._alteration_in_semitones
+
+    @property
+    def arrow(self):
+        r'''Gets arrow of named pitch.
+
+        ..  container:: example
+
+            Gets no arrow:
+
+            ::
+
+                >>> NamedPitch("cs''").arrow is None
+                True
+
+        ..  container:: example
+
+            Gets up-arrow:
+
+            ::
+
+                >>> NamedPitch("cs''", arrow=Up).arrow
+                Up
+
+        ..  container:: example
+
+            Gets down-arrow:
+
+            ::
+
+                >>> NamedPitch("cs''", arrow=Down).arrow
+                Down
+
+        ..  container:: example
+
+            Displays arrow in interpreter representation:
+
+            ::
+
+                >>> NamedPitch("cs''", arrow=Down)
+                NamedPitch("cs''", arrow=Down)
+
+        Returns up, down or none.
+        '''
+        return self._arrow
 
     @property
     def diatonic_pitch_class_name(self):
