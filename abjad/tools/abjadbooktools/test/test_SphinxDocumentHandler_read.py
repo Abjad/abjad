@@ -505,7 +505,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'NumberedIntervalClass',
 #                    'NumberedInversionEquivalentIntervalClass',
 #                    'NumberedPitch', 'NumberedPitchClass',
-#                    'NumberedPitchClassColorMap',
+#                    'ColorMap',
 #                    'OctavationSpanner', 'Octave', 'Offset',
 #                    'OrdinalConstant', 'OverfullContainerError',
 #                    'PackageGitCommitToken', 'PageBreak',

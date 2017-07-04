@@ -474,7 +474,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> chord = Chord([12, 14, 18, 21, 23], (1, 4))
                     >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
                     >>> colors = ['red', 'blue', 'green']
-                    >>> color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
+                    >>> color_map = ColorMap(colors, pitches)
                     >>> label(chord).color_note_heads(color_map)
                     >>> show(chord) # doctest: +SKIP
 
@@ -501,7 +501,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> chord = Chord([12, 14, 18, 21, 23], (1, 4))
                     >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
                     >>> colors = ['red', 'blue', 'green']
-                    >>> color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
+                    >>> color_map = ColorMap(colors, pitches)
                     >>> expression = label().color_note_heads(color_map)
                     >>> expression(chord)
                     >>> show(chord) # doctest: +SKIP
@@ -926,7 +926,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedPitch
+                    >>> prototype = NumberedPitch
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
@@ -1007,7 +1007,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedPitch
+                    >>> prototype = NumberedPitch
                     >>> expression = label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
@@ -1093,7 +1093,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> prototype = NumberedPitchClass
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
@@ -1172,7 +1172,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> prototype = NumberedPitchClass
                     >>> expression = label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
@@ -1256,7 +1256,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedInterval
+                    >>> prototype = NumberedInterval
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
@@ -1332,7 +1332,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedInterval
+                    >>> prototype = NumberedInterval
                     >>> expression = label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
@@ -1413,7 +1413,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedIntervalClass
+                    >>> prototype = NumberedIntervalClass
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
@@ -1489,7 +1489,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedIntervalClass
+                    >>> prototype = NumberedIntervalClass
                     >>> expression = label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
@@ -1570,7 +1570,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.IntervalClassVector
+                    >>> prototype = IntervalClassVector
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
@@ -1631,7 +1631,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.IntervalClassVector
+                    >>> prototype = IntervalClassVector
                     >>> expression = label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
@@ -1697,7 +1697,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.SetClass()
+                    >>> prototype = SetClass()
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
@@ -1768,7 +1768,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> staff_group.append(staff)
                     >>> staff = Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.SetClass()
+                    >>> prototype = SetClass()
                     >>> expression = label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
@@ -2647,7 +2647,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
                     >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NamedIntervalClass
+                    >>> prototype = NamedIntervalClass
                     >>> label(staff).with_intervals(prototype=prototype)
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
@@ -2675,7 +2675,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
                     >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NamedIntervalClass
+                    >>> prototype = NamedIntervalClass
                     >>> expression = label().with_intervals(prototype=prototype)
                     >>> expression(staff)
                     >>> override(staff).text_script.staff_padding = 4
@@ -2708,7 +2708,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
                     >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedInterval
+                    >>> prototype = NumberedInterval
                     >>> label(staff).with_intervals(prototype=prototype)
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
@@ -2736,7 +2736,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
                     >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedInterval
+                    >>> prototype = NumberedInterval
                     >>> expression = label().with_intervals(prototype=prototype)
                     >>> expression(staff)
                     >>> override(staff).text_script.staff_padding = 4
@@ -2770,7 +2770,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
                     >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedIntervalClass
+                    >>> prototype = NumberedIntervalClass
                     >>> label(staff).with_intervals(prototype=prototype)
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
@@ -2798,7 +2798,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
                     >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedIntervalClass
+                    >>> prototype = NumberedIntervalClass
                     >>> expression = label().with_intervals(prototype=prototype)
                     >>> expression(staff)
                     >>> override(staff).text_script.staff_padding = 4
@@ -2832,7 +2832,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
                     >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedInversionEquivalentIntervalClass
+                    >>> prototype = NumberedInversionEquivalentIntervalClass
                     >>> label(staff).with_intervals(prototype=prototype)
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
@@ -2860,7 +2860,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
                     >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedInversionEquivalentIntervalClass
+                    >>> prototype = NumberedInversionEquivalentIntervalClass
                     >>> expression = label().with_intervals(prototype=prototype)
                     >>> expression(staff)
                     >>> override(staff).text_script.staff_padding = 4
@@ -3008,7 +3008,7 @@ class LabelAgent(abctools.AbjadObject):
                 ::
 
                     >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                    >>> prototype = pitchtools.NumberedPitch
+                    >>> prototype = NumberedPitch
                     >>> label(staff).with_pitches(prototype=prototype)
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
@@ -3048,7 +3048,7 @@ class LabelAgent(abctools.AbjadObject):
                 ::
 
                     >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                    >>> prototype = pitchtools.NumberedPitch
+                    >>> prototype = NumberedPitch
                     >>> expression = label().with_pitches(prototype=prototype)
                     >>> expression(staff)
                     >>> override(staff).text_script.staff_padding = 4
@@ -3093,7 +3093,7 @@ class LabelAgent(abctools.AbjadObject):
                 ::
 
                     >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> prototype = NumberedPitchClass
                     >>> label(staff).with_pitches(prototype=prototype)
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
@@ -3133,7 +3133,7 @@ class LabelAgent(abctools.AbjadObject):
                 ::
 
                     >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> prototype = NumberedPitchClass
                     >>> expression = label().with_pitches(prototype=prototype)
                     >>> expression(staff)
                     >>> override(staff).text_script.staff_padding = 4
@@ -3285,7 +3285,7 @@ class LabelAgent(abctools.AbjadObject):
                     ...     spanner = spannertools.HorizontalBracketSpanner()
                     ...     attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.NumberedPitch
+                    >>> prototype = NumberedPitch
                     >>> label(selections).with_pitches(prototype=prototype)
                     >>> override(voice).horizontal_bracket.staff_padding = 3
                     >>> override(voice).text_script.staff_padding = 2
@@ -3334,7 +3334,7 @@ class LabelAgent(abctools.AbjadObject):
                     ...     spanner = spannertools.HorizontalBracketSpanner()
                     ...     attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.NumberedPitch
+                    >>> prototype = NumberedPitch
                     >>> expression = label().with_pitches(prototype=prototype)
                     >>> expression(selections)
                     >>> override(voice).horizontal_bracket.staff_padding = 3
@@ -3389,7 +3389,7 @@ class LabelAgent(abctools.AbjadObject):
                     ...     spanner = spannertools.HorizontalBracketSpanner()
                     ...     attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> prototype = NumberedPitchClass
                     >>> label(selections).with_pitches(prototype=prototype)
                     >>> override(voice).horizontal_bracket.staff_padding = 3
                     >>> override(voice).text_script.staff_padding = 2
@@ -3438,7 +3438,7 @@ class LabelAgent(abctools.AbjadObject):
                     ...     spanner = spannertools.HorizontalBracketSpanner()
                     ...     attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.NumberedPitchClass
+                    >>> prototype = NumberedPitchClass
                     >>> expression = label().with_pitches(prototype=prototype)
                     >>> expression(selections)
                     >>> override(voice).horizontal_bracket.staff_padding = 3
@@ -3654,7 +3654,7 @@ class LabelAgent(abctools.AbjadObject):
                     ...     spanner = spannertools.HorizontalBracketSpanner()
                     ...     attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.SetClass(lex_rank=True)
+                    >>> prototype = SetClass(lex_rank=True)
                     >>> label(selections).with_set_classes(prototype=prototype)
                     >>> override(voice).horizontal_bracket.staff_padding = 3
                     >>> override(voice).text_script.staff_padding = 2
@@ -3705,7 +3705,7 @@ class LabelAgent(abctools.AbjadObject):
                     ...     spanner = spannertools.HorizontalBracketSpanner()
                     ...     attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.SetClass(lex_rank=True)
+                    >>> prototype = SetClass(lex_rank=True)
                     >>> expression = label().with_set_classes(prototype=prototype)
                     >>> expression(selections)
                     >>> override(voice).horizontal_bracket.staff_padding = 3
@@ -3761,7 +3761,7 @@ class LabelAgent(abctools.AbjadObject):
                     ...     spanner = spannertools.HorizontalBracketSpanner()
                     ...     attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.SetClass(transposition_only=True)
+                    >>> prototype = SetClass(transposition_only=True)
                     >>> label(selections).with_set_classes(prototype=prototype)
                     >>> override(voice).horizontal_bracket.staff_padding = 3
                     >>> override(voice).text_script.staff_padding = 2
@@ -3812,7 +3812,7 @@ class LabelAgent(abctools.AbjadObject):
                     ...     spanner = spannertools.HorizontalBracketSpanner()
                     ...     attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.SetClass(transposition_only=True)
+                    >>> prototype = SetClass(transposition_only=True)
                     >>> expression = label().with_set_classes(prototype=prototype)
                     >>> expression(selections)
                     >>> override(voice).horizontal_bracket.staff_padding = 3
