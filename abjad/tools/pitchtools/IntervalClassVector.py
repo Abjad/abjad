@@ -35,6 +35,11 @@ class IntervalClassVector(Vector):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):

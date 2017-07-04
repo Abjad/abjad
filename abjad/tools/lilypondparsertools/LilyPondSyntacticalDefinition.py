@@ -14,6 +14,7 @@ from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 
 
+# TODO: should not inherit from AbjadObject because no slots
 class LilyPondSyntacticalDefinition(AbjadObject):
     r'''The syntactical definition of LilyPond's syntax.
 
@@ -23,8 +24,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     Used internally by ``LilyPondParser``.
     '''
-
-    ### CLASS VARIABLES ###
 
     start = 'start_symbol'
 

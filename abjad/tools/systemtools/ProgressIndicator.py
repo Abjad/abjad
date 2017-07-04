@@ -12,6 +12,14 @@ class ProgressIndicator(ContextManager):
 
     __documentation_section__ = 'Context managers'
 
+    __slots__ = (
+        '_is_warning',
+        '_message',
+        '_progress',
+        '_total',
+        '_verbose',
+        )
+
     RED = '\033[91m'
     END = '\033[0m'
 

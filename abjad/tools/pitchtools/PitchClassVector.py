@@ -33,6 +33,11 @@ class PitchClassVector(Vector):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):

@@ -11,6 +11,11 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
     r'''Pärt Cantus score template.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self):

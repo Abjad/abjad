@@ -8,6 +8,11 @@ class NullAttackPointOptimizer(AttackPointOptimizer):
     no attack point optimization.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):

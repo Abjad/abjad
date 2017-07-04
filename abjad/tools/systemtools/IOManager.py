@@ -25,6 +25,9 @@ class IOManager(AbjadObject):
 
     __documentation_section__ = 'Managers'
 
+    __slots__ = (
+        )
+
     ### PRIVATE METHODS ###
 
     @staticmethod

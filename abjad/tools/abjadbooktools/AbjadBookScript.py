@@ -48,6 +48,9 @@ class AbjadBookScript(commandlinetools.CommandlineScript):
 
     __documentation_section__ = 'Entry Points'
 
+    __slots__ = (
+        )
+
     alias = 'book'
     short_description = 'Preprocess LaTeX files with Abjad.'
     version = 3.0

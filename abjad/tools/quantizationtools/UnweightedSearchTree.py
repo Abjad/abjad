@@ -108,7 +108,8 @@ class UnweightedSearchTree(SearchTree):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### PRIVATE METHODS ###
 

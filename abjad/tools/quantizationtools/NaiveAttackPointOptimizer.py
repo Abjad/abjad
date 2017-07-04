@@ -16,6 +16,11 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
     leaves are found with metronome marks attached.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):

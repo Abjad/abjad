@@ -28,12 +28,19 @@ class ReSTParagraph(TreeNode):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        '_text',
+        '_wrap',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, name=None, text='foo', wrap=True):
         TreeNode.__init__(self, name=name)
-        self.text = text
-        self.wrap = wrap
+        #self.text = text
+        #self.wrap = wrap
+        self._text = text
+        self._wrap = wrap
 
     ### PRIVATE PROPERTIES ###
 

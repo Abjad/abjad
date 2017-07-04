@@ -34,7 +34,8 @@ class BassVoice(Instrument):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

@@ -10,6 +10,10 @@ class ReSTGraphvizDirective(ReSTDirective):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        '_graph',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

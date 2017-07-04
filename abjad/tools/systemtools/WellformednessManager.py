@@ -18,6 +18,9 @@ class WellformednessManager(AbjadObject):
 
     __documentation_section__ = 'Managers'
 
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, argument=None):

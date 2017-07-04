@@ -28,6 +28,9 @@ class ReSTInheritanceDiagram(ReSTDirective):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, argument=None, children=None, name=None, options=None):

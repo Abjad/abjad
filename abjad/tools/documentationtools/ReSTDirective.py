@@ -11,6 +11,12 @@ class ReSTDirective(TreeContainer):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        '_argument',
+        '_directive',
+        '_options',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

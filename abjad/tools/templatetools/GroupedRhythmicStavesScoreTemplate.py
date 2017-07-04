@@ -110,11 +110,19 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_staff_count',
+        '_with_clefs',
+        '_context_name_abbreviations',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, staff_count=2, with_clefs=None):
         assert isinstance(staff_count, (int, list))
-        self.context_name_abbreviations = collections.OrderedDict()
+        self._context_name_abbreviations = collections.OrderedDict()
         self._staff_count = staff_count
         if with_clefs is not None:
             with_clefs = bool(with_clefs)
@@ -238,6 +246,12 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
         return grouped_rhythmic_staves_score
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def context_name_abbreviations(self):
+        r'''Gets context name abbreviations.
+        '''
+        return self._context_name_abbreviations
 
     @property
     def staff_count(self):

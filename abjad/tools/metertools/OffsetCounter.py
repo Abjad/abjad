@@ -43,7 +43,8 @@ class OffsetCounter(TypedCounter):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

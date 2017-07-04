@@ -10,6 +10,11 @@ class JobHandler(AbjadObject):
     processed by the ``Quantizer``, either serially or in parallel.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self):

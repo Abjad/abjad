@@ -25,11 +25,16 @@ class ReSTTOCItem(TreeNode):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        '_text',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, name=None, text='foo'):
         TreeNode.__init__(self, name)
-        self.text = text
+        #self.text = text
+        self._text = text
 
     ### PRIVATE PROPERTIES ###
 

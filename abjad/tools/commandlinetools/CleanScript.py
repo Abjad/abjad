@@ -17,6 +17,9 @@ class CleanScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        )
+
     alias = 'clean'
     short_description = (
         'Clean *.pyc, *.swp, .cache,  __pycache__ and tmp* '

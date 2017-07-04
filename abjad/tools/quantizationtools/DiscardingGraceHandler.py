@@ -9,6 +9,11 @@ class DiscardingGraceHandler(GraceHandler):
     Does not create ``GraceContainers``.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):

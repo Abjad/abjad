@@ -180,6 +180,15 @@ class WoodwindFingering(AbjadObject):
     Inspired by Mike Solomon's LilyPond woodwind diagrams.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_center_column',
+        '_instrument_name',
+        '_left_hand',
+        '_right_hand',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

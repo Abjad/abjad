@@ -20,6 +20,13 @@ class RegistrationComponent(AbjadValueObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_source_pitch_range',
+        '_target_octave_start_pitch',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

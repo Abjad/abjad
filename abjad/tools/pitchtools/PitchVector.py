@@ -32,6 +32,11 @@ class PitchVector(Vector):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __repr__(self):

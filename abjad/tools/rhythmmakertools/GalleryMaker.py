@@ -23,6 +23,9 @@ class GalleryMaker(AbjadValueObject):
 
     __documentation_section__ = 'Illustration helpers'
 
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, configurations_by_class):

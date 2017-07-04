@@ -47,6 +47,9 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        )
+
     context_name_abbreviations = collections.OrderedDict({
         'rh': 'RH Voice',
         'lh': 'LH Voice',

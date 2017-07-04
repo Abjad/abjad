@@ -18,11 +18,18 @@ class GroupedStavesScoreTemplate(AbjadObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_context_name_abbreviations',
+        '_staff_count',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, staff_count=2):
-        self.context_name_abbreviations = collections.OrderedDict()
-        self.staff_count = staff_count
+        self._context_name_abbreviations = collections.OrderedDict()
+        self._staff_count = staff_count
 
     ### SPECIAL METHODS ###
 
@@ -75,3 +82,17 @@ class GroupedStavesScoreTemplate(AbjadObject):
             name='Grouped Staves Score',
             )
         return grouped_rhythmic_staves_score
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def context_name_abbreviations(self):
+        r'''Gets context name abbreviations.
+        '''
+        return self._context_name_abbreviations
+
+    @property
+    def staff_count(self):
+        r'''Gets staff count.
+        '''
+        return self._staff_count

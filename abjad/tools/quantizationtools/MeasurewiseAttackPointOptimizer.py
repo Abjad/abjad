@@ -54,6 +54,11 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
     Only acts on Measure instances.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, argument):

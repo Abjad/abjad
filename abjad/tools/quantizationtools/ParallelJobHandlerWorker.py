@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 import multiprocessing
 import pickle
-from abjad.tools.abctools import AbjadObject
 
 
-class ParallelJobHandlerWorker(multiprocessing.Process, AbjadObject):
+class ParallelJobHandlerWorker(multiprocessing.Process):
     r'''Worker process which runs ``QuantizationJobs``.
 
     Not composer-safe.

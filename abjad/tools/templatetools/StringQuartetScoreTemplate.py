@@ -65,6 +65,9 @@ class StringQuartetScoreTemplate(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        )
+
     context_name_abbreviations = collections.OrderedDict({
         'vn1': 'First Violin Voice',
         'vn2': 'Second Violin Voice',

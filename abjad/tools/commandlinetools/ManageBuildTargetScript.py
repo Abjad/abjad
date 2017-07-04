@@ -22,6 +22,15 @@ class ManageBuildTargetScript(ScorePackageScript):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_build_path',
+        '_materials_path',
+        '_root_parent_path',
+        '_score_package_path',
+        '_score_repository_path',
+        '_segments_path',
+        )
+
     alias = 'build'
     short_description = 'Manage score package build targets.'
 

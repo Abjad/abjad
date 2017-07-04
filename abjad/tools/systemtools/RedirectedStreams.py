@@ -29,6 +29,13 @@ class RedirectedStreams(ContextManager):
 
     __documentation_section__ = 'Context managers'
 
+    __slots__ = (
+        '_stdout',
+        '_stderr',
+        '_old_stderr',
+        '_old_stdout',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, stdout=None, stderr=None):
@@ -42,9 +49,9 @@ class RedirectedStreams(ContextManager):
 
         Returns none.
         '''
-        self.old_stdout, self.old_stderr = sys.stdout, sys.stderr
-        self.old_stdout.flush()
-        self.old_stderr.flush()
+        self._old_stdout, self._old_stderr = sys.stdout, sys.stderr
+        self._old_stdout.flush()
+        self._old_stderr.flush()
         sys.stdout, sys.stderr = self._stdout, self._stderr
         return self
 
@@ -58,8 +65,8 @@ class RedirectedStreams(ContextManager):
             self._stderr.flush()
         except:
             pass
-        sys.stdout = self.old_stdout
-        sys.stderr = self.old_stderr
+        sys.stdout = self._old_stdout
+        sys.stderr = self._old_stderr
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.

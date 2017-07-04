@@ -6,6 +6,7 @@ from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 
 
+# TODO: should not inherit from AbjadObject because no slots
 class GuileProxy(AbjadObject):
     r'''Emulates LilyPond music functions.
 

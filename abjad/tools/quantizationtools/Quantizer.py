@@ -215,6 +215,11 @@ class Quantizer(AbjadObject):
     information on controlling the rhythmic complexity of that same output.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self):

@@ -35,7 +35,8 @@ class Voice(Context):
 
     __documentation_section__ = 'Contexts'
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     _default_context_name = 'Voice'
 

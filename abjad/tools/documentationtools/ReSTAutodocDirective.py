@@ -34,6 +34,9 @@ class ReSTAutodocDirective(ReSTDirective):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(

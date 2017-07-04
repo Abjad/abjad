@@ -40,6 +40,9 @@ class AcciaccaturaContainer(GraceContainer):
 
     __documentation_section__ = 'Containers'
 
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, music=None):

@@ -18,6 +18,9 @@ class BuildApiScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        )
+
     class ExperimentalDocumentationManager(DocumentationManager):
         r'''API generator for the experimental package.
         '''

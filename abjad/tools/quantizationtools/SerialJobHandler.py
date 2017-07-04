@@ -6,6 +6,11 @@ class SerialJobHandler(JobHandler):
     r'''Processes ``QuantizationJob`` instances sequentially.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, jobs):

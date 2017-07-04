@@ -8,6 +8,11 @@ class MeterManager(abctools.AbjadObject):
     r'''A meter manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PUBLIC METHODS ###
 
     @staticmethod

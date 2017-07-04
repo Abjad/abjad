@@ -7,6 +7,11 @@ class CollapsingGraceHandler(GraceHandler):
     rather than creating a grace container.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):

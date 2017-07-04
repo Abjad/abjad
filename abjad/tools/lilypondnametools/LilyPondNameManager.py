@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class LilyPondNameManager(AbjadObject):
+#class LilyPondNameManager(AbjadObject):
+class LilyPondNameManager(object):
     r'''LilyPond name manager.
     
     Base class from which grob, context setting and tweak managers inherit.

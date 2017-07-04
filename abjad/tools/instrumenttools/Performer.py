@@ -75,6 +75,11 @@ class Performer(AbjadObject):
 
     _publish_storage_format = True
 
+    __slots__ = (
+        '_instruments',
+        '_name',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, name=None, instruments=None):

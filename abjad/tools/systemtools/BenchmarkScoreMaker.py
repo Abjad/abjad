@@ -21,6 +21,9 @@ class BenchmarkScoreMaker(AbjadObject):
 
     __documentation_section__ = 'Benchmarking'
 
+    __slots__ = (
+        )
+
     ### PUBLIC METHODS ###
 
     def make_bound_hairpin_score_01(self):

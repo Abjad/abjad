@@ -14,6 +14,11 @@ class DistanceHeuristic(Heuristic):
     Return ``DistanceHeuristic`` instance.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### PRIVATE METHODS ###
 
     def _process(self, q_target_beats):

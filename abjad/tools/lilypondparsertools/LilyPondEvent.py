@@ -2,6 +2,7 @@
 from abjad.tools.abctools import AbjadObject
 
 
+# TODO: should not inherit from AbjadObject because no slots
 class LilyPondEvent(AbjadObject):
     r'''Model of an arbitrary event in LilyPond.
 

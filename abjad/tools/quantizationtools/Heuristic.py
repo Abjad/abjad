@@ -15,6 +15,11 @@ class Heuristic(AbjadObject):
     represent that beat.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self):

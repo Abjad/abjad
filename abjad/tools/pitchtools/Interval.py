@@ -12,6 +12,9 @@ class Interval(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        )
+
     _named_interval_quality_abbreviation_regex_body = '''
         (M|         # major
         m|          # minor
@@ -37,8 +40,6 @@ class Interval(AbjadValueObject):
         '^{}$'.format(_interval_name_abbreviation_regex_body),
         re.VERBOSE,
         )
-
-    __slots__ = ()
 
     ### INITIALIZER ###
 

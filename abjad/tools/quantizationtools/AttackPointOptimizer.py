@@ -14,6 +14,11 @@ class AttackPointOptimizer(AbjadObject):
     They effectively "clean up" notation, post-quantization.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self):

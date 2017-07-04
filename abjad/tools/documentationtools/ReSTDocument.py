@@ -74,6 +74,9 @@ class ReSTDocument(TreeContainer):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        )
+
     ### PRIVATE PROPERTIES ###
 
     @property

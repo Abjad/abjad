@@ -9,6 +9,11 @@ class ParallelJobHandler(JobHandler):
     based on the number of CPUs available.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(self, jobs):

@@ -31,7 +31,8 @@ class BassSaxophone(Instrument):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

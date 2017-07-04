@@ -27,12 +27,19 @@ class ReSTHeading(TreeNode):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        '_level',
+        '_text',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, level=0, name=None, text='foo'):
         TreeNode.__init__(self, name=name)
-        self.level = level
-        self.text = text
+        #self.level = level
+        #self.text = text
+        self._level = level
+        self._text = text
 
     ### PRIVATE PROPERTIES ###
 

@@ -26,6 +26,17 @@ class ScorePackageScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_build_path',
+        '_cwd',
+        '_distribution_path',
+        '_materials_path',
+        '_root_parent_path',
+        '_score_package_path',
+        '_score_repository_path',
+        '_segments_path',
+        )
+
     _name_re = re.compile('^[a-z][a-z0-9_]*$')
 
     ### INITIALIZER ###
