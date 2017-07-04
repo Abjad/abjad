@@ -260,10 +260,6 @@ class Leaf(Component):
                     break
         return current_leaf
 
-    def _get_leaf_index(self):
-        self._update_now(offsets=True)
-        return self._leaf_index
-
     def _get_logical_tie(self):
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
