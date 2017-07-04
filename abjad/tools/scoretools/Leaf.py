@@ -605,15 +605,15 @@ class Leaf(Component):
 
     def _get_duration_in_seconds(self):
         from abjad.tools import indicatortools
-        tempo = self._get_effective(indicatortools.Tempo)
-        if tempo is not None and not tempo.is_imprecise:
+        mark = self._get_effective(indicatortools.MetronomeMark)
+        if mark is not None and not mark.is_imprecise:
             result = (
                 self._get_duration() /
-                tempo.reference_duration /
-                tempo.units_per_minute * 60
+                mark.reference_duration /
+                mark.units_per_minute * 60
                 )
             return durationtools.Duration(result)
-        raise MissingTempoError
+        raise MissingMetronomeMarkError
 
     def _get_formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string

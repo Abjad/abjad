@@ -73,8 +73,8 @@ class Ritardando(AbjadValueObject):
 
     Ritardandi are not followed by any type of dashed line or other spanner.
 
-    Use ritardandi with a tempo spanner to generate dashed lines and other
-    spanners.
+    Use ritardandi with a metronome mark spanner to generate dashed lines and
+    other spanners.
     '''
 
     ### CLASS VARIABLES ###

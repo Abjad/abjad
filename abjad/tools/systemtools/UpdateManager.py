@@ -135,11 +135,11 @@ class UpdateManager(AbjadObject):
                 component._start_offset_in_seconds = durationtools.Offset(0)
             # this one case is possible for containers only
             if component._start_offset_in_seconds is None:
-                raise MissingTempoError
+                raise MissingMetronomeMarkError
             component._stop_offset_in_seconds = \
                 component._start_offset_in_seconds + \
                 current_duration_in_seconds
-        except MissingTempoError:
+        except MissingMetronomeMarkError:
             pass
 
     def _update_now(

@@ -12,20 +12,20 @@ from abjad.tools.topleveltools import new
 
 
 @functools.total_ordering
-class Tempo(AbjadValueObject):
-    r'''Tempo.
+class MetronomeMark(AbjadValueObject):
+    r'''MetronomeMark.
 
     ..  container:: example
 
-        Integer-valued tempo:
+        Initializes integer-valued metronome mark:
 
         ::
 
             >>> score = Score([])
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> score.append(staff)
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[0])
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
         ..  doctest::
@@ -43,15 +43,15 @@ class Tempo(AbjadValueObject):
 
     ..  container:: example
 
-        Float-valued tempo:
+        Initializes float-valued metronome mark:
 
         ::
 
             >>> score = Score([])
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> score.append(staff)
-            >>> tempo = Tempo(Duration(1, 4), 90.1)
-            >>> attach(tempo, staff[0])
+            >>> mark = MetronomeMark(Duration(1, 4), 90.1)
+            >>> attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
         ..  doctest::
@@ -103,15 +103,15 @@ class Tempo(AbjadValueObject):
 
     ..  container:: example
 
-        Rational-valued tempo:
+        Initializes rational-valued metronome mark:
 
         ::
 
             >>> score = Score([])
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> score.append(staff)
-            >>> tempo = Tempo(Duration(1, 4), Fraction(181, 2))
-            >>> attach(tempo, staff[0])
+            >>> mark = MetronomeMark(Duration(1, 4), Fraction(181, 2))
+            >>> attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
         ..  doctest::
@@ -159,6 +159,32 @@ class Tempo(AbjadValueObject):
                                         2
                             }
                         }
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+
+    ..  container:: example
+
+        Initializes from text, duration and range:
+
+        ::
+
+            >>> score = Score([])
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> score.append(staff)
+            >>> mark = MetronomeMark(Duration(1, 4), (120, 133), 'Quick')
+            >>> attach(mark, staff[0])
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(score)
+            \new Score <<
+                \new Staff {
+                    \tempo Quick 4=120-133
                     c'8
                     d'8
                     e'8
@@ -226,31 +252,64 @@ class Tempo(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, argument):
-        r'''Adds tempo to `argument`.
+        r'''Adds metronome mark to `argument`.
 
         ..  container:: example
 
-            Adds one tempo to another:
+            Adds one metronome mark to another:
 
             ::
 
-                >>> Tempo(Duration(1, 4), 60) + Tempo(Duration(1, 4), 90)
-                Tempo(reference_duration=Duration(1, 4), units_per_minute=150)
+                >>> mark_1 = MetronomeMark(Duration(1, 4), 60)
+                >>> mark_2 = MetronomeMark(Duration(1, 4), 90)
+                >>> mark_1 + mark_2
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=150)
+
+            ::
+
+                >>> mark_2 + mark_1
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=150)
 
         ..  container:: example
 
-            Returns none when `argument` is not a tempo:
+            Raises imprecise metronome mark error with textual indication:
 
             ::
 
-                >>> Tempo(Duration(1, 4), 60) + 90 is None
+                >>> import pytest
+                >>> mark_1 = MetronomeMark(textual_indication='Langsam')
+                >>> mark_2 = MetronomeMark(Duration(1, 4), 90)
+                >>> statement = 'mark_1 + mark_2'
+                >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
+                <ExceptionInfo ImpreciseMetronomeMarkError tblen=3>
+
+        ..  container:: example
+
+            Raises imprecise metronome mark error with range:
+
+            ::
+
+                >>> import pytest
+                >>> mark_1 = MetronomeMark(Duration(1, 8), (90, 92))
+                >>> mark_2 = MetronomeMark(Duration(1, 4), 90)
+                >>> statement = 'mark_1 + mark_2'
+                >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
+                <ExceptionInfo ImpreciseMetronomeMarkError tblen=3>
+
+        ..  container:: example
+
+            Returns none when `argument` is not a metronome mark:
+
+            ::
+
+                >>> MetronomeMark(Duration(1, 4), 60) + 90 is None
                 True
 
-        Returns new tempo or none.
+        Returns new metronome mark or none.
         '''
         if isinstance(argument, type(self)):
             if self.is_imprecise or argument.is_imprecise:
-                raise ImpreciseTempoError
+                raise ImpreciseMetronomeMarkError
             new_quarters_per_minute = \
                 self.quarters_per_minute + argument.quarters_per_minute
             minimum_denominator = \
@@ -263,39 +322,39 @@ class Tempo(AbjadValueObject):
                 nonreduced_fraction.pair
             new_reference_duration = \
                 durationtools.Duration(1, new_reference_duration_denominator)
-            new_tempo = type(self)(
+            metronome_mark = type(self)(
                 new_reference_duration,
                 new_units_per_minute,
                 )
-            return new_tempo
+            return metronome_mark
 
     def __div__(self, argument):
-        r'''Divides tempo by `argument`.
+        r'''Divides metronome mark by `argument`.
 
         ..  container:: example
 
-            Divides tempo by number:
+            Divides metronome mark by number:
 
             ::
 
-                >>> Tempo(Duration(1, 4), 60) / 2
-                Tempo(reference_duration=Duration(1, 4), units_per_minute=30)
+                >>> MetronomeMark(Duration(1, 4), 60) / 2
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=30)
 
         ..  container:: example
 
-            Divides tempo by other tempo:
+            Divides metronome mark by other metronome mark:
 
             ::
 
-                >>> Tempo(Duration(1, 4), 60) / Tempo(Duration(1, 4), 40)
+                >>> MetronomeMark(Duration(1, 4), 60) / MetronomeMark(Duration(1, 4), 40)
                 Multiplier(3, 2)
 
-        Returns new tempo or multiplier.
+        Returns new metronome mark or multiplier.
         '''
         if self.is_imprecise:
-            raise ImpreciseTempoError
+            raise ImpreciseMetronomeMarkError
         if getattr(argument, 'is_imprecise', False):
-            raise ImpreciseTempoError
+            raise ImpreciseMetronomeMarkError
         if isinstance(argument, type(self)):
             result = self.quarters_per_minute / argument.quarters_per_minute
             return durationtools.Multiplier(result)
@@ -304,12 +363,72 @@ class Tempo(AbjadValueObject):
             result = new(self, units_per_minute=units_per_minute)
             return result
         else:
-            message = 'must be number or tempo indication: {!r}.'
+            message = 'must be number or metronome mark: {!r}.'
             message = message.format(argument)
             raise TypeError(message)
 
+    def __eq__(self, argument):
+        r'''Is true when metronome mark equals `argument`.
+
+        ..  container:: example
+
+            ::
+
+                >>> mark_1 = MetronomeMark(Duration(3, 32), 52)
+                >>> mark_2 = MetronomeMark(Duration(3, 32), 52)
+
+            ::
+
+                >>> mark_1 == mark_2
+                True
+
+            ::
+
+                >>> mark_2 == mark_1
+                True
+
+        ..  container:: example
+
+            ::
+
+                >>> mark_1 = MetronomeMark(Duration(3, 32), 52)
+                >>> mark_2 = MetronomeMark(Duration(6, 32), 104)
+
+            ::
+
+                >>> mark_1 == mark_2
+                False
+
+            ::
+                
+                >>> mark_2 == mark_1
+                False
+
+        ..  container:: example
+
+            ::
+
+                >>> mark_1 = MetronomeMark(Duration(3, 32), 52, 'Langsam')
+                >>> mark_2 = MetronomeMark(Duration(3, 32), 52, 'Langsam')
+                >>> mark_3 = MetronomeMark(Duration(3, 32), 52, 'Slow')
+
+            ::
+
+                >>> mark_1 == mark_2
+                True
+
+            ::
+
+                >>> mark_1 == mark_3
+                False
+
+        Returns true or false.
+        '''
+        superclass = super(MetronomeMark, self)
+        return superclass.__eq__(argument)
+
     def __format__(self, format_specification=''):
-        r'''Formats tempo.
+        r'''Formats metronome mark.
 
         Set `format_specification` to `''`', `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'storage'`.
@@ -320,9 +439,9 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo((1, 4), 84, 'Allegro')
-                >>> print(format(tempo))
-                abjad.Tempo(
+                >>> mark = MetronomeMark((1, 4), 84, 'Allegro')
+                >>> print(format(mark))
+                abjad.MetronomeMark(
                     reference_duration=abjad.Duration(1, 4),
                     units_per_minute=84,
                     textual_indication='Allegro',
@@ -335,9 +454,9 @@ class Tempo(AbjadValueObject):
             ::
 
                 >>> markup = Markup(r'\italic { Allegro }')
-                >>> tempo = Tempo((1, 4), 84, custom_markup=markup)
-                >>> print(format(tempo))
-                abjad.Tempo(
+                >>> mark = MetronomeMark((1, 4), 84, custom_markup=markup)
+                >>> print(format(mark))
+                abjad.MetronomeMark(
                     reference_duration=abjad.Duration(1, 4),
                     units_per_minute=84,
                     custom_markup=abjad.Markup(
@@ -359,9 +478,18 @@ class Tempo(AbjadValueObject):
             return self._get_lilypond_format()
         return str(self)
 
+    def __hash__(self):
+        r'''Hashes metronome mark.
+
+        Required to be explicitly redefined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return super(MetronomeMark).__hash__()
+
     def __lt__(self, argument):
-        r'''Is true when `argument` is a tempo with quarters per minute greater than
-        that of this tempo. Otherwise false.
+        r'''Is true when `argument` is a metronome mark with quarters per
+        minute greater than that of this metronome mark. Otherwise false.
 
         Returns true or false.
         '''
@@ -369,122 +497,122 @@ class Tempo(AbjadValueObject):
         return self.quarters_per_minute < argument.quarters_per_minute
 
     def __mul__(self, multiplier):
-        r'''Multiplies tempo by `multiplier`.
+        r'''Multiplies metronome mark by `multiplier`.
 
         ..  container:: example
 
-            Doubles tempo:
+            Doubles metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 84)
-                >>> 2 * tempo
-                Tempo(reference_duration=Duration(1, 4), units_per_minute=168)
+                >>> mark = MetronomeMark(Duration(1, 4), 84)
+                >>> 2 * mark
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=168)
 
         ..  container:: example
 
-            Triples tempo:
+            Triples metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 84)
-                >>> 3 * tempo
-                Tempo(reference_duration=Duration(1, 4), units_per_minute=252)
+                >>> mark = MetronomeMark(Duration(1, 4), 84)
+                >>> 3 * mark
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=252)
 
-        Returns new tempo.
+        Returns new metronome mark.
         '''
         if not isinstance(multiplier, (int, float, durationtools.Duration)):
             return
         if self.is_imprecise:
-            raise ImpreciseTempoError
+            raise ImpreciseMetronomeMarkError
         new_units_per_minute = multiplier * self.units_per_minute
         new_reference_duration = durationtools.Duration(
             self.reference_duration)
-        new_tempo = type(self)(
+        metronome_mark = type(self)(
             reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
             )
-        return new_tempo
+        return metronome_mark
 
     def __rmul__(self, multiplier):
-        r'''Multiplies `multiplier` by tempo.
+        r'''Multiplies `multiplier` by metronome mark.
 
         ..  container::: example
 
-            Doubles tempo:
+            Doubles metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 84)
-                >>> tempo * 2
-                Tempo(reference_duration=Duration(1, 4), units_per_minute=168)
+                >>> mark = MetronomeMark(Duration(1, 4), 84)
+                >>> mark * 2
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=168)
 
         ..  container::: example
 
-            Triples tempo:
+            Triples metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 84)
-                >>> tempo * 3
-                Tempo(reference_duration=Duration(1, 4), units_per_minute=252)
+                >>> mark = MetronomeMark(Duration(1, 4), 84)
+                >>> mark * 3
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=252)
 
-        Returns new tempo.
+        Returns new metronome mark.
         '''
         if not isinstance(multiplier, (int, float, durationtools.Duration)):
             return
         if self.is_imprecise:
-            raise ImpreciseTempoError
+            raise ImpreciseMetronomeMarkError
         new_units_per_minute = multiplier * self.units_per_minute
         new_reference_duration = durationtools.Duration(
             self.reference_duration)
-        new_tempo = type(self)(
+        metronome_mark = type(self)(
             reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
             )
-        return new_tempo
+        return metronome_mark
 
     def __str__(self):
-        r'''Gets string representation of tempo.
+        r'''Gets string representation of metronome mark.
 
         ..  container:: example
 
-            Integer-valued tempo:
+            Integer-valued metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> str(tempo)
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> str(mark)
                 '4=90'
 
         ..  container:: example
 
-            Float-valued tempo:
+            Float-valued metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90.1)
-                >>> str(tempo)
+                >>> mark = MetronomeMark(Duration(1, 4), 90.1)
+                >>> str(mark)
                 '4=90.1'
 
         ..  container:: example
 
-            Rational-valued tempo:
+            Rational-valued metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), Fraction(181, 2))
-                >>> str(tempo)
+                >>> mark = MetronomeMark(Duration(1, 4), Fraction(181, 2))
+                >>> str(mark)
                 '4=90+1/2'
 
         ..  container:: example
 
-            Ranged tempo:
+            Ranged metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), (90, 96))
-                >>> str(tempo)
+                >>> mark = MetronomeMark(Duration(1, 4), (90, 96))
+                >>> str(mark)
                 '4=90-96'
 
         Returns string.
@@ -521,36 +649,51 @@ class Tempo(AbjadValueObject):
         return string
 
     def __sub__(self, argument):
-        r'''Subtracts `argument` from tempo.
+        r'''Subtracts `argument` from metronome mark.
 
         ..  container:: example
 
             Same reference reference durations:
+
             ::
 
-                >>> tempo_1 = Tempo(Duration(1, 4), 90)
-                >>> tempo_2 = Tempo(Duration(1, 4), 60)
-                >>> tempo_1 - tempo_2
-                Tempo(reference_duration=Duration(1, 4), units_per_minute=30)
+                >>> mark_1 = MetronomeMark(Duration(1, 4), 90)
+                >>> mark_2 = MetronomeMark(Duration(1, 4), 60)
+                >>> mark_1 - mark_2
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=30)
 
         ..  container:: example
 
             Different reference durations:
+
             ::
 
-                >>> tempo_1 = Tempo(Duration(1, 4), 90)
-                >>> tempo_2 = Tempo(Duration(1, 2), 90)
-                >>> tempo_1 - tempo_2
-                Tempo(reference_duration=Duration(1, 4), units_per_minute=45)
+                >>> mark_1 = MetronomeMark(Duration(1, 4), 90)
+                >>> mark_2 = MetronomeMark(Duration(1, 2), 90)
+                >>> mark_1 - mark_2
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=45)
 
-        Returns new tempo.
+        ..  container:: example
+
+            Raises imprecise metronome mark error with textual indication:
+
+            ::
+
+                >>> import pytest
+                >>> mark_1 = MetronomeMark(textual_indication='Langsam')
+                >>> mark_2 = MetronomeMark(Duration(1, 2), 90)
+                >>> statement = 'mark_1 - mark_2'
+                >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
+                <ExceptionInfo ImpreciseMetronomeMarkError tblen=3>
+
+        Returns new metronome mark.
         '''
         if not isinstance(argument, type(self)):
-            message = 'must be tempo: {!r}.'
+            message = 'must be metronome mark: {!r}.'
             message = message.format(argument)
             raise Exception(message)
         if self.is_imprecise or argument.is_imprecise:
-            raise ImpreciseTempoError
+            raise ImpreciseMetronomeMarkError
         new_quarters_per_minute = self.quarters_per_minute - \
             argument.quarters_per_minute
         minimum_denominator = min((
@@ -565,36 +708,38 @@ class Tempo(AbjadValueObject):
             nonreduced_fraction.pair
         new_reference_duration = durationtools.Duration(
             1, new_reference_duration_denominator)
-        new_tempo = type(self)(
+        metronome_mark = type(self)(
             reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
             )
-        return new_tempo
+        return metronome_mark
 
     def __truediv__(self, argument):
-        r'''Divides tempo by `argument`. Operator required by Python 3.
+        r'''Divides metronome mark by `argument`.
+
+        Operator required by Python 3.
 
         ..  container:: example
 
-            Divides tempo by number:
+            Divides metronome mark by number:
 
             ::
 
-                >>> Tempo(Duration(1, 4), 60).__truediv__(2)
-                Tempo(reference_duration=Duration(1, 4), units_per_minute=30)
+                >>> MetronomeMark(Duration(1, 4), 60).__truediv__(2)
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=30)
 
         ..  container:: example
 
-            Divides tempo by other tempo:
+            Divides metronome mark by other metronome mark:
 
             ::
 
-                >>> Tempo(Duration(1, 4), 60).__truediv__(
-                ...     Tempo(Duration(1, 4), 40)
+                >>> MetronomeMark(Duration(1, 4), 60).__truediv__(
+                ...     MetronomeMark(Duration(1, 4), 40)
                 ...     )
                 Multiplier(3, 2)
 
-        Returns new tempo.
+        Returns new metronome mark.
         '''
         return self.__div__(argument)
 
@@ -617,7 +762,7 @@ class Tempo(AbjadValueObject):
                 )
             return string
         elif isinstance(self.units_per_minute, (float, Fraction)):
-            markup = Tempo.make_tempo_equation_markup(
+            markup = MetronomeMark.make_tempo_equation_markup(
                 self.reference_duration,
                 self.units_per_minute,
                 )
@@ -680,7 +825,7 @@ class Tempo(AbjadValueObject):
 
     @property
     def custom_markup(self):
-        r'''Gets custom markup of tempo.
+        r'''Gets custom markup of metronome mark.
 
         ..  container:: example
 
@@ -688,19 +833,19 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> markup = Tempo.make_tempo_equation_markup(
+                >>> markup = MetronomeMark.make_tempo_equation_markup(
                 ...     Duration(1, 4),
                 ...     67.5,
                 ...     )
                 >>> markup = markup.with_color('red')
-                >>> tempo = Tempo(
+                >>> mark = MetronomeMark(
                 ...     reference_duration=Duration(1, 4),
                 ...     units_per_minute=67.5,
                 ...     custom_markup=markup,
                 ...     )
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> score = Score([staff])
-                >>> attach(tempo, staff)
+                >>> attach(mark, staff)
                 >>> show(score) # doctest: +SKIP
 
             ..  doctest::
@@ -764,7 +909,7 @@ class Tempo(AbjadValueObject):
 
     @property
     def default_scope(self):
-        r'''Gets default scope of tempo.
+        r'''Gets default scope of metronome mark.
 
         ..  container:: example
 
@@ -772,8 +917,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.default_scope
+                >>> mark = MetronomeMark(Duration(1, 8), 52)
+                >>> mark.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>
 
         ..  container:: example
@@ -782,8 +927,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> tempo.default_scope
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>
 
         Returns score.
@@ -792,33 +937,33 @@ class Tempo(AbjadValueObject):
 
     @property
     def is_imprecise(self):
-        r'''Is true if tempo is entirely textual or if tempo's
-        units_per_minute is a range. Otherwise false.
+        r'''Is true if metronome mark is entirely textual or if metronome
+        mark's units_per_minute is a range. Otherwise false.
 
         ..  container:: example
 
-            Imprecise tempos:
+            Imprecise metronome marks:
 
             ::
 
-                >>> Tempo(Duration(1, 4), 60).is_imprecise
+                >>> MetronomeMark(Duration(1, 4), 60).is_imprecise
                 False
-                >>> Tempo(4, 60, 'Langsam').is_imprecise
+                >>> MetronomeMark(4, 60, 'Langsam').is_imprecise
                 False
-                >>> Tempo(textual_indication='Langsam').is_imprecise
+                >>> MetronomeMark(textual_indication='Langsam').is_imprecise
                 True
-                >>> Tempo(4, (35, 50), 'Langsam').is_imprecise
+                >>> MetronomeMark(4, (35, 50), 'Langsam').is_imprecise
                 True
-                >>> Tempo(Duration(1, 4), (35, 50)).is_imprecise
+                >>> MetronomeMark(Duration(1, 4), (35, 50)).is_imprecise
                 True
 
         ..  container:: example
 
-            Precise tempo:
+            Precise metronome marks:
 
             ::
 
-                >>> Tempo(Duration(1, 4), 60).is_imprecise
+                >>> MetronomeMark(Duration(1, 4), 60).is_imprecise
                 False
 
         Returns true or false.
@@ -831,7 +976,7 @@ class Tempo(AbjadValueObject):
 
     @property
     def quarters_per_minute(self):
-        r'''Gets quarters per minute of tempo.
+        r'''Gets metronome mark quarters per minute.
 
         ..  container:: example
 
@@ -839,8 +984,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.quarters_per_minute
+                >>> mark = MetronomeMark(Duration(1, 8), 52)
+                >>> mark.quarters_per_minute
                 Fraction(104, 1)
 
         ..  container:: example
@@ -849,13 +994,23 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> tempo.quarters_per_minute
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark.quarters_per_minute
                 Fraction(90, 1)
 
-        Returns tuple when tempo `units_per_minute` is a range.
+        ..  container:: example
 
-        Returns none when tempo is imprecise.
+            140 quarters per minute:
+
+            ::
+
+                >>> mark = MetronomeMark(Duration(3, 32), 52.5)
+                >>> mark.quarters_per_minute
+                Fraction(140, 1)
+
+        Returns tuple when metronome mark `units_per_minute` is a range.
+
+        Returns none when metronome mark is imprecise.
 
         Returns fraction otherwise.
         '''
@@ -873,7 +1028,7 @@ class Tempo(AbjadValueObject):
 
     @property
     def reference_duration(self):
-        r'''Gets reference duration of tempo.
+        r'''Gets reference duration of metronome mark.
 
         ..  container:: example
 
@@ -881,8 +1036,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.reference_duration
+                >>> mark = MetronomeMark(Duration(1, 8), 52)
+                >>> mark.reference_duration
                 Duration(1, 8)
 
         ..  container:: example
@@ -891,8 +1046,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> tempo.reference_duration
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark.reference_duration
                 Duration(1, 4)
 
         Returns duration.
@@ -901,7 +1056,7 @@ class Tempo(AbjadValueObject):
 
     @property
     def textual_indication(self):
-        r'''Gets optional textual indication of tempo.
+        r'''Gets optional textual indication of metronome mark.
 
         ..  container:: example
 
@@ -909,8 +1064,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.textual_indication is None
+                >>> mark = MetronomeMark(Duration(1, 8), 52)
+                >>> mark.textual_indication is None
                 True
 
         ..  container:: example
@@ -919,8 +1074,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> tempo.textual_indication is None
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark.textual_indication is None
                 True
 
         Returns string or none.
@@ -929,36 +1084,34 @@ class Tempo(AbjadValueObject):
 
     @property
     def units_per_minute(self):
-        r'''Gets units per minute of tempo.
+        r'''Gets units per minute of metronome mark.
 
         ..  container:: example
 
-            Integer-valued tempo:
+            Integer-valued metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> tempo.units_per_minute
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark.units_per_minute
                 90
 
         ..  container:: example
 
-            Float-valued tempo:
+            Float-valued metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90.1)
-                >>> tempo.units_per_minute
+                >>> mark = MetronomeMark(Duration(1, 4), 90.1)
+                >>> mark.units_per_minute
                 90.1
 
-
-
-            Rational-valued tempo:
+            Rational-valued metronome mark:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), Fraction(181, 2))
-                >>> tempo.units_per_minute
+                >>> mark = MetronomeMark(Duration(1, 4), Fraction(181, 2))
+                >>> mark.units_per_minute
                 Fraction(181, 2)
 
         Set to number or none.
@@ -972,7 +1125,7 @@ class Tempo(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     def duration_to_milliseconds(self, duration):
-        r'''Gets millisecond value of `duration` under a given tempo.
+        r'''Gets millisecond value of `duration` under a given metronome mark.
 
         ..  container:: example
 
@@ -980,8 +1133,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo((1, 4), 60)
-                >>> tempo.duration_to_milliseconds(Duration(1, 4))
+                >>> mark = MetronomeMark((1, 4), 60)
+                >>> mark.duration_to_milliseconds(Duration(1, 4))
                 Duration(1000, 1)
 
         ..  container:: example
@@ -990,8 +1143,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo((1, 4), 60)
-                >>> tempo.duration_to_milliseconds(Duration(3, 8))
+                >>> mark = MetronomeMark((1, 4), 60)
+                >>> mark.duration_to_milliseconds(Duration(3, 8))
                 Duration(1500, 1)
 
         Returns duration.
@@ -1025,8 +1178,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 58)
-                >>> pairs = tempo.list_related_tempos(
+                >>> mark = MetronomeMark(Duration(1, 4), 58)
+                >>> pairs = mark.list_related_tempos(
                 ...     maximum_numerator=8,
                 ...     maximum_denominator=8,
                 ...     )
@@ -1066,8 +1219,8 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 58)
-                >>> pairs = tempo.list_related_tempos(
+                >>> mark = MetronomeMark(Duration(1, 4), 58)
+                >>> pairs = mark.list_related_tempos(
                 ...     maximum_numerator=16,
                 ...     maximum_denominator=16,
                 ...     integer_tempos_only=True,
@@ -1106,12 +1259,12 @@ class Tempo(AbjadValueObject):
             if (integer_tempos_only and not
                 mathtools.is_integer_equivalent_number(new_units_per_minute)):
                 continue
-            new_tempo = type(self)(
+            metronome_mark = type(self)(
                 reference_duration=self.reference_duration,
                 units_per_minute=new_units_per_minute,
                 )
             ratio = mathtools.Ratio(multiplier.pair)
-            pair = (new_tempo, ratio)
+            pair = (metronome_mark, ratio)
             pairs.append(pair)
         return pairs
 
@@ -1121,11 +1274,11 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            Integer-valued tempo:
+            Integer-valued metronome mark:
 
             ::
 
-                >>> markup = Tempo.make_tempo_equation_markup(Duration(1, 4), 90)
+                >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(1, 4), 90)
                 >>> show(markup) # doctest: +SKIP
 
             ..  doctest::
@@ -1169,11 +1322,11 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            Float-valued tempo:
+            Float-valued metronome mark:
 
             ::
 
-                >>> markup = Tempo.make_tempo_equation_markup(Duration(1, 4), 90.1)
+                >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(1, 4), 90.1)
                 >>> show(markup) # doctest: +SKIP
 
             ..  doctest::
@@ -1217,11 +1370,11 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            Rational-valued tempo:
+            Rational-valued metronome mark:
 
             ::
 
-                >>> markup = Tempo.make_tempo_equation_markup(
+                >>> markup = MetronomeMark.make_tempo_equation_markup(
                 ...     Duration(1, 4),
                 ...     Fraction(181, 2),
                 ...     )
@@ -1277,7 +1430,7 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> markup = Tempo.make_tempo_equation_markup(Duration(5, 16), 90)
+                >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(5, 16), 90)
                 >>> show(markup) # doctest: +SKIP
 
             ..  doctest::
@@ -1326,7 +1479,7 @@ class Tempo(AbjadValueObject):
 
             ::
 
-                >>> markup = Tempo.make_tempo_equation_markup(Duration(1, 6), 90)
+                >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(1, 6), 90)
                 >>> show(markup) # doctest: +SKIP
 
             ..  doctest::
@@ -1381,7 +1534,7 @@ class Tempo(AbjadValueObject):
                 >>> selection = scoretools.make_notes([0], durations)
                 >>> attach(Tie(), selection)
                 >>> attach(Beam(), selection)
-                >>> markup = Tempo.make_tempo_equation_markup(selection, 90)
+                >>> markup = MetronomeMark.make_tempo_equation_markup(selection, 90)
                 >>> show(markup) # doctest: +SKIP
 
             ..  doctest::
@@ -1450,53 +1603,53 @@ class Tempo(AbjadValueObject):
         markup = lhs_score_markup + equal_markup + rhs_markup
         return markup
 
-    def rewrite_duration(self, duration, new_tempo):
-        r'''Rewrites `duration` under `new_tempo`.
+    def rewrite_duration(self, duration, metronome_mark):
+        r'''Rewrites `duration` under `metronome_mark`.
 
         ..  container:: example
 
-            Consider the two tempo indicators below.
+            Consider the two metronome marks below.
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> new_tempo = Tempo(Duration(1, 4), 90)
+                >>> tempo = MetronomeMark(Duration(1, 4), 60)
+                >>> metronome_mark = MetronomeMark(Duration(1, 4), 90)
 
             `tempo` specifies quarter equal to ``60``.
 
-            `new_tempo` indication specifies quarter equal to ``90``.
+            `metronome_mark` indication specifies quarter equal to ``90``.
 
-            `new_tempo` is ``3/2`` times as fast as `tempo`:
+            `metronome_mark` is ``3/2`` times as fast as `tempo`:
 
             ::
 
-                >>> new_tempo / tempo
+                >>> metronome_mark / tempo
                 Multiplier(3, 2)
 
             Note that a triplet eighth note under `tempo` equals a regular
-            eighth note under `new_tempo`:
+            eighth note under `metronome_mark`:
 
             ::
 
-                >>> tempo.rewrite_duration(Duration(1, 12), new_tempo)
+                >>> tempo.rewrite_duration(Duration(1, 12), metronome_mark)
                 Duration(1, 8)
 
             And note that a regular eighth note under `tempo` equals a dotted
-            sixteenth under `new_tempo`:
+            sixteenth under `metronome_mark`:
 
             ::
 
-                >>> tempo.rewrite_duration(Duration(1, 8), new_tempo)
+                >>> tempo.rewrite_duration(Duration(1, 8), metronome_mark)
                 Duration(3, 16)
 
         Given `duration` governed by this tempo returns new duration governed
-        by `new_tempo`.
+        by `metronome_mark`.
 
         Ensures that `duration` and new duration consume the same amount of
         time in seconds.
 
         Returns duration.
         '''
-        tempo_ratio = new_tempo / self
+        tempo_ratio = metronome_mark / self
         new_duration = tempo_ratio * duration
         return new_duration

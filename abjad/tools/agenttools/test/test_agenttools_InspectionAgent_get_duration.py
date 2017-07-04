@@ -13,8 +13,8 @@ def test_agenttools_InspectionAgent_get_duration_01():
         Measure((2, 8), "c'8 d'8")]
         )
     leaves = select(voice).by_leaf()
-    tempo = Tempo(Duration(1, 8), 42)
-    attach(tempo, voice, scope=Voice)
+    mark = MetronomeMark(Duration(1, 8), 42)
+    attach(mark, voice, scope=Voice)
     beam = Beam()
     attach(beam, leaves)
     crescendo = Crescendo()
@@ -92,10 +92,10 @@ def test_agenttools_InspectionAgent_get_duration_03():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    tempo = Tempo(Duration(1, 4), 38)
-    attach(tempo, staff)
-    tempo = Tempo(Duration(1, 4), 42)
-    attach(tempo, staff[2])
+    mark = MetronomeMark(Duration(1, 4), 38)
+    attach(mark, staff)
+    mark = MetronomeMark(Duration(1, 4), 42)
+    attach(mark, staff[2])
     score = Score([staff])
 
     assert format(score) == stringtools.normalize(
@@ -118,7 +118,7 @@ def test_agenttools_InspectionAgent_get_duration_03():
 
 def test_agenttools_InspectionAgent_get_duration_04():
     r'''Container can not calculate duration in seconds
-    without tempo indication.
+    without metronome mark.
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
@@ -131,10 +131,10 @@ def test_agenttools_InspectionAgent_get_duration_05():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    tempo = Tempo(Duration(1, 4), 38)
-    attach(tempo, staff)
-    tempo = Tempo(Duration(1, 4), 42)
-    attach(tempo, staff[2])
+    mark = MetronomeMark(Duration(1, 4), 38)
+    attach(mark, staff)
+    mark = MetronomeMark(Duration(1, 4), 42)
+    attach(mark, staff[2])
     Score([staff])
 
     assert format(staff) == stringtools.normalize(
@@ -157,7 +157,7 @@ def test_agenttools_InspectionAgent_get_duration_05():
 
 
 def test_agenttools_InspectionAgent_get_duration_06():
-    r'''Clock duration can not calculate without tempo.
+    r'''Clock duration can not calculate without metronome mark.
     '''
 
     note = Note("c'4")

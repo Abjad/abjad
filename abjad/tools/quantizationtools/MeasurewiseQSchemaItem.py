@@ -23,7 +23,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print(format(q_schema_item))
         quantizationtools.MeasurewiseQSchemaItem(
-            tempo=abjad.Tempo(
+            tempo=abjad.MetronomeMark(
                 reference_duration=abjad.Duration(1, 4), 
                 units_per_minute=60,
                 ),

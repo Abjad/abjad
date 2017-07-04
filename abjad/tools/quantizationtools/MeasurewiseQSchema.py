@@ -49,7 +49,7 @@ class MeasurewiseQSchema(QSchema):
                     13: None,
                     },
                 ),
-            tempo=abjad.Tempo(
+            tempo=abjad.MetronomeMark(
                 reference_duration=abjad.Duration(1, 4),
                 units_per_minute=60,
                 ),
@@ -71,7 +71,7 @@ class MeasurewiseQSchema(QSchema):
 
         >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
         >>> time_signature = TimeSignature((3, 4))
-        >>> tempo = Tempo((1, 4), 54)
+        >>> tempo = MetronomeMark((1, 4), 54)
         >>> use_full_measure = True
         >>> q_schema = quantizationtools.MeasurewiseQSchema(
         ...     search_tree=search_tree,
@@ -258,7 +258,7 @@ class MeasurewiseQSchema(QSchema):
         self._search_tree = search_tree
         tempo = keywords.get('tempo', ((1, 4), 60))
         if isinstance(tempo, tuple):
-            tempo = indicatortools.Tempo(*tempo)
+            tempo = indicatortools.MetronomeMark(*tempo)
         self._tempo = tempo
         self._time_signature = indicatortools.TimeSignature(
             keywords.get('time_signature', (4, 4)))

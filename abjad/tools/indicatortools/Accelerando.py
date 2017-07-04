@@ -40,10 +40,10 @@ class Accelerando(AbjadValueObject):
 
     Accelerandi are not followed by any type of dashed line or other spanner.
 
-    Use accelerandi with a tempo spanner to generate dashed lines and other
-    spanners.
+    Use accelerandi with a metronome mark spanner to generate dashed lines and
+    other spanners.
 
-    ..  todo:: add example tempo spanner example.
+    ..  todo:: add metronome mark spanner example.
     '''
 
     ### CLASS VARIABLES ###

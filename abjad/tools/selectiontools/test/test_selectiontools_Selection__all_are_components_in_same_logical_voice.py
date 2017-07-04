@@ -1384,7 +1384,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_35()
         select(container).by_class())
 
 
-def test_selectiontools_Selection__all_are_components_in_same_logical_voice_37():
+def test_selectiontools_Selection__all_are_components_in_same_logical_voice_36():
     r'''Logical voice can not extend across differently named voices.
     '''
 
@@ -1437,7 +1437,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_37()
     assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
-def test_selectiontools_Selection__all_are_components_in_same_logical_voice_38():
+def test_selectiontools_Selection__all_are_components_in_same_logical_voice_37():
     r'''Logical voice does not extend over differently named voices.
     '''
 
@@ -1485,7 +1485,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_38()
     assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
-def test_selectiontools_Selection__all_are_components_in_same_logical_voice_39():
+def test_selectiontools_Selection__all_are_components_in_same_logical_voice_38():
     r'''Can not nest across differently named implicit voices.
     '''
 
@@ -1543,7 +1543,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_39()
     assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
-def test_selectiontools_Selection__all_are_components_in_same_logical_voice_40():
+def test_selectiontools_Selection__all_are_components_in_same_logical_voice_39():
     r'''Logical voice can not extend across differently named voices.
     '''
 
@@ -1613,7 +1613,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_40()
     assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
-def test_selectiontools_Selection__all_are_components_in_same_logical_voice_41():
+def test_selectiontools_Selection__all_are_components_in_same_logical_voice_40():
     r'''Logical voice can not extend across differently named anonymous voices.
     '''
 
@@ -1668,7 +1668,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_41()
     assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
-def test_selectiontools_Selection__all_are_components_in_same_logical_voice_42():
+def test_selectiontools_Selection__all_are_components_in_same_logical_voice_41():
     r'''Logical voice can not extend across differently named anonymous voices.
     '''
 

@@ -1666,8 +1666,8 @@ class Selection(object):
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff, scope=Staff)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff, scope=Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1721,8 +1721,8 @@ class Selection(object):
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff, scope=Staff)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff, scope=Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1776,8 +1776,8 @@ class Selection(object):
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff, scope=Staff)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff, scope=Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1830,8 +1830,8 @@ class Selection(object):
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff, scope=Staff)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff, scope=Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1890,8 +1890,8 @@ class Selection(object):
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff, scope=Staff)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff, scope=Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::

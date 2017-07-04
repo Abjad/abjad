@@ -24,7 +24,7 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_01():
     tie = spannertools.Tie()
     attach(tie, staff[5:7])
 
-    tempo = Tempo((1, 4), 55)
+    tempo = MetronomeMark((1, 4), 55)
 
     leaves = select(staff).by_leaf()
     q_events = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
@@ -93,9 +93,9 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_02():
     tie = spannertools.Tie()
     attach(tie, staff[5:7])
 
-    tempo = Tempo((1, 4), 58)
+    tempo = MetronomeMark((1, 4), 58)
     attach(tempo, staff[0], scope=Staff)
-    tempo = Tempo((1, 4), 77)
+    tempo = MetronomeMark((1, 4), 77)
     attach(tempo, staff[9], scope=Staff)
 
     leaves = select(staff).by_leaf()

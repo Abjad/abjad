@@ -175,7 +175,7 @@ class WellformednessManager(AbjadObject):
 
         There are now two different types of spanner.
         Most spanners demand that spanner components be
-        logical-voice-contiguous. But a few special spanners (like Tempo)
+        logical-voice-contiguous. But a few special spanners (like MetronomeMark)
         do not make such a demand. The check here consults the experimental
         `_contiguity_constraint`.
 

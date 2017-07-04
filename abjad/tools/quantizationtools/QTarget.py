@@ -174,9 +174,9 @@ class QTarget(AbjadObject):
                 tie = inspect_(previous_leaf).get_spanner(spannertools.Tie)
                 if tie is not None:
                     tie._append(new_leaf)
-            if leaf._has_indicator(indicatortools.Tempo):
-                tempo = leaf._get_indicator(indicatortools.Tempo)
-                detach(indicatortools.Tempo, leaf)
+            if leaf._has_indicator(indicatortools.MetronomeMark):
+                tempo = leaf._get_indicator(indicatortools.MetronomeMark)
+                detach(indicatortools.MetronomeMark, leaf)
                 attach(tempo, new_leaf)
 
     def _shift_downbeat_q_events_to_next_q_grid(self):

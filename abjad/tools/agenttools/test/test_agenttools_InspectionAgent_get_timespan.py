@@ -290,7 +290,7 @@ def test_agenttools_InspectionAgent_get_timespan_24():
 
 
 def test_agenttools_InspectionAgent_get_timespan_25():
-    r'''Offset seconds can not calculate without excplit tempo indication.
+    r'''Offset seconds can not calculate without excplit metronome mark.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -300,12 +300,12 @@ def test_agenttools_InspectionAgent_get_timespan_25():
 
 
 def test_agenttools_InspectionAgent_get_timespan_26():
-    r'''Offset seconds work with explicit tempo indication.
+    r'''Offset seconds work with explicit metronome mark.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    tempo = Tempo(Duration(1, 8), 48)
-    attach(tempo, staff, scope=Staff)
+    mark = MetronomeMark(Duration(1, 8), 48)
+    attach(mark, staff, scope=Staff)
 
     assert format(staff) == stringtools.normalize(
         r'''

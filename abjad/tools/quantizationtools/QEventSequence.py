@@ -436,7 +436,7 @@ class QEventSequence(AbjadObject):
 
         ::
 
-            >>> tempo = Tempo((1, 4), 174)
+            >>> tempo = MetronomeMark((1, 4), 174)
             >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
 
         ::
@@ -476,7 +476,7 @@ class QEventSequence(AbjadObject):
         '''
         from abjad.tools import quantizationtools
         durations = [durationtools.Duration(x) for x in durations]
-        assert isinstance(tempo, indicatortools.Tempo)
+        assert isinstance(tempo, indicatortools.MetronomeMark)
         durations = [
             x for x in
             sequencetools.Sequence(durations).sum_by_sign(sign=[-1])
@@ -505,7 +505,7 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> staff = Staff("c'4 <d' fs'>8. r16 gqs'2")
-            >>> tempo = Tempo((1, 4), 72)
+            >>> tempo = MetronomeMark((1, 4), 72)
 
         ::
 
@@ -558,13 +558,13 @@ class QEventSequence(AbjadObject):
             leaves)
         assert len(leaves)
         if tempo is None:
-            assert leaves[0]._get_effective(indicatortools.Tempo) is not None
+            assert leaves[0]._get_effective(indicatortools.MetronomeMark) is not None
         #else:
-        #    #tempo = indicatortools.Tempo(tempo)
-        elif isinstance(tempo, indicatortools.Tempo):
+        #    #tempo = indicatortools.MetronomeMark(tempo)
+        elif isinstance(tempo, indicatortools.MetronomeMark):
             tempo = copy.copy(tempo)
         elif isinstance(tempo, tuple):
-            tempo = indicatortools.Tempo(*tempo)
+            tempo = indicatortools.MetronomeMark(*tempo)
         else:
             raise TypeError(tempo)
         # sort by silence and tied leaves
@@ -589,7 +589,7 @@ class QEventSequence(AbjadObject):
                     for x in group)
             else:
                 duration = sum(x._get_effective(
-                    indicatortools.Tempo).duration_to_milliseconds(
+                    indicatortools.MetronomeMark).duration_to_milliseconds(
                     x._get_duration())
                     for x in group)
             durations.append(duration)

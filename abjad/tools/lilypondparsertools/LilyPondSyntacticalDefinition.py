@@ -3266,12 +3266,12 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_tempo_event__TEMPO__scalar(self, p):
         'tempo_event : TEMPO scalar'
-        p[0] = indicatortools.Tempo(textual_indication=str(p[2]))
+        p[0] = indicatortools.MetronomeMark(textual_indication=str(p[2]))
 
     def p_tempo_event__TEMPO__scalar_closed__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO scalar_closed steno_duration '=' tempo_range"
-        #p[0] = indicatortools.Tempo(str(p[2]), p[3].duration, p[5])
-        p[0] = indicatortools.Tempo(
+        #p[0] = indicatortools.MetronomeMark(str(p[2]), p[3].duration, p[5])
+        p[0] = indicatortools.MetronomeMark(
             reference_duration=p[3].duration,
             units_per_minute=p[5],
             textual_indication=str(p[2]),
@@ -3279,7 +3279,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_tempo_event__TEMPO__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO steno_duration '=' tempo_range"
-        p[0] = indicatortools.Tempo(
+        p[0] = indicatortools.MetronomeMark(
             reference_duration=p[2].duration,
             units_per_minute=p[4],
             )

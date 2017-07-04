@@ -105,7 +105,7 @@ class IndicatorExpression(AbjadValueObject):
             correct_effective_context._dependent_expressions.append(self)
         self._effective_context = correct_effective_context
         self._update_effective_context()
-        if isinstance(self.indicator, indicatortools.Tempo):
+        if isinstance(self.indicator, indicatortools.MetronomeMark):
             correct_effective_context._update_later(offsets_in_seconds=True)
 
     def _bind_to_component(self, component):
@@ -114,7 +114,7 @@ class IndicatorExpression(AbjadValueObject):
         self._unbind_component()
         self._component = component
         self._update_effective_context()
-        if isinstance(self.indicator, indicatortools.Tempo):
+        if isinstance(self.indicator, indicatortools.MetronomeMark):
             self._component._update_later(offsets_in_seconds=True)
         component._indicator_expressions.append(self)
 

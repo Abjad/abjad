@@ -51,7 +51,7 @@ class BeatwiseQSchema(QSchema):
                     13: None,
                     },
                 ),
-            tempo=abjad.Tempo(
+            tempo=abjad.MetronomeMark(
                 reference_duration=abjad.Duration(1, 4),
                 units_per_minute=60,
                 ),
@@ -70,7 +70,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> beatspan = Duration(5, 16)
         >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
-        >>> tempo = Tempo((1, 4), 54)
+        >>> tempo = MetronomeMark((1, 4), 54)
         >>> q_schema = quantizationtools.BeatwiseQSchema(
         ...     beatspan=beatspan,
         ...     search_tree=search_tree,
@@ -289,7 +289,7 @@ class BeatwiseQSchema(QSchema):
         self._search_tree = search_tree
         tempo = keywords.get('tempo', ((1, 4), 60))
         if isinstance(tempo, tuple):
-            tempo = indicatortools.Tempo(*tempo)
+            tempo = indicatortools.MetronomeMark(*tempo)
         self._tempo = tempo
         QSchema.__init__(self, *arguments, **keywords)
 

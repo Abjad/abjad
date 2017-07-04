@@ -645,7 +645,7 @@ class Component(AbjadObject):
         if in_seconds:
             self._update_now(offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
-                raise MissingTempoError
+                raise MissingMetronomeMarkError
             return timespantools.Timespan(
                 start_offset=self._start_offset_in_seconds,
                 stop_offset=self._stop_offset_in_seconds,

@@ -3,25 +3,25 @@ import copy
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class TempoList(TypedList):
-    r'''Tempo list.
+class MetronomeMarkList(TypedList):
+    r'''Metronome mark list.
 
     ..  container:: example
 
         ::
 
-            >>> tempos = abjad.TempoList([
+            >>> marks = abjad.MetronomeMarkList([
             ...     (Duration(1, 8), 72, 'Andante'),
             ...     (Duration(1, 8), 84, 'Allegro'),
             ...     ])
 
         ::
 
-            >>> for tempo in tempos:
-            ...     tempo
+            >>> for mark in marks:
+            ...     mark
             ...
-            Tempo(reference_duration=Duration(1, 8), units_per_minute=72, textual_indication='Andante')
-            Tempo(reference_duration=Duration(1, 8), units_per_minute=84, textual_indication='Allegro')
+            MetronomeMark(reference_duration=Duration(1, 8), units_per_minute=72, textual_indication='Andante')
+            MetronomeMark(reference_duration=Duration(1, 8), units_per_minute=84, textual_indication='Allegro')
 
     '''
 
@@ -35,69 +35,69 @@ class TempoList(TypedList):
     ### SPECIAL METHODS ###
 
     def __contains__(self, argument):
-        r'''Is true when tempo list contains `argument`.
+        r'''Is true when metronome mark list contains `argument`.
 
         ..  container:: example
 
             ::
 
-                >>> tempos = abjad.TempoList([
+                >>> marks = abjad.MetronomeMarkList([
                 ...     (Duration(1, 8), 72),
                 ...     ((1, 8), 84, 'Allegro'),
                 ...     ])
 
             ::
 
-                >>> Tempo((1, 8), 72) in tempos
+                >>> MetronomeMark((1, 8), 72) in marks
                 True
 
             ::
 
-                >>> ((1, 8), 72) in tempos
+                >>> ((1, 8), 72) in marks
                 True
 
             ::
 
-                >>> (Duration(1, 8), 72) in tempos
+                >>> (Duration(1, 8), 72) in marks
                 True
 
             ::
 
-                >>> ((1, 8), 84, 'Allegro') in tempos
+                >>> ((1, 8), 84, 'Allegro') in marks
                 True
 
             ::
 
-                >>> ((1, 8), 96) in tempos
+                >>> ((1, 8), 96) in marks
                 False
 
         Returns true or false.
         '''
-        superclass = super(TempoList, self)
+        superclass = super(MetronomeMarkList, self)
         return superclass.__contains__(argument)
 
     def __format__(self, format_specification=''):
-        r'''Formats tempo list.
+        r'''Formats metronome mark list.
 
         ..  container:: example
 
             ::
 
-                >>> tempos = abjad.TempoList([
+                >>> marks = abjad.MetronomeMarkList([
                 ...     (Duration(1, 8), 72),
                 ...     ((1, 8), 84, 'Allegro'),
                 ...     ])
 
             ::
 
-                >>> f(tempos)
-                abjad.TempoList(
+                >>> f(marks)
+                abjad.MetronomeMarkList(
                     [
-                        abjad.Tempo(
+                        abjad.MetronomeMark(
                             reference_duration=abjad.Duration(1, 8),
                             units_per_minute=72,
                             ),
-                        abjad.Tempo(
+                        abjad.MetronomeMark(
                             reference_duration=abjad.Duration(1, 8),
                             units_per_minute=84,
                             textual_indication='Allegro',
@@ -107,28 +107,28 @@ class TempoList(TypedList):
 
         Returns string.
         '''
-        superclass = super(TempoList, self)
+        superclass = super(MetronomeMarkList, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __illustrate__(self):
-        r'''Illustrates tempos.
+        r'''Illustrates marks.
 
         ..  container:: example
 
             ::
 
-                >>> tempos = indicatortools.TempoList([
+                >>> marks = indicatortools.MetronomeMarkList([
                 ...     (Duration(1, 8), 72),
                 ...     ((1, 8), 84, 'Allegro'),
                 ...     ])
 
             ::
 
-                >>> show(tempos) # doctest: +SKIP
+                >>> show(marks) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> lilypond_file = tempos.__illustrate__()
+                >>> lilypond_file = marks.__illustrate__()
                 >>> f(lilypond_file[Score])
                 \new Score \with {
                     \override BarLine.transparent = ##t
@@ -161,14 +161,14 @@ class TempoList(TypedList):
         time_signature = abjad.TimeSignature((2, 4))
         abjad.attach(time_signature, staff)
         # the zero note avoids a lilypond spacing problem:
-        # score-initial tempo indications slip to the left
+        # score-initial metronome marks slip to the left
         zero_note = abjad.Note("c'2")
         staff.append(zero_note)
         command = abjad.LilyPondCommand('break')
         abjad.attach(command, zero_note)
-        for tempo in self.items:
+        for mark in self.items:
             note = abjad.Note("c'2")
-            abjad.attach(tempo, note)
+            abjad.attach(mark, note)
             staff.append(note)
             command = abjad.LilyPondCommand('break')
             abjad.attach(command, note)
@@ -193,39 +193,39 @@ class TempoList(TypedList):
     def _item_coercer(self):
         def coerce_(argument):
             if argument is None:
-                tempo = indicatortools.Tempo()
+                mark = indicatortools.MetronomeMark()
             elif isinstance(argument, tuple):
-                tempo = indicatortools.Tempo(*argument)
-            elif isinstance(argument, indicatortools.Tempo):
-                tempo = copy.copy(argument)
+                mark = indicatortools.MetronomeMark(*argument)
+            elif isinstance(argument, indicatortools.MetronomeMark):
+                mark = copy.copy(argument)
             else:
                 raise TypeError(repr(argument))
-            return tempo
+            return mark
         from abjad.tools import indicatortools
         return coerce_
 
     ### PUBLIC ###
 
-    def append(self, tempo):
-        r'''Appends tempo.
+    def append(self, mark):
+        r'''Appends metronome `mark`.
 
         ..  container:: example
 
             ::
 
-                >>> tempos_1 = indicatortools.TempoList([((1, 8), 72)])
-                >>> tempos_1.append(((1, 8), 84))
-                >>> tempos_2 = indicatortools.TempoList([
+                >>> marks_1 = indicatortools.MetronomeMarkList([((1, 8), 72)])
+                >>> marks_1.append(((1, 8), 84))
+                >>> marks_2 = indicatortools.MetronomeMarkList([
                 ...    ((1, 8), 72),
                 ...    ((1, 8), 84),
                 ...    ])
 
             ::
 
-                >>> tempos_1 == tempos_2
+                >>> marks_1 == marks_2
                 True
 
         Returns none.
         '''
-        superclass = super(TempoList, self)
-        return superclass.append(tempo)
+        superclass = super(MetronomeMarkList, self)
+        return superclass.append(mark)

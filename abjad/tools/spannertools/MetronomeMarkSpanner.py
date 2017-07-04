@@ -7,12 +7,12 @@ from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import new
 
 
-class TempoSpanner(Spanner):
-    r'''Tempo spanner.
+class MetronomeMarkSpanner(Spanner):
+    r'''MetronomeMark spanner.
 
     ..  container:: example
 
-        With tempo indicators only:
+        With metronome marks only:
 
         ::
 
@@ -22,18 +22,18 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[0], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 72)
-            >>> attach(tempo, staff[3], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[5], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[0], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[2], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 72)
+            >>> attach(mark, staff[3], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[5], is_annotation=True)
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(), staff[:])
+            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -132,14 +132,14 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[0], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 72)
-            >>> attach(tempo, staff[3], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[5], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[0], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[2], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 72)
+            >>> attach(mark, staff[3], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[5], is_annotation=True)
 
         ::
 
@@ -148,7 +148,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(), staff[:])
+            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -273,14 +273,14 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[0], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 72)
-            >>> attach(tempo, staff[3], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[5], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[0], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[2], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 72)
+            >>> attach(mark, staff[3], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[5], is_annotation=True)
 
         ::
 
@@ -289,7 +289,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(), staff[:])
+            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -414,14 +414,14 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[0], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 72)
-            >>> attach(tempo, staff[3], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[5], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[0], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[2], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 72)
+            >>> attach(mark, staff[3], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[5], is_annotation=True)
 
         ::
 
@@ -432,7 +432,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(), staff[:])
+            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -581,12 +581,12 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 72)
-            >>> attach(tempo, staff[3], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[5], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[2], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 72)
+            >>> attach(mark, staff[3], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[5], is_annotation=True)
 
         ::
 
@@ -595,7 +595,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(), staff[:])
+            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -709,12 +709,12 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 72)
-            >>> attach(tempo, staff[3], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[5], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[2], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 72)
+            >>> attach(mark, staff[3], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[5], is_annotation=True)
 
         ::
 
@@ -723,7 +723,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(), staff[:])
+            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -837,12 +837,12 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[0], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 120)
-            >>> attach(tempo, staff[5], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[0], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[2], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 120)
+            >>> attach(mark, staff[5], is_annotation=True)
 
         ::
 
@@ -851,10 +851,10 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo_spanner = spannertools.TempoSpanner(
+            >>> spanner = spannertools.MetronomeMarkSpanner(
             ...     start_with_parenthesized_tempo=True,
             ...     )
-            >>> attach(tempo_spanner, staff[:])
+            >>> attach(spanner, staff[:])
 
         ::
 
@@ -985,12 +985,12 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[0], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[5], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[0], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[2], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[5], is_annotation=True)
 
         ::
 
@@ -999,10 +999,10 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo_spanner = spannertools.TempoSpanner(
+            >>> spanner = spannertools.MetronomeMarkSpanner(
             ...     start_with_parenthesized_tempo=True,
             ...     )
-            >>> attach(tempo_spanner, staff[:])
+            >>> attach(spanner, staff[:])
 
         ::
 
@@ -1135,10 +1135,10 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[6], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[2], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[6], is_annotation=True)
 
         ::
 
@@ -1147,7 +1147,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(), staff[:])
+            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -1247,10 +1247,10 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(1, 4), 90)
-            >>> attach(tempo, staff[2], is_annotation=True)
-            >>> tempo = Tempo(Duration(1, 4), 60)
-            >>> attach(tempo, staff[6], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 90)
+            >>> attach(mark, staff[2], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(1, 4), 60)
+            >>> attach(mark, staff[6], is_annotation=True)
 
         ::
 
@@ -1259,7 +1259,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(), staff[:])
+            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -1357,10 +1357,10 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(3, 4), 90)
-            >>> attach(tempo, staff[0], is_annotation=True)
-            >>> tempo = Tempo(Duration(3, 4), 60)
-            >>> attach(tempo, staff[3], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(3, 4), 90)
+            >>> attach(mark, staff[0], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(3, 4), 60)
+            >>> attach(mark, staff[3], is_annotation=True)
             >>> metric_modulation = indicatortools.MetricModulation(
             ...     left_rhythm=Note('c4.'),
             ...     right_rhythm=Note('c4'),
@@ -1369,7 +1369,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(), staff[:])
+            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -1510,22 +1510,22 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> tempo = Tempo(Duration(3, 4), 90)
-            >>> attach(tempo, staff[0], is_annotation=True)
-            >>> tempo = Tempo(Duration(3, 4), 60)
-            >>> attach(tempo, staff[3], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(3, 4), 90)
+            >>> attach(mark, staff[0], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(3, 4), 60)
+            >>> attach(mark, staff[3], is_annotation=True)
             >>> metric_modulation = indicatortools.MetricModulation(
             ...     left_rhythm=Note('c4.'),
             ...     right_rhythm=Note('c4'),
             ...     )
             >>> attach(metric_modulation, staff[3], is_annotation=True)
             >>> attach(Accelerando(), staff[3], is_annotation=True)
-            >>> tempo = Tempo(Duration(3, 4), 90)
-            >>> attach(tempo, staff[-1], is_annotation=True)
+            >>> mark = MetronomeMark(Duration(3, 4), 90)
+            >>> attach(mark, staff[-1], is_annotation=True)
 
         ::
 
-            >>> attach(spannertools.TempoSpanner(), staff[:])
+            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -1753,7 +1753,7 @@ class TempoSpanner(Spanner):
     def _get_annotations(self, leaf):
         inspector = inspect_(leaf)
         tempo = None
-        prototype = indicatortools.Tempo,
+        prototype = indicatortools.MetronomeMark,
         if inspector.has_indicator(prototype):
             tempo = inspector.get_indicator(prototype)
         tempo_trend = None
@@ -2054,7 +2054,7 @@ class TempoSpanner(Spanner):
 
     @property
     def left_broken_padding(self):
-        r'''Gets left broken padding of tempo spanner.
+        r'''Gets left broken padding of metronome mark spanner.
 
         ..  container:: example
 
@@ -2070,10 +2070,10 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> attach(tempo, staff[2], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff[6], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> attach(mark, staff[2], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff[6], is_annotation=True)
 
             ::
 
@@ -2082,7 +2082,7 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> attach(spannertools.TempoSpanner(), staff[:])
+                >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
             ::
 
@@ -2184,10 +2184,10 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> attach(tempo, staff[2], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff[6], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> attach(mark, staff[2], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff[6], is_annotation=True)
 
             ::
 
@@ -2196,10 +2196,10 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> tempo_spanner = spannertools.TempoSpanner(
+                >>> spanner = spannertools.MetronomeMarkSpanner(
                 ...     left_broken_padding=4,
                 ...     )
-                >>> attach(tempo_spanner, staff[:])
+                >>> attach(spanner, staff[:])
 
             ::
 
@@ -2291,7 +2291,7 @@ class TempoSpanner(Spanner):
 
     @property
     def left_broken_text(self):
-        r'''Gets left broken text of tempo spanner.
+        r'''Gets left broken text of metronome mark spanner.
 
         ..  container:: example
 
@@ -2307,10 +2307,10 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> attach(tempo, staff[2], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff[6], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> attach(mark, staff[2], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff[6], is_annotation=True)
 
             ::
 
@@ -2319,7 +2319,7 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> attach(spannertools.TempoSpanner(), staff[:])
+                >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
 
             ::
 
@@ -2422,10 +2422,10 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> attach(tempo, staff[2], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff[6], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> attach(mark, staff[2], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff[6], is_annotation=True)
 
             ::
 
@@ -2435,10 +2435,10 @@ class TempoSpanner(Spanner):
             ::
 
                 >>> null_markup = Markup.null(direction=None)
-                >>> tempo_spanner = spannertools.TempoSpanner(
+                >>> spanner = spannertools.MetronomeMarkSpanner(
                 ...     left_broken_text=null_markup,
                 ...     )
-                >>> attach(tempo_spanner, staff[:])
+                >>> attach(spanner, staff[:])
 
             ::
 
@@ -2539,12 +2539,12 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff[0], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> attach(tempo, staff[2], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 120)
-                >>> attach(tempo, staff[5], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff[0], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> attach(mark, staff[2], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 120)
+                >>> attach(mark, staff[5], is_annotation=True)
 
             ::
 
@@ -2553,10 +2553,10 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> tempo_spanner = spannertools.TempoSpanner(
+                >>> spanner = spannertools.MetronomeMarkSpanner(
                 ...     start_with_parenthesized_tempo=False,
                 ...     )
-                >>> attach(tempo_spanner, staff[:])
+                >>> attach(spanner, staff[:])
 
             ::
 
@@ -2670,12 +2670,12 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff[0], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> attach(tempo, staff[2], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 120)
-                >>> attach(tempo, staff[5], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 60)
+                >>> attach(mark, staff[0], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> attach(mark, staff[2], is_annotation=True)
+                >>> mark = MetronomeMark(Duration(1, 4), 120)
+                >>> attach(mark, staff[5], is_annotation=True)
 
             ::
 
@@ -2684,10 +2684,10 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> tempo_spanner = spannertools.TempoSpanner(
+                >>> spanner = spannertools.MetronomeMarkSpanner(
                 ...     start_with_parenthesized_tempo=True,
                 ...     )
-                >>> attach(tempo_spanner, staff[:])
+                >>> attach(spanner, staff[:])
 
             ::
 

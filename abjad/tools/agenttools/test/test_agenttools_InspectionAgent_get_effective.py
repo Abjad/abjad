@@ -241,14 +241,14 @@ def test_agenttools_InspectionAgent_get_effective_12():
 
 
 def test_agenttools_InspectionAgent_get_effective_13():
-    r'''Attaches tempo to staff.
+    r'''Attaches metronome mark to staff.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    tempo_1 = Tempo(Duration(1, 8), 38)
-    attach(tempo_1, staff, scope=Staff)
-    tempo_2 = Tempo(Duration(1, 8), 42)
-    attach(tempo_2, staff[2], scope=Staff)
+    mark_1 = MetronomeMark(Duration(1, 8), 38)
+    attach(mark_1, staff, scope=Staff)
+    mark_2 = MetronomeMark(Duration(1, 8), 42)
+    attach(mark_2, staff[2], scope=Staff)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -265,19 +265,19 @@ def test_agenttools_InspectionAgent_get_effective_13():
 
     assert inspect_(staff).is_well_formed()
 
-    assert inspect_(staff[0]).get_effective(Tempo) == tempo_1
-    assert inspect_(staff[1]).get_effective(Tempo) == tempo_1
-    assert inspect_(staff[2]).get_effective(Tempo) == tempo_2
-    assert inspect_(staff[3]).get_effective(Tempo) == tempo_2
+    assert inspect_(staff[0]).get_effective(MetronomeMark) == mark_1
+    assert inspect_(staff[1]).get_effective(MetronomeMark) == mark_1
+    assert inspect_(staff[2]).get_effective(MetronomeMark) == mark_2
+    assert inspect_(staff[3]).get_effective(MetronomeMark) == mark_2
 
 
 def test_agenttools_InspectionAgent_get_effective_14():
-    r'''Attaches tempo to chord in staff.
+    r'''Attaches metronome mark to chord in staff.
     '''
 
     staff = Staff([Chord([2, 3, 4], (1, 4))])
-    tempo = Tempo(Duration(1, 8), 38)
-    attach(tempo, staff[0], scope=Staff)
+    mark = MetronomeMark(Duration(1, 8), 38)
+    attach(mark, staff[0], scope=Staff)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -292,8 +292,8 @@ def test_agenttools_InspectionAgent_get_effective_14():
 def test_agenttools_InspectionAgent_get_effective_15():
 
     staff = Staff([Note("c'4")])
-    tempo = Tempo(Duration(1, 8), 38)
-    attach(tempo, staff[0], scope=Staff)
+    mark = MetronomeMark(Duration(1, 8), 38)
+    attach(mark, staff[0], scope=Staff)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -306,13 +306,13 @@ def test_agenttools_InspectionAgent_get_effective_15():
 
 
 def test_agenttools_InspectionAgent_get_effective_16():
-    r'''Detaches tempo.
+    r'''Detaches metronome mark.
     '''
 
     staff = Staff([Note("c'4")])
-    tempo = Tempo(Duration(1, 8), 38)
-    attach(tempo, staff[0], scope=Staff)
-    detach(tempo, staff[0])
+    mark = MetronomeMark(Duration(1, 8), 38)
+    attach(mark, staff[0], scope=Staff)
+    detach(mark, staff[0])
 
     assert format(staff) == stringtools.normalize(
         r'''

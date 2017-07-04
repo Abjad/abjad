@@ -3953,7 +3953,7 @@ class LabelAgent(abctools.AbjadObject):
 
                     >>> staff = Staff(r"c'2 d' e' f'")
                     >>> score = Score([staff])
-                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+                    >>> attach(MetronomeMark(Duration(1, 4), 60), staff[0])
                     >>> label(staff).with_start_offsets(clock_time=True)
                     >>> override(staff).text_script.staff_padding = 4
                     >>> override(staff).tuplet_bracket.staff_padding = 0
@@ -3981,7 +3981,7 @@ class LabelAgent(abctools.AbjadObject):
 
                     >>> staff = Staff(r"c'2 d' e' f'")
                     >>> score = Score([staff])
-                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+                    >>> attach(MetronomeMark(Duration(1, 4), 60), staff[0])
                     >>> expression = label().with_start_offsets(clock_time=True)
                     >>> expression(staff)
                     >>> override(staff).text_script.staff_padding = 4
@@ -4015,7 +4015,7 @@ class LabelAgent(abctools.AbjadObject):
 
                     >>> staff = Staff(r"c'2 d' e' f'")
                     >>> score = Score([staff])
-                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+                    >>> attach(MetronomeMark(Duration(1, 4), 60), staff[0])
                     >>> label(staff).with_start_offsets(
                     ...     clock_time=True,
                     ...     font_size=-3,
@@ -4066,7 +4066,7 @@ class LabelAgent(abctools.AbjadObject):
 
                     >>> staff = Staff(r"c'2 d' e' f'")
                     >>> score = Score([staff])
-                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+                    >>> attach(MetronomeMark(Duration(1, 4), 60), staff[0])
                     >>> expression = label().with_start_offsets(
                     ...     clock_time=True,
                     ...     font_size=-3,

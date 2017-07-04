@@ -3,8 +3,10 @@ from abjad import *
 
 
 def test_topleveltools_set__01():
-    r'''Works with score tempo interface.
-    Does not include LilyPond \set command.'''
+    r'''Works with score metronome mark interface.
+
+    Does not include LilyPond \set command.
+    '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     score = Score([staff])
@@ -27,7 +29,9 @@ def test_topleveltools_set__01():
 
 
 def test_topleveltools_set__02():
-    r'''Works with leaf tempo interface. Includes LilyPond \set command.
+    r'''Works with leaf metronome mark interface.
+
+    Includes LilyPond \set command.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
