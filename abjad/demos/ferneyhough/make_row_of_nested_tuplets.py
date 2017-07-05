@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.demos.ferneyhough.make_nested_tuplet import make_nested_tuplet
+import abjad
 
 
 def make_row_of_nested_tuplets(
@@ -14,7 +14,7 @@ def make_row_of_nested_tuplets(
     row_of_nested_tuplets = []
     for n in range(column_count):
         inner_tuplet_subdivision_count = n + 1
-        nested_tuplet = make_nested_tuplet(
+        nested_tuplet = abjad.demos.ferneyhough.make_nested_tuplet(
             tuplet_duration,
             outer_tuplet_proportions,
             inner_tuplet_subdivision_count,

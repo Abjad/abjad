@@ -81,8 +81,7 @@ class StorageFormatAgent(AbjadValueObject):
                 as_storage_format=as_storage_format,
                 )
             return list(pieces)
-        elif not as_storage_format and (
-            hasattr(self._client, '_repr_specification') or
+        elif (not as_storage_format and 
             hasattr(self._client, '_get_format_specification')
             ):
             pieces = self._format_specced_object(
@@ -303,29 +302,19 @@ class StorageFormatAgent(AbjadValueObject):
                 kwargs_names = spec.storage_format_kwargs_names
                 text = spec.storage_format_text
         else:
-            spec = getattr(self._client, '_repr_specification', None)
-            if spec:
-                #print('REPR', type(self._client), getattr(self._client, 'name', None))
-                via = '_repr_specification'
-                args_values = spec.positional_argument_values
-                is_bracketed = spec.is_bracketed
-                is_indented = spec.is_indented
-                kwargs_names = spec.keyword_argument_names
-                text = spec.repr_text
-            else:
-                spec = self.format_specification
-                via = '_get_format_specification()'
-                args_values = spec.repr_args_values
-                if args_values is None:
-                    args_values = spec.storage_format_args_values
-                is_bracketed = spec.repr_is_bracketed
-                is_indented = spec.repr_is_indented
-                kwargs_names = spec.repr_kwargs_names
-                if kwargs_names is None:
-                    kwargs_names = spec.storage_format_kwargs_names
-                text = spec.repr_text
-                if text is None:
-                    text = spec.storage_format_text
+            spec = self.format_specification
+            via = '_get_format_specification()'
+            args_values = spec.repr_args_values
+            if args_values is None:
+                args_values = spec.storage_format_args_values
+            is_bracketed = spec.repr_is_bracketed
+            is_indented = spec.repr_is_indented
+            kwargs_names = spec.repr_kwargs_names
+            if kwargs_names is None:
+                kwargs_names = spec.storage_format_kwargs_names
+            text = spec.repr_text
+            if text is None:
+                text = spec.storage_format_text
         if kwargs_names is None:
             kwargs_names = self.signature_keyword_names
         if args_values is None:
@@ -592,11 +581,7 @@ class StorageFormatAgent(AbjadValueObject):
         return tuple(sorted(import_statements))
 
     def get_repr_format(self):
-        assert (
-            '_repr_specification' in dir(self._client) or
-            hasattr(self._client, '_repr_specification') or
-            hasattr(self._client, '_get_format_specification')
-            )
+        assert hasattr(self._client, '_get_format_specification')
         pieces = self._format_specced_object(
             as_storage_format=False,
             )
@@ -606,8 +591,8 @@ class StorageFormatAgent(AbjadValueObject):
         from abjad.tools import systemtools
         names = self.specification.repr_kwargs_names
         if names is None:
-            specification = getattr(self.client, '_repr_specification',
-                systemtools.StorageFormatSpecification(self.client))
+            specification = systemtools.StorageFormatSpecification(
+                self.client)
             names = specification.keyword_argument_names or ()
         keyword_dict = {}
         for name in names:
@@ -618,8 +603,8 @@ class StorageFormatAgent(AbjadValueObject):
         from abjad.tools import systemtools
         values = self.specification.repr_args_values
         if values is None:
-            specification = getattr(self.client, '_repr_specification',
-                systemtools.StorageFormatSpecification(self.client))
+            specification = systemtools.StorageFormatSpecification(
+                self.client)
             values = specification.positional_argument_values or ()
         return tuple(values)
 

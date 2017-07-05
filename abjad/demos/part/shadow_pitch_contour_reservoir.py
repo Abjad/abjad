@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import pitchtools
+import abjad
 
 
 def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
@@ -7,13 +7,13 @@ def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
     '''
 
     shadow_pitch_lookup = {
-        pitchtools.NamedPitchClass('a'): -5, # add a P4 below
-        pitchtools.NamedPitchClass('g'): -3, # add a m3 below
-        pitchtools.NamedPitchClass('f'): -1, # add a m2 below
-        pitchtools.NamedPitchClass('e'): -4, # add a M3 below
-        pitchtools.NamedPitchClass('d'): -2, # add a M2 below
-        pitchtools.NamedPitchClass('c'): -3, # add a m3 below
-        pitchtools.NamedPitchClass('b'): -2, # add a M2 below
+        abjad.NamedPitchClass('a'): -5, # add a P4 below
+        abjad.NamedPitchClass('g'): -3, # add a m3 below
+        abjad.NamedPitchClass('f'): -1, # add a m2 below
+        abjad.NamedPitchClass('e'): -4, # add a M3 below
+        abjad.NamedPitchClass('d'): -2, # add a M2 below
+        abjad.NamedPitchClass('c'): -3, # add a m3 below
+        abjad.NamedPitchClass('b'): -2, # add a M2 below
     }
 
     shadowed_reservoir = {}

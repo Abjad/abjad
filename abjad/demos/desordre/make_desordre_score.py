@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad.tools import indicatortools
-from abjad.tools import scoretools
-from abjad.tools.topleveltools import attach
 
 
 def make_desordre_score(pitches):
@@ -10,7 +7,7 @@ def make_desordre_score(pitches):
     '''
 
     assert len(pitches) == 2
-    staff_group = scoretools.StaffGroup()
+    staff_group = abjad.StaffGroup()
     staff_group.context_name = 'PianoStaff'
 
     # build the music
@@ -19,12 +16,12 @@ def make_desordre_score(pitches):
         staff_group.append(staff)
 
     # set clef and key signature to left hand staff
-    clef = indicatortools.Clef('bass')
-    attach(clef, staff_group[1])
-    key_signature = indicatortools.KeySignature('b', 'major')
-    attach(key_signature, staff_group[1])
+    clef = abjad.Clef('bass')
+    abjad.attach(clef, staff_group[1])
+    key_signature = abjad.KeySignature('b', 'major')
+    abjad.attach(key_signature, staff_group[1])
 
     # wrap the piano staff in a score
-    score = scoretools.Score([staff_group])
+    score = abjad.Score([staff_group])
 
     return score

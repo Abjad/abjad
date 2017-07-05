@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad.tools import lilypondfiletools
 
 
 def make_lilypond_file(tuplet_duration, row_count, column_count):
@@ -13,6 +12,6 @@ def make_lilypond_file(tuplet_duration, row_count, column_count):
         column_count,
         )
     abjad.demos.ferneyhough.configure_score(score)
-    lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+    lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(score)
     abjad.demos.ferneyhough.configure_lilypond_file(lilypond_file)
     return lilypond_file

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import indicatortools
-from abjad.tools.topleveltools import attach
+import abjad
 
 
 def apply_rehearsal_marks(score):
@@ -15,5 +14,5 @@ def apply_rehearsal_marks(score):
         ]
 
     for measure_index in measure_indices:
-        command = indicatortools.LilyPondCommand(r'mark \default', 'before')
-        attach(command, bell_voice[measure_index])
+        command = abjad.LilyPondCommand(r'mark \default', 'before')
+        abjad.attach(command, bell_voice[measure_index])

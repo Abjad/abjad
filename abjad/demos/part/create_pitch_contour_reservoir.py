@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import pitchtools
-from abjad.tools import tonalanalysistools
+import abjad
 
 
 def create_pitch_contour_reservoir():
     r'''Creates pitch contour reservoir.
     '''
 
-    scale = tonalanalysistools.Scale('a', 'minor')
+    scale = abjad.tonalanalysistools.Scale('a', 'minor')
     pitch_ranges = {
-        'First Violin': pitchtools.PitchRange('[C4, A6]'),
-        'Second Violin': pitchtools.PitchRange('[A3, A5]'),
-        'Viola': pitchtools.PitchRange('[E3, A4]'),
-        'Cello': pitchtools.PitchRange('[A2, A3]'),
-        'Bass': pitchtools.PitchRange('[C3, A3]'),
+        'First Violin': abjad.PitchRange('[C4, A6]'),
+        'Second Violin': abjad.PitchRange('[A3, A5]'),
+        'Viola': abjad.PitchRange('[E3, A4]'),
+        'Cello': abjad.PitchRange('[A2, A3]'),
+        'Bass': abjad.PitchRange('[C3, A3]'),
     }
 
     reservoir = {}

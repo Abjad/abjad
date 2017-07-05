@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad.tools import lilypondfiletools
 
 
 def make_part_lilypond_file():
@@ -17,6 +16,6 @@ def make_part_lilypond_file():
     abjad.demos.part.apply_rehearsal_marks(score)
     abjad.demos.part.apply_final_bar_lines(score)
     abjad.demos.part.configure_score(score)
-    lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+    lilypond_file = abjad.LilyPondFile.new(score)
     abjad.demos.part.configure_lilypond_file(lilypond_file)
     return lilypond_file

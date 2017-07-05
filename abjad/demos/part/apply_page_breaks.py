@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import indicatortools
-from abjad.tools.topleveltools import attach
+import abjad
 
 
 def apply_page_breaks(score):
@@ -15,5 +14,5 @@ def apply_page_breaks(score):
         ]
 
     for measure_index in measure_indices:
-        command = indicatortools.LilyPondCommand('break', 'after')
-        attach(command, bell_voice[measure_index])
+        command = abjad.LilyPondCommand('break', 'after')
+        abjad.attach(command, bell_voice[measure_index])

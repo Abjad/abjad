@@ -1,51 +1,46 @@
 # -*- coding: utf-8 -*-
+import abjad
 import math
-from abjad.tools import indicatortools
-from abjad.tools import scoretools
-from abjad.tools import spannertools
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import select
 
 
 def make_desordre_cell(pitches):
-    '''The function constructs and returns a *Désordre cell*.
-    `pitches` is a list of numbers or, more generally, pitch tokens.
+    '''Makes a Désordre cell.
     '''
 
-    notes = [scoretools.Note(pitch, (1, 8)) for pitch in pitches]
-    beam = spannertools.Beam()
-    attach(beam, notes)
-    slur = spannertools.Slur()
-    attach(slur, notes)
-    clef = indicatortools.Dynamic('f')
-    attach(clef, notes[0])
-    dynamic = indicatortools.Dynamic('p')
-    attach(dynamic, notes[1])
+    notes = [abjad.Note(pitch, (1, 8)) for pitch in pitches]
+    beam = abjad.Beam()
+    abjad.attach(beam, notes)
+    slur = abjad.Slur()
+    abjad.attach(slur, notes)
+    clef = abjad.Dynamic('f')
+    abjad.attach(clef, notes[0])
+    dynamic = abjad.Dynamic('p')
+    abjad.attach(dynamic, notes[1])
 
     # make the lower voice
-    lower_voice = scoretools.Voice(notes)
+    lower_voice = abjad.Voice(notes)
     lower_voice.name = 'RH Lower Voice'
-    command = indicatortools.LilyPondCommand('voiceTwo')
-    attach(command, lower_voice)
+    command = abjad.LilyPondCommand('voiceTwo')
+    abjad.attach(command, lower_voice)
     n = int(math.ceil(len(pitches) / 2.))
-    chord = scoretools.Chord([pitches[0], pitches[0] + 12], (n, 8))
-    articulation = indicatortools.Articulation('>')
-    attach(articulation, chord)
+    chord = abjad.Chord([pitches[0], pitches[0] + 12], (n, 8))
+    articulation = abjad.Articulation('>')
+    abjad.attach(articulation, chord)
 
     # make the upper voice
-    upper_voice = scoretools.Voice([chord])
+    upper_voice = abjad.Voice([chord])
     upper_voice.name = 'RH Upper Voice'
-    command = indicatortools.LilyPondCommand('voiceOne')
-    attach(command, upper_voice)
+    command = abjad.LilyPondCommand('voiceOne')
+    abjad.attach(command, upper_voice)
 
     # combine them together
-    container = scoretools.Container([lower_voice, upper_voice])
+    container = abjad.Container([lower_voice, upper_voice])
     container.is_simultaneous = True
 
     # make all 1/8 beats breakable
-    leaves = select(lower_voice).by_leaf()
+    leaves = abjad.select(lower_voice).by_leaf()
     for leaf in leaves[:-1]:
-        bar_line = indicatortools.BarLine('')
-        attach(bar_line, leaf)
+        bar_line = abjad.BarLine('')
+        abjad.attach(bar_line, leaf)
 
     return container
