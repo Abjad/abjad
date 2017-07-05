@@ -16,7 +16,7 @@ class KeySignature(AbjadValueObject):
             >>> attach(key_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -38,7 +38,7 @@ class KeySignature(AbjadValueObject):
             >>> attach(key_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

@@ -19,7 +19,7 @@ class TrillSpanner(Spanner):
             >>> attach(trill, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -40,7 +40,7 @@ class TrillSpanner(Spanner):
             >>> attach(trill, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -161,7 +161,7 @@ class TrillSpanner(Spanner):
                 >>> attach(trill, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -185,7 +185,7 @@ class TrillSpanner(Spanner):
                 >>> attach(trill, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -223,7 +223,7 @@ class TrillSpanner(Spanner):
                 >>> attach(trill, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -259,7 +259,7 @@ class TrillSpanner(Spanner):
                 >>> attach(trill, staff[:2])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -285,7 +285,7 @@ class TrillSpanner(Spanner):
                 >>> attach(trill, staff[:2])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -326,7 +326,7 @@ class TrillSpanner(Spanner):
                 >>> attach(trill, staff[:2])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -352,7 +352,7 @@ class TrillSpanner(Spanner):
                 >>> attach(trill, staff[:2])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

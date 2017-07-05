@@ -10,7 +10,7 @@ class StemTremoloSpanner(Spanner):
     ::
 
         >>> staff = Staff("c'32 d'16. e'8 f'4. g'4.")
-        >>> tremolo_spanner = spannertools.StemTremoloSpanner()
+        >>> tremolo_spanner = StemTremoloSpanner()
         >>> attach(tremolo_spanner, staff[:])
         >>> f(staff)
         \new Staff {

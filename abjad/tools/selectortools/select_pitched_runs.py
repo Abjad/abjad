@@ -33,7 +33,7 @@ def select_pitched_runs(argument=None):
             >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {

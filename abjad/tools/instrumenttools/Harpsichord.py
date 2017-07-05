@@ -19,7 +19,7 @@ class Harpsichord(Instrument):
         >>> attach(Clef(name='bass'), lower_staff)
         >>> show(staff_group) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff_group)
         \new PianoStaff <<

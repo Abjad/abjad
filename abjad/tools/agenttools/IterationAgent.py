@@ -26,7 +26,7 @@ class IterationAgent(abctools.AbjadObject):
                 >>> staff = Staff("c'4 e'4 d'4 f'4")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -73,7 +73,7 @@ class IterationAgent(abctools.AbjadObject):
                 >>> staff = Staff("c'4 e'4 d'4 f'4")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -239,7 +239,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.append(Measure((2, 8), "g'8 a'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -302,7 +302,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.append(Measure((2, 8), "g'8 a'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -393,7 +393,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.append(Measure((2, 8), "g'8 a'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -465,7 +465,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -539,7 +539,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(after_grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -612,7 +612,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.append(Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -671,7 +671,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.append(Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -821,7 +821,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.append(Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -884,7 +884,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.append(Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -959,7 +959,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.append(Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1030,7 +1030,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(after_grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -1101,7 +1101,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.append(Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1160,7 +1160,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.append(Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1232,7 +1232,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(Clef('bass'), score[1])
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -1344,7 +1344,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff(string)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1396,7 +1396,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff(string)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1450,7 +1450,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff(string)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1504,7 +1504,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff(string)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1561,7 +1561,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff("{ c'1 ~ } { c'2 d'2 ~ } { d'1 }")
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1636,7 +1636,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -1699,7 +1699,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(after_grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -1770,7 +1770,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(after_grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -1936,7 +1936,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2069,7 +2069,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2154,7 +2154,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2236,7 +2236,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2319,7 +2319,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2457,7 +2457,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(beam, staff[:])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2506,7 +2506,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(beam, staff[:])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2689,7 +2689,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(clef, score[1])
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -2768,7 +2768,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> chord_2 = Chord([17, 19], (1, 4))
                     >>> staff = Staff([chord_1, chord_2])
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2854,7 +2854,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2915,7 +2915,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -3045,7 +3045,7 @@ class IterationAgent(abctools.AbjadObject):
                 >>> staff.is_simultaneous = True
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff <<
@@ -3093,7 +3093,7 @@ class IterationAgent(abctools.AbjadObject):
                 >>> staff.is_simultaneous = True
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff <<
@@ -3163,7 +3163,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(Beam(), staff[:])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -3216,7 +3216,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(Beam(), staff[:])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -3293,7 +3293,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score.append(Staff("g'8 a'8 b'8 c''8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3358,7 +3358,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score.append(Staff("g'8 a'8 b'8 c''8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3427,7 +3427,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -3573,7 +3573,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3642,7 +3642,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3811,7 +3811,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score.append(Staff("g'8 a'8 b'8 c''8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3869,7 +3869,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score.append(Staff("g'8 a'8 b'8 c''8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3955,7 +3955,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> staff = Staff(string)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -4058,7 +4058,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score.append(staff_group)
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4155,7 +4155,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score.append(staff_group)
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4346,7 +4346,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4426,7 +4426,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4516,7 +4516,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> attach(after_grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {

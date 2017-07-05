@@ -20,7 +20,7 @@ class LilyPondLiteral(AbjadValueObject):
             >>> attach(literal, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

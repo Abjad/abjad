@@ -18,7 +18,7 @@ class Repeat(AbjadValueObject):
             >>> score = Score([staff])
             >>> show(score)  # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -46,7 +46,7 @@ class Repeat(AbjadValueObject):
             >>> score = Score([staff])
             >>> show(score)  # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<

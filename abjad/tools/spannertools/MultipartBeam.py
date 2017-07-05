@@ -12,12 +12,12 @@ class MultipartBeam(Beam):
         ::
 
             >>> staff = Staff("c'8 d'8 e'4 f'8 g'8 r4")
-            >>> beam = spannertools.MultipartBeam()
+            >>> beam = MultipartBeam()
             >>> attach(beam, staff[:])
             >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -36,12 +36,12 @@ class MultipartBeam(Beam):
         ::
 
             >>> staff = Staff("c'8 r8 d'8 r8 f'8 g'8 r4")
-            >>> beam = spannertools.MultipartBeam()
+            >>> beam = MultipartBeam()
             >>> attach(beam, staff[:])
             >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -167,7 +167,7 @@ class MultipartBeam(Beam):
 
                 >>> staff = Staff("c'8 d'8 r8 f'8 g'8 r4.")
                 >>> set_(staff).auto_beaming = False
-                >>> beam = spannertools.MultipartBeam()
+                >>> beam = MultipartBeam()
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -197,7 +197,7 @@ class MultipartBeam(Beam):
 
                 >>> staff = Staff("c'8 d'8 r8 f'8 g'8 r4.")
                 >>> set_(staff).auto_beaming = False
-                >>> beam = spannertools.MultipartBeam(beam_rests=True)
+                >>> beam = MultipartBeam(beam_rests=True)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -227,7 +227,7 @@ class MultipartBeam(Beam):
 
                 >>> staff = Staff("c'8 d'8 r4. f'8 g'8 r8")
                 >>> set_(staff).auto_beaming = False
-                >>> beam = spannertools.MultipartBeam(beam_rests=True)
+                >>> beam = MultipartBeam(beam_rests=True)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -257,7 +257,7 @@ class MultipartBeam(Beam):
 
                 >>> staff = Staff("c'8 d'8 s4. f'8 g'8 s8")
                 >>> set_(staff).auto_beaming = False
-                >>> beam = spannertools.MultipartBeam(beam_rests=True)
+                >>> beam = MultipartBeam(beam_rests=True)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 

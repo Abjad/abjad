@@ -40,7 +40,7 @@ def make_rests(
         ...     tie_parts=True,
         ...     ))
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(voice)
         \new Voice {

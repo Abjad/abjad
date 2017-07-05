@@ -15,7 +15,7 @@ class SopraninoSaxophone(Instrument):
         >>> attach(sopranino_saxophone, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

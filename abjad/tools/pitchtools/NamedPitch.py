@@ -19,7 +19,7 @@ class NamedPitch(Pitch):
             >>> pitch = NamedPitch("cs''")
             >>> show(pitch) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> staff = pitch.__illustrate__()[Staff]
             >>> f(staff)
@@ -39,7 +39,7 @@ class NamedPitch(Pitch):
             >>> pitch = NamedPitch('C#5')
             >>> show(pitch) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> staff = pitch.__illustrate__()[Staff]
             >>> f(staff)
@@ -59,7 +59,7 @@ class NamedPitch(Pitch):
             >>> pitch = NamedPitch('C#5', arrow=Up)
             >>> show(pitch) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> staff = pitch.__illustrate__()[Staff]
             >>> f(staff)
@@ -762,7 +762,7 @@ class NamedPitch(Pitch):
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -823,7 +823,7 @@ class NamedPitch(Pitch):
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -881,7 +881,7 @@ class NamedPitch(Pitch):
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -942,7 +942,7 @@ class NamedPitch(Pitch):
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1793,7 +1793,7 @@ class NamedPitch(Pitch):
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1835,7 +1835,7 @@ class NamedPitch(Pitch):
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1878,7 +1878,7 @@ class NamedPitch(Pitch):
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {

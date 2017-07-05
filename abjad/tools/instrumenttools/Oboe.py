@@ -15,7 +15,7 @@ class Oboe(Instrument):
         >>> attach(oboe, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

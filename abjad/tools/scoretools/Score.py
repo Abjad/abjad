@@ -17,7 +17,7 @@ class Score(Context):
         >>> score = Score([staff_1, staff_2])
         >>> show(score) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(score)
         \new Score <<
@@ -70,7 +70,7 @@ class Score(Context):
             >>> staff = Staff("c'4 d'4 e'4 f'4")
             >>> score = Score([staff])
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -91,7 +91,7 @@ class Score(Context):
             >>> score.add_final_bar_line()
             BarLine('|.')
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -147,7 +147,7 @@ class Score(Context):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score <<
@@ -186,7 +186,7 @@ class Score(Context):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score <<

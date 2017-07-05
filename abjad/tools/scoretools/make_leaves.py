@@ -34,7 +34,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -56,7 +56,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -77,7 +77,7 @@ def make_leaves(
             >>> staff.context_name = 'RhythmicStaff'
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new RhythmicStaff {
@@ -99,7 +99,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -121,7 +121,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -145,7 +145,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -168,7 +168,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -191,7 +191,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -217,7 +217,7 @@ def make_leaves(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -245,7 +245,7 @@ def make_leaves(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -273,7 +273,7 @@ def make_leaves(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -306,7 +306,7 @@ def make_leaves(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -337,7 +337,7 @@ def make_leaves(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -369,7 +369,7 @@ def make_leaves(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -408,7 +408,7 @@ def make_leaves(
             >>> staff.context_name = 'RhythmicStaff'
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new RhythmicStaff {
@@ -438,7 +438,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -461,7 +461,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

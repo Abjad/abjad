@@ -44,7 +44,7 @@ class Arrow(LineSegment):
             >>> override(staff).text_spanner.staff_padding = 2
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -161,7 +161,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -222,7 +222,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -281,7 +281,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -352,7 +352,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -412,7 +412,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -470,7 +470,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -540,7 +540,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -604,7 +604,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -667,7 +667,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -776,7 +776,7 @@ class Arrow(LineSegment):
                     >>> override(staff).text_spanner.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -876,7 +876,7 @@ class Arrow(LineSegment):
                     >>> override(staff).text_spanner.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -975,7 +975,7 @@ class Arrow(LineSegment):
                     >>> override(staff).text_spanner.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -1068,7 +1068,7 @@ class Arrow(LineSegment):
                     >>> override(staff).text_spanner.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -1140,7 +1140,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1201,7 +1201,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1259,7 +1259,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1317,7 +1317,7 @@ class Arrow(LineSegment):
                 >>> override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {

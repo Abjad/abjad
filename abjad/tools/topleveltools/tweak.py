@@ -16,7 +16,7 @@ def tweak(argument):
             >>> attach(markup, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -40,7 +40,7 @@ def tweak(argument):
             >>> attach(markup_2, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -63,7 +63,7 @@ def tweak(argument):
             >>> attach(markup, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -92,7 +92,7 @@ def tweak(argument):
             >>> attach(markup_2, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -121,7 +121,7 @@ def tweak(argument):
             >>> attach(markup_2, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

@@ -15,7 +15,7 @@ class SopranoVoice(Instrument):
         >>> attach(soprano, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

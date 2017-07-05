@@ -15,7 +15,7 @@ class AltoVoice(Instrument):
         >>> attach(alto, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

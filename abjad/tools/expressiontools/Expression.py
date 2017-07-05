@@ -1602,7 +1602,7 @@ class Expression(AbjadObject):
                 >>> markup = expression.get_markup()
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup)
                 \markup {
@@ -1850,7 +1850,7 @@ class Expression(AbjadObject):
                     >>> staff.append(Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1923,7 +1923,7 @@ class Expression(AbjadObject):
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2014,7 +2014,7 @@ class Expression(AbjadObject):
                 >>> markup = expression('Allegro assai')
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup)
                 \markup {
@@ -2053,7 +2053,7 @@ class Expression(AbjadObject):
                 >>> markup = expression(markups)
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup)
                 ^ \markup {
@@ -2144,7 +2144,7 @@ class Expression(AbjadObject):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,

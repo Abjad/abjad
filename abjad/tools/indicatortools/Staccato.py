@@ -17,7 +17,7 @@ class Staccato(AbjadValueObject):
             >>> attach(staccato, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4 \staccato
@@ -35,7 +35,7 @@ class Staccato(AbjadValueObject):
             >>> attach(Staccato(), staff[7])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

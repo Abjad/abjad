@@ -23,7 +23,7 @@ def graph(
             >>> staff = Staff("c'4 d' e' f'")
             >>> graph(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(staff.__graph__()))
             graphtools.GraphvizGraph(
@@ -245,7 +245,7 @@ def graph(
             >>> rhythm_tree = rhythmtreetools.RhythmTreeParser()(rtm_syntax)[0]
             >>> topleveltools.graph(rhythm_tree) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(rhythm_tree.__graph__()))
             graphtools.GraphvizGraph(

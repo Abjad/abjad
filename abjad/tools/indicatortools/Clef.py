@@ -44,7 +44,7 @@ class Clef(AbjadValueObject):
             >>> attach(clef, staff[7])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

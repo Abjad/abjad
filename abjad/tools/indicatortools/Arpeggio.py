@@ -16,7 +16,7 @@ class Arpeggio(AbjadValueObject):
             >>> attach(arpeggio, chord)
             >>> show(chord) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(chord)
             <c' e' g' c''>4 \arpeggio
@@ -32,7 +32,7 @@ class Arpeggio(AbjadValueObject):
             >>> attach(arpeggio, chord)
             >>> show(chord) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(chord)
             \arpeggioArrowDown

@@ -19,7 +19,7 @@ class Chord(Leaf):
             >>> chord = Chord("<e' cs'' f''>4")
             >>> show(chord) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(chord)
             <e' cs'' f''>4
@@ -365,7 +365,7 @@ class Chord(Leaf):
                 >>> chord.note_heads = "c' d' fs'"
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <c' d' fs'>4
@@ -382,7 +382,7 @@ class Chord(Leaf):
                 >>> chord.note_heads = [16, 17, 19]
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <e'' f'' g''>4
@@ -472,7 +472,7 @@ class Chord(Leaf):
                 >>> chord.written_pitches = "f' b' d''"
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <f' b' d''>4

@@ -61,7 +61,7 @@ def notes_and_chords_are_on_expected_clefs(
             >>> attach(violin, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

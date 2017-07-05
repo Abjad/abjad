@@ -20,7 +20,7 @@ def parse_rtm_syntax(rtm):
 
             >>> show(tuplet) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(tuplet)
             \times 2/3 {
@@ -45,7 +45,7 @@ def parse_rtm_syntax(rtm):
 
             >>> show(tuplet) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(_))
             \tweak text #tuplet-number::calc-fraction-text

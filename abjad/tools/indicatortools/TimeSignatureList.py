@@ -45,7 +45,7 @@ class TimeSignatureList(TypedList):
 
             >>> show(time_signatures) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> lilypond_file = time_signatures.__illustrate__()
             >>> f(lilypond_file[Score])
@@ -88,7 +88,7 @@ class TimeSignatureList(TypedList):
 
                 >>> show(time_signatures) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = time_signatures.__illustrate__()
                 >>> f(lilypond_file[Score])

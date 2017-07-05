@@ -43,7 +43,7 @@ class MarkupCommand(AbjadValueObject):
             >>> attach(markup, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4
@@ -109,7 +109,7 @@ class MarkupCommand(AbjadValueObject):
             >>> attach(markup, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

@@ -11,11 +11,11 @@ class StaffLinesSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.StaffLinesSpanner(lines=1)
+            >>> spanner = StaffLinesSpanner(lines=1)
             >>> attach(spanner, staff[1:3])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -121,14 +121,14 @@ class StaffLinesSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.StaffLinesSpanner(
+            >>> spanner = StaffLinesSpanner(
             ...     lines=1,
             ...     forbid_restarting=True,
             ...     )
             >>> attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -155,7 +155,7 @@ class StaffLinesSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.StaffLinesSpanner(lines=1)
+            >>> spanner = StaffLinesSpanner(lines=1)
             >>> attach(spanner, staff[1:3])
             >>> show(staff) # doctest: +SKIP
 

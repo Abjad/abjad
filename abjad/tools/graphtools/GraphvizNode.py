@@ -60,7 +60,7 @@ class GraphvizNode(GraphvizMixin, TreeContainer):
             >>> edge = node_one.attach(node_two)
             >>> graph(my_graph)  # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(str(my_graph))
             digraph G {

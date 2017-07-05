@@ -35,7 +35,7 @@ class PitchRangeList(TypedList):
 
             >>> show(ranges) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> lilypond_file = ranges.__illustrate__()
             >>> f(lilypond_file[Score])
@@ -89,7 +89,7 @@ class PitchRangeList(TypedList):
 
                 >>> show(ranges) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = ranges.__illustrate__()
                 >>> f(lilypond_file[Score])

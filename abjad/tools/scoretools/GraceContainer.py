@@ -20,7 +20,7 @@ class GraceContainer(Container):
             >>> attach(grace_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice {
@@ -49,7 +49,7 @@ class GraceContainer(Container):
             >>> attach(grace_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice {
@@ -89,7 +89,7 @@ class GraceContainer(Container):
             >>> attach(after_grace_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice {
@@ -112,7 +112,7 @@ class GraceContainer(Container):
             (GraceContainer(), GraceContainer())
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice {
@@ -144,7 +144,7 @@ class GraceContainer(Container):
             >>> attach(after_grace_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice {
@@ -167,7 +167,7 @@ class GraceContainer(Container):
             (GraceContainer(),)
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice {
@@ -203,7 +203,7 @@ class GraceContainer(Container):
             >>> attach(after_grace_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice {
@@ -226,7 +226,7 @@ class GraceContainer(Container):
             (GraceContainer(),)
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice {
@@ -331,7 +331,7 @@ class GraceContainer(Container):
                 >>> attach(grace_container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {
@@ -362,7 +362,7 @@ class GraceContainer(Container):
                 >>> attach(grace_container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {
@@ -400,7 +400,7 @@ class GraceContainer(Container):
                 >>> attach(grace_container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {
@@ -437,7 +437,7 @@ class GraceContainer(Container):
                 >>> attach(grace_container, voice[-1])
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {

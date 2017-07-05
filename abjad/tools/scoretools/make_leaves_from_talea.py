@@ -34,7 +34,7 @@ def make_leaves_from_talea(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new RhythmicStaff {
@@ -63,7 +63,7 @@ def make_leaves_from_talea(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new RhythmicStaff {
@@ -92,7 +92,7 @@ def make_leaves_from_talea(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new RhythmicStaff {
@@ -123,7 +123,7 @@ def make_leaves_from_talea(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new RhythmicStaff {
@@ -153,7 +153,7 @@ def make_leaves_from_talea(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new RhythmicStaff {

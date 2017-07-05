@@ -33,7 +33,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -84,7 +84,7 @@ class LabelAgent(abctools.AbjadObject):
                 >>> expression(staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -125,7 +125,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -176,7 +176,7 @@ class LabelAgent(abctools.AbjadObject):
                 >>> expression(staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -313,7 +313,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(measure).color_container('red')
                     >>> show(measure) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(measure)
                     {
@@ -347,7 +347,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(measure)
                     >>> show(measure) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(measure)
                     {
@@ -400,7 +400,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff).color_leaves('red')
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -431,7 +431,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -478,7 +478,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(chord).color_note_heads(color_map)
                     >>> show(chord) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(chord)
                     <
@@ -506,7 +506,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(chord)
                     >>> show(chord) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(chord)
                     <
@@ -534,7 +534,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(note).color_note_heads(color_map)
                     >>> show(note) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(note)
                     \once \override NoteHead.color = #red
@@ -549,7 +549,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(note)
                     >>> show(note) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(note)
                     \once \override NoteHead.color = #red
@@ -586,7 +586,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff).color_note_heads()
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -627,7 +627,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -693,7 +693,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff).with_pitches()
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -724,7 +724,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff).remove_markup()
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -743,7 +743,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -775,7 +775,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -814,7 +814,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff_group).vertical_moments()
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -870,7 +870,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -930,7 +930,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1012,7 +1012,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1097,7 +1097,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1177,7 +1177,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1260,7 +1260,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1337,7 +1337,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1417,7 +1417,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1494,7 +1494,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1574,7 +1574,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1636,7 +1636,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1701,7 +1701,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1773,7 +1773,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1959,7 +1959,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff).with_durations()
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1995,7 +1995,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2034,7 +2034,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> label(staff).with_durations(preferred_denominator=16)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2070,7 +2070,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2127,7 +2127,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2167,7 +2167,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2210,7 +2210,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2250,7 +2250,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2293,7 +2293,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2325,7 +2325,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2360,7 +2360,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2408,7 +2408,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2459,7 +2459,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2513,7 +2513,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2592,7 +2592,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2620,7 +2620,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2652,7 +2652,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2681,7 +2681,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2713,7 +2713,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2742,7 +2742,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2775,7 +2775,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2804,7 +2804,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2837,7 +2837,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2866,7 +2866,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2929,7 +2929,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2969,7 +2969,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3013,7 +3013,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3054,7 +3054,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3098,7 +3098,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3139,7 +3139,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3189,7 +3189,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3238,7 +3238,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3291,7 +3291,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3341,7 +3341,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3395,7 +3395,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3445,7 +3445,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3553,7 +3553,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3604,7 +3604,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3660,7 +3660,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3712,7 +3712,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3767,7 +3767,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3819,7 +3819,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3900,7 +3900,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3927,7 +3927,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3959,7 +3959,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3988,7 +3988,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4024,7 +4024,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4076,7 +4076,7 @@ class LabelAgent(abctools.AbjadObject):
                     >>> override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<

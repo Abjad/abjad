@@ -42,7 +42,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
@@ -342,7 +342,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(rhythm_maker) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = rhythm_maker.__illustrate__()
                 >>> f(lilypond_file[Staff])
@@ -703,7 +703,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -775,7 +775,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -904,7 +904,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -976,7 +976,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1049,7 +1049,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1123,7 +1123,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1217,7 +1217,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff]) # doctest: +SKIP
                 \new RhythmicStaff {
@@ -1275,7 +1275,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1339,7 +1339,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1398,7 +1398,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1449,7 +1449,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1503,7 +1503,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1565,7 +1565,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1640,7 +1640,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1692,7 +1692,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1743,7 +1743,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1790,7 +1790,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1843,7 +1843,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1897,7 +1897,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1947,7 +1947,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2008,7 +2008,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2063,7 +2063,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2126,7 +2126,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2194,7 +2194,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2281,7 +2281,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2336,7 +2336,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2396,7 +2396,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2492,7 +2492,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2544,7 +2544,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2611,7 +2611,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2679,7 +2679,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2750,7 +2750,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2835,7 +2835,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2878,7 +2878,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2939,7 +2939,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2993,7 +2993,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3051,7 +3051,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3106,7 +3106,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3160,7 +3160,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3236,7 +3236,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3297,7 +3297,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3355,7 +3355,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3421,7 +3421,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {

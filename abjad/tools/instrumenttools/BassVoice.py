@@ -17,7 +17,7 @@ class BassVoice(Instrument):
         >>> attach(clef, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

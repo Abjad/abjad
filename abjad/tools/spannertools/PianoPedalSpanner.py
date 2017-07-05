@@ -11,11 +11,11 @@ class PianoPedalSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> pedal = spannertools.PianoPedalSpanner()
+            >>> pedal = PianoPedalSpanner()
             >>> attach(pedal, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -125,11 +125,11 @@ class PianoPedalSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(kind='sustain')
+                >>> spanner = PianoPedalSpanner(kind='sustain')
                 >>> attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -152,11 +152,11 @@ class PianoPedalSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(kind='sostenuto')
+                >>> spanner = PianoPedalSpanner(kind='sostenuto')
                 >>> attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -179,11 +179,11 @@ class PianoPedalSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(kind='corda')
+                >>> spanner = PianoPedalSpanner(kind='corda')
                 >>> attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -214,11 +214,11 @@ class PianoPedalSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(style='mixed')
+                >>> spanner = PianoPedalSpanner(style='mixed')
                 >>> attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -241,11 +241,11 @@ class PianoPedalSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(style='bracket')
+                >>> spanner = PianoPedalSpanner(style='bracket')
                 >>> attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -268,11 +268,11 @@ class PianoPedalSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(style='text')
+                >>> spanner = PianoPedalSpanner(style='text')
                 >>> attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

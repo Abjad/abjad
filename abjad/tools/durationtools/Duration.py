@@ -1159,7 +1159,7 @@ class Duration(AbjadObject, Fraction):
                 >>> attach(markup, note)
                 >>> show(note) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(note)
                 c'4 ^ \markup { 1'57'' }
@@ -1185,7 +1185,7 @@ class Duration(AbjadObject, Fraction):
                 >>> markup = Duration(3, 16).to_score_markup()
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup)
                 \markup {
@@ -1226,7 +1226,7 @@ class Duration(AbjadObject, Fraction):
                 >>> markup = Duration(5, 16).to_score_markup()
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup)
                 \markup {
@@ -1274,7 +1274,7 @@ class Duration(AbjadObject, Fraction):
                 >>> override(tuplet).tuplet_number.text = markup
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new RhythmicStaff {

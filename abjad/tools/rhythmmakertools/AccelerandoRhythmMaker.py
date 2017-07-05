@@ -46,7 +46,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
@@ -258,7 +258,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
@@ -877,7 +877,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1090,7 +1090,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1354,7 +1354,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1572,7 +1572,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1789,7 +1789,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1933,7 +1933,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2152,7 +2152,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2367,7 +2367,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2523,7 +2523,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2757,7 +2757,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2993,7 +2993,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3208,7 +3208,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3427,7 +3427,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3651,7 +3651,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -3866,7 +3866,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {

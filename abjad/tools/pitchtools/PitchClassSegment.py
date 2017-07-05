@@ -24,7 +24,7 @@ class PitchClassSegment(Segment):
                 >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -51,7 +51,7 @@ class PitchClassSegment(Segment):
                 >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -81,7 +81,7 @@ class PitchClassSegment(Segment):
                 ...     )
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -108,7 +108,7 @@ class PitchClassSegment(Segment):
                 >>> segment = expression(['c', 'ef', 'bqs,', 'd'])
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -194,7 +194,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J + K
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -239,7 +239,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -286,7 +286,7 @@ class PitchClassSegment(Segment):
                     >>> segment = K + J
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -331,7 +331,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -379,7 +379,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J + J + J
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -429,7 +429,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -490,7 +490,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.rotate(n=1) + K.rotate(n=2)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -537,7 +537,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -597,7 +597,7 @@ class PitchClassSegment(Segment):
                     >>> segment = segment.retrograde()
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -645,7 +645,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -728,7 +728,7 @@ class PitchClassSegment(Segment):
                 >>> markup = expression.get_markup()
                 >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__(
                 ...     figure_name=markup,
@@ -801,7 +801,7 @@ class PitchClassSegment(Segment):
                 >>> markup = expression.get_markup()
                 >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__(
                 ...     figure_name=markup,
@@ -871,7 +871,7 @@ class PitchClassSegment(Segment):
 
                 >>> show(J) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = J.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -915,7 +915,7 @@ class PitchClassSegment(Segment):
 
                 >>> show(K) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = K.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -989,7 +989,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -1036,7 +1036,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -1065,7 +1065,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J[:4]
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -1102,7 +1102,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -1142,7 +1142,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J[:4].retrograde()
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -1180,7 +1180,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -1224,7 +1224,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.retrograde()[:4]
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -1262,7 +1262,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -1326,7 +1326,7 @@ class PitchClassSegment(Segment):
                 >>> segment = PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -1354,7 +1354,7 @@ class PitchClassSegment(Segment):
                 ...     )
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -1851,7 +1851,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.invert()
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -1890,7 +1890,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -1931,7 +1931,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.invert().invert()
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -1976,7 +1976,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -2043,7 +2043,7 @@ class PitchClassSegment(Segment):
                 >>> staff = Staff(notes)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2067,7 +2067,7 @@ class PitchClassSegment(Segment):
                 >>> attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2147,7 +2147,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.multiply(n=1)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -2186,7 +2186,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -2229,7 +2229,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.multiply(n=5)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -2268,7 +2268,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -2311,7 +2311,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.multiply(n=7)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -2350,7 +2350,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -2393,7 +2393,7 @@ class PitchClassSegment(Segment):
 
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -2432,7 +2432,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -2517,7 +2517,7 @@ class PitchClassSegment(Segment):
                 >>> segment = segment.permute([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]) 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -2627,7 +2627,7 @@ class PitchClassSegment(Segment):
 
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -2666,7 +2666,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -2707,7 +2707,7 @@ class PitchClassSegment(Segment):
 
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -2752,7 +2752,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -2839,7 +2839,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.rotate(n=1)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -2878,7 +2878,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -2921,7 +2921,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.rotate(n=-1)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -2960,7 +2960,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -3003,7 +3003,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.rotate(n=0)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -3047,7 +3047,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -3096,7 +3096,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.rotate(n=1, stravinsky=True)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -3135,7 +3135,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -3201,7 +3201,7 @@ class PitchClassSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -3226,7 +3226,7 @@ class PitchClassSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -3259,7 +3259,7 @@ class PitchClassSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -3284,7 +3284,7 @@ class PitchClassSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -3322,7 +3322,7 @@ class PitchClassSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -3347,7 +3347,7 @@ class PitchClassSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -3390,7 +3390,7 @@ class PitchClassSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -3415,7 +3415,7 @@ class PitchClassSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -3486,7 +3486,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.transpose(n=13)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -3525,7 +3525,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -3568,7 +3568,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.transpose(n=-13)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -3607,7 +3607,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -3650,7 +3650,7 @@ class PitchClassSegment(Segment):
                     >>> segment = J.transpose(n=0)
                     >>> show(segment) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
                     >>> f(lilypond_file[Voice])
@@ -3694,7 +3694,7 @@ class PitchClassSegment(Segment):
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
@@ -3762,7 +3762,7 @@ class PitchClassSegment(Segment):
                 >>> voiced_segment = segment.voice_horizontally()
                 >>> show(voiced_segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = voiced_segment.__illustrate__()
                 >>> f(lilypond_file[Score])
@@ -3863,7 +3863,7 @@ class PitchClassSegment(Segment):
                 >>> voiced_segment = segment.voice_vertically()
                 >>> show(voiced_segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = voiced_segment.__illustrate__()
                 >>> f(lilypond_file[Score])

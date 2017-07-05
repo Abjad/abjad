@@ -48,10 +48,10 @@ class BowContactSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.BowContactSpanner(), leaves)
+            >>> attach(BowContactSpanner(), leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -161,10 +161,10 @@ class BowContactSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.BowContactSpanner(), leaves)
+            >>> attach(BowContactSpanner(), leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {

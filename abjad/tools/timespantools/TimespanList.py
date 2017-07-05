@@ -212,7 +212,7 @@ class TimespanList(TypedList):
                 >>> timespans = timespans - timespan_operand
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> illustration = timespans.__illustrate__()
 
@@ -1536,7 +1536,7 @@ class TimespanList(TypedList):
                 >>> _ = timespans.compute_logical_xor()
                 >>> show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(timespans)
                 abjad.TimespanList(
@@ -1570,7 +1570,7 @@ class TimespanList(TypedList):
                 >>> _ = timespans.compute_logical_xor()
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(timespans)
                 abjad.TimespanList(
@@ -1607,7 +1607,7 @@ class TimespanList(TypedList):
                 >>> _ = timespans.compute_logical_xor()
                 >>> show(timespans, range_=(-2, 20), scale=0.5) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(timespans)
                 abjad.TimespanList(

@@ -16,7 +16,7 @@ class BendAfter(AbjadValueObject):
             >>> attach(bend, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4 - \bendAfter #'-4.0
@@ -32,7 +32,7 @@ class BendAfter(AbjadValueObject):
             >>> attach(bend, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4 - \bendAfter #'2.0

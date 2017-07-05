@@ -457,7 +457,7 @@ class Selection(object):
                 >>> attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -479,7 +479,7 @@ class Selection(object):
                 >>> new_staff = Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(new_staff)
                 \new Staff {
@@ -528,7 +528,7 @@ class Selection(object):
                 >>> staff = Staff([voice])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -554,7 +554,7 @@ class Selection(object):
                 >>> new_staff = leaves._copy(include_enclosing_containers=True)
                 >>> show(new_staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(new_staff)
                 \new Staff {
@@ -1009,7 +1009,7 @@ class Selection(object):
                 >>> staff.append(Measure((2, 8), "g'8 a'8"))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1071,7 +1071,7 @@ class Selection(object):
                 >>> staff.append(Measure((2, 8), "r8 gf'8"))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1130,7 +1130,7 @@ class Selection(object):
                 >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1177,7 +1177,7 @@ class Selection(object):
                 >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1224,7 +1224,7 @@ class Selection(object):
                 >>> score.append(Staff("g'8 a'8 b'8 c''8"))
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score <<
@@ -1282,7 +1282,7 @@ class Selection(object):
                 >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score <<
@@ -1414,7 +1414,7 @@ class Selection(object):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1466,7 +1466,7 @@ class Selection(object):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1518,7 +1518,7 @@ class Selection(object):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1573,7 +1573,7 @@ class Selection(object):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1630,7 +1630,7 @@ class Selection(object):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1684,7 +1684,7 @@ class Selection(object):
                 >>> attach(mark, staff, scope=Staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1739,7 +1739,7 @@ class Selection(object):
                 >>> attach(mark, staff, scope=Staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1794,7 +1794,7 @@ class Selection(object):
                 >>> attach(mark, staff, scope=Staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1848,7 +1848,7 @@ class Selection(object):
                 >>> attach(mark, staff, scope=Staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1908,7 +1908,7 @@ class Selection(object):
                 >>> attach(mark, staff, scope=Staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

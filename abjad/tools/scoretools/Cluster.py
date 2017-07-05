@@ -10,7 +10,7 @@ class Cluster(Container):
         >>> cluster = scoretools.Cluster("c'8 <d' g'>8 b'8")
         >>> show(cluster) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(cluster)
         \makeClusters {

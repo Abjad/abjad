@@ -15,7 +15,7 @@ class TenorVoice(Instrument):
         >>> attach(tenor, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

@@ -13,7 +13,7 @@ def show(argument, return_timing=False, **keywords):
             >>> note = Note("c'4")
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4
@@ -27,7 +27,7 @@ def show(argument, return_timing=False, **keywords):
             >>> staff = Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

@@ -15,7 +15,7 @@ class ClarinetInEFlat(Instrument):
         >>> attach(clarinet, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

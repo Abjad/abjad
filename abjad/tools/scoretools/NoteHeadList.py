@@ -107,7 +107,7 @@ class NoteHeadList(TypedList):
                 >>> chord = Chord("<ef'>")
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <ef'>4
@@ -124,7 +124,7 @@ class NoteHeadList(TypedList):
                 >>> chord.note_heads.extend(note_heads)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <
@@ -158,7 +158,7 @@ class NoteHeadList(TypedList):
                 >>> note_head.tweak.color = 'red'
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <
@@ -183,7 +183,7 @@ class NoteHeadList(TypedList):
                 >>> note_head.tweak.color = 'red'
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <
@@ -228,7 +228,7 @@ class NoteHeadList(TypedList):
                 >>> chord = Chord("<ef' c'' f''>4")
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <ef' c'' f''>4
@@ -242,7 +242,7 @@ class NoteHeadList(TypedList):
 
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <ef' f''>4
@@ -262,7 +262,7 @@ class NoteHeadList(TypedList):
                 >>> chord = Chord("<ef' c'' f''>4")
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <ef' c'' f''>4
@@ -273,7 +273,7 @@ class NoteHeadList(TypedList):
                 >>> chord.note_heads.remove(note_head)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <ef' f''>4

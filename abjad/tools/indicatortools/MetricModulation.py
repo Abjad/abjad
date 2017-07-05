@@ -25,7 +25,7 @@ class MetricModulation(AbjadValueObject):
 
             >>> show(metric_modulation) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
@@ -105,7 +105,7 @@ class MetricModulation(AbjadValueObject):
 
             >>> show(metric_modulation) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
@@ -188,7 +188,7 @@ class MetricModulation(AbjadValueObject):
 
             >>> show(metric_modulation) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
@@ -272,7 +272,7 @@ class MetricModulation(AbjadValueObject):
 
             >>> show(metric_modulation) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
@@ -355,7 +355,7 @@ class MetricModulation(AbjadValueObject):
 
             >>> show(metric_modulation) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
@@ -448,7 +448,7 @@ class MetricModulation(AbjadValueObject):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -693,7 +693,7 @@ class MetricModulation(AbjadValueObject):
                 ...     )
                 >>> show(metric_modulation) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = metric_modulation.__illustrate__()
                 >>> metric_modulation = lilypond_file.items[-1]

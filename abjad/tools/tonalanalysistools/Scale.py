@@ -135,7 +135,7 @@ class Scale(PitchClassSegment):
             >>> notes = scale.make_notes(8)
             >>> staff = Staff(notes)
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -162,7 +162,7 @@ class Scale(PitchClassSegment):
             >>> time_signature = TimeSignature((5, 4))
             >>> attach(time_signature, staff)
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -198,7 +198,7 @@ class Scale(PitchClassSegment):
             >>> score = scale.make_score()
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {

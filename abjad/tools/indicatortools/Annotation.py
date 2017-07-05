@@ -17,7 +17,7 @@ class Annotation(AbjadValueObject):
             >>> attach(annotation, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

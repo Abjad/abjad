@@ -34,7 +34,7 @@ class MarkupList(TypedList):
 
                 >>> show(markup_list) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup_list.__illustrate__().items[-1])
                 \markup {
@@ -67,7 +67,7 @@ class MarkupList(TypedList):
 
                 >>> show(markup_list) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup_list.__illustrate__().items[-1])
                 \markup {
@@ -228,7 +228,7 @@ class MarkupList(TypedList):
 
                     >>> show(markup_list) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {
@@ -311,7 +311,7 @@ class MarkupList(TypedList):
 
                     >>> show(markup_list) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {
@@ -344,7 +344,7 @@ class MarkupList(TypedList):
 
                     >>> show(markup_list) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {
@@ -395,7 +395,7 @@ class MarkupList(TypedList):
 
                     >>> show(markup_list) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {
@@ -429,7 +429,7 @@ class MarkupList(TypedList):
 
                     >>> show(markup_list) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {
@@ -572,7 +572,7 @@ class MarkupList(TypedList):
                 >>> markup_list.append('Allegro')
                 >>> show(markup_list) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup_list.__illustrate__().items[-1])
                 \markup {
@@ -595,7 +595,7 @@ class MarkupList(TypedList):
                 >>> markup_list.append('Allegro')
                 >>> show(markup_list) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup_list.__illustrate__().items[-1])
                 \markup {
@@ -990,7 +990,7 @@ class MarkupList(TypedList):
 
                     >>> show(markup_list) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
             
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {
@@ -1024,7 +1024,7 @@ class MarkupList(TypedList):
 
                     >>> show(markup_list) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {
@@ -1070,7 +1070,7 @@ class MarkupList(TypedList):
 
                 >>> show(markup_list) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup_list.__illustrate__().items[-1])
                 \markup {
@@ -1416,7 +1416,7 @@ class MarkupList(TypedList):
 
                     >>> show(markup_list) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {
@@ -1446,7 +1446,7 @@ class MarkupList(TypedList):
 
                     >>> show(markup_list) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {

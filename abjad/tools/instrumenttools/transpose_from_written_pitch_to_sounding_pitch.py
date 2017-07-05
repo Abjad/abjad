@@ -17,7 +17,7 @@ def transpose_from_written_pitch_to_sounding_pitch(argument):
         >>> attach(clarinet, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {
@@ -34,7 +34,7 @@ def transpose_from_written_pitch_to_sounding_pitch(argument):
         >>> instrumenttools.transpose_from_written_pitch_to_sounding_pitch(staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

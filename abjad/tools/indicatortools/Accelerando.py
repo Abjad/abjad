@@ -19,7 +19,7 @@ class Accelerando(AbjadValueObject):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<

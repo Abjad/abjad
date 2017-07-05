@@ -13,11 +13,11 @@ class OctavationSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'4 d' e' f'")
-            >>> spanner = spannertools.OctavationSpanner(start=1)
+            >>> spanner = OctavationSpanner(start=1)
             >>> attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -36,11 +36,11 @@ class OctavationSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'4 d' e' f'")
-            >>> octavation_spanner = spannertools.OctavationSpanner(start=1)
+            >>> octavation_spanner = OctavationSpanner(start=1)
             >>> attach(octavation_spanner, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -119,7 +119,7 @@ class OctavationSpanner(Spanner):
             ::
 
                 >>> measure = Measure((4, 8), "c'''8 d'''8 ef'''8 f'''8")
-                >>> octavation = spannertools.OctavationSpanner()
+                >>> octavation = OctavationSpanner()
                 >>> attach(octavation, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
@@ -128,7 +128,7 @@ class OctavationSpanner(Spanner):
                 >>> octavation.adjust_automatically(ottava_breakpoint=14)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                     {
@@ -169,7 +169,7 @@ class OctavationSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.OctavationSpanner(start=1)
+                >>> spanner = OctavationSpanner(start=1)
                 >>> attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -189,7 +189,7 @@ class OctavationSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
+            >>> spanner = OctavationSpanner(start=2, stop=1)
             >>> attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 

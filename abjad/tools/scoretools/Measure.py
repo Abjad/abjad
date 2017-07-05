@@ -22,7 +22,7 @@ class Measure(FixedDurationContainer):
         >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
         >>> show(measure) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(measure)
         {
@@ -84,7 +84,7 @@ class Measure(FixedDurationContainer):
                 >>> del(measure[1])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 {
                     \time 3/8
@@ -175,7 +175,7 @@ class Measure(FixedDurationContainer):
                 >>> measure[1] = Note("ds'8.")
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 {
                     \time 9/16
@@ -739,7 +739,7 @@ class Measure(FixedDurationContainer):
                 >>> staff.append(Measure((2, 4), "f' g'"))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -842,7 +842,7 @@ class Measure(FixedDurationContainer):
                 >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -857,7 +857,7 @@ class Measure(FixedDurationContainer):
                 >>> measure.scale_and_adjust_time_signature(Multiplier(2, 3))
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {

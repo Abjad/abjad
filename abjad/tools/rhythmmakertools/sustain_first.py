@@ -36,7 +36,7 @@ def sustain_first(n=1, inverted=None):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
@@ -111,7 +111,7 @@ def sustain_first(n=1, inverted=None):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {

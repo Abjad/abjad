@@ -226,7 +226,7 @@ class LogicalTie(Selection):
                 >>> time_signature = TimeSignature((7, 16))
                 >>> attach(time_signature, staff)
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -248,7 +248,7 @@ class LogicalTie(Selection):
                 >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=True)
                 FixedDurationTuplet(Duration(3, 16), "c'8 c'16 c'16 c'16")
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -282,7 +282,7 @@ class LogicalTie(Selection):
                 >>> time_signature = TimeSignature((7, 16))
                 >>> attach(time_signature, staff)
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -304,7 +304,7 @@ class LogicalTie(Selection):
                 >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=False)
                 FixedDurationTuplet(Duration(3, 16), "c'16 c'32 c'32 c'32")
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {

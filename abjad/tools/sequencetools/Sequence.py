@@ -148,7 +148,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -195,7 +195,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -246,7 +246,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -300,7 +300,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -453,7 +453,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -504,7 +504,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -556,7 +556,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -609,7 +609,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -663,7 +663,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -789,7 +789,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -836,7 +836,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -885,7 +885,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -1290,7 +1290,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -1342,7 +1342,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -1394,7 +1394,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -1446,7 +1446,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -1498,7 +1498,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -1550,7 +1550,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -1869,7 +1869,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> markup = expression.get_markup()
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup)
                 \markup {
@@ -1949,7 +1949,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2274,7 +2274,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2338,7 +2338,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2408,7 +2408,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2476,7 +2476,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2540,7 +2540,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2606,7 +2606,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2678,7 +2678,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2748,7 +2748,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2812,7 +2812,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2878,7 +2878,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -2950,7 +2950,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -3020,7 +3020,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -3086,7 +3086,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -3154,7 +3154,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -3228,7 +3228,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -3300,7 +3300,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -3367,7 +3367,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -3439,7 +3439,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -3503,7 +3503,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -3625,7 +3625,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -3684,7 +3684,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -4231,7 +4231,7 @@ class Sequence(abctools.AbjadValueObject):
                 >>> markup = expression.get_markup()
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup)
                 \markup {
@@ -4424,7 +4424,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -4469,7 +4469,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -4514,7 +4514,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -4913,7 +4913,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -4974,7 +4974,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -5047,7 +5047,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -5099,7 +5099,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -5151,7 +5151,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -5265,7 +5265,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -5396,7 +5396,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -5447,7 +5447,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {
@@ -5501,7 +5501,7 @@ class Sequence(abctools.AbjadValueObject):
                     >>> markup = expression.get_markup()
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(markup)
                     \markup {

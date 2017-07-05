@@ -16,7 +16,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             >>> staff = Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -37,7 +37,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             >>> staff = Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

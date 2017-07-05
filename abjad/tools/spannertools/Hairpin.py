@@ -16,14 +16,14 @@ class Hairpin(Spanner):
         ::
 
             >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-            >>> hairpin = spannertools.Hairpin(
+            >>> hairpin = Hairpin(
             ...     descriptor='p < f',
             ...     include_rests=False,
             ...     )
             >>> attach(hairpin, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -40,14 +40,14 @@ class Hairpin(Spanner):
         ::
 
             >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-            >>> hairpin = spannertools.Hairpin(
+            >>> hairpin = Hairpin(
             ...     descriptor='f > p',
             ...     include_rests=False,
             ...     )
             >>> attach(hairpin, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -66,14 +66,14 @@ class Hairpin(Spanner):
         ::
 
             >>> staff = Staff("c'4 d' e' f'")
-            >>> hairpin = spannertools.Hairpin(
+            >>> hairpin = Hairpin(
             ...     descriptor='niente < f',
             ...     include_rests=False,
             ...     )
             >>> attach(hairpin, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -89,14 +89,14 @@ class Hairpin(Spanner):
         ::
 
             >>> staff = Staff("c'4 d' e' f'")
-            >>> hairpin = spannertools.Hairpin(
+            >>> hairpin = Hairpin(
             ...     descriptor='f > niente',
             ...     include_rests=False,
             ...     )
             >>> attach(hairpin, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -306,12 +306,12 @@ class Hairpin(Spanner):
 
         ::
 
-            >>> spannertools.Hairpin._is_hairpin_token(('p', '<', 'f'))
+            >>> Hairpin._is_hairpin_token(('p', '<', 'f'))
             True
 
         ::
 
-            >>> spannertools.Hairpin._is_hairpin_token(('f', '<', 'p'))
+            >>> Hairpin._is_hairpin_token(('f', '<', 'p'))
             False
 
         Returns true or false.
@@ -401,7 +401,7 @@ class Hairpin(Spanner):
             ::
 
                 >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> hairpin = Hairpin(descriptor='p < f')
                 >>> attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -425,14 +425,14 @@ class Hairpin(Spanner):
             ::
 
                 >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = spannertools.Hairpin(
+                >>> hairpin = Hairpin(
                 ...     descriptor='p < f',
                 ...     direction=Up,
                 ...     )
                 >>> attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -468,14 +468,14 @@ class Hairpin(Spanner):
             ::
 
                 >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = spannertools.Hairpin(
+                >>> hairpin = Hairpin(
                 ...     descriptor='p < f',
                 ...     include_rests=True,
                 ...     )
                 >>> attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -507,7 +507,7 @@ class Hairpin(Spanner):
             ::
 
                 >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> hairpin = Hairpin(descriptor='p < f')
                 >>> attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -531,7 +531,7 @@ class Hairpin(Spanner):
             ::
 
                 >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> hairpin = Hairpin(descriptor='p < f')
                 >>> attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -555,7 +555,7 @@ class Hairpin(Spanner):
             ::
 
                 >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> hairpin = Hairpin(descriptor='p < f')
                 >>> attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 

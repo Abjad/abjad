@@ -13,7 +13,7 @@ def mutate(client):
             >>> staff = Staff("c'4 e'4 d'4 f'4")
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -28,7 +28,7 @@ def mutate(client):
             >>> mutate(staff[-2:]).scale(Multiplier(3, 2))
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

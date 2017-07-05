@@ -20,7 +20,7 @@ class RehearsalMark(AbjadValueObject):
             >>> set_(score).markFormatter = scheme
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -49,7 +49,7 @@ class RehearsalMark(AbjadValueObject):
             >>> set_(score).markFormatter = scheme
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -186,7 +186,7 @@ class RehearsalMark(AbjadValueObject):
                 >>> mark = indicatortools.RehearsalMark(markup=markup)
                 >>> show(mark.markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(str(mark.markup))
                 \markup {
@@ -209,7 +209,7 @@ class RehearsalMark(AbjadValueObject):
                 >>> mark = indicatortools.RehearsalMark(markup=markup)
                 >>> show(mark.markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(str(mark.markup))
                 \markup {

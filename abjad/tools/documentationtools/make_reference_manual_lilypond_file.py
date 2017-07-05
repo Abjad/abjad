@@ -11,7 +11,7 @@ def make_reference_manual_lilypond_file(music=None, **keywords):
         >>> lilypond_file = \
         ...     documentationtools.make_reference_manual_lilypond_file(score)
 
-    ..  doctest::
+    ..  docs::
 
         >>> print(format(lilypond_file)) # doctest: +SKIP
         \version "2.19.15"

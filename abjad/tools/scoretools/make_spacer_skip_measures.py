@@ -14,7 +14,7 @@ def make_spacer_skip_measures(time_signatures, implicit_scaling=False):
             >>> staff = Staff(measures)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

@@ -21,7 +21,7 @@ class Container(Component):
             >>> container = Container("c'4 e'4 d'4 e'8 f'8")
             >>> show(container) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(container)
             {
@@ -48,7 +48,7 @@ class Container(Component):
             >>> container = Container(notes)
             >>> show(container) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(container)
             {
@@ -76,7 +76,7 @@ class Container(Component):
             >>> container = Container(selection)
             >>> show(container) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(container)
             {
@@ -103,7 +103,7 @@ class Container(Component):
             >>> container = Container(items)
             >>> show(container) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(container)
             {
@@ -193,7 +193,7 @@ class Container(Component):
                 >>> attach(Slur(), list(leaves))
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {
@@ -218,7 +218,7 @@ class Container(Component):
 
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {
@@ -240,7 +240,7 @@ class Container(Component):
 
                 >>> show(tuplet_1) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet_1)
                 \times 2/3 {
@@ -1186,7 +1186,7 @@ class Container(Component):
                 >>> container = Container("c'4 ( d'4 f'4 )")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1200,7 +1200,7 @@ class Container(Component):
                 >>> container.append(Note("e'4"))
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1226,7 +1226,7 @@ class Container(Component):
                 >>> container = Container("c'4 ( d'4 f'4 )")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1241,7 +1241,7 @@ class Container(Component):
                 >>> container.extend(notes)
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1272,7 +1272,7 @@ class Container(Component):
                 >>> container = Container("c'4 d'4 f'4 e'4")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1320,7 +1320,7 @@ class Container(Component):
                 >>> attach(slur, container[:])
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1343,7 +1343,7 @@ class Container(Component):
                 >>> container.insert(-4, Note("e'4"), fracture_spanners=False)
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1376,7 +1376,7 @@ class Container(Component):
                 >>> attach(slur, container[:])
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1399,7 +1399,7 @@ class Container(Component):
                 >>> container.insert(-4, Note("e'4"), fracture_spanners=True)
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1451,7 +1451,7 @@ class Container(Component):
                 >>> container = Container("c'4 ( d'4 f'4 ) e'4")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1467,7 +1467,7 @@ class Container(Component):
                 Note("e'4")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1494,7 +1494,7 @@ class Container(Component):
                 >>> container = Container("c'4 ( d'4 f'4 ) e'4")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1515,7 +1515,7 @@ class Container(Component):
                 >>> container.remove(note)
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1541,7 +1541,7 @@ class Container(Component):
                 >>> staff = Staff("c'8 [ d'8 ] e'8 ( f'8 )")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1556,7 +1556,7 @@ class Container(Component):
                 >>> staff.reverse()
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff) # doctest: +SKIP
                 \new Staff {
@@ -1591,7 +1591,7 @@ class Container(Component):
                 >>> container.append(Voice('g4.'))
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1621,7 +1621,7 @@ class Container(Component):
                 >>> container.append(Voice('g4.'))
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1640,7 +1640,7 @@ class Container(Component):
                 >>> container.is_simultaneous = True
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 <<
@@ -1688,7 +1688,7 @@ class Container(Component):
                 >>> container = Container("c'4 d'4 e'4 f'4")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {

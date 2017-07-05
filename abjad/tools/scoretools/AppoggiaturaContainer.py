@@ -17,7 +17,7 @@ class AppoggiaturaContainer(GraceContainer):
             >>> attach(appoggiatura_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice {

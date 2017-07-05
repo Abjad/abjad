@@ -39,7 +39,7 @@ class IncisedRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
@@ -503,7 +503,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -561,7 +561,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -623,7 +623,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -675,7 +675,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -730,7 +730,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -784,7 +784,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -835,7 +835,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -900,7 +900,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -947,7 +947,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1000,7 +1000,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1059,7 +1059,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1114,7 +1114,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1179,7 +1179,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1233,7 +1233,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1309,7 +1309,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1360,7 +1360,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1415,7 +1415,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1467,7 +1467,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1518,7 +1518,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1572,7 +1572,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {

@@ -32,7 +32,7 @@ def make_tied_leaf(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -57,7 +57,7 @@ def make_tied_leaf(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -85,7 +85,7 @@ def make_tied_leaf(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -116,7 +116,7 @@ def make_tied_leaf(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -147,7 +147,7 @@ def make_tied_leaf(
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

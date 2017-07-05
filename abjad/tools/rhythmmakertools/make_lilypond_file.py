@@ -29,7 +29,7 @@ def make_lilypond_file(
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> score = lilypond_file[Score]
             >>> f(score)
@@ -98,7 +98,7 @@ def make_lilypond_file(
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> score = lilypond_file[Score]
             >>> f(score)
@@ -168,7 +168,7 @@ def make_lilypond_file(
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> score = lilypond_file[Score]
             >>> f(score)
@@ -250,7 +250,7 @@ def make_lilypond_file(
             >>> attach(LilyPondCommand('voiceTwo'), voice_2)
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Score])
             \new Score <<

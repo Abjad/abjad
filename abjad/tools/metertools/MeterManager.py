@@ -95,7 +95,7 @@ class MeterManager(abctools.AbjadObject):
             >>> string = string.replace('!', '|')
             >>> staff = scoretools.Staff(string)
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

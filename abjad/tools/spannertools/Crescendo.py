@@ -7,14 +7,16 @@ class Crescendo(Hairpin):
 
     ..  container:: example
 
+        Initializes crescendo without start- and stop-dynamics:
+
         ::
 
             >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-            >>> crescendo = spannertools.Crescendo()
+            >>> crescendo = Crescendo()
             >>> attach(crescendo, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -23,6 +25,29 @@ class Crescendo(Hairpin):
                 d'8
                 e'8
                 f'8 \!
+                r4
+            }
+
+    ..  container:: example
+
+        Initializes crescendo with start- and stop-dynamics:
+
+        ::
+
+            >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
+            >>> crescendo = Crescendo('p < f')
+            >>> attach(crescendo, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                r4
+                c'8 \< \p
+                d'8
+                e'8
+                f'8 \f
                 r4
             }
 
@@ -37,13 +62,15 @@ class Crescendo(Hairpin):
 
     def __init__(
         self,
+        descriptor='<',
         direction=None,
         include_rests=False,
         overrides=None,
         ):
+        assert '<' in descriptor, repr(descriptor)
         Hairpin.__init__(
             self,
-            descriptor='<',
+            descriptor=descriptor,
             direction=direction,
             include_rests=include_rests,
             overrides=overrides,
@@ -88,7 +115,7 @@ class Crescendo(Hairpin):
                 >>> attach(crescendo, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -126,7 +153,7 @@ class Crescendo(Hairpin):
                 >>> attach(crescendo, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

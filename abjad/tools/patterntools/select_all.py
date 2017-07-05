@@ -36,7 +36,7 @@ def select_all(inverted=None):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {

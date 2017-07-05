@@ -17,7 +17,7 @@ class VerticalMoment(Selection):
         >>> staff_group.append(Staff(r"""\clef "bass" g2 f2"""))
         >>> score.append(staff_group)
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(score)
         \new Score <<

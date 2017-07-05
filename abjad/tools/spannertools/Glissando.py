@@ -13,11 +13,11 @@ class Glissando(Spanner):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> glissando = spannertools.Glissando()
+            >>> glissando = Glissando()
             >>> attach(glissando, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -36,11 +36,11 @@ class Glissando(Spanner):
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> bend_after = indicatortools.BendAfter()
             >>> attach(bend_after, staff[1], is_annotation=True)
-            >>> glissando = spannertools.Glissando()
+            >>> glissando = Glissando()
             >>> attach(glissando, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -193,7 +193,7 @@ class Glissando(Spanner):
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -222,7 +222,7 @@ class Glissando(Spanner):
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -250,7 +250,7 @@ class Glissando(Spanner):
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -288,7 +288,7 @@ class Glissando(Spanner):
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -317,7 +317,7 @@ class Glissando(Spanner):
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -345,7 +345,7 @@ class Glissando(Spanner):
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -382,7 +382,7 @@ class Glissando(Spanner):
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -412,7 +412,7 @@ class Glissando(Spanner):
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -443,7 +443,7 @@ class Glissando(Spanner):
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

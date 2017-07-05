@@ -22,7 +22,7 @@ class BarLine(AbjadValueObject):
             >>> bar_line
             BarLine('|.')
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

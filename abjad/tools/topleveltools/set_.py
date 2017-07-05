@@ -15,7 +15,7 @@ def set_(argument):
             >>> show(staff) # doctest: +SKIP
 
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {

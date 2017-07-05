@@ -65,7 +65,7 @@ class PitchClassSet(Set):
                 >>> set_ = PitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
                 >>> show(set_) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = set_.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -86,7 +86,7 @@ class PitchClassSet(Set):
                 ...     )
                 >>> show(set_) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = set_.__illustrate__()
                 >>> f(lilypond_file[Voice])

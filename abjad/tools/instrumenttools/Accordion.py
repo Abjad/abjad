@@ -19,7 +19,7 @@ class Accordion(Instrument):
         >>> attach(Clef(name='bass'), staff_group[1])
         >>> show(staff_group) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff_group)
         \new PianoStaff <<

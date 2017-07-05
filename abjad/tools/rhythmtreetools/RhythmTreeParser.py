@@ -78,7 +78,7 @@ class RhythmTreeParser(Parser):
         >>> tuplet = component_list[0]
         >>> show(tuplet) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(tuplet)
         \tweak text #tuplet-number::calc-fraction-text

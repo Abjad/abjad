@@ -24,7 +24,7 @@ class ColorFingering(AbjadValueObject):
 
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4
@@ -50,7 +50,7 @@ class ColorFingering(AbjadValueObject):
 
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4

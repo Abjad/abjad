@@ -33,7 +33,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+            >>> attach(MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -43,7 +43,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -148,7 +148,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+            >>> attach(MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -159,7 +159,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -289,7 +289,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+            >>> attach(MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -300,7 +300,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -432,7 +432,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+            >>> attach(MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -443,7 +443,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -595,7 +595,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+            >>> attach(MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -606,7 +606,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -723,7 +723,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+            >>> attach(MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -734,7 +734,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -851,7 +851,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> spanner = spannertools.MetronomeMarkSpanner(
+            >>> spanner = MetronomeMarkSpanner(
             ...     start_with_parenthesized_tempo=True,
             ...     )
             >>> attach(spanner, staff[:])
@@ -865,7 +865,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -999,7 +999,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> spanner = spannertools.MetronomeMarkSpanner(
+            >>> spanner = MetronomeMarkSpanner(
             ...     start_with_parenthesized_tempo=True,
             ...     )
             >>> attach(spanner, staff[:])
@@ -1013,7 +1013,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -1147,7 +1147,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+            >>> attach(MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -1158,7 +1158,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -1259,7 +1259,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+            >>> attach(MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -1270,7 +1270,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -1369,7 +1369,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+            >>> attach(MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -1380,7 +1380,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -1525,7 +1525,7 @@ class MetronomeMarkSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+            >>> attach(MetronomeMarkSpanner(), staff[:])
 
         ::
 
@@ -1536,7 +1536,7 @@ class MetronomeMarkSpanner(Spanner):
 
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score \with {
@@ -2082,7 +2082,7 @@ class MetronomeMarkSpanner(Spanner):
 
             ::
 
-                >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+                >>> attach(MetronomeMarkSpanner(), staff[:])
 
             ::
 
@@ -2093,7 +2093,7 @@ class MetronomeMarkSpanner(Spanner):
 
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score \with {
@@ -2196,7 +2196,7 @@ class MetronomeMarkSpanner(Spanner):
 
             ::
 
-                >>> spanner = spannertools.MetronomeMarkSpanner(
+                >>> spanner = MetronomeMarkSpanner(
                 ...     left_broken_padding=4,
                 ...     )
                 >>> attach(spanner, staff[:])
@@ -2210,7 +2210,7 @@ class MetronomeMarkSpanner(Spanner):
 
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score \with {
@@ -2319,7 +2319,7 @@ class MetronomeMarkSpanner(Spanner):
 
             ::
 
-                >>> attach(spannertools.MetronomeMarkSpanner(), staff[:])
+                >>> attach(MetronomeMarkSpanner(), staff[:])
 
             ::
 
@@ -2330,7 +2330,7 @@ class MetronomeMarkSpanner(Spanner):
 
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score \with {
@@ -2435,7 +2435,7 @@ class MetronomeMarkSpanner(Spanner):
             ::
 
                 >>> null_markup = Markup.null(direction=None)
-                >>> spanner = spannertools.MetronomeMarkSpanner(
+                >>> spanner = MetronomeMarkSpanner(
                 ...     left_broken_text=null_markup,
                 ...     )
                 >>> attach(spanner, staff[:])
@@ -2449,7 +2449,7 @@ class MetronomeMarkSpanner(Spanner):
 
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score \with {
@@ -2553,7 +2553,7 @@ class MetronomeMarkSpanner(Spanner):
 
             ::
 
-                >>> spanner = spannertools.MetronomeMarkSpanner(
+                >>> spanner = MetronomeMarkSpanner(
                 ...     start_with_parenthesized_tempo=False,
                 ...     )
                 >>> attach(spanner, staff[:])
@@ -2567,7 +2567,7 @@ class MetronomeMarkSpanner(Spanner):
 
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score \with {
@@ -2684,7 +2684,7 @@ class MetronomeMarkSpanner(Spanner):
 
             ::
 
-                >>> spanner = spannertools.MetronomeMarkSpanner(
+                >>> spanner = MetronomeMarkSpanner(
                 ...     start_with_parenthesized_tempo=True,
                 ...     )
                 >>> attach(spanner, staff[:])
@@ -2698,7 +2698,7 @@ class MetronomeMarkSpanner(Spanner):
 
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score \with {

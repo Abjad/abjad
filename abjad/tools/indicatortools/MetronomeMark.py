@@ -28,7 +28,7 @@ class MetronomeMark(AbjadValueObject):
             >>> attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -54,7 +54,7 @@ class MetronomeMark(AbjadValueObject):
             >>> attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -114,7 +114,7 @@ class MetronomeMark(AbjadValueObject):
             >>> attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -179,7 +179,7 @@ class MetronomeMark(AbjadValueObject):
             >>> attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -848,7 +848,7 @@ class MetronomeMark(AbjadValueObject):
                 >>> attach(mark, staff)
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score <<
@@ -1281,7 +1281,7 @@ class MetronomeMark(AbjadValueObject):
                 >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(1, 4), 90)
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(format(markup))
                 \markup {
@@ -1329,7 +1329,7 @@ class MetronomeMark(AbjadValueObject):
                 >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(1, 4), 90.1)
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(format(markup))
                 \markup {
@@ -1380,7 +1380,7 @@ class MetronomeMark(AbjadValueObject):
                 ...     )
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(format(markup))
                 \markup {
@@ -1433,7 +1433,7 @@ class MetronomeMark(AbjadValueObject):
                 >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(5, 16), 90)
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(format(markup))
                 \markup {
@@ -1482,7 +1482,7 @@ class MetronomeMark(AbjadValueObject):
                 >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(1, 6), 90)
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(format(markup))
                 \markup {
@@ -1537,7 +1537,7 @@ class MetronomeMark(AbjadValueObject):
                 >>> markup = MetronomeMark.make_tempo_equation_markup(selection, 90)
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(format(markup))
                 \markup {

@@ -25,7 +25,7 @@ class PitchSegment(Segment):
 
             >>> show(segment) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> lilypond_file = segment.__illustrate__()
             >>> f(lilypond_file[StaffGroup])
@@ -67,7 +67,7 @@ class PitchSegment(Segment):
 
             >>> show(segment) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> lilypond_file = segment.__illustrate__()
             >>> f(lilypond_file[StaffGroup])
@@ -129,7 +129,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -279,7 +279,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -327,7 +327,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -381,7 +381,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -449,7 +449,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -534,7 +534,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -572,7 +572,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -621,7 +621,7 @@ class PitchSegment(Segment):
                 >>> staff = Staff(notes)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -645,7 +645,7 @@ class PitchSegment(Segment):
                 >>> attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -686,7 +686,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -724,7 +724,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -767,7 +767,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -805,7 +805,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -847,7 +847,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -885,7 +885,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -936,7 +936,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -974,7 +974,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -1001,7 +1001,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -1039,7 +1039,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -1076,7 +1076,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -1114,7 +1114,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -1151,7 +1151,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -1189,7 +1189,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -1232,7 +1232,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])
@@ -1270,7 +1270,7 @@ class PitchSegment(Segment):
 
                 >>> show(segment) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
                 >>> f(lilypond_file[StaffGroup])

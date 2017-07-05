@@ -28,7 +28,7 @@ class ForbidUpdate(ContextManager):
 
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

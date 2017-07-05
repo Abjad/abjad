@@ -27,7 +27,7 @@ class BeamSpecifier(AbjadValueObject):
             >>> specifier(selections)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \context Staff = "RhythmicStaff" \with {
@@ -197,7 +197,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -232,7 +232,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -285,7 +285,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -357,7 +357,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -392,7 +392,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -427,7 +427,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -479,7 +479,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -513,7 +513,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -547,7 +547,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -602,7 +602,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -654,7 +654,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -700,7 +700,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -735,7 +735,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {

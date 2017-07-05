@@ -14,7 +14,7 @@ def detach(prototype, component_expression=None):
             >>> attach(Articulation('>'), staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -30,7 +30,7 @@ def detach(prototype, component_expression=None):
             (Articulation('>'),)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

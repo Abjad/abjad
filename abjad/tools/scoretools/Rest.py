@@ -16,7 +16,7 @@ class Rest(Leaf):
             >>> measure = Measure((3, 16), [rest])
             >>> show(measure) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(measure)
             {

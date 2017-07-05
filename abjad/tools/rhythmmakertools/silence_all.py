@@ -36,7 +36,7 @@ def silence_all(inverted=None, use_multimeasure_rests=None):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
@@ -81,7 +81,7 @@ def silence_all(inverted=None, use_multimeasure_rests=None):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {

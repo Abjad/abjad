@@ -17,7 +17,7 @@ class Tuba(Instrument):
         >>> attach(tuba, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

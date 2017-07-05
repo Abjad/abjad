@@ -94,7 +94,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             >>> tuplet = list_[0]
             >>> show(tuplet) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(_[0]))
             \times 2/3 {

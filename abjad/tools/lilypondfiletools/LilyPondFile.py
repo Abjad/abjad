@@ -210,7 +210,7 @@ class LilyPondFile(AbjadObject):
                 >>> lilypond_file = lilypondfiletools.LilyPondFile.new(score)
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \context Score = "Custom Score" <<

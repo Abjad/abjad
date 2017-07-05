@@ -149,7 +149,7 @@ class StringContactPoint(AbjadValueObject):
                 >>> indicator = abjad.StringContactPoint('sul ponticello')
                 >>> show(indicator.markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(indicator.markup)
                 \markup {
@@ -166,7 +166,7 @@ class StringContactPoint(AbjadValueObject):
                 >>> indicator = abjad.StringContactPoint('sul tasto')
                 >>> show(indicator.markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(indicator.markup)
                 \markup {

@@ -16,7 +16,7 @@ class LilyPondComment(AbjadValueObject):
             >>> attach(comment, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             % a comment
@@ -33,7 +33,7 @@ class LilyPondComment(AbjadValueObject):
             >>> attach(comment, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             % yet another comment

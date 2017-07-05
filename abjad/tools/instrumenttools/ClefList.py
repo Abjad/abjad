@@ -47,7 +47,7 @@ class ClefList(TypedList):
 
             >>> show(clefs) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> lilypond_file = clefs.__illustrate__()
             >>> f(lilypond_file[Staff])
@@ -80,7 +80,7 @@ class ClefList(TypedList):
 
                 >>> show(clefs) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = clefs.__illustrate__()
                 >>> f(lilypond_file[Staff])

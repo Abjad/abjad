@@ -18,7 +18,7 @@ class Ritardando(AbjadValueObject):
             >>> attach(ritardando, staff[0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -48,7 +48,7 @@ class Ritardando(AbjadValueObject):
             >>> attach(ritardando, staff[0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -225,7 +225,7 @@ class Ritardando(AbjadValueObject):
                 >>> ritardando = indicatortools.Ritardando(markup=markup)
                 >>> show(ritardando.markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(ritardando.markup)
                 \markup {

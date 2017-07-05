@@ -15,7 +15,7 @@ class Flute(Instrument):
         >>> attach(flute, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

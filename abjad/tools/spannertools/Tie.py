@@ -18,7 +18,7 @@ class Tie(Spanner):
             >>> attach(Tie(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -50,7 +50,7 @@ class Tie(Spanner):
             >>> attach(Tie(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -167,7 +167,7 @@ class Tie(Spanner):
                 >>> attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -193,7 +193,7 @@ class Tie(Spanner):
                 >>> attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -219,7 +219,7 @@ class Tie(Spanner):
                 >>> attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -258,7 +258,7 @@ class Tie(Spanner):
                 >>> attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

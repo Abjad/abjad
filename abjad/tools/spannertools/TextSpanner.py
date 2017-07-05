@@ -22,7 +22,7 @@ class TextSpanner(Spanner):
             >>> attach(text_spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -48,7 +48,7 @@ class TextSpanner(Spanner):
             >>> attach(text_spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -79,7 +79,7 @@ class TextSpanner(Spanner):
             >>> attach(text_spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -105,7 +105,7 @@ class TextSpanner(Spanner):
             >>> attach(text_spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -133,7 +133,7 @@ class TextSpanner(Spanner):
             >>> attach(text_spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -355,7 +355,7 @@ class TextSpanner(Spanner):
                 >>> attach(text_spanner_2, staff[-5:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

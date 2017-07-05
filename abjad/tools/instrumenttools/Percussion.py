@@ -15,7 +15,7 @@ class Percussion(Instrument):
         >>> attach(percussion, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

@@ -73,7 +73,7 @@ class Inversion(AbjadValueObject):
                 >>> segment_ = operator(segment)
                 >>> show(segment_) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> f(lilypond_file[Voice])
@@ -101,7 +101,7 @@ class Inversion(AbjadValueObject):
                 >>> segment_ = operator(segment)
                 >>> show(segment_) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
                 >>> f(lilypond_file[Voice])

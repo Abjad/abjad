@@ -21,7 +21,7 @@ class PageBreak(AbjadValueObject):
             >>> page_break
             PageBreak()
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

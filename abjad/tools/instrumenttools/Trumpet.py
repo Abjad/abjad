@@ -15,7 +15,7 @@ class Trumpet(Instrument):
         >>> attach(trumpet, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

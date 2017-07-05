@@ -31,7 +31,7 @@ class Selector(AbjadValueObject):
             >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -108,7 +108,7 @@ class Selector(AbjadValueObject):
             >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -303,7 +303,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -372,7 +372,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -460,7 +460,7 @@ class Selector(AbjadValueObject):
                 >>> label(result).color_alternating()
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -546,7 +546,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -619,7 +619,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -676,7 +676,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -746,7 +746,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -828,7 +828,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -908,7 +908,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1010,7 +1010,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1119,7 +1119,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1171,7 +1171,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1229,7 +1229,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1305,7 +1305,7 @@ class Selector(AbjadValueObject):
                 >>> show(staff) # doctest: +SKIP
 
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1450,7 +1450,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1535,7 +1535,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1632,7 +1632,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1710,7 +1710,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1796,7 +1796,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1866,7 +1866,7 @@ class Selector(AbjadValueObject):
                 >>> attach(OctavationSpanner(), result)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1945,7 +1945,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2039,7 +2039,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2130,7 +2130,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2202,7 +2202,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2277,7 +2277,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2350,7 +2350,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2423,7 +2423,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2496,7 +2496,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2574,7 +2574,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2642,7 +2642,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2748,7 +2748,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2822,7 +2822,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2906,7 +2906,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2979,7 +2979,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3058,7 +3058,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3122,7 +3122,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3194,7 +3194,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3323,7 +3323,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3470,7 +3470,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3536,7 +3536,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3603,7 +3603,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3672,7 +3672,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3728,7 +3728,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3801,7 +3801,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3865,7 +3865,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3934,7 +3934,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4033,7 +4033,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4092,7 +4092,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4163,7 +4163,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4258,7 +4258,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4304,7 +4304,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4357,7 +4357,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4416,7 +4416,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4496,7 +4496,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4570,7 +4570,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4646,7 +4646,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4704,7 +4704,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4764,7 +4764,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4818,7 +4818,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4890,7 +4890,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4992,7 +4992,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5091,7 +5091,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5192,7 +5192,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5299,7 +5299,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5357,7 +5357,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5437,7 +5437,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5522,7 +5522,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5603,7 +5603,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5694,7 +5694,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5924,7 +5924,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5982,7 +5982,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -6066,7 +6066,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -6144,7 +6144,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -6226,7 +6226,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -6321,7 +6321,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -6399,7 +6399,7 @@ class Selector(AbjadValueObject):
                 >>> set_(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {

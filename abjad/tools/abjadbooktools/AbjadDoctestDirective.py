@@ -2,7 +2,7 @@
 from sphinx.util.compat import Directive
 
 
-class DoctestDirective(Directive):
+class AbjadDoctestDirective(Directive):
     r'''An abjad-book doctest directive.
 
     Contributes no formatting to documents built by Sphinx.

@@ -12,11 +12,11 @@ class HorizontalBracketSpanner(Spanner):
 
             >>> voice = Voice("c'4 d'4 e'4 f'4")
             >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-            >>> spanner = spannertools.HorizontalBracketSpanner()
+            >>> spanner = HorizontalBracketSpanner()
             >>> attach(spanner, voice[:])
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice \with {
@@ -77,9 +77,7 @@ class HorizontalBracketSpanner(Spanner):
             ::
 
                 >>> markup = Markup('3-1[012]').smaller()
-                >>> spanner = spannertools.HorizontalBracketSpanner(
-                ...     markup=markup,
-                ...     )
+                >>> spanner = HorizontalBracketSpanner(markup=markup)
 
             ::
 
@@ -92,7 +90,7 @@ class HorizontalBracketSpanner(Spanner):
 
             ::
 
-                >>> spanner = spannertools.HorizontalBracketSpanner()
+                >>> spanner = HorizontalBracketSpanner()
                 >>> spanner.markup is None
                 True
 

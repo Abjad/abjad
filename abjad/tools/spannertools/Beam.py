@@ -15,7 +15,7 @@ class Beam(Spanner):
             >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -36,7 +36,7 @@ class Beam(Spanner):
             >>> attach(beam, staff[2:4])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -123,8 +123,7 @@ class Beam(Spanner):
             ::
 
                 >>> for leaf in staff:
-                ...     beam = spannertools.Beam
-                ...     result = beam._is_beamable(leaf)
+                ...     result = Beam._is_beamable(leaf)
                 ...     print('{:<8}\t{}'.format(leaf, result))
                 ... 
                 r32     False
@@ -149,8 +148,7 @@ class Beam(Spanner):
             ::
 
                 >>> for leaf in staff:
-                ...     beam = spannertools.Beam
-                ...     result = beam._is_beamable(
+                ...     result = Beam._is_beamable(
                 ...         leaf,
                 ...         beam_rests=True,
                 ...         )

@@ -16,7 +16,7 @@ class Dynamic(AbjadValueObject):
             >>> dynamic = Dynamic('f')
             >>> attach(dynamic, staff[0])
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

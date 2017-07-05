@@ -98,7 +98,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -169,7 +169,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -517,7 +517,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -569,7 +569,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -610,7 +610,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -679,7 +679,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -742,7 +742,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -797,7 +797,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -847,7 +847,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -901,7 +901,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -963,7 +963,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1015,7 +1015,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1065,7 +1065,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1145,7 +1145,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1213,7 +1213,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1281,7 +1281,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1348,7 +1348,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1416,7 +1416,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1484,7 +1484,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1558,7 +1558,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1634,7 +1634,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1711,7 +1711,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1791,7 +1791,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1853,7 +1853,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1918,7 +1918,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -1980,7 +1980,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2044,7 +2044,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2118,7 +2118,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2215,7 +2215,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2307,7 +2307,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2399,7 +2399,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -2493,7 +2493,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {

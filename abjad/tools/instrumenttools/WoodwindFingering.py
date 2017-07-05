@@ -77,7 +77,7 @@ class WoodwindFingering(AbjadObject):
         >>> attach(markup, chord)
         >>> show(chord) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(chord)
         <ds' fs''>4
@@ -126,7 +126,7 @@ class WoodwindFingering(AbjadObject):
         >>> attach(markup, chord)
         >>> show(chord) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(chord)
         <e' as' gqf''>1
@@ -162,7 +162,7 @@ class WoodwindFingering(AbjadObject):
         >>> attach(markup, chord)
         >>> show(chord) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(chord)
         <e' as' gqf''>1

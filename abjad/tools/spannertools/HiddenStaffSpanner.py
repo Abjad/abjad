@@ -10,11 +10,11 @@ class HiddenStaffSpanner(Spanner):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.HiddenStaffSpanner()
+            >>> spanner = HiddenStaffSpanner()
             >>> attach(spanner, staff[1:3])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

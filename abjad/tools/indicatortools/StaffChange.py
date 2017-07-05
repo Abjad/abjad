@@ -22,7 +22,7 @@ class StaffChange(AbjadValueObject):
             >>> attach(staff_change, rh_staff[2])
             >>> show(staff_group) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff_group)
             \new PianoStaff <<

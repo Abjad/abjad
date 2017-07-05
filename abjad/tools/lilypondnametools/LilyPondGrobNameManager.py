@@ -32,7 +32,7 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 >>> override(staff).note_head.color = 'red'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {

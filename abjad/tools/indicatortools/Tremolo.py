@@ -16,7 +16,7 @@ class Tremolo(AbjadValueObject):
             >>> attach(tremolo, chord)
             >>> show(chord) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(chord)
             \repeat tremolo 2
@@ -35,7 +35,7 @@ class Tremolo(AbjadValueObject):
             >>> attach(tremolo, chord)
             >>> show(chord) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(chord)
             \repeat tremolo 4
@@ -181,7 +181,7 @@ class Tremolo(AbjadValueObject):
                 >>> attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \repeat tremolo 2
@@ -200,7 +200,7 @@ class Tremolo(AbjadValueObject):
                 >>> attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \repeat tremolo 4
@@ -231,7 +231,7 @@ class Tremolo(AbjadValueObject):
                 >>> attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \repeat tremolo 4
@@ -250,7 +250,7 @@ class Tremolo(AbjadValueObject):
                 >>> attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \repeat tremolo 4

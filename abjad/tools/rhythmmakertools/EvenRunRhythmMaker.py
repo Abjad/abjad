@@ -33,7 +33,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
@@ -229,7 +229,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -293,7 +293,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -349,7 +349,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -414,7 +414,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -511,7 +511,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -574,7 +574,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
@@ -638,7 +638,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {

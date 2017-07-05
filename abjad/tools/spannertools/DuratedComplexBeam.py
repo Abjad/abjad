@@ -18,14 +18,14 @@ class DuratedComplexBeam(ComplexBeam):
             >>> staff = Staff("c'16 d'16 e'16 f'16 g'16")
             >>> set_(staff).auto_beaming = False
             >>> durations = [Duration(2, 16), Duration(3, 16)]
-            >>> beam = spannertools.DuratedComplexBeam(
+            >>> beam = DuratedComplexBeam(
             ...     durations=durations,
             ...     span_beam_count=1,
             ...     )
             >>> attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -57,14 +57,14 @@ class DuratedComplexBeam(ComplexBeam):
             >>> staff = Staff("c'16 d'16 e'16 f'16 g'16")
             >>> set_(staff).auto_beaming = False
             >>> durations = [Duration(3, 16), Duration(2, 16)]
-            >>> beam = spannertools.DuratedComplexBeam(
+            >>> beam = DuratedComplexBeam(
             ...     durations=durations,
             ...     span_beam_count=1,
             ...     )
             >>> attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -277,11 +277,11 @@ class DuratedComplexBeam(ComplexBeam):
             ::
 
                 >>> staff = Staff("c'8 r r d'")
-                >>> beam = spannertools.DuratedComplexBeam(beam_rests=False)
+                >>> beam = DuratedComplexBeam(beam_rests=False)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -304,11 +304,11 @@ class DuratedComplexBeam(ComplexBeam):
             ::
 
                 >>> staff = Staff("c'8 r r d'")
-                >>> beam = spannertools.DuratedComplexBeam(beam_rests=True)
+                >>> beam = DuratedComplexBeam(beam_rests=True)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -329,11 +329,11 @@ class DuratedComplexBeam(ComplexBeam):
             ::
 
                 >>> staff = Staff("c'8 s s d'")
-                >>> beam = spannertools.DuratedComplexBeam(beam_rests=False)
+                >>> beam = DuratedComplexBeam(beam_rests=False)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -356,11 +356,11 @@ class DuratedComplexBeam(ComplexBeam):
             ::
 
                 >>> staff = Staff("c'8 s s d'")
-                >>> beam = spannertools.DuratedComplexBeam(beam_rests=True)
+                >>> beam = DuratedComplexBeam(beam_rests=True)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -382,11 +382,11 @@ class DuratedComplexBeam(ComplexBeam):
 
                 >>> string = "c'8 s4 d'8 s8"
                 >>> staff = Staff(string)
-                >>> beam = spannertools.DuratedComplexBeam(beam_rests=True)
+                >>> beam = DuratedComplexBeam(beam_rests=True)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -421,13 +421,11 @@ class DuratedComplexBeam(ComplexBeam):
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
-                ...     durations=durations,
-                ...     )
+                >>> beam = DuratedComplexBeam(durations=durations)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -459,14 +457,14 @@ class DuratedComplexBeam(ComplexBeam):
                 >>> staff = Staff("c'16 d'16 e'8 f'16 c'16")
                 >>> set_(staff).auto_beaming = False
                 >>> durations = [Duration(1, 8), Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> beam = DuratedComplexBeam(
                 ...     durations=durations,
                 ...     span_beam_count=1,
                 ...     )
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -514,14 +512,14 @@ class DuratedComplexBeam(ComplexBeam):
 
                 >>> staff = Staff("c'16 d'16 r4 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 4), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> beam = DuratedComplexBeam(
                 ...     durations=durations,
                 ...     nibs_towards_nonbeamable_components=False
                 ...     )
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -548,14 +546,14 @@ class DuratedComplexBeam(ComplexBeam):
 
                 >>> staff = Staff("c'16 d'16 r4 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 4), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> beam = DuratedComplexBeam(
                 ...     durations=durations,
                 ...     nibs_towards_nonbeamable_components=True
                 ...     )
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -594,14 +592,14 @@ class DuratedComplexBeam(ComplexBeam):
 
                 >>> staff = Staff("c'32 d'32 e'32 f'32")
                 >>> durations = [Duration(1, 16), Duration(1, 16)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> beam = DuratedComplexBeam(
                 ...     durations=durations,
                 ...     span_beam_count=1,
                 ...     )
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -632,14 +630,14 @@ class DuratedComplexBeam(ComplexBeam):
 
                 >>> staff = Staff("c'32 d'32 e'32 f'32")
                 >>> durations = [Duration(1, 16), Duration(1, 16)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> beam = DuratedComplexBeam(
                 ...     durations=durations,
                 ...     span_beam_count=2,
                 ...     )
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -670,14 +668,14 @@ class DuratedComplexBeam(ComplexBeam):
 
                 >>> staff = Staff("c'32 d'32 e'32 f'32")
                 >>> durations = [Duration(1, 16), Duration(1, 16)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> beam = DuratedComplexBeam(
                 ...     durations=durations,
                 ...     span_beam_count=0,
                 ...     )
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

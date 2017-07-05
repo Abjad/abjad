@@ -17,11 +17,11 @@ class ClefSpanner(Spanner):
             >>> staff = Staff("c' d' e' f' g' a' b' c''")
             >>> clef = Clef('treble')
             >>> attach(clef, staff[0])
-            >>> clef_spanner = spannertools.ClefSpanner('percussion')
+            >>> clef_spanner = ClefSpanner('percussion')
             >>> attach(clef_spanner, staff[2:-2])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -48,13 +48,13 @@ class ClefSpanner(Spanner):
             >>> staff = Staff("r4 c'4 d'4 r4 e'4 f'4 r4")
             >>> clef = Clef('treble')
             >>> attach(clef, staff[0])
-            >>> clef_spanner = spannertools.ClefSpanner('percussion')
+            >>> clef_spanner = ClefSpanner('percussion')
             >>> attach(clef_spanner, staff[1:3])
-            >>> clef_spanner = spannertools.ClefSpanner('percussion')
+            >>> clef_spanner = ClefSpanner('percussion')
             >>> attach(clef_spanner, staff[4:6])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

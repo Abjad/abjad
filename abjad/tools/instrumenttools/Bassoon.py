@@ -17,7 +17,7 @@ class Bassoon(Instrument):
         >>> attach(bassoon, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

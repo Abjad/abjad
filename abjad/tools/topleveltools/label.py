@@ -16,7 +16,7 @@ def label(client=None):
             >>> override(staff).tuplet_bracket.staff_padding = 0
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -65,7 +65,7 @@ def label(client=None):
             >>> override(staff).tuplet_bracket.staff_padding = 0
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {

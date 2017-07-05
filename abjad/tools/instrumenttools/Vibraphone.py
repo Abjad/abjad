@@ -15,7 +15,7 @@ class Vibraphone(Instrument):
         >>> attach(vibraphone, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

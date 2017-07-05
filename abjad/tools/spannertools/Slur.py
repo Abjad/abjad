@@ -18,7 +18,7 @@ class Slur(Spanner):
             >>> attach(Slur(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -102,11 +102,11 @@ class Slur(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.Slur(direction=Up)
+                >>> slur = Slur(direction=Up)
                 >>> attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -123,11 +123,11 @@ class Slur(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.Slur(direction=Down)
+                >>> slur = Slur(direction=Down)
                 >>> attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -144,11 +144,11 @@ class Slur(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.Slur(direction=None)
+                >>> slur = Slur(direction=None)
                 >>> attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

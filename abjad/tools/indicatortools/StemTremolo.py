@@ -18,7 +18,7 @@ class StemTremolo(AbjadValueObject):
             >>> attach(stem_tremolo, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4 :16
@@ -34,7 +34,7 @@ class StemTremolo(AbjadValueObject):
             >>> attach(stem_tremolo, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4 :32

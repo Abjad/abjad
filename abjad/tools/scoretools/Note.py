@@ -18,7 +18,7 @@ class Note(Leaf):
             >>> measure = Measure((3, 16), [note])
             >>> show(measure) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(measure)
             {

@@ -79,7 +79,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> beam = spannertools.Beam()
                 >>> attach(beam, staff[:])
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -180,7 +180,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> attach(grace_container, staff[-1])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -271,7 +271,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> attach(after_grace, staff[1])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -375,7 +375,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> staff.append(Voice("g'8 a'8 b'8 c''8"))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -563,7 +563,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> attach(grace_container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {
@@ -597,7 +597,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> attach(grace_container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {
@@ -638,7 +638,7 @@ class InspectionAgent(abctools.AbjadObject):
                 ...     staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -670,7 +670,7 @@ class InspectionAgent(abctools.AbjadObject):
                 ...     staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -753,7 +753,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> attach(after_grace, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {
@@ -912,7 +912,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -978,7 +978,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> override(container).note_head.style = 'harmonic'
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1043,7 +1043,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> beam = spannertools.Beam()
                 >>> attach(beam, staff[:])
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

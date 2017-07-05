@@ -14,7 +14,7 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
         >>> score, treble_staff, bass_staff = \
         ...     scoretools.make_piano_sketch_score_from_leaves(notes)
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(score)
         \new Score \with {

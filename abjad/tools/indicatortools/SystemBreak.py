@@ -16,7 +16,7 @@ class SystemBreak(AbjadValueObject):
             >>> attach(break_, staff[-1])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

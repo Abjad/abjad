@@ -14,7 +14,7 @@ class Contrabassoon(Instrument):
         >>> attach(contrabassoon, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

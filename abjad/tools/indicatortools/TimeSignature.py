@@ -20,7 +20,7 @@ class TimeSignature(AbjadValueObject):
             >>> attach(time_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -41,7 +41,7 @@ class TimeSignature(AbjadValueObject):
             >>> attach(time_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

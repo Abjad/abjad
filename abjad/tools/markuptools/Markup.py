@@ -111,7 +111,7 @@ class Markup(AbjadValueObject):
                 >>> attach(markup, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -148,7 +148,7 @@ class Markup(AbjadValueObject):
                 >>> attach(markup, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -565,7 +565,7 @@ class Markup(AbjadValueObject):
 
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = markup.__illustrate__()
                     >>> f(lilypond_file.items[-1])
@@ -597,7 +597,7 @@ class Markup(AbjadValueObject):
 
                     >>> show(markup) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> lilypond_file = markup.__illustrate__()
                     >>> f(lilypond_file.items[-1])

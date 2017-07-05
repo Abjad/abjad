@@ -14,11 +14,11 @@ class PhrasingSlur(Spanner):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> slur = spannertools.PhrasingSlur()
+            >>> slur = PhrasingSlur()
             >>> attach(slur, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -35,7 +35,7 @@ class PhrasingSlur(Spanner):
         ::
 
             >>> staff = Staff("c'8 d' e' f'")
-            >>> phrasing_slur = spannertools.PhrasingSlur()
+            >>> phrasing_slur = PhrasingSlur()
             >>> attach(phrasing_slur, staff[:1])
             Traceback (most recent call last):
                 ...
@@ -103,11 +103,11 @@ class PhrasingSlur(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.PhrasingSlur(direction=Up)
+                >>> slur = PhrasingSlur(direction=Up)
                 >>> attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -124,11 +124,11 @@ class PhrasingSlur(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.PhrasingSlur(direction=Down)
+                >>> slur = PhrasingSlur(direction=Down)
                 >>> attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -145,11 +145,11 @@ class PhrasingSlur(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.PhrasingSlur(direction=None)
+                >>> slur = PhrasingSlur(direction=None)
                 >>> attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

@@ -22,7 +22,7 @@ class Tuplet(Container):
             >>> tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
             >>> show(tuplet) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(tuplet)
             \times 2/3 {
@@ -39,7 +39,7 @@ class Tuplet(Container):
             >>> tuplet.insert(1, second_tuplet)
             >>> show(tuplet) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(tuplet)
             \tweak edge-height #'(0.7 . 0)
@@ -63,7 +63,7 @@ class Tuplet(Container):
             >>> second_tuplet.insert(1, third_tuplet)
             >>> show(tuplet) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(tuplet)
             \tweak edge-height #'(0.7 . 0)
@@ -376,7 +376,7 @@ class Tuplet(Container):
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -400,7 +400,7 @@ class Tuplet(Container):
                 >>> tuplet.force_fraction = True
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -423,7 +423,7 @@ class Tuplet(Container):
                 >>> staff = Staff([tuplet])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -545,7 +545,7 @@ class Tuplet(Container):
 
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -747,7 +747,7 @@ class Tuplet(Container):
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -772,7 +772,7 @@ class Tuplet(Container):
                 >>> staff = Staff([tuplet_1, tuplet_2])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -793,7 +793,7 @@ class Tuplet(Container):
                 >>> staff[0].is_invisible = True
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -842,7 +842,7 @@ class Tuplet(Container):
                 >>> measure = Measure((3, 8), [tuplet])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -864,7 +864,7 @@ class Tuplet(Container):
                 >>> measure = Measure((3, 8), "c'8. c'8.")
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -883,7 +883,7 @@ class Tuplet(Container):
                 >>> measure = Measure((3, 4), [tuplet])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -980,7 +980,7 @@ class Tuplet(Container):
                 >>> tuplet.multiplier = Multiplier(4, 3)
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -1026,7 +1026,7 @@ class Tuplet(Container):
                 True
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -1044,7 +1044,7 @@ class Tuplet(Container):
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -1058,7 +1058,7 @@ class Tuplet(Container):
                 >>> tuplet.preferred_denominator = 4
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 4/6 {
@@ -1094,7 +1094,7 @@ class Tuplet(Container):
                 >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -1108,7 +1108,7 @@ class Tuplet(Container):
                 >>> tuplet.append(Note("e'4"))
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak edge-height #'(0.7 . 0)
@@ -1128,7 +1128,7 @@ class Tuplet(Container):
                 >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -1142,7 +1142,7 @@ class Tuplet(Container):
                 >>> tuplet.append(Note("e'4"), preserve_duration=True)
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 1/2 {
@@ -1177,7 +1177,7 @@ class Tuplet(Container):
                 >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -1192,7 +1192,7 @@ class Tuplet(Container):
                 >>> tuplet.extend(notes)
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak edge-height #'(0.7 . 0)
@@ -1214,7 +1214,7 @@ class Tuplet(Container):
                 >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -1229,7 +1229,7 @@ class Tuplet(Container):
                 >>> tuplet.extend(notes, preserve_duration=True)
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 4/7 {
@@ -1284,7 +1284,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1315,7 +1315,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1347,7 +1347,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1380,7 +1380,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1412,7 +1412,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1446,7 +1446,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1477,7 +1477,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1509,7 +1509,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1542,7 +1542,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1572,7 +1572,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1667,7 +1667,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 {
@@ -1690,7 +1690,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 {
@@ -1714,7 +1714,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -1740,7 +1740,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -1767,7 +1767,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -1795,7 +1795,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -1824,7 +1824,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 {
@@ -1847,7 +1847,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 {
@@ -1871,7 +1871,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 4/5 {
@@ -1896,7 +1896,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -1923,7 +1923,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -1951,7 +1951,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 4/5 {
@@ -1994,7 +1994,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -2021,7 +2021,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -2046,7 +2046,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -2069,7 +2069,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -2092,7 +2092,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -2117,7 +2117,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -2143,7 +2143,7 @@ class Tuplet(Container):
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -2237,7 +2237,7 @@ class Tuplet(Container):
                 >>> tuplet = Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -2254,7 +2254,7 @@ class Tuplet(Container):
                 >>> tuplet.set_minimum_denominator(8)
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -2328,7 +2328,7 @@ class Tuplet(Container):
                 >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
@@ -2343,7 +2343,7 @@ class Tuplet(Container):
                 >>> tuplet.toggle_prolation()
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -2364,7 +2364,7 @@ class Tuplet(Container):
                 >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -2378,7 +2378,7 @@ class Tuplet(Container):
                 >>> tuplet.toggle_prolation()
                 >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text

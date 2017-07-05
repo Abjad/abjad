@@ -132,7 +132,7 @@ class MetricAccentKernel(AbjadValueObject):
                 >>> lower_staff = Staff(r'\clef bass c4 b,4 a,2')
                 >>> score = Score([upper_staff, lower_staff])
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score <<

@@ -17,7 +17,7 @@ class KeyCluster(AbjadValueObject):
             >>> attach(key_cluster, chord)
             >>> show(chord) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(chord)
             \once \override Accidental.stencil = ##f
@@ -131,7 +131,7 @@ class KeyCluster(AbjadValueObject):
                 >>> attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \once \override Accidental.stencil = ##f
@@ -166,7 +166,7 @@ class KeyCluster(AbjadValueObject):
                 >>> attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \once \override Accidental.stencil = ##f
@@ -205,7 +205,7 @@ class KeyCluster(AbjadValueObject):
                 >>> attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \once \override Accidental.stencil = ##f
@@ -240,7 +240,7 @@ class KeyCluster(AbjadValueObject):
                 >>> attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \once \override Accidental.stencil = ##f
@@ -279,7 +279,7 @@ class KeyCluster(AbjadValueObject):
                 >>> attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \once \override Accidental.stencil = ##f
@@ -314,7 +314,7 @@ class KeyCluster(AbjadValueObject):
                 >>> attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \once \override Accidental.stencil = ##f
@@ -355,7 +355,7 @@ class KeyCluster(AbjadValueObject):
                 >>> attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \once \override Accidental.stencil = ##f
@@ -390,7 +390,7 @@ class KeyCluster(AbjadValueObject):
                 >>> attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 \once \override Accidental.stencil = ##f

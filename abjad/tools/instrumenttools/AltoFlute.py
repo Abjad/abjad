@@ -15,7 +15,7 @@ class AltoFlute(Instrument):
         >>> attach(alto_flute, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

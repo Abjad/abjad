@@ -72,7 +72,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> container = Container("c'4 ~ c'4 d'4 ~ d'4")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -97,7 +97,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff(contents, context_name='RhythmicStaff')
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -147,7 +147,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(hairpin, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -170,7 +170,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> empty_tuplet = mutate(staff[0]).extract()
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -198,7 +198,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(hairpin, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -223,7 +223,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     scale_contents=True)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -256,7 +256,7 @@ class MutationAgent(abctools.AbjadObject):
                 [Note("d'4.")]
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -280,7 +280,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff([tuplet_1, tuplet_2])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -303,7 +303,7 @@ class MutationAgent(abctools.AbjadObject):
                 Tuplet(Multiplier(2, 3), "c'8 d'8 e'8 c'16 d'16 e'16")
                 >>> show(staff) #doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -343,7 +343,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -366,7 +366,7 @@ class MutationAgent(abctools.AbjadObject):
                 Measure((2, 4), "c'8 d'8 e'8 f'8")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -415,7 +415,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -440,7 +440,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate([tuplet_1]).replace(notes)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -493,7 +493,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff(measures)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -514,7 +514,7 @@ class MutationAgent(abctools.AbjadObject):
                 [Measure((1, 8), "c'16 d'16"), Measure((3, 16), "e'16 f'16 s1 * 1/16")]
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -608,7 +608,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -625,7 +625,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(staff).respell_with_flats()
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -662,7 +662,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -679,7 +679,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(staff).respell_with_sharps()
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -727,7 +727,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff(parseable)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -763,7 +763,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(staff[1][:]).rewrite_meter(meter)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -794,7 +794,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff(parseable)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -833,7 +833,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(staff[1][:]).rewrite_meter(meter)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -865,7 +865,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> measure = parse(parseable)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -883,7 +883,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(measure[:]).rewrite_meter(measure)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -907,7 +907,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -932,7 +932,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -958,7 +958,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1011,7 +1011,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> measure = parse(parseable)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1026,7 +1026,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(measure[:]).rewrite_meter(measure)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1051,7 +1051,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1076,7 +1076,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1115,7 +1115,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> score[1].consists_commands.extend(engravers)
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score \with {
@@ -1193,7 +1193,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score \with {
@@ -1273,7 +1273,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score \with {
@@ -1360,7 +1360,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> measure = parse(parseable)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1395,7 +1395,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1430,7 +1430,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(measure[:]).rewrite_meter(meter)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1450,7 +1450,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(measure[:]).rewrite_meter(meter, boundary_depth=1)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1474,7 +1474,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(measure[:]).rewrite_meter(meter)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1497,7 +1497,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> measure = Measure((4, 4), "c'4. c'4. c'4")
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1517,7 +1517,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1546,7 +1546,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> measure = Measure((6, 4), string)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1578,7 +1578,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1618,7 +1618,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> measure = Measure((6, 4), string)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1651,7 +1651,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -1707,7 +1707,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(staff[1]).scale(Multiplier(3, 2))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1728,7 +1728,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1744,7 +1744,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> logical_tie = mutate(logical_tie).scale(Multiplier(3, 2))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1762,7 +1762,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1777,7 +1777,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(container).scale(Multiplier(3, 2))
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1801,7 +1801,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(staff[1]).scale(Multiplier(5, 4))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1823,7 +1823,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1839,7 +1839,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> logical_tie = mutate(logical_tie).scale(Multiplier(5, 4))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1858,7 +1858,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1873,7 +1873,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(container).scale(Multiplier(5, 4))
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1901,7 +1901,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(staff[1]).scale(Multiplier(2, 3))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1923,7 +1923,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff(r"c'8 \accent")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1936,7 +1936,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> logical_tie = mutate(logical_tie).scale(Multiplier(4, 3))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1955,7 +1955,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -1970,7 +1970,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(container).scale(Multiplier(4, 3))
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -2006,7 +2006,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(staff[1]).scale(Multiplier(5, 6))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2030,7 +2030,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(Multiplier(1, 2), note)
                 >>> show(note) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(note)
                 c'8 * 1/2
@@ -2040,7 +2040,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(note).scale(Multiplier(5, 3))
                 >>> show(note) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(note)
                 c'8 * 5/6
@@ -2059,7 +2059,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff.append(tuplet)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2078,7 +2078,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(tuplet).scale(Multiplier(2))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2105,7 +2105,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff.append(tuplet)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2124,7 +2124,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(tuplet).scale(Multiplier(2))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2194,7 +2194,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2219,7 +2219,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2249,7 +2249,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2276,7 +2276,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2307,7 +2307,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2333,7 +2333,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2366,7 +2366,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2393,7 +2393,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2428,7 +2428,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2454,7 +2454,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2483,7 +2483,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2504,7 +2504,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2537,7 +2537,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2704,7 +2704,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2729,7 +2729,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(measures).swap(tuplet)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -2775,7 +2775,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff.append(Measure((3, 4), "d'4 e'4 <f' a' c''>4"))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2799,7 +2799,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> mutate(staff).transpose("+m3")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

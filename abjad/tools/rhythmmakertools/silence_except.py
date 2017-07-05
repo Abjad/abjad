@@ -37,7 +37,7 @@ def silence_except(indices=None):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> staff = lilypond_file[Staff]
             >>> f(lilypond_file[Staff])
@@ -93,7 +93,7 @@ def silence_except(indices=None):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
@@ -164,7 +164,7 @@ def silence_except(indices=None):
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(lilypond_file[Staff])
             \new RhythmicStaff {

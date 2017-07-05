@@ -14,7 +14,7 @@ class Skip(Leaf):
             >>> skip
             Skip('s8.')
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(skip)
             s8.

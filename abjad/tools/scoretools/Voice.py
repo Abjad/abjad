@@ -14,7 +14,7 @@ class Voice(Context):
         >>> voice
         Voice("c'8 d'8 e'8 f'8")
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(voice)
         \new Voice {

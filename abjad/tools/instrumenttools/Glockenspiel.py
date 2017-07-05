@@ -15,7 +15,7 @@ class Glockenspiel(Instrument):
         >>> attach(glockenspiel, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

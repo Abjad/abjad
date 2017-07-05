@@ -84,7 +84,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         app.add_config_value('abjadbook_ignored_documents', (), 'env')
         app.add_config_value('abjadbook_console_module_names', (), 'env')
         app.add_directive('abjad', abjadbooktools.AbjadDirective)
-        app.add_directive('doctest', abjadbooktools.DoctestDirective)
+        app.add_directive('docs', abjadbooktools.AbjadDoctestDirective)
         app.add_directive('import', abjadbooktools.ImportDirective)
         app.add_directive('reveal', abjadbooktools.RevealDirective)
         app.add_directive('shell', abjadbooktools.ShellDirective)

@@ -126,7 +126,7 @@ class MetronomeMarkList(TypedList):
 
                 >>> show(marks) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = marks.__illustrate__()
                 >>> f(lilypond_file[Score])

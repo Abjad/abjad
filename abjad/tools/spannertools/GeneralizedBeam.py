@@ -18,11 +18,11 @@ class GeneralizedBeam(Spanner):
 
         ::
 
-            >>> beam = spannertools.GeneralizedBeam()
+            >>> beam = GeneralizedBeam()
             >>> attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -49,13 +49,13 @@ class GeneralizedBeam(Spanner):
 
         ::
 
-            >>> beam = spannertools.GeneralizedBeam(
+            >>> beam = GeneralizedBeam(
             ...     isolated_nib_direction=Right,
             ...     )
             >>> attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -82,13 +82,11 @@ class GeneralizedBeam(Spanner):
 
         ::
 
-            >>> beam = spannertools.GeneralizedBeam(
-            ...     use_stemlets=True,
-            ...     )
+            >>> beam = GeneralizedBeam(use_stemlets=True)
             >>> attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {

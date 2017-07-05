@@ -23,7 +23,7 @@ class Parentage(Selection):
             >>> score.append(bass_staff)
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -179,7 +179,7 @@ class Parentage(Selection):
                 >>> attach(grace_container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {
@@ -237,7 +237,7 @@ class Parentage(Selection):
                 >>> score = Score([staff], name='CustomScore')
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \context Score = "CustomScore" <<
@@ -340,7 +340,7 @@ class Parentage(Selection):
                 >>> score = Score([staff_1, staff_2])
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score <<
@@ -386,7 +386,7 @@ class Parentage(Selection):
                 >>> attach(grace, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(voice)
                 \new Voice {
@@ -443,7 +443,7 @@ class Parentage(Selection):
                 >>> note = tuplet[0]
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

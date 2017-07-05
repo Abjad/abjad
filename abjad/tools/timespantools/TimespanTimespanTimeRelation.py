@@ -14,7 +14,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         >>> staff_2 = Staff("c'2. d'4")
         >>> score = Score([staff_1, staff_2])
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(score)
         \new Score <<

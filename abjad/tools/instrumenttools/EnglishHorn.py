@@ -15,7 +15,7 @@ class EnglishHorn(Instrument):
         >>> attach(english_horn, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

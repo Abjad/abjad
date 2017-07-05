@@ -12,7 +12,7 @@ class Piccolo(Instrument):
         >>> attach(piccolo, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

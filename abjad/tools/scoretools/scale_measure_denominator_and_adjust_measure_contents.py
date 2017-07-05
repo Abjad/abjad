@@ -19,7 +19,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
             >>> attach(beam, measure[:])
             >>> show(measure) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(measure)
             {
@@ -35,7 +35,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
             Measure((3, 12), "c'8. d'8.", implicit_scaling=True)
             >>> show(measure) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(measure)
             {

@@ -21,7 +21,7 @@ def attach(
             >>> attach(Clef('alto'), staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -43,7 +43,7 @@ def attach(
             >>> attach(Articulation('>'), staff[-1])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

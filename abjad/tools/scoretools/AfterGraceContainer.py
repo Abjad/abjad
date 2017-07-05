@@ -17,7 +17,7 @@ class AfterGraceContainer(GraceContainer):
             >>> attach(after_grace_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice {

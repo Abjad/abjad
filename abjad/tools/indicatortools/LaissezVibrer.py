@@ -14,7 +14,7 @@ class LaissezVibrer(AbjadValueObject):
             >>> attach(laissez_vibrer, chord)
             >>> show(chord) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(chord)
             <c' e' g' c''>4 \laissezVibrer

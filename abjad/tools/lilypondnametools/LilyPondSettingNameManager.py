@@ -32,7 +32,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
                 >>> set_(staff).instrument_name = Markup('Vn. I')
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {

@@ -7,14 +7,16 @@ class Decrescendo(Hairpin):
 
     ..  container:: example
 
+        Initializes decrescendo without start- and stop-dynamics:
+
         ::
 
             >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-            >>> decrescendo = spannertools.Decrescendo()
+            >>> decrescendo = Decrescendo()
             >>> attach(decrescendo, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -23,6 +25,29 @@ class Decrescendo(Hairpin):
                 d'8
                 e'8
                 f'8 \!
+                r4
+            }
+
+    ..  container:: example
+
+        Initializes decrescendo with start- and stop-dynamics:
+
+        ::
+
+            >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
+            >>> decrescendo = Decrescendo('f > p')
+            >>> attach(decrescendo, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                r4
+                c'8 \> \f
+                d'8
+                e'8
+                f'8 \p
                 r4
             }
 
@@ -37,13 +62,15 @@ class Decrescendo(Hairpin):
 
     def __init__(
         self,
+        descriptor='>',
         direction=None,
         include_rests=False,
         overrides=None,
         ):
+        assert '>' in descriptor, repr(descriptor)
         Hairpin.__init__(
             self,
-            descriptor='>',
+            descriptor=descriptor,
             direction=direction,
             include_rests=include_rests,
             overrides=overrides,
@@ -88,7 +115,7 @@ class Decrescendo(Hairpin):
                 >>> attach(decrescendo, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -126,7 +153,7 @@ class Decrescendo(Hairpin):
                 >>> attach(decrescendo, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

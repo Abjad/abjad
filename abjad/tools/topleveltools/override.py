@@ -14,7 +14,7 @@ def override(argument):
             >>> override(staff).staff_symbol.color = 'red'
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {

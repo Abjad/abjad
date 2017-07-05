@@ -12,7 +12,7 @@ class FixedDurationContainer(Container):
         ...     (3, 8), "c'8 d'8 e'8")
         >>> show(container) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(container)
         {

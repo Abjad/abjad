@@ -22,7 +22,7 @@ def make_spacing_vector(
         >>> spacing_vector = schemetools.make_spacing_vector(0, 0, 12, 0)
         >>> lilypond_file.paper_block.system_system_spacing = spacing_vector
 
-    ..  doctest::
+    ..  docs::
 
         >>> print(format(lilypond_file)) # doctest: +SKIP
         % Abjad revision 4229

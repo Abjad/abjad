@@ -16,7 +16,7 @@ class BreathMark(AbjadValueObject):
             >>> attach(breath_mark, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4 \breathe
@@ -34,7 +34,7 @@ class BreathMark(AbjadValueObject):
             >>> attach(indicatortools.BreathMark(), staff[7])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

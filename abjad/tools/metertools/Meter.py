@@ -484,7 +484,7 @@ class Meter(AbjadObject):
                 >>> meter_graph = meter.__graph__()
                 >>> graph(meter_graph) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(str(meter_graph))
                 digraph G {

@@ -16,7 +16,7 @@ class Fermata(AbjadValueObject):
             >>> attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -36,7 +36,7 @@ class Fermata(AbjadValueObject):
             >>> attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -56,7 +56,7 @@ class Fermata(AbjadValueObject):
             >>> attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -76,7 +76,7 @@ class Fermata(AbjadValueObject):
             >>> attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(score)
             \new Score <<

@@ -15,7 +15,7 @@ class Marimba(Instrument):
         >>> attach(marimba, staff)
         >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(staff)
         \new Staff {

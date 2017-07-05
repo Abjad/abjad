@@ -16,7 +16,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
         >>> beam = spannertools.Beam()
         >>> attach(beam, measure[:])
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(measure)
         {
@@ -31,7 +31,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
         >>> scoretools.set_measure_denominator_and_adjust_numerator(measure, 16)
         Measure((6, 16), "c'8 d'8 e'8")
 
-    ..  doctest::
+    ..  docs::
 
         >>> f(measure)
         {

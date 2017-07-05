@@ -14,7 +14,7 @@ class ComplexBeam(Beam):
             >>> set_(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -29,11 +29,11 @@ class ComplexBeam(Beam):
 
         ::
 
-            >>> beam = spannertools.ComplexBeam()
+            >>> beam = ComplexBeam()
             >>> attach(beam, staff[:4])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -284,11 +284,11 @@ class ComplexBeam(Beam):
             ::
 
                 >>> staff = Staff("c'8 r r d'")
-                >>> beam = spannertools.ComplexBeam(beam_rests=False)
+                >>> beam = ComplexBeam(beam_rests=False)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -311,11 +311,11 @@ class ComplexBeam(Beam):
             ::
 
                 >>> staff = Staff("c'8 r r d'")
-                >>> beam = spannertools.ComplexBeam(beam_rests=True)
+                >>> beam = ComplexBeam(beam_rests=True)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -340,11 +340,11 @@ class ComplexBeam(Beam):
             ::
 
                 >>> staff = Staff("c'8 s s d'")
-                >>> beam = spannertools.ComplexBeam(beam_rests=False)
+                >>> beam = ComplexBeam(beam_rests=False)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -367,11 +367,11 @@ class ComplexBeam(Beam):
             ::
 
                 >>> staff = Staff("c'8 s s d'")
-                >>> beam = spannertools.ComplexBeam(beam_rests=True)
+                >>> beam = ComplexBeam(beam_rests=True)
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -408,11 +408,11 @@ class ComplexBeam(Beam):
             ::
 
                 >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=Left)
+                >>> beam = ComplexBeam(isolated_nib_direction=Left)
                 >>> attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -429,11 +429,11 @@ class ComplexBeam(Beam):
             ::
 
                 >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=Right)
+                >>> beam = ComplexBeam(isolated_nib_direction=Right)
                 >>> attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -450,11 +450,11 @@ class ComplexBeam(Beam):
             ::
 
                 >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=True)
+                >>> beam = ComplexBeam(isolated_nib_direction=True)
                 >>> attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -471,11 +471,11 @@ class ComplexBeam(Beam):
             ::
 
                 >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=False)
+                >>> beam = ComplexBeam(isolated_nib_direction=False)
                 >>> attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
