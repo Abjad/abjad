@@ -67,7 +67,7 @@ def test_spannertools_TextSpanner_format_02():
     attach(arrow_stop, staff[-1], is_annotation=True)
     attach(text_spanner, staff[:])
 
-    assert format(staff) == systemtools.TestManager.clean_string(
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \once \override TextSpanner.arrow-width = 0.25

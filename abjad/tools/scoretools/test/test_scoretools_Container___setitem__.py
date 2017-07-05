@@ -878,7 +878,7 @@ def test_scoretools_Container___setitem___21():
     leaves = iterate(staff).by_leaf()
     assert beam.components == list(leaves)
 
-    assert format(staff) == systemtools.TestManager.clean_string(
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 [

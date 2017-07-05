@@ -223,13 +223,6 @@ class TestManager(AbjadObject):
             break
 
     @staticmethod
-    def clean_string(string):
-        r'''Cleans string.
-        '''
-        from abjad.tools import stringtools
-        return stringtools.normalize(string)
-
-    @staticmethod
     def compare(string_1, string_2):
         r'''Compares `string_1` to `string_2`.
 
