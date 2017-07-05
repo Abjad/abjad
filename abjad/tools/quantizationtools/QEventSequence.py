@@ -554,11 +554,11 @@ class QEventSequence(AbjadObject):
         from abjad.tools import quantizationtools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
-        assert Selection._all_are_contiguous_components_in_same_logical_voice(
-            leaves)
+        assert Selection._all_in_same_logical_voice(leaves, contiguous=True)
         assert len(leaves)
         if tempo is None:
-            assert leaves[0]._get_effective(indicatortools.MetronomeMark) is not None
+            prototype = indicatortools.MetronomeMark
+            assert leaves[0]._get_effective(prototype) is not None
         #else:
         #    #tempo = indicatortools.MetronomeMark(tempo)
         elif isinstance(tempo, indicatortools.MetronomeMark):

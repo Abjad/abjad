@@ -989,8 +989,10 @@ class Meter(AbjadObject):
                 #print()
                 logical_tie[:]._fuse()
         # Validate arguments.
-        assert selectiontools.Selection._all_are_contiguous_components_in_same_logical_voice(
-            components)
+        assert selectiontools.Selection._all_in_same_logical_voice(
+            components,
+            contiguous=True,
+            )
         if not isinstance(meter, metertools.Meter):
             meter = metertools.Meter(meter)
         #assert sum([x._get_preprolated_duration() for x in components]) == \

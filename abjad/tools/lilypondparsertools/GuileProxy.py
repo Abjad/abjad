@@ -78,7 +78,10 @@ class GuileProxy(AbjadObject):
     def grace(self, music):
         r'''Handles LilyPond ``\grace`` command.
         '''
-        return scoretools.GraceContainer(music[:])
+        assert isinstance(music, scoretools.Container)
+        leaves = music[:]
+        music[:] = []
+        return scoretools.GraceContainer(leaves)
 
     def key(self, notename_pitch, number_list):
         r'''Handles LilyPond ``\key`` command.
@@ -188,8 +191,12 @@ class GuileProxy(AbjadObject):
         '''
         n, d  = fraction.numerator, fraction.denominator
         if (not isinstance(music, scoretools.Context) and
-            not isinstance(music, scoretools.Leaf)):
-            return scoretools.Tuplet((n, d), music[:])
+            not isinstance(music, scoretools.Leaf)
+            ):
+            assert isinstance(music, scoretools.Container), repr(music)
+            leaves = music[:]
+            music[:] = []
+            return scoretools.Tuplet((n, d), leaves)
         return scoretools.Tuplet((n, d), [music])
 
     def transpose(self, from_pitch, to_pitch, music):

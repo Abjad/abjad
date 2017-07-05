@@ -189,8 +189,10 @@ class WellformednessManager(AbjadObject):
         total = 0
         for spanner in argument._get_descendants()._get_spanners():
             if spanner._contiguity_constraint == 'logical voice':
-                if not Selection._all_are_contiguous_components_in_same_logical_voice(
-                    spanner[:]):
+                if not Selection._all_in_same_logical_voice(
+                    spanner[:],
+                    contiguous=True,
+                    ):
                     violators.append(spanner)
             total += 1
         return violators, total

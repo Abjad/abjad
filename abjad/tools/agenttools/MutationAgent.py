@@ -386,9 +386,12 @@ class MutationAgent(abctools.AbjadObject):
         if isinstance(self._client, scoretools.Component):
             selection = selectiontools.Selection(self._client)
             return selection._fuse()
-        elif isinstance(self._client, selectiontools.Selection) and \
-            self._client._all_are_contiguous_components_in_same_logical_voice(
-            self._client):
+        elif (
+            isinstance(self._client, selectiontools.Selection) and
+            self._client._all_in_same_logical_voice(
+                self._client,
+                contiguous=True)
+            ):
             selection = selectiontools.Selection(self._client)
             return selection._fuse()
 
@@ -465,10 +468,10 @@ class MutationAgent(abctools.AbjadObject):
             donors = self._client
         else:
             donors = selectiontools.Selection(self._client)
-        assert donors._all_are_contiguous_components_in_same_parent(donors)
+        assert donors._all_in_same_parent(donors)
         if not isinstance(recipients, selectiontools.Selection):
             recipients = selectiontools.Selection(recipients)
-        assert recipients._all_are_contiguous_components_in_same_parent(
+        assert recipients._all_in_same_parent(
             recipients)
         if donors:
             parent, start, stop = donors._get_parent_and_start_stop_indices()
@@ -2749,7 +2752,7 @@ class MutationAgent(abctools.AbjadObject):
             donors = self._client
         else:
             donors = selectiontools.Selection(self._client)
-        assert donors._all_are_contiguous_components_in_same_parent(donors)
+        assert donors._all_in_same_parent(donors)
         assert isinstance(container, scoretools.Container)
         assert not container, repr(container)
         donors._give_music_to_empty_container(container)

@@ -38,9 +38,10 @@ def select_nonlast_logical_ties_in_pitched_runs(argument=None):
 
         ::
 
-            >>> staff = Staff("c' d' ~ d' e' r f' g' r a' b' ~ b' c''")
-            >>> tuplet = Tuplet((2, 3), staff[2:5])
-            >>> tuplet = Tuplet((2, 3), staff[5:8])
+            >>> staff = Staff(
+            ...     r"c' d' ~ \times 2/3 { d' e' r } "
+            ...     r"f' g' \times 2/3 { r a' b' ~ } b' c''"
+            ...     )
             >>> result = selector(staff)
             >>> label(result).color_alternating()
             >>> set_(staff).auto_beaming = False

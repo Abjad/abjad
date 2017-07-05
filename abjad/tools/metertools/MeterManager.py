@@ -87,11 +87,6 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> from abjad.tools import metertools
-            >>> from abjad.tools import scoretools
-
-        ::
-
             >>> string = "abj: ! 2/4 c'4 d'4 ~ !"
             >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
             >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ !"

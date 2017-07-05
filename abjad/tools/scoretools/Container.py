@@ -738,6 +738,7 @@ class Container(Component):
             print(selection)
 
     def _initialize_music(self, music):
+        import abjad
         Selection = selectiontools.Selection
         music = music or []
         if isinstance(music, list):
@@ -745,8 +746,16 @@ class Container(Component):
         if self._all_are_orphan_components(music):
             self._music = list(music)
             self[:]._set_parents(self)
-        elif Selection._all_are_contiguous_components_in_same_logical_voice(
-            music):
+        elif Selection._all_in_same_logical_voice(music, contiguous=True):
+            # RESTRICTION: uncomment the following to test restriction:
+            #if (music and
+            #    abjad.inspect_(music[0]).get_parentage().parent is not None
+            #    ):
+            #    parentage = abjad.inspect_(music[0]).get_parentage()
+            #    parent = parentage.parent
+            #    message = 'MUSIC {!r} ALREADY IN CONTAINER {!r}.'
+            #    message = message.format(music, parent)
+            #    raise Exception(message)
             music = selectiontools.Selection(music)
             parent, start, stop = music._get_parent_and_start_stop_indices()
             self._music = list(music)
@@ -759,8 +768,10 @@ class Container(Component):
             self._music = []
             self.is_simultaneous = parsed.is_simultaneous
             if (parsed.is_simultaneous or
-                not Selection._all_are_contiguous_components_in_same_logical_voice(
-                    parsed[:])):
+                not Selection._all_in_same_logical_voice(
+                    parsed[:],
+                    contiguous=True)
+                ):
                 while len(parsed):
                     self.append(parsed.pop(0))
             else:
@@ -911,8 +922,10 @@ class Container(Component):
         # otherwise circular withdraw ensues!
         if withdraw_components_from_crossing_spanners:
             selection = selectiontools.Selection(argument)
-            if selection._all_are_contiguous_components_in_same_logical_voice(
-                selection):
+            if selection._all_in_same_logical_voice(
+                selection,
+                contiguous=True,
+                ):
                 selection._withdraw_from_crossing_spanners()
         self._music.__setitem__(slice(start, start), argument)
         for component in argument:

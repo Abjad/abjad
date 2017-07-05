@@ -132,15 +132,20 @@ class Spanner(AbjadObject):
         assert self._attachment_test(component), (repr(component), repr(self))
         if self._contiguity_constraint == 'logical voice':
             components = self[-1:] + [component]
-            assert Selection._all_are_contiguous_components_in_same_logical_voice(
-                components), repr(components)
+            if not Selection._all_in_same_logical_voice(
+                components,
+                contiguous=True,
+                ):
+                raise Except(components)
         component._spanners.add(self)
         self._components.append(component)
 
     def _append_left(self, component):
         components = [component] + self[:1]
-        assert Selection._all_are_contiguous_components_in_same_logical_voice(
-            components)
+        assert Selection._all_in_same_logical_voice(
+            components,
+            contiguous=True,
+            )
         component._spanners.add(self)
         self._components.insert(0, component)
 
@@ -219,8 +224,10 @@ class Spanner(AbjadObject):
         component_input = list(self[-1:])
         component_input.extend(components)
         if self._contiguity_constraint == 'logical voice':
-            if not Selection._all_are_contiguous_components_in_same_logical_voice(
-                component_input):
+            if not Selection._all_in_same_logical_voice(
+                component_input,
+                contiguous=True,
+                ):
                 message = 'must be contiguous components'
                 message += ' in same logical voice: {!r}.'
                 message = message.format(component_input)
@@ -230,8 +237,10 @@ class Spanner(AbjadObject):
 
     def _extend_left(self, components):
         component_input = components + list(self[:1])
-        assert Selection._all_are_contiguous_components_in_same_logical_voice(
-            component_input)
+        assert Selection._all_in_same_logical_voice(
+            component_input,
+            contiguous=True,
+            )
         for component in reversed(components):
             self._append_left(component)
 

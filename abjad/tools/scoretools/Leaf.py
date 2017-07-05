@@ -230,7 +230,7 @@ class Leaf(Component):
                 x for x in candidates if isinstance(x, scoretools.Leaf)
                 ]
             for candidate in candidates:
-                if Selection._all_are_components_in_same_logical_voice(
+                if Selection._all_in_same_logical_voice(
                     [component, candidate]):
                     return candidate
         def previous(component):
@@ -242,7 +242,7 @@ class Leaf(Component):
                 x for x in candidates if isinstance(x, scoretools.Leaf)
                 ]
             for candidate in candidates:
-                if Selection._all_are_components_in_same_logical_voice(
+                if Selection._all_in_same_logical_voice(
                     [component, candidate]):
                     return candidate
         current_leaf = self

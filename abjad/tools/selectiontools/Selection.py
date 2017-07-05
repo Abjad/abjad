@@ -202,10 +202,20 @@ class Selection(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _all_are_components_in_same_logical_voice(
-        argument, prototype=None, allow_orphans=True):
+    def _all_in_same_logical_voice(
+        argument,
+        prototype=None,
+        allow_orphans=True,
+        contiguous=False,
+        ):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
+        if contiguous:
+            return Selection._all_are_contiguous_components_in_same_logical_voice(
+                argument,
+                prototype=prototype,
+                allow_orphans=allow_orphans,
+                )
         allowable_types = (
             list,
             tuple,
@@ -249,14 +259,19 @@ class Selection(object):
                 same_logical_voice = False
             if not allow_orphans and not same_logical_voice:
                 return False
-            if allow_orphans and not orphan_components and \
-                not same_logical_voice:
+            if (allow_orphans and
+                not orphan_components and
+                not same_logical_voice
+                ):
                 return False
         return True
 
     @staticmethod
     def _all_are_contiguous_components_in_same_logical_voice(
-        argument, prototype=None, allow_orphans=True):
+        argument,
+        prototype=None,
+        allow_orphans=True,
+        ):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         allowable_types = (
@@ -312,7 +327,7 @@ class Selection(object):
         return True
 
     @staticmethod
-    def _all_are_contiguous_components_in_same_parent(
+    def _all_in_same_parent(
         argument, prototype=None, allow_orphans=True):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
@@ -560,7 +575,7 @@ class Selection(object):
         Returns contiguous selection.
         '''
         # check input
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         # return empty list when nothing to copy
         if n < 1:
             return []
@@ -604,7 +619,7 @@ class Selection(object):
 
     def _copy_and_include_enclosing_containers(self):
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         # get governor
         parentage = self[0]._get_parentage(include_self=True)
         governor = parentage._get_governor()
@@ -644,7 +659,7 @@ class Selection(object):
 
     def _fuse(self):
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         if all(isinstance(x, scoretools.Leaf) for x in self):
             return self._fuse_leaves()
         elif all(isinstance(x, scoretools.Tuplet) for x in self):
@@ -657,7 +672,7 @@ class Selection(object):
 
     def _fuse_leaves(self):
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         assert all(isinstance(x, scoretools.Leaf) for x in self)
         leaves = self
         if len(leaves) <= 1:
@@ -675,7 +690,7 @@ class Selection(object):
         from abjad.tools import selectiontools
         # check input
         prototype = (scoretools.Measure,)
-        assert self._all_are_contiguous_components_in_same_parent(
+        assert self._all_in_same_parent(
             self, prototype)
         # return none on empty measures
         if len(self) == 0:
@@ -721,7 +736,7 @@ class Selection(object):
 
     def _fuse_tuplets(self):
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_parent(
+        assert self._all_in_same_parent(
             self, prototype=(scoretools.Tuplet,))
         if len(self) == 0:
             return None
@@ -790,7 +805,7 @@ class Selection(object):
         In other words, there is some intersection -- but not total
         intersection -- between the components of P and C.
         '''
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         all_components = set(iterate(self).by_class())
         contained_spanners = set()
         for component in iterate(self).by_class():
@@ -813,7 +828,7 @@ class Selection(object):
         score tree before reattaching spanners.
         score components.
         '''
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         receipt = set([])
         if len(self) == 0:
             return receipt
@@ -845,7 +860,7 @@ class Selection(object):
         return start_offsets, stop_offsets
 
     def _get_parent_and_start_stop_indices(self):
-        assert self._all_are_contiguous_components_in_same_parent(self)
+        assert self._all_in_same_parent(self)
         if self:
             first, last = self[0], self[-1]
             parent = first._parent
@@ -888,9 +903,8 @@ class Selection(object):
         Returns none.
         Not composer-safe.
         '''
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
-        assert self._all_are_contiguous_components_in_same_logical_voice(
-            recipients)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
+        assert self._all_in_same_logical_voice(recipients, contiguous=True)
         receipt = self._get_dominant_spanners()
         for spanner, index in receipt:
             for recipient in reversed(recipients):
@@ -902,7 +916,7 @@ class Selection(object):
         r'''Not composer-safe.
         '''
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_parent(self)
+        assert self._all_in_same_parent(self)
         assert isinstance(container, scoretools.Container)
         assert not container
         music = []
@@ -915,7 +929,7 @@ class Selection(object):
         r'''Not composer-safe.
         '''
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_parent(self)
+        assert self._all_in_same_parent(self)
         assert isinstance(container, scoretools.Container)
         parent, start, stop = self._get_parent_and_start_stop_indices()
         if parent is not None:
@@ -963,7 +977,7 @@ class Selection(object):
     def _withdraw_from_crossing_spanners(self):
         r'''Not composer-safe.
         '''
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         crossing_spanners = self._get_crossing_spanners()
         components_including_children = select(self).by_class()
         for crossing_spanner in list(crossing_spanners):

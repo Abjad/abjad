@@ -499,7 +499,10 @@ class ReducedLyParser(abctools.Parser):
     def p_tuplet__FRACTION__container(self, p):
         r'''tuplet : FRACTION container
         '''
-        p[0] = scoretools.Tuplet(p[1], p[2][:])
+        assert isinstance(p[2], scoretools.Container)
+        leaves = p[2][:]
+        p[2][:] = []
+        p[0] = scoretools.Tuplet(p[1], leaves)
 
     ### PRIVATE METHODS ###
 
