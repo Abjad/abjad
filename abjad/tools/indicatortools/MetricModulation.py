@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
@@ -881,7 +882,9 @@ class MetricModulation(AbjadValueObject):
         return lilypond_format_bundle
 
     def _get_markup(self, music_scale_pair=(0.75, 0.75)):
-        assert isinstance(music_scale_pair, (tuple, type(None)))
+        if music_scale_pair is not None:
+            assert isinstance(music_scale_pair, collections.Iterable)
+            music_scale_pair = tuple(music_scale_pair)
         left_markup = self._get_left_markup()
         if music_scale_pair:
             left_markup = left_markup.scale(music_scale_pair)

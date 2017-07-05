@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import schemetools
 from abjad.tools import markuptools
 from abjad.tools.abctools import AbjadObject
@@ -198,9 +199,9 @@ class WoodwindFingering(AbjadObject):
         left_hand=None,
         right_hand=None,
         ):
-        assert isinstance(center_column, (type(None), list, tuple))
-        assert isinstance(left_hand, (type(None), list, tuple))
-        assert isinstance(right_hand, (type(None), list, tuple))
+        assert isinstance(center_column, (type(None), collections.Iterable))
+        assert isinstance(left_hand, (type(None), collections.Iterable))
+        assert isinstance(right_hand, (type(None), collections.Iterable))
         # initialize from a string and up to three lists
         instrument_name = instrument_name or 'flute'
         if isinstance(instrument_name, str):

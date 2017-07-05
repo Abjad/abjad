@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
@@ -60,7 +61,7 @@ class SliceSelectorCallback(AbjadValueObject):
 
         Returns tuple of selections or tuple of selections with offset.
         '''
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
         if self.apply_to_each:

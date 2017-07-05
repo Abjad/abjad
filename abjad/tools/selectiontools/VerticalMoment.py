@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools.selectiontools.Selection import Selection
@@ -70,12 +71,13 @@ class VerticalMoment(Selection):
             return
         governors, components = self._from_offset(music, offset)
         offset = durationtools.Offset(offset)
-        assert isinstance(governors, tuple)
-        assert isinstance(components, tuple)
         self._offset = offset
-        self._governors = tuple(governors)
+        assert isinstance(governors, collections.Iterable)
+        governors = tuple(governors)
+        self._governors = governors
+        assert isinstance(components, collections.Iterable)
         components = list(components)
-        components.sort(key=lambda x: x._get_parentage().score_index)
+        components.sort(key=lambda _: _._get_parentage().score_index)
         self._components = tuple(components)
 
     ### SPECIAL METHODS ###

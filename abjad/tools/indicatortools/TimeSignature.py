@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
@@ -127,7 +128,7 @@ class TimeSignature(AbjadValueObject):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Staff
         pair = getattr(pair, 'pair', pair)
-        assert isinstance(pair, tuple), repr(pair)
+        assert isinstance(pair, collections.Iterable), repr(pair)
         assert len(pair) == 2, repr(pair)
         numerator, denominator = pair
         assert isinstance(numerator, int), repr(numerator)

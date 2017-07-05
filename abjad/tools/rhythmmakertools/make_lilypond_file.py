@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import copy
 
 
@@ -419,7 +420,7 @@ def make_lilypond_file(
         message = message.format(selections)
         raise TypeError(message)
     score.append(staff)
-    assert isinstance(divisions, (tuple, list)), repr(divisions)
+    assert isinstance(divisions, collections.Sequence), repr(divisions)
     time_signatures = time_signatures or divisions
     context = abjad.scoretools.Context(context_name='TimeSignatureContext')
     measures = abjad.scoretools.make_spacer_skip_measures(

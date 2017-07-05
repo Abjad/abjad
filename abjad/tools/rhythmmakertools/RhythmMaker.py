@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
@@ -444,7 +445,7 @@ class RhythmMaker(AbjadValueObject):
         return sequence_
 
     def _validate_selections(self, selections):
-        assert isinstance(selections, list), repr(selections)
+        assert isinstance(selections, collections.Sequence), repr(selections)
         assert len(selections), repr(selections)
         for selection in selections:
             assert isinstance(selection, selectiontools.Selection), selection

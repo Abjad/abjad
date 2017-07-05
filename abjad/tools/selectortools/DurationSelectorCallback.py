@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -44,7 +45,7 @@ class DurationSelectorCallback(AbjadValueObject):
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectortools
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         inequality = self.duration
         if not isinstance(inequality, selectortools.DurationInequality):
             inequality = selectortools.DurationInequality(

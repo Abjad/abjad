@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import itertools
 import ply
 from abjad.tools import abctools
@@ -1381,7 +1382,7 @@ class LilyPondParser(abctools.Parser):
         from abjad.ly.markup_functions import markup_functions
         assert isinstance(name, str)
         assert all(not x.isspace() for x in name)
-        assert isinstance(signature, (list, tuple))
+        assert isinstance(signature, collections.Iterable)
         for predicate in signature:
             assert isinstance(predicate, str)
             assert all(not x.isspace() for x in predicate)

@@ -23,19 +23,19 @@ def test_scoretools_make_leaves_02():
     leaves = scoretools.make_leaves([1, (1, 2, 3), None], [(2, 9), (1, 18), (1,5)])
     assert isinstance(leaves[0], Tuplet)
     assert isinstance(leaves[1], Tuplet)
-    tuplet1 = leaves[0]
-    assert len(tuplet1) == 2
-    assert tuplet1.multiplier == Duration(8, 9)
-    assert isinstance(tuplet1[0], Note)
-    assert isinstance(tuplet1[1], Chord)
-    tuplet2 = leaves[1]
-    assert len(tuplet2) == 1
-    assert tuplet2.multiplier == Duration(4, 5)
-    assert isinstance(tuplet2[0], Rest)
+    tuplet_1 = leaves[0]
+    assert len(tuplet_1) == 2
+    assert tuplet_1.multiplier == Duration(8, 9)
+    assert isinstance(tuplet_1[0], Note)
+    assert isinstance(tuplet_1[1], Chord)
+    tuplet_2 = leaves[1]
+    assert len(tuplet_2) == 1
+    assert tuplet_2.multiplier == Duration(4, 5)
+    assert isinstance(tuplet_2[0], Rest)
 
-    assert tuplet1[0].written_duration == Duration(2, 8)
-    assert tuplet1[1].written_duration == Duration(1, 16)
-    assert tuplet2[0].written_duration == Duration(1, 4)
+    assert tuplet_1[0].written_duration == Duration(2, 8)
+    assert tuplet_1[1].written_duration == Duration(1, 16)
+    assert tuplet_2[0].written_duration == Duration(1, 4)
 
 
 def test_scoretools_make_leaves_03():
@@ -47,14 +47,14 @@ def test_scoretools_make_leaves_03():
     assert isinstance(leaves[0], Tuplet)
     assert isinstance(leaves[1], Chord)
     assert isinstance(leaves[2], Tuplet)
-    tuplet1 = leaves[0]
-    assert len(tuplet1) == 1
-    assert tuplet1.multiplier == Duration(8, 9)
-    assert isinstance(tuplet1[0], Note)
-    tuplet2 = leaves[2]
-    assert len(tuplet2) == 1
-    assert tuplet2.multiplier == Duration(4, 5)
-    assert isinstance(tuplet2[0], Rest)
+    tuplet_1 = leaves[0]
+    assert len(tuplet_1) == 1
+    assert tuplet_1.multiplier == Duration(8, 9)
+    assert isinstance(tuplet_1[0], Note)
+    tuplet_2 = leaves[2]
+    assert len(tuplet_2) == 1
+    assert tuplet_2.multiplier == Duration(4, 5)
+    assert isinstance(tuplet_2[0], Rest)
 
 
 def test_scoretools_make_leaves_04():

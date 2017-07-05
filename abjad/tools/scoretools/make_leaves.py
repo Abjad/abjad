@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import numbers
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -106,6 +107,29 @@ def make_leaves(
                 r4
                 cs''4
                 ds''4
+            }
+
+    ..  container:: example
+
+        Works with segments:
+
+        ::
+
+            >>> pitches = PitchSegment("e'' ef'' d'' df'' c''")
+            >>> durations = [Duration(1, 4)]
+            >>> leaves = scoretools.make_leaves(pitches, durations)
+            >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                e''4
+                ef''4
+                d''4
+                df''4
+                c''4
             }
 
     ..  container:: example
@@ -465,7 +489,7 @@ def make_leaves(
     from abjad.tools import scoretools
     if isinstance(pitches, str):
         pitches = pitches.split()
-    if not isinstance(pitches, list):
+    if not isinstance(pitches, collections.Iterable):
         pitches = [pitches]
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]

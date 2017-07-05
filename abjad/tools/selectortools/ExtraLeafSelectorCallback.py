@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -35,7 +36,7 @@ class ExtraLeafSelectorCallback(AbjadValueObject):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools.topleveltools import select
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         result = []
         for subexpr in argument:
             if isinstance(subexpr, scoretools.Leaf):

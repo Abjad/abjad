@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import indicatortools
 from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
@@ -105,7 +106,8 @@ class GalleryMaker(AbjadValueObject):
         configuration,
         configuration_number,
         ):
-        assert isinstance(configuration, tuple) and len(configuration) == 2
+        assert isinstance(configuration, collections.Iterable)
+        assert len(configuration) == 2
         rhythm_maker = configuration[0]
         division_lists = configuration[1]
         score_blocks = []

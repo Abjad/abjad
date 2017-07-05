@@ -34,7 +34,7 @@ class PrototypeSelectorCallback(AbjadValueObject):
         prototype = prototype or ()
         if isinstance(prototype, collections.Sequence):
             prototype = tuple(prototype)
-            assert all(isinstance(x, type) for x in prototype)
+            assert all(isinstance(_, type) for _ in prototype)
         assert isinstance(prototype, (tuple, type))
         self._prototype = prototype
         if flatten is not None:
@@ -56,12 +56,12 @@ class PrototypeSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument, rotation=None):
-        r'''Iterates tuple `argument`.
+        r'''Iterates `argument`.
 
         Returns tuple of selections.
         '''
         import abjad
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         result = []
         prototype = self.prototype
         if not isinstance(prototype, tuple):

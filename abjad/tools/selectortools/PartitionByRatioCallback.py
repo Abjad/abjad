@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
@@ -27,11 +28,11 @@ class PartitionByRatioCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument, rotation=None):
-        r'''Calls ratio selector callback on `argument`.
+        r'''Calls ratio selector callback on iterable `argument`.
 
         Returns tuple of selections.
         '''
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         assert len(argument) == 1, repr(argument)
         assert isinstance(argument[0], selectiontools.Selection), repr(argument)
         selection = argument[0]

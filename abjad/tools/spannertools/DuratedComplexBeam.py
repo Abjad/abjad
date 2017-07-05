@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools.spannertools.ComplexBeam import ComplexBeam
@@ -131,8 +132,8 @@ class DuratedComplexBeam(ComplexBeam):
 
     @staticmethod
     def _coerce_durations(durations):
-        durations = durations or ()
-        assert isinstance(durations, (list, tuple))
+        durations = durations or []
+        assert isinstance(durations, collections.Iterable)
         durations = [durationtools.Duration(x) for x in durations]
         durations = tuple(durations)
         return durations

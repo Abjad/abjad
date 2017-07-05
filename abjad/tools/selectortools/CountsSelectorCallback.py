@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import sequencetools
 from abjad.tools import datastructuretools
 from abjad.tools import selectiontools
@@ -95,7 +96,7 @@ class CountsSelectorCallback(AbjadValueObject):
 
         Returns tuple in which each item is a selection or component.
         '''
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         if rotation is None:
             rotation = 0
         rotation = int(rotation)

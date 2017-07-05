@@ -43,11 +43,11 @@ class Selection(object):
 
         Returns new selection.
         '''
-        assert isinstance(argument, (type(self), list, tuple))
+        assert isinstance(argument, collections.Iterable)
         if isinstance(argument, type(self)):
             music = self._music + argument._music
             return type(self)(music)
-        elif isinstance(argument, (tuple, list)):
+        else:
             music = self._music + tuple(argument)
         return type(self)(music)
 
@@ -176,11 +176,11 @@ class Selection(object):
 
         Returns newly created selection.
         '''
-        assert isinstance(argument, (type(self), list, tuple))
+        assert isinstance(argument, collections.Iterable)
         if isinstance(argument, type(self)):
             music = argument._music + self._music
             return type(self)(music)
-        elif isinstance(argument, (tuple, list)):
+        else:
             music = tuple(argument) + self._music
         return type(self)(music)
 

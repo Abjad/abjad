@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import itertools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
@@ -103,11 +104,11 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument, rotation=None):
-        r'''Iterates tuple `argument`.
+        r'''Iterates `argument`.
 
         Returns tuple of selections.
         '''
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         selections = []
         for subexpr in argument:
             selections_ = self._group(subexpr)

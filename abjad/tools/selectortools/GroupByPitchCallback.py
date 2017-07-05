@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
@@ -31,12 +32,12 @@ class GroupByPitchCallback(AbjadValueObject):
         argument,
         rotation=None,
         ):
-        r'''Calls selector callback on `argument`.
+        r'''Calls selector callback on iterable `argument`.
 
         Returns tuple of selections.
         '''
         import abjad
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         if len(argument) == 1 and isinstance(argument[0], abjad.Selection):
             selection = argument[0]
         else:

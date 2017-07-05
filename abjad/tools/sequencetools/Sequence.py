@@ -4750,13 +4750,17 @@ class Sequence(abctools.AbjadValueObject):
 
         Returns new sequence.
         '''
-        assert isinstance(indices, tuple) and len(indices) == 2
+        assert isinstance(indices, collections.Iterable)
+        assert len(indices) == 2
         index_values, index_period = indices
-        assert isinstance(index_values, list)
+        assert isinstance(index_values, collections.Iterable)
+        index_values = list(index_values)
         assert isinstance(index_period, (int, type(None)))
-        assert isinstance(new_material, tuple) and len(new_material) == 2
+        assert isinstance(new_material, collections.Iterable)
+        assert len(new_material) == 2
         material_values, material_period = new_material
-        assert isinstance(material_values, list)
+        assert isinstance(material_values, collections.Iterable)
+        material_values = list(material_values)
         assert isinstance(material_period, (int, type(None)))
         try:
             maxint = sys.maxint
