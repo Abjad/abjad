@@ -5,16 +5,18 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ChordSuspension(AbjadObject):
-    '''A chord of 9-8, 7-6, 4-3, 2-1 and other types of
+    '''Chord suspension. 9-8, 7-6, 4-3, 2-1 and other types of
     suspension typical of, for example, the Bach chorales.
 
-    ::
+    ..  container:: example
 
-        >>> suspension = tonalanalysistools.ChordSuspension(4, 3)
-        >>> suspension
-        ChordSuspension(ScaleDegree(4), ScaleDegree(3))
+        ::
 
-    Value object that can not be changed after instantiation.
+            >>> suspension = tonalanalysistools.ChordSuspension(4, 3)
+            >>> suspension
+            ChordSuspension(ScaleDegree(4), ScaleDegree(3))
+
+    Chord suspensions are immutable.
     '''
 
     ### CLASS VARIABLES ###

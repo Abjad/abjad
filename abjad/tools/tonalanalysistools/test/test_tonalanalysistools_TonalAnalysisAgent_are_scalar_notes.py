@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -8,7 +9,7 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_scalar_notes_01():
     '''
 
     notes = [Note('c', (1, 4)), Note('cs', (1, 4))]
-    selection = tonalanalysistools.select(notes)
+    selection = abjad.analyze(notes)
     assert selection.are_scalar_notes()
 
 
@@ -18,19 +19,19 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_scalar_notes_02():
     '''
 
     notes = [Note('c', (1, 4)), Note('d', (1, 4))]
-    selection = tonalanalysistools.select(notes)
+    selection = abjad.analyze(notes)
     assert selection.are_scalar_notes()
 
     notes = [Note('c', (1, 4)), Note('ds', (1, 4))]
-    selection = tonalanalysistools.select(notes)
+    selection = abjad.analyze(notes)
     assert selection.are_scalar_notes()
 
     notes = [Note('c', (1, 4)), Note('b,', (1, 4))]
-    selection = tonalanalysistools.select(notes)
+    selection = abjad.analyze(notes)
     assert selection.are_scalar_notes()
 
     notes = [Note('c', (1, 4)), Note('bf,', (1, 4))]
-    selection = tonalanalysistools.select(notes)
+    selection = abjad.analyze(notes)
     assert selection.are_scalar_notes()
 
 
@@ -39,7 +40,7 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_scalar_notes_03():
     '''
 
     notes = [Note('c', (1, 4)), Note('c', (1, 4))]
-    selection = tonalanalysistools.select(notes)
+    selection = abjad.analyze(notes)
     assert not selection.are_scalar_notes()
 
 
@@ -48,7 +49,7 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_scalar_notes_04():
     '''
 
     notes = [Note('c', (1, 4)), Note('e', (1, 4))]
-    selection = tonalanalysistools.select(notes)
+    selection = abjad.analyze(notes)
     assert not selection.are_scalar_notes()
 
 
@@ -57,5 +58,5 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_scalar_notes_05():
     '''
 
     notes = scoretools.make_notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
-    selection = tonalanalysistools.select(notes)
+    selection = abjad.analyze(notes)
     assert not selection.are_scalar_notes()

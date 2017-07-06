@@ -15,11 +15,13 @@ from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 
 
 class Scale(PitchClassSegment):
-    '''A diatonic scale.
+    '''Scale.
 
-    ::
+    ..  container:: example
 
-        >>> scale = tonalanalysistools.Scale('c', 'minor')
+        ::
+
+            >>> scale = tonalanalysistools.Scale('c', 'minor')
 
     '''
 

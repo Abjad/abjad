@@ -3,9 +3,9 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ChordOmission(AbjadObject):
-    '''A chord ommission.
+    '''Chord ommission.
 
-    Value object that can not be chnaged after instantiation.
+    Chord ommissions are immutable.
     '''
 
     ### CLASS VARIABLES ###

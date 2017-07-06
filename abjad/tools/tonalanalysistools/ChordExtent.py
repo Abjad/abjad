@@ -3,9 +3,9 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ChordExtent(AbjadObject):
-    '''A chord extent, such as triad, seventh chord, ninth chord, etc.
+    '''Chord extent. Triad, seventh chord, ninth chord, etc.
 
-    Value object that can not be changed after instantiation.
+    Chord extends are immutable.
     '''
 
     ### CLASS VARIABLES ###

@@ -5,7 +5,7 @@ from abjad.tools import pitchtools
 
 
 class Mode(AbjadObject):
-    '''A diatonic mode.
+    '''Mode. Major, minor, etc.
 
     Can be extended for nondiatonic mode.
 
@@ -37,8 +37,8 @@ class Mode(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a mode with mode name equal to that of this
-        mode. Otherwise false.
+        r'''Is true when `argument` is a mode with mode name equal to that of
+        this mode. Otherwise false.
 
         Returns true or false.
         '''

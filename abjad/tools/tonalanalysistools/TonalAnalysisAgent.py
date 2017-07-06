@@ -2,16 +2,16 @@
 from abjad.tools import abctools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-from abjad.tools import sequencetools
-from abjad.tools.topleveltools import iterate
 
 
 class TonalAnalysisAgent(abctools.AbjadObject):
-    r'''A tonal analysis interface.
+    r'''Tonal analysis agent.
 
     ..  container:: example
 
-        Interface to conjunct selection:
+        Intializes agent on conjunct selection:
+
+        ::
 
             >>> staff = Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP
@@ -28,11 +28,13 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         ::
 
-            >>> selection_1 = tonalanalysistools.select(staff[:])
+            >>> selection_1 = abjad.analyze(staff[:])
 
     ..  container:: example
 
-        Interface to disjunct selection:
+        Initializes agent on disjunct selection:
+
+        ::
 
             >>> staff = Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP
@@ -49,7 +51,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         ::
 
-            >>> selection_2 = tonalanalysistools.select(staff[:1] + staff[-1:])
+            >>> selection_2 = abjad.analyze(staff[:1] + staff[-1:])
 
     '''
 
@@ -160,11 +162,12 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
     @staticmethod
     def _analyze_incomplete_tonal_function(argument, key_signature):
+        import abjad
         from abjad.tools import tonalanalysistools
         if isinstance(argument, tonalanalysistools.RootedChordClass):
             chord_class = argument
         else:
-            selection = tonalanalysistools.select(argument)
+            selection = abjad.analyze(argument)
             chord_classes = selection.analyze_incomplete_chords()
             assert len(chord_classes) == 1
             chord_class = chord_classes[0]
@@ -183,11 +186,12 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
     @staticmethod
     def _analyze_tonal_function(argument, key_signature):
+        import abjad
         from abjad.tools import tonalanalysistools
         if isinstance(argument, tonalanalysistools.RootedChordClass):
             chord_class = argument
         else:
-            selection = tonalanalysistools.select(argument)
+            selection = abjad.analyze(argument)
             chord_classes = selection.analyze_chords()
             assert len(chord_classes) == 1
             chord_class = chord_classes[0]
@@ -208,22 +212,22 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
     @staticmethod
     def _is_neighbor_note(note):
-        from abjad.tools import scoretools
+        import abjad
         from abjad.tools import tonalanalysistools
-        if not isinstance(note, scoretools.Note):
+        if not isinstance(note, abjad.Note):
             message = 'must be note: {!r}.'
             message = message.format(note)
             raise TypeError(message)
         previous_note = note._get_in_my_logical_voice(
-            -1, prototype=scoretools.Note)
+            -1, prototype=abjad.Note)
         next_note = note._get_in_my_logical_voice(
-            1, prototype=scoretools.Note)
+            1, prototype=abjad.Note)
         if previous_note is None:
             return False
         if next_note is None:
             return False
         notes = [previous_note, note, next_note]
-        selection = tonalanalysistools.select(notes)
+        selection = abjad.analyze(notes)
         preceding_interval = note.written_pitch - previous_note.written_pitch
         preceding_interval_direction = \
             mathtools.sign(preceding_interval.direction_number)
@@ -237,20 +241,20 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
     @staticmethod
     def _is_passing_tone(note):
-        from abjad.tools import scoretools
+        import abjad
         from abjad.tools import tonalanalysistools
-        if not isinstance(note, scoretools.Note):
+        if not isinstance(note, abjad.Note):
             message = 'must be note: {!r}.'
             message = message.format(note)
             raise TypeError(message)
         previous_note = note._get_in_my_logical_voice(
-            -1, prototype=scoretools.Note)
+            -1, prototype=abjad.Note)
         next_note = note._get_in_my_logical_voice(
-            1, prototype=scoretools.Note)
+            1, prototype=abjad.Note)
         if previous_note is None or next_note is None:
             return False
         notes = [previous_note, note, next_note]
-        selection = tonalanalysistools.select(notes)
+        selection = abjad.analyze(notes)
         return selection.are_scalar_notes()
 
     @staticmethod
@@ -271,7 +275,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             ::
 
                 >>> chord = Chord([7, 10, 12, 16], (1, 4))
-                >>> tonalanalysistools.select(chord).analyze_chords()
+                >>> abjad.analyze(chord).analyze_chords()
                 [CDominantSeventhInSecondInversion]
 
         Returns none when no tonal chord is understood.
@@ -292,7 +296,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             ::
 
                 >>> chord = Chord("<g' b'>4")
-                >>> tonalanalysistools.select(chord).analyze_incomplete_chords()
+                >>> abjad.analyze(chord).analyze_incomplete_chords()
                 [GMajorTriadInRootPosition]
 
         ..  container:: example
@@ -300,7 +304,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             ::
 
                 >>> chord = Chord("<fs g b>4")
-                >>> tonalanalysistools.select(chord).analyze_incomplete_chords()
+                >>> abjad.analyze(chord).analyze_incomplete_chords()
                 [GMajorSeventhInSecondInversion]
 
         Raises tonal harmony error when chord in selection can not analyze.
@@ -323,7 +327,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
                 >>> chord = Chord("<c' e'>4")
                 >>> key_signature = KeySignature('g', 'major')
-                >>> selection = tonalanalysistools.select(chord)
+                >>> selection = abjad.analyze(chord)
                 >>> selection.analyze_incomplete_tonal_functions(key_signature)
                 [IVMajorTriadInRootPosition]
 
@@ -348,7 +352,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> selection = tonalanalysistools.select(staff[:])
+                >>> selection = abjad.analyze(staff[:])
                 >>> selection.analyze_neighbor_notes()
                 [False, False, False, False]
 
@@ -369,7 +373,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> selection = tonalanalysistools.select(staff[:])
+                >>> selection = abjad.analyze(staff[:])
                 >>> selection.analyze_passing_tones()
                 [False, True, True, False]
 
@@ -389,7 +393,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
                 >>> chord = Chord('<ef g bf>4')
                 >>> key_signature = KeySignature('c', 'major')
-                >>> selection = tonalanalysistools.select(chord)
+                >>> selection = abjad.analyze(chord)
                 >>> selection.analyze_tonal_functions(key_signature)
                 [FlatIIIMajorTriadInRootPosition]
 
@@ -422,10 +426,10 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         Returns true or false.
         '''
-        from abjad.tools import scoretools
+        import abjad
         direction_string = None
-        notes = iterate(self._client).by_class(scoretools.Note)
-        for left, right in sequencetools.Sequence(notes).nwise():
+        notes = abjad.iterate(self._client).by_class(abjad.Note)
+        for left, right in abjad.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -455,9 +459,9 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         Returns true or false.
         '''
-        from abjad.tools import scoretools
-        notes = iterate(self._client).by_class(scoretools.Note)
-        for left, right in sequencetools.Sequence(notes).nwise():
+        import abjad
+        notes = abjad.iterate(self._client).by_class(abjad.Note)
+        for left, right in abjad.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -472,7 +476,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         ::
 
-            >>> selection_3 = tonalanalysistools.select(reversed(staff[:]))
+            >>> selection_3 = abjad.analyze(reversed(staff[:]))
 
         ::
 
@@ -493,9 +497,9 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         Returns true or false.
         '''
-        from abjad.tools import scoretools
-        notes = iterate(self._client).by_class(scoretools.Note)
-        for left, right in sequencetools.Sequence(notes).nwise():
+        import abjad
+        notes = abjad.iterate(self._client).by_class(abjad.Note)
+        for left, right in abjad.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -523,9 +527,9 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         Returns true or false.
         '''
-        from abjad.tools import scoretools
-        notes = iterate(self._client).by_class(scoretools.Note)
-        for left, right in sequencetools.Sequence(notes).nwise():
+        import abjad
+        notes = abjad.iterate(self._client).by_class(abjad.Note)
+        for left, right in abjad.Sequence(notes).nwise():
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 hdi = pitchtools.NamedInterval.from_pitch_carriers(

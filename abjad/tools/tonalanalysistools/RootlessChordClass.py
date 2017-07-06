@@ -6,7 +6,7 @@ from abjad.tools.pitchtools import IntervalSegment
 
 
 class RootlessChordClass(IntervalSegment):
-    r'''A rootless chord class.
+    r'''Rootless chord class.
 
     ..  container:: example
 

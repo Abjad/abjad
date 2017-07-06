@@ -3,10 +3,9 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ChordQuality(AbjadObject):
-    '''A chord quality, such as major, minor, dominant,
-    diminished and so on.
+    '''Chord quality. Major, minor, dominant, diminished and so on.
 
-    Value object that can not be changed after instantiation.
+    Chord qualities are immutable.
     '''
 
     ### CLASS VARIABLES ###

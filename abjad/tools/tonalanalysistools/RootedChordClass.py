@@ -5,7 +5,7 @@ from abjad.tools.pitchtools import PitchClassSet
 
 
 class RootedChordClass(PitchClassSet):
-    '''A rooted chord class.
+    '''Rooted chord class.
 
     ..  container:: example
 
