@@ -36,7 +36,6 @@ class Context(Container):
         '_context_name',
         '_consists_commands',
         '_remove_commands',
-        '_is_nonsemantic',
         )
 
     _default_context_name = 'Voice'
@@ -59,7 +58,6 @@ class Context(Container):
         self.context_name = context_name
         self._consists_commands = []
         self._remove_commands = []
-        self.is_nonsemantic = False
 
     ### SPECIAL METHODS ###
 
@@ -90,7 +88,6 @@ class Context(Container):
         new._remove_commands = copy.copy(self.remove_commands)
         new.context_name = copy.copy(self.context_name)
         new.name = copy.copy(self.name)
-        new.is_nonsemantic = copy.copy(self.is_nonsemantic)
         return new
 
     def _format_closing_slot(context, bundle):
@@ -219,78 +216,6 @@ class Context(Container):
         else:
             argument = str(argument)
         self._context_name = argument
-
-    @property
-    def is_nonsemantic(self):
-        r'''Gets and sets nonsemantic voice flag.
-
-        ::
-
-            >>> pairs = [(1, 8), (5, 16), (5, 16)]
-            >>> measures = scoretools.make_spacer_skip_measures(pairs)
-            >>> voice = Voice(measures)
-            >>> voice.name = 'HiddenTimeSignatureVoice'
-
-        ::
-
-            >>> voice.is_nonsemantic = True
-
-        ..  docs::
-
-            >>> f(voice)
-            \context Voice = "HiddenTimeSignatureVoice" {
-                {
-                    \time 1/8
-                    s1 * 1/8
-                }
-                {
-                    \time 5/16
-                    s1 * 5/16
-                }
-                {
-                    s1 * 5/16
-                }
-            }
-
-        ::
-
-            >>> voice.is_nonsemantic
-            True
-
-        Gets nonsemantic voice voice:
-
-        ::
-
-            >>> voice = Voice([])
-
-        ::
-
-            >>> voice.is_nonsemantic
-            False
-
-        Returns true or false.
-
-        The intent of this read / write attribute is to allow composers
-        to tag invisible voices used to house time signatures indications,
-        bar number directives or other pieces of score-global non-musical
-        information. Such nonsemantic voices can then be omitted from
-        voice interation and other functions.
-        '''
-        return self._is_nonsemantic
-
-    @is_nonsemantic.setter
-    def is_nonsemantic(self, argument):
-        if not isinstance(argument, bool):
-            raise TypeError
-        self._is_nonsemantic = argument
-
-    @property
-    def is_semantic(self):
-        r'''Is true when context is semantic. Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self.is_nonsemantic
 
     @property
     def lilypond_context(self):

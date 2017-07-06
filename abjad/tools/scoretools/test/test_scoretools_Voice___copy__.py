@@ -28,34 +28,3 @@ def test_scoretools_Voice___copy___01():
         }
         '''
         )
-
-
-def test_scoretools_Voice___copy___02():
-    r'''Voice copies semanticity flag.
-    '''
-
-    voice_1 = Voice("s8 s8 s8 s8")
-    voice_1.name = 'SkipVoice'
-    voice_1.is_nonsemantic = True
-
-    assert format(voice_1) == stringtools.normalize(
-        r'''
-        \context Voice = "SkipVoice" {
-            s8
-            s8
-            s8
-            s8
-        }
-        '''
-        )
-
-    voice_2 = copy.copy(voice_1)
-
-    assert format(voice_2) == stringtools.normalize(
-        r'''
-        \context Voice = "SkipVoice" {
-        }
-        '''
-        )
-
-    assert voice_2.is_nonsemantic
