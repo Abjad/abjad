@@ -17,19 +17,6 @@ if 'topleveltools' in os.path.abspath('.'):
     raise Exception(message)
 del os
 
-# set up tab completion
-try:
-    import readline
-    import rlcompleter
-    if readline.__doc__ is not None and 'libedit' in readline.__doc__:
-        readline.parse_and_bind("bind ^I rl_complete")
-    else:
-        readline.parse_and_bind("tab: complete")
-    del readline
-    del rlcompleter
-except ImportError:
-    pass
-
 try:
     from quicktions import Fraction
 except ImportError:

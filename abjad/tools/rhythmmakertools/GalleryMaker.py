@@ -18,6 +18,120 @@ from abjad.tools.topleveltools import set_
 
 class GalleryMaker(AbjadValueObject):
     r'''Gallery maker.
+    
+    ..  container:: example
+
+        ::
+
+            >>> maker = rhythmmakertools.GalleryMaker()
+            >>> configurations_by_class = maker.make_configurations_by_class()
+            >>> lilypond_file = maker(configurations_by_class)
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(lilypond_file[Score])
+            \new Score <<
+                \context TimeSignatureContext = "TimeSignatureContext" {
+                    {
+                        \time 4/16
+                        s1 * 1/4
+                            ^ \markup {
+                                \override
+                                    #'(font-name . "Courier")
+                                    \column
+                                        {
+                                            "NoteRhythmMaker()"
+                                        }
+                                }
+                    }
+                    {
+                        \time 5/16
+                        s1 * 5/16
+                    }
+                    {
+                        \time 1/2
+                        s1 * 1/2
+                    }
+                    {
+                        \time 2/12
+                        s1 * 1/6
+                    }
+                    {
+                        \time 1/2
+                        s1 * 1/2
+                    }
+                    {
+                        \time 2/12
+                        s1 * 1/6
+                    }
+                    {
+                        \time 4/16
+                        s1 * 1/4
+                    }
+                    {
+                        \time 5/16
+                        s1 * 5/16
+                    }
+                }
+                \context RhythmicStaff = "Note-entry staff" \with {
+                    instrumentName = \markup {
+                        \hcenter-in
+                            #9
+                            \override
+                                #'(box-padding . 0.75)
+                                \box
+                                    \italic
+                                        \fontsize
+                                            #2
+                                            1-1
+                        }
+                } {
+                    {
+                        \time 4/16
+                        c'4
+                    }
+                    {
+                        \time 5/16
+                        c'4 ~
+                        c'16
+                    }
+                    {
+                        \time 1/2
+                        c'2
+                    }
+                    {
+                        \time 2/12
+                        \tweak edge-height #'(0.7 . 0)
+                        \times 2/3 {
+                            c'4
+                        }
+                    }
+                    {
+                        \time 1/2
+                        c'2
+                    }
+                    {
+                        \time 2/12
+                        \tweak edge-height #'(0.7 . 0)
+                        \times 2/3 {
+                            c'4
+                        }
+                    }
+                    {
+                        \time 4/16
+                        c'4
+                    }
+                    {
+                        \time 5/16
+                        c'4 ~
+                        c'16
+                        \bar "|."
+                        \override Staff.BarLine.extra-offset = #'(1.6 . 0)
+                    }
+                }
+            >>
+
     '''
 
     ### CLASS VARIABLES ###
@@ -25,6 +139,28 @@ class GalleryMaker(AbjadValueObject):
     __documentation_section__ = 'Illustration helpers'
 
     __slots__ = (
+        )
+
+    gallery_division_lists = (
+        [
+            (4, 16), (5, 16), (1, 2), (2, 12),
+            (1, 2), (2, 12), (4, 16), (5, 16),
+        ],
+        [
+            (1, 11), (3, 8), (3, 8), (3, 8),
+            (3, 8), (3, 8), (1, 11), (3, 8),
+        ],
+        [
+            (3, 15), (3, 15), (3, 16),
+            (5, 24), (5, 24), (5, 16),
+            (2, 12), (2, 12), (2, 8),
+            (3, 28), (3, 28), (3, 16),
+            (1, 9), (1, 9), (1, 8),
+        ],
+        [
+            (9, 16), (1, 5), (9, 16),
+            (1, 5), (9, 16), (9, 16),
+        ],
         )
 
     ### SPECIAL METHODS ###
@@ -53,7 +189,7 @@ class GalleryMaker(AbjadValueObject):
                 lilypond_file.items.append(string)
         assert lilypond_file.items[-1] == string
         lilypond_file.items.pop(-1)
-        lilypond_file.includes.append('stylesheet.ily')
+        lilypond_file.includes.append('rhythm-maker-gallery.ily')
         return lilypond_file
 
     ### PRIVATE METHODS ###
@@ -66,8 +202,9 @@ class GalleryMaker(AbjadValueObject):
 
     @staticmethod
     def _add_final_bar_line(score):
+        import abjad
         score.add_final_bar_line()
-        selector = select().by_leaf(flatten=True)
+        selector = abjad.select().by_leaf(flatten=True)
         leaves = selector(score)
         leaves = leaves[-1:]
         last_leaf = leaves[0]
@@ -202,3 +339,240 @@ class GalleryMaker(AbjadValueObject):
         command = markuptools.MarkupCommand('hcenter-in', width, command)
         markup = markuptools.Markup(command)
         return markup
+
+    @staticmethod
+    def make_configurations_by_class():
+        r'''Makes configurations by class.
+        '''
+        import abjad
+        from abjad.tools import rhythmmakertools
+
+        configurations_by_class = collections.OrderedDict()
+        pairs = []
+
+        ### NoteRhythmMaker ###
+
+        maker = rhythmmakertools.NoteRhythmMaker()
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            tie_specifier=rhythmmakertools.TieSpecifier(
+                tie_across_divisions=True,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            beam_specifier=rhythmmakertools.BeamSpecifier(
+                beam_divisions_together=True,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                decrease_durations_monotonically=False,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                decrease_durations_monotonically=False,
+                ),
+            tie_specifier=rhythmmakertools.TieSpecifier(
+                tie_across_divisions=True,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                decrease_durations_monotonically=False,
+                ),
+            beam_specifier=rhythmmakertools.BeamSpecifier(
+                beam_divisions_together=True,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                forbidden_written_duration=abjad.Duration(1, 4),
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                forbidden_written_duration=abjad.Duration(1, 4),
+                ),
+            tie_specifier=rhythmmakertools.TieSpecifier(
+                tie_across_divisions=True,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                forbidden_written_duration=abjad.Duration(1, 4),
+                decrease_durations_monotonically=False,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                forbidden_written_duration=abjad.Duration(1, 4),
+                decrease_durations_monotonically=False,
+                ),
+            tie_specifier=rhythmmakertools.TieSpecifier(
+                tie_across_divisions=True,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            beam_specifier=rhythmmakertools.BeamSpecifier(
+                beam_each_division=False,
+                ),
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                forbidden_written_duration=abjad.Duration(1, 4),
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            beam_specifier=rhythmmakertools.BeamSpecifier(
+                beam_each_division=False,
+                ),
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                forbidden_written_duration=abjad.Duration(1, 4),
+                ),
+            tie_specifier=rhythmmakertools.TieSpecifier(
+                tie_across_divisions=True,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            beam_specifier=rhythmmakertools.BeamSpecifier(
+                beam_each_division=False,
+                ),
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                forbidden_written_duration=abjad.Duration(1, 4),
+                decrease_durations_monotonically=False,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.NoteRhythmMaker(
+            beam_specifier=rhythmmakertools.BeamSpecifier(
+                beam_each_division=False,
+                ),
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                forbidden_written_duration=abjad.Duration(1, 4),
+                decrease_durations_monotonically=False,
+                ),
+            tie_specifier=rhythmmakertools.TieSpecifier(
+                tie_across_divisions=True,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+#        ### RestRhythmMaker ###
+#
+#        maker = rhythmmakertools.RestRhythmMaker()
+#        pair = (maker, GalleryMaker.gallery_division_lists)
+#        pairs.append(pair)
+#
+#        maker = rhythmmakertools.RestRhythmMaker(
+#            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+#                decrease_durations_monotonically=False,
+#                ),
+#            )
+#        pair = (maker, GalleryMaker.gallery_division_lists)
+#        pairs.append(pair)
+#
+#        maker = rhythmmakertools.RestRhythmMaker(
+#            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+#                forbidden_written_duration=abjad.Duration(1, 4),
+#                ),
+#            )
+#        pair = (maker, GalleryMaker.gallery_division_lists)
+#        pairs.append(pair)
+#
+#        maker = rhythmmakertools.RestRhythmMaker(
+#            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+#                decrease_durations_monotonically=False,
+#                forbidden_written_duration=abjad.Duration(1, 4),
+#                ),
+#            )
+#        pair = (maker, GalleryMaker.gallery_division_lists)
+#        pairs.append(pair)
+
+        ### EvenRunRhythmMaker ###
+
+        maker = rhythmmakertools.EvenRunRhythmMaker()
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.EvenRunRhythmMaker(
+            beam_specifier=rhythmmakertools.BeamSpecifier(
+                beam_divisions_together=True,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.EvenRunRhythmMaker(
+            beam_specifier=rhythmmakertools.BeamSpecifier(
+                beam_each_division=False,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.EvenRunRhythmMaker(
+            tie_specifier=rhythmmakertools.TieSpecifier(
+                tie_across_divisions=True,
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.EvenRunRhythmMaker(
+            duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                forbidden_written_duration=abjad.Duration(1, 4),
+                ),
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        maker = rhythmmakertools.EvenRunRhythmMaker(
+            exponent=1,
+            )
+        pair = (maker, GalleryMaker.gallery_division_lists)
+        pairs.append(pair)
+
+        for pair in pairs:
+            maker = pair[0]
+            if type(maker) not in configurations_by_class:
+                configurations_by_class[type(maker)] = []
+            configurations_by_class[type(maker)].append(pair)
+
+        return configurations_by_class

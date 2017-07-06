@@ -231,7 +231,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             </a>
             ''')
         self.assertEqual(actual, expected)
-        assert len(os.listdir(self.abjadbook_images_directory)) == 6
+        assert len(os.listdir(self.abjadbook_images_directory)) == 7
         for name in (
             'default.ly',
             'external-settings-file-1.ly',
