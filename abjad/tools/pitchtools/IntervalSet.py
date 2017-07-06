@@ -24,8 +24,8 @@ class IntervalSet(Set):
             )
         if isinstance(items, prototype):
             items = list(items)
-            enumeration = sequencetools.Enumeration(items)
-            pairs = enumeration.yield_pairs()
+            enumerator = sequencetools.Enumerator(items)
+            pairs = enumerator.yield_pairs()
             items = [second - first for first, second in pairs]
         Set.__init__(
             self,
@@ -88,8 +88,8 @@ class IntervalSet(Set):
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        enumeration = sequencetools.Enumeration(pitch_segment)
-        pairs = enumeration.yield_pairs()
+        enumerator = sequencetools.Enumerator(pitch_segment)
+        pairs = enumerator.yield_pairs()
         intervals = (second - first for first, second in pairs)
         return class_(
             items=intervals,

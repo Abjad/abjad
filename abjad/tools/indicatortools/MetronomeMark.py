@@ -1244,8 +1244,8 @@ class MetronomeMark(AbjadValueObject):
         allowable_numerators = range(1, maximum_numerator + 1)
         allowable_denominators = range(1, maximum_denominator + 1)
         numbers = [allowable_numerators, allowable_denominators]
-        enumeration = sequencetools.Enumeration(numbers)
-        pairs = enumeration.yield_outer_product()
+        enumerator = sequencetools.Enumerator(numbers)
+        pairs = enumerator.yield_outer_product()
         multipliers = [durationtools.Multiplier(_) for _ in pairs]
         multipliers = [
             _ for _ in multipliers

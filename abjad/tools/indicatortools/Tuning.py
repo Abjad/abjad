@@ -199,8 +199,8 @@ class Tuning(AbjadValueObject):
         from abjad.tools import pitchtools
         pitch_classes = [pitchtools.NamedPitchClass(x) for x in pitch_classes]
         pitch_classes.extend([None] * (len(self.pitches) - len(pitch_classes)))
-        enumeration = sequencetools.Enumeration(pitch_classes)
-        permutations = enumeration.yield_permutations()
+        enumerator = sequencetools.Enumerator(pitch_classes)
+        permutations = enumerator.yield_permutations()
         permutations = set([tuple(_) for _ in permutations])
         pitch_ranges = self.pitch_ranges
         result = []
@@ -218,8 +218,8 @@ class Tuning(AbjadValueObject):
                 if not pitches:
                     pitches = [None]
                 sequences.append(pitches)
-            enumeration = sequencetools.Enumeration(sequences)
-            subresult = enumeration.yield_outer_product()
+            enumerator = sequencetools.Enumerator(sequences)
+            subresult = enumerator.yield_outer_product()
             subresult = [tuple(x) for x in subresult]
             result.extend(subresult)
         result.sort()

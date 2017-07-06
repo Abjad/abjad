@@ -63,8 +63,8 @@ class IntervalVector(Vector):
             pitchtools.PitchClassSet,
             )):
             intervals = []
-            enumeration = sequencetools.Enumeration(items)
-            pairs = enumeration.yield_pairs()
+            enumerator = sequencetools.Enumerator(items)
+            pairs = enumerator.yield_pairs()
             for first, second in pairs:
                 intervals.append(second - first)
             items = intervals

@@ -539,8 +539,8 @@ class PitchClassSet(Set):
         if not len(self) == len(pitch_class_segment):
             message = 'set and segment must be on equal length.'
             raise ValueError(message)
-        enumeration = sequencetools.Enumeration(self)
-        for pitch_classes in enumeration.yield_permutations():
+        enumerator = sequencetools.Enumerator(self)
+        for pitch_classes in enumerator.yield_permutations():
             candidate_pitch_class_segment = \
                 pitchtools.PitchClassSegment(pitch_classes)
             if candidate_pitch_class_segment._is_equivalent_under_transposition(

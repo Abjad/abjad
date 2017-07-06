@@ -6,10 +6,10 @@ from abjad.tools import abctools
 from abjad.tools import mathtools
 
 
-class Enumeration(abctools.AbjadValueObject):
-    r'''Enumeration.
+class Enumerator(abctools.AbjadValueObject):
+    r'''Enumerator.
 
-    Collects combinatorial enumeration methods.
+    Collects combinatorial enumerator methods.
     '''
 
     ### CLASS VARIABLES ###
@@ -38,22 +38,22 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> sequencetools.Enumeration._is_restricted_growth_function([1, 1, 1, 1])
+                >>> sequencetools.Enumerator._is_restricted_growth_function([1, 1, 1, 1])
                 True
 
             ::
 
-                >>> sequencetools.Enumeration._is_restricted_growth_function([1, 1, 1, 2])
+                >>> sequencetools.Enumerator._is_restricted_growth_function([1, 1, 1, 2])
                 True
 
             ::
 
-                >>> sequencetools.Enumeration._is_restricted_growth_function([1, 1, 2, 1])
+                >>> sequencetools.Enumerator._is_restricted_growth_function([1, 1, 2, 1])
                 True
 
             ::
 
-                >>> sequencetools.Enumeration._is_restricted_growth_function([1, 1, 2, 2])
+                >>> sequencetools.Enumerator._is_restricted_growth_function([1, 1, 2, 2])
                 True
 
         ..  container:: example
@@ -62,12 +62,12 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> sequencetools.Enumeration._is_restricted_growth_function([1, 1, 1, 3])
+                >>> sequencetools.Enumerator._is_restricted_growth_function([1, 1, 1, 3])
                 False
 
             ::
 
-                >>> sequencetools.Enumeration._is_restricted_growth_function([17])
+                >>> sequencetools.Enumerator._is_restricted_growth_function([17])
                 False
 
         A restricted growth function is a sequence ``l`` such that
@@ -99,14 +99,14 @@ class Enumeration(abctools.AbjadValueObject):
 
         ::
 
-            >>> sequencetools.Enumeration._partition_by_rgf(sequence, rgf)
+            >>> sequencetools.Enumerator._partition_by_rgf(sequence, rgf)
             Sequence([Sequence([0, 1, 4]), Sequence([2, 3, 5, 8]), Sequence([6, 7]), Sequence([9])])
 
         Returns list of lists.
         '''
         import abjad
         rgf = abjad.Sequence(items=rgf)
-        if not Enumeration._is_restricted_growth_function(rgf):
+        if not Enumerator._is_restricted_growth_function(rgf):
             message = 'must be restricted growth function: {!r}.'
             message = message.format(rgf)
             raise ValueError(message)
@@ -132,7 +132,7 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> rgfs = sequencetools.Enumeration._yield_restricted_growth_functions(4)
+                >>> rgfs = sequencetools.Enumerator._yield_restricted_growth_functions(4)
                 >>> for rgf in rgfs:
                 ...     rgf
                 ...
@@ -175,7 +175,7 @@ class Enumeration(abctools.AbjadValueObject):
 
     @property
     def sequence(self):
-        r'''Gets sequence of enumeration.
+        r'''Gets sequence of enumerator.
 
         Defaults to none.
 
@@ -194,8 +194,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([1, 2, 3, 4])
-                >>> for combination in enumeration.yield_combinations():
+                >>> enumerator = sequencetools.Enumerator([1, 2, 3, 4])
+                >>> for combination in enumerator.yield_combinations():
                 ...     combination
                 Sequence([])
                 Sequence([1])
@@ -218,8 +218,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([1, 2, 3, 4])
-                >>> for combination in enumeration.yield_combinations(
+                >>> enumerator = sequencetools.Enumerator([1, 2, 3, 4])
+                >>> for combination in enumerator.yield_combinations(
                 ...     minimum_length=3,
                 ...     ):
                 ...     combination
@@ -233,8 +233,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([1, 2, 3, 4])
-                >>> for combination in enumeration.yield_combinations(
+                >>> enumerator = sequencetools.Enumerator([1, 2, 3, 4])
+                >>> for combination in enumerator.yield_combinations(
                 ...     maximum_length=2,
                 ...     ):
                 ...     combination
@@ -254,8 +254,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([1, 2, 3, 4])
-                >>> for combination in enumeration.yield_combinations(
+                >>> enumerator = sequencetools.Enumerator([1, 2, 3, 4])
+                >>> for combination in enumerator.yield_combinations(
                 ...     minimum_length=2,
                 ...     maximum_length=2,
                 ...     ):
@@ -271,8 +271,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration('text')
-                >>> for combination in enumeration.yield_combinations():
+                >>> enumerator = sequencetools.Enumerator('text')
+                >>> for combination in enumerator.yield_combinations():
                 ...     ''.join([str(_) for _ in combination])
                 ''
                 't'
@@ -325,8 +325,8 @@ class Enumeration(abctools.AbjadValueObject):
             ::
 
                 >>> sequences = [[1, 2, 3], ['a', 'b']]
-                >>> enumeration = sequencetools.Enumeration(sequences)
-                >>> for sequence_ in enumeration.yield_outer_product():
+                >>> enumerator = sequencetools.Enumerator(sequences)
+                >>> for sequence_ in enumerator.yield_outer_product():
                 ...     sequence_
                 ... 
                 Sequence([1, 'a'])
@@ -341,8 +341,8 @@ class Enumeration(abctools.AbjadValueObject):
             ::
 
                 >>> sequences = [[1, 2, 3], ['a', 'b'], ['X', 'Y']]
-                >>> enumeration = sequencetools.Enumeration(sequences)
-                >>> for sequence_ in enumeration.yield_outer_product():
+                >>> enumerator = sequencetools.Enumerator(sequences)
+                >>> for sequence_ in enumerator.yield_outer_product():
                 ...     sequence_
                 ... 
                 Sequence([1, 'a', 'X'])
@@ -363,8 +363,8 @@ class Enumeration(abctools.AbjadValueObject):
             ::
 
                 >>> sequences = [[1, 2, 3], [4, 5], [6, 7, 8]]
-                >>> enumeration = sequencetools.Enumeration(sequences)
-                >>> for sequence_ in enumeration.yield_outer_product():
+                >>> enumerator = sequencetools.Enumerator(sequences)
+                >>> for sequence_ in enumerator.yield_outer_product():
                 ...     sequence_
                 ... 
                 Sequence([1, 4, 6])
@@ -413,8 +413,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([1, 2, 3, 4])
-                >>> for pair in enumeration.yield_pairs():
+                >>> enumerator = sequencetools.Enumerator([1, 2, 3, 4])
+                >>> for pair in enumerator.yield_pairs():
                 ...     pair
                 ...
                 Sequence([1, 2])
@@ -430,8 +430,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([1, 1, 1])
-                >>> for pair in enumeration.yield_pairs():
+                >>> enumerator = sequencetools.Enumerator([1, 1, 1])
+                >>> for pair in enumerator.yield_pairs():
                 ...     pair
                 ...
                 Sequence([1, 1])
@@ -444,8 +444,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([1])
-                >>> for pair in enumeration.yield_pairs():
+                >>> enumerator = sequencetools.Enumerator([1])
+                >>> for pair in enumerator.yield_pairs():
                 ...     pair
                 ...
 
@@ -455,8 +455,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([])
-                >>> for pair in enumeration.yield_pairs():
+                >>> enumerator = sequencetools.Enumerator([])
+                >>> for pair in enumerator.yield_pairs():
                 ...     pair
                 ...
 
@@ -475,8 +475,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([0, 1, 2])
-                >>> for partition in enumeration.yield_partitions():
+                >>> enumerator = sequencetools.Enumerator([0, 1, 2])
+                >>> for partition in enumerator.yield_partitions():
                 ...     partition
                 ...
                 Sequence([Sequence([0, 1, 2])])
@@ -488,8 +488,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([0, 1, 2, 3])
-                >>> for partition in enumeration.yield_partitions():
+                >>> enumerator = sequencetools.Enumerator([0, 1, 2, 3])
+                >>> for partition in enumerator.yield_partitions():
                 ...     partition
                 ...
                 Sequence([Sequence([0, 1, 2, 3])])
@@ -527,8 +527,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([1, 2, 3])
-                >>> for permutation in enumeration.yield_permutations():
+                >>> enumerator = sequencetools.Enumerator([1, 2, 3])
+                >>> for permutation in enumerator.yield_permutations():
                 ...     permutation
                 ... 
                 Sequence([1, 2, 3])
@@ -553,8 +553,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([21, 22, 23, 24])
-                >>> for set_partition in enumeration.yield_set_partitions(): 
+                >>> enumerator = sequencetools.Enumerator([21, 22, 23, 24])
+                >>> for set_partition in enumerator.yield_set_partitions(): 
                 ...     set_partition
                 ...
                 Sequence([Sequence([21, 22, 23, 24])])
@@ -578,8 +578,8 @@ class Enumeration(abctools.AbjadValueObject):
         Returns generator of list of lists.
         '''
         length = len(self.sequence)
-        for rgf in Enumeration._yield_restricted_growth_functions(length):
-            partition = Enumeration._partition_by_rgf(self.sequence, rgf)
+        for rgf in Enumerator._yield_restricted_growth_functions(length):
+            partition = Enumerator._partition_by_rgf(self.sequence, rgf)
             yield partition
 
     def yield_subsequences(self, minimum_length=0, maximum_length=None):
@@ -589,8 +589,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([0, 1, 2])
-                >>> for subsequence in enumeration.yield_subsequences():
+                >>> enumerator = sequencetools.Enumerator([0, 1, 2])
+                >>> for subsequence in enumerator.yield_subsequences():
                 ...     subsequence
                 ... 
                 Sequence([])
@@ -605,8 +605,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([0, 1, 2, 3, 4])
-                >>> for subsequence in enumeration.yield_subsequences(
+                >>> enumerator = sequencetools.Enumerator([0, 1, 2, 3, 4])
+                >>> for subsequence in enumerator.yield_subsequences(
                 ...     minimum_length=3,
                 ...     ):
                 ...     subsequence
@@ -622,8 +622,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([0, 1, 2, 3, 4])
-                >>> for subsequence in enumeration.yield_subsequences(
+                >>> enumerator = sequencetools.Enumerator([0, 1, 2, 3, 4])
+                >>> for subsequence in enumerator.yield_subsequences(
                 ...     maximum_length=3,
                 ...     ):
                 ...     subsequence
@@ -646,8 +646,8 @@ class Enumeration(abctools.AbjadValueObject):
 
             ::
 
-                >>> enumeration = sequencetools.Enumeration([0, 1, 2, 3, 4])
-                >>> for subsequence in enumeration.yield_subsequences(
+                >>> enumerator = sequencetools.Enumerator([0, 1, 2, 3, 4])
+                >>> for subsequence in enumerator.yield_subsequences(
                 ...     minimum_length=3,
                 ...     maximum_length=3,
                 ...     ):
