@@ -8,6 +8,10 @@ from abjad.tools.topleveltools import iterate
 class MutationAgent(abctools.AbjadObject):
     r'''Mutation agent.
 
+    ::
+
+        >>> import pytest
+
     ..  container:: example
 
         Creates mutation agent for last two notes in staff:
@@ -2179,7 +2183,7 @@ class MutationAgent(abctools.AbjadObject):
         tie_split_notes=True,
         use_messiaen_style_ties=False,
         ):
-        r'''Splits component or selection by `durations`.
+        r'''Splits mutation client by `durations`.
 
         ..  container:: example
 
@@ -2835,6 +2839,176 @@ class MutationAgent(abctools.AbjadObject):
                     new_written_pitch = old_written_pitch.transpose(
                         named_interval)
                     note_head.written_pitch = new_written_pitch
+
+    def wrap(self, container):
+        r'''Wraps mutation client in empty `container`.
+
+        ..  container:: example
+
+            Wraps in-score notes in tuplet:
+
+            ::
+
+                >>> staff = Staff("c'8 [ ( d' e' ] ) c' [ ( d' e' ] )")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 [ (
+                    d'8
+                    e'8 ] )
+                    c'8 [ (
+                    d'8
+                    e'8 ] )
+                }
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), [])
+                >>> mutate(staff[-3:]).wrap(tuplet)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 [ (
+                    d'8
+                    e'8 ] )
+                    \times 2/3 {
+                        c'8 [ (
+                        d'8
+                        e'8 ] )
+                    }
+                }
+
+        ..  container:: example
+
+            Wraps outside-score notes in tuplet:
+
+            ::
+
+                >>> notes = scoretools.make_notes([0, 2, 4], [Duration(1, 8)])
+                >>> tuplet = Tuplet((2, 3), [])
+                >>> mutate(notes).wrap(tuplet)
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            (This usage merely substitutes for the tuplet initializer.)
+
+        ..  container:: example
+        
+            Wraps leaves in measure:
+
+            ::
+
+                >>> voice = Voice([Note(n, (1, 8)) for n in range(8)])
+                >>> measure = Measure((4, 8), [])
+                >>> mutate(voice[:4]).wrap(measure)
+                >>> show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(voice)
+                \new Voice {
+                    {
+                        \time 4/8
+                        c'8
+                        cs'8
+                        d'8
+                        ef'8
+                    }
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                }
+
+        ..  container:: example
+
+            Wraps each leaf in measure:
+
+            ::
+
+                >>> staff = Staff([Note(n, (1, 1)) for n in range(4)])
+                >>> for note in staff:
+                ...     measure = Measure((1, 1), [])
+                ...     mutate(note).wrap(measure)
+                ...
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 1/1
+                        c'1
+                    }
+                    {
+                        cs'1
+                    }
+                    {
+                        d'1
+                    }
+                    {
+                        ef'1
+                    }
+                }
+
+        ..  container:: example
+
+            Raises exception on nonempty `container`:
+
+            ::
+
+                >>> staff = Staff("c'8 [ ( d' e' ] ) c' [ ( d' e' ] )")
+                >>> tuplet = Tuplet((2, 3), "g'8 a' fs'")
+                >>> statement = 'mutate(staff[-3:]).wrap(tuplet)'
+                >>> pytest.raises(Exception, statement)
+                <ExceptionInfo Exception tblen=3>
+
+        Returns none.
+        '''
+        import abjad
+        if (not isinstance(container, abjad.Container) or
+            0 < len(container)):
+            message = 'must be empty container: {!r}.'
+            message = message.format(container)
+            raise Exception(message)
+        if isinstance(self._client, abjad.Component):
+            selection = abjad.select(self._client)
+        else:
+            selection = self._client
+        assert isinstance(selection, abjad.Selection), repr(selection)
+        parent, start, stop = selection._get_parent_and_start_stop_indices()
+#        if parent is None:
+#            message = 'just use normal container initialization'
+#            message += ' for unincorporated components: {!r}.'
+#            message = message.format(selection)
+#            raise Exception(message)
+        if not selection._all_in_same_logical_voice(
+            selection,
+            contiguous=True,
+            ):
+            message = 'must be contiguous components in same logical voice:'
+            message += ' {!r}.'
+            message = message.format(selection)
+            raise Exception(message)
+        container._music = list(selection)
+        container[:]._set_parents(container)
+        if parent is not None:
+            parent._music.insert(start, container)
+            container._set_parent(parent)
 
     ### PUBLIC PROPERTIES ###
 

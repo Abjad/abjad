@@ -333,11 +333,11 @@ def test_scoretools_Container___setitem___08():
         )
 
     voice_2 = Voice(notes[3:])
-    Container(voice_2[1:3])
-    leaves = iterate(voice_2).by_leaf()
-    attach(Glissando(), list(leaves))
-    leaves = iterate(voice_2[1]).by_leaf()
-    attach(Slur(), list(leaves))
+    mutate(voice_2[1:3]).wrap(Container())
+    leaves = select(voice_2).by_leaf()
+    attach(Glissando(), leaves)
+    leaves = select(voice_2[1]).by_leaf()
+    attach(Slur(), leaves)
 
     assert format(voice_2) == stringtools.normalize(
         r'''
@@ -763,8 +763,10 @@ def test_scoretools_Container___setitem___20():
     '''
 
     staff = Staff("c'8 d'8 [ e'8 ] f'8")
-    inner_container = Container(staff[1:3])
-    outer_container = Container([inner_container])
+    inner_container = Container()
+    mutate(staff[1:3]).wrap(inner_container)
+    outer_container = Container()
+    mutate(inner_container).wrap(outer_container)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -808,8 +810,10 @@ def test_scoretools_Container___setitem___20():
 
     # ALTERNATIVE: use del(container)
     staff = Staff("c'8 d'8 [ e'8 ] f'8")
-    inner_container = Container(staff[1:3])
-    outer_container = Container([inner_container])
+    inner_container = Container()
+    mutate(staff[1:3]).wrap(inner_container)
+    outer_container = Container()
+    mutate(inner_container).wrap(outer_container)
 
     assert format(staff) == stringtools.normalize(
         r'''

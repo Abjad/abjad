@@ -58,8 +58,7 @@ class LogicalTie(Selection):
 
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
+        import abjad
         new_written_duration = durationtools.Duration(new_written_duration)
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration
@@ -69,11 +68,11 @@ class LogicalTie(Selection):
                     index = parent.index(leaf)
                     del(parent[index])
             first = self[0]
-            for spanner in first._get_spanners(spannertools.Tie):
+            for spanner in first._get_spanners(abjad.Tie):
                 spanner._sever_all_components()
-            #detach(spannertools.Tie, first)
+            #detach(abjad.Tie, first)
         elif new_written_duration.has_power_of_two_denominator:
-            durations = scoretools.make_notes(0, [new_written_duration])
+            durations = abjad.scoretools.make_notes(0, [new_written_duration])
             for leaf, token in zip(self, durations):
                 leaf.written_duration = token.written_duration
             if len(self) == len(durations):
@@ -85,9 +84,9 @@ class LogicalTie(Selection):
                         index = parent.index(leaf)
                         del(parent[index])
             elif len(self) < len(durations):
-                for spanner in self[0]._get_spanners(spannertools.Tie):
+                for spanner in self[0]._get_spanners(abjad.Tie):
                     spanner._sever_all_components()
-                #detach(spannertools.Tie, self[0])
+                #detach(abjad.Tie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
@@ -96,22 +95,22 @@ class LogicalTie(Selection):
                 extra_tokens = durations[len(self):]
                 for leaf, token in zip(extra_leaves, extra_tokens):
                     leaf.written_duration = token.written_duration
-                ties = self[-1]._get_spanners(spannertools.Tie)
+                ties = self[-1]._get_spanners(abjad.Tie)
                 if not ties:
-                    tie = spannertools.Tie()
+                    tie = abjad.Tie()
                     if all(tie._attachment_test(_) for _ in self):
                         attach(tie, list(self))
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:
-            durations = scoretools.make_notes(0, new_written_duration)
-            assert isinstance(durations[0], scoretools.Tuplet)
-            fmtuplet = durations[0]
-            new_logical_tie_written = \
-                fmtuplet[0]._get_logical_tie()._get_preprolated_duration()
-            self._add_or_remove_notes_to_achieve_written_duration(
-                new_logical_tie_written)
-            multiplier = fmtuplet.multiplier
-            scoretools.Tuplet(multiplier, self.leaves)
+            durations = abjad.scoretools.make_notes(0, new_written_duration)
+            assert isinstance(durations[0], abjad.Tuplet)
+            tuplet = durations[0]
+            logical_tie = tuplet[0]._get_logical_tie()
+            duration = logical_tie._get_preprolated_duration()
+            self._add_or_remove_notes_to_achieve_written_duration(duration)
+            multiplier = tuplet.multiplier
+            tuplet = abjad.Tuplet(multiplier, [])
+            abjad.mutate(self.leaves).wrap(tuplet)
         return self[0]._get_logical_tie()
 
     def _fuse_leaves_by_immediate_parent(self):
@@ -156,31 +155,32 @@ class LogicalTie(Selection):
 
     @property
     def leaves(self):
-        r'''Leaves in logical tie.
+        r'''Gets leaves in logical tie.
 
-        Returns tuple.
+        Returns selection.
         '''
-        from abjad.tools import spannertools
-        prototype = (spannertools.Tie,)
+        import abjad
         try:
-            tie_spanner = self[0]._get_spanner(prototype=prototype)
-            return tuple(tie_spanner._get_leaves())
+            tie = self[0]._get_spanner(prototype=abjad.Tie)
         except MissingSpannerError:
             assert self.is_trivial
-            return (self[0], )
+            return abjad.select(self[0])
+        selection = tie._get_leaves()
+        assert isinstance(selection, abjad.Selection)
+        return selection
 
     @property
     def tail(self):
-        r'''Reference to element ``-1`` in logical tie.
+        r'''Gets last leaf in logical tie.
 
-        Returns component.
+        Returns leaf.
         '''
         if self._music:
             return self._music[-1]
 
     @property
     def tie_spanner(self):
-        r'''Tie spanner governing logical tie.
+        r'''Gets tie spanner governing logical tie.
 
         Returns tie spanner.
         '''

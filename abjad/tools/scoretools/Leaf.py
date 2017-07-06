@@ -324,8 +324,7 @@ class Leaf(Component):
         self._set_duration(new_duration)
 
     def _set_duration(self, new_duration, use_messiaen_style_ties=False):
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
+        import abjad
         new_duration = durationtools.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
         if self._get_indicators(durationtools.Multiplier):
@@ -340,12 +339,12 @@ class Leaf(Component):
         except AssignabilityError:
             pass
         # make new notes or tuplets if new duration is nonassignable
-        components = scoretools.make_notes(
+        components = abjad.scoretools.make_notes(
             0,
             new_duration,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
-        if isinstance(components[0], scoretools.Leaf):
+        if isinstance(components[0], abjad.Leaf):
             tied_leaf_count = len(components) - 1
             tied_leaves = tied_leaf_count * self
             all_leaves = [self] + tied_leaves
@@ -353,17 +352,17 @@ class Leaf(Component):
                 x.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
             parentage = self._get_parentage()
-            if not parentage._get_spanners(spannertools.Tie):
-                #if spannertools.Tie._attachment_test(self):
-                tie = spannertools.Tie()
+            if not parentage._get_spanners(abjad.Tie):
+                #if abjad.Tie._attachment_test(self):
+                tie = abjad.Tie()
                 if tie._attachment_test(self):
-                    tie = spannertools.Tie(
+                    tie = abjad.Tie(
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )
                     attach(tie, all_leaves)
             return all_leaves
         else:
-            assert isinstance(components[0], scoretools.Tuplet)
+            assert isinstance(components[0], abjad.Tuplet)
             tuplet = components[0]
             components = tuplet[:]
             tied_leaf_count = len(components) - 1
@@ -372,16 +371,18 @@ class Leaf(Component):
             for x, component in zip(all_leaves, components):
                 x.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
-            if not self._get_spanners(spannertools.Tie):
-                #if spannertools.Tie._attachment_test(self):
-                tie = spannertools.Tie()
+            if not self._get_spanners(abjad.Tie):
+                #if abjad.Tie._attachment_test(self):
+                tie = abjad.Tie()
                 if tie._attachment_test(self):
-                    tie = spannertools.Tie(
+                    tie = abjad.Tie(
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )
                     attach(tie, all_leaves)
-            tuplet_multiplier = tuplet.multiplier
-            scoretools.Tuplet(tuplet_multiplier, all_leaves)
+            multiplier = tuplet.multiplier
+            #abjad.Tuplet(multiplier, all_leaves)
+            tuplet = abjad.Tuplet(multiplier, [])
+            abjad.mutate(all_leaves).wrap(tuplet)
             return [tuplet]
 
     def _split(

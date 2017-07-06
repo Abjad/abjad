@@ -702,8 +702,7 @@ class Component(AbjadObject):
 
     # TODO: eventually reimplement as a keyword option to remove()
     def _remove_and_shrink_durated_parent_containers(self):
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
+        import abjad
         prolated_leaf_duration = self._get_duration()
         parentage = self._get_parentage(include_self=False)
         prolations = parentage._prolations
@@ -711,13 +710,13 @@ class Component(AbjadObject):
         parent = self._parent
         while parent is not None and not parent.is_simultaneous:
             current_prolation *= prolations[i]
-            if isinstance(parent, scoretools.FixedDurationTuplet):
+            if isinstance(parent, abjad.scoretools.FixedDurationTuplet):
                 candidate_new_parent_dur = (parent.target_duration -
                     current_prolation * self.written_duration)
                 if durationtools.Duration(0) < candidate_new_parent_dur:
                     parent.target_duration = candidate_new_parent_dur
-            elif isinstance(parent, scoretools.Measure):
-                indicator = parent._get_indicator(indicatortools.TimeSignature)
+            elif isinstance(parent, abjad.Measure):
+                indicator = parent._get_indicator(abjad.TimeSignature)
                 parent_time_signature = indicator
                 old_prolation = parent_time_signature.implied_prolation
                 naive_time_signature = (
@@ -726,22 +725,26 @@ class Component(AbjadObject):
                     naive_time_signature)
                 better_time_signature = better_time_signature.with_denominator(
                     parent_time_signature.denominator)
-                better_time_signature = indicatortools.TimeSignature(
+                better_time_signature = abjad.TimeSignature(
                     better_time_signature)
-                detach(indicatortools.TimeSignature, parent)
+                detach(abjad.TimeSignature, parent)
                 attach(better_time_signature, parent)
-                indicator = parent._get_indicator(indicatortools.TimeSignature)
+                indicator = parent._get_indicator(abjad.TimeSignature)
                 parent_time_signature = indicator
                 new_prolation = parent_time_signature.implied_prolation
                 adjusted_prolation = old_prolation / new_prolation
                 for x in parent:
-                    if isinstance(x, scoretools.FixedDurationTuplet):
+                    if isinstance(x, abjad.scoretools.FixedDurationTuplet):
                         x.target_duration *= adjusted_prolation
                     else:
                         if adjusted_prolation != 1:
-                            new_target = x._get_preprolated_duration() * \
-                                adjusted_prolation
-                            scoretools.FixedDurationTuplet(new_target, [x])
+                            new_target = x._get_preprolated_duration()
+                            new_target *= adjusted_prolation
+                            tuplet = abjad.scoretools.FixedDurationTuplet(
+                                new_target,
+                                []
+                                )
+                            abjad.mutate(x).wrap(tuplet)
             parent = parent._parent
             i += 1
         parentage = self._get_parentage(include_self=False)
@@ -798,10 +801,8 @@ class Component(AbjadObject):
         grow_spanners=True,
         ):
         import abjad
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        assert all(isinstance(x, scoretools.Component) for x in components)
-        selection = selectiontools.Selection(self)
+        assert all(isinstance(x, abjad.Component) for x in components)
+        selection = abjad.select(self)
         if direction == Right:
             if grow_spanners:
                 insert_offset = self._get_timespan()._stop_offset
@@ -822,7 +823,7 @@ class Component(AbjadObject):
                         for leaf in reversed(leaves):
                             spanner._insert(insert_index, leaf)
                             leaf._spanners.add(spanner)
-            selection = selectiontools.Selection(self)
+            selection = abjad.select(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
             if parent is not None:
@@ -851,7 +852,7 @@ class Component(AbjadObject):
                         for leaf in reversed(leaves):
                             spanner._insert(index, leaf)
                             component._spanners.add(spanner)
-            selection = selectiontools.Selection(self)
+            selection = abjad.select(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
             if parent is not None:

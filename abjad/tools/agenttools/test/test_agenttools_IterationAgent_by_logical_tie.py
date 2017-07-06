@@ -80,8 +80,8 @@ def test_agenttools_IterationAgent_by_logical_tie_05():
     logical_ties = iterate(staff).by_logical_tie(nontrivial=True, reverse=True)
     logical_ties = list(logical_ties)
 
-    assert logical_ties[0].leaves == tuple(leaves[-2:])
-    assert logical_ties[1].leaves == tuple(leaves[:2])
+    assert logical_ties[0].leaves == leaves[-2:]
+    assert logical_ties[1].leaves == leaves[:2]
 
 
 def test_agenttools_IterationAgent_by_logical_tie_06():
@@ -91,8 +91,8 @@ def test_agenttools_IterationAgent_by_logical_tie_06():
 
     logical_ties = list(iterate(staff).by_logical_tie(nontrivial=True))
 
-    assert logical_ties[0].leaves == tuple(leaves[:2])
-    assert logical_ties[1].leaves == tuple(leaves[-2:])
+    assert logical_ties[0].leaves == leaves[:2]
+    assert logical_ties[1].leaves == leaves[-2:]
 
 
 def test_agenttools_IterationAgent_by_logical_tie_07():

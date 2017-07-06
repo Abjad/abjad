@@ -392,11 +392,13 @@ class Spanner(AbjadObject):
         return matching_indicators
 
     def _get_leaves(self):
+        import abjad
         result = []
         for component in self._components:
             for node in iterate(component).depth_first():
                 if isinstance(node, scoretools.Leaf):
                     result.append(node)
+        result = abjad.select(result)
         return result
 
     def _get_lilypond_format_bundle(self, leaf):
@@ -496,6 +498,7 @@ class Spanner(AbjadObject):
         leaf_count = len(leaves)
         first_index = 0
         last_index = leaf_count - 1
+        leaves = list(leaves)
         leaf_index = leaves.index(leaf)
         if first_index < leaf_index < last_index:
             return True

@@ -739,36 +739,19 @@ class Container(Component):
 
     def _initialize_music(self, music):
         import abjad
-        Selection = selectiontools.Selection
         music = music or []
         if isinstance(music, list):
             music = self._flatten_selections(music)
         if self._all_are_orphan_components(music):
             self._music = list(music)
             self[:]._set_parents(self)
-        elif Selection._all_in_same_logical_voice(music, contiguous=True):
-            # RESTRICTION: uncomment the following to test restriction:
-            #if (music and
-            #    abjad.inspect_(music[0]).get_parentage().parent is not None
-            #    ):
-            #    parentage = abjad.inspect_(music[0]).get_parentage()
-            #    parent = parentage.parent
-            #    message = 'MUSIC {!r} ALREADY IN CONTAINER {!r}.'
-            #    message = message.format(music, parent)
-            #    raise Exception(message)
-            music = selectiontools.Selection(music)
-            parent, start, stop = music._get_parent_and_start_stop_indices()
-            self._music = list(music)
-            self[:]._set_parents(self)
-            assert parent is not None
-            parent._music.insert(start, self)
-            self._set_parent(parent)
         elif isinstance(music, str):
             parsed = self._parse_string(music)
             self._music = []
             self.is_simultaneous = parsed.is_simultaneous
-            if (parsed.is_simultaneous or
-                not Selection._all_in_same_logical_voice(
+            if (
+                parsed.is_simultaneous or
+                not abjad.Selection._all_in_same_logical_voice(
                     parsed[:],
                     contiguous=True)
                 ):
@@ -815,6 +798,7 @@ class Container(Component):
         return self
 
     def _parse_string(self, string):
+        import abjad
         from abjad.tools import lilypondfiletools
         from abjad.tools import lilypondparsertools
         from abjad.tools import rhythmtreetools
@@ -824,7 +808,11 @@ class Container(Component):
             parser = lilypondparsertools.ReducedLyParser()
             parsed = parser(user_input[4:])
             if parser._toplevel_component_count == 1:
-                parsed = Container([parsed])
+                parent = abjad.inspect_(parsed).get_parentage().parent
+                if parent is None:
+                    parsed = Container([parsed])
+                else:
+                    parsed = parent
         elif user_input.startswith('rtm:'):
             parsed = rhythmtreetools.parse_rtm_syntax(user_input[4:])
         else:
@@ -952,30 +940,29 @@ class Container(Component):
 
         Returns split parts.
         '''
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
+        import abjad
         # partition my music
         left_music = self[:i]
         right_music = self[i:]
         # instantiate new left and right containers
-        if isinstance(self, scoretools.Measure):
-            time_signature = self._get_effective(
-                indicatortools.TimeSignature)
+        if isinstance(self, abjad.Measure):
+            time_signature = self._get_effective(abjad.TimeSignature)
             denominator = time_signature.denominator
-            left_duration = sum([x._get_duration() for x in left_music])
+            left_duration = sum([_._get_duration() for _ in left_music])
             left_pair = mathtools.NonreducedFraction(left_duration)
             left_pair = left_pair.with_multiple_of_denominator(denominator)
-            left_time_signature = indicatortools.TimeSignature(left_pair)
-            left = type(self)(left_time_signature, left_music)
+            left_time_signature = abjad.TimeSignature(left_pair)
+            left = type(self)(left_time_signature, [])
+            abjad.mutate(left_music).wrap(left)
             left.implicit_scaling = self.implicit_scaling
-            right_duration = sum([x._get_duration() for x in right_music])
+            right_duration = sum([_._get_duration() for _ in right_music])
             right_pair = mathtools.NonreducedFraction(right_duration)
             right_pair = right_pair.with_multiple_of_denominator(denominator)
-            right_time_signature = indicatortools.TimeSignature(right_pair)
-            right = type(self)(right_time_signature, right_music)
+            right_time_signature = abjad.TimeSignature(right_pair)
+            right = type(self)(right_time_signature, [])
+            abjad.mutate(right_music).wrap(right)
             right.implicit_scaling = self.implicit_scaling
-        elif isinstance(self, scoretools.FixedDurationTuplet):
+        elif isinstance(self, abjad.scoretools.FixedDurationTuplet):
             multiplier = self.multiplier
             left = type(self)(1, left_music)
             right = type(self)(1, right_music)
@@ -983,20 +970,24 @@ class Container(Component):
             left.target_duration = target_duration
             target_duration = multiplier * right._get_contents_duration()
             right.target_duration = target_duration
-        elif isinstance(self, scoretools.Tuplet):
+        elif isinstance(self, abjad.Tuplet):
             multiplier = self.multiplier
-            left = type(self)(multiplier, left_music)
-            right = type(self)(multiplier, right_music)
+            left = type(self)(multiplier, [])
+            abjad.mutate(left_music).wrap(left)
+            right = type(self)(multiplier, [])
+            abjad.mutate(right_music).wrap(right)
         else:
-            left = type(self)(left_music)
-            right = type(self)(right_music)
+            left = type(self)()
+            abjad.mutate(left_music).wrap(left)
+            right = type(self)()
+            abjad.mutate(right_music).wrap(right)
         # save left and right containers together for iteration
         halves = (left, right)
         nonempty_halves = [half for half in halves if len(half)]
         # give my attached spanners to my children
         self._move_spanners_to_children()
         # incorporate left and right parents in score if possible
-        selection = selectiontools.Selection(self)
+        selection = abjad.select(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent is not None:
             parent._music.__setitem__(slice(start, stop + 1), nonempty_halves)

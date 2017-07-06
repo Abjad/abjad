@@ -67,34 +67,6 @@ def test_agenttools_IterationAgent_by_class_04():
 
 def test_agenttools_IterationAgent_by_class_05():
 
-    staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
-    tuplet = Tuplet(Multiplier(2, 3), staff[1][:])
-    staff.is_simultaneous = True
-    containers = iterate(staff).by_class(Container, reverse=True)
-    containers = list(containers)
-
-    assert containers[0] is staff
-    assert containers[1] is staff[1]
-    assert containers[2] is tuplet
-    assert containers[3] is staff[0]
-
-
-def test_agenttools_IterationAgent_by_class_06():
-
-    staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
-    tuplet = Tuplet(Multiplier(2, 3), staff[1][:])
-    staff.is_simultaneous = True
-    containers = iterate(staff).by_class(Container)
-    containers = list(containers)
-
-    assert containers[0] is staff
-    assert containers[1] is staff[0]
-    assert containers[2] is staff[1]
-    assert containers[3] is tuplet
-
-
-def test_agenttools_IterationAgent_by_class_07():
-
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
     assert format(staff) == stringtools.normalize(
@@ -128,7 +100,7 @@ def test_agenttools_IterationAgent_by_class_07():
     assert leaves[5] is staff[0][0]
 
 
-def test_agenttools_IterationAgent_by_class_08():
+def test_agenttools_IterationAgent_by_class_06():
     r'''Optional start and stop keyword parameters.
     '''
 
@@ -157,7 +129,7 @@ def test_agenttools_IterationAgent_by_class_08():
     assert len(leaves) == 2
 
 
-def test_agenttools_IterationAgent_by_class_09():
+def test_agenttools_IterationAgent_by_class_07():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
@@ -192,7 +164,7 @@ def test_agenttools_IterationAgent_by_class_09():
     assert leaves[5] is staff[2][1]
 
 
-def test_agenttools_IterationAgent_by_class_10():
+def test_agenttools_IterationAgent_by_class_08():
     r'''Optional start and stop keyword parameters.
     '''
 
@@ -221,7 +193,7 @@ def test_agenttools_IterationAgent_by_class_10():
     assert len(leaves) == 2
 
 
-def test_agenttools_IterationAgent_by_class_11():
+def test_agenttools_IterationAgent_by_class_09():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
@@ -253,7 +225,7 @@ def test_agenttools_IterationAgent_by_class_11():
     assert measures[2] is staff[0]
 
 
-def test_agenttools_IterationAgent_by_class_12():
+def test_agenttools_IterationAgent_by_class_10():
     r'''Optional start and stop keyword paramters.
     '''
 
@@ -273,7 +245,7 @@ def test_agenttools_IterationAgent_by_class_12():
     assert len(measures) == 2
 
 
-def test_agenttools_IterationAgent_by_class_13():
+def test_agenttools_IterationAgent_by_class_11():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
@@ -305,7 +277,7 @@ def test_agenttools_IterationAgent_by_class_13():
     assert measures[2] is staff[2]
 
 
-def test_agenttools_IterationAgent_by_class_14():
+def test_agenttools_IterationAgent_by_class_12():
     r'''Optional start and stop keyword paramters.
     '''
 
@@ -325,7 +297,7 @@ def test_agenttools_IterationAgent_by_class_14():
     assert len(measures) == 2
 
 
-def test_agenttools_IterationAgent_by_class_15():
+def test_agenttools_IterationAgent_by_class_13():
 
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
     notes_and_chords = iterate(staff).by_class((Note, Chord), reverse=True)
@@ -337,7 +309,7 @@ def test_agenttools_IterationAgent_by_class_15():
     assert notes_and_chords[2] is staff[0]
 
 
-def test_agenttools_IterationAgent_by_class_16():
+def test_agenttools_IterationAgent_by_class_14():
 
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
     notes_and_chords = iterate(staff).by_class((Note, Chord))
@@ -349,7 +321,7 @@ def test_agenttools_IterationAgent_by_class_16():
     assert notes_and_chords[2] is staff[3]
 
 
-def test_agenttools_IterationAgent_by_class_17():
+def test_agenttools_IterationAgent_by_class_15():
 
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
@@ -387,7 +359,7 @@ def test_agenttools_IterationAgent_by_class_17():
     assert notes[5] is staff[0][0]
 
 
-def test_agenttools_IterationAgent_by_class_18():
+def test_agenttools_IterationAgent_by_class_16():
     r'''Optional start and stop keyword parameters.
     '''
 
@@ -440,7 +412,7 @@ def test_agenttools_IterationAgent_by_class_18():
     assert len(notes) == 2
 
 
-def test_agenttools_IterationAgent_by_class_19():
+def test_agenttools_IterationAgent_by_class_17():
 
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
@@ -478,7 +450,7 @@ def test_agenttools_IterationAgent_by_class_19():
     assert notes[5] is staff[2][1]
 
 
-def test_agenttools_IterationAgent_by_class_20():
+def test_agenttools_IterationAgent_by_class_18():
     r'''Optional start and stop keyword parameters.
     '''
 
@@ -531,7 +503,7 @@ def test_agenttools_IterationAgent_by_class_20():
     assert len(notes) == 2
 
 
-def test_agenttools_IterationAgent_by_class_21():
+def test_agenttools_IterationAgent_by_class_19():
 
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
     rests = iterate(staff).by_class(Rest, reverse=True)
@@ -541,7 +513,7 @@ def test_agenttools_IterationAgent_by_class_21():
     assert rests[1] is staff[2]
 
 
-def test_agenttools_IterationAgent_by_class_22():
+def test_agenttools_IterationAgent_by_class_20():
 
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
     rests = iterate(staff).by_class(Rest)
@@ -551,7 +523,7 @@ def test_agenttools_IterationAgent_by_class_22():
     assert rests[1] is staff[4]
 
 
-def test_agenttools_IterationAgent_by_class_23():
+def test_agenttools_IterationAgent_by_class_21():
 
     score_1 = Score([Staff("c'8 d'8 e'8 f'8")])
     score_2 = Score([Staff("c'1"), Staff("g'1")])
@@ -563,7 +535,7 @@ def test_agenttools_IterationAgent_by_class_23():
     assert scores[1] is score_1
 
 
-def test_agenttools_IterationAgent_by_class_24():
+def test_agenttools_IterationAgent_by_class_22():
 
     score_1 = Score([Staff("c'8 d'8 e'8 f'8")])
     score_2 = Score([Staff("c'1"), Staff("g'1")])
@@ -575,7 +547,7 @@ def test_agenttools_IterationAgent_by_class_24():
     assert scores[1] is score_2
 
 
-def test_agenttools_IterationAgent_by_class_25():
+def test_agenttools_IterationAgent_by_class_23():
 
     staff = Staff("<e' g' c''>8 a'8 s8 <d' f' b'>8 s2")
     skips = iterate(staff).by_class(scoretools.Skip)
@@ -585,7 +557,7 @@ def test_agenttools_IterationAgent_by_class_25():
     assert skips[1] is staff[4]
 
 
-def test_agenttools_IterationAgent_by_class_26():
+def test_agenttools_IterationAgent_by_class_24():
 
     staff = Staff("<e' g' c''>8 a'8 s8 <d' f' b'>8 s2")
     skips = iterate(staff).by_class(scoretools.Skip, reverse=True)
@@ -595,7 +567,7 @@ def test_agenttools_IterationAgent_by_class_26():
     assert skips[1] is staff[2]
 
 
-def test_agenttools_IterationAgent_by_class_27():
+def test_agenttools_IterationAgent_by_class_25():
 
     score = Score(4 * Staff([]))
     score[0].name = '1'
@@ -608,7 +580,7 @@ def test_agenttools_IterationAgent_by_class_27():
         assert staff.name == str(4 - i)
 
 
-def test_agenttools_IterationAgent_by_class_28():
+def test_agenttools_IterationAgent_by_class_26():
 
     score = Score(4 * Staff([]))
     score[0].name = '1'
@@ -621,31 +593,7 @@ def test_agenttools_IterationAgent_by_class_28():
         assert staff.name == str(i + 1)
 
 
-def test_agenttools_IterationAgent_by_class_29():
-
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    tuplet_0 = Tuplet(Multiplier(2, 3), staff[:3])
-    tuplet_1 = Tuplet(Multiplier(2, 3), staff[-3:])
-    tuplets = iterate(staff).by_class(Tuplet, reverse=True)
-    tuplets = list(tuplets)
-
-    assert tuplets[0] is tuplet_1
-    assert tuplets[1] is tuplet_0
-
-
-def test_agenttools_IterationAgent_by_class_30():
-
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    tuplet_0 = Tuplet(Multiplier(2, 3), staff[:3])
-    tuplet_1 = Tuplet(Multiplier(2, 3), staff[-3:])
-    tuplets = iterate(staff).by_class(Tuplet)
-    tuplets = list(tuplets)
-
-    assert tuplets[0] is tuplet_0
-    assert tuplets[1] is tuplet_1
-
-
-def test_agenttools_IterationAgent_by_class_31():
+def test_agenttools_IterationAgent_by_class_27():
 
     voice_1 = Voice("c'8 d'8 e'8 f'8")
     voice_2 = Voice("c'4 b4")
@@ -658,7 +606,7 @@ def test_agenttools_IterationAgent_by_class_31():
     assert voices[1] is voice_1
 
 
-def test_agenttools_IterationAgent_by_class_32():
+def test_agenttools_IterationAgent_by_class_28():
 
     voice_1 = Voice("c'8 d'8 e'8 f'8")
     voice_2 = Voice("c'4 b4")

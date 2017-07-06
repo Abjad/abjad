@@ -36,4 +36,5 @@ def add_string_music_to_score(score):
         for voice in  abjad.iterate(strings_staff_group).by_class(abjad.Voice):
             shards = abjad.mutate(voice[:]).split([(6, 4)], cyclic=True)
             for shard in shards:
-                abjad.Measure((6, 4), shard)
+                measure = abjad.Measure((6, 4), [])
+                abjad.mutate(shard).wrap(measure)

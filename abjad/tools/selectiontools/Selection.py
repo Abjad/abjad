@@ -15,12 +15,14 @@ from abjad.tools.topleveltools import select
 class Selection(object):
     r'''A selection of components.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'4 d'4 e'4 f'4")
-        >>> selection = selectiontools.Selection(staff[:])
-        >>> selection
-        Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+        ::
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> selection = selectiontools.Selection(staff[:])
+            >>> selection
+            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
     '''
 

@@ -296,6 +296,7 @@ class TextSpanner(Spanner):
         if not isinstance(leaf, scoretools.Leaf):
             return False
         leaves = self._get_leaves()
+        leaves = list(leaves)
         index = leaves.index(leaf)
         for index in reversed(range(index)):
             previous_leaf = leaves[index]
