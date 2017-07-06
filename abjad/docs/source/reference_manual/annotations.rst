@@ -39,7 +39,7 @@ Use the inspector to get all the annotations attached to a component:
 
 ..  abjad::
 
-    annotations = inspect_(note).get_indicators(indicatortools.Annotation)
+    annotations = inspect(note).get_indicators(indicatortools.Annotation)
     for annotation in annotations: annotation
 
 
@@ -80,4 +80,4 @@ Use the inspector to the get the value of an annotation in a single call:
 
 ..  abjad::
 
-    inspect_(note).get_annotation('is phrase-initial')
+    inspect(note).get_annotation('is phrase-initial')

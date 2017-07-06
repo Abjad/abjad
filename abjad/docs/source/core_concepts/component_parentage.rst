@@ -21,7 +21,7 @@ Use the inspector to get the parentage of any component:
 ..  abjad::
 
     note = next(iterate(score).by_leaf())
-    parentage = inspect_(note).get_parentage()
+    parentage = inspect(note).get_parentage()
 
 ..  abjad::
 

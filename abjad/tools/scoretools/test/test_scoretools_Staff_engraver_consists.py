@@ -20,7 +20,7 @@ def test_scoretools_Staff_engraver_consists_01():
     }
     '''
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert format(staff) == stringtools.normalize(
         r'''
         \new Staff \with {

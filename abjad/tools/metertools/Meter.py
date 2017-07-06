@@ -879,7 +879,7 @@ class Meter(AbjadObject):
         from abjad.tools import metertools
         from abjad.tools import selectiontools
         from abjad.tools import mathtools
-        from abjad.tools.topleveltools import inspect_
+        from abjad.tools.topleveltools import inspect
         from abjad.tools.topleveltools import mutate
         prototype = selectiontools.Selection
         assert isinstance(components, prototype), repr(components)
@@ -1005,9 +1005,9 @@ class Meter(AbjadObject):
         if initial_offset is None:
             initial_offset = durationtools.Offset(0)
         initial_offset = durationtools.Offset(initial_offset)
-        first_start_offset = inspect_(
+        first_start_offset = inspect(
             components[0]).get_timespan().start_offset
-        last_start_offset = inspect_(
+        last_start_offset = inspect(
             components[-1]).get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
         assert difference < meter.implied_time_signature.duration

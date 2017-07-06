@@ -9,7 +9,7 @@ def edit_cello_voice(score, durated_reservoir):
     voice = score['Cello Voice']
     descents = durated_reservoir['Cello']
 
-    logical_tie = abjad.inspect_(voice[-1]).get_logical_tie()
+    logical_tie = abjad.inspect(voice[-1]).get_logical_tie()
     for leaf in logical_tie.leaves:
         parent = leaf._get_parentage().parent
         index = parent.index(leaf)
@@ -19,7 +19,7 @@ def edit_cello_voice(score, durated_reservoir):
     unison_descent = abjad.mutate(selection).copy()
     voice.extend(unison_descent)
     for chord in unison_descent:
-        index = abjad.inspect_(chord).get_parentage().parent.index(chord)
+        index = abjad.inspect(chord).get_parentage().parent.index(chord)
         parent[index] = abjad.Note(
             chord.written_pitches[1], chord.written_duration)
         articulation = abjad.Articulation('accent')

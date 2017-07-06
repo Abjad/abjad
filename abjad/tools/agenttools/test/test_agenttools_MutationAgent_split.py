@@ -59,7 +59,7 @@ def test_agenttools_MutationAgent_split_01():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 3
 
 
@@ -119,7 +119,7 @@ def test_agenttools_MutationAgent_split_02():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 6
 
 
@@ -184,7 +184,7 @@ def test_agenttools_MutationAgent_split_03():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 3
 
 
@@ -260,7 +260,7 @@ def test_agenttools_MutationAgent_split_04():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 6
 
 
@@ -319,7 +319,7 @@ def test_agenttools_MutationAgent_split_05():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 6
 
 
@@ -379,7 +379,7 @@ def test_agenttools_MutationAgent_split_06():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 4
 
 
@@ -440,7 +440,7 @@ def test_agenttools_MutationAgent_split_07():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 8
 
 
@@ -506,7 +506,7 @@ def test_agenttools_MutationAgent_split_08():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 4
 
 
@@ -582,7 +582,7 @@ def test_agenttools_MutationAgent_split_09():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 6
 
 
@@ -640,7 +640,7 @@ def test_agenttools_MutationAgent_split_10():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 3
 
 
@@ -699,7 +699,7 @@ def test_agenttools_MutationAgent_split_11():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 6
 
 
@@ -764,7 +764,7 @@ def test_agenttools_MutationAgent_split_12():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 3
 
 
@@ -839,7 +839,7 @@ def test_agenttools_MutationAgent_split_13():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 6
 
 
@@ -873,7 +873,7 @@ def test_agenttools_MutationAgent_split_14():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 6
 
 
@@ -931,7 +931,7 @@ def test_agenttools_MutationAgent_split_15():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 6
 
 
@@ -991,7 +991,7 @@ def test_agenttools_MutationAgent_split_16():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 4
 
 
@@ -1051,7 +1051,7 @@ def test_agenttools_MutationAgent_split_17():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 8
 
 
@@ -1117,7 +1117,7 @@ def test_agenttools_MutationAgent_split_18():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 4
 
 
@@ -1192,7 +1192,7 @@ def test_agenttools_MutationAgent_split_19():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 6
 
 
@@ -1257,7 +1257,7 @@ def test_agenttools_MutationAgent_split_20():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 3
 
 
@@ -1326,7 +1326,7 @@ def test_agenttools_MutationAgent_split_21():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 4
 
 
@@ -1391,7 +1391,7 @@ def test_agenttools_MutationAgent_split_22():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 3
 
 
@@ -1431,7 +1431,7 @@ def test_agenttools_MutationAgent_split_23():
         fracture_spanners=True,
         tie_split_notes=False)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 4
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1490,7 +1490,7 @@ def test_agenttools_MutationAgent_split_24():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 3
 
 
@@ -1527,7 +1527,7 @@ def test_agenttools_MutationAgent_split_25():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_26():
@@ -1568,7 +1568,7 @@ def test_agenttools_MutationAgent_split_26():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_27():
@@ -1611,7 +1611,7 @@ def test_agenttools_MutationAgent_split_27():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_28():
@@ -1660,7 +1660,7 @@ def test_agenttools_MutationAgent_split_28():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_29():
@@ -1688,7 +1688,7 @@ def test_agenttools_MutationAgent_split_29():
         '''
         ), format(voice_1)
 
-    assert inspect_(voice_1).is_well_formed()
+    assert inspect(voice_1).is_well_formed()
 
     assert format(voice_2) == stringtools.normalize(
         r'''
@@ -1699,7 +1699,7 @@ def test_agenttools_MutationAgent_split_29():
         '''
         ), format(voice_2)
 
-    assert inspect_(voice_2).is_well_formed()
+    assert inspect(voice_2).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_30():
@@ -1757,7 +1757,7 @@ def test_agenttools_MutationAgent_split_30():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_31():
@@ -1833,7 +1833,7 @@ def test_agenttools_MutationAgent_split_31():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_32():
@@ -1920,7 +1920,7 @@ def test_agenttools_MutationAgent_split_32():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_33():
@@ -2002,7 +2002,7 @@ def test_agenttools_MutationAgent_split_33():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_34():
@@ -2087,7 +2087,7 @@ def test_agenttools_MutationAgent_split_34():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_35():
@@ -2188,7 +2188,7 @@ def test_agenttools_MutationAgent_split_35():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_36():
@@ -2304,7 +2304,7 @@ def test_agenttools_MutationAgent_split_37():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_38():
@@ -2352,7 +2352,7 @@ def test_agenttools_MutationAgent_split_38():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 2
 
 
@@ -2415,7 +2415,7 @@ def test_agenttools_MutationAgent_split_39():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_40():
@@ -2468,7 +2468,7 @@ def test_agenttools_MutationAgent_split_40():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_split_41():
@@ -2531,7 +2531,7 @@ def test_agenttools_MutationAgent_split_41():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 4
 
 
@@ -2585,7 +2585,7 @@ def test_agenttools_MutationAgent_split_42():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 4
 
 
@@ -2636,7 +2636,7 @@ def test_agenttools_MutationAgent_split_43():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 2
 
 
@@ -2685,7 +2685,7 @@ def test_agenttools_MutationAgent_split_44():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 1
 
 
@@ -2747,7 +2747,7 @@ def test_agenttools_MutationAgent_split_45():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 3
 
 
@@ -2809,7 +2809,7 @@ def test_agenttools_MutationAgent_split_46():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 3
 
 
@@ -2860,7 +2860,7 @@ def test_agenttools_MutationAgent_split_47():
         '''
         ), format(voice)
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 2
 
 
@@ -2892,7 +2892,7 @@ def test_agenttools_MutationAgent_split_48():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 # container._split_at_index() works here;
@@ -2950,5 +2950,5 @@ def test_agenttools_MutationAgent_split_49():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 2

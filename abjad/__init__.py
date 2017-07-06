@@ -11,6 +11,12 @@ if not (
 del platform
 del distutils
 
+import os
+if 'topleveltools' in os.path.abspath('.'):
+    message = 'do not start Abjad from topleveltools directory (inspect.py).'
+    raise Exception(message)
+del os
+
 # set up tab completion
 try:
     import readline

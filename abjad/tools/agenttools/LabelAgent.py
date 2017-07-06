@@ -9,7 +9,6 @@ from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
@@ -2884,13 +2883,14 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         """
+        from abjad.tools.topleveltools import inspect as abjad_inspect
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or pitchtools.NamedInterval
         notes = iterate(self.client).by_class(scoretools.Note)
         for note in notes:
             label = None
-            next_leaf = inspect_(note).get_leaf(1)
+            next_leaf = abjad_inspect(note).get_leaf(1)
             if isinstance(next_leaf, scoretools.Note):
                 interval = pitchtools.NamedInterval.from_pitch_carriers(
                     note,
@@ -4114,18 +4114,19 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
+        from abjad.tools.topleveltools import inspect as abjad_inspect
         if self._expression:
             return self._update_expression(inspect.currentframe())
         logical_ties = iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
             if clock_time:
-                inspector = inspect_(logical_tie.head)
+                inspector = abjad_inspect(logical_tie.head)
                 timespan = inspector.get_timespan(in_seconds=True)
                 start_offset = timespan.start_offset
                 string = start_offset.to_clock_string()
                 string = '"{}"'.format(string)
             else:
-                timespan = inspect_(logical_tie.head).get_timespan()
+                timespan = abjad_inspect(logical_tie.head).get_timespan()
                 start_offset = timespan.start_offset
                 string = str(start_offset)
             label = markuptools.Markup(string, direction=direction)

@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import systemtools
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.scoretools.Component import Component
 
@@ -231,7 +231,7 @@ class Container(Component):
 
             ::
 
-                >>> inspect_(voice).is_well_formed()
+                >>> inspect(voice).is_well_formed()
                 True
 
             First tuplet is no longer slurred but is still well-formed:
@@ -251,7 +251,7 @@ class Container(Component):
 
             ::
 
-                >>> inspect_(tuplet_1).is_well_formed()
+                >>> inspect(tuplet_1).is_well_formed()
                 True
 
         Withdraws component(s) from crossing spanners.
@@ -477,7 +477,7 @@ class Container(Component):
         return new
 
     def _eject_contents(self):
-        if inspect_(self).get_parentage().parent is not None:
+        if inspect(self).get_parentage().parent is not None:
             message = 'can not eject contents of in-score container.'
             raise Exception(message)
         contents = self[:]
@@ -808,7 +808,7 @@ class Container(Component):
             parser = lilypondparsertools.ReducedLyParser()
             parsed = parser(user_input[4:])
             if parser._toplevel_component_count == 1:
-                parent = abjad.inspect_(parsed).get_parentage().parent
+                parent = abjad.inspect(parsed).get_parentage().parent
                 if parent is None:
                     parsed = Container([parsed])
                 else:

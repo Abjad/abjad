@@ -3,7 +3,7 @@ from abjad.tools import indicatortools
 from abjad.tools import lilypondnametools
 from abjad.tools import markuptools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import new
 
 
@@ -1751,7 +1751,7 @@ class MetronomeMarkSpanner(Spanner):
         return markup
 
     def _get_annotations(self, leaf):
-        inspector = inspect_(leaf)
+        inspector = inspect(leaf)
         tempo = None
         prototype = indicatortools.MetronomeMark,
         if inspector.has_indicator(prototype):

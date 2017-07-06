@@ -8,8 +8,8 @@ def test_selectiontools_Parentage_root_01():
     staff = Staff([tuplet])
     leaves = select(staff).by_leaf()
 
-    assert inspect_(staff).get_parentage().root is staff
-    assert inspect_(tuplet).get_parentage().root is staff
-    assert inspect_(leaves[0]).get_parentage().root is staff
-    assert inspect_(leaves[1]).get_parentage().root is staff
-    assert inspect_(leaves[2]).get_parentage().root is staff
+    assert inspect(staff).get_parentage().root is staff
+    assert inspect(tuplet).get_parentage().root is staff
+    assert inspect(leaves[0]).get_parentage().root is staff
+    assert inspect(leaves[1]).get_parentage().root is staff
+    assert inspect(leaves[2]).get_parentage().root is staff

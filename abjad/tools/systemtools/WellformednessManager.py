@@ -108,7 +108,7 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> inspect_(staff).is_well_formed()
+                >>> inspect(staff).is_well_formed()
                 False
 
             This is bad.
@@ -141,7 +141,7 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> inspect_(staff).is_well_formed()
+                >>> inspect(staff).is_well_formed()
                 False
 
             This is also bad.
@@ -153,20 +153,20 @@ class WellformednessManager(AbjadObject):
         '''
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
-        from abjad.tools.topleveltools import inspect_
+        from abjad.tools.topleveltools import inspect
         from abjad.tools.topleveltools import iterate
         violators = []
         containers = iterate(argument).by_class(scoretools.Container)
         total_containers = 0
         for container in containers:
             total_containers += 1
-            if not inspect_(container).has_indicator(indicatortools.Clef):
+            if not inspect(container).has_indicator(indicatortools.Clef):
                 continue
             current_component = container
             while (isinstance(current_component, scoretools.Container) and
                 0 < len(current_component)):
                 first_child = current_component[0]
-                if inspect_(first_child).has_indicator(indicatortools.Clef):
+                if inspect(first_child).has_indicator(indicatortools.Clef):
                     violators.append(container)
                     break
                 current_component = first_child
@@ -310,7 +310,7 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> print(inspect_(staff).tabulate_well_formedness_violations())
+                >>> print(inspect(staff).tabulate_well_formedness_violations())
                 0 /	4 beamed quarter notes
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
@@ -389,7 +389,7 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> inspector = inspect_(staff)
+                >>> inspector = inspect(staff)
                 >>> print(inspector.tabulate_well_formedness_violations())
                 0 /	2 beamed quarter notes
                 0 /	1 conflicting clefs
@@ -423,7 +423,7 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> inspector = inspect_(staff)
+                >>> inspector = inspect(staff)
                 >>> print(inspector.tabulate_well_formedness_violations())
                 0 /	2 beamed quarter notes
                 0 /	1 conflicting clefs
@@ -613,7 +613,7 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> print(inspect_(staff).tabulate_well_formedness_violations())
+                >>> print(inspect(staff).tabulate_well_formedness_violations())
                 0 /	4 beamed quarter notes
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
@@ -705,7 +705,7 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> print(inspect_(staff).tabulate_well_formedness_violations())
+                >>> print(inspect(staff).tabulate_well_formedness_violations())
                 0 /	4 beamed quarter notes
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
@@ -766,12 +766,12 @@ class WellformednessManager(AbjadObject):
         '''
         from abjad.tools import scoretools
         from abjad.tools import spannertools
-        from abjad.tools.topleveltools import inspect_
+        from abjad.tools.topleveltools import inspect
         from abjad.tools.topleveltools import iterate
         violators = []
         total = 0
         for rest in iterate(argument).by_class(scoretools.Rest):
-            if inspect_(rest).has_spanner(spannertools.Tie):
+            if inspect(rest).has_spanner(spannertools.Tie):
                 violators.append(rest)
             total += 1
         return violators, total

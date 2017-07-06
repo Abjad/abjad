@@ -43,7 +43,7 @@ def test_agenttools_InspectionAgent_select_vertical_moment_01():
         )
 
     def staff_group_moment(argument):
-        return inspect_(argument).get_vertical_moment(governor=staff_group)
+        return inspect(argument).get_vertical_moment(governor=staff_group)
 
     moment = staff_group_moment(staff_group[1][0])
     assert moment.leaves == (staff_group[0][0], staff_group[1][0])
@@ -98,28 +98,28 @@ def test_agenttools_InspectionAgent_select_vertical_moment_02():
         '''
         )
 
-    moment = inspect_(staff_group[1][0]).get_vertical_moment()
+    moment = inspect(staff_group[1][0]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][0],
         staff_group[0][0],
         staff_group[1][0],
         )
 
-    moment = inspect_(staff_group[1][1]).get_vertical_moment()
+    moment = inspect(staff_group[1][1]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][0],
         staff_group[0][0],
         staff_group[1][1],
         )
 
-    moment = inspect_(staff_group[1][2]).get_vertical_moment()
+    moment = inspect(staff_group[1][2]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][1],
         staff_group[0][1],
         staff_group[1][2],
         )
 
-    moment = inspect_(staff_group[1][3]).get_vertical_moment()
+    moment = inspect(staff_group[1][3]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][2],
         staff_group[0][1],

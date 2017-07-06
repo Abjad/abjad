@@ -36,7 +36,7 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_01():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_02():
@@ -75,7 +75,7 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_02():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_03():
@@ -98,4 +98,4 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_03():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()

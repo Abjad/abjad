@@ -23,7 +23,7 @@ def test_scoretools_Container_extend_01():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container_extend_02():
@@ -50,7 +50,7 @@ def test_scoretools_Container_extend_02():
         '''
         )
 
-    assert inspect_(voice_1).is_well_formed()
+    assert inspect(voice_1).is_well_formed()
 
 
 def test_scoretools_Container_extend_03():
@@ -71,7 +71,7 @@ def test_scoretools_Container_extend_03():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container_extend_04():
@@ -93,7 +93,7 @@ def test_scoretools_Container_extend_04():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container_extend_05():
@@ -148,7 +148,7 @@ def test_scoretools_Container_extend_07():
         '''
         )
 
-    assert inspect_(voice_1).is_well_formed()
+    assert inspect(voice_1).is_well_formed()
 
     assert format(voice_2) == stringtools.normalize(
         r'''
@@ -159,7 +159,7 @@ def test_scoretools_Container_extend_07():
         '''
         )
 
-    assert inspect_(voice_2).is_well_formed()
+    assert inspect(voice_2).is_well_formed()
 
 
 def test_scoretools_Container_extend_08():
@@ -201,7 +201,7 @@ def test_scoretools_Container_extend_08():
         '''
         )
 
-    assert inspect_(voice_1).is_well_formed()
+    assert inspect(voice_1).is_well_formed()
 
     assert format(voice_2) == stringtools.normalize(
         r'''
@@ -212,7 +212,7 @@ def test_scoretools_Container_extend_08():
         '''
         )
 
-    assert inspect_(voice_2).is_well_formed()
+    assert inspect(voice_2).is_well_formed()
 
 
 def test_scoretools_Container_extend_09():
@@ -233,7 +233,7 @@ def test_scoretools_Container_extend_09():
         '''
         )
 
-    assert inspect_(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_scoretools_Container_extend_10():
@@ -263,4 +263,4 @@ def test_scoretools_Container_extend_10():
         '''
         )
 
-    assert inspect_(container).is_well_formed()
+    assert inspect(container).is_well_formed()

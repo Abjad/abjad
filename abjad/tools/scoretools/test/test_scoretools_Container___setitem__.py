@@ -35,7 +35,7 @@ def test_scoretools_Container___setitem___01():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___02():
@@ -75,7 +75,7 @@ def test_scoretools_Container___setitem___02():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___03():
@@ -115,7 +115,7 @@ def test_scoretools_Container___setitem___03():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___04():
@@ -160,7 +160,7 @@ def test_scoretools_Container___setitem___04():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___05():
@@ -200,7 +200,7 @@ def test_scoretools_Container___setitem___05():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___06():
@@ -247,7 +247,7 @@ def test_scoretools_Container___setitem___06():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___07():
@@ -297,7 +297,7 @@ def test_scoretools_Container___setitem___07():
         '''
         )
 
-    assert inspect_(voice_1).is_well_formed()
+    assert inspect(voice_1).is_well_formed()
 
     assert format(voice_2) == stringtools.normalize(
         r'''
@@ -308,7 +308,7 @@ def test_scoretools_Container___setitem___07():
         '''
         )
 
-    assert inspect_(voice_2).is_well_formed()
+    assert inspect(voice_2).is_well_formed()
 
 
 def test_scoretools_Container___setitem___08():
@@ -367,7 +367,7 @@ def test_scoretools_Container___setitem___08():
         '''
         )
 
-    assert inspect_(voice_1).is_well_formed()
+    assert inspect(voice_1).is_well_formed()
 
     assert format(voice_2) == stringtools.normalize(
         r'''
@@ -378,7 +378,7 @@ def test_scoretools_Container___setitem___08():
         '''
         )
 
-    assert inspect_(voice_2).is_well_formed()
+    assert inspect(voice_2).is_well_formed()
 
 
 def test_scoretools_Container___setitem___09():
@@ -400,7 +400,7 @@ def test_scoretools_Container___setitem___09():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___10():
@@ -425,7 +425,7 @@ def test_scoretools_Container___setitem___10():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___11():
@@ -471,7 +471,7 @@ def test_scoretools_Container___setitem___11():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___12():
@@ -494,7 +494,7 @@ def test_scoretools_Container___setitem___12():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___13():
@@ -519,7 +519,7 @@ def test_scoretools_Container___setitem___13():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___14():
@@ -559,7 +559,7 @@ def test_scoretools_Container___setitem___14():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(container) == 0
 
 
@@ -602,7 +602,7 @@ def test_scoretools_Container___setitem___15():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___16():
@@ -693,7 +693,7 @@ def test_scoretools_Container___setitem___17():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container___setitem___18():
@@ -727,7 +727,7 @@ def test_scoretools_Container___setitem___18():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___19():
@@ -749,7 +749,7 @@ def test_scoretools_Container___setitem___19():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___20():
@@ -861,7 +861,7 @@ def test_scoretools_Container___setitem___21():
     '''
 
     staff = Staff("c'8 [ { d'8 e'8 } f'8 ]")
-    beam = inspect_(staff[0]).get_spanner(prototype=Beam)
+    beam = inspect(staff[0]).get_spanner(prototype=Beam)
 
     leaves = iterate(staff).by_leaf()
     assert beam.components == list(leaves)

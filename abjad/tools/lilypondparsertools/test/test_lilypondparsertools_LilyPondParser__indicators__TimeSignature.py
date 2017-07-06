@@ -25,5 +25,5 @@ def test_lilypondparsertools_LilyPondParser__indicators__TimeSignature_01():
     assert format(target) == format(result) and target is not result
     leaves = select(result).by_leaf()
     leaf = leaves[0]
-    time_signatures = inspect_(leaf).get_indicators(TimeSignature)
+    time_signatures = inspect(leaf).get_indicators(TimeSignature)
     assert len(time_signatures) == 1

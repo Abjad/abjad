@@ -8,7 +8,7 @@ from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 
@@ -171,7 +171,7 @@ class QTarget(AbjadObject):
                         leaf.written_duration,
                         )
                 mutate(leaf).replace(new_leaf)
-                tie = inspect_(previous_leaf).get_spanner(spannertools.Tie)
+                tie = inspect(previous_leaf).get_spanner(spannertools.Tie)
                 if tie is not None:
                     tie._append(new_leaf)
             if leaf._has_indicator(indicatortools.MetronomeMark):

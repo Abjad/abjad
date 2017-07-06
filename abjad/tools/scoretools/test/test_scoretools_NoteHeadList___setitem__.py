@@ -42,4 +42,4 @@ def test_scoretools_NoteHeadList___setitem___03():
         '''
         )
 
-    assert inspect_(chord).is_well_formed()
+    assert inspect(chord).is_well_formed()

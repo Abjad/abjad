@@ -26,7 +26,7 @@ def test_spannertools_Hairpin_01():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Hairpin_02():
@@ -56,7 +56,7 @@ def test_spannertools_Hairpin_02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Hairpin_03():
@@ -67,7 +67,7 @@ def test_spannertools_Hairpin_03():
     dynamic = Dynamic('p')
     attach(dynamic, staff[2])
 
-    assert not inspect_(staff).is_well_formed()
+    assert not inspect(staff).is_well_formed()
 
 
 def test_spannertools_Hairpin_04():
@@ -105,7 +105,7 @@ def test_spannertools_Hairpin_04():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Hairpin_05():
@@ -131,7 +131,7 @@ def test_spannertools_Hairpin_05():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Hairpin_06():
@@ -150,7 +150,7 @@ def test_spannertools_Hairpin_06():
     attach(hairpin, staff[:])
 
     prototype = Hairpin
-    spanner = inspect_(staff[0]).get_spanner(prototype=prototype)
+    spanner = inspect(staff[0]).get_spanner(prototype=prototype)
     assert len(spanner.components) == len(staff)
 
     assert format(staff) == stringtools.normalize(
@@ -168,7 +168,7 @@ def test_spannertools_Hairpin_06():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Hairpin_07():

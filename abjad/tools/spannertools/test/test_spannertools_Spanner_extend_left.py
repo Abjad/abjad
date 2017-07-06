@@ -32,4 +32,4 @@ def test_spannertools_Spanner_extend_left_01():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()

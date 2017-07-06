@@ -5,7 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import select
 
 

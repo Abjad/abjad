@@ -6,7 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 
 
 class TupletRhythmMaker(RhythmMaker):
@@ -373,7 +373,7 @@ class TupletRhythmMaker(RhythmMaker):
             elif isinstance(preferred_denominator, durationtools.Duration):
                 unit_duration = preferred_denominator
                 assert unit_duration.numerator == 1
-                duration = inspect_(tuplet).get_duration()
+                duration = inspect(tuplet).get_duration()
                 denominator = unit_duration.denominator
                 nonreduced_fraction = duration.with_denominator(denominator)
                 tuplet.preferred_denominator = nonreduced_fraction.numerator

@@ -70,7 +70,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___03():
         >>
         '''
         )
-    assert inspect_(score).is_well_formed()
+    assert inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___04():
@@ -95,7 +95,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___04():
         '''
         )
 
-    assert inspect_(score).is_well_formed()
+    assert inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___05():
@@ -281,7 +281,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___12():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___13():
@@ -403,7 +403,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___17():
         ''',
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___18():
@@ -432,7 +432,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___18():
         '''
         )
 
-    assert inspect_(score).is_well_formed()
+    assert inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___19():
@@ -477,7 +477,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___20():
         '''
         )
 
-    assert inspect_(score).is_well_formed()
+    assert inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___21():
@@ -494,7 +494,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___21():
         '''
         )
 
-    assert inspect_(note).is_well_formed()
+    assert inspect(note).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___22():
@@ -517,7 +517,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___22():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___23():
@@ -654,7 +654,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___29():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___30():
@@ -794,7 +794,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___35():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
@@ -834,7 +834,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___37():
@@ -896,7 +896,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___38():
         '''
         )
 
-    assert inspect_(score).is_well_formed()
+    assert inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___39():
@@ -1054,7 +1054,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___45():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___46():
@@ -1079,7 +1079,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___46():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___47():
@@ -1230,7 +1230,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___53():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___54():
@@ -1254,7 +1254,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___54():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___55():
@@ -1276,7 +1276,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___55():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___56():
@@ -1301,7 +1301,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___56():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___57():
@@ -1325,7 +1325,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___57():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___58():
@@ -1350,7 +1350,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___58():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___59():

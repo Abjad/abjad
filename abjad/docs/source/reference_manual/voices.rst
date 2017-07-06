@@ -94,7 +94,7 @@ Use the inspector to get the duration of a voice:
 
 ..  abjad::
 
-    inspect_(voice).get_duration()
+    inspect(voice).get_duration()
 
 
 Appending one component to the end of a voice

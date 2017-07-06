@@ -1268,7 +1268,7 @@ class Duration(AbjadObject, Fraction):
                 >>> tuplet = Tuplet((5, 7), "c'16 c' c' c' c' c' c'")
                 >>> attach(Beam(), tuplet[:])
                 >>> staff = Staff([tuplet], context_name='RhythmicStaff')
-                >>> duration = inspect_(tuplet).get_duration()
+                >>> duration = inspect(tuplet).get_duration()
                 >>> markup = duration.to_score_markup()
                 >>> markup = markup.scale((0.75, 0.75))
                 >>> override(tuplet).tuplet_number.text = markup

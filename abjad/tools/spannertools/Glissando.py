@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
+from abjad.tools.topleveltools import inspect
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools.inspect_ import inspect_
 
 
 class Glissando(Spanner):
@@ -93,7 +93,7 @@ class Glissando(Spanner):
         new._parenthesize_repeated_pitches = self.parenthesize_repeated_pitches
 
     def _get_annotations(self, leaf):
-        inspector = inspect_(leaf)
+        inspector = inspect(leaf)
         bend_after = None
         prototype = indicatortools.BendAfter
         if inspector.has_indicator(prototype):
@@ -136,12 +136,12 @@ class Glissando(Spanner):
 
     @staticmethod
     def _is_last_in_tie_chain(leaf):
-        logical_tie = inspect_(leaf).get_logical_tie()
+        logical_tie = inspect(leaf).get_logical_tie()
         return leaf is logical_tie[-1]
 
     @staticmethod
     def _next_leaf_changes_current_pitch(leaf):
-        next_leaf = inspect_(leaf).get_leaf(n=1)
+        next_leaf = inspect(leaf).get_leaf(n=1)
         if (isinstance(leaf, scoretools.Note) and
             isinstance(next_leaf, scoretools.Note) and
             leaf.written_pitch == next_leaf.written_pitch):
@@ -162,7 +162,7 @@ class Glissando(Spanner):
 
     @staticmethod
     def _previous_leaf_changes_current_pitch(leaf):
-        previous_leaf = inspect_(leaf).get_leaf(n=-1)
+        previous_leaf = inspect(leaf).get_leaf(n=-1)
         if (isinstance(leaf, scoretools.Note) and
             isinstance(previous_leaf, scoretools.Note) and
             leaf.written_pitch == previous_leaf.written_pitch):

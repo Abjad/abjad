@@ -42,7 +42,7 @@ Use the inspector to get the instrument attached to a component:
 
 ..  abjad::
 
-    inspect_(staff).get_indicator(instrumenttools.Instrument)
+    inspect(staff).get_indicator(instrumenttools.Instrument)
 
 
 Inspecting a component's effective instrument
@@ -53,7 +53,7 @@ Use the inspector to get the instrument currently in effect for a component:
 ..  abjad::
 
     for note in staff:
-        inspect_(note).get_effective(instrumenttools.Instrument)
+        inspect(note).get_effective(instrumenttools.Instrument)
 
 
 Detaching instruments from a component

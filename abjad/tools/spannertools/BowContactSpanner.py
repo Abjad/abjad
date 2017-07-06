@@ -4,7 +4,7 @@ from abjad.tools import lilypondnametools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 
 
 class BowContactSpanner(Spanner):
@@ -223,7 +223,7 @@ class BowContactSpanner(Spanner):
     ### PRIVATE METHODS ###
 
     def _get_annotations(self, leaf):
-        inspector = inspect_(leaf)
+        inspector = inspect(leaf)
         bow_contact_point = None
         prototype = indicatortools.BowContactPoint
         if inspector.has_indicator(prototype):
@@ -312,18 +312,18 @@ class BowContactSpanner(Spanner):
         ):
         cautionary_change = False
         direction_change = None
-        next_leaf = inspect_(leaf).get_leaf(1)
+        next_leaf = inspect(leaf).get_leaf(1)
         this_contact_point = bow_contact_point
         if this_contact_point is None:
             return
-        next_contact_point = inspect_(next_leaf).get_indicator(
+        next_contact_point = inspect(next_leaf).get_indicator(
             indicatortools.BowContactPoint)
         if next_contact_point is None:
             return
-        previous_leaf = inspect_(leaf).get_leaf(-1)
+        previous_leaf = inspect(leaf).get_leaf(-1)
         previous_contact_point = None
         if previous_leaf is not None:
-            previous_contact_points = inspect_(previous_leaf
+            previous_contact_points = inspect(previous_leaf
                 ).get_indicators(indicatortools.BowContactPoint)
             if previous_contact_points:
                 previous_contact_point = previous_contact_points[0]
@@ -336,8 +336,8 @@ class BowContactSpanner(Spanner):
             elif next_contact_point < this_contact_point:
                 direction_change = Up
         else:
-            previous_leaf = inspect_(leaf).get_leaf(-1)
-            previous_contact_point = inspect_(previous_leaf
+            previous_leaf = inspect(leaf).get_leaf(-1)
+            previous_contact_point = inspect(previous_leaf
                 ).get_indicator(indicatortools.BowContactPoint)
             if (previous_contact_point < this_contact_point and
                 next_contact_point < this_contact_point):
@@ -407,10 +407,10 @@ class BowContactSpanner(Spanner):
             scoretools.Rest,
             scoretools.Skip,
             )
-        next_leaf = inspect_(leaf).get_leaf(1)
+        next_leaf = inspect(leaf).get_leaf(1)
         if next_leaf is None or isinstance(next_leaf, prototype):
             return False
-        next_contact_point = inspect_(next_leaf).get_indicator(
+        next_contact_point = inspect(next_leaf).get_indicator(
             indicatortools.BowContactPoint)
         if next_contact_point is None:
             return False

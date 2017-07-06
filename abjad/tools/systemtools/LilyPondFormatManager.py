@@ -43,10 +43,10 @@ class LilyPondFormatManager(AbjadObject):
     @staticmethod
     def _collect_indicators(component):
         from abjad.tools import markuptools
-        from abjad.tools.topleveltools import inspect_
+        from abjad.tools.topleveltools import inspect
         expressions = []
-        for parent in inspect_(component).get_parentage(include_self=True):
-            result = inspect_(parent).get_indicators(unwrap=False)
+        for parent in inspect(component).get_parentage(include_self=True):
+            result = inspect(parent).get_indicators(unwrap=False)
             expressions.extend(result)
             result = parent._get_spanner_indicators(unwrap=False)
             expressions.extend(result)

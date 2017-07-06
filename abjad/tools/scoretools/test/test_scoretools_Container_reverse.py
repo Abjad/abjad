@@ -12,7 +12,7 @@ def test_scoretools_Container_reverse_01():
     staff.reverse()
 
     assert list(reversed_leaves) == list(staff[:])
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_02():
@@ -28,7 +28,7 @@ def test_scoretools_Container_reverse_02():
     container.reverse()
 
     assert list(reversed_leaves) == list(container[:])
-    assert inspect_(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_scoretools_Container_reverse_03():
@@ -44,7 +44,7 @@ def test_scoretools_Container_reverse_03():
 
     assert list(reversed_leaves) == list(staff[:])
     assert beam.components == tuple(staff[:])
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_04():
@@ -63,7 +63,7 @@ def test_scoretools_Container_reverse_04():
     reversed_leaves = reversed(measure[:])
     staff[0].reverse()
     assert list(reversed_leaves) == list(measure[:])
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_05():
@@ -83,7 +83,7 @@ def test_scoretools_Container_reverse_05():
     staff[0].reverse()
     assert list(reversed_leaves) == list(measure[:])
     assert beam.components == tuple(measure[:])
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_06():
@@ -100,7 +100,7 @@ def test_scoretools_Container_reverse_06():
     reversed_leaves = reversed(measure[:])
     container[0].reverse()
     assert list(reversed_leaves) == list(measure[:])
-    assert inspect_(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_scoretools_Container_reverse_07():
@@ -117,7 +117,7 @@ def test_scoretools_Container_reverse_07():
     reversed_leaves = reversed(measure[:])
     staff[0].reverse()
     assert list(reversed_leaves) == list(measure[:])
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_08():
@@ -171,7 +171,7 @@ def test_scoretools_Container_reverse_08():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_09():
@@ -245,4 +245,4 @@ def test_scoretools_Container_reverse_09():
     leaves = tuple(iterate(container).by_leaf())
     assert pedal.components == leaves
     assert gliss.components == leaves
-    assert inspect_(container).is_well_formed()
+    assert inspect(container).is_well_formed()

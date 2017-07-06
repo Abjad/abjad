@@ -59,7 +59,7 @@ def test_scoretools_Note___init___06():
         '''
         )
 
-    assert inspect_(note).is_well_formed()
+    assert inspect(note).is_well_formed()
 
 
 def test_scoretools_Note___init___07():
@@ -76,7 +76,7 @@ def test_scoretools_Note___init___07():
         '''
         )
 
-    assert inspect_(note).is_well_formed()
+    assert inspect(note).is_well_formed()
 
 
 def test_scoretools_Note___init___08():
@@ -95,7 +95,7 @@ def test_scoretools_Note___init___08():
         '''
         )
 
-    assert inspect_(note).is_well_formed()
+    assert inspect(note).is_well_formed()
 
 
 def test_scoretools_Note___init___09():
@@ -111,7 +111,7 @@ def test_scoretools_Note___init___09():
         '''
         )
 
-    assert inspect_(note).is_well_formed()
+    assert inspect(note).is_well_formed()
 
 
 def test_scoretools_Note___init___10():

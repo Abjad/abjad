@@ -32,7 +32,7 @@ def test_agenttools_InspectionAgent_report_modifications_01():
         '''
         )
 
-    result = inspect_(voice).report_modifications()
+    result = inspect(voice).report_modifications()
 
     assert format(result) == stringtools.normalize(
         r'''
@@ -75,7 +75,7 @@ def test_agenttools_InspectionAgent_report_modifications_02():
         '''
         )
 
-    result = inspect_(tuplet).report_modifications()
+    result = inspect(tuplet).report_modifications()
 
     assert format(result) == stringtools.normalize(
         r'''

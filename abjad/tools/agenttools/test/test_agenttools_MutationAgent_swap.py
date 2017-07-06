@@ -53,7 +53,7 @@ def test_agenttools_MutationAgent_swap_01():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_swap_02():
@@ -110,7 +110,7 @@ def test_agenttools_MutationAgent_swap_02():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_swap_03():
@@ -167,7 +167,7 @@ def test_agenttools_MutationAgent_swap_03():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_swap_04():
@@ -265,4 +265,4 @@ def test_agenttools_MutationAgent_swap_07():
         '''
         )
 
-    assert inspect_(new_measure).is_well_formed()
+    assert inspect(new_measure).is_well_formed()

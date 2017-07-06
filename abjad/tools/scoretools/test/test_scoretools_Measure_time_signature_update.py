@@ -23,4 +23,4 @@ def test_scoretools_Measure_time_signature_update_01():
         '''
         )
 
-    assert inspect_(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()

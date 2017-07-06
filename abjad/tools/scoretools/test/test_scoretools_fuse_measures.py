@@ -51,7 +51,7 @@ def test_scoretools_fuse_measures_01():
     assert new is not measure_1 and new is not measure_2
     assert len(measure_1) == 0
     assert len(measure_2) == 0
-    assert inspect_(new).is_well_formed()
+    assert inspect(new).is_well_formed()
 
 
 @pytest.mark.skip()
@@ -99,7 +99,7 @@ def test_scoretools_fuse_measures_02():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 @pytest.mark.skip()
@@ -146,7 +146,7 @@ def test_scoretools_fuse_measures_03():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 @pytest.mark.skip()
@@ -197,7 +197,7 @@ def test_scoretools_fuse_measures_04():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 @pytest.mark.skip()
@@ -270,7 +270,7 @@ def test_scoretools_fuse_measures_07():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 @pytest.mark.skip()
@@ -383,4 +383,4 @@ def test_scoretools_fuse_measures_09():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()

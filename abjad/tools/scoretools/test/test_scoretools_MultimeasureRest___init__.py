@@ -14,4 +14,4 @@ def test_scoretools_MultimeasureRest___init___01():
         '''
         )
 
-    assert inspect_(multimeasure_rest).is_well_formed()
+    assert inspect(multimeasure_rest).is_well_formed()

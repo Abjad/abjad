@@ -35,7 +35,7 @@ def test_scoretools_Leaf__set_duration_01():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 def test_scoretools_Leaf__set_duration_02():
     r'''Change tied leaf to tied value.
@@ -73,7 +73,7 @@ def test_scoretools_Leaf__set_duration_02():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Leaf__set_duration_03():
@@ -109,7 +109,7 @@ def test_scoretools_Leaf__set_duration_03():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Leaf__set_duration_04():
@@ -149,7 +149,7 @@ def test_scoretools_Leaf__set_duration_04():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Leaf__set_duration_05():
@@ -188,7 +188,7 @@ def test_scoretools_Leaf__set_duration_05():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Leaf__set_duration_06():
@@ -204,7 +204,7 @@ def test_scoretools_Leaf__set_duration_06():
 
     note._set_duration(Duration(1, 32))
 
-    assert inspect_(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert format(note) == "c'8 * 1/4"
 
 
@@ -221,7 +221,7 @@ def test_scoretools_Leaf__set_duration_07():
 
     note._set_duration(Duration(3, 32))
 
-    assert inspect_(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert format(note) == "c'8 * 3/4"
 
 
@@ -238,7 +238,7 @@ def test_scoretools_Leaf__set_duration_08():
 
     note._set_duration(Duration(5, 32))
 
-    assert inspect_(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert format(note) == "c'8 * 5/4"
 
 
@@ -255,7 +255,7 @@ def test_scoretools_Leaf__set_duration_09():
 
     note._set_duration(Duration(1, 24))
 
-    assert inspect_(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert format(note) == "c'8 * 1/3"
 
 
@@ -272,7 +272,7 @@ def test_scoretools_Leaf__set_duration_10():
 
     note._set_duration(Duration(5, 24))
 
-    assert inspect_(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert format(note) == "c'8 * 5/3"
 
 
@@ -309,4 +309,4 @@ def test_scoretools_Leaf__set_duration_11():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()

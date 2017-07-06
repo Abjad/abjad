@@ -9,7 +9,7 @@ from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import select
@@ -489,7 +489,7 @@ class TaleaRhythmMaker(RhythmMaker):
         # remove every temporary container and recreate selections
         new_selections = []
         for container in containers:
-            inspector = inspect_(container)
+            inspector = inspect(container)
             assert inspector.get_indicator(str) == 'temporary container'
             new_selection = mutate(container).eject_contents()
             new_selections.append(new_selection)

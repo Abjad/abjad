@@ -27,4 +27,4 @@ def test_spannertools_Spanner_format_01():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()

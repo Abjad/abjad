@@ -26,7 +26,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_01():
     assert format(target) == format(result) and target is not result
     leaves = select(result).by_leaf()
     leaf = leaves[0]
-    marks = inspect_(leaf).get_indicators(MetronomeMark)
+    marks = inspect(leaf).get_indicators(MetronomeMark)
     assert len(marks) == 1
 
 
@@ -53,7 +53,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_02():
     assert format(target) == format(result) and target is not result
     leaves = select(result).by_leaf()
     leaf = leaves[0]
-    marks = inspect_(leaf).get_indicators(MetronomeMark)
+    marks = inspect(leaf).get_indicators(MetronomeMark)
     assert len(marks) == 1
 
 
@@ -80,7 +80,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_03():
     assert format(target) == format(result) and target is not result
     leaves = select(result).by_leaf()
     leaf = leaves[0]
-    marks = inspect_(leaf).get_indicators(MetronomeMark)
+    marks = inspect(leaf).get_indicators(MetronomeMark)
     assert len(marks) == 1
 
 
@@ -111,7 +111,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_04():
     assert format(target) == format(result) and target is not result
     leaves = select(result).by_leaf()
     leaf = leaves[0]
-    marks = inspect_(leaf).get_indicators(MetronomeMark)
+    marks = inspect(leaf).get_indicators(MetronomeMark)
     assert len(marks) == 1
 
 
@@ -142,5 +142,5 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_05():
     assert format(target) == format(result) and target is not result
     leaves = select(result).by_leaf()
     leaf = leaves[0]
-    marksn = inspect_(leaf).get_indicators(MetronomeMark)
+    marksn = inspect(leaf).get_indicators(MetronomeMark)
     assert len(marksn) == 1

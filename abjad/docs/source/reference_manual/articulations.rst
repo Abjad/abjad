@@ -74,7 +74,7 @@ Use the inspector to get the articulations attached to a leaf:
 
 ..  abjad::
 
-    inspect_(staff[5]).get_indicators(Articulation)
+    inspect(staff[5]).get_indicators(Articulation)
 
 
 Detaching articulations from a leaf

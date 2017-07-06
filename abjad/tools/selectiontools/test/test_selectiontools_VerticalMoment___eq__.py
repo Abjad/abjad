@@ -31,10 +31,10 @@ def test_selectiontools_VerticalMoment___eq___01():
 
     staff_group = score[1]
 
-    vertical_moment_1 = inspect_(staff_group).get_vertical_moment_at(Offset(1, 8))
+    vertical_moment_1 = inspect(staff_group).get_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
-    vertical_moment_2 = inspect_(staff_group).get_vertical_moment_at(Offset(1, 8))
+    vertical_moment_2 = inspect(staff_group).get_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
     assert vertical_moment_1 == vertical_moment_2
@@ -90,11 +90,11 @@ def test_selectiontools_VerticalMoment___eq___02():
         '''
         )
 
-    vertical_moment_1 = inspect_(
+    vertical_moment_1 = inspect(
         staff_group).get_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
-    vertical_moment_2 = inspect_(
+    vertical_moment_2 = inspect(
         staff_group[0]).get_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(Staff{2}, a'4, Staff{4}, e'8)"
 

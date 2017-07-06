@@ -228,7 +228,7 @@ class UpdateManager(AbjadObject):
         from abjad.tools import durationtools
         from abjad.tools import indicatortools
         from abjad.tools import sequencetools
-        from abjad.tools.topleveltools import inspect_
+        from abjad.tools.topleveltools import inspect
         expressions = []
         prototype = indicatortools.TimeSignature
         score_root = component._get_parentage(include_self=True).root
@@ -240,7 +240,7 @@ class UpdateManager(AbjadObject):
             expressions.extend(expressions_)
         pairs = []
         for expression in expressions:
-            inspector = inspect_(expression.component)
+            inspector = inspect(expression.component)
             start_offset = inspector.get_timespan()._start_offset
             time_signature = expression.indicator
             pair = start_offset, time_signature
@@ -255,7 +255,7 @@ class UpdateManager(AbjadObject):
         pairs.sort(key=lambda x: x[0])
         parentage = component._get_parentage()
         score_root = parentage.root
-        inspector = inspect_(score_root)
+        inspector = inspect(score_root)
         score_stop_offset = inspector.get_timespan()._stop_offset
         dummy_last_pair = (score_stop_offset, None)
         pairs.append(dummy_last_pair)
@@ -277,8 +277,8 @@ class UpdateManager(AbjadObject):
         ):
         from abjad.tools import mathtools
         from abjad.tools import sequencetools
-        from abjad.tools.topleveltools import inspect_
-        inspector = inspect_(component)
+        from abjad.tools.topleveltools import inspect
+        inspector = inspect(component)
         component_start_offset = inspector.get_timespan()._start_offset
         logical_measure_number_start_offsets = \
             logical_measure_number_start_offsets[:]

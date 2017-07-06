@@ -21,7 +21,7 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_01():
         '''
         )
 
-    assert inspect_(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_spannertools_DuratedComplexBeam_isolated_nib_direction_02():
@@ -41,7 +41,7 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_02():
         '''
         )
 
-    assert inspect_(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_spannertools_DuratedComplexBeam_isolated_nib_direction_03():
@@ -65,4 +65,4 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_03():
         '''
         )
 
-    assert inspect_(container).is_well_formed()
+    assert inspect(container).is_well_formed()

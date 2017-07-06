@@ -23,7 +23,7 @@ def test_scoretools_Measure___delitem___01():
         '''
         )
 
-    assert inspect_(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___02():
@@ -47,7 +47,7 @@ def test_scoretools_Measure___delitem___02():
         '''
         )
 
-    assert inspect_(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___03():
@@ -70,7 +70,7 @@ def test_scoretools_Measure___delitem___03():
         '''
         )
 
-    assert inspect_(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___04():
@@ -95,7 +95,7 @@ def test_scoretools_Measure___delitem___04():
         '''
         )
 
-    assert inspect_(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___05():
@@ -122,7 +122,7 @@ def test_scoretools_Measure___delitem___05():
         '''
         )
 
-    assert inspect_(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___06():
@@ -164,7 +164,7 @@ def test_scoretools_Measure___delitem___06():
         '''
         )
 
-    assert inspect_(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___07():
@@ -177,8 +177,8 @@ def test_scoretools_Measure___delitem___07():
     del(measure[:1])
 
     assert len(measure) == 3
-    assert inspect_(measure).get_indicator(TimeSignature)
-    assert not inspect_(measure).is_well_formed()
+    assert inspect(measure).get_indicator(TimeSignature)
+    assert not inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___08():
@@ -192,5 +192,5 @@ def test_scoretools_Measure___delitem___08():
     del(measure[:1])
 
     assert len(measure) == 3
-    assert inspect_(measure).get_indicator(TimeSignature)
-    assert not inspect_(measure).is_well_formed()
+    assert inspect(measure).get_indicator(TimeSignature)
+    assert not inspect(measure).is_well_formed()

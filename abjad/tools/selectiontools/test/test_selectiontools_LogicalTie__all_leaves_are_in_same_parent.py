@@ -8,7 +8,7 @@ def test_selectiontools_LogicalTie__all_leaves_are_in_same_parent_01():
     tie = spannertools.Tie()
     attach(tie, staff[:])
 
-    assert inspect_(staff[0]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert inspect(staff[0]).get_logical_tie()._all_leaves_are_in_same_parent
 
 
 def test_selectiontools_LogicalTie__all_leaves_are_in_same_parent_02():
@@ -34,10 +34,10 @@ def test_selectiontools_LogicalTie__all_leaves_are_in_same_parent_02():
         '''
         )
 
-    assert inspect_(leaves[0]).get_logical_tie()._all_leaves_are_in_same_parent
-    assert not inspect_(leaves[1]).get_logical_tie()._all_leaves_are_in_same_parent
-    assert not inspect_(leaves[2]).get_logical_tie()._all_leaves_are_in_same_parent
-    assert inspect_(leaves[3]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert inspect(leaves[0]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert not inspect(leaves[1]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert not inspect(leaves[2]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert inspect(leaves[3]).get_logical_tie()._all_leaves_are_in_same_parent
 
 
 def test_selectiontools_LogicalTie__all_leaves_are_in_same_parent_03():
@@ -62,9 +62,9 @@ def test_selectiontools_LogicalTie__all_leaves_are_in_same_parent_03():
         '''
         )
 
-    assert inspect_(leaves[0]).get_logical_tie()._all_leaves_are_in_same_parent
-    assert inspect_(leaves[1]).get_logical_tie()._all_leaves_are_in_same_parent
-    assert not inspect_(leaves[2]).get_logical_tie()._all_leaves_are_in_same_parent
-    assert not inspect_(leaves[3]).get_logical_tie()._all_leaves_are_in_same_parent
-    assert inspect_(leaves[4]).get_logical_tie()._all_leaves_are_in_same_parent
-    assert inspect_(leaves[5]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert inspect(leaves[0]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert inspect(leaves[1]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert not inspect(leaves[2]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert not inspect(leaves[3]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert inspect(leaves[4]).get_logical_tie()._all_leaves_are_in_same_parent
+    assert inspect(leaves[5]).get_logical_tie()._all_leaves_are_in_same_parent

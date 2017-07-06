@@ -5,7 +5,7 @@ import numbers
 import re
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.pitchtools.Pitch import Pitch
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import select
 
@@ -105,7 +105,7 @@ class PitchRange(AbjadValueObject):
         from abjad.tools import scoretools
         if (
             hasattr(argument, '_has_effective_indicator') and
-            'unpitched' in inspect_(argument).get_indicators(str)
+            'unpitched' in inspect(argument).get_indicators(str)
             ):
             return True
         elif isinstance(argument, (int, float)):
@@ -114,10 +114,10 @@ class PitchRange(AbjadValueObject):
         elif isinstance(argument, pitchtools.NamedPitch):
             return self._contains_pitch(argument)
         elif isinstance(argument, scoretools.Note):
-            sounding_pitch = inspect_(argument).get_sounding_pitch()
+            sounding_pitch = inspect(argument).get_sounding_pitch()
             return self._contains_pitch(sounding_pitch)
         elif isinstance(argument, scoretools.Chord):
-            sounding_pitches = inspect_(argument).get_sounding_pitches()
+            sounding_pitches = inspect(argument).get_sounding_pitches()
             return all(self._contains_pitch(x) for x in sounding_pitches)
             try:
                 argument = type(self)(argument)

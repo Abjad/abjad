@@ -27,4 +27,4 @@ def test_spannertools_PhrasingSlur___init___02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()

@@ -10,7 +10,7 @@ from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import set_
@@ -92,9 +92,9 @@ class GalleryMaker(AbjadValueObject):
 
     @staticmethod
     def _check_score(score):
-        if inspect_(score).is_well_formed():
+        if inspect(score).is_well_formed():
             return
-        violations = inspect_(score).tabulate_well_formedness_violations()
+        violations = inspect(score).tabulate_well_formedness_violations()
         message = 'score is not well-formed: {!r}.'
         message = message.format(score)
         message += '\n'

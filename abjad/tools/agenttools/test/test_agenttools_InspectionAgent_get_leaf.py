@@ -26,16 +26,16 @@ def test_agenttools_InspectionAgent_get_leaf_01():
         )
 
     leaves = select(staff).by_leaf()
-    assert inspect_(leaves[0]).get_leaf(0) is leaves[0]
-    assert inspect_(leaves[0]).get_leaf(1) is leaves[1]
-    assert inspect_(leaves[0]).get_leaf(2) is leaves[2]
-    assert inspect_(leaves[0]).get_leaf(3) is leaves[3]
-    assert inspect_(leaves[0]).get_leaf(4) is None
-    assert inspect_(leaves[0]).get_leaf(5) is None
-    assert inspect_(leaves[0]).get_leaf(6) is None
-    assert inspect_(leaves[0]).get_leaf(7) is None
+    assert inspect(leaves[0]).get_leaf(0) is leaves[0]
+    assert inspect(leaves[0]).get_leaf(1) is leaves[1]
+    assert inspect(leaves[0]).get_leaf(2) is leaves[2]
+    assert inspect(leaves[0]).get_leaf(3) is leaves[3]
+    assert inspect(leaves[0]).get_leaf(4) is None
+    assert inspect(leaves[0]).get_leaf(5) is None
+    assert inspect(leaves[0]).get_leaf(6) is None
+    assert inspect(leaves[0]).get_leaf(7) is None
 
-    assert inspect_(leaves[0]).get_leaf(-1) is None
+    assert inspect(leaves[0]).get_leaf(-1) is None
 
 
 def test_agenttools_InspectionAgent_get_leaf_02():
@@ -44,15 +44,15 @@ def test_agenttools_InspectionAgent_get_leaf_02():
 
     voice = Voice([Note(i, (1, 8)) for i in range(4)])
 
-    assert inspect_(voice[0]).get_leaf(1) is voice[1]
-    assert inspect_(voice[1]).get_leaf(1) is voice[2]
-    assert inspect_(voice[2]).get_leaf(1) is voice[3]
-    assert inspect_(voice[3]).get_leaf(1) is None
+    assert inspect(voice[0]).get_leaf(1) is voice[1]
+    assert inspect(voice[1]).get_leaf(1) is voice[2]
+    assert inspect(voice[2]).get_leaf(1) is voice[3]
+    assert inspect(voice[3]).get_leaf(1) is None
 
-    assert inspect_(voice[0]).get_leaf(-1) is None
-    assert inspect_(voice[1]).get_leaf(-1) is voice[0]
-    assert inspect_(voice[2]).get_leaf(-1) is voice[1]
-    assert inspect_(voice[3]).get_leaf(-1) is voice[2]
+    assert inspect(voice[0]).get_leaf(-1) is None
+    assert inspect(voice[1]).get_leaf(-1) is voice[0]
+    assert inspect(voice[2]).get_leaf(-1) is voice[1]
+    assert inspect(voice[3]).get_leaf(-1) is voice[2]
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -72,15 +72,15 @@ def test_agenttools_InspectionAgent_get_leaf_03():
 
     staff = Staff([Note(i, (1, 8)) for i in range(4)])
 
-    assert inspect_(staff[0]).get_leaf(1) is staff[1]
-    assert inspect_(staff[1]).get_leaf(1) is staff[2]
-    assert inspect_(staff[2]).get_leaf(1) is staff[3]
-    assert inspect_(staff[3]).get_leaf(1) is None
+    assert inspect(staff[0]).get_leaf(1) is staff[1]
+    assert inspect(staff[1]).get_leaf(1) is staff[2]
+    assert inspect(staff[2]).get_leaf(1) is staff[3]
+    assert inspect(staff[3]).get_leaf(1) is None
 
-    assert inspect_(staff[0]).get_leaf(-1) is None
-    assert inspect_(staff[1]).get_leaf(-1) is staff[0]
-    assert inspect_(staff[2]).get_leaf(-1) is staff[1]
-    assert inspect_(staff[3]).get_leaf(-1) is staff[2]
+    assert inspect(staff[0]).get_leaf(-1) is None
+    assert inspect(staff[1]).get_leaf(-1) is staff[0]
+    assert inspect(staff[2]).get_leaf(-1) is staff[1]
+    assert inspect(staff[3]).get_leaf(-1) is staff[2]
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -111,15 +111,15 @@ def test_agenttools_InspectionAgent_get_leaf_04():
         '''
         )
 
-    assert inspect_(container[0]).get_leaf(1) is container[1]
-    assert inspect_(container[1]).get_leaf(1) is container[2]
-    assert inspect_(container[2]).get_leaf(1) is container[3]
-    assert inspect_(container[3]).get_leaf(1) is None
+    assert inspect(container[0]).get_leaf(1) is container[1]
+    assert inspect(container[1]).get_leaf(1) is container[2]
+    assert inspect(container[2]).get_leaf(1) is container[3]
+    assert inspect(container[3]).get_leaf(1) is None
 
-    assert inspect_(container[0]).get_leaf(-1) is None
-    assert inspect_(container[1]).get_leaf(-1) is container[0]
-    assert inspect_(container[2]).get_leaf(-1) is container[1]
-    assert inspect_(container[3]).get_leaf(-1) is container[2]
+    assert inspect(container[0]).get_leaf(-1) is None
+    assert inspect(container[1]).get_leaf(-1) is container[0]
+    assert inspect(container[2]).get_leaf(-1) is container[1]
+    assert inspect(container[3]).get_leaf(-1) is container[2]
 
 
 def test_agenttools_InspectionAgent_get_leaf_05():
@@ -138,13 +138,13 @@ def test_agenttools_InspectionAgent_get_leaf_05():
         '''
         )
 
-    assert inspect_(tuplet[0]).get_leaf(1) is tuplet[1]
-    assert inspect_(tuplet[1]).get_leaf(1) is tuplet[2]
-    assert inspect_(tuplet[2]).get_leaf(1) is None
+    assert inspect(tuplet[0]).get_leaf(1) is tuplet[1]
+    assert inspect(tuplet[1]).get_leaf(1) is tuplet[2]
+    assert inspect(tuplet[2]).get_leaf(1) is None
 
-    assert inspect_(tuplet[0]).get_leaf(-1) is None
-    assert inspect_(tuplet[1]).get_leaf(-1) is tuplet[0]
-    assert inspect_(tuplet[2]).get_leaf(-1) is tuplet[1]
+    assert inspect(tuplet[0]).get_leaf(-1) is None
+    assert inspect(tuplet[1]).get_leaf(-1) is tuplet[0]
+    assert inspect(tuplet[2]).get_leaf(-1) is tuplet[1]
 
 
 def test_agenttools_InspectionAgent_get_leaf_06():
@@ -174,15 +174,15 @@ def test_agenttools_InspectionAgent_get_leaf_06():
         '''
         )
 
-    assert inspect_(container_1[0]).get_leaf(1) is container_1[1]
-    assert inspect_(container_1[1]).get_leaf(1) is container_1[2]
-    assert inspect_(container_1[2]).get_leaf(1) is container_1[3]
-    assert inspect_(container_1[3]).get_leaf(1) is container_2[0]
+    assert inspect(container_1[0]).get_leaf(1) is container_1[1]
+    assert inspect(container_1[1]).get_leaf(1) is container_1[2]
+    assert inspect(container_1[2]).get_leaf(1) is container_1[3]
+    assert inspect(container_1[3]).get_leaf(1) is container_2[0]
 
-    assert inspect_(container_1[1]).get_leaf(-1) is container_1[0]
-    assert inspect_(container_1[2]).get_leaf(-1) is container_1[1]
-    assert inspect_(container_1[3]).get_leaf(-1) is container_1[2]
-    assert inspect_(container_2[0]).get_leaf(-1) is container_1[3]
+    assert inspect(container_1[1]).get_leaf(-1) is container_1[0]
+    assert inspect(container_1[2]).get_leaf(-1) is container_1[1]
+    assert inspect(container_1[3]).get_leaf(-1) is container_1[2]
+    assert inspect(container_2[0]).get_leaf(-1) is container_1[3]
 
 
 def test_agenttools_InspectionAgent_get_leaf_07():
@@ -210,13 +210,13 @@ def test_agenttools_InspectionAgent_get_leaf_07():
         '''
         )
 
-    assert inspect_(tuplet_1[0]).get_leaf(1) is tuplet_1[1]
-    assert inspect_(tuplet_1[1]).get_leaf(1) is tuplet_1[2]
-    assert inspect_(tuplet_1[2]).get_leaf(1) is tuplet_2[0]
+    assert inspect(tuplet_1[0]).get_leaf(1) is tuplet_1[1]
+    assert inspect(tuplet_1[1]).get_leaf(1) is tuplet_1[2]
+    assert inspect(tuplet_1[2]).get_leaf(1) is tuplet_2[0]
 
-    assert inspect_(tuplet_1[1]).get_leaf(-1) is tuplet_1[0]
-    assert inspect_(tuplet_1[2]).get_leaf(-1) is tuplet_1[1]
-    assert inspect_(tuplet_2[0]).get_leaf(-1) is tuplet_1[2]
+    assert inspect(tuplet_1[1]).get_leaf(-1) is tuplet_1[0]
+    assert inspect(tuplet_1[2]).get_leaf(-1) is tuplet_1[1]
+    assert inspect(tuplet_2[0]).get_leaf(-1) is tuplet_1[2]
 
 
 def test_agenttools_InspectionAgent_get_leaf_08():
@@ -246,8 +246,8 @@ def test_agenttools_InspectionAgent_get_leaf_08():
         '''
         )
 
-    assert inspect_(voice_1[3]).get_leaf(1) is None
-    assert inspect_(voice_2[0]).get_leaf(-1) is None
+    assert inspect(voice_1[3]).get_leaf(1) is None
+    assert inspect(voice_2[0]).get_leaf(-1) is None
 
 
 def test_agenttools_InspectionAgent_get_leaf_09():
@@ -279,15 +279,15 @@ def test_agenttools_InspectionAgent_get_leaf_09():
         '''
         )
 
-    assert inspect_(voice_1[0]).get_leaf(1) is voice_1[1]
-    assert inspect_(voice_1[1]).get_leaf(1) is voice_1[2]
-    assert inspect_(voice_1[2]).get_leaf(1) is voice_1[3]
-    assert inspect_(voice_1[3]).get_leaf(1) is voice_2[0]
+    assert inspect(voice_1[0]).get_leaf(1) is voice_1[1]
+    assert inspect(voice_1[1]).get_leaf(1) is voice_1[2]
+    assert inspect(voice_1[2]).get_leaf(1) is voice_1[3]
+    assert inspect(voice_1[3]).get_leaf(1) is voice_2[0]
 
-    assert inspect_(voice_1[1]).get_leaf(-1) is voice_1[0]
-    assert inspect_(voice_1[2]).get_leaf(-1) is voice_1[1]
-    assert inspect_(voice_1[3]).get_leaf(-1) is voice_1[2]
-    assert inspect_(voice_2[0]).get_leaf(-1) is voice_1[3]
+    assert inspect(voice_1[1]).get_leaf(-1) is voice_1[0]
+    assert inspect(voice_1[2]).get_leaf(-1) is voice_1[1]
+    assert inspect(voice_1[3]).get_leaf(-1) is voice_1[2]
+    assert inspect(voice_2[0]).get_leaf(-1) is voice_1[3]
 
 
 def test_agenttools_InspectionAgent_get_leaf_10():
@@ -319,18 +319,18 @@ def test_agenttools_InspectionAgent_get_leaf_10():
         '''
         )
 
-    assert inspect_(voice_1[0]).get_leaf(1) is voice_1[1]
-    assert inspect_(voice_1[1]).get_leaf(1) is voice_1[2]
-    assert inspect_(voice_1[2]).get_leaf(1) is voice_1[3]
-    assert inspect_(voice_1[3]).get_leaf(1) is None
+    assert inspect(voice_1[0]).get_leaf(1) is voice_1[1]
+    assert inspect(voice_1[1]).get_leaf(1) is voice_1[2]
+    assert inspect(voice_1[2]).get_leaf(1) is voice_1[3]
+    assert inspect(voice_1[3]).get_leaf(1) is None
 
     voice_2.name = None
-    assert inspect_(voice_1[3]).get_leaf(1) is None
+    assert inspect(voice_1[3]).get_leaf(1) is None
 
-    assert inspect_(voice_2[1]).get_leaf(-1) is voice_2[0]
-    assert inspect_(voice_2[2]).get_leaf(-1) is voice_2[1]
-    assert inspect_(voice_2[3]).get_leaf(-1) is voice_2[2]
-    assert inspect_(voice_2[0]).get_leaf(-1) is None
+    assert inspect(voice_2[1]).get_leaf(-1) is voice_2[0]
+    assert inspect(voice_2[2]).get_leaf(-1) is voice_2[1]
+    assert inspect(voice_2[3]).get_leaf(-1) is voice_2[2]
+    assert inspect(voice_2[0]).get_leaf(-1) is None
 
 
 def test_agenttools_InspectionAgent_get_leaf_11():
@@ -373,8 +373,8 @@ def test_agenttools_InspectionAgent_get_leaf_11():
         '''
         )
 
-    assert inspect_(voice_1[3]).get_leaf(1) is voice_2[0]
-    assert inspect_(voice_2[0]).get_leaf(-1) is voice_1[3]
+    assert inspect(voice_1[3]).get_leaf(1) is voice_2[0]
+    assert inspect(voice_2[0]).get_leaf(-1) is voice_1[3]
 
 
 def test_agenttools_InspectionAgent_get_leaf_12():
@@ -435,11 +435,11 @@ def test_agenttools_InspectionAgent_get_leaf_12():
         '''
         )
 
-    assert inspect_(lower_voice_1[3]).get_leaf(1) is lower_voice_2[0]
-    assert inspect_(higher_voice_1[3]).get_leaf(1) is higher_voice_2[0]
+    assert inspect(lower_voice_1[3]).get_leaf(1) is lower_voice_2[0]
+    assert inspect(higher_voice_1[3]).get_leaf(1) is higher_voice_2[0]
 
-    assert inspect_(lower_voice_2[0]).get_leaf(-1) is lower_voice_1[3]
-    assert inspect_(higher_voice_2[0]).get_leaf(-1) is higher_voice_1[3]
+    assert inspect(lower_voice_2[0]).get_leaf(-1) is lower_voice_1[3]
+    assert inspect(higher_voice_2[0]).get_leaf(-1) is higher_voice_1[3]
 
 
 def test_agenttools_InspectionAgent_get_leaf_13():
@@ -475,15 +475,15 @@ def test_agenttools_InspectionAgent_get_leaf_13():
         '''
         )
 
-    assert inspect_(container_1[0][0]).get_leaf(1) is container_1[0][1]
-    assert inspect_(container_1[0][1]).get_leaf(1) is container_1[0][2]
-    assert inspect_(container_1[0][2]).get_leaf(1) is container_1[0][3]
-    assert inspect_(container_1[0][3]).get_leaf(1) is container_2[0][0]
+    assert inspect(container_1[0][0]).get_leaf(1) is container_1[0][1]
+    assert inspect(container_1[0][1]).get_leaf(1) is container_1[0][2]
+    assert inspect(container_1[0][2]).get_leaf(1) is container_1[0][3]
+    assert inspect(container_1[0][3]).get_leaf(1) is container_2[0][0]
 
-    assert inspect_(container_2[0][1]).get_leaf(-1) is container_2[0][0]
-    assert inspect_(container_2[0][2]).get_leaf(-1) is container_2[0][1]
-    assert inspect_(container_2[0][3]).get_leaf(-1) is container_2[0][2]
-    assert inspect_(container_2[0][0]).get_leaf(-1) is container_1[0][3]
+    assert inspect(container_2[0][1]).get_leaf(-1) is container_2[0][0]
+    assert inspect(container_2[0][2]).get_leaf(-1) is container_2[0][1]
+    assert inspect(container_2[0][3]).get_leaf(-1) is container_2[0][2]
+    assert inspect(container_2[0][0]).get_leaf(-1) is container_1[0][3]
 
 
 def test_agenttools_InspectionAgent_get_leaf_14():
@@ -520,15 +520,15 @@ def test_agenttools_InspectionAgent_get_leaf_14():
         '''
         )
 
-    assert inspect_(container_1[0]).get_leaf(1) is container_1[1]
-    assert inspect_(container_1[1]).get_leaf(1) is container_1[2]
-    assert inspect_(container_1[2]).get_leaf(1) is container_1[3]
-    assert inspect_(container_1[3]).get_leaf(1) is container_2[0][0][0]
+    assert inspect(container_1[0]).get_leaf(1) is container_1[1]
+    assert inspect(container_1[1]).get_leaf(1) is container_1[2]
+    assert inspect(container_1[2]).get_leaf(1) is container_1[3]
+    assert inspect(container_1[3]).get_leaf(1) is container_2[0][0][0]
 
-    assert inspect_(container_2[0][0][1]).get_leaf(-1) is container_2[0][0][0]
-    assert inspect_(container_2[0][0][2]).get_leaf(-1) is container_2[0][0][1]
-    assert inspect_(container_2[0][0][3]).get_leaf(-1) is container_2[0][0][2]
-    assert inspect_(container_2[0][0][0]).get_leaf(-1) is container_1[3]
+    assert inspect(container_2[0][0][1]).get_leaf(-1) is container_2[0][0][0]
+    assert inspect(container_2[0][0][2]).get_leaf(-1) is container_2[0][0][1]
+    assert inspect(container_2[0][0][3]).get_leaf(-1) is container_2[0][0][2]
+    assert inspect(container_2[0][0][0]).get_leaf(-1) is container_1[3]
 
 
 def test_agenttools_InspectionAgent_get_leaf_15():
@@ -565,15 +565,15 @@ def test_agenttools_InspectionAgent_get_leaf_15():
         '''
         )
 
-    assert inspect_(container_1[0][0][0]).get_leaf(1) is container_1[0][0][1]
-    assert inspect_(container_1[0][0][1]).get_leaf(1) is container_1[0][0][2]
-    assert inspect_(container_1[0][0][2]).get_leaf(1) is container_1[0][0][3]
-    assert inspect_(container_1[0][0][3]).get_leaf(1) is container_2[0]
+    assert inspect(container_1[0][0][0]).get_leaf(1) is container_1[0][0][1]
+    assert inspect(container_1[0][0][1]).get_leaf(1) is container_1[0][0][2]
+    assert inspect(container_1[0][0][2]).get_leaf(1) is container_1[0][0][3]
+    assert inspect(container_1[0][0][3]).get_leaf(1) is container_2[0]
 
-    assert inspect_(container_2[0]).get_leaf(-1) is container_1[0][0][3]
-    assert inspect_(container_2[1]).get_leaf(-1) is container_2[0]
-    assert inspect_(container_2[2]).get_leaf(-1) is container_2[1]
-    assert inspect_(container_2[3]).get_leaf(-1) is container_2[2]
+    assert inspect(container_2[0]).get_leaf(-1) is container_1[0][0][3]
+    assert inspect(container_2[1]).get_leaf(-1) is container_2[0]
+    assert inspect(container_2[2]).get_leaf(-1) is container_2[1]
+    assert inspect(container_2[3]).get_leaf(-1) is container_2[2]
 
 
 def test_agenttools_InspectionAgent_get_leaf_16():
@@ -600,11 +600,11 @@ def test_agenttools_InspectionAgent_get_leaf_16():
         '''
         )
 
-    assert inspect_(container_1[1]).get_leaf(1) is voice[1]
-    assert inspect_(voice[1]).get_leaf(1) is container_2[0]
+    assert inspect(container_1[1]).get_leaf(1) is voice[1]
+    assert inspect(voice[1]).get_leaf(1) is container_2[0]
 
-    assert inspect_(voice[1]).get_leaf(-1) is container_1[1]
-    assert inspect_(container_2[0]).get_leaf(-1) is voice[1]
+    assert inspect(voice[1]).get_leaf(-1) is container_1[1]
+    assert inspect(container_2[0]).get_leaf(-1) is voice[1]
 
 
 def test_agenttools_InspectionAgent_get_leaf_17():
@@ -635,11 +635,11 @@ def test_agenttools_InspectionAgent_get_leaf_17():
         '''
         )
 
-    assert inspect_(tuplet_1[-1]).get_leaf(1) is voice[1]
-    assert inspect_(voice[1]).get_leaf(1) is tuplet_2[0]
+    assert inspect(tuplet_1[-1]).get_leaf(1) is voice[1]
+    assert inspect(voice[1]).get_leaf(1) is tuplet_2[0]
 
-    assert inspect_(voice[1]).get_leaf(-1) is tuplet_1[-1]
-    assert inspect_(tuplet_2[0]).get_leaf(-1) is voice[1]
+    assert inspect(voice[1]).get_leaf(-1) is tuplet_1[-1]
+    assert inspect(tuplet_2[0]).get_leaf(-1) is voice[1]
 
 
 def test_agenttools_InspectionAgent_get_leaf_18():
@@ -664,10 +664,10 @@ def test_agenttools_InspectionAgent_get_leaf_18():
         '''
         )
 
-    assert inspect_(tuplet[0]).get_leaf(1) is inner_tuplet[0]
-    assert inspect_(inner_tuplet[-1]).get_leaf(1) is tuplet[-1]
-    assert inspect_(tuplet[-1]).get_leaf(-1) is inner_tuplet[-1]
-    assert inspect_(inner_tuplet[0]).get_leaf(-1) is tuplet[0]
+    assert inspect(tuplet[0]).get_leaf(1) is inner_tuplet[0]
+    assert inspect(inner_tuplet[-1]).get_leaf(1) is tuplet[-1]
+    assert inspect(tuplet[-1]).get_leaf(-1) is inner_tuplet[-1]
+    assert inspect(inner_tuplet[0]).get_leaf(-1) is tuplet[0]
 
 
 def test_agenttools_InspectionAgent_get_leaf_19():
@@ -698,11 +698,11 @@ def test_agenttools_InspectionAgent_get_leaf_19():
         '''
         )
 
-    assert inspect_(voice_1[-1]).get_leaf(1) is None
-    assert inspect_(note).get_leaf(1) is None
+    assert inspect(voice_1[-1]).get_leaf(1) is None
+    assert inspect(note).get_leaf(1) is None
 
-    assert inspect_(voice_2[0]).get_leaf(-1) is None
-    assert inspect_(note).get_leaf(-1) is None
+    assert inspect(voice_2[0]).get_leaf(-1) is None
+    assert inspect(note).get_leaf(-1) is None
 
 
 def test_agenttools_InspectionAgent_get_leaf_20():
@@ -741,16 +741,16 @@ def test_agenttools_InspectionAgent_get_leaf_20():
         '''
         )
 
-    assert inspect_(voice_1[-1]).get_leaf(1) is None
-    assert inspect_(voice_2[-1]).get_leaf(1) is None
+    assert inspect(voice_1[-1]).get_leaf(1) is None
+    assert inspect(voice_2[-1]).get_leaf(1) is None
 
     voice_2.name = None
 
-    assert inspect_(voice_1[-1]).get_leaf(1) is None
-    assert inspect_(voice_2[-1]).get_leaf(1) is None
+    assert inspect(voice_1[-1]).get_leaf(1) is None
+    assert inspect(voice_2[-1]).get_leaf(1) is None
 
-    assert inspect_(voice_3[0]).get_leaf(-1) is None
-    assert inspect_(voice_2[0]).get_leaf(-1) is None
+    assert inspect(voice_3[0]).get_leaf(-1) is None
+    assert inspect(voice_2[0]).get_leaf(-1) is None
 
 
 def test_agenttools_InspectionAgent_get_leaf_21():
@@ -773,13 +773,13 @@ def test_agenttools_InspectionAgent_get_leaf_21():
         '''
         )
 
-    assert inspect_(inner_voice[0]).get_leaf(1) is inner_voice[1]
-    assert inspect_(inner_voice[1]).get_leaf(1) is inner_voice[2]
-    assert inspect_(inner_voice[2]).get_leaf(1) is None
+    assert inspect(inner_voice[0]).get_leaf(1) is inner_voice[1]
+    assert inspect(inner_voice[1]).get_leaf(1) is inner_voice[2]
+    assert inspect(inner_voice[2]).get_leaf(1) is None
 
-    assert inspect_(inner_voice[1]).get_leaf(-1) is inner_voice[0]
-    assert inspect_(inner_voice[2]).get_leaf(-1) is inner_voice[1]
-    assert inspect_(outer_voice[1]).get_leaf(-1) is None
+    assert inspect(inner_voice[1]).get_leaf(-1) is inner_voice[0]
+    assert inspect(inner_voice[2]).get_leaf(-1) is inner_voice[1]
+    assert inspect(outer_voice[1]).get_leaf(-1) is None
 
 
 def test_agenttools_InspectionAgent_get_leaf_22():
@@ -802,13 +802,13 @@ def test_agenttools_InspectionAgent_get_leaf_22():
         '''
         )
 
-    assert inspect_(inner_voice[0]).get_leaf(1) is inner_voice[1]
-    assert inspect_(inner_voice[1]).get_leaf(1) is inner_voice[2]
-    assert inspect_(outer_voice[0]).get_leaf(1) is None
+    assert inspect(inner_voice[0]).get_leaf(1) is inner_voice[1]
+    assert inspect(inner_voice[1]).get_leaf(1) is inner_voice[2]
+    assert inspect(outer_voice[0]).get_leaf(1) is None
 
-    assert inspect_(inner_voice[1]).get_leaf(-1) is inner_voice[0]
-    assert inspect_(inner_voice[2]).get_leaf(-1) is inner_voice[1]
-    assert inspect_(inner_voice[0]).get_leaf(-1) is None
+    assert inspect(inner_voice[1]).get_leaf(-1) is inner_voice[0]
+    assert inspect(inner_voice[2]).get_leaf(-1) is inner_voice[1]
+    assert inspect(inner_voice[0]).get_leaf(-1) is None
 
 
 
@@ -834,13 +834,13 @@ def test_agenttools_InspectionAgent_get_leaf_23():
         '''
         )
 
-    assert inspect_(inner_voice[0]).get_leaf(1) is inner_voice[1]
-    assert inspect_(inner_voice[1]).get_leaf(1) is inner_voice[2]
-    assert inspect_(inner_voice[2]).get_leaf(1) is outer_voice[1]
+    assert inspect(inner_voice[0]).get_leaf(1) is inner_voice[1]
+    assert inspect(inner_voice[1]).get_leaf(1) is inner_voice[2]
+    assert inspect(inner_voice[2]).get_leaf(1) is outer_voice[1]
 
-    assert inspect_(inner_voice[1]).get_leaf(-1) is inner_voice[0]
-    assert inspect_(inner_voice[2]).get_leaf(-1) is inner_voice[1]
-    assert inspect_(outer_voice[1]).get_leaf(-1) is inner_voice[-1]
+    assert inspect(inner_voice[1]).get_leaf(-1) is inner_voice[0]
+    assert inspect(inner_voice[2]).get_leaf(-1) is inner_voice[1]
+    assert inspect(outer_voice[1]).get_leaf(-1) is inner_voice[-1]
 
 
 def test_agenttools_InspectionAgent_get_leaf_24():
@@ -865,13 +865,13 @@ def test_agenttools_InspectionAgent_get_leaf_24():
         '''
         )
 
-    assert inspect_(inner_voice[0]).get_leaf(1) is inner_voice[1]
-    assert inspect_(inner_voice[1]).get_leaf(1) is inner_voice[2]
-    assert inspect_(outer_voice[0]).get_leaf(1) is inner_voice[0]
+    assert inspect(inner_voice[0]).get_leaf(1) is inner_voice[1]
+    assert inspect(inner_voice[1]).get_leaf(1) is inner_voice[2]
+    assert inspect(outer_voice[0]).get_leaf(1) is inner_voice[0]
 
-    assert inspect_(inner_voice[1]).get_leaf(-1) is inner_voice[0]
-    assert inspect_(inner_voice[2]).get_leaf(-1) is inner_voice[1]
-    assert inspect_(inner_voice[0]).get_leaf(-1) is outer_voice[0]
+    assert inspect(inner_voice[1]).get_leaf(-1) is inner_voice[0]
+    assert inspect(inner_voice[2]).get_leaf(-1) is inner_voice[1]
+    assert inspect(inner_voice[0]).get_leaf(-1) is outer_voice[0]
 
 
 def test_agenttools_InspectionAgent_get_leaf_25():
@@ -896,13 +896,13 @@ def test_agenttools_InspectionAgent_get_leaf_25():
         '''
         )
 
-    assert inspect_(inner_voice[0]).get_leaf(1) is inner_voice[1]
-    assert inspect_(inner_voice[1]).get_leaf(1) is inner_voice[2]
-    assert inspect_(inner_voice[2]).get_leaf(1) is None
+    assert inspect(inner_voice[0]).get_leaf(1) is inner_voice[1]
+    assert inspect(inner_voice[1]).get_leaf(1) is inner_voice[2]
+    assert inspect(inner_voice[2]).get_leaf(1) is None
 
-    assert inspect_(inner_voice[1]).get_leaf(-1) is inner_voice[0]
-    assert inspect_(inner_voice[2]).get_leaf(-1) is inner_voice[1]
-    assert inspect_(outer_voice[1]).get_leaf(-1) is None
+    assert inspect(inner_voice[1]).get_leaf(-1) is inner_voice[0]
+    assert inspect(inner_voice[2]).get_leaf(-1) is inner_voice[1]
+    assert inspect(outer_voice[1]).get_leaf(-1) is None
 
 
 def test_agenttools_InspectionAgent_get_leaf_26():
@@ -927,10 +927,10 @@ def test_agenttools_InspectionAgent_get_leaf_26():
         '''
         )
 
-    assert inspect_(voice_2[0]).get_leaf(1) is voice_2[1]
-    assert inspect_(voice_2[1]).get_leaf(1) is voice_2[2]
-    assert inspect_(voice_1[0]).get_leaf(1) is None
+    assert inspect(voice_2[0]).get_leaf(1) is voice_2[1]
+    assert inspect(voice_2[1]).get_leaf(1) is voice_2[2]
+    assert inspect(voice_1[0]).get_leaf(1) is None
 
-    assert inspect_(voice_2[1]).get_leaf(-1) is voice_2[0]
-    assert inspect_(voice_2[2]).get_leaf(-1) is voice_2[1]
-    assert inspect_(voice_1[1]).get_leaf(-1) is voice_2[-1]
+    assert inspect(voice_2[1]).get_leaf(-1) is voice_2[0]
+    assert inspect(voice_2[2]).get_leaf(-1) is voice_2[1]
+    assert inspect(voice_1[1]).get_leaf(-1) is voice_2[-1]

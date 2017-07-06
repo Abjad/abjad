@@ -8,7 +8,7 @@ def test_systemtools_WellformednessManager_check_overlapping_glissandi_01():
     attach(Glissando(), staff[:2])
     attach(Glissando(), staff[1:3])
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_systemtools_WellformednessManager_check_overlapping_glissandi_02():
@@ -17,4 +17,4 @@ def test_systemtools_WellformednessManager_check_overlapping_glissandi_02():
     attach(Glissando(), staff[:2])
     attach(Glissando(), staff[:3])
 
-    assert not inspect_(staff).is_well_formed()
+    assert not inspect(staff).is_well_formed()

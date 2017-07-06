@@ -2,7 +2,7 @@
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 
 
 class ClefSpanner(Spanner):
@@ -112,7 +112,7 @@ class ClefSpanner(Spanner):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (scoretools.Note, scoretools.Chord, type(None))
         first_leaf = self._get_leaves()[0]
-        current_clef = inspect_(first_leaf).get_effective(indicatortools.Clef)
+        current_clef = inspect(first_leaf).get_effective(indicatortools.Clef)
         set_clef = False
         reset_clef = False
         if self._is_my_only_leaf(leaf):
@@ -120,20 +120,20 @@ class ClefSpanner(Spanner):
                 set_clef = True
                 reset_clef = True
 
-            previous_leaf = inspect_(leaf).get_leaf(-1)
+            previous_leaf = inspect(leaf).get_leaf(-1)
             while not isinstance(previous_leaf, prototype):
-                previous_leaf = inspect_(previous_leaf).get_leaf(-1)
+                previous_leaf = inspect(previous_leaf).get_leaf(-1)
             if previous_leaf is not None:
-                spanners = inspect_(previous_leaf).get_spanners(type(self))
+                spanners = inspect(previous_leaf).get_spanners(type(self))
                 spanners = tuple(spanners)
                 if spanners:
                     if spanners[0].clef == self.clef:
                         set_clef = False
-            next_leaf = inspect_(leaf).get_leaf(1)
+            next_leaf = inspect(leaf).get_leaf(1)
             while not isinstance(next_leaf, prototype):
-                next_leaf = inspect_(next_leaf).get_leaf(1)
+                next_leaf = inspect(next_leaf).get_leaf(1)
             if next_leaf is not None:
-                spanners = inspect_(next_leaf).get_spanners(type(self))
+                spanners = inspect(next_leaf).get_spanners(type(self))
                 spanners = tuple(spanners)
                 if spanners:
                     if spanners[0].clef == self.clef:
@@ -141,11 +141,11 @@ class ClefSpanner(Spanner):
         elif self._is_my_first_leaf(leaf):
             if self.clef != current_clef:
                 set_clef = True
-            previous_leaf = inspect_(leaf).get_leaf(-1)
+            previous_leaf = inspect(leaf).get_leaf(-1)
             while not isinstance(previous_leaf, prototype):
-                previous_leaf = inspect_(previous_leaf).get_leaf(-1)
+                previous_leaf = inspect(previous_leaf).get_leaf(-1)
             if previous_leaf is not None:
-                spanners = inspect_(previous_leaf).get_spanners(type(self))
+                spanners = inspect(previous_leaf).get_spanners(type(self))
                 spanners = tuple(spanners)
                 if spanners:
                     if spanners[0].clef == self.clef:
@@ -154,11 +154,11 @@ class ClefSpanner(Spanner):
             if self.clef != current_clef and current_clef is not None:
                 reset_clef = True
 
-            next_leaf = inspect_(leaf).get_leaf(1)
+            next_leaf = inspect(leaf).get_leaf(1)
             while not isinstance(next_leaf, prototype):
-                next_leaf = inspect_(next_leaf).get_leaf(1)
+                next_leaf = inspect(next_leaf).get_leaf(1)
             if next_leaf is not None:
-                spanners = inspect_(next_leaf).get_spanners(type(self))
+                spanners = inspect(next_leaf).get_spanners(type(self))
                 spanners = tuple(spanners)
                 if spanners:
                     if spanners[0].clef == self.clef:

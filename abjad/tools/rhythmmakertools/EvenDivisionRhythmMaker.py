@@ -6,7 +6,7 @@ from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
@@ -310,7 +310,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         lefts_index, rights_index = 0, 0
         for selection_index, selection in enumerate(selections):
             tuplet = selection[0]
-            original_duration = inspect_(tuplet).get_duration()
+            original_duration = inspect(tuplet).get_duration()
             leaves = tuplet[:]
             leaf_count = len(leaves)
             left_length = left_counts[selection_index]
@@ -338,7 +338,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             right_part = self._burnish_division_part(right_part, right)
             burnished_leaves = left_part + middle_part + right_part
             tuplet[:] = burnished_leaves
-            assert inspect_(tuplet).get_duration() == original_duration
+            assert inspect(tuplet).get_duration() == original_duration
         return selections
 
     def _burnish_outer_selections(
@@ -371,7 +371,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         # first selection
         tuplet = selections[0][0]
-        original_duration = inspect_(tuplet).get_duration()
+        original_duration = inspect(tuplet).get_duration()
         leaves = tuplet[:]
         available_left_length = len(leaves)
         left_length = min([left_length, available_left_length])
@@ -391,21 +391,21 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         middle_part = self._burnish_division_part(middle_part, middle)
         burnished_leaves = left_part + middle_part
         tuplet[:] = burnished_leaves
-        assert inspect_(tuplet).get_duration() == original_duration
+        assert inspect(tuplet).get_duration() == original_duration
 
         # middle selections
         for selection in selections[1:-1]:
             tuplet = selection[0]
-            original_duration = inspect_(tuplet).get_duration()
+            original_duration = inspect(tuplet).get_duration()
             leaves = tuplet[:]
             middle = len(leaves) * [middle_classes[0]]
             burnished_leaves = self._burnish_division_part(leaves, middle)
             tuplet[:] = burnished_leaves
-            assert inspect_(tuplet).get_duration() == original_duration
+            assert inspect(tuplet).get_duration() == original_duration
 
         # last selection
         tuplet = selections[-1][0]
-        original_duration = inspect_(tuplet).get_duration()
+        original_duration = inspect(tuplet).get_duration()
         leaves = tuplet[:]
         available_right_length = len(leaves)
         right_length = min([right_length, available_right_length])
@@ -422,7 +422,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         right_part = self._burnish_division_part(right_part, right)
         burnished_leaves = middle_part + right_part
         tuplet[:] = burnished_leaves
-        assert inspect_(tuplet).get_duration() == original_duration
+        assert inspect(tuplet).get_duration() == original_duration
         return selections
 
     def _make_music(self, divisions, rotation):

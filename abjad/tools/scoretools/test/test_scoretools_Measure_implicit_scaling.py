@@ -12,7 +12,7 @@ def test_scoretools_Measure_implicit_scaling_01():
     measure = Measure((4, 4), Note("c'4") * 4)
 
     assert measure[0].written_duration == Duration(1, 4)
-    assert inspect_(measure[0]).get_duration() == Duration(1, 4)
+    assert inspect(measure[0]).get_duration() == Duration(1, 4)
 
 
 def test_scoretools_Measure_implicit_scaling_02():
@@ -29,9 +29,9 @@ def test_scoretools_Measure_implicit_scaling_02():
     leaves = select(measure).by_leaf()
 
     assert leaves[0].written_duration == Duration(1, 4)
-    assert inspect_(leaves[0]).get_duration() == Duration(1, 4)
+    assert inspect(leaves[0]).get_duration() == Duration(1, 4)
     assert leaves[1].written_duration == Duration(1, 4)
-    assert inspect_(leaves[1]).get_duration() == Duration(1, 6)
+    assert inspect(leaves[1]).get_duration() == Duration(1, 6)
 
 
 def test_scoretools_Measure_implicit_scaling_03():
@@ -48,9 +48,9 @@ def test_scoretools_Measure_implicit_scaling_03():
     leaves = select(measure).by_leaf()
 
     assert leaves[0].written_duration == Duration(1, 4)
-    assert inspect_(leaves[0]).get_duration() == Duration(1, 4)
+    assert inspect(leaves[0]).get_duration() == Duration(1, 4)
     assert leaves[1].written_duration == Duration(1, 4)
-    assert inspect_(leaves[1]).get_duration() == Duration(1, 9)
+    assert inspect(leaves[1]).get_duration() == Duration(1, 9)
 
 
 def test_scoretools_Measure_implicit_scaling_04():
@@ -62,7 +62,7 @@ def test_scoretools_Measure_implicit_scaling_04():
     measure.implicit_scaling = True
 
     assert measure[0].written_duration == Duration(1, 4)
-    assert inspect_(measure[0]).get_duration() == Duration(1, 5)
+    assert inspect(measure[0]).get_duration() == Duration(1, 5)
 
 
 def test_scoretools_Measure_implicit_scaling_05():
@@ -80,9 +80,9 @@ def test_scoretools_Measure_implicit_scaling_05():
     leaves = select(measure).by_leaf()
 
     assert leaves[0].written_duration == Duration(1, 4)
-    assert inspect_(leaves[0]).get_duration() == Duration(1, 5)
+    assert inspect(leaves[0]).get_duration() == Duration(1, 5)
     assert leaves[1].written_duration == Duration(1, 4)
-    assert inspect_(leaves[1]).get_duration() == Duration(2, 15)
+    assert inspect(leaves[1]).get_duration() == Duration(2, 15)
 
 
 def test_scoretools_Measure_implicit_scaling_06():
@@ -100,6 +100,6 @@ def test_scoretools_Measure_implicit_scaling_06():
     leaves = select(measure).by_leaf()
 
     assert leaves[0].written_duration == Duration(1, 4)
-    assert inspect_(leaves[0]).get_duration() == Duration(1, 5)
+    assert inspect(leaves[0]).get_duration() == Duration(1, 5)
     assert leaves[1].written_duration == Duration(1, 4)
-    assert inspect_(leaves[1]).get_duration() == Duration(4, 45)
+    assert inspect(leaves[1]).get_duration() == Duration(4, 45)

@@ -22,7 +22,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___01():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___02():
@@ -44,7 +44,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___03():
@@ -66,7 +66,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___03():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___04():
@@ -95,7 +95,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___04():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___05():
@@ -118,7 +118,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___05():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___06():
@@ -141,7 +141,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___06():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___07():
@@ -169,7 +169,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___07():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___08():
@@ -195,7 +195,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___08():
         '''
         )
 
-    assert inspect_(score).is_well_formed()
+    assert inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___09():
@@ -218,7 +218,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___09():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___10():
@@ -247,7 +247,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___10():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___11():
@@ -270,7 +270,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___11():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___12():
@@ -292,7 +292,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___12():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():

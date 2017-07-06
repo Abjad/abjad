@@ -45,8 +45,8 @@ def test_scoretools_Container_remove_01():
 
     assert format(note) == "d'8 [ ]"
 
-    assert inspect_(voice).is_well_formed()
-    assert inspect_(note).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(note).is_well_formed()
 
 
 def test_scoretools_Container_remove_02():
@@ -91,7 +91,7 @@ def test_scoretools_Container_remove_02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
     assert format(sequential) == stringtools.normalize(
         r'''
@@ -102,7 +102,7 @@ def test_scoretools_Container_remove_02():
         '''
         )
 
-    assert inspect_(sequential).is_well_formed()
+    assert inspect(sequential).is_well_formed()
 
 
 def test_scoretools_Container_remove_03():

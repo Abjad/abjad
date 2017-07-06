@@ -6,7 +6,7 @@ from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 
 
 class Chord(Leaf):
@@ -195,7 +195,7 @@ class Chord(Leaf):
         result.append(self._format_grace_body())
         result.append(('comments', bundle.before.comments))
         commands = bundle.before.commands
-        if inspect_(self).has_indicator(indicatortools.Tremolo):
+        if inspect(self).has_indicator(indicatortools.Tremolo):
             tremolo_command = self._format_repeat_tremolo_command()
             commands = list(commands)
             commands.append(tremolo_command)
@@ -209,7 +209,7 @@ class Chord(Leaf):
 
     def _format_close_brackets_slot(self, bundle):
         result = []
-        if inspect_(self).has_indicator(indicatortools.Tremolo):
+        if inspect(self).has_indicator(indicatortools.Tremolo):
             brackets_close = ['}']
             result.append([('close brackets', ''), brackets_close])
         return result
@@ -229,14 +229,14 @@ class Chord(Leaf):
             result.append('>')
             result = '\n'.join(result)
             result += str(self._get_formatted_duration())
-        elif inspect_(self).has_indicator(indicatortools.Tremolo):
+        elif inspect(self).has_indicator(indicatortools.Tremolo):
             reattack_duration = self._get_tremolo_reattack_duration()
             duration_string = reattack_duration.lilypond_duration_string
             durated_pitches = []
             for note_head in note_heads:
                 durated_pitch = format(note_head) + duration_string
                 durated_pitches.append(durated_pitch)
-            tremolo = inspect_(self).get_indicator(indicatortools.Tremolo)
+            tremolo = inspect(self).get_indicator(indicatortools.Tremolo)
             if tremolo.is_slurred:
                 durated_pitches[0] = durated_pitches[0] + r' \('
                 durated_pitches[-1] = durated_pitches[-1] + r' \)'
@@ -252,13 +252,13 @@ class Chord(Leaf):
 
     def _format_open_brackets_slot(self, bundle):
         result = []
-        if inspect_(self).has_indicator(indicatortools.Tremolo):
+        if inspect(self).has_indicator(indicatortools.Tremolo):
             brackets_open = ['{']
             result.append([('open brackets', ''), brackets_open])
         return result
 
     def _format_repeat_tremolo_command(self):
-        tremolo = inspect_(self).get_indicator(indicatortools.Tremolo)
+        tremolo = inspect(self).get_indicator(indicatortools.Tremolo)
         reattack_duration = self._get_tremolo_reattack_duration()
         repeat_count = self.written_duration / reattack_duration / 2
         if not mathtools.is_integer_equivalent(repeat_count):
@@ -290,7 +290,7 @@ class Chord(Leaf):
     def _get_sounding_pitches(self):
         from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
-        if 'sounding pitch' in inspect_(self).get_indicators(str):
+        if 'sounding pitch' in inspect(self).get_indicators(str):
             return self.written_pitches
         else:
             instrument = self._get_effective(
@@ -310,7 +310,7 @@ class Chord(Leaf):
         return ' '.join([str(x) for x in self.note_heads])
 
     def _get_tremolo_reattack_duration(self):
-        tremolos = inspect_(self).get_indicators(indicatortools.Tremolo)
+        tremolos = inspect(self).get_indicators(indicatortools.Tremolo)
         if not tremolos:
             return
         tremolo = tremolos[0]

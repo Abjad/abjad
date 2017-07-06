@@ -37,7 +37,7 @@ def test_scoretools_Leaf__split_by_duration_01():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_duration_02():
@@ -74,7 +74,7 @@ def test_scoretools_Leaf__split_by_duration_02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_duration_03():
@@ -111,7 +111,7 @@ def test_scoretools_Leaf__split_by_duration_03():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_duration_04():
@@ -138,7 +138,7 @@ def test_scoretools_Leaf__split_by_duration_04():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_duration_05():
@@ -170,7 +170,7 @@ def test_scoretools_Leaf__split_by_duration_05():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_duration_06():
@@ -215,7 +215,7 @@ def test_scoretools_Leaf__split_by_duration_06():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_duration_07():
@@ -271,8 +271,8 @@ def test_scoretools_Leaf__split_by_duration_09():
     assert isinstance(halves[1][0], Note)
     assert halves[0][0].written_duration == Duration(1, 8)
     assert halves[1][0].written_duration == Duration(1, 8)
-    assert len(inspect_(halves[0][0]).get_logical_tie()) == 1
-    assert len(inspect_(halves[1][0]).get_logical_tie()) == 1
+    assert len(inspect(halves[0][0]).get_logical_tie()) == 1
+    assert len(inspect(halves[1][0]).get_logical_tie()) == 1
 
 
 def test_scoretools_Leaf__split_by_duration_10():
@@ -316,9 +316,9 @@ def test_scoretools_Leaf__split_by_duration_11():
     assert halves[0][0].written_duration == Duration(4, 32)
     assert halves[0][1].written_duration == Duration(1, 32)
     assert halves[1][0].written_duration == Duration(3, 32)
-    assert len(inspect_(halves[0][0]).get_logical_tie()) == 2
-    assert len(inspect_(halves[0][1]).get_logical_tie()) == 2
-    assert len(inspect_(halves[1][0]).get_logical_tie()) == 1
+    assert len(inspect(halves[0][0]).get_logical_tie()) == 2
+    assert len(inspect(halves[0][1]).get_logical_tie()) == 2
+    assert len(inspect(halves[1][0]).get_logical_tie()) == 1
 
 
 def test_scoretools_Leaf__split_by_duration_12():
@@ -332,11 +332,11 @@ def test_scoretools_Leaf__split_by_duration_12():
 
     assert len(staff) == 2
     for leaf in staff[:]:
-        assert inspect_(leaf).get_spanners() == set([tie])
+        assert inspect(leaf).get_spanners() == set([tie])
         prototype = (spannertools.Tie,)
-        assert inspect_(leaf).get_spanner(prototype) is tie
+        assert inspect(leaf).get_spanner(prototype) is tie
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_duration_13():
@@ -354,10 +354,10 @@ def test_scoretools_Leaf__split_by_duration_13():
 
     assert len(staff) == 5
     for l in staff:
-        assert inspect_(l).get_spanners() == set([beam])
+        assert inspect(l).get_spanners() == set([beam])
         assert l._get_spanner(Beam) is beam
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_duration_14():
@@ -374,10 +374,10 @@ def test_scoretools_Leaf__split_by_duration_14():
     assert len(halves[0]) == 2
     assert len(halves[1]) == 1
     for l in staff:
-        assert inspect_(l).get_spanners() == set([tie])
-        assert inspect_(l).get_spanner(spannertools.Tie) is tie
+        assert inspect(l).get_spanners() == set([tie])
+        assert inspect(l).get_spanner(spannertools.Tie) is tie
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__split_by_duration_15():
@@ -390,7 +390,7 @@ def test_scoretools_Leaf__split_by_duration_15():
     halves = note._split_by_duration(Duration(1, 8))
 
     assert not hasattr(halves[0][0], 'after_grace')
-    after_grace = inspect_(halves[1][0]).get_grace_container()
+    after_grace = inspect(halves[1][0]).get_grace_container()
     assert len(after_grace) == 1
 
 
@@ -407,7 +407,7 @@ def test_scoretools_Leaf__split_by_duration_16():
     assert getattr(halves[0][0], 'after_grace', None) is None
     assert getattr(halves[0][1], 'after_grace', None) is None
     assert len(halves[1]) == 1
-    after_grace = inspect_(halves[1][0]).get_grace_container()
+    after_grace = inspect(halves[1][0]).get_grace_container()
     assert len(after_grace) == 1
 
 
@@ -422,6 +422,6 @@ def test_scoretools_Leaf__split_by_duration_17():
 
     assert len(halves[0]) == 1
     assert len(halves[1]) == 1
-    grace_container = inspect_(halves[0][0]).get_grace_container()
+    grace_container = inspect(halves[0][0]).get_grace_container()
     assert len(grace_container) == 1
     assert not hasattr(halves[1][0], 'grace') is None

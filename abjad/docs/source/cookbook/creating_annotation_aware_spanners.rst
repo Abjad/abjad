@@ -61,7 +61,7 @@ Key points:
             lilypond_format_bundle.grob_reverts.append(revert_string)
 
         def _get_annotation(self, leaf):
-            annotations = inspect_(leaf).get_indicators(self.Size)
+            annotations = inspect(leaf).get_indicators(self.Size)
             if not annotations:
                 annotations = [self.Size.SMALL]
             return annotations[0]
@@ -76,7 +76,7 @@ Key points:
                 self._apply_spanner_stop_overrides(lilypond_format_bundle)
                 return lilypond_format_bundle
             prototype = (scoretools.Chord, scoretools.Note)
-            next_leaf = inspect_(leaf).get_leaf(1)
+            next_leaf = inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
                 lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
                 self._apply_annotation_overrides(leaf, lilypond_format_bundle)
@@ -183,7 +183,7 @@ Avoiding silences
             if self._is_my_last_leaf(leaf) or self._is_my_only_leaf(leaf):
                 return lilypond_format_bundle
             prototype = (scoretools.Chord, scoretools.Note)
-            next_leaf = inspect_(leaf).get_leaf(1)
+            next_leaf = inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
                 lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
             return lilypond_format_bundle
@@ -263,7 +263,7 @@ Integrating overrides during formatting
                 lilypond_format_bundle.grob_reverts.append(revert_string)
                 return lilypond_format_bundle
             prototype = (scoretools.Chord, scoretools.Note)
-            next_leaf = inspect_(leaf).get_leaf(1)
+            next_leaf = inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
                 lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
             return lilypond_format_bundle
@@ -341,10 +341,10 @@ Making the spanner annotation-aware
                 lilypond_format_bundle.grob_reverts.append(revert_string)
                 return lilypond_format_bundle
             prototype = (scoretools.Chord, scoretools.Note)
-            next_leaf = inspect_(leaf).get_leaf(1)
+            next_leaf = inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
                 lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
-                annotations = inspect_(leaf).get_indicators(OscillationSize)
+                annotations = inspect(leaf).get_indicators(OscillationSize)
                 if not annotations:
                     annotations = [OscillationSize.SMALL]
                 annotation = annotations[0]

@@ -53,7 +53,7 @@ def test_scoretools_Rest___init___04():
         ''',
         )
 
-    assert inspect_(rest).is_well_formed()
+    assert inspect(rest).is_well_formed()
 
 
 def test_scoretools_Rest___init___05():
@@ -72,7 +72,7 @@ def test_scoretools_Rest___init___05():
         ''',
         )
 
-    assert inspect_(rest).is_well_formed()
+    assert inspect(rest).is_well_formed()
 
 
 def test_scoretools_Rest___init___06():
@@ -88,7 +88,7 @@ def test_scoretools_Rest___init___06():
         ''',
         )
 
-    assert inspect_(rest).is_well_formed()
+    assert inspect(rest).is_well_formed()
 
 
 def test_scoretools_Rest___init___07():
@@ -105,7 +105,7 @@ def test_scoretools_Rest___init___07():
         ''',
         )
 
-    assert inspect_(rest).is_well_formed()
+    assert inspect(rest).is_well_formed()
 
 
 def test_scoretools_Rest___init___08():
@@ -122,7 +122,7 @@ def test_scoretools_Rest___init___08():
         '''
         )
 
-    assert inspect_(rest).is_well_formed()
+    assert inspect(rest).is_well_formed()
 
 
 def test_scoretools_Rest___init___09():
@@ -138,7 +138,7 @@ def test_scoretools_Rest___init___09():
         '''
         )
 
-    assert inspect_(rest).is_well_formed()
+    assert inspect(rest).is_well_formed()
 
 
 def test_scoretools_Rest___init___10():
@@ -154,7 +154,7 @@ def test_scoretools_Rest___init___10():
         '''
         )
 
-    assert inspect_(rest).is_well_formed()
+    assert inspect(rest).is_well_formed()
 
 
 def test_scoretools_Rest___init___11():
@@ -170,7 +170,7 @@ def test_scoretools_Rest___init___11():
         '''
         )
 
-    assert inspect_(rest).is_well_formed()
+    assert inspect(rest).is_well_formed()
 
 
 def test_scoretools_Rest___init___12():
@@ -193,7 +193,7 @@ def test_scoretools_Rest___init___12():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_scoretools_Rest___init___13():
@@ -208,4 +208,4 @@ def test_scoretools_Rest___init___13():
         '''
         )
 
-    assert inspect_(rest).is_well_formed()
+    assert inspect(rest).is_well_formed()

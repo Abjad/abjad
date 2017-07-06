@@ -8,7 +8,6 @@ from abjad.tools import expressiontools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 
 
@@ -1973,7 +1972,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> selector = select().by_leaf(flatten=True)
                     >>> leaves = selector(staff)
                     >>> leaf = leaves[0]
-                    >>> signature = inspect_(leaf).get_parentage().logical_voice
+                    >>> signature = inspect(leaf).get_parentage().logical_voice
                     >>> for note in iterate(staff).by_logical_voice(
                     ...     prototype=Note,
                     ...     logical_voice=signature,
@@ -1992,7 +1991,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> selector = select().by_leaf(flatten=True)
                     >>> leaves = selector(staff)
                     >>> leaf = leaves[0]
-                    >>> signature = inspect_(leaf).get_parentage().logical_voice
+                    >>> signature = inspect(leaf).get_parentage().logical_voice
                     >>> expression = iterate()
 
                 ..  todo:: Implement a persistable signature (in terms of
@@ -3133,16 +3132,19 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
+        from abjad.tools.topleveltools import inspect as abjad_inspect
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def _closure():
             visited_spanners = set()
             for component in self.by_class(reverse=reverse):
-                spanners = inspect_(component).get_spanners(prototype=prototype)
+                spanners = abjad_inspect(component).get_spanners(
+                    prototype=prototype,
+                    )
                 spanners = sorted(spanners,
                     key=lambda x: (
                         type(x).__name__,
-                        inspect_(x).get_timespan(),
+                        abjad_inspect(x).get_timespan(),
                         ),
                     )
                 for spanner in spanners:

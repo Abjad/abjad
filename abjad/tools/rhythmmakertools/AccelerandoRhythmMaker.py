@@ -7,7 +7,7 @@ from abjad.tools import selectiontools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
@@ -727,16 +727,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _is_accelerando(selection):
-        first_duration = inspect_(selection[0]).get_duration()
-        last_duration = inspect_(selection[-1]).get_duration()
+        first_duration = inspect(selection[0]).get_duration()
+        last_duration = inspect(selection[-1]).get_duration()
         if last_duration < first_duration:
             return True
         return False
 
     @staticmethod
     def _is_ritardando(selection):
-        first_duration = inspect_(selection[0]).get_duration()
-        last_duration = inspect_(selection[-1]).get_duration()
+        first_duration = inspect(selection[0]).get_duration()
+        last_duration = inspect(selection[-1]).get_duration()
         if first_duration < last_duration:
             return True
         return False
@@ -805,7 +805,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         tuplet = scoretools.Tuplet((1, 1), selection)
         if tuplet_spelling_specifier.use_note_duration_bracket:
             tuplet.force_times_command = True
-            duration = inspect_(tuplet).get_duration()
+            duration = inspect(tuplet).get_duration()
             markup = duration.to_score_markup()
             markup = markup.scale((0.75, 0.75))
             override(tuplet).tuplet_number.text = markup

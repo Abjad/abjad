@@ -72,7 +72,7 @@ def test_quantizationtools_Quantizer___call___03():
     result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
 
     assert isinstance(result, Voice)
-    assert inspect_(result).get_duration() == 2
+    assert inspect(result).get_duration() == 2
 
     score = Score([Staff([result])])
 

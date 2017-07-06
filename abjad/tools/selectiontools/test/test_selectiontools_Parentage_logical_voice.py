@@ -10,9 +10,9 @@ def test_selectiontools_Parentage_logical_voice_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
-    containment = inspect_(staff).get_parentage().logical_voice
+    containment = inspect(staff).get_parentage().logical_voice
     for component in iterate(staff).by_class():
-        assert inspect_(component).get_parentage().logical_voice == containment
+        assert inspect(component).get_parentage().logical_voice == containment
 
 
 def test_selectiontools_Parentage_logical_voice_02():
@@ -23,9 +23,9 @@ def test_selectiontools_Parentage_logical_voice_02():
     staff = Staff("c'8 d'8 e'8 f'8")
     staff.name = 'foo'
 
-    containment = inspect_(staff).get_parentage().logical_voice
+    containment = inspect(staff).get_parentage().logical_voice
     for component in iterate(staff).by_class():
-        assert inspect_(component).get_parentage().logical_voice == containment
+        assert inspect(component).get_parentage().logical_voice == containment
 
 def test_selectiontools_Parentage_logical_voice_03():
     r'''Leaves inside equally named sequential voices inside a staff
@@ -36,9 +36,9 @@ def test_selectiontools_Parentage_logical_voice_03():
     staff[0].name = 'foo'
     staff[1].name = 'foo'
 
-    containment = inspect_(staff[0][0]).get_parentage().logical_voice
+    containment = inspect(staff[0][0]).get_parentage().logical_voice
     for leaf in iterate(staff).by_leaf():
-        assert inspect_(leaf).get_parentage().logical_voice == containment
+        assert inspect(leaf).get_parentage().logical_voice == containment
 
 
 def test_selectiontools_Parentage_logical_voice_04():
@@ -90,7 +90,7 @@ def test_selectiontools_Parentage_logical_voice_04():
         '''
         )
 
-    signatures = [inspect_(leaf).get_parentage().logical_voice
+    signatures = [inspect(leaf).get_parentage().logical_voice
         for leaf in iterate(voice).by_leaf()]
 
     assert signatures[0] == signatures[1]
@@ -153,7 +153,7 @@ def test_selectiontools_Parentage_logical_voice_05():
         )
 
     signatures = [
-        inspect_(leaf).get_parentage().logical_voice
+        inspect(leaf).get_parentage().logical_voice
         for leaf in iterate(voice).by_leaf()
         ]
 
@@ -214,7 +214,7 @@ def test_selectiontools_Parentage_logical_voice_06():
         '''
         )
 
-    signatures = [inspect_(leaf).get_parentage().logical_voice
+    signatures = [inspect(leaf).get_parentage().logical_voice
         for leaf in leaves]
 
     signatures[0] == signatures[1]
@@ -285,7 +285,7 @@ def test_selectiontools_Parentage_logical_voice_07():
         )
 
     signatures = [
-        inspect_(leaf).get_parentage().logical_voice
+        inspect(leaf).get_parentage().logical_voice
         for leaf in iterate(container).by_leaf()
         ]
 
@@ -315,8 +315,8 @@ def test_selectiontools_Parentage_logical_voice_08():
     note_1 = Note(0, (1, 8))
     note_2 = Note(0, (1, 8))
 
-    signature_1 = inspect_(note_1).get_parentage().logical_voice
-    signature_2 = inspect_(note_2).get_parentage().logical_voice
+    signature_1 = inspect(note_1).get_parentage().logical_voice
+    signature_2 = inspect(note_2).get_parentage().logical_voice
     assert signature_1 == signature_2
 
 
@@ -332,9 +332,9 @@ def test_selectiontools_Parentage_logical_voice_09():
     staff_2.name = 'staff'
     staff_2[0].name = 'voice'
 
-    staff_1_leaf_signature = inspect_(
+    staff_1_leaf_signature = inspect(
         staff_1[0][0]).get_parentage().logical_voice
-    staff_2_leaf_signature = inspect_(
+    staff_2_leaf_signature = inspect(
         staff_2[0][0]).get_parentage().logical_voice
     assert staff_1_leaf_signature == staff_2_leaf_signature
 
@@ -367,12 +367,12 @@ def test_selectiontools_Parentage_logical_voice_10():
         '''
         )
 
-    assert inspect_(staff[0]).get_parentage().logical_voice == \
-        inspect_(staff[-1]).get_parentage().logical_voice
-    assert inspect_(staff[0]).get_parentage().logical_voice == \
-        inspect_(staff[0][0]).get_parentage().logical_voice
-    assert inspect_(staff[0][0]).get_parentage().logical_voice == \
-        inspect_(staff[-1]).get_parentage().logical_voice
+    assert inspect(staff[0]).get_parentage().logical_voice == \
+        inspect(staff[-1]).get_parentage().logical_voice
+    assert inspect(staff[0]).get_parentage().logical_voice == \
+        inspect(staff[0][0]).get_parentage().logical_voice
+    assert inspect(staff[0][0]).get_parentage().logical_voice == \
+        inspect(staff[-1]).get_parentage().logical_voice
 
 
 def test_selectiontools_Parentage_logical_voice_11():
@@ -399,11 +399,11 @@ def test_selectiontools_Parentage_logical_voice_11():
         )
 
     leaves = select(container).by_leaf()
-    assert inspect_(leaves[0]).get_parentage().logical_voice == \
-        inspect_(leaves[1]).get_parentage().logical_voice
-    assert inspect_(leaves[0]).get_parentage().logical_voice != \
-        inspect_(leaves[2]).get_parentage().logical_voice
-    assert inspect_(leaves[2]).get_parentage().logical_voice == \
-        inspect_(leaves[3]).get_parentage().logical_voice
-    assert inspect_(leaves[2]).get_parentage().logical_voice != \
-        inspect_(leaves[0]).get_parentage().logical_voice
+    assert inspect(leaves[0]).get_parentage().logical_voice == \
+        inspect(leaves[1]).get_parentage().logical_voice
+    assert inspect(leaves[0]).get_parentage().logical_voice != \
+        inspect(leaves[2]).get_parentage().logical_voice
+    assert inspect(leaves[2]).get_parentage().logical_voice == \
+        inspect(leaves[3]).get_parentage().logical_voice
+    assert inspect(leaves[2]).get_parentage().logical_voice != \
+        inspect(leaves[0]).get_parentage().logical_voice

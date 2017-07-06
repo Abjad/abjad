@@ -49,7 +49,7 @@ def detach(prototype, component_expression=None):
     assert component_expression is not None
     spanners = []
     grace_containers = []
-    inspector = abjad.inspect_(component_expression)
+    inspector = abjad.inspect(component_expression)
     if isinstance(prototype, type):
         if issubclass(prototype, abjad.Spanner):
             spanners = inspector.get_spanners(prototype)

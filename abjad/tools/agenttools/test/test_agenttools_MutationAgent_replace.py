@@ -45,7 +45,7 @@ def test_agenttools_MutationAgent_replace_01():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_02():
@@ -92,7 +92,7 @@ def test_agenttools_MutationAgent_replace_02():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_03():
@@ -138,7 +138,7 @@ def test_agenttools_MutationAgent_replace_03():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_04():
@@ -183,7 +183,7 @@ def test_agenttools_MutationAgent_replace_04():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_05():
@@ -227,7 +227,7 @@ def test_agenttools_MutationAgent_replace_05():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_06():
@@ -273,4 +273,4 @@ def test_agenttools_MutationAgent_replace_06():
         ), format(staff)
 
     assert not voice
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()

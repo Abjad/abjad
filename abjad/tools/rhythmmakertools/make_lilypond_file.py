@@ -413,7 +413,7 @@ def make_lilypond_file(
             voices.append(voice)
         staff = abjad.Staff(voices, is_simultaneous=True)
         if divisions is None:
-            duration = abjad.inspect_(staff).get_duration()
+            duration = abjad.inspect(staff).get_duration()
             divisions = [duration]
     else:
         message = 'must be list or dictionary of selections: {!r}.'

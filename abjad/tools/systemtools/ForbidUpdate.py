@@ -21,7 +21,7 @@ class ForbidUpdate(ContextManager):
 
         ::
 
-            >>> inspect_(staff).is_well_formed()
+            >>> inspect(staff).is_well_formed()
             True
 
         ::

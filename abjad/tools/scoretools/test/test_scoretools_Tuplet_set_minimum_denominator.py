@@ -20,7 +20,7 @@ def test_scoretools_Tuplet_set_minimum_denominator_01():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_Tuplet_set_minimum_denominator_02():
@@ -41,7 +41,7 @@ def test_scoretools_Tuplet_set_minimum_denominator_02():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_Tuplet_set_minimum_denominator_03():
@@ -62,4 +62,4 @@ def test_scoretools_Tuplet_set_minimum_denominator_03():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()

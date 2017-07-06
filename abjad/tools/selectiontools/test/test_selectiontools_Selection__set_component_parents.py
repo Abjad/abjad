@@ -22,6 +22,6 @@ def test_selectiontools_Selection__set_component_parents_01():
 
     "Selection now in container voice."
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert selection[0]._parent is voice
     assert selection[0] in voice

@@ -9,7 +9,7 @@ from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import select
 
@@ -79,7 +79,7 @@ class TieSpecifier(AbjadValueObject):
             return
         tie_spanners = set()
         for leaf in iterate(divisions).by_leaf():
-            tie_spanners_ = inspect_(leaf).get_spanners(
+            tie_spanners_ = inspect(leaf).get_spanners(
                 prototype=spannertools.Tie,
                 in_parentage=True,
                 )
@@ -124,11 +124,11 @@ class TieSpecifier(AbjadValueObject):
             prototype = (scoretools.Note, scoretools.Chord)
             if not all(isinstance(x, prototype) for x in leaves):
                 continue
-            logical_tie_one = inspect_(leaf_one).get_logical_tie()
-            logical_tie_two = inspect_(leaf_two).get_logical_tie()
-            for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
+            logical_tie_one = inspect(leaf_one).get_logical_tie()
+            logical_tie_two = inspect(leaf_two).get_logical_tie()
+            for tie in inspect(leaf_one).get_spanners(spannertools.Tie):
                 detach(tie, leaf_one)
-            for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
+            for tie in inspect(leaf_two).get_spanners(spannertools.Tie):
                 detach(tie, leaf_two)
             combined_logical_tie = logical_tie_one + logical_tie_two
             tie_spanner = spannertools.Tie(

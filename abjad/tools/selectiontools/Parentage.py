@@ -44,7 +44,7 @@ class Parentage(Selection):
 
             >>> bass_voice = score['Bass Voice']
             >>> note = bass_voice[0]
-            >>> parentage = inspect_(note).get_parentage()
+            >>> parentage = inspect(note).get_parentage()
 
         ::
 
@@ -196,7 +196,7 @@ class Parentage(Selection):
             ::
 
                 >>> for leaf in iterate(voice).by_leaf(with_grace_notes=True):
-                ...     parentage = inspect_(leaf).get_parentage()
+                ...     parentage = inspect(leaf).get_parentage()
                 ...     print(leaf, parentage.is_grace_note)
                 c'4 False
                 c'16 True
@@ -254,7 +254,7 @@ class Parentage(Selection):
             ::
 
                 >>> note = voice[0]
-                >>> parentage = inspect_(note).get_parentage()
+                >>> parentage = inspect(note).get_parentage()
                 >>> logical_voice = parentage.logical_voice
 
             ::
@@ -362,7 +362,7 @@ class Parentage(Selection):
                 >>> selector = select().by_leaf(flatten=True)
                 >>> leaves = selector(score)
                 >>> for leaf in leaves:
-                ...     parentage = inspect_(leaf).get_parentage()
+                ...     parentage = inspect(leaf).get_parentage()
                 ...     leaf, parentage.score_index
                 ...
                 (Note("c''2"), (0, 0, 0))
@@ -404,7 +404,7 @@ class Parentage(Selection):
 
                 >>> leaves = iterate(voice).by_class(with_grace_notes=True)
                 >>> for leaf in leaves:
-                ...     parentage = inspect_(leaf).get_parentage()
+                ...     parentage = inspect(leaf).get_parentage()
                 ...     leaf, parentage.score_index
                 ...
                 (Voice("c'8 d'8 e'8 f'8"), ())
@@ -456,17 +456,17 @@ class Parentage(Selection):
 
             ::
 
-                >>> inspect_(note).get_parentage().tuplet_depth
+                >>> inspect(note).get_parentage().tuplet_depth
                 1
 
             ::
 
-                >>> inspect_(tuplet).get_parentage().tuplet_depth
+                >>> inspect(tuplet).get_parentage().tuplet_depth
                 0
 
             ::
 
-                >>> inspect_(staff).get_parentage().tuplet_depth
+                >>> inspect(staff).get_parentage().tuplet_depth
                 0
 
         Returns nonnegative integer.

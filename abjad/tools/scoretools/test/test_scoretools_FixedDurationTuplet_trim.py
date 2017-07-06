@@ -19,7 +19,7 @@ def test_scoretools_FixedDurationTuplet_trim_01():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_trim_02():
@@ -38,7 +38,7 @@ def test_scoretools_FixedDurationTuplet_trim_02():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_trim_03():
@@ -63,7 +63,7 @@ def test_scoretools_FixedDurationTuplet_trim_04():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_trim_05():
@@ -82,7 +82,7 @@ def test_scoretools_FixedDurationTuplet_trim_05():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_trim_06():
@@ -101,7 +101,7 @@ def test_scoretools_FixedDurationTuplet_trim_06():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_trim_07():

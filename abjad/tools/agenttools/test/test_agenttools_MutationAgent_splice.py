@@ -13,7 +13,7 @@ def test_agenttools_MutationAgent_splice_01():
         grow_spanners=True,
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[-4:]
     assert format(voice) == stringtools.normalize(
         r'''
@@ -53,7 +53,7 @@ def test_agenttools_MutationAgent_splice_02():
         )
 
     assert result == voice[1:3]
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_splice_03():
@@ -87,7 +87,7 @@ def test_agenttools_MutationAgent_splice_03():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[:]
 
 
@@ -120,7 +120,7 @@ def test_agenttools_MutationAgent_splice_04():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[0:2]
 
 
@@ -150,7 +150,7 @@ def test_agenttools_MutationAgent_splice_05():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[-4:]
 
 
@@ -179,7 +179,7 @@ def test_agenttools_MutationAgent_splice_06():
         )
 
     assert result == voice[1:3]
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_splice_07():
@@ -209,7 +209,7 @@ def test_agenttools_MutationAgent_splice_07():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[:4]
 
 
@@ -237,7 +237,7 @@ def test_agenttools_MutationAgent_splice_08():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[1:3]
 
 
@@ -273,7 +273,7 @@ def test_agenttools_MutationAgent_splice_09():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[:]
 
 
@@ -308,7 +308,7 @@ def test_agenttools_MutationAgent_splice_10():
         )
 
     assert result == voice[1:]
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_splice_11():
@@ -338,7 +338,7 @@ def test_agenttools_MutationAgent_splice_11():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[:4]
 
 
@@ -367,4 +367,4 @@ def test_agenttools_MutationAgent_splice_12():
         )
 
     assert result == voice[1:3]
-    assert inspect_(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()

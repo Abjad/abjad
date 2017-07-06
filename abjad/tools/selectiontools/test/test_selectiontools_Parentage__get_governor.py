@@ -29,10 +29,10 @@ def test_selectiontools_Parentage__get_governor_01( ):
     '''
 
     leaves = select(voice).by_leaf()
-    assert inspect_(leaves[0]).get_parentage()._get_governor() is voice[0][0]
-    assert inspect_(leaves[1]).get_parentage()._get_governor() is voice[0][0]
-    assert inspect_(leaves[2]).get_parentage()._get_governor() is voice[0][1]
-    assert inspect_(leaves[3]).get_parentage()._get_governor() is voice[0][1]
+    assert inspect(leaves[0]).get_parentage()._get_governor() is voice[0][0]
+    assert inspect(leaves[1]).get_parentage()._get_governor() is voice[0][0]
+    assert inspect(leaves[2]).get_parentage()._get_governor() is voice[0][1]
+    assert inspect(leaves[3]).get_parentage()._get_governor() is voice[0][1]
 
 
 def test_selectiontools_Parentage__get_governor_02( ):
@@ -40,7 +40,7 @@ def test_selectiontools_Parentage__get_governor_02( ):
     '''
 
     note = Note(0, (1, 8))
-    assert inspect_(note).get_parentage()._get_governor() is None
+    assert inspect(note).get_parentage()._get_governor() is None
 
 
 def test_selectiontools_Parentage__get_governor_03( ):
@@ -65,10 +65,10 @@ def test_selectiontools_Parentage__get_governor_03( ):
     '''
 
     leaves = select(staff).by_leaf()
-    assert inspect_(leaves[0]).get_parentage()._get_governor() is staff
-    assert inspect_(leaves[1]).get_parentage()._get_governor() is staff
-    assert inspect_(leaves[2]).get_parentage()._get_governor() is staff
-    assert inspect_(leaves[3]).get_parentage()._get_governor() is staff
+    assert inspect(leaves[0]).get_parentage()._get_governor() is staff
+    assert inspect(leaves[1]).get_parentage()._get_governor() is staff
+    assert inspect(leaves[2]).get_parentage()._get_governor() is staff
+    assert inspect(leaves[3]).get_parentage()._get_governor() is staff
 
 
 def test_selectiontools_Parentage__get_governor_04( ):
@@ -92,6 +92,6 @@ def test_selectiontools_Parentage__get_governor_04( ):
     }
     '''
 
-    assert inspect_(staff[0][0]).get_parentage()._get_governor() is staff
-    assert inspect_(staff[0]).get_parentage()._get_governor() is staff
-    assert inspect_(staff).get_parentage()._get_governor() is staff
+    assert inspect(staff[0][0]).get_parentage()._get_governor() is staff
+    assert inspect(staff[0]).get_parentage()._get_governor() is staff
+    assert inspect(staff).get_parentage()._get_governor() is staff

@@ -28,7 +28,7 @@ def test_spannertools_Beam__fracture_01():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_02():
@@ -53,7 +53,7 @@ def test_spannertools_Beam__fracture_02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_03():
@@ -82,7 +82,7 @@ def test_spannertools_Beam__fracture_03():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_04():
@@ -107,7 +107,7 @@ def test_spannertools_Beam__fracture_04():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_05():
@@ -134,7 +134,7 @@ def test_spannertools_Beam__fracture_05():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_06():
@@ -161,7 +161,7 @@ def test_spannertools_Beam__fracture_06():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_07():
@@ -188,7 +188,7 @@ def test_spannertools_Beam__fracture_07():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_08():
@@ -215,7 +215,7 @@ def test_spannertools_Beam__fracture_08():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam__fracture_09():

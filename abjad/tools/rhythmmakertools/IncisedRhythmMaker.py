@@ -8,7 +8,7 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import select
 
 
@@ -411,7 +411,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 new_components = []
                 for component in selection:
                     if isinstance(component, scoretools.Rest):
-                        duration = inspect_(component).get_duration()
+                        duration = inspect(component).get_duration()
                         skip = scoretools.Skip(duration)
                         new_components.append(skip)
                     else:

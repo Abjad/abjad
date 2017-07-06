@@ -22,10 +22,10 @@ def test_agenttools_InspectionAgent_get_spanner_01():
         '''
         )
 
-    string = 'inspect_(container[0]).get_spanner()'
+    string = 'inspect(container[0]).get_spanner()'
     assert pytest.raises(Exception, string)
 
-    assert inspect_(container[-1]).get_spanner() is None
+    assert inspect(container[-1]).get_spanner() is None
 
 
 def test_agenttools_InspectionAgent_get_spanner_02():
@@ -35,4 +35,4 @@ def test_agenttools_InspectionAgent_get_spanner_02():
     slur = Slur()
     attach(slur, leaves)
     for leaf in leaves:
-        assert slur == inspect_(leaf).get_spanner(Slur, in_parentage=True)
+        assert slur == inspect(leaf).get_spanner(Slur, in_parentage=True)

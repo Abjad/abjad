@@ -3,7 +3,7 @@ from abjad.tools import indicatortools
 from abjad.tools import lilypondnametools
 from abjad.tools import markuptools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import override
 
@@ -180,7 +180,7 @@ class TextSpanner(Spanner):
         return self._at_least_two_leaves(argument)
 
     def _get_annotations(self, leaf):
-        inspector = inspect_(leaf)
+        inspector = inspect(leaf)
         markups = []
         prototype = markuptools.Markup
         if inspector.has_indicator(prototype):

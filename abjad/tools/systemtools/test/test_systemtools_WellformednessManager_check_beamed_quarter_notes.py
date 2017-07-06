@@ -12,4 +12,4 @@ def test_systemtools_WellformednessManager_check_beamed_quarter_notes_01():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert not inspect_(staff).is_well_formed()
+    assert not inspect(staff).is_well_formed()

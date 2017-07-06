@@ -43,7 +43,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
@@ -94,4 +94,4 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()

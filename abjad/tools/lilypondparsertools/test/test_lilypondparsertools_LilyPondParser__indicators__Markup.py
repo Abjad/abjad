@@ -23,7 +23,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_01():
     result = parser(string)
     assert format(target, 'lilypond') == format(result, 'lilypond') and \
         target is not result
-    assert 1 == len(inspect_(result[0]).get_markup())
+    assert 1 == len(inspect(result[0]).get_markup())
 
 
 def test_lilypondparsertools_LilyPondParser__indicators__Markup_02():
@@ -52,7 +52,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_02():
     result = parser(string)
     assert format(target, 'lilypond') == format(result, 'lilypond') and \
         target is not result
-    assert 1 == len(inspect_(result[0]).get_markup())
+    assert 1 == len(inspect(result[0]).get_markup())
 
 
 def test_lilypondparsertools_LilyPondParser__indicators__Markup_03():
@@ -81,7 +81,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_03():
     result = parser(string)
     assert format(target, 'lilypond') == format(result, 'lilypond') and \
         target is not result
-    assert 1 == len(inspect_(result[0]).get_markup())
+    assert 1 == len(inspect(result[0]).get_markup())
 
 
 def test_lilypondparsertools_LilyPondParser__indicators__Markup_04():

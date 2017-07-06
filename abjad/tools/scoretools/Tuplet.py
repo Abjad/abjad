@@ -5,7 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.scoretools.Container import Container
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
@@ -253,7 +253,7 @@ class Tuplet(Container):
 
     def _get_edge_height_tweak_string(self):
         from abjad.tools import scoretools
-        parentage = inspect_(self).get_parentage()
+        parentage = inspect(self).get_parentage()
         measure = parentage.get_first(scoretools.Measure)
         if measure and measure.implicit_scaling:
             return
@@ -352,7 +352,7 @@ class Tuplet(Container):
             leaves.append(leaf)
         self[:] = leaves
         #leaves = self[:]
-        #leaf_durations = [inspect_(_).get_duration() for _ in leaves]
+        #leaf_durations = [inspect(_).get_duration() for _ in leaves]
         #tuplet_duration = sum(leaf_durations)
         #for leaf_duration, leaf in zip(leaf_durations, leaves):
         #    leaf.written_duration = leaf_duration
@@ -417,7 +417,7 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> duration = inspect_(tuplet).get_duration()
+                >>> duration = inspect(tuplet).get_duration()
                 >>> markup = duration.to_score_markup()
                 >>> override(tuplet).tuplet_number.text = markup
                 >>> staff = Staff([tuplet])
@@ -535,7 +535,7 @@ class Tuplet(Container):
 
                 >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
                 >>> trivial_tuplet.force_times_command = True
-                >>> duration = inspect_(trivial_tuplet).get_duration()
+                >>> duration = inspect(trivial_tuplet).get_duration()
                 >>> markup = duration.to_score_markup()
                 >>> markup = markup.scale((0.75, 0.75))
                 >>> override(trivial_tuplet).tuplet_number.text = markup
@@ -1156,14 +1156,14 @@ class Tuplet(Container):
         '''
         import abjad
         if preserve_duration:
-            old_duration = abjad.inspect_(self).get_duration()
+            old_duration = abjad.inspect(self).get_duration()
         superclass = super(Tuplet, self)
         superclass.append(component)
         if preserve_duration:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
             self.multiplier = multiplier
-            assert abjad.inspect_(self).get_duration() == old_duration
+            assert abjad.inspect(self).get_duration() == old_duration
 
     def extend(self, argument, preserve_duration=False):
         r'''Extends tuplet with `argument`.
@@ -1245,14 +1245,14 @@ class Tuplet(Container):
         '''
         import abjad
         if preserve_duration:
-            old_duration = abjad.inspect_(self).get_duration()
+            old_duration = abjad.inspect(self).get_duration()
         superclass = super(Tuplet, self)
         superclass.extend(argument)
         if preserve_duration:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
             self.multiplier = multiplier
-            assert abjad.inspect_(self).get_duration() == old_duration
+            assert abjad.inspect(self).get_duration() == old_duration
 
     @staticmethod
     def from_duration_and_ratio(
@@ -2175,7 +2175,7 @@ class Tuplet(Container):
                 try:
                     note = scoretools.Note(0, duration)
                     if allow_trivial:
-                        duration = inspect_(note).get_duration()
+                        duration = inspect(note).get_duration()
                         return scoretools.FixedDurationTuplet(duration, [note])
                     else:
                         return scoretools.Container([note])
@@ -2190,7 +2190,7 @@ class Tuplet(Container):
                 try:
                     rest = scoretools.Rest(duration)
                     if allow_trivial:
-                        duration = inspect_(rest).get_duration()
+                        duration = inspect(rest).get_duration()
                         return scoretools.FixedDurationTuplet(duration, [rest])
                     else:
                         return scoretools.Container([rest])

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def inspect_(client):
+def inspect(client):
     r'''Makes inspection agent.
 
     ..  container:: example
@@ -29,7 +29,7 @@ def inspect_(client):
 
         ::
 
-            >>> inspect_(staff[0]).get_duration()
+            >>> inspect(staff[0]).get_duration()
             Duration(1, 4)
 
     ..  container:: example
@@ -38,7 +38,7 @@ def inspect_(client):
 
         ::
 
-            >>> inspect_(staff[0]).get_lineage()
+            >>> inspect(staff[0]).get_lineage()
             Lineage([Staff("c'4 e'4 d'4 f'4"), Note("c'4")])
 
     ..  container:: example
@@ -47,7 +47,7 @@ def inspect_(client):
 
         ::
 
-            >>> inspect_(staff)
+            >>> inspect(staff)
             InspectionAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''

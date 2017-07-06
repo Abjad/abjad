@@ -602,7 +602,7 @@ class Measure(FixedDurationContainer):
             ::
 
                 >>> for note in measure:
-                ...     note, inspect_(note).get_duration()
+                ...     note, inspect(note).get_duration()
                 (Note("c'8"), Duration(1, 12))
                 (Note("d'8"), Duration(1, 12))
                 (Note("e'8"), Duration(1, 12))

@@ -21,7 +21,7 @@ def test_scoretools_Leaf__divide_01():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__divide_02():
@@ -43,7 +43,7 @@ def test_scoretools_Leaf__divide_02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__divide_03():
@@ -65,4 +65,4 @@ def test_scoretools_Leaf__divide_03():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()

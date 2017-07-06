@@ -23,7 +23,7 @@ def test_spannertools_OctavationSpanner_adjust_automatically_01():
         """
         )
 
-    assert inspect_(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_spannertools_OctavationSpanner_adjust_automatically_02():
@@ -48,4 +48,4 @@ def test_spannertools_OctavationSpanner_adjust_automatically_02():
         """
         )
 
-    assert inspect_(container).is_well_formed()
+    assert inspect(container).is_well_formed()

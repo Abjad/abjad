@@ -12,7 +12,7 @@ from abjad.tools import spannertools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 
@@ -184,7 +184,7 @@ class RhythmMaker(AbjadValueObject):
                 continue
             for leaf in logical_tie:
                 rest = scoretools.Rest(leaf.written_duration)
-                inspector = inspect_(leaf)
+                inspector = inspect(leaf)
                 if inspector.has_indicator(durationtools.Multiplier):
                     multiplier = inspector.get_indicator(
                         durationtools.Multiplier,
@@ -196,7 +196,7 @@ class RhythmMaker(AbjadValueObject):
         # remove every temporary container and recreate selections
         new_selections = []
         for container in containers:
-            inspector = inspect_(container)
+            inspector = inspect(container)
             assert inspector.get_indicator(str) == 'temporary container'
             new_selection = mutate(container).eject_contents()
             new_selections.append(new_selection)
@@ -232,7 +232,7 @@ class RhythmMaker(AbjadValueObject):
 
     def _check_well_formedness(self, selections):
         for component in iterate(selections).by_class():
-            inspector = inspect_(component)
+            inspector = inspect(component)
             if not inspector.is_well_formed():
                 report = inspector.tabulate_well_formedness_violations()
                 report = repr(component) + '\n' + report
@@ -264,7 +264,7 @@ class RhythmMaker(AbjadValueObject):
                     component.is_trivial):
                     new_selection.append(component)
                     continue
-                spanners = inspect_(component).get_spanners()
+                spanners = inspect(component).get_spanners()
                 contents = component[:]
                 for spanner in spanners:
                     new_spanner = copy.copy(spanner)
@@ -395,7 +395,7 @@ class RhythmMaker(AbjadValueObject):
                     component._is_rest_filled):
                     new_selection.append(component)
                     continue
-                duration = inspect_(component).get_duration()
+                duration = inspect(component).get_duration()
                 new_rests = scoretools.make_rests([duration])
                 mutate(component[:]).replace(new_rests)
                 new_selection.append(component)

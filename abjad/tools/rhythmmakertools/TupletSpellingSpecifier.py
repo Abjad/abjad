@@ -2,7 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 
 
@@ -70,7 +70,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
             elif isinstance(preferred_denominator, durationtools.Duration):
                 unit_duration = preferred_denominator
                 assert unit_duration.numerator == 1
-                duration = inspect_(tuplet).get_duration()
+                duration = inspect(tuplet).get_duration()
                 denominator = unit_duration.denominator
                 nonreduced_fraction = duration.with_denominator(denominator)
                 tuplet.preferred_denominator = nonreduced_fraction.numerator

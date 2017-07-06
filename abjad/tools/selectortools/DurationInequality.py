@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.selectortools.Inequality import Inequality
 
 
@@ -74,7 +74,7 @@ class DurationInequality(Inequality):
         Returns true or false.
         '''
         if isinstance(argument, scoretools.Component):
-            duration = inspect_(argument).get_duration()
+            duration = inspect(argument).get_duration()
         elif isinstance(argument, selectiontools.Selection):
             duration = argument.get_duration()
         else:

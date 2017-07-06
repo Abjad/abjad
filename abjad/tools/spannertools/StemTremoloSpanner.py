@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 
 
 class StemTremoloSpanner(Spanner):
@@ -58,7 +58,7 @@ class StemTremoloSpanner(Spanner):
             )
         if not isinstance(leaf, prototype):
             return lilypond_format_bundle
-        logical_tie = inspect_(leaf).get_logical_tie()
+        logical_tie = inspect(leaf).get_logical_tie()
         if (self.minimum_duration is not None and
             logical_tie.get_duration() < self.minimum_duration):
             return lilypond_format_bundle

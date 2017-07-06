@@ -31,7 +31,7 @@ def test_selectiontools_VerticalMoment_leaves_01():
 
     staff_group = score[1]
 
-    vertical_moment = inspect_(score).get_vertical_moment_at(Offset(1, 8))
+    vertical_moment = inspect(score).get_vertical_moment_at(Offset(1, 8))
 
     "(Note(d'', 8), Note(a', 4), Note(e', 8))"
 

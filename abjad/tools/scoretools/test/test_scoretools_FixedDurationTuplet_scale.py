@@ -19,7 +19,7 @@ def test_scoretools_FixedDurationTuplet_scale_01():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_scale_02():
@@ -39,7 +39,7 @@ def test_scoretools_FixedDurationTuplet_scale_02():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_scale_03():
@@ -59,7 +59,7 @@ def test_scoretools_FixedDurationTuplet_scale_03():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_scale_04():
@@ -79,7 +79,7 @@ def test_scoretools_FixedDurationTuplet_scale_04():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_scale_05():
@@ -99,7 +99,7 @@ def test_scoretools_FixedDurationTuplet_scale_05():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_scale_06():
@@ -120,7 +120,7 @@ def test_scoretools_FixedDurationTuplet_scale_06():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_scale_07():
@@ -141,7 +141,7 @@ def test_scoretools_FixedDurationTuplet_scale_07():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_scale_08():
@@ -162,7 +162,7 @@ def test_scoretools_FixedDurationTuplet_scale_08():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_scale_09():
@@ -182,7 +182,7 @@ def test_scoretools_FixedDurationTuplet_scale_09():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_FixedDurationTuplet_scale_10():
@@ -212,4 +212,4 @@ def test_scoretools_FixedDurationTuplet_scale_10():
         '''
         )
 
-    assert inspect_(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()

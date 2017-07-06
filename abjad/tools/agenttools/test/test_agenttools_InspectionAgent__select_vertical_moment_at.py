@@ -44,7 +44,7 @@ def test_agenttools_InspectionAgent__select_vertical_moment_at_01():
         )
 
     def staff_group_moment(offset):
-        return inspect_(staff_group).get_vertical_moment_at(offset)
+        return inspect(staff_group).get_vertical_moment_at(offset)
 
     moment = staff_group_moment(Offset(0, 8))
     assert moment.leaves == (staff_group[0][0], staff_group[1][0])
@@ -104,7 +104,7 @@ def test_agenttools_InspectionAgent__select_vertical_moment_at_02():
         )
 
     def scorewide_vertical_moment(offset):
-        return inspect_(score).get_vertical_moment_at(offset)
+        return inspect(score).get_vertical_moment_at(offset)
 
     moment = scorewide_vertical_moment(Offset(0, 8))
     assert moment.leaves == (
