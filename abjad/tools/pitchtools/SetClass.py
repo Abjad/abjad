@@ -942,7 +942,7 @@ class SetClass(AbjadValueObject):
         all_prime_forms = {}
         for cardinality in range(12+1):
             all_prime_forms[cardinality] = set()
-        for pc_set in pitchtools.PitchClassSet.yield_all_pitch_class_sets():
+        for pc_set in SetClass_.yield_all_pitch_class_sets():
             if pitchtools.NumberedPitchClass(0) not in pc_set:
                 if 0 < len(pc_set):
                     continue
@@ -984,6 +984,23 @@ class SetClass(AbjadValueObject):
             item_class=pitchtools.NumberedPitchClass
             )
         return prime_form
+
+    @staticmethod
+    def _yield_all_pitch_class_sets():
+        from abjad.tools import pitchtools
+        def _helper(binary_string):
+            result = zip(binary_string, range(len(binary_string)))
+            result = [string[1] for string in result if string[0] == '1']
+            return result
+        for i in range(4096):
+            string = mathtools.integer_to_binary_string(i).zfill(12)
+            subset = ''.join(list(reversed(string)))
+            subset = _helper(subset)
+            subset = pitchtools.PitchClassSet(
+                subset,
+                item_class=pitchtools.NumberedPitchClass,
+                )
+            yield subset
 
     ### PUBLIC PROPERTIES ###
 
