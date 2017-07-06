@@ -121,9 +121,9 @@ def silence_except(indices=None):
 
         ::
 
-            >>> pattern_1 = patterntools.select_all()
-            >>> pattern_2 = patterntools.select_first()
-            >>> pattern_3 = patterntools.select_last()
+            >>> pattern_1 = abjad.index_all()
+            >>> pattern_2 = abjad.index_first()
+            >>> pattern_3 = abjad.index_last()
             >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
             >>> mask = rhythmmakertools.silence_except(pattern)
 

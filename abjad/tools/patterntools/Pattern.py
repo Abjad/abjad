@@ -8,6 +8,10 @@ from abjad.tools.topleveltools.new import new
 class Pattern(AbjadValueObject):
     r'''Pattern.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Matches three indices out of every eight:
@@ -156,8 +160,8 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
                 >>> pattern = pattern_1 & pattern_2
 
             ::
@@ -187,7 +191,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = patterntools.select_first(3)
+                >>> pattern = abjad.index_first(3)
                 >>> f(pattern)
                 abjad.Pattern(
                     indices=[0, 1, 2],
@@ -299,8 +303,8 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
                 >>> pattern = pattern_1 | pattern_2
 
             ::
@@ -330,8 +334,8 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
                 >>> pattern = pattern_1 ^ pattern_2
 
             ::
@@ -589,6 +593,521 @@ class Pattern(AbjadValueObject):
                 item = sequence[i]
                 items.append(item)
         return abjad.Sequence(items=items)
+
+    @staticmethod
+    def index(indices=None, inverted=None):
+        r'''Makes pattern that matches `indices`.
+
+        ..  container:: example
+
+            Indexes item 2:
+
+            ::
+
+                >>> pattern = abjad.index([2])
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    indices=[2],
+                    )
+
+        ..  container:: example
+
+            Indexes items 2, 3 and 5:
+
+            ::
+
+                >>> pattern = abjad.index([2, 3, 5])
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    indices=[2, 3, 5],
+                    )
+
+        Returns pattern.
+        '''
+        indices = indices or []
+        return Pattern(
+            indices=indices,
+            inverted=inverted,
+            )
+
+    @staticmethod
+    def index_all(inverted=None):
+        r'''Makes pattern that matches all indices.
+
+        ..  container:: example
+
+            Indexes all divisions for tie creation:
+
+            ::
+
+                >>> pattern = abjad.index_all()
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    indices=[0],
+                    period=1,
+                    )
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=pattern,
+                ...         use_messiaen_style_ties=True,
+                ...         ),
+                ...     )
+                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4. \repeatTie
+                    }
+                    {
+                        \time 7/16
+                        c'4.. \repeatTie
+                    }
+                    {
+                        \time 3/8
+                        c'4. \repeatTie
+                    }
+                }
+
+        Returns pattern.
+        '''
+        return Pattern(
+            indices=[0],
+            inverted=inverted,
+            period=1,
+            )
+
+    @staticmethod
+    def index_every(indices, period=None, inverted=None):
+        r'''Makes pattern that matches `indices` at `period`.
+
+        ..  container:: example
+
+            Indexes every second division:
+
+            ::
+
+                >>> mask = abjad.index_every(indices=[1], period=2)
+
+            ::
+
+                >>> print(format(mask))
+                abjad.Pattern(
+                    indices=[1],
+                    period=2,
+                    )
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     division_masks=[mask],
+                ...     )
+                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                }
+
+        ..  container:: example
+
+            Indexes every second and third division:
+
+            ::
+
+                >>> mask = abjad.index_every(indices=[1, 2], period=3)
+
+            ::
+
+                >>> print(format(mask))
+                abjad.Pattern(
+                    indices=[1, 2],
+                    period=3,
+                    )
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     division_masks=[mask],
+                ...     )
+                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                    {
+                        \time 7/16
+                        r4..
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+
+        Returns pattern.
+        '''
+        return Pattern(
+            indices=indices,
+            inverted=inverted,
+            period=period,
+            )
+
+    @staticmethod
+    def index_first(n=1, inverted=None):
+        r'''Makes pattern that matches the first `n` indices.
+
+        ..  container:: example
+
+            Indexes first division for tie creation:
+
+            ::
+
+                >>> pattern = abjad.index_first()
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    indices=[0],
+                    )
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=pattern,
+                ...         use_messiaen_style_ties=True,
+                ...         ),
+                ...     )
+                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4. \repeatTie
+                    }
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+                
+        ..  container:: example
+
+            Selects first two divisions for tie creation:
+
+            ::
+
+                >>> pattern = abjad.index_first(n=2)
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    indices=[0, 1],
+                    )
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=pattern,
+                ...         use_messiaen_style_ties=True,
+                ...         ),
+                ...     )
+                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4. \repeatTie
+                    }
+                    {
+                        \time 7/16
+                        c'4.. \repeatTie
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        ..  container:: example
+
+            Selects no divisions for tie creation:
+
+            ::
+
+                >>> pattern = abjad.index_first(n=0)
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    indices=[],
+                    )
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=pattern,
+                ...         use_messiaen_style_ties=True,
+                ...         ),
+                ...     )
+                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        Returns pattern.
+        '''
+        indices = list(range(n))
+        return Pattern(
+            indices=indices,
+            inverted=inverted,
+            )
+
+    @staticmethod
+    def index_last(n=1, inverted=None):
+        r'''Makes pattern that matches the last `n` indices.
+
+        ..  container:: example
+
+            Indexes last two divisions for tie creation:
+
+            ::
+
+                >>> pattern = abjad.index_last(n=2)
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    indices=[-2, -1],
+                    )
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=pattern,
+                ...         use_messiaen_style_ties=True,
+                ...         ),
+                ...     )
+                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4. \repeatTie
+                    }
+                }
+
+            (Tie creation happens between adjacent divisions. Selecting only the
+            last division creates no ties.)
+
+        ..  container:: example
+
+            Selects no divisions for tie creation:
+
+            ::
+
+                >>> pattern = abjad.index_last(n=0)
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    indices=[],
+                    )
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=pattern,
+                ...         use_messiaen_style_ties=True,
+                ...         ),
+                ...     )
+                >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(lilypond_file[Staff])
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        Returns pattern.
+        '''
+        indices = list(reversed(range(-1, -n-1, -1)))
+        return Pattern(
+            indices=indices,
+            inverted=inverted,
+            )
 
     def matches_index(self, index, total_length, rotation=None):
         r'''Is true when pattern matches `index` taken under `total_length`.

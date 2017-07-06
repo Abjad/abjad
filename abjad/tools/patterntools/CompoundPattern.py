@@ -90,22 +90,22 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> sieve_1a = patterntools.select_every([0, 1, 7], period=8)
-                >>> sieve_1b = patterntools.select_every([1, 3], period=5)
+                >>> sieve_1a = abjad.index_every([0, 1, 7], period=8)
+                >>> sieve_1b = abjad.index_every([1, 3], period=5)
                 >>> sieve_1 = sieve_1a & sieve_1b
-                >>> sieve_2a = patterntools.select_every([0, 1, 2], period=8)
-                >>> sieve_2b = patterntools.select_every([0], period=5)
+                >>> sieve_2a = abjad.index_every([0, 1, 2], period=8)
+                >>> sieve_2b = abjad.index_every([0], period=5)
                 >>> sieve_2 = sieve_2a & sieve_2b
-                >>> sieve_3 = patterntools.select_every([3], period=8)
-                >>> sieve_4 = patterntools.select_every([4], period=8)
-                >>> sieve_5a = patterntools.select_every([5, 6], period=8)
-                >>> sieve_5b = patterntools.select_every([2, 3, 4], period=5)
+                >>> sieve_3 = abjad.index_every([3], period=8)
+                >>> sieve_4 = abjad.index_every([4], period=8)
+                >>> sieve_5a = abjad.index_every([5, 6], period=8)
+                >>> sieve_5b = abjad.index_every([2, 3, 4], period=5)
                 >>> sieve_5 = sieve_5a & sieve_5b
-                >>> sieve_6a = patterntools.select_every([1], period=8)
-                >>> sieve_6b = patterntools.select_every([2], period=5)
+                >>> sieve_6a = abjad.index_every([1], period=8)
+                >>> sieve_6b = abjad.index_every([2], period=5)
                 >>> sieve_6 = sieve_6a & sieve_6b
-                >>> sieve_7a = patterntools.select_every([6], period=8)
-                >>> sieve_7b = patterntools.select_every([1], period=5)
+                >>> sieve_7a = abjad.index_every([6], period=8)
+                >>> sieve_7b = abjad.index_every([1], period=5)
                 >>> sieve_7 = sieve_7a & sieve_7b
                 >>> sieve = sieve_1 | sieve_2 | sieve_3 | sieve_4 | sieve_5 | sieve_6 | sieve_7
 
@@ -157,9 +157,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
-                >>> pattern_3 = patterntools.select_every([0], period=2)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
+                >>> pattern_3 = abjad.index_every([0], period=2)
                 >>> pattern = pattern_1 & pattern_2 & pattern_3
 
             ::
@@ -192,9 +192,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
-                >>> pattern_3 = patterntools.select_every([0], period=2)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
+                >>> pattern_3 = abjad.index_every([0], period=2)
                 >>> pattern = pattern_1 & pattern_2 | pattern_3
 
             ::
@@ -245,8 +245,8 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
                 >>> pattern = pattern_1 | pattern_2
 
             ::
@@ -311,9 +311,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
-                >>> pattern_3 = patterntools.select_every([0], period=2)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
+                >>> pattern_3 = abjad.index_every([0], period=2)
                 >>> pattern = pattern_1 | pattern_2 | pattern_3
 
             ::
@@ -346,9 +346,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
-                >>> pattern_3 = patterntools.select_every([0], period=2)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
+                >>> pattern_3 = abjad.index_every([0], period=2)
                 >>> pattern = pattern_1 | pattern_2 & pattern_3
 
             ::
@@ -398,9 +398,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
-                >>> pattern_3 = patterntools.select_every([0], period=2)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
+                >>> pattern_3 = abjad.index_every([0], period=2)
                 >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
 
             ::
@@ -433,9 +433,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
-                >>> pattern_3 = patterntools.select_every([0], period=2)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
+                >>> pattern_3 = abjad.index_every([0], period=2)
                 >>> pattern = pattern_1 ^ pattern_2 & pattern_3
 
             ::
@@ -571,12 +571,12 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            Cyclic pattern that selects every fourth and fifth item:
+            Cyclic pattern that indexs every fourth and fifth item:
 
             ::
 
-                >>> pattern_1 = patterntools.Pattern([0], period=4)
-                >>> pattern_2 = patterntools.Pattern([0], period=5)
+                >>> pattern_1 = abjad.Pattern([0], period=4)
+                >>> pattern_2 = abjad.Pattern([0], period=5)
                 >>> pattern = pattern_1 | pattern_2
 
             ::
@@ -644,7 +644,7 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = abjad.select_first(1) | abjad.select_last(2)
+                >>> pattern = abjad.index_first(1) | abjad.index_last(2)
 
             ::
 
@@ -1459,8 +1459,8 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_1 = abjad.index_first(3)
+                >>> pattern_2 = abjad.index_last(3)
                 >>> pattern = pattern_1 | pattern_2
                 >>> pattern.inverted is None
                 True
@@ -1511,7 +1511,7 @@ class CompoundPattern(TypedTuple):
 
         ..  container:: example
 
-            Gets period of pattern that selects every fourth and fifth element:
+            Gets period of pattern that indexs every fourth and fifth element:
 
             ::
 

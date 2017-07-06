@@ -11,7 +11,7 @@ class SustainMask(AbjadValueObject):
         ::
 
             >>> mask = rhythmmakertools.SustainMask(
-            ...     pattern=patterntools.select_every([0, 1, 7], period=16),
+            ...     pattern=abjad.index_every([0, 1, 7], period=16),
             ...     )
 
         ::
@@ -42,12 +42,13 @@ class SustainMask(AbjadValueObject):
         self,
         pattern=None,
         ):
+        import abjad
         prototype = (
             patterntools.Pattern,
             patterntools.CompoundPattern,
             )
         if pattern is None:
-            pattern = patterntools.select_all()
+            pattern = abjad.index_all()
         assert isinstance(pattern, prototype), repr(pattern)
         self._pattern = pattern
 

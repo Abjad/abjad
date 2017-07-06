@@ -1899,9 +1899,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> pattern_1 = patterntools.select_all()
-                >>> pattern_2 = patterntools.select_first(2)
-                >>> pattern_3 = patterntools.select_last(2)
+                >>> pattern_1 = abjad.index_all()
+                >>> pattern_2 = abjad.index_first(2)
+                >>> pattern_3 = abjad.index_last(2)
                 >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
                 >>> mask = rhythmmakertools.silence(pattern)
                 >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(

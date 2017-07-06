@@ -46,6 +46,11 @@ from abjad.tools.indicatortools import *
 from abjad.tools.lilypondfiletools import *
 from abjad.tools.markuptools import *
 from abjad.tools.patterntools import *
+index = Pattern.index
+index_all = Pattern.index_all
+index_every = Pattern.index_every
+index_first = Pattern.index_first
+index_last = Pattern.index_last
 from abjad.tools.pitchtools import *
 from abjad.tools.schemetools import *
 from abjad.tools.selectiontools import *

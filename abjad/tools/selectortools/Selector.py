@@ -3429,7 +3429,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaf(flatten=True)
                 >>> selector = selector.by_pattern(
-                ...     pattern=patterntools.select_every([0], period=2),
+                ...     pattern=abjad.index_every([0], period=2),
                 ...     )
 
             ::
@@ -3459,7 +3459,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaf(flatten=True)
                 >>> selector = selector.by_pattern(
-                ...     pattern=patterntools.select_every([0], period=2),
+                ...     pattern=abjad.index_every([0], period=2),
                 ...     )
 
             ::
@@ -3525,7 +3525,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.by_pattern(
-                ...     pattern=patterntools.select_every([0], period=2),
+                ...     pattern=abjad.index_every([0], period=2),
                 ...     )
 
             ::
@@ -3588,7 +3588,7 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
-                >>> pattern = patterntools.select([1])
+                >>> pattern = abjad.index([1])
                 >>> selector = selector.by_pattern(
                 ...     apply_to_each=True,
                 ...     pattern=pattern,

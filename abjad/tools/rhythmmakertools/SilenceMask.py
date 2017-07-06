@@ -10,7 +10,7 @@ class SilenceMask(AbjadValueObject):
 
         ::
 
-            >>> pattern = patterntools.select_every([0, 1, 7], period=16)
+            >>> pattern = abjad.index_every([0, 1, 7], period=16)
             >>> mask = rhythmmakertools.SilenceMask(pattern)
 
         ::
@@ -43,13 +43,14 @@ class SilenceMask(AbjadValueObject):
         pattern=None,
         use_multimeasure_rests=None,
         ):
+        import abjad
         from abjad.tools import rhythmmakertools
         prototype = (
             patterntools.Pattern,
             patterntools.CompoundPattern,
             )
         if pattern is None:
-            pattern = patterntools.select_all()
+            pattern = abjad.index_all()
         assert isinstance(pattern, prototype), repr(pattern)
         self._pattern = pattern
         if use_multimeasure_rests is not None:
@@ -78,7 +79,7 @@ class SilenceMask(AbjadValueObject):
 
             
                 >>> mask = rhythmmakertools.SilenceMask(
-                ...     patterntools.select_every([0, 1, 7], period=16),
+                ...     abjad.index_every([0, 1, 7], period=16),
                 ...     use_multimeasure_rests=False,
                 ...     )
 
@@ -94,7 +95,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> mask = rhythmmakertools.SilenceMask(
-                ...     patterntools.select_every([0, 1, 7], period=16),
+                ...     abjad.index_every([0, 1, 7], period=16),
                 ...     use_multimeasure_rests=True,
                 ...     )
 

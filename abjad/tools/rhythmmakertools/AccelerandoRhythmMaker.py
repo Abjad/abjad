@@ -1771,7 +1771,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     division_masks=[
                 ...         rhythmmakertools.SilenceMask(
-                ...             pattern=patterntools.select_every([1], period=2),
+                ...             pattern=abjad.index_every([1], period=2),
                 ...             ),
                 ...         ],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
