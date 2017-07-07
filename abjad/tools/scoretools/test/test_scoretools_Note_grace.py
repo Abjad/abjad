@@ -3,11 +3,11 @@ from abjad import *
 
 
 def test_scoretools_Note_grace_01():
-    r'''Attach one grace note.
+    r'''Attaches one grace note.
     '''
 
     note = Note("c'4")
-    grace_container = scoretools.GraceContainer([Note(2, (1, 16))])
+    grace_container = GraceContainer([Note(2, (1, 16))])
     attach(grace_container, note)
 
     assert format(note) == stringtools.normalize(
@@ -21,11 +21,12 @@ def test_scoretools_Note_grace_01():
 
 
 def test_scoretools_Note_grace_02():
-    r'''Attach several grace notes.
+    r'''Attaches several grace notes.
     '''
 
     note = Note("c'4")
-    grace_container = scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
+    grace_notes = [Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))]
+    grace_container = GraceContainer(grace_notes)
     attach(grace_container, note)
 
     assert format(note) == stringtools.normalize(
@@ -41,11 +42,11 @@ def test_scoretools_Note_grace_02():
 
 
 def test_scoretools_Note_grace_03():
-    r'''Attach one appoggiatura.
+    r'''Attaches one appoggiatura.
     '''
 
     note = Note("c'4")
-    grace_container = scoretools.GraceContainer([Note(2, (1, 16))], kind='appoggiatura')
+    grace_container = AppoggiaturaContainer([Note(2, (1, 16))])
     attach(grace_container, note)
 
     assert format(note) == stringtools.normalize(
@@ -59,11 +60,11 @@ def test_scoretools_Note_grace_03():
 
 
 def test_scoretools_Note_grace_04():
-    r'''Attach one acciaccatura.
+    r'''Attaches one acciaccatura.
     '''
 
     note = Note("c'4")
-    grace = scoretools.GraceContainer([Note(2, (1, 16))], kind='acciaccatura')
+    grace = AcciaccaturaContainer([Note(2, (1, 16))])
     attach(grace, note)
 
     assert format(note) == stringtools.normalize(
@@ -77,11 +78,11 @@ def test_scoretools_Note_grace_04():
 
 
 def test_scoretools_Note_grace_05():
-    r'''Attach one after grace note.
+    r'''Attaches one after grace note.
     '''
 
     note = Note("c'4")
-    grace = scoretools.GraceContainer([Note(2, (1, 16))], kind='after')
+    grace = AfterGraceContainer([Note(2, (1, 16))])
     attach(grace, note)
 
     assert format(note) == stringtools.normalize(
@@ -96,11 +97,12 @@ def test_scoretools_Note_grace_05():
 
 
 def test_scoretools_Note_grace_06():
-    r'''Attach several after grace notes.
+    r'''Attaches several after grace notes.
     '''
 
     note = Note("c'4")
-    grace = scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))], kind='after')
+    grace_notes = [Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))]
+    grace = AfterGraceContainer(grace_notes)
     attach(grace, note)
 
     assert format(note) == stringtools.normalize(

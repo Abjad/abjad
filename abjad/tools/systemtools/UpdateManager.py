@@ -102,14 +102,11 @@ class UpdateManager(AbjadObject):
 
     @classmethod
     def _update_component_offsets(class_, component):
-        from abjad.tools import durationtools
-        from abjad.tools import scoretools
-        if (isinstance(component._parent, scoretools.GraceContainer) and
-            not component._parent.kind == 'after'):
+        import abjad
+        if isinstance(component._parent, abjad.GraceContainer):
             pair = class_._get_grace_note_offsets(component)
             start_offset, stop_offset = pair
-        elif (isinstance(component._parent, scoretools.GraceContainer) and
-            component._parent.kind == 'after'):
+        elif isinstance(component._parent, abjad.AfterGraceContainer):
             pair = class_._get_after_grace_note_offsets(component)
             start_offset, stop_offset = pair
         else:
@@ -117,7 +114,7 @@ class UpdateManager(AbjadObject):
             if previous is not None:
                 start_offset = previous._stop_offset
             else:
-                start_offset = durationtools.Offset(0)
+                start_offset = abjad.Offset(0)
             stop_offset = start_offset + component._get_duration()
         component._start_offset = start_offset
         component._stop_offset = stop_offset
@@ -181,9 +178,9 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _get_after_grace_note_offsets(grace_note):
-        from abjad.tools import durationtools
+        import abjad
         after_grace_container = grace_note._parent
-        assert after_grace_container.kind == 'after'
+        assert isinstance(after_grace_container, abjad.AfterGraceContainer)
         carrier_leaf = after_grace_container._carrier
         carrier_leaf_stop_offset = carrier_leaf._stop_offset
         grace_displacement = -grace_note.written_duration
@@ -191,12 +188,12 @@ class UpdateManager(AbjadObject):
         while sibling is not None:
             grace_displacement -= sibling.written_duration
             sibling = sibling._get_sibling(1)
-        start_offset = durationtools.Offset(
+        start_offset = abjad.Offset(
             carrier_leaf_stop_offset,
             grace_displacement=grace_displacement,
             )
         grace_displacement += grace_note.written_duration
-        stop_offset = durationtools.Offset(
+        stop_offset = abjad.Offset(
             carrier_leaf_stop_offset,
             grace_displacement=grace_displacement,
             )
@@ -204,7 +201,7 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _get_grace_note_offsets(grace_note):
-        from abjad.tools import durationtools
+        import abjad
         grace_container = grace_note._parent
         carrier_leaf = grace_container._carrier
         carrier_leaf_start_offset = carrier_leaf._start_offset
@@ -213,12 +210,12 @@ class UpdateManager(AbjadObject):
         while sibling is not None:
             grace_displacement -= sibling.written_duration
             sibling = sibling._get_sibling(1)
-        start_offset = durationtools.Offset(
+        start_offset = abjad.Offset(
             carrier_leaf_start_offset,
             grace_displacement=grace_displacement,
             )
         grace_displacement += grace_note.written_duration
-        stop_offset = durationtools.Offset(
+        stop_offset = abjad.Offset(
             carrier_leaf_start_offset,
             grace_displacement=grace_displacement,
             )

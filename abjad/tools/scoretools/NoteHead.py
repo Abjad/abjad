@@ -7,13 +7,15 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 @functools.total_ordering
 class NoteHead(AbjadObject):
-    r'''A note-head.
+    r'''Note-head.
 
-    ::
+    ..  container:: example
 
-        >>> note_head = scoretools.NoteHead(13)
-        >>> note_head
-        NoteHead("cs''")
+        ::
+
+            >>> note_head = scoretools.NoteHead(13)
+            >>> note_head
+            NoteHead("cs''")
 
     Note heads are immutable.
     '''

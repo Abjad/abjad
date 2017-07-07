@@ -3,7 +3,7 @@ from abjad.tools.scoretools.Container import Container
 
 
 class Cluster(Container):
-    '''A cluster.
+    '''Cluster.
 
     ::
 

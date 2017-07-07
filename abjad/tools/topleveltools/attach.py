@@ -59,29 +59,25 @@ def attach(
 
     Returns none.
     '''
-    from abjad.tools import indicatortools
-    from abjad.tools import scoretools
-    from abjad.tools import selectiontools
-    from abjad.tools import spannertools
-    from abjad.tools.topleveltools import iterate
+    import abjad
 
     # NOTE: uncomment the following when working on #824
     #       "Restrict attachment to leaves".
 
 #    def _is_acceptable(component_expression):
-#        if isinstance(component_expression, scoretools.Leaf):
+#        if isinstance(component_expression, abjad.Leaf):
 #            return True
-#        ss = (list, selectiontools.Selection)
+#        ss = (list, abjad.Selection)
 #        if not isinstance(component_expression, ss):
 #            return False
 #        for item in component_expression:
-#            if not isinstance(item, scoretools.Leaf):
+#            if not isinstance(item, abjad.Leaf):
 #                return False
 #        return True
 #
 #    if (
-#        isinstance(indicator, indicatortools.TimeSignature) and
-#        isinstance(component_expression, scoretools.Measure)
+#        isinstance(indicator, abjad.TimeSignature) and
+#        isinstance(component_expression, abjad.Measure)
 #        ):
 #        pass
 #    elif not _is_acceptable(component_expression):
@@ -96,19 +92,23 @@ def attach(
             raise Exception(message)
 
     if hasattr(indicator, '_attach'):
-        prototype = (spannertools.Spanner, scoretools.GraceContainer)
+        prototype = (
+            abjad.AfterGraceContainer,
+            abjad.GraceContainer,
+            abjad.Spanner,
+            )
         assert isinstance(indicator, prototype), repr(indicator)
         assert scope is None
-        if isinstance(indicator, spannertools.Spanner):
+        if isinstance(indicator, abjad.Spanner):
             name = name or indicator.name
             indicator._name = name
             leaves = []
             try:
                 for x in component_expression:
-                    if isinstance(x, scoretools.Leaf):
+                    if isinstance(x, abjad.Leaf):
                         leaves.append(x)
                     else:
-                        leaves.extend(iterate(x).by_leaf())
+                        leaves.extend(abjad.iterate(x).by_leaf())
             except TypeError:
                 leaves.append(component_expression)
             indicator._attach(leaves)
@@ -117,13 +117,13 @@ def attach(
         return
 
     component = component_expression
-    prototype = (scoretools.Component, spannertools.Spanner)
+    prototype = (abjad.Component, abjad.Spanner)
     if not isinstance(component, prototype):
         message = 'must be component or spanner: {!r}.'
         message = message.format(component)
         raise Exception(message)
 
-    if isinstance(indicator, indicatortools.IndicatorExpression):
+    if isinstance(indicator, abjad.IndicatorExpression):
         is_annotation = is_annotation or indicator.is_annotation
         name = name or indicator.name
         scope = scope or indicator.scope
@@ -134,7 +134,7 @@ def attach(
     if hasattr(indicator, '_default_scope'):
         scope = scope or indicator._default_scope
 
-    expression = indicatortools.IndicatorExpression(
+    expression = abjad.IndicatorExpression(
         component=component,
         indicator=indicator,
         is_annotation=is_annotation,

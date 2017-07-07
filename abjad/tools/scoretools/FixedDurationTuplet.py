@@ -7,7 +7,7 @@ from abjad.tools.topleveltools import mutate
 
 
 class FixedDurationTuplet(Tuplet):
-    r'''A tuplet with fixed duration and variable multiplier.
+    r'''Fixed-duration tuplet.
 
     ..  container:: example
 

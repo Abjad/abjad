@@ -13,7 +13,7 @@ from abjad.tools.topleveltools import select
 
 
 class Tuplet(Container):
-    r'''A tuplet.
+    r'''Tuplet.
 
     ..  container:: example
 

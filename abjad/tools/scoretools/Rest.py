@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import detach
 
 
 class Rest(Leaf):
-    r'''A rest.
+    r'''Rest.
 
     ..  container:: example
 

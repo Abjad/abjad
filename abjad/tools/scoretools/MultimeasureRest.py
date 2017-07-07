@@ -3,12 +3,14 @@ from abjad.tools.scoretools.Leaf import Leaf
 
 
 class MultimeasureRest(Leaf):
-    '''A multimeasure rest.
+    '''Multimeasure rest.
 
-    ::
+    ..  container:: example
 
-        >>> rest = scoretools.MultimeasureRest((1, 4))
-        >>> show(rest) # doctest: +SKIP
+        ::
+
+            >>> rest = scoretools.MultimeasureRest((1, 4))
+            >>> show(rest) # doctest: +SKIP
 
     '''
 

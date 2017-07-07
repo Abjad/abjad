@@ -16,7 +16,7 @@ from abjad.tools.scoretools.Component import Component
 
 
 class Leaf(Component):
-    r'''Abstract base class from which leaves inherit.
+    r'''Abstract leaf.
 
     Leaves include notes, rests, chords and skips.
     '''
@@ -24,6 +24,8 @@ class Leaf(Component):
     ### CLASS VARIABLES ##
 
     __slots__ = (
+        '_after_grace_container',
+        '_grace_container',
         '_leaf_index',
         '_written_duration',
         )
@@ -35,6 +37,8 @@ class Leaf(Component):
     @abc.abstractmethod
     def __init__(self, written_duration, name=None):
         Component.__init__(self, name=name)
+        self._after_grace_container = None
+        self._grace_container = None
         self._leaf_index = None
         self.written_duration = durationtools.Duration(written_duration)
 
@@ -93,25 +97,40 @@ class Leaf(Component):
             attach(new_indicator, self)
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
-        new = Component._copy_with_indicators_but_without_children_or_spanners(self)
-        for grace_container in self._get_grace_containers():
+        new = Component._copy_with_indicators_but_without_children_or_spanners(
+            self)
+        grace_container = self._grace_container
+        if grace_container is not None:
             new_grace_container = \
                 grace_container._copy_with_children_and_indicators_but_without_spanners()
             attach(new_grace_container, new)
+        after_grace_container = self._after_grace_container
+        if after_grace_container is not None:
+            new_after_grace_container = \
+                after_grace_container._copy_with_children_and_indicators_but_without_spanners()
+            attach(new_after_grace_container, new)
         return new
+
+    def _detach_after_grace_container(self):
+        if self._after_grace_container is not None:
+            return detach(self._after_grace_container, self)
+
+    def _detach_grace_container(self):
+        if self._grace_container is not None:
+            return detach(self._grace_container, self)
 
     def _format_after_grace_body(self):
         result = []
-        if self._after_grace is not None:
-            after_grace = self._after_grace
+        if self._after_grace_container is not None:
+            after_grace = self._after_grace_container
             if len(after_grace):
                 result.append(format(after_grace))
         return ['after grace body', result]
 
     def _format_after_grace_opening(self):
         result = []
-        if self._after_grace is not None:
-            if len(self._after_grace):
+        if self._after_grace_container is not None:
+            if len(self._after_grace_container):
                 result.append(r'\afterGrace')
         return ['after grace opening', result]
 
@@ -154,8 +173,8 @@ class Leaf(Component):
 
     def _format_grace_body(self):
         result = []
-        if self._grace is not None:
-            grace = self._grace
+        if self._grace_container is not None:
+            grace = self._grace_container
             if len(grace):
                 result.append(format(grace))
         return ['grace body', result]
@@ -396,14 +415,14 @@ class Leaf(Component):
         import abjad
         durations = [abjad.Duration(_) for _ in durations]
         if cyclic:
-            durations = sequencetools.Sequence(durations)
+            durations = abjad.Sequence(durations)
             durations = durations.repeat_to_weight(self._get_duration())
         durations = [abjad.Duration(_) for _ in durations]
         if sum(durations) < self._get_duration():
             last_duration = self._get_duration() - sum(durations)
             durations.append(last_duration)
         weight = self._get_duration()
-        durations = sequencetools.Sequence(durations).truncate(weight=weight)
+        durations = abjad.Sequence(durations).truncate(weight=weight)
         result = []
         leaf_prolation = self._get_parentage(include_self=False).prolation
         timespan = self._get_timespan()
@@ -423,14 +442,14 @@ class Leaf(Component):
                 stop_offset = x_duration + start_offset
                 x._start_offset = start_offset
                 x._stop_offset = stop_offset
-                x._timespan = timespantools.Timespan(
+                x._timespan = abjad.Timespan(
                     start_offset=start_offset,
                     stop_offset=stop_offset,
                     )
                 start_offset = stop_offset
             shard = [x._get_parentage().root for x in shard]
             result.append(shard)
-        flattened_result = sequencetools.Sequence(result).flatten()
+        flattened_result = abjad.Sequence(result).flatten()
         flattened_result = abjad.Selection(flattened_result)
         prototype = (abjad.Tie,)
         parentage = self._get_parentage()
@@ -467,21 +486,22 @@ class Leaf(Component):
                     index = spanner._index(middle_shard[-1])
                     spanner._fracture(index, direction=Right)
         # adjust first leaf
-        self._detach_grace_containers(kind='after')
+        self._detach_after_grace_container()
         # adjust any middle leaves
         for middle_leaf in flattened_result[1:-1]:
-            middle_leaf._detach_grace_containers(kind='grace')
-            self._detach_grace_containers(kind='after')
+            middle_leaf._detach_grace_container()
+            self._detach_after_grace_container()
             detach(object, middle_leaf)
         # adjust last leaf
-        last_leaf = flattened_result[-1]
-        last_leaf._detach_grace_containers(kind='grace')
-        detach(object, last_leaf)
+        last_component = flattened_result[-1]
+        if isinstance(last_component, abjad.Leaf):
+            last_component._detach_grace_container()
+        detach(object, last_component)
         # tie split notes, rests and chords as specified
         if abjad.Pitch.is_pitch_carrier(self) and tie_split_notes:
-            flattened_result_leaves = iterate(flattened_result).by_leaf()
+            flattened_result_leaves = abjad.iterate(flattened_result).by_leaf()
             # TODO: implement Selection._attach_tie_spanner_to_leaves()
-            pairs = sequencetools.Sequence(flattened_result_leaves).nwise()
+            pairs = abjad.Sequence(flattened_result_leaves).nwise()
             for leaf_pair in pairs:
                 selection = abjad.Selection(leaf_pair)
                 selection._attach_tie_spanner_to_leaf_pair(
@@ -501,8 +521,6 @@ class Leaf(Component):
         use_messiaen_style_ties=False,
         ):
         import abjad
-        from abjad.tools import pitchtools
-        from abjad.tools import selectiontools
         # check input
         duration = abjad.Duration(duration)
         # calculate durations
@@ -518,9 +536,9 @@ class Leaf(Component):
         new_leaf = copy.copy(self)
         self._splice([new_leaf], grow_spanners=True)
         # adjust leaf
-        self._detach_grace_containers(kind='after')
+        self._detach_after_grace_container()
         # adjust new leaf
-        new_leaf._detach_grace_containers(kind='grace')
+        new_leaf._detach_grace_container()
         left_leaf_list = self._set_duration(
             preprolated_duration,
             use_messiaen_style_ties=use_messiaen_style_ties,

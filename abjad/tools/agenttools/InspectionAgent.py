@@ -41,6 +41,43 @@ class InspectionAgent(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def get_after_grace_container(self):
+        r'''Gets after grace containers attached to leaf.
+
+        ..  container:: example
+
+            Get after grace container attached to note:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> after_grace = AfterGraceContainer([Note("ds'16")])
+                >>> attach(after_grace, staff[1])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    \afterGrace
+                    d'8
+                    {
+                        ds'16
+                    }
+                    e'8
+                    f'8
+                }
+
+            ::
+
+                >>> inspect(staff[1]).get_after_grace_container()
+                AfterGraceContainer("ds'16")
+
+        Returns after grace container or none.
+        '''
+        return self._client._after_grace_container
+
     def get_annotation(self, name, default=None):
         r'''Gets value of annotation with `name` attached to client.
 
@@ -173,10 +210,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> staff = Staff("c'4 d' e' f'")
                 >>> attach(Clef('alto'), staff)
-                >>> grace_container = scoretools.GraceContainer(
-                ...    [Note("fs'16")],
-                ...     kind='acciaccatura',
-                ...     )
+                >>> grace_container = AcciaccaturaContainer([Note("fs'16")])
                 >>> attach(grace_container, staff[-1])
                 >>> show(staff) # doctest: +SKIP
 
@@ -199,6 +233,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> for leaf in iterate(staff).by_class(with_grace_notes=True):
                 ...     clef = inspect(leaf).get_effective(Clef)
                 ...     print(leaf, clef)
+                ...
                 Staff("c'4 d'4 e'4 f'4") Clef(name='alto')
                 c'4 Clef(name='alto')
                 d'4 Clef(name='alto')
@@ -221,54 +256,18 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_effective_staff()
 
-    def get_grace_container(
-        self,
-        kind=None,
-        ):
-        r'''Gets exactly one grace container of `kind` attached to client.
-
-        Raises error when no grace container of `kind` attaches to client.
-
-        Raises error when more than one grace container of `kind` attaches
-        to client.
-
-        Returns grace container.
-        '''
-        grace_containers = self.get_grace_containers(kind=kind)
-        if not grace_containers:
-            message = 'no grace containers of {!r} attached.'
-            message = message.format(kind)
-            raise Exception(message)
-        if 1 < len(grace_containers):
-            message = 'more than one grace container of {!r} attached.'
-            message = message.format(kind)
-            raise Exception(message)
-        grace_container = grace_containers[0]
-        return grace_container
-
-    def get_grace_containers(
-        self,
-        kind=None,
-        ):
-        r'''Gets grace containers attached to leaf.
+    def get_grace_container(self):
+        r'''Gets grace container attached to leaf.
 
         ..  container:: example
 
-            Get all grace containers attached to note:
+            Get acciaccatura container attached to note:
 
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> grace_container = scoretools.GraceContainer(
-                ...     [Note("cs'16")],
-                ...     kind='grace',
-                ...     )
-                >>> attach(grace_container, staff[1])
-                >>> after_grace = scoretools.GraceContainer(
-                ...     [Note("ds'16")],
-                ...     kind='after'
-                ...     )
-                >>> attach(after_grace, staff[1])
+                >>> acciaccatura = AcciaccaturaContainer([Note("cs'16")])
+                >>> attach(acciaccatura, staff[1])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -276,48 +275,23 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> f(staff)
                 \new Staff {
                     c'8
-                    \grace {
+                    \acciaccatura {
                         cs'16
                     }
-                    \afterGrace
                     d'8
-                    {
-                        ds'16
-                    }
                     e'8
                     f'8
                 }
 
             ::
 
-                >>> inspect(staff[1]).get_grace_containers()
-                (GraceContainer("cs'16"), GraceContainer("ds'16"))
+                >>> inspect(staff[1]).get_grace_container()
+                AcciaccaturaContainer("cs'16")
 
-        ..  container:: example
-
-            Get only (proper) grace containers attached to note:
-
-            ::
-
-                >>> inspect(staff[1]).get_grace_containers(kind='grace')
-                (GraceContainer("cs'16"),)
-
-        ..  container:: example
-
-            Get only after grace containers attached to note:
-
-            ::
-
-                >>> inspect(staff[1]).get_grace_containers(kind='after')
-                (GraceContainer("ds'16"),)
-
-        Set `kind` to ``'grace'``, ``'after'`` or none.
-
-        Returns tuple.
+        Returns grace container, acciaccatura container, appoggiatura container
+        or none.
         '''
-        return self._client._get_grace_containers(
-            kind=kind,
-            )
+        return self._client._grace_container
 
     def get_indicator(
         self,
@@ -556,10 +530,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> voice = Voice("c'4 d'4 e'4 f'4")
                 >>> grace_notes = [Note("c'16"), Note("d'16")]
-                >>> grace_container = scoretools.GraceContainer(
-                ...     grace_notes,
-                ...     kind='grace',
-                ...     )
+                >>> grace_container = GraceContainer(grace_notes)
                 >>> attach(grace_container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
@@ -590,10 +561,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> voice = Voice("c'4 d'4 e'4 f'4")
                 >>> grace_notes = [Note("c'16"), Note("d'16")]
-                >>> grace_container = scoretools.GraceContainer(
-                ...     grace_notes,
-                ...     kind='grace',
-                ...     )
+                >>> grace_container = GraceContainer(grace_notes)
                 >>> attach(grace_container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
@@ -741,15 +709,10 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
                 >>> grace_notes = [Note("c'16"), Note("d'16")]
-                >>> grace = scoretools.GraceContainer(
-                ...     grace_notes,
-                ...     kind='grace',
-                ...     )
+                >>> grace = GraceContainer(grace_notes)
                 >>> attach(grace, voice[1])
                 >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-                >>> after_grace = scoretools.GraceContainer(
-                ...     after_grace_notes,
-                ...     kind='after')
+                >>> after_grace = AfterGraceContainer(after_grace_notes)
                 >>> attach(after_grace, voice[1])
                 >>> show(voice) # doctest: +SKIP
 

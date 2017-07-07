@@ -8,32 +8,34 @@ from abjad.tools.scoretools.Context import Context
 
 
 class Score(Context):
-    r'''A score.
+    r'''Score.
 
-    ::
+    ..  container:: example
 
-        >>> staff_1 = Staff("c'8 d'8 e'8 f'8")
-        >>> staff_2 = Staff("c'8 d'8 e'8 f'8")
-        >>> score = Score([staff_1, staff_2])
-        >>> show(score) # doctest: +SKIP
+        ::
 
-    ..  docs::
+            >>> staff_1 = Staff("c'8 d'8 e'8 f'8")
+            >>> staff_2 = Staff("c'8 d'8 e'8 f'8")
+            >>> score = Score([staff_1, staff_2])
+            >>> show(score) # doctest: +SKIP
 
-        >>> f(score)
-        \new Score <<
-            \new Staff {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            \new Staff {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-        >>
+        ..  docs::
+
+            >>> f(score)
+            \new Score <<
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
 
     '''
 

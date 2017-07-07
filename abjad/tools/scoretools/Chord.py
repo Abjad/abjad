@@ -10,7 +10,7 @@ from abjad.tools.topleveltools import inspect
 
 
 class Chord(Leaf):
-    r'''A chord.
+    r'''Chord.
 
     ..  container:: example
 

@@ -82,12 +82,13 @@ class Parentage(Selection):
                 parent = component
             else:
                 parent = component._parent
+            prototype = (
+                scoretools.AfterGraceContainer,
+                scoretools.GraceContainer,
+                )
             while parent is not None:
                 music.append(parent)
-                if (
-                    with_grace_notes and
-                    isinstance(parent, scoretools.GraceContainer)
-                    ):
+                if with_grace_notes and isinstance(parent, prototype):
                     parent = parent._carrier
                 else:
                     parent = parent._parent
@@ -100,12 +101,12 @@ class Parentage(Selection):
     def _get_governor(self):
         from abjad.tools import scoretools
         for component in self:
-            if isinstance(component, scoretools.Container) and \
-                not component.is_simultaneous:
+            if (isinstance(component, scoretools.Container) and
+                not component.is_simultaneous):
                 if component._parent is None:
                     return component
-                if isinstance(component._parent, scoretools.Container) and \
-                    component._parent.is_simultaneous:
+                if (isinstance(component._parent, scoretools.Container) and
+                    component._parent.is_simultaneous):
                     return component
 
     @staticmethod
@@ -172,10 +173,7 @@ class Parentage(Selection):
 
                 >>> voice = Voice("c'4 d'4 e'4 f'4")
                 >>> grace_notes = [Note("c'16"), Note("d'16")]
-                >>> grace_container = scoretools.GraceContainer(
-                ...     grace_notes,
-                ...     kind='grace',
-                ...     )
+                >>> grace_container = GraceContainer(grace_notes)
                 >>> attach(grace_container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
@@ -198,6 +196,7 @@ class Parentage(Selection):
                 >>> for leaf in iterate(voice).by_leaf(with_grace_notes=True):
                 ...     parentage = inspect(leaf).get_parentage()
                 ...     print(leaf, parentage.is_grace_note)
+                ...
                 c'4 False
                 c'16 True
                 d'16 True
@@ -379,10 +378,7 @@ class Parentage(Selection):
 
                 >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
                 >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                >>> grace = scoretools.GraceContainer(
-                ...     grace_notes,
-                ...     kind='grace',
-                ...     )
+                >>> grace = GraceContainer(grace_notes)
                 >>> attach(grace, voice[1])
                 >>> show(voice) # doctest: +SKIP
 

@@ -15,7 +15,7 @@ from abjad.tools.scoretools.FixedDurationContainer \
 
 
 class Measure(FixedDurationContainer):
-    r'''A measure.
+    r'''Measure.
 
     ..  container:: example
 

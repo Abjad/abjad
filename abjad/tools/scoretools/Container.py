@@ -10,7 +10,7 @@ from abjad.tools.scoretools.Component import Component
 
 
 class Container(Component):
-    r'''A container.
+    r'''Container.
 
     ..  container:: example
 

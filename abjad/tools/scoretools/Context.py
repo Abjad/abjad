@@ -5,26 +5,27 @@ from abjad.tools.scoretools.Container import Container
 
 
 class Context(Container):
-    '''A horizontal layer of music.
+    '''LilyPond context.
+    
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> context = scoretools.Context(
-        ...     name='MeterVoice',
-        ...     context_name='TimeSignatureContext',
-        ...     )
+            >>> context = scoretools.Context(
+            ...     name='MeterVoice',
+            ...     context_name='TimeSignatureContext',
+            ...     )
 
-    ::
+        ::
 
-        >>> context
-        Context()
+            >>> context
+            Context()
 
-    ..  docs::
+        ..  docs::
 
-        >>> f(context)
-        \context TimeSignatureContext = "MeterVoice" {
-        }
-
+            >>> f(context)
+            \context TimeSignatureContext = "MeterVoice" {
+            }
 
     '''
 

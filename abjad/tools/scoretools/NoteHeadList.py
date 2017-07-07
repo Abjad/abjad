@@ -4,32 +4,34 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class NoteHeadList(TypedList):
-    r'''An ordered list of note-heads.
+    r'''Note-head list.
 
-    ::
+    ..  container:: example
 
-        >>> chord = Chord([0, 1, 4], (1, 4))
-        >>> note_heads = scoretools.NoteHeadList(
-        ...     client=chord,
-        ...     items=[11, 10, 9],
-        ...     )
+        ::
 
-    ::
+            >>> chord = Chord([0, 1, 4], (1, 4))
+            >>> note_heads = scoretools.NoteHeadList(
+            ...     client=chord,
+            ...     items=[11, 10, 9],
+            ...     )
 
-        >>> f(note_heads)
-        abjad.NoteHeadList(
-            [
-                abjad.NoteHead(
-                    written_pitch=abjad.NamedPitch("a'"),
-                    ),
-                abjad.NoteHead(
-                    written_pitch=abjad.NamedPitch("bf'"),
-                    ),
-                abjad.NoteHead(
-                    written_pitch=abjad.NamedPitch("b'"),
-                    ),
-                ]
-            )
+        ::
+
+            >>> f(note_heads)
+            abjad.NoteHeadList(
+                [
+                    abjad.NoteHead(
+                        written_pitch=abjad.NamedPitch("a'"),
+                        ),
+                    abjad.NoteHead(
+                        written_pitch=abjad.NamedPitch("bf'"),
+                        ),
+                    abjad.NoteHead(
+                        written_pitch=abjad.NamedPitch("b'"),
+                        ),
+                    ]
+                )
 
     '''
 

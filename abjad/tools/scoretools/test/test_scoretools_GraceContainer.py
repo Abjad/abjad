@@ -7,10 +7,10 @@ def test_scoretools_GraceContainer_01():
     r'''Grace music is a container.
     '''
 
-    gracecontainer = scoretools.GraceContainer(
-        [Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
+    notes = [Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))]
+    grace_container = GraceContainer(notes)
 
-    assert format(gracecontainer) == stringtools.normalize(
+    assert format(grace_container) == stringtools.normalize(
         r'''
         \grace {
             c'16
@@ -20,36 +20,15 @@ def test_scoretools_GraceContainer_01():
         '''
         )
 
-    assert isinstance(gracecontainer, Container)
-    assert len(gracecontainer) == 3
+    assert isinstance(grace_container, Container)
+    assert len(grace_container) == 3
+
 
 
 def test_scoretools_GraceContainer_02():
-    r'''GraceContainer.kind is managed attribute.
-    GraceContainer.kind knows about "after", "grace",
-    "acciaccatura", "appoggiatura".
-    '''
 
-    gracecontainer = scoretools.GraceContainer(
-        [Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
-    gracecontainer.kind = 'acciaccatura'
-    assert gracecontainer.kind == 'acciaccatura'
-    gracecontainer.kind = 'grace'
-    assert gracecontainer.kind == 'grace'
-    gracecontainer.kind = 'after'
-    assert gracecontainer.kind == 'after'
-    gracecontainer.kind = 'appoggiatura'
-    assert gracecontainer.kind == 'appoggiatura'
-    assert pytest.raises(Exception, 'gracecontainer.kind = "blah"')
-
-
-def test_scoretools_GraceContainer_03():
-    r'''Grace formats correctly as grace.
-    '''
-
-    gracecontainer = scoretools.GraceContainer("c'8 c'8 c'8")
-    gracecontainer.kind = 'grace'
-    assert format(gracecontainer) == stringtools.normalize(
+    grace_container = GraceContainer("c'8 c'8 c'8")
+    assert format(grace_container) == stringtools.normalize(
         r'''
         \grace {
             c'8
@@ -60,13 +39,10 @@ def test_scoretools_GraceContainer_03():
         )
 
 
-def test_scoretools_GraceContainer_04():
-    r'''Grace formats correctly as acciaccatura.
-    '''
+def test_scoretools_GraceContainer_03():
 
-    gracecontainer = scoretools.GraceContainer("c'8 c'8 c'8")
-    gracecontainer.kind = 'acciaccatura'
-    assert format(gracecontainer) == stringtools.normalize(
+    grace_container = AcciaccaturaContainer("c'8 c'8 c'8")
+    assert format(grace_container) == stringtools.normalize(
         r'''
         \acciaccatura {
             c'8
@@ -77,13 +53,10 @@ def test_scoretools_GraceContainer_04():
         )
 
 
-def test_scoretools_GraceContainer_05():
-    r'''Grace formats correctly as appoggiatura.
-    '''
+def test_scoretools_GraceContainer_04():
 
-    gracecontainer = scoretools.GraceContainer("c'8 c'8 c'8")
-    gracecontainer.kind = 'appoggiatura'
-    assert format(gracecontainer) == stringtools.normalize(
+    grace_container = AppoggiaturaContainer("c'8 c'8 c'8")
+    assert format(grace_container) == stringtools.normalize(
         r'''
         \appoggiatura {
             c'8
@@ -94,13 +67,10 @@ def test_scoretools_GraceContainer_05():
         )
 
 
-def test_scoretools_GraceContainer_06():
-    r'''Grace formats correctly as after grace.
-    '''
+def test_scoretools_GraceContainer_05():
 
-    gracecontainer = scoretools.GraceContainer("c'8 c'8 c'8")
-    gracecontainer.kind = 'after'
-    assert format(gracecontainer) == stringtools.normalize(
+    grace_container = AfterGraceContainer("c'8 c'8 c'8")
+    assert format(grace_container) == stringtools.normalize(
         r'''
         {
             c'8
@@ -111,23 +81,23 @@ def test_scoretools_GraceContainer_06():
         )
 
 
-def test_scoretools_GraceContainer_07():
+def test_scoretools_GraceContainer_06():
     r'''Grace containers can be appended.
     '''
 
-    gracecontainer = scoretools.GraceContainer("c'8 c'8")
+    grace_container = GraceContainer("c'8 c'8")
     note = Note(1, (1, 4))
-    gracecontainer.append(note)
-    assert len(gracecontainer) == 3
-    assert gracecontainer[-1] is note
+    grace_container.append(note)
+    assert len(grace_container) == 3
+    assert grace_container[-1] is note
 
 
-def test_scoretools_GraceContainer_08():
+def test_scoretools_GraceContainer_07():
     r'''Grace containers can be extended.
     '''
 
-    gracecontainer = scoretools.GraceContainer("c'8 c'8")
+    grace_container = GraceContainer("c'8 c'8")
     ns = Note(1, (1, 4)) * 2
-    gracecontainer.extend(ns)
-    assert len(gracecontainer) == 4
-    assert tuple(gracecontainer[-2:]) == tuple(ns)
+    grace_container.extend(ns)
+    assert len(grace_container) == 4
+    assert tuple(grace_container[-2:]) == tuple(ns)

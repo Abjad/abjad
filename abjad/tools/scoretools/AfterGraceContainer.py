@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.scoretools.GraceContainer import GraceContainer
+from abjad.tools.scoretools.Container import Container
 
 
-class AfterGraceContainer(GraceContainer):
-    r'''An after grace container.
+class AfterGraceContainer(Container):
+    r'''After grace container.
 
     ..  container:: example
 
@@ -12,6 +12,9 @@ class AfterGraceContainer(GraceContainer):
         ::
 
             >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> string = '#(define afterGraceFraction (cons 15 16))'
+            >>> literal = LilyPondLiteral(string)
+            >>> attach(literal, voice[0])
             >>> notes = [Note("c'16"), Note("d'16")]
             >>> after_grace_container = AfterGraceContainer(notes)
             >>> attach(after_grace_container, voice[1])
@@ -21,6 +24,7 @@ class AfterGraceContainer(GraceContainer):
 
             >>> f(voice)
             \new Voice {
+                #(define afterGraceFraction (cons 15 16))
                 c'4
                 \afterGrace
                 d'4
@@ -32,6 +36,20 @@ class AfterGraceContainer(GraceContainer):
                 f'4
             }
 
+        LilyPond positions after grace notes at a point 3/4 of the way
+        after the note they follow. The resulting spacing is usually too
+        loose.
+
+        Customize aftterGraceFraction as shown above.
+
+    After grace notes are played at the very end of the note they follow.
+
+    Use after grace notes when you need to end a piece of music with grace
+    notes.
+
+    After grace notes do not subclass grace notes; but acciacatura containers
+    and appoggiatura containers do subclass grace notes.
+
     Fill grace containers with notes, rests or chords.
 
     Attach after grace containers to notes, rests or chords.
@@ -42,25 +60,35 @@ class AfterGraceContainer(GraceContainer):
     __documentation_section__ = 'Containers'
 
     __slots__ = (
+        '_carrier',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, music=None):
-        GraceContainer.__init__(self, music=music, kind='after')
+        self._carrier = None
+        Container.__init__(self, music)
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def kind(self):
-        r'''Deprecated.
-        '''
-        return self._kind
+    def _attach(self, leaf):
+        import abjad
+        if not isinstance(leaf, abjad.Leaf):
+            message = 'must attach to leaf: {!r}.'
+            message = message.format(leaf)
+            raise TypeError(message)
+        leaf._after_grace_container = self
+        self._carrier = leaf
 
-    @kind.setter
-    def kind(self, argument):
-        if argument not in self._allowable_kinds:
-            message = 'unknown grace container kind: {!r}.'
-            message = message.format(argument)
-            raise Exception(message)
-        self._kind = argument
+    def _detach(self):
+        if self._carrier is not None:
+            carrier = self._carrier
+            carrier._after_grace_container = None
+            self._carrier = None
+            self[:] = []
+        return self
+
+    def _format_open_brackets_slot(self, bundle):
+        result = []
+        result.append([('grace_brackets', 'open'), ['{']])
+        return tuple(result)

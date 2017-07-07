@@ -51,7 +51,7 @@ def test_scoretools_Note___copy___04():
     '''
 
     note_1 = Note("c'4")
-    grace_container_1 = scoretools.GraceContainer([Note("d'32")], kind='after')
+    grace_container_1 = AfterGraceContainer([Note("d'32")])
     attach(grace_container_1, note_1)
 
     assert format(note_1) == stringtools.normalize(
@@ -65,7 +65,7 @@ def test_scoretools_Note___copy___04():
         )
 
     note_2 = copy.copy(note_1)
-    grace_container_2 = inspect(note_2).get_grace_container()
+    grace_container_2 = inspect(note_2).get_after_grace_container()
 
     assert format(note_2) == stringtools.normalize(
         r'''
@@ -79,7 +79,7 @@ def test_scoretools_Note___copy___04():
 
     assert note_1 is not note_2
     assert grace_container_1 is not grace_container_2
-    assert grace_container_1.kind == grace_container_2.kind == 'after'
+    assert isinstance(grace_container_1, AfterGraceContainer)
 
 
 
@@ -90,7 +90,7 @@ def test_scoretools_Note___copy___05():
     note = Note("c'4")
     articulation = Articulation('staccato')
     attach(articulation, note)
-    grace = scoretools.GraceContainer("d'16")
+    grace = GraceContainer("d'16")
     attach(grace, note)
     override(note).note_head.color = 'red'
 
@@ -118,7 +118,7 @@ def test_scoretools_Note___copy___06():
     note = staff[0]
     articulation = Articulation('staccato')
     attach(articulation, note)
-    grace = scoretools.GraceContainer("d'16")
+    grace = GraceContainer("d'16")
     attach(grace, note)
     override(note).note_head.color = 'red'
 

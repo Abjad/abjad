@@ -8,7 +8,7 @@ from abjad.tools.topleveltools import inspect
 
 
 class Note(Leaf):
-    r'''A note.
+    r'''Note.
 
     ..  container:: example
 

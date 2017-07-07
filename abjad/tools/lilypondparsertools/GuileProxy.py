@@ -47,17 +47,15 @@ class GuileProxy(AbjadObject):
     def acciaccatura(self, music):
         r'''Handles LilyPond ``\acciaccatura`` command.
         '''
-        grace = scoretools.GraceContainer(music[:])
-        grace.kind = 'acciaccatura'
+        grace = scoretools.AcciaccaturaContainer(music[:])
         return grace
 
-    # afterGrace
+    # afterGrace?
 
     def appoggiatura(self, music):
         r'''Handles LilyPond ``\appoggiatura`` command.
         '''
-        grace = scoretools.GraceContainer(music[:])
-        grace.kind = 'appoggiatura'
+        grace = scoretools.AppoggiaturaContainer(music[:])
         return grace
 
     def bar(self, string):
@@ -177,7 +175,6 @@ class GuileProxy(AbjadObject):
         r'''Handles LilyPond ``\slahsedGrace`` command.
         '''
         grace = scoretools.GraceContainer(music[:])
-        grace.kind = 'slashedGrace'
         return grace
 
     def time(self, number_list, fraction):

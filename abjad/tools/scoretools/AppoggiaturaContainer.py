@@ -3,7 +3,14 @@ from abjad.tools.scoretools.GraceContainer import GraceContainer
 
 
 class AppoggiaturaContainer(GraceContainer):
-    r'''An appoggiatura container.
+    r'''Appoggiatura container.
+
+    Appoggiaturas are played on the beat.
+
+    LilyPond positions appoggiaturas immediately before main notes.
+
+    LilyPond formats appoggiaturas with a slur but without a slashed
+    stem.
 
     ..  container:: example
 
@@ -43,23 +50,9 @@ class AppoggiaturaContainer(GraceContainer):
     __slots__ = (
         )
 
-    ### INITIALIZER ###
+    ### PRIVATE METHODS ###
 
-    def __init__(self, music=None):
-        GraceContainer.__init__(self, music=music, kind='appoggiatura')
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def kind(self):
-        r'''Deprecated.
-        '''
-        return self._kind
-
-    @kind.setter
-    def kind(self, argument):
-        if argument not in self._allowable_kinds:
-            message = 'unknown grace container kind: {!r}.'
-            message = message.format(argument)
-            raise Exception(message)
-        self._kind = argument
+    def _format_open_brackets_slot(self, bundle):
+        result = []
+        result.append([('grace_brackets', 'open'), [r'\appoggiatura {']])
+        return tuple(result)

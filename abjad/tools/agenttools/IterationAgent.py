@@ -125,16 +125,16 @@ class IterationAgent(abctools.AbjadObject):
 
     def _by_components_and_grace_containers(self, prototype=None):
         prototype = prototype or scoretools.Leaf
-        if getattr(self._client, '_grace', None) is not None:
-            for component in self._client._grace:
+        if getattr(self._client, '_grace_container', None) is not None:
+            for component in self._client._grace_container:
                 for x in iterate(component)._by_components_and_grace_containers(
                     prototype,
                     ):
                     yield x
         if isinstance(self._client, prototype):
             yield self._client
-        if getattr(self._client, '_after_grace', None) is not None:
-            for component in self._client._after_grace:
+        if getattr(self._client, '_after_grace_container', None) is not None:
+            for component in self._client._after_grace_container:
                 for x in iterate(component)._by_components_and_grace_containers(
                     prototype,
                     ):
@@ -457,10 +457,7 @@ class IterationAgent(abctools.AbjadObject):
 
                     >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
                     >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
+                    >>> grace = GraceContainer(grace_notes)
                     >>> attach(grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
@@ -526,15 +523,10 @@ class IterationAgent(abctools.AbjadObject):
 
                     >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
                     >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
+                    >>> grace = GraceContainer(grace_notes)
                     >>> attach(grace, voice[1])
                     >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
-                    >>> after_grace = scoretools.GraceContainer(
-                    ...     after_grace_notes,
-                    ...     kind='after')
+                    >>> after_grace = AfterGraceContainer(after_grace_notes)
                     >>> attach(after_grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
@@ -1017,15 +1009,10 @@ class IterationAgent(abctools.AbjadObject):
 
                     >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
                     >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
+                    >>> grace = GraceContainer(grace_notes)
                     >>> attach(grace, voice[1])
                     >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
-                    >>> after_grace = scoretools.GraceContainer(
-                    ...     after_grace_notes,
-                    ...     kind='after')
+                    >>> after_grace = AfterGraceContainer(after_grace_notes)
                     >>> attach(after_grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
@@ -1628,10 +1615,7 @@ class IterationAgent(abctools.AbjadObject):
 
                     >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
                     >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
+                    >>> grace = GraceContainer(grace_notes)
                     >>> attach(grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
@@ -1657,6 +1641,7 @@ class IterationAgent(abctools.AbjadObject):
                     ...     with_grace_notes=True,
                     ...     ):
                     ...     logical_tie
+                    ...
                     LogicalTie([Note("c'8")])
                     LogicalTie([Note("cf''16")])
                     LogicalTie([Note("bf'16")])
@@ -1692,9 +1677,7 @@ class IterationAgent(abctools.AbjadObject):
 
                     >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
                     >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
-                    >>> after_grace = scoretools.GraceContainer(
-                    ...     after_grace_notes,
-                    ...     kind='after')
+                    >>> after_grace = AfterGraceContainer(after_grace_notes)
                     >>> attach(after_grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
@@ -1721,6 +1704,7 @@ class IterationAgent(abctools.AbjadObject):
                     ...     with_grace_notes=True,
                     ...     ):
                     ...     logical_tie
+                    ...
                     LogicalTie([Note("c'8")])
                     LogicalTie([Note("d'8")])
                     LogicalTie([Note("af'16")])
@@ -1757,15 +1741,10 @@ class IterationAgent(abctools.AbjadObject):
 
                     >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
                     >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
+                    >>> grace = GraceContainer(grace_notes)
                     >>> attach(grace, voice[1])
                     >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
-                    >>> after_grace = scoretools.GraceContainer(
-                    ...     after_grace_notes,
-                    ...     kind='after')
+                    >>> after_grace = AfterGraceContainer(after_grace_notes)
                     >>> attach(after_grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
@@ -3298,10 +3277,7 @@ class IterationAgent(abctools.AbjadObject):
 
                     >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
                     >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
+                    >>> grace = GraceContainer(grace_notes)
                     >>> attach(grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
@@ -4382,15 +4358,10 @@ class IterationAgent(abctools.AbjadObject):
 
                     >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
                     >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
+                    >>> grace = GraceContainer(grace_notes)
                     >>> attach(grace, voice[1])
                     >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
-                    >>> after_grace = scoretools.GraceContainer(
-                    ...     after_grace_notes,
-                    ...     kind='after')
+                    >>> after_grace = AfterGraceContainer(after_grace_notes)
                     >>> attach(after_grace, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
@@ -4426,7 +4397,7 @@ class IterationAgent(abctools.AbjadObject):
                     GraceContainer("cf''16 bf'16")
                     Note("cf''16")
                     Note("bf'16")
-                    GraceContainer("af'16 gf'16")
+                    AfterGraceContainer("af'16 gf'16")
                     Note("af'16")
                     Note("gf'16")
                     Note("e'8")
@@ -4447,7 +4418,7 @@ class IterationAgent(abctools.AbjadObject):
                     GraceContainer("cf''16 bf'16")
                     Note("cf''16")
                     Note("bf'16")
-                    GraceContainer("af'16 gf'16")
+                    AfterGraceContainer("af'16 gf'16")
                     Note("af'16")
                     Note("gf'16")
                     Note("e'8")
@@ -4469,6 +4440,7 @@ class IterationAgent(abctools.AbjadObject):
 
             If client has no univisited music and no parent, return none.
             '''
+            import abjad
             # if component is a container with not-yet-returned children
             if (
                 hasattr(component, '_music') and
@@ -4478,13 +4450,13 @@ class IterationAgent(abctools.AbjadObject):
                 # return next not-yet-returned child
                 return component[total], 0
             # if component is a leaf with grace container attached
-            elif getattr(component, '_grace', None) is not None:
+            elif getattr(component, '_grace_container', None) is not None:
                 # return grace container
-                return component._grace, 0
+                return component._grace_container, 0
             # if component is a leaf with after grace container attached
-            elif getattr(component, '_after_grace', None) is not None:
+            elif getattr(component, '_after_grace_container', None) is not None:
                 # return after grace container
-                return component._after_grace, 0
+                return component._after_grace_container, 0
             # if component is grace container with all children returned
             elif hasattr(component, '_carrier'):
                 carrier = component._carrier
@@ -4493,10 +4465,10 @@ class IterationAgent(abctools.AbjadObject):
                     return None, None
                 # if there's also an after grace container
                 if (
-                    not component.kind == 'after' and
-                    carrier._after_grace is not None
+                    not isinstance(component, abjad.AfterGraceContainer) and
+                    carrier._after_grace_container is not None
                     ):
-                    return carrier._after_grace, 0
+                    return carrier._after_grace_container, 0
                 carrier_parent = carrier._parent
                 # if carrier has no parent
                 if carrier_parent is None:

@@ -18,7 +18,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Component(AbjadObject):
-    r'''Abstract base class from which score components inherit.
+    r'''Abstract component.
 
     Notes, rests, chords, tuplets, measures, voices, staves, staff groups and
     scores are all components.
@@ -27,9 +27,7 @@ class Component(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_after_grace',
         '_dependent_expressions',
-        '_grace',
         '_indicator_expressions',
         '_indicators_are_current',
         '_is_forbidden_to_update',
@@ -54,9 +52,7 @@ class Component(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, name=None):
-        self._after_grace = None
         self._dependent_expressions = []
-        self._grace = None
         self._indicator_expressions = []
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
@@ -207,12 +203,6 @@ class Component(AbjadObject):
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)
         return new
-
-    def _detach_grace_containers(self, kind=None):
-        grace_containers = self._get_grace_containers(kind=kind)
-        for grace_container in grace_containers:
-            detach(grace_container, self)
-        return grace_containers
 
     def _detach_spanners(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
@@ -431,31 +421,6 @@ class Component(AbjadObject):
             repr_args_values=values,
             storage_format_kwargs_names=[]
             )
-
-    def _get_grace_containers(self, kind=None):
-        from abjad.tools import scoretools
-        result = []
-        if (
-            kind in (None, 'grace') and
-            getattr(self, '_grace', None) is not None
-            ):
-            result.append(self._grace)
-        if (
-            kind in (None, 'after') and
-            getattr(self, '_after_grace', None) is not None
-            ):
-            result.append(self._after_grace)
-        elif kind == scoretools.GraceContainer:
-            if self._grace is not None:
-                result.append(self._grace)
-            if self._after_grace is not None:
-                result.append(self._after_grace)
-        elif isinstance(kind, scoretools.GraceContainer):
-            if self._grace is not None:
-                result.append(self._grace)
-            if self._after_grace is not None:
-                result.append(self._after_grace)
-        return tuple(result)
 
     def _get_in_my_logical_voice(self, n, prototype=None):
         if 0 <= n:

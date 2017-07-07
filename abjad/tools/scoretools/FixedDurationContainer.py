@@ -4,7 +4,7 @@ from abjad.tools.scoretools.Container import Container
 
 
 class FixedDurationContainer(Container):
-    r'''A fixed-duration container.
+    r'''Fixed-duration container.
 
     ::
 

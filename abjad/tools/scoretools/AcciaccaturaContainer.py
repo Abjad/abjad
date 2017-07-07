@@ -3,7 +3,17 @@ from abjad.tools.scoretools.GraceContainer import GraceContainer
 
 
 class AcciaccaturaContainer(GraceContainer):
-    r'''An acciaccatura container.
+    r'''Acciaccatura container.
+
+    Acciaccaturas are played before the beat.
+
+    LilyPond positions acciaccaturas immediately before main notes.
+
+    LilyPond formats one-note acciaccaturas with a slashed stem and a slur.
+
+    ..  note:: LilyPond fails to format multinote acciaccaturas
+        with a slashed stem. This means that multinote
+        acciaccaturas look exactly like appoggiaturas.
 
     ..  container:: example
 
@@ -43,23 +53,9 @@ class AcciaccaturaContainer(GraceContainer):
     __slots__ = (
         )
 
-    ### INITIALIZER ###
+    ### PRIVATE METHODS ###
 
-    def __init__(self, music=None):
-        GraceContainer.__init__(self, music=music, kind='acciaccatura')
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def kind(self):
-        r'''Deprecated.
-        '''
-        return self._kind
-
-    @kind.setter
-    def kind(self, argument):
-        if argument not in self._allowable_kinds:
-            message = 'unknown grace container kind: {!r}.'
-            message = message.format(argument)
-            raise Exception(message)
-        self._kind = argument
+    def _format_open_brackets_slot(self, bundle):
+        result = []
+        result.append([('grace_brackets', 'open'), [r'\acciaccatura {']])
+        return tuple(result)

@@ -47,14 +47,17 @@ def detach(prototype, component_expression=None):
         prototype._detach()
         return
     assert component_expression is not None
+    after_grace_container = None
+    grace_container = None
     spanners = []
-    grace_containers = []
     inspector = abjad.inspect(component_expression)
     if isinstance(prototype, type):
         if issubclass(prototype, abjad.Spanner):
             spanners = inspector.get_spanners(prototype)
+        elif issubclass(prototype, abjad.AfterGraceContainer):
+            after_grace_container = inspector.get_after_grace_container()
         elif issubclass(prototype, abjad.GraceContainer):
-            grace_containers = inspector.get_grace_containers(prototype)
+            grace_container = inspector.get_grace_container()
         else:
             assert hasattr(component_expression, '_indicator_expressions')
             result = []
@@ -74,10 +77,10 @@ def detach(prototype, component_expression=None):
     else:
         if isinstance(prototype, abjad.Spanner):
             spanners = inspector.get_spanners(prototype)
+        elif isinstance(prototype, abjad.AfterGraceContainer):
+            after_grace_container = inspector.get_after_grace_container()
         elif isinstance(prototype, abjad.GraceContainer):
-            grace_containers = inspector.get_grace_containers(
-                kind=prototype.kind,
-                )
+            grace_container = inspector.get_grace_container()
         else:
             assert hasattr(component_expression, '_indicator_expressions')
             result = []
@@ -96,7 +99,10 @@ def detach(prototype, component_expression=None):
             return result
     items = []
     items.extend(spanners)
-    items.extend(grace_containers)
+    if after_grace_container is not None:
+        items.append(after_grace_container)
+    if grace_container is not None:
+        items.append(grace_container)
     for item in items:
         item._detach()
     items = tuple(items)
