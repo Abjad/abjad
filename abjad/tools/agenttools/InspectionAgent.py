@@ -78,32 +78,6 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._after_grace_container
 
-    def get_annotation(self, name, default=None):
-        r'''Gets value of annotation with `name` attached to client.
-
-        Returns `default` when no annotation with `name` is attached
-        to client.
-
-        Raises exception when more than one annotation with `name`
-        is attached to client.
-        '''
-        from abjad.tools import indicatortools
-        annotations = self.get_indicators(indicatortools.Annotation)
-        if not annotations:
-            return default
-        with_correct_name = []
-        for annotation in annotations:
-            if annotation.name == name:
-                with_correct_name.append(annotation)
-        if not with_correct_name:
-            return default
-        if 1 < len(with_correct_name):
-            message = 'multiple annotations with name {!r} attached.'
-            message = message.format(name)
-            raise Exception(message)
-        annotation_value = with_correct_name[0].value
-        return annotation_value
-
     def get_badly_formed_components(self):
         r'''Gets badly formed components in client.
 
@@ -297,9 +271,30 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         prototype=None,
         default=None,
+        name=None,
         unwrap=True,
         ):
         r'''Gets indicator of `prototype` attached to client.
+
+        ..  container:: example
+
+            Gets named indicator:
+
+            ::
+
+                >>> note = Note("c'4")
+                >>> attach(Down, note, name='bow_direction')
+                >>> attach(Fraction(1, 7), note, name='bow_fraction')
+
+            ::
+
+                >>> abjad.inspect(note).get_indicator(name='bow_direction')
+                Down
+
+            ::
+
+                >>> abjad.inspect(note).get_indicator(name='bow_fraction')
+                Fraction(1, 7)
 
         Raises exception when more than one indicator of `prototype` attach to
         client.
@@ -309,9 +304,10 @@ class InspectionAgent(abctools.AbjadObject):
         Returns indicator or default.
         '''
         indicators = self._client._get_indicators(
-                prototype=prototype,
-                unwrap=unwrap,
-                )
+            prototype=prototype,
+            name=name,
+            unwrap=unwrap,
+            )
         if not indicators:
             return default
         elif len(indicators) == 1:
@@ -323,15 +319,16 @@ class InspectionAgent(abctools.AbjadObject):
     def get_indicators(
         self,
         prototype=None,
+        name=None,
         unwrap=True,
         ):
-        r'''Get all indicators matching `prototype` attached
-        to client.
+        r'''Get all indicators matching `prototype` attached to client.
 
         Returns tuple.
         '''
         return self._client._get_indicators(
             prototype=prototype,
+            name=name,
             unwrap=unwrap,
             )
 

@@ -30,48 +30,20 @@ def test_agenttools_InspectionAgent_get_indicator_02():
 def test_agenttools_InspectionAgent_get_indicator_03():
 
     note = Note("c'8")
-    annotation = indicatortools.Annotation('special information')
-    attach(annotation, note)
-
-    assert inspect(note).get_indicator(indicatortools.Annotation) is annotation
-
-
-def test_agenttools_InspectionAgent_get_indicator_04():
-
-    note = Note("c'8")
-
-    assert inspect(note).get_indicator(indicatortools.Annotation) is None
-
-
-def test_agenttools_InspectionAgent_get_indicator_05():
-
-    note = Note("c'8")
-    annotation = indicatortools.Annotation('special information')
-    attach(annotation, note)
-    annotation = indicatortools.Annotation('more special information')
-    attach(annotation, note)
-
-    statement = 'inspect(note).get_indicator(indicatortools.Annotation)'
-    assert pytest.raises(Exception, statement)
-
-
-def test_agenttools_InspectionAgent_get_indicator_06():
-
-    note = Note("c'8")
     articulation = Articulation('staccato')
     attach(articulation, note)
 
     assert inspect(note).get_indicator(Articulation) is articulation
 
 
-def test_agenttools_InspectionAgent_get_indicator_07():
+def test_agenttools_InspectionAgent_get_indicator_04():
 
     note = Note("c'8")
 
     assert inspect(note).get_indicator(Articulation) is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_08():
+def test_agenttools_InspectionAgent_get_indicator_05():
 
     note = Note("c'8")
     articulation = Articulation('staccato')
@@ -83,7 +55,7 @@ def test_agenttools_InspectionAgent_get_indicator_08():
     assert pytest.raises(Exception, statement)
 
 
-def test_agenttools_InspectionAgent_get_indicator_09():
+def test_agenttools_InspectionAgent_get_indicator_06():
 
     note = Note("c'8")
     command = indicatortools.LilyPondCommand('stemUp')
@@ -93,14 +65,14 @@ def test_agenttools_InspectionAgent_get_indicator_09():
     assert result is command
 
 
-def test_agenttools_InspectionAgent_get_indicator_10():
+def test_agenttools_InspectionAgent_get_indicator_07():
 
     note = Note("c'8")
 
     assert inspect(note).get_indicator(indicatortools.LilyPondCommand) is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_11():
+def test_agenttools_InspectionAgent_get_indicator_08():
 
     note = Note("c'8")
     command = indicatortools.LilyPondCommand('stemUp')
@@ -112,7 +84,7 @@ def test_agenttools_InspectionAgent_get_indicator_11():
     assert pytest.raises(Exception, statement)
 
 
-def test_agenttools_InspectionAgent_get_indicator_12():
+def test_agenttools_InspectionAgent_get_indicator_09():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
@@ -143,7 +115,7 @@ def test_agenttools_InspectionAgent_get_indicator_12():
     assert len(indicators) == 2
 
 
-def test_agenttools_InspectionAgent_get_indicator_13():
+def test_agenttools_InspectionAgent_get_indicator_10():
 
     note = Note("c'8")
     comment = indicatortools.LilyPondComment('comment')
@@ -153,14 +125,14 @@ def test_agenttools_InspectionAgent_get_indicator_13():
     assert indicator is comment
 
 
-def test_agenttools_InspectionAgent_get_indicator_14():
+def test_agenttools_InspectionAgent_get_indicator_11():
 
     note = Note("c'8")
 
     assert inspect(note).get_indicator(indicatortools.LilyPondComment) is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_15():
+def test_agenttools_InspectionAgent_get_indicator_12():
 
     note = Note("c'8")
     comment = indicatortools.LilyPondComment('comment')
@@ -172,14 +144,14 @@ def test_agenttools_InspectionAgent_get_indicator_15():
     assert pytest.raises(Exception, statement)
 
 
-def test_agenttools_InspectionAgent_get_indicator_16():
+def test_agenttools_InspectionAgent_get_indicator_13():
 
     note = Note("c'8")
 
     assert inspect(note).get_indicator() is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_17():
+def test_agenttools_InspectionAgent_get_indicator_14():
 
     note = Note("c'4")
     stem_tremolo = indicatortools.StemTremolo(16)
@@ -189,7 +161,7 @@ def test_agenttools_InspectionAgent_get_indicator_17():
     assert stem_tremolo is stem_tremolo
 
 
-def test_agenttools_InspectionAgent_get_indicator_18():
+def test_agenttools_InspectionAgent_get_indicator_15():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     violin = instrumenttools.Violin()
@@ -200,7 +172,7 @@ def test_agenttools_InspectionAgent_get_indicator_18():
     assert indicator is violin
 
 
-def test_agenttools_InspectionAgent_get_indicator_19():
+def test_agenttools_InspectionAgent_get_indicator_16():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     indicator = inspect(measure).get_indicator(TimeSignature)

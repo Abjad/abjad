@@ -137,9 +137,10 @@ class QTarget(AbjadObject):
         voice=None,
         ):
         for leaf in iterate(voice).by_leaf():
-            if leaf._has_indicator(indicatortools.Annotation):
-                annotation = leaf._get_indicator(indicatortools.Annotation)
-                pitches, grace_container = grace_handler(annotation.value)
+            if leaf._has_indicator(dict):
+                annotation = leaf._get_indicator(dict)
+                q_events = annotation['q_events']
+                pitches, grace_container = grace_handler(q_events)
                 if not pitches:
                     new_leaf = scoretools.Rest(leaf)
                 elif 1 < len(pitches):

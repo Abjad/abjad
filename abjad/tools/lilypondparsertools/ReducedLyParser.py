@@ -321,7 +321,7 @@ class ReducedLyParser(abctools.Parser):
         '''
         p[0] = p[1]
         if p[2]:
-            annotation = indicatortools.Annotation('post events', p[2])
+            annotation = {'post events': p[2]}
             attach(annotation, p[0])
 
     def p_leaf_body__chord_body(self, p):
@@ -587,17 +587,17 @@ class ReducedLyParser(abctools.Parser):
         if leaves:
             self._apply_spanners(leaves)
         for leaf in leaves:
-            detach(indicatortools.Annotation, leaf)
+            detach(dict, leaf)
         if 1 < self._toplevel_component_count:
             return parsed
         return parsed[0]
 
     def _get_span_events(self, leaf):
-        annotations = leaf._get_indicators(indicatortools.Annotation)
-        detach(indicatortools.Annotation, leaf)
-        annotations = [x for x in annotations if x.name == 'post events']
+        annotations = leaf._get_indicators(dict)
+        detach(dict, leaf)
+        annotations = [x for x in annotations if 'post events' in x]
         if annotations:
-            return annotations[0].value
+            return annotations[0]['post events']
         return {}
 
     def _setup(self):

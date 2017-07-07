@@ -114,29 +114,6 @@ def test_agenttools_InspectionAgent_get_indicators_04():
 def test_agenttools_InspectionAgent_get_indicators_05():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    annotation_1 = indicatortools.Annotation('annotation 1')
-    attach(annotation_1, staff[0])
-    annotation_2 = indicatortools.Annotation('annotation 2')
-    attach(annotation_2, staff[0])
-
-    assert format(staff) == stringtools.normalize(
-        r'''
-        \new Staff {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-        '''
-        ), format(staff)
-
-    annotations = inspect(staff[0]).get_indicators(indicatortools.Annotation)
-    assert annotations == (annotation_1, annotation_2)
-
-
-def test_agenttools_InspectionAgent_get_indicators_06():
-
-    staff = Staff("c'8 d'8 e'8 f'8")
     comment_1 = indicatortools.LilyPondComment('comment 1')
     attach(comment_1, staff[0])
     comment_2 = indicatortools.LilyPondComment('comment 2')
@@ -162,7 +139,7 @@ def test_agenttools_InspectionAgent_get_indicators_06():
     assert len(indicators) == 2
 
 
-def test_agenttools_InspectionAgent_get_indicators_07():
+def test_agenttools_InspectionAgent_get_indicators_06():
 
     note = Note("c'4")
     stem_tremolo = indicatortools.StemTremolo(16)

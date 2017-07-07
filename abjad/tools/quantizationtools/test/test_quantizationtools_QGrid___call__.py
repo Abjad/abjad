@@ -19,13 +19,14 @@ def test_quantizationtools_QGrid___call___01():
     assert len(result) == 1
     assert format(result[0]) == "c'4"
 
-    annotation = inspect(result[0]).get_indicator(indicatortools.Annotation)
+    annotation = inspect(result[0]).get_indicator(dict)
+    q_events = annotation['q_events']
 
-    assert isinstance(annotation.value, tuple) and len(annotation.value) == 4
-    assert annotation.value[0].attachments == ('A',)
-    assert annotation.value[1].attachments == ('B',)
-    assert annotation.value[2].attachments == ('C',)
-    assert annotation.value[3].attachments == ('D',)
+    assert isinstance(q_events, tuple) and len(q_events) == 4
+    assert q_events[0].attachments == ('A',)
+    assert q_events[1].attachments == ('B',)
+    assert q_events[2].attachments == ('C',)
+    assert q_events[3].attachments == ('D',)
 
 
 def test_quantizationtools_QGrid___call___02():
@@ -62,24 +63,26 @@ def test_quantizationtools_QGrid___call___02():
 
     leaves = select(result[0]).by_leaf()
     leaf = leaves[0]
-    annotation = inspect(leaf).get_indicators(indicatortools.Annotation)[0]
-    assert isinstance(annotation.value, tuple) and len(annotation.value) == 2
-    assert annotation.value[0].attachments == ('A',)
-    assert annotation.value[1].attachments == ('B',)
+    annotation = inspect(leaf).get_indicator(dict)
+    q_events = annotation['q_events']
+    assert isinstance(q_events, tuple) and len(q_events) == 2
+    assert q_events[0].attachments == ('A',)
+    assert q_events[1].attachments == ('B',)
 
     leaf = leaves[1]
-    assert not inspect(leaf).get_indicators(indicatortools.Annotation)
+    assert not inspect(leaf).get_indicator(dict)
 
     leaf = leaves[2]
-    annotation = inspect(leaf).get_indicator(indicatortools.Annotation)
+    annotation = inspect(leaf).get_indicator(dict)
+    q_events = annotation['q_events']
 
-    assert isinstance(annotation.value, tuple) and len(annotation.value) == 3
-    assert annotation.value[0].attachments == ('C',)
-    assert annotation.value[1].attachments == ('D',)
-    assert annotation.value[2].attachments == ('E',)
+    assert isinstance(q_events, tuple) and len(q_events) == 3
+    assert q_events[0].attachments == ('C',)
+    assert q_events[1].attachments == ('D',)
+    assert q_events[2].attachments == ('E',)
 
     for leaf in leaves[3:6]:
-        assert not inspect(leaf).get_indicators(indicatortools.Annotation)
+        assert not inspect(leaf).get_indicators(dict)
 
 
 def test_quantizationtools_QGrid___call___03():

@@ -1103,7 +1103,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             multiplier = durationtools.Multiplier(p[2].multiplier)
             attach(multiplier, chord)
         self.client._process_post_events(chord, p[3])
-        annotation = indicatortools.Annotation('UnrelativableMusic')
+        annotation = {'UnrelativableMusic': True}
         attach(annotation, chord)
         if self.client._last_chord not in self.client._repeated_chords:
             self.client._repeated_chords[self.client._last_chord] = []

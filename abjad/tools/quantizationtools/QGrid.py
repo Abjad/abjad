@@ -126,8 +126,7 @@ class QGrid(AbjadObject):
                     for q_event_proxy in q_grid_leaf.q_event_proxies]
                 q_events.sort(
                     key=lambda x: 0 if x.index is None else x.index)
-                annotation = indicatortools.Annotation(
-                    'q_events', tuple(q_events))
+                annotation = {'q_events': tuple(q_events)}
                 attach(annotation, result_leaf)
         return result
 
@@ -140,8 +139,8 @@ class QGrid(AbjadObject):
         return type(self)(copy.copy(root_node), copy.copy(next_downbeat))
 
     def __eq__(self, argument):
-        r'''True if `argument` is a q-grid with root node and next downbeat equal
-        to those of this q-grid. Otherwise false.
+        r'''True if `argument` is a q-grid with root node and next downbeat
+        equal to those of this q-grid. Otherwise false.
 
         Returns true or false.
         '''

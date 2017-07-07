@@ -639,13 +639,14 @@ class LilyPondParser(abctools.Parser):
             }
 
     def _get_span_events(self, leaf):
-        annotations = leaf._get_indicators(indicatortools.Annotation)
-        detach(indicatortools.Annotation, leaf)
+        annotations = leaf._get_indicators(dict)
+        detach(dict, leaf)
         if annotations:
             spanners_annotations = [
-                x for x in annotations if x.name == 'spanners']
+                _ for _ in annotations if 'spanners' in _
+                ]
             if 1 == len(spanners_annotations):
-                return spanners_annotations[0].value
+                return spanners_annotations[0]['spanners']
             elif 1 < len(spanners_annotations):
                 message = 'multiple span events lists attached to {}.'
                 message = message.format(leaf)
@@ -678,15 +679,15 @@ class LilyPondParser(abctools.Parser):
                 attach(post_event, leaf)
             else:
                 annotation = [
-                    x for x in leaf._get_indicators(indicatortools.Annotation)
-                    if x.name == 'spanners'
+                    x for x in leaf._get_indicators(dict)
+                    if 'spanners' in x
                     ]
                 if not annotation:
-                    annotation = indicatortools.Annotation('spanners', [])
+                    annotation = {'spanners': []}
                     attach(annotation, leaf)
                 else:
                     annotation = annotation[0]
-                annotation.value.append(post_event)
+                annotation['spanners'].append(post_event)
 
     def _push_extra_token(self, token):
         self._parser.lookaheadstack.append(token)

@@ -449,7 +449,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                <literal_block xml:space="preserve">
 #                    >>> [x for x in dir() if not x.startswith('_')]
 #                    ['AbjadObject', 'AbjadValueObject',
-#                    'Accelerando', 'Accidental', 'Annotation',
+#                    'Accelerando', 'Accidental',
 #                    'Arpeggio', 'Arrow', 'Articulation',
 #                    'AssignabilityError', 'BarLine', 'Beam',
 #                    'BendAfter', 'Block', 'BowContactPoint',

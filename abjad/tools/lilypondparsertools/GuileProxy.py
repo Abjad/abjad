@@ -251,8 +251,9 @@ class GuileProxy(AbjadObject):
     ### HELPER FUNCTIONS ###
 
     def _is_unrelativable(self, music):
-        annotations = music._get_indicators(indicatortools.Annotation)
-        if 'UnrelativableMusic' in [x.name for x in annotations]:
+        annotations = music._get_indicators(dict)
+        keys = [list(_.keys())[0] for _ in annotations]
+        if 'UnrelativableMusic' in keys:
             return True
         return False
 
@@ -275,7 +276,7 @@ class GuileProxy(AbjadObject):
 
     def _make_unrelativable(self, music):
         if not self._is_unrelativable(music):
-            annotation = indicatortools.Annotation('UnrelativableMusic')
+            annotation = {'UnrelativableMusic': True}
             attach(annotation, music)
 
     def _to_relative_octave(self, pitch, reference):

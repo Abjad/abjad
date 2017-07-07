@@ -37,7 +37,6 @@ class IndicatorExpression(AbjadValueObject):
         from abjad.tools import spannertools
         assert not isinstance(indicator, type(self)), repr(indicator)
         if component is not None:
-            #assert isinstance(component, scoretools.Component)
             prototype = (scoretools.Component, spannertools.Spanner)
             assert isinstance(component, prototype)
         if scope is not None:
