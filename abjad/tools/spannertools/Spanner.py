@@ -9,7 +9,7 @@ from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import select
-from abjad.tools.topleveltools import set_
+from abjad.tools.topleveltools import setting
 Selection = selectiontools.Selection
 
 
@@ -75,7 +75,7 @@ class Spanner(AbjadObject):
         if getattr(self, '_lilypond_grob_name_manager', None) is not None:
             new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
-            new._lilypond_setting_name_manager = copy.copy(set_(self))
+            new._lilypond_setting_name_manager = copy.copy(setting(self))
         self._copy_keyword_args(new)
         new._name = self.name
         return new

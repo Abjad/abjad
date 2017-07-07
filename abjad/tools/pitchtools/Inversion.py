@@ -210,8 +210,8 @@ class Inversion(AbjadValueObject):
             ::
 
                 >>> inversion = Inversion()
-                >>> set_ = PitchClassSet("c d e")
-                >>> inversion(set_)
+                >>> setting = PitchClassSet("c d e")
+                >>> inversion(setting)
                 PitchClassSet(['c', 'af', 'bf'])
 
         Returns new object with type equal to that of `argument`.

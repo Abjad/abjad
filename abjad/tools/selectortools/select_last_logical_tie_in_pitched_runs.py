@@ -39,7 +39,7 @@ def select_last_logical_tie_in_pitched_runs(argument=None):
             >>> staff.extend(r"c'4. d'8 ~ \times 2/3 { d'4 r4 e'4 ~ } e'8 f'4.")
             >>> result = selector(staff)
             >>> label(result).color_alternating()
-            >>> set_(staff).auto_beaming = False
+            >>> setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

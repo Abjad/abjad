@@ -16,7 +16,7 @@ class DuratedComplexBeam(ComplexBeam):
         ::
 
             >>> staff = Staff("c'16 d'16 e'16 f'16 g'16")
-            >>> set_(staff).auto_beaming = False
+            >>> setting(staff).auto_beaming = False
             >>> durations = [Duration(2, 16), Duration(3, 16)]
             >>> beam = DuratedComplexBeam(
             ...     durations=durations,
@@ -55,7 +55,7 @@ class DuratedComplexBeam(ComplexBeam):
         ::
 
             >>> staff = Staff("c'16 d'16 e'16 f'16 g'16")
-            >>> set_(staff).auto_beaming = False
+            >>> setting(staff).auto_beaming = False
             >>> durations = [Duration(3, 16), Duration(2, 16)]
             >>> beam = DuratedComplexBeam(
             ...     durations=durations,
@@ -455,7 +455,7 @@ class DuratedComplexBeam(ComplexBeam):
             ::
 
                 >>> staff = Staff("c'16 d'16 e'8 f'16 c'16")
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> durations = [Duration(1, 8), Duration(1, 8), Duration(1, 8)]
                 >>> beam = DuratedComplexBeam(
                 ...     durations=durations,

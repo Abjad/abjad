@@ -11,4 +11,4 @@ def configure_score(score):
         spacing_vector
     abjad.override(score).staff_grouper.staff_staff_spacing = spacing_vector
     abjad.override(score).staff_symbol.thickness = 0.5
-    abjad.set_(score).mark_formatter = abjad.Scheme('format-mark-box-numbers')
+    abjad.setting(score).mark_formatter = abjad.Scheme('format-mark-box-numbers')

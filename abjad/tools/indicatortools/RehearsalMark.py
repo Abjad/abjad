@@ -17,7 +17,7 @@ class RehearsalMark(AbjadValueObject):
             >>> mark = indicatortools.RehearsalMark(number=1)
             >>> attach(mark, staff[0])
             >>> scheme = schemetools.Scheme('format-mark-box-alphabet')
-            >>> set_(score).markFormatter = scheme
+            >>> setting(score).markFormatter = scheme
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -46,7 +46,7 @@ class RehearsalMark(AbjadValueObject):
             >>> mark = indicatortools.RehearsalMark(number=2)
             >>> attach(mark, staff[0])
             >>> scheme = schemetools.Scheme('format-mark-box-alphabet')
-            >>> set_(score).markFormatter = scheme
+            >>> setting(score).markFormatter = scheme
             >>> show(score) # doctest: +SKIP
 
         ..  docs::

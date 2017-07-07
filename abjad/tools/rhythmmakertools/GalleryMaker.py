@@ -13,7 +13,7 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
-from abjad.tools.topleveltools import set_
+from abjad.tools.topleveltools import setting
 
 
 class GalleryMaker(AbjadValueObject):
@@ -308,7 +308,7 @@ class GalleryMaker(AbjadValueObject):
             )
         measures = scoretools.make_spacer_skip_measures(division_list)
         staff = scoretools.Staff(measures)
-        set_(staff).instrument_name = score_number_markup
+        setting(staff).instrument_name = score_number_markup
         staff.context_name = 'RhythmicStaff'
         staff.name = 'Note-entry staff'
         measures = mutate(staff).replace_measure_contents(selections)

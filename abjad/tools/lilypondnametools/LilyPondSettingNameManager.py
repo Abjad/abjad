@@ -14,7 +14,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
         ::
 
             >>> note = Note("c'4")
-            >>> set_(note)
+            >>> setting(note)
             LilyPondSettingNameManager()
 
     '''
@@ -29,7 +29,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
             ::
 
                 >>> staff = Staff("c'4 d' e' f'")
-                >>> set_(staff).instrument_name = Markup('Vn. I')
+                >>> setting(staff).instrument_name = Markup('Vn. I')
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -50,7 +50,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
             ::
 
-                >>> set_(staff).instrument_name
+                >>> setting(staff).instrument_name
                 Markup(contents=['Vn. I'])
 
         '''

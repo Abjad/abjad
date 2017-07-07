@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import set_
+from abjad.tools.topleveltools import setting
 
 
 def make_text_alignment_example_lilypond_file(music=None):
@@ -82,7 +82,7 @@ def make_text_alignment_example_lilypond_file(music=None):
     override(context_block).text_script.staff_padding = 4
     override(context_block).time_signature.transparent = True
     moment = schemetools.SchemeMoment((1, 32))
-    set_(context_block).proportionalNotationDuration = moment
+    setting(context_block).proportionalNotationDuration = moment
 
     lilypond_file.paper_block.bottom_margin = 10
     lilypond_file.paper_block.left_margin = 10

@@ -108,7 +108,7 @@ class Segment(TypedTuple):
         last_leaf = abjad.select().by_leaf()(score)[-1][-1]
         abjad.attach(command, last_leaf)
         moment = abjad.schemetools.SchemeMoment((1, 12))
-        abjad.set_(score).proportional_notation_duration = moment
+        abjad.setting(score).proportional_notation_duration = moment
         lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(music=score)
         if 'title' in keywords:
             title = keywords.get('title')

@@ -14,16 +14,16 @@ class PitchSet(Set):
 
         ::
 
-            >>> set_ = PitchSet(
+            >>> setting = PitchSet(
             ...     items=[-2, -1.5, 6, 7, -1.5, 7],
             ...     item_class=NumberedPitch,
             ...     )
-            >>> set_
+            >>> setting
             PitchSet([-2, -1.5, 6, 7])
 
         ::
 
-            >>> f(set_)
+            >>> f(setting)
             abjad.PitchSet(
                 [-2, -1.5, 6, 7]
                 )
@@ -34,16 +34,16 @@ class PitchSet(Set):
 
         ::
 
-            >>> set_ = PitchSet(
+            >>> setting = PitchSet(
             ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
             ...     item_class=NamedPitch,
             ...     )
-            >>> set_
+            >>> setting
             PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
 
         ::
 
-            >>> f(set_)
+            >>> f(setting)
             abjad.PitchSet(
                 ['bf,', 'aqs', 'bqf', "fs'", "g'"]
                 )
@@ -66,18 +66,18 @@ class PitchSet(Set):
 
             ::
 
-                >>> set_ = PitchSet(
+                >>> setting = PitchSet(
                 ...     items=[-2, -1.5, 6, 7, -1.5, 7],
                 ...     item_class=NumberedPitch,
                 ...     )
 
             ::
             
-                >>> show(set_) # doctest: +SKIP
+                >>> show(setting) # doctest: +SKIP
 
             ..  docs::
 
-                >>> lilypond_file = set_.__illustrate__()
+                >>> lilypond_file = setting.__illustrate__()
                 >>> f(lilypond_file[Score])
                 \new Score <<
                     \new PianoStaff <<
@@ -100,18 +100,18 @@ class PitchSet(Set):
 
             ::
 
-                >>> set_ = PitchSet(
+                >>> setting = PitchSet(
                 ...     items=[6, 7, 7],
                 ...     item_class=NumberedPitch,
                 ...     )
 
             ::
             
-                >>> show(set_) # doctest: +SKIP
+                >>> show(setting) # doctest: +SKIP
 
             ..  docs::
 
-                >>> lilypond_file = set_.__illustrate__()
+                >>> lilypond_file = setting.__illustrate__()
                 >>> f(lilypond_file[Score])
                 \new Score <<
                     \new PianoStaff <<

@@ -62,12 +62,12 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> set_ = PitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
-                >>> show(set_) # doctest: +SKIP
+                >>> setting = PitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+                >>> show(setting) # doctest: +SKIP
 
             ..  docs::
 
-                >>> lilypond_file = set_.__illustrate__()
+                >>> lilypond_file = setting.__illustrate__()
                 >>> f(lilypond_file[Voice])
                 \new Voice {
                     <fs' g' bf' bqf'>1
@@ -80,15 +80,15 @@ class PitchClassSet(Set):
             ::
 
                 >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> set_ = PitchClassSet(
+                >>> setting = PitchClassSet(
                 ...     items=items,
                 ...     item_class=NamedPitchClass,
                 ...     )
-                >>> show(set_) # doctest: +SKIP
+                >>> show(setting) # doctest: +SKIP
 
             ..  docs::
 
-                >>> lilypond_file = set_.__illustrate__()
+                >>> lilypond_file = setting.__illustrate__()
                 >>> f(lilypond_file[Voice])
                 \new Voice {
                     <c' d' ef' bqs'>1
@@ -101,7 +101,7 @@ class PitchClassSet(Set):
             ::
 
                 >>> prototype = lilypondfiletools.LilyPondFile
-                >>> isinstance(set_.__illustrate__(), prototype)
+                >>> isinstance(setting.__illustrate__(), prototype)
                 True
 
         '''

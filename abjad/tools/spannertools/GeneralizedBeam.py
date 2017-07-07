@@ -13,7 +13,7 @@ class GeneralizedBeam(Spanner):
         ::
 
             >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> set_(staff).auto_beaming = False
+            >>> setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
@@ -44,7 +44,7 @@ class GeneralizedBeam(Spanner):
         ::
 
             >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> set_(staff).auto_beaming = False
+            >>> setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
@@ -77,7 +77,7 @@ class GeneralizedBeam(Spanner):
         ::
 
             >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> set_(staff).auto_beaming = False
+            >>> setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::

@@ -44,7 +44,7 @@ def select_nonlast_logical_ties_in_pitched_runs(argument=None):
             ...     )
             >>> result = selector(staff)
             >>> label(result).color_alternating()
-            >>> set_(staff).auto_beaming = False
+            >>> setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

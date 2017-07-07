@@ -7,8 +7,8 @@ def configure_score(score):
     '''
 
     moment = abjad.SchemeMoment(1, 56)
-    abjad.set_(score).proportional_notation_duration = moment
-    abjad.set_(score).tuplet_full_length = True
+    abjad.setting(score).proportional_notation_duration = moment
+    abjad.setting(score).tuplet_full_length = True
     abjad.override(score).bar_line.stencil = False
     abjad.override(score).bar_number.transparent = True
     abjad.override(score).spacing_spanner.uniform_stretching = True

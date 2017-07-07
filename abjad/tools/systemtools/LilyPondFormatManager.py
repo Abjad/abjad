@@ -99,16 +99,16 @@ class LilyPondFormatManager(AbjadObject):
     @staticmethod
     def _populate_context_setting_format_contributions(component, bundle):
         result = []
-        from abjad.tools.topleveltools import set_
+        from abjad.tools.topleveltools import setting
         from abjad.tools import scoretools
         manager = LilyPondFormatManager
         if isinstance(component, scoretools.Context):
-            for name, value in vars(set_(component)).items():
+            for name, value in vars(setting(component)).items():
                 string = manager.format_lilypond_context_setting_in_with_block(
                     name, value)
                 result.append(string)
         else:
-            contextualizer = set_(component)
+            contextualizer = setting(component)
             variables = vars(contextualizer)
             for name, value in variables.items():
                 # if we've found a leaf context namespace

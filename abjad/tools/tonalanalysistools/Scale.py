@@ -10,7 +10,7 @@ from abjad.tools import sequencetools
 from abjad.tools import systemtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import set_
+from abjad.tools.topleveltools import setting
 from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 
 
@@ -239,7 +239,7 @@ class Scale(PitchClassSegment):
         key_signature = copy.copy(self.key_signature)
         attach(key_signature, staff)
         score = scoretools.Score([staff])
-        set_(score).tempo_wholes_per_minute = schemetools.SchemeMoment(30)
+        setting(score).tempo_wholes_per_minute = schemetools.SchemeMoment(30)
         return score
 
     def named_pitch_class_to_scale_degree(self, *arguments):

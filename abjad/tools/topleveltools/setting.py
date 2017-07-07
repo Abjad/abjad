@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def set_(argument):
+def setting(argument):
     r'''Makes LilyPond setting name manager.
 
     ..  container:: example
@@ -11,7 +11,7 @@ def set_(argument):
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
-            >>> set_(staff).instrument_name = Markup('Vn. I')
+            >>> setting(staff).instrument_name = Markup('Vn. I')
             >>> show(staff) # doctest: +SKIP
 
 
@@ -33,7 +33,7 @@ def set_(argument):
 
         ::
 
-            >>> set_(staff)
+            >>> setting(staff)
             LilyPondSettingNameManager(('instrument_name', Markup(contents=['Vn. I'])))
 
     '''

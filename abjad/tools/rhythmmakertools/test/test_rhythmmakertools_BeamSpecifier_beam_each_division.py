@@ -24,7 +24,7 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)
     score = Score([staff])
-    set_(score).autoBeaming = False
+    setting(score).autoBeaming = False
 
     assert format(staff) == stringtools.normalize(
         r'''

@@ -72,7 +72,7 @@ class MarkupCommand(AbjadValueObject):
             >>> small_staff = Staff("fs'16 gs'16 as'16 b'16")
             >>> small_staff.remove_commands.append('Clef_engraver')
             >>> small_staff.remove_commands.append('Time_signature_engraver')
-            >>> set_(small_staff).font_size = -3
+            >>> setting(small_staff).font_size = -3
             >>> layout_block = lilypondfiletools.Block(name='layout')
             >>> layout_block.indent = 0
             >>> layout_block.ragged_right = True

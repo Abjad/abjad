@@ -381,7 +381,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___17():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff).instrument_name = markuptools.Markup(r'\circle { V }')
+    setting(staff).instrument_name = markuptools.Markup(r'\circle { V }')
     override(staff).instrument_name.color = 'red'
 
     assert format(staff) == stringtools.normalize(

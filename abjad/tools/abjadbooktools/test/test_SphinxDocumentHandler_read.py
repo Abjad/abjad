@@ -576,7 +576,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'select_nonlast_logical_ties_in_pitched_runs',
 #                    'select_pitched_runs', 'selectiontools',
 #                    'selectortools', 'sequence', 'sequencetools',
-#                    'set_', 'show', 'silence', 'silence_all',
+#                    'setting', 'show', 'silence', 'silence_all',
 #                    'silence_every', 'silence_except',
 #                    'silence_first', 'silence_last',
 #                    'spannertools', 'stringtools', 'sustain',

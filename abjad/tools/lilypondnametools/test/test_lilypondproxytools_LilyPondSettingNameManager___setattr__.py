@@ -3,11 +3,11 @@ from abjad import *
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___01():
-    r'''Define LilyPond autoBeaming context set_.
+    r'''Define LilyPond autoBeaming context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff).auto_beaming = True
+    setting(staff).auto_beaming = True
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -26,12 +26,12 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___01():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___02():
-    r'''Remove LilyPond autoBeaming context set_.
+    r'''Remove LilyPond autoBeaming context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff).auto_beaming = True
-    del(set_(staff).auto_beaming)
+    setting(staff).auto_beaming = True
+    del(setting(staff).auto_beaming)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -48,11 +48,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___02():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___03():
-    r'''Define LilyPond currentBarNumber context set_.
+    r'''Define LilyPond currentBarNumber context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff[0]).score.current_bar_number = 12
+    setting(staff[0]).score.current_bar_number = 12
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -70,13 +70,13 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___03():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___04():
-    r'''Define LilyPond currentBarNumber context set_.
+    r'''Define LilyPond currentBarNumber context setting.
     '''
 
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    set_(staff[0]).score.current_bar_number = 12
+    setting(staff[0]).score.current_bar_number = 12
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -99,11 +99,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___04():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___05():
-    r'''Define LilyPond fontSize context set_.
+    r'''Define LilyPond fontSize context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff).font_size = -3
+    setting(staff).font_size = -3
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -122,11 +122,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___05():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___06():
-    r'''Define LilyPond instrumentName context set_.
+    r'''Define LilyPond instrumentName context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff).instrument_name = 'Violini I'
+    setting(staff).instrument_name = 'Violini I'
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -145,11 +145,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___06():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___07():
-    r'''Define LilyPond instrumentName context set_.
+    r'''Define LilyPond instrumentName context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff).instrument_name = markuptools.Markup(r'\circle { V }')
+    setting(staff).instrument_name = markuptools.Markup(r'\circle { V }')
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -173,12 +173,12 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___07():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___08():
-    r'''Define LilyPond proportionalNotationDuration context set_.
+    r'''Define LilyPond proportionalNotationDuration context setting.
     '''
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
     moment = schemetools.SchemeMoment(Fraction(1, 56))
-    set_(score).proportional_notation_duration = moment
+    setting(score).proportional_notation_duration = moment
 
     assert format(score) == stringtools.normalize(
         r'''
@@ -199,11 +199,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___08():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___09():
-    r'''Define LilyPond shortInstrumentName context set_.
+    r'''Define LilyPond shortInstrumentName context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff).short_instrument_name = 'Vni. I'
+    setting(staff).short_instrument_name = 'Vni. I'
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -222,11 +222,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___09():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___10():
-    r'''Define LilyPond shortInstrumentName context set_.
+    r'''Define LilyPond shortInstrumentName context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff).short_instrument_name = markuptools.Markup(
+    setting(staff).short_instrument_name = markuptools.Markup(
         r'\circle { V }')
 
     assert format(staff) == stringtools.normalize(
@@ -251,11 +251,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___10():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___11():
-    r'''Define LilyPond suggestAccidentals context set_.
+    r'''Define LilyPond suggestAccidentals context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff).suggest_accidentals = True
+    setting(staff).suggest_accidentals = True
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -274,11 +274,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___11():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___12():
-    r'''Define LilyPond suggestAccidentals context set_.
+    r'''Define LilyPond suggestAccidentals context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    set_(staff[1]).suggest_accidentals = True
+    setting(staff[1]).suggest_accidentals = True
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -296,11 +296,11 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___12():
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
-    r'''Define LilyPond tupletFullLength context set_.
+    r'''Define LilyPond tupletFullLength context setting.
     '''
 
     staff = Staff([])
-    set_(staff).tuplet_full_length = True
+    setting(staff).tuplet_full_length = True
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -313,7 +313,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
 
     assert not len(staff)
 
-    set_(staff).tuplet_full_length = False
+    setting(staff).tuplet_full_length = False
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -326,7 +326,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
 
     assert not len(staff)
 
-    del(set_(staff).tuplet_full_length)
+    del(setting(staff).tuplet_full_length)
 
     assert format(staff) == stringtools.normalize(
         r'''

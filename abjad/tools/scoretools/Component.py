@@ -13,7 +13,7 @@ from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import set_
+from abjad.tools.topleveltools import setting
 from abjad.tools.abctools import AbjadObject
 
 
@@ -198,7 +198,7 @@ class Component(AbjadObject):
         if getattr(self, '_lilypond_grob_name_manager', None) is not None:
             new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
-            new._lilypond_setting_name_manager = copy.copy(set_(self))
+            new._lilypond_setting_name_manager = copy.copy(setting(self))
         for indicator in self._get_indicators(unwrap=False):
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)

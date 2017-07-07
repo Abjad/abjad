@@ -55,7 +55,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
         # -*- coding: utf-8 -*-
         from abjad import attach
         from abjad import iterate
-        from abjad import set_
+        from abjad import setting
         from abjad.tools import abctools
         from abjad.tools import indicatortools
         from abjad.tools import lilypondfiletools
@@ -91,7 +91,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                     )
                 first_bar_number = segment_metadata.get('first_bar_number', 1)
                 if 1 < first_bar_number:
-                    set_(score).current_bar_number = first_bar_number
+                    setting(score).current_bar_number = first_bar_number
                 segment_number = segment_metadata.get('segment_number', 1)
                 segment_count = segment_metadata.get('segment_count', 1)
                 if 1 < segment_number:

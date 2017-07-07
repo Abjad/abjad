@@ -29,25 +29,25 @@ Proportional notation duration
 ..  abjad::
     :no-stylesheet:
 
-    set_(score).proportional_notation_duration = schemetools.SchemeMoment(1, 16)
+    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 16)
     show(score)
 
 ..  abjad::
     :no-stylesheet:
 
-    set_(score).proportional_notation_duration = schemetools.SchemeMoment(1, 24)
+    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 24)
     show(score)
 
 ..  abjad::
     :no-stylesheet:
 
-    set_(score).proportional_notation_duration = schemetools.SchemeMoment(1, 32)
+    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 32)
     show(score)
 
 ..  abjad::
     :no-stylesheet:
 
-    set_(score).proportional_notation_duration = schemetools.SchemeMoment(1, 48)
+    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 48)
     show(score)
 
 Strict note spacing

@@ -7,7 +7,7 @@ from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools.override import override
-from abjad.tools.topleveltools.set_ import set_
+from abjad.tools.topleveltools.setting import setting
 
 
 class Duration(AbjadObject, Fraction):
@@ -555,13 +555,13 @@ class Duration(AbjadObject, Fraction):
         override(staff).tuplet_bracket.shorten_pair = (-1, -1.5)
         scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
         override(staff).tuplet_number.text = scheme
-        set_(staff).tuplet_full_length = True
+        setting(staff).tuplet_full_length = True
         layout_block = lilypondfiletools.Block(name='layout')
         layout_block.indent = 0
         layout_block.ragged_right = True
         score = scoretools.Score([staff])
         override(score).spacing_spanner.spacing_increment = 0.5
-        set_(score).proportional_notation_duration = False
+        setting(score).proportional_notation_duration = False
         return score, layout_block
 
     @staticmethod

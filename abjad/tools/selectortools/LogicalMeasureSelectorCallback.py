@@ -72,7 +72,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
             >>> staff = Staff("c'4 d' e' f' g' a' b' c''")
             >>> score = Score([staff])
             >>> scheme = schemetools.SchemeMoment((1, 16))
-            >>> set_(score).proportional_notation_duration = scheme
+            >>> setting(score).proportional_notation_duration = scheme
             >>> show(score) # doctest: +SKIP
 
         ::

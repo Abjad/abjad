@@ -28,7 +28,7 @@ class Selector(AbjadValueObject):
             >>> staff = Staff(string)
             >>> result = selector(staff)
             >>> label(result).color_alternating()
-            >>> set_(staff).auto_beaming = False
+            >>> setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -105,7 +105,7 @@ class Selector(AbjadValueObject):
             >>> staff = Staff(string)
             >>> result = selector(staff)
             >>> label(result).color_alternating()
-            >>> set_(staff).auto_beaming = False
+            >>> setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -300,7 +300,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -369,7 +369,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -543,7 +543,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 f'4 g'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -616,7 +616,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -673,7 +673,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -743,7 +743,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -825,7 +825,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -905,7 +905,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating(['red', 'blue', 'green'])
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1007,7 +1007,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
                 >>> result = selector(staff, rotation=1)
                 >>> label(result).color_alternating(['red', 'blue', 'green'])
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1116,7 +1116,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1168,7 +1168,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1226,7 +1226,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1301,7 +1301,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
 
@@ -1447,7 +1447,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1532,7 +1532,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1629,7 +1629,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1707,7 +1707,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1793,7 +1793,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1942,7 +1942,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2036,7 +2036,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2127,7 +2127,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2199,7 +2199,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2274,7 +2274,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2347,7 +2347,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2420,7 +2420,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2493,7 +2493,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2571,7 +2571,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2639,7 +2639,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2745,7 +2745,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2819,7 +2819,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2903,7 +2903,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2976,7 +2976,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3055,7 +3055,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3119,7 +3119,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3191,7 +3191,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3320,7 +3320,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3437,7 +3437,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -3467,7 +3467,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff, rotation=1)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3533,7 +3533,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3600,7 +3600,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3669,7 +3669,7 @@ class Selector(AbjadValueObject):
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3725,7 +3725,7 @@ class Selector(AbjadValueObject):
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3798,7 +3798,7 @@ class Selector(AbjadValueObject):
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3862,7 +3862,7 @@ class Selector(AbjadValueObject):
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3931,7 +3931,7 @@ class Selector(AbjadValueObject):
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4030,7 +4030,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4089,7 +4089,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4160,7 +4160,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4255,7 +4255,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4301,7 +4301,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4354,7 +4354,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4413,7 +4413,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4493,7 +4493,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4567,7 +4567,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4643,7 +4643,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4701,7 +4701,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4761,7 +4761,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4815,7 +4815,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4887,7 +4887,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4989,7 +4989,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5088,7 +5088,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5189,7 +5189,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5296,7 +5296,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5354,7 +5354,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5434,7 +5434,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5519,7 +5519,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5600,7 +5600,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5691,7 +5691,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5921,7 +5921,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5979,7 +5979,7 @@ class Selector(AbjadValueObject):
                 ...     """)
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6063,7 +6063,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6141,7 +6141,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6223,7 +6223,7 @@ class Selector(AbjadValueObject):
                 >>> label(result).color_alternating()
                 >>> manager = override(staff).sustain_pedal_line_spanner
                 >>> manager.staff_padding = 6
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6318,7 +6318,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6396,7 +6396,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
                 >>> result = selector(staff)
                 >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
