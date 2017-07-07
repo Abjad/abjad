@@ -30,6 +30,24 @@ class NamedPitch(Pitch):
                 cs''1 * 1/4
             }
 
+        Initializes quartertone from pitch name:
+
+            ::
+
+            >>> pitch = NamedPitch("aqs")
+            >>> show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "bass"
+                aqs1 * 1/4
+            }
+
     ..  container:: example
 
         Initializes from pitch-class / octave string:
@@ -48,6 +66,24 @@ class NamedPitch(Pitch):
             } {
                 \clef "treble"
                 cs''1 * 1/4
+            }
+
+        Initializes quartertone from pitch-class / octave string:
+
+        ::
+
+            >>> pitch = NamedPitch('A+3')
+            >>> show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "bass"
+                aqs1 * 1/4
             }
 
     ..  container:: example
@@ -598,6 +634,26 @@ class NamedPitch(Pitch):
         override_string = override_string.format(string)
         contributions.append(override_string)
         return contributions
+
+    def _respell_with_flats(self):
+        from abjad.tools import pitchtools
+        class_ = pitchtools.PitchClass
+        octave = pitchtools.Octave.from_pitch_number(
+            self.numbered_pitch.pitch_number)
+        name = class_._pitch_class_number_to_pitch_class_name_with_flats[
+            self.pitch_class_number]
+        pitch = type(self)(name, octave.number)
+        return pitch
+
+    def _respell_with_sharps(self):
+        from abjad.tools import pitchtools
+        class_ = pitchtools.PitchClass
+        octave = pitchtools.Octave.from_pitch_number(
+            self.numbered_pitch.pitch_number)
+        name = class_._pitch_class_number_to_pitch_class_name_with_sharps[
+            self.pitch_class_number]
+        pitch = type(self)(name, octave.number)
+        return pitch
 
     @staticmethod
     def _spell_pitch_number(pitch_number, diatonic_pitch_class_name):
@@ -1682,69 +1738,111 @@ class NamedPitch(Pitch):
         octave_floor = (self.octave.number - 4) * 12
         return type(self)(pitch_class_number + octave_floor)
 
-    def respell_with_flats(self):
-        r'''Respells named pitch with flats.
+    @staticmethod
+    def respell_with_flats(selection):
+        r'''Respells named pitches in `selection` with flats.
 
         ..  container:: example
 
-            Respells C#5 with flats:
+            Respells notes in staff:
 
             ::
 
-                >>> NamedPitch("cs''").respell_with_flats()
-                NamedPitch("df''")
+                >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+                >>> show(staff) # doctest: +SKIP
 
-        ..  container:: example
+            ..  docs::
 
-            Respells Db5 with flats:
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                }
 
             ::
 
-                >>> NamedPitch("df''").respell_with_flats()
-                NamedPitch("df''")
+                >>> NamedPitch.respell_with_flats(staff)
+                >>> show(staff) # doctest: +SKIP
 
-        Returns new named pitch.
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    df'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                }
+
+        Returns none.
         '''
-        from abjad.tools import pitchtools
-        class_ = pitchtools.PitchClass
-        octave = pitchtools.Octave.from_pitch_number(
-            self.numbered_pitch.pitch_number)
-        name = class_._pitch_class_number_to_pitch_class_name_with_flats[
-            self.pitch_class_number]
-        pitch = type(self)(name, octave.number)
-        return pitch
+        import abjad
+        for leaf in abjad.iterate(selection).by_leaf():
+            if isinstance(leaf, abjad.Note):
+                leaf.written_pitch = leaf.written_pitch._respell_with_flats()
+            elif isinstance(leaf, abjad.Chord):
+                for note_head in leaf.note_heads:
+                    pitch = note_head.written_pitch._respell_with_flats()
+                    note_head.written_pitch = pitch
 
-    def respell_with_sharps(self):
-        r'''Respells named pitch with sharps.
-
-        ..  container:: example
-
-            Respells Db5 with sharps:
-
-            ::
-
-                >>> NamedPitch("df''").respell_with_sharps()
-                NamedPitch("cs''")
+    @staticmethod
+    def respell_with_sharps(selection):
+        r'''Respells named pitches in selection with sharps.
 
         ..  container:: example
 
-            Respells C#5 with sharps:
+            Respells notes in staff:
 
             ::
 
-                >>> NamedPitch("cs''").respell_with_sharps()
-                NamedPitch("cs''")
+                >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+                >>> show(staff) # doctest: +SKIP
 
-        Returns new named pitch.
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                }
+
+            ::
+
+                >>> NamedPitch.respell_with_sharps(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    cs'8
+                    d'8
+                    ds'8
+                    e'8
+                    f'8
+                }
+
+        Returns none.
         '''
-        from abjad.tools import pitchtools
-        class_ = pitchtools.PitchClass
-        octave = pitchtools.Octave.from_pitch_number(
-            self.numbered_pitch.pitch_number)
-        name = class_._pitch_class_number_to_pitch_class_name_with_sharps[
-            self.pitch_class_number]
-        pitch = type(self)(name, octave.number)
-        return pitch
+        import abjad
+        for leaf in abjad.iterate(selection).by_leaf():
+            if isinstance(leaf, abjad.Note):
+                leaf.written_pitch = leaf.written_pitch._respell_with_sharps()
+            elif isinstance(leaf, abjad.Chord):
+                for note_head in leaf.note_heads:
+                    pitch = note_head.written_pitch._respell_with_sharps()
+                    note_head.written_pitch = pitch
 
     def to_staff_position(self, clef=None):
         r'''Changes named pitch to staff position with optional `clef`.

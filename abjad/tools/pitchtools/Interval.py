@@ -178,3 +178,11 @@ class Interval(AbjadValueObject):
             return False
         return bool(Interval._named_interval_quality_abbreviation_regex.match(
             argument))
+
+    @abc.abstractmethod
+    def transpose(self, pitch_carrier):
+        r'''Transposes `pitch_carrier` by interval.
+
+        Returns new pitch carrier.
+        '''
+        raise NotImplementedError

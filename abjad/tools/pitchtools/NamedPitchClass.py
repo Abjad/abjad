@@ -15,6 +15,13 @@ class NamedPitchClass(PitchClass):
             >>> NamedPitchClass('cs')
             NamedPitchClass('cs')
 
+        Initializes quartertone from pitch-class name:
+
+        ::
+
+            >>> NamedPitchClass('cqs')
+            NamedPitchClass('cqs')
+
     ..  container:: example
 
         Initializes from number of semitones:
@@ -23,6 +30,13 @@ class NamedPitchClass(PitchClass):
 
             >>> NamedPitchClass(14)
             NamedPitchClass('d')
+
+        Initializes quartertone from number of semitones:
+
+        ::
+
+            >>> NamedPitchClass(14.5)
+            NamedPitchClass('dqs')
 
     ..  container:: example
 
@@ -53,14 +67,36 @@ class NamedPitchClass(PitchClass):
 
     ..  container:: example
 
-        Initializes from named pitch-class:
-
+        Initializes from pitch-class / octave-number string:
 
         ::
 
             >>> NamedPitchClass('C#5')
             NamedPitchClass('cs')
 
+        Initializes quartertone from pitch-class / octave-number string:
+
+        ::
+
+            >>> NamedPitchClass('C+5')
+            NamedPitchClass('cqs')
+
+    ..  container:: example
+
+        Initializes from pitch-class abbreviation:
+
+        ::
+
+            >>> NamedPitchClass('C#5')
+            NamedPitchClass('cs')
+
+        Initializes quartertone from pitch-class / octave-number string:
+
+        ::
+
+            >>> NamedPitchClass('C+') # doctest: +SKIP
+
+        ..  note:: Make this work.
 
     ..  container:: example
 

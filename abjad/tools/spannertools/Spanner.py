@@ -362,7 +362,7 @@ class Spanner(AbjadObject):
             storage_format_kwargs_names=names,
             )
 
-    def _get_indicators(self, prototype=None, unwrap=True):
+    def _get_indicators(self, prototype=None, name=None, unwrap=True):
         from abjad.tools import indicatortools
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
@@ -377,6 +377,8 @@ class Spanner(AbjadObject):
         prototype_classes = tuple(prototype_classes)
         matching_indicators = []
         for indicator in self._indicator_expressions:
+            if name is not None and indicator._name != name:
+                continue
             if isinstance(indicator, prototype_classes):
                 matching_indicators.append(indicator)
             elif any(indicator == x for x in prototype_objects):
