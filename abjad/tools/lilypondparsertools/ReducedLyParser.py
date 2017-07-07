@@ -95,17 +95,6 @@ class ReducedLyParser(abctools.Parser):
             }
         }
 
-    Can also create empty `FixedDurationContainers`:
-
-    ::
-
-        >>> string = '{1/4} {3/4}'
-        >>> result = parser(string)
-        >>> for x in result: x
-        ...
-        FixedDurationContainer(Duration(1, 4), [])
-        FixedDurationContainer(Duration(3, 4), [])
-
     Can create measures too:
 
     ::
@@ -325,7 +314,7 @@ class ReducedLyParser(abctools.Parser):
     def p_fixed_duration_container__BRACE_L__FRACTION__BRACE_R(self, p):
         r'''fixed_duration_container : BRACE_L FRACTION BRACE_R
         '''
-        p[0] = scoretools.FixedDurationContainer(durationtools.Duration(p[2]))
+        raise Exception('fixed-duration containers no longer supported.')
 
     def p_leaf__leaf_body__post_events(self, p):
         r'''leaf : leaf_body post_events

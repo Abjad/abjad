@@ -10,11 +10,10 @@ from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import set_
-from abjad.tools.scoretools.FixedDurationContainer \
-    import FixedDurationContainer
+from abjad.tools.scoretools.Container import Container
 
 
-class Measure(FixedDurationContainer):
+class Measure(Container):
     r'''Measure.
 
     ..  container:: example
@@ -44,6 +43,7 @@ class Measure(FixedDurationContainer):
         '_automatically_adjust_time_signature',
         '_measure_number',
         '_implicit_scaling',
+        #'_target_duration',
         )
 
     _is_counttime_component = True
@@ -56,11 +56,13 @@ class Measure(FixedDurationContainer):
         music=None,
         implicit_scaling=False,
         ):
+        import abjad
         # set time signature adjustment before contents initialization
         self._automatically_adjust_time_signature = False
-        time_signature = time_signature or (4, 4)
+        time_signature = time_signature or abjad.TimeSignature((4, 4))
+        time_signature = abjad.TimeSignature(time_signature)
         self.implicit_scaling = bool(implicit_scaling)
-        FixedDurationContainer.__init__(self, time_signature, music)
+        Container.__init__(self, music)
         self._always_format_time_signature = False
         self._measure_number = None
         time_signature = indicatortools.TimeSignature(time_signature)
@@ -97,7 +99,7 @@ class Measure(FixedDurationContainer):
         '''
         old_time_signature = self.time_signature
         old_denominator = getattr(old_time_signature, 'denominator', None)
-        FixedDurationContainer.__delitem__(self, i)
+        Container.__delitem__(self, i)
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __getnewargs__(self):
@@ -189,7 +191,7 @@ class Measure(FixedDurationContainer):
         '''
         old_time_signature = self.time_signature
         old_denominator = getattr(old_time_signature, 'denominator', None)
-        FixedDurationContainer.__setitem__(self, i, argument)
+        Container.__setitem__(self, i, argument)
         self._conditionally_adjust_time_signature(old_denominator)
 
     ### PRIVATE METHODS ###
@@ -331,12 +333,12 @@ class Measure(FixedDurationContainer):
                 self.implied_prolation.denominator,
                 )
             result.append(string)
-            pieces = FixedDurationContainer._format_content_pieces(self)
+            pieces = Container._format_content_pieces(self)
             pieces = [indent + x for x in pieces]
             result.extend(pieces)
             result.append(indent + '}')
         else:
-            result.extend(FixedDurationContainer._format_content_pieces(self))
+            result.extend(Container._format_content_pieces(self))
         return result
 
     def _format_opening_slot(self, bundle):
@@ -651,7 +653,7 @@ class Measure(FixedDurationContainer):
 
         Returns true or false.
         '''
-        return FixedDurationContainer.is_full.fget(self)
+        return self._get_preprolated_duration() == self.target_duration
 
     @property
     def is_misfilled(self):
@@ -681,7 +683,7 @@ class Measure(FixedDurationContainer):
 
         Returns true or false.
         '''
-        return FixedDurationContainer.is_overfull.fget(self)
+        return not self.is_full
 
     @property
     def is_overfull(self):
@@ -703,7 +705,7 @@ class Measure(FixedDurationContainer):
 
         Returns true or false.
         '''
-        return FixedDurationContainer.is_overfull.fget(self)
+        return self.target_duration < self._get_preprolated_duration()
 
     @property
     def is_underfull(self):
@@ -724,7 +726,7 @@ class Measure(FixedDurationContainer):
 
         Returns true or false.
         '''
-        return FixedDurationContainer.is_underfull.fget(self)
+        return self._get_preprolated_duration() < self.target_duration
 
     @property
     def measure_number(self):
