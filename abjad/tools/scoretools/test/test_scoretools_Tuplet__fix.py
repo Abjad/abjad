@@ -6,7 +6,7 @@ def test_scoretools_Tuplet__fix_01():
     r'''Halve note durations.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'4 d'4 e'4")
+    tuplet = Tuplet((1, 3), "c'4 d'4 e'4")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
     assert format(tuplet) == stringtools.normalize(
@@ -39,7 +39,7 @@ def test_scoretools_Tuplet__fix_02():
     r'''Double note duration.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'32 d'32 e'32")
+    tuplet = Tuplet((8, 3), "c'32 d'32 e'32")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
     assert format(tuplet) == stringtools.normalize(
@@ -74,7 +74,7 @@ def test_scoretools_Tuplet__fix_03():
     r'''Halve note durations.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(5, 16), "c'4 d'4 e'4")
+    tuplet = Tuplet((5, 12), "c'4 d'4 e'4")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
     assert format(tuplet) == stringtools.normalize(

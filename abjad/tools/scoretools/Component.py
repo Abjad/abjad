@@ -675,11 +675,12 @@ class Component(AbjadObject):
         parent = self._parent
         while parent is not None and not parent.is_simultaneous:
             current_prolation *= prolations[i]
-            if isinstance(parent, abjad.scoretools.FixedDurationTuplet):
-                candidate_new_parent_dur = (parent.target_duration -
-                    current_prolation * self.written_duration)
-                if durationtools.Duration(0) < candidate_new_parent_dur:
-                    parent.target_duration = candidate_new_parent_dur
+            if isinstance(parent, abjad.Tuplet):
+                #candidate_new_parent_dur = (parent.target_duration -
+                #    current_prolation * self.written_duration)
+                #if abjad.Duration(0) < candidate_new_parent_dur:
+                #    parent.target_duration = candidate_new_parent_dur
+                pass
             elif isinstance(parent, abjad.Measure):
                 indicator = parent._get_indicator(abjad.TimeSignature)
                 parent_time_signature = indicator
@@ -699,17 +700,13 @@ class Component(AbjadObject):
                 new_prolation = parent_time_signature.implied_prolation
                 adjusted_prolation = old_prolation / new_prolation
                 for x in parent:
-                    if isinstance(x, abjad.scoretools.FixedDurationTuplet):
-                        x.target_duration *= adjusted_prolation
-                    else:
-                        if adjusted_prolation != 1:
-                            new_target = x._get_preprolated_duration()
-                            new_target *= adjusted_prolation
-                            tuplet = abjad.scoretools.FixedDurationTuplet(
-                                new_target,
-                                []
-                                )
-                            abjad.mutate(x).wrap(tuplet)
+                    if adjusted_prolation != 1:
+                        new_target = x._get_preprolated_duration()
+                        new_target *= adjusted_prolation
+                        contents_duration = abjad.inspect(x)
+                        multiplier = new_target / contents_duration
+                        tuplet = abjad.Tuplet(multiplier, [])
+                        abjad.mutate(x).wrap(tuplet)
             parent = parent._parent
             i += 1
         parentage = self._get_parentage(include_self=False)

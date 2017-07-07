@@ -738,8 +738,7 @@ class Selection(object):
 
     def _fuse_tuplets(self):
         from abjad.tools import scoretools
-        assert self._all_in_same_parent(
-            self, prototype=(scoretools.Tuplet,))
+        assert self._all_in_same_parent(self, prototype=scoretools.Tuplet)
         if len(self) == 0:
             return None
         first = self[0]
@@ -752,18 +751,8 @@ class Selection(object):
             if type(tuplet) != first_type:
                 message = 'tuplets must be same type.'
                 raise TypeError(message)
-        if isinstance(first, scoretools.FixedDurationTuplet):
-            total_contents_duration = sum(
-                [x._get_contents_duration() for x in self]
-                )
-            new_target_duration = first_multiplier * total_contents_duration
-            new_tuplet = scoretools.FixedDurationTuplet(
-                new_target_duration, [])
-        elif isinstance(first, scoretools.Tuplet):
-            new_tuplet = scoretools.Tuplet(first_multiplier, [])
-        else:
-            message = 'unknown tuplet type.'
-            raise TypeError(message)
+        assert isinstance(first, scoretools.Tuplet)
+        new_tuplet = scoretools.Tuplet(first_multiplier, [])
         wrapped = False
         if (self[0]._get_parentage().root is not
             self[-1]._get_parentage().root):

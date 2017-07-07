@@ -426,28 +426,29 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         return selections
 
     def _make_music(self, divisions, rotation):
+        import abjad
         if rotation is None:
             rotation = 0
         selections = []
-        divisions = [mathtools.NonreducedFraction(_) for _ in divisions]
-        denominators = datastructuretools.CyclicTuple(self.denominators)
+        divisions = [abjad.NonreducedFraction(_) for _ in divisions]
+        denominators = abjad.CyclicTuple(self.denominators)
         extra_counts_per_division = self.extra_counts_per_division or (0,)
-        extra_counts_per_division = datastructuretools.CyclicTuple(
+        extra_counts_per_division = abjad.CyclicTuple(
             extra_counts_per_division
             )
         for i, division in enumerate(divisions, rotation):
             # not yet extended to work with non-power-of-two divisions
-            if not mathtools.is_positive_integer_power_of_two(
+            if not abjad.mathtools.is_positive_integer_power_of_two(
                 division.denominator):
                 message = 'non-power-of-two divisions not implemented: {!r}.'
                 message = message.format(division)
                 raise Exception(message)
             denominator = denominators[i]
             extra_count = extra_counts_per_division[i]
-            basic_duration = durationtools.Duration(1, denominator)
+            basic_duration = abjad.Duration(1, denominator)
             unprolated_note_count = None
             if division < 2 * basic_duration:
-                notes = scoretools.make_notes([0], [division])
+                notes = abjad.scoretools.make_notes([0], [division])
             else:
                 unprolated_note_count = division / basic_duration
                 unprolated_note_count = int(unprolated_note_count)
@@ -461,23 +462,20 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     extra_count *= -1
                 note_count = unprolated_note_count + extra_count
                 durations = note_count * [basic_duration]
-                notes = scoretools.make_notes([0], durations)
+                notes = abjad.scoretools.make_notes([0], durations)
                 assert all(
                     _.written_duration.denominator == denominator
                     for _ in notes
                     )
-            tuplet_duration = durationtools.Duration(division)
-            tuplet = scoretools.FixedDurationTuplet(
-                duration=tuplet_duration,
-                music=notes,
-                )
+            tuplet_duration = abjad.Duration(division)
+            tuplet = abjad.Tuplet.from_duration(tuplet_duration, notes)
             if (self.preferred_denominator == 'from_counts' and
                 unprolated_note_count is not None):
                 preferred_denominator = unprolated_note_count
                 tuplet.preferred_denominator = preferred_denominator
             elif isinstance(self.preferred_denominator, int):
                 tuplet.preferred_denominator = self.preferred_denominator
-            selection = selectiontools.Selection(tuplet)
+            selection = abjad.select(tuplet)
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections, rotation)
         beam_specifier = self._get_beam_specifier()

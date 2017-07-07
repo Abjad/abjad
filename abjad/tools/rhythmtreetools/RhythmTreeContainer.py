@@ -12,12 +12,17 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
     ..  container:: example
 
-        Initializes a rhythm-tree container:
+        Initializes rhythm-tree container:
 
         ::
 
             >>> container = rhythmtreetools.RhythmTreeContainer(
-            ...     preprolated_duration=1, children=[])
+            ...     preprolated_duration=1,
+            ...     children=[],
+            ...     )
+
+        ::
+
             >>> f(container)
             rhythmtreetools.RhythmTreeContainer(
                 preprolated_duration=abjad.Duration(1, 1),
@@ -88,15 +93,13 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
         ::
 
-            >>> list_ = container((1, 4))
-            >>> list_
-            [FixedDurationTuplet(Duration(1, 4), "c'8 { 4/5 c'8. c'8 }")]
-            >>> tuplet = list_[0]
+            >>> components = container((1, 4))
+            >>> tuplet = components[0]
             >>> show(tuplet) # doctest: +SKIP
 
         ..  docs::
 
-            >>> print(format(_[0]))
+            >>> f(tuplet)
             \times 2/3 {
                 c'8
                 \times 4/5 {
@@ -197,46 +200,76 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
         return container
 
     def __call__(self, pulse_duration):
-        r'''Generate Abjad score components:
+        r'''Generates Abjad score components.
 
-        ::
+        ..  container:: example
 
-            >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            ::
 
-        ::
+                >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
+                >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
 
-            >>> tree((1, 4))
-            [FixedDurationTuplet(Duration(1, 4), "c'16 { 2/3 c'16 c'16 c'16 } c'8")]
+            ::
 
-        Returns sequence of components.
+                >>> tree((1, 4))
+                [Tuplet(Multiplier(4, 5), "c'16 { 2/3 c'16 c'16 c'16 } c'8")]
+
+            ::
+
+                >>> staff = Staff(tree((1, 4)))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 4/5 {
+                        c'16
+                        \times 2/3 {
+                            c'16
+                            c'16
+                            c'16
+                        }
+                        c'8
+                    }
+                }
+
+        Returns list of components.
         '''
+        import abjad
         def recurse(node, tuplet_duration):
             basic_prolated_duration = \
                 tuplet_duration / node._get_contents_duration()
             basic_written_duration = \
                 basic_prolated_duration.equal_or_greater_power_of_two
-            tuplet = scoretools.FixedDurationTuplet(tuplet_duration, [])
+            tuplet = abjad.Tuplet(1, [])
             for child in node.children:
                 if isinstance(child, type(self)):
-                    tuplet.extend(recurse(
-                        child,
-                        child.preprolated_duration * basic_written_duration))
+                    tuplet.extend(
+                        recurse(
+                            child,
+                            child.preprolated_duration * basic_written_duration
+                            )
+                        )
                 else:
                     leaves = child(basic_written_duration)
                     tuplet.extend(leaves)
                     if 1 < len(leaves):
-                        tie = spannertools.Tie()
-                        attach(tie, leaves)
+                        tie = abjad.Tie()
+                        abjad.attach(tie, leaves)
+            assert tuplet.multiplier == 1, repr(tuplet.multiplier)
+            contents_duration = abjad.inspect(tuplet).get_duration()
+            target_duration = tuplet_duration
+            multiplier = target_duration / contents_duration
+            tuplet.multiplier = multiplier
             if tuplet.multiplier == 1:
                 return tuplet[:]
             return [tuplet]
-        from abjad.tools.topleveltools import attach
-        pulse_duration = durationtools.Duration(pulse_duration)
+        pulse_duration = abjad.Duration(pulse_duration)
         assert 0 < pulse_duration
         result = recurse(self, pulse_duration * self.preprolated_duration)
         for component in result[:]:
-            if isinstance(component, scoretools.Tuplet):
+            if isinstance(component, abjad.Tuplet):
                 if component.is_trivial:
                     component._extract()
         return result

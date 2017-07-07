@@ -23,7 +23,6 @@ def test_rhythmtreetools_RhythmTreeNode___call___02():
 
     assert isinstance(result, list)
     assert len(result) == 1
-    assert isinstance(result[0], scoretools.FixedDurationTuplet)
     assert format(result[0]) == stringtools.normalize(
         r'''
         \times 4/5 {

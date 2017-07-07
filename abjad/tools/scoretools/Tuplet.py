@@ -356,10 +356,7 @@ class Tuplet(Container):
         #tuplet_duration = sum(leaf_durations)
         #for leaf_duration, leaf in zip(leaf_durations, leaves):
         #    leaf.written_duration = leaf_duration
-        if isinstance(self, scoretools.FixedDurationTuplet):
-            self.target_duration = tuplet_duration
-        else:
-            self.multiplier = durationtools.Multiplier(1)
+        self.multiplier = durationtools.Multiplier(1)
 
     ### PUBLIC PROPERTIES ###
 
@@ -1255,6 +1252,42 @@ class Tuplet(Container):
             assert abjad.inspect(self).get_duration() == old_duration
 
     @staticmethod
+    def from_duration(duration, music):
+        r'''Makes tuplet from `duration` and `music`.
+
+        ..  container:: example
+
+            Makes tuplet equal to two eighths of a whole note:
+
+            ::
+
+                >>> tuplet =Tuplet.from_duration(Duration(2, 8), "c'8 d' e'")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+        Returns newly constructed tuplet equal in duration to `duration`.
+        '''
+        import abjad
+        if not len(music):
+            message = 'music must be nonempty: {!r}.'
+            message = message.format(music)
+            raise Exception(message)
+        target_duration = duration
+        tuplet = Tuplet(1, music)
+        contents_duration = abjad.inspect(tuplet).get_duration()
+        multiplier = target_duration / contents_duration
+        tuplet.multiplier = multiplier
+        return tuplet
+
+    @staticmethod
     def from_duration_and_ratio(
         duration,
         ratio,
@@ -1629,7 +1662,7 @@ class Tuplet(Container):
                 decrease_durations_monotonically=decrease_durations_monotonically,
                 )
         # make tuplet
-        tuplet = scoretools.FixedDurationTuplet(duration, notes)
+        tuplet = scoretools.Tuplet.from_duration(duration, notes)
         # fix tuplet contents if necessary
         tuplet._fix()
         # change prolation if necessary
@@ -2163,50 +2196,51 @@ class Tuplet(Container):
         Returns tuplet or container.
         '''
         import abjad
-        from abjad.tools import scoretools
-        ratio = mathtools.NonreducedRatio(ratio)
+        ratio = abjad.NonreducedRatio(ratio)
         if isinstance(fraction, tuple):
-            fraction = mathtools.NonreducedFraction(*fraction)
+            fraction = abjad.NonreducedFraction(*fraction)
         n = fraction.numerator
         d = fraction.denominator
-        duration = durationtools.Duration(fraction)
+        duration = abjad.Duration(fraction)
         if len(ratio.numbers) == 1:
             if 0 < ratio.numbers[0]:
                 try:
-                    note = scoretools.Note(0, duration)
+                    note = abjad.Note(0, duration)
                     if allow_trivial:
                         duration = inspect(note).get_duration()
-                        return scoretools.FixedDurationTuplet(duration, [note])
+                        tuplet = abjad.Tuplet.from_duration(duration, [note])
+                        return tuplet
                     else:
-                        return scoretools.Container([note])
+                        return abjad.Container([note])
                 except AssignabilityError:
-                    notes = scoretools.make_notes(0, duration)
+                    notes = abjad.scoretools.make_notes(0, duration)
                     if allow_trivial:
                         duration = notes.get_duration()
-                        return scoretools.FixedDurationTuplet(duration, notes)
+                        return abjad.Tuplet.from_duration(duration, notes)
                     else:
-                        return scoretools.Container(notes)
+                        return abjad.Container(notes)
             elif ratio.numbers[0] < 0:
                 try:
-                    rest = scoretools.Rest(duration)
+                    rest = abjad.Rest(duration)
                     if allow_trivial:
                         duration = inspect(rest).get_duration()
-                        return scoretools.FixedDurationTuplet(duration, [rest])
+                        return abjad.Tuplet.from_duration(duration, [rest])
                     else:
-                        return scoretools.Container([rest])
+                        return abjad.Container([rest])
                 except AssignabilityError:
-                    rests = scoretools.make_rests(duration)
+                    rests = abjad.scoretools.make_rests(duration)
                     if allow_trivial:
                         duration = rests.get_duration()
-                        return scoretools.FixedDurationTuplet(duration, rests)
+                        return abjad.Tuplet.from_duration(duration, rests)
                     else:
-                        return scoretools.Container(rests)
+                        return abjad.Container(rests)
             else:
                 message = 'no divide zero values.'
                 raise ValueError(message)
         if 1 < len(ratio.numbers):
             exponent = int(
-                math.log(mathtools.weight(ratio.numbers), 2) - math.log(n, 2))
+                math.log(
+                    abjad.mathtools.weight(ratio.numbers), 2) - math.log(n, 2))
             denominator = int(d * 2 ** exponent)
             music = []
             for x in ratio.numbers:
@@ -2215,15 +2249,15 @@ class Tuplet(Container):
                     raise ValueError(message)
                 if 0 < x:
                     try:
-                        note = scoretools.Note(0, (x, denominator))
+                        note = abjad.Note(0, (x, denominator))
                         music.append(note)
                     except AssignabilityError:
-                        notes = scoretools.make_notes(0, (x, denominator))
+                        notes = abjad.scoretools.make_notes(0, (x, denominator))
                         music.extend(notes)
                 else:
-                    rests = scoretools.Rest((-x, denominator))
+                    rests = abjad.Rest((-x, denominator))
                     music.append(rests)
-            return scoretools.FixedDurationTuplet(duration, music)
+            return abjad.Tuplet.from_duration(duration, music)
 
     def set_minimum_denominator(self, denominator):
         r'''Sets preferred denominator of tuplet to at least `denominator`.
@@ -2279,41 +2313,6 @@ class Tuplet(Container):
         nonreduced_fractions = Duration.durations_to_nonreduced_fractions(
             durations)
         self.preferred_denominator = nonreduced_fractions[1].numerator
-
-    def to_fixed_duration_tuplet(self):
-        r'''Changes tuplet to fixed-duration tuplet.
-
-        ..  container:: example
-
-            Changes tuplet to fixed-duration tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet
-                Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
-
-            ::
-
-                >>> new_tuplet = tuplet.to_fixed_duration_tuplet()
-                >>> show(new_tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> new_tuplet
-                FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
-
-        Returns new tuplet.
-        '''
-        from abjad.tools import scoretools
-        target_duration = self._get_preprolated_duration()
-        new_tuplet = scoretools.FixedDurationTuplet(target_duration, [])
-        mutate(self).swap(new_tuplet)
-        return new_tuplet
 
     def toggle_prolation(self):
         '''Changes augmented tuplets to diminished;

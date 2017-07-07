@@ -771,165 +771,6 @@ def test_agenttools_MutationAgent_copy_15():
 
 
 def test_agenttools_MutationAgent_copy_16():
-    r'''Copy consecutive leaves from tuplet in measure with power-of-two
-    denominator. Measure without power-of-two denominator results.
-    Includes enclosing containers.
-    '''
-
-    tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), [])
-    tuplet.extend("c'8 d'8 e'8 f'8 g'8")
-    measure = Measure((4, 8), [tuplet])
-    measure.implicit_scaling = True
-
-    assert format(measure) == stringtools.normalize(
-        r'''
-        {
-            \time 4/8
-            \times 4/5 {
-                c'8
-                d'8
-                e'8
-                f'8
-                g'8
-            }
-        }
-        '''
-        )
-
-    leaves = select(measure).by_leaf()
-    leaves = select(leaves[1:4])
-    new_measure = mutate(leaves).copy(include_enclosing_containers=True)
-
-    assert format(new_measure) == stringtools.normalize(
-        r'''
-        {
-            \time 3/10
-            \scaleDurations #'(4 . 5) {
-                {
-                    d'8
-                    e'8
-                    f'8
-                }
-            }
-        }
-        '''
-        )
-
-    assert inspect(measure).is_well_formed()
-    assert inspect(new_measure).is_well_formed()
-
-
-def test_agenttools_MutationAgent_copy_17():
-    r'''Copy consecutive leaves from tuplet in measure and voice.
-    Measure without power-of-two time signature denominator results.
-    Includes enclosing containers.
-    '''
-
-    tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), [])
-    tuplet.extend("c'8 d'8 e'8 f'8 g'8")
-    measure = Measure((4, 8), [tuplet])
-    measure.implicit_scaling = True
-    voice = Voice([measure])
-
-    assert format(voice) == stringtools.normalize(
-        r'''
-        \new Voice {
-            {
-                \time 4/8
-                \times 4/5 {
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                    g'8
-                }
-            }
-        }
-        '''
-        )
-
-    leaves = select(voice).by_leaf()
-    leaves = select(leaves[1:4])
-    new_voice = mutate(leaves).copy(include_enclosing_containers=True)
-
-    assert format(new_voice) == stringtools.normalize(
-        r'''
-        \new Voice {
-            {
-                \time 3/10
-                \scaleDurations #'(4 . 5) {
-                    {
-                        d'8
-                        e'8
-                        f'8
-                    }
-                }
-            }
-        }
-        '''
-        )
-
-    assert inspect(voice).is_well_formed()
-    assert inspect(new_voice).is_well_formed()
-
-
-def test_agenttools_MutationAgent_copy_18():
-    r'''Measures shrink when copying a partial tuplet.
-    Note that test only works with fixed-duration tuplets.
-    Includes enclosing containers.
-    '''
-
-    tuplet_1 = scoretools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
-    tuplet_2 = scoretools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8")
-    measure = Measure((4, 8), [tuplet_1, tuplet_2])
-    measure.implicit_scaling = True
-    leaves = select(measure).by_leaf()
-
-    assert format(measure) == stringtools.normalize(
-        r'''
-        {
-            \time 4/8
-            \times 2/3 {
-                c'8
-                d'8
-                e'8
-            }
-            \times 2/3 {
-                f'8
-                g'8
-                a'8
-            }
-        }
-        '''
-        )
-
-    leaves = select(leaves[1:])
-    new_measure = mutate(leaves).copy(include_enclosing_containers=True)
-
-    assert format(new_measure) == stringtools.normalize(
-        r'''
-        {
-            \time 5/12
-            \scaleDurations #'(2 . 3) {
-                {
-                    d'8
-                    e'8
-                }
-                {
-                    f'8
-                    g'8
-                    a'8
-                }
-            }
-        }
-        '''
-        )
-
-    assert inspect(measure).is_well_formed()
-    assert inspect(new_measure).is_well_formed()
-
-
-def test_agenttools_MutationAgent_copy_19():
     r'''Copy consecutive leaves across measure boundary.
     Includes enclosing containers.
     '''
@@ -978,53 +819,7 @@ def test_agenttools_MutationAgent_copy_19():
     assert inspect(new_staff).is_well_formed()
 
 
-def test_agenttools_MutationAgent_copy_20():
-    r'''Copy consecutive leaves from tuplet in staff;
-    pass start and stop indices local to tuplet.
-    Includes enclosing containers.
-    '''
-
-    tuplet_1 = scoretools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
-    tuplet_2 = scoretools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8")
-    staff = Staff([tuplet_1, tuplet_2])
-
-    assert format(staff) == stringtools.normalize(
-        r'''
-        \new Staff {
-            \times 2/3 {
-                c'8
-                d'8
-                e'8
-            }
-            \times 2/3 {
-                f'8
-                g'8
-                a'8
-            }
-        }
-        '''
-        )
-
-    leaves = tuplet_2[1:3]
-    new_staff = mutate(leaves).copy(include_enclosing_containers=True)
-
-    assert format(new_staff) == stringtools.normalize(
-        r'''
-        \new Staff {
-            \tweak edge-height #'(0.7 . 0)
-            \times 2/3 {
-                g'8
-                a'8
-            }
-        }
-        '''
-        )
-
-    assert inspect(staff).is_well_formed()
-    assert inspect(new_staff).is_well_formed()
-
-
-def test_agenttools_MutationAgent_copy_21():
+def test_agenttools_MutationAgent_copy_17():
     r'''Copy consecutive leaves from measure in staff;
     pass start and stop indices local to measure.
     Includes enclosing containers.
@@ -1071,7 +866,7 @@ def test_agenttools_MutationAgent_copy_21():
     assert inspect(new_staff).is_well_formed()
 
 
-def test_agenttools_MutationAgent_copy_22():
+def test_agenttools_MutationAgent_copy_18():
     r'''Copy consecutive leaves from in-staff measure without
     power-of-two denominator. Pass start and stop indices local to measure.
     Includes enclosing containers.
@@ -1126,7 +921,7 @@ def test_agenttools_MutationAgent_copy_22():
     assert inspect(new_staff).is_well_formed()
 
 
-def test_agenttools_MutationAgent_copy_23():
+def test_agenttools_MutationAgent_copy_19():
     r'''Copy indicators while maintaining "is_annotation" flag.
     '''
 

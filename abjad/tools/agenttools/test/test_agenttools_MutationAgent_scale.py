@@ -119,48 +119,6 @@ def test_agenttools_MutationAgent_scale_04():
 
 
 def test_agenttools_MutationAgent_scale_05():
-    r'''Scales mixed notes and tuplets.
-    '''
-
-    voice = Voice("c'8.")
-    tuplet = scoretools.FixedDurationTuplet((3, 8), "d'8 e'8 f'8 g'8")
-    voice.append(tuplet)
-
-    assert format(voice) == stringtools.normalize(
-        r'''
-        \new Voice {
-            c'8.
-            \tweak text #tuplet-number::calc-fraction-text
-            \times 3/4 {
-                d'8
-                e'8
-                f'8
-                g'8
-            }
-        }
-        '''
-        )
-
-    mutate(voice).scale(Multiplier(2, 3))
-
-    assert format(voice) == stringtools.normalize(
-        r'''
-        \new Voice {
-            c'8
-            {
-                d'16
-                e'16
-                f'16
-                g'16
-            }
-        }
-        '''
-        )
-
-    assert inspect(voice).is_well_formed()
-
-
-def test_agenttools_MutationAgent_scale_06():
     r'''Undo scale of 5/4 with scale of 4/5.
     '''
 
@@ -198,7 +156,7 @@ def test_agenttools_MutationAgent_scale_06():
     assert inspect(voice).is_well_formed()
 
 
-def test_agenttools_MutationAgent_scale_07():
+def test_agenttools_MutationAgent_scale_06():
     r'''Doubles measures.
     '''
 
@@ -243,7 +201,7 @@ def test_agenttools_MutationAgent_scale_07():
     assert inspect(voice).is_well_formed()
 
 
-def test_agenttools_MutationAgent_scale_08():
+def test_agenttools_MutationAgent_scale_07():
     r'''Scales measures by 5/4.
     '''
 

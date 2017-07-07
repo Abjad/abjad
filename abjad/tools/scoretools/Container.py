@@ -962,16 +962,6 @@ class Container(Component):
             right = type(self)(right_time_signature, [])
             abjad.mutate(right_music).wrap(right)
             right.implicit_scaling = self.implicit_scaling
-        elif isinstance(self, abjad.scoretools.FixedDurationTuplet):
-            multiplier = self.multiplier
-            left = type(self)(1, [])
-            abjad.mutate(left_music).wrap(left)
-            right = type(self)(1, [])
-            abjad.mutate(right_music).wrap(right)
-            target_duration = multiplier * left._get_contents_duration()
-            left.target_duration = target_duration
-            target_duration = multiplier * right._get_contents_duration()
-            right.target_duration = target_duration
         elif isinstance(self, abjad.Tuplet):
             multiplier = self.multiplier
             left = type(self)(multiplier, [])

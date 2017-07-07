@@ -246,7 +246,7 @@ class LogicalTie(Selection):
 
                 >>> logical_tie = inspect(staff[0]).get_logical_tie()
                 >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=True)
-                FixedDurationTuplet(Duration(3, 16), "c'8 c'16 c'16 c'16")
+                Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
 
             ..  docs::
 
@@ -271,7 +271,7 @@ class LogicalTie(Selection):
 
         ..  container:: example
 
-            Change logical tie to augmented tuplet:
+            Changes logical tie to augmented tuplet:
 
             ::
 
@@ -281,6 +281,7 @@ class LogicalTie(Selection):
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = TimeSignature((7, 16))
                 >>> attach(time_signature, staff)
+                >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
@@ -296,13 +297,12 @@ class LogicalTie(Selection):
 
             ::
 
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
                 >>> logical_tie = inspect(staff[0]).get_logical_tie()
-                >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=False)
-                FixedDurationTuplet(Duration(3, 16), "c'16 c'32 c'32 c'32")
+                >>> tuplet = logical_tie.to_tuplet(
+                ...     [2, 1, 1, 1],
+                ...     is_diminution=False,
+                ...     )
+                >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
@@ -320,10 +320,6 @@ class LogicalTie(Selection):
                     }
                     cqs''4 \f
                 }
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
 
         Returns tuplet.
         '''
@@ -373,7 +369,7 @@ class LogicalTie(Selection):
             notes = scoretools.make_notes(0, note_durations)
 
         # make tuplet
-        tuplet = scoretools.FixedDurationTuplet(target_duration, notes)
+        tuplet = scoretools.Tuplet.from_duration(target_duration, notes)
 
         # remove tie spanner from leaves
         for leaf in self:

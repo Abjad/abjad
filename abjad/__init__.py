@@ -71,7 +71,6 @@ from abjad.tools.scoretools import Cluster
 from abjad.tools.scoretools import Component
 from abjad.tools.scoretools import Container
 from abjad.tools.scoretools import Context
-from abjad.tools.scoretools import FixedDurationTuplet
 from abjad.tools.scoretools import GraceContainer
 from abjad.tools.scoretools import Leaf
 from abjad.tools.scoretools import Measure

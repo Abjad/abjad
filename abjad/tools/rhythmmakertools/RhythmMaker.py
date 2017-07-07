@@ -347,10 +347,12 @@ class RhythmMaker(AbjadValueObject):
         return secondary_divisions
 
     def _make_tuplets(self, divisions, leaf_lists):
+        import abjad
         assert len(divisions) == len(leaf_lists)
         tuplets = []
         for division, leaf_list in zip(divisions, leaf_lists):
-            tuplet = scoretools.FixedDurationTuplet(division, leaf_list)
+            duration = abjad.Duration(division)
+            tuplet = abjad.Tuplet.from_duration(duration, leaf_list)
             tuplets.append(tuplet)
         return tuplets
 
