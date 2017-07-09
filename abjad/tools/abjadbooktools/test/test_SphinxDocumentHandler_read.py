@@ -561,7 +561,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'lilypondnametools', 'lilypondparsertools',
 #                    'ly', 
 #                    'make_floating_time_signature_lilypond_file',
-#                    'make_spacing_vector', 'markuptools',
+#                    'markuptools',
 #                    'mathtools', 'metertools', 'mutate', 'new',
 #                    'override', 'parse', 'patterntools', 'persist',
 #                    'pitchtools', 'play', 'print_function',

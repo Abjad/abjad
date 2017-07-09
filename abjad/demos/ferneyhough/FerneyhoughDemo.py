@@ -702,7 +702,7 @@ class FerneyhoughDemo(object):
         lilypond_file.layout_block.indent = 0
         lilypond_file.layout_block.ragged_right = True
         lilypond_file.paper_block.ragged_bottom = True
-        spacing_vector = abjad.make_spacing_vector(0, 0, 8, 0)
+        spacing_vector = abjad.SpacingVector(0, 0, 8, 0)
         lilypond_file.paper_block.system_system_spacing = spacing_vector
 
     def configure_score(self, score):

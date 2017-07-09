@@ -202,9 +202,9 @@ class TestManager(AbjadObject):
                 voice_2 = staff[1]
                 topleveltools.override(voice_2).note_head.Y_offset = -0.5
                 topleveltools.override(voice_2).stem.direction = Down
-                spacing_vector = schemetools.make_spacing_vector(0, 0, 6, 0)
+                vector = schemetools.SpacingVector(0, 0, 6, 0)
                 manager = topleveltools.override(staff)
-                manager.vertical_axis_group.staff_staff_spacing = spacing_vector
+                manager.vertical_axis_group.staff_staff_spacing = vector
         # provide more space between staves with pitched notes
         score = lilypond_file[Score]
         for staff in topleveltools.iterate(score).by_class(scoretools.Staff):
@@ -217,7 +217,7 @@ class TestManager(AbjadObject):
                 else:
                     message = 'no staff group context block found.'
                     raise Exception(message)
-                spacing_vector = schemetools.make_spacing_vector(0, 0, 6, 0)
+                spacing_vector = schemetools.SpacingVector(0, 0, 6, 0)
                 manager = topleveltools.override(item)
                 manager.vertical_axis_group.staff_staff_spacing = spacing_vector
             break

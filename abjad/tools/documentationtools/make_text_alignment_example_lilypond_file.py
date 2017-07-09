@@ -57,22 +57,17 @@ def make_text_alignment_example_lilypond_file(music=None):
 
     Returns LilyPond file.
     '''
-    from abjad.tools import lilypondfiletools
-    from abjad.tools import schemetools
-
-    lilypond_file = lilypondfiletools.LilyPondFile.new(
+    import abjad
+    lilypond_file = abjad.LilyPondFile.new(
         music=music,
         global_staff_size=18,
         )
-
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
-
-    context_block = lilypondfiletools.ContextBlock(
+    context_block = abjad.ContextBlock(
         source_context_name='Score',
         )
     lilypond_file.layout_block.items.append(context_block)
-
     context_block.remove_commands.append('Bar_number_engraver')
     context_block.remove_commands.append('Default_bar_line_engraver')
     override(context_block).clef.transparent = True
@@ -81,14 +76,11 @@ def make_text_alignment_example_lilypond_file(music=None):
     override(context_block).spacing_spanner.uniform_stretching = True
     override(context_block).text_script.staff_padding = 4
     override(context_block).time_signature.transparent = True
-    moment = schemetools.SchemeMoment((1, 32))
+    moment = abjad.SchemeMoment((1, 32))
     setting(context_block).proportionalNotationDuration = moment
-
     lilypond_file.paper_block.bottom_margin = 10
     lilypond_file.paper_block.left_margin = 10
     lilypond_file.paper_block.line_width = 150
-
-    vector = schemetools.make_spacing_vector(0, 0, 15, 0)
+    vector = abjad.SpacingVector(0, 0, 15, 0)
     lilypond_file.paper_block.system_system_spacing = vector
-
     return lilypond_file
