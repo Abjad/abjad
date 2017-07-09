@@ -95,6 +95,7 @@ class TieSpecifier(AbjadValueObject):
                 detach(spannertools.Tie, leaf)
 
     def _do_tie_across_divisions(self, divisions):
+        import abjad
         if not self.tie_across_divisions:
             return
         if self.strip_ties:
@@ -105,11 +106,11 @@ class TieSpecifier(AbjadValueObject):
         tie_across_divisions = self.tie_across_divisions
         if isinstance(tie_across_divisions, bool):
             tie_across_divisions = [tie_across_divisions]
-        if not isinstance(tie_across_divisions, patterntools.Pattern):
-            tie_across_divisions = patterntools.Pattern.from_vector(
+        if not isinstance(tie_across_divisions, abjad.Pattern):
+            tie_across_divisions = abjad.Pattern.from_vector(
                 tie_across_divisions)
-        pairs = sequencetools.Sequence(divisions).nwise()
-        rest_prototype = (scoretools.Rest, scoretools.MultimeasureRest)
+        pairs = abjad.Sequence(divisions).nwise()
+        rest_prototype = (abjad.Rest, abjad.MultimeasureRest)
         for i, pair in enumerate(pairs):
             if not tie_across_divisions.matches_index(i, length):
                 continue
@@ -121,23 +122,26 @@ class TieSpecifier(AbjadValueObject):
                 continue
             if isinstance(leaf_two, rest_prototype):
                 continue
-            prototype = (scoretools.Note, scoretools.Chord)
-            if not all(isinstance(x, prototype) for x in leaves):
+            pitched_prototype = (abjad.Note, abjad.Chord)
+            if not all(isinstance(_, pitched_prototype) for _ in leaves):
                 continue
             logical_tie_one = inspect(leaf_one).get_logical_tie()
             logical_tie_two = inspect(leaf_two).get_logical_tie()
-            for tie in inspect(leaf_one).get_spanners(spannertools.Tie):
-                detach(tie, leaf_one)
-            for tie in inspect(leaf_two).get_spanners(spannertools.Tie):
-                detach(tie, leaf_two)
+            if logical_tie_one == logical_tie_two:
+                continue
             combined_logical_tie = logical_tie_one + logical_tie_two
-            tie_spanner = spannertools.Tie(
+            for leaf in combined_logical_tie:
+                abjad.detach(abjad.Tie, leaf)
+            tie = abjad.Tie(
                 use_messiaen_style_ties=self.use_messiaen_style_ties,
                 )
-            tie_spanner._unconstrain_contiguity()
-            if tie_spanner._attachment_test_all(combined_logical_tie):
-                attach(tie_spanner, combined_logical_tie)
-            tie_spanner._constrain_contiguity()
+            tie._unconstrain_contiguity()
+            if tie._attachment_test_all(combined_logical_tie):
+                try:
+                    attach(tie, combined_logical_tie)
+                except:
+                    raise Exception(tie, combined_logical_tie)
+            tie._constrain_contiguity()
 
     def _do_tie_consecutive_notes(self, divisions):
         if not self.tie_consecutive_notes:

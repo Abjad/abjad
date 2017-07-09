@@ -42,7 +42,8 @@ class Tie(Spanner):
 
     ..  container:: example
 
-        Ties consecutive chords if all adjacent pairs have at least one pitch in common:
+        Ties consecutive chords if all adjacent pairs have at least one pitch
+        in common:
 
         ::
 
@@ -89,27 +90,34 @@ class Tie(Spanner):
     ### PRIVATE METHODS ###
 
     def _attachment_test(self, component):
-        from abjad.tools import scoretools
-        pitched_prototype = (scoretools.Note, scoretools.Chord)
-        return isinstance(component, pitched_prototype)
+        import abjad
+        if self._ignore_attachment_test:
+            return True
+        if not isinstance(component, (abjad.Chord, abjad.Note)):
+            return False
+        if abjad.inspect(component).has_spanner(abjad.Tie):
+            return False
+        return True
 
     def _attachment_test_all(self, component_expression):
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        #if not self._at_least_two_leaves(component_expression):
-        #    return False
+        import abjad
+        if self._ignore_attachment_test:
+            return True
         written_pitches = []
-        if isinstance(component_expression, scoretools.Component):
+        if isinstance(component_expression, abjad.Component):
             component_expression = [component_expression]
         for component in component_expression:
-            if isinstance(component, scoretools.Note):
+            if isinstance(component, abjad.Note):
                 written_pitches.append(set([component.written_pitch]))
-            elif isinstance(component, scoretools.Chord):
+            elif isinstance(component, abjad.Chord):
                 written_pitches.append(set(component.written_pitches))
             else:
                 return False
-        for pair in sequencetools.Sequence(written_pitches).nwise():
+        for pair in abjad.Sequence(written_pitches).nwise():
             if not set.intersection(*pair):
+                return False
+        for component in component_expression:
+            if abjad.inspect(component).has_spanner(abjad.Tie):
                 return False
         return True
 

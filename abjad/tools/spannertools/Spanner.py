@@ -27,6 +27,7 @@ class Spanner(AbjadObject):
     __slots__ = (
         '_components',
         '_contiguity_constraint',
+        '_ignore_attachment_test',
         '_indicator_expressions',
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
@@ -44,6 +45,7 @@ class Spanner(AbjadObject):
         self._components = []
         self._contiguity_constraint = 'logical voice'
         self._apply_overrides(overrides)
+        self._ignore_attachment_test = None
         self._indicator_expressions = []
         self._lilypond_setting_name_manager = None
         if name is not None:
@@ -129,7 +131,12 @@ class Spanner(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _append(self, component):
-        assert self._attachment_test(component), (repr(component), repr(self))
+        if self._ignore_attachment_test:
+            pass
+        elif not self._attachment_test(component):
+            message = 'can not attach {!r} to {!r}.'
+            message = message.format(self, component)
+            raise Exception(message)
         if self._contiguity_constraint == 'logical voice':
             components = self[-1:] + [component]
             if not Selection._all_in_same_logical_voice(
@@ -299,10 +306,15 @@ class Spanner(AbjadObject):
         return self, left, right
 
     def _fuse_by_reference(self, spanner):
+#        result = self._copy(self[:])
+#        result._extend(spanner.components)
+#        self._block_all_components()
+#        spanner._block_all_components()
+#        return [(self, spanner, result)]
         result = self._copy(self[:])
-        result._extend(spanner.components)
         self._block_all_components()
         spanner._block_all_components()
+        result._extend(spanner.components)
         return [(self, spanner, result)]
 
     def _get_basic_lilypond_format_bundle(self, leaf):

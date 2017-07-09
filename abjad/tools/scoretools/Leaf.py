@@ -372,7 +372,6 @@ class Leaf(Component):
             self._splice(tied_leaves, grow_spanners=True)
             parentage = self._get_parentage()
             if not parentage._get_spanners(abjad.Tie):
-                #if abjad.Tie._attachment_test(self):
                 tie = abjad.Tie()
                 if tie._attachment_test(self):
                     tie = abjad.Tie(

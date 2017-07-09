@@ -701,7 +701,9 @@ class WellformednessManager(AbjadObject):
 
                 >>> staff = Staff("c'4 c' c' c''")
                 >>> attach(Tie(), staff[:2])
-                >>> attach(Tie(), staff[1:3])
+                >>> tie = Tie()
+                >>> tie._ignore_attachment_test = True
+                >>> attach(tie, staff[1:3])
 
             ::
 
@@ -729,13 +731,11 @@ class WellformednessManager(AbjadObject):
 
         Returns violators and count of total ties.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        from abjad.tools.topleveltools import iterate
+        import abjad
         total = set()
         violators = set()
-        for leaf in iterate(argument).by_leaf():
-            spanners = leaf._get_spanners(spannertools.Tie)
+        for leaf in abjad.iterate(argument).by_leaf():
+            spanners = leaf._get_spanners(abjad.Tie)
             total.update(spanners)
             if 1 < len(spanners):
                 violators.update(spanners)

@@ -313,8 +313,7 @@ class Selection(object):
         previous = first
         for current in argument[1:]:
             current_parentage = current._get_parentage()
-            current_logical_voice = \
-                current_parentage.logical_voice
+            current_logical_voice = current_parentage.logical_voice
             # false if wrong type of component found
             if not isinstance(current, prototype):
                 return False
@@ -379,31 +378,29 @@ class Selection(object):
                 same_parent = False
             if not previous._is_immediate_temporal_successor_of(current):
                 strictly_contiguous = False
-            if (not allow_orphans or
-                (allow_orphans and not orphan_components)) and \
-                (not same_parent or not strictly_contiguous):
+            if ((not allow_orphans or
+                (allow_orphans and not orphan_components)) and
+                (not same_parent or not strictly_contiguous)):
                 return False
             previous = current
         return True
 
     def _attach_tie_spanner_to_leaf_pair(self, use_messiaen_style_ties=False):
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
+        import abjad
         assert len(self) == 2
         left_leaf, right_leaf = self
-        assert isinstance(left_leaf, scoretools.Leaf), left_leaf
-        assert isinstance(right_leaf, scoretools.Leaf), right_leaf
+        assert isinstance(left_leaf, abjad.Leaf), left_leaf
+        assert isinstance(right_leaf, abjad.Leaf), right_leaf
         left_logical_tie = left_leaf._get_logical_tie()
         right_logical_tie = right_leaf._get_logical_tie()
-        prototype = (spannertools.Tie,)
         if left_logical_tie == right_logical_tie:
             return
         try:
-            left_tie_spanner = left_leaf._get_spanner(prototype)
+            left_tie_spanner = left_leaf._get_spanner(abjad.Tie)
         except MissingSpannerError:
             left_tie_spanner = None
         try:
-            right_tie_spanner = right_leaf._get_spanner(prototype)
+            right_tie_spanner = right_leaf._get_spanner(abjad.Tie)
         except MissingSpannerError:
             right_tie_spanner = None
         if left_tie_spanner is not None and right_tie_spanner is not None:
@@ -413,7 +410,7 @@ class Selection(object):
         elif left_tie_spanner is None and right_tie_spanner is not None:
             right_tie_spanner._append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
-            tie = spannertools.Tie(
+            tie = abjad.Tie(
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
             attach(tie, [left_leaf, right_leaf])
