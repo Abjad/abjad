@@ -22,7 +22,7 @@ def test_agenttools_InspectionAgent_get_duration_01():
     decrescendo = Decrescendo()
     attach(decrescendo, voice[1][:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \tempo 8=42
@@ -62,7 +62,7 @@ def test_agenttools_InspectionAgent_get_duration_02():
     decrescendo = Decrescendo()
     attach(decrescendo, voice[1][:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -98,7 +98,7 @@ def test_agenttools_InspectionAgent_get_duration_03():
     attach(mark, staff[2])
     score = Score([staff])
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -137,7 +137,7 @@ def test_agenttools_InspectionAgent_get_duration_05():
     attach(mark, staff[2])
     Score([staff])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \tempo 4=38

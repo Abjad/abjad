@@ -30,7 +30,7 @@ def test_topleveltools_new_01():
         ratio=mathtools.Ratio([1, 2, 3])
         )
 
-    assert format(old_aggregate) == stringtools.normalize(
+    assert format(old_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -50,7 +50,7 @@ def test_topleveltools_new_01():
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate == old_aggregate
-    assert format(old_aggregate) == stringtools.normalize(
+    assert format(old_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -65,7 +65,7 @@ def test_topleveltools_new_01():
             ratio=abjad.Ratio((1, 2, 3)),
             )
         ''')
-    assert format(new_aggregate) == stringtools.normalize(
+    assert format(new_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -89,7 +89,7 @@ def test_topleveltools_new_02():
         ratio=mathtools.Ratio([1, 2, 3])
         )
 
-    assert format(old_aggregate) == stringtools.normalize(
+    assert format(old_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -112,7 +112,7 @@ def test_topleveltools_new_02():
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate
-    assert format(old_aggregate) == stringtools.normalize(
+    assert format(old_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -127,7 +127,7 @@ def test_topleveltools_new_02():
             ratio=abjad.Ratio((1, 2, 3)),
             )
         ''')
-    assert format(new_aggregate) == stringtools.normalize(
+    assert format(new_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -150,7 +150,7 @@ def test_topleveltools_new_03():
         pitch_segment=pitchtools.PitchSegment('c d e f'),
         )
 
-    assert format(old_aggregate) == stringtools.normalize(
+    assert format(old_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -173,7 +173,7 @@ def test_topleveltools_new_03():
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate
-    assert format(old_aggregate) == stringtools.normalize(
+    assert format(old_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -187,7 +187,7 @@ def test_topleveltools_new_03():
                 ),
             )
         ''')
-    assert format(new_aggregate) == stringtools.normalize(
+    assert format(new_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -209,7 +209,7 @@ def test_topleveltools_new_04():
         pitch_segment=pitchtools.PitchSegment('c d e f'),
         )
 
-    assert format(old_aggregate) == stringtools.normalize(
+    assert format(old_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -232,7 +232,7 @@ def test_topleveltools_new_04():
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate
-    assert format(old_aggregate) == stringtools.normalize(
+    assert format(old_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -246,7 +246,7 @@ def test_topleveltools_new_04():
                 ),
             )
         ''')
-    assert format(new_aggregate) == stringtools.normalize(
+    assert format(new_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -269,7 +269,7 @@ def test_topleveltools_new_05():
         pitch_segment=pitchtools.PitchSegment('c d e f'),
         )
 
-    assert format(old_aggregate) == stringtools.normalize(
+    assert format(old_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -292,7 +292,7 @@ def test_topleveltools_new_05():
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate
-    assert format(old_aggregate) == stringtools.normalize(
+    assert format(old_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -306,7 +306,7 @@ def test_topleveltools_new_05():
                 ),
             )
         ''')
-    assert format(new_aggregate) == stringtools.normalize(
+    assert format(new_aggregate) == String.normalize(
         r'''
         test_topleveltools_new.Aggregate(
             pitch_segment=abjad.PitchSegment(

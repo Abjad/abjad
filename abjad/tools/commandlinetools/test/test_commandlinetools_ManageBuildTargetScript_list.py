@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import commandlinetools
-from abjad.tools import systemtools
+import abjad
 from base import ScorePackageScriptTestCase
 
 
@@ -8,28 +7,28 @@ class Test(ScorePackageScriptTestCase):
 
     def test_list(self):
         self.create_score()
-        script = commandlinetools.ManageBuildTargetScript()
+        script = abjad.commandlinetools.ManageBuildTargetScript()
         command = ['--new', 'big-version']
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
         command = ['--new', 'medium-version']
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
         command = ['--new', 'small-version']
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
         command = ['--list']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:

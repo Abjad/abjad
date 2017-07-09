@@ -723,7 +723,7 @@ class Expression(AbjadObject):
             message = '{} {} (not {}) required: {!r}.'
             message = message.format(
                 argument_count,
-                abjad.stringtools.pluralize('argument', argument_count),
+                abjad.String('argument').pluralize(argument_count),
                 len(arguments),
                 arguments,
                 )

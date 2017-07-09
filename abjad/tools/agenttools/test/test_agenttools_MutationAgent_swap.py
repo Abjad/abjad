@@ -13,7 +13,7 @@ def test_agenttools_MutationAgent_swap_01():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -35,7 +35,7 @@ def test_agenttools_MutationAgent_swap_01():
     tuplet = Tuplet((3, 4), [])
     mutate(voice[:2]).swap(tuplet)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \tweak text #tuplet-number::calc-fraction-text
@@ -68,7 +68,7 @@ def test_agenttools_MutationAgent_swap_02():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \context Voice = "foo" {
             {
@@ -91,7 +91,7 @@ def test_agenttools_MutationAgent_swap_02():
     new_voice.name = 'foo'
     mutate(voice[1:2]).swap(new_voice)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \context Voice = "foo" {
             {
@@ -124,7 +124,7 @@ def test_agenttools_MutationAgent_swap_03():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -147,7 +147,7 @@ def test_agenttools_MutationAgent_swap_03():
     mutate(voice[1:2]).swap(tuplet)
 
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -208,7 +208,7 @@ def test_agenttools_MutationAgent_swap_06():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -238,7 +238,7 @@ def test_agenttools_MutationAgent_swap_07():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
 
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == String.normalize(
         r'''
         {
             \time 4/8
@@ -253,7 +253,7 @@ def test_agenttools_MutationAgent_swap_07():
     new_measure = Measure((4, 8), [])
     mutate(measure).swap(new_measure)
 
-    assert format(new_measure) == stringtools.normalize(
+    assert format(new_measure) == String.normalize(
         r'''
         {
             \time 4/8

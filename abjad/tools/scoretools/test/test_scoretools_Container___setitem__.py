@@ -11,7 +11,7 @@ def test_scoretools_Container___setitem___01():
     leaves = iterate(voice).by_leaf()
     attach(Glissando(), list(leaves))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -24,7 +24,7 @@ def test_scoretools_Container___setitem___01():
 
     voice[1] = Note("c''8")
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -47,7 +47,7 @@ def test_scoretools_Container___setitem___02():
     glissando = Glissando(allow_repeat_pitches=True)
     attach(glissando, list(leaves))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -60,7 +60,7 @@ def test_scoretools_Container___setitem___02():
 
     voice[1] = Container("c'16 c'16 c'16")
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -86,7 +86,7 @@ def test_scoretools_Container___setitem___03():
     leaves = iterate(voice).by_leaf()
     attach(Glissando(), list(leaves))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -103,7 +103,7 @@ def test_scoretools_Container___setitem___03():
 
     voice[1] = Note("c''8")
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -127,7 +127,7 @@ def test_scoretools_Container___setitem___04():
     attach(Beam(), leaves)
     attach(Glissando(), leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -144,7 +144,7 @@ def test_scoretools_Container___setitem___04():
 
     voice[1] = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -171,7 +171,7 @@ def test_scoretools_Container___setitem___05():
     leaves = iterate(voice).by_leaf()
     attach(Glissando(), list(leaves))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -188,7 +188,7 @@ def test_scoretools_Container___setitem___05():
 
     voice[1] = Note("c''8")
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -212,7 +212,7 @@ def test_scoretools_Container___setitem___06():
     leaves = iterate(voice).by_leaf()
     attach(Beam(), list(leaves)[0:6])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -233,7 +233,7 @@ def test_scoretools_Container___setitem___06():
 
     voice[1] = Rest('r2')
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -262,7 +262,7 @@ def test_scoretools_Container___setitem___07():
     voice_1 = Voice(notes[:3])
     attach(Beam(), voice_1[:])
 
-    assert format(voice_1) == stringtools.normalize(
+    assert format(voice_1) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -275,7 +275,7 @@ def test_scoretools_Container___setitem___07():
     voice_2 = Voice(notes[3:])
     attach(Beam(), voice_2[:])
 
-    assert format(voice_2) == stringtools.normalize(
+    assert format(voice_2) == String.normalize(
         r'''
         \new Voice {
             f'8 [
@@ -287,7 +287,7 @@ def test_scoretools_Container___setitem___07():
 
     voice_1[1] = voice_2[1]
 
-    assert format(voice_1) == stringtools.normalize(
+    assert format(voice_1) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -299,7 +299,7 @@ def test_scoretools_Container___setitem___07():
 
     assert inspect(voice_1).is_well_formed()
 
-    assert format(voice_2) == stringtools.normalize(
+    assert format(voice_2) == String.normalize(
         r'''
         \new Voice {
             f'8 [
@@ -322,7 +322,7 @@ def test_scoretools_Container___setitem___08():
     voice_1 = Voice(notes[:3])
     attach(Beam(), voice_1[:])
 
-    assert format(voice_1) == stringtools.normalize(
+    assert format(voice_1) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -339,7 +339,7 @@ def test_scoretools_Container___setitem___08():
     leaves = select(voice_2[1]).by_leaf()
     attach(Slur(), leaves)
 
-    assert format(voice_2) == stringtools.normalize(
+    assert format(voice_2) == String.normalize(
         r'''
         \new Voice {
             f'8 \glissando
@@ -354,7 +354,7 @@ def test_scoretools_Container___setitem___08():
 
     voice_1[1] = voice_2[1]
 
-    assert format(voice_1) == stringtools.normalize(
+    assert format(voice_1) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -369,7 +369,7 @@ def test_scoretools_Container___setitem___08():
 
     assert inspect(voice_1).is_well_formed()
 
-    assert format(voice_2) == stringtools.normalize(
+    assert format(voice_2) == String.normalize(
         r'''
         \new Voice {
             f'8 \glissando
@@ -388,7 +388,7 @@ def test_scoretools_Container___setitem___09():
     staff = Staff("c'8 d'8 e'8 f'8")
     staff[2:2] = [Note("g'8")]
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -413,7 +413,7 @@ def test_scoretools_Container___setitem___10():
     note = Note("g'8")
     staff[2:2] = [note]
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -445,7 +445,7 @@ def test_scoretools_Container___setitem___11():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -458,7 +458,7 @@ def test_scoretools_Container___setitem___11():
 
     staff[2:2] = middle
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -484,7 +484,7 @@ def test_scoretools_Container___setitem___12():
     note = Note("c''8")
     staff[1:3] = [note]
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -507,7 +507,7 @@ def test_scoretools_Container___setitem___13():
     notes = [Note("b'8"), Note("a'8"), Note("g'8")]
     staff[1:3] = notes
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -528,7 +528,7 @@ def test_scoretools_Container___setitem___14():
 
     staff = Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -546,7 +546,7 @@ def test_scoretools_Container___setitem___14():
     container = staff[0]
     staff[0:1] = container[:]
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -570,7 +570,7 @@ def test_scoretools_Container___setitem___15():
 
     staff = Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -587,7 +587,7 @@ def test_scoretools_Container___setitem___15():
 
     staff[0:0] = staff[0][:1]
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -616,7 +616,7 @@ def test_scoretools_Container___setitem___16():
 
     staff = Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -633,7 +633,7 @@ def test_scoretools_Container___setitem___16():
 
     staff[0:0] = staff[0][:]
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -659,7 +659,7 @@ def test_scoretools_Container___setitem___17():
 
     staff = Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -678,7 +678,7 @@ def test_scoretools_Container___setitem___17():
     staff[0:0] = container[:]
     container[0:0] = staff[-1][:1]
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -703,7 +703,7 @@ def test_scoretools_Container___setitem___18():
     voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     voice[-1000:-1000] = [Rest('r8')]
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             r8
@@ -715,7 +715,7 @@ def test_scoretools_Container___setitem___18():
         '''
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             r8
@@ -737,7 +737,7 @@ def test_scoretools_Container___setitem___19():
     voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     voice[1000:1000] = [Rest('r8')]
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -768,7 +768,7 @@ def test_scoretools_Container___setitem___20():
     outer_container = Container()
     mutate(inner_container).wrap(outer_container)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -787,7 +787,7 @@ def test_scoretools_Container___setitem___20():
     outer_container[:] = []
 
     # outer container is empty and remains in score
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -799,7 +799,7 @@ def test_scoretools_Container___setitem___20():
         )
 
     # inner container leaves are no longer spanned
-    assert format(inner_container) == stringtools.normalize(
+    assert format(inner_container) == String.normalize(
         r'''
         {
             d'8
@@ -815,7 +815,7 @@ def test_scoretools_Container___setitem___20():
     outer_container = Container()
     mutate(inner_container).wrap(outer_container)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -834,7 +834,7 @@ def test_scoretools_Container___setitem___20():
     del(outer_container[:])
 
     # outer container is empty and remains in score (as before)
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -846,7 +846,7 @@ def test_scoretools_Container___setitem___20():
         )
 
     # inner container leaves are still spanned
-    assert format(inner_container) == stringtools.normalize(
+    assert format(inner_container) == String.normalize(
         r'''
         {
             d'8 [
@@ -882,7 +882,7 @@ def test_scoretools_Container___setitem___21():
     leaves = iterate(staff).by_leaf()
     assert beam.components == list(leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [

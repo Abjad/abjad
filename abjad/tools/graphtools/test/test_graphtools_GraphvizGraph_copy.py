@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import copy
+from abjad import *
 from abjad.tools import graphtools
 from abjad.tools import stringtools
 
 
 def test_graphtools_GraphvizGraph_copy_01():
     graph = graphtools.GraphvizGraph()
-    assert str(graph) == stringtools.normalize(
+    assert str(graph) == String.normalize(
         r'''
         digraph G {
         }
@@ -18,7 +19,7 @@ def test_graphtools_GraphvizGraph_copy_01():
 def test_graphtools_GraphvizGraph_copy_02():
     graph = graphtools.GraphvizGraph()
     graph.append(graphtools.GraphvizSubgraph())
-    assert str(graph) == stringtools.normalize(
+    assert str(graph) == String.normalize(
         r'''
         digraph G {
             subgraph cluster_0 {
@@ -33,7 +34,7 @@ def test_graphtools_GraphvizGraph_copy_03():
     graph = graphtools.GraphvizGraph()
     graph.append(graphtools.GraphvizNode())
     graph.append(graphtools.GraphvizNode())
-    assert str(graph) == stringtools.normalize(
+    assert str(graph) == String.normalize(
         r'''
         digraph G {
             node_0;
@@ -49,7 +50,7 @@ def test_graphtools_GraphvizGraph_copy_04():
     graph.append(graphtools.GraphvizNode())
     graph.append(graphtools.GraphvizNode())
     graphtools.GraphvizEdge().attach(graph[0], graph[1])
-    assert str(graph) == stringtools.normalize(
+    assert str(graph) == String.normalize(
         r'''
         digraph G {
             node_0;
@@ -72,7 +73,7 @@ def test_graphtools_GraphvizGraph_copy_05():
     graph.append(graphtools.GraphvizNode())
     graphtools.GraphvizEdge().attach(graph[0][1], graph[1])
     graphtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
-    assert str(graph) == stringtools.normalize(
+    assert str(graph) == String.normalize(
         r'''
         digraph G {
             subgraph cluster_0 {
@@ -105,7 +106,7 @@ def test_graphtools_GraphvizGraph_copy_06():
     graphtools.GraphvizEdge().attach(graph[0][1], graph[1])
     graphtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
     copied = copy.copy(graph[0])
-    assert str(copied) == stringtools.normalize(
+    assert str(copied) == String.normalize(
         r'''
         digraph cluster_ {
             node_0;

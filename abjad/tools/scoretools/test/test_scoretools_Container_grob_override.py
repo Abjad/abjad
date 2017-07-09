@@ -9,7 +9,7 @@ def test_scoretools_Container_grob_override_01():
     container = Container("c'8 d'8 e'8 f'8")
     override(container).glissando.thickness = 3
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \override Glissando.thickness = #3

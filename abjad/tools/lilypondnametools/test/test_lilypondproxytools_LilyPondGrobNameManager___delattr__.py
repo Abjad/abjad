@@ -9,7 +9,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___delattr___01():
     override(note).beam.positions = (-6, -6)
     override(note).dots.thicknes = 2
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override Accidental.color = #red
         \once \override Beam.positions = #'(-6 . -6)
@@ -21,7 +21,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___delattr___01():
     del(override(note).accidental)
     del(override(note).beam)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override Dots.thicknes = #2
         c'4
@@ -37,7 +37,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___delattr___02():
     override(staff).rest.transparent = True
     del(override(staff).rest)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8

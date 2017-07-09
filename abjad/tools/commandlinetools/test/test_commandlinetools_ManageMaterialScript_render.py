@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 import platform
-from abjad.tools import commandlinetools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
 try:
     from unittest import mock
@@ -32,10 +31,10 @@ class Test(ScorePackageScriptTestCase):
         pdf_path = material_path.joinpath('illustration.pdf')
         assert pdf_path.exists()
         pdf_path.unlink()
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--render', 'test_material']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:

@@ -18,7 +18,7 @@ def test_agenttools_MutationAgent_split_01():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -41,7 +41,7 @@ def test_agenttools_MutationAgent_split_01():
         fracture_spanners=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -77,7 +77,7 @@ def test_agenttools_MutationAgent_split_02():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -99,7 +99,7 @@ def test_agenttools_MutationAgent_split_02():
         fracture_spanners=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -136,7 +136,7 @@ def test_agenttools_MutationAgent_split_03():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -160,7 +160,7 @@ def test_agenttools_MutationAgent_split_03():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -202,7 +202,7 @@ def test_agenttools_MutationAgent_split_04():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -226,7 +226,7 @@ def test_agenttools_MutationAgent_split_04():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -285,7 +285,7 @@ def test_agenttools_MutationAgent_split_05():
     music = Sequence(result).flatten()
     staff = Staff(music)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -336,7 +336,7 @@ def test_agenttools_MutationAgent_split_06():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -360,7 +360,7 @@ def test_agenttools_MutationAgent_split_06():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -397,7 +397,7 @@ def test_agenttools_MutationAgent_split_07():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -420,7 +420,7 @@ def test_agenttools_MutationAgent_split_07():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -457,7 +457,7 @@ def test_agenttools_MutationAgent_split_08():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -481,7 +481,7 @@ def test_agenttools_MutationAgent_split_08():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -524,7 +524,7 @@ def test_agenttools_MutationAgent_split_09():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -548,7 +548,7 @@ def test_agenttools_MutationAgent_split_09():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -599,7 +599,7 @@ def test_agenttools_MutationAgent_split_10():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -622,7 +622,7 @@ def test_agenttools_MutationAgent_split_10():
         fracture_spanners=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -657,7 +657,7 @@ def test_agenttools_MutationAgent_split_11():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -679,7 +679,7 @@ def test_agenttools_MutationAgent_split_11():
         fracture_spanners=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -716,7 +716,7 @@ def test_agenttools_MutationAgent_split_12():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -740,7 +740,7 @@ def test_agenttools_MutationAgent_split_12():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -781,7 +781,7 @@ def test_agenttools_MutationAgent_split_13():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -805,7 +805,7 @@ def test_agenttools_MutationAgent_split_13():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -858,7 +858,7 @@ def test_agenttools_MutationAgent_split_14():
     music = Sequence(result).flatten()
     staff = Staff(music)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'16. ~
@@ -897,7 +897,7 @@ def test_agenttools_MutationAgent_split_15():
     music = Sequence(result).flatten()
     staff = Staff(music)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -948,7 +948,7 @@ def test_agenttools_MutationAgent_split_16():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -972,7 +972,7 @@ def test_agenttools_MutationAgent_split_16():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1008,7 +1008,7 @@ def test_agenttools_MutationAgent_split_17():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1031,7 +1031,7 @@ def test_agenttools_MutationAgent_split_17():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1068,7 +1068,7 @@ def test_agenttools_MutationAgent_split_18():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1092,7 +1092,7 @@ def test_agenttools_MutationAgent_split_18():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1134,7 +1134,7 @@ def test_agenttools_MutationAgent_split_19():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1158,7 +1158,7 @@ def test_agenttools_MutationAgent_split_19():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1209,7 +1209,7 @@ def test_agenttools_MutationAgent_split_20():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1233,7 +1233,7 @@ def test_agenttools_MutationAgent_split_20():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1274,7 +1274,7 @@ def test_agenttools_MutationAgent_split_21():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1298,7 +1298,7 @@ def test_agenttools_MutationAgent_split_21():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1343,7 +1343,7 @@ def test_agenttools_MutationAgent_split_22():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1367,7 +1367,7 @@ def test_agenttools_MutationAgent_split_22():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1408,7 +1408,7 @@ def test_agenttools_MutationAgent_split_23():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1433,7 +1433,7 @@ def test_agenttools_MutationAgent_split_23():
 
     assert inspect(staff).is_well_formed()
     assert len(result) == 4
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1479,7 +1479,7 @@ def test_agenttools_MutationAgent_split_24():
     notes = Sequence(result).flatten()
     staff = Staff(notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'32
@@ -1500,7 +1500,7 @@ def test_agenttools_MutationAgent_split_25():
 
     staff = Staff("c'8 [ ]")
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ ]
@@ -1516,7 +1516,7 @@ def test_agenttools_MutationAgent_split_25():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'64 [ ]
@@ -1547,7 +1547,7 @@ def test_agenttools_MutationAgent_split_26():
         fracture_spanners=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -1589,7 +1589,7 @@ def test_agenttools_MutationAgent_split_27():
         fracture_spanners=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -1632,7 +1632,7 @@ def test_agenttools_MutationAgent_split_28():
         fracture_spanners=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -1679,7 +1679,7 @@ def test_agenttools_MutationAgent_split_29():
     voice_1 = result[0][0]
     voice_2 = result[1][0]
 
-    assert format(voice_1) == stringtools.normalize(
+    assert format(voice_1) == String.normalize(
         r'''
         \new Voice {
             c'8
@@ -1690,7 +1690,7 @@ def test_agenttools_MutationAgent_split_29():
 
     assert inspect(voice_1).is_well_formed()
 
-    assert format(voice_2) == stringtools.normalize(
+    assert format(voice_2) == String.normalize(
         r'''
         \new Voice {
             e'8
@@ -1717,7 +1717,7 @@ def test_agenttools_MutationAgent_split_30():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(left) == stringtools.normalize(
+    assert format(left) == String.normalize(
         r'''
         \new Voice {
             c'8
@@ -1726,7 +1726,7 @@ def test_agenttools_MutationAgent_split_30():
         '''
         ), format(left)
 
-    assert format(right) == stringtools.normalize(
+    assert format(right) == String.normalize(
         r'''
         \new Voice {
             e'8
@@ -1735,14 +1735,14 @@ def test_agenttools_MutationAgent_split_30():
         '''
         ), format(right)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
         }
         '''
         ), format(voice)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -1778,7 +1778,7 @@ def test_agenttools_MutationAgent_split_31():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1793,7 +1793,7 @@ def test_agenttools_MutationAgent_split_31():
         '''
         ), format(staff)
 
-    assert format(left) == stringtools.normalize(
+    assert format(left) == String.normalize(
         r'''
         {
             c'8 [
@@ -1802,7 +1802,7 @@ def test_agenttools_MutationAgent_split_31():
         '''
         ), format(left)
 
-    assert format(right) == stringtools.normalize(
+    assert format(right) == String.normalize(
         r'''
         {
             e'8
@@ -1811,14 +1811,14 @@ def test_agenttools_MutationAgent_split_31():
         '''
         ), format(right)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         {
         }
         '''
         ), format(voice)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1854,7 +1854,7 @@ def test_agenttools_MutationAgent_split_32():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(left) == stringtools.normalize(
+    assert format(left) == String.normalize(
         r'''
         \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
@@ -1864,7 +1864,7 @@ def test_agenttools_MutationAgent_split_32():
         '''
         ), format(left)
 
-    assert format(right) == stringtools.normalize(
+    assert format(right) == String.normalize(
         r'''
         \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
@@ -1875,14 +1875,14 @@ def test_agenttools_MutationAgent_split_32():
         '''
         ), format(right)
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \times 4/5 {
         }
         '''
         ), format(tuplet)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \tweak edge-height #'(0.7 . 0)
@@ -1900,7 +1900,7 @@ def test_agenttools_MutationAgent_split_32():
         '''
         ), format(voice)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -1935,7 +1935,7 @@ def test_agenttools_MutationAgent_split_33():
     attach(beam, leaves)
     tuplet = voice[1]
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -1960,7 +1960,7 @@ def test_agenttools_MutationAgent_split_33():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(left) == stringtools.normalize(
+    assert format(left) == String.normalize(
         r'''
         \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
@@ -1969,7 +1969,7 @@ def test_agenttools_MutationAgent_split_33():
         '''
         ), format(left)
 
-    assert format(right) == stringtools.normalize(
+    assert format(right) == String.normalize(
         r'''
         \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
@@ -1981,7 +1981,7 @@ def test_agenttools_MutationAgent_split_33():
 
     assert format(tuplet) == '\\times 2/3 {\n}'
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -2018,7 +2018,7 @@ def test_agenttools_MutationAgent_split_34():
     attach(beam, leaves)
     measure = voice[1]
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2044,7 +2044,7 @@ def test_agenttools_MutationAgent_split_34():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(left) == stringtools.normalize(
+    assert format(left) == String.normalize(
         r'''
         {
             \time 1/8
@@ -2053,7 +2053,7 @@ def test_agenttools_MutationAgent_split_34():
         '''
         ), format(left)
 
-    assert format(right) == stringtools.normalize(
+    assert format(right) == String.normalize(
         r'''
         {
             \time 2/8
@@ -2065,7 +2065,7 @@ def test_agenttools_MutationAgent_split_34():
 
     assert pytest.raises(UnderfullContainerError, 'format(measure)')
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2105,7 +2105,7 @@ def test_agenttools_MutationAgent_split_35():
     attach(beam, leaves)
     measure = voice[1]
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2135,7 +2135,7 @@ def test_agenttools_MutationAgent_split_35():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(left) == stringtools.normalize(
+    assert format(left) == String.normalize(
         r'''
         {
             \time 1/9
@@ -2146,7 +2146,7 @@ def test_agenttools_MutationAgent_split_35():
         '''
         ), format(left)
 
-    assert format(right) == stringtools.normalize(
+    assert format(right) == String.normalize(
         r'''
         {
             \time 2/9
@@ -2160,7 +2160,7 @@ def test_agenttools_MutationAgent_split_35():
 
     assert pytest.raises(UnderfullContainerError, 'format(measure)')
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2200,7 +2200,7 @@ def test_agenttools_MutationAgent_split_36():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -2219,7 +2219,7 @@ def test_agenttools_MutationAgent_split_36():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(left) == stringtools.normalize(
+    assert format(left) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -2228,7 +2228,7 @@ def test_agenttools_MutationAgent_split_36():
         '''
         ), format(left)
 
-    assert format(right) == stringtools.normalize(
+    assert format(right) == String.normalize(
         r'''
         \new Voice {
             e'8 [
@@ -2237,7 +2237,7 @@ def test_agenttools_MutationAgent_split_36():
         '''
         ), format(right)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
         }
@@ -2260,7 +2260,7 @@ def test_agenttools_MutationAgent_split_37():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -2285,7 +2285,7 @@ def test_agenttools_MutationAgent_split_37():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -2320,7 +2320,7 @@ def test_agenttools_MutationAgent_split_38():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -2338,7 +2338,7 @@ def test_agenttools_MutationAgent_split_38():
         fracture_spanners=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -2368,7 +2368,7 @@ def test_agenttools_MutationAgent_split_39():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2392,7 +2392,7 @@ def test_agenttools_MutationAgent_split_39():
         fracture_spanners=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2429,7 +2429,7 @@ def test_agenttools_MutationAgent_split_40():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2449,7 +2449,7 @@ def test_agenttools_MutationAgent_split_40():
         fracture_spanners=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2484,7 +2484,7 @@ def test_agenttools_MutationAgent_split_41():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2508,7 +2508,7 @@ def test_agenttools_MutationAgent_split_41():
         fracture_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2546,7 +2546,7 @@ def test_agenttools_MutationAgent_split_42():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2566,7 +2566,7 @@ def test_agenttools_MutationAgent_split_42():
         fracture_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2601,7 +2601,7 @@ def test_agenttools_MutationAgent_split_43():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2621,7 +2621,7 @@ def test_agenttools_MutationAgent_split_43():
         fracture_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2652,7 +2652,7 @@ def test_agenttools_MutationAgent_split_44():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2672,7 +2672,7 @@ def test_agenttools_MutationAgent_split_44():
         fracture_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2702,7 +2702,7 @@ def test_agenttools_MutationAgent_split_45():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2726,7 +2726,7 @@ def test_agenttools_MutationAgent_split_45():
         fracture_spanners=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2764,7 +2764,7 @@ def test_agenttools_MutationAgent_split_46():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2788,7 +2788,7 @@ def test_agenttools_MutationAgent_split_46():
         fracture_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2825,7 +2825,7 @@ def test_agenttools_MutationAgent_split_47():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2845,7 +2845,7 @@ def test_agenttools_MutationAgent_split_47():
         fracture_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -2876,7 +2876,7 @@ def test_agenttools_MutationAgent_split_48():
         [Duration(5, 24)],
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \tweak edge-height #'(0.7 . 0)
@@ -2912,7 +2912,7 @@ def test_agenttools_MutationAgent_split_49():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -2932,7 +2932,7 @@ def test_agenttools_MutationAgent_split_49():
         fracture_spanners=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

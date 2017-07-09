@@ -12,7 +12,7 @@ def test_scoretools_Measure_time_signature_assignment_01():
     time_signature = TimeSignature((3, 8))
     attach(time_signature, measure)
 
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == String.normalize(
         r'''
         {
             \time 3/8

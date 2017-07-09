@@ -43,7 +43,8 @@ class ManageScoreScript(ScorePackageScript):
         force=False,
         ):
         print('Creating score package {!r}...'.format(title))
-        score_package_name = stringtools.to_accent_free_snake_case(title)
+        score_package_name = stringtools.String(title)
+        score_package_name = score_package_name.to_accent_free_snake_case()
         outer_target_path = pathlib.Path(score_package_name).absolute()
         inner_target_path = outer_target_path.joinpath(score_package_name)
         if outer_target_path.exists() and not force:

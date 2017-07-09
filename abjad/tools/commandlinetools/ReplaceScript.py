@@ -90,6 +90,7 @@ class ReplaceScript(CommandlineScript):
             )
 
     def _process_args(self, arguments):
+        import abjad
         print('Replacing {!r} with {!r} ...'.format(arguments.old, arguments.new))
         skipped_dirs_patterns = self.skipped_directories + arguments.without_dirs
         skipped_files_patterns = self.skipped_files + arguments.without_files
@@ -129,9 +130,9 @@ class ReplaceScript(CommandlineScript):
                     changed_line_count += changed_lines
                     changed_item_count += changed_items
         print()
-        item_identifier = stringtools.pluralize('instance', changed_item_count)
-        line_identifier = stringtools.pluralize('line', changed_line_count)
-        file_identifier = stringtools.pluralize('file', changed_file_count)
+        item_identifier = abjad.String('instance').pluralize(changed_item_count)
+        line_identifier = abjad.String('line').pluralize(changed_line_count)
+        file_identifier = abjad.String('file').pluralize(changed_file_count)
         message = '\tReplaced {} {} over {} {} in {} {}.'
         message = message.format(
             changed_item_count,

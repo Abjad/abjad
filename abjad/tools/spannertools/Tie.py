@@ -82,7 +82,7 @@ class Tie(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.to_tridirectional_lilypond_symbol(
+        direction = stringtools.String.to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
         self._use_messiaen_style_ties = use_messiaen_style_ties

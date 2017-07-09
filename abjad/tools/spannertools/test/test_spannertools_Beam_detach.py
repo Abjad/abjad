@@ -10,7 +10,7 @@ def test_spannertools_Beam_detach_01():
     beam = Beam()
     attach(beam, staff[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ ]
@@ -27,7 +27,7 @@ def test_spannertools_Beam_detach_01():
 
     detach(beam, staff[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -53,7 +53,7 @@ def test_spannertools_Beam_detach_02():
     beam = Beam()
     attach(beam, staff[:4])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -70,7 +70,7 @@ def test_spannertools_Beam_detach_02():
 
     detach(beam, staff[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8

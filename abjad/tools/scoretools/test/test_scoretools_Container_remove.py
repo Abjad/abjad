@@ -17,7 +17,7 @@ def test_scoretools_Container_remove_01():
     beam = Beam()
     attach(beam, voice[1])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 (
@@ -31,7 +31,7 @@ def test_scoretools_Container_remove_01():
     note = voice[1]
     voice.remove(note)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 (
@@ -63,7 +63,7 @@ def test_scoretools_Container_remove_02():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -80,7 +80,7 @@ def test_scoretools_Container_remove_02():
 
     staff.remove(sequential)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -93,7 +93,7 @@ def test_scoretools_Container_remove_02():
 
     assert inspect(staff).is_well_formed()
 
-    assert format(sequential) == stringtools.normalize(
+    assert format(sequential) == String.normalize(
         r'''
         {
             c'8

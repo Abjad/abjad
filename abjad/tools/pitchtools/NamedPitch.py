@@ -124,7 +124,7 @@ class NamedPitch(Pitch):
         if (
             arguments and
             isinstance(arguments[0], collections.Iterable) and
-            not stringtools.is_string(arguments[0]) and
+            not stringtools.String.is_string(arguments[0]) and
             len(arguments) == 1
             ):
             arguments = arguments[0]

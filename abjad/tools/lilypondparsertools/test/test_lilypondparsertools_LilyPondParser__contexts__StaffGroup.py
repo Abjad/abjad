@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__StaffGroup_01():
 
     target = scoretools.StaffGroup([])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new StaffGroup <<
         >>

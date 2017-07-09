@@ -8,7 +8,7 @@ def test_spannertools_Decrescendo_direction_01():
     decrescendo = Decrescendo(direction=Up)
     attach(decrescendo, staff[:4])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 ^ \>

@@ -68,7 +68,8 @@ class Staccato(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, direction=None):
-        direction = stringtools.to_tridirectional_ordinal_constant(direction)
+        direction = stringtools.String.to_tridirectional_ordinal_constant(
+            direction)
         directions = (Up, Down, Center, None)
         assert direction in directions, repr(direction)
         self._direction = direction

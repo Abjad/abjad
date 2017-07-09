@@ -9,7 +9,7 @@ def test_selectiontools_Selection___illustrate___01():
     lilypond_file = selection.__illustrate__()
     score = lilypond_file[Score]
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -31,7 +31,7 @@ def test_selectiontools_Selection___illustrate___02():
     lilypond_file = selection.__illustrate__()
     score = lilypond_file[Score]
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {

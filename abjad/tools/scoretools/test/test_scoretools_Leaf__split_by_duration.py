@@ -10,7 +10,7 @@ def test_scoretools_Leaf__split_by_duration_01():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -26,7 +26,7 @@ def test_scoretools_Leaf__split_by_duration_01():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -47,7 +47,7 @@ def test_scoretools_Leaf__split_by_duration_02():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -63,7 +63,7 @@ def test_scoretools_Leaf__split_by_duration_02():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -84,7 +84,7 @@ def test_scoretools_Leaf__split_by_duration_03():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -100,7 +100,7 @@ def test_scoretools_Leaf__split_by_duration_03():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -127,7 +127,7 @@ def test_scoretools_Leaf__split_by_duration_04():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -153,7 +153,7 @@ def test_scoretools_Leaf__split_by_duration_05():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -183,7 +183,7 @@ def test_scoretools_Leaf__split_by_duration_06():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -201,7 +201,7 @@ def test_scoretools_Leaf__split_by_duration_06():
         tie_split_notes=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [

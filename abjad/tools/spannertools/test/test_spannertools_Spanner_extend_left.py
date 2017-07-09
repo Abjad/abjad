@@ -13,7 +13,7 @@ def test_spannertools_Spanner_extend_left_01():
     attach(beam, leaves[2:4])
     beam._extend_left(leaves[:2])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {

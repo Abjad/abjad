@@ -46,7 +46,7 @@ def test_quantizationtools_QGrid___call___02():
     result = q_grid((1, 4))
 
     assert isinstance(result, list) and len(result) == 1
-    assert format(result[0]) == stringtools.normalize(
+    assert format(result[0]) == String.normalize(
         r'''
         \times 2/3 {
             c'8
@@ -105,7 +105,7 @@ def test_quantizationtools_QGrid___call___03():
     result = q_grid((1, 3))
 
     assert isinstance(result, list) and len(result) == 1
-    assert format(result[0]) == stringtools.normalize(
+    assert format(result[0]) == String.normalize(
         r'''
         \tweak edge-height #'(0.7 . 0)
         \times 2/3 {

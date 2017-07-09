@@ -164,7 +164,7 @@ class Instrument(AbjadValueObject):
         if self._instrument_name_markup is None:
             if self.instrument_name:
                 string = self.instrument_name
-                string = stringtools.capitalize_start(string)
+                string = stringtools.String(string).capitalize_start()
                 markup = markuptools.Markup(contents=string)
                 self._instrument_name_markup = markup
             else:
@@ -172,7 +172,7 @@ class Instrument(AbjadValueObject):
         if self._short_instrument_name_markup is None:
             if self.short_instrument_name:
                 string = self.short_instrument_name
-                string = stringtools.capitalize_start(string)
+                string = stringtools.String(string).capitalize_start()
                 markup = markuptools.Markup(contents=string)
                 self._short_instrument_name_markup = markup
             else:

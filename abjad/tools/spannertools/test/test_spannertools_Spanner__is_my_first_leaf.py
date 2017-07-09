@@ -16,7 +16,7 @@ def test_spannertools_Spanner__is_my_first_leaf_01():
     spanner = MockSpanner()
     attach(spanner, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -63,7 +63,7 @@ def test_spannertools_Spanner__is_my_first_leaf_02():
     spanner = MockSpanner()
     attach(spanner, leaves[:4])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8

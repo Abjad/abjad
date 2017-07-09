@@ -19,7 +19,7 @@ def test_indicatortools_LilyPondComment_right_01():
     attach(comment, voice)
 
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \override Beam.thickness = #3
@@ -48,7 +48,7 @@ def test_indicatortools_LilyPondComment_right_02():
     comment = indicatortools.LilyPondComment(string, 'right')
     attach(comment, note)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override Beam.thickness = #3
         c'8 % Leaf comments right here. % More comments right.

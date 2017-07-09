@@ -17,7 +17,7 @@ def test_scoretools_Voice___copy___01():
     setting(voice_1).tuplet_full_length = True
     voice_2 = copy.copy(voice_1)
 
-    assert format(voice_2) == stringtools.normalize(
+    assert format(voice_2) == String.normalize(
         r'''
         \context Voice = "SopranoVoice" \with {
             \remove Forbid_line_break_engraver

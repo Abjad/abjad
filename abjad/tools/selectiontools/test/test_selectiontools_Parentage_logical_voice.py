@@ -67,7 +67,7 @@ def test_selectiontools_Parentage_logical_voice_04():
 
     override(voice).note_head.color = 'red'
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice \with {
             \override NoteHead.color = #red
@@ -129,7 +129,7 @@ def test_selectiontools_Parentage_logical_voice_05():
     override(voice).note_head.color = 'red'
     voice.name = 'foo'
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \context Voice = "foo" \with {
             \override NoteHead.color = #red
@@ -195,7 +195,7 @@ def test_selectiontools_Parentage_logical_voice_06():
     beam = Beam()
     attach(beam, leaves[2:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \context Staff = "staff1" {
@@ -255,7 +255,7 @@ def test_selectiontools_Parentage_logical_voice_07():
     override(container[1][1]).note_head.color = 'red'
     override(container[2][1]).note_head.color = 'red'
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -353,7 +353,7 @@ def test_selectiontools_Parentage_logical_voice_10():
         f'8
         ''')
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -383,7 +383,7 @@ def test_selectiontools_Parentage_logical_voice_11():
     container = Container(2 * Staff("c'8 c'8"))
     container[0].name = container[1].name = 'staff'
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \context Staff = "staff" {

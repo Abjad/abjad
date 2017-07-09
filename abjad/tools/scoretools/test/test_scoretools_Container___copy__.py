@@ -12,7 +12,7 @@ def test_scoretools_Container___copy___01():
     container_2 = copy.copy(container_1)
 
 
-    assert format(container_1) == stringtools.normalize(
+    assert format(container_1) == String.normalize(
         r'''
         <<
             \new Voice {
@@ -27,7 +27,7 @@ def test_scoretools_Container___copy___01():
         '''
         )
 
-    assert format(container_2) == stringtools.normalize(
+    assert format(container_2) == String.normalize(
         r'''
         <<
         >>

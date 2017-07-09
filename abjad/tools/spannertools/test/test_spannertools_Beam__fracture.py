@@ -13,7 +13,7 @@ def test_spannertools_Beam__fracture_01():
     attach(beam, staff[:4])
     beam._fracture(0, direction=Left)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -38,7 +38,7 @@ def test_spannertools_Beam__fracture_02():
     attach(beam, staff[:4])
     beam._fracture(1, direction=Left)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ ]
@@ -67,7 +67,7 @@ def test_spannertools_Beam__fracture_03():
     attach(beam, staff[:4])
     beam._fracture(-1, direction=Right)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -92,7 +92,7 @@ def test_spannertools_Beam__fracture_04():
     attach(beam, staff[:4])
     beam._fracture(1, direction=Right)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -119,7 +119,7 @@ def test_spannertools_Beam__fracture_05():
     attach(beam, staff[:5])
     beam._fracture(2, direction=None)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -146,7 +146,7 @@ def test_spannertools_Beam__fracture_06():
     attach(beam, staff[:5])
     beam._fracture(0, direction=None)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ ]
@@ -173,7 +173,7 @@ def test_spannertools_Beam__fracture_07():
     attach(beam, staff[:5])
     beam._fracture(4, direction=None)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -200,7 +200,7 @@ def test_spannertools_Beam__fracture_08():
     attach(beam, staff[:5])
     beam._fracture(-1, direction=None)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -254,7 +254,7 @@ def test_spannertools_Beam__fracture_09():
     assert len(left) == 8
     assert len(right) == 4
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

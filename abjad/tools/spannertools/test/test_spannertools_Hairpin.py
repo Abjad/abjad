@@ -11,7 +11,7 @@ def test_spannertools_Hairpin_01():
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \<
@@ -41,7 +41,7 @@ def test_spannertools_Hairpin_02():
     dynamic = Dynamic('f')
     attach(dynamic, staff[3])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \p \<
@@ -90,7 +90,7 @@ def test_spannertools_Hairpin_04():
     dynamic = Dynamic('f')
     attach(dynamic, staff[6])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \p \<
@@ -116,7 +116,7 @@ def test_spannertools_Hairpin_05():
     crescendo = Crescendo(include_rests=True)
     attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             r8 \<
@@ -153,7 +153,7 @@ def test_spannertools_Hairpin_06():
     spanner = inspect(staff[0]).get_spanner(prototype=prototype)
     assert len(spanner.components) == len(staff)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             r8
@@ -176,7 +176,7 @@ def test_spannertools_Hairpin_07():
     staff = Staff("c'4 d'4 e'4 f'4")
     attach(Dynamic('p'), staff[0])
     attach(Hairpin('<'), staff[:])
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'4 \p \<

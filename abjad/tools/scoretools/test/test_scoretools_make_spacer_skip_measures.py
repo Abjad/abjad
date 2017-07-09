@@ -10,7 +10,7 @@ def test_scoretools_make_spacer_skip_measures_01():
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

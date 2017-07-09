@@ -21,7 +21,7 @@ def test_selectiontools_Selection__get_dominant_spanners_01():
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {

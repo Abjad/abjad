@@ -10,7 +10,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___01():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).accidental.color = 'red'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override Accidental.color = #red
@@ -31,7 +31,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___02():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff[1]).accidental.color = 'red'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -52,7 +52,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___03():
     override(score).bar_number.break_visibility = \
         schemetools.Scheme('end-of-line-invisible')
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score \with {
             \override BarNumber.break-visibility = #end-of-line-invisible
@@ -80,7 +80,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___04():
     score = Score([Staff("c'8 d'8 e'8 f'8")])
     override(score).bar_number.color = 'red'
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score \with {
             \override BarNumber.color = #red
@@ -107,7 +107,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___05():
     attach(beam, voice[:])
     override(beam).beam.positions = (4, 4)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \override Beam.positions = #'(4 . 4)
@@ -128,7 +128,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___06():
     note = Note("c'4")
     override(note).clef.color = 'red'
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override Clef.color = #red
         c'4
@@ -143,7 +143,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___07():
     note = Note("c'4")
     override(note).staff.clef.color = 'red'
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override Staff.Clef.color = #red
         c'4
@@ -158,7 +158,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___08():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).clef.color = 'red'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override Clef.color = #red
@@ -180,7 +180,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___09():
     override(cluster).cluster_spanner.style = 'ramp'
     override(cluster).cluster_spanner.padding = 0.1
 
-    assert format(cluster) == stringtools.normalize(
+    assert format(cluster) == String.normalize(
         r'''
         \makeClusters {
             \override ClusterSpanner.padding = #0.1
@@ -197,7 +197,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___09():
 
     del(override(cluster).cluster_spanner)
 
-    assert format(cluster) == stringtools.normalize(
+    assert format(cluster) == String.normalize(
         r'''
         \makeClusters {
             cs'4
@@ -218,7 +218,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___10():
     attach(hairpin, voice[:])
     override(hairpin).dynamic_line_spanner.staff_padding = 4
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \override DynamicLineSpanner.staff-padding = #4
@@ -240,7 +240,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___11():
     override(staff).dynamic_line_spanner.staff_padding = 2
     override(staff).dynamic_line_spanner.Y_extent = (-1.5, 1.5)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override DynamicLineSpanner.Y-extent = #'(-1.5 . 1.5)
@@ -268,7 +268,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___12():
     override(spanner).dynamic_text.thickness = 3
     attach(spanner, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \override DynamicText.thickness = #3
@@ -292,7 +292,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___13():
     override(staff).dynamic_text.staff_padding = 2
     override(staff).dynamic_text.Y_extent = (-1.5, 1.5)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override DynamicText.Y-extent = #'(-1.5 . 1.5)
@@ -315,7 +315,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___14():
     override(staff).dynamic_text_spanner.staff_padding = 2
     override(staff).dynamic_text_spanner.Y_extent = (-1.5, 1.5)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override DynamicTextSpanner.Y-extent = #'(-1.5 . 1.5)
@@ -339,7 +339,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___15():
     attach(glissando, voice[:])
     override(glissando).glissando.thickness = 3
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \override Glissando.thickness = #3
@@ -361,7 +361,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___16():
     override(staff).hairpin.staff_padding = 2
     override(staff).hairpin.Y_extent = (-1.5, 1.5)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override Hairpin.Y-extent = #'(-1.5 . 1.5)
@@ -384,7 +384,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___17():
     setting(staff).instrument_name = markuptools.Markup(r'\circle { V }')
     override(staff).instrument_name.color = 'red'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override InstrumentName.color = #red
@@ -416,7 +416,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___18():
     attach(tempo, staff[0])
     override(score).metronome_mark.color = 'red'
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score \with {
             \override MetronomeMark.color = #red
@@ -442,7 +442,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___19():
     staff = Staff([Note("c'4")])
     override(staff).multi_measure_rest.expand_limit = 12
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override MultiMeasureRest.expand-limit = #12
@@ -461,7 +461,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___20():
     override(score).non_musical_paper_column.line_break_permission = False
     override(score).non_musical_paper_column.page_break_permission = False
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score \with {
             \override NonMusicalPaperColumn.line-break-permission = ##f
@@ -487,7 +487,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___21():
     note = Note("c'4")
     override(note).note_column.ignore_collision = True
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override NoteColumn.ignore-collision = ##t
         c'4
@@ -504,7 +504,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___22():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).note_column.ignore_collision = True
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override NoteColumn.ignore-collision = ##t
@@ -528,7 +528,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___23():
     override(note).note_head.style = 'cross'
 
     assert override(note).note_head.style == 'cross'
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override NoteHead.style = #'cross
         cs'4
@@ -547,7 +547,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___24():
     override(note).note_head.style = 'mystrangehead'
 
     assert override(note).note_head.style == 'mystrangehead'
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override NoteHead.style = #'mystrangehead
         cs'4
@@ -565,7 +565,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___25():
     chord = Chord([1, 2, 3], (1, 4))
     chord.note_heads[0].tweak.style = 'harmonic'
 
-    assert format(chord) == stringtools.normalize(
+    assert format(chord) == String.normalize(
         r'''
         <
             \tweak style #'harmonic
@@ -585,7 +585,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___26():
     override(note).note_head.style = 'triangle'
 
     assert override(note).note_head.style == 'triangle'
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override NoteHead.style = #'triangle
         cs'4
@@ -604,7 +604,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___27():
     override(note).note_head.style = 'do'
 
     assert override(note).note_head.style == 'do'
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override NoteHead.style = #'do
         cs'4
@@ -623,7 +623,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___28():
     override(note).note_head.transparent = True
 
     assert override(note).note_head.transparent
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override NoteHead.transparent = ##t
         cs''4
@@ -641,7 +641,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___29():
     voice = Voice("c'8 d'8 e'8 f'8")
     override(voice).note_head.color = 'red'
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice \with {
             \override NoteHead.color = #red
@@ -666,7 +666,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___30():
     attach(octavation_spanner, voice[:])
     override(octavation_spanner).staff.ottava_bracket.staff_position = 4
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \override Staff.OttavaBracket.staff-position = #4
@@ -690,7 +690,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___31():
     override(staff).rehearsal_mark.staff_padding = 2
     override(staff).rehearsal_mark.Y_extent = (-1.5, 1.5)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override RehearsalMark.Y-extent = #'(-1.5 . 1.5)
@@ -712,7 +712,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___32():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).rest.transparent = True
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override Rest.transparent = ##t
@@ -735,7 +735,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___33():
     attach(articulation, note)
     override(note).script.color = 'red'
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override Script.color = #red
         c'4 -\staccato
@@ -751,7 +751,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___34():
     override(staff).script.staff_padding = 2
     override(staff).script.Y_extent = (-1.5, 1.5)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override Script.Y-extent = #'(-1.5 . 1.5)
@@ -777,7 +777,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___35():
     override(beam).score.spacing_spanner.strict_note_spacing = True
     override(beam).score.spacing_spanner.uniform_stretching = True
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \override Score.SpacingSpanner.strict-grace-spacing = ##t
@@ -812,7 +812,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
     override(beam).score.spacing_spanner.strict_note_spacing = True
     override(beam).score.spacing_spanner.uniform_stretching = True
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -846,7 +846,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___37():
     override(score).spacing_spanner.strict_note_spacing = True
     override(score).spacing_spanner.uniform_stretching = True
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score \with {
             \override SpacingSpanner.strict-grace-spacing = ##t
@@ -871,7 +871,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___38():
     bass.extend(notes)
     override(score).span_bar.color = 'red'
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score \with {
             \override SpanBar.color = #red
@@ -906,7 +906,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___39():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).staff_symbol.color = 'red'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override StaffSymbol.color = #red
@@ -927,7 +927,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___40():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff[2]).staff.staff_symbol.color = 'red'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -948,7 +948,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___41():
     override(staff).staff_symbol.line_positions = \
         schemetools.SchemeVector(-4, -2, 2, 4)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override StaffSymbol.line-positions = #'(-4 -2 2 4)
@@ -970,7 +970,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___42():
     override(note).stem.stroke_style = \
         schemetools.Scheme('grace', force_quotes=True)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override Stem.stroke-style = #"grace"
         c'16
@@ -986,7 +986,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___43():
     override(staff).stem_tremolo.slope = 0.5
     override(staff).stem_tremolo.staff_padding = 2
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override StemTremolo.slope = #0.5
@@ -1009,7 +1009,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___44():
     override(score).system_start_bar.collapse_height = 0
     override(score).system_start_bar.color = 'red'
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score \with {
             \override SystemStartBar.collapse-height = #0
@@ -1041,7 +1041,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___45():
     attach(spanner, staff[:])
     override(spanner).text_script.color = 'red'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \override TextScript.color = #red
@@ -1066,7 +1066,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___46():
     attach(text_spanner, staff[:])
     override(text_spanner).text_spanner.font_shape = 'italic'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \override TextSpanner.font-shape = #'italic
@@ -1089,7 +1089,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___47():
     note = Note("c'4")
     override(note).tie.color = 'red'
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override Tie.color = #red
         c'4
@@ -1104,7 +1104,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___48():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).time_signature.transparent = True
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override TimeSignature.transparent = ##t
@@ -1125,7 +1125,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___49():
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     override(measure).time_signature.transparent = True
 
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == String.normalize(
         r'''
         {
             \override TimeSignature.transparent = ##t
@@ -1147,7 +1147,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___50():
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     override(measure).staff.time_signature.transparent = True
 
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == String.normalize(
         r'''
         {
             \override Staff.TimeSignature.transparent = ##t
@@ -1170,7 +1170,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___51():
     override(staff).trill_pitch_accidental.staff_padding = 2
     override(staff).trill_pitch_accidental.Y_extent = (-1.5, 1.5)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override TrillPitchAccidental.Y-extent = #'(-1.5 . 1.5)
@@ -1194,7 +1194,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___52():
     attach(trill, voice[:])
     override(trill).trill_spanner.color = 'red'
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \override TrillSpanner.color = #red
@@ -1217,7 +1217,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___53():
     attach(beam, voice[:])
     override(voice).tuplet_bracket.direction = Down
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice \with {
             \override TupletBracket.direction = #down
@@ -1242,7 +1242,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___54():
     attach(beam, voice[:])
     override(voice[1]).tuplet_bracket.direction = Down
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -1264,7 +1264,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___55():
     tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     override(tuplet).tuplet_number.fraction = True
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \override TupletNumber.fraction = ##t
         \times 2/3 {
@@ -1288,7 +1288,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___56():
     attach(beam, voice[:])
     override(voice).tuplet_number.fraction = True
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice \with {
             \override TupletNumber.fraction = ##t
@@ -1313,7 +1313,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___57():
     attach(beam, voice[:])
     override(voice[1]).tuplet_number.fraction = True
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -1337,7 +1337,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___58():
     attach(beam, voice[:])
     override(voice).tuplet_number.text = markuptools.Markup('6:4')
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice \with {
             \override TupletNumber.text = \markup { 6:4 }
@@ -1361,7 +1361,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___59():
     override(staff).vertical_alignment.staff_padding = 2
     override(staff).vertical_alignment.Y_extent = (-1.5, 1.5)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override VerticalAlignment.Y-extent = #'(-1.5 . 1.5)
@@ -1384,7 +1384,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___60():
     override(staff).vertical_axis_group.staff_padding = 2
     override(staff).vertical_axis_group.Y_extent = (-1.5, 1.5)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \override VerticalAxisGroup.Y-extent = #'(-1.5 . 1.5)

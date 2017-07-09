@@ -7,7 +7,7 @@ def test_tonalanalysistools_Scale_make_score_01():
     scale = tonalanalysistools.Scale('E', 'major')
     score = scale.make_score()
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score \with {
             tempoWholesPerMinute = #(ly:make-moment 30 1)

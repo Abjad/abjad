@@ -16,7 +16,7 @@ def test_indicatortools_LilyPondComment_opening_01():
     comment = indicatortools.LilyPondComment(string, 'opening')
     attach(comment, voice)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             % Voice opening comments here.
@@ -45,7 +45,7 @@ def test_indicatortools_LilyPondComment_opening_02():
     comment = indicatortools.LilyPondComment(string, 'opening')
     attach(comment, note)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override Beam.thickness = #3
         % Leaf opening comments here.

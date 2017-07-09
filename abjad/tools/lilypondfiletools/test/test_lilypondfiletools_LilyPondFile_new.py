@@ -18,7 +18,7 @@ def test_lilypondfiletools_LilyPondFile_new_01():
 
     assert lilypond_file[Score] is score
 
-    assert format(lilypond_file) == stringtools.normalize(
+    assert format(lilypond_file) == String.normalize(
         r'''
         \header {
             composer = \markup { Josquin }

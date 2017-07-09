@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import platform
 import unittest
-from abjad.tools import abjadbooktools
-from abjad.tools import stringtools
 
 
 @unittest.skipIf(
@@ -19,11 +18,11 @@ class TestLaTeXDocumentHandler_exception(unittest.TestCase):
             "'foo' / 19",
             '</abjad>',
             ]
-        document_handler = abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         self.assertRaises(
-            abjadbooktools.AbjadBookError,
+            abjad.abjadbooktools.AbjadBookError,
             document_handler.__call__,
             )
 
@@ -33,11 +32,11 @@ class TestLaTeXDocumentHandler_exception(unittest.TestCase):
             "'foo' / 19",
             '</abjad>',
             ]
-        document_handler = abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         rebuilt_source = document_handler(return_source=True)
-        assert rebuilt_source == stringtools.normalize(
+        assert rebuilt_source == abjad.String.normalize(
             '''
             <abjad>[allow_exceptions=true]
             'foo' / 19
@@ -64,10 +63,10 @@ class TestLaTeXDocumentHandler_exception(unittest.TestCase):
             "23 + 'baz'",
             '</abjad>',
             ]
-        document_handler = abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         self.assertRaises(
-            abjadbooktools.AbjadBookError,
+            abjad.abjadbooktools.AbjadBookError,
             document_handler.__call__,
             )

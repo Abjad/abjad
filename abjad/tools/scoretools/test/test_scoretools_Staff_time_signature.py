@@ -10,7 +10,7 @@ def test_scoretools_Staff_time_signature_01():
     time_signature = TimeSignature((2, 4))
     attach(time_signature, staff)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \time 2/4
@@ -35,7 +35,7 @@ def test_scoretools_Staff_time_signature_02():
     time_signature = TimeSignature((2, 4))
     attach(time_signature, staff)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \time 2/4

@@ -37,7 +37,7 @@ def test_rhythmmakertools_DurationSpellingSpecifier_01():
 
     staff = Staff(result)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r"""
         \new Staff {
             r16

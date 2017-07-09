@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__KeySignature_01():
     key_signature = KeySignature('g', 'major')
     attach(key_signature, target[0])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             \key g \major

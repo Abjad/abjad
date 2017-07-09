@@ -31,7 +31,7 @@ def test_scoretools_NoteHeadList___setitem___03():
     note_head.tweak.color = 'red'
     chord.note_heads[0] = note_head
 
-    assert format(chord) == stringtools.normalize(
+    assert format(chord) == String.normalize(
         r'''
         <
             \tweak color #red

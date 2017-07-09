@@ -15,7 +15,7 @@ def test_agenttools_InspectionAgent_get_effective_staff_01():
     staff_change = indicatortools.StaffChange(staff_group[1])
     attach(staff_change, staff_group[0][0])
 
-    assert format(staff_group) == stringtools.normalize(
+    assert format(staff_group) == String.normalize(
         r'''
         \new PianoStaff <<
             \context Staff = "RH" {
@@ -61,7 +61,7 @@ def test_agenttools_InspectionAgent_get_effective_staff_02():
     staff_change = indicatortools.StaffChange(staff_group[0])
     attach(staff_change, staff_group[0][2])
 
-    assert format(staff_group) == stringtools.normalize(
+    assert format(staff_group) == String.normalize(
         r'''
         \new PianoStaff <<
             \context Staff = "RH" {
@@ -106,7 +106,7 @@ def test_agenttools_InspectionAgent_get_effective_staff_03():
     staff_change = indicatortools.StaffChange(staff_group[1])
     attach(staff_change, staff_group[0][-1])
 
-    assert format(staff_group) == stringtools.normalize(
+    assert format(staff_group) == String.normalize(
         r'''
         \new PianoStaff <<
             \context Staff = "RH" {
@@ -144,7 +144,7 @@ def test_agenttools_InspectionAgent_get_effective_staff_04():
     staff_change = indicatortools.StaffChange(staff_group[1])
     attach(staff_change, staff_group[0][1])
 
-    assert format(staff_group) == stringtools.normalize(
+    assert format(staff_group) == String.normalize(
         r'''
         \new PianoStaff <<
             \context Staff = "RH" {

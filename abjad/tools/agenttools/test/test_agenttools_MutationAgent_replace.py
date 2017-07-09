@@ -16,7 +16,7 @@ def test_agenttools_MutationAgent_replace_01():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ \<
@@ -31,7 +31,7 @@ def test_agenttools_MutationAgent_replace_01():
     new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ ] \<
@@ -62,7 +62,7 @@ def test_agenttools_MutationAgent_replace_02():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ \<
@@ -77,7 +77,7 @@ def test_agenttools_MutationAgent_replace_02():
     new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c''16 [ \<
@@ -109,7 +109,7 @@ def test_agenttools_MutationAgent_replace_03():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ \<
@@ -124,7 +124,7 @@ def test_agenttools_MutationAgent_replace_03():
     new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c''16 [ \<
@@ -155,7 +155,7 @@ def test_agenttools_MutationAgent_replace_04():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ \<
@@ -170,7 +170,7 @@ def test_agenttools_MutationAgent_replace_04():
     new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c''16 \<
@@ -200,7 +200,7 @@ def test_agenttools_MutationAgent_replace_05():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ \<
@@ -215,7 +215,7 @@ def test_agenttools_MutationAgent_replace_05():
     new_notes = 5 * Note("c''16")
     mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c''16 \<
@@ -244,7 +244,7 @@ def test_agenttools_MutationAgent_replace_06():
     beam = Beam()
     attach(beam, staff[0][:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -261,7 +261,7 @@ def test_agenttools_MutationAgent_replace_06():
     voice = voice_selection[0]
     old_components = mutate(voice_selection).replace(staff[0][:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [

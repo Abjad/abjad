@@ -37,7 +37,7 @@ def test_scoretools_make_piano_score_from_leaves_01():
     """
 
     assert inspect(score).is_well_formed()
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r"""
         \new Score <<
             \new PianoStaff <<
@@ -108,7 +108,7 @@ def test_scoretools_make_piano_score_from_leaves_02():
     >>
     '''
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new PianoStaff <<

@@ -12,7 +12,7 @@ def test_topleveltools_setting_01():
     score = Score([staff])
     setting(score).tempo_wholes_per_minute = schemetools.SchemeMoment(24)
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score \with {
             tempoWholesPerMinute = #(ly:make-moment 24 1)
@@ -40,7 +40,7 @@ def test_topleveltools_setting_02():
     leaves = select().by_leaf(flatten=True)(score)
     setting(leaves[1]).score.tempo_wholes_per_minute = moment
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {

@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_01():
     markup = markuptools.Markup('hello!', Up)
     attach(markup, target[0])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             c'1 ^ \markup { hello! }
@@ -32,7 +32,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_02():
     markup = markuptools.Markup(['X', 'Y', 'Z', 'a b c'], Down)
     attach(markup, target[0])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             c'4
@@ -66,7 +66,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_03():
     articulation = Articulation('.')
     attach(articulation, target[0])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             c'4 -\staccato ^ \markup { hello }
@@ -102,7 +102,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_05():
     command = r'\markup { \char ##x03EE }'
     parser = LilyPondParser()
     result = parser(command)
-    assert format(result, 'lilypond') == stringtools.normalize(
+    assert format(result, 'lilypond') == String.normalize(
         r'''
         \markup {
             \char

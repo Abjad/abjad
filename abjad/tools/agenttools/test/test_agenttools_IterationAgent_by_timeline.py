@@ -12,7 +12,7 @@ def test_agenttools_IterationAgent_by_timeline_01():
     staff_2 = Staff("g'8 a'8 b'8 c''8")
     score.extend([staff_1, staff_2])
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -54,7 +54,7 @@ def test_agenttools_IterationAgent_by_timeline_02():
     staff_2 = Staff("g'4 a'4 b'4 c''4")
     score.extend([staff_1, staff_2])
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -96,7 +96,7 @@ def test_agenttools_IterationAgent_by_timeline_03():
     staff_2 = Staff("g'8 a'8 b'8 c''8")
     score.extend([staff_1, staff_2])
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -138,7 +138,7 @@ def test_agenttools_IterationAgent_by_timeline_04():
     staff_2 = Staff("g'4 a'4 b'4 c''4")
     score.extend([staff_1, staff_2])
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {

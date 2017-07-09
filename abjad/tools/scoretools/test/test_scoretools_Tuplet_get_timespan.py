@@ -10,7 +10,7 @@ def test_scoretools_Tuplet_get_timespan_01():
     mark = MetronomeMark((1, 4), 60)
     attach(mark, leaves[0])
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {

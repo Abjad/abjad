@@ -22,7 +22,7 @@ def test_lilypondparsertools_LilyPondParser__misc__variables_01():
         Note(12, 1)
     ])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             {

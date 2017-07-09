@@ -10,7 +10,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_01():
     mark = MetronomeMark(textual_indication="As fast as possible")
     attach(mark, target[0], scope=Staff)
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -37,7 +37,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_02():
     mark = MetronomeMark((1, 4), 60)
     attach(mark, leaves[0], scope=Staff)
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -64,7 +64,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_03():
     mark = MetronomeMark((1, 4), (59, 63))
     attach(mark, leaves[0], scope=Staff)
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -95,7 +95,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_04():
     leaves = select(target).by_leaf()
     attach(mark, leaves[0], scope=Staff)
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -126,7 +126,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_05():
     leaves = select(target).by_leaf()
     attach(mark, leaves[0], scope=Staff)
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Score <<
             \new Staff {

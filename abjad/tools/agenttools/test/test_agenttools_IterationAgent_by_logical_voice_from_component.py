@@ -19,7 +19,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_01():
     staff = Staff([container_1, container_2])
     leaves = list(iterate(staff).by_leaf())
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             <<
@@ -77,7 +77,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_02():
     staff = Staff([container_1, container_2])
     leaves = list(iterate(staff).by_leaf())
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             <<
@@ -140,7 +140,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_03():
     staff = Staff([container_1, container_2])
     leaves = list(iterate(staff).by_leaf())
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             <<
@@ -195,7 +195,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_04():
     staff = Staff([container_1, container_2])
     leaves = list(iterate(staff).by_leaf())
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             <<

@@ -18,7 +18,7 @@ def test_scoretools_make_leaves_from_talea_01():
     }
     '''
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'4.

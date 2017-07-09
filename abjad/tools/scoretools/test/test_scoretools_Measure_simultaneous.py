@@ -16,7 +16,7 @@ def test_scoretools_Measure_simultaneous_01():
     attach(command, measure[1])
     staff = Staff([measure])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             <<

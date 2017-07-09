@@ -9,7 +9,7 @@ def test_agenttools_MutationAgent_scale_01():
     voice = Voice("c'8 d'8 e'8 f'8")
     mutate(voice).scale(Multiplier(3, 2))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8.
@@ -30,7 +30,7 @@ def test_agenttools_MutationAgent_scale_02():
     voice = Voice("c'8 d'8 e'8 f'8")
     mutate(voice).scale(Multiplier(5, 4))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 ~
@@ -55,7 +55,7 @@ def test_agenttools_MutationAgent_scale_03():
     voice = Voice("c'8 d'8 e'8 f'8")
     mutate(voice).scale(Multiplier(4, 3))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \tweak edge-height #'(0.7 . 0)
@@ -88,7 +88,7 @@ def test_agenttools_MutationAgent_scale_04():
     voice = Voice("c'8 d'8 e'8 f'8")
     mutate(voice).scale(Multiplier(5, 6))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \tweak edge-height #'(0.7 . 0)
@@ -125,7 +125,7 @@ def test_agenttools_MutationAgent_scale_05():
     voice = Voice("c'8 d'8 e'8 f'8")
     mutate(voice).scale(Multiplier(5, 4))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 ~
@@ -142,7 +142,7 @@ def test_agenttools_MutationAgent_scale_05():
 
     mutate(voice).scale(Multiplier(4, 5))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8
@@ -164,7 +164,7 @@ def test_agenttools_MutationAgent_scale_06():
     voice.append(Measure((2, 8), "c'8 d'8"))
     voice.append(Measure((2, 8), "e'8 f'8"))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -182,7 +182,7 @@ def test_agenttools_MutationAgent_scale_06():
 
     mutate(voice).scale(Multiplier(2))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -209,7 +209,7 @@ def test_agenttools_MutationAgent_scale_07():
     voice.append(Measure((2, 8), "c'8 d'8"))
     voice.append(Measure((2, 8), "e'8 f'8"))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -227,7 +227,7 @@ def test_agenttools_MutationAgent_scale_07():
 
     mutate(voice).scale(Multiplier(5, 4))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {

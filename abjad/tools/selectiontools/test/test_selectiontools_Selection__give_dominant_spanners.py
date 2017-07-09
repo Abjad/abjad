@@ -18,7 +18,7 @@ def test_selectiontools_Selection__give_dominant_spanners_01():
     slur = Slur()
     attach(slur, voice[1:3])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [ \<
@@ -33,7 +33,7 @@ def test_selectiontools_Selection__give_dominant_spanners_01():
     beam = Beam()
     attach(beam, recipient[:])
 
-    assert format(recipient) == stringtools.normalize(
+    assert format(recipient) == String.normalize(
         r'''
         \new Voice {
             c'16 [
@@ -48,7 +48,7 @@ def test_selectiontools_Selection__give_dominant_spanners_01():
 
     "Both crescendo and beam are now discontiguous."
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [ \<
@@ -63,7 +63,7 @@ def test_selectiontools_Selection__give_dominant_spanners_01():
 
     "Slur is contiguous but recipient participates in discont. cresc."
 
-    assert format(recipient) == stringtools.normalize(
+    assert format(recipient) == String.normalize(
         r'''
         \new Voice {
             c'16 [ (

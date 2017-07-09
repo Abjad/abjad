@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__Score_01():
 
     target = Score()
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Score <<
         >>

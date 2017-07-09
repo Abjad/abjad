@@ -8,7 +8,7 @@ def test_spannertools_Hairpin_start_dynamic_01():
     hairpin = Hairpin(descriptor='p < f')
     attach(hairpin, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \< \p
@@ -28,7 +28,7 @@ def test_spannertools_Hairpin_start_dynamic_02():
     hairpin = Hairpin(descriptor='mf < f')
     attach(hairpin, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \< \mf

@@ -8,6 +8,7 @@ from abjad.tools import documentationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
+from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools import tonalanalysistools
 
@@ -18,6 +19,7 @@ _allowed_to_be_empty_string = (
     pitchtools.Accidental,
     pitchtools.CompoundOperator,
     schemetools.SchemeColor,
+    stringtools.String,
     tonalanalysistools.ChordSuspension,
     )
 

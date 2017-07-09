@@ -19,7 +19,7 @@ def test_tonalanalysistools_Scale_make_notes_01():
     }
     '''
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'4 ~

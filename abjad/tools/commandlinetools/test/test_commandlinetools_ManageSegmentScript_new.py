@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 import platform
-from abjad.tools import commandlinetools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
 
 
@@ -22,7 +21,7 @@ class Test(ScorePackageScriptTestCase):
     def test_exists(self):
         self.create_score()
         self.create_segment('test_segment')
-        with systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
             self.create_segment('test_segment', expect_error=True)
         self.compare_captured_output(r'''
             Creating segment subpackage 'test_segment' ...
@@ -32,7 +31,7 @@ class Test(ScorePackageScriptTestCase):
     def test_force_replace(self):
         self.create_score()
         self.create_segment('test_segment')
-        with systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
             self.create_segment('test_segment', force=True)
         self.compare_captured_output(r'''
             Creating segment subpackage 'test_segment' ...
@@ -43,12 +42,12 @@ class Test(ScorePackageScriptTestCase):
 
     def test_internal_path(self):
         self.create_score()
-        script = commandlinetools.ManageSegmentScript()
+        script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--new', 'test_segment']
         internal_path = self.score_path.joinpath('test_score', 'build')
         assert internal_path.exists()
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(internal_path)):
+        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+            with abjad.systemtools.TemporaryDirectoryChange(str(internal_path)):
                 try:
                     script(command)
                 except SystemExit:
@@ -63,7 +62,7 @@ class Test(ScorePackageScriptTestCase):
 
     def test_success(self):
         self.create_score()
-        script = commandlinetools.ManageSegmentScript()
+        script = abjad.commandlinetools.ManageSegmentScript()
         try:
             names = script._read_segments_list_json(
                 self.score_path,
@@ -73,8 +72,8 @@ class Test(ScorePackageScriptTestCase):
         except SystemExit:
             raise RuntimeError('SystemExit')
         command = ['--new', 'test_segment']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:

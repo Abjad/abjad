@@ -11,7 +11,7 @@ def test_scoretools_Leaf__divide_01():
     treble, bass = staff[0]._divide(pitch)
     staff.extend([treble, bass])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             <d' ef' e'>4
@@ -33,7 +33,7 @@ def test_scoretools_Leaf__divide_02():
     treble, bass = staff[0]._divide(pitch)
     staff.extend([treble, bass])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             <d' ef' e'>4
@@ -55,7 +55,7 @@ def test_scoretools_Leaf__divide_03():
     treble, bass = staff[0]._divide(pitch)
     staff.extend([treble, bass])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             <d' ef' e'>4

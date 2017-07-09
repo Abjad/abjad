@@ -10,7 +10,7 @@ def test_spannertools_TrillSpanner_pitch_01():
     trill = spannertools.TrillSpanner(pitch=NamedPitch(1))
     attach(trill, staff[:2])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \pitchedTrill
@@ -33,7 +33,7 @@ def test_spannertools_TrillSpanner_pitch_02():
     trill = spannertools.TrillSpanner()
     attach(trill, staff[:2])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \startTrillSpan

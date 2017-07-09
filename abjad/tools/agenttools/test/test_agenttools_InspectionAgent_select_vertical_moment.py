@@ -14,7 +14,7 @@ def test_agenttools_InspectionAgent_select_vertical_moment_01():
     attach(clef, staff_group[1])
     score.append(staff_group)
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -70,7 +70,7 @@ def test_agenttools_InspectionAgent_select_vertical_moment_02():
     attach(clef, staff_group[1])
     score.append(staff_group)
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {

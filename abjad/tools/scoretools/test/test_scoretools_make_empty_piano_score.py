@@ -19,7 +19,7 @@ def test_scoretools_make_empty_piano_score_01():
     >>
     '''
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new PianoStaff <<

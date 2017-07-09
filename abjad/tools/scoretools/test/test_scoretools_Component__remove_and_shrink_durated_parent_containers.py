@@ -10,7 +10,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_01():
 
     container[0]._remove_and_shrink_durated_parent_containers()
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'4
@@ -33,7 +33,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
 
     voice[0]._remove_and_shrink_durated_parent_containers()
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'4
@@ -56,7 +56,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
 
     staff[0]._remove_and_shrink_durated_parent_containers()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'4
@@ -77,7 +77,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
 
     tuplet = Tuplet(Multiplier(4, 5), "c'8 d'8 e'8 f'8 g'8")
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \times 4/5 {
             c'8
@@ -91,7 +91,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
 
     tuplet[0]._remove_and_shrink_durated_parent_containers()
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
@@ -114,7 +114,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
     tuplet.extend(r"c'2 cs'2 \times 2/3 { d'4 ef'4 e'4 }")
     leaves = select(tuplet).by_leaf()
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \times 2/3 {
             c'2
@@ -130,7 +130,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
 
     leaves[-1]._remove_and_shrink_durated_parent_containers()
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak edge-height #'(0.7 . 0)
         \times 2/3 {

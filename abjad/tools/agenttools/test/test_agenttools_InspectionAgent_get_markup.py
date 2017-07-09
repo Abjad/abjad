@@ -12,7 +12,7 @@ def test_agenttools_InspectionAgent_get_markup_01():
     markup_2 = markuptools.Markup('bar')
     attach(markup_2, staff[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 (

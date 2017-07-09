@@ -8,7 +8,7 @@ def test_spannertools_PhrasingSlur_direction_01():
     slur = spannertools.PhrasingSlur(direction=Up)
     attach(slur, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 ^ \(
@@ -28,7 +28,7 @@ def test_spannertools_PhrasingSlur_direction_02():
     slur = spannertools.PhrasingSlur(direction=Down)
     attach(slur, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 _ \(

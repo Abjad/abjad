@@ -16,7 +16,7 @@ def test_selectiontools_Selection__get_crossing_spanners_01():
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -56,7 +56,7 @@ def test_selectiontools_Selection__get_crossing_spanners_02():
     beam = Beam()
     attach(beam, leaves[2:5])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {

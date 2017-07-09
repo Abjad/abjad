@@ -47,7 +47,7 @@ def test_scoretools_Rest___init___04():
     tuplet = Tuplet((2, 3), 3 * chord)
     rest = Rest(tuplet[0])
 
-    assert format(rest) == stringtools.normalize(
+    assert format(rest) == String.normalize(
         r'''
         r4
         ''',
@@ -66,7 +66,7 @@ def test_scoretools_Rest___init___05():
     attach(beam, staff[:])
     rest = Rest(staff[0])
 
-    assert format(rest) == stringtools.normalize(
+    assert format(rest) == String.normalize(
         r'''
         r4
         ''',
@@ -82,7 +82,7 @@ def test_scoretools_Rest___init___06():
     skip = scoretools.Skip('s4')
     rest = Rest(skip)
 
-    assert format(rest) == stringtools.normalize(
+    assert format(rest) == String.normalize(
         r'''
         r4
         ''',
@@ -99,7 +99,7 @@ def test_scoretools_Rest___init___07():
     tuplet = Tuplet((2, 3), 3 * skip)
     rest = Rest(tuplet[0])
 
-    assert format(rest) == stringtools.normalize(
+    assert format(rest) == String.normalize(
         r'''
         r4
         ''',
@@ -116,7 +116,7 @@ def test_scoretools_Rest___init___08():
     staff = Staff("c'8 [ s4 c'd ]")
     rest = Rest(staff[1])
 
-    assert format(rest) == stringtools.normalize(
+    assert format(rest) == String.normalize(
         r'''
         r4
         '''
@@ -132,7 +132,7 @@ def test_scoretools_Rest___init___09():
     note = Note("c'4")
     rest = Rest(note)
 
-    assert format(rest) == stringtools.normalize(
+    assert format(rest) == String.normalize(
         r'''
         r4
         '''
@@ -148,7 +148,7 @@ def test_scoretools_Rest___init___10():
     tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
     rest = Rest(tuplet[0])
 
-    assert format(rest) == stringtools.normalize(
+    assert format(rest) == String.normalize(
         r'''
         r4
         '''
@@ -164,7 +164,7 @@ def test_scoretools_Rest___init___11():
     staff = Staff("c'8 [ d'8 e'8 ]")
     rest = Rest(staff[0])
 
-    assert format(rest) == stringtools.normalize(
+    assert format(rest) == String.normalize(
         r'''
         r8
         '''
@@ -182,7 +182,7 @@ def test_scoretools_Rest___init___12():
         rest = Rest(note)
         mutate(note).replace(rest)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             r8 [
@@ -202,7 +202,7 @@ def test_scoretools_Rest___init___13():
 
     rest = Rest()
 
-    assert format(rest) == stringtools.normalize(
+    assert format(rest) == String.normalize(
         r'''
         r4
         '''

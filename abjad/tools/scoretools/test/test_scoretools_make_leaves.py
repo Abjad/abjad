@@ -97,7 +97,7 @@ def test_scoretools_make_leaves_07():
     }
     '''
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             <cs'' df''>4
@@ -121,7 +121,7 @@ def test_scoretools_make_leaves_08():
     }
     '''
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             cs''4
@@ -147,7 +147,7 @@ def test_scoretools_make_leaves_09():
     }
     '''
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             cs''4

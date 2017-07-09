@@ -48,7 +48,7 @@ def test_selectiontools_Selection__all_in_same_parent_02():
         }
         ''')
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {

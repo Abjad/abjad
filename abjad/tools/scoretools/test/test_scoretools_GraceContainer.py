@@ -10,7 +10,7 @@ def test_scoretools_GraceContainer_01():
     notes = [Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))]
     grace_container = GraceContainer(notes)
 
-    assert format(grace_container) == stringtools.normalize(
+    assert format(grace_container) == String.normalize(
         r'''
         \grace {
             c'16
@@ -28,7 +28,7 @@ def test_scoretools_GraceContainer_01():
 def test_scoretools_GraceContainer_02():
 
     grace_container = GraceContainer("c'8 c'8 c'8")
-    assert format(grace_container) == stringtools.normalize(
+    assert format(grace_container) == String.normalize(
         r'''
         \grace {
             c'8
@@ -42,7 +42,7 @@ def test_scoretools_GraceContainer_02():
 def test_scoretools_GraceContainer_03():
 
     grace_container = AcciaccaturaContainer("c'8 c'8 c'8")
-    assert format(grace_container) == stringtools.normalize(
+    assert format(grace_container) == String.normalize(
         r'''
         \acciaccatura {
             c'8
@@ -56,7 +56,7 @@ def test_scoretools_GraceContainer_03():
 def test_scoretools_GraceContainer_04():
 
     grace_container = AppoggiaturaContainer("c'8 c'8 c'8")
-    assert format(grace_container) == stringtools.normalize(
+    assert format(grace_container) == String.normalize(
         r'''
         \appoggiatura {
             c'8
@@ -70,7 +70,7 @@ def test_scoretools_GraceContainer_04():
 def test_scoretools_GraceContainer_05():
 
     grace_container = AfterGraceContainer("c'8 c'8 c'8")
-    assert format(grace_container) == stringtools.normalize(
+    assert format(grace_container) == String.normalize(
         r'''
         {
             c'8

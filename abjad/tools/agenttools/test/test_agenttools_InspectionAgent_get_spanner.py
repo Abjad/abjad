@@ -11,7 +11,7 @@ def test_agenttools_InspectionAgent_get_spanner_01():
     slur = Slur()
     attach(slur, container[:-1])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8 [ (

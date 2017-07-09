@@ -23,7 +23,7 @@ def test_scoretools_Measure_append_02():
     measure.append('r')
 
     assert not measure.is_misfilled
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == String.normalize(
         r'''
         {
             \time 4/4

@@ -14,7 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_01():
     dynamic = Dynamic('ppp')
     attach(dynamic, target[-1])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             c'4 \<
@@ -41,7 +41,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_02():
     hairpin = Hairpin(descriptor='<')
     attach(hairpin, target[2:])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 \<
@@ -72,7 +72,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_03():
     dynamic = Dynamic('f')
     attach(dynamic, target[-1])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             c'4 \<
@@ -124,7 +124,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_07():
     dynamic = Dynamic('ppp')
     attach(dynamic, target[-1])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             c'4 ^ \<
@@ -146,7 +146,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_08():
     string = r"\new Staff { c'4 ( \p \< d'4 e'4 f'4 ) \! }"
     parser = LilyPondParser()
     result = parser(string)
-    assert format(result) == stringtools.normalize(
+    assert format(result) == String.normalize(
         r'''
         \new Staff {
             c'4 \p \< (

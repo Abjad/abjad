@@ -7,7 +7,7 @@ def test_templatetools_GroupedRhythmicStavesScoresTemplate___call___01():
     template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score = template()
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \context Score = "Grouped Rhythmic Staves Score" <<
             \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
@@ -38,7 +38,7 @@ def test_templatetools_GroupedRhythmicStavesScoresTemplate___call___02():
     template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=[2, 1, 2])
     score = template()
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \context Score = "Grouped Rhythmic Staves Score" <<
             \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<

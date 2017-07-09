@@ -34,7 +34,7 @@ def test_scoretools_Chord___format___03():
     command = indicatortools.LilyPondCommand('glissando', 'right')
     attach(command, chord)
 
-    assert format(chord) == stringtools.normalize(
+    assert format(chord) == String.normalize(
         r'''
         <
             \tweak color #red
@@ -55,7 +55,7 @@ def test_scoretools_Chord___format___04():
     chord = Chord("<d' ef' e'>4")
     chord.note_heads[0].tweak.transparent = True
 
-    assert format(chord) == stringtools.normalize(
+    assert format(chord) == String.normalize(
         r'''
         <
             \tweak transparent ##t
@@ -74,7 +74,7 @@ def test_scoretools_Chord___format___05():
     chord = Chord("<d' ef' e'>4")
     chord.note_heads[0].tweak.style = 'harmonic'
 
-    assert format(chord) == stringtools.normalize(
+    assert format(chord) == String.normalize(
         r'''
         <
             \tweak style #'harmonic

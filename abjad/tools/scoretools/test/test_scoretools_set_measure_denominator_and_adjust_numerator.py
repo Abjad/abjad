@@ -17,7 +17,7 @@ def test_scoretools_set_measure_denominator_and_adjust_numerator_01():
     '''
 
     assert inspect(measure).is_well_formed()
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == String.normalize(
         r'''
         {
             \time 6/16
@@ -40,7 +40,7 @@ def test_scoretools_set_measure_denominator_and_adjust_numerator_01():
     '''
 
     assert inspect(measure).is_well_formed()
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == String.normalize(
         r'''
         {
             \time 3/8

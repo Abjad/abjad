@@ -11,7 +11,7 @@ def test_spannertools_Spanner___getitem___01():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -42,7 +42,7 @@ def test_spannertools_Spanner___getitem___02():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -73,7 +73,7 @@ def test_spannertools_Spanner___getitem___03():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -104,7 +104,7 @@ def test_spannertools_Spanner___getitem___04():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {

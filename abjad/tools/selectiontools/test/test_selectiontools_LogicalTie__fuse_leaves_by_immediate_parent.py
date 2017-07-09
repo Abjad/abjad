@@ -14,7 +14,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     logical_tie = inspect(leaves[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -40,7 +40,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
     tie = spannertools.Tie()
     attach(tie, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 ~
@@ -54,7 +54,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
     logical_tie = inspect(staff[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'2

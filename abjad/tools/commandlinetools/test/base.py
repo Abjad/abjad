@@ -21,7 +21,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
     materials_path = score_path.joinpath('test_score', 'materials')
     segments_path = score_path.joinpath('test_score', 'segments')
     tools_path = score_path.joinpath('test_score', 'tools')
-    fancy_parts_code = stringtools.normalize(r"""
+    fancy_parts_code = stringtools.String.normalize(r"""
     \book {
         \bookOutputSuffix "cello"
         \score {
@@ -51,7 +51,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
         }
     }
     """)
-    fancy_segment_maker_code = stringtools.normalize(r"""
+    fancy_segment_maker_code = stringtools.String.normalize(r"""
         # -*- coding: utf-8 -*-
         from abjad import attach
         from abjad import iterate

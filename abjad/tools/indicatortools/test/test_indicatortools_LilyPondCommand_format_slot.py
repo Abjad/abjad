@@ -8,7 +8,7 @@ def test_indicatortools_LilyPondCommand_format_slot_01():
     command = indicatortools.LilyPondCommand('break', 'closing')
     attach(command, staff[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8

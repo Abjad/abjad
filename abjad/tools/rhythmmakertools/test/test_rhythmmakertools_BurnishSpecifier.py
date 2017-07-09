@@ -29,7 +29,7 @@ def test_rhythmmakertools_BurnishSpecifier_01():
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -87,7 +87,7 @@ def test_rhythmmakertools_BurnishSpecifier_02():
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -145,7 +145,7 @@ def test_rhythmmakertools_BurnishSpecifier_03():
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -207,7 +207,7 @@ def test_rhythmmakertools_BurnishSpecifier_04():
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -266,7 +266,7 @@ def test_rhythmmakertools_BurnishSpecifier_05():
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

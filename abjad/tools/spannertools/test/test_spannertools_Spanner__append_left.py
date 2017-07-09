@@ -13,7 +13,7 @@ def test_spannertools_Spanner__append_left_01():
     beam._append_left(voice[0][-1])
     beam._append_left(voice[0][0])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -45,7 +45,7 @@ def test_spannertools_Spanner__append_left_02():
 
     beam._append_left(voice[0][-1])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {

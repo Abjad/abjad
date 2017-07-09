@@ -12,7 +12,7 @@ def test_indicatortools_LilyPondComment___init___01():
     comment = indicatortools.LilyPondComment('beginning of note content')
     attach(comment, staff[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             % beginning of note content

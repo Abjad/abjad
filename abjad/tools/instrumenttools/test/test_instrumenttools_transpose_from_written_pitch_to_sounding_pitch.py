@@ -9,7 +9,7 @@ def test_instrumenttools_transpose_from_written_pitch_to_sounding_pitch_01():
     attach(clarinet, staff)
     instrumenttools.transpose_from_written_pitch_to_sounding_pitch(staff)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { "Clarinet in B-flat" }

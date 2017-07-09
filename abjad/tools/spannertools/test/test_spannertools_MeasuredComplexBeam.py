@@ -7,7 +7,7 @@ def test_spannertools_MeasuredComplexBeam_01():
     staff = Staff("abj: | 2/16 c'16 d'16 || 2/16 e'16 f'16 |"
         "| 2/16 g'16 a'16 |")
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -31,7 +31,7 @@ def test_spannertools_MeasuredComplexBeam_01():
     beam = spannertools.MeasuredComplexBeam()
     attach(beam, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

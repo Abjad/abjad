@@ -62,6 +62,6 @@ class ReSTTOCItem(TreeNode):
 
     @text.setter
     def text(self, arg):
-        assert stringtools.is_string(arg)
+        assert stringtools.String.is_string(arg)
         arg = arg.strip()
         self._text = arg

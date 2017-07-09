@@ -16,7 +16,7 @@ def test_indicatortools_LilyPondComment_closing_01():
     comment = indicatortools.LilyPondComment(string, 'closing')
     attach(comment, voice)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -45,7 +45,7 @@ def test_indicatortools_LilyPondComment_closing_02():
     comment = indicatortools.LilyPondComment(string, 'closing')
     attach(comment, note)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \once \override Beam.thickness = #3
         c'8

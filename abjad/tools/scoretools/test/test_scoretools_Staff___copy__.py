@@ -15,7 +15,7 @@ def test_scoretools_Staff___copy___01():
 
     staff_2 = copy.copy(staff_1)
 
-    assert format(staff_2) == stringtools.normalize(
+    assert format(staff_2) == String.normalize(
         r'''
         \new Staff \with {
             \override NoteHead.color = #red

@@ -31,7 +31,7 @@ def test_scoretools_Score_add_final_markup_01():
     >>
     '''
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {

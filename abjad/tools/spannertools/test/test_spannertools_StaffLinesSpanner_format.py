@@ -12,7 +12,7 @@ def test_spannertools_StaffLinesSpanner_format_01():
     spanner = spannertools.StaffLinesSpanner(lines=3)
     attach(spanner, staff[2:7])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -44,7 +44,7 @@ def test_spannertools_StaffLinesSpanner_format_02():
         )
     attach(spanner, staff[2:7])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -71,7 +71,7 @@ def test_spannertools_StaffLinesSpanner_format_03():
     spanner = spannertools.StaffLinesSpanner(lines=[-1.5, 0, 1.5])
     attach(spanner, staff[1:3])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8

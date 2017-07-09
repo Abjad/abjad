@@ -111,7 +111,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_06():
         }
         ''')
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -151,7 +151,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_07():
         }
         ''')
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -191,7 +191,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_08():
         }
         ''')
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -236,7 +236,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_09():
         }
         ''')
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -274,7 +274,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_10():
         }
         ''')
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -313,7 +313,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_11():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \new Staff {
@@ -364,7 +364,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_12():
         >>
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \new Staff <<
@@ -411,7 +411,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_13():
         }
         ''')
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -450,7 +450,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_14():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \context Staff = "foo" {
@@ -493,7 +493,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_15():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             {
@@ -537,7 +537,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_16():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \new Voice {
@@ -623,7 +623,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_18():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \context Voice = "foo" {
@@ -667,7 +667,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_19():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             {
@@ -711,7 +711,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_20():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \new Staff {
@@ -753,7 +753,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_21():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -793,7 +793,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_22():
         g'8
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \new Voice {
@@ -833,7 +833,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_23():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -876,7 +876,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_24():
         g'8
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \context Voice = "foo" {
@@ -916,7 +916,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_25():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -956,7 +956,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_26():
         c''8
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \new Staff {
@@ -988,7 +988,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_27():
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
     container = Container([container] + notes)
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             {
@@ -1057,7 +1057,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_29():
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
     container = Container([voice_2] + notes)
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \context Voice = "bar" {
@@ -1091,7 +1091,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_30():
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
     container = Container([voice_2] + notes)
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \new Voice {
@@ -1127,7 +1127,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_31():
     container.is_simultaneous = True
     container = Container(notes + [container])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -1182,7 +1182,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_32():
         b'8
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             <<
@@ -1240,7 +1240,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_33():
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -1301,7 +1301,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_34():
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -1357,7 +1357,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_35():
         b'8
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -1405,7 +1405,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_36():
         g'8
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -1458,7 +1458,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_37():
         g'8
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             {
@@ -1509,7 +1509,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_38():
         }
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         \new Voice {
             {
@@ -1573,7 +1573,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_39():
         ''')
     voice.name = 'foo'
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \context Voice = "foo" {
             c'8
@@ -1636,7 +1636,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_40():
         b'8
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \new Voice {
@@ -1693,7 +1693,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_41():
         b'8
         ''')
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -1841,7 +1841,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_48():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [

@@ -18,7 +18,7 @@ def test_scoretools_make_skips_01():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             s4 * 2

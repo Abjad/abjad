@@ -16,7 +16,7 @@ def test_spannertools_Spanner_format_01():
     spanner = MockSpanner()
     attach(spanner, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8

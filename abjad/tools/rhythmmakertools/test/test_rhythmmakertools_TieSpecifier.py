@@ -22,7 +22,7 @@ def test_rhythmmakertools_TieSpecifier_01():
     selections = rhythm_maker(divisions)
     staff = Staff(selections)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

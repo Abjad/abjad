@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__TimeSignature_01():
     time_signature = TimeSignature((8, 8))
     attach(time_signature, target[0])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Score <<
             \new Staff {

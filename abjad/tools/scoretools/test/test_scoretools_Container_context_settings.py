@@ -9,7 +9,7 @@ def test_scoretools_Container_context_settings_01():
     container = Container("c'8 d'8 e'8 f'8")
     setting(container).score.beam_exceptions = schemetools.SchemeVector()
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \set Score.beamExceptions = #'()

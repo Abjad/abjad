@@ -50,7 +50,7 @@ class CommandlineScript(abctools.AbjadObject):
         short_description = getattr(self, 'short_description', None)
         long_description = getattr(self, 'long_description', None)
         if long_description:
-            long_description = stringtools.normalize(long_description)
+            long_description = stringtools.String.normalize(long_description)
         parser = self._argument_parser = argparse.ArgumentParser(
             description=short_description,
             epilog=long_description,
@@ -188,4 +188,5 @@ class CommandlineScript(abctools.AbjadObject):
         r'''The name of the script, callable from the command line.
         '''
         name = type(self).__name__[:type(self).__name__.rfind('Script')]
-        return stringtools.to_space_delimited_lowercase(name).replace(' ', '-')
+        name = stringtools.String(name).to_space_delimited_lowercase()
+        anem = name.replace(' ', '-')

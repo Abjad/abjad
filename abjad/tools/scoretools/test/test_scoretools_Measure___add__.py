@@ -16,7 +16,7 @@ def test_scoretools_Measure___add___01():
     attach(slur, measure_2[:])
     new = measure_1 + measure_2
 
-    assert format(new) == stringtools.normalize(
+    assert format(new) == String.normalize(
         r'''
         {
             \time 2/8
@@ -47,7 +47,7 @@ def test_scoretools_Measure___add___02():
     attach(slur, measure_2[:])
     staff = Staff([measure_1, measure_2])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -70,7 +70,7 @@ def test_scoretools_Measure___add___02():
     assert len(measure_1) == 0
     assert len(measure_2) == 0
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

@@ -296,9 +296,9 @@ class RootlessChordClass(IntervalSegment):
     @property
     def _title_case_name(self):
         return '{}{}In{}'.format(
-            stringtools.to_upper_camel_case(self.quality_string),
-            stringtools.to_upper_camel_case(self.extent_name),
-            stringtools.to_upper_camel_case(self.position),
+            stringtools.String(self.quality_string).to_upper_camel_case(),
+            stringtools.String(self.extent_name).to_upper_camel_case(),
+            stringtools.String(self.position).to_upper_camel_case(),
             )
 
     ### PUBLIC PROPERTIES ###

@@ -8,7 +8,7 @@ def test_scoretools_MultimeasureRest___init___01():
 
     multimeasure_rest = scoretools.MultimeasureRest()
 
-    assert format(multimeasure_rest) == stringtools.normalize(
+    assert format(multimeasure_rest) == String.normalize(
         r'''
         R4
         '''

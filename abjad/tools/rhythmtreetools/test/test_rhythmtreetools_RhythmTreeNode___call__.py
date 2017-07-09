@@ -23,7 +23,7 @@ def test_rhythmtreetools_RhythmTreeNode___call___02():
 
     assert isinstance(result, list)
     assert len(result) == 1
-    assert format(result[0]) == stringtools.normalize(
+    assert format(result[0]) == String.normalize(
         r'''
         \times 4/5 {
             c'16
@@ -44,7 +44,7 @@ def test_rhythmtreetools_RhythmTreeNode___call___03():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert format(result[0]) == stringtools.normalize(
+    assert format(result[0]) == String.normalize(
         r'''
         \times 4/5 {
             c'16

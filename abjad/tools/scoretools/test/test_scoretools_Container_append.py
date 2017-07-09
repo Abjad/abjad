@@ -12,7 +12,7 @@ def test_scoretools_Container_append_01():
     attach(beam, voice[:])
     voice.append(Container("e'8 f'8"))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -37,7 +37,7 @@ def test_scoretools_Container_append_02():
     attach(beam, tuplet[:])
     tuplet.append(Note(5, (1, 16)), preserve_duration=True)
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \times 4/7 {
             c'8 [
@@ -73,7 +73,7 @@ def test_scoretools_Container_append_04():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -87,7 +87,7 @@ def test_scoretools_Container_append_04():
     beam = Beam()
     attach(beam, u[:])
 
-    assert format(u) == stringtools.normalize(
+    assert format(u) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -102,7 +102,7 @@ def test_scoretools_Container_append_04():
 
     "Container voice is now ..."
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -117,7 +117,7 @@ def test_scoretools_Container_append_04():
 
     "Container u is now ..."
 
-    assert format(u) == stringtools.normalize(
+    assert format(u) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -139,7 +139,7 @@ def test_scoretools_Container_append_05():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -152,7 +152,7 @@ def test_scoretools_Container_append_05():
 
     voice.append(voice[1])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [

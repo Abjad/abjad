@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
 from abjad.tools.lilypondnametools.LilyPondNameManager \
     import LilyPondNameManager
 
@@ -54,9 +53,10 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 LilyPondNameManager(('color', 'red'))
 
         '''
+        import abjad
         from abjad import ly
         from abjad.tools import lilypondnametools
-        camel_name = stringtools.to_upper_camel_case(name)
+        camel_name = abjad.String(name).to_upper_camel_case()
         if name.startswith('_'):
             try:
                 return vars(self)[name]

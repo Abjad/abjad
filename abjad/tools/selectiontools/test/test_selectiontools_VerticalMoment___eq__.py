@@ -62,7 +62,7 @@ def test_selectiontools_VerticalMoment___eq___02():
     staff_group.context_name = 'PianoStaff'
     score.append(staff_group)
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {

@@ -14,7 +14,7 @@ def test_selectiontools_Parentage__get_spanners_01():
     trill = spannertools.TrillSpanner()
     attach(trill, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8 [ ( \startTrillSpan
@@ -43,7 +43,7 @@ def test_selectiontools_Parentage__get_spanners_02():
     trill = spannertools.TrillSpanner()
     attach(trill, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8 [ ( \startTrillSpan

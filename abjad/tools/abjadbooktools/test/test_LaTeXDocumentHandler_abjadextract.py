@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import platform
 import unittest
-from abjad.tools import abjadbooktools
-from abjad.tools import stringtools
 
 
 @unittest.skipIf(
@@ -21,7 +20,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             '\\end{comment}',
             '',
             ]
-        document_handler = abjadbooktools.LaTeXDocumentHandler()
+        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler()
         input_blocks = document_handler.collect_input_blocks(input_file_contents)
         code_block = tuple(input_blocks.values())[0]
         assert code_block.executed_lines == (
@@ -61,11 +60,11 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             '</abjad>',
             '\\end{comment}',
             ]
-        document_handler = abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         rebuilt_source = document_handler(return_source=True)
-        assert rebuilt_source == stringtools.normalize(
+        assert rebuilt_source == abjad.String.normalize(
             """
             \\begin{comment}
             <abjadextract abjad.tools.abjadbooktools:example_function \\>
@@ -140,11 +139,11 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             '</abjad>',
             '\\end{comment}',
             ]
-        document_handler = abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         rebuilt_source = document_handler(return_source=True)
-        assert rebuilt_source == stringtools.normalize(
+        assert rebuilt_source == abjad.String.normalize(
             """
             \\begin{comment}
             <abjadextract abjad.tools.abjadbooktools:example_function \\>[hide=true]

@@ -9,7 +9,7 @@ def test_agenttools_InspectionAgent_get_sounding_pitches_01():
     attach(glockenspiel, staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Glockenspiel }

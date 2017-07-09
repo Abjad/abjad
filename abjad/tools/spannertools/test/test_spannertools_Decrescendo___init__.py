@@ -16,7 +16,7 @@ def test_spannertools_Decrescendo___init___02():
     decrescendo = Decrescendo()
     attach(decrescendo, staff[:4])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \>

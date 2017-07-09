@@ -14,7 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_01():
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, target[:3])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 \startTextSpan
@@ -40,7 +40,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_02():
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, target[:3])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 \startTextSpan

@@ -26,7 +26,7 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
     score = Score([staff])
     setting(score).autoBeaming = False
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

@@ -62,7 +62,7 @@ def test_agenttools_MutationAgent_fuse_05():
     attach(Multiplier(1, 16), staff[0])
     attach(Multiplier(5, 16), staff[1])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             s1 * 1/16
@@ -75,7 +75,7 @@ def test_agenttools_MutationAgent_fuse_05():
 
     mutate(staff[:]).fuse()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             s1 * 3/8
@@ -98,7 +98,7 @@ def test_agenttools_MutationAgent_fuse_06():
     slur = Slur()
     attach(slur, tuplet_2[:])
 
-    assert format(tuplet_1) == stringtools.normalize(
+    assert format(tuplet_1) == String.normalize(
         r'''
         \times 2/3 {
             c'8 [
@@ -108,7 +108,7 @@ def test_agenttools_MutationAgent_fuse_06():
         '''
         )
 
-    assert format(tuplet_2) == stringtools.normalize(
+    assert format(tuplet_2) == String.normalize(
         r'''
         \times 2/3 {
             c'16 (
@@ -121,7 +121,7 @@ def test_agenttools_MutationAgent_fuse_06():
     tuplets = select([tuplet_1, tuplet_2])
     new = mutate(tuplets).fuse()
 
-    assert format(new) == stringtools.normalize(
+    assert format(new) == String.normalize(
         r'''
         \times 2/3 {
             c'8 [
@@ -152,7 +152,7 @@ def test_agenttools_MutationAgent_fuse_07():
     attach(slur, tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -172,7 +172,7 @@ def test_agenttools_MutationAgent_fuse_07():
     tuplets = voice[:]
     mutate(tuplets).fuse()
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -202,7 +202,7 @@ def test_agenttools_MutationAgent_fuse_08():
     attach(slur, tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -225,7 +225,7 @@ def test_agenttools_MutationAgent_fuse_08():
     tuplets = voice[:]
     mutate(tuplets).fuse()
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \tweak edge-height #'(0.7 . 0)
@@ -268,7 +268,7 @@ def test_agenttools_MutationAgent_fuse_10():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \tweak edge-height #'(0.7 . 0)
@@ -287,7 +287,7 @@ def test_agenttools_MutationAgent_fuse_10():
     tuplets = voice[:2]
     mutate(tuplets).fuse()
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -315,7 +315,7 @@ def test_agenttools_MutationAgent_fuse_11():
     attach(slur, measure_2[:])
     staff = Staff([measure_1, measure_2])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -338,7 +338,7 @@ def test_agenttools_MutationAgent_fuse_11():
     assert len(measure_1) == 0
     assert len(measure_2) == 0
 
-    assert format(new) == stringtools.normalize(
+    assert format(new) == String.normalize(
         r'''
         {
             \time 2/8
@@ -364,7 +364,7 @@ def test_agenttools_MutationAgent_fuse_12():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -383,7 +383,7 @@ def test_agenttools_MutationAgent_fuse_12():
 
     mutate(voice[:]).fuse()
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -411,7 +411,7 @@ def test_agenttools_MutationAgent_fuse_13():
     beam = Beam()
     attach(beam, leaves[:2])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -430,7 +430,7 @@ def test_agenttools_MutationAgent_fuse_13():
 
     mutate(voice[:]).fuse()
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -463,7 +463,7 @@ def test_agenttools_MutationAgent_fuse_14():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -482,7 +482,7 @@ def test_agenttools_MutationAgent_fuse_14():
 
     mutate(voice[:]).fuse()
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -528,7 +528,7 @@ def test_agenttools_MutationAgent_fuse_17():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -550,7 +550,7 @@ def test_agenttools_MutationAgent_fuse_17():
 
     mutate(voice[:]).fuse()
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -583,7 +583,7 @@ def test_agenttools_MutationAgent_fuse_18():
     measure_2.extend(2 * Note("c'16"))
     staff = Staff([measure_1, measure_2])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -611,7 +611,7 @@ def test_agenttools_MutationAgent_fuse_18():
 
     new = mutate(staff[:]).fuse()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

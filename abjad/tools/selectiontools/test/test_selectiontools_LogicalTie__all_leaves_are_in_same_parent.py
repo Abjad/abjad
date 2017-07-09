@@ -18,7 +18,7 @@ def test_selectiontools_LogicalTie__all_leaves_are_in_same_parent_02():
     tie = spannertools.Tie()
     attach(tie, leaves[1:3])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -45,7 +45,7 @@ def test_selectiontools_LogicalTie__all_leaves_are_in_same_parent_03():
     staff = Staff(r"\times 2/3 { c'8 c'8 c'8 ~ } \times 2/3 { c'8 c'8 c'8 }")
     leaves = select(staff).by_leaf()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \times 2/3 {

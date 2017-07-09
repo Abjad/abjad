@@ -23,7 +23,7 @@ def test_systemtools_LilyPondFormatManager_report_component_format_contributions
     attach(comment, t)
 
     assert systemtools.LilyPondFormatManager.report_component_format_contributions(t) == \
-        stringtools.normalize(
+        String.normalize(
         r'''
         slot 1:
             comments:

@@ -16,7 +16,7 @@ def test_spannertools_PhrasingSlur___init___02():
     phrasing_slur = spannertools.PhrasingSlur()
     attach(phrasing_slur, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \(

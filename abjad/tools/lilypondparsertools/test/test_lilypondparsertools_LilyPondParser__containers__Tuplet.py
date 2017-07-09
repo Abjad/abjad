@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__containers__Tuplet_01():
     notes = scoretools.make_notes([0, 2, 4], (1, 8))
     target = scoretools.Tuplet(Multiplier(2, 3), notes)
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \times 2/3 {
             c'8

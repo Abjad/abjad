@@ -10,7 +10,7 @@ def test_scoretools_fill_measures_with_full_measure_spacer_skips_01():
     measure.implicit_scaling = True
     scoretools.fill_measures_with_full_measure_spacer_skips(measure)
 
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == String.normalize(
         r'''
         {
             \time 5/18
@@ -33,7 +33,7 @@ def test_scoretools_fill_measures_with_full_measure_spacer_skips_02():
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     staff.extend("abj: | 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -63,7 +63,7 @@ def test_scoretools_fill_measures_with_full_measure_spacer_skips_02():
     scoretools.fill_measures_with_full_measure_spacer_skips(
         staff, iterctrl)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -100,7 +100,7 @@ def test_scoretools_fill_measures_with_full_measure_spacer_skips_03():
         Measure((4, 8), "c'8 d'8 e'8 f'8"),
         ])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -130,7 +130,7 @@ def test_scoretools_fill_measures_with_full_measure_spacer_skips_03():
         lambda m, i: 2 < len(m),
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

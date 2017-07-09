@@ -29,7 +29,7 @@ def test_spannertools_Spanner__apply_overrides_01():
     staff = Staff("c'4 d'4 e'4 f'4")
     attach(white_flautando_spanner, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \override TextSpanner.bound-details.left-broken.text = \markup {

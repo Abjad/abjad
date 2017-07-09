@@ -10,7 +10,7 @@ def test_agenttools_InspectionAgent_is_bar_line_crossing_01():
     time_signature = TimeSignature((2, 8), partial=Duration(1, 8))
     attach(time_signature, staff)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \partial 8

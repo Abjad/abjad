@@ -12,7 +12,7 @@ def test_spannertools_Spanner__get_my_nth_leaf_01():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_commandlinetools_ReplaceScript___init___01():
 
-    script = commandlinetools.ReplaceScript()
+    script = abjad.commandlinetools.ReplaceScript()

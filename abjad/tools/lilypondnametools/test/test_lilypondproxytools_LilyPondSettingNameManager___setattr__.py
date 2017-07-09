@@ -9,7 +9,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___01():
     staff = Staff("c'8 d'8 e'8 f'8")
     setting(staff).auto_beaming = True
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             autoBeaming = ##t
@@ -33,7 +33,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___02():
     setting(staff).auto_beaming = True
     del(setting(staff).auto_beaming)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -54,7 +54,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___03():
     staff = Staff("c'8 d'8 e'8 f'8")
     setting(staff[0]).score.current_bar_number = 12
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \set Score.currentBarNumber = #12
@@ -78,7 +78,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___04():
     staff.append(Measure((2, 8), "e'8 f'8"))
     setting(staff[0]).score.current_bar_number = 12
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -105,7 +105,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___05():
     staff = Staff("c'8 d'8 e'8 f'8")
     setting(staff).font_size = -3
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             fontSize = #-3
@@ -128,7 +128,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___06():
     staff = Staff("c'8 d'8 e'8 f'8")
     setting(staff).instrument_name = 'Violini I'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             instrumentName = #"Violini I"
@@ -151,7 +151,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___07():
     staff = Staff("c'8 d'8 e'8 f'8")
     setting(staff).instrument_name = markuptools.Markup(r'\circle { V }')
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             instrumentName = \markup {
@@ -180,7 +180,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___08():
     moment = schemetools.SchemeMoment(Fraction(1, 56))
     setting(score).proportional_notation_duration = moment
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score \with {
             proportionalNotationDuration = #(ly:make-moment 1 56)
@@ -205,7 +205,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___09():
     staff = Staff("c'8 d'8 e'8 f'8")
     setting(staff).short_instrument_name = 'Vni. I'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             shortInstrumentName = #"Vni. I"
@@ -229,7 +229,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___10():
     setting(staff).short_instrument_name = markuptools.Markup(
         r'\circle { V }')
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             shortInstrumentName = \markup {
@@ -257,7 +257,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___11():
     staff = Staff("c'8 d'8 e'8 f'8")
     setting(staff).suggest_accidentals = True
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             suggestAccidentals = ##t
@@ -280,7 +280,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___12():
     staff = Staff("c'8 d'8 e'8 f'8")
     setting(staff[1]).suggest_accidentals = True
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -302,7 +302,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
     staff = Staff([])
     setting(staff).tuplet_full_length = True
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             tupletFullLength = ##t
@@ -315,7 +315,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
 
     setting(staff).tuplet_full_length = False
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             tupletFullLength = ##f
@@ -328,7 +328,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
 
     del(setting(staff).tuplet_full_length)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
         }

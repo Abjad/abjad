@@ -13,7 +13,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
@@ -29,7 +29,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
@@ -46,7 +46,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'16
@@ -63,7 +63,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
@@ -82,7 +82,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
@@ -107,7 +107,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
@@ -123,7 +123,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'16
@@ -139,7 +139,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
@@ -157,7 +157,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
@@ -176,7 +176,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 12/11 {
@@ -203,7 +203,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_03():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 12/11 {
@@ -246,7 +246,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_04():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'8
@@ -266,7 +266,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'8.
@@ -281,7 +281,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'16.
@@ -297,7 +297,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'16
@@ -314,7 +314,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'32.
@@ -332,7 +332,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 8/5 {
@@ -357,7 +357,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'8.
@@ -372,7 +372,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'16
@@ -388,7 +388,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 8/5 {
@@ -406,7 +406,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
@@ -425,7 +425,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 12/11 {
@@ -467,7 +467,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_07():
         is_diminution=False,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'8
@@ -487,7 +487,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -503,7 +503,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -520,7 +520,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'16
@@ -537,7 +537,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -556,7 +556,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
@@ -581,7 +581,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -597,7 +597,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'16
@@ -613,7 +613,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
@@ -631,7 +631,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -650,7 +650,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/11 {
@@ -677,7 +677,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_10():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/11 {
@@ -715,7 +715,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_11():
 
     tuplet = Tuplet.from_duration_and_ratio(Duration(1, 8), [27])
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'8
@@ -735,7 +735,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'8.
@@ -750,7 +750,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'16.
@@ -766,7 +766,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'16
@@ -783,7 +783,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'32.
@@ -801,7 +801,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \times 4/5 {
             c'32.
@@ -825,7 +825,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'8.
@@ -840,7 +840,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'16
@@ -856,7 +856,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \times 4/5 {
             c'32.
@@ -873,7 +873,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -892,7 +892,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/11 {
@@ -935,7 +935,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_14():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         {
             c'8
@@ -955,7 +955,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_15():
         is_diminution=True,
         )
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \times 2/3 {
             c'8

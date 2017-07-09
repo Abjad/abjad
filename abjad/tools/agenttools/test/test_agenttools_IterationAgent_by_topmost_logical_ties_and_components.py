@@ -10,7 +10,7 @@ def test_agenttools_IterationAgent_by_topmost_logical_ties_and_components_01():
     tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
     staff.insert(4, tuplet)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 ~

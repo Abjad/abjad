@@ -51,7 +51,7 @@ class SchemeVector(Scheme):
 
     def _get_format_specification(self):
         values = self._value
-        if stringtools.is_string(self._value):
+        if stringtools.String.is_string(self._value):
             values = [self._value]
         return systemtools.FormatSpecification(
             client=self,

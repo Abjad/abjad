@@ -14,7 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_01():
     bracket = spannertools.HorizontalBracketSpanner()
     attach(bracket, target[2:])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 \startGroup \startGroup

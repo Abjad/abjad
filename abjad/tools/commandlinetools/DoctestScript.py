@@ -98,7 +98,7 @@ class DoctestScript(CommandlineScript):
             imports = config_parser.get(self.alias, 'imports')
         except:
             imports = ''
-        imports = stringtools.normalize(imports).split('\n')
+        imports = stringtools.String.normalize(imports).split('\n')
         for line in imports:
             exec(line, globs, globs)
         globs
@@ -220,8 +220,9 @@ class DoctestScript(CommandlineScript):
             print()
         else:
             result.append('')
-        test_identifier = stringtools.pluralize('test', total_tests)
-        module_identifier = stringtools.pluralize('module', total_modules)
+        test_identifier = stringtools.String('test').pluralize(total_tests)
+        module_identifier = stringtools.String('module')
+        module_identifier = module_identifier.pluralize(total_modules)
         string = (
             '{total_successes} passed, {total_failures} failed out of '
             '{total_tests} {test_identifier} '

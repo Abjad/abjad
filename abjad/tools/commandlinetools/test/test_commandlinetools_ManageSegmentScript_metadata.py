@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import json
 from base import ScorePackageScriptTestCase
 try:

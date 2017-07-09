@@ -38,7 +38,7 @@ class StatsScript(CommandlineScript):
         return results
 
     def _print_results(self, counts):
-        template = stringtools.normalize('''
+        template = stringtools.String.normalize('''
         Source lines: {source_lines}
         Public classes: {public_classes}
             Unique public methods: {unique_public_methods}

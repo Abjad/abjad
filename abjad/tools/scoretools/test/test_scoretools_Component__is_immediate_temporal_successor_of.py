@@ -41,7 +41,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_05():
 
     voice = Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -70,7 +70,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_06():
 
     voice = Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }")
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -98,7 +98,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_07():
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("g'8 a'8 b'8 c''8")])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -129,7 +129,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_08():
     staff[0].name = 'foo'
     staff[1].name = 'foo'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -160,7 +160,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_09():
     staff[0].name = 'foo'
     staff[1].name = 'bar'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -190,7 +190,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_10():
     staff_2 = Staff([Voice("g'8 a'8 b'8 c''8")])
     container = Container([staff_1, staff_2])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \new Staff {
@@ -238,7 +238,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_11():
     staff_2.is_simultaneous = True
     container = Container([staff_1, staff_2])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \new Staff <<
@@ -308,7 +308,7 @@ def test_scoretools_Component__is_immediate_temporal_successor_of_12():
 
     voice = Voice("{ { c'8 d'8 e'8 f'8 } } { { g'8 a'8 b'8 c''8 } }")
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {

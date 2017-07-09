@@ -9,7 +9,7 @@ def test_scoretools_Tuplet_context_settings_01():
     tuplet = Tuplet((2, 3), "c'8 d'8 e'8 f'8")
     setting(tuplet).score.beam_exceptions = schemetools.SchemeVector()
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \set Score.beamExceptions = #'()
         \tweak edge-height #'(0.7 . 0)

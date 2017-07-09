@@ -166,7 +166,7 @@ class ManageBuildTargetScript(ScorePackageScript):
             name = paper_size.lower().replace(' ', '-')
             name = '{}-{}'.format(name, orientation)
         else:
-            name = stringtools.to_dash_case(target_name)
+            name = stringtools.String(target_name).to_dash_case()
         dimensions = self.paper_sizes[paper_size]
         message = 'Creating build target {!r} ({}{} x {}{})'.format(
             name,

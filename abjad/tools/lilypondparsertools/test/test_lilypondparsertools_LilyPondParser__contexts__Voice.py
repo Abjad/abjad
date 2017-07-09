@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__Voice_01():
 
     target = Voice([])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Voice {
         }

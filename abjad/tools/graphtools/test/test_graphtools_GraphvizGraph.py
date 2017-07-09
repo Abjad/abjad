@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad import *
 from abjad import graphtools
 from abjad import stringtools
 
@@ -58,7 +59,7 @@ def test_graphtools_GraphvizGraph_01():
 
     graphviz_format = str(graph)
 
-    assert graphviz_format == stringtools.normalize(
+    assert graphviz_format == String.normalize(
         '''
         digraph G {
             node [shape=record];

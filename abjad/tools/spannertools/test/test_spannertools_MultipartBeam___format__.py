@@ -8,7 +8,7 @@ def test_spannertools_MultipartBeam___format___01():
     beam = spannertools.MultipartBeam()
     attach(beam, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8 [
@@ -28,7 +28,7 @@ def test_spannertools_MultipartBeam___format___02():
     beam = spannertools.MultipartBeam()
     attach(beam, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -45,7 +45,7 @@ def test_spannertools_MultipartBeam___format___03():
     beam = spannertools.MultipartBeam()
     attach(beam, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8.

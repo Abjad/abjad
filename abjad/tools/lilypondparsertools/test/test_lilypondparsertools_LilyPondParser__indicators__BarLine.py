@@ -10,7 +10,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__BarLine_01():
     bar_line = indicatortools.BarLine('|.')
     attach(bar_line, target[-1])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             e'4

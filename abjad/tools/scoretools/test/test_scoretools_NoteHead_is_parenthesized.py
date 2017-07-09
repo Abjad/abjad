@@ -16,7 +16,7 @@ def test_scoretools_NoteHead_is_parenthesized_02():
 
     note_head = scoretools.NoteHead(written_pitch="c'")
     note_head.is_parenthesized = True
-    assert format(note_head) == stringtools.normalize(
+    assert format(note_head) == String.normalize(
         r'''
         \parenthesize
         c'
@@ -27,7 +27,7 @@ def test_scoretools_NoteHead_is_parenthesized_03():
 
     note = scoretools.Note("c'4")
     note.note_head.is_parenthesized = True
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         \parenthesize
         c'4
@@ -38,7 +38,7 @@ def test_scoretools_NoteHead_is_parenthesized_04():
 
     chord = scoretools.Chord("<c' e' g'>4")
     chord.note_heads[1].is_parenthesized = True
-    assert format(chord) == stringtools.normalize(
+    assert format(chord) == String.normalize(
         r'''
         <
             c'

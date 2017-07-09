@@ -60,7 +60,7 @@ class ManageSegmentScript(ScorePackageScript):
             if name not in staged_names:
                 names_list.append('# {}'.format(name))
         names_list = '\n'.join(names_list)
-        contents = stringtools.normalize('''
+        contents = stringtools.String.normalize('''
         {}
 
         # Instructions:
@@ -85,7 +85,7 @@ class ManageSegmentScript(ScorePackageScript):
             collected_names.append(segment_path.name)
             target_path = self._build_path.joinpath(
                 'segments',
-                stringtools.to_dash_case(segment_path.name) + '.ily'
+                stringtools.String(segment_path.name).to_dash_case() + '.ily'
                 )
             contents = self._process_illustration_contents(source_path)
             with open(str(target_path), 'w') as file_pointer:
@@ -103,7 +103,7 @@ class ManageSegmentScript(ScorePackageScript):
             for name in staged_names:
                 if name not in collected_names:
                     continue
-                name = stringtools.to_dash_case(name)
+                name = stringtools.String(name).to_dash_case()
                 file_pointer.write(include_template.format(
                     name=name,
                     sep=os.path.sep))

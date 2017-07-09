@@ -8,7 +8,7 @@ def test_scoretools_Cluster___init___01():
     cluster = scoretools.Cluster([])
     assert not cluster.is_simultaneous
     assert len(cluster) == 0
-    assert format(cluster) == stringtools.normalize(
+    assert format(cluster) == String.normalize(
         r'''
         \makeClusters {
         }
@@ -21,7 +21,7 @@ def test_scoretools_Cluster___init___02():
     assert isinstance(cluster, scoretools.Cluster)
     assert not cluster.is_simultaneous
     assert len(cluster) == 4
-    assert format(cluster) == stringtools.normalize(
+    assert format(cluster) == String.normalize(
         r'''
         \makeClusters {
             cs'4

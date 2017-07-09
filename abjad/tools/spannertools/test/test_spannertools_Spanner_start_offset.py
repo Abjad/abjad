@@ -12,7 +12,7 @@ def test_spannertools_Spanner_start_offset_01():
     glissando = spannertools.Glissando()
     attach(glissando, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8 \glissando

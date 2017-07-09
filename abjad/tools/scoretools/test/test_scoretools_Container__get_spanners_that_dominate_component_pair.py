@@ -17,7 +17,7 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -55,7 +55,7 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_02():
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -95,7 +95,7 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_03():
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -135,7 +135,7 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_04():
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {

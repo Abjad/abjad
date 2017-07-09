@@ -52,7 +52,7 @@ def test_spannertools_Slur___init___02():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \context Staff = "foo" <<
@@ -120,7 +120,7 @@ def test_spannertools_Slur___init___03():
     leaves = select(container).by_leaf()
     attach(slur, leaves)
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \context Staff = "foo" {

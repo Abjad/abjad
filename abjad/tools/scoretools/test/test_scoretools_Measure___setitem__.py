@@ -19,7 +19,7 @@ def test_scoretools_Measure___setitem___02():
     measure[:2] = 'r8'
 
     assert not measure.is_underfull
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == String.normalize(
         r'''
         {
             \time 3/8

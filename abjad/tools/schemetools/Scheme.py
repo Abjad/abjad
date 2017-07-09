@@ -213,7 +213,7 @@ class Scheme(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        if stringtools.is_string(self._value):
+        if stringtools.String.is_string(self._value):
             values = [self._value]
         elif isinstance(self._value, collections.Iterable):
             values = self._value

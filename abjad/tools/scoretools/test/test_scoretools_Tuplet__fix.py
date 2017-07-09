@@ -9,7 +9,7 @@ def test_scoretools_Tuplet__fix_01():
     tuplet = Tuplet((1, 3), "c'4 d'4 e'4")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \times 1/3 {
             c'4
@@ -21,7 +21,7 @@ def test_scoretools_Tuplet__fix_01():
 
     tuplet._fix()
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \times 2/3 {
             c'8
@@ -42,7 +42,7 @@ def test_scoretools_Tuplet__fix_02():
     tuplet = Tuplet((8, 3), "c'32 d'32 e'32")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 8/3 {
@@ -55,7 +55,7 @@ def test_scoretools_Tuplet__fix_02():
 
     tuplet._fix()
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 4/3 {
@@ -77,7 +77,7 @@ def test_scoretools_Tuplet__fix_03():
     tuplet = Tuplet((5, 12), "c'4 d'4 e'4")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 5/12 {
@@ -90,7 +90,7 @@ def test_scoretools_Tuplet__fix_03():
 
     tuplet._fix()
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 5/6 {

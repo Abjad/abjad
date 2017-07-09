@@ -12,7 +12,7 @@ def test_agenttools_IterationAgent_by_logical_tie_01():
     tie = Tie()
     attach(tie, staff[2:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 ~

@@ -11,7 +11,7 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_01():
     beam = spannertools.DuratedComplexBeam(isolated_nib_direction=True)
     attach(beam, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \set stemLeftBeamCount = #1
@@ -33,7 +33,7 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_02():
     beam = spannertools.DuratedComplexBeam(isolated_nib_direction=False)
     attach(beam, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -52,7 +52,7 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_03():
     beam = spannertools.DuratedComplexBeam(isolated_nib_direction=False)
     attach(beam, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \set stemLeftBeamCount = #0

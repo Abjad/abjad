@@ -18,7 +18,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     '''
 
     assert inspect(staff).is_well_formed()
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 ~ [
@@ -43,7 +43,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     '''
 
     assert inspect(staff).is_well_formed()
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [ ]

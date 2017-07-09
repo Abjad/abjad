@@ -15,7 +15,7 @@ def test_scoretools_Container__split_by_duration_01():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -37,7 +37,7 @@ def test_scoretools_Container__split_by_duration_01():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -70,7 +70,7 @@ def test_scoretools_Container__split_by_duration_02():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -92,7 +92,7 @@ def test_scoretools_Container__split_by_duration_02():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -131,7 +131,7 @@ def test_scoretools_Container__split_by_duration_03():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -153,7 +153,7 @@ def test_scoretools_Container__split_by_duration_03():
         tie_split_notes=False,
         )
 
-    assert format(halves[0][0]) == stringtools.normalize(
+    assert format(halves[0][0]) == String.normalize(
         r'''
         \new Staff {
             {
@@ -164,7 +164,7 @@ def test_scoretools_Container__split_by_duration_03():
         '''
         ), format(halves[0][0])
 
-    assert format(halves[1][0]) == stringtools.normalize(
+    assert format(halves[1][0]) == String.normalize(
         r'''
         \new Staff {
             {
@@ -201,7 +201,7 @@ def test_scoretools_Container__split_by_duration_04():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -223,7 +223,7 @@ def test_scoretools_Container__split_by_duration_04():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -259,7 +259,7 @@ def test_scoretools_Container__split_by_duration_05():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -281,7 +281,7 @@ def test_scoretools_Container__split_by_duration_05():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -322,7 +322,7 @@ def test_scoretools_Container__split_by_duration_06():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -346,7 +346,7 @@ def test_scoretools_Container__split_by_duration_06():
     # TODO: The tie at the split locus here is a (small) bug.
     #       Eventually should fix.
     #       The tie after the d'16. is the incorrect one.
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -392,7 +392,7 @@ def test_scoretools_Container__split_by_duration_07():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -414,7 +414,7 @@ def test_scoretools_Container__split_by_duration_07():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -458,7 +458,7 @@ def test_scoretools_Container__split_by_duration_08():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -480,7 +480,7 @@ def test_scoretools_Container__split_by_duration_08():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -515,7 +515,7 @@ def test_scoretools_Container__split_by_duration_09():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -537,7 +537,7 @@ def test_scoretools_Container__split_by_duration_09():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -576,7 +576,7 @@ def test_scoretools_Container__split_by_duration_10():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -598,7 +598,7 @@ def test_scoretools_Container__split_by_duration_10():
         tie_split_notes=False,
         )
 
-    assert format(halves[0][0]) == stringtools.normalize(
+    assert format(halves[0][0]) == String.normalize(
         r'''
         \new Staff {
             {
@@ -609,7 +609,7 @@ def test_scoretools_Container__split_by_duration_10():
         '''
         ), format(halves[0][0])
 
-    assert format(halves[1][0]) == stringtools.normalize(
+    assert format(halves[1][0]) == String.normalize(
         r'''
         \new Staff {
             {
@@ -644,7 +644,7 @@ def test_scoretools_Container__split_by_duration_11():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -666,7 +666,7 @@ def test_scoretools_Container__split_by_duration_11():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -703,7 +703,7 @@ def test_scoretools_Container__split_by_duration_12():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -725,7 +725,7 @@ def test_scoretools_Container__split_by_duration_12():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -764,7 +764,7 @@ def test_scoretools_Container__split_by_duration_13():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -785,7 +785,7 @@ def test_scoretools_Container__split_by_duration_13():
         fracture_spanners=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -845,7 +845,7 @@ def test_scoretools_Container__split_by_duration_15():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -867,7 +867,7 @@ def test_scoretools_Container__split_by_duration_15():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -903,7 +903,7 @@ def test_scoretools_Container__split_by_duration_16():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -925,7 +925,7 @@ def test_scoretools_Container__split_by_duration_16():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -966,7 +966,7 @@ def test_scoretools_Container__split_by_duration_17():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -988,7 +988,7 @@ def test_scoretools_Container__split_by_duration_17():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1034,7 +1034,7 @@ def test_scoretools_Container__split_by_duration_18():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1056,7 +1056,7 @@ def test_scoretools_Container__split_by_duration_18():
         tie_split_notes=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1104,7 +1104,7 @@ def test_scoretools_Container__split_by_duration_19():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1127,7 +1127,7 @@ def test_scoretools_Container__split_by_duration_19():
         fracture_spanners=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1228,7 +1228,7 @@ def test_scoretools_Container__split_by_duration_22():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1249,7 +1249,7 @@ def test_scoretools_Container__split_by_duration_22():
         fracture_spanners=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1291,7 +1291,7 @@ def test_scoretools_Container__split_by_duration_23():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1313,7 +1313,7 @@ def test_scoretools_Container__split_by_duration_23():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1358,7 +1358,7 @@ def test_scoretools_Container__split_by_duration_24():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1380,7 +1380,7 @@ def test_scoretools_Container__split_by_duration_24():
         tie_split_notes=False,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1417,7 +1417,7 @@ def test_scoretools_Container__split_by_duration_25():
 
     staff = Staff([Measure((5, 16), "s1 * 5/16")])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1433,7 +1433,7 @@ def test_scoretools_Container__split_by_duration_25():
         fracture_spanners=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1472,7 +1472,7 @@ def test_scoretools_Container__split_by_duration_26():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1497,7 +1497,7 @@ def test_scoretools_Container__split_by_duration_26():
         fracture_spanners=True,
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -1534,7 +1534,7 @@ def test_scoretools_Container__split_by_duration_27():
         fracture_spanners=True,
         )
 
-    assert format(halves[0][0]) == stringtools.normalize(
+    assert format(halves[0][0]) == String.normalize(
         r'''
         {
             c'8.
@@ -1542,7 +1542,7 @@ def test_scoretools_Container__split_by_duration_27():
         '''
         ), format(halves[0][0])
 
-    assert format(halves[-1][0]) == stringtools.normalize(
+    assert format(halves[-1][0]) == String.normalize(
         r'''
         {
             c'16

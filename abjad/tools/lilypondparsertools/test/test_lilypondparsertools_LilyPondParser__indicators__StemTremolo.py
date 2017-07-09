@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__StemTremolo_01():
     stem_tremolo = indicatortools.StemTremolo(4)
     attach(stem_tremolo, target[0])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             c'1 :4

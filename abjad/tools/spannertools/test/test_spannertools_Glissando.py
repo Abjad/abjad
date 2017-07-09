@@ -8,7 +8,7 @@ def test_spannertools_Glissando_01():
     glissando = spannertools.Glissando()
     attach(glissando, staff[:4])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \glissando

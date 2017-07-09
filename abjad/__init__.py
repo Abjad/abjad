@@ -51,6 +51,7 @@ from abjad.tools.selectortools import *
 from abjad.tools.sequencetools import *
 from abjad.tools.spannertools import *
 from abjad.tools.spannertools import *
+from abjad.tools.stringtools import String
 from abjad.tools.topleveltools import *
 
 # mathtools classes (but not functions)

@@ -10,7 +10,7 @@ def test_spannertools_Spanner___in___01():
     beam = Beam()
     attach(beam, voice[1][:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {

@@ -14,7 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_01():
     trill = spannertools.TrillSpanner()
     attach(trill, target[:3])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 \startTrillSpan
@@ -40,7 +40,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_02():
     trill = spannertools.TrillSpanner()
     attach(trill, target[:3])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 \startTrillSpan

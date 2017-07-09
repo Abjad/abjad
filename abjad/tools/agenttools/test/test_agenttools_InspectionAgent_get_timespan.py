@@ -307,7 +307,7 @@ def test_agenttools_InspectionAgent_get_timespan_26():
     mark = MetronomeMark(Duration(1, 8), 48)
     attach(mark, staff, scope=Staff)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \tempo 8=48

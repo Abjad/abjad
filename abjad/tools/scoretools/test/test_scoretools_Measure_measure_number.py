@@ -39,7 +39,7 @@ def test_scoretools_Measure_measure_number_03():
     assert staff[1].measure_number == 2
     assert staff[2].measure_number == 3
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

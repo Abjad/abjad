@@ -46,7 +46,7 @@ def test_scoretools_Container_is_simultaneous_04():
     container = Container([Voice("c'8 cs'8"), Voice("d'8 ef'8")])
     container.is_simultaneous = True
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         <<
             \new Voice {

@@ -14,7 +14,7 @@ def test_scoretools_Container___init___01():
     '''
 
     assert isinstance(container, Container)
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
         }
@@ -37,7 +37,7 @@ def test_scoretools_Container___init___02():
     '''
 
     assert isinstance(container, Container)
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8
@@ -74,7 +74,7 @@ def test_scoretools_Container___init___03():
     '''
 
     assert isinstance(container, Container)
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \times 2/3 {
@@ -110,7 +110,7 @@ def test_scoretools_Container___init___04():
     '''
 
     assert isinstance(container, Container)
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             \times 2/3 {

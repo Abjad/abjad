@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 import platform
-from abjad.tools import commandlinetools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
 try:
     from unittest import mock
@@ -32,16 +31,16 @@ class Test(ScorePackageScriptTestCase):
         self.illustrate_segments()
         self.collect_segments()
         self.create_build_target()
-        script = commandlinetools.ManageBuildTargetScript()
+        script = abjad.commandlinetools.ManageBuildTargetScript()
         command = ['--render', 'letter-portrait']
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
         command = ['--distribute', 'letter-portrait']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:

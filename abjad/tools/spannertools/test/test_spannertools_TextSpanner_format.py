@@ -19,7 +19,7 @@ def test_spannertools_TextSpanner_format_01():
     attach(markup_three, staff[-1], is_annotation=True)
     attach(text_spanner, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \once \override TextSpanner.bound-details.left.text = \markup { one }
@@ -67,7 +67,7 @@ def test_spannertools_TextSpanner_format_02():
     attach(arrow_stop, staff[-1], is_annotation=True)
     attach(text_spanner, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \once \override TextSpanner.arrow-width = 0.25
@@ -110,7 +110,7 @@ def test_spannertools_TextSpanner_format_03():
     attach(markup_three, staff[-1], is_annotation=True)
     attach(text_spanner, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'4 ^ \markup { one }

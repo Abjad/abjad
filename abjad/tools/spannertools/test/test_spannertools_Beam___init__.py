@@ -9,7 +9,7 @@ def test_spannertools_Beam___init___01():
     beam = Beam()
     attach(beam, staff[:4])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -32,7 +32,7 @@ def test_spannertools_Beam___init___02():
     beam = Beam()
     attach(beam, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'8 [
@@ -59,7 +59,7 @@ def test_spannertools_Beam___init___03():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -90,7 +90,7 @@ def test_spannertools_Beam___init___04():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -117,7 +117,7 @@ def test_spannertools_Beam___init___05():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -145,7 +145,7 @@ def test_spannertools_Beam___init___06():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -174,7 +174,7 @@ def test_spannertools_Beam___init___07():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -209,7 +209,7 @@ def test_spannertools_Beam___init___08():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -244,7 +244,7 @@ def test_spannertools_Beam___init___09():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -271,7 +271,7 @@ def test_spannertools_Beam___init___10():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -300,7 +300,7 @@ def test_spannertools_Beam___init___11():
     beam = Beam()
     attach(beam, tuplet[1][:])
 
-    assert format(tuplet) == stringtools.normalize(
+    assert format(tuplet) == String.normalize(
         r'''
         \times 2/3 {
             c'4
@@ -327,7 +327,7 @@ def test_spannertools_Beam___init___12():
         Voice("e'8 f' fs' g'")]
         )
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -362,7 +362,7 @@ def test_spannertools_Beam___init___13():
     beam = Beam()
     attach(beam, staff[0][:] + staff[1][:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -422,7 +422,7 @@ def test_spannertools_Beam___init___14():
     beam = Beam()
     attach(beam, container[0][0][:] + container[1][1][:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             <<
@@ -493,7 +493,7 @@ def test_spannertools_Beam___init___15():
     beam = Beam()
     attach(beam, container[0][0][:] + container[1][0][:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             <<
@@ -551,7 +551,7 @@ def test_spannertools_Beam___init___16():
     beam = Beam()
     attach(beam, container[0][:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         <<
             \new Voice {
@@ -600,7 +600,7 @@ def test_spannertools_Beam___init___17():
         b'8
         ''')
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -668,7 +668,7 @@ def test_spannertools_Beam___init___18():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -712,7 +712,7 @@ def test_spannertools_Beam___init___19():
     staff[0].name = 'foo'
     staff[1].name = 'bar'
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {

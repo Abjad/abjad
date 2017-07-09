@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Clef_01():
     clef = Clef('bass')
     attach(clef, target[0])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             \clef "bass"

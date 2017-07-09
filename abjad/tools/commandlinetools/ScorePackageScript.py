@@ -215,7 +215,7 @@ class ScorePackageScript(CommandlineScript):
 
     def _name_to_score_subdirectory_path(self, name, section, score_path):
         score_path = self._path_to_score_package_path(score_path)
-        name = stringtools.to_accent_free_snake_case(name)
+        name = stringtools.String(name).to_accent_free_snake_case()
         path = score_path.joinpath(section, name)
         return path
 
@@ -336,7 +336,7 @@ class ScorePackageScript(CommandlineScript):
     def _report_time(self, timer, prefix='Runtime'):
         message = '        {}: {} {}'
         total_time = int(timer.elapsed_time)
-        identifier = stringtools.pluralize('second', total_time)
+        identifier = stringtools.String('second').pluralize(total_time)
         message = message.format(prefix, total_time, identifier)
         print(message)
 

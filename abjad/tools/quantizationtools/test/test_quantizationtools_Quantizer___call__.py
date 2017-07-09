@@ -10,7 +10,7 @@ def test_quantizationtools_Quantizer___call___01():
     result = quantizer(q_events)
     staff = scoretools.Staff([result], context_name='RhythmicStaff')
     score = Score([staff])
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new RhythmicStaff {
@@ -41,7 +41,7 @@ def test_quantizationtools_Quantizer___call___02():
         )
     staff = scoretools.Staff([result], context_name='RhythmicStaff')
     score = Score([staff])
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new RhythmicStaff {
@@ -76,7 +76,7 @@ def test_quantizationtools_Quantizer___call___03():
 
     score = Score([Staff([result])])
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -120,7 +120,7 @@ def test_quantizationtools_Quantizer___call___04():
     staff = scoretools.Staff([result], context_name='RhythmicStaff')
     score = Score([staff])
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new RhythmicStaff {
@@ -170,7 +170,7 @@ def test_quantizationtools_Quantizer___call___05():
     staff = scoretools.Staff([result], context_name='RhythmicStaff')
     score = Score([staff])
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new RhythmicStaff {

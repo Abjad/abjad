@@ -64,7 +64,7 @@ def test_datastructuretools_TypedOrderedDict_04():
     dictionary_1['tenor'] = 'tenor'
     dictionary_1['bass'] = 'bass'
 
-    assert format(dictionary_1) == abjad.stringtools.normalize(
+    assert format(dictionary_1) == abjad.String.normalize(
         r'''
         abjad.TypedOrderedDict(
             [

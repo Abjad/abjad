@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -102,11 +101,12 @@ class LilyPondCommand(AbjadValueObject):
             )
 
     def _get_lilypond_format(self):
+        import abjad
         command = self._name
         if command.startswith('#'):
             return command
         elif ' ' not in command:
-            return self.prefix + stringtools.to_lower_camel_case(command)
+            return self.prefix + abjad.String(command).to_lower_camel_case()
         else:
             return self.prefix + command
 

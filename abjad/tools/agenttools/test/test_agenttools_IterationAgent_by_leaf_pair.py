@@ -12,7 +12,7 @@ def test_agenttools_IterationAgent_by_leaf_pair_01():
     clef = Clef('bass')
     attach(clef, score[1])
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \new Score <<
             \new Staff {

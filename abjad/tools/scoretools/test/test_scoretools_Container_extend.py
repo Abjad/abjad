@@ -12,7 +12,7 @@ def test_scoretools_Container_extend_01():
     attach(beam, voice[:])
     voice.extend([Note("c'8"), Note("d'8")])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -39,7 +39,7 @@ def test_scoretools_Container_extend_02():
     attach(beam, voice_2[:])
     voice_1.extend(voice_2)
 
-    assert format(voice_1) == stringtools.normalize(
+    assert format(voice_1) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -62,7 +62,7 @@ def test_scoretools_Container_extend_03():
     attach(beam, voice[:])
     voice.extend([])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -84,7 +84,7 @@ def test_scoretools_Container_extend_04():
     attach(beam, voice[:])
     voice.extend(Voice([]))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -137,7 +137,7 @@ def test_scoretools_Container_extend_07():
 
     voice_1.extend(voice_2[-2:])
 
-    assert format(voice_1) == stringtools.normalize(
+    assert format(voice_1) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -150,7 +150,7 @@ def test_scoretools_Container_extend_07():
 
     assert inspect(voice_1).is_well_formed()
 
-    assert format(voice_2) == stringtools.normalize(
+    assert format(voice_2) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -177,7 +177,7 @@ def test_scoretools_Container_extend_08():
     slur = Slur()
     attach(slur, voice_2[-2:])
 
-    assert format(voice_2) == stringtools.normalize(
+    assert format(voice_2) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -190,7 +190,7 @@ def test_scoretools_Container_extend_08():
 
     voice_1.extend(voice_2[-2:])
 
-    assert format(voice_1) == stringtools.normalize(
+    assert format(voice_1) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -203,7 +203,7 @@ def test_scoretools_Container_extend_08():
 
     assert inspect(voice_1).is_well_formed()
 
-    assert format(voice_2) == stringtools.normalize(
+    assert format(voice_2) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -222,7 +222,7 @@ def test_scoretools_Container_extend_09():
     container = Container([])
     container.extend("c'4 ( d'4 e'4 f'4 )")
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'4 (
@@ -248,7 +248,7 @@ def test_scoretools_Container_extend_10():
     container = Container()
     container.extend(selections)
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == String.normalize(
         r'''
         {
             c'4

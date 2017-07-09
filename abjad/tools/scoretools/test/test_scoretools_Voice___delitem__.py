@@ -14,7 +14,7 @@ def test_scoretools_Voice___delitem___01():
         f'8 ]
         ''')
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -30,7 +30,7 @@ def test_scoretools_Voice___delitem___01():
     container = voice[1]
     del(voice[1:2])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando

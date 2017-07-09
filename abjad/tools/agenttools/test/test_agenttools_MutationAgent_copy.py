@@ -18,7 +18,7 @@ def test_agenttools_MutationAgent_copy_01():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -42,7 +42,7 @@ def test_agenttools_MutationAgent_copy_01():
     result = mutate(selection).copy()
     new = Voice(result)
 
-    assert format(new) == stringtools.normalize(
+    assert format(new) == String.normalize(
         r'''
         \new Voice {
             e'8 [ ( \startTrillSpan
@@ -67,7 +67,7 @@ def test_agenttools_MutationAgent_copy_02():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -90,7 +90,7 @@ def test_agenttools_MutationAgent_copy_02():
     result = mutate(voice[1:2]).copy()
     new = Voice(result)
 
-    assert format(new) == stringtools.normalize(
+    assert format(new) == String.normalize(
         r'''
         \new Voice {
             {
@@ -118,7 +118,7 @@ def test_agenttools_MutationAgent_copy_03():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -142,7 +142,7 @@ def test_agenttools_MutationAgent_copy_03():
     result = mutate(selection).copy()
     new = Voice(result)
 
-    assert format(new) == stringtools.normalize(
+    assert format(new) == String.normalize(
         r'''
         \new Voice {
             f'8 [ ( \startTrillSpan
@@ -168,7 +168,7 @@ def test_agenttools_MutationAgent_copy_04():
     beam = Beam()
     attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -191,7 +191,7 @@ def test_agenttools_MutationAgent_copy_04():
     result = mutate(voice[1:2]).copy(n=3)
     new = Voice(result)
 
-    assert format(new) == stringtools.normalize(
+    assert format(new) == String.normalize(
         r'''
         \new Voice {
             {
@@ -223,7 +223,7 @@ def test_agenttools_MutationAgent_copy_05():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -253,7 +253,7 @@ def test_agenttools_MutationAgent_copy_05():
     for component in iterate(new_voice).by_class():
         detach(spannertools.Spanner, component)
 
-    assert format(new_voice) == stringtools.normalize(
+    assert format(new_voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -289,7 +289,7 @@ def test_agenttools_MutationAgent_copy_06():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -318,7 +318,7 @@ def test_agenttools_MutationAgent_copy_06():
     for component in iterate(new_voice).by_class():
         detach(spannertools.Spanner, component)
 
-    assert format(new_voice) == stringtools.normalize(
+    assert format(new_voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -351,7 +351,7 @@ def test_agenttools_MutationAgent_copy_07():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -381,7 +381,7 @@ def test_agenttools_MutationAgent_copy_07():
     for component in iterate(new_voice).by_class():
         detach(spannertools.Spanner, component)
 
-    assert format(new_voice) == stringtools.normalize(
+    assert format(new_voice) == String.normalize(
         r'''
         \new Voice {
             c'8
@@ -407,7 +407,7 @@ def test_agenttools_MutationAgent_copy_08():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -436,7 +436,7 @@ def test_agenttools_MutationAgent_copy_08():
     for component in iterate(new_voice).by_class():
         detach(spannertools.Spanner, component)
 
-    assert format(new_voice) == stringtools.normalize(
+    assert format(new_voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -466,7 +466,7 @@ def test_agenttools_MutationAgent_copy_09():
     slur = Slur()
     attach(slur, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -495,7 +495,7 @@ def test_agenttools_MutationAgent_copy_09():
     for component in iterate(new_voice).by_class():
         detach(spannertools.Spanner, component)
 
-    assert format(new_voice) == stringtools.normalize(
+    assert format(new_voice) == String.normalize(
         r'''
         \new Voice {
             {
@@ -537,7 +537,7 @@ def test_agenttools_MutationAgent_copy_10():
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \<
@@ -555,7 +555,7 @@ def test_agenttools_MutationAgent_copy_10():
     new_notes = mutate(staff[:4]).copy()
     staff.extend(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8 \<
@@ -584,7 +584,7 @@ def test_agenttools_MutationAgent_copy_11():
     staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
     leaves = select(staff).by_leaf()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \times 2/3 {
@@ -604,7 +604,7 @@ def test_agenttools_MutationAgent_copy_11():
     leaves = select(leaves[1:5])
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert format(new_staff) == stringtools.normalize(
+    assert format(new_staff) == String.normalize(
         r'''
         \new Staff {
             \tweak edge-height #'(0.7 . 0)
@@ -634,7 +634,7 @@ def test_agenttools_MutationAgent_copy_12():
     staff = Staff([voice])
     leaves = select(staff).by_leaf()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -656,7 +656,7 @@ def test_agenttools_MutationAgent_copy_12():
     leaves = select(leaves[1:5])
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert format(new_staff) == stringtools.normalize(
+    assert format(new_staff) == String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -690,7 +690,7 @@ def test_agenttools_MutationAgent_copy_13():
     staff.is_simultaneous = True
     leaves = select(staff).by_leaf()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff <<
             \new Voice {
@@ -712,7 +712,7 @@ def test_agenttools_MutationAgent_copy_13():
     leaves = select(leaves[1:3])
     new_voice = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert format(new_voice) == stringtools.normalize(
+    assert format(new_voice) == String.normalize(
         r'''
         \new Voice {
             d'8
@@ -734,7 +734,7 @@ def test_agenttools_MutationAgent_copy_14():
     leaves = measure[1:3]
     new_measure = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert format(new_measure) == stringtools.normalize(
+    assert format(new_measure) == String.normalize(
         r'''
         {
             \time 2/8
@@ -757,7 +757,7 @@ def test_agenttools_MutationAgent_copy_15():
     leaves = staff[1:3]
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert format(new_staff) == stringtools.normalize(
+    assert format(new_staff) == String.normalize(
         r'''
         \new Staff {
             d'8
@@ -780,7 +780,7 @@ def test_agenttools_MutationAgent_copy_16():
     staff = Staff([measure_1, measure_2])
     leaves = select(staff).by_leaf()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -801,7 +801,7 @@ def test_agenttools_MutationAgent_copy_16():
     leaves = select(leaves[2:4])
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert format(new_staff) == stringtools.normalize(
+    assert format(new_staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -829,7 +829,7 @@ def test_agenttools_MutationAgent_copy_17():
     measure_2 = Measure((3, 8), "f'8 g'8 a'8")
     staff = Staff([measure_1, measure_2])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -850,7 +850,7 @@ def test_agenttools_MutationAgent_copy_17():
     leaves = measure_2[1:3]
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert format(new_staff) == stringtools.normalize(
+    assert format(new_staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -878,7 +878,7 @@ def test_agenttools_MutationAgent_copy_18():
     measure_2.implicit_scaling = True
     staff = Staff([measure_1, measure_2])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -903,7 +903,7 @@ def test_agenttools_MutationAgent_copy_18():
     leaves = measure_2[1:3]
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert format(new_staff) == stringtools.normalize(
+    assert format(new_staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -928,7 +928,7 @@ def test_agenttools_MutationAgent_copy_19():
     old_staff = Staff("c'4 d'4 e'4 f'4")
     indicator = indicatortools.BendAfter()
     attach(indicator, old_staff[0], is_annotation=True)
-    assert format(old_staff) == stringtools.normalize(
+    assert format(old_staff) == String.normalize(
         r'''
         \new Staff {
             c'4
@@ -940,7 +940,7 @@ def test_agenttools_MutationAgent_copy_19():
     assert inspect(old_staff[0]).get_indicators() == (indicator,)
 
     new_staff = mutate(old_staff).copy()
-    assert format(new_staff) == stringtools.normalize(
+    assert format(new_staff) == String.normalize(
         r'''
         \new Staff {
             c'4

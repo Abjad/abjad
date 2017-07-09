@@ -96,7 +96,7 @@ class Enumeration(enum.IntEnum):
             return cls(argument)
         elif isinstance(argument, str):
             argument = argument.strip()
-            argument = stringtools.to_snake_case(argument)
+            argument = stringtools.String(argument).to_snake_case()
             argument = argument.upper()
             try:
                 return cls[argument]
@@ -104,5 +104,8 @@ class Enumeration(enum.IntEnum):
                 return cls[argument.replace('_', '')]
         elif argument is None:
             return cls(0)
-        message = 'Cannot instantiate {} from {}.'.format(cls.__name__, argument)
+        message = 'Cannot instantiate {} from {}.'.format(
+            cls.__name__,
+            argument,
+            )
         raise ValueError(message)

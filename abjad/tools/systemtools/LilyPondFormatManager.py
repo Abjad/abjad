@@ -392,13 +392,13 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import stringtools
-        grob_name = stringtools.to_upper_camel_case(grob_name)
+        import abjad
+        grob_name = abjad.String(grob_name).to_upper_camel_case()
         grob_attribute = LilyPondFormatManager.format_lilypond_attribute(
             grob_attribute)
         grob_value = LilyPondFormatManager.format_lilypond_value(grob_value)
         if context_name is not None:
-            context_prefix = stringtools.to_upper_camel_case(context_name)
+            context_prefix = abjad.String(context_name).to_upper_camel_case()
             context_prefix += '.'
         else:
             context_prefix = ''
@@ -426,15 +426,15 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import stringtools
-        grob_name = stringtools.to_upper_camel_case(grob_name)
+        import abjad
+        grob_name = abjad.String(grob_name).to_upper_camel_case()
         grob_attribute = LilyPondFormatManager.format_lilypond_attribute(
             grob_attribute)
         # change #'bound-details #'left #'text to #'bound-details
         grob_attribute = grob_attribute.split('.')[0]
         context_prefix = ''
         if context_name is not None:
-            context_prefix = stringtools.to_upper_camel_case(context_name)
+            context_prefix = abjad.String(context_name).to_upper_camel_case()
             context_prefix += '.'
         result = r'\revert {}{}.{}'
         result = result.format(context_prefix, grob_name, grob_attribute)
@@ -450,9 +450,9 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import stringtools
+        import abjad
         if grob_name is not None:
-            grob_name = stringtools.to_upper_camel_case(grob_name)
+            grob_name = abjad.String(grob_name).to_upper_camel_case()
             grob_string = grob_name + '.'
         else:
             grob_string = ''

@@ -12,7 +12,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_01():
     beam = Beam()
     attach(beam, target[3:])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 [
@@ -38,7 +38,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_02():
     beam = Beam()
     attach(beam, target[3:])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 [
@@ -63,7 +63,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_03():
     beam = Beam()
     attach(beam, target[1:3])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 [
@@ -85,7 +85,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_04():
     beam = Beam()
     attach(beam, target[2:])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 [
@@ -122,7 +122,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_07():
     beam = Beam(direction=Down)
     attach(beam, target[3:])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c'4 ^ [

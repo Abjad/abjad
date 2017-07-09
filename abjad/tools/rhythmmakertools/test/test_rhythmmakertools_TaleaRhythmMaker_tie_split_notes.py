@@ -20,7 +20,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
     staff = Staff(measures)
     measures = mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {
@@ -64,7 +64,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
     staff = Staff(measures)
     measures = mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             {

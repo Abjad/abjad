@@ -8,7 +8,7 @@ def test_indicatortools_LilyPondCommand_format_01():
     command = indicatortools.LilyPondCommand("#(set-accidental-style 'forget)")
     attach(command, staff)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             #(set-accidental-style 'forget)
@@ -27,7 +27,7 @@ def test_indicatortools_LilyPondCommand_format_02():
     command = indicatortools.LilyPondCommand("#(set-accidental-style 'forget)")
     attach(command, staff[1])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             c'8
@@ -48,7 +48,7 @@ def test_indicatortools_LilyPondCommand_format_03():
     command = indicatortools.LilyPondCommand(r'break', 'after')
     attach(command, note)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == String.normalize(
         r'''
         c'4
         \break
@@ -64,7 +64,7 @@ def test_indicatortools_LilyPondCommand_format_04():
     command = indicatortools.LilyPondCommand(r'break')
     attach(command, staff)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \break
@@ -100,7 +100,7 @@ def test_indicatortools_LilyPondCommand_format_07():
     command = indicatortools.LilyPondCommand('compressFullBarRests')
     attach(command, staff[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \compressFullBarRests
@@ -116,7 +116,7 @@ def test_indicatortools_LilyPondCommand_format_08():
     command = indicatortools.LilyPondCommand('expandFullBarRests')
     attach(command, staff[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff {
             \expandFullBarRests
@@ -134,7 +134,7 @@ def test_indicatortools_LilyPondCommand_format_09():
     command = indicatortools.LilyPondCommand('voiceOne')
     attach(command, voice[0])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \voiceOne
@@ -155,7 +155,7 @@ def test_indicatortools_LilyPondCommand_format_10():
     voice = Voice("c'8 c'8 c'8 c'8")
     command = indicatortools.LilyPondCommand('voiceOne')
     attach(command, voice[0])
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \voiceOne
@@ -170,7 +170,7 @@ def test_indicatortools_LilyPondCommand_format_10():
     detach(command, voice[0])
     command = indicatortools.LilyPondCommand('voiceTwo')
     attach(command, voice[0])
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \voiceTwo
@@ -185,7 +185,7 @@ def test_indicatortools_LilyPondCommand_format_10():
     detach(command, voice[0])
     command = indicatortools.LilyPondCommand('voiceThree')
     attach(command, voice[0])
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \voiceThree
@@ -200,7 +200,7 @@ def test_indicatortools_LilyPondCommand_format_10():
     detach(command, voice[0])
     command = indicatortools.LilyPondCommand('voiceFour')
     attach(command, voice[0])
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \voiceFour
@@ -213,7 +213,7 @@ def test_indicatortools_LilyPondCommand_format_10():
         )
 
     detach(command, voice[0])
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8
@@ -235,7 +235,7 @@ def test_indicatortools_LilyPondCommand_format_11():
     attach(command, voice)
     command = indicatortools.LilyPondCommand('voiceTwo')
     attach(command, voice[1])
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             \voiceOne

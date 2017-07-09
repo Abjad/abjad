@@ -26,7 +26,7 @@ def test_templatetools_TwoStaffPianoScoreTemplate___call___01():
     >>
     '''
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == String.normalize(
         r'''
         \context Score = "Two-Staff Piano Score" <<
             \context PianoStaff = "Piano Staff" <<

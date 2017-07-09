@@ -8,7 +8,7 @@ def test_scoretools_Staff_engraver_removals_01():
     staff.remove_commands.append('Time_signature_engraver')
     staff.remove_commands.append('Bar_number_engraver')
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == String.normalize(
         r'''
         \new Staff \with {
             \remove Time_signature_engraver

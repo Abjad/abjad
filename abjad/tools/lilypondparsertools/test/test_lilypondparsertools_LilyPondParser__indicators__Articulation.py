@@ -22,7 +22,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_01():
     articulation = Articulation('portato')
     attach(articulation, target[6])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         \new Staff {
             c''4 ^\marcato
@@ -95,7 +95,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_03():
     articulation = Articulation('fermata')
     attach(articulation, target[3])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == String.normalize(
         r'''
         {
             c''4 -\staccato

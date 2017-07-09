@@ -10,7 +10,7 @@ def test_scoretools_Leaf__set_duration_01():
     beam = Beam()
     attach(beam, voice[:2])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -23,7 +23,7 @@ def test_scoretools_Leaf__set_duration_01():
 
     voice[1]._set_duration(Duration(5, 32))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -48,7 +48,7 @@ def test_scoretools_Leaf__set_duration_02():
     beam = Beam()
     attach(beam, voice[:2])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 ~ [
@@ -61,7 +61,7 @@ def test_scoretools_Leaf__set_duration_02():
 
     voice[1]._set_duration(Duration(5, 32))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 ~ [
@@ -85,7 +85,7 @@ def test_scoretools_Leaf__set_duration_03():
     beam = Beam()
     attach(beam, voice[:2])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -98,7 +98,7 @@ def test_scoretools_Leaf__set_duration_03():
 
     voice[1]._set_duration(Duration(3, 16))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -121,7 +121,7 @@ def test_scoretools_Leaf__set_duration_04():
     beam = Beam()
     attach(beam, voice[:2])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -134,7 +134,7 @@ def test_scoretools_Leaf__set_duration_04():
 
     voice[1]._set_duration(Duration(5, 48))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -161,7 +161,7 @@ def test_scoretools_Leaf__set_duration_05():
     beam = Beam()
     attach(beam, voice[:2])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -174,7 +174,7 @@ def test_scoretools_Leaf__set_duration_05():
 
     voice[1]._set_duration(Duration(1, 12))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -284,7 +284,7 @@ def test_scoretools_Leaf__set_duration_11():
     beam = Beam()
     attach(beam, voice[:3])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -297,7 +297,7 @@ def test_scoretools_Leaf__set_duration_11():
 
     voice[1]._set_duration(Duration(5, 32))
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == String.normalize(
         r'''
         \new Voice {
             c'8 [
