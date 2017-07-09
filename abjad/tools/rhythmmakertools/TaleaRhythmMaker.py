@@ -1435,7 +1435,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         denominator=16,
                 ...         ),
                 ...     division_masks=[
-                ...         rhythmmakertools.sustain_every([1], period=2),
+                ...         abjad.sustain_every([1], period=2),
                 ...         ],
                 ...     )
 
@@ -1551,7 +1551,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     split_divisions_by_counts=[9],
                 ...     division_masks=[
-                ...         rhythmmakertools.sustain_every([1], period=2),
+                ...         abjad.sustain_every([1], period=2),
                 ...         ],
                 ...     )
 
@@ -2263,7 +2263,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     logical_tie_masks=[
-                ...         rhythmmakertools.silence_every([2], period=3),
+                ...         abjad.silence_every([2], period=3),
                 ...         ],
                 ...     talea=rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
@@ -2317,8 +2317,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     logical_tie_masks=[
-                ...         rhythmmakertools.silence_first(),
-                ...         rhythmmakertools.silence_last(),
+                ...         abjad.silence_first(),
+                ...         abjad.silence_last(),
                 ...         ],
                 ...     talea=rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],

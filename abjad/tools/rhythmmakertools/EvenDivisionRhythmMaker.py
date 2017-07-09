@@ -947,7 +947,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     division_masks=[
-                ...         rhythmmakertools.silence_every([0], period=2),
+                ...         abjad.silence_every([0], period=2),
                 ...         ],
                 ...     )
 
@@ -999,7 +999,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     division_masks=[
-                ...         rhythmmakertools.sustain_every([0], period=2),
+                ...         abjad.sustain_every([0], period=2),
                 ...         ],
                 ...     )
 
@@ -1050,7 +1050,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     division_masks=rhythmmakertools.silence_all(),
+                ...     division_masks=abjad.silence_all(),
                 ...     )
 
             ::
@@ -1837,7 +1837,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     logical_tie_masks=[
-                ...         rhythmmakertools.silence_every([0], period=3),
+                ...         abjad.silence_every([0], period=3),
                 ...         ],
                 ...     )
 
@@ -1901,7 +1901,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 >>> pattern_2 = abjad.index_first(2)
                 >>> pattern_3 = abjad.index_last(2)
                 >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-                >>> mask = rhythmmakertools.silence(pattern)
+                >>> mask = abjad.silence(pattern)
                 >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     logical_tie_masks=mask,
                 ...     )
@@ -2023,7 +2023,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     logical_tie_masks=rhythmmakertools.silence_every(
+                ...     logical_tie_masks=abjad.silence_every(
                 ...         indices=[3],
                 ...         period=4,
                 ...         ),

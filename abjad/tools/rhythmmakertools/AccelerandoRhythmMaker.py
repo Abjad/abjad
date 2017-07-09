@@ -2493,8 +2493,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     logical_tie_masks=[
-                ...         rhythmmakertools.silence_first(),
-                ...         rhythmmakertools.silence_last(),
+                ...         abjad.silence_first(),
+                ...         abjad.silence_last(),
                 ...         ],
                 ...     interpolation_specifiers=[
                 ...         rhythmmakertools.InterpolationSpecifier(
@@ -2728,7 +2728,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     logical_tie_masks=[
-                ...         rhythmmakertools.silence_every([2], period=3),
+                ...         abjad.silence_every([2], period=3),
                 ...         ],
                 ...     interpolation_specifiers=[
                 ...         rhythmmakertools.InterpolationSpecifier(

@@ -88,17 +88,19 @@ from abjad.tools.scoretools import Voice
 from abjad.tools.timespantools import Timespan
 
 # rhythm-maker functions (but not classes)
-from abjad.tools.rhythmmakertools import silence
-from abjad.tools.rhythmmakertools import silence_all
-from abjad.tools.rhythmmakertools import silence_every
-from abjad.tools.rhythmmakertools import silence_except
-from abjad.tools.rhythmmakertools import silence_first
-from abjad.tools.rhythmmakertools import silence_last
-from abjad.tools.rhythmmakertools import sustain
-from abjad.tools.rhythmmakertools import sustain_all
-from abjad.tools.rhythmmakertools import sustain_every
-from abjad.tools.rhythmmakertools import sustain_first
-from abjad.tools.rhythmmakertools import sustain_last
+from abjad.tools.rhythmmakertools import SilenceMask
+from abjad.tools.rhythmmakertools import SustainMask
+silence = SilenceMask.silence
+silence_all = SilenceMask.silence_all
+silence_except = SilenceMask.silence_except
+silence_every = SilenceMask.silence_every
+silence_first = SilenceMask.silence_first
+silence_last = SilenceMask.silence_last
+sustain = SustainMask.sustain
+sustain_all = SustainMask.sustain_all
+sustain_every = SustainMask.sustain_every
+sustain_first = SustainMask.sustain_first
+sustain_last = SustainMask.sustain_last
 
 # import custom exceptions into the builtins module
 import os

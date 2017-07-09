@@ -1100,7 +1100,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...         talea_denominator=16,
                 ...         ),
                 ...     logical_tie_masks=[
-                ...         rhythmmakertools.silence_every([1], period=2),
+                ...         abjad.silence_every([1], period=2),
                 ...         ],
                 ...     )
 

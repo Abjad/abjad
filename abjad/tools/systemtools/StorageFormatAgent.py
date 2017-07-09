@@ -528,7 +528,7 @@ class StorageFormatAgent(AbjadValueObject):
                 >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, 2)],
                 ...     division_masks=[
-                ...         rhythmmakertools.silence_every([1], period=2),
+                ...         abjad.silence_every([1], period=2),
                 ...         ],
                 ...     )
                 >>> f(rhythm_maker)

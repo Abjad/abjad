@@ -684,7 +684,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[rhythmmakertools.silence_all()],
+                ...     division_masks=[abjad.silence_all()],
                 ...     )
 
             ::
@@ -1134,7 +1134,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     logical_tie_masks=rhythmmakertools.silence_every([0], period=2)
+                ...     logical_tie_masks=abjad.silence_every([0], period=2)
                 ...     )
 
             ::
@@ -1176,7 +1176,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     logical_tie_masks=rhythmmakertools.silence_all(),
+                ...     logical_tie_masks=abjad.silence_all(),
                 ...     )
 
             ::
