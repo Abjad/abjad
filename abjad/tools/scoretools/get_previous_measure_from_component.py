@@ -5,14 +5,18 @@ from abjad.tools.topleveltools import iterate
 def get_previous_measure_from_component(component):
     '''Get previous measure from `component`.
 
+    ::
+
+        >>> import abjad
+
     When `component` is voice, staff or other sequential context,
     and when `component` contains a measure, return last measure
     in `component`. This starts the process of backwards measure iteration.
 
     ::
 
-        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-        >>> scoretools.get_previous_measure_from_component(staff)
+        >>> staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+        >>> abjad.scoretools.get_previous_measure_from_component(staff)
         Measure((2, 8), "e'8 f'8")
 
     When `component` is voice, staff or other sequential context,
@@ -24,8 +28,8 @@ def get_previous_measure_from_component(component):
 
     ::
 
-        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-        >>> scoretools.get_previous_measure_from_component(staff[-1])
+        >>> staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+        >>> abjad.scoretools.get_previous_measure_from_component(staff[-1])
         Measure((2, 8), "c'8 d'8")
 
     When `component` is a measure and there is no measure immediately
@@ -33,8 +37,8 @@ def get_previous_measure_from_component(component):
 
     ::
 
-        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-        >>> scoretools.get_previous_measure_from_component(staff[0]) is None
+        >>> staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+        >>> abjad.scoretools.get_previous_measure_from_component(staff[0]) is None
         True
 
     When `component` is a leaf and there is a measure in the parentage
@@ -42,10 +46,10 @@ def get_previous_measure_from_component(component):
 
     ::
 
-        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-        >>> selector = select().by_leaf(flatten=True)
+        >>> staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+        >>> selector = abjad.select().by_leaf(flatten=True)
         >>> leaves = selector(staff)
-        >>> scoretools.get_previous_measure_from_component(leaves[0])
+        >>> abjad.scoretools.get_previous_measure_from_component(leaves[0])
         Measure((2, 8), "c'8 d'8")
 
     When `component` is a leaf and there is no measure in the parentage

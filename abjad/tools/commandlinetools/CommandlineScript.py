@@ -189,4 +189,5 @@ class CommandlineScript(abctools.AbjadObject):
         '''
         name = type(self).__name__[:type(self).__name__.rfind('Script')]
         name = stringtools.String(name).to_space_delimited_lowercase()
-        anem = name.replace(' ', '-')
+        name = name.replace(' ', '-')
+        return name

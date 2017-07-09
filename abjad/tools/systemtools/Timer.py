@@ -173,8 +173,8 @@ class Timer(ContextManager):
 
         Returns string.
         '''
-        from abjad.tools import stringtools
-        identifier = stringtools.pluralize('second', int(self.elapsed_time))
+        import abjad
+        identifier = abjad.String('second').pluralize(int(self.elapsed_time))
         message = 'total time {} {} ...'
         message = message.format(int(self.elapsed_time), identifier)
         return message

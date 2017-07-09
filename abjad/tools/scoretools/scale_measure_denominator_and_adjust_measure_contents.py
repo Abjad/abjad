@@ -9,14 +9,18 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     r'''Scales power-of-two `measure` to non-power-of-two measure
     with new denominator `factor`:
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> measure = Measure((2, 8), "c'8 d'8")
+            >>> measure = abjad.Measure((2, 8), "c'8 d'8")
             >>> measure.implicit_scaling = True
-            >>> beam = spannertools.Beam()
-            >>> attach(beam, measure[:])
+            >>> beam = abjad.Beam()
+            >>> abjad.attach(beam, measure[:])
             >>> show(measure) # doctest: +SKIP
 
         ..  docs::
@@ -30,7 +34,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
 
         ::
 
-            >>> scoretools.scale_measure_denominator_and_adjust_measure_contents(
+            >>> abjad.scoretools.scale_measure_denominator_and_adjust_measure_contents(
             ...     measure, 3)
             Measure((3, 12), "c'8. d'8.", implicit_scaling=True)
             >>> show(measure) # doctest: +SKIP

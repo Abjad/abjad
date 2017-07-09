@@ -116,6 +116,8 @@ class String(str):
 
         Returns new string.
         '''
+        if not self:
+            return ''
         return self[0].upper() + self[1:]
 
     def delimit_words(self):

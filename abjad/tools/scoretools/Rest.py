@@ -8,12 +8,16 @@ from abjad.tools.topleveltools import detach
 class Rest(Leaf):
     r'''Rest.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> rest = Rest('r8.')
-            >>> measure = Measure((3, 16), [rest])
+            >>> rest = abjad.Rest('r8.')
+            >>> measure = abjad.Measure((3, 16), [rest])
             >>> show(measure) # doctest: +SKIP
 
         ..  docs::

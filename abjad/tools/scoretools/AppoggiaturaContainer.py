@@ -5,6 +5,10 @@ from abjad.tools.scoretools.GraceContainer import GraceContainer
 class AppoggiaturaContainer(GraceContainer):
     r'''Appoggiatura container.
 
+    ::
+
+        >>> import abjad
+
     Appoggiaturas are played on the beat.
 
     LilyPond positions appoggiaturas immediately before main notes.
@@ -18,10 +22,10 @@ class AppoggiaturaContainer(GraceContainer):
 
         ::
 
-            >>> voice = Voice("c'4 d'4 e'4 f'4")
-            >>> notes = [Note("c'16"), Note("d'16")]
-            >>> appoggiatura_container = AppoggiaturaContainer(notes)
-            >>> attach(appoggiatura_container, voice[1])
+            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+            >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
+            >>> appoggiatura_container = abjad.AppoggiaturaContainer(notes)
+            >>> abjad.attach(appoggiatura_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
         ..  docs::

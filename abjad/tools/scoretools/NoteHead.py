@@ -9,11 +9,15 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class NoteHead(AbjadObject):
     r'''Note-head.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> note_head = scoretools.NoteHead(13)
+            >>> note_head = abjad.NoteHead(13)
             >>> note_head
             NoteHead("cs''")
 
@@ -259,7 +263,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_cautionary is None
             True
 
@@ -267,7 +271,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_cautionary = True
 
         Returns true or false.
@@ -288,7 +292,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_forced is None
             True
 
@@ -296,7 +300,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_forced = True
 
         Returns true or false.
@@ -317,7 +321,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_parenthesized is None
             True
 
@@ -325,7 +329,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_parenthesized = True
 
         Returns true or false.
@@ -344,7 +348,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.named_pitch
             NamedPitch("cs''")
 
@@ -358,7 +362,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.tweak
             LilyPondNameManager()
 
@@ -377,7 +381,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.written_pitch
             NamedPitch("cs''")
 
@@ -385,7 +389,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.written_pitch = "d''"
             >>> note_head.written_pitch
             NamedPitch("d''")

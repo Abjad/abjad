@@ -8,13 +8,17 @@ from abjad.tools.topleveltools import detach
 
 # TODO: implement scoretools.set_measure_denominator_and_adjust_contents().
 def set_measure_denominator_and_adjust_numerator(measure, denominator):
-    r'''Set `measure` time signature `denominator` and multiply time signature numerator accordingly:
+    r'''Set `measure` time signature `denominator` and multiply time signature
+    numerator accordingly:
 
     ::
 
-        >>> measure = Measure((3, 8), "c'8 d'8 e'8")
-        >>> beam = spannertools.Beam()
-        >>> attach(beam, measure[:])
+        >>> import abjad
+
+    ::
+
+        >>> measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
+        >>> abjad.attach(abjad.Beam(), measure[:])
 
     ..  docs::
 
@@ -28,7 +32,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
     ::
 
-        >>> scoretools.set_measure_denominator_and_adjust_numerator(measure, 16)
+        >>> abjad.scoretools.set_measure_denominator_and_adjust_numerator(measure, 16)
         Measure((6, 16), "c'8 d'8 e'8")
 
     ..  docs::

@@ -10,13 +10,17 @@ from abjad.tools.scoretools.Context import Context
 class Score(Context):
     r'''Score.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff_1 = Staff("c'8 d'8 e'8 f'8")
-            >>> staff_2 = Staff("c'8 d'8 e'8 f'8")
-            >>> score = Score([staff_1, staff_2])
+            >>> staff_1 = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> staff_2 = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> score = abjad.Score([staff_1, staff_2])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -69,8 +73,8 @@ class Score(Context):
         r'''Add final bar line to end of score.
 
 
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> score = Score([staff])
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> score = abjad.Score([staff])
 
         ..  docs::
 
@@ -137,11 +141,11 @@ class Score(Context):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> score = Score([staff])
-                >>> place = Markup('Bremen - Boston - LA.', direction=Down)
-                >>> date = Markup('July 2010 - May 2011.')
-                >>> markup = Markup.right_column([place, date], direction=Down)
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> score = abjad.Score([staff])
+                >>> place = abjad.Markup('Bremen - Boston - LA.', direction=Down)
+                >>> date = abjad.Markup('July 2010 - May 2011.')
+                >>> markup = abjad.Markup.right_column([place, date], direction=Down)
                 >>> markup = markup.italic()
                 >>> markup = score.add_final_markup(
                 ...     markup,
@@ -175,12 +179,18 @@ class Score(Context):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> staff.append(MultimeasureRest(Duration(4, 4)))
-                >>> score = Score([staff])
-                >>> place = Markup('Bremen - Boston - LA.', direction=Down)
-                >>> date = Markup('July 2010 - May 2011.')
-                >>> markup = Markup.right_column([place, date], direction=Down)
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> staff.append(abjad.MultimeasureRest((4, 4)))
+                >>> score = abjad.Score([staff])
+                >>> place = abjad.Markup(
+                ...     'Bremen - Boston - LA.',
+                ...     direction=Down,
+                ...     )
+                >>> date = abjad.Markup('July 2010 - May 2011.')
+                >>> markup = abjad.Markup.right_column(
+                ...     [place, date],
+                ...     direction=Down,
+                ...     )
                 >>> markup = markup.italic()
                 >>> markup = score.add_final_markup(
                 ...     markup,

@@ -5,6 +5,10 @@ from abjad.tools.scoretools.Container import Container
 class GraceContainer(Container):
     r'''Grace container.
 
+    ::
+
+        >>> import abjad
+
     LilyPond positions grace notes immediately before main notes.
 
     LilyPond formats grace notes with neither a slashed nor a slur.
@@ -15,10 +19,10 @@ class GraceContainer(Container):
 
         ::
 
-            >>> voice = Voice("c'4 d'4 e'4 f'4")
-            >>> grace_notes = [Note("c'16"), Note("d'16")]
-            >>> grace_container = GraceContainer(grace_notes)
-            >>> attach(grace_container, voice[1])
+            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+            >>> grace_notes = [abjad.Note("c'16"), abjad.Note("d'16")]
+            >>> grace_container = abjad.GraceContainer(grace_notes)
+            >>> abjad.attach(grace_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -45,13 +49,13 @@ class GraceContainer(Container):
 
         ::
 
-            >>> voice = Voice("c'4 d'4 e'4 f'4")
-            >>> note = Note("cs'16")
-            >>> grace_container = GraceContainer([note])
-            >>> attach(grace_container, voice[1])
-            >>> note = Note("ds'16")
-            >>> after_grace_container = AfterGraceContainer([note])
-            >>> attach(after_grace_container, voice[1])
+            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+            >>> note = abjad.Note("cs'16")
+            >>> grace_container = abjad.GraceContainer([note])
+            >>> abjad.attach(grace_container, voice[1])
+            >>> note = abjad.Note("ds'16")
+            >>> after_grace_container = abjad.AfterGraceContainer([note])
+            >>> abjad.attach(after_grace_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -73,7 +77,7 @@ class GraceContainer(Container):
 
         ::
 
-            >>> detach(GraceContainer, voice[1])
+            >>> abjad.detach(abjad.GraceContainer, voice[1])
             (GraceContainer(),)
             >>> show(voice) # doctest: +SKIP
 

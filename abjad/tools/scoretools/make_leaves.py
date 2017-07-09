@@ -22,6 +22,10 @@ def make_leaves(
     ):
     r'''Makes leaves.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Integer and string elements in `pitches` result in notes:
@@ -29,9 +33,9 @@ def make_leaves(
         ::
 
             >>> pitches = [2, 4, 'F#5', 'G#5']
-            >>> duration = Duration(1, 4)
-            >>> leaves = scoretools.make_leaves(pitches, duration)
-            >>> staff = Staff(leaves)
+            >>> duration = abjad.Duration(1, 4)
+            >>> leaves = abjad.scoretools.make_leaves(pitches, duration)
+            >>> staff = abjad.Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -51,9 +55,9 @@ def make_leaves(
         ::
 
             >>> pitches = [(0, 2, 4), ('F#5', 'G#5', 'A#5')]
-            >>> duration = Duration(1, 2)
-            >>> leaves = scoretools.make_leaves(pitches, duration)
-            >>> staff = Staff(leaves)
+            >>> duration = abjad.Duration(1, 2)
+            >>> leaves = abjad.scoretools.make_leaves(pitches, duration)
+            >>> staff = abjad.Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -71,9 +75,9 @@ def make_leaves(
         ::
 
             >>> pitches = 4 * [None]
-            >>> durations = [Duration(1, 4)]
-            >>> leaves = scoretools.make_leaves(pitches, durations)
-            >>> staff = Staff(leaves)
+            >>> durations = [abjad.Duration(1, 4)]
+            >>> leaves = abjad.scoretools.make_leaves(pitches, durations)
+            >>> staff = abjad.Staff(leaves)
             >>> staff.context_name = 'RhythmicStaff'
             >>> show(staff) # doctest: +SKIP
 
@@ -94,9 +98,9 @@ def make_leaves(
         ::
 
             >>> pitches = [(0, 2, 4), None, 'C#5', 'D#5']
-            >>> durations = [Duration(1, 4)]
-            >>> leaves = scoretools.make_leaves(pitches, durations)
-            >>> staff = Staff(leaves)
+            >>> durations = [abjad.Duration(1, 4)]
+            >>> leaves = abjad.scoretools.make_leaves(pitches, durations)
+            >>> staff = abjad.Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -115,10 +119,10 @@ def make_leaves(
 
         ::
 
-            >>> pitches = PitchSegment("e'' ef'' d'' df'' c''")
-            >>> durations = [Duration(1, 4)]
-            >>> leaves = scoretools.make_leaves(pitches, durations)
-            >>> staff = Staff(leaves)
+            >>> pitches = abjad.PitchSegment("e'' ef'' d'' df'' c''")
+            >>> durations = [abjad.Duration(1, 4)]
+            >>> leaves = abjad.scoretools.make_leaves(pitches, durations)
+            >>> staff = abjad.Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -140,9 +144,9 @@ def make_leaves(
         ::
 
             >>> pitches = ['C5']
-            >>> durations = 2 * [Duration(3, 8), Duration(1, 8)]
-            >>> leaves = scoretools.make_leaves(pitches, durations)
-            >>> staff = Staff(leaves)
+            >>> durations = 2 * [abjad.Duration(3, 8), abjad.Duration(1, 8)]
+            >>> leaves = abjad.scoretools.make_leaves(pitches, durations)
+            >>> staff = abjad.Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -163,9 +167,9 @@ def make_leaves(
         ::
 
             >>> pitches = "c'' d'' e'' f''"
-            >>> durations = [Duration(1, 4)]
-            >>> leaves = scoretools.make_leaves(pitches, durations)
-            >>> staff = Staff(leaves)
+            >>> durations = [abjad.Duration(1, 4)]
+            >>> leaves = abjad.scoretools.make_leaves(pitches, durations)
+            >>> staff = abjad.Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -186,9 +190,9 @@ def make_leaves(
         ::
 
             >>> pitches = ['D5']
-            >>> durations = [Duration(1, 3), Duration(1, 3), Duration(1, 3)]
-            >>> leaves = scoretools.make_leaves(pitches, durations)
-            >>> staff = Staff(leaves)
+            >>> durations = 3 * [abjad.Duration(1, 3)]
+            >>> leaves = abjad.scoretools.make_leaves(pitches, durations)
+            >>> staff = abjad.Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -210,11 +214,11 @@ def make_leaves(
         ::
 
             >>> pitches = ['D#5']
-            >>> durations = [Duration(13, 16)]
-            >>> leaves = scoretools.make_leaves(pitches, durations)
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((13, 16))
-            >>> attach(time_signature, staff)
+            >>> durations = [abjad.Duration(13, 16)]
+            >>> leaves = abjad.scoretools.make_leaves(pitches, durations)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((13, 16))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -234,15 +238,15 @@ def make_leaves(
         ::
 
             >>> pitches = ['E5']
-            >>> durations = [Duration(13, 16)]
-            >>> leaves = scoretools.make_leaves(
+            >>> durations = [abjad.Duration(13, 16)]
+            >>> leaves = abjad.scoretools.make_leaves(
             ...     pitches,
             ...     durations,
             ...     decrease_durations_monotonically=False,
             ...     )
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((13, 16))
-            >>> attach(time_signature, staff)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((13, 16))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -262,15 +266,15 @@ def make_leaves(
         ::
 
             >>> pitches = "f' g'"
-            >>> durations = [Duration(5, 8)]
-            >>> leaves = scoretools.make_leaves(
+            >>> durations = [abjad.Duration(5, 8)]
+            >>> leaves = abjad.scoretools.make_leaves(
             ...     pitches,
             ...     durations,
-            ...     forbidden_written_duration=Duration(1, 2),
+            ...     forbidden_written_duration=abjad.Duration(1, 2),
             ...     )
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((5, 4))
-            >>> attach(time_signature, staff)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((5, 4))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -294,16 +298,16 @@ def make_leaves(
         ::
 
             >>> pitches = "f' g'"
-            >>> durations = [Duration(5, 8)]
-            >>> leaves = scoretools.make_leaves(
+            >>> durations = [abjad.Duration(5, 8)]
+            >>> leaves = abjad.scoretools.make_leaves(
             ...     pitches,
             ...     durations,
-            ...     forbidden_written_duration=Duration(1, 2),
+            ...     forbidden_written_duration=abjad.Duration(1, 2),
             ...     decrease_durations_monotonically=False,
             ...     )
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((5, 4))
-            >>> attach(time_signature, staff)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((5, 4))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -326,15 +330,15 @@ def make_leaves(
         ::
 
             >>> pitches = "f'"
-            >>> durations = [Duration(5, 14)]
-            >>> leaves = scoretools.make_leaves(
+            >>> durations = [abjad.Duration(5, 14)]
+            >>> leaves = abjad.scoretools.make_leaves(
             ...     pitches,
             ...     durations,
             ...     is_diminution=True
             ...     )
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((5, 14))
-            >>> attach(time_signature, staff)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((5, 14))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -358,15 +362,15 @@ def make_leaves(
         ::
 
             >>> pitches = "f'"
-            >>> durations = [Duration(5, 14)]
-            >>> leaves = scoretools.make_leaves(
+            >>> durations = [abjad.Duration(5, 14)]
+            >>> leaves = abjad.scoretools.make_leaves(
             ...     pitches,
             ...     durations,
             ...     is_diminution=False
             ...     )
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((5, 14))
-            >>> attach(time_signature, staff)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((5, 14))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -390,8 +394,8 @@ def make_leaves(
         ::
 
             >>> pitches = [None]
-            >>> durations = [Duration(3, 8), Duration(5, 8)]
-            >>> leaves = scoretools.make_leaves(
+            >>> durations = [abjad.Duration(3, 8), abjad.Duration(5, 8)]
+            >>> leaves = abjad.scoretools.make_leaves(
             ...     pitches,
             ...     durations,
             ...     use_multimeasure_rests=True,
@@ -401,9 +405,9 @@ def make_leaves(
 
         ::
 
-            >>> staff = Staff([
-            ...     Measure((3, 8), [leaves[0]]),
-            ...     Measure((5, 8), [leaves[1]]),
+            >>> staff = abjad.Staff([
+            ...     abjad.Measure((3, 8), [leaves[0]]),
+            ...     abjad.Measure((5, 8), [leaves[1]]),
             ...     ])
             >>> staff.context_name = 'RhythmicStaff'
             >>> show(staff) # doctest: +SKIP
@@ -429,13 +433,13 @@ def make_leaves(
         ::
 
             >>> pitches = [0]
-            >>> durations = [Duration(13, 16)]
-            >>> leaves = scoretools.make_leaves(
+            >>> durations = [abjad.Duration(13, 16)]
+            >>> leaves = abjad.scoretools.make_leaves(
             ...     pitches,
             ...     durations,
             ...     use_messiaen_style_ties=True,
             ...     )
-            >>> staff = Staff(leaves)
+            >>> staff = abjad.Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -452,13 +456,13 @@ def make_leaves(
 
         ::
 
-            >>> pitches = [pitchtools.NumberedPitchClass(6)]
-            >>> durations = [Duration(13, 16)]
-            >>> leaves = scoretools.make_leaves(
+            >>> pitches = [abjad.NumberedPitchClass(6)]
+            >>> durations = [abjad.Duration(13, 16)]
+            >>> leaves = abjad.scoretools.make_leaves(
             ...     pitches,
             ...     durations,
             ...     )
-            >>> staff = Staff(leaves)
+            >>> staff = abjad.Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -476,8 +480,8 @@ def make_leaves(
         ::
 
             >>> pitches = [None]
-            >>> durations = [Duration(13, 16)]
-            >>> scoretools.make_leaves(
+            >>> durations = [abjad.Duration(13, 16)]
+            >>> abjad.scoretools.make_leaves(
             ...     pitches,
             ...     durations,
             ...     skips_instead_of_rests=True

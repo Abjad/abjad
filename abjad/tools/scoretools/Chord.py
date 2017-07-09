@@ -12,11 +12,15 @@ from abjad.tools.topleveltools import inspect
 class Chord(Leaf):
     r'''Chord.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> chord = Chord("<e' cs'' f''>4")
+            >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> show(chord) # doctest: +SKIP
 
         ..  docs::
@@ -331,7 +335,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord = Chord("<g' c'' e''>4")
+                >>> chord = abjad.Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -357,7 +361,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord = Chord("<g' c'' e''>4")
+                >>> chord = abjad.Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -374,7 +378,7 @@ class Chord(Leaf):
 
             Sets note-heads with pitch numbers:
 
-                >>> chord = Chord("<g' c'' e''>4")
+                >>> chord = abjad.Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -410,7 +414,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord = Chord("<e' cs'' f''>4")
+                >>> chord = abjad.Chord("<e' cs'' f''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -424,12 +428,12 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord = Chord("<e' cs'' f''>4")
+                >>> chord = abjad.Chord("<e' cs'' f''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
 
-                >>> chord.written_duration = Duration(1, 16)
+                >>> chord.written_duration = abjad.Duration(1, 16)
                 >>> show(chord) # doctest: +SKIP
 
         Set duration.
@@ -450,7 +454,7 @@ class Chord(Leaf):
 
             Get written pitches:
 
-                >>> chord = Chord("<g' c'' e''>4")
+                >>> chord = abjad.Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -464,7 +468,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord = Chord("<e' g' c''>4")
+                >>> chord = abjad.Chord("<e' g' c''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::

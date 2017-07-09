@@ -71,12 +71,14 @@ class DoctestScript(CommandlineScript):
         globs = {}
         globs['abjad'] = importlib.import_module('abjad')
         globs['f'] = getattr(globs['abjad'], 'f')
-        for module_name in self._module_names_for_globs:
-            try:
-                module = importlib.import_module(module_name)
-                globs.update(module.__dict__)
-            except:
-                pass
+        module_names_for_globs = list(self._module_names_for_globs)
+        if not abjad_only:
+            for module_name in self._module_names_for_globs:
+                try:
+                    module = importlib.import_module(module_name)
+                    globs.update(module.__dict__)
+                except:
+                    pass
         external_modules = external_modules or ''
         external_modules = external_modules.split(',')
         for module_name in external_modules:
@@ -127,7 +129,7 @@ class DoctestScript(CommandlineScript):
             abjad_only=arguments.abjad_only,
             external_modules=arguments.external_modules,
             )
-        #raise Exception(globs['abjad'])
+        #raise Exception(globs)
         optionflags = self._get_optionflags(arguments)
         total_failures = 0
         total_modules = 0

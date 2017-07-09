@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_abctools_AbjadObject___repr___01():
 
-    class Foo(abctools.AbjadObject):
+    class Foo(abjad.abctools.AbjadObject):
         def __init__(self, x, y, flavor=None):
             tmp_1 = 'foo'
             self.x = x
@@ -20,7 +20,7 @@ def test_abctools_AbjadObject___repr___02():
     r'''Repr suppresses class methods to avoid recursive repr.
     '''
 
-    class Foo(abctools.AbjadObject):
+    class Foo(abjad.abctools.AbjadObject):
         def __init__(self, x, y, helper=None):
             tmp_1 = 'foo'
             self.x = x

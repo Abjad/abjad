@@ -3,7 +3,6 @@ from __future__ import print_function
 import fnmatch
 import os
 import re
-from abjad.tools import stringtools
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 try:
     input = raw_input
@@ -91,10 +90,15 @@ class ReplaceScript(CommandlineScript):
 
     def _process_args(self, arguments):
         import abjad
-        print('Replacing {!r} with {!r} ...'.format(arguments.old, arguments.new))
-        skipped_dirs_patterns = self.skipped_directories + arguments.without_dirs
+        message = 'Replacing {!r} with {!r} ...'
+        message = message.format(arguments.old, arguments.new)
+        print(message)
+        skipped_dirs_patterns = self.skipped_directories
+        skipped_dirs_patterns += arguments.without_dirs
         skipped_files_patterns = self.skipped_files + arguments.without_files
-        if arguments.regex or (not arguments.regex and arguments.whole_words_only):
+        if (arguments.regex or
+            (not arguments.regex and arguments.whole_words_only)
+            ):
             arguments.old = self._get_regex_search_callable(arguments)
             index, length = arguments.old('', 0)
             if 0 <= index:

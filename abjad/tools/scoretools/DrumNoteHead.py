@@ -6,9 +6,15 @@ class DrumNoteHead(NoteHead):
 
     ::
 
-        >>> note_head = scoretools.DrumNoteHead('snare')
-        >>> note_head
-        DrumNoteHead('snare')
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> note_head = abjad.DrumNoteHead('snare')
+            >>> note_head
+            DrumNoteHead('snare')
 
     '''
 

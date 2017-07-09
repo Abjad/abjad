@@ -14,10 +14,10 @@ class AbjadBookScript(commandlinetools.CommandlineScript):
         >>> from abjad.tools import abjadbooktools
         >>> script = abjadbooktools.AbjadBookScript()
         >>> print(script.formatted_help)
-        usage: ajv [-h] [--version] [-c] [-o OUTPUT_FILE_PATH] [-s] [-v]
-                   [-y STYLESHEET] [-a ASSETS_DIRECTORY]
-                   [-l LATEX_ROOT_DIRECTORY] [-g CONFIG]
-                   input_file_path [input_file_path ...]
+        usage: abjad-book [-h] [--version] [-c] [-o OUTPUT_FILE_PATH] [-s] [-v]
+                          [-y STYLESHEET] [-a ASSETS_DIRECTORY]
+                          [-l LATEX_ROOT_DIRECTORY] [-g CONFIG]
+                          input_file_path [input_file_path ...]
         <BLANKLINE>
         Preprocess LaTeX files with Abjad.
         <BLANKLINE>

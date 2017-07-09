@@ -4,6 +4,10 @@ from abjad.tools.scoretools.GraceContainer import GraceContainer
 
 class AcciaccaturaContainer(GraceContainer):
     r'''Acciaccatura container.
+    
+    ::
+
+        >>> import abjad
 
     Acciaccaturas are played before the beat.
 
@@ -21,10 +25,10 @@ class AcciaccaturaContainer(GraceContainer):
 
         ::
 
-            >>> voice = Voice("c'4 d'4 e'4 f'4")
-            >>> notes = [Note("c'16"), Note("d'16")]
-            >>> acciaccatura_container = AcciaccaturaContainer(notes)
-            >>> attach(acciaccatura_container, voice[1])
+            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+            >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
+            >>> acciaccatura_container = abjad.AcciaccaturaContainer(notes)
+            >>> abjad.attach(acciaccatura_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
         ..  docs::

@@ -7,22 +7,28 @@ class Cluster(Container):
 
     ::
 
-        >>> cluster = scoretools.Cluster("c'8 <d' g'>8 b'8")
-        >>> show(cluster) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(cluster)
-        \makeClusters {
-            c'8
-            <d' g'>8
-            b'8
-        }
+        ::
 
-    ::
+            >>> cluster = abjad.Cluster("c'8 <d' g'>8 b'8")
+            >>> show(cluster) # doctest: +SKIP
 
-        >>> cluster
-        Cluster("c'8 <d' g'>8 b'8")
+        ..  docs::
+
+            >>> f(cluster)
+            \makeClusters {
+                c'8
+                <d' g'>8
+                b'8
+            }
+
+        ::
+
+            >>> cluster
+            Cluster("c'8 <d' g'>8 b'8")
 
     '''
 

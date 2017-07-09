@@ -15,6 +15,10 @@ def make_leaves_from_talea(
     ):
     r'''Makes leaves from `talea`.
 
+    ::
+
+        >>> import abjad
+
     Interprets positive elements in `talea` as notes numerators.
 
     Interprets negative elements in `talea` as rests numerators.
@@ -27,11 +31,11 @@ def make_leaves_from_talea(
 
         ::
 
-            >>> leaves = scoretools.make_leaves_from_talea([3, -3, 5, -5], 16)
-            >>> staff = Staff(leaves)
+            >>> leaves = abjad.scoretools.make_leaves_from_talea([3, -3, 5, -5], 16)
+            >>> staff = abjad.Staff(leaves)
             >>> staff.context_name = 'RhythmicStaff'
-            >>> time_signature = TimeSignature((4, 4))
-            >>> attach(time_signature, staff)
+            >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -53,14 +57,14 @@ def make_leaves_from_talea(
 
         ::
 
-            >>> leaves = scoretools.make_leaves_from_talea(
+            >>> leaves = abjad.scoretools.make_leaves_from_talea(
             ...     [3, -3, 5, -5], 16,
             ...     decrease_durations_monotonically=False,
             ...     )
-            >>> staff = Staff(leaves)
+            >>> staff = abjad.Staff(leaves)
             >>> staff.context_name = 'RhythmicStaff'
-            >>> time_signature = TimeSignature((4, 4))
-            >>> attach(time_signature, staff)
+            >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -82,14 +86,14 @@ def make_leaves_from_talea(
 
         ::
 
-            >>> leaves = scoretools.make_leaves_from_talea(
+            >>> leaves = abjad.scoretools.make_leaves_from_talea(
             ...     [3, -3, 5, -5], 16,
-            ...     forbidden_written_duration=Duration(1, 4),
+            ...     forbidden_written_duration=abjad.Duration(1, 4),
             ...     )
-            >>> staff = Staff(leaves)
+            >>> staff = abjad.Staff(leaves)
             >>> staff.context_name = 'RhythmicStaff'
-            >>> time_signature = TimeSignature((4, 4))
-            >>> attach(time_signature, staff)
+            >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -113,14 +117,14 @@ def make_leaves_from_talea(
 
         ::
 
-            >>> leaves = scoretools.make_leaves_from_talea(
+            >>> leaves = abjad.scoretools.make_leaves_from_talea(
             ...     [3, -3, 5, -5], 16,
             ...     spell_metrically='unassignable',
             ...     )
-            >>> staff = Staff(leaves)
+            >>> staff = abjad.Staff(leaves)
             >>> staff.context_name = 'RhythmicStaff'
-            >>> time_signature = TimeSignature((4, 4))
-            >>> attach(time_signature, staff)
+            >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -142,15 +146,15 @@ def make_leaves_from_talea(
 
         ::
 
-            >>> leaves = scoretools.make_leaves_from_talea(
+            >>> leaves = abjad.scoretools.make_leaves_from_talea(
             ...     [5, 9], 8,
             ...     spell_metrically='unassignable',
             ...     use_messiaen_style_ties=True,
             ...     )
-            >>> staff = Staff(leaves)
+            >>> staff = abjad.Staff(leaves)
             >>> staff.context_name = 'RhythmicStaff'
-            >>> time_signature = TimeSignature((4, 4))
-            >>> attach(time_signature, staff)
+            >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

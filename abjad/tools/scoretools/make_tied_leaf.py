@@ -16,20 +16,24 @@ def make_tied_leaf(
     ):
     r'''Makes tied `class_` with `duration`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Makes note:
 
         ::
 
-            >>> leaves = scoretools.make_tied_leaf(
-            ...     Note,
-            ...     Duration(1, 2),
+            >>> leaves = abjad.scoretools.make_tied_leaf(
+            ...     abjad.Note,
+            ...     abjad.Duration(1, 2),
             ...     pitches='C#5',
             ...     )
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((2, 4))
-            >>> attach(time_signature, staff)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((2, 4))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -46,15 +50,15 @@ def make_tied_leaf(
 
         ::
 
-            >>> leaves = scoretools.make_tied_leaf(
-            ...     Note,
-            ...     Duration(1, 2),
+            >>> leaves = abjad.scoretools.make_tied_leaf(
+            ...     abjad.Note,
+            ...     abjad.Duration(1, 2),
             ...     pitches='C#5',
-            ...     forbidden_written_duration=Duration(1, 2),
+            ...     forbidden_written_duration=abjad.Duration(1, 2),
             ...     )
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((2, 4))
-            >>> attach(time_signature, staff)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((2, 4))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -73,16 +77,16 @@ def make_tied_leaf(
 
         ::
 
-            >>> leaves = scoretools.make_tied_leaf(
-            ...     Note,
-            ...     Duration(9, 8),
+            >>> leaves = abjad.scoretools.make_tied_leaf(
+            ...     abjad.Note,
+            ...     abjad.Duration(9, 8),
             ...     pitches='C#5',
-            ...     forbidden_written_duration=Duration(1, 2),
+            ...     forbidden_written_duration=abjad.Duration(1, 2),
             ...     decrease_durations_monotonically=True,
             ...     )
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((9, 8))
-            >>> attach(time_signature, staff)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((9, 8))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -104,16 +108,16 @@ def make_tied_leaf(
 
         ::
 
-            >>> leaves = scoretools.make_tied_leaf(
-            ...     Note,
-            ...     Duration(9, 8),
+            >>> leaves = abjad.scoretools.make_tied_leaf(
+            ...     abjad.Note,
+            ...     abjad.Duration(9, 8),
             ...     pitches='C#5',
-            ...     forbidden_written_duration=Duration(1, 2),
+            ...     forbidden_written_duration=abjad.Duration(1, 2),
             ...     decrease_durations_monotonically=False,
             ...     )
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((9, 8))
-            >>> attach(time_signature, staff)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((9, 8))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -134,17 +138,17 @@ def make_tied_leaf(
 
         ::
 
-            >>> leaves = scoretools.make_tied_leaf(
-            ...     Note,
-            ...     Duration(9, 8),
+            >>> leaves = abjad.scoretools.make_tied_leaf(
+            ...     abjad.Note,
+            ...     abjad.Duration(9, 8),
             ...     pitches='C#5',
             ...     decrease_durations_monotonically=False,
-            ...     forbidden_written_duration=Duration(1, 2),
+            ...     forbidden_written_duration=abjad.Duration(1, 2),
             ...     use_messiaen_style_ties=True,
             ...     )
-            >>> staff = Staff(leaves)
-            >>> time_signature = TimeSignature((9, 8))
-            >>> attach(time_signature, staff)
+            >>> staff = abjad.Staff(leaves)
+            >>> time_signature = abjad.TimeSignature((9, 8))
+            >>> abjad.attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

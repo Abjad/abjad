@@ -7,11 +7,15 @@ from abjad.tools.scoretools.Container import Container
 class Context(Container):
     '''LilyPond context.
     
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> context = scoretools.Context(
+            >>> context = abjad.Context(
             ...     name='MeterVoice',
             ...     context_name='TimeSignatureContext',
             ...     )
@@ -67,7 +71,7 @@ class Context(Container):
 
         ::
 
-            >>> context = scoretools.Context(
+            >>> context = abjad.Context(
             ...     name='MeterVoice',
             ...     context_name='TimeSignatureContext',
             ...     )
@@ -191,7 +195,7 @@ class Context(Container):
 
         ::
 
-            >>> staff = Staff([])
+            >>> staff = abjad.Staff([])
             >>> staff.consists_commands.append('Horizontal_bracket_engraver')
             >>> f(staff)
             \new Staff \with {
@@ -243,7 +247,7 @@ class Context(Container):
 
         ::
 
-            >>> staff = Staff([])
+            >>> staff = abjad.Staff([])
             >>> staff.remove_commands.append('Time_signature_engraver')
             >>> f(staff)
             \new Staff \with {

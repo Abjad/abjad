@@ -16,9 +16,13 @@ from abjad.tools.scoretools.Container import Container
 class Measure(Container):
     r'''Measure.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
-        >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+        >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
         >>> show(measure) # doctest: +SKIP
 
     ..  docs::
@@ -77,7 +81,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
                 >>> measure.automatically_adjust_time_signature = True
                 >>> show(measure) # doctest: +SKIP
 
@@ -117,7 +121,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+                >>> measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -168,13 +172,13 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
                 >>> measure.automatically_adjust_time_signature = True
                 >>> show(measure) # doctest: +SKIP
 
             ::
 
-                >>> measure[1] = Note("ds'8.")
+                >>> measure[1] = abjad.Note("ds'8.")
                 >>> show(measure) # doctest: +SKIP
 
             ..  docs::
@@ -475,7 +479,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((3, 4), "c' d' e'")
+                >>> measure = abjad.Measure((3, 4), "c' d' e'")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -504,7 +508,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+                >>> measure = abjad.Measure((5, 9), "c'8 d' e' f' g'")
                 >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
@@ -519,7 +523,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+                >>> measure = abjad.Measure((5, 8), "c'8 d' e' f' g'")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -541,7 +545,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+                >>> measure = abjad.Measure((5, 8), "c'8 d' e' f' g'")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -555,7 +559,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+                >>> measure = abjad.Measure((5, 9), "c'8 d' e' f' g'")
                 >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
@@ -592,7 +596,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((5, 12), "c'8 d'8 e'8 f'8 g'8")
+                >>> measure = abjad.Measure((5, 12), "c'8 d'8 e'8 f'8 g'8")
                 >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
@@ -604,7 +608,7 @@ class Measure(Container):
             ::
 
                 >>> for note in measure:
-                ...     note, inspect(note).get_duration()
+                ...     note, abjad.inspect(note).get_duration()
                 (Note("c'8"), Duration(1, 12))
                 (Note("d'8"), Duration(1, 12))
                 (Note("e'8"), Duration(1, 12))
@@ -618,7 +622,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((5, 12), [])
+                >>> measure = abjad.Measure((5, 12), [])
                 >>> measure.implicit_scaling = False
 
             ::
@@ -641,7 +645,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -663,7 +667,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((3, 4), "c'4 d'4 e'4 f'4")
+                >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4 f'4")
                 >>> measure.is_misfilled
                 True
 
@@ -673,7 +677,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((3, 4), "c' d' e'")
+                >>> measure = abjad.Measure((3, 4), "c' d' e'")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -694,7 +698,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((3, 4), "c'4 d' e' f'")
+                >>> measure = abjad.Measure((3, 4), "c'4 d' e' f'")
 
             ::
 
@@ -715,7 +719,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((3, 4), "c'4 d'")
+                >>> measure = abjad.Measure((3, 4), "c'4 d'")
 
             ::
 
@@ -736,9 +740,9 @@ class Measure(Container):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((3, 4), "c' d' e'"))
-                >>> staff.append(Measure((2, 4), "f' g'"))
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((3, 4), "c' d' e'"))
+                >>> staff.append(abjad.Measure((2, 4), "f' g'"))
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -784,7 +788,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((3, 4), "c'4 d'4 e'4")
+                >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4")
                 >>> measure.target_duration
                 Duration(3, 4)
 
@@ -840,7 +844,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+                >>> measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
                 >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
@@ -856,7 +860,7 @@ class Measure(Container):
 
             ::
 
-                >>> measure.scale_and_adjust_time_signature(Multiplier(2, 3))
+                >>> measure.scale_and_adjust_time_signature(abjad.Multiplier(2, 3))
                 >>> show(measure) # doctest: +SKIP
 
             ..  docs::

@@ -6,8 +6,12 @@ def make_piano_score_from_leaves(leaves, lowest_treble_pitch=None):
 
     ::
 
-        >>> notes = [Note(x, (1, 4)) for x in [-12, 37, -10, 2, 4, 17]]
-        >>> score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves(notes)
+        >>> import abjad
+
+    ::
+
+        >>> notes = [abjad.Note(x, (1, 4)) for x in [-12, 37, -10, 2, 4, 17]]
+        >>> score, treble_staff, bass_staff = abjad.scoretools.make_piano_score_from_leaves(notes)
 
     ..  docs::
 

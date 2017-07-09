@@ -15,6 +15,10 @@ def make_notes(
     ):
     r'''Makes notes according to `pitches` and `durations`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Cycles through `pitches` when the length of `pitches` is less than the
@@ -22,13 +26,13 @@ def make_notes(
 
         ::
 
-            >>> notes = scoretools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
+            >>> notes = abjad.scoretools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
             >>> notes
             Selection([Note("c'16"), Note("c'8"), Note("c'8")])
 
         ::
 
-            >>> staff = Staff(notes)
+            >>> staff = abjad.Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -47,7 +51,7 @@ def make_notes(
 
         ::
 
-            >>> notes = scoretools.make_notes(
+            >>> notes = abjad.scoretools.make_notes(
             ...     [0, 2, 4, 5, 7],
             ...     [(1, 16), (1, 8), (1, 8)],
             ...     )
@@ -56,7 +60,7 @@ def make_notes(
 
         ::
 
-            >>> staff = Staff(notes)
+            >>> staff = abjad.Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -76,13 +80,13 @@ def make_notes(
 
         ::
 
-            >>> notes = scoretools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
+            >>> notes = abjad.scoretools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
             >>> notes
             Selection([Note("c'16"), Tuplet(Multiplier(2, 3), "c'8"), Note("c'8")])
 
         ::
 
-            >>> staff = Staff(notes)
+            >>> staff = abjad.Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -104,7 +108,7 @@ def make_notes(
 
         ::
 
-            >>> notes = scoretools.make_notes(
+            >>> notes = abjad.scoretools.make_notes(
             ...     [0],
             ...     [(13, 16)],
             ...     decrease_durations_monotonically=True,
@@ -114,7 +118,7 @@ def make_notes(
 
         ::
 
-            >>> staff = Staff(notes)
+            >>> staff = abjad.Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -132,7 +136,7 @@ def make_notes(
 
         ::
 
-            >>> notes = scoretools.make_notes(
+            >>> notes = abjad.scoretools.make_notes(
             ...     [0],
             ...     [(13, 16)],
             ...     decrease_durations_monotonically=False,
@@ -142,7 +146,7 @@ def make_notes(
 
         ::
 
-            >>> staff = Staff(notes)
+            >>> staff = abjad.Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -159,12 +163,12 @@ def make_notes(
 
         ::
 
-            >>> notes = scoretools.make_notes(
+            >>> notes = abjad.scoretools.make_notes(
             ...     [0],
             ...     [(13, 16)],
             ...     use_messiaen_style_ties=True,
             ...     )
-            >>> staff = Staff(notes)
+            >>> staff = abjad.Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -181,9 +185,9 @@ def make_notes(
 
         ::
 
-            >>> segment = PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
-            >>> notes = scoretools.make_notes(segment, [(1, 8)])
-            >>> staff = Staff(notes)
+            >>> segment = abjad.PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
+            >>> notes = abjad.scoretools.make_notes(segment, [(1, 8)])
+            >>> staff = abjad.Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

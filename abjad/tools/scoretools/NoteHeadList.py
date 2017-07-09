@@ -6,12 +6,16 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class NoteHeadList(TypedList):
     r'''Note-head list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> chord = Chord([0, 1, 4], (1, 4))
-            >>> note_heads = scoretools.NoteHeadList(
+            >>> chord = abjad.Chord([0, 1, 4], (1, 4))
+            >>> note_heads = abjad.NoteHeadList(
             ...     client=chord,
             ...     items=[11, 10, 9],
             ...     )
@@ -106,7 +110,7 @@ class NoteHeadList(TypedList):
 
             ::
 
-                >>> chord = Chord("<ef'>")
+                >>> chord = abjad.Chord("<ef'>")
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -117,10 +121,10 @@ class NoteHeadList(TypedList):
             ::
 
                 >>> note_heads = []
-                >>> note_head = scoretools.NoteHead("cs''")
+                >>> note_head = abjad.NoteHead("cs''")
                 >>> note_head.tweak.color = 'blue'
                 >>> note_heads.append(note_head)
-                >>> note_head = scoretools.NoteHead("f''")
+                >>> note_head = abjad.NoteHead("f''")
                 >>> note_head.tweak.color = 'green'
                 >>> note_heads.append(note_head)
                 >>> chord.note_heads.extend(note_heads)
@@ -151,7 +155,7 @@ class NoteHeadList(TypedList):
 
             ::
 
-                >>> chord = Chord("<e' cs'' f''>4")
+                >>> chord = abjad.Chord("<e' cs'' f''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -176,7 +180,7 @@ class NoteHeadList(TypedList):
 
             ::
 
-                >>> chord = Chord("<e' cs'' f''>4")
+                >>> chord = abjad.Chord("<e' cs'' f''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -227,7 +231,7 @@ class NoteHeadList(TypedList):
 
             ::
 
-                >>> chord = Chord("<ef' c'' f''>4")
+                >>> chord = abjad.Chord("<ef' c'' f''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -261,7 +265,7 @@ class NoteHeadList(TypedList):
 
             ::
 
-                >>> chord = Chord("<ef' c'' f''>4")
+                >>> chord = abjad.Chord("<ef' c'' f''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::

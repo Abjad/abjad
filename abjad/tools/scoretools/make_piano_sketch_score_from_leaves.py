@@ -7,12 +7,16 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
 
     ::
 
-        >>> notes = scoretools.make_notes(
+        >>> import abjad
+
+    ::
+
+        >>> notes = abjad.scoretools.make_notes(
         ...     [-12, -10, -8, -7, -5, 0, 2, 4, 5, 7],
         ...     [(1, 16)],
         ...     )
         >>> score, treble_staff, bass_staff = \
-        ...     scoretools.make_piano_sketch_score_from_leaves(notes)
+        ...     abjad.scoretools.make_piano_sketch_score_from_leaves(notes)
 
     ..  docs::
 

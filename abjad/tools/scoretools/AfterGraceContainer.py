@@ -5,19 +5,23 @@ from abjad.tools.scoretools.Container import Container
 class AfterGraceContainer(Container):
     r'''After grace container.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         After grace notes:
 
         ::
 
-            >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> string = '#(define afterGraceFraction (cons 15 16))'
-            >>> literal = LilyPondLiteral(string)
-            >>> attach(literal, voice[0])
-            >>> notes = [Note("c'16"), Note("d'16")]
-            >>> after_grace_container = AfterGraceContainer(notes)
-            >>> attach(after_grace_container, voice[1])
+            >>> literal = abjad.LilyPondLiteral(string)
+            >>> abjad.attach(literal, voice[0])
+            >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
+            >>> after_grace_container = abjad.AfterGraceContainer(notes)
+            >>> abjad.attach(after_grace_container, voice[1])
             >>> show(voice) # doctest: +SKIP
 
         ..  docs::

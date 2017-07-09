@@ -5,11 +5,15 @@ from abjad.tools.scoretools.Leaf import Leaf
 class MultimeasureRest(Leaf):
     '''Multimeasure rest.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> rest = scoretools.MultimeasureRest((1, 4))
+            >>> rest = abjad.MultimeasureRest((1, 4))
             >>> show(rest) # doctest: +SKIP
 
     '''

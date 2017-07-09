@@ -15,11 +15,15 @@ from abjad.tools.topleveltools import select
 class Tuplet(Container):
     r'''Tuplet.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         A tuplet:
 
-            >>> tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
             >>> show(tuplet) # doctest: +SKIP
 
         ..  docs::
@@ -35,7 +39,7 @@ class Tuplet(Container):
 
         A nested tuplet:
 
-            >>> second_tuplet = Tuplet((4, 7), "g'4. ( a'16 )")
+            >>> second_tuplet = abjad.Tuplet((4, 7), "g'4. ( a'16 )")
             >>> tuplet.insert(1, second_tuplet)
             >>> show(tuplet) # doctest: +SKIP
 
@@ -58,7 +62,7 @@ class Tuplet(Container):
 
         A doubly nested tuplet:
 
-            >>> third_tuplet = Tuplet((4, 5), [])
+            >>> third_tuplet = abjad.Tuplet((4, 5), [])
             >>> third_tuplet.extend("e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
             >>> second_tuplet.insert(1, third_tuplet)
             >>> show(tuplet) # doctest: +SKIP
@@ -370,7 +374,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -413,11 +417,11 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> duration = inspect(tuplet).get_duration()
+                >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> duration = abjad.inspect(tuplet).get_duration()
                 >>> markup = duration.to_score_markup()
-                >>> override(tuplet).tuplet_number.text = markup
-                >>> staff = Staff([tuplet])
+                >>> abjad.override(tuplet).tuplet_number.text = markup
+                >>> staff = abjad.Staff([tuplet])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -485,7 +489,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
+                >>> trivial_tuplet = abjad.Tuplet((1, 1), "c'4 d' e'")
                 >>> trivial_tuplet.force_times_command
                 False
 
@@ -509,7 +513,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
+                >>> trivial_tuplet = abjad.Tuplet((1, 1), "c'4 d' e'")
                 >>> trivial_tuplet.force_times_command = True
 
             ::
@@ -530,13 +534,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
+                >>> trivial_tuplet = abjad.Tuplet((1, 1), "c'4 d' e'")
                 >>> trivial_tuplet.force_times_command = True
-                >>> duration = inspect(trivial_tuplet).get_duration()
+                >>> duration = abjad.inspect(trivial_tuplet).get_duration()
                 >>> markup = duration.to_score_markup()
                 >>> markup = markup.scale((0.75, 0.75))
-                >>> override(trivial_tuplet).tuplet_number.text = markup
-                >>> staff = Staff([trivial_tuplet])
+                >>> abjad.override(trivial_tuplet).tuplet_number.text = markup
+                >>> staff = abjad.Staff([trivial_tuplet])
 
             ::
 
@@ -609,7 +613,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
             ::
@@ -634,7 +638,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
             ::
@@ -648,7 +652,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
                 >>> show(tuplet) # doctest: +SKIP
 
             ::
@@ -662,7 +666,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((1, 1), "c'8. d'8. e'8.")
+                >>> tuplet = abjad.Tuplet((1, 1), "c'8. d'8. e'8.")
                 >>> show(tuplet) # doctest: +SKIP
 
             ::
@@ -688,7 +692,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
             ::
@@ -702,7 +706,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
                 >>> show(tuplet) # doctest: +SKIP
 
             ::
@@ -716,7 +720,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((1, 1), "c'8. d'8. e'8.")
+                >>> tuplet = abjad.Tuplet((1, 1), "c'8. d'8. e'8.")
                 >>> show(tuplet) # doctest: +SKIP
 
             ::
@@ -741,7 +745,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -764,9 +768,9 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
-                >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
-                >>> staff = Staff([tuplet_1, tuplet_2])
+                >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
+                >>> staff = abjad.Staff([tuplet_1, tuplet_2])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -835,8 +839,8 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet(Multiplier(3, 4), "c'4 c'4")
-                >>> measure = Measure((3, 8), [tuplet])
+                >>> tuplet = abjad.Tuplet((3, 4), "c'4 c'4")
+                >>> measure = abjad.Measure((3, 8), [tuplet])
                 >>> show(measure) # doctest: +SKIP
 
             ..  docs::
@@ -858,7 +862,7 @@ class Tuplet(Container):
 
             Can be rewritten without a tuplet bracket:
 
-                >>> measure = Measure((3, 8), "c'8. c'8.")
+                >>> measure = abjad.Measure((3, 8), "c'8. c'8.")
                 >>> show(measure) # doctest: +SKIP
 
             ..  docs::
@@ -876,8 +880,8 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet(Multiplier(3, 5), "c'4 c'4 c'4 c'4 c'4")
-                >>> measure = Measure((3, 4), [tuplet])
+                >>> tuplet = abjad.Tuplet((3, 5), "c'4 c'4 c'4 c'4 c'4")
+                >>> measure = abjad.Measure((3, 4), [tuplet])
                 >>> show(measure) # doctest: +SKIP
 
             ..  docs::
@@ -916,7 +920,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((1, 1), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((1, 1), "c'8 d'8 e'8")
 
             ::
 
@@ -939,7 +943,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
 
             ::
 
@@ -962,7 +966,7 @@ class Tuplet(Container):
 
             Gets tuplet multiplier:
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
             ::
@@ -974,7 +978,7 @@ class Tuplet(Container):
 
             Sets tuplet multiplier:
 
-                >>> tuplet.multiplier = Multiplier(4, 3)
+                >>> tuplet.multiplier = abjad.Multiplier(4, 3)
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -1018,7 +1022,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> tuplet.preferred_denominator is None
                 True
                 >>> show(tuplet) # doctest: +SKIP
@@ -1038,7 +1042,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -1088,7 +1092,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'4 ( d'4 f'4 )")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -1102,7 +1106,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet.append(Note("e'4"))
+                >>> tuplet.append(abjad.Note("e'4"))
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -1122,7 +1126,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'4 ( d'4 f'4 )")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -1136,7 +1140,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet.append(Note("e'4"), preserve_duration=True)
+                >>> tuplet.append(abjad.Note("e'4"), preserve_duration=True)
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -1171,7 +1175,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'4 ( d'4 f'4 )")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -1185,7 +1189,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> notes = [Note("e'32"), Note("d'32"), Note("e'16")]
+                >>> notes = [abjad.Note("e'32"), abjad.Note("d'32"), abjad.Note("e'16")]
                 >>> tuplet.extend(notes)
                 >>> show(tuplet) # doctest: +SKIP
 
@@ -1208,7 +1212,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'4 ( d'4 f'4 )")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -1222,7 +1226,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> notes = [Note("e'32"), Note("d'32"), Note("e'16")]
+                >>> notes = [abjad.Note("e'32"), abjad.Note("d'32"), abjad.Note("e'16")]
                 >>> tuplet.extend(notes, preserve_duration=True)
                 >>> show(tuplet) # doctest: +SKIP
 
@@ -1261,7 +1265,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet =Tuplet.from_duration(Duration(2, 8), "c'8 d' e'")
+                >>> tuplet = abjad.Tuplet.from_duration((2, 8), "c'8 d' e'")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -1280,7 +1284,7 @@ class Tuplet(Container):
             message = 'music must be nonempty: {!r}.'
             message = message.format(music)
             raise Exception(message)
-        target_duration = duration
+        target_duration = abjad.Duration(duration)
         tuplet = Tuplet(1, music)
         contents_duration = abjad.inspect(tuplet).get_duration()
         multiplier = target_duration / contents_duration
@@ -1306,14 +1310,14 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16),
-                ...     mathtools.Ratio((1, 1, 1, -1, -1)),
+                >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
+                ...     abjad.Duration(3, 16),
+                ...     abjad.Ratio((1, 1, 1, -1, -1)),
                 ...     avoid_dots=True,
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1337,14 +1341,14 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16),
-                ...     mathtools.Ratio((1, -2, -2, 3, 3)),
+                >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
+                ...     abjad.Duration(3, 16),
+                ...     abjad.Ratio((1, -2, -2, 3, 3)),
                 ...     avoid_dots=True,
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1368,15 +1372,15 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16),
-                ...     mathtools.Ratio((5, -1, 5)),
+                >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
+                ...     abjad.Duration(3, 16),
+                ...     abjad.Ratio((5, -1, 5)),
                 ...     avoid_dots=True,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1402,14 +1406,14 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16),
-                ...     mathtools.Ratio((1, 1, 1, -1, -1)),
+                >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
+                ...     abjad.Duration(3, 16),
+                ...     abjad.Ratio((1, 1, 1, -1, -1)),
                 ...     avoid_dots=False,
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1433,15 +1437,15 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16),
-                ...     mathtools.Ratio((5, -1, 5)),
+                >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
+                ...     abjad.Duration(3, 16),
+                ...     abjad.Ratio((5, -1, 5)),
                 ...     avoid_dots=False,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1468,14 +1472,14 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16),
-                ...     mathtools.Ratio((1, 1, 1, -1, -1)),
+                >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
+                ...     abjad.Duration(3, 16),
+                ...     abjad.Ratio((1, 1, 1, -1, -1)),
                 ...     avoid_dots=True,
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1499,14 +1503,14 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16),
-                ...     mathtools.Ratio((1, -2, -2, 3, 3)),
+                >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
+                ...     abjad.Duration(3, 16),
+                ...     abjad.Ratio((1, -2, -2, 3, 3)),
                 ...     avoid_dots=True,
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1530,15 +1534,15 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16),
-                ...     mathtools.Ratio((5, -1, 5)),
+                >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
+                ...     abjad.Duration(3, 16),
+                ...     abjad.Ratio((5, -1, 5)),
                 ...     avoid_dots=True,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1564,14 +1568,14 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16),
-                ...     mathtools.Ratio((1, 1, 1, -1, -1)),
+                >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
+                ...     abjad.Duration(3, 16),
+                ...     abjad.Ratio((1, 1, 1, -1, -1)),
                 ...     avoid_dots=False,
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1593,15 +1597,15 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16),
-                ...     mathtools.Ratio((5, -1, 5)),
+                >>> tuplet = abjad.Tuplet.from_duration_and_ratio(
+                ...     abjad.Duration(3, 16),
+                ...     abjad.Ratio((5, -1, 5)),
                 ...     avoid_dots=False,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(measure) # doctest: +SKIP
 
@@ -1682,7 +1686,7 @@ class Tuplet(Container):
 
         ::
 
-            >>> note = Note("c'8.")
+            >>> note = abjad.Note("c'8.")
 
         ..  container:: example
 
@@ -1690,13 +1694,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
-                ...     mathtools.Ratio((1,)),
+                ...     abjad.Ratio((1,)),
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1713,13 +1717,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
                 ...     [1, 2],
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1737,13 +1741,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
-                ...     mathtools.Ratio((1, 2, 2)),
+                ...     abjad.Ratio((1, 2, 2)),
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1763,13 +1767,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
                 ...     [1, 2, 2, 3],
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1790,13 +1794,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
                 ...     [1, 2, 2, 3, 3],
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1818,13 +1822,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
-                ...     mathtools.Ratio((1, 2, 2, 3, 3, 4)),
+                ...     abjad.Ratio((1, 2, 2, 3, 3, 4)),
                 ...     is_diminution=False,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1847,13 +1851,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
                 ...     [1],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1870,13 +1874,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
                 ...     [1, 2],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1894,13 +1898,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
                 ...     [1, 2, 2],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1919,13 +1923,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
                 ...     [1, 2, 2, 3],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1946,13 +1950,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
                 ...     [1, 2, 2, 3, 3],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -1974,13 +1978,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                >>> tuplet = abjad.Tuplet.from_leaf_and_ratio(
                 ...     note,
                 ...     [1, 2, 2, 3, 3, 4],
                 ...     is_diminution=True,
                 ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((3, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -2018,12 +2022,12 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio((1,)),
-                ...     mathtools.NonreducedFraction(7, 16),
+                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     abjad.NonreducedRatio((1,)),
+                ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((7, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -2044,13 +2048,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     NonreducedRatio((1,)),
-                ...     NonreducedFraction(7, 16),
+                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     abjad.NonreducedRatio((1,)),
+                ...     abjad.NonreducedFraction(7, 16),
                 ...     allow_trivial=True,
                 ...     )
-                >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((7, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -2070,12 +2074,12 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio((1, 2)),
-                ...     mathtools.NonreducedFraction(7, 16),
+                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     abjad.NonreducedRatio((1, 2)),
+                ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((7, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -2093,12 +2097,12 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio((1, 2, 4)),
-                ...     mathtools.NonreducedFraction(7, 16),
+                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     abjad.NonreducedRatio((1, 2, 4)),
+                ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((7, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -2116,12 +2120,12 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio((1, 2, 4, 1)),
-                ...     mathtools.NonreducedFraction(7, 16),
+                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     abjad.NonreducedRatio((1, 2, 4, 1)),
+                ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((7, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -2141,12 +2145,12 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio((1, 2, 4, 1, 2)),
-                ...     mathtools.NonreducedFraction(7, 16),
+                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     abjad.NonreducedRatio((1, 2, 4, 1, 2)),
+                ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((7, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -2167,12 +2171,12 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio((1, 2, 4, 1, 2, 4)),
-                ...     mathtools.NonreducedFraction(7, 16),
+                >>> tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     abjad.NonreducedRatio((1, 2, 4, 1, 2, 4)),
+                ...     abjad.NonreducedFraction(7, 16),
                 ...     )
-                >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = Staff([measure])
+                >>> measure = abjad.Measure((7, 16), [tuplet])
+                >>> staff = abjad.Staff([measure])
                 >>> staff.context_name = 'RhythmicStaff'
                 >>> show(staff) # doctest: +SKIP
 
@@ -2268,7 +2272,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
+                >>> tuplet = abjad.Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -2324,7 +2328,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
+                >>> tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -2360,7 +2364,7 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> tuplet = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
                 >>> show(tuplet) # doctest: +SKIP
 
             ..  docs::

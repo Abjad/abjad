@@ -5,13 +5,17 @@ from abjad.tools import selectiontools
 def make_spacer_skip_measures(time_signatures, implicit_scaling=False):
     r'''Makes measures with full-measure spacer skips from `time_signatures`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> measures = scoretools.make_spacer_skip_measures(
+            >>> measures = abjad.scoretools.make_spacer_skip_measures(
             ...     [(1, 8), (5, 16), (5, 16)])
-            >>> staff = Staff(measures)
+            >>> staff = abjad.Staff(measures)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

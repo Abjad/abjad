@@ -7,21 +7,27 @@ def make_empty_piano_score():
 
     ::
 
-        >>> score, treble, bass = scoretools.make_empty_piano_score()
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(score)
-        \new Score <<
-            \new PianoStaff <<
-                \context Staff = "treble" {
-                    \clef "treble"
-                }
-                \context Staff = "bass" {
-                    \clef "bass"
-                }
+        ::
+
+            >>> score, treble, bass = abjad.scoretools.make_empty_piano_score()
+
+        ..  docs::
+
+            >>> f(score)
+            \new Score <<
+                \new PianoStaff <<
+                    \context Staff = "treble" {
+                        \clef "treble"
+                    }
+                    \context Staff = "bass" {
+                        \clef "bass"
+                    }
+                >>
             >>
-        >>
 
     Returns score, treble staff, bass staff.
     '''

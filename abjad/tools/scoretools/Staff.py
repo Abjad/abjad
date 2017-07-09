@@ -5,11 +5,15 @@ from abjad.tools.scoretools.Context import Context
 class Staff(Context):
     r'''Staff.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

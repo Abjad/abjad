@@ -12,13 +12,17 @@ from abjad.tools.scoretools.Component import Component
 class Container(Component):
     r'''Container.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Intializes from string:
 
         ::
 
-            >>> container = Container("c'4 e'4 d'4 e'8 f'8")
+            >>> container = abjad.Container("c'4 e'4 d'4 e'8 f'8")
             >>> show(container) # doctest: +SKIP
 
         ..  docs::
@@ -39,13 +43,13 @@ class Container(Component):
         ::
 
             >>> notes = [
-            ...     Note("c'4"),
-            ...     Note("e'4"),
-            ...     Note("d'4"),
-            ...     Note("e'8"),
-            ...     Note("f'8"),
+            ...     abjad.Note("c'4"),
+            ...     abjad.Note("e'4"),
+            ...     abjad.Note("d'4"),
+            ...     abjad.Note("e'8"),
+            ...     abjad.Note("f'8"),
             ...     ]
-            >>> container = Container(notes)
+            >>> container = abjad.Container(notes)
             >>> show(container) # doctest: +SKIP
 
         ..  docs::
@@ -66,14 +70,14 @@ class Container(Component):
         ::
 
             >>> notes = [
-            ...     Note("c'4"),
-            ...     Note("e'4"),
-            ...     Note("d'4"),
-            ...     Note("e'8"),
-            ...     Note("f'8"),
+            ...     abjad.Note("c'4"),
+            ...     abjad.Note("e'4"),
+            ...     abjad.Note("d'4"),
+            ...     abjad.Note("e'8"),
+            ...     abjad.Note("f'8"),
             ...     ]
-            >>> selection = select(notes)
-            >>> container = Container(selection)
+            >>> selection = abjad.select(notes)
+            >>> container = abjad.Container(selection)
             >>> show(container) # doctest: +SKIP
 
         ..  docs::
@@ -94,13 +98,13 @@ class Container(Component):
         ::
 
             >>> items = [
-            ...     Note("c'4"),
-            ...     select(Note("e'4")),
-            ...     select(Note("d'4")),
-            ...     Note("e'8"),
-            ...     Note("f'8"),
+            ...     abjad.Note("c'4"),
+            ...     abjad.select(abjad.Note("e'4")),
+            ...     abjad.select(abjad.Note("d'4")),
+            ...     abjad.Note("e'8"),
+            ...     abjad.Note("f'8"),
             ...     ]
-            >>> container = Container(items)
+            >>> container = abjad.Container(items)
             >>> show(container) # doctest: +SKIP
 
         ..  docs::
@@ -121,7 +125,7 @@ class Container(Component):
         ::
 
             >>> import collections
-            >>> container = Container("c'4 e'4 d'4 e'8 f'8")
+            >>> container = abjad.Container("c'4 e'4 d'4 e'8 f'8")
             >>> isinstance(container, collections.Iterable)
             True
 
@@ -132,7 +136,7 @@ class Container(Component):
 
         ::
 
-            >>> container = Container("c'4 e'4 d'4 e'8 f'8")
+            >>> container = abjad.Container("c'4 e'4 d'4 e'8 f'8")
             >>> isinstance(container, collections.Sequence)
             False
 
@@ -186,11 +190,11 @@ class Container(Component):
 
             ::
 
-                >>> voice = Voice()
-                >>> voice.append(Tuplet((2, 3), "c'4 d'4 e'4"))
-                >>> voice.append(Tuplet((2, 3), "e'4 d'4 c'4"))
-                >>> leaves = iterate(voice).by_leaf()
-                >>> attach(Slur(), list(leaves))
+                >>> voice = abjad.Voice()
+                >>> voice.append(abjad.Tuplet((2, 3), "c'4 d'4 e'4"))
+                >>> voice.append(abjad.Tuplet((2, 3), "e'4 d'4 c'4"))
+                >>> leaves = abjad.iterate(voice).by_leaf()
+                >>> abjad.attach(abjad.Slur(), list(leaves))
                 >>> show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -231,7 +235,7 @@ class Container(Component):
 
             ::
 
-                >>> inspect(voice).is_well_formed()
+                >>> abjad.inspect(voice).is_well_formed()
                 True
 
             First tuplet is no longer slurred but is still well-formed:
@@ -251,7 +255,7 @@ class Container(Component):
 
             ::
 
-                >>> inspect(tuplet_1).is_well_formed()
+                >>> abjad.inspect(tuplet_1).is_well_formed()
                 True
 
         Withdraws component(s) from crossing spanners.
@@ -392,7 +396,7 @@ class Container(Component):
             ::
 
                 >>> import collections
-                >>> container = Container()
+                >>> container = abjad.Container()
                 >>> isinstance(container, collections.Iterable)
                 True
 
@@ -403,7 +407,7 @@ class Container(Component):
             ::
 
                 >>> import collections
-                >>> container = Container()
+                >>> container = abjad.Container()
                 >>> isinstance(container, collections.Sequence)
                 False
 
@@ -1166,7 +1170,7 @@ class Container(Component):
 
             ::
 
-                >>> container = Container("c'4 ( d'4 f'4 )")
+                >>> container = abjad.Container("c'4 ( d'4 f'4 )")
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1180,7 +1184,7 @@ class Container(Component):
 
             ::
 
-                >>> container.append(Note("e'4"))
+                >>> container.append(abjad.Note("e'4"))
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1206,7 +1210,7 @@ class Container(Component):
 
             ::
 
-                >>> container = Container("c'4 ( d'4 f'4 )")
+                >>> container = abjad.Container("c'4 ( d'4 f'4 )")
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1220,7 +1224,7 @@ class Container(Component):
 
             ::
 
-                >>> notes = [Note("e'32"), Note("d'32"), Note("e'16")]
+                >>> notes = [abjad.Note("e'32"), abjad.Note("d'32"), abjad.Note("e'16")]
                 >>> container.extend(notes)
                 >>> show(container) # doctest: +SKIP
 
@@ -1252,7 +1256,7 @@ class Container(Component):
 
             ::
 
-                >>> container = Container("c'4 d'4 f'4 e'4")
+                >>> container = abjad.Container("c'4 d'4 f'4 e'4")
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1295,12 +1299,12 @@ class Container(Component):
 
             ::
 
-                >>> container = Container([])
+                >>> container = abjad.Container([])
                 >>> container.extend("fs16 cs' e' a'")
                 >>> container.extend("cs''16 e'' cs'' a'")
                 >>> container.extend("fs'16 e' cs' fs")
-                >>> slur = spannertools.Slur(direction=Down)
-                >>> attach(slur, container[:])
+                >>> slur = abjad.Slur(direction=Down)
+                >>> abjad.attach(slur, container[:])
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1323,7 +1327,7 @@ class Container(Component):
 
             ::
 
-                >>> container.insert(-4, Note("e'4"), fracture_spanners=False)
+                >>> container.insert(-4, abjad.Note("e'4"), fracture_spanners=False)
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1351,12 +1355,12 @@ class Container(Component):
 
             ::
 
-                >>> container = Container([])
+                >>> container = abjad.Container([])
                 >>> container.extend("fs16 cs' e' a'")
                 >>> container.extend("cs''16 e'' cs'' a'")
                 >>> container.extend("fs'16 e' cs' fs")
-                >>> slur = spannertools.Slur(direction=Down)
-                >>> attach(slur, container[:])
+                >>> slur = abjad.Slur(direction=Down)
+                >>> abjad.attach(slur, container[:])
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1379,7 +1383,7 @@ class Container(Component):
 
             ::
 
-                >>> container.insert(-4, Note("e'4"), fracture_spanners=True)
+                >>> container.insert(-4, abjad.Note("e'4"), fracture_spanners=True)
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1431,7 +1435,7 @@ class Container(Component):
 
             ::
 
-                >>> container = Container("c'4 ( d'4 f'4 ) e'4")
+                >>> container = abjad.Container("c'4 ( d'4 f'4 ) e'4")
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1474,7 +1478,7 @@ class Container(Component):
 
             ::
 
-                >>> container = Container("c'4 ( d'4 f'4 ) e'4")
+                >>> container = abjad.Container("c'4 ( d'4 f'4 ) e'4")
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1521,7 +1525,7 @@ class Container(Component):
 
             ::
 
-                >>> staff = Staff("c'8 [ d'8 ] e'8 ( f'8 )")
+                >>> staff = abjad.Staff("c'8 [ d'8 ] e'8 ( f'8 )")
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1569,9 +1573,9 @@ class Container(Component):
 
             ::
 
-                >>> container = Container()
-                >>> container.append(Voice("c'8 d'8 e'8"))
-                >>> container.append(Voice('g4.'))
+                >>> container = abjad.Container()
+                >>> container.append(abjad.Voice("c'8 d'8 e'8"))
+                >>> container.append(abjad.Voice('g4.'))
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1599,9 +1603,9 @@ class Container(Component):
 
             ::
 
-                >>> container = Container()
-                >>> container.append(Voice("c'8 d'8 e'8"))
-                >>> container.append(Voice('g4.'))
+                >>> container = abjad.Container()
+                >>> container.append(abjad.Voice("c'8 d'8 e'8"))
+                >>> container.append(abjad.Voice('g4.'))
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1668,7 +1672,7 @@ class Container(Component):
 
             ::
 
-                >>> container = Container("c'4 d'4 e'4 f'4")
+                >>> container = abjad.Container("c'4 d'4 e'4 f'4")
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1692,7 +1696,10 @@ class Container(Component):
 
             ::
 
-                >>> container = Container("c'4 d'4 e'4 f'4", name='Special')
+                >>> container = abjad.Container(
+                ...     "c'4 d'4 e'4 f'4",
+                ...     name='Special',
+                ...     )
                 >>> show(container) # doctest: +SKIP
 
             ::

@@ -10,12 +10,16 @@ from abjad.tools.topleveltools import inspect
 class Note(Leaf):
     r'''Note.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> note = Note("cs''8.")
-            >>> measure = Measure((3, 16), [note])
+            >>> note = abjad.Note("cs''8.")
+            >>> measure = abjad.Measure((3, 16), [note])
             >>> show(measure) # doctest: +SKIP
 
         ..  docs::
@@ -184,7 +188,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note = Note(13, (3, 16))
+                >>> note = abjad.Note(13, (3, 16))
                 >>> note.note_head
                 NoteHead("cs''")
 
@@ -194,7 +198,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note = Note(13, (3, 16))
+                >>> note = abjad.Note(13, (3, 16))
                 >>> note.note_head = 14
                 >>> note
                 Note("d''8.")
@@ -224,7 +228,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note = Note("c'4")
+                >>> note = abjad.Note("c'4")
                 >>> note.written_duration
                 Duration(1, 4)
 
@@ -234,7 +238,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note.written_duration = Duration(1, 16)
+                >>> note.written_duration = abjad.Duration(1, 16)
                 >>> note.written_duration
                 Duration(1, 16)
 
@@ -256,7 +260,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note = Note(13, (3, 16))
+                >>> note = abjad.Note(13, (3, 16))
                 >>> note.written_pitch
                 NamedPitch("cs''")
 
@@ -266,7 +270,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note = Note(13, (3, 16))
+                >>> note = abjad.Note(13, (3, 16))
                 >>> note.written_pitch = 14
                 >>> note
                 Note("d''8.")

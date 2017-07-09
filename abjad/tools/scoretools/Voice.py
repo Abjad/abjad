@@ -5,11 +5,15 @@ from abjad.tools.scoretools.Context import Context
 class Voice(Context):
     r'''Voice.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
+            >>> voice = abjad.Voice("c'8 d'8 e'8 f'8")
             >>> show(voice) # doctest: +SKIP
 
         ..  docs::

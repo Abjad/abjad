@@ -11,11 +11,15 @@ def make_rests(
     ):
     r'''Make rests.
 
+    ::
+
+        >>> import abjad
+
     Make rests and drecrease durations monotonically:
 
     ::
 
-        >>> scoretools.make_rests(
+        >>> abjad.scoretools.make_rests(
         ...     [(5, 16), (9, 16)],
         ...     decrease_durations_monotonically=True,
         ...     )
@@ -25,7 +29,7 @@ def make_rests(
 
     ::
 
-        >>> scoretools.make_rests(
+        >>> abjad.scoretools.make_rests(
         ...     [(5, 16), (9, 16)],
         ...     decrease_durations_monotonically=False,
         ...     )
@@ -35,7 +39,7 @@ def make_rests(
 
     ::
 
-        >>> voice = Voice(scoretools.make_rests(
+        >>> voice = abjad.Voice(abjad.scoretools.make_rests(
         ...     [(5, 16), (9, 16)],
         ...     tie_parts=True,
         ...     ))

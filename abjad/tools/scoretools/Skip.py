@@ -6,11 +6,15 @@ from abjad.tools.scoretools.Leaf import Leaf
 class Skip(Leaf):
     r'''LilyPond skip.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> skip = scoretools.Skip((3, 16))
+            >>> skip = abjad.Skip((3, 16))
             >>> skip
             Skip('s8.')
 
