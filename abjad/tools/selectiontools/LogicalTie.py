@@ -59,7 +59,8 @@ class LogicalTie(Selection):
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
         import abjad
-        new_written_duration = durationtools.Duration(new_written_duration)
+        new_written_duration = abjad.Duration(new_written_duration)
+        maker = abjad.NoteMaker()
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration
             for leaf in self[1:]:
@@ -72,7 +73,7 @@ class LogicalTie(Selection):
                 spanner._sever_all_components()
             #detach(abjad.Tie, first)
         elif new_written_duration.has_power_of_two_denominator:
-            durations = abjad.scoretools.make_notes(0, [new_written_duration])
+            durations = maker(0, [new_written_duration])
             for leaf, token in zip(self, durations):
                 leaf.written_duration = token.written_duration
             if len(self) == len(durations):
@@ -102,7 +103,7 @@ class LogicalTie(Selection):
                         attach(tie, list(self))
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:
-            durations = abjad.scoretools.make_notes(0, new_written_duration)
+            durations = maker(0, new_written_duration)
             assert isinstance(durations[0], abjad.Tuplet)
             tuplet = durations[0]
             logical_tie = tuplet[0]._get_logical_tie()
@@ -323,19 +324,13 @@ class LogicalTie(Selection):
 
         Returns tuplet.
         '''
-        from abjad.tools import mathtools
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-
+        import abjad
         # coerce input
-        proportions = mathtools.Ratio(proportions)
-
+        proportions = abjad.Ratio(proportions)
         # find target duration of fixed-duration tuplet
         target_duration = self._get_preprolated_duration()
-
         # find duration of each note in tuplet
         prolated_duration = target_duration / sum(proportions.numbers)
-
         # find written duration of each note in tuplet
         if is_diminution:
             if dotted:
@@ -351,33 +346,27 @@ class LogicalTie(Selection):
             else:
                 basic_written_duration = \
                     prolated_duration.equal_or_lesser_power_of_two
-
         # find written duration of each note in tuplet
         written_durations = [
             _ * basic_written_duration for _ in proportions.numbers
             ]
-
         # make tuplet notes
+        maker = abjad.NoteMaker()
         try:
-            notes = [scoretools.Note(0, _) for _ in written_durations]
+            notes = [abjad.Note(0, _) for _ in written_durations]
         except AssignabilityError:
             denominator = target_duration._denominator
             note_durations = [
-                durationtools.Duration(_, denominator)
+                abjad.Duration(_, denominator)
                 for _ in proportions.numbers
                 ]
-            notes = scoretools.make_notes(0, note_durations)
-
+            notes = maker(0, note_durations)
         # make tuplet
-        tuplet = scoretools.Tuplet.from_duration(target_duration, notes)
-
+        tuplet = abjad.Tuplet.from_duration(target_duration, notes)
         # remove tie spanner from leaves
         for leaf in self:
-            for spanner in leaf._get_spanners(spannertools.Tie):
+            for spanner in leaf._get_spanners(abjad.Tie):
                 spanner._sever_all_components()
-
         # replace leaves with tuplet
-        mutate(self).replace(tuplet)
-
-        # return tuplet
+        abjad.mutate(self).replace(tuplet)
         return tuplet

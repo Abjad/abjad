@@ -766,8 +766,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         Returns selection of notes.
         '''
+        import abjad
         from abjad.tools import rhythmmakertools
-        total_duration = durationtools.Duration(total_duration)
+        total_duration = abjad.Duration(total_duration)
         interpolation_specifier = interpolation_specifiers[index]
         durations = AccelerandoRhythmMaker._interpolate_divide(
             total_duration=total_duration,
@@ -775,20 +776,21 @@ class AccelerandoRhythmMaker(RhythmMaker):
             stop_duration=interpolation_specifier.stop_duration,
             )
         if durations == 'too small':
-            notes = scoretools.make_notes([0], [total_duration])
-            tuplet = scoretools.Tuplet((1, 1), notes)
-            selection = selectiontools.Selection([tuplet])
+            maker = abjad.NoteMaker()
+            notes = maker([0], [total_duration])
+            tuplet = abjad.Tuplet((1, 1), notes)
+            selection = abjad.select([tuplet])
             return selection
         durations = class_._round_durations(durations, 2**10)
         notes = []
         for i, duration in enumerate(durations):
             written_duration = interpolation_specifier.written_duration
-            note = scoretools.Note(0, written_duration)
+            note = abjad.Note(0, written_duration)
             multiplier = duration / written_duration
-            multiplier = durationtools.Multiplier(multiplier)
+            multiplier = abjad.Multiplier(multiplier)
             attach(multiplier, note)
             notes.append(note)
-        selection = selectiontools.Selection(notes)
+        selection = abjad.select(notes)
         class_._fix_rounding_error(
             selection, 
             total_duration,
@@ -802,14 +804,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
             override(selection[0]).beam.grow_direction = Right
         elif class_._is_ritardando(selection):
             override(selection[0]).beam.grow_direction = Left
-        tuplet = scoretools.Tuplet((1, 1), selection)
+        tuplet = abjad.Tuplet((1, 1), selection)
         if tuplet_spelling_specifier.use_note_duration_bracket:
             tuplet.force_times_command = True
             duration = inspect(tuplet).get_duration()
             markup = duration.to_score_markup()
             markup = markup.scale((0.75, 0.75))
             override(tuplet).tuplet_number.text = markup
-        selection = selectiontools.Selection([tuplet])
+        selection = abjad.select([tuplet])
         return selection
 
     def _make_music(self, divisions, rotation):

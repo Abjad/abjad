@@ -499,7 +499,7 @@ class TaleaRhythmMaker(RhythmMaker):
         leaf_lists = []
         specifier = self._get_duration_spelling_specifier()
         for map_division in numeric_map:
-            leaf_list = scoretools.make_leaves_from_talea(
+            leaf_list = self._make_leaves_from_talea(
                 map_division,
                 talea_denominator,
                 decrease_durations_monotonically=\
@@ -511,7 +511,57 @@ class TaleaRhythmMaker(RhythmMaker):
             leaf_lists.append(leaf_list)
         return leaf_lists
 
+    @staticmethod
+    def _make_leaves_from_talea(
+        talea,
+        talea_denominator,
+        decrease_durations_monotonically=True,
+        forbidden_written_duration=None,
+        spell_metrically=None,
+        use_messiaen_style_ties=False,
+        ):
+        import abjad
+        assert all(x != 0 for x in talea), repr(talea)
+        result = []
+        leaf_maker = abjad.LeafMaker(
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
+            use_messiaen_style_ties=use_messiaen_style_ties,
+            )
+        for note_value in talea:
+            if 0 < note_value:
+                pitches = [0]
+            else:
+                pitches = [None]
+            division = abjad.Duration(
+                abs(note_value),
+                talea_denominator,
+                )
+            if (spell_metrically is True or
+                (spell_metrically == 'unassignable' and
+                not abjad.mathtools.is_assignable_integer(
+                    division.numerator))):
+                meter = abjad.Meter(division)
+                rhythm_tree_container = meter.root_node
+                durations = [_.duration for _ in rhythm_tree_container]
+            else:
+                durations = [division]
+            leaves = leaf_maker(pitches, durations)
+            if (
+                1 < len(leaves) and
+                not leaves[0]._has_spanner(abjad.Tie) and
+                not isinstance(leaves[0], abjad.Rest)
+                ):
+                tie = abjad.Tie(
+                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    )
+                attach(tie, leaves[:])
+            result.extend(leaves)
+        result = abjad.Selection(result)
+        return result
+    
     def _make_music(self, divisions, rotation):
+        import abjad
         input_divisions = divisions[:]
         input_ = self._rotate_input(
             helper_functions=self.helper_functions,
@@ -536,6 +586,7 @@ class TaleaRhythmMaker(RhythmMaker):
             divisions,
             split_divisions_by_counts,
             )
+        leaf_maker = abjad.LeafMaker()
         if talea:
             numeric_map = self._make_numeric_map(
                 secondary_divisions,
@@ -552,7 +603,7 @@ class TaleaRhythmMaker(RhythmMaker):
         else:
             selections = []
             for division in secondary_divisions:
-                selection = scoretools.make_leaves([0], [division])
+                selection = leaf_maker([0], [division])
                 selections.append(selection)
         beam_specifier = self._get_beam_specifier()
         beam_specifier(selections)

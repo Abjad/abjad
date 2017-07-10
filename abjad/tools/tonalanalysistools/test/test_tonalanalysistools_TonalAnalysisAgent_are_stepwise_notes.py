@@ -57,6 +57,7 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_stepwise_notes_05():
     r'''Contour changes in note sequence qualifies as tepwise.
     '''
 
-    notes = scoretools.make_notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
+    maker = abjad.NoteMaker()
+    notes = maker([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
     selection = abjad.analyze(notes)
     assert selection.are_stepwise_notes()

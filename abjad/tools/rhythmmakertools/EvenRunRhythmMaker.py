@@ -141,6 +141,7 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_container(self, division):
+        import abjad
         duration_spelling_specifier = self._get_duration_spelling_specifier()
         forbidden_written_duration = \
             duration_spelling_specifier.forbidden_written_duration
@@ -160,7 +161,8 @@ class EvenRunRhythmMaker(RhythmMaker):
                 multiplier *= 2
             numerator *= multiplier
         numerator *= denominator_multiplier
-        notes = scoretools.make_notes(numerator * [0], [unit_duration])
+        maker = abjad.NoteMaker()
+        notes = maker(numerator * [0], [unit_duration])
         if implied_prolation == 1:
             result = scoretools.Container(notes)
         else:

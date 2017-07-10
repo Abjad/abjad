@@ -375,10 +375,8 @@ def make_lilypond_file(
             duration = sum([_.get_duration() for _ in selections])
             divisions = [duration]
         time_signatures = time_signatures or divisions
-        measures = abjad.scoretools.make_spacer_skip_measures(
-            time_signatures,
-            implicit_scaling=implicit_scaling,
-            )
+        maker = abjad.MeasureMaker(implicit_scaling=implicit_scaling)
+        measures = maker(time_signatures)
         if pitched_staff:
             staff = abjad.Staff(measures)
         else:
@@ -423,10 +421,8 @@ def make_lilypond_file(
     assert isinstance(divisions, collections.Sequence), repr(divisions)
     time_signatures = time_signatures or divisions
     context = abjad.scoretools.Context(context_name='TimeSignatureContext')
-    measures = abjad.scoretools.make_spacer_skip_measures(
-        time_signatures,
-        implicit_scaling=implicit_scaling,
-        )
+    maker = abjad.MeasureMaker(implicit_scaling=implicit_scaling)
+    measures = maker(time_signatures)
     context.extend(measures)
     score.insert(0, context)
     return lilypond_file

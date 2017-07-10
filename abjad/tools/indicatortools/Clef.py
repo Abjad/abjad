@@ -5,6 +5,10 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Clef(AbjadValueObject):
     r'''Clef.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         At the beginning of a staff:
@@ -238,8 +242,9 @@ class Clef(AbjadValueObject):
 
             ::
 
+                >>> maker = abjad.NoteMaker()
                 >>> numbers = list(range(-12, -6))
-                >>> notes = scoretools.make_notes(numbers, [Duration(1, 4)])
+                >>> notes = maker(numbers, [Duration(1, 4)])
                 >>> staff = Staff(notes)
                 >>> Clef.from_selection(staff)
                 Clef(name='bass')

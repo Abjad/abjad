@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 
@@ -240,10 +241,11 @@ def test_scoretools_Container_extend_10():
     r'''Selections are stripped out.
     '''
 
-    selection_1 = scoretools.make_notes([0, 2], [Duration(1, 4)])
-    selection_2 = scoretools.make_notes([4, 5], [Duration(1, 4)])
-    selection_3 = scoretools.make_notes([7, 9], [Duration(1, 4)])
-    selection_4 = scoretools.make_notes([11, 12], [Duration(1, 4)])
+    maker = abjad.NoteMaker()
+    selection_1 = maker([0, 2], [Duration(1, 4)])
+    selection_2 = maker([4, 5], [Duration(1, 4)])
+    selection_3 = maker([7, 9], [Duration(1, 4)])
+    selection_4 = maker([11, 12], [Duration(1, 4)])
     selections = [selection_1, selection_2, selection_3, selection_4]
     container = Container()
     container.extend(selections)

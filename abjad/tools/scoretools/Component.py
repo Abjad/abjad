@@ -501,16 +501,40 @@ class Component(AbjadObject):
             return tuple(x for x in markup if x.direction == Down)
         return markup
 
+    def _get_next_measure(self):
+        import abjad
+        if isinstance(self, abjad.Leaf):
+            for parent in self._get_parentage(include_self=False):
+                if isinstance(parent, abjad.Measure):
+                    return parent
+            raise MissingMeasureError
+        elif isinstance(self, abjad.Measure):
+            return self._get_in_my_logical_voice(1, prototype=abjad.Measure)
+        elif isinstance(self, abjad.Container):
+            contents = self._get_descendants_starting_with()
+            contents = [x for x in contents if isinstance(x, abjad.Measure)]
+            if contents:
+                return contents[0]
+            raise MissingMeasureError
+        elif isinstance(self, (list, tuple)):
+            measure_generator = abjad.iterate(self).by_class(abjad.Measure)
+            try:
+                measure = next(measure_generator)
+                return measure
+            except StopIteration:
+                raise MissingMeasureError
+        else:
+            message = 'unknown component: {!r}.'
+            raise TypeError(message.format(self))
+
     def _get_nth_component_in_time_order_from(self, n):
         assert mathtools.is_integer_equivalent(n)
-
         def next(component):
             if component is not None:
                 for parent in component._get_parentage(include_self=True):
                     next_sibling = parent._get_sibling(1)
                     if next_sibling is not None:
                         return next_sibling
-
         def previous(component):
             if component is not None:
                 for parent in component._get_parentage(include_self=True):
@@ -532,6 +556,35 @@ class Component(AbjadObject):
             include_self=include_self,
             with_grace_notes=with_grace_notes,
             )
+
+    def _get_previous_measure(self):
+        import abjad
+        if isinstance(self, abjad.Leaf):
+            for parent in self._get_parentage(include_self=False):
+                if isinstance(parent, abjad.Measure):
+                    return parent
+            raise MissingMeasureError
+        elif isinstance(self, abjad.Measure):
+            return self._get_in_my_logical_voice(-1, prototype=abjad.Measure)
+        elif isinstance(self, abjad.Container):
+            contents = self._get_descendants_stopping_with()
+            contents = [x for x in contents if isinstance(x, abjad.Measure)]
+            if contents:
+                return contents[0]
+            raise MissingMeasureError
+        elif isinstance(self, (list, tuple)):
+            measure_generator = abjad.iterate(self).by_class(
+                abjad.Measure,
+                reverse=True,
+                )
+            try:
+                measure = next(measure_generator)
+                return measure
+            except StopIteration:
+                raise MissingMeasureError
+        else:
+            message = 'unknown component: {!r}.'
+            raise TypeError(message.format(component))
 
     def _get_sibling(self, n):
         if n == 0:

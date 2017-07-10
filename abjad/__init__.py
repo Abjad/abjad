@@ -75,12 +75,14 @@ from abjad.tools.scoretools import Context
 from abjad.tools.scoretools import DrumNoteHead
 from abjad.tools.scoretools import GraceContainer
 from abjad.tools.scoretools import Leaf
+from abjad.tools.scoretools import LeafMaker
 from abjad.tools.scoretools import Measure
-from abjad.tools.scoretools import Measure
+from abjad.tools.scoretools import MeasureMaker
 from abjad.tools.scoretools import MultimeasureRest
 from abjad.tools.scoretools import Note
 from abjad.tools.scoretools import NoteHead
 from abjad.tools.scoretools import NoteHeadList
+from abjad.tools.scoretools import NoteMaker
 from abjad.tools.scoretools import Rest
 from abjad.tools.scoretools import Score
 from abjad.tools.scoretools import Skip

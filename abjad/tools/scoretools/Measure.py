@@ -413,18 +413,18 @@ class Measure(Container):
     # TODO: see if self._scale can be combined with
     #       with self.scale_and_adjust_time_signature()
     def _scale(self, multiplier=None):
-        from abjad.tools import indicatortools
+        import abjad
         if multiplier is None:
             return
-        multiplier = durationtools.Multiplier(multiplier)
+        multiplier = abjad.Multiplier(multiplier)
         old_time_signature = self.time_signature
-        if (mathtools.is_nonnegative_integer_power_of_two(multiplier) and
+        if (abjad.mathtools.is_nonnegative_integer_power_of_two(multiplier) and
             1 <= multiplier):
             old_numerator = old_time_signature.numerator
             old_denominator = old_time_signature.denominator
             new_denominator = old_denominator // multiplier.numerator
             pair = (old_numerator, new_denominator)
-            new_time_signature = indicatortools.TimeSignature(pair)
+            new_time_signature = abjad.TimeSignature(pair)
         else:
             old_denominator = old_time_signature.denominator
             old_duration = old_time_signature.duration
@@ -435,13 +435,33 @@ class Measure(Container):
                     [old_denominator],
                     multiplier.denominator,
                     )
-        detach(indicatortools.TimeSignature, self)
-        attach(new_time_signature, self)
+        abjad.detach(abjad.TimeSignature, self)
+        abjad.attach(new_time_signature, self)
         contents_multiplier_denominator = \
-            mathtools.greatest_power_of_two_less_equal(multiplier.denominator)
+            abjad.mathtools.greatest_power_of_two_less_equal(
+                multiplier.denominator)
         pair = (multiplier.numerator, contents_multiplier_denominator)
-        contents_multiplier = durationtools.Multiplier(*pair)
+        contents_multiplier = abjad.Multiplier(*pair)
         self._scale_contents(contents_multiplier)
+
+    def _scale_denominator(self, factor):
+        import abjad
+        # save old time signature duration
+        old_time_signature_duration = self.time_signature.duration
+        # find new time signature
+        new_time_signature = \
+            self._duration_and_possible_denominators_to_time_signature(
+            old_time_signature_duration,
+            factor=factor,
+            )
+        # scale contents of measures in argument
+        multiplier = new_time_signature.implied_prolation.reciprocal
+        self._scale(multiplier)
+        # assign new time signature
+        abjad.detach(abjad.TimeSignature, self)
+        abjad.attach(new_time_signature, self)
+        if new_time_signature.has_non_power_of_two_denominator:
+            self.implicit_scaling = True
 
     ### PUBLIC PROPERTIES ###
 
@@ -820,16 +840,17 @@ class Measure(Container):
 
         Returns selections.
         '''
-        from abjad.tools import scoretools
+        import abjad
         assert len(selections)
         if not time_signatures:
             time_signatures = [_.get_duration() for _ in selections]
         assert len(selections) == len(time_signatures)
-        assert [_.get_duration() for _ in selections] == \
-            [durationtools.Duration(_) for _ in time_signatures]
-        measures = scoretools.make_spacer_skip_measures(time_signatures)
-        temporary_voice = scoretools.Voice(measures)
-        mutate(temporary_voice).replace_measure_contents(selections)
+        durations = [_.get_duration() for _ in selections]
+        assert durations == [abjad.Duration(_) for _ in time_signatures]
+        maker = abjad.MeasureMaker()
+        measures = maker(time_signatures)
+        temporary_voice = abjad.Voice(measures)
+        abjad.mutate(temporary_voice).replace_measure_contents(selections)
         temporary_voice[:] = []
         return measures
 

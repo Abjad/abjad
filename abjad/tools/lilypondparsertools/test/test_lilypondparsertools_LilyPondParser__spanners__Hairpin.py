@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
@@ -6,7 +7,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_01():
 
-    target = Staff(scoretools.make_notes([0] * 5, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Staff(maker([0] * 5, [(1, 4)]))
     hairpin = Hairpin(descriptor='<')
     attach(hairpin, target[:3])
     hairpin = Hairpin(descriptor='>')
@@ -33,7 +35,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_01():
 
 def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_02():
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     hairpin = Hairpin(descriptor='<')
     attach(hairpin, target[0:2])
     hairpin = Hairpin(descriptor='<')
@@ -62,7 +65,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_03():
     r'''Dynamics can terminate hairpins.
     '''
 
-    target = Staff(scoretools.make_notes([0] * 3, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Staff(maker([0] * 3, [(1, 4)]))
     hairpin = Hairpin(descriptor='<')
     attach(hairpin, target[0:2])
     hairpin = Hairpin(descriptor='>')
@@ -116,7 +120,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_07():
     r'''With direction.
     '''
 
-    target = Staff(scoretools.make_notes([0] * 5, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Staff(maker([0] * 5, [(1, 4)]))
     hairpin = Hairpin(descriptor='<', direction=Up)
     attach(hairpin, target[:3])
     hairpin = Hairpin(descriptor='>', direction=Down)

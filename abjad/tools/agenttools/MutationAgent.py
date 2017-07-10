@@ -10,6 +10,7 @@ class MutationAgent(abctools.AbjadObject):
 
     ::
 
+        >>> import abjad
         >>> import pytest
 
     ..  container:: example
@@ -437,7 +438,8 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> notes = scoretools.make_notes(
+                >>> maker = abjad.NoteMaker()
+                >>> notes = maker(
                 ...     "c' d' e' f' c' d' e' f'",
                 ...     Duration(1, 16),
                 ...     )
@@ -492,8 +494,8 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> pairs = [(1, 8), (3, 16)]
-                >>> measures = scoretools.make_spacer_skip_measures(pairs)
+                >>> maker = abjad.MeasureMaker()
+                >>> measures = maker([(1, 8), (3, 16)])
                 >>> staff = Staff(measures)
                 >>> show(staff) # doctest: +SKIP
 
@@ -545,15 +547,11 @@ class MutationAgent(abctools.AbjadObject):
 
         Returns measures iterated.
         '''
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools.topleveltools import attach
-        from abjad.tools.topleveltools import detach
+        import abjad
         # init return list
         result = []
         # get first measure and first time signature
-        current_measure = scoretools.get_next_measure_from_component(
-            self._client)
+        current_measure = self._client._get_next_measure()
         result.append(current_measure)
         current_time_signature = current_measure.time_signature
         # to avoide pychecker slice assignment error
@@ -575,13 +573,13 @@ class MutationAgent(abctools.AbjadObject):
                     current_element)
             # otherwise restore current measure and advance to next measure
             else:
-                current_time_signature = \
-                    indicatortools.TimeSignature(current_time_signature)
-                detach(indicatortools.TimeSignature, current_measure)
-                attach(current_time_signature, current_measure)
+                current_time_signature = abjad.TimeSignature(
+                    current_time_signature
+                    )
+                abjad.detach(abjad.TimeSignature, current_measure)
+                abjad.attach(current_time_signature, current_measure)
                 current_measure._append_spacer_skip()
-                current_measure = scoretools.get_next_measure_from_component(
-                    current_measure)
+                current_measure = current_measure._get_next_measure()
                 if current_measure is None:
                     raise StopIteration
                 result.append(current_measure)
@@ -590,10 +588,11 @@ class MutationAgent(abctools.AbjadObject):
                 #del(current_measure[:])
                 current_measure.__delitem__(slice(0, len(current_measure)))
         # restore last iterated measure
-        current_time_signature = \
-            indicatortools.TimeSignature(current_time_signature)
-        detach(indicatortools.TimeSignature, current_measure)
-        attach(current_time_signature, current_measure)
+        current_time_signature = abjad.TimeSignature(
+            current_time_signature
+            )
+        abjad.detach(abjad.TimeSignature, current_measure)
+        abjad.attach(current_time_signature, current_measure)
         current_measure._append_spacer_skip()
         # return iterated measures
         return result
@@ -2782,7 +2781,8 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> notes = scoretools.make_notes([0, 2, 4], [Duration(1, 8)])
+                >>> maker = abjad.NoteMaker()
+                >>> notes = maker([0, 2, 4], [Duration(1, 8)])
                 >>> tuplet = Tuplet((2, 3), [])
                 >>> mutate(notes).wrap(tuplet)
                 >>> show(tuplet) # doctest: +SKIP

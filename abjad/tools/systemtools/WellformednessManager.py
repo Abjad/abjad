@@ -5,6 +5,10 @@ from abjad.tools.abctools import AbjadObject
 class WellformednessManager(AbjadObject):
     r'''Wellformedness manager.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
@@ -123,7 +127,8 @@ class WellformednessManager(AbjadObject):
 
                 >>> staff = Staff()
                 >>> attach(Clef('bass'), staff)
-                >>> leaves = scoretools.make_leaves([0, 2, 4, 5], [(1, 4)])
+                >>> maker = abjad.LeafMaker()
+                >>> leaves = maker([0, 2, 4, 5], [(1, 4)])
                 >>> attach(Clef('treble'), leaves[0])
                 >>> staff.extend(leaves)
 

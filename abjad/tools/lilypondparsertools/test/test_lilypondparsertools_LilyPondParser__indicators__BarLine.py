@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
@@ -6,7 +7,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__indicators__BarLine_01():
 
-    target = Staff(scoretools.make_notes(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)]))
+    maker = abjad.NoteMaker()
+    target = Staff(maker(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)]))
     bar_line = indicatortools.BarLine('|.')
     attach(bar_line, target[-1])
 

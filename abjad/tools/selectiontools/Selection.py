@@ -15,6 +15,10 @@ from abjad.tools.topleveltools import select
 class Selection(object):
     r'''A selection of components.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
@@ -1368,7 +1372,38 @@ class Selection(object):
         return selectiontools.VerticalMoment(self, offset)
 
     def group_by(self, predicate):
-        '''Groups components in contiguous selection by `predicate`.
+        r'''Groups components in contiguous selection by `predicate`.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker = abjad.LeafMaker()
+                >>> leaves = maker([0, 2, 4, None, None, 5, 7], [(1, 8)])
+                >>> staff = Staff(leaves)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    r8
+                    r8
+                    f'8
+                    g'8
+                }
+
+            ::
+
+                >>> for group in leaves.group_by(type):
+                ...     group
+                ...
+                (Note("c'8"), Note("d'8"), Note("e'8"))
+                (Rest('r8'), Rest('r8'))
+                (Note("f'8"), Note("g'8"))
 
         Returns list of tuples.
         '''

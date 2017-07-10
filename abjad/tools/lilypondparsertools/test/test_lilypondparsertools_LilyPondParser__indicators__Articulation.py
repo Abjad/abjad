@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
@@ -6,7 +7,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__indicators__Articulation_01():
 
-    target = Staff(scoretools.make_notes(["c''"], [(1, 4)] * 6 + [(1, 2)]))
+    maker = abjad.NoteMaker()
+    target = Staff(maker(["c''"], [(1, 4)] * 6 + [(1, 2)]))
     articulation = Articulation('marcato', Up)
     attach(articulation, target[0])
     articulation = Articulation('stopped', Down)
@@ -82,9 +84,11 @@ def test_lilypondparsertools_LilyPondParser__indicators__Articulation_02():
 
 def test_lilypondparsertools_LilyPondParser__indicators__Articulation_03():
 
-    target = Container(scoretools.make_notes(
+    maker = abjad.NoteMaker()
+    target = Container(maker(
         ["c''", "c''", "b'", "c''"],
-        [(1, 4), (1, 4), (1, 2), (1, 1)]))
+        [(1, 4), (1, 4), (1, 2), (1, 1)]
+        ))
 
     articulation = Articulation('staccato')
     attach(articulation, target[0])

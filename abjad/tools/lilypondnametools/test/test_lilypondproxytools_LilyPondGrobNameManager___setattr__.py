@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 
@@ -864,12 +865,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___38():
     r'''Override LilyPond SpanBar grob.
     '''
 
-    score, treble, bass = scoretools.make_empty_piano_score()
+    score, treble, bass = abjad.Score.make_piano_score()
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     treble.extend(notes)
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     bass.extend(notes)
     override(score).span_bar.color = 'red'
+    abjad.attach(abjad.Clef('treble'), treble[0])
+    abjad.attach(abjad.Clef('bass'), bass[0])
 
     assert format(score) == String.normalize(
         r'''
@@ -877,14 +880,14 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___38():
             \override SpanBar.color = #red
         } <<
             \new PianoStaff <<
-                \context Staff = "treble" {
+                \context Staff = "Treble Staff" {
                     \clef "treble"
                     c'8
                     d'8
                     e'8
                     f'8
                 }
-                \context Staff = "bass" {
+                \context Staff = "Bass Staff" {
                     \clef "bass"
                     c'8
                     d'8

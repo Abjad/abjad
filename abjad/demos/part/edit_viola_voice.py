@@ -31,10 +31,8 @@ def edit_viola_voice(score, durated_reservoir):
     voice.append(bridge)
 
     final_sustain_rhythm = [(6, 4)] * 21 + [(1, 2)]
-    final_sustain_notes = abjad.scoretools.make_notes(
-        ['e'],
-        final_sustain_rhythm,
-        )
+    maker = abjad.NoteMaker()
+    final_sustain_notes = maker(['e'], final_sustain_rhythm)
     articulation = abjad.Articulation('accent')
     abjad.attach(articulation, final_sustain_notes[0])
     articulation = abjad.Articulation('tenuto')

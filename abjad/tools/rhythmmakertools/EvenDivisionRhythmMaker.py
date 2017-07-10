@@ -447,8 +447,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             extra_count = extra_counts_per_division[i]
             basic_duration = abjad.Duration(1, denominator)
             unprolated_note_count = None
+            maker = abjad.NoteMaker()
             if division < 2 * basic_duration:
-                notes = abjad.scoretools.make_notes([0], [division])
+                notes = maker([0], [division])
             else:
                 unprolated_note_count = division / basic_duration
                 unprolated_note_count = int(unprolated_note_count)
@@ -462,7 +463,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     extra_count *= -1
                 note_count = unprolated_note_count + extra_count
                 durations = note_count * [basic_duration]
-                notes = abjad.scoretools.make_notes([0], durations)
+                notes = maker([0], durations)
                 assert all(
                     _.written_duration.denominator == denominator
                     for _ in notes

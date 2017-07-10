@@ -108,7 +108,8 @@ class TimeSignatureList(TypedList):
         Returns LilyPond file.
         '''
         import abjad
-        measures = abjad.scoretools.make_spacer_skip_measures(self)
+        maker = abjad.MeasureMaker()
+        measures = maker(self)
         staff = abjad.Staff(measures)
         staff.context_name = 'RhythmicStaff'
         score = abjad.Score([staff])

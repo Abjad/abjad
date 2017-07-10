@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
@@ -8,7 +9,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_01():
     r'''Successful text spanners, showing single leaf overlap.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, target[2:])
     text_spanner = spannertools.TextSpanner()
@@ -34,7 +36,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_02():
     r'''Swapped start and stop.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, target[2:])
     text_spanner = spannertools.TextSpanner()

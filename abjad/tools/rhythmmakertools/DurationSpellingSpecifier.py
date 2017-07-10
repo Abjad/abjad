@@ -96,19 +96,19 @@ class DurationSpellingSpecifier(AbjadValueObject):
         rewrite_tuplets=False,
         use_messiaen_style_ties=False,
         ):
-        from abjad.tools import metertools
-        from abjad.tools import scoretools
+        import abjad
         from abjad.tools.topleveltools import mutate
-        meters = [metertools.Meter(_) for _ in meters]
-        durations = [durationtools.Duration(_) for _ in meters]
+        meters = [abjad.Meter(_) for _ in meters]
+        durations = [abjad.Duration(_) for _ in meters]
         reference_meters = reference_meters or ()
         selections = DurationSpellingSpecifier._split_at_measure_boundaries(
             selections,
             meters,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
-        measures = scoretools.make_spacer_skip_measures(durations)
-        staff = scoretools.Staff(measures)
+        maker = abjad.MeasureMaker()
+        measures = maker(durations)
+        staff = abjad.Staff(measures)
         mutate(staff).replace_measure_contents(selections)
         for measure, meter in zip(staff, meters):
             for reference_meter in reference_meters:

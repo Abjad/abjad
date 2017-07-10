@@ -185,10 +185,11 @@ class Scale(PitchClassSegment):
 
         Returns list of notes.
         '''
+        import abjad
         written_duration = written_duration or durationtools.Duration(1, 8)
-        result = scoretools.make_notes(n * [0], [written_duration])
-        self._set_ascending_named_diatonic_pitches_on_logical_ties(
-            result)
+        maker = abjad.NoteMaker()
+        result = maker(n * [0], [written_duration])
+        self._set_ascending_named_diatonic_pitches_on_logical_ties(result)
         return result
 
     def make_score(self):

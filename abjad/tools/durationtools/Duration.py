@@ -1302,8 +1302,9 @@ class Duration(AbjadObject, Fraction):
 
         Returns markup.
         '''
-        from abjad.tools import scoretools
-        notes = scoretools.make_leaves([0], [self])
+        import abjad
+        maker = abjad.LeafMaker()
+        notes = maker([0], [self])
         markup = self._to_score_markup(notes)
         return markup
 

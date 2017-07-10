@@ -105,6 +105,7 @@ class RhythmMaker(AbjadValueObject):
             return False
 
     def _apply_division_masks(self, selections, rotation=None):
+        import abjad
         from abjad.tools import rhythmmakertools
         if not self.division_masks:
             return selections
@@ -117,6 +118,11 @@ class RhythmMaker(AbjadValueObject):
         tie_specifier = self._get_tie_specifier()
         length = len(selections)
         division_masks = self.division_masks
+        leaf_maker = abjad.LeafMaker(
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
+            use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
+            )
         for i, selection in enumerate(selections):
             matching_division_mask = division_masks.get_matching_pattern(
                 i,
@@ -131,29 +137,22 @@ class RhythmMaker(AbjadValueObject):
                 matching_division_mask,
                 rhythmmakertools.SustainMask,
                 ):
-                new_selection = scoretools.make_leaves(
-                    [0],
-                    [duration],
-                    decrease_durations_monotonically=\
-                        decrease_durations_monotonically,
-                    forbidden_written_duration=forbidden_written_duration,
-                    use_messiaen_style_ties=\
-                        tie_specifier.use_messiaen_style_ties,
+                leaf_maker = abjad.new(
+                    leaf_maker,
+                    use_multimeasure_rests=False,
                     )
+                new_selection = leaf_maker([0], [duration])
             else:
                 use_multimeasure_rests = getattr(
                     matching_division_mask,
                     'use_multimeasure_rests',
                     False,
                     )
-                new_selection = scoretools.make_leaves(
-                    [None],
-                    [duration],
-                    decrease_durations_monotonically=\
-                        decrease_durations_monotonically,
-                    forbidden_written_duration=forbidden_written_duration,
+                leaf_maker = abjad.new(
+                    leaf_maker,
                     use_multimeasure_rests=use_multimeasure_rests,
                     )
+                new_selection = leaf_maker([None], [duration])
             for component in iterate(selection).by_class():
                 detach(spannertools.Tie, component)
             new_selections.append(new_selection)
@@ -386,22 +385,24 @@ class RhythmMaker(AbjadValueObject):
             return tuple(reversed(argument))
 
     def _rewrite_rest_filled_tuplets(self, selections):
+        import abjad
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         if not tuplet_spelling_specifier.rewrite_rest_filled_tuplets:
             return selections
         new_selections = []
+        maker = abjad.LeafMaker()
         for selection in selections:
             new_selection = []
             for component in selection:
-                if not (isinstance(component, scoretools.Tuplet) and
+                if not (isinstance(component, abjad.Tuplet) and
                     component._is_rest_filled):
                     new_selection.append(component)
                     continue
                 duration = inspect(component).get_duration()
-                new_rests = scoretools.make_rests([duration])
+                new_rests = maker([None], [duration])
                 mutate(component[:]).replace(new_rests)
                 new_selection.append(component)
-            new_selection = selectiontools.Selection(new_selection)
+            new_selection = abjad.select(new_selection)
             new_selections.append(new_selection)
         return new_selections
 

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
@@ -6,7 +7,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_01():
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     bracket = spannertools.HorizontalBracketSpanner()
     attach(bracket, target[:])
     bracket = spannertools.HorizontalBracketSpanner()

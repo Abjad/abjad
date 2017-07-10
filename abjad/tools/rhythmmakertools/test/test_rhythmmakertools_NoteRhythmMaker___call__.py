@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -10,7 +11,8 @@ def test_rhythmmakertools_NoteRhythmMaker___call___01():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -44,7 +46,8 @@ def test_rhythmmakertools_NoteRhythmMaker___call___02():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 

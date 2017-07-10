@@ -840,29 +840,30 @@ class Meter(AbjadObject):
 
         Use for testing meter establishment.
         '''
-        from abjad.tools import scoretools
+        import abjad
         # check input
-        assert mathtools.is_positive_integer(grid_length)
+        assert abjad.mathtools.is_positive_integer(grid_length)
         assert isinstance(rhythm_number, int)
-        assert mathtools.is_positive_integer_power_of_two(denominator)
+        assert abjad.mathtools.is_positive_integer_power_of_two(denominator)
         # find count of all rhythms that fit grid length
         rhythm_count = 2 ** (grid_length - 1)
         # read rhythm number cyclically to allow large and
         # negative rhythm numbers
         rhythm_number = rhythm_number % rhythm_count
         # find binary representation of rhythm
-        binary_representation = mathtools.integer_to_binary_string(
+        binary_representation = abjad.mathtools.integer_to_binary_string(
             rhythm_number)
         binary_representation = binary_representation.zfill(grid_length)
         # partition binary representation of rhythm
-        parts = sequencetools.Sequence(binary_representation).group_by()
+        parts = abjad.Sequence(binary_representation).group_by()
         # find durations
         durations = [
-            durationtools.Duration(len(part), denominator)
+            abjad.Duration(len(part), denominator)
             for part in parts
             ]
         # make notes
-        notes = scoretools.make_notes([0], durations)
+        maker = abjad.NoteMaker()
+        notes = maker([0], durations)
         # return notes
         return notes
 

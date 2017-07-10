@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
@@ -6,7 +7,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__spanners__Beam_01():
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     beam = Beam()
     attach(beam, target[0:3])
     beam = Beam()
@@ -32,7 +34,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_02():
     r'''With start and stop reversed.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     beam = Beam()
     attach(beam, target[0:3])
     beam = Beam()
@@ -57,7 +60,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_02():
 
 def test_lilypondparsertools_LilyPondParser__spanners__Beam_03():
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     beam = Beam()
     attach(beam, target[:])
     beam = Beam()
@@ -79,7 +83,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_03():
 
 def test_lilypondparsertools_LilyPondParser__spanners__Beam_04():
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     beam = Beam()
     attach(beam, target[:3])
     beam = Beam()
@@ -116,7 +121,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_07():
     r'''With direction.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     beam = Beam(direction=Up)
     attach(beam, target[0:3])
     beam = Beam(direction=Down)

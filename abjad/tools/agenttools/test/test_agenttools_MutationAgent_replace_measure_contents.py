@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 
@@ -8,7 +9,8 @@ def test_agenttools_MutationAgent_replace_measure_contents_01():
     Note spacer skip at end of second measure.
     '''
 
-    measures = scoretools.make_spacer_skip_measures([(1, 8), (3, 16)])
+    maker = abjad.MeasureMaker()
+    measures = maker([(1, 8), (3, 16)])
     staff = Staff(measures)
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16")]
     mutate(staff).replace_measure_contents(notes)
@@ -40,7 +42,8 @@ def test_agenttools_MutationAgent_replace_measure_contents_02():
     '''
 
     time_signatures = [(1, 16), (3, 16), (1, 16), (3, 16)]
-    measures = scoretools.make_spacer_skip_measures(time_signatures)
+    maker = abjad.MeasureMaker()
+    measures = maker(time_signatures)
     staff = Staff(measures)
     notes = [Note("c'8"), Note("d'8")]
     mutate(staff).replace_measure_contents(notes)
@@ -88,7 +91,8 @@ def test_agenttools_MutationAgent_replace_measure_contents_04():
     r'''Raise StopIteration when not enough measures.
     '''
 
-    measures = scoretools.make_spacer_skip_measures([(1, 8), (1, 8)])
+    maker = abjad.MeasureMaker()
+    measures = maker([(1, 8), (1, 8)])
     staff = Staff(measures)
     notes = [Note("c'16"), Note("d'16"), Note("e'16"),
         Note("f'16"), Note("g'16"), Note("a'16")]
@@ -100,7 +104,8 @@ def test_agenttools_MutationAgent_replace_measure_contents_05():
     r'''Populate measures even when not enough total measures.
     '''
 
-    measures = scoretools.make_spacer_skip_measures([(1, 8), (1, 8)])
+    maker = abjad.MeasureMaker()
+    measures = maker([(1, 8), (1, 8)])
     staff = Staff(measures)
     notes = [Note("c'16"), Note("d'16"), Note("e'16"),
         Note("f'16"), Note("g'16"), Note("a'16")]
@@ -137,7 +142,8 @@ def test_agenttools_MutationAgent_replace_measure_contents_06():
     durations = [(5, 16), (3, 16)]
     leaf_lists = maker(durations)
     leaves = Sequence(leaf_lists).flatten()
-    measures = scoretools.make_spacer_skip_measures(durations)
+    maker = abjad.MeasureMaker()
+    measures = maker(durations)
     staff = Staff(measures)
     measures = mutate(staff).replace_measure_contents(leaves)
 

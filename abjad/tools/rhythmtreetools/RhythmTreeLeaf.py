@@ -71,11 +71,13 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
 
         Returns sequence of components.
         '''
-        pulse_duration = durationtools.Duration(pulse_duration)
+        import abjad
+        pulse_duration = abjad.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
+        maker = abjad.LeafMaker()
         if self.is_pitched:
-            return scoretools.make_notes(0, total_duration)
-        return scoretools.make_rests(total_duration)
+            return maker(0, total_duration)
+        return maker([None], total_duration)
 
     def __graph__(self, **keywords):
         r'''Graphviz graph of rhythm tree leaf.

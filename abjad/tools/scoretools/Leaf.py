@@ -344,10 +344,10 @@ class Leaf(Component):
 
     def _set_duration(self, new_duration, use_messiaen_style_ties=False):
         import abjad
-        new_duration = durationtools.Duration(new_duration)
+        new_duration = abjad.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
-        if self._get_indicators(durationtools.Multiplier):
-            detach(durationtools.Multiplier, self)
+        if self._get_indicators(abjad.Multiplier):
+            detach(abjad.Multiplier, self)
             multiplier = new_duration.__div__(self.written_duration)
             attach(multiplier, self)
             return [self]
@@ -358,11 +358,10 @@ class Leaf(Component):
         except AssignabilityError:
             pass
         # make new notes or tuplets if new duration is nonassignable
-        components = abjad.scoretools.make_notes(
-            0,
-            new_duration,
+        maker = abjad.NoteMaker(
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
+        components = maker(0, new_duration)
         if isinstance(components[0], abjad.Leaf):
             tied_leaf_count = len(components) - 1
             tied_leaves = tied_leaf_count * self
@@ -573,9 +572,8 @@ class Leaf(Component):
 
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
         import abjad
-        from abjad.tools import scoretools
         # check input
-        proportions = mathtools.Ratio(proportions)
+        proportions = abjad.Ratio(proportions)
         # find target duration of fixed-duration tuplet
         target_duration = self.written_duration
         # find basic duration of note in tuplet
@@ -588,6 +586,7 @@ class Leaf(Component):
             _ * basic_written_duration for _ in proportions.numbers
             ]
         # make tuplet notes
+        maker = abjad.NoteMaker()
         try:
             notes = [abjad.Note(0, x) for x in written_durations]
         except AssignabilityError:
@@ -596,7 +595,7 @@ class Leaf(Component):
                 abjad.Duration(_, denominator)
                 for _ in proportions.numbers
                 ]
-            notes = scoretools.make_notes(0, note_durations)
+            notes = maker(0, note_durations)
         # make tuplet
         notes = abjad.select(notes)
         contents_duration = notes.get_duration()

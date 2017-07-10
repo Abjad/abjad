@@ -15,10 +15,8 @@ def edit_first_violin_voice(score, durated_reservoir):
     voice.extend(copied_descent)
 
     final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]
-    final_sustain_notes = abjad.scoretools.make_notes(
-        ["c'"],
-        final_sustain_rhythm,
-        )
+    maker = abjad.NoteMaker()
+    final_sustain_notes = maker(["c'"], final_sustain_rhythm)
     voice.extend(final_sustain_notes)
     tie = abjad.Tie()
     abjad.attach(tie, final_sustain_notes)

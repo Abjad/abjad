@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import durationtools
-from abjad.tools import mathtools
-from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
@@ -88,16 +85,30 @@ class SkipRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_music(self, divisions, rotation):
+        import abjad
         result = []
         for division in divisions:
-            prototype = mathtools.NonreducedFraction
+            prototype = abjad.NonreducedFraction
             assert isinstance(division, prototype), repr(division)
-            written_duration = durationtools.Duration(1)
+            written_duration = abjad.Duration(1)
             multiplied_duration = division
-            skip = scoretools.make_skips(
-                written_duration, [multiplied_duration])
+            skip = self._make_skips(written_duration, [multiplied_duration])
             result.append(skip)
         return result
+
+    @staticmethod
+    def _make_skips(written_duration, multiplied_durations):
+        import abjad
+        skips = []
+        written_duration = abjad.Duration(written_duration)
+        for multiplied_duration in multiplied_durations:
+            multiplied_duration = abjad.Duration(multiplied_duration)
+            skip = abjad.Skip(written_duration)
+            multiplier = multiplied_duration / written_duration
+            abjad.attach(multiplier, skip)
+            skips.append(skip)
+        skips = abjad.select(skips)
+        return skips
 
     ### PUBLIC PROPERTIES ###
 

@@ -10,6 +10,10 @@ from abjad.tools.topleveltools.new import new
 class MetricModulation(AbjadValueObject):
     r'''Metric modulation.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         With notes:
@@ -262,7 +266,8 @@ class MetricModulation(AbjadValueObject):
 
         ::
 
-            >>> notes = scoretools.make_notes([0], [Duration(5, 16)])
+            >>> maker = abjad.NoteMaker()
+            >>> notes = maker([0], [Duration(5, 16)])
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=Note("c'4"),
             ...     right_rhythm=notes,
@@ -344,7 +349,8 @@ class MetricModulation(AbjadValueObject):
 
         ::
 
-            >>> notes = scoretools.make_notes([0], [Duration(5, 16)])
+            >>> maker = abjad.NoteMaker()
+            >>> notes = maker([0], [Duration(5, 16)])
             >>> tuplet = Tuplet((2, 3), notes)
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=Note("c'4"),
@@ -586,7 +592,8 @@ class MetricModulation(AbjadValueObject):
                 ...     left_rhythm=Tuplet((2, 3), [Note("c'4")]),
                 ...     right_rhythm=Note("c'4"),
                 ...     )
-                >>> notes = scoretools.make_notes([0], [Duration(5, 16)])
+                >>> maker = abjad.NoteMaker()
+                >>> notes = maker([0], [Duration(5, 16)])
                 >>> metric_modulation_3 = abjad.MetricModulation(
                 ...     left_rhythm=Note("c'4"),
                 ...     right_rhythm=notes,

@@ -388,16 +388,20 @@ class IncisedRhythmMaker(RhythmMaker):
         return numeric_map
 
     def _numeric_map_and_talea_denominator_to_leaf_selections(
-        self, numeric_map, lcd):
+        self,
+        numeric_map,
+        lcd,
+        ):
         from abjad.tools import rhythmmakertools
         selections = []
         specifier = self._get_duration_spelling_specifier()
         tie_specifier = self._get_tie_specifier()
+        class_ = rhythmmakertools.TaleaRhythmMaker
         for numeric_map_part in numeric_map:
             numeric_map_part = [
                 _ for _ in numeric_map_part if _ != durationtools.Duration(0)
                 ]
-            selection = scoretools.make_leaves_from_talea(
+            selection = class_._make_leaves_from_talea(
                 numeric_map_part,
                 lcd,
                 forbidden_written_duration=\

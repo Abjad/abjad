@@ -17,6 +17,10 @@ from abjad.tools.topleveltools import new
 class LabelAgent(abctools.AbjadObject):
     r'''Label agent.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Labels pitch names:
@@ -2584,8 +2588,9 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
                     >>> label(staff).with_intervals(prototype=None)
                     >>> override(staff).text_script.staff_padding = 4
@@ -2611,8 +2616,9 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
                     >>> expression = label().with_intervals(prototype=None)
                     >>> expression(staff)
@@ -2643,8 +2649,9 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
                     >>> prototype = NamedIntervalClass
                     >>> label(staff).with_intervals(prototype=prototype)
@@ -2671,8 +2678,9 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
                     >>> prototype = NamedIntervalClass
                     >>> expression = label().with_intervals(prototype=prototype)
@@ -2704,8 +2712,9 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
                     >>> prototype = NumberedInterval
                     >>> label(staff).with_intervals(prototype=prototype)
@@ -2732,8 +2741,9 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
                     >>> prototype = NumberedInterval
                     >>> expression = label().with_intervals(prototype=prototype)
@@ -2766,8 +2776,9 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
                     >>> prototype = NumberedIntervalClass
                     >>> label(staff).with_intervals(prototype=prototype)
@@ -2794,8 +2805,9 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
                     >>> prototype = NumberedIntervalClass
                     >>> expression = label().with_intervals(prototype=prototype)
@@ -2828,8 +2840,9 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
                     >>> prototype = NumberedInversionEquivalentIntervalClass
                     >>> label(staff).with_intervals(prototype=prototype)
@@ -2856,8 +2869,9 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
                     >>> staff = Staff(notes)
                     >>> prototype = NumberedInversionEquivalentIntervalClass
                     >>> expression = label().with_intervals(prototype=prototype)

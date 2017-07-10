@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -26,7 +27,9 @@ def test_rhythmmakertools_BurnishSpecifier_01():
     selections = rhythm_maker(divisions)
 
     selections = Sequence(selections).flatten()
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == String.normalize(
@@ -84,7 +87,9 @@ def test_rhythmmakertools_BurnishSpecifier_02():
     selections = rhythm_maker(divisions)
 
     selections = Sequence(selections).flatten()
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == String.normalize(
@@ -142,7 +147,9 @@ def test_rhythmmakertools_BurnishSpecifier_03():
     selections = rhythm_maker(divisions)
 
     selections = Sequence(selections).flatten()
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == String.normalize(
@@ -204,7 +211,9 @@ def test_rhythmmakertools_BurnishSpecifier_04():
     selections = rhythm_maker(divisions)
 
     selections = Sequence(selections).flatten()
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == String.normalize(
@@ -263,7 +272,9 @@ def test_rhythmmakertools_BurnishSpecifier_05():
     selections = rhythm_maker(divisions)
 
     selections = Sequence(selections).flatten()
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = Staff(measures)
     mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == String.normalize(

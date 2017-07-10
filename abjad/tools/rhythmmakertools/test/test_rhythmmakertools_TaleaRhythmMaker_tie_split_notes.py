@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -16,7 +17,8 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
     selections = rhythm_maker(divisions)
 
     selections = Sequence(selections).flatten()
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     measures = mutate(staff).replace_measure_contents(selections)
 
@@ -60,7 +62,8 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
     selections = rhythm_maker(divisions)
 
     selections = Sequence(selections).flatten()
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     measures = mutate(staff).replace_measure_contents(selections)
 

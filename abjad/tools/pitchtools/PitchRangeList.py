@@ -46,17 +46,17 @@ class PitchRangeList(TypedList):
                 \override TimeSignature.stencil = ##f
             } <<
                 \new PianoStaff <<
-                    \context Staff = "treble" {
+                    \context Staff = "Treble Staff" {
                         \clef "treble"
                         s1 * 1/4
                         s1 * 1/4
                         c'1 * 1/4 \glissando
                         c'''1 * 1/4
                     }
-                    \context Staff = "bass" {
+                    \context Staff = "Bass Staff" {
                         \clef "bass"
                         c1 * 1/4 \glissando
-                        \change Staff = treble
+                        \change Staff = "Treble Staff"
                         c'''1 * 1/4
                         s1 * 1/4
                         s1 * 1/4
@@ -100,17 +100,17 @@ class PitchRangeList(TypedList):
                     \override TimeSignature.stencil = ##f
                 } <<
                     \new PianoStaff <<
-                        \context Staff = "treble" {
+                        \context Staff = "Treble Staff" {
                             \clef "treble"
                             s1 * 1/4
                             s1 * 1/4
                             c'1 * 1/4 \glissando
                             c'''1 * 1/4
                         }
-                        \context Staff = "bass" {
+                        \context Staff = "Bass Staff" {
                             \clef "bass"
                             c1 * 1/4 \glissando
-                            \change Staff = treble
+                            \change Staff = "Treble Staff"
                             c'''1 * 1/4
                             s1 * 1/4
                             s1 * 1/4
@@ -143,7 +143,7 @@ class PitchRangeList(TypedList):
                 staff.extend(notes)
                 abjad.attach(glissando, notes)
         else:
-            result = abjad.scoretools.make_empty_piano_score()
+            result = abjad.Score.make_piano_score()
             score, treble_staff, bass_staff = result
             for pitch_range in self.items:
                 start_note = abjad.Note(pitch_range.start_pitch, 1)
@@ -171,6 +171,8 @@ class PitchRangeList(TypedList):
                     staff_change = abjad.StaffChange(treble_staff)
                     abjad.attach(staff_change, stop_note)
                 abjad.attach(glissando, notes)
+            abjad.attach(abjad.Clef('treble'), treble_staff[0])
+            abjad.attach(abjad.Clef('bass'), bass_staff[0])
         for leaf in abjad.iterate(score).by_leaf():
             multiplier = abjad.Multiplier(1, 4)
             abjad.attach(multiplier, leaf)

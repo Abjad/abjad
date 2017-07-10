@@ -213,11 +213,20 @@ class NoteRhythmMaker(RhythmMaker):
         return new_selection
 
     def _make_music(self, divisions, rotation):
+        import abjad
         from abjad.tools import rhythmmakertools
         selections = []
         duration_specifier = self._get_duration_spelling_specifier()
         tie_specifier = self._get_tie_specifier()
         tuplet_specifier = self._get_tuplet_spelling_specifier()
+        leaf_maker = abjad.LeafMaker(
+            decrease_durations_monotonically=\
+                duration_specifier.decrease_durations_monotonically,
+            forbidden_written_duration=\
+                duration_specifier.forbidden_written_duration,
+            is_diminution=tuplet_specifier.is_diminution,
+            use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
+            )
         for division in divisions:
             if (duration_specifier.spell_metrically == True or
                 (duration_specifier.spell_metrically == 'unassignable' and
@@ -231,16 +240,7 @@ class NoteRhythmMaker(RhythmMaker):
                 durations = partition_table.respell_division(division)
             else:
                 durations = [division]
-            selection = scoretools.make_leaves(
-                pitches=0,
-                durations=durations,
-                decrease_durations_monotonically=\
-                    duration_specifier.decrease_durations_monotonically,
-                forbidden_written_duration=\
-                    duration_specifier.forbidden_written_duration,
-                is_diminution=tuplet_specifier.is_diminution,
-                use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
-                )
+            selection = leaf_maker(pitches=0, durations=durations)
             if (
                 1 < len(selection) and
                 not selection[0]._has_spanner(spannertools.Tie)

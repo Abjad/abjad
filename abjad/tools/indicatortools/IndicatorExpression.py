@@ -169,23 +169,19 @@ class IndicatorExpression(AbjadValueObject):
         return result
 
     def _is_formattable_for_component(self, component):
-        from abjad.tools import scoretools
-        from abjad.tools import indicatortools
+        import abjad
         if not hasattr(self.indicator, '_format_slot'):
             return False
         if self.is_annotation:
             return False
-        if isinstance(self.component, scoretools.Measure):
+        if isinstance(self.component, abjad.Measure):
             if self.component is component:
-                if not isinstance(
-                    self.indicator, indicatortools.TimeSignature):
+                if not isinstance(self.indicator, abjad.TimeSignature):
                     return True
                 elif component.always_format_time_signature:
                     return True
                 else:
-                    previous_measure = \
-                        scoretools.get_previous_measure_from_component(
-                            self.component)
+                    previous_measure = self.component._get_previous_measure()
                     if previous_measure is not None:
                         previous_effective_time_signature = \
                             previous_measure.time_signature

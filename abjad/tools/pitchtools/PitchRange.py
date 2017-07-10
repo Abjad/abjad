@@ -203,14 +203,41 @@ class PitchRange(AbjadValueObject):
         return hash(hash_values)
 
     def __illustrate__(self):
-        r'''Illustrates pitch range.
+        r"""Illustrates pitch range.
 
-        ::
+        ..  container:: example
 
-            >>> show(pitch_range) # doctest: +SKIP
+            ::
+
+                >>> show(pitch_range) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> lilypond_file = pitch_range.__illustrate__()
+                >>> f(lilypond_file[Score])
+                \new Score \with {
+                    \override BarLine.stencil = ##f
+                    \override Glissando.thickness = #2
+                    \override SpanBar.stencil = ##f
+                    \override TimeSignature.stencil = ##f
+                } <<
+                    \new PianoStaff <<
+                        \context Staff = "Treble Staff" {
+                            \clef "treble"
+                            s1 * 1/4
+                            s1 * 1/4
+                        }
+                        \context Staff = "Bass Staff" {
+                            \clef "bass"
+                            c1 * 1/4 \glissando
+                            \change Staff = "Treble Staff"
+                            c''''1 * 1/4
+                        }
+                    >>
+                >>
 
         Returns LilyPond file.
-        '''
+        """
         import abjad
         start_pitch_clef = abjad.Clef.from_selection(self.start_pitch)
         stop_pitch_clef = abjad.Clef.from_selection(self.stop_pitch)
@@ -233,13 +260,15 @@ class PitchRange(AbjadValueObject):
                 abjad.attach(glissando, treble_leaves)
                 score = abjad.Score([treble_staff])
         else:
-            result = abjad.scoretools.make_empty_piano_score()
+            result = abjad.Score.make_piano_score()
             score, treble_staff, bass_staff = result
             bass_staff.extend([start_note, stop_note])
             treble_staff.extend(abjad.Skip(1) * 2)
             bass_leaves = select(bass_staff).by_leaf()
             abjad.attach(glissando, bass_leaves)
             abjad.attach(abjad.StaffChange(treble_staff), bass_staff[1])
+            abjad.attach(abjad.Clef('treble'), treble_staff[0])
+            abjad.attach(abjad.Clef('bass'), bass_staff[0])
         for leaf in abjad.iterate(score).by_leaf():
             abjad.attach(abjad.Multiplier(1, 4), leaf)
         abjad.override(score).bar_line.stencil = False

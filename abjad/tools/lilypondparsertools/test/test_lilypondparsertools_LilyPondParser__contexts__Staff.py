@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
@@ -23,8 +24,9 @@ def test_lilypondparsertools_LilyPondParser__contexts__Staff_02():
 
     target = Staff([])
     target.is_simultaneous = True
-    target.append(Voice(scoretools.make_notes([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
-    target.append(Voice(scoretools.make_notes([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
+    maker = abjad.NoteMaker()
+    target.append(Voice(maker([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
+    target.append(Voice(maker([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
 
     assert format(target) == String.normalize(
         r'''

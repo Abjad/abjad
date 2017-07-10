@@ -15,6 +15,10 @@ from abjad.tools.topleveltools import new
 class MetronomeMark(AbjadValueObject):
     r'''MetronomeMark.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes integer-valued metronome mark:
@@ -794,10 +798,11 @@ class MetronomeMark(AbjadValueObject):
             return r'\tempo \default'
 
     def _make_lhs_score_markup(self, reference_duration=None):
-        from abjad.tools import scoretools
+        import abjad
         reference_duration = reference_duration or self.reference_duration
-        selection = scoretools.make_notes([0], [reference_duration])
-        markup = durationtools.Duration._to_score_markup(selection)
+        maker = abjad.NoteMaker()
+        selection = maker([0], [reference_duration])
+        markup = abjad.Duration._to_score_markup(selection)
         return markup
 
     def _to_markup(self):
@@ -1530,8 +1535,9 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
+                >>> maker = abjad.NoteMaker()
                 >>> durations = [Duration(1, 16), Duration(3, 16), Duration(1, 16)]
-                >>> selection = scoretools.make_notes([0], durations)
+                >>> selection = maker([0], durations)
                 >>> attach(Tie(), selection)
                 >>> attach(Beam(), selection)
                 >>> markup = MetronomeMark.make_tempo_equation_markup(selection, 90)
@@ -1582,23 +1588,22 @@ class MetronomeMark(AbjadValueObject):
 
         Returns markup.
         '''
-        from abjad.tools import markuptools
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        if isinstance(reference_duration, selectiontools.Selection):
+        import abjad
+        if isinstance(reference_duration, abjad.Selection):
             selection = reference_duration
         else:
-            selection = scoretools.make_notes([0], [reference_duration])
-        lhs_score_markup = durationtools.Duration._to_score_markup(selection)
+            maker = abjad.NoteMaker()
+            selection = maker([0], [reference_duration])
+        lhs_score_markup = abjad.Duration._to_score_markup(selection)
         lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
-        equal_markup = markuptools.Markup('=')
-        if (isinstance(units_per_minute, Fraction) and
-            not mathtools.is_integer_equivalent_number(units_per_minute)):
-            rhs_markup = markuptools.Markup.make_improper_fraction_markup(
+        equal_markup = abjad.Markup('=')
+        if (isinstance(units_per_minute, abjad.Fraction) and
+            not abjad.mathtools.is_integer_equivalent_number(units_per_minute)):
+            rhs_markup = abjad.Markup.make_improper_fraction_markup(
                 units_per_minute)
             rhs_markup = rhs_markup.raise_(-0.5)
         else:
-            rhs_markup = markuptools.Markup(units_per_minute)
+            rhs_markup = abjad.Markup(units_per_minute)
             rhs_markup = rhs_markup.general_align('Y', -0.5)
         markup = lhs_score_markup + equal_markup + rhs_markup
         return markup

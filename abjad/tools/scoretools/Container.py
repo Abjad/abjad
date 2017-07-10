@@ -1007,10 +1007,9 @@ class Container(Component):
         tie_split_notes=True,
         use_messiaen_style_ties=False,
         ):
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
+        import abjad
         # check input
-        duration = durationtools.Duration(duration)
+        duration = abjad.Duration(duration)
         assert 0 <= duration, repr(duration)
         # if zero duration then return empty list and self
         if duration == 0:
@@ -1027,8 +1026,8 @@ class Container(Component):
                 duration_crossing_descendants.append(descendant)
         # get any duration-crossing measure descendents
         measures = [
-            x for x in duration_crossing_descendants
-            if isinstance(x, scoretools.Measure)
+            _ for _ in duration_crossing_descendants
+            if isinstance(_, abjad.Measure)
             ]
         # if we must split a power-of-two measure at non-power-of-two
         # split point then go ahead and transform the power-of-two measure
@@ -1036,24 +1035,24 @@ class Container(Component):
         # code that crawls and splits later on will be happier
         if len(measures) == 1:
             measure = measures[0]
-            split_point_in_measure = \
-                global_split_point - measure._get_timespan().start_offset
+            start_offset = measure._get_timespan().start_offset
+            split_point_in_measure = global_split_point - start_offset
             if measure.has_non_power_of_two_denominator:
-                if not measure.implied_prolation == \
-                    split_point_in_measure.implied_prolation:
+                implied_prolation_1 = measure.implied_prolation
+                implied_prolation_2 = split_point_in_measure.implied_prolation
+                if not implied_prolation_1 == implied_prolation_2:
                     raise NotImplementedError
-            elif not mathtools.is_nonnegative_integer_power_of_two(
+            elif not abjad.mathtools.is_nonnegative_integer_power_of_two(
                 split_point_in_measure.denominator):
-                non_power_of_two_factors = mathtools.remove_powers_of_two(
+                non_power_of_two_factors = abjad.mathtools.remove_powers_of_two(
                     split_point_in_measure.denominator)
-                non_power_of_two_factors = mathtools.factors(
+                non_power_of_two_factors = abjad.mathtools.factors(
                     non_power_of_two_factors)
                 non_power_of_two_product = 1
                 for non_power_of_two_factor in non_power_of_two_factors:
                     non_power_of_two_product *= non_power_of_two_factor
-                scoretools.scale_measure_denominator_and_adjust_measure_contents(
-                    measure, non_power_of_two_product)
-                # rederive duration crosses with possibly new measure contents
+                measure._scale_denominator(non_power_of_two_product)
+                # rederive duration crossers with possibly new measure contents
                 cross_offset = self._get_timespan().start_offset + duration
                 duration_crossing_descendants = []
                 for descendant in self._get_descendants():
@@ -1068,11 +1067,11 @@ class Container(Component):
         bottom = duration_crossing_descendants[-1]
         did_split_leaf = False
         # if split point necessitates leaf split
-        if isinstance(bottom, scoretools.Leaf):
-            assert isinstance(bottom, scoretools.Leaf)
+        if isinstance(bottom, abjad.Leaf):
+            assert isinstance(bottom, abjad.Leaf)
             did_split_leaf = True
-            split_point_in_bottom = \
-                global_split_point - bottom._get_timespan().start_offset
+            start_offset = bottom._get_timespan().start_offset
+            split_point_in_bottom = global_split_point - start_offset
             left_list, right_list = bottom._split_by_duration(
                 split_point_in_bottom,
                 fracture_spanners=fracture_spanners,
@@ -1101,8 +1100,8 @@ class Container(Component):
                 raise Exception(message)
         # find component to right of split that is also immediate child of
         # last duration-crossing container
-        for component in \
-            leaf_right_of_split._get_parentage(include_self=True):
+        parentage = leaf_right_of_split._get_parentage(include_self=True)
+        for component in parentage:
             if component._parent is duration_crossing_containers[-1]:
                 highest_level_component_right_of_split = component
                 break
@@ -1122,12 +1121,10 @@ class Container(Component):
                     break
         # crawl back up through duration-crossing containers and split each
         previous = highest_level_component_right_of_split
-        for duration_crossing_container in \
-            reversed(duration_crossing_containers):
-            assert isinstance(
-                duration_crossing_container, scoretools.Container)
-            i = duration_crossing_container.index(previous)
-            left, right = duration_crossing_container._split_at_index(
+        for container in reversed(duration_crossing_containers):
+            assert isinstance(container, abjad.Container)
+            i = container.index(previous)
+            left, right = container._split_at_index(
                 i,
                 fracture_spanners=fracture_spanners,
                 )
@@ -1143,16 +1140,17 @@ class Container(Component):
         if did_split_leaf:
             if (
                 tie_split_notes and
-                isinstance(leaf_left_of_split, scoretools.Note)
+                isinstance(leaf_left_of_split, abjad.Note)
                 ):
                 if (
                     leaf_left_of_split._get_parentage().root is
                     leaf_right_of_split._get_parentage().root
                     ):
-                    leaves_around_split = \
-                        (leaf_left_of_split, leaf_right_of_split)
-                    selection = selectiontools.Selection(
-                        leaves_around_split)
+                    leaves_around_split = (
+                        leaf_left_of_split,
+                        leaf_right_of_split,
+                        )
+                    selection = abjad.Selection(leaves_around_split)
                     selection._attach_tie_spanner_to_leaf_pair(
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )

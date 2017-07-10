@@ -41,7 +41,7 @@ class NoteHeadList(TypedList):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Note heads'
+    __documentation_section__ = 'Note-heads'
 
     __slots__ = (
         '_client',

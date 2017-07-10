@@ -1627,12 +1627,13 @@ class Tuplet(Container):
 
         Returns fixed-duration tuplet.
         '''
-        from abjad.tools import scoretools
+        import abjad
         # coerce duration and ratio
-        duration = durationtools.Duration(duration)
-        ratio = mathtools.Ratio(ratio)
+        duration = abjad.Duration(duration)
+        ratio = abjad.Ratio(ratio)
         # find basic duration of note in tuplet
-        basic_prolated_duration = duration / mathtools.weight(ratio.numbers)
+        basic_prolated_duration = duration / abjad.mathtools.weight(
+            ratio.numbers)
         # find basic written duration of note in tuplet
         if avoid_dots:
             basic_written_duration = \
@@ -1642,10 +1643,13 @@ class Tuplet(Container):
                 basic_prolated_duration.equal_or_greater_assignable
         # find written duration of each note in tuplet
         written_durations = [x * basic_written_duration for x in ratio.numbers]
+        leaf_maker = abjad.LeafMaker(
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            )
         # make tuplet leaves
         try:
             notes = [
-                scoretools.Note(0, x) if 0 < x else scoretools.Rest(abs(x))
+                abjad.Note(0, x) if 0 < x else abjad.Rest(abs(x))
                 for x in written_durations
                 ]
         except AssignabilityError:
@@ -1653,20 +1657,16 @@ class Tuplet(Container):
             #denominator = duration._denominator
             denominator = duration.denominator
             note_durations = [
-                durationtools.Duration(x, denominator)
+                abjad.Duration(x, denominator)
                 for x in ratio.numbers
                 ]
             pitches = [None if note_duration < 0 else 0
                 for note_duration in note_durations]
             leaf_durations = [abs(note_duration)
                 for note_duration in note_durations]
-            notes = scoretools.make_leaves(
-                pitches,
-                leaf_durations,
-                decrease_durations_monotonically=decrease_durations_monotonically,
-                )
+            notes = leaf_maker(pitches, leaf_durations)
         # make tuplet
-        tuplet = scoretools.Tuplet.from_duration(duration, notes)
+        tuplet = abjad.Tuplet.from_duration(duration, notes)
         # fix tuplet contents if necessary
         tuplet._fix()
         # change prolation if necessary
@@ -2217,7 +2217,8 @@ class Tuplet(Container):
                     else:
                         return abjad.Container([note])
                 except AssignabilityError:
-                    notes = abjad.scoretools.make_notes(0, duration)
+                    maker = abjad.NoteMaker()
+                    notes = maker(0, duration)
                     if allow_trivial:
                         duration = notes.get_duration()
                         return abjad.Tuplet.from_duration(duration, notes)
@@ -2232,7 +2233,8 @@ class Tuplet(Container):
                     else:
                         return abjad.Container([rest])
                 except AssignabilityError:
-                    rests = abjad.scoretools.make_rests(duration)
+                    maker = abjad.LeafMaker()
+                    rests = maker([None], duration)
                     if allow_trivial:
                         duration = rests.get_duration()
                         return abjad.Tuplet.from_duration(duration, rests)
@@ -2256,7 +2258,8 @@ class Tuplet(Container):
                         note = abjad.Note(0, (x, denominator))
                         music.append(note)
                     except AssignabilityError:
-                        notes = abjad.scoretools.make_notes(0, (x, denominator))
+                        maker = abjad.NoteMaker()
+                        notes = maker(0, (x, denominator))
                         music.extend(notes)
                 else:
                     rests = abjad.Rest((-x, denominator))

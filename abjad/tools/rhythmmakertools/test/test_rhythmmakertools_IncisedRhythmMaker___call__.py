@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -20,7 +21,9 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___01():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -72,7 +75,9 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___02():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -124,7 +129,9 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___03():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    staff = Staff(scoretools.make_spacer_skip_measures(divisions))
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -166,7 +173,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___04():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -210,7 +218,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -263,7 +272,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -325,7 +335,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___07():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -379,7 +390,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___08():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -433,7 +445,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___09():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -478,7 +491,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___10():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -523,7 +537,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -579,7 +594,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -643,7 +659,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___13():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -693,7 +710,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___14():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -736,7 +754,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___15():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -783,7 +802,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -836,7 +856,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -896,7 +917,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -947,7 +969,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___19():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -991,7 +1014,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___20():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -1039,7 +1063,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
@@ -1093,7 +1118,8 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
     leaf_lists = maker(divisions)
     leaves = Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 

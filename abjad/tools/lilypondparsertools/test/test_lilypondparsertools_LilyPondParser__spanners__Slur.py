@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
@@ -8,7 +9,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_01():
     r'''Successful slurs, showing single leaf overlap.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     slur = Slur()
     attach(slur, target[2:])
     slur = Slur()
@@ -34,7 +36,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_02():
     r'''Swapped start and stop.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     slur = Slur()
     attach(slur, target[2:])
     slur = Slur()
@@ -94,7 +97,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_07():
     r'''With direction.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    target = Container(maker([0] * 4, [(1, 4)]))
     slur = Slur(direction=Down)
     attach(slur, target[:3])
     slur = Slur(direction=Up)

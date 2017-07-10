@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
@@ -8,7 +9,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_01():
     r'''Successful trills, showing single leaf overlap.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    notes = maker(4 * [0], [(1, 4)])
+    target = Container(notes)
     trill = spannertools.TrillSpanner()
     attach(trill, target[2:])
     trill = spannertools.TrillSpanner()
@@ -34,7 +37,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_02():
     r'''Swapped start and stop.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
+    maker = abjad.NoteMaker()
+    notes = maker(4 * [0], [(1, 4)])
+    target = Container(notes)
     trill = spannertools.TrillSpanner()
     attach(trill, target[2:])
     trill = spannertools.TrillSpanner()
