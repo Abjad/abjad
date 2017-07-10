@@ -149,7 +149,11 @@ class Duration(AbjadObject, Fraction):
                 return Fraction.__new__(class_, argument)
             except (AttributeError, TypeError):
                 pass
-            if mathtools.is_fraction_equivalent_pair(argument):
+            if (isinstance(argument, tuple) and
+                len(argument) == 2 and
+                mathtools.is_integer_equivalent(argument[0]) and
+                mathtools.is_integer_equivalent(argument[1]) and
+                not argument[1] == 0):
                 return Fraction.__new__(
                     class_,
                     int(argument[0]),
@@ -163,7 +167,9 @@ class Duration(AbjadObject, Fraction):
                 result = Duration._initialize_from_lilypond_duration_string(
                     argument)
                 return Fraction.__new__(class_, result)
-            if mathtools.is_integer_equivalent_singleton(argument):
+            if (isinstance(argument, tuple) and
+                len(argument) == 1 and
+                mathtools.is_integer_equivalent(argument[0])):
                 return Fraction.__new__(class_, int(argument[0]))
         else:
             try:
@@ -537,6 +543,22 @@ class Duration(AbjadObject, Fraction):
         return rational
 
     @staticmethod
+    def _least_power_of_two_greater_equal(n, i=0):
+        r'''When ``i = 2``, returns the second integer power of 2 greater than
+        the least integer power of 2 greater than or equal to `n`, and, in
+        general, return the ``i`` th integer power of 2 greater than the least
+        integer power of 2 greater than or equal to `n`.
+
+        Returns integer.
+        '''
+        if not isinstance(n, (int, float, Fraction)):
+            raise TypeError
+        if n <= 0:
+            raise ValueError
+        result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
+        return result
+
+    @staticmethod
     def _make_markup_score_block(selection):
         from abjad.tools import lilypondfiletools
         from abjad.tools import schemetools
@@ -746,7 +768,7 @@ class Duration(AbjadObject, Fraction):
 
         Returns new duration.
         '''
-        good_denominator = mathtools.least_power_of_two_greater_equal(
+        good_denominator = self._least_power_of_two_greater_equal(
             self.denominator)
         current_numerator = self.numerator
         candidate = type(self)(current_numerator, good_denominator)

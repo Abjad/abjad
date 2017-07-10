@@ -577,6 +577,8 @@ class LeafMaker(AbjadValueObject):
         result = abjad.select(result)
         return result
 
+    ### PRIVATE METHODS ###
+
     @staticmethod
     def _make_leaf_on_pitch(
         pitch,
@@ -690,9 +692,10 @@ class LeafMaker(AbjadValueObject):
             forbidden_written_duration <= duration):
             for part in parts:
                 if forbidden_numerator <= part:
-                    better_parts = \
-                        abjad.mathtools.partition_integer_into_parts_less_than_double(
-                        part, preferred_numerator)
+                    better_parts = LeafMaker._partition_less_than_double(
+                        part,
+                        preferred_numerator,
+                        )
                     numerators.extend(better_parts)
                 else:
                     numerators.append(part)
@@ -723,6 +726,20 @@ class LeafMaker(AbjadValueObject):
         # return result
         result = abjad.select(result)
         return result
+
+    def _partition_less_than_double(n, m):
+        import abjad
+        assert abjad.mathtools.is_positive_integer_equivalent_number(n)
+        assert abjad.mathtools.is_positive_integer_equivalent_number(m)
+        n, m = int(n), int(m)
+        result = []
+        current_value = n
+        double_m = 2 * m
+        while double_m <= current_value:
+            result.append(m)
+            current_value -= m
+        result.append(current_value)
+        return tuple(result)
 
     ### PUBLIC PROPERTIES ###
 

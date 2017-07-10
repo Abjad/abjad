@@ -831,6 +831,16 @@ class Container(Component):
             assert isinstance(parsed, Container)
         return parsed
 
+    @staticmethod
+    def _remove_powers_of_two(n):
+        if not isinstance(n, int):
+            raise TypeError
+        if n <= 0:
+            raise ValueError
+        while n % 2 == 0:
+            n //= 2
+        return n
+
     def _scale(self, multiplier):
         self._scale_contents(multiplier)
 
@@ -1044,8 +1054,9 @@ class Container(Component):
                     raise NotImplementedError
             elif not abjad.mathtools.is_nonnegative_integer_power_of_two(
                 split_point_in_measure.denominator):
-                non_power_of_two_factors = abjad.mathtools.remove_powers_of_two(
-                    split_point_in_measure.denominator)
+                non_power_of_two_factors = self._remove_powers_of_two(
+                    split_point_in_measure.denominator
+                    )
                 non_power_of_two_factors = abjad.mathtools.factors(
                     non_power_of_two_factors)
                 non_power_of_two_product = 1

@@ -92,7 +92,9 @@ class NamedIntervalClass(IntervalClass):
                 NamedIntervalClass._quality_abbreviation_to_quality_string[
                     quality_abbreviation]
             number = int(direction_string + number_string)
-        elif len(arguments) == 1 and mathtools.is_pair(arguments[0]):
+        elif (len(arguments) == 1 and
+            isinstance(arguments[0], tuple) and
+            len(arguments[0]) == 2):
             quality_string, number = arguments[0]
         elif len(arguments) == 2:
             quality_string, number = arguments

@@ -91,14 +91,22 @@ class NonreducedFraction(AbjadObject, Fraction):
         elif len(arguments) == 1 and isinstance(arguments[0], int):
             numerator = arguments[0]
             denominator = 1
-        elif len(arguments) == 1 and mathtools.is_integer_singleton(arguments[0]):
+        elif (len(arguments) == 1 and
+            isinstance(arguments[0], tuple) and
+            len(arguments[0]) == 1):
             numerator = arguments[0][0]
             denominator = 1
-        elif len(arguments) == 1 and mathtools.is_integer_pair(arguments[0]):
+        elif (len(arguments) == 1 and
+            isinstance(arguments[0], tuple) and
+            isinstance(arguments[0][0], int) and
+            isinstance(arguments[0][1], int)):
             numerator, denominator = arguments[0]
         elif len(arguments) == 1 and isinstance(arguments[0], str):
             numerator, denominator = class_._parse_input_string(arguments[0])
-        elif mathtools.is_integer_pair(arguments):
+        elif (isinstance(arguments, tuple) and
+            len(arguments) == 2 and
+            isinstance(arguments[0], int) and
+            isinstance(arguments[1], int)):
             numerator = arguments[0]
             denominator = arguments[1]
         elif len(arguments) == 0:
