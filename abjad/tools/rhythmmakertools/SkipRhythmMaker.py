@@ -5,6 +5,11 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class SkipRhythmMaker(RhythmMaker):
     r'''Skip rhythm-maker.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         Makes skips equal to the duration of input divisions.
@@ -25,7 +30,7 @@ class SkipRhythmMaker(RhythmMaker):
 
         ..  docs::
 
-            >>> f(lilypond_file[Staff])
+            >>> f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 1/4

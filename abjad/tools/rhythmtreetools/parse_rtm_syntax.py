@@ -5,6 +5,11 @@ from abjad.tools import scoretools
 def parse_rtm_syntax(rtm):
     r'''Parses RTM syntax.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmtreetools
+
     ..  container:: example
 
         Parses tuplet:

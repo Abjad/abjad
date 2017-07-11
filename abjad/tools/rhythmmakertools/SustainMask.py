@@ -6,6 +6,11 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class SustainMask(AbjadValueObject):
     r'''Sustain mask.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         ::
@@ -103,7 +108,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -158,7 +163,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -229,7 +234,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -301,7 +306,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -360,7 +365,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -433,7 +438,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -500,7 +505,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -553,7 +558,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -621,7 +626,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -696,7 +701,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -780,7 +785,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -835,7 +840,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -890,7 +895,7 @@ class SustainMask(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16

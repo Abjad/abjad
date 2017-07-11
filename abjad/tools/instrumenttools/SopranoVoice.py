@@ -10,22 +10,28 @@ class SopranoVoice(Instrument):
 
     ::
 
-        >>> staff = Staff("c''4 d''4 e''4 fs''4")
-        >>> soprano = instrumenttools.SopranoVoice()
-        >>> attach(soprano, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Soprano }
-            \set Staff.shortInstrumentName = \markup { Sop. }
-            c''4
-            d''4
-            e''4
-            fs''4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
+            >>> soprano = abjad.instrumenttools.SopranoVoice()
+            >>> abjad.attach(soprano, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Soprano }
+                \set Staff.shortInstrumentName = \markup { Sop. }
+                c''4
+                d''4
+                e''4
+                fs''4
+            }
 
     '''
 

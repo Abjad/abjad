@@ -9,13 +9,17 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 class NumberedPitchClass(PitchClass):
     '''Numbered pitch-class.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from number of semitones:
 
         ::
 
-            >>> NumberedPitchClass(13)
+            >>> abjad.NumberedPitchClass(13)
             NumberedPitchClass(1)
 
     ..  container:: example
@@ -24,7 +28,7 @@ class NumberedPitchClass(PitchClass):
 
         ::
 
-            >>> NumberedPitchClass('d')
+            >>> abjad.NumberedPitchClass('d')
             NumberedPitchClass(2)
 
     ..  container:: example
@@ -33,7 +37,7 @@ class NumberedPitchClass(PitchClass):
 
         ::
 
-            >>> NumberedPitchClass(NamedPitch('g,'))
+            >>> abjad.NumberedPitchClass(abjad.NamedPitch('g,'))
             NumberedPitchClass(7)
 
     ..  container:: example
@@ -42,7 +46,7 @@ class NumberedPitchClass(PitchClass):
 
         ::
 
-            >>> NumberedPitchClass(NumberedPitch(15))
+            >>> abjad.NumberedPitchClass(abjad.NumberedPitch(15))
             NumberedPitchClass(3)
 
     ..  container:: example
@@ -51,7 +55,7 @@ class NumberedPitchClass(PitchClass):
 
         ::
 
-            >>> NumberedPitchClass(NamedPitchClass('e'))
+            >>> abjad.NumberedPitchClass(abjad.NamedPitchClass('e'))
             NumberedPitchClass(4)
 
     ..  container:: example
@@ -60,7 +64,7 @@ class NumberedPitchClass(PitchClass):
 
         ::
 
-            >>> NumberedPitchClass('C#5')
+            >>> abjad.NumberedPitchClass('C#5')
             NumberedPitchClass(1)
 
     ..  container:: example
@@ -69,7 +73,7 @@ class NumberedPitchClass(PitchClass):
 
         ::
 
-            >>> NumberedPitchClass(Note("a'8."))
+            >>> abjad.NumberedPitchClass(abjad.Note("a'8."))
             NumberedPitchClass(9)
 
     '''
@@ -111,8 +115,8 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> pitch_class = NumberedPitchClass(9)
-                >>> interval = NumberedInterval(4)
+                >>> pitch_class = abjad.NumberedPitchClass(9)
+                >>> interval = abjad.NumberedInterval(4)
                 >>> pitch_class + interval
                 NumberedPitchClass(1)
 
@@ -130,7 +134,7 @@ class NumberedPitchClass(PitchClass):
             ::
 
                 >>> import copy
-                >>> pitch_class = NumberedPitchClass(9)
+                >>> pitch_class = abjad.NumberedPitchClass(9)
                 >>> copy.copy(pitch_class)
                 NumberedPitchClass(9)
 
@@ -146,8 +150,8 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> pitch_class_1 = NumberedPitchClass(9)
-                >>> pitch_class_2 = NumberedPitchClass(3)
+                >>> pitch_class_1 = abjad.NumberedPitchClass(9)
+                >>> pitch_class_2 = abjad.NumberedPitchClass(3)
                 >>> pitch_class_1 == pitch_class_1
                 True
 
@@ -173,7 +177,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> pitch_class = NumberedPitchClass(9)
+                >>> pitch_class = abjad.NumberedPitchClass(9)
                 >>> float(pitch_class)
                 9.0
 
@@ -188,7 +192,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> format(NumberedPitchClass(13))
+                >>> format(abjad.NumberedPitchClass(13))
                 'abjad.NumberedPitchClass(1)'
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
@@ -214,7 +218,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> pitch_class = NumberedPitchClass(9)
+                >>> pitch_class = abjad.NumberedPitchClass(9)
                 >>> int(pitch_class)
                 9
 
@@ -232,7 +236,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(1) < NumberedPitchClass(2)
+                >>> abjad.NumberedPitchClass(1) < abjad.NumberedPitchClass(2)
                 True
 
         ..  container:: example
@@ -241,7 +245,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(2) < NumberedPitchClass(1)
+                >>> abjad.NumberedPitchClass(2) < abjad.NumberedPitchClass(1)
                 False
 
         Raises type error when `argument` is not a numbered pitch-class.
@@ -259,7 +263,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> pitch_class = NumberedPitchClass(9)
+                >>> pitch_class = abjad.NumberedPitchClass(9)
                 >>> -pitch_class
                 NumberedPitchClass(3)
 
@@ -340,7 +344,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(1).accidental
+                >>> abjad.NumberedPitchClass(1).accidental
                 Accidental('s')
 
         Returns accidental.
@@ -356,12 +360,12 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(1).alteration_in_semitones
+                >>> abjad.NumberedPitchClass(1).alteration_in_semitones
                 1
 
             ::
 
-                >>> NumberedPitchClass(10.5).alteration_in_semitones
+                >>> abjad.NumberedPitchClass(10.5).alteration_in_semitones
                 -0.5
 
         Returns integer or float.
@@ -378,7 +382,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(1).diatonic_pitch_class_name
+                >>> abjad.NumberedPitchClass(1).diatonic_pitch_class_name
                 'c'
 
         Returns string.
@@ -393,7 +397,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(1).diatonic_pitch_class_number
+                >>> abjad.NumberedPitchClass(1).diatonic_pitch_class_number
                 0
 
         Returns integer.
@@ -409,7 +413,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(13).named_pitch_class
+                >>> abjad.NumberedPitchClass(13).named_pitch_class
                 NamedPitchClass('cs')
 
         Returns named pitch-class.
@@ -425,14 +429,14 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(1).number
+                >>> abjad.NumberedPitchClass(1).number
                 1
 
         ..  container:: example
 
             ::
 
-                >>> NumberedPitchClass(13).number
+                >>> abjad.NumberedPitchClass(13).number
                 1
 
         '''
@@ -446,7 +450,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(13).numbered_pitch_class
+                >>> abjad.NumberedPitchClass(13).numbered_pitch_class
                 NumberedPitchClass(1)
 
         Returns new numbered pitch-class.
@@ -461,7 +465,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(13).pitch_class_label
+                >>> abjad.NumberedPitchClass(13).pitch_class_label
                 'C#'
 
         Returns string.
@@ -479,7 +483,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(1).pitch_class_name
+                >>> abjad.NumberedPitchClass(1).pitch_class_name
                 'cs'
 
         Returns string.
@@ -507,7 +511,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(1).pitch_class_number
+                >>> abjad.NumberedPitchClass(1).pitch_class_number
                 1
 
         Returns number.
@@ -523,7 +527,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(1).apply_accidental('flat')
+                >>> abjad.NumberedPitchClass(1).apply_accidental('flat')
                 NumberedPitchClass(0)
 
         Returns new numbered pitch-class.
@@ -556,7 +560,7 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> NumberedPitchClass(11).multiply(3)
+                >>> abjad.NumberedPitchClass(11).multiply(3)
                 NumberedPitchClass(9)
 
         Returns new numbered pitch-class.

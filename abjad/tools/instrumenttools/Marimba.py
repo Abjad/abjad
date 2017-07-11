@@ -10,22 +10,28 @@ class Marimba(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> marimba = instrumenttools.Marimba()
-        >>> attach(marimba, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Marimba }
-            \set Staff.shortInstrumentName = \markup { Mb. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> marimba = abjad.instrumenttools.Marimba()
+            >>> abjad.attach(marimba, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Marimba }
+                \set Staff.shortInstrumentName = \markup { Mb. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

@@ -10,25 +10,31 @@ class Cello(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> cello = instrumenttools.Cello()
-        >>> attach(cello, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { Cello }
-            \set Staff.shortInstrumentName = \markup { Vc. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff)
+            >>> cello = abjad.instrumenttools.Cello()
+            >>> abjad.attach(cello, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { Cello }
+                \set Staff.shortInstrumentName = \markup { Vc. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

@@ -8,19 +8,23 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class OrdinalConstant(AbjadValueObject):
     r'''An ordinal constant.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes with `dimension`, `value` and `representation`:
 
         ::
 
-            >>> Left = datastructuretools.OrdinalConstant('x', -1, 'Left')
+            >>> Left = abjad.OrdinalConstant('x', -1, 'Left')
             >>> Left
             Left
 
         ::
 
-            >>> Right = datastructuretools.OrdinalConstant('x', 1, 'Right')
+            >>> Right = abjad.OrdinalConstant('x', 1, 'Right')
             >>> Right
             Right
 
@@ -35,13 +39,13 @@ class OrdinalConstant(AbjadValueObject):
 
         ::
 
-            >>> Up = datastructuretools.OrdinalConstant('y', 1, 'Up')
+            >>> Up = abjad.OrdinalConstant('y', 1, 'Up')
             >>> Up
             Up
 
         ::
 
-            >>> Down = datastructuretools.OrdinalConstant('y', -1, 'Down')
+            >>> Down = abjad.OrdinalConstant('y', -1, 'Down')
             >>> Down
             Down
 

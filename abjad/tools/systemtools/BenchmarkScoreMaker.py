@@ -7,12 +7,18 @@ class BenchmarkScoreMaker(AbjadObject):
 
     ::
 
-        >>> benchmark_score_maker = systemtools.BenchmarkScoreMaker()
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> benchmark_score_maker
-        BenchmarkScoreMaker()
+        ::
+
+            >>> benchmark_score_maker = abjad.systemtools.BenchmarkScoreMaker()
+
+        ::
+
+            >>> benchmark_score_maker
+            BenchmarkScoreMaker()
 
     Use to instantiate scores for benchmark testing.
     '''

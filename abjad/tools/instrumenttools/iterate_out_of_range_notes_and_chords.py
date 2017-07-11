@@ -9,6 +9,10 @@ def iterate_out_of_range_notes_and_chords(argument):
     '''Iterates notes and chords in `argument` outside traditional instrument
     ranges.
 
+    ::
+
+        >>> import abjad
+
     ..  todo:: Move to WellformednessManager.
 
     ..  container:: example
@@ -17,15 +21,15 @@ def iterate_out_of_range_notes_and_chords(argument):
 
         ::
 
-            >>> staff = Staff("c'8 r8 <d fs>8 r8")
-            >>> violin = instrumenttools.Violin()
-            >>> attach(violin, staff)
+            >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
+            >>> violin = abjad.instrumenttools.Violin()
+            >>> abjad.attach(violin, staff)
             >>> show(staff) # doctest: +SKIP
 
         ::
 
             >>> list(
-            ... instrumenttools.iterate_out_of_range_notes_and_chords(
+            ... abjad.instrumenttools.iterate_out_of_range_notes_and_chords(
             ... staff))
             [Chord('<d fs>8')]
 

@@ -3,10 +3,16 @@ from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 
 class DiscardingGraceHandler(GraceHandler):
-    r'''Concrete ``GraceHandler`` subclass which discards all but final
-    ``QEvent`` attached to an offset.
+    r'''Discarindg grace-handler.
+    
+    Dscards all but final q-event attached to an offset.
 
-    Does not create ``GraceContainers``.
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
+
+    Does not create grace containers.
     '''
 
     ### CLASS VARIABLES ###

@@ -5,15 +5,19 @@ from abjad.tools.indicatortools.LineSegment import LineSegment
 class Arrow(LineSegment):
     r'''Arrow.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         String contact position spanner:
             
         ::
 
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> start_markup = Markup('pont.').upright()
-            >>> stop_markup = Markup('ord.').upright()
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> start_markup = abjad.Markup('pont.').upright()
+            >>> stop_markup = abjad.Markup('ord.').upright()
             >>> arrow = abjad.Arrow()
 
         ::
@@ -33,15 +37,15 @@ class Arrow(LineSegment):
 
         ::
 
-            >>> attach(start_markup, staff[0], is_annotation=True)
-            >>> attach(stop_markup, staff[-1], is_annotation=True)
-            >>> attach(arrow, staff[0])
-            >>> attach(spannertools.TextSpanner(), staff[:])
+            >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+            >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+            >>> abjad.attach(arrow, staff[0])
+            >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
         ::
 
-            >>> override(staff).text_script.staff_padding = 1.25
-            >>> override(staff).text_spanner.staff_padding = 2
+            >>> abjad.override(staff).text_script.staff_padding = 1.25
+            >>> abjad.override(staff).text_spanner.staff_padding = 2
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -143,22 +147,22 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(arrow_width=0.25)
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -204,22 +208,22 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(arrow_width=0.5)
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -263,22 +267,22 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(arrow_width=1)
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -334,22 +338,22 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(dash_fraction=1)
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -394,22 +398,22 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(dash_fraction=0.5)
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -452,22 +456,22 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(dash_fraction=0.1)
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -520,24 +524,24 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(
                 ...     dash_period=None,
                 ...     )
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -583,9 +587,9 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(
                 ...     dash_fraction=0.25,
                 ...     dash_period=1,
@@ -593,15 +597,15 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -646,9 +650,9 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(
                 ...     dash_fraction=0.25,
                 ...     dash_period=4,
@@ -656,15 +660,15 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -736,16 +740,16 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> staff = Staff("c'4. d' e' f' g' a' b' c''")
-                    >>> attach(TimeSignature((3, 8)), staff)
-                    >>> score = Score([staff])
-                    >>> command = indicatortools.LilyPondCommand('break', 'after')
-                    >>> attach(command, staff[3])
+                    >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
+                    >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+                    >>> score = abjad.Score([staff])
+                    >>> command = abjad.LilyPondCommand('break', 'after')
+                    >>> abjad.attach(command, staff[3])
 
                 ::
 
-                    >>> start_markup = Markup('pont.').upright()
-                    >>> stop_markup = Markup('ord.').upright()
+                    >>> start_markup = abjad.Markup('pont.').upright()
+                    >>> stop_markup = abjad.Markup('ord.').upright()
                     >>> arrow = abjad.Arrow()
 
                 ::
@@ -765,15 +769,15 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> attach(start_markup, staff[2], is_annotation=True)
-                    >>> attach(stop_markup, staff[6], is_annotation=True)
-                    >>> attach(arrow, staff[2])
-                    >>> attach(spannertools.TextSpanner(), staff[2:])
+                    >>> abjad.attach(start_markup, staff[2], is_annotation=True)
+                    >>> abjad.attach(stop_markup, staff[6], is_annotation=True)
+                    >>> abjad.attach(arrow, staff[2])
+                    >>> abjad.attach(abjad.TextSpanner(), staff[2:])
 
                 ::
 
-                    >>> override(staff).text_script.staff_padding = 1.25
-                    >>> override(staff).text_spanner.staff_padding = 2
+                    >>> abjad.override(staff).text_script.staff_padding = 1.25
+                    >>> abjad.override(staff).text_spanner.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -826,17 +830,17 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> staff = Staff("c'4. d' e' f' g' a' b' c''")
-                    >>> attach(TimeSignature((3, 8)), staff)
-                    >>> score = Score([staff])
-                    >>> command = indicatortools.LilyPondCommand('break', 'after')
-                    >>> attach(command, staff[3])
+                    >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
+                    >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+                    >>> score = abjad.Score([staff])
+                    >>> command = abjad.LilyPondCommand('break', 'after')
+                    >>> abjad.attach(command, staff[3])
 
                 ::
 
-                    >>> start_markup = Markup('pont.').upright()
-                    >>> stop_markup = Markup('ord.').upright()
-                    >>> left_broken_markup = Markup('(pont./ord.)').upright()
+                    >>> start_markup = abjad.Markup('pont.').upright()
+                    >>> stop_markup = abjad.Markup('ord.').upright()
+                    >>> left_broken_markup = abjad.Markup('(pont./ord.)').upright()
                     >>> arrow = abjad.Arrow(
                     ...     left_broken_text=left_broken_markup,
                     ... )
@@ -865,15 +869,15 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> attach(start_markup, staff[2], is_annotation=True)
-                    >>> attach(stop_markup, staff[6], is_annotation=True)
-                    >>> attach(arrow, staff[2])
-                    >>> attach(spannertools.TextSpanner(), staff[2:])
+                    >>> abjad.attach(start_markup, staff[2], is_annotation=True)
+                    >>> abjad.attach(stop_markup, staff[6], is_annotation=True)
+                    >>> abjad.attach(arrow, staff[2])
+                    >>> abjad.attach(abjad.TextSpanner(), staff[2:])
 
                 ::
 
-                    >>> override(staff).text_script.staff_padding = 1.25
-                    >>> override(staff).text_spanner.staff_padding = 2
+                    >>> abjad.override(staff).text_script.staff_padding = 1.25
+                    >>> abjad.override(staff).text_spanner.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -935,16 +939,16 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> staff = Staff("c'4. d' e' f' g' a' b' c''")
-                    >>> attach(TimeSignature((3, 8)), staff)
-                    >>> score = Score([staff])
-                    >>> command = indicatortools.LilyPondCommand('break', 'after')
-                    >>> attach(command, staff[3])
+                    >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
+                    >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+                    >>> score = abjad.Score([staff])
+                    >>> command = abjad.LilyPondCommand('break', 'after')
+                    >>> abjad.attach(command, staff[3])
 
                 ::
 
-                    >>> start_markup = Markup('pont.').upright()
-                    >>> stop_markup = Markup('ord.').upright()
+                    >>> start_markup = abjad.Markup('pont.').upright()
+                    >>> stop_markup = abjad.Markup('ord.').upright()
                     >>> arrow = abjad.Arrow()
 
                 ::
@@ -964,15 +968,15 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> attach(start_markup, staff[2], is_annotation=True)
-                    >>> attach(stop_markup, staff[6], is_annotation=True)
-                    >>> attach(arrow, staff[2])
-                    >>> attach(spannertools.TextSpanner(), staff[2:])
+                    >>> abjad.attach(start_markup, staff[2], is_annotation=True)
+                    >>> abjad.attach(stop_markup, staff[6], is_annotation=True)
+                    >>> abjad.attach(arrow, staff[2])
+                    >>> abjad.attach(abjad.TextSpanner(), staff[2:])
 
                 ::
 
-                    >>> override(staff).text_script.staff_padding = 1.25
-                    >>> override(staff).text_spanner.staff_padding = 2
+                    >>> abjad.override(staff).text_script.staff_padding = 1.25
+                    >>> abjad.override(staff).text_spanner.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1025,16 +1029,16 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> staff = Staff("c'4. d' e' f' g' a' b' c''")
-                    >>> attach(TimeSignature((3, 8)), staff)
-                    >>> score = Score([staff])
-                    >>> command = indicatortools.LilyPondCommand('break', 'after')
-                    >>> attach(command, staff[3])
+                    >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
+                    >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+                    >>> score = abjad.Score([staff])
+                    >>> command = abjad.LilyPondCommand('break', 'after')
+                    >>> abjad.attach(command, staff[3])
 
                 ::
 
-                    >>> start_markup = Markup('pont.').upright()
-                    >>> stop_markup = Markup('ord.').upright()
+                    >>> start_markup = abjad.Markup('pont.').upright()
+                    >>> stop_markup = abjad.Markup('ord.').upright()
                     >>> arrow = abjad.Arrow(
                     ...     right_broken_arrow=False,
                     ... )
@@ -1057,15 +1061,15 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> attach(start_markup, staff[2], is_annotation=True)
-                    >>> attach(stop_markup, staff[6], is_annotation=True)
-                    >>> attach(arrow, staff[2])
-                    >>> attach(spannertools.TextSpanner(), staff[2:])
+                    >>> abjad.attach(start_markup, staff[2], is_annotation=True)
+                    >>> abjad.attach(stop_markup, staff[6], is_annotation=True)
+                    >>> abjad.attach(arrow, staff[2])
+                    >>> abjad.attach(abjad.TextSpanner(), staff[2:])
 
                 ::
 
-                    >>> override(staff).text_script.staff_padding = 1.25
-                    >>> override(staff).text_spanner.staff_padding = 2
+                    >>> abjad.override(staff).text_script.staff_padding = 1.25
+                    >>> abjad.override(staff).text_spanner.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1122,22 +1126,22 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(style=None)
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1183,22 +1187,22 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(style='zigzag')
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1241,22 +1245,22 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(style='trill')
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1299,22 +1303,22 @@ class Arrow(LineSegment):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> start_markup = Markup('pont.').upright()
-                >>> stop_markup = Markup('ord.').upright()
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> start_markup = abjad.Markup('pont.').upright()
+                >>> stop_markup = abjad.Markup('ord.').upright()
                 >>> arrow = abjad.Arrow(style='dotted-line')
 
             ::
 
-                >>> attach(start_markup, staff[0], is_annotation=True)
-                >>> attach(stop_markup, staff[-1], is_annotation=True)
-                >>> attach(arrow, staff[0])
-                >>> attach(spannertools.TextSpanner(), staff[:])
+                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
+                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
+                >>> abjad.attach(arrow, staff[0])
+                >>> abjad.attach(abjad.TextSpanner(), staff[:])
 
             ::
 
-                >>> override(staff).text_script.staff_padding = 1.25
-                >>> override(staff).text_spanner.staff_padding = 2
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

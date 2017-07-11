@@ -10,25 +10,31 @@ class AltoTrombone(Instrument):
 
     ::
 
-        >>> staff = Staff("c4 d4 e4 fs4")
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> alto_trombone = instrumenttools.AltoTrombone()
-        >>> attach(alto_trombone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { "Alto trombone" }
-            \set Staff.shortInstrumentName = \markup { "Alt. trb." }
-            c4
-            d4
-            e4
-            fs4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c4 d4 e4 fs4")
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff)
+            >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+            >>> abjad.attach(alto_trombone, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { "Alto trombone" }
+                \set Staff.shortInstrumentName = \markup { "Alt. trb." }
+                c4
+                d4
+                e4
+                fs4
+            }
 
     '''
 
@@ -78,7 +84,7 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> alto_trombone = instrumenttools.AltoTrombone()
+                >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
                 >>> f(alto_trombone)
                 instrumenttools.AltoTrombone(
                     instrument_name='alto trombone',

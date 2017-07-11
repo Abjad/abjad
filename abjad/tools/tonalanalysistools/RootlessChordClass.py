@@ -8,6 +8,10 @@ from abjad.tools.pitchtools import IntervalSegment
 class RootlessChordClass(IntervalSegment):
     r'''Rootless chord class.
 
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
+
     ..  container:: example
 
         Major triad in root position:

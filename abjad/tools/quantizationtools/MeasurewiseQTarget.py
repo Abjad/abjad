@@ -8,7 +8,12 @@ from abjad.tools.topleveltools import attach
 
 
 class MeasurewiseQTarget(QTarget):
-    r'''A measure-wise quantization target.
+    r'''Measurewise quantization target.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     Not composer-safe.
 

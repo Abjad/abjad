@@ -8,6 +8,12 @@ from abjad.tools.topleveltools import iterate
 
 class TupletSpellingSpecifier(AbjadValueObject):
     r'''Tuplet spelling specifier.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     '''
 
     ### CLASS VARIABLES ###
@@ -42,6 +48,10 @@ class TupletSpellingSpecifier(AbjadValueObject):
         self._avoid_dots = bool(avoid_dots)
         self._flatten_trivial_tuplets = bool(flatten_trivial_tuplets)
         self._is_diminution = bool(is_diminution)
+        if isinstance(preferred_denominator, tuple):
+            preferred_denominator = durationtools.Duration(
+                preferred_denominator
+                )
         self._preferred_denominator = preferred_denominator
         self._rewrite_rest_filled_tuplets = bool(rewrite_rest_filled_tuplets)
         self._simplify_redundant_tuplets = bool(simplify_redundant_tuplets)
@@ -161,7 +171,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -224,7 +234,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -269,7 +279,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
-                ...         preferred_denominator=Duration(1, 16),
+                ...         preferred_denominator=(1, 16),
                 ...         ),
                 ...     )
 
@@ -285,7 +295,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -329,7 +339,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
-                ...         preferred_denominator=Duration(1, 32),
+                ...         preferred_denominator=(1, 32),
                 ...         ),
                 ...     )
 
@@ -345,7 +355,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -389,7 +399,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
-                ...         preferred_denominator=Duration(1, 64),
+                ...         preferred_denominator=(1, 64),
                 ...         ),
                 ...     )
 
@@ -405,7 +415,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -467,7 +477,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -527,7 +537,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -587,7 +597,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16

@@ -8,7 +8,12 @@ from abjad.tools.topleveltools import select
 
 
 class BeatwiseQTarget(QTarget):
-    r'''A beat-wise quantization target.
+    r'''Beatwise q-target.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     Not composer-safe.
 

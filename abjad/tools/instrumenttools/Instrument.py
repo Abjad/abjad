@@ -11,6 +11,11 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class Instrument(AbjadValueObject):
     '''A musical instrument.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -184,7 +189,7 @@ class Instrument(AbjadValueObject):
 
         ::
 
-            >>> function = instrumenttools.Instrument._list_instrument_names
+            >>> function = abjad.instrumenttools.Instrument._list_instrument_names
             >>> for instrument_name in function():
             ...     instrument_name
             ...
@@ -209,7 +214,7 @@ class Instrument(AbjadValueObject):
 
         ::
 
-            >>> function = instrumenttools.Instrument._list_instruments
+            >>> function = abjad.instrumenttools.Instrument._list_instruments
             >>> for instrument in function():
             ...     instrument.__name__
             ...
@@ -264,7 +269,7 @@ class Instrument(AbjadValueObject):
         Returns clef list.
         '''
         if self._allowable_clefs is None:
-            self._allowable_clefs = instrumenttools.ClefList('treble')
+            self._allowable_clefs = abjad.instrumenttools.ClefList('treble')
         return self._allowable_clefs
 
     @property

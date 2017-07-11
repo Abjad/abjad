@@ -10,13 +10,17 @@ from abjad.tools.topleveltools import new
 class NamedInterval(Interval):
     '''Named interval.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes ascending major ninth from string:
 
         ::
 
-            >>> interval = NamedInterval('+M9')
+            >>> interval = abjad.NamedInterval('+M9')
             >>> interval
             NamedInterval('+M9')
 
@@ -26,7 +30,7 @@ class NamedInterval(Interval):
 
         ::
 
-            >>> interval = NamedInterval(-4)
+            >>> interval = abjad.NamedInterval(-4)
             >>> interval
             NamedInterval('-M3')
 
@@ -132,7 +136,7 @@ class NamedInterval(Interval):
 
         ::
 
-            >>> interval = NamedInterval('+M9')
+            >>> interval = abjad.NamedInterval('+M9')
             >>> abs(interval)
             NamedInterval('+M9')
 
@@ -145,7 +149,7 @@ class NamedInterval(Interval):
 
         ::
 
-            >>> interval + NamedInterval('M2')
+            >>> interval + abjad.NamedInterval('M2')
             NamedInterval('+M10')
 
         Returns new named interval.
@@ -203,7 +207,7 @@ class NamedInterval(Interval):
 
         ::
 
-            >>> interval < NamedInterval('+M10')
+            >>> interval < abjad.NamedInterval('+M10')
             True
 
         Also true when `argument` is a named interval with a
@@ -212,14 +216,14 @@ class NamedInterval(Interval):
 
         ::
 
-            >>> NamedInterval('+m9') < interval
+            >>> abjad.NamedInterval('+m9') < interval
             True
 
         Otherwise false:
 
         ::
 
-            >>> interval < NamedInterval('+M2')
+            >>> interval < abjad.NamedInterval('+M2')
             False
 
         Returns true or false.
@@ -307,7 +311,7 @@ class NamedInterval(Interval):
 
         ::
 
-            >>> interval - NamedInterval('+M2')
+            >>> interval - abjad.NamedInterval('+M2')
             NamedInterval('+P8')
 
         Returns new named interval.
@@ -578,9 +582,9 @@ class NamedInterval(Interval):
 
         ::
 
-            >>> NamedInterval.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
+            >>> abjad.NamedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch(-2),
+            ...     abjad.NamedPitch(12),
             ...     )
             NamedInterval('+M9')
 
@@ -588,9 +592,9 @@ class NamedInterval(Interval):
 
             ..  todo:: Improve this behavior.
 
-            >>> NamedInterval.from_pitch_carriers(
-            ...     NamedPitch("cs'"),
-            ...     NamedPitch("cf'"),
+            >>> abjad.NamedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch("cs'"),
+            ...     abjad.NamedPitch("cf'"),
             ...     )
             NamedInterval('-M2')
 
@@ -627,11 +631,11 @@ class NamedInterval(Interval):
 
             ::
 
-                >>> chord = Chord("<c' e' g'>4")
+                >>> chord = abjad.Chord("<c' e' g'>4")
 
             ::
 
-                >>> interval = NamedInterval('+m2')
+                >>> interval = abjad.NamedInterval('+m2')
                 >>> interval.transpose(chord)
                 Chord("<df' f' af'>4")
 

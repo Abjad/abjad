@@ -3,13 +3,17 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeColor(Scheme):
-    r'''A Scheme color.
+    r'''Abjad model of Scheme color.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> schemetools.SchemeColor('ForestGreen')
+            >>> abjad.SchemeColor('ForestGreen')
             SchemeColor('ForestGreen')
 
     Scheme colors are immutable.

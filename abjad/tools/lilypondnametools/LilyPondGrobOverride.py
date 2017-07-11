@@ -7,6 +7,11 @@ class LilyPondGrobOverride(AbjadObject):
 
     ::
 
+        >>> import abjad
+        >>> from abjad.tools import lilypondnametools
+
+    ::
+
         >>> override = lilypondnametools.LilyPondGrobOverride(
         ...    context_name='Staff',
         ...    grob_name='TextSpanner',
@@ -16,7 +21,7 @@ class LilyPondGrobOverride(AbjadObject):
         ...        'left',
         ...        'text',
         ...        ),
-        ...    value=Markup(r'\bold { over pressure }'),
+        ...    value=abjad.Markup(r'\bold { over pressure }'),
         ...    )
 
     ::
@@ -144,7 +149,7 @@ class LilyPondGrobOverride(AbjadObject):
             ...        'left',
             ...        'text',
             ...        ),
-            ...    value=Markup(r'\bold { over pressure }'),
+            ...    value=abjad.Markup(r'\bold { over pressure }'),
             ...    )
             >>> override.context_name
             'Staff'
@@ -154,7 +159,7 @@ class LilyPondGrobOverride(AbjadObject):
             >>> override = lilypondnametools.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
-            ...     value=schemetools.SchemeSymbol('zigzag'),
+            ...     value=abjad.SchemeSymbol('zigzag'),
             ...     )
             >>> override.context_name is None
             True
@@ -172,7 +177,7 @@ class LilyPondGrobOverride(AbjadObject):
             >>> override = lilypondnametools.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
-            ...     value=schemetools.SchemeSymbol('zigzag'),
+            ...     value=abjad.SchemeSymbol('zigzag'),
             ...     )
             >>> override.grob_name
             'Glissando'
@@ -197,7 +202,7 @@ class LilyPondGrobOverride(AbjadObject):
             ...        'left',
             ...        'text',
             ...        ),
-            ...    value=Markup(r'\bold { over pressure }'),
+            ...    value=abjad.Markup(r'\bold { over pressure }'),
             ...    )
             >>> bool(override.is_once)
             True
@@ -207,7 +212,7 @@ class LilyPondGrobOverride(AbjadObject):
             >>> override = lilypondnametools.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
-            ...     value=schemetools.SchemeSymbol('zigzag'),
+            ...     value=abjad.SchemeSymbol('zigzag'),
             ...     )
             >>> bool(override.is_once)
             False
@@ -225,7 +230,7 @@ class LilyPondGrobOverride(AbjadObject):
             >>> override = lilypondnametools.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
-            ...     value=schemetools.SchemeSymbol('zigzag'),
+            ...     value=abjad.SchemeSymbol('zigzag'),
             ...     )
             >>> bool(override.is_revert)
             False
@@ -259,7 +264,7 @@ class LilyPondGrobOverride(AbjadObject):
             ...        'left',
             ...        'text',
             ...        ),
-            ...    value=Markup(r'\bold { over pressure }'),
+            ...    value=abjad.Markup(r'\bold { over pressure }'),
             ...    )
             >>> for line in override.override_format_pieces:
             ...     line
@@ -298,7 +303,7 @@ class LilyPondGrobOverride(AbjadObject):
             >>> override = lilypondnametools.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
-            ...     value=schemetools.SchemeSymbol('zigzag'),
+            ...     value=abjad.SchemeSymbol('zigzag'),
             ...     )
             >>> override.override_string
             "\\override Glissando.style = #'zigzag"
@@ -322,7 +327,7 @@ class LilyPondGrobOverride(AbjadObject):
             ...        'left',
             ...        'text',
             ...        ),
-            ...    value=Markup(r'\bold { over pressure }'),
+            ...    value=abjad.Markup(r'\bold { over pressure }'),
             ...    )
             >>> override.property_path
             ('bound-details', 'left', 'text')
@@ -340,7 +345,7 @@ class LilyPondGrobOverride(AbjadObject):
             >>> override = lilypondnametools.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
-            ...     value=schemetools.SchemeSymbol('zigzag'),
+            ...     value=abjad.SchemeSymbol('zigzag'),
             ...     )
             >>> override.revert_format_pieces
             ('\\revert Glissando.style',)
@@ -359,7 +364,7 @@ class LilyPondGrobOverride(AbjadObject):
             >>> override = lilypondnametools.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
-            ...     value=schemetools.SchemeSymbol('zigzag'),
+            ...     value=abjad.SchemeSymbol('zigzag'),
             ...     )
             >>> override.revert_string
             '\\revert Glissando.style'
@@ -383,7 +388,7 @@ class LilyPondGrobOverride(AbjadObject):
             ...        'left',
             ...        'text',
             ...        ),
-            ...    value=Markup(r'\bold { over pressure }'),
+            ...    value=abjad.Markup(r'\bold { over pressure }'),
             ...    )
             >>> override.value
             Markup(contents=[MarkupCommand('bold', ['over', 'pressure'])])

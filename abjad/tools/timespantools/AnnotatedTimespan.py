@@ -3,34 +3,42 @@ from abjad.tools.timespantools.Timespan import Timespan
 
 
 class AnnotatedTimespan(Timespan):
-    r'''An annotated timespan.
+    r'''Annotated timespan.
 
     ::
 
-        >>> annotated_timespan = timespantools.AnnotatedTimespan(
-        ...    annotation=['a', 'b', 'c'],
-        ...    start_offset=Offset(1, 4),
-        ...    stop_offset=Offset(7, 8),
-        ...    )
-        >>> f(annotated_timespan)
-        abjad.AnnotatedTimespan(
-            start_offset=abjad.Offset(1, 4),
-            stop_offset=abjad.Offset(7, 8),
-            annotation=['a', 'b', 'c'],
-            )
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> annotated_timespan = abjad.AnnotatedTimespan(
+            ...    annotation=['a', 'b', 'c'],
+            ...    start_offset=(1, 4),
+            ...    stop_offset=(7, 8),
+            ...    )
+            >>> f(annotated_timespan)
+            abjad.AnnotatedTimespan(
+                start_offset=abjad.Offset(1, 4),
+                stop_offset=abjad.Offset(7, 8),
+                annotation=['a', 'b', 'c'],
+                )
 
     Annotated timespans maintain their annotations duration mutation:
 
-    ::
+    ..  container:: example
 
-        >>> left, right = annotated_timespan.split_at_offset(Offset(1, 2))
-        >>> left.annotation.append('foo')
-        >>> f(right)
-        abjad.AnnotatedTimespan(
-            start_offset=abjad.Offset(1, 2),
-            stop_offset=abjad.Offset(7, 8),
-            annotation=['a', 'b', 'c', 'foo'],
-            )
+        ::
+
+            >>> left, right = annotated_timespan.split_at_offset((1, 2))
+            >>> left.annotation.append('foo')
+            >>> f(right)
+            abjad.AnnotatedTimespan(
+                start_offset=abjad.Offset(1, 2),
+                stop_offset=abjad.Offset(7, 8),
+                annotation=['a', 'b', 'c', 'foo'],
+                )
 
     '''
 

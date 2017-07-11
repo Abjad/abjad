@@ -9,13 +9,17 @@ from abjad.tools.abctools import AbjadValueObject
 class CountsSelectorCallback(AbjadValueObject):
     r'''Counts selector callback.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes callback by hand:
 
         ::
 
-            >>> callback = selectortools.CountsSelectorCallback([3])
+            >>> callback = abjad.CountsSelectorCallback([3])
             >>> f(callback)
             abjad.CountsSelectorCallback(
                 counts=abjad.CyclicTuple(
@@ -34,10 +38,10 @@ class CountsSelectorCallback(AbjadValueObject):
 
         ::
 
-            >>> selector = selectortools.Selector()
+            >>> selector = abjad.select()
             >>> selector = selector.by_leaf()
             >>> selector = selector.by_counts([3])
-            >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
+            >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
             >>> selector(staff)
             Selection([Selection([Note("c'8"), Rest('r8'), Note("d'8")])])
 
@@ -47,7 +51,7 @@ class CountsSelectorCallback(AbjadValueObject):
 
         ::
 
-            >>> selector = selectortools.Selector()
+            >>> selector = abjad.select()
             >>> selector = selector.by_counts([3])
             >>> numbers = [1, 'two', 'three', 4, -5, 'foo', 7.0, 8]
             >>> selector(numbers)

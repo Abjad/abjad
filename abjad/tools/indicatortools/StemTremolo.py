@@ -7,15 +7,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class StemTremolo(AbjadValueObject):
     r'''Stem tremolo.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Sixteenth-note tremolo:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> stem_tremolo = indicatortools.StemTremolo(16)
-            >>> attach(stem_tremolo, note)
+            >>> note = abjad.Note("c'4")
+            >>> stem_tremolo = abjad.StemTremolo(16)
+            >>> abjad.attach(stem_tremolo, note)
             >>> show(note) # doctest: +SKIP
 
         ..  docs::
@@ -29,9 +33,9 @@ class StemTremolo(AbjadValueObject):
 
         ::
 
-            >>> note = Note("c'4")
-            >>> stem_tremolo = indicatortools.StemTremolo(32)
-            >>> attach(stem_tremolo, note)
+            >>> note = abjad.Note("c'4")
+            >>> stem_tremolo = abjad.StemTremolo(32)
+            >>> abjad.attach(stem_tremolo, note)
             >>> show(note) # doctest: +SKIP
 
         ..  docs::
@@ -74,7 +78,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> stem_tremolo = abjad.StemTremolo(16)
                 >>> print(format(stem_tremolo))
                 :16
 
@@ -84,7 +88,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> stem_tremolo = abjad.StemTremolo(32)
                 >>> print(format(stem_tremolo))
                 :32
 
@@ -106,7 +110,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> stem_tremolo = abjad.StemTremolo(16)
                 >>> print(str(stem_tremolo))
                 :16
 
@@ -116,7 +120,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> stem_tremolo = abjad.StemTremolo(32)
                 >>> print(str(stem_tremolo))
                 :32
 
@@ -153,7 +157,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> stem_tremolo = abjad.StemTremolo(16)
                 >>> stem_tremolo.default_scope is None
                 True
 
@@ -163,7 +167,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> stem_tremolo = abjad.StemTremolo(32)
                 >>> stem_tremolo.default_scope is None
                 True
 
@@ -181,7 +185,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> stem_tremolo = abjad.StemTremolo(16)
                 >>> stem_tremolo.tremolo_flags
                 16
 
@@ -191,7 +195,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> stem_tremolo = abjad.StemTremolo(32)
                 >>> stem_tremolo.tremolo_flags
                 32
 

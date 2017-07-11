@@ -6,6 +6,10 @@ from abjad.tools.abctools import AbjadValueObject
 class Tuning(AbjadValueObject):
     r'''Tuning.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Violin tuning:

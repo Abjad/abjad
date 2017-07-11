@@ -10,33 +10,39 @@ class Piano(Instrument):
 
     ::
 
-        >>> staff_group = StaffGroup()
-        >>> staff_group.context_name = 'PianoStaff'
-        >>> staff_group.append(Staff("c'4 d'4 e'4 f'4"))
-        >>> staff_group.append(Staff("c'2 b2"))
-        >>> piano = instrumenttools.Piano()
-        >>> attach(piano, staff_group)
-        >>> attach(Clef(name='bass'), staff_group[1])
-        >>> show(staff_group) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff_group)
-        \new PianoStaff <<
-            \set PianoStaff.instrumentName = \markup { Piano }
-            \set PianoStaff.shortInstrumentName = \markup { Pf. }
-            \new Staff {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-            \new Staff {
-                \clef "bass"
-                c'2
-                b2
-            }
-        >>
+        ::
+
+            >>> staff_group = abjad.StaffGroup()
+            >>> staff_group.context_name = 'PianoStaff'
+            >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+            >>> staff_group.append(abjad.Staff("c'2 b2"))
+            >>> piano = abjad.instrumenttools.Piano()
+            >>> abjad.attach(piano, staff_group)
+            >>> abjad.attach(abjad.Clef(name='bass'), staff_group[1])
+            >>> show(staff_group) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff_group)
+            \new PianoStaff <<
+                \set PianoStaff.instrumentName = \markup { Piano }
+                \set PianoStaff.shortInstrumentName = \markup { Pf. }
+                \new Staff {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    c'2
+                    b2
+                }
+            >>
 
     The piano targets piano staff context by default.
     '''

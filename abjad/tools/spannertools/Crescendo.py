@@ -5,15 +5,19 @@ from abjad.tools.spannertools.Hairpin import Hairpin
 class Crescendo(Hairpin):
     r'''Crescendo.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes crescendo without start- and stop-dynamics:
 
         ::
 
-            >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-            >>> crescendo = Crescendo()
-            >>> attach(crescendo, staff[:])
+            >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+            >>> crescendo = abjad.Crescendo()
+            >>> abjad.attach(crescendo, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -34,9 +38,9 @@ class Crescendo(Hairpin):
 
         ::
 
-            >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-            >>> crescendo = Crescendo('p < f')
-            >>> attach(crescendo, staff[:])
+            >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+            >>> crescendo = abjad.Crescendo('p < f')
+            >>> abjad.attach(crescendo, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -86,9 +90,9 @@ class Crescendo(Hairpin):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> crescendo = Crescendo()
-                >>> attach(crescendo, staff[:])
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> crescendo = abjad.Crescendo()
+                >>> abjad.attach(crescendo, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -110,9 +114,9 @@ class Crescendo(Hairpin):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> crescendo = Crescendo(direction=Up)
-                >>> attach(crescendo, staff[:])
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> crescendo = abjad.Crescendo(direction=Up)
+                >>> abjad.attach(crescendo, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -148,9 +152,9 @@ class Crescendo(Hairpin):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> crescendo = Crescendo(include_rests=True)
-                >>> attach(crescendo, staff[:])
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> crescendo = abjad.Crescendo(include_rests=True)
+                >>> abjad.attach(crescendo, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -182,9 +186,9 @@ class Crescendo(Hairpin):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> crescendo = Crescendo()
-                >>> attach(crescendo, staff[:])
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> crescendo = abjad.Crescendo()
+                >>> abjad.attach(crescendo, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -204,9 +208,9 @@ class Crescendo(Hairpin):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> crescendo = Crescendo()
-                >>> attach(crescendo, staff[:])
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> crescendo = abjad.Crescendo()
+                >>> abjad.attach(crescendo, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -226,9 +230,9 @@ class Crescendo(Hairpin):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> crescendo = Crescendo()
-                >>> attach(crescendo, staff[:])
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> crescendo = abjad.Crescendo()
+                >>> abjad.attach(crescendo, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::

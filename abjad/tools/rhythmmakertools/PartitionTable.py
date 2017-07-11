@@ -7,6 +7,11 @@ from abjad.tools.datastructuretools import TypedOrderedDict
 class PartitionTable(TypedOrderedDict):
     r'''Partition table.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         Partitions integers roughly ``1:1`` (restricted to assignable values)
@@ -121,7 +126,7 @@ class PartitionTable(TypedOrderedDict):
             ::
 
                 >>> for numerator in range(1, 15):
-                ...     division = mathtools.NonreducedFraction(numerator, 4)
+                ...     division = abjad.NonreducedFraction(numerator, 4)
                 ...     result = table.respell_division(division)
                 ...     print((division, result))
                 ...
@@ -154,7 +159,7 @@ class PartitionTable(TypedOrderedDict):
             ::
 
                 >>> for numerator in range(1, 15):
-                ...     division = mathtools.NonreducedFraction(numerator, 4)
+                ...     division = abjad.NonreducedFraction(numerator, 4)
                 ...     result = table.respell_division(division)
                 ...     print((division, result))
                 ...

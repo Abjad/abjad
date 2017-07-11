@@ -4,55 +4,69 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class Descendants(Selection):
-    r'''A selection of components that descend from a component.
+    r'''Descendants of a component.
 
     ::
 
-        >>> score = Score()
-        >>> score.append(Staff(r"""\new Voice = "Treble Voice" { c'4 }""",
-        ...     name='Treble Staff'))
-        >>> score.append(Staff(r"""\new Voice = "Bass Voice" { b,4 }""",
-        ...     name='Bass Staff'))
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(score)
-        \new Score <<
-            \context Staff = "Treble Staff" {
-                \context Voice = "Treble Voice" {
-                    c'4
+        ::
+
+            >>> score = abjad.Score()
+            >>> staff = abjad.Staff(
+            ...     r"""\new Voice = "Treble Voice" { c'4 }""",
+            ...     name='Treble Staff',
+            ...     )
+            >>> score.append(staff)
+            >>> bass = abjad.Staff(
+            ...     r"""\new Voice = "Bass Voice" { b,4 }""",
+            ...     name='Bass Staff',
+            ...     )
+            >>> score.append(bass)
+
+        ..  docs::
+
+            >>> f(score)
+            \new Score <<
+                \context Staff = "Treble Staff" {
+                    \context Voice = "Treble Voice" {
+                        c'4
+                    }
                 }
-            }
-            \context Staff = "Bass Staff" {
-                \context Voice = "Bass Voice" {
-                    b,4
+                \context Staff = "Bass Staff" {
+                    \context Voice = "Bass Voice" {
+                        b,4
+                    }
                 }
-            }
-        >>
+            >>
 
-    ::
+        ::
 
-        >>> for x in selectiontools.Descendants(score): x
-        ...
-        <Score<<2>>>
-        <Staff-"Treble Staff"{1}>
-        Voice("c'4")
-        Note("c'4")
-        <Staff-"Bass Staff"{1}>
-        Voice('b,4')
-        Note('b,4')
+            >>> for component in abjad.inspect(score).get_descendants():
+            ...     component
+            ...
+            <Score<<2>>>
+            <Staff-"Treble Staff"{1}>
+            Voice("c'4")
+            Note("c'4")
+            <Staff-"Bass Staff"{1}>
+            Voice('b,4')
+            Note('b,4')
 
-    ::
+        ::
 
-        >>> for x in selectiontools.Descendants(score['Bass Voice']): x
-        ...
-        Voice('b,4')
-        Note('b,4')
+            >>> bass_voice = score['Bass Voice']
+            >>> agent = abjad.inspect(bass_voice)
+            >>> for component in agent.get_descendants():
+            ...     component
+            ...
+            Voice('b,4')
+            Note('b,4')
 
-    Descendants is treated as the selection of the component's
-    improper descendants.
-
-    Returns descendants.
+    Descendants is treated as the selection of the component's improper
+    descendants.
     '''
 
     ### CLASS VARIABLES ###

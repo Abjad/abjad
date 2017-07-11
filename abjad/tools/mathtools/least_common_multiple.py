@@ -4,51 +4,55 @@
 def least_common_multiple(*integers):
     r'''Gets least common multiple of positive `integers`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.least_common_multiple(2, 4, 5, 10, 20)
+            >>> abjad.mathtools.least_common_multiple(2, 4, 5, 10, 20)
             20
 
         ::
 
-            >>> mathtools.least_common_multiple(4, 4)
+            >>> abjad.mathtools.least_common_multiple(4, 4)
             4
 
         ::
 
-            >>> mathtools.least_common_multiple(4, 5)
+            >>> abjad.mathtools.least_common_multiple(4, 5)
             20
 
         ::
 
-            >>> mathtools.least_common_multiple(4, 6)
+            >>> abjad.mathtools.least_common_multiple(4, 6)
             12
 
         ::
 
-            >>> mathtools.least_common_multiple(4, 7)
+            >>> abjad.mathtools.least_common_multiple(4, 7)
             28
 
         ::
 
-            >>> mathtools.least_common_multiple(4, 8)
+            >>> abjad.mathtools.least_common_multiple(4, 8)
             8
 
         ::
 
-            >>> mathtools.least_common_multiple(4, 9)
+            >>> abjad.mathtools.least_common_multiple(4, 9)
             36
 
         ::
 
-            >>> mathtools.least_common_multiple(4, 10)
+            >>> abjad.mathtools.least_common_multiple(4, 10)
             20
 
         ::
 
-            >>> mathtools.least_common_multiple(4, 11)
+            >>> abjad.mathtools.least_common_multiple(4, 11)
             44
 
     Returns positive integer.

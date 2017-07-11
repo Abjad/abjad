@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 
@@ -7,7 +8,7 @@ def test_spannertools_Hairpin_01():
     r'''Hairpins span adjacent leaves.
     '''
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff = abjad.Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
@@ -33,7 +34,7 @@ def test_spannertools_Hairpin_02():
     r'''Hairpins and dynamics apply separately.
     '''
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff = abjad.Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
     dynamic = Dynamic('p')
@@ -61,7 +62,7 @@ def test_spannertools_Hairpin_02():
 
 def test_spannertools_Hairpin_03():
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff = abjad.Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
     dynamic = Dynamic('p')
@@ -74,7 +75,7 @@ def test_spannertools_Hairpin_04():
     r'''Apply back-to-back hairpins separately.
     '''
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff = abjad.Staff([Note(n, (1, 8)) for n in range(8)])
     dynamic = Dynamic('p')
     attach(dynamic, staff[0])
     crescendo = Crescendo()
@@ -112,7 +113,7 @@ def test_spannertools_Hairpin_05():
     r'''Hairpins format rests.
     '''
 
-    staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
+    staff = abjad.Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
     crescendo = Crescendo(include_rests=True)
     attach(crescendo, staff[:])
 
@@ -138,7 +139,7 @@ def test_spannertools_Hairpin_06():
     r'''Trimmed hairpins with dynamics behave as expected.
     '''
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff = abjad.Staff([Note(n, (1, 8)) for n in range(8)])
     rest = Rest(staff[0])
     staff[0] = rest
     rest = Rest(staff[-1])
@@ -173,7 +174,7 @@ def test_spannertools_Hairpin_06():
 
 def test_spannertools_Hairpin_07():
     
-    staff = Staff("c'4 d'4 e'4 f'4")
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
     attach(Dynamic('p'), staff[0])
     attach(Hairpin('<'), staff[:])
     assert format(staff) == String.normalize(

@@ -13,13 +13,17 @@ from abjad.tools.topleveltools.setting import setting
 class Duration(AbjadObject, Fraction):
     r'''Duration.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from integer numerator:
 
         ::
 
-            >>> Duration(3)
+            >>> abjad.Duration(3)
             Duration(3, 1)
 
     ..  container:: example
@@ -28,7 +32,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(3, 16)
+            >>> abjad.Duration(3, 16)
             Duration(3, 16)
 
     ..  container:: example
@@ -37,7 +41,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(3.0)
+            >>> abjad.Duration(3.0)
             Duration(3, 1)
 
     ..  container:: example
@@ -46,7 +50,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(3.0, 16)
+            >>> abjad.Duration(3.0, 16)
             Duration(3, 16)
 
     ..  container:: example
@@ -55,7 +59,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration((3,))
+            >>> abjad.Duration((3,))
             Duration(3, 1)
 
     ..  container:: example
@@ -64,7 +68,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration((3, 16))
+            >>> abjad.Duration((3, 16))
             Duration(3, 16)
 
     ..  container:: example
@@ -73,7 +77,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(Duration(3, 16))
+            >>> abjad.Duration(abjad.Duration(3, 16))
             Duration(3, 16)
 
     ..  container:: example
@@ -82,7 +86,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(Fraction(3, 16))
+            >>> abjad.Duration(abjad.Fraction(3, 16))
             Duration(3, 16)
 
     ..  container:: example
@@ -91,7 +95,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration('3/16')
+            >>> abjad.Duration('3/16')
             Duration(3, 16)
 
     ..  container:: example
@@ -100,7 +104,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(mathtools.NonreducedFraction(6, 32))
+            >>> abjad.Duration(abjad.NonreducedFraction(6, 32))
             Duration(3, 16)
 
     ..  container:: example
@@ -109,12 +113,12 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> isinstance(Duration(3, 16), Fraction)
+            >>> isinstance(abjad.Duration(3, 16), abjad.Fraction)
             True
 
     ..  container:: example
 
-        Durations are numeric:
+        Durations are numbers:
 
         ::
 
@@ -122,7 +126,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> isinstance(Duration(3, 16), numbers.Number)
+            >>> isinstance(abjad.Duration(3, 16), numbers.Number)
             True
 
     '''
@@ -203,8 +207,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> duration_1 = Duration(1, 2)
-                >>> duration_2 = Duration(3, 2)
+                >>> duration_1 = abjad.Duration(1, 2)
+                >>> duration_2 = abjad.Duration(3, 2)
                 >>> duration_1 + duration_2
                 Duration(2, 1)
 
@@ -215,8 +219,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> duration = Duration(1, 2)
-                >>> nonreduced_fraction = mathtools.NonreducedFraction(3, 6)
+                >>> duration = abjad.Duration(1, 2)
+                >>> nonreduced_fraction = abjad.NonreducedFraction(3, 6)
                 >>> duration + nonreduced_fraction
                 NonreducedFraction(6, 6)
 
@@ -335,8 +339,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> duration_1 = Duration(1, 2)
-                >>> duration_2 = Duration(3, 2)
+                >>> duration_1 = abjad.Duration(1, 2)
+                >>> duration_2 = abjad.Duration(3, 2)
                 >>> duration_1 * duration_2
                 Duration(3, 4)
 
@@ -347,8 +351,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> duration = Duration(1, 2)
-                >>> nonreduced_fraction = mathtools.NonreducedFraction(3, 6)
+                >>> duration = abjad.Duration(1, 2)
+                >>> nonreduced_fraction = abjad.NonreducedFraction(3, 6)
                 >>> duration * nonreduced_fraction
                 NonreducedFraction(3, 12)
 
@@ -608,7 +612,7 @@ class Duration(AbjadObject, Fraction):
 
                 >>> for n in range(1, 16 + 1):
                 ...     try:
-                ...         duration = Duration(n, 16)
+                ...         duration = abjad.Duration(n, 16)
                 ...         sixteenths = duration.with_denominator(16)
                 ...         dot_count = duration.dot_count
                 ...         string = '{!s}\t{}'
@@ -662,7 +666,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(1, 16 + 1):
-                ...     duration = Duration(numerator, 16)
+                ...     duration = abjad.Duration(numerator, 16)
                 ...     result = duration.equal_or_greater_assignable
                 ...     sixteenths = duration.with_denominator(16)
                 ...     print('{!s}\t{!s}'.format(sixteenths, result))
@@ -706,7 +710,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(1, 16 + 1):
-                ...     duration = Duration(numerator, 16)
+                ...     duration = abjad.Duration(numerator, 16)
                 ...     result = duration.equal_or_greater_power_of_two
                 ...     sixteenths = duration.with_denominator(16)
                 ...     print('{!s}\t{!s}'.format(sixteenths, result))
@@ -744,7 +748,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(1, 16 + 1):
-                ...     duration = Duration(numerator, 16)
+                ...     duration = abjad.Duration(numerator, 16)
                 ...     result = duration.equal_or_lesser_assignable
                 ...     sixteenths = duration.with_denominator(16)
                 ...     print('{!s}\t{!s}'.format(sixteenths, result))
@@ -789,7 +793,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(1, 16 + 1):
-                ...     duration = Duration(numerator, 16)
+                ...     duration = abjad.Duration(numerator, 16)
                 ...     result = duration.equal_or_lesser_power_of_two
                 ...     sixteenths = duration.with_denominator(16)
                 ...     print('{!s}\t{!s}'.format(sixteenths, result))
@@ -827,7 +831,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for n in range(1, 16 + 1):
-                ...     duration = Duration(n, 64)
+                ...     duration = abjad.Duration(n, 64)
                 ...     sixty_fourths = duration.with_denominator(64)
                 ...     print('{!s}\t{}'.format(sixty_fourths, duration.flag_count))
                 ...
@@ -870,7 +874,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for n in range(1, 16 + 1):
-                ...     duration = Duration(1, n)
+                ...     duration = abjad.Duration(1, n)
                 ...     result = duration.has_power_of_two_denominator
                 ...     print('{!s}\t{}'.format(duration, result))
                 ...
@@ -907,7 +911,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for denominator in range(1, 16 + 1):
-                ...     duration = Duration(1, denominator)
+                ...     duration = abjad.Duration(1, denominator)
                 ...     result = duration.implied_prolation
                 ...     print('{!s}\t{!s}'.format(duration, result))
                 ...
@@ -946,7 +950,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(0, 16 + 1):
-                ...     duration = Duration(numerator, 16)
+                ...     duration = abjad.Duration(numerator, 16)
                 ...     sixteenths = duration.with_denominator(16)
                 ...     print('{!s}\t{}'.format(sixteenths, duration.is_assignable))
                 ...
@@ -985,7 +989,7 @@ class Duration(AbjadObject, Fraction):
 
             Gets LilyPond duration string:
 
-                >>> Duration(3, 16).lilypond_duration_string
+                >>> abjad.Duration(3, 16).lilypond_duration_string
                 '8.'
 
         Raises assignability error when duration is not assignable.
@@ -1022,7 +1026,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> Duration(3, 16).pair
+                >>> abjad.Duration(3, 16).pair
                 (3, 16)
 
         Returns integer pair.
@@ -1039,7 +1043,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> Duration(3, 16).prolation_string
+                >>> abjad.Duration(3, 16).prolation_string
                 '16:3'
 
         Returns string.
@@ -1056,7 +1060,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> Duration(3, 7).reciprocal
+                >>> abjad.Duration(3, 7).reciprocal
                 Duration(7, 3)
 
         Returns new duration.
@@ -1076,8 +1080,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> durations = [Duration(2, 4), 3, (5, 16)]
-                >>> result = Duration.durations_to_nonreduced_fractions(durations)
+                >>> durations = [abjad.Duration(2, 4), 3, (5, 16)]
+                >>> result = abjad.Duration.durations_to_nonreduced_fractions(durations)
                 >>> for x in result:
                 ...     x
                 ...
@@ -1107,7 +1111,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> Duration.from_lilypond_duration_string('8.')
+                >>> abjad.Duration.from_lilypond_duration_string('8.')
                 Duration(3, 16)
 
         Returns duration.
@@ -1127,7 +1131,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> Duration.is_token('8.')
+                >>> abjad.Duration.is_token('8.')
                 True
 
         Returns true or false.
@@ -1147,8 +1151,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> note = Note("c'4")
-                >>> duration = Duration(117)
+                >>> note = abjad.Note("c'4")
+                >>> duration = abjad.Duration(117)
                 >>> clock_string = duration.to_clock_string()
                 >>> clock_string
                 "1'57''"
@@ -1156,8 +1160,8 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> string = '"{}"'.format(clock_string)
-                >>> markup = markuptools.Markup(string, direction=Up)
-                >>> attach(markup, note)
+                >>> markup = abjad.Markup(string, direction=Up)
+                >>> abjad.attach(markup, note)
                 >>> show(note) # doctest: +SKIP
 
             ..  docs::
@@ -1183,7 +1187,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> markup = Duration(3, 16).to_score_markup()
+                >>> markup = abjad.Duration(3, 16).to_score_markup()
                 >>> show(markup) # doctest: +SKIP
 
             ..  docs::
@@ -1224,7 +1228,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> markup = Duration(5, 16).to_score_markup()
+                >>> markup = abjad.Duration(5, 16).to_score_markup()
                 >>> show(markup) # doctest: +SKIP
 
             ..  docs::
@@ -1266,13 +1270,13 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> tuplet = Tuplet((5, 7), "c'16 c' c' c' c' c' c'")
-                >>> attach(Beam(), tuplet[:])
-                >>> staff = Staff([tuplet], context_name='RhythmicStaff')
-                >>> duration = inspect(tuplet).get_duration()
+                >>> tuplet = abjad.Tuplet((5, 7), "c'16 c' c' c' c' c' c'")
+                >>> abjad.attach(abjad.Beam(), tuplet[:])
+                >>> staff = abjad.Staff([tuplet], context_name='RhythmicStaff')
+                >>> duration = abjad.inspect(tuplet).get_duration()
                 >>> markup = duration.to_score_markup()
                 >>> markup = markup.scale((0.75, 0.75))
-                >>> override(tuplet).tuplet_number.text = markup
+                >>> abjad.override(tuplet).tuplet_number.text = markup
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1339,7 +1343,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> duration = Duration(1, 4)
+                >>> duration = abjad.Duration(1, 4)
                 >>> for denominator in (4, 8, 16, 32):
                 ...     print(duration.with_denominator(denominator))
                 ...

@@ -6,20 +6,24 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class Parentage(Selection):
-    r'''A selection of components in the parentage of a component.
+    r'''Parentage of a component.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> score = Score()
+            >>> score = abjad.Score()
             >>> string = r"""\new Voice = "Treble Voice" { e'4 }"""
-            >>> treble_staff = Staff(string, name='Treble Staff')
+            >>> treble_staff = abjad.Staff(string, name='Treble Staff')
             >>> score.append(treble_staff)
             >>> string = r"""\new Voice = "Bass Voice" { c4 }"""
-            >>> bass_staff = Staff(string, name='Bass Staff')
-            >>> clef = Clef('bass')
-            >>> attach(clef, bass_staff)
+            >>> bass_staff = abjad.Staff(string, name='Bass Staff')
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, bass_staff)
             >>> score.append(bass_staff)
             >>> show(score) # doctest: +SKIP
 
@@ -44,12 +48,9 @@ class Parentage(Selection):
 
             >>> bass_voice = score['Bass Voice']
             >>> note = bass_voice[0]
-            >>> parentage = inspect(note).get_parentage()
-
-        ::
-
-            >>> for parent in parentage:
-            ...     parent
+            >>> for component in abjad.inspect(note).get_parentage():
+            ...     component
+            ...
             Note('c4')
             Voice('c4')
             <Staff-"Bass Staff"{1}>
@@ -171,10 +172,9 @@ class Parentage(Selection):
 
             ::
 
-                >>> voice = Voice("c'4 d'4 e'4 f'4")
-                >>> grace_notes = [Note("c'16"), Note("d'16")]
-                >>> grace_container = GraceContainer(grace_notes)
-                >>> attach(grace_container, voice[1])
+                >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+                >>> container = abjad.GraceContainer("c'16 d'16")
+                >>> abjad.attach(container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -193,8 +193,10 @@ class Parentage(Selection):
 
             ::
 
-                >>> for leaf in iterate(voice).by_leaf(with_grace_notes=True):
-                ...     parentage = inspect(leaf).get_parentage()
+                >>> for leaf in abjad.iterate(voice).by_leaf(
+                ...     with_grace_notes=True,
+                ...     ):
+                ...     parentage = abjad.inspect(leaf).get_parentage()
                 ...     print(leaf, parentage.is_grace_note)
                 ...
                 c'4 False
@@ -231,9 +233,9 @@ class Parentage(Selection):
 
             ::
 
-                >>> voice = Voice("c'4 d'4 e'4 f'4", name='CustomVoice')
-                >>> staff = Staff([voice], name='CustomStaff')
-                >>> score = Score([staff], name='CustomScore')
+                >>> voice = abjad.Voice("c'4 d'4 e'4 f'4", name='CustomVoice')
+                >>> staff = abjad.Staff([voice], name='CustomStaff')
+                >>> score = abjad.Score([staff], name='CustomScore')
                 >>> show(score) # doctest: +SKIP
 
             ..  docs::
@@ -253,7 +255,7 @@ class Parentage(Selection):
             ::
 
                 >>> note = voice[0]
-                >>> parentage = inspect(note).get_parentage()
+                >>> parentage = abjad.inspect(note).get_parentage()
                 >>> logical_voice = parentage.logical_voice
 
             ::
@@ -334,9 +336,9 @@ class Parentage(Selection):
 
             ::
 
-                >>> staff_1 = Staff(r"\times 2/3 { c''2 b'2 a'2 }")
-                >>> staff_2 = Staff("c'2 d'2")
-                >>> score = Score([staff_1, staff_2])
+                >>> staff_1 = abjad.Staff(r"\times 2/3 { c''2 b'2 a'2 }")
+                >>> staff_2 = abjad.Staff("c'2 d'2")
+                >>> score = abjad.Score([staff_1, staff_2])
                 >>> show(score) # doctest: +SKIP
 
             ..  docs::
@@ -358,10 +360,10 @@ class Parentage(Selection):
 
             ::
 
-                >>> selector = select().by_leaf(flatten=True)
+                >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(score)
                 >>> for leaf in leaves:
-                ...     parentage = inspect(leaf).get_parentage()
+                ...     parentage = abjad.inspect(leaf).get_parentage()
                 ...     leaf, parentage.score_index
                 ...
                 (Note("c''2"), (0, 0, 0))
@@ -376,10 +378,9 @@ class Parentage(Selection):
 
             ::
 
-                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                >>> grace = GraceContainer(grace_notes)
-                >>> attach(grace, voice[1])
+                >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> container = abjad.GraceContainer("cf''16 bf'16")
+                >>> abjad.attach(container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -398,9 +399,11 @@ class Parentage(Selection):
 
             ::
 
-                >>> leaves = iterate(voice).by_class(with_grace_notes=True)
+                >>> leaves = abjad.iterate(voice).by_class(
+                ...     with_grace_notes=True,
+                ...     )
                 >>> for leaf in leaves:
-                ...     parentage = inspect(leaf).get_parentage()
+                ...     parentage = abjad.inspect(leaf).get_parentage()
                 ...     leaf, parentage.score_index
                 ...
                 (Voice("c'8 d'8 e'8 f'8"), ())
@@ -434,8 +437,8 @@ class Parentage(Selection):
 
             ::
 
-                >>> tuplet = Tuplet(Multiplier(2, 3), "c'2 d'2 e'2")
-                >>> staff = Staff([tuplet])
+                >>> tuplet = abjad.Tuplet((2, 3), "c'2 d'2 e'2")
+                >>> staff = abjad.Staff([tuplet])
                 >>> note = tuplet[0]
                 >>> show(staff) # doctest: +SKIP
 
@@ -452,17 +455,17 @@ class Parentage(Selection):
 
             ::
 
-                >>> inspect(note).get_parentage().tuplet_depth
+                >>> abjad.inspect(note).get_parentage().tuplet_depth
                 1
 
             ::
 
-                >>> inspect(tuplet).get_parentage().tuplet_depth
+                >>> abjad.inspect(tuplet).get_parentage().tuplet_depth
                 0
 
             ::
 
-                >>> inspect(staff).get_parentage().tuplet_depth
+                >>> abjad.inspect(staff).get_parentage().tuplet_depth
                 0
 
         Returns nonnegative integer.

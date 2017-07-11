@@ -5,7 +5,12 @@ from abjad.tools import sequencetools
 
 
 class MeterManager(abctools.AbjadObject):
-    r'''A meter manager.
+    r'''Meter manager.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -93,7 +98,7 @@ class MeterManager(abctools.AbjadObject):
             >>> string += "! 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ !"
             >>> string += "! 2/4 b'4 c''4 !"
             >>> string = string.replace('!', '|')
-            >>> staff = scoretools.Staff(string)
+            >>> staff = abjad.Staff(string)
 
         ..  docs::
 
@@ -134,7 +139,7 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> for x in metertools.MeterManager.iterate_rewrite_inputs(
+            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
             ...     staff[0]): x
             ...
             LogicalTie([Note("c'4")])
@@ -142,7 +147,7 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> for x in metertools.MeterManager.iterate_rewrite_inputs(
+            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
             ...     staff[1]): x
             ...
             LogicalTie([Note("d'8.")])
@@ -153,7 +158,7 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> for x in metertools.MeterManager.iterate_rewrite_inputs(
+            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
             ...     staff[2]): x
             ...
             LogicalTie([Note("f'8")])
@@ -163,7 +168,7 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> for x in metertools.MeterManager.iterate_rewrite_inputs(
+            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
             ...     staff[3]): x
             ...
             LogicalTie([Note("b'4")])

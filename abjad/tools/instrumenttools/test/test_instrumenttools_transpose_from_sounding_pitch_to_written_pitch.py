@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
 def test_instrumenttools_transpose_from_sounding_pitch_to_written_pitch_01():
 
-    staff = Staff("<c' e' g'>4 d'4 r4 e'4")
-    clarinet = instrumenttools.ClarinetInBFlat()
-    attach(clarinet, staff)
-    instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
+    staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
+    clarinet = abjad.instrumenttools.ClarinetInBFlat()
+    abjad.attach(clarinet, staff)
+    abjad.instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
     assert format(staff) == String.normalize(
         r'''

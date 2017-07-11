@@ -13,7 +13,7 @@ from abjad.tools.topleveltools import select
 
 
 class Selection(object):
-    r'''A selection of components.
+    r'''Selection of components.
 
     ::
 
@@ -23,8 +23,8 @@ class Selection(object):
 
         ::
 
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> selection = selectiontools.Selection(staff[:])
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> selection = abjad.select(staff[:])
             >>> selection
             Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
@@ -454,10 +454,10 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(r"c'8 ( d'8 e'8 f'8 )")
+                >>> staff = abjad.Staff(r"c'8 ( d'8 e'8 f'8 )")
                 >>> staff.append(r"g'8 a'8 b'8 c''8")
-                >>> time_signature = TimeSignature((2, 4))
-                >>> attach(time_signature, staff)
+                >>> time_signature = abjad.TimeSignature((2, 4))
+                >>> abjad.attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -479,7 +479,7 @@ class Selection(object):
 
                 >>> selection = staff[2:4]
                 >>> result = selection._copy()
-                >>> new_staff = Staff(result)
+                >>> new_staff = abjad.Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
 
             ..  docs::
@@ -505,7 +505,7 @@ class Selection(object):
 
                 >>> selection = staff[2:4]
                 >>> result = selection._copy(n=4)
-                >>> new_staff = Staff(result)
+                >>> new_staff = abjad.Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
 
             ::
@@ -526,9 +526,9 @@ class Selection(object):
 
             Copy leaves and include enclosing conatiners:
 
-                >>> voice = Voice(r"\times 2/3 { c'4 d'4 e'4 }")
+                >>> voice = abjad.Voice(r"\times 2/3 { c'4 d'4 e'4 }")
                 >>> voice.append(r"\times 2/3 { f'4 e'4 d'4 }")
-                >>> staff = Staff([voice])
+                >>> staff = abjad.Staff([voice])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -551,7 +551,7 @@ class Selection(object):
 
             ::
 
-                >>> selector = select().by_leaf(flatten=True)
+                >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
                 >>> leaves = leaves[1:5]
                 >>> new_staff = leaves._copy(include_enclosing_containers=True)
@@ -995,10 +995,10 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((2, 8), "c'8 d'8"))
-                >>> staff.append(Measure((2, 8), "e'8 f'8"))
-                >>> staff.append(Measure((2, 8), "g'8 a'8"))
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((2, 8), "c'8 d'8"))
+                >>> staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+                >>> staff.append(abjad.Measure((2, 8), "g'8 a'8"))
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1022,7 +1022,7 @@ class Selection(object):
 
             ::
 
-                >>> for note in select(staff).by_class(prototype=Note):
+                >>> for note in abjad.select(staff).by_class(prototype=abjad.Note):
                 ...     note
                 ...
                 Note("c'8")
@@ -1057,10 +1057,10 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                >>> staff.append(Measure((2, 8), "af'8 r8"))
-                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1084,7 +1084,7 @@ class Selection(object):
 
             ::
 
-                >>> for leaf in select(staff).by_leaf():
+                >>> for leaf in abjad.select(staff).by_leaf():
                 ...     leaf
                 ...
                 Chord("<c' bf'>8")
@@ -1119,7 +1119,8 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+                >>> string = r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16"
+                >>> staff = abjad.Staff(string)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1138,7 +1139,7 @@ class Selection(object):
 
             ::
 
-                >>> for logical_tie in select(staff).by_logical_tie():
+                >>> for logical_tie in abjad.select(staff).by_logical_tie():
                 ...     logical_tie
                 ...
                 LogicalTie([Note("c'4"), Note("c'16")])
@@ -1164,7 +1165,7 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 }")
+                >>> staff = abjad.Staff(r"\times 2/3 { c'8 d'8 r8 }")
                 >>> staff.append(r"\times 2/3 { r8 <e' g'>8 <f' a'>8 }")
                 >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
                 >>> show(staff) # doctest: +SKIP
@@ -1193,7 +1194,8 @@ class Selection(object):
 
             ::
 
-                >>> for group in select(staff[:]).by_run((Note, Chord)):
+                >>> prototype = (abjad.Note, abjad.Chord)
+                >>> for group in abjad.select(staff[:]).by_run(prototype):
                 ...     group
                 ...
                 Selection([Note("g'8"), Note("a'8")])
@@ -1211,9 +1213,9 @@ class Selection(object):
 
             ::
 
-                >>> score = Score([])
-                >>> score.append(Staff("c'4 d'4 e'4 f'4"))
-                >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                >>> score = abjad.Score()
+                >>> score.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+                >>> score.append(abjad.Staff("g'8 a'8 b'8 c''8"))
                 >>> show(score) # doctest: +SKIP
 
             ..  docs::
@@ -1236,7 +1238,7 @@ class Selection(object):
 
             ::
 
-                >>> for leaf in select(score).by_timeline():
+                >>> for leaf in abjad.select(score).by_timeline():
                 ...     leaf
                 ...
                 Note("c'4")
@@ -1269,9 +1271,9 @@ class Selection(object):
 
             ::
 
-                >>> score = Score([])
-                >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
-                >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                >>> score = abjad.Score()
+                >>> score.append(abjad.Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                >>> score.append(abjad.Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                 >>> show(score) # doctest: +SKIP
 
             ..  docs::
@@ -1297,7 +1299,7 @@ class Selection(object):
 
             ::
 
-                >>> for logical_tie in select(score).by_timeline_and_logical_tie():
+                >>> for logical_tie in abjad.select(score).by_timeline_and_logical_tie():
                 ...     logical_tie
                 ...
                 LogicalTie([Note("c''4"), Note("c''8")])
@@ -1380,7 +1382,7 @@ class Selection(object):
 
                 >>> maker = abjad.LeafMaker()
                 >>> leaves = maker([0, 2, 4, None, None, 5, 7], [(1, 8)])
-                >>> staff = Staff(leaves)
+                >>> staff = abjad.Staff(leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1431,7 +1433,7 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
@@ -1462,9 +1464,9 @@ class Selection(object):
 
             ::
 
-                >>> leaves = select(staff).by_leaf()
+                >>> leaves = abjad.select(staff).by_leaf()
                 >>> selections = leaves.partition_by_durations(
-                ...     [Duration(3, 8)],
+                ...     [abjad.Duration(3, 8)],
                 ...     cyclic=True,
                 ...     fill=Exact,
                 ...     in_seconds=False,
@@ -1483,7 +1485,7 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
@@ -1514,9 +1516,9 @@ class Selection(object):
 
             ::
 
-                >>> leaves = select(staff).by_leaf()
+                >>> leaves = abjad.select(staff).by_leaf()
                 >>> selections = leaves.partition_by_durations(
-                ...     [Duration(3, 8)],
+                ...     [abjad.Duration(3, 8)],
                 ...     cyclic=False,
                 ...     fill=Exact,
                 ...     in_seconds=False,
@@ -1535,7 +1537,7 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
@@ -1566,9 +1568,9 @@ class Selection(object):
 
             ::
 
-                >>> leaves = select(staff).by_leaf()
+                >>> leaves = abjad.select(staff).by_leaf()
                 >>> selections = leaves.partition_by_durations(
-                ...     [Duration(3, 16), Duration(1, 16)],
+                ...     [abjad.Duration(3, 16), abjad.Duration(1, 16)],
                 ...     cyclic=True,
                 ...     fill=More,
                 ...     in_seconds=False,
@@ -1590,7 +1592,7 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
@@ -1621,9 +1623,9 @@ class Selection(object):
 
             ::
 
-                >>> leaves = select(staff).by_leaf()
+                >>> leaves = abjad.select(staff).by_leaf()
                 >>> selections = leaves.partition_by_durations(
-                ...     [Duration(3, 16)],
+                ...     [abjad.Duration(3, 16)],
                 ...     cyclic=True,
                 ...     fill=Less,
                 ...     in_seconds=False,
@@ -1647,7 +1649,7 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
@@ -1678,9 +1680,9 @@ class Selection(object):
 
             ::
 
-                >>> leaves = select(staff).by_leaf()
+                >>> leaves = abjad.select(staff).by_leaf()
                 >>> selections = leaves.partition_by_durations(
-                ...     [Duration(3, 16)],
+                ...     [abjad.Duration(3, 16)],
                 ...     cyclic=False,
                 ...     fill=Less,
                 ...     in_seconds=False,
@@ -1699,12 +1701,12 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
-                >>> mark = MetronomeMark(Duration(1, 4), 60)
-                >>> attach(mark, staff, scope=Staff)
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> abjad.attach(mark, staff, scope=abjad.Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1733,7 +1735,7 @@ class Selection(object):
 
             ::
 
-                >>> leaves = select(staff).by_leaf()
+                >>> leaves = abjad.select(staff).by_leaf()
                 >>> selections = leaves.partition_by_durations(
                 ...     [1.5],
                 ...     cyclic=True,
@@ -1754,12 +1756,12 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
-                >>> mark = MetronomeMark(Duration(1, 4), 60)
-                >>> attach(mark, staff, scope=Staff)
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> abjad.attach(mark, staff, scope=abjad.Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1788,7 +1790,7 @@ class Selection(object):
 
             ::
 
-                >>> leaves = select(staff).by_leaf()
+                >>> leaves = abjad.select(staff).by_leaf()
                 >>> selections = leaves.partition_by_durations(
                 ...     [1.5],
                 ...     cyclic=True,
@@ -1809,12 +1811,12 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
-                >>> mark = MetronomeMark(Duration(1, 4), 60)
-                >>> attach(mark, staff, scope=Staff)
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> abjad.attach(mark, staff, scope=abjad.Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1843,7 +1845,7 @@ class Selection(object):
 
             ::
 
-                >>> leaves = select(staff).by_leaf()
+                >>> leaves = abjad.select(staff).by_leaf()
                 >>> selections = leaves.partition_by_durations(
                 ...     [1.5],
                 ...     cyclic=False,
@@ -1863,12 +1865,12 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
-                >>> mark = MetronomeMark(Duration(1, 4), 60)
-                >>> attach(mark, staff, scope=Staff)
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> abjad.attach(mark, staff, scope=abjad.Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1897,7 +1899,7 @@ class Selection(object):
 
             ::
 
-                >>> leaves = select(staff).by_leaf()
+                >>> leaves = abjad.select(staff).by_leaf()
                 >>> selections = leaves.partition_by_durations(
                 ...     [0.75],
                 ...     cyclic=True,
@@ -1923,12 +1925,12 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
-                >>> mark = MetronomeMark(Duration(1, 4), 60)
-                >>> attach(mark, staff, scope=Staff)
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> abjad.attach(mark, staff, scope=abjad.Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1957,7 +1959,7 @@ class Selection(object):
 
             ::
 
-                >>> leaves = select(staff).by_leaf()
+                >>> leaves = abjad.select(staff).by_leaf()
                 >>> selections = leaves.partition_by_durations(
                 ...     [0.75],
                 ...     cyclic=False,

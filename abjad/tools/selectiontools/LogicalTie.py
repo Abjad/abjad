@@ -8,18 +8,22 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class LogicalTie(Selection):
-    r'''A selection of components in a logical tie.
+    r'''Logical tie of a component.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c' d' e' ~ e'")
+            >>> staff = abjad.Staff("c' d' e' ~ e'")
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> inspect(staff[2]).get_logical_tie()
+            >>> abjad.inspect(staff[2]).get_logical_tie()
             LogicalTie([Note("e'4"), Note("e'4")])
 
     '''
@@ -29,32 +33,11 @@ class LogicalTie(Selection):
     __slots__ = (
         )
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
     def _all_leaves_are_in_same_parent(self):
-        r'''Is true when all leaves in logical tie are in same parent.
-
-        Returns true or false.
-        '''
         parents = [leaf._parent for leaf in self.leaves]
         return mathtools.all_are_equal(parents)
-
-    @property
-    def _leaves_grouped_by_immediate_parents(self):
-        r'''Leaves in logical tie grouped by immediate parents of leaves.
-
-        Returns list of lists.
-        '''
-        from abjad.tools import selectiontools
-        result = []
-        pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
-        for key, values_generator in pairs_generator:
-            group = selectiontools.Selection(list(values_generator))
-            result.append(group)
-        return result
-
-    ### PRIVATE METHODS ###
 
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
@@ -116,9 +99,18 @@ class LogicalTie(Selection):
 
     def _fuse_leaves_by_immediate_parent(self):
         result = []
-        parts = self._leaves_grouped_by_immediate_parents
+        parts = self._get_leaves_grouped_by_immediate_parents()
         for part in parts:
             result.append(part._fuse())
+        return result
+
+    def _get_leaves_grouped_by_immediate_parents(self):
+        from abjad.tools import selectiontools
+        result = []
+        pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
+        for key, values_generator in pairs_generator:
+            group = selectiontools.Selection(list(values_generator))
+            result.append(group)
         return result
 
     def _scale(self, multiplier):
@@ -212,20 +204,20 @@ class LogicalTie(Selection):
         dotted=False,
         is_diminution=True,
         ):
-        r'''Change logical tie to tuplet.
+        r'''Changes logical tie to tuplet.
 
         ..  container:: example
 
-            Change logical tie to diminished tuplet:
+            Changes logical tie to diminished tuplet:
 
             ::
 
-                >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
-                >>> crescendo = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(crescendo, staff[:])
-                >>> override(staff).dynamic_line_spanner.staff_padding = 3
-                >>> time_signature = TimeSignature((7, 16))
-                >>> attach(time_signature, staff)
+                >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
+                >>> crescendo = abjad.Hairpin('p < f')
+                >>> abjad.attach(crescendo, staff[:])
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> time_signature = abjad.TimeSignature((7, 16))
+                >>> abjad.attach(time_signature, staff)
 
             ..  docs::
 
@@ -245,7 +237,7 @@ class LogicalTie(Selection):
 
             ::
 
-                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
                 >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=True)
                 Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
 
@@ -276,12 +268,12 @@ class LogicalTie(Selection):
 
             ::
 
-                >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
-                >>> crescendo = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(crescendo, staff[:])
-                >>> override(staff).dynamic_line_spanner.staff_padding = 3
-                >>> time_signature = TimeSignature((7, 16))
-                >>> attach(time_signature, staff)
+                >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
+                >>> crescendo = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(crescendo, staff[:])
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> time_signature = abjad.TimeSignature((7, 16))
+                >>> abjad.attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -298,7 +290,7 @@ class LogicalTie(Selection):
 
             ::
 
-                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
                 >>> tuplet = logical_tie.to_tuplet(
                 ...     [2, 1, 1, 1],
                 ...     is_diminution=False,

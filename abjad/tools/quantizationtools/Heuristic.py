@@ -4,11 +4,14 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Heuristic(AbjadObject):
-    r'''Abstract base class from which concrete ``Heuristic``
-    subclases inherit.
+    r'''Abstract heuristic.
 
-    ``Heuristics`` rank ``QGrids`` according to the criteria they
-    encapsulate.
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
+
+    Heuristics rank Q-grids according to the criteria they encapsulate.
 
     They provide the means by which the quantizer selects a single ``QGrid``
     from all computed ``QGrids`` for any given ``QTargetBeat`` to

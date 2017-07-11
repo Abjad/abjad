@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -6,7 +7,7 @@ def test_spannertools_OctavationSpanner_01():
     r'''Octavation has default start set to 1 and stop set to 0.
     '''
 
-    staff = Staff([Note("c'8"), Note("c'8"), Note("c'8"), Note("c'8")])
+    staff = abjad.Staff([Note("c'8"), Note("c'8"), Note("c'8"), Note("c'8")])
     spanner =  spannertools.OctavationSpanner()
     attach(spanner, staff[:])
 
@@ -31,7 +32,7 @@ def test_spannertools_OctavationSpanner_01():
 
 def test_spannertools_OctavationSpanner_02():
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff = abjad.Staff([Note(n, (1, 8)) for n in range(8)])
     spanner = spannertools.OctavationSpanner(start=1)
     attach(spanner, staff[:4])
 
@@ -57,7 +58,7 @@ def test_spannertools_OctavationSpanner_02():
 
 def test_spannertools_OctavationSpanner_03():
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff = abjad.Staff([Note(n, (1, 8)) for n in range(8)])
     spanner = spannertools.OctavationSpanner(start=1, stop=2)
     attach(spanner, staff[:4])
 
@@ -87,7 +88,7 @@ def test_spannertools_OctavationSpanner_04():
     time and compress to a single set-octavation.
     '''
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff = abjad.Staff([Note(n, (1, 8)) for n in range(8)])
     spanner = spannertools.OctavationSpanner(start=1)
     attach(spanner, staff[0])
     spanner = spannertools.OctavationSpanner(start=2)
@@ -119,7 +120,7 @@ def test_spannertools_OctavationSpanner_05():
     r'''Overlapping octavation spanners are allowed but not well-formed.
     '''
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff = abjad.Staff([Note(n, (1, 8)) for n in range(8)])
     spanner = spannertools.OctavationSpanner(start=1)
     attach(spanner, staff[:4])
     spanner = spannertools.OctavationSpanner(start=2)

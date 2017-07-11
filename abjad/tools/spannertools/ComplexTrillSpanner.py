@@ -7,11 +7,15 @@ from abjad.tools.topleveltools import inspect
 class ComplexTrillSpanner(Spanner):
     r'''Complex trill spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'4 ~ c'8 d'8 r8 e'8 ~ e'8 r8")
+            >>> staff = abjad.Staff("c'4 ~ c'8 d'8 r8 e'8 ~ e'8 r8")
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -29,10 +33,10 @@ class ComplexTrillSpanner(Spanner):
 
         ::
 
-            >>> complex_trill = ComplexTrillSpanner(
+            >>> complex_trill = abjad.ComplexTrillSpanner(
             ...     interval='P4',
             ...     )
-            >>> attach(complex_trill, staff[:])
+            >>> abjad.attach(complex_trill, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -155,10 +159,10 @@ class ComplexTrillSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> interval = pitchtools.NamedInterval('m3')
-                >>> complex_trill = ComplexTrillSpanner(interval=interval)
-                >>> attach(complex_trill, staff[1:-1])
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> interval = abjad.NamedInterval('m3')
+                >>> complex_trill = abjad.ComplexTrillSpanner(interval=interval)
+                >>> abjad.attach(complex_trill, staff[1:-1])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

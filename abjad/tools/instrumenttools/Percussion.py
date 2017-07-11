@@ -10,22 +10,28 @@ class Percussion(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> percussion = instrumenttools.Percussion()
-        >>> attach(percussion, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Percussion }
-            \set Staff.shortInstrumentName = \markup { Perc. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> percussion = abjad.instrumenttools.Percussion()
+            >>> abjad.attach(percussion, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Percussion }
+                \set Staff.shortInstrumentName = \markup { Perc. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

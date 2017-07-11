@@ -4,35 +4,41 @@ from abjad.tools.timespantools.TimeRelation import TimeRelation
 
 
 class OffsetTimespanTimeRelation(TimeRelation):
-    r'''An offset vs. timespan time relation.
+    r'''Offfset vs. timespan time relation.
 
     ::
 
-        >>> offset = Offset(5)
-        >>> timespan = timespantools.Timespan(0, 10)
-        >>> time_relation = timespantools.offset_happens_during_timespan(
-        ...     offset=offset,
-        ...     timespan=timespan,
-        ...     hold=True,
-        ...     )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> f(time_relation)
-        abjad.OffsetTimespanTimeRelation(
-            inequality=abjad.CompoundInequality(
-                [
-                    abjad.Inequality('timespan.start <= offset'),
-                    abjad.Inequality('offset < timespan.stop'),
-                    ],
-                logical_operator='and',
-                ),
-            timespan=abjad.Timespan(
-                start_offset=abjad.Offset(0, 1),
-                stop_offset=abjad.Offset(10, 1),
-                ),
-            offset=abjad.Offset(5, 1),
-            )
+        ::
+
+            >>> offset = abjad.Offset(5)
+            >>> timespan = abjad.Timespan(0, 10)
+            >>> time_relation = abjad.timespantools.offset_happens_during_timespan(
+            ...     offset=offset,
+            ...     timespan=timespan,
+            ...     hold=True,
+            ...     )
+
+        ::
+
+            >>> f(time_relation)
+            abjad.OffsetTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
+                    [
+                        abjad.TimespanInequality('timespan.start <= offset'),
+                        abjad.TimespanInequality('offset < timespan.stop'),
+                        ],
+                    logical_operator='and',
+                    ),
+                timespan=abjad.Timespan(
+                    start_offset=abjad.Offset(0, 1),
+                    stop_offset=abjad.Offset(10, 1),
+                    ),
+                offset=abjad.Offset(5, 1),
+                )
 
     Offset / timespan time relations are immutable.
     '''
@@ -86,12 +92,13 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> offset = Offset(5)
+            >>> offset = abjad.Offset(5)
             >>> time_relation_1 = \
-            ...     timespantools.offset_happens_during_timespan()
+            ...     abjad.timespantools.offset_happens_during_timespan()
             >>> time_relation_2 = \
-            ...     timespantools.offset_happens_during_timespan(
-            ...     offset=offset)
+            ...     abjad.timespantools.offset_happens_during_timespan(
+            ...     offset=offset,
+            ...     )
 
         ::
 
@@ -123,8 +130,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
             abjad.OffsetTimespanTimeRelation(
                 inequality=abjad.CompoundInequality(
                     [
-                        abjad.Inequality('timespan.start <= offset'),
-                        abjad.Inequality('offset < timespan.stop'),
+                        abjad.TimespanInequality('timespan.start <= offset'),
+                        abjad.TimespanInequality('offset < timespan.stop'),
                         ],
                     logical_operator='and',
                     ),

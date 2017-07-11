@@ -17,6 +17,11 @@ from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 class Scale(PitchClassSegment):
     '''Scale.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import tonalanalysistools
+
     ..  container:: example
 
         ::
@@ -135,7 +140,7 @@ class Scale(PitchClassSegment):
 
             >>> scale = tonalanalysistools.Scale('c', 'major')
             >>> notes = scale.make_notes(8)
-            >>> staff = Staff(notes)
+            >>> staff = abjad.Staff(notes)
 
         ..  docs::
 
@@ -159,10 +164,10 @@ class Scale(PitchClassSegment):
 
         ::
 
-            >>> notes = scale.make_notes(4, Duration(5, 16))
-            >>> staff = Staff(notes)
-            >>> time_signature = TimeSignature((5, 4))
-            >>> attach(time_signature, staff)
+            >>> notes = scale.make_notes(4, (5, 16))
+            >>> staff = abjad.Staff(notes)
+            >>> time_signature = abjad.TimeSignature((5, 4))
+            >>> abjad.attach(time_signature, staff)
 
         ..  docs::
 

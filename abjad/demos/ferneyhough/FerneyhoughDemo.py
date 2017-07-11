@@ -31,7 +31,7 @@ class FerneyhoughDemo(object):
 
         ..  docs::
 
-            >>> f(lilypond_file[Score])
+            >>> f(lilypond_file[abjad.Score])
             \new Score \with {
                 \override BarLine.stencil = ##f
                 \override BarNumber.transparent = ##t

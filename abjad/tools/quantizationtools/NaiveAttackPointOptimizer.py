@@ -8,12 +8,18 @@ from abjad.tools.quantizationtools.AttackPointOptimizer \
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):
-    r'''Concrete AttackPointOptimizer subclass which optimizes
-    attack points by fusing tie leaves within logical ties with
-    leaf durations decreasing monotonically.
+    r'''Naive attack-point optimizer.
 
-    Logical ties will be partitioned into sub-logical-ties if
-    leaves are found with metronome marks attached.
+    Optimizes attack points by fusing tie leaves within logical ties with leaf
+    durations decreasing monotonically.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
+
+    Logical ties will be partitioned into sub-logical-ties if leaves are found
+    with metronome marks attached.
     '''
 
     ### CLASS VARIABLES ###

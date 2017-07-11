@@ -12,6 +12,11 @@ from abjad.tools.topleveltools import inspect
 class TupletRhythmMaker(RhythmMaker):
     r'''Tuplet rhythm-maker.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         Makes tuplets with ``3:2`` ratios:
@@ -34,7 +39,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  docs::
 
-            >>> f(lilypond_file[Staff])
+            >>> f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 1/2
@@ -88,7 +93,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  docs::
 
-            >>> f(lilypond_file[Staff])
+            >>> f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 1/2
@@ -197,7 +202,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -251,7 +256,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -434,7 +439,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -501,7 +506,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -593,7 +598,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -674,7 +679,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -735,7 +740,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -800,7 +805,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -863,7 +868,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -908,7 +913,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
-                ...         preferred_denominator=Duration(1, 16),
+                ...         preferred_denominator=(1, 16),
                 ...         ),
                 ...     )
 
@@ -924,7 +929,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -968,7 +973,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
-                ...         preferred_denominator=Duration(1, 32),
+                ...         preferred_denominator=(1, 32),
                 ...         ),
                 ...     )
 
@@ -984,7 +989,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -1028,7 +1033,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
-                ...         preferred_denominator=Duration(1, 64),
+                ...         preferred_denominator=(1, 64),
                 ...         ),
                 ...     )
 
@@ -1044,7 +1049,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -1106,7 +1111,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -1166,7 +1171,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -1226,7 +1231,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/16
@@ -1294,7 +1299,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -1345,7 +1350,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -1377,7 +1382,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0],
                 ...     period=2,
                 ...     )
@@ -1400,7 +1405,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -1466,7 +1471,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -1520,7 +1525,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/2
@@ -1591,7 +1596,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/8
@@ -1642,7 +1647,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/8
@@ -1695,7 +1700,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/8
@@ -1746,7 +1751,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 2/8
@@ -1799,7 +1804,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1857,7 +1862,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1915,7 +1920,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1981,7 +1986,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8

@@ -7,17 +7,21 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class LilyPondLiteral(AbjadValueObject):
     r'''LilyPond literal.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Dotted slur:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> slur = spannertools.Slur()
-            >>> attach(slur, staff[:])
-            >>> literal = indicatortools.LilyPondLiteral(r'\slurDotted')
-            >>> attach(literal, staff[0])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> slur = abjad.Slur()
+            >>> abjad.attach(slur, staff[:])
+            >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
+            >>> abjad.attach(literal, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -113,7 +117,7 @@ class LilyPondLiteral(AbjadValueObject):
 
         ..  container:: example
 
-                >>> for slot in LilyPondLiteral.list_allowable_format_slots():
+                >>> for slot in abjad.LilyPondLiteral.list_allowable_format_slots():
                 ...     slot
                 ...
                 'after'
@@ -136,7 +140,7 @@ class LilyPondLiteral(AbjadValueObject):
 
             ::
 
-                >>> literal = indicatortools.LilyPondLiteral(r'\slurDotted')
+                >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
                 >>> literal.default_scope is None
                 True
 
@@ -152,7 +156,7 @@ class LilyPondLiteral(AbjadValueObject):
 
             ::
 
-                >>> literal = indicatortools.LilyPondLiteral(r'\slurDotted')
+                >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
                 >>> literal.format_slot
                 'opening'
 
@@ -170,7 +174,7 @@ class LilyPondLiteral(AbjadValueObject):
 
             ::
 
-                >>> literal = indicatortools.LilyPondLiteral(r'\slurDotted')
+                >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
                 >>> literal.name
                 '\\slurDotted'
 

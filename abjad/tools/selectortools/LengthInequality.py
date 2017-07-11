@@ -8,27 +8,33 @@ class LengthInequality(Inequality):
 
     ::
 
-        >>> inequality = selectortools.LengthInequality('<', 4)
-        >>> f(inequality)
-        abjad.LengthInequality(
-            operator_string='<',
-            length=4,
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> inequality([1, 2, 3])
-        True
+        ::
 
-    ::
+            >>> inequality = abjad.LengthInequality('<', 4)
+            >>> f(inequality)
+            abjad.LengthInequality(
+                operator_string='<',
+                length=4,
+                )
 
-        >>> inequality([1, 2, 3, 4])
-        False
+        ::
 
-    ::
+            >>> inequality([1, 2, 3])
+            True
 
-        >>> inequality([1, 2, 3, 4, 5])
-        False
+        ::
+
+            >>> inequality([1, 2, 3, 4])
+            False
+
+        ::
+
+            >>> inequality([1, 2, 3, 4, 5])
+            False
 
     '''
 

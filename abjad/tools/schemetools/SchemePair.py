@@ -4,15 +4,21 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemePair(Scheme):
-    r'''A Scheme pair.
+    r'''Abjad model of Scheme pair.
 
     ::
 
-        >>> schemetools.SchemePair('spacing', 4)
-        SchemePair('spacing', 4)
+        >>> import abjad
 
-    Initialize Scheme pairs with a tuple, two separate values
-    or another Scheme pair.
+    ..  container:: example
+
+        ::
+
+            >>> abjad.SchemePair('spacing', 4)
+            SchemePair('spacing', 4)
+
+    Initialize Scheme pairs with a tuple, two separate values or another Scheme
+    pair.
 
     Scheme pairs are immutable.
     '''
@@ -49,7 +55,7 @@ class SchemePair(Scheme):
 
         ::
 
-            >>> scheme_pair = schemetools.SchemePair(-1, 1)
+            >>> scheme_pair = abjad.SchemePair(-1, 1)
 
         ::
 

@@ -8,9 +8,15 @@ def list_all_functions(modules=None):
 
     ::
 
-        >>> all_functions = documentationtools.list_all_functions(
-        ...     modules='abjad',
-        ...     )
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> all_functions = abjad.documentationtools.list_all_functions(
+            ...     modules='abjad',
+            ...     )
 
     '''
     from abjad import abjad_configuration

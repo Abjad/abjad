@@ -5,18 +5,22 @@ def is_integer_equivalent_n_tuple(argument, n):
     r'''Is true when `argument` is a tuple of `n` integer-equivalent items.
     Otherwise false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> tuple_ = (2.0, '3', Fraction(4, 1))
-            >>> mathtools.is_integer_equivalent_n_tuple(tuple_, 3)
+            >>> tuple_ = (2.0, '3', abjad.Fraction(4, 1))
+            >>> abjad.mathtools.is_integer_equivalent_n_tuple(tuple_, 3)
             True
 
         ::
 
-            >>> tuple_ = (2.5, '3', Fraction(4, 1))
-            >>> mathtools.is_integer_equivalent_n_tuple(tuple_, 3)
+            >>> tuple_ = (2.5, '3', abjad.Fraction(4, 1))
+            >>> abjad.mathtools.is_integer_equivalent_n_tuple(tuple_, 3)
             False
 
     Returns true or false.

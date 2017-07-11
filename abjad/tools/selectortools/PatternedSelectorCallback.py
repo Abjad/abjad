@@ -6,6 +6,11 @@ from abjad.tools.abctools import AbjadValueObject
 
 class PatternedSelectorCallback(AbjadValueObject):
     r'''Patterned selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###

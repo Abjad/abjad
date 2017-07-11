@@ -11,16 +11,22 @@ def offset_happens_after_timespan_stops(
 
     ::
 
-        >>> relation = timespantools.offset_happens_after_timespan_stops()
-        >>> f(relation)
-        abjad.OffsetTimespanTimeRelation(
-            inequality=abjad.CompoundInequality(
-                [
-                    abjad.Inequality('timespan.stop < offset'),
-                    ],
-                logical_operator='and',
-                ),
-            )
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> relation = abjad.timespantools.offset_happens_after_timespan_stops()
+            >>> f(relation)
+            abjad.OffsetTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
+                    [
+                        abjad.TimespanInequality('timespan.stop < offset'),
+                        ],
+                    logical_operator='and',
+                    ),
+                )
 
     Returns time relation or boolean.
     '''

@@ -7,6 +7,10 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 class TypedOrderedDict(TypedCollection):
     r'''A typed ordered dictionary.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from list of pairs:
@@ -15,7 +19,7 @@ class TypedOrderedDict(TypedCollection):
 
             >>> dictionary = abjad.TypedOrderedDict([
             ...     ('color', 'red'),
-            ...     ('directive', Markup(r'\italic Allegretto')),
+            ...     ('directive', abjad.Markup(r'\italic Allegretto')),
             ...     ])
 
         ::
@@ -46,7 +50,7 @@ class TypedOrderedDict(TypedCollection):
 
             >>> dictionary = {
             ...     'color': 'red',
-            ...     'directive': Markup(r'\italic Allegretto'),
+            ...     'directive': abjad.Markup(r'\italic Allegretto'),
             ...     }
             >>> dictionary = abjad.TypedOrderedDict(
             ...     dictionary
@@ -80,7 +84,7 @@ class TypedOrderedDict(TypedCollection):
 
             >>> dictionary_1 = abjad.TypedOrderedDict([
             ...     ('color', 'red'),
-            ...     ('directive', Markup(r'\italic Allegretto')),
+            ...     ('directive', abjad.Markup(r'\italic Allegretto')),
             ...     ])
             >>> dictionary_2 = abjad.TypedOrderedDict(
             ...     dictionary_1

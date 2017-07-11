@@ -3,53 +3,59 @@ from abjad.tools.timespantools.TimeRelation import TimeRelation
 
 
 class TimespanTimespanTimeRelation(TimeRelation):
-    r'''A timespan vs. timespan time relation.
+    r'''Timespan vs. timespan time relation.
+
+    ::
+
+        >>> import abjad
 
     Score for examples:
 
-    ::
+    ..  container:: example
 
-        >>> staff_1 = Staff(
-        ...     r"\times 2/3 { c'4 d'4 e'4 } \times 2/3 { f'4 g'4 a'4 }")
-        >>> staff_2 = Staff("c'2. d'4")
-        >>> score = Score([staff_1, staff_2])
+        ::
 
-    ..  docs::
+            >>> string = r"\times 2/3 { c'4 d'4 e'4 } \times 2/3 { f'4 g'4 a'4 }"
+            >>> staff_1 = abjad.Staff(string)
+            >>> staff_2 = abjad.Staff("c'2. d'4")
+            >>> score = abjad.Score([staff_1, staff_2])
 
-        >>> f(score)
-        \new Score <<
-            \new Staff {
-                \times 2/3 {
-                    c'4
+        ..  docs::
+
+            >>> f(score)
+            \new Score <<
+                \new Staff {
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \times 2/3 {
+                        f'4
+                        g'4
+                        a'4
+                    }
+                }
+                \new Staff {
+                    c'2.
                     d'4
-                    e'4
                 }
-                \times 2/3 {
-                    f'4
-                    g'4
-                    a'4
-                }
-            }
-            \new Staff {
-                c'2.
-                d'4
-            }
-        >>
+            >>
 
-    ::
+        ::
 
-        >>> last_tuplet = staff_1[-1]
-        >>> long_note = staff_2[0]
+            >>> last_tuplet = staff_1[-1]
+            >>> long_note = staff_2[0]
 
-    ::
+        ::
 
-        >>> show(score) # doctest: +SKIP
+            >>> show(score) # doctest: +SKIP
 
     ..  container:: example
 
         ::
 
-            >>> timespantools.timespan_2_happens_during_timespan_1(
+            >>> abjad.timespantools.timespan_2_happens_during_timespan_1(
             ...     timespan_1=last_tuplet,
             ...     timespan_2=long_note,
             ...     )
@@ -59,7 +65,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespantools.timespan_2_intersects_timespan_1(
+            >>> abjad.timespantools.timespan_2_intersects_timespan_1(
             ...     timespan_1=last_tuplet,
             ...     timespan_2=long_note,
             ...     )
@@ -69,7 +75,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespantools.timespan_2_is_congruent_to_timespan_1(
+            >>> abjad.timespantools.timespan_2_is_congruent_to_timespan_1(
             ...     timespan_1=last_tuplet,
             ...     timespan_2=long_note,
             ...     )
@@ -79,7 +85,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespantools.timespan_2_overlaps_all_of_timespan_1(
+            >>> abjad.timespantools.timespan_2_overlaps_all_of_timespan_1(
             ...     timespan_1=last_tuplet,
             ...     timespan_2=long_note,
             ...     )
@@ -89,7 +95,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespantools.timespan_2_overlaps_start_of_timespan_1(
+            >>> abjad.timespantools.timespan_2_overlaps_start_of_timespan_1(
             ...     timespan_1=last_tuplet,
             ...     timespan_2=long_note,
             ...     )
@@ -99,7 +105,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespantools.timespan_2_overlaps_stop_of_timespan_1(
+            >>> abjad.timespantools.timespan_2_overlaps_stop_of_timespan_1(
             ...     timespan_1=last_tuplet,
             ...     timespan_2=long_note,
             ...     )
@@ -109,7 +115,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespantools.timespan_2_starts_after_timespan_1_starts(
+            >>> abjad.timespantools.timespan_2_starts_after_timespan_1_starts(
             ...     timespan_1=last_tuplet,
             ...     timespan_2=long_note,
             ...     )
@@ -119,7 +125,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespantools.timespan_2_starts_after_timespan_1_stops(
+            >>> abjad.timespantools.timespan_2_starts_after_timespan_1_stops(
             ...     timespan_1=last_tuplet,
             ...     timespan_2=long_note,
             ...     )
@@ -158,12 +164,12 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> timespan_1 = timespantools.Timespan(5, 15)
-                >>> timespan_2 = timespantools.Timespan(10, 20)
+                >>> timespan_1 = abjad.Timespan(5, 15)
+                >>> timespan_2 = abjad.Timespan(10, 20)
 
             ::
 
-                >>> time_relation = timespantools.timespan_2_starts_during_timespan_1(
+                >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
                 ...     timespan_1=timespan_1,
                 ...     timespan_2=timespan_2,
                 ...     hold=True,
@@ -175,8 +181,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
                 abjad.TimespanTimespanTimeRelation(
                     inequality=abjad.CompoundInequality(
                         [
-                            abjad.Inequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                            abjad.Inequality('timespan_2.start_offset < timespan_1.stop_offset'),
+                            abjad.TimespanInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                            abjad.TimespanInequality('timespan_2.start_offset < timespan_1.stop_offset'),
                             ],
                         logical_operator='and',
                         ),
@@ -201,7 +207,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> new_timespan_1 = timespantools.Timespan(0, 10)
+                >>> new_timespan_1 = abjad.Timespan(0, 10)
 
             ::
 
@@ -219,7 +225,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> new_timespan_2 = timespantools.Timespan(2, 12)
+                >>> new_timespan_2 = abjad.Timespan(2, 12)
 
             ::
 
@@ -267,11 +273,11 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespan = timespantools.Timespan(0, 10)
+            >>> timespan = abjad.Timespan(0, 10)
             >>> time_relation_1 = \
-            ...     timespantools.timespan_2_starts_during_timespan_1()
+            ...     abjad.timespantools.timespan_2_starts_during_timespan_1()
             >>> time_relation_2 = \
-            ...     timespantools.timespan_2_starts_during_timespan_1(
+            ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan)
 
         ::
@@ -308,11 +314,11 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> voice = Voice(
-            ...     [Note(i % 36, Duration(1, 4)) for i in range(200)])
-            >>> timespan_1 = timespantools.Timespan(20, 22)
+            >>> notes = [abjad.Note(_ % 36, (1, 4)) for _ in range(200)]
+            >>> voice = abjad.Voice(notes)
+            >>> timespan_1 = abjad.Timespan(20, 22)
             >>> time_relation = \
-            ...     timespantools.timespan_2_starts_during_timespan_1(
+            ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
@@ -368,9 +374,15 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-            >>> start_offsets = [inspect(note).get_timespan().start_offset for note in staff]
-            >>> stop_offsets = [inspect(note).get_timespan().stop_offset for note in staff]
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+            >>> start_offsets = [
+            ...     abjad.inspect(note).get_timespan().start_offset
+            ...     for note in staff
+            ...     ]
+            >>> stop_offsets = [
+            ...     abjad.inspect(note).get_timespan().stop_offset
+            ...     for note in staff
+            ...     ]
 
         ..  container:: example
 
@@ -378,9 +390,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
+                >>> timespan_1 = abjad.Timespan((0), (3, 16))
                 >>> time_relation = \
-                ...     timespantools.timespan_2_starts_during_timespan_1(
+                ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
                 ...     timespan_1=timespan_1)
                 >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
                 (0, 2)
@@ -392,9 +404,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
+                >>> timespan_1 = abjad.Timespan((0), (3, 16))
                 >>> time_relation = \
-                ...     timespantools.timespan_2_starts_after_timespan_1_stops(
+                ...     abjad.timespantools.timespan_2_starts_after_timespan_1_stops(
                 ...     timespan_1=timespan_1)
                 >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
                 (2, 8)
@@ -431,10 +443,10 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespan_1 = timespantools.Timespan(0, 10)
-            >>> timespan_2 = timespantools.Timespan(5, 15)
+            >>> timespan_1 = abjad.Timespan(0, 10)
+            >>> timespan_2 = abjad.Timespan(5, 15)
             >>> time_relation = \
-            ...     timespantools.timespan_2_starts_during_timespan_1(
+            ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1,
             ...     timespan_2=timespan_2,
             ...     hold=True,

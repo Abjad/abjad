@@ -4,22 +4,30 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 
 
 class PitchedQEvent(QEvent):
-    r'''A ``QEvent`` which indicates the onset of a period of pitched material
-    in a ``QEventSequence``.
+    r'''Pitched q-event.
+    
+    Indicates the onset of a period of pitched material in a q-event sequence.
 
     ::
 
-        >>> pitches = [0, 1, 4]
-        >>> q_event = quantizationtools.PitchedQEvent(1000, pitches)
-        >>> print(format(q_event, 'storage'))
-        quantizationtools.PitchedQEvent(
-            offset=abjad.Offset(1000, 1),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                abjad.NamedPitch("cs'"),
-                abjad.NamedPitch("e'"),
-                ),
-            )
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
+
+    ..  container:: example
+
+        ::
+
+            >>> pitches = [0, 1, 4]
+            >>> q_event = quantizationtools.PitchedQEvent(1000, pitches)
+            >>> f(q_event)
+            quantizationtools.PitchedQEvent(
+                offset=abjad.Offset(1000, 1),
+                pitches=(
+                    abjad.NamedPitch("c'"),
+                    abjad.NamedPitch("cs'"),
+                    abjad.NamedPitch("e'"),
+                    ),
+                )
 
     '''
 
@@ -31,6 +39,8 @@ class PitchedQEvent(QEvent):
         '_offset',
         '_pitches',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

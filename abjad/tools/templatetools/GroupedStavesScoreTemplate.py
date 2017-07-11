@@ -13,8 +13,14 @@ class GroupedStavesScoreTemplate(AbjadObject):
 
     ::
 
-        >>> template_class = templatetools.GroupedStavesScoreTemplate
-        >>> template = template_class(staff_count=4)
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> template_class = abjad.templatetools.GroupedStavesScoreTemplate
+            >>> template = template_class(staff_count=4)
 
     '''
 
@@ -36,33 +42,35 @@ class GroupedStavesScoreTemplate(AbjadObject):
     def __call__(self):
         '''Calls score template.
 
-        ::
+        ..  container:: example
 
-            >>> score = template()
+            ::
 
-        ::
+                >>> score = template()
 
-            >>> f(score)
-            \context Score = "Grouped Staves Score" <<
-                \context StaffGroup = "Grouped Staves Staff Group" <<
-                    \context Staff = "Staff 1" {
-                        \context Voice = "Voice 1" {
+            ::
+
+                >>> f(score)
+                \context Score = "Grouped Staves Score" <<
+                    \context StaffGroup = "Grouped Staves Staff Group" <<
+                        \context Staff = "Staff 1" {
+                            \context Voice = "Voice 1" {
+                            }
                         }
-                    }
-                    \context Staff = "Staff 2" {
-                        \context Voice = "Voice 2" {
+                        \context Staff = "Staff 2" {
+                            \context Voice = "Voice 2" {
+                            }
                         }
-                    }
-                    \context Staff = "Staff 3" {
-                        \context Voice = "Voice 3" {
+                        \context Staff = "Staff 3" {
+                            \context Voice = "Voice 3" {
+                            }
                         }
-                    }
-                    \context Staff = "Staff 4" {
-                        \context Voice = "Voice 4" {
+                        \context Staff = "Staff 4" {
+                            \context Voice = "Voice 4" {
+                            }
                         }
-                    }
+                    >>
                 >>
-            >>
 
         Returns score.
         '''

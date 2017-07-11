@@ -6,15 +6,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Staccato(AbjadValueObject):
     r'''Staccato.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Attached to a single note:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> staccato = Staccato()
-            >>> attach(staccato, note)
+            >>> note = abjad.Note("c'4")
+            >>> staccato = abjad.Staccato()
+            >>> abjad.attach(staccato, note)
             >>> show(note) # doctest: +SKIP
 
         ..  docs::
@@ -28,11 +32,11 @@ class Staccato(AbjadValueObject):
 
         ::
 
-            >>> staff = Staff("c'8 d' e' f' g' a' b' c''")
-            >>> attach(Beam(), staff[:4])
-            >>> attach(Beam(), staff[4:])
-            >>> attach(Staccato(), staff[3])
-            >>> attach(Staccato(), staff[7])
+            >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+            >>> abjad.attach(abjad.Beam(), staff[:4])
+            >>> abjad.attach(abjad.Beam(), staff[4:])
+            >>> abjad.attach(abjad.Staccato(), staff[3])
+            >>> abjad.attach(abjad.Staccato(), staff[7])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -83,7 +87,7 @@ class Staccato(AbjadValueObject):
 
             ::
 
-                >>> str(Staccato())
+                >>> str(abjad.Staccato())
                 '\\staccato'
 
         Returns string.
@@ -117,7 +121,7 @@ class Staccato(AbjadValueObject):
 
             ::
 
-                >>> staccato = Staccato()
+                >>> staccato = abjad.Staccato()
                 >>> staccato.default_scope is None
                 True
 

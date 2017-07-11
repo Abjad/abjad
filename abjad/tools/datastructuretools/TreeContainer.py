@@ -6,17 +6,21 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 class TreeContainer(TreeNode):
     r'''A tree container.
 
+    ::
+
+        >>> import abjad
+
     Inner node in a generalized tree data structure.
 
     ::
 
-        >>> a = datastructuretools.TreeContainer()
+        >>> a = abjad.TreeContainer()
         >>> a
         TreeContainer()
 
     ::
 
-        >>> b = datastructuretools.TreeNode()
+        >>> b = abjad.TreeNode()
         >>> a.append(b)
         >>> a
         TreeContainer(
@@ -56,9 +60,9 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> container = datastructuretools.TreeContainer()
-            >>> a = datastructuretools.TreeNode()
-            >>> b = datastructuretools.TreeNode()
+            >>> container = abjad.TreeContainer()
+            >>> a = abjad.TreeNode()
+            >>> b = abjad.TreeNode()
             >>> container.append(a)
 
         ::
@@ -83,8 +87,8 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> container = datastructuretools.TreeContainer()
-            >>> leaf = datastructuretools.TreeNode()
+            >>> container = abjad.TreeContainer()
+            >>> leaf = abjad.TreeNode()
 
         ::
 
@@ -125,12 +129,12 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeNode()
-            >>> c = datastructuretools.TreeContainer()
-            >>> d = datastructuretools.TreeNode()
-            >>> e = datastructuretools.TreeNode()
-            >>> f = datastructuretools.TreeNode()
+            >>> a = abjad.TreeContainer()
+            >>> b = abjad.TreeNode()
+            >>> c = abjad.TreeContainer()
+            >>> d = abjad.TreeNode()
+            >>> e = abjad.TreeNode()
+            >>> f = abjad.TreeNode()
 
         ::
 
@@ -158,10 +162,10 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> foo = datastructuretools.TreeContainer(name='foo')
-            >>> bar = datastructuretools.TreeContainer(name='bar')
-            >>> baz = datastructuretools.TreeNode(name='baz')
-            >>> quux = datastructuretools.TreeNode(name='quux')
+            >>> foo = abjad.TreeContainer(name='foo')
+            >>> bar = abjad.TreeContainer(name='bar')
+            >>> baz = abjad.TreeNode(name='baz')
+            >>> quux = abjad.TreeNode(name='quux')
 
         ::
 
@@ -214,9 +218,9 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeNode()
-            >>> c = datastructuretools.TreeNode()
+            >>> a = abjad.TreeContainer()
+            >>> b = abjad.TreeNode()
+            >>> c = abjad.TreeNode()
 
         ::
 
@@ -303,9 +307,9 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeNode()
-            >>> c = datastructuretools.TreeNode()
+            >>> a = abjad.TreeContainer()
+            >>> b = abjad.TreeNode()
+            >>> c = abjad.TreeNode()
 
         ::
 
@@ -345,9 +349,9 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeNode()
-            >>> c = datastructuretools.TreeNode()
+            >>> a = abjad.TreeContainer()
+            >>> b = abjad.TreeNode()
+            >>> c = abjad.TreeNode()
 
         ::
 
@@ -377,9 +381,9 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeNode()
-            >>> c = datastructuretools.TreeNode()
+            >>> a = abjad.TreeContainer()
+            >>> b = abjad.TreeNode()
+            >>> c = abjad.TreeNode()
 
         ::
 
@@ -410,10 +414,10 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeNode()
-            >>> c = datastructuretools.TreeNode()
-            >>> d = datastructuretools.TreeNode()
+            >>> a = abjad.TreeContainer()
+            >>> b = abjad.TreeNode()
+            >>> c = abjad.TreeNode()
+            >>> d = abjad.TreeNode()
 
         ::
 
@@ -457,9 +461,9 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeNode()
-            >>> c = datastructuretools.TreeNode()
+            >>> a = abjad.TreeContainer()
+            >>> b = abjad.TreeNode()
+            >>> c = abjad.TreeNode()
 
         ::
 
@@ -504,9 +508,9 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeNode()
-            >>> c = datastructuretools.TreeNode()
+            >>> a = abjad.TreeContainer()
+            >>> b = abjad.TreeNode()
+            >>> c = abjad.TreeNode()
 
         ::
 
@@ -558,11 +562,11 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeContainer()
-            >>> c = datastructuretools.TreeNode()
-            >>> d = datastructuretools.TreeNode()
-            >>> e = datastructuretools.TreeContainer()
+            >>> a = abjad.TreeContainer()
+            >>> b = abjad.TreeContainer()
+            >>> c = abjad.TreeNode()
+            >>> d = abjad.TreeNode()
+            >>> e = abjad.TreeContainer()
 
         ::
 
@@ -594,11 +598,11 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer(name='a')
-            >>> b = datastructuretools.TreeContainer(name='b')
-            >>> c = datastructuretools.TreeNode(name='c')
-            >>> d = datastructuretools.TreeNode(name='d')
-            >>> e = datastructuretools.TreeContainer(name='e')
+            >>> a = abjad.TreeContainer(name='a')
+            >>> b = abjad.TreeContainer(name='b')
+            >>> c = abjad.TreeNode(name='c')
+            >>> d = abjad.TreeNode(name='d')
+            >>> e = abjad.TreeContainer(name='e')
 
         ::
 
@@ -642,11 +646,11 @@ class TreeContainer(TreeNode):
 
         ::
 
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeContainer()
-            >>> c = datastructuretools.TreeNode()
-            >>> d = datastructuretools.TreeNode()
-            >>> e = datastructuretools.TreeContainer()
+            >>> a = abjad.TreeContainer()
+            >>> b = abjad.TreeContainer()
+            >>> c = abjad.TreeNode()
+            >>> d = abjad.TreeNode()
+            >>> e = abjad.TreeContainer()
 
         ::
 

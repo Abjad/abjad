@@ -12,6 +12,11 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 
 class Pitch(AbjadValueObject):
     '''Pitch base class.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -229,17 +234,17 @@ class Pitch(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.NamedPitch("a'").hertz
+                >>> abjad.NamedPitch("a'").hertz
                 440.0
 
             ::
 
-                >>> pitchtools.NamedPitch("c'").hertz
+                >>> abjad.NamedPitch("c'").hertz
                 261.62...
 
             ::
 
-                >>> pitchtools.NamedPitch("c''").hertz
+                >>> abjad.NamedPitch("c''").hertz
                 523.25...
 
         Returns float.
@@ -365,17 +370,17 @@ class Pitch(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.NamedPitch.from_hertz(440)
+                >>> abjad.NamedPitch.from_hertz(440)
                 NamedPitch("a'")
 
             ::
 
-                >>> pitchtools.NumberedPitch.from_hertz(440)
+                >>> abjad.NumberedPitch.from_hertz(440)
                 NumberedPitch(9)
 
             ::
 
-                >>> pitchtools.NamedPitch.from_hertz(519)
+                >>> abjad.NamedPitch.from_hertz(519)
                 NamedPitch("c'")
 
         Returns new pitch.
@@ -408,14 +413,14 @@ class Pitch(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Pitch.is_diatonic_pitch_name("c''")
+                >>> abjad.Pitch.is_diatonic_pitch_name("c''")
                 True
 
         ..  container:: example
 
             ::
 
-                >>> pitchtools.Pitch.is_diatonic_pitch_name("cs''")
+                >>> abjad.Pitch.is_diatonic_pitch_name("cs''")
                 False
 
         The regex ``(^[a-g,A-G])(,+|'+|)$`` underlies this predicate.
@@ -434,14 +439,14 @@ class Pitch(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Pitch.is_diatonic_pitch_number(7)
+                >>> abjad.Pitch.is_diatonic_pitch_number(7)
                 True
 
         ..  container:: example
 
             ::
 
-                >>> pitchtools.Pitch.is_diatonic_pitch_number(7.5)
+                >>> abjad.Pitch.is_diatonic_pitch_number(7.5)
                 False
 
         Diatonic pitch numbers are equal to the set of integers.
@@ -459,15 +464,15 @@ class Pitch(AbjadValueObject):
 
             ::
 
-                >>> note = Note("c'4")
-                >>> pitchtools.Pitch.is_pitch_carrier(note)
+                >>> note = abjad.Note("c'4")
+                >>> abjad.Pitch.is_pitch_carrier(note)
                 True
 
         ..  container:: example
 
             ::
 
-                >>> pitchtools.Pitch.is_pitch_carrier('text')
+                >>> abjad.Pitch.is_pitch_carrier('text')
                 False
 
         Returns true or false.
@@ -492,7 +497,7 @@ class Pitch(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Pitch.is_pitch_class_octave_number_string('C#2')
+                >>> abjad.Pitch.is_pitch_class_octave_number_string('C#2')
                 True
 
         ..  container:: example
@@ -501,14 +506,14 @@ class Pitch(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Pitch.is_pitch_class_octave_number_string('C#2')
+                >>> abjad.Pitch.is_pitch_class_octave_number_string('C#2')
                 True
 
         ..  container:: example
 
             ::
 
-                >>> pitchtools.Pitch.is_pitch_class_octave_number_string('C#')
+                >>> abjad.Pitch.is_pitch_class_octave_number_string('C#')
                 False
 
         The regex ``^([A-G])([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)([-]?[0-9]+)$``
@@ -528,14 +533,14 @@ class Pitch(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Pitch.is_pitch_name('c,')
+                >>> abjad.Pitch.is_pitch_name('c,')
                 True
 
         ..  container:: example
 
             ::
 
-                >>> pitchtools.Pitch.is_pitch_name('z')
+                >>> abjad.Pitch.is_pitch_name('z')
                 False
 
         The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[f,s]|)!?)(,+|'+|)$``
@@ -555,14 +560,14 @@ class Pitch(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Pitch.is_pitch_number(13)
+                >>> abjad.Pitch.is_pitch_number(13)
                 True
 
         ..  container:: example
 
             ::
 
-                >>> pitchtools.Pitch.is_pitch_number('text')
+                >>> abjad.Pitch.is_pitch_number('text')
                 False
 
         Pitch numbers are equal to the set of all integers in union with the

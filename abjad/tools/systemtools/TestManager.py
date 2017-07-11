@@ -7,6 +7,11 @@ from abjad.tools.abctools import AbjadObject
 
 class TestManager(AbjadObject):
     r'''Manages test logic.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -329,6 +334,7 @@ class TestManager(AbjadObject):
 
         ::
 
+            >>> from abjad.tools import rhythmmakertools
             >>> one = rhythmmakertools.TaleaRhythmMaker(
             ...     talea=rhythmmakertools.Talea(
             ...         counts=[1, 2, 3],
@@ -347,7 +353,7 @@ class TestManager(AbjadObject):
 
         ::
 
-            >>> diff = systemtools.TestManager.diff(one, two, 'Diff:')
+            >>> diff = abjad.systemtools.TestManager.diff(one, two, 'Diff:')
             >>> print(diff)
             Diff:
               rhythmmakertools.TaleaRhythmMaker(
@@ -387,7 +393,7 @@ class TestManager(AbjadObject):
         ::
 
             >>> def foo():
-            ...        function_name = systemtools.TestManager.get_current_function_name()
+            ...        function_name = abjad.systemtools.TestManager.get_current_function_name()
             ...        print('Function name is {!r}.'.format(function_name))
 
         ::

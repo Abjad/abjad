@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TimeRelation(AbjadObject):
-    r'''A time relation.
+    r'''Time relation.
 
     Time relations are immutable.
     '''

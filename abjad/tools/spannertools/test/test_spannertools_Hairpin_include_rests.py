@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -6,7 +7,7 @@ def test_spannertools_Hairpin_include_rests_01():
     r'''Hairpin spanner avoids rests.
     '''
 
-    staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
+    staff = abjad.Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
     crescendo = Crescendo(include_rests=False)
     attach(crescendo, staff[:])
 
@@ -32,7 +33,7 @@ def test_spannertools_Hairpin_include_rests_02():
     r'''Hairpin spanner avoids rests.
     '''
 
-    staff = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
+    staff = abjad.Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
     crescendo = Crescendo(include_rests=False)
     attach(crescendo, staff[:])
 

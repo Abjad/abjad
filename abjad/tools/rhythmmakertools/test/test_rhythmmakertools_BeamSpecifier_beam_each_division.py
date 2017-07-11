@@ -23,7 +23,7 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
     selections = Sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(selections)
     score = Score([staff])
     setting(score).autoBeaming = False

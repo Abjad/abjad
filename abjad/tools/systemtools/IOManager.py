@@ -19,6 +19,11 @@ except NameError:
 
 class IOManager(AbjadObject):
     r'''Manages Abjad IO.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -210,7 +215,7 @@ class IOManager(AbjadObject):
 
             ::
 
-                >>> systemtools.IOManager.find_executable('python2.7') # doctest: +SKIP
+                >>> abjad.systemtools.IOManager.find_executable('python2.7') # doctest: +SKIP
                 ['/usr/bin/python2.7']
 
         Returns list of zero or more full paths to `name`.
@@ -245,7 +250,7 @@ class IOManager(AbjadObject):
 
             ::
 
-                >>> systemtools.IOManager.get_last_output_file_name() # doctest: +SKIP
+                >>> abjad.systemtools.IOManager.get_last_output_file_name() # doctest: +SKIP
                 '6222.ly'
 
         Gets last output file name in Abjad output directory when
@@ -287,7 +292,7 @@ class IOManager(AbjadObject):
 
             ::
 
-                >>> systemtools.IOManager.get_next_output_file_name() # doctest: +SKIP
+                >>> abjad.systemtools.IOManager.get_next_output_file_name() # doctest: +SKIP
                 '6223.ly'
 
         Gets next output file name with `file_extension` in Abjad output
@@ -324,7 +329,7 @@ class IOManager(AbjadObject):
             ::
 
                 >>> command = 'echo "hellow world"'
-                >>> systemtools.IOManager.make_subprocess(command)
+                >>> abjad.systemtools.IOManager.make_subprocess(command)
                 <subprocess.Popen object at 0x...>
 
         Defined equal to
@@ -523,8 +528,8 @@ class IOManager(AbjadObject):
 
             ::
 
-                >>> argument = 'Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
-                >>> systemtools.IOManager.profile(
+                >>> argument = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
+                >>> abjad.systemtools.IOManager.profile(
                 ...     argument,
                 ...     global_context=globals(),
                 ...     ) # doctest: +SKIP

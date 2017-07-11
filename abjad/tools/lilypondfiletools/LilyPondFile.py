@@ -5,13 +5,17 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class LilyPondFile(AbjadObject):
     r'''A LilyPond file.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Makes LilyPond file:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
             >>> comments = [
             ...     'File construct as an example.',
             ...     'Parts shown here for positioning.',
@@ -20,7 +24,7 @@ class LilyPondFile(AbjadObject):
             ...     'external-settings-file-1.ly',
             ...     'external-settings-file-2.ly',
             ...     ]
-            >>> lilypond_file = LilyPondFile.new(
+            >>> lilypond_file = abjad.LilyPondFile.new(
             ...     music=staff,
             ...     default_paper_size=('a5', 'portrait'),
             ...     comments=comments,
@@ -30,8 +34,8 @@ class LilyPondFile(AbjadObject):
 
         ::
 
-            >>> lilypond_file.header_block.composer = Markup('Josquin')
-            >>> lilypond_file.header_block.title = Markup('Missa sexti toni')
+            >>> lilypond_file.header_block.composer = abjad.Markup('Josquin')
+            >>> lilypond_file.header_block.title = abjad.Markup('Missa sexti tonus')
             >>> lilypond_file.layout_block.indent = 0
             >>> lilypond_file.layout_block.left_margin = 15
 
@@ -152,7 +156,7 @@ class LilyPondFile(AbjadObject):
 
             Gets format:
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -184,7 +188,7 @@ class LilyPondFile(AbjadObject):
 
             Gets header block:
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -197,17 +201,17 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> voice_1 = Voice("c''4 b' a' g'", name='Custom Voice 1')
-                >>> attach(LilyPondCommand('voiceOne'), voice_1)
-                >>> voice_2 = Voice("c'4 d' e' f'", name='Custom Voice 2')
-                >>> attach(LilyPondCommand('voiceTwo'), voice_2)
-                >>> staff = Staff(
+                >>> voice_1 = abjad.Voice("c''4 b' a' g'", name='Custom Voice 1')
+                >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
+                >>> voice_2 = abjad.Voice("c'4 d' e' f'", name='Custom Voice 2')
+                >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
+                >>> staff = abjad.Staff(
                 ...     [voice_1, voice_2],
                 ...     is_simultaneous=True,
                 ...     name='Custom Staff',
                 ...     )
-                >>> score = Score([staff], name='Custom Score')
-                >>> lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+                >>> score = abjad.Score([staff], name='Custom Score')
+                >>> lilypond_file = abjad.LilyPondFile.new(score)
                 >>> show(score) # doctest: +SKIP
 
             ..  docs::
@@ -244,7 +248,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file[Score]
+                >>> lilypond_file[abjad.Score]
                 <Score-"Custom Score"<<1>>>
 
             ::
@@ -254,7 +258,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file[Staff]
+                >>> lilypond_file[abjad.Staff]
                 <Staff-"Custom Staff"<<2>>>
 
             ::
@@ -269,7 +273,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file[Voice]
+                >>> lilypond_file[abjad.Voice]
                 Voice("c''4 b'4 a'4 g'4")
 
         Returns item.
@@ -322,7 +326,7 @@ class LilyPondFile(AbjadObject):
 
             Gets interpreter representation:
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -388,10 +392,10 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> score = Score([Staff("c'8 d'8 e'8 f'8")])
-                >>> lilypond_file = LilyPondFile.new(score)
-                >>> lilypond_file.header_block.title = Markup('Missa sexti toni')
-                >>> lilypond_file.header_block.composer = Markup('Josquin')
+                >>> score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
+                >>> lilypond_file = abjad.LilyPondFile.new(score)
+                >>> lilypond_file.header_block.title = abjad.Markup('Missa sexti tonus')
+                >>> lilypond_file.header_block.composer = abjad.Markup('Josquin')
                 >>> lilypond_file.layout_block.indent = 0
                 >>> lilypond_file.paper_block.top_margin = 15
                 >>> lilypond_file.paper_block.left_margin = 15
@@ -561,7 +565,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -582,7 +586,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -603,7 +607,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -628,7 +632,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -653,7 +657,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -678,7 +682,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -699,7 +703,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -732,7 +736,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -757,7 +761,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -778,7 +782,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -799,7 +803,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -824,7 +828,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 
@@ -849,7 +853,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = LilyPondFile.new()
+                >>> lilypond_file = abjad.LilyPondFile.new()
 
             ::
 

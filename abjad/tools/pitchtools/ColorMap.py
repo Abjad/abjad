@@ -6,13 +6,17 @@ from abjad.tools.abctools import AbjadValueObject
 class ColorMap(AbjadValueObject):
     '''Color map.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Maps pitch-classes to red, green and blue:
 
         ::
 
-            >>> color_map = ColorMap(
+            >>> color_map = abjad.ColorMap(
             ...     colors=['red', 'green', 'blue'],
             ...     pitch_iterables=[
             ...         [-8, 2, 10, 21],
@@ -82,7 +86,7 @@ class ColorMap(AbjadValueObject):
 
             ::
 
-                >>> color_map = ColorMap(
+                >>> color_map = abjad.ColorMap(
                 ...     colors=['red', 'green', 'blue'],
                 ...     pitch_iterables=[
                 ...         [-8, 2, 10, 21],

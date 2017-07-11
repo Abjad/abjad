@@ -8,18 +8,22 @@ from abjad.tools.spannertools.Spanner import Spanner
 class GeneralizedBeam(Spanner):
     r'''Generalized beam.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example::
 
         ::
 
-            >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> setting(staff).auto_beaming = False
+            >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> beam = GeneralizedBeam()
-            >>> attach(beam, staff[:])
+            >>> beam = abjad.GeneralizedBeam()
+            >>> abjad.attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -43,16 +47,16 @@ class GeneralizedBeam(Spanner):
 
         ::
 
-            >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> setting(staff).auto_beaming = False
+            >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> beam = GeneralizedBeam(
+            >>> beam = abjad.GeneralizedBeam(
             ...     isolated_nib_direction=Right,
             ...     )
-            >>> attach(beam, staff[:])
+            >>> abjad.attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -76,14 +80,14 @@ class GeneralizedBeam(Spanner):
 
         ::
 
-            >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> setting(staff).auto_beaming = False
+            >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> beam = GeneralizedBeam(use_stemlets=True)
-            >>> attach(beam, staff[:])
+            >>> beam = abjad.GeneralizedBeam(use_stemlets=True)
+            >>> abjad.attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

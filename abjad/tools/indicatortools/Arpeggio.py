@@ -5,15 +5,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Arpeggio(AbjadValueObject):
     r'''Arpeggio.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Without direction arrow:
 
         ::
 
-            >>> chord = Chord("<c' e' g' c''>4")
-            >>> arpeggio = indicatortools.Arpeggio()
-            >>> attach(arpeggio, chord)
+            >>> chord = abjad.Chord("<c' e' g' c''>4")
+            >>> arpeggio = abjad.Arpeggio()
+            >>> abjad.attach(arpeggio, chord)
             >>> show(chord) # doctest: +SKIP
 
         ..  docs::
@@ -27,9 +31,9 @@ class Arpeggio(AbjadValueObject):
 
         ::
 
-            >>> chord = Chord("<c' e' g' c''>4")
-            >>> arpeggio = indicatortools.Arpeggio(direction=Down)
-            >>> attach(arpeggio, chord)
+            >>> chord = abjad.Chord("<c' e' g' c''>4")
+            >>> arpeggio = abjad.Arpeggio(direction=Down)
+            >>> abjad.attach(arpeggio, chord)
             >>> show(chord) # doctest: +SKIP
 
         ..  docs::
@@ -82,7 +86,7 @@ class Arpeggio(AbjadValueObject):
 
             ::
 
-                >>> arpeggio = indicatortools.Arpeggio()
+                >>> arpeggio = abjad.Arpeggio()
                 >>> arpeggio.default_scope is None
                 True
 
@@ -100,7 +104,7 @@ class Arpeggio(AbjadValueObject):
 
             ::
 
-                >>> arpeggio = indicatortools.Arpeggio()
+                >>> arpeggio = abjad.Arpeggio()
                 >>> arpeggio.direction is None
                 True
 
@@ -110,7 +114,7 @@ class Arpeggio(AbjadValueObject):
 
             ::
 
-                >>> arpeggio = indicatortools.Arpeggio(direction=Down)
+                >>> arpeggio = abjad.Arpeggio(direction=Down)
                 >>> arpeggio.direction
                 Down
 

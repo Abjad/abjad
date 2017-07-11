@@ -7,6 +7,10 @@ class LilyPondContextSetting(AbjadObject):
 
     ::
 
+        >>> from abjad.tools import lilypondnametools
+
+    ::
+
         >>> context_setting = lilypondnametools.LilyPondContextSetting(
         ...    context_name='Score',
         ...    context_property='autoBeaming',

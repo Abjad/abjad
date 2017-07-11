@@ -6,6 +6,11 @@ from abjad.tools.abctools import AbjadValueObject
 
 class FlattenSelectorCallback(AbjadValueObject):
     r'''Flatten selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###

@@ -7,17 +7,21 @@ def all_are_pairs_of_types(argument, first_type, second_type):
     `first_type` and where the second member of each pair is an instance of
     `second_type`. Otherwise false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
             >>> items = [(1., 'a'), (2.1, 'b'), (3.45, 'c')]
-            >>> mathtools.all_are_pairs_of_types(items, float, str)
+            >>> abjad.mathtools.all_are_pairs_of_types(items, float, str)
             True
 
         ::
 
-            >>> mathtools.all_are_pairs_of_types('foo', float, str)
+            >>> abjad.mathtools.all_are_pairs_of_types('foo', float, str)
             False
 
     ..  container:: example
@@ -26,7 +30,7 @@ def all_are_pairs_of_types(argument, first_type, second_type):
 
         ::
 
-            >>> mathtools.all_are_pairs_of_types([], float, str)
+            >>> abjad.mathtools.all_are_pairs_of_types([], float, str)
             True
 
     Returns true or false.

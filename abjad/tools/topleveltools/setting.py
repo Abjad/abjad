@@ -4,14 +4,18 @@
 def setting(argument):
     r'''Makes LilyPond setting name manager.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Sets instrument name:
 
         ::
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
-            >>> setting(staff).instrument_name = Markup('Vn. I')
+            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+            >>> abjad.setting(staff).instrument_name = abjad.Markup('Vn. I')
             >>> show(staff) # doctest: +SKIP
 
 
@@ -33,7 +37,7 @@ def setting(argument):
 
         ::
 
-            >>> setting(staff)
+            >>> abjad.setting(staff)
             LilyPondSettingNameManager(('instrument_name', Markup(contents=['Vn. I'])))
 
     '''

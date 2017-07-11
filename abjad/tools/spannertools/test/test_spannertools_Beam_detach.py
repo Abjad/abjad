@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -6,7 +7,7 @@ def test_spannertools_Beam_detach_01():
     r'''Detach length-one spanner.
     '''
 
-    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
+    staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     beam = Beam()
     attach(beam, staff[0])
 
@@ -49,7 +50,7 @@ def test_spannertools_Beam_detach_02():
     r'''Detach length-four spanner.
     '''
 
-    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
+    staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     beam = Beam()
     attach(beam, staff[:4])
 

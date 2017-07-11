@@ -5,15 +5,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class KeySignature(AbjadValueObject):
     r'''Key signature.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         E major:
 
         ::
 
-            >>> staff = Staff("e'8 fs'8 gs'8 a'8")
-            >>> key_signature = KeySignature('e', 'major')
-            >>> attach(key_signature, staff)
+            >>> staff = abjad.Staff("e'8 fs'8 gs'8 a'8")
+            >>> key_signature = abjad.KeySignature('e', 'major')
+            >>> abjad.attach(key_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -33,9 +37,9 @@ class KeySignature(AbjadValueObject):
 
         ::
 
-            >>> staff = Staff("e'8 fs'8 g'8 a'8")
-            >>> key_signature = KeySignature('e', 'minor')
-            >>> attach(key_signature, staff)
+            >>> staff = abjad.Staff("e'8 fs'8 g'8 a'8")
+            >>> key_signature = abjad.KeySignature('e', 'minor')
+            >>> abjad.attach(key_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -84,7 +88,7 @@ class KeySignature(AbjadValueObject):
 
             ::
 
-                >>> str(KeySignature('e', 'major'))
+                >>> str(abjad.KeySignature('e', 'major'))
                 'e-major'
 
         ..  container:: example
@@ -93,7 +97,7 @@ class KeySignature(AbjadValueObject):
 
             ::
 
-                >>> str(KeySignature('e', 'minor'))
+                >>> str(abjad.KeySignature('e', 'minor'))
                 'e-minor'
 
         Returns string.
@@ -123,7 +127,7 @@ class KeySignature(AbjadValueObject):
 
             ::
 
-                >>> key_signature = KeySignature('e', 'major')
+                >>> key_signature = abjad.KeySignature('e', 'major')
                 >>> key_signature.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 
@@ -133,7 +137,7 @@ class KeySignature(AbjadValueObject):
 
             ::
 
-                >>> key_signature = KeySignature('e', 'minor')
+                >>> key_signature = abjad.KeySignature('e', 'minor')
                 >>> key_signature.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 
@@ -153,7 +157,7 @@ class KeySignature(AbjadValueObject):
 
             ::
 
-                >>> key_signature = KeySignature('e', 'major')
+                >>> key_signature = abjad.KeySignature('e', 'major')
                 >>> key_signature.mode
                 Mode(mode_name='major')
 
@@ -163,7 +167,7 @@ class KeySignature(AbjadValueObject):
 
             ::
 
-                >>> key_signature = KeySignature('e', 'minor')
+                >>> key_signature = abjad.KeySignature('e', 'minor')
                 >>> key_signature.mode
                 Mode(mode_name='minor')
 
@@ -181,7 +185,7 @@ class KeySignature(AbjadValueObject):
 
             ::
 
-                >>> key_signature = KeySignature('e', 'major')
+                >>> key_signature = abjad.KeySignature('e', 'major')
                 >>> key_signature.name
                 'E major'
 
@@ -191,7 +195,7 @@ class KeySignature(AbjadValueObject):
 
             ::
 
-                >>> key_signature = KeySignature('e', 'minor')
+                >>> key_signature = abjad.KeySignature('e', 'minor')
                 >>> key_signature.name
                 'e minor'
 
@@ -213,7 +217,7 @@ class KeySignature(AbjadValueObject):
 
             ::
 
-                >>> key_signature = KeySignature('e', 'major')
+                >>> key_signature = abjad.KeySignature('e', 'major')
                 >>> key_signature.tonic
                 NamedPitchClass('e')
 
@@ -223,7 +227,7 @@ class KeySignature(AbjadValueObject):
 
             ::
 
-                >>> key_signature = KeySignature('e', 'minor')
+                >>> key_signature = abjad.KeySignature('e', 'minor')
                 >>> key_signature.tonic
                 NamedPitchClass('e')
 

@@ -4,14 +4,18 @@
 def detach(prototype, component_expression=None):
     r'''Detaches `prototype` indicators from `component_expression`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Detaches articulations from first note in staff:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(Articulation('>'), staff[0])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Articulation('>'), staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -26,7 +30,7 @@ def detach(prototype, component_expression=None):
 
         ::
 
-            >>> detach(Articulation, staff[0])
+            >>> abjad.detach(abjad.Articulation, staff[0])
             (Articulation('>'),)
             >>> show(staff) # doctest: +SKIP
 

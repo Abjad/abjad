@@ -6,21 +6,27 @@ def offset_happens_when_timespan_starts(
     offset=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `offset` happens
-    when `timespan` starts.
+    r'''Makes time relation indicating that `offset` happens when `timespan`
+    starts.
 
     ::
 
-        >>> relation = timespantools.offset_happens_when_timespan_starts()
-        >>> f(relation)
-        abjad.OffsetTimespanTimeRelation(
-            inequality=abjad.CompoundInequality(
-                [
-                    abjad.Inequality('offset == timespan.start'),
-                    ],
-                logical_operator='and',
-                ),
-            )
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> relation = abjad.timespantools.offset_happens_when_timespan_starts()
+            >>> f(relation)
+            abjad.OffsetTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
+                    [
+                        abjad.TimespanInequality('offset == timespan.start'),
+                        ],
+                    logical_operator='and',
+                    ),
+                )
 
     Returns time relation or boolean.
     '''

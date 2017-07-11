@@ -4,48 +4,56 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QuantizationJob(AbjadObject):
-    r'''A copiable, picklable class for generating all ``QGrids`` which
-    are valid under a given ``SearchTree`` for a sequence
-    of ``QEventProxies``:
+    r'''Quantization job.
+    
+    Copiable, picklable class for generating all ``QGrids`` which are valid
+    under a given ``SearchTree`` for a sequence of ``QEventProxies``.
 
     ::
 
-        >>> q_event_a = quantizationtools.PitchedQEvent(250, [0, 1])
-        >>> q_event_b = quantizationtools.SilentQEvent(500)
-        >>> q_event_c = quantizationtools.PitchedQEvent(750, [3, 7])
-        >>> proxy_a = quantizationtools.QEventProxy(q_event_a, 0.25)
-        >>> proxy_b = quantizationtools.QEventProxy(q_event_b, 0.5)
-        >>> proxy_c = quantizationtools.QEventProxy(q_event_c, 0.75)
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
-    ::
+    ..  container:: example
 
-        >>> definition = {2: {2: None}, 3: None, 5: None}
-        >>> search_tree = quantizationtools.UnweightedSearchTree(definition)
+        ::
 
-    ::
+            >>> q_event_a = quantizationtools.PitchedQEvent(250, [0, 1])
+            >>> q_event_b = quantizationtools.SilentQEvent(500)
+            >>> q_event_c = quantizationtools.PitchedQEvent(750, [3, 7])
+            >>> proxy_a = quantizationtools.QEventProxy(q_event_a, 0.25)
+            >>> proxy_b = quantizationtools.QEventProxy(q_event_b, 0.5)
+            >>> proxy_c = quantizationtools.QEventProxy(q_event_c, 0.75)
 
-        >>> job = quantizationtools.QuantizationJob(
-        ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
+        ::
 
-    ``QuantizationJob`` generates ``QGrids`` when called, and stores those
-    ``QGrids`` on its ``q_grids`` attribute, allowing them to be recalled
-    later, even if pickled:
+            >>> definition = {2: {2: None}, 3: None, 5: None}
+            >>> search_tree = quantizationtools.UnweightedSearchTree(definition)
 
-    ::
+        ::
 
-        >>> job()
-        >>> for q_grid in job.q_grids:
-        ...     print(q_grid.rtm_format)
-        1
-        (1 (1 1 1 1 1))
-        (1 (1 1 1))
-        (1 (1 1))
-        (1 ((1 (1 1)) (1 (1 1))))
+            >>> job = quantizationtools.QuantizationJob(
+            ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
 
-    ``QuantizationJob`` is intended to be useful in
-    multiprocessing-enabled environments.
+    ..  container:: example
 
-    Return ``QuantizationJob`` instance.
+        ``QuantizationJob`` generates ``QGrids`` when called, and stores those
+        ``QGrids`` on its ``q_grids`` attribute, allowing them to be recalled
+        later, even if pickled:
+
+        ::
+
+            >>> job()
+            >>> for q_grid in job.q_grids:
+            ...     print(q_grid.rtm_format)
+            1
+            (1 (1 1 1 1 1))
+            (1 (1 1 1))
+            (1 (1 1))
+            (1 ((1 (1 1)) (1 (1 1))))
+
+    ``QuantizationJob`` is intended to be useful in multiprocessing-enabled
+    environments.
     '''
 
     ### CLASS VARIABLES ###

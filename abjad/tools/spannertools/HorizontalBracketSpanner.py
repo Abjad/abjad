@@ -6,14 +6,18 @@ from abjad.tools.spannertools.Spanner import Spanner
 class HorizontalBracketSpanner(Spanner):
     r'''Horizontal bracket spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-            >>> spanner = HorizontalBracketSpanner()
-            >>> attach(spanner, voice[:])
+            >>> spanner = abjad.HorizontalBracketSpanner()
+            >>> abjad.attach(spanner, voice[:])
             >>> show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -76,8 +80,8 @@ class HorizontalBracketSpanner(Spanner):
 
             ::
 
-                >>> markup = Markup('3-1[012]').smaller()
-                >>> spanner = HorizontalBracketSpanner(markup=markup)
+                >>> markup = abjad.Markup('3-1[012]').smaller()
+                >>> spanner = abjad.HorizontalBracketSpanner(markup=markup)
 
             ::
 
@@ -90,7 +94,7 @@ class HorizontalBracketSpanner(Spanner):
 
             ::
 
-                >>> spanner = HorizontalBracketSpanner()
+                >>> spanner = abjad.HorizontalBracketSpanner()
                 >>> spanner.markup is None
                 True
 

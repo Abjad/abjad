@@ -5,17 +5,21 @@ import math
 def divisors(n):
     r'''Gets positive divisors of `n` in increasing order.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.divisors(84)
+            >>> abjad.mathtools.divisors(84)
             [1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84]
 
         ::
 
             >>> for x in range(10, 20):
-            ...     print(x, mathtools.divisors(x))
+            ...     print(x, abjad.mathtools.divisors(x))
             ... 
             10 [1, 2, 5, 10]
             11 [1, 11]
@@ -34,7 +38,7 @@ def divisors(n):
 
         ::
 
-            >>> mathtools.divisors(-27)
+            >>> abjad.mathtools.divisors(-27)
             [1, 3, 9, 27]
 
     Raises not implemented error on ``0``.

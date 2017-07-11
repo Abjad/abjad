@@ -8,6 +8,11 @@ from abjad.tools.abctools import AbjadValueObject
 
 class LogicalTieSelectorCallback(AbjadValueObject):
     r'''Logical tie selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###

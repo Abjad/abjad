@@ -5,13 +5,17 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class LaissezVibrer(AbjadValueObject):
     r'''Laissez vibrer.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> chord = Chord("<c' e' g' c''>4")
-            >>> laissez_vibrer = indicatortools.LaissezVibrer()
-            >>> attach(laissez_vibrer, chord)
+            >>> chord = abjad.Chord("<c' e' g' c''>4")
+            >>> laissez_vibrer = abjad.LaissezVibrer()
+            >>> abjad.attach(laissez_vibrer, chord)
             >>> show(chord) # doctest: +SKIP
 
         ..  docs::
@@ -47,7 +51,7 @@ class LaissezVibrer(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.LaissezVibrer())
+                >>> str(abjad.LaissezVibrer())
                 '\\laissezVibrer'
                     
         Returns string.
@@ -77,7 +81,7 @@ class LaissezVibrer(AbjadValueObject):
 
             ::
 
-                >>> indicator = indicatortools.LaissezVibrer()
+                >>> indicator = abjad.LaissezVibrer()
                 >>> indicator.default_scope is None
                 True
 

@@ -3,6 +3,11 @@
 
 class SelectorLibrary(object):
     r'''Selector library.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -45,11 +50,11 @@ class SelectorLibrary(object):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.extend(r"c'4. d'8 ~ \times 2/3 { d'4 r4 e'4 ~ } e'8 f'4.")
+                >>> string = r"c'4. d'8 ~ \times 2/3 { d'4 r4 e'4 ~ } e'8 f'4."
+                >>> staff = abjad.Staff(string)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> setting(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -136,11 +141,11 @@ class SelectorLibrary(object):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.extend(r"c'4. d'8 ~ \times 2/3 { d'4 r4 e'4 ~ } e'8 f'4.")
+                >>> string = r"c'4. d'8 ~ \times 2/3 { d'4 r4 e'4 ~ } e'8 f'4."
+                >>> staff = abjad.Staff(string)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> setting(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -230,13 +235,13 @@ class SelectorLibrary(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     r"c' d' ~ \times 2/3 { d' e' r } "
                 ...     r"f' g' \times 2/3 { r a' b' ~ } b' c''"
                 ...     )
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> setting(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -357,13 +362,13 @@ class SelectorLibrary(object):
 
             ::
 
-                >>> staff = Staff(
+                >>> staff = abjad.Staff(
                 ...     r"c' d' ~ \times 2/3 { d' e' r } "
                 ...     r"f' g' \times 2/3 { r a' b' ~ } b' c''"
                 ...     )
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> setting(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -471,11 +476,11 @@ class SelectorLibrary(object):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.extend(r"c'4. d'8 ~ \times 2/3 { d'4 r4 e'4 ~ } e'8 f'4.")
+                >>> string = r"c'4. d'8 ~ \times 2/3 { d'4 r4 e'4 ~ } e'8 f'4."
+                >>> staff = abjad.Staff(string)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> setting(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

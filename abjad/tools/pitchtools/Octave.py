@@ -9,13 +9,17 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Octave(AbjadValueObject):
     r'''Octave.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example:
 
         Initializes octave from integer:
 
         ::
 
-            >>> pitchtools.Octave(4)
+            >>> abjad.Octave(4)
             Octave(4)
 
     ..  container:: example
@@ -24,7 +28,7 @@ class Octave(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Octave(",,")
+            >>> abjad.Octave(",,")
             Octave(1)
 
     ..  container:: example
@@ -33,7 +37,7 @@ class Octave(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Octave(NamedPitch("cs''"))
+            >>> abjad.Octave(abjad.NamedPitch("cs''"))
             Octave(5)
 
     ..  container:: example
@@ -42,7 +46,7 @@ class Octave(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Octave(pitchtools.Octave(2))
+            >>> abjad.Octave(abjad.Octave(2))
             Octave(2)
 
     '''
@@ -106,13 +110,13 @@ class Octave(AbjadValueObject):
 
             ::
 
-                >>> octave = pitchtools.Octave(4)
-                >>> octave == pitchtools.Octave(4)
+                >>> octave = abjad.Octave(4)
+                >>> octave == abjad.Octave(4)
                 True
 
             ::
 
-                >>> octave == pitchtools.Octave(3)
+                >>> octave == abjad.Octave(3)
                 False
 
             ::
@@ -135,7 +139,7 @@ class Octave(AbjadValueObject):
 
             ::
 
-                >>> float(pitchtools.Octave(3))
+                >>> float(abjad.Octave(3))
                 3.0
 
         Returns floating-point number.
@@ -159,7 +163,7 @@ class Octave(AbjadValueObject):
 
             ::
 
-                >>> int(pitchtools.Octave(3))
+                >>> int(abjad.Octave(3))
                 3
 
         Returns integer.
@@ -175,17 +179,17 @@ class Octave(AbjadValueObject):
 
             ::
 
-                >>> str(pitchtools.Octave(4))
+                >>> str(abjad.Octave(4))
                 "'"
 
             ::
 
-                >>> str(pitchtools.Octave(1))
+                >>> str(abjad.Octave(1))
                 ',,'
 
             ::
 
-                >>> str(pitchtools.Octave(3))
+                >>> str(abjad.Octave(3))
                 ''
 
         Returns string.
@@ -217,7 +221,7 @@ class Octave(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Octave(5).number
+                >>> abjad.Octave(5).number
                 5
 
         Returns integer.
@@ -232,17 +236,17 @@ class Octave(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Octave(4).pitch_number
+                >>> abjad.Octave(4).pitch_number
                 0
 
             ::
 
-                >>> pitchtools.Octave(5).pitch_number
+                >>> abjad.Octave(5).pitch_number
                 12
 
             ::
 
-                >>> pitchtools.Octave(3).pitch_number
+                >>> abjad.Octave(3).pitch_number
                 -12
 
         Returns integer.
@@ -257,7 +261,7 @@ class Octave(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Octave(5).pitch_range
+                >>> abjad.Octave(5).pitch_range
                 PitchRange(range_string='[C5, C6)')
 
         Returns pitch range.
@@ -278,7 +282,7 @@ class Octave(AbjadValueObject):
             ::
 
                 >>> for i in range(-1, 9):
-                ...     print(i, pitchtools.Octave(i).tick_string)
+                ...     print(i, abjad.Octave(i).tick_string)
                 -1 ,,,,
                 0  ,,,
                 1  ,,
@@ -304,7 +308,7 @@ class Octave(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Octave.from_pitch_name('cs')
+                >>> abjad.Octave.from_pitch_name('cs')
                 Octave(3)
 
         Returns integer.
@@ -328,7 +332,7 @@ class Octave(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Octave.from_pitch_number(13)
+                >>> abjad.Octave.from_pitch_number(13)
                 Octave(5)
 
         Returns octave.
@@ -345,57 +349,57 @@ class Octave(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Octave.is_tick_string(',,,')
+                >>> abjad.Octave.is_tick_string(',,,')
                 True
 
             ::
 
-                >>> pitchtools.Octave.is_tick_string(',,,')
+                >>> abjad.Octave.is_tick_string(',,,')
                 True
 
             ::
             
-                >>> pitchtools.Octave.is_tick_string(',,')
+                >>> abjad.Octave.is_tick_string(',,')
                 True
 
             ::
 
-                >>> pitchtools.Octave.is_tick_string(',')
+                >>> abjad.Octave.is_tick_string(',')
                 True
 
             ::
 
-                >>> pitchtools.Octave.is_tick_string('')
+                >>> abjad.Octave.is_tick_string('')
                 True
 
             ::
 
-                >>> pitchtools.Octave.is_tick_string("")
+                >>> abjad.Octave.is_tick_string("")
                 True
 
             ::
 
-                >>> pitchtools.Octave.is_tick_string("'")
+                >>> abjad.Octave.is_tick_string("'")
                 True
 
             ::
 
-                >>> pitchtools.Octave.is_tick_string("''")
+                >>> abjad.Octave.is_tick_string("''")
                 True
 
             ::
 
-                >>> pitchtools.Octave.is_tick_string("'''")
+                >>> abjad.Octave.is_tick_string("'''")
                 True
 
             ::
 
-                >>> pitchtools.Octave.is_tick_string('foo')
+                >>> abjad.Octave.is_tick_string('foo')
                 False
 
             ::
 
-                >>> pitchtools.Octave.is_tick_string(8)
+                >>> abjad.Octave.is_tick_string(8)
                 False
 
         The regex ``^,+|'+|$`` underlies this predicate.

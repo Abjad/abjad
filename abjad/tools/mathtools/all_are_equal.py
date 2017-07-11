@@ -5,16 +5,20 @@ def all_are_equal(argument):
     '''Is true when `argument` is an iterable collection of equal items.
     Otherwise false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.all_are_equal([99, 99, 99, 99, 99, 99])
+            >>> abjad.mathtools.all_are_equal([99, 99, 99, 99, 99, 99])
             True
 
         ::
 
-            >>> mathtools.all_are_equal(17)
+            >>> abjad.mathtools.all_are_equal(17)
             False
 
     ..  container:: example
@@ -23,7 +27,7 @@ def all_are_equal(argument):
 
         ::
 
-            >>> mathtools.all_are_equal([])
+            >>> abjad.mathtools.all_are_equal([])
             True
 
     Returns true or false.

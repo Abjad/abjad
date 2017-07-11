@@ -8,6 +8,11 @@ from abjad.tools.topleveltools import select
 
 class SliceSelectorCallback(AbjadValueObject):
     r'''Slice selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -41,12 +46,12 @@ class SliceSelectorCallback(AbjadValueObject):
             ::
 
                 >>> string = r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4"
-                >>> staff = Staff(string)
+                >>> staff = abjad.Staff(string)
                 >>> show(staff) # doctest: +SKIP
 
         ..  container:: example
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.get_slice(start=-4)
                 >>> selections = selector(staff)
 

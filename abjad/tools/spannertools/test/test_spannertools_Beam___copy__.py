@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+import abjad
 import copy
 from abjad import *
 
 
 def test_spannertools_Beam___copy___01():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
     beam_1 = Beam()
     attach(beam_1, staff[:])
     beam_2 = copy.copy(beam_1)

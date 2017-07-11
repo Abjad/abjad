@@ -8,14 +8,18 @@ from abjad.tools.topleveltools import iterate
 class Tie(Spanner):
     r'''Tie.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Ties four notes:
 
         ::
 
-            >>> staff = Staff("c'4 c' c' c'")
-            >>> attach(Tie(), staff[:])
+            >>> staff = abjad.Staff("c'4 c' c' c'")
+            >>> abjad.attach(abjad.Tie(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -34,8 +38,8 @@ class Tie(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(Tie(), staff[:])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Tie(), staff[:])
             Traceback (most recent call last):
                 ...
             Exception: Tie() attachment test fails for Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]).
@@ -47,8 +51,8 @@ class Tie(Spanner):
 
         ::
 
-            >>> staff = Staff("<c'>4 <c' d'>4 <d'>4")
-            >>> attach(Tie(), staff[:])
+            >>> staff = abjad.Staff("<c'>4 <c' d'>4 <d'>4")
+            >>> abjad.attach(abjad.Tie(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -170,9 +174,9 @@ class Tie(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 c'8 c'8 c'8")
-                >>> tie = Tie(direction=Up)
-                >>> attach(tie, staff[:])
+                >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
+                >>> tie = abjad.Tie(direction=Up)
+                >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -196,9 +200,9 @@ class Tie(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 c'8 c'8 c'8")
-                >>> tie = Tie(direction=Down)
-                >>> attach(tie, staff[:])
+                >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
+                >>> tie = abjad.Tie(direction=Down)
+                >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -222,9 +226,9 @@ class Tie(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 c'8 c'8 c'8")
-                >>> tie = Tie(direction=None)
-                >>> attach(tie, staff[:])
+                >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
+                >>> tie = abjad.Tie(direction=None)
+                >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -261,9 +265,9 @@ class Tie(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 c'8 c'8 c'8")
-                >>> tie = Tie(direction=Up, use_messiaen_style_ties=True)
-                >>> attach(tie, staff[:])
+                >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
+                >>> tie = abjad.Tie(direction=Up, use_messiaen_style_ties=True)
+                >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

@@ -6,12 +6,16 @@ from abjad.tools.spannertools.Beam import Beam
 class ComplexBeam(Beam):
     r'''Complex beam.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'16 e'16 r16 f'16 g'2")
-            >>> setting(staff).auto_beaming = False
+            >>> staff = abjad.Staff("c'16 e'16 r16 f'16 g'2")
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -29,8 +33,8 @@ class ComplexBeam(Beam):
 
         ::
 
-            >>> beam = ComplexBeam()
-            >>> attach(beam, staff[:4])
+            >>> beam = abjad.ComplexBeam()
+            >>> abjad.attach(beam, staff[:4])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -283,9 +287,9 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 r r d'")
-                >>> beam = ComplexBeam(beam_rests=False)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 r r d'")
+                >>> beam = abjad.ComplexBeam(beam_rests=False)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -310,9 +314,9 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 r r d'")
-                >>> beam = ComplexBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 r r d'")
+                >>> beam = abjad.ComplexBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -339,9 +343,9 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 s s d'")
-                >>> beam = ComplexBeam(beam_rests=False)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 s s d'")
+                >>> beam = abjad.ComplexBeam(beam_rests=False)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -366,9 +370,9 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 s s d'")
-                >>> beam = ComplexBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 s s d'")
+                >>> beam = abjad.ComplexBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -407,9 +411,9 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> measure = Measure((1, 16), "c'16")
-                >>> beam = ComplexBeam(isolated_nib_direction=Left)
-                >>> attach(beam, measure[:])
+                >>> measure = abjad.Measure((1, 16), "c'16")
+                >>> beam = abjad.ComplexBeam(isolated_nib_direction=Left)
+                >>> abjad.attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
             ..  docs::
@@ -428,9 +432,9 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> measure = Measure((1, 16), "c'16")
-                >>> beam = ComplexBeam(isolated_nib_direction=Right)
-                >>> attach(beam, measure[:])
+                >>> measure = abjad.Measure((1, 16), "c'16")
+                >>> beam = abjad.ComplexBeam(isolated_nib_direction=Right)
+                >>> abjad.attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
             ..  docs::
@@ -449,9 +453,9 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> measure = Measure((1, 16), "c'16")
-                >>> beam = ComplexBeam(isolated_nib_direction=True)
-                >>> attach(beam, measure[:])
+                >>> measure = abjad.Measure((1, 16), "c'16")
+                >>> beam = abjad.ComplexBeam(isolated_nib_direction=True)
+                >>> abjad.attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
             ..  docs::
@@ -470,9 +474,9 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> measure = Measure((1, 16), "c'16")
-                >>> beam = ComplexBeam(isolated_nib_direction=False)
-                >>> attach(beam, measure[:])
+                >>> measure = abjad.Measure((1, 16), "c'16")
+                >>> beam = abjad.ComplexBeam(isolated_nib_direction=False)
+                >>> abjad.attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
             ..  docs::

@@ -9,6 +9,10 @@ def notes_and_chords_are_in_range(argument):
     '''Is true when notes and chords in `argument` are within traditional
     instrument ranges.
 
+    ::
+
+        >>> import abjad
+
     ..  todo:: Move to WellformednessManager.
 
     ..  container:: example
@@ -17,14 +21,14 @@ def notes_and_chords_are_in_range(argument):
 
         ::
 
-            >>> staff = Staff("c'8 r8 <d' fs'>8 r8")
-            >>> violin = instrumenttools.Violin()
-            >>> attach(violin, staff)
+            >>> staff = abjad.Staff("c'8 r8 <d' fs'>8 r8")
+            >>> violin = abjad.instrumenttools.Violin()
+            >>> abjad.attach(violin, staff)
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> instrumenttools.notes_and_chords_are_in_range(staff)
+            >>> abjad.instrumenttools.notes_and_chords_are_in_range(staff)
             True
 
     ..  container:: example
@@ -33,14 +37,14 @@ def notes_and_chords_are_in_range(argument):
 
         ::
 
-            >>> staff = Staff("c'8 r8 <d fs>8 r8")
-            >>> violin = instrumenttools.Violin()
-            >>> attach(violin, staff)
+            >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
+            >>> violin = abjad.instrumenttools.Violin()
+            >>> abjad.attach(violin, staff)
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> instrumenttools.notes_and_chords_are_in_range(staff)
+            >>> abjad.instrumenttools.notes_and_chords_are_in_range(staff)
             False
 
     Returns true or false.

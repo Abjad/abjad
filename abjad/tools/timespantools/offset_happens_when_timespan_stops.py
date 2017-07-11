@@ -7,16 +7,22 @@ def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):
 
     ::
 
-        >>> relation = timespantools.offset_happens_when_timespan_stops()
-        >>> f(relation)
-        abjad.OffsetTimespanTimeRelation(
-            inequality=abjad.CompoundInequality(
-                [
-                    abjad.Inequality('offset == timespan.stop'),
-                    ],
-                logical_operator='and',
-                ),
-            )
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> relation = abjad.timespantools.offset_happens_when_timespan_stops()
+            >>> f(relation)
+            abjad.OffsetTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
+                    [
+                        abjad.TimespanInequality('offset == timespan.stop'),
+                        ],
+                    logical_operator='and',
+                    ),
+                )
 
     Returns time relation or boolean.
     '''

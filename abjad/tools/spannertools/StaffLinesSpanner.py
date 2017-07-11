@@ -6,13 +6,17 @@ from abjad.tools.spannertools.Spanner import Spanner
 class StaffLinesSpanner(Spanner):
     r'''Staff lines spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = StaffLinesSpanner(lines=1)
-            >>> attach(spanner, staff[1:3])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.StaffLinesSpanner(lines=1)
+            >>> abjad.attach(spanner, staff[1:3])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -120,12 +124,12 @@ class StaffLinesSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = StaffLinesSpanner(
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.StaffLinesSpanner(
             ...     lines=1,
             ...     forbid_restarting=True,
             ...     )
-            >>> attach(spanner, staff[:])
+            >>> abjad.attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -154,9 +158,9 @@ class StaffLinesSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = StaffLinesSpanner(lines=1)
-            >>> attach(spanner, staff[1:3])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.StaffLinesSpanner(lines=1)
+            >>> abjad.attach(spanner, staff[1:3])
             >>> show(staff) # doctest: +SKIP
 
         ::

@@ -7,14 +7,18 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 class LilyPondSettingNameManager(LilyPondNameManager):
     '''LilyPond setting name manager.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes with toplevel function:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> setting(note)
+            >>> note = abjad.Note("c'4")
+            >>> abjad.setting(note)
             LilyPondSettingNameManager()
 
     '''
@@ -28,8 +32,8 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> setting(staff).instrument_name = Markup('Vn. I')
+                >>> staff = abjad.Staff("c'4 d' e' f'")
+                >>> abjad.setting(staff).instrument_name = abjad.Markup('Vn. I')
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -50,7 +54,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
             ::
 
-                >>> setting(staff).instrument_name
+                >>> abjad.setting(staff).instrument_name
                 Markup(contents=['Vn. I'])
 
         '''

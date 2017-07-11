@@ -10,18 +10,22 @@ from abjad.tools.pitchtools.Pitch import Pitch
 class NamedPitch(Pitch):
     r'''Named pitch.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from pitch name:
 
         ::
 
-            >>> pitch = NamedPitch("cs''")
+            >>> pitch = abjad.NamedPitch("cs''")
             >>> show(pitch) # doctest: +SKIP
 
         ..  docs::
 
-            >>> staff = pitch.__illustrate__()[Staff]
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> f(staff)
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
@@ -34,12 +38,12 @@ class NamedPitch(Pitch):
 
             ::
 
-            >>> pitch = NamedPitch("aqs")
+            >>> pitch = abjad.NamedPitch("aqs")
             >>> show(pitch) # doctest: +SKIP
 
         ..  docs::
 
-            >>> staff = pitch.__illustrate__()[Staff]
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> f(staff)
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
@@ -54,12 +58,12 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitch = NamedPitch('C#5')
+            >>> pitch = abjad.NamedPitch('C#5')
             >>> show(pitch) # doctest: +SKIP
 
         ..  docs::
 
-            >>> staff = pitch.__illustrate__()[Staff]
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> f(staff)
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
@@ -72,12 +76,12 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitch = NamedPitch('A+3')
+            >>> pitch = abjad.NamedPitch('A+3')
             >>> show(pitch) # doctest: +SKIP
 
         ..  docs::
 
-            >>> staff = pitch.__illustrate__()[Staff]
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> f(staff)
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
@@ -92,12 +96,12 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitch = NamedPitch('C#5', arrow=Up)
+            >>> pitch = abjad.NamedPitch('C#5', arrow=Up)
             >>> show(pitch) # doctest: +SKIP
 
         ..  docs::
 
-            >>> staff = pitch.__illustrate__()[Staff]
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
             >>> f(staff)
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
@@ -201,7 +205,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''") + NamedInterval('+M2')
+                >>> abjad.NamedPitch("cs''") + abjad.NamedInterval('+M2')
                 NamedPitch("ds''")
 
         ..  container:: example
@@ -210,7 +214,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''") + NamedInterval('-M2')
+                >>> abjad.NamedPitch("cs''") + abjad.NamedInterval('-M2')
                 NamedPitch("b'")
 
         Returns new named pitch.
@@ -233,7 +237,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> copy.copy(NamedPitch("cs''"))
+                >>> copy.copy(abjad.NamedPitch("cs''"))
                 NamedPitch("cs''")
 
         ..  container:: example
@@ -242,7 +246,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> copy.copy(NamedPitch("df''"))
+                >>> copy.copy(abjad.NamedPitch("df''"))
                 NamedPitch("df''")
 
         ..  container:: example
@@ -251,7 +255,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> pitch = NamedPitch("cs''", arrow=Up)
+                >>> pitch = abjad.NamedPitch("cs''", arrow=Up)
                 >>> copy.copy(pitch)
                 NamedPitch("cs''", arrow=Up)
 
@@ -269,7 +273,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch('C#5') == NamedPitch("cs''")
+                >>> abjad.NamedPitch('C#5') == abjad.NamedPitch("cs''")
                 True
 
         ..  container:: example
@@ -278,7 +282,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch('C#5') == NamedPitch('Db5')
+                >>> abjad.NamedPitch('C#5') == abjad.NamedPitch('Db5')
                 False
 
         Returns true or false.
@@ -300,7 +304,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> float(NamedPitch('C#5'))
+                >>> float(abjad.NamedPitch('C#5'))
                 13.0
 
         ..  container:: example
@@ -309,7 +313,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> float(NamedPitch('C#+5'))
+                >>> float(abjad.NamedPitch('C#+5'))
                 13.5
 
         Returns float.
@@ -381,7 +385,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> int(NamedPitch('C#5'))
+                >>> int(abjad.NamedPitch('C#5'))
                 13
 
         ..  container:: example
@@ -390,7 +394,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> int(NamedPitch('Db5'))
+                >>> int(abjad.NamedPitch('Db5'))
                 13
 
         Returns integer.
@@ -454,7 +458,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''") != NamedPitch("ds''")
+                >>> abjad.NamedPitch("cs''") != abjad.NamedPitch("ds''")
                 True
 
         ..  container:: example
@@ -463,7 +467,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''") != NamedPitch("cs''")
+                >>> abjad.NamedPitch("cs''") != abjad.NamedPitch("cs''")
                 False
 
         Returns true or false.
@@ -479,7 +483,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> str(NamedPitch("cs''"))
+                >>> str(abjad.NamedPitch("cs''"))
                 "cs''"
 
         ..  container:: example
@@ -488,7 +492,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> str(NamedPitch("df''"))
+                >>> str(abjad.NamedPitch("df''"))
                 "df''"
 
         Returns string.
@@ -504,7 +508,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''") - NamedPitch("b'")
+                >>> abjad.NamedPitch("cs''") - abjad.NamedPitch("b'")
                 NamedInterval('-M2')
 
         ..  container:: example
@@ -513,7 +517,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''") - NamedPitch("fs''")
+                >>> abjad.NamedPitch("cs''") - abjad.NamedPitch("fs''")
                 NamedInterval('+P4')
 
         Returns named interval.
@@ -701,7 +705,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").accidental
+                >>> abjad.NamedPitch("cs''").accidental
                 Accidental('s')
 
         ..  container:: example
@@ -710,7 +714,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("c''").accidental
+                >>> abjad.NamedPitch("c''").accidental
                 Accidental('')
 
         Returns accidental.
@@ -728,7 +732,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").alteration_in_semitones
+                >>> abjad.NamedPitch("cs''").alteration_in_semitones
                 1
 
         ..  container:: example
@@ -737,7 +741,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("ctqs''").alteration_in_semitones
+                >>> abjad.NamedPitch("ctqs''").alteration_in_semitones
                 1.5
 
         Returns integer or float.
@@ -754,7 +758,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").arrow is None
+                >>> abjad.NamedPitch("cs''").arrow is None
                 True
 
         ..  container:: example
@@ -763,7 +767,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''", arrow=Up).arrow
+                >>> abjad.NamedPitch("cs''", arrow=Up).arrow
                 Up
 
         ..  container:: example
@@ -772,7 +776,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''", arrow=Down).arrow
+                >>> abjad.NamedPitch("cs''", arrow=Down).arrow
                 Down
 
         ..  container:: example
@@ -781,7 +785,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''", arrow=Down)
+                >>> abjad.NamedPitch("cs''", arrow=Down)
                 NamedPitch("cs''", arrow=Down)
 
         Returns up, down or none.
@@ -800,7 +804,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").diatonic_pitch_class_name
+                >>> abjad.NamedPitch("cs''").diatonic_pitch_class_name
                 'c'
 
         ..  container:: example
@@ -809,13 +813,13 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> staff = abjad.Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
                 >>> for note in staff:
                 ...     name = note.written_pitch.diatonic_pitch_class_name
-                ...     markup = Markup(name)
-                ...     attach(markup, note)
+                ...     markup = abjad.Markup(name)
+                ...     abjad.attach(markup, note)
                 ...
-                >>> override(staff).text_script.staff_padding = 5
+                >>> abjad.override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -861,7 +865,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").diatonic_pitch_class_number
+                >>> abjad.NamedPitch("cs''").diatonic_pitch_class_number
                 0
 
         ..  container:: example
@@ -870,13 +874,13 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> staff = abjad.Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
                 >>> for note in staff:
                 ...     number = note.written_pitch.diatonic_pitch_class_number
-                ...     markup = Markup(number)
-                ...     attach(markup, note)
+                ...     markup = abjad.Markup(number)
+                ...     abjad.attach(markup, note)
                 ...
-                >>> override(staff).text_script.staff_padding = 5
+                >>> abjad.override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -919,7 +923,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").diatonic_pitch_name
+                >>> abjad.NamedPitch("cs''").diatonic_pitch_name
                 "c''"
 
         ..  container:: example
@@ -928,13 +932,13 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> staff = abjad.Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
                 >>> for note in staff:
                 ...     name = note.written_pitch.diatonic_pitch_name
-                ...     markup = Markup(name)
-                ...     attach(markup, note)
+                ...     markup = abjad.Markup(name)
+                ...     abjad.attach(markup, note)
                 ...
-                >>> override(staff).text_script.staff_padding = 5
+                >>> abjad.override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -980,7 +984,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").diatonic_pitch_number
+                >>> abjad.NamedPitch("cs''").diatonic_pitch_number
                 7
 
         ..  container:: example
@@ -989,13 +993,13 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> staff = abjad.Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
                 >>> for note in staff:
                 ...     number = note.written_pitch.diatonic_pitch_number
-                ...     markup = Markup(number)
-                ...     attach(markup, note)
+                ...     markup = abjad.Markup(number)
+                ...     abjad.attach(markup, note)
                 ...
-                >>> override(staff).text_script.staff_padding = 5
+                >>> abjad.override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1036,7 +1040,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").name
+                >>> abjad.NamedPitch("cs''").name
                 "cs''"
 
         Returns string.
@@ -1055,7 +1059,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").named_pitch
+                >>> abjad.NamedPitch("cs''").named_pitch
                 NamedPitch("cs''")
 
         ..  container:: example
@@ -1064,7 +1068,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("df''").named_pitch
+                >>> abjad.NamedPitch("df''").named_pitch
                 NamedPitch("df''")
 
         Returns new named pitch.
@@ -1083,7 +1087,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").named_pitch_class
+                >>> abjad.NamedPitch("cs''").named_pitch_class
                 NamedPitchClass('cs')
 
         ..  container:: example
@@ -1092,7 +1096,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("df''").named_pitch_class
+                >>> abjad.NamedPitch("df''").named_pitch_class
                 NamedPitchClass('df')
 
         Returns named pitch-class.
@@ -1110,7 +1114,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").number
+                >>> abjad.NamedPitch("cs''").number
                 13
 
 
@@ -1130,7 +1134,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").numbered_pitch
+                >>> abjad.NamedPitch("cs''").numbered_pitch
                 NumberedPitch(13)
 
         ..  container:: example
@@ -1139,7 +1143,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("df''").numbered_pitch
+                >>> abjad.NamedPitch("df''").numbered_pitch
                 NumberedPitch(13)
 
         Returns numbered pitch.
@@ -1159,7 +1163,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").numbered_pitch_class
+                >>> abjad.NamedPitch("cs''").numbered_pitch_class
                 NumberedPitchClass(1)
 
         ..  container:: example
@@ -1168,7 +1172,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("df''").numbered_pitch_class
+                >>> abjad.NamedPitch("df''").numbered_pitch_class
                 NumberedPitchClass(1)
 
         Returns numbered pitch-class.
@@ -1186,7 +1190,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").octave
+                >>> abjad.NamedPitch("cs''").octave
                 Octave(5)
 
         ..  container:: example
@@ -1195,7 +1199,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("df''").octave
+                >>> abjad.NamedPitch("df''").octave
                 Octave(5)
 
         Returns octave.
@@ -1211,7 +1215,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").pitch_class
+                >>> abjad.NamedPitch("cs''").pitch_class
                 NamedPitchClass('cs')
 
         Returns named pitch-class.
@@ -1231,7 +1235,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").pitch_class_name
+                >>> abjad.NamedPitch("cs''").pitch_class_name
                 'cs'
 
         ..  container:: example
@@ -1240,7 +1244,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("df''").pitch_class_name
+                >>> abjad.NamedPitch("df''").pitch_class_name
                 'df'
 
         Returns string.
@@ -1263,7 +1267,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").pitch_class_number
+                >>> abjad.NamedPitch("cs''").pitch_class_number
                 1
 
         ..  container:: example
@@ -1272,7 +1276,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("ctqs''").pitch_class_number
+                >>> abjad.NamedPitch("ctqs''").pitch_class_number
                 1.5
 
         Returns integer or float.
@@ -1295,7 +1299,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").pitch_class_octave_label
+                >>> abjad.NamedPitch("cs''").pitch_class_octave_label
                 'C#5'
 
         ..  container:: example
@@ -1304,7 +1308,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("ctqs''").pitch_class_octave_label
+                >>> abjad.NamedPitch("ctqs''").pitch_class_octave_label
                 'C#+5'
 
         Returns string.
@@ -1327,7 +1331,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").pitch_name
+                >>> abjad.NamedPitch("cs''").pitch_name
                 "cs''"
 
         ..  container:: example
@@ -1336,7 +1340,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("ctqs''").pitch_name
+                >>> abjad.NamedPitch("ctqs''").pitch_name
                 "ctqs''"
 
         Returns string.
@@ -1358,7 +1362,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").pitch_number
+                >>> abjad.NamedPitch("cs''").pitch_number
                 13
 
         ..  container:: example
@@ -1367,7 +1371,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cff''").pitch_number
+                >>> abjad.NamedPitch("cff''").pitch_number
                 10
 
         Returns integer or float.
@@ -1390,7 +1394,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("cs''").apply_accidental('s')
+                >>> abjad.NamedPitch("cs''").apply_accidental('s')
                 NamedPitch("css''")
 
         ..  container:: example
@@ -1399,7 +1403,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("df''").apply_accidental('s')
+                >>> abjad.NamedPitch("df''").apply_accidental('s')
                 NamedPitch("d''")
 
         Returns new named pitch.
@@ -1421,8 +1425,8 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> pitch = NamedPitch('df', 5)
-                >>> NamedPitch.from_pitch_carrier(pitch)
+                >>> pitch = abjad.NamedPitch('df', 5)
+                >>> abjad.NamedPitch.from_pitch_carrier(pitch)
                 NamedPitch("df''")
 
         ..  container:: example
@@ -1431,8 +1435,8 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> note = Note("df''4")
-                >>> NamedPitch.from_pitch_carrier(note)
+                >>> note = abjad.Note("df''4")
+                >>> abjad.NamedPitch.from_pitch_carrier(note)
                 NamedPitch("df''")
 
         ..  container:: example
@@ -1441,8 +1445,8 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> note = Note("df''4")
-                >>> NamedPitch.from_pitch_carrier(note.note_head)
+                >>> note = abjad.Note("df''4")
+                >>> abjad.NamedPitch.from_pitch_carrier(note.note_head)
                 NamedPitch("df''")
 
         ..  container:: example
@@ -1451,8 +1455,8 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> chord = Chord("<df''>4")
-                >>> NamedPitch.from_pitch_carrier(chord)
+                >>> chord = abjad.Chord("<df''>4")
+                >>> abjad.NamedPitch.from_pitch_carrier(chord)
                 NamedPitch("df''")
 
         ..  container:: example
@@ -1461,7 +1465,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch.from_pitch_carrier(13)
+                >>> abjad.NamedPitch.from_pitch_carrier(13)
                 NamedPitch("cs''")
 
         ..  container:: example
@@ -1470,8 +1474,8 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> pitch_class = NumberedPitchClass(7)
-                >>> NamedPitch.from_pitch_carrier(pitch_class)
+                >>> pitch_class = abjad.NumberedPitchClass(7)
+                >>> abjad.NamedPitch.from_pitch_carrier(pitch_class)
                 NamedPitch("g'")
 
         Raises value error when `pitch_carrier` carries no pitch.
@@ -1537,8 +1541,8 @@ class NamedPitch(Pitch):
             ::
 
                 >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_staff_position(staff_position)
+                ...     staff_position = abjad.StaffPosition(n)
+                ...     pitch = abjad.NamedPitch.from_staff_position(staff_position)
                 ...     message = '{!s}\t{}'.format(staff_position, pitch)
                 ...     print(message)
                 StaffPosition(-6)	d
@@ -1560,10 +1564,10 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> clef = Clef('treble')
+                >>> clef = abjad.Clef('treble')
                 >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_staff_position(
+                ...     staff_position = abjad.StaffPosition(n)
+                ...     pitch = abjad.NamedPitch.from_staff_position(
                 ...         staff_position,
                 ...         clef=clef,
                 ...         )
@@ -1588,10 +1592,10 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> clef = Clef('bass')
+                >>> clef = abjad.Clef('bass')
                 >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_staff_position(
+                ...     staff_position = abjad.StaffPosition(n)
+                ...     pitch = abjad.NamedPitch.from_staff_position(
                 ...         staff_position,
                 ...         clef=clef,
                 ...         )
@@ -1616,10 +1620,10 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> clef = Clef('alto')
+                >>> clef = abjad.Clef('alto')
                 >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_staff_position(
+                ...     staff_position = abjad.StaffPosition(n)
+                ...     pitch = abjad.NamedPitch.from_staff_position(
                 ...         staff_position,
                 ...         clef=clef,
                 ...         )
@@ -1642,7 +1646,7 @@ class NamedPitch(Pitch):
         '''
         from abjad.tools import pitchtools
         if not isinstance(staff_position, pitchtools.StaffPosition):
-            staff_position = pitchtools.StaffPosition(staff_position)
+            staff_position = abjad.StaffPosition(staff_position)
         if clef is not None:
             offset_staff_position_number = staff_position.number
             offset_staff_position_number -= clef.middle_c_position.number
@@ -1668,12 +1672,12 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("d'").invert("c'")
+                >>> abjad.NamedPitch("d'").invert("c'")
                 NamedPitch('bf')
 
             ::
 
-                >>> NamedPitch('bf').invert("c'")
+                >>> abjad.NamedPitch('bf').invert("c'")
                 NamedPitch("d'")
 
         ..  container:: example
@@ -1682,12 +1686,12 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("d'").invert()
+                >>> abjad.NamedPitch("d'").invert()
                 NamedPitch('bf')
 
             ::
 
-                >>> NamedPitch('bf').invert()
+                >>> abjad.NamedPitch('bf').invert()
                 NamedPitch("d'")
 
         ..  container:: example
@@ -1696,7 +1700,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("d'").invert('a')
+                >>> abjad.NamedPitch("d'").invert('a')
                 NamedPitch('e')
 
         Interprets none-valued `axis` equal to middle C.
@@ -1720,7 +1724,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch('d,').multiply(3)
+                >>> abjad.NamedPitch('d,').multiply(3)
                 NamedPitch('fs,')
 
         ..  container:: example
@@ -1729,7 +1733,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch('d,').multiply(4)
+                >>> abjad.NamedPitch('d,').multiply(4)
                 NamedPitch('af,')
 
         Returns new named pitch.
@@ -1748,7 +1752,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+                >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1765,7 +1769,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch.respell_with_flats(staff)
+                >>> abjad.NamedPitch.respell_with_flats(staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1801,7 +1805,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+                >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1818,7 +1822,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch.respell_with_sharps(staff)
+                >>> abjad.NamedPitch.respell_with_sharps(staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1853,7 +1857,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch('C#5').to_staff_position()
+                >>> abjad.NamedPitch('C#5').to_staff_position()
                 StaffPosition(number=7)
 
         ..  container:: example
@@ -1863,7 +1867,7 @@ class NamedPitch(Pitch):
             ::
 
 
-                >>> NamedPitch('C#5').to_staff_position(clef=Clef('treble'))
+                >>> abjad.NamedPitch('C#5').to_staff_position(clef=abjad.Clef('treble'))
                 StaffPosition(number=1)
 
         ..  container:: example
@@ -1873,7 +1877,7 @@ class NamedPitch(Pitch):
             ::
 
 
-                >>> NamedPitch('C#5').to_staff_position(clef=Clef('bass'))
+                >>> abjad.NamedPitch('C#5').to_staff_position(clef=abjad.Clef('bass'))
                 StaffPosition(number=13)
 
         ..  container:: example
@@ -1882,13 +1886,13 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> staff = abjad.Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
                 >>> for note in staff:
                 ...     staff_position = note.written_pitch.to_staff_position()
-                ...     markup = Markup(staff_position.number)
-                ...     attach(markup, note)
+                ...     markup = abjad.Markup(staff_position.number)
+                ...     abjad.attach(markup, note)
                 ...
-                >>> override(staff).text_script.staff_padding = 5
+                >>> abjad.override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1921,16 +1925,16 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
-                >>> clef = Clef('treble')
+                >>> staff = abjad.Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> clef = abjad.Clef('treble')
                 >>> for note in staff:
                 ...     staff_position = note.written_pitch.to_staff_position(
                 ...         clef=clef
                 ...         )
-                ...     markup = Markup(staff_position.number)
-                ...     attach(markup, note)
+                ...     markup = abjad.Markup(staff_position.number)
+                ...     abjad.attach(markup, note)
                 ...
-                >>> override(staff).text_script.staff_padding = 5
+                >>> abjad.override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1963,17 +1967,17 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("g,16 a, b, c d e f g a b c' d' e' f' g' a'")
-                >>> clef = Clef('bass')
-                >>> attach(clef, staff)
+                >>> staff = abjad.Staff("g,16 a, b, c d e f g a b c' d' e' f' g' a'")
+                >>> clef = abjad.Clef('bass')
+                >>> abjad.attach(clef, staff)
                 >>> for note in staff:
                 ...     staff_position = note.written_pitch.to_staff_position(
                 ...         clef=clef
                 ...         )
-                ...     markup = Markup(staff_position.number)
-                ...     attach(markup, note)
+                ...     markup = abjad.Markup(staff_position.number)
+                ...     abjad.attach(markup, note)
                 ...
-                >>> override(staff).text_script.staff_padding = 5
+                >>> abjad.override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2019,7 +2023,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("c'").transpose(n='m2')
+                >>> abjad.NamedPitch("c'").transpose(n='m2')
                 NamedPitch("df'")
 
         ..  container:: example
@@ -2028,7 +2032,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("c'").transpose(n='-M2')
+                >>> abjad.NamedPitch("c'").transpose(n='-M2')
                 NamedPitch('bf')
 
         Returns new named pitch.
@@ -2047,7 +2051,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> pitch = NamedPitch(0)
+                >>> pitch = abjad.NamedPitch(0)
 
             ::
 

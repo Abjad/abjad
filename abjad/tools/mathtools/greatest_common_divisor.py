@@ -4,11 +4,15 @@
 def greatest_common_divisor(*integers):
     '''Calculates greatest common divisor of `integers`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.greatest_common_divisor(84, -94, -144)
+            >>> abjad.mathtools.greatest_common_divisor(84, -94, -144)
             2
 
     Allows nonpositive input.

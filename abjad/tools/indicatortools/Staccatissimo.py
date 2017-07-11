@@ -6,15 +6,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Staccatissimo(AbjadValueObject):
     r'''Staccatissimo.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Attached to a single note:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> staccatissimo = Staccatissimo()
-            >>> attach(staccatissimo, note)
+            >>> note = abjad.Note("c'4")
+            >>> staccatissimo = abjad.Staccatissimo()
+            >>> abjad.attach(staccatissimo, note)
             >>> show(note) # doctest: +SKIP
 
         ..  docs::
@@ -28,11 +32,11 @@ class Staccatissimo(AbjadValueObject):
 
         ::
 
-            >>> staff = Staff("c'8 d' e' f' g' a' b' c''")
-            >>> attach(Beam(), staff[:4])
-            >>> attach(Beam(), staff[4:])
-            >>> attach(Staccatissimo(), staff[3])
-            >>> attach(Staccatissimo(), staff[7])
+            >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+            >>> abjad.attach(abjad.Beam(), staff[:4])
+            >>> abjad.attach(abjad.Beam(), staff[4:])
+            >>> abjad.attach(abjad.Staccatissimo(), staff[3])
+            >>> abjad.attach(abjad.Staccatissimo(), staff[7])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -83,7 +87,7 @@ class Staccatissimo(AbjadValueObject):
 
             ::
 
-                >>> str(Staccatissimo())
+                >>> str(abjad.Staccatissimo())
                 '\\staccatissimo'
 
         Returns string.
@@ -117,7 +121,7 @@ class Staccatissimo(AbjadValueObject):
 
             ::
 
-                >>> staccatissimo = Staccatissimo()
+                >>> staccatissimo = abjad.Staccatissimo()
                 >>> staccatissimo.default_scope is None
                 True
 

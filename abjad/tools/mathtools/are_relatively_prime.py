@@ -7,21 +7,25 @@ def are_relatively_prime(argument):
     '''Is true when `argument` is an iterable collection of relative primes.
     Otherwise false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.are_relatively_prime([13, 14, 15])
+            >>> abjad.mathtools.are_relatively_prime([13, 14, 15])
             True
 
         ::
 
-            >>> mathtools.are_relatively_prime([13, 14, 15, 16])
+            >>> abjad.mathtools.are_relatively_prime([13, 14, 15, 16])
             False
 
         ::
 
-            >>> mathtools.are_relatively_prime('text')
+            >>> abjad.mathtools.are_relatively_prime('text')
             False
 
     ..  container:: example
@@ -30,7 +34,7 @@ def are_relatively_prime(argument):
 
         ::
 
-            >>> mathtools.are_relatively_prime([])
+            >>> abjad.mathtools.are_relatively_prime([])
             True
 
     Returns true or false.

@@ -5,19 +5,23 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class RegistrationList(TypedList):
     '''Registration list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Two registrations:
         
         ::
 
-            >>> registration_1 = pitchtools.Registration(
+            >>> registration_1 = abjad.Registration(
             ...     [('[A0, C4)', 15), ('[C4, C8)', 27)]
             ...     )
-            >>> registration_2 = pitchtools.Registration(
+            >>> registration_2 = abjad.Registration(
             ...     [('[A0, C8]', -18)]
             ...     )
-            >>> registrations = pitchtools.RegistrationList(
+            >>> registrations = abjad.RegistrationList(
             ...     [registration_1, registration_2]
             ...     )
 

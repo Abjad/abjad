@@ -25,11 +25,11 @@ class MetronomeMark(AbjadValueObject):
 
         ::
 
-            >>> score = Score([])
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> score = abjad.Score([])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
             >>> score.append(staff)
-            >>> mark = MetronomeMark(Duration(1, 4), 90)
-            >>> attach(mark, staff[0])
+            >>> mark = abjad.MetronomeMark((1, 4), 90)
+            >>> abjad.attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -51,11 +51,11 @@ class MetronomeMark(AbjadValueObject):
 
         ::
 
-            >>> score = Score([])
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> score = abjad.Score([])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
             >>> score.append(staff)
-            >>> mark = MetronomeMark(Duration(1, 4), 90.1)
-            >>> attach(mark, staff[0])
+            >>> mark = abjad.MetronomeMark((1, 4), 90.1)
+            >>> abjad.attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -111,11 +111,11 @@ class MetronomeMark(AbjadValueObject):
 
         ::
 
-            >>> score = Score([])
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> score = abjad.Score([])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
             >>> score.append(staff)
-            >>> mark = MetronomeMark(Duration(1, 4), Fraction(181, 2))
-            >>> attach(mark, staff[0])
+            >>> mark = abjad.MetronomeMark((1, 4), abjad.Fraction(181, 2))
+            >>> abjad.attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -176,11 +176,11 @@ class MetronomeMark(AbjadValueObject):
 
         ::
 
-            >>> score = Score([])
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> score = abjad.Score([])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
             >>> score.append(staff)
-            >>> mark = MetronomeMark(Duration(1, 4), (120, 133), 'Quick')
-            >>> attach(mark, staff[0])
+            >>> mark = abjad.MetronomeMark((1, 4), (120, 133), 'Quick')
+            >>> abjad.attach(mark, staff[0])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -264,8 +264,8 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark_1 = MetronomeMark(Duration(1, 4), 60)
-                >>> mark_2 = MetronomeMark(Duration(1, 4), 90)
+                >>> mark_1 = abjad.MetronomeMark((1, 4), 60)
+                >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
                 >>> mark_1 + mark_2
                 MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=150)
 
@@ -281,8 +281,8 @@ class MetronomeMark(AbjadValueObject):
             ::
 
                 >>> import pytest
-                >>> mark_1 = MetronomeMark(textual_indication='Langsam')
-                >>> mark_2 = MetronomeMark(Duration(1, 4), 90)
+                >>> mark_1 = abjad.MetronomeMark(textual_indication='Langsam')
+                >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
                 >>> statement = 'mark_1 + mark_2'
                 >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
                 <ExceptionInfo ImpreciseMetronomeMarkError tblen=3>
@@ -294,8 +294,8 @@ class MetronomeMark(AbjadValueObject):
             ::
 
                 >>> import pytest
-                >>> mark_1 = MetronomeMark(Duration(1, 8), (90, 92))
-                >>> mark_2 = MetronomeMark(Duration(1, 4), 90)
+                >>> mark_1 = abjad.MetronomeMark((1, 8), (90, 92))
+                >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
                 >>> statement = 'mark_1 + mark_2'
                 >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
                 <ExceptionInfo ImpreciseMetronomeMarkError tblen=3>
@@ -306,7 +306,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> MetronomeMark(Duration(1, 4), 60) + 90 is None
+                >>> abjad.MetronomeMark((1, 4), 60) + 90 is None
                 True
 
         Returns new metronome mark or none.
@@ -341,7 +341,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> MetronomeMark(Duration(1, 4), 60) / 2
+                >>> abjad.MetronomeMark((1, 4), 60) / 2
                 MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=30)
 
         ..  container:: example
@@ -350,7 +350,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> MetronomeMark(Duration(1, 4), 60) / MetronomeMark(Duration(1, 4), 40)
+                >>> abjad.MetronomeMark((1, 4), 60) / abjad.MetronomeMark((1, 4), 40)
                 Multiplier(3, 2)
 
         Returns new metronome mark or multiplier.
@@ -378,8 +378,8 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark_1 = MetronomeMark(Duration(3, 32), 52)
-                >>> mark_2 = MetronomeMark(Duration(3, 32), 52)
+                >>> mark_1 = abjad.MetronomeMark((3, 32), 52)
+                >>> mark_2 = abjad.MetronomeMark((3, 32), 52)
 
             ::
 
@@ -395,8 +395,8 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark_1 = MetronomeMark(Duration(3, 32), 52)
-                >>> mark_2 = MetronomeMark(Duration(6, 32), 104)
+                >>> mark_1 = abjad.MetronomeMark((3, 32), 52)
+                >>> mark_2 = abjad.MetronomeMark((6, 32), 104)
 
             ::
 
@@ -412,9 +412,9 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark_1 = MetronomeMark(Duration(3, 32), 52, 'Langsam')
-                >>> mark_2 = MetronomeMark(Duration(3, 32), 52, 'Langsam')
-                >>> mark_3 = MetronomeMark(Duration(3, 32), 52, 'Slow')
+                >>> mark_1 = abjad.MetronomeMark((3, 32), 52, 'Langsam')
+                >>> mark_2 = abjad.MetronomeMark((3, 32), 52, 'Langsam')
+                >>> mark_3 = abjad.MetronomeMark((3, 32), 52, 'Slow')
 
             ::
 
@@ -443,7 +443,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark((1, 4), 84, 'Allegro')
+                >>> mark = abjad.MetronomeMark((1, 4), 84, 'Allegro')
                 >>> print(format(mark))
                 abjad.MetronomeMark(
                     reference_duration=abjad.Duration(1, 4),
@@ -457,8 +457,8 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup(r'\italic { Allegro }')
-                >>> mark = MetronomeMark((1, 4), 84, custom_markup=markup)
+                >>> markup = abjad.Markup(r'\italic { Allegro }')
+                >>> mark = abjad.MetronomeMark((1, 4), 84, custom_markup=markup)
                 >>> print(format(mark))
                 abjad.MetronomeMark(
                     reference_duration=abjad.Duration(1, 4),
@@ -509,7 +509,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 84)
+                >>> mark = abjad.MetronomeMark((1, 4), 84)
                 >>> 2 * mark
                 MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=168)
 
@@ -519,7 +519,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 84)
+                >>> mark = abjad.MetronomeMark((1, 4), 84)
                 >>> 3 * mark
                 MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=252)
 
@@ -547,7 +547,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 84)
+                >>> mark = abjad.MetronomeMark((1, 4), 84)
                 >>> mark * 2
                 MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=168)
 
@@ -557,7 +557,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 84)
+                >>> mark = abjad.MetronomeMark((1, 4), 84)
                 >>> mark * 3
                 MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=252)
 
@@ -585,7 +585,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark = abjad.MetronomeMark((1, 4), 90)
                 >>> str(mark)
                 '4=90'
 
@@ -595,7 +595,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 90.1)
+                >>> mark = abjad.MetronomeMark((1, 4), 90.1)
                 >>> str(mark)
                 '4=90.1'
 
@@ -605,17 +605,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), Fraction(181, 2))
-                >>> str(mark)
-                '4=90+1/2'
-
-        ..  container:: example
-
-            Ranged metronome mark:
-
-            ::
-
-                >>> mark = MetronomeMark(Duration(1, 4), (90, 96))
+                >>> mark = abjad.MetronomeMark((1, 4), (90, 96))
                 >>> str(mark)
                 '4=90-96'
 
@@ -661,8 +651,8 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark_1 = MetronomeMark(Duration(1, 4), 90)
-                >>> mark_2 = MetronomeMark(Duration(1, 4), 60)
+                >>> mark_1 = abjad.MetronomeMark((1, 4), 90)
+                >>> mark_2 = abjad.MetronomeMark((1, 4), 60)
                 >>> mark_1 - mark_2
                 MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=30)
 
@@ -672,8 +662,8 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark_1 = MetronomeMark(Duration(1, 4), 90)
-                >>> mark_2 = MetronomeMark(Duration(1, 2), 90)
+                >>> mark_1 = abjad.MetronomeMark((1, 4), 90)
+                >>> mark_2 = abjad.MetronomeMark((1, 2), 90)
                 >>> mark_1 - mark_2
                 MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=45)
 
@@ -684,8 +674,8 @@ class MetronomeMark(AbjadValueObject):
             ::
 
                 >>> import pytest
-                >>> mark_1 = MetronomeMark(textual_indication='Langsam')
-                >>> mark_2 = MetronomeMark(Duration(1, 2), 90)
+                >>> mark_1 = abjad.MetronomeMark(textual_indication='Langsam')
+                >>> mark_2 = abjad.MetronomeMark((1, 2), 90)
                 >>> statement = 'mark_1 - mark_2'
                 >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
                 <ExceptionInfo ImpreciseMetronomeMarkError tblen=3>
@@ -729,7 +719,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> MetronomeMark(Duration(1, 4), 60).__truediv__(2)
+                >>> abjad.MetronomeMark((1, 4), 60).__truediv__(2)
                 MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=30)
 
         ..  container:: example
@@ -738,8 +728,8 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> MetronomeMark(Duration(1, 4), 60).__truediv__(
-                ...     MetronomeMark(Duration(1, 4), 40)
+                >>> abjad.MetronomeMark((1, 4), 60).__truediv__(
+                ...     abjad.MetronomeMark((1, 4), 40)
                 ...     )
                 Multiplier(3, 2)
 
@@ -838,19 +828,19 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> markup = MetronomeMark.make_tempo_equation_markup(
-                ...     Duration(1, 4),
+                >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
+                ...     abjad.Duration(1, 4),
                 ...     67.5,
                 ...     )
                 >>> markup = markup.with_color('red')
-                >>> mark = MetronomeMark(
-                ...     reference_duration=Duration(1, 4),
+                >>> mark = abjad.MetronomeMark(
+                ...     reference_duration=(1, 4),
                 ...     units_per_minute=67.5,
                 ...     custom_markup=markup,
                 ...     )
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> score = Score([staff])
-                >>> attach(mark, staff)
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> score = abjad.Score([staff])
+                >>> abjad.attach(mark, staff)
                 >>> show(score) # doctest: +SKIP
 
             ..  docs::
@@ -922,7 +912,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 8), 52)
+                >>> mark = abjad.MetronomeMark((1, 8), 52)
                 >>> mark.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>
 
@@ -932,7 +922,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark = abjad.MetronomeMark((1, 4), 90)
                 >>> mark.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>
 
@@ -951,15 +941,15 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> MetronomeMark(Duration(1, 4), 60).is_imprecise
+                >>> abjad.MetronomeMark((1, 4), 60).is_imprecise
                 False
-                >>> MetronomeMark(4, 60, 'Langsam').is_imprecise
+                >>> abjad.MetronomeMark(4, 60, 'Langsam').is_imprecise
                 False
-                >>> MetronomeMark(textual_indication='Langsam').is_imprecise
+                >>> abjad.MetronomeMark(textual_indication='Langsam').is_imprecise
                 True
-                >>> MetronomeMark(4, (35, 50), 'Langsam').is_imprecise
+                >>> abjad.MetronomeMark(4, (35, 50), 'Langsam').is_imprecise
                 True
-                >>> MetronomeMark(Duration(1, 4), (35, 50)).is_imprecise
+                >>> abjad.MetronomeMark((1, 4), (35, 50)).is_imprecise
                 True
 
         ..  container:: example
@@ -968,7 +958,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> MetronomeMark(Duration(1, 4), 60).is_imprecise
+                >>> abjad.MetronomeMark((1, 4), 60).is_imprecise
                 False
 
         Returns true or false.
@@ -989,7 +979,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 8), 52)
+                >>> mark = abjad.MetronomeMark((1, 8), 52)
                 >>> mark.quarters_per_minute
                 Fraction(104, 1)
 
@@ -999,7 +989,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark = abjad.MetronomeMark((1, 4), 90)
                 >>> mark.quarters_per_minute
                 Fraction(90, 1)
 
@@ -1009,7 +999,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(3, 32), 52.5)
+                >>> mark = abjad.MetronomeMark((3, 32), 52.5)
                 >>> mark.quarters_per_minute
                 Fraction(140, 1)
 
@@ -1041,7 +1031,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 8), 52)
+                >>> mark = abjad.MetronomeMark((1, 8), 52)
                 >>> mark.reference_duration
                 Duration(1, 8)
 
@@ -1051,7 +1041,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark = abjad.MetronomeMark((1, 4), 90)
                 >>> mark.reference_duration
                 Duration(1, 4)
 
@@ -1069,7 +1059,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 8), 52)
+                >>> mark = abjad.MetronomeMark((1, 8), 52)
                 >>> mark.textual_indication is None
                 True
 
@@ -1079,7 +1069,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark = abjad.MetronomeMark((1, 4), 90)
                 >>> mark.textual_indication is None
                 True
 
@@ -1097,7 +1087,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 90)
+                >>> mark = abjad.MetronomeMark((1, 4), 90)
                 >>> mark.units_per_minute
                 90
 
@@ -1107,7 +1097,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 90.1)
+                >>> mark = abjad.MetronomeMark((1, 4), 90.1)
                 >>> mark.units_per_minute
                 90.1
 
@@ -1115,7 +1105,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), Fraction(181, 2))
+                >>> mark = abjad.MetronomeMark((1, 4), abjad.Fraction(181, 2))
                 >>> mark.units_per_minute
                 Fraction(181, 2)
 
@@ -1138,8 +1128,8 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark((1, 4), 60)
-                >>> mark.duration_to_milliseconds(Duration(1, 4))
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> mark.duration_to_milliseconds((1, 4))
                 Duration(1000, 1)
 
         ..  container:: example
@@ -1148,8 +1138,8 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark((1, 4), 60)
-                >>> mark.duration_to_milliseconds(Duration(3, 8))
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> mark.duration_to_milliseconds((3, 8))
                 Duration(1500, 1)
 
         Returns duration.
@@ -1183,7 +1173,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 58)
+                >>> mark = abjad.MetronomeMark((1, 4), 58)
                 >>> pairs = mark.list_related_tempos(
                 ...     maximum_numerator=8,
                 ...     maximum_denominator=8,
@@ -1224,7 +1214,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> mark = MetronomeMark(Duration(1, 4), 58)
+                >>> mark = abjad.MetronomeMark((1, 4), 58)
                 >>> pairs = mark.list_related_tempos(
                 ...     maximum_numerator=16,
                 ...     maximum_denominator=16,
@@ -1283,7 +1273,10 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(1, 4), 90)
+                >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
+                ...     (1, 4),
+                ...     90,
+                ...     )
                 >>> show(markup) # doctest: +SKIP
 
             ..  docs::
@@ -1331,7 +1324,10 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(1, 4), 90.1)
+                >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
+                ...     (1, 4),
+                ...     90.1,
+                ...     )
                 >>> show(markup) # doctest: +SKIP
 
             ..  docs::
@@ -1379,9 +1375,9 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> markup = MetronomeMark.make_tempo_equation_markup(
-                ...     Duration(1, 4),
-                ...     Fraction(181, 2),
+                >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
+                ...     abjad.Duration(1, 4),
+                ...     abjad.Fraction(181, 2),
                 ...     )
                 >>> show(markup) # doctest: +SKIP
 
@@ -1435,7 +1431,10 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(5, 16), 90)
+                >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
+                ...     (5, 16),
+                ...     90,
+                ...     )
                 >>> show(markup) # doctest: +SKIP
 
             ..  docs::
@@ -1484,7 +1483,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> markup = MetronomeMark.make_tempo_equation_markup(Duration(1, 6), 90)
+                >>> markup = abjad.MetronomeMark.make_tempo_equation_markup((1, 6), 90)
                 >>> show(markup) # doctest: +SKIP
 
             ..  docs::
@@ -1536,11 +1535,11 @@ class MetronomeMark(AbjadValueObject):
             ::
 
                 >>> maker = abjad.NoteMaker()
-                >>> durations = [Duration(1, 16), Duration(3, 16), Duration(1, 16)]
+                >>> durations = [(1, 16), (3, 16), (1, 16)]
                 >>> selection = maker([0], durations)
-                >>> attach(Tie(), selection)
-                >>> attach(Beam(), selection)
-                >>> markup = MetronomeMark.make_tempo_equation_markup(selection, 90)
+                >>> abjad.attach(abjad.Tie(), selection)
+                >>> abjad.attach(abjad.Beam(), selection)
+                >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(selection, 90)
                 >>> show(markup) # doctest: +SKIP
 
             ..  docs::
@@ -1617,8 +1616,8 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> tempo = MetronomeMark(Duration(1, 4), 60)
-                >>> metronome_mark = MetronomeMark(Duration(1, 4), 90)
+                >>> tempo = abjad.MetronomeMark((1, 4), 60)
+                >>> metronome_mark = abjad.MetronomeMark((1, 4), 90)
 
             `tempo` specifies quarter equal to ``60``.
 
@@ -1636,7 +1635,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> tempo.rewrite_duration(Duration(1, 12), metronome_mark)
+                >>> tempo.rewrite_duration((1, 12), metronome_mark)
                 Duration(1, 8)
 
             And note that a regular eighth note under `tempo` equals a dotted
@@ -1644,7 +1643,7 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> tempo.rewrite_duration(Duration(1, 8), metronome_mark)
+                >>> tempo.rewrite_duration((1, 8), metronome_mark)
                 Duration(3, 16)
 
         Given `duration` governed by this tempo returns new duration governed
@@ -1655,6 +1654,8 @@ class MetronomeMark(AbjadValueObject):
 
         Returns duration.
         '''
+        import abjad
+        duration = abjad.Duration(duration)
         tempo_ratio = metronome_mark / self
         new_duration = tempo_ratio * duration
         return new_duration

@@ -5,15 +5,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class PageBreak(AbjadValueObject):
     r'''Page break.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Default page break:
 
         ::
 
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> page_break = indicatortools.PageBreak()
-            >>> attach(page_break, staff[-1])
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> page_break = abjad.PageBreak()
+            >>> abjad.attach(page_break, staff[-1])
             >>> show(staff) # doctest: +SKIP
 
         ::
@@ -68,7 +72,7 @@ class PageBreak(AbjadValueObject):
             ::
 
                 
-                >>> page_break = indicatortools.PageBreak()
+                >>> page_break = abjad.PageBreak()
                 >>> page_break.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 

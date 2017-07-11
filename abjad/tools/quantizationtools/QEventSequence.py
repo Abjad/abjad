@@ -13,58 +13,65 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QEventSequence(AbjadObject):
-    r'''A well-formed sequence of q-events.
+    r'''Q-event sequence.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     Contains only pitched q-events and silent q-events, and terminates with a
     single terminal q-event.
 
     A q-event sequence is the primary input to the quantizer.
 
-    A q-event sequence provides a number of convenience functions to
-    assist with instantiating new sequences:
+    ..  container:: example
 
-    ::
+        A q-event sequence provides a number of convenience functions to assist
+        with instantiating new sequences:
 
-        >>> durations = (1000, -500, 1250, -500, 750)
+        ::
 
-    ::
+            >>> durations = (1000, -500, 1250, -500, 750)
 
-        >>> sequence = \
-        ...     quantizationtools.QEventSequence.from_millisecond_durations(
-        ...     durations)
+        ::
 
-    ::
+            >>> sequence = \
+            ...     quantizationtools.QEventSequence.from_millisecond_durations(
+            ...     durations)
 
-        >>> for q_event in sequence:
-        ...     print(format(q_event, 'storage'))
-        ...
-        quantizationtools.PitchedQEvent(
-            offset=abjad.Offset(0, 1),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        quantizationtools.SilentQEvent(
-            offset=abjad.Offset(1000, 1),
-            )
-        quantizationtools.PitchedQEvent(
-            offset=abjad.Offset(1500, 1),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        quantizationtools.SilentQEvent(
-            offset=abjad.Offset(2750, 1),
-            )
-        quantizationtools.PitchedQEvent(
-            offset=abjad.Offset(3250, 1),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        quantizationtools.TerminalQEvent(
-            offset=abjad.Offset(4000, 1),
-            )
+        ::
+
+            >>> for q_event in sequence:
+            ...     f(q_event)
+            ...
+            quantizationtools.PitchedQEvent(
+                offset=abjad.Offset(0, 1),
+                pitches=(
+                    abjad.NamedPitch("c'"),
+                    ),
+                )
+            quantizationtools.SilentQEvent(
+                offset=abjad.Offset(1000, 1),
+                )
+            quantizationtools.PitchedQEvent(
+                offset=abjad.Offset(1500, 1),
+                pitches=(
+                    abjad.NamedPitch("c'"),
+                    ),
+                )
+            quantizationtools.SilentQEvent(
+                offset=abjad.Offset(2750, 1),
+                )
+            quantizationtools.PitchedQEvent(
+                offset=abjad.Offset(3250, 1),
+                pitches=(
+                    abjad.NamedPitch("c'"),
+                    ),
+                )
+            quantizationtools.TerminalQEvent(
+                offset=abjad.Offset(4000, 1),
+                )
 
     '''
 
@@ -73,6 +80,8 @@ class QEventSequence(AbjadObject):
     __slots__ = (
         '_sequence',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -436,7 +445,7 @@ class QEventSequence(AbjadObject):
 
         ::
 
-            >>> tempo = MetronomeMark((1, 4), 174)
+            >>> tempo = abjad.MetronomeMark((1, 4), 174)
             >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
 
         ::
@@ -504,8 +513,8 @@ class QEventSequence(AbjadObject):
 
         ::
 
-            >>> staff = Staff("c'4 <d' fs'>8. r16 gqs'2")
-            >>> tempo = MetronomeMark((1, 4), 72)
+            >>> staff = abjad.Staff("c'4 <d' fs'>8. r16 gqs'2")
+            >>> tempo = abjad.MetronomeMark((1, 4), 72)
 
         ::
 

@@ -6,7 +6,13 @@ def list_all_abjad_classes(modules=None, ignored_classes=None):
 
     ::
 
-        >>> all_classes = documentationtools.list_all_abjad_classes()
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> all_classes = abjad.documentationtools.list_all_abjad_classes()
 
     '''
     from abjad.tools import documentationtools

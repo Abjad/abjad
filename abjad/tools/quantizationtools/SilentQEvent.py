@@ -3,12 +3,20 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 
 
 class SilentQEvent(QEvent):
-    r'''A ``QEvent`` which indicates the onset of a period of silence
-    in a ``QEventSequence``.
+    r'''Silent q-event.
 
-        >>> q_event = quantizationtools.SilentQEvent(1000)
-        >>> q_event
-        SilentQEvent(offset=Offset(1000, 1))
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
+
+    ..  container:: example
+
+        ::
+
+            >>> q_event = quantizationtools.SilentQEvent(1000)
+            >>> q_event
+            SilentQEvent(offset=Offset(1000, 1))
 
     '''
 
@@ -17,6 +25,8 @@ class SilentQEvent(QEvent):
     __slots__ = (
         '_attachments',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -31,15 +41,16 @@ class SilentQEvent(QEvent):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a silent q-event with offset, attachments and
-        index equal to those of this silent q-event. Otherwise false.
+        r'''Is true when `argument` is a silent q-event with offset,
+        attachments and index equal to those of this silent q-event.
+        Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(argument) and \
-            self._offset == argument._offset and \
-            self._attachments == argument._attachments and \
-            self._index == argument._index:
+        if (type(self) == type(argument) and
+            self._offset == argument._offset and
+            self._attachments == argument._attachments and
+            self._index == argument._index):
             return True
         return False
 
@@ -56,6 +67,6 @@ class SilentQEvent(QEvent):
 
     @property
     def attachments(self):
-        r'''Attachments of silen q-event.
+        r'''Gets attachments of silent q-event.
         '''
         return self._attachments

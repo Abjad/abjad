@@ -16,6 +16,10 @@ Selection = selectiontools.Selection
 class Spanner(AbjadObject):
     '''Spanner.
 
+    ::
+
+        >>> import abjad
+
     Any type of object that stretches horizontally and encompasses some number
     of score components.
 

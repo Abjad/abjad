@@ -5,12 +5,16 @@ def is_nonnegative_integer_equivalent_number(argument):
     '''Is true when `argument` is a nonnegative integer-equivalent number.
     Otherwise false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> duration = Duration(4, 2)
-            >>> mathtools.is_nonnegative_integer_equivalent_number(duration)
+            >>> duration = abjad.Duration(4, 2)
+            >>> abjad.mathtools.is_nonnegative_integer_equivalent_number(duration)
             True
 
     Returns true or false.

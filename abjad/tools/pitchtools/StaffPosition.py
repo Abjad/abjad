@@ -6,13 +6,17 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class StaffPosition(AbjadValueObject):
     r'''Staff position.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes staff position at middle line of staff:
 
         ::
 
-            >>> pitchtools.StaffPosition(0)
+            >>> abjad.StaffPosition(0)
             StaffPosition(number=0)
 
     ..  container:: example
@@ -21,7 +25,7 @@ class StaffPosition(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.StaffPosition(-1)
+            >>> abjad.StaffPosition(-1)
             StaffPosition(number=-1)
 
     ..  container:: example
@@ -30,7 +34,7 @@ class StaffPosition(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.StaffPosition(-2)
+            >>> abjad.StaffPosition(-2)
             StaffPosition(number=-2)
 
     Staff positions are immutable.
@@ -58,9 +62,9 @@ class StaffPosition(AbjadValueObject):
 
             ::
 
-                >>> staff_position_1 = pitchtools.StaffPosition(-2)
-                >>> staff_position_2 = pitchtools.StaffPosition(-2)
-                >>> staff_position_3 = pitchtools.StaffPosition(0)
+                >>> staff_position_1 = abjad.StaffPosition(-2)
+                >>> staff_position_2 = abjad.StaffPosition(-2)
+                >>> staff_position_3 = abjad.StaffPosition(0)
 
             ::
 
@@ -89,7 +93,7 @@ class StaffPosition(AbjadValueObject):
 
             ::
 
-                >>> float(pitchtools.StaffPosition(-2))
+                >>> float(abjad.StaffPosition(-2))
                 -2.0
 
         Returns floating-point number.
@@ -113,7 +117,7 @@ class StaffPosition(AbjadValueObject):
 
             ::
 
-                >>> int(pitchtools.StaffPosition(-2))
+                >>> int(abjad.StaffPosition(-2))
                 -2
 
         Returns integer.
@@ -127,7 +131,7 @@ class StaffPosition(AbjadValueObject):
 
             ::
 
-                >>> str(pitchtools.StaffPosition(-2))
+                >>> str(abjad.StaffPosition(-2))
                 'StaffPosition(-2)'
 
         Returns string.
@@ -144,7 +148,7 @@ class StaffPosition(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.StaffPosition(-2).number
+                >>> abjad.StaffPosition(-2).number
                 -2 
 
         Returns number.

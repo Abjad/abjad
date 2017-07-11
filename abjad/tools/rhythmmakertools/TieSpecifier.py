@@ -16,6 +16,12 @@ from abjad.tools.topleveltools import select
 
 class TieSpecifier(AbjadValueObject):
     r'''Tie specifier.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     '''
 
     ### CLASS VARIABLES ###

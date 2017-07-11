@@ -1,4 +1,5 @@
 # -*- coding: utf -*-
+import abjad
 from abjad import *
 
 

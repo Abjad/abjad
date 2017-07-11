@@ -10,33 +10,39 @@ class Harpsichord(Instrument):
 
     ::
 
-        >>> upper_staff = Staff("c'4 d'4 e'4 f'4")
-        >>> lower_staff = Staff("c'2 b2")
-        >>> staff_group = StaffGroup([upper_staff, lower_staff])
-        >>> staff_group.context_name = 'PianoStaff'
-        >>> harpsichord = instrumenttools.Harpsichord()
-        >>> attach(harpsichord, staff_group)
-        >>> attach(Clef(name='bass'), lower_staff)
-        >>> show(staff_group) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff_group)
-        \new PianoStaff <<
-            \set PianoStaff.instrumentName = \markup { Harpsichord }
-            \set PianoStaff.shortInstrumentName = \markup { Hpschd. }
-            \new Staff {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-            \new Staff {
-                \clef "bass"
-                c'2
-                b2
-            }
-        >>
+        ::
+
+            >>> upper_staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> lower_staff = abjad.Staff("c'2 b2")
+            >>> staff_group = abjad.StaffGroup([upper_staff, lower_staff])
+            >>> staff_group.context_name = 'PianoStaff'
+            >>> harpsichord = abjad.instrumenttools.Harpsichord()
+            >>> abjad.attach(harpsichord, staff_group)
+            >>> abjad.attach(abjad.Clef(name='bass'), lower_staff)
+            >>> show(staff_group) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff_group)
+            \new PianoStaff <<
+                \set PianoStaff.instrumentName = \markup { Harpsichord }
+                \set PianoStaff.shortInstrumentName = \markup { Hpschd. }
+                \new Staff {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    c'2
+                    b2
+                }
+            >>
 
     The harpsichord targets piano staff context by default.
     '''

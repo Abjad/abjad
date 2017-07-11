@@ -46,6 +46,7 @@ index_first = Pattern.index_first
 index_last = Pattern.index_last
 from abjad.tools.pitchtools import *
 from abjad.tools.schemetools import *
+from abjad.tools.scoretools import *
 from abjad.tools.selectiontools import *
 from abjad.tools.selectortools import *
 from abjad.tools.sequencetools import *
@@ -62,38 +63,17 @@ from abjad.tools.mathtools import NonreducedRatio
 from abjad.tools.mathtools import Ratio
 from abjad.tools.metertools import Meter
 from abjad.tools.metertools import MeterList
+from abjad.tools.metertools import MeterManager
+from abjad.tools.metertools import MetricAccentKernel
+from abjad.tools.metertools import OffsetCounter
 
-# scoretools classes (but not functions)
-from abjad.tools.scoretools import AcciaccaturaContainer
-from abjad.tools.scoretools import AfterGraceContainer
-from abjad.tools.scoretools import AppoggiaturaContainer
-from abjad.tools.scoretools import Chord
-from abjad.tools.scoretools import Cluster
-from abjad.tools.scoretools import Component
-from abjad.tools.scoretools import Container
-from abjad.tools.scoretools import Context
-from abjad.tools.scoretools import DrumNoteHead
-from abjad.tools.scoretools import GraceContainer
-from abjad.tools.scoretools import Leaf
-from abjad.tools.scoretools import LeafMaker
-from abjad.tools.scoretools import Measure
-from abjad.tools.scoretools import MeasureMaker
-from abjad.tools.scoretools import MultimeasureRest
-from abjad.tools.scoretools import Note
-from abjad.tools.scoretools import NoteHead
-from abjad.tools.scoretools import NoteHeadList
-from abjad.tools.scoretools import NoteMaker
-from abjad.tools.scoretools import Rest
-from abjad.tools.scoretools import Score
-from abjad.tools.scoretools import Skip
-from abjad.tools.scoretools import Staff
-from abjad.tools.scoretools import StaffGroup
-from abjad.tools.scoretools import Tuplet
-from abjad.tools.scoretools import Voice
-
+# timespantools classes (but not functions)
+from abjad.tools.timespantools import AnnotatedTimespan
 from abjad.tools.timespantools import Timespan
+from abjad.tools.timespantools import TimespanInequality
+from abjad.tools.timespantools import TimespanList
 
-# rhythm-maker functions (but not classes)
+# rhythm-maker static methods
 from abjad.tools.rhythmmakertools import SilenceMask
 from abjad.tools.rhythmmakertools import SustainMask
 silence = SilenceMask.silence

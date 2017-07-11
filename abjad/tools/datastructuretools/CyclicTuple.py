@@ -6,13 +6,17 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class CyclicTuple(AbjadObject):
     '''A cylic tuple.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from string:
 
         ::
 
-            >>> tuple_ = datastructuretools.CyclicTuple('abcd')
+            >>> tuple_ = abjad.CyclicTuple('abcd')
 
         ::
 
@@ -84,7 +88,7 @@ class CyclicTuple(AbjadObject):
             ::
 
                 >>> items = [0, 1, 2, 3, 4, 5]
-                >>> tuple_ = datastructuretools.CyclicTuple(items=items)
+                >>> tuple_ = abjad.CyclicTuple(items=items)
                 >>> tuple_[2:]
                 (2, 3, 4, 5)
 
@@ -95,7 +99,7 @@ class CyclicTuple(AbjadObject):
             ::
 
                 >>> items = [0, 1, 2, 3, 4, 5]
-                >>> tuple_ = datastructuretools.CyclicTuple(items=items)
+                >>> tuple_ = abjad.CyclicTuple(items=items)
                 >>> tuple_[:15]
                 (0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2)
 
@@ -151,7 +155,7 @@ class CyclicTuple(AbjadObject):
 
             ::
 
-                >>> str(datastructuretools.CyclicTuple('abcd'))
+                >>> str(abjad.CyclicTuple('abcd'))
                 '(a, b, c, d)'
 
         ..  container:: example
@@ -160,7 +164,7 @@ class CyclicTuple(AbjadObject):
 
             ::
 
-                >>> str(datastructuretools.CyclicTuple([1, 2, 3, 4]))
+                >>> str(abjad.CyclicTuple([1, 2, 3, 4]))
                 '(1, 2, 3, 4)'
 
         Returns string.
@@ -207,7 +211,7 @@ class CyclicTuple(AbjadObject):
 
             ::
 
-                >>> tuple_ = datastructuretools.CyclicTuple('abcd')
+                >>> tuple_ = abjad.CyclicTuple('abcd')
                 >>> tuple_.items
                 ('a', 'b', 'c', 'd')
 
@@ -217,7 +221,7 @@ class CyclicTuple(AbjadObject):
 
             ::
 
-                >>> tuple_ = datastructuretools.CyclicTuple([1, 2, 3, 4])
+                >>> tuple_ = abjad.CyclicTuple([1, 2, 3, 4])
                 >>> tuple_.items
                 (1, 2, 3, 4)
 

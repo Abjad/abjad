@@ -5,6 +5,10 @@ from abjad.tools.abctools import AbjadObject
 class ChordOmission(AbjadObject):
     '''Chord ommission.
 
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
+
     Chord ommissions are immutable.
     '''
 

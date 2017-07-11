@@ -10,8 +10,8 @@ def override(argument):
 
         ::
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
-            >>> override(staff).staff_symbol.color = 'red'
+            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+            >>> abjad.override(staff).staff_symbol.color = 'red'
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -32,7 +32,7 @@ def override(argument):
 
         ::
 
-            >>> override(staff)
+            >>> abjad.override(staff)
             LilyPondGrobNameManager(('staff_symbol', LilyPondNameManager(('color', 'red'))))
 
     '''

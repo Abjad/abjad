@@ -8,7 +8,12 @@ from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
 class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
-    r'''A rhythm-tree container.
+    r'''Rhythm-tree container.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmtreetools
 
     ..  container:: example
 
@@ -216,7 +221,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
 
             ::
 
-                >>> staff = Staff(tree((1, 4)))
+                >>> staff = abjad.Staff(tree((1, 4)))
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

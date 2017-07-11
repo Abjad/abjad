@@ -8,6 +8,11 @@ from abjad.tools.abctools import AbjadValueObject
 class Talea(AbjadValueObject):
     '''Talea.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         ::
@@ -17,8 +22,8 @@ class Talea(AbjadValueObject):
             ...    denominator=16,
             ...    )
 
-    The medieval plural of 'talea' is 'talee'. Abjad documentation
-    uses 'taleas' instead.
+    The medieval plural of 'talea' is 'talee'. Abjad documentation uses
+    'taleas' instead.
     '''
 
     ### CLASS VARIABLES ###

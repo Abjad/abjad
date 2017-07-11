@@ -6,13 +6,17 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class MetronomeMarkList(TypedList):
     r'''Metronome mark list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
             >>> marks = abjad.MetronomeMarkList([
-            ...     (Duration(1, 8), 72, 'Andante'),
-            ...     (Duration(1, 8), 84, 'Allegro'),
+            ...     ((1, 8), 72, 'Andante'),
+            ...     ((1, 8), 84, 'Allegro'),
             ...     ])
 
         ::
@@ -42,13 +46,13 @@ class MetronomeMarkList(TypedList):
             ::
 
                 >>> marks = abjad.MetronomeMarkList([
-                ...     (Duration(1, 8), 72),
+                ...     (abjad.Duration(1, 8), 72),
                 ...     ((1, 8), 84, 'Allegro'),
                 ...     ])
 
             ::
 
-                >>> MetronomeMark((1, 8), 72) in marks
+                >>> abjad.MetronomeMark((1, 8), 72) in marks
                 True
 
             ::
@@ -58,7 +62,7 @@ class MetronomeMarkList(TypedList):
 
             ::
 
-                >>> (Duration(1, 8), 72) in marks
+                >>> (abjad.Duration(1, 8), 72) in marks
                 True
 
             ::
@@ -84,7 +88,7 @@ class MetronomeMarkList(TypedList):
             ::
 
                 >>> marks = abjad.MetronomeMarkList([
-                ...     (Duration(1, 8), 72),
+                ...     (abjad.Duration(1, 8), 72),
                 ...     ((1, 8), 84, 'Allegro'),
                 ...     ])
 
@@ -117,8 +121,8 @@ class MetronomeMarkList(TypedList):
 
             ::
 
-                >>> marks = indicatortools.MetronomeMarkList([
-                ...     (Duration(1, 8), 72),
+                >>> marks = abjad.MetronomeMarkList([
+                ...     (abjad.Duration(1, 8), 72),
                 ...     ((1, 8), 84, 'Allegro'),
                 ...     ])
 
@@ -129,7 +133,7 @@ class MetronomeMarkList(TypedList):
             ..  docs::
 
                 >>> lilypond_file = marks.__illustrate__()
-                >>> f(lilypond_file[Score])
+                >>> f(lilypond_file[abjad.Score])
                 \new Score \with {
                     \override BarLine.transparent = ##t
                     \override BarNumber.stencil = ##f
@@ -213,9 +217,9 @@ class MetronomeMarkList(TypedList):
 
             ::
 
-                >>> marks_1 = indicatortools.MetronomeMarkList([((1, 8), 72)])
+                >>> marks_1 = abjad.MetronomeMarkList([((1, 8), 72)])
                 >>> marks_1.append(((1, 8), 84))
-                >>> marks_2 = indicatortools.MetronomeMarkList([
+                >>> marks_2 = abjad.MetronomeMarkList([
                 ...    ((1, 8), 72),
                 ...    ((1, 8), 84),
                 ...    ])

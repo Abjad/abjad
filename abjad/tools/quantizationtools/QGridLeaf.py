@@ -7,19 +7,23 @@ from abjad.tools.rhythmtreetools import RhythmTreeMixin
 
 
 class QGridLeaf(RhythmTreeMixin, TreeNode):
-    r'''A leaf in a ``QGrid`` structure.
+    r'''Q-grid leaf.
 
     ::
 
-        >>> leaf = quantizationtools.QGridLeaf()
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
-    ::
+    ..  container:: example
 
-        >>> leaf
-        QGridLeaf(
-            preprolated_duration=Duration(1, 1),
-            is_divisible=True
-            )
+        ::
+
+            >>> leaf = quantizationtools.QGridLeaf()
+            >>> leaf
+            QGridLeaf(
+                preprolated_duration=Duration(1, 1),
+                is_divisible=True
+                )
 
     Used internally by ``QGrid``.
     '''

@@ -11,7 +11,11 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Meter(AbjadObject):
-    '''A meter.
+    '''Meter.
+
+    ::
+
+        >>> import abjad
 
     Meter models a common practice understanding of beats and other levels of
     rhythmic organization structured as a tree. Meter structure corresponds to
@@ -244,7 +248,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> parser = rhythmtreetools.RhythmTreeParser()
+            >>> parser = abjad.rhythmtreetools.RhythmTreeParser()
             >>> meter = abjad.Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
             >>> meter
             Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
@@ -793,11 +797,10 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> from abjad.tools.metertools import Meter
                 >>> for rhythm_number in range(8):
-                ...     notes = Meter._make_gridded_test_rhythm(
+                ...     notes = abjad.Meter._make_gridded_test_rhythm(
                 ...         4, rhythm_number, denominator=4)
-                ...     measure = Measure((4, 4), notes)
+                ...     measure = abjad.Measure((4, 4), notes)
                 ...     print('{}\t{}'.format(rhythm_number, str(measure)))
                 ...
                 0	Measure((4, 4), "c'1")
@@ -816,9 +819,9 @@ class Meter(AbjadObject):
             ::
 
                 >>> for rhythm_number in range(16):
-                ...     notes = Meter._make_gridded_test_rhythm(
+                ...     notes = abjad.Meter._make_gridded_test_rhythm(
                 ...         5, rhythm_number, denominator=4)
-                ...     measure = Measure((5, 4), notes)
+                ...     measure = abjad.Measure((5, 4), notes)
                 ...     print('{}\t{}'.format(rhythm_number, str(measure)))
                 ...
                 0	Measure((5, 4), "c'1 ~ c'4")

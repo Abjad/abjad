@@ -10,22 +10,28 @@ class AltoFlute(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> alto_flute = instrumenttools.AltoFlute()
-        >>> attach(alto_flute, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Alto flute" }
-            \set Staff.shortInstrumentName = \markup { "Alt. fl." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> alto_flute = abjad.instrumenttools.AltoFlute()
+            >>> abjad.attach(alto_flute, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Alto flute" }
+                \set Staff.shortInstrumentName = \markup { "Alt. fl." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
@@ -76,7 +82,7 @@ class AltoFlute(Instrument):
 
             ::
 
-                >>> alto_flute = instrumenttools.AltoFlute()
+                >>> alto_flute = abjad.instrumenttools.AltoFlute()
                 >>> f(alto_flute)
                 instrumenttools.AltoFlute(
                     instrument_name='alto flute',

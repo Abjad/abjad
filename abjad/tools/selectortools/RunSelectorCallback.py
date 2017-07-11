@@ -7,6 +7,11 @@ from abjad.tools.topleveltools import iterate
 
 class RunSelectorCallback(AbjadValueObject):
     r'''Run selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###

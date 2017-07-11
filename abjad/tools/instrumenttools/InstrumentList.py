@@ -6,13 +6,17 @@ from abjad.tools.topleveltools import new
 class InstrumentList(TypedList):
     r'''Instrument list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> instruments = instrumenttools.InstrumentList([
-            ...     instrumenttools.Flute(),
-            ...     instrumenttools.Guitar()
+            >>> instruments = abjad.instrumenttools.InstrumentList([
+            ...     abjad.instrumenttools.Flute(),
+            ...     abjad.instrumenttools.Guitar()
             ...     ])
 
         ::
@@ -139,7 +143,7 @@ class InstrumentList(TypedList):
         from abjad.tools import instrumenttools
         from ide import idetools
         if isinstance(instrument, instrumenttools.Percussion):
-            Percussion = instrumenttools.Percussion
+            Percussion = abjad.instrumenttools.Percussion
             items = Percussion.known_percussion[:]
             selector = idetools.Selector(session=session, items=items)
             instrument_name = selector._run()
@@ -171,7 +175,7 @@ class InstrumentList(TypedList):
                 from ide import idetools
                 controller = idetools.ControllerContext(controller=self)
                 with controller:
-                    items = instrumenttools.Instrument._list_instrument_names()
+                    items = abjad.instrumenttools.Instrument._list_instrument_names()
                     selector = idetools.Selector(
                         session=self._session,
                         items=items,

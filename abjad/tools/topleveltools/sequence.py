@@ -4,6 +4,10 @@
 def sequence(items=None, **keywords):
     r'''Makes sequence or sequence expression.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ..  container:: example
@@ -12,7 +16,7 @@ def sequence(items=None, **keywords):
 
             ::
 
-                >>> sequence([1, 2, [3, [4]], 5])
+                >>> abjad.sequence([1, 2, [3, [4]], 5])
                 Sequence([1, 2, [3, [4]], 5])
 
         ..  container:: example expression
@@ -21,7 +25,7 @@ def sequence(items=None, **keywords):
 
             ::
 
-                >>> expression = sequence()
+                >>> expression = abjad.sequence()
                 >>> expression([1, 2, [3, [4]], 5])
                 Sequence([1, 2, [3, [4]], 5])
 
@@ -33,7 +37,7 @@ def sequence(items=None, **keywords):
 
             ::
 
-                >>> sequence_ = sequence([1, 2, [3, [4]], 5])
+                >>> sequence_ = abjad.sequence([1, 2, [3, [4]], 5])
                 >>> sequence_
                 Sequence([1, 2, [3, [4]], 5])
 
@@ -59,8 +63,7 @@ def sequence(items=None, **keywords):
 
             ::
 
-                >>> expression = sequence()
-                >>> expression = sequence()
+                >>> expression = abjad.sequence()
                 >>> expression = expression.flatten()
                 >>> expression = expression.reverse()
                 >>> expression = expression[-3:]

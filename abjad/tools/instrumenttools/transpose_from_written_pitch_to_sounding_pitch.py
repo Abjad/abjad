@@ -8,43 +8,49 @@ from abjad.tools.topleveltools import iterate
 
 def transpose_from_written_pitch_to_sounding_pitch(argument):
     r'''Transpose notes and chords in `argument` from sounding pitch
-    to written pitch:
+    to written pitch.
 
     ::
 
-        >>> staff = Staff("<c' e' g'>4 d'4 r4 e'4")
-        >>> clarinet = instrumenttools.ClarinetInBFlat()
-        >>> attach(clarinet, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
-            \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
-            <c' e' g'>4
-            d'4
-            r4
-            e'4
-        }
+        ::
 
-    ::
+            >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
+            >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
+            >>> abjad.attach(clarinet, staff)
+            >>> show(staff) # doctest: +SKIP
 
-        >>> instrumenttools.transpose_from_written_pitch_to_sounding_pitch(staff)
-        >>> show(staff) # doctest: +SKIP
+        ..  docs::
 
-    ..  docs::
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
+                \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
+                <c' e' g'>4
+                d'4
+                r4
+                e'4
+            }
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
-            \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
-            <bf d' f'>4
-            c'4
-            r4
-            d'4
-        }
+        ::
+
+            >>> abjad.instrumenttools.transpose_from_written_pitch_to_sounding_pitch(staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
+                \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
+                <bf d' f'>4
+                c'4
+                r4
+                d'4
+            }
 
     Returns none.
     '''

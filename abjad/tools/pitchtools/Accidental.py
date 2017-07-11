@@ -8,13 +8,17 @@ from abjad.tools.abctools import AbjadValueObject
 class Accidental(AbjadValueObject):
     '''Accidental.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Sharp:
 
         ::
 
-            >>> pitchtools.Accidental('s')
+            >>> abjad.Accidental('s')
             Accidental('s')
 
     ..  container:: example
@@ -23,7 +27,7 @@ class Accidental(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Accidental('qs')
+            >>> abjad.Accidental('qs')
             Accidental('qs')
 
     ..  container:: example
@@ -32,7 +36,7 @@ class Accidental(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Accidental('tqf')
+            >>> abjad.Accidental('tqf')
             Accidental('tqf')
 
     ..  container:: example
@@ -41,7 +45,7 @@ class Accidental(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Accidental('#+')
+            >>> abjad.Accidental('#+')
             Accidental('tqs')
 
     ..  container:: example
@@ -50,7 +54,7 @@ class Accidental(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Accidental('flat')
+            >>> abjad.Accidental('flat')
             Accidental('f')
 
     ..  container:: example
@@ -59,7 +63,7 @@ class Accidental(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Accidental(2)
+            >>> abjad.Accidental(2)
             Accidental('ss')
 
     ..  container:: example
@@ -68,7 +72,7 @@ class Accidental(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.Accidental('ssssqs')
+            >>> abjad.Accidental('ssssqs')
             Accidental('ssssqs')
 
     '''
@@ -377,7 +381,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> accidental = pitchtools.Accidental('s')
+                >>> accidental = abjad.Accidental('s')
                 >>> accidental.abbreviation
                 's'
 
@@ -405,7 +409,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> Accidental('sharp').arrow is None
+                >>> abjad.Accidental('sharp').arrow is None
                 True
 
         ..  container:: example
@@ -414,7 +418,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> Accidental('sharp', arrow=Up).arrow
+                >>> abjad.Accidental('sharp', arrow=Up).arrow
                 Up
 
         ..  container:: example
@@ -423,7 +427,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> Accidental('sharp', arrow=Down).arrow
+                >>> abjad.Accidental('sharp', arrow=Down).arrow
                 Down
 
         Arrow property is currently a stub in the object model. You can set the
@@ -443,7 +447,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> accidental = pitchtools.Accidental('s')
+                >>> accidental = abjad.Accidental('s')
                 >>> accidental.is_adjusted
                 True
 
@@ -459,7 +463,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> accidental = pitchtools.Accidental('s')
+                >>> accidental = abjad.Accidental('s')
                 >>> accidental.name
                 'sharp'
 
@@ -477,7 +481,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> accidental = pitchtools.Accidental('s')
+                >>> accidental = abjad.Accidental('s')
                 >>> accidental.semitones
                 1
 
@@ -493,7 +497,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> accidental = pitchtools.Accidental('s')
+                >>> accidental = abjad.Accidental('s')
                 >>> accidental.symbolic_string
                 '#'
 
@@ -514,7 +518,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Accidental.is_abbreviation('tqs')
+                >>> abjad.Accidental.is_abbreviation('tqs')
                 True
 
         The regex ``^([s]{1,2}|[f]{1,2}|t?q?[fs])!?$`` underlies this
@@ -535,7 +539,7 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.Accidental.is_symbolic_string('#+')
+                >>> abjad.Accidental.is_symbolic_string('#+')
                 True
 
         Empty string returns true.

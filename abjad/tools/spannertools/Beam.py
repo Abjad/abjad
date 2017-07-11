@@ -7,12 +7,16 @@ from abjad.tools.topleveltools import override
 class Beam(Spanner):
     r'''Beam.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8 g'2")
-            >>> setting(staff).auto_beaming = False
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -30,10 +34,10 @@ class Beam(Spanner):
 
         ::
 
-            >>> beam = Beam()
-            >>> attach(beam, staff[:2])
-            >>> beam = Beam()
-            >>> attach(beam, staff[2:4])
+            >>> beam = abjad.Beam()
+            >>> abjad.attach(beam, staff[:2])
+            >>> beam = abjad.Beam()
+            >>> abjad.attach(beam, staff[2:4])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -116,14 +120,14 @@ class Beam(Spanner):
 
             ::
 
-                >>> staff = Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
+                >>> staff = abjad.Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
                 >>> staff.extend(r"r8 e''8 ( ef'2 )")
                 >>> show(staff) # doctest: +SKIP
 
             ::
 
                 >>> for leaf in staff:
-                ...     result = Beam._is_beamable(leaf)
+                ...     result = abjad.Beam._is_beamable(leaf)
                 ...     print('{:<8}\t{}'.format(leaf, result))
                 ... 
                 r32     False
@@ -141,14 +145,14 @@ class Beam(Spanner):
 
             ::
 
-                >>> staff = Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
+                >>> staff = abjad.Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
                 >>> staff.extend(r"r8 e''8 ( ef'2 )")
                 >>> show(staff) # doctest: +SKIP
 
             ::
 
                 >>> for leaf in staff:
-                ...     result = Beam._is_beamable(
+                ...     result = abjad.Beam._is_beamable(
                 ...         leaf,
                 ...         beam_rests=True,
                 ...         )
@@ -169,14 +173,14 @@ class Beam(Spanner):
 
             ::
 
-                >>> skip = Skip((1, 32))
-                >>> Beam._is_beamable(skip, beam_rests=True)
+                >>> skip = abjad.Skip((1, 32))
+                >>> abjad.Beam._is_beamable(skip, beam_rests=True)
                 True
 
             ::
 
-                >>> skip = Skip((1))
-                >>> Beam._is_beamable(skip, beam_rests=True)
+                >>> skip = abjad.Skip((1))
+                >>> abjad.Beam._is_beamable(skip, beam_rests=True)
                 True
 
         ..  container:: example
@@ -185,14 +189,14 @@ class Beam(Spanner):
 
             ::
 
-                >>> rest = Rest((1, 32))
-                >>> Beam._is_beamable(rest, beam_rests=True)
+                >>> rest = abjad.Rest((1, 32))
+                >>> abjad.Beam._is_beamable(rest, beam_rests=True)
                 True
 
             ::
 
-                >>> rest = Rest((1))
-                >>> Beam._is_beamable(rest, beam_rests=True)
+                >>> rest = abjad.Rest((1))
+                >>> abjad.Beam._is_beamable(rest, beam_rests=True)
                 True
 
         Returns true or false.

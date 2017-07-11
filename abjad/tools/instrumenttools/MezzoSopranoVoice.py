@@ -10,22 +10,29 @@ class MezzoSopranoVoice(Instrument):
 
     ::
 
-        >>> staff = Staff("c''4 d''4 e''4 fs''4")
-        >>> mezzo_soprano = instrumenttools.MezzoSopranoVoice()
-        >>> attach(mezzo_soprano, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Mezzo-soprano }
-            \set Staff.shortInstrumentName = \markup { Mezz. }
-            c''4
-            d''4
-            e''4
-            fs''4
-        }
+        ::
+
+
+            >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
+            >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
+            >>> abjad.attach(mezzo_soprano, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Mezzo-soprano }
+                \set Staff.shortInstrumentName = \markup { Mezz. }
+                c''4
+                d''4
+                e''4
+                fs''4
+            }
 
     '''
 

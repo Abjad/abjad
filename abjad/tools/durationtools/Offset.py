@@ -12,7 +12,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(3)
+            >>> abjad.Offset(3)
             Offset(3, 1)
 
     ..  container:: example
@@ -21,7 +21,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(3, 16)
+            >>> abjad.Offset(3, 16)
             Offset(3, 16)
 
     ..  container:: example
@@ -30,7 +30,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(3.0)
+            >>> abjad.Offset(3.0)
             Offset(3, 1)
 
     ..  container:: example
@@ -39,7 +39,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(3.0, 16)
+            >>> abjad.Offset(3.0, 16)
             Offset(3, 16)
 
     ..  container:: example
@@ -48,7 +48,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset((3,))
+            >>> abjad.Offset((3,))
             Offset(3, 1)
 
     ..  container:: example
@@ -57,7 +57,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset((3, 16))
+            >>> abjad.Offset((3, 16))
             Offset(3, 16)
 
     ..  container:: example
@@ -66,7 +66,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(Duration(3, 16))
+            >>> abjad.Offset(abjad.Duration(3, 16))
             Offset(3, 16)
 
     ..  container:: example
@@ -75,7 +75,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(Offset(3, 16))
+            >>> abjad.Offset(abjad.Offset(3, 16))
             Offset(3, 16)
 
     ..  container:: example
@@ -84,8 +84,8 @@ class Offset(Duration):
 
         ::
 
-            >>> offset = Offset((3, 16), grace_displacement=(-1, 16))
-            >>> Offset(offset)
+            >>> offset = abjad.Offset((3, 16), grace_displacement=(-1, 16))
+            >>> abjad.Offset(offset)
             Offset(
                 (3, 16),
                 grace_displacement=Duration(-1, 16)
@@ -97,7 +97,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(Fraction(3, 16))
+            >>> abjad.Offset(abjad.Fraction(3, 16))
             Offset(3, 16)
 
     ..  container:: example
@@ -106,7 +106,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset('3/16')
+            >>> abjad.Offset('3/16')
             Offset(3, 16)
 
     ..  container:: example
@@ -115,7 +115,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(mathtools.NonreducedFraction(6, 32))
+            >>> abjad.Offset(abjad.NonreducedFraction(6, 32))
             Offset(3, 16)
 
     ..  container:: example
@@ -124,12 +124,12 @@ class Offset(Duration):
 
         ::
 
-            >>> isinstance(Offset(3, 16), Fraction)
+            >>> isinstance(abjad.Offset(3, 16), abjad.Fraction)
             True
 
     ..  container:: example
 
-        Offsets are numeric:
+        Offsets are numbers:
 
         ::
 
@@ -137,7 +137,7 @@ class Offset(Duration):
 
         ::
 
-            >>> isinstance(Offset(3, 16), numbers.Number)
+            >>> isinstance(abjad.Offset(3, 16), numbers.Number)
             True
 
     '''
@@ -184,7 +184,7 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
                 >>> offset_2 = copy.copy(offset_1)
 
             ::
@@ -234,7 +234,7 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
                 >>> offset_2 = copy.deepcopy(offset_1)
 
             ::
@@ -277,8 +277,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -298,8 +298,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -319,8 +319,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4))
-                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+                >>> offset_1 = abjad.Offset((1, 4))
+                >>> offset_2 = abjad.Offset((1, 2), grace_displacement=(-99))
 
             ::
 
@@ -350,8 +350,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -371,8 +371,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -392,8 +392,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4))
-                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+                >>> offset_1 = abjad.Offset((1, 4))
+                >>> offset_2 = abjad.Offset((1, 2), grace_displacement=(-99))
 
             ::
 
@@ -430,8 +430,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -451,8 +451,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -472,8 +472,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4))
-                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+                >>> offset_1 = abjad.Offset((1, 4))
+                >>> offset_2 = abjad.Offset((1, 2), grace_displacement=(-99))
 
             ::
 
@@ -521,8 +521,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -542,8 +542,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -563,8 +563,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4))
-                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+                >>> offset_1 = abjad.Offset((1, 4))
+                >>> offset_2 = abjad.Offset((1, 2), grace_displacement=(-99))
 
             ::
 
@@ -594,8 +594,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -615,8 +615,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -636,8 +636,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4))
 
             ::
 
@@ -657,8 +657,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4))
-                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+                >>> offset_1 = abjad.Offset((1, 4))
+                >>> offset_2 = abjad.Offset((1, 2), grace_displacement=(-99))
 
             ::
 
@@ -688,7 +688,7 @@ class Offset(Duration):
 
             ::
 
-                >>> Offset(1, 4)
+                >>> abjad.Offset(1, 4)
                 Offset(1, 4)
 
         ..  container:: example
@@ -697,7 +697,7 @@ class Offset(Duration):
 
             ::
 
-                >>> Offset(1, 4, grace_displacement=(-1, 16))
+                >>> abjad.Offset(1, 4, grace_displacement=(-1, 16))
                 Offset(
                     (1, 4),
                     grace_displacement=Duration(-1, 16)
@@ -711,21 +711,21 @@ class Offset(Duration):
 
         ::
 
-            >>> durationtools.Offset(2) - durationtools.Offset(1, 2)
+            >>> abjad.Offset(2) - abjad.Offset(1, 2)
             Duration(3, 2)
 
         Duration taken from offset returns another offset:
 
         ::
 
-            >>> durationtools.Offset(2) - durationtools.Duration(1, 2)
+            >>> abjad.Offset(2) - abjad.Duration(1, 2)
             Offset(3, 2)
 
         Coerce `argument` to offset when `argument` is neither offset nor duration:
 
         ::
 
-            >>> durationtools.Offset(2) - Fraction(1, 2)
+            >>> abjad.Offset(2) - abjad.Fraction(1, 2)
             Duration(3, 2)
 
         Returns duration or offset.
@@ -774,7 +774,7 @@ class Offset(Duration):
 
             ::
 
-                >>> offset = Offset(1, 4)
+                >>> offset = abjad.Offset(1, 4)
                 >>> offset.grace_displacement is None
                 True
 
@@ -784,7 +784,7 @@ class Offset(Duration):
 
             ::
 
-                >>> offset = Offset(1, 4, grace_displacement=(-1, 16))
+                >>> offset = abjad.Offset(1, 4, grace_displacement=(-1, 16))
                 >>> offset.grace_displacement
                 Duration(-1, 16)
 
@@ -794,7 +794,7 @@ class Offset(Duration):
 
             ::
 
-                >>> offset = Offset(1, 4, grace_displacement=0)
+                >>> offset = abjad.Offset(1, 4, grace_displacement=0)
                 >>> offset.grace_displacement is None
                 True
 

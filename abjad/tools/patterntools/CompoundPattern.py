@@ -1478,7 +1478,7 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = new(pattern, inverted=True)
+                >>> pattern = abjad.new(pattern, inverted=True)
                 >>> pattern.inverted
                 True
 

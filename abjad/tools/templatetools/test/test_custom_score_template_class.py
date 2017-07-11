@@ -3,6 +3,7 @@ from abjad import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
+# TODO: Move to doctests
 def test_custom_score_template_class_01():
     r'''Score template with named contexts.
     '''

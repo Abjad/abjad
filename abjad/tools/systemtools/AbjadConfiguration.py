@@ -9,11 +9,15 @@ from abjad.tools.systemtools.Configuration import Configuration
 class AbjadConfiguration(Configuration):
     r'''Abjad configuration.
 
+    ::
+    
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> abjad_configuration = systemtools.AbjadConfiguration()
+            >>> abjad_configuration = abjad.systemtools.AbjadConfiguration()
 
         ::
 
@@ -323,7 +327,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
-                >>> [Note(13, (1, 4)), Note(15, (1, 4))]
+                >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
                 [Note("cs''4"), Note("ds''4")]
 
         ..  container:: example
@@ -336,7 +340,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
-                >>> [Note(13, (1, 4)), Note(15, (1, 4))]
+                >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
                 [Note("df''4"), Note("ef''4")]
 
         ..  container:: example
@@ -349,7 +353,7 @@ class AbjadConfiguration(Configuration):
 
             ::
 
-                >>> [Note(13, (1, 4)), Note(15, (1, 4))]
+                >>> [abjad.Note(13, (1, 4)), abjad.Note(15, (1, 4))]
                 [Note("cs''4"), Note("ef''4")]
 
         Defaults to ``'mixed'``.

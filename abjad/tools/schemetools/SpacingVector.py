@@ -3,7 +3,11 @@ from abjad.tools.schemetools.SchemeVector import SchemeVector
 
 
 class SpacingVector(SchemeVector):
-    r'''Spacing vector.
+    r'''Abjad model of Scheme spacing vector.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -25,8 +29,8 @@ class SpacingVector(SchemeVector):
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> lilypond_file = LilyPondFile.new(staff)
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> lilypond_file = abjad.LilyPondFile.new(staff)
             >>> vector = abjad.SpacingVector(0, 0, 12, 0)
             >>> lilypond_file.paper_block.system_system_spacing = vector
 

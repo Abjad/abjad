@@ -5,15 +5,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BendAfter(AbjadValueObject):
     r'''Fall or doit.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         A fall:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> bend = indicatortools.BendAfter(-4)
-            >>> attach(bend, note)
+            >>> note = abjad.Note("c'4")
+            >>> bend = abjad.BendAfter(-4)
+            >>> abjad.attach(bend, note)
             >>> show(note) # doctest: +SKIP
 
         ..  docs::
@@ -27,9 +31,9 @@ class BendAfter(AbjadValueObject):
 
         ::
 
-            >>> note = Note("c'4")
-            >>> bend = indicatortools.BendAfter(2)
-            >>> attach(bend, note)
+            >>> note = abjad.Note("c'4")
+            >>> bend = abjad.BendAfter(2)
+            >>> abjad.attach(bend, note)
             >>> show(note) # doctest: +SKIP
 
         ..  docs::
@@ -68,7 +72,7 @@ class BendAfter(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.BendAfter())
+                >>> str(abjad.BendAfter())
                 "- \\bendAfter #'-4.0"
 
         Returns string.
@@ -104,7 +108,7 @@ class BendAfter(AbjadValueObject):
 
             ::
 
-                >>> bend = indicatortools.BendAfter(-4)
+                >>> bend = abjad.BendAfter(-4)
                 >>> bend.bend_amount
                 -4.0
 
@@ -114,7 +118,7 @@ class BendAfter(AbjadValueObject):
 
             ::
 
-                >>> bend = indicatortools.BendAfter(2)
+                >>> bend = abjad.BendAfter(2)
                 >>> bend.bend_amount
                 2.0 
 
@@ -128,7 +132,7 @@ class BendAfter(AbjadValueObject):
 
         ..  container:: example
 
-            >>> bend = indicatortools.BendAfter(-4)
+            >>> bend = abjad.BendAfter(-4)
             >>> bend.default_scope is None
             True
 

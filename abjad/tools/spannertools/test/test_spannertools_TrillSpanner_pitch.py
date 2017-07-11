@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -6,7 +7,7 @@ def test_spannertools_TrillSpanner_pitch_01():
     r'''Works with pitch.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
     trill = spannertools.TrillSpanner(pitch=NamedPitch(1))
     attach(trill, staff[:2])
 
@@ -29,7 +30,7 @@ def test_spannertools_TrillSpanner_pitch_02():
     r'''Works with no pitch.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
     trill = spannertools.TrillSpanner()
     attach(trill, staff[:2])
 

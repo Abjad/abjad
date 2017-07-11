@@ -9,15 +9,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class TimeSignature(AbjadValueObject):
     r'''Time signature.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         First time signature:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8")
-            >>> time_signature = TimeSignature((3, 8))
-            >>> attach(time_signature, staff[0])
+            >>> staff = abjad.Staff("c'8 d'8 e'8")
+            >>> time_signature = abjad.TimeSignature((3, 8))
+            >>> abjad.attach(time_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -36,9 +40,9 @@ class TimeSignature(AbjadValueObject):
 
         ::
 
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> time_signature = TimeSignature((4, 4))
-            >>> attach(time_signature, staff[0])
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> time_signature = abjad.TimeSignature((4, 4))
+            >>> abjad.attach(time_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -58,9 +62,9 @@ class TimeSignature(AbjadValueObject):
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 c'8 d'8 e'8")
-            >>> time_signature = TimeSignature((3, 8))
-            >>> attach(time_signature, staff[0], scope=Score)
+            >>> staff = abjad.Staff("c'8 d'8 e'8 c'8 d'8 e'8")
+            >>> time_signature = abjad.TimeSignature((3, 8))
+            >>> abjad.attach(time_signature, staff[0], scope=abjad.Score)
 
         Formats behind comments when no score is present:
 
@@ -87,7 +91,7 @@ class TimeSignature(AbjadValueObject):
 
         ::
 
-            >>> score = Score([staff])
+            >>> score = abjad.Score([staff])
             >>> f(score)
             \new Score <<
                 \new Staff {
@@ -158,14 +162,14 @@ class TimeSignature(AbjadValueObject):
 
             Adds two time signatures with the same denominator:
 
-            >>> TimeSignature((3, 4)) + TimeSignature((3, 4))
+            >>> abjad.TimeSignature((3, 4)) + abjad.TimeSignature((3, 4))
             TimeSignature((6, 4))
 
         ..  container:: example
 
             Adds two time signatures with different denominators:
 
-            >>> TimeSignature((3, 4)) + TimeSignature((6, 8))
+            >>> abjad.TimeSignature((3, 4)) + abjad.TimeSignature((6, 8))
             TimeSignature((12, 8))
 
             Returns new time signature in terms of greatest denominator.
@@ -226,7 +230,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> print(format(TimeSignature((3, 8))))
+                >>> print(format(abjad.TimeSignature((3, 8))))
                 abjad.TimeSignature((3, 8))
 
         ..  container:: example
@@ -235,7 +239,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> print(format(TimeSignature((4, 4))))
+                >>> print(format(abjad.TimeSignature((4, 4))))
                 abjad.TimeSignature((4, 4))
 
         Returns string.
@@ -307,14 +311,14 @@ class TimeSignature(AbjadValueObject):
 
             Adds integer to first time signature:
 
-            >>> TimeSignature((3, 8)) + TimeSignature((4, 4))
+            >>> abjad.TimeSignature((3, 8)) + abjad.TimeSignature((4, 4))
             TimeSignature((11, 8))
 
         ..  container:: example
 
             Adds integer to second time signature:
 
-            >>> TimeSignature((4, 4)) + TimeSignature((3, 8))
+            >>> abjad.TimeSignature((4, 4)) + abjad.TimeSignature((3, 8))
             TimeSignature((11, 8))
 
         Returns new time signature.
@@ -330,7 +334,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> str(TimeSignature((3, 8)))
+                >>> str(abjad.TimeSignature((3, 8)))
                 '3/8'
 
         ..  container:: example
@@ -339,7 +343,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> str(TimeSignature((4, 4)))
+                >>> str(abjad.TimeSignature((4, 4)))
                 '4/4'
 
         Returns string.
@@ -398,7 +402,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((3, 8)).default_scope
+                >>> abjad.TimeSignature((3, 8)).default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 
         ..  container:: example
@@ -407,7 +411,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((4, 4)).default_scope
+                >>> abjad.TimeSignature((4, 4)).default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 
         Returns staff.
@@ -424,7 +428,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((3, 8)).denominator
+                >>> abjad.TimeSignature((3, 8)).denominator
                 8
 
         ..  container:: example
@@ -433,7 +437,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((4, 4)).denominator
+                >>> abjad.TimeSignature((4, 4)).denominator
                 4
 
         Set to positive integer.
@@ -452,7 +456,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((3, 8)).duration
+                >>> abjad.TimeSignature((3, 8)).duration
                 Duration(3, 8)
 
         ..  container:: example
@@ -461,7 +465,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((4, 4)).duration
+                >>> abjad.TimeSignature((4, 4)).duration
                 Duration(1, 1)
 
         Returns duration.
@@ -479,7 +483,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> time_signature = TimeSignature((7, 12))
+                >>> time_signature = abjad.TimeSignature((7, 12))
                 >>> time_signature.has_non_power_of_two_denominator
                 True
 
@@ -489,7 +493,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> time_signature = TimeSignature((3, 8))
+                >>> time_signature = abjad.TimeSignature((3, 8))
                 >>> time_signature.has_non_power_of_two_denominator
                 False
 
@@ -507,7 +511,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((3, 8)).implied_prolation
+                >>> abjad.TimeSignature((3, 8)).implied_prolation
                 Multiplier(1, 1)
 
         ..  container:: example
@@ -517,7 +521,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((7, 12)).implied_prolation
+                >>> abjad.TimeSignature((7, 12)).implied_prolation
                 Multiplier(2, 3)
 
         Returns multiplier.
@@ -535,7 +539,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((3, 8)).numerator
+                >>> abjad.TimeSignature((3, 8)).numerator
                 3
 
         ..  container:: example
@@ -544,7 +548,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((4, 4)).numerator
+                >>> abjad.TimeSignature((4, 4)).numerator
                 4
 
         Set to positive integer.
@@ -563,7 +567,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((3, 8)).pair
+                >>> abjad.TimeSignature((3, 8)).pair
                 (3, 8)
 
         ..  container:: example
@@ -572,7 +576,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((4, 4)).pair
+                >>> abjad.TimeSignature((4, 4)).pair
                 (4, 4)
 
         Returns pair.
@@ -589,7 +593,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((3, 8)).partial is None
+                >>> abjad.TimeSignature((3, 8)).partial is None
                 True
 
         ..  container:: example
@@ -598,7 +602,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((4, 4)).partial is None
+                >>> abjad.TimeSignature((4, 4)).partial is None
                 True
 
         Set to duration or none.
@@ -621,7 +625,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((3, 8)).suppress is None
+                >>> abjad.TimeSignature((3, 8)).suppress is None
                 True
 
         ..  container:: example
@@ -630,7 +634,7 @@ class TimeSignature(AbjadValueObject):
 
             ::
 
-                >>> TimeSignature((4, 4)).suppress is None
+                >>> abjad.TimeSignature((4, 4)).suppress is None
                 True
 
         Set to boolean or none.
@@ -658,7 +662,7 @@ class TimeSignature(AbjadValueObject):
 
             Non-power-of-two denominator with power-of-two denominator:
 
-                >>> time_signature = TimeSignature((3, 12))
+                >>> time_signature = abjad.TimeSignature((3, 12))
                 >>> time_signature.with_power_of_two_denominator()
                 TimeSignature((2, 8))
 

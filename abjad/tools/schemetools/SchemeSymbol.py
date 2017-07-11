@@ -4,13 +4,17 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeSymbol(Scheme):
-    r'''A Scheme symbol.
+    r'''Abjad model of Scheme symbol.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> scheme = schemetools.SchemeSymbol('cross')
+            >>> scheme = abjad.SchemeSymbol('cross')
             >>> scheme
             SchemeSymbol('cross')
 

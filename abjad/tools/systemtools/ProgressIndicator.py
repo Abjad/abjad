@@ -6,6 +6,11 @@ from abjad.tools.abctools import ContextManager
 
 class ProgressIndicator(ContextManager):
     r'''A context manager for printing progress indications.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -59,7 +64,7 @@ class ProgressIndicator(ContextManager):
 
             ::
 
-                >>> context_manager = systemtools.ProgressIndicator()
+                >>> context_manager = abjad.systemtools.ProgressIndicator()
                 >>> context_manager
                 <ProgressIndicator()>
 

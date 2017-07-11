@@ -12,6 +12,10 @@ from abjad.tools.topleveltools import new
 class PitchClassSegment(Segment):
     r'''Pitch-class segment.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes segment with numbered pitch-classes:
@@ -21,13 +25,13 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -43,7 +47,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.pitch_class_segment()
 
             ::
@@ -54,7 +58,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -75,16 +79,16 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> segment = PitchClassSegment(
+                >>> segment = abjad.PitchClassSegment(
                 ...     items=items,
-                ...     item_class=NamedPitchClass,
+                ...     item_class=abjad.NamedPitchClass,
                 ...     )
                 >>> show(segment) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     ef'8
@@ -98,9 +102,9 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.pitch_class_segment(
-                ...     item_class=NamedPitchClass,
+                ...     item_class=abjad.NamedPitchClass,
                 ...     )
 
             ::
@@ -111,7 +115,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     ef'8
@@ -159,23 +163,23 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> pitch_numbers = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> PitchClassSegment(items=pitch_numbers)
+                >>> abjad.PitchClassSegment(items=pitch_numbers)
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
             ::
 
-                >>> J = PitchClassSegment(items=pitch_numbers)
+                >>> J = abjad.PitchClassSegment(items=pitch_numbers)
                 >>> show(J) # doctest: +SKIP
 
             ::
 
                 >>> pitch_names = ['c', 'ef', 'bqs,', 'd']
-                >>> PitchClassSegment(items=pitch_names)
+                >>> abjad.PitchClassSegment(items=pitch_names)
                 PitchClassSegment("c ef bqs d")
 
             ::
 
-                >>> K = PitchClassSegment(items=pitch_names)
+                >>> K = abjad.PitchClassSegment(items=pitch_names)
                 >>> show(K) # doctest: +SKIP
 
         ..  container:: example
@@ -197,7 +201,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                         bqf'8
@@ -217,9 +221,9 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression_J = Expression(name='J')
+                    >>> expression_J = abjad.Expression(name='J')
                     >>> expression_J = expression_J.pitch_class_segment()
-                    >>> expression_K = Expression(name='K')
+                    >>> expression_K = abjad.Expression(name='K')
                     >>> expression_K = expression_K.pitch_class_segment()
                     >>> expression = expression_J + expression_K
 
@@ -244,7 +248,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                             ^ \markup {
@@ -289,7 +293,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         c'8
                         ef'8
@@ -309,9 +313,9 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression_J = Expression(name='J')
+                    >>> expression_J = abjad.Expression(name='J')
                     >>> expression_J = expression_J.pitch_class_segment()
-                    >>> expression_K = Expression(name='K')
+                    >>> expression_K = abjad.Expression(name='K')
                     >>> expression_K = expression_K.pitch_class_segment()
                     >>> expression = expression_K + expression_J
 
@@ -336,7 +340,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         c'8
                             ^ \markup {
@@ -382,7 +386,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                         bqf'8
@@ -408,7 +412,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                    >>> expression_J = Expression(name='J')
+                    >>> expression_J = abjad.Expression(name='J')
                     >>> expression_J = expression_J.pitch_class_segment()
                     >>> expression = expression_J + expression_J + expression_J
 
@@ -434,7 +438,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                             ^ \markup {
@@ -493,7 +497,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         g'8
                         bf'8
@@ -513,10 +517,10 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression_J = Expression(name='J')
+                    >>> expression_J = abjad.Expression(name='J')
                     >>> expression_J = expression_J.pitch_class_segment()
                     >>> expression_J = expression_J.rotate(n=1)
-                    >>> expression_K = Expression(name='K')
+                    >>> expression_K = abjad.Expression(name='K')
                     >>> expression_K = expression_K.pitch_class_segment()
                     >>> expression_K = expression_K.rotate(n=2)
                     >>> expression = expression_J + expression_K
@@ -542,7 +546,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         g'8
                             ^ \markup {
@@ -600,7 +604,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         ef'8
                         c'8
@@ -620,10 +624,10 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression_J = Expression(name='J')
+                    >>> expression_J = abjad.Expression(name='J')
                     >>> expression_J = expression_J.pitch_class_segment()
                     >>> expression_J = expression_J.rotate(n=1)
-                    >>> expression_K = Expression(name='K')
+                    >>> expression_K = abjad.Expression(name='K')
                     >>> expression_K = expression_K.pitch_class_segment()
                     >>> expression_K = expression_K.rotate(n=2)
                     >>> expression = expression_J + expression_K
@@ -650,7 +654,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         ef'8
                             ^ \markup {
@@ -703,10 +707,10 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> expression_J = Expression(name='J')
+                >>> expression_J = abjad.Expression(name='J')
                 >>> expression_J = expression_J.pitch_class_segment()
                 >>> expression_J = expression_J.rotate(n=1)
-                >>> expression_K = Expression(name='K')
+                >>> expression_K = abjad.Expression(name='K')
                 >>> expression_K = expression_K.pitch_class_segment()
                 >>> expression_K = expression_K.rotate(n=2)
                 >>> expression = expression_J + expression_K
@@ -733,7 +737,7 @@ class PitchClassSegment(Segment):
                 >>> lilypond_file = segment.__illustrate__(
                 ...     figure_name=markup,
                 ...     )
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     g'8
                         ^ \markup {
@@ -806,7 +810,7 @@ class PitchClassSegment(Segment):
                 >>> lilypond_file = segment.__illustrate__(
                 ...     figure_name=markup,
                 ...     )
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     af'8
                         ^ \markup {
@@ -850,7 +854,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> pitch_numbers = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = PitchClassSegment(items=pitch_numbers)
+                >>> J = abjad.PitchClassSegment(items=pitch_numbers)
 
             ::
 
@@ -874,7 +878,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = J.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -893,9 +897,9 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> pitch_names = ['c', 'ef', 'bqs,', 'd']
-                >>> K = PitchClassSegment(
+                >>> K = abjad.PitchClassSegment(
                 ...     items=pitch_names,
-                ...     item_class=NamedPitchClass,
+                ...     item_class=abjad.NamedPitchClass,
                 ...     )
 
             ::
@@ -918,7 +922,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = K.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     ef'8
@@ -947,12 +951,12 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> pitch_numbers = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> PitchClassSegment(items=pitch_numbers)
+                >>> abjad.PitchClassSegment(items=pitch_numbers)
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
             ::
 
-                >>> J = PitchClassSegment(items=pitch_numbers)
+                >>> J = abjad.PitchClassSegment(items=pitch_numbers)
                 >>> show(J) # doctest: +SKIP
 
         ..  container:: example
@@ -970,7 +974,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression[0]
 
@@ -1017,7 +1021,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression[-1]
 
@@ -1068,7 +1072,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                         bqf'8
@@ -1082,7 +1086,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression[:4]
 
@@ -1107,7 +1111,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                             ^ \markup {
@@ -1145,7 +1149,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         g'8
                         fs'8
@@ -1159,7 +1163,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression[:4]
                     >>> expression = expression.retrograde()
@@ -1185,7 +1189,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         g'8
                             ^ \markup {
@@ -1227,7 +1231,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         g'8
                         bqf'8
@@ -1241,7 +1245,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.retrograde()
                     >>> expression = expression[:4]
@@ -1267,7 +1271,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         g'8
                             ^ \markup {
@@ -1301,7 +1305,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, PitchClassSegment)
+                >>> isinstance(segment, abjad.PitchClassSegment)
                 True
 
         '''
@@ -1323,13 +1327,13 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -1348,16 +1352,16 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> segment = PitchClassSegment(
+                >>> segment = abjad.PitchClassSegment(
                 ...     items=items,
-                ...     item_class=NumberedPitchClass,
+                ...     item_class=abjad.NumberedPitchClass,
                 ...     )
                 >>> show(segment) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     ef'8
@@ -1373,7 +1377,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> prototype = lilypondfiletools.LilyPondFile
+                >>> prototype = abjad.LilyPondFile
                 >>> isinstance(segment.__illustrate__(), prototype)
                 True
 
@@ -1394,7 +1398,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> PitchClassSegment(items=items)
+                >>> abjad.PitchClassSegment(items=items)
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
         Returns string.
@@ -1417,7 +1421,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> segment = PitchClassSegment([-2, -1.5, 6, 7, -1.5, 7])
+                >>> segment = abjad.PitchClassSegment([-2, -1.5, 6, 7, -1.5, 7])
                 >>> str(segment)
                 'PC<10, 10.5, 6, 7, 10.5, 7>'
 
@@ -1427,9 +1431,9 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> segment = PitchClassSegment(
+                >>> segment = abjad.PitchClassSegment(
                 ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-                ...     item_class=NamedPitchClass,
+                ...     item_class=abjad.NamedPitchClass,
                 ...     )
                 >>> str(segment)
                 'PC<bf bqf fs g bqf g>'
@@ -1512,7 +1516,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -1528,9 +1532,9 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> segment = PitchClassSegment(
+                >>> segment = abjad.PitchClassSegment(
                 ...     items=items,
-                ...     item_class=NamedPitchClass,
+                ...     item_class=abjad.NamedPitchClass,
                 ...     )
                 >>> show(segment) # doctest: +SKIP
 
@@ -1565,7 +1569,7 @@ class PitchClassSegment(Segment):
                 ::
 
                     >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                    >>> segment = PitchClassSegment(items)
+                    >>> segment = abjad.PitchClassSegment(items)
                     >>> for item in segment.items:
                     ...     item
                     ...
@@ -1581,7 +1585,7 @@ class PitchClassSegment(Segment):
                 ::
 
                     >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                    >>> segment = PitchClassSegment(items=items)
+                    >>> segment = abjad.PitchClassSegment(items=items)
                     >>> for item in segment.items:
                     ...     item
                     NumberedPitchClass(10)
@@ -1597,7 +1601,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression()
+                    >>> expression = abjad.Expression()
                     >>> expression = expression.pitch_class_segment()
 
                 ::
@@ -1617,7 +1621,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression()
+                    >>> expression = abjad.Expression()
                     >>> expression = expression.pitch_class_segment()
 
                 ::
@@ -1658,7 +1662,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
         ..  container:: example
@@ -1702,15 +1706,15 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
-                >>> staff_2 = Staff("c4. r8 g2")
-                >>> staff_group = StaffGroup([staff_1, staff_2])
+                >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
+                >>> staff_2 = abjad.Staff("c4. r8 g2")
+                >>> staff_group = abjad.StaffGroup([staff_1, staff_2])
                 >>> show(staff_group) # doctest: +SKIP
 
             ::
 
-                >>> selection = select((staff_1, staff_2))
-                >>> segment = PitchClassSegment.from_selection(selection)
+                >>> selection = abjad.select((staff_1, staff_2))
+                >>> segment = abjad.PitchClassSegment.from_selection(selection)
                 >>> show(segment) # doctest: +SKIP
 
         ..  container:: example
@@ -1740,7 +1744,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -1755,7 +1759,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = "c d e f g a b"
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -1778,7 +1782,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
         ..  container:: example
@@ -1827,7 +1831,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = PitchClassSegment(items=items)
+                >>> J = abjad.PitchClassSegment(items=items)
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
@@ -1854,7 +1858,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         d'8
                         dqf'8
@@ -1870,7 +1874,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.invert()
 
@@ -1895,7 +1899,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         d'8
                             ^ \markup {
@@ -1934,7 +1938,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                         bqf'8
@@ -1955,7 +1959,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.invert()
                     >>> expression = expression.invert()
@@ -1981,7 +1985,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                             ^ \markup {
@@ -2011,7 +2015,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, PitchClassSegment)
+                >>> isinstance(segment, abjad.PitchClassSegment)
                 True
 
         '''
@@ -2030,7 +2034,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [2, 4.5, 6, 11, 4.5, 10]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
         ..  container:: example
@@ -2040,7 +2044,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> notes = segment.make_notes()
-                >>> staff = Staff(notes)
+                >>> staff = abjad.Staff(notes)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2061,10 +2065,10 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> notes = segment.make_notes(4, Duration(5, 16))
-                >>> staff = Staff(notes)
-                >>> time_signature = TimeSignature((5, 4))
-                >>> attach(time_signature, staff)
+                >>> notes = segment.make_notes(4, abjad.Duration(5, 16))
+                >>> staff = abjad.Staff(notes)
+                >>> time_signature = abjad.TimeSignature((5, 4))
+                >>> abjad.attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2092,7 +2096,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment.make_notes(), selectiontools.Selection)
+                >>> isinstance(segment.make_notes(), abjad.Selection)
                 True
 
         '''
@@ -2124,7 +2128,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = PitchClassSegment(items=items)
+                >>> J = abjad.PitchClassSegment(items=items)
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
@@ -2151,7 +2155,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                         bqf'8
@@ -2167,7 +2171,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.multiply(n=1)
 
@@ -2192,7 +2196,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                             ^ \markup {
@@ -2233,7 +2237,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         d'8
                         eqs'8
@@ -2249,7 +2253,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.multiply(n=5)
 
@@ -2274,7 +2278,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         d'8
                             ^ \markup {
@@ -2315,7 +2319,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                         dqf'8
@@ -2331,7 +2335,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.multiply(n=7)
 
@@ -2356,7 +2360,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                             ^ \markup {
@@ -2397,7 +2401,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         d'8
                         gqs'8
@@ -2413,7 +2417,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.multiply(n=11)
 
@@ -2438,7 +2442,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         d'8
                             ^ \markup {
@@ -2466,7 +2470,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, PitchClassSegment)
+                >>> isinstance(segment, abjad.PitchClassSegment)
                 True
 
         '''
@@ -2485,18 +2489,18 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> PitchClassSegment([-2, -1, 6, 7, -1, 7])
+                >>> abjad.PitchClassSegment([-2, -1, 6, 7, -1, 7])
                 PitchClassSegment([10, 11, 6, 7, 11, 7])
 
             ::
 
-                >>> segment = PitchClassSegment([-2, -1, 6, 7, -1, 7])
+                >>> segment = abjad.PitchClassSegment([-2, -1, 6, 7, -1, 7])
                 >>> show(segment) # doctest: +SKIP
 
             ..  doctest:
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     b'8
@@ -2521,7 +2525,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     e'8
                     b'8
@@ -2537,7 +2541,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> expression = Expression(name='J')
+                >>> expression = abjad.Expression(name='J')
                 >>> expression = expression.pitch_class_segment()
                 >>> row = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
                 >>> expression = expression.permute(row)
@@ -2563,7 +2567,7 @@ class PitchClassSegment(Segment):
                 >>> lilypond_file = segment.__illustrate__(
                 ...     figure_name=markup,
                 ...     )
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     e'8
                         ^ \markup {
@@ -2604,7 +2608,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = PitchClassSegment(items=items)
+                >>> J = abjad.PitchClassSegment(items=items)
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
@@ -2631,7 +2635,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         g'8
                         bqf'8
@@ -2647,7 +2651,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.retrograde()
 
@@ -2672,7 +2676,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         g'8
                             ^ \markup {
@@ -2711,7 +2715,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                         bqf'8
@@ -2732,7 +2736,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.retrograde()
                     >>> expression = expression.retrograde()
@@ -2758,7 +2762,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                             ^ \markup {
@@ -2793,7 +2797,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, PitchClassSegment)
+                >>> isinstance(segment, abjad.PitchClassSegment)
                 True
 
         '''
@@ -2816,7 +2820,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = PitchClassSegment(items=items)
+                >>> J = abjad.PitchClassSegment(items=items)
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
@@ -2843,7 +2847,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         g'8
                         bf'8
@@ -2859,7 +2863,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.rotate(n=1)
 
@@ -2884,7 +2888,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         g'8
                             ^ \markup {
@@ -2925,7 +2929,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bqf'8
                         fs'8
@@ -2941,7 +2945,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.rotate(n=-1)
 
@@ -2966,7 +2970,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bqf'8
                             ^ \markup {
@@ -3007,7 +3011,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                         bqf'8
@@ -3028,7 +3032,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.rotate(n=0)
 
@@ -3053,7 +3057,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                             ^ \markup {
@@ -3100,7 +3104,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         c'8
                         ef'8
@@ -3116,7 +3120,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.rotate(n=1, stravinsky=True)
 
@@ -3141,7 +3145,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         c'8
                             ^ \markup {
@@ -3169,7 +3173,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, PitchClassSegment)
+                >>> isinstance(segment, abjad.PitchClassSegment)
                 True
 
         '''
@@ -3194,7 +3198,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> segment
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
@@ -3205,7 +3209,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -3230,7 +3234,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -3249,9 +3253,9 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = PitchClassSegment(
+                >>> segment = abjad.PitchClassSegment(
                 ...     items=items,
-                ...     item_class=NamedPitchClass,
+                ...     item_class=abjad.NamedPitchClass,
                 ...     )
                 >>> segment
                 PitchClassSegment("bf bqf fs g bqf g")
@@ -3263,7 +3267,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -3288,7 +3292,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -3315,7 +3319,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> segment
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
@@ -3326,7 +3330,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -3351,7 +3355,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[StaffGroup])
+                >>> f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff <<
                     \context Staff = "Treble Staff" {
                         \clef "treble"
@@ -3380,9 +3384,9 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> segment = PitchClassSegment(
+                >>> segment = abjad.PitchClassSegment(
                 ...     items=items,
-                ...     item_class=NamedPitchClass,
+                ...     item_class=abjad.NamedPitchClass,
                 ...     )
                 >>> segment
                 PitchClassSegment("bf bqf fs g bqf g")
@@ -3394,7 +3398,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -3419,7 +3423,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[StaffGroup])
+                >>> f(lilypond_file[abjad.StaffGroup])
                 \new PianoStaff <<
                     \context Staff = "Treble Staff" {
                         \clef "treble"
@@ -3463,7 +3467,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = PitchClassSegment(items=items)
+                >>> J = abjad.PitchClassSegment(items=items)
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
@@ -3490,7 +3494,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         b'8
                         bqs'8
@@ -3506,7 +3510,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.transpose(n=13)
 
@@ -3531,7 +3535,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         b'8
                             ^ \markup {
@@ -3572,7 +3576,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         a'8
                         aqs'8
@@ -3588,7 +3592,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.transpose(n=-13)
 
@@ -3613,7 +3617,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         a'8
                             ^ \markup {
@@ -3654,7 +3658,7 @@ class PitchClassSegment(Segment):
                 ..  docs::
 
                     >>> lilypond_file = segment.__illustrate__()
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                         bqf'8
@@ -3675,7 +3679,7 @@ class PitchClassSegment(Segment):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.transpose(n=0)
 
@@ -3700,7 +3704,7 @@ class PitchClassSegment(Segment):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         bf'8
                             ^ \markup {
@@ -3733,7 +3737,7 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> isinstance(segment, PitchClassSegment)
+                >>> isinstance(segment, abjad.PitchClassSegment)
                 True
 
         '''
@@ -3755,7 +3759,7 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> items = "c b d e f g e b a c"
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -3766,7 +3770,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = voiced_segment.__illustrate__()
-                >>> f(lilypond_file[Score])
+                >>> f(lilypond_file[abjad.Score])
                 \new Score \with {
                     \override BarLine.stencil = ##f
                     \override BarNumber.transparent = ##t
@@ -3853,8 +3857,8 @@ class PitchClassSegment(Segment):
             ::
 
                 >>> scale_degree_numbers = [1, 3, 5, 7, 9, 11, 13]
-                >>> scale = tonalanalysistools.Scale('c', 'minor')
-                >>> segment = PitchClassSegment((
+                >>> scale = abjad.tonalanalysistools.Scale('c', 'minor')
+                >>> segment = abjad.PitchClassSegment((
                 ...     scale.scale_degree_to_named_pitch_class(x)
                 ...     for x in scale_degree_numbers))
                 >>> show(segment) # doctest: +SKIP
@@ -3867,7 +3871,7 @@ class PitchClassSegment(Segment):
             ..  docs::
 
                 >>> lilypond_file = voiced_segment.__illustrate__()
-                >>> f(lilypond_file[Score])
+                >>> f(lilypond_file[abjad.Score])
                 \new Score \with {
                     \override BarLine.stencil = ##f
                     \override BarNumber.transparent = ##t

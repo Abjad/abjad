@@ -14,33 +14,39 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
 
     ::
 
-        >>> template = templatetools.TwoStaffPianoScoreTemplate()
-        >>> score = template()
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> score
-        <Score-"Two-Staff Piano Score"<<1>>>
+        ::
 
-    ::
+            >>> template = abjad.templatetools.TwoStaffPianoScoreTemplate()
+            >>> score = template()
 
-        >>> f(score)
-        \context Score = "Two-Staff Piano Score" <<
-            \context PianoStaff = "Piano Staff" <<
-                \set PianoStaff.instrumentName = \markup { Piano }
-                \set PianoStaff.shortInstrumentName = \markup { Pf. }
-                \context Staff = "RH Staff" {
-                    \clef "treble"
-                    \context Voice = "RH Voice" {
+        ::
+
+            >>> score
+            <Score-"Two-Staff Piano Score"<<1>>>
+
+        ::
+
+            >>> f(score)
+            \context Score = "Two-Staff Piano Score" <<
+                \context PianoStaff = "Piano Staff" <<
+                    \set PianoStaff.instrumentName = \markup { Piano }
+                    \set PianoStaff.shortInstrumentName = \markup { Pf. }
+                    \context Staff = "RH Staff" {
+                        \clef "treble"
+                        \context Voice = "RH Voice" {
+                        }
                     }
-                }
-                \context Staff = "LH Staff" {
-                    \clef "bass"
-                    \context Voice = "LH Voice" {
+                    \context Staff = "LH Staff" {
+                        \clef "bass"
+                        \context Voice = "LH Voice" {
+                        }
                     }
-                }
+                >>
             >>
-        >>
 
     Returns score template.
     '''

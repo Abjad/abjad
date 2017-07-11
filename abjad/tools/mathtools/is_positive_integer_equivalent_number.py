@@ -5,11 +5,17 @@ def is_positive_integer_equivalent_number(argument):
     '''Is true when `argument` is a positive integer-equivalent number.
     Otherwise false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.is_positive_integer_equivalent_number(Duration(4, 2))
+            >>> abjad.mathtools.is_positive_integer_equivalent_number(
+            ...     abjad.Duration(4, 2)
+            ...     )
             True
 
     Returns true or false.

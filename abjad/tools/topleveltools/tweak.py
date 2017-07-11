@@ -4,16 +4,20 @@
 def tweak(argument):
     r'''Makes LilyPond tweak manager.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Tweaks markup:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> markup = Markup('Allegro assai', direction=Up)
-            >>> tweak(markup).color = 'red'
-            >>> attach(markup, staff[0])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> markup = abjad.Markup('Allegro assai', direction=Up)
+            >>> abjad.tweak(markup).color = 'red'
+            >>> abjad.attach(markup, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -33,11 +37,11 @@ def tweak(argument):
         ::
 
             >>> import copy
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> markup_1 = Markup('Allegro assai', direction=Up)
-            >>> tweak(markup_1).color = 'red'
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> markup_1 = abjad.Markup('Allegro assai', direction=Up)
+            >>> abjad.tweak(markup_1).color = 'red'
             >>> markup_2 = copy.copy(markup_1)
-            >>> attach(markup_2, staff[0])
+            >>> abjad.attach(markup_2, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -56,11 +60,11 @@ def tweak(argument):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> markup = Markup('Allegro assai', direction=Up)
-            >>> tweak(markup).color = 'red'
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> markup = abjad.Markup('Allegro assai', direction=Up)
+            >>> abjad.tweak(markup).color = 'red'
             >>> markup = markup.italic()
-            >>> attach(markup, staff[0])
+            >>> abjad.attach(markup, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -82,14 +86,14 @@ def tweak(argument):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> markup_1 = Markup('Allegro assai ...', direction=Up)
-            >>> tweak(markup_1).color = 'red'
-            >>> attach(markup_1, staff[0])
-            >>> markup_2 = Markup('... ma non troppo', direction=Down)
-            >>> tweak(markup_2).color = 'blue'
-            >>> tweak(markup_2).staff_padding = 4
-            >>> attach(markup_2, staff[0])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> markup_1 = abjad.Markup('Allegro assai ...', direction=Up)
+            >>> abjad.tweak(markup_1).color = 'red'
+            >>> abjad.attach(markup_1, staff[0])
+            >>> markup_2 = abjad.Markup('... ma non troppo', direction=Down)
+            >>> abjad.tweak(markup_2).color = 'blue'
+            >>> abjad.tweak(markup_2).staff_padding = 4
+            >>> abjad.attach(markup_2, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -111,14 +115,14 @@ def tweak(argument):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> markup_1 = Markup('Allegro assai ...', direction=Up)
-            >>> tweak(markup_1).color = 'red'
-            >>> attach(markup_1, staff[0])
-            >>> markup_2 = Markup('... ma non troppo', direction=Up)
-            >>> tweak(markup_2).color = 'blue'
-            >>> tweak(markup_2).staff_padding = 4
-            >>> attach(markup_2, staff[0])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> markup_1 = abjad.Markup('Allegro assai ...', direction=Up)
+            >>> abjad.tweak(markup_1).color = 'red'
+            >>> abjad.attach(markup_1, staff[0])
+            >>> markup_2 = abjad.Markup('... ma non troppo', direction=Up)
+            >>> abjad.tweak(markup_2).color = 'blue'
+            >>> abjad.tweak(markup_2).staff_padding = 4
+            >>> abjad.attach(markup_2, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -152,7 +156,7 @@ def tweak(argument):
 
         ::
 
-            >>> tweak(markup_1)
+            >>> abjad.tweak(markup_1)
             LilyPondTweakManager(('color', 'red'))
 
     ''' 

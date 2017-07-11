@@ -5,18 +5,22 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Multiplication(AbjadValueObject):
     r'''Multiplication operator.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> Multiplication()
+            >>> abjad.Multiplication()
             Multiplication(n=1)
 
     ..  container:: example
 
         ::
 
-            >>> Multiplication(n=5)
+            >>> abjad.Multiplication(n=5)
             Multiplication(n=5)
 
     Object model of twelve-tone multiplication operator.
@@ -45,15 +49,15 @@ class Multiplication(AbjadValueObject):
             ::
 
                 >>> items = [0, 2, 4, 5]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
     
             Example operators:
 
             ::
 
-                >>> multiplication = Multiplication(n=5)
-                >>> transposition = Transposition(n=3)
+                >>> multiplication = abjad.Multiplication(n=5)
+                >>> transposition = abjad.Transposition(n=3)
 
         ..  container:: example
 
@@ -74,7 +78,7 @@ class Multiplication(AbjadValueObject):
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     ef'8
                     cs'8
@@ -102,7 +106,7 @@ class Multiplication(AbjadValueObject):
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     ef'8
                     cs'8
@@ -126,8 +130,8 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> multiplication = Multiplication(n=5)
-                >>> pitch_class = NumberedPitchClass(4)
+                >>> multiplication = abjad.Multiplication(n=5)
+                >>> pitch_class = abjad.NumberedPitchClass(4)
                 >>> multiplication(pitch_class)
                 NumberedPitchClass(8)
 
@@ -137,8 +141,8 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> multiplication = Multiplication(n=7)
-                >>> pitch = NamedPitch("f'")
+                >>> multiplication = abjad.Multiplication(n=7)
+                >>> pitch = abjad.NamedPitch("f'")
                 >>> multiplication(pitch)
                 NamedPitch("b'")
 
@@ -159,14 +163,14 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> str(Multiplication())
+                >>> str(abjad.Multiplication())
                 'M1'
 
         ..  container:: example
 
             ::
 
-                >>> str(Multiplication(n=5))
+                >>> str(abjad.Multiplication(n=5))
                 'M5'
 
         '''
@@ -198,7 +202,7 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> multiplication = Multiplication()
+                >>> multiplication = abjad.Multiplication()
                 >>> multiplication.n
                 1
 
@@ -206,7 +210,7 @@ class Multiplication(AbjadValueObject):
 
             ::
 
-                >>> multiplication = Multiplication(n=5)
+                >>> multiplication = abjad.Multiplication(n=5)
                 >>> multiplication.n
                 5
 

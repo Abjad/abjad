@@ -9,18 +9,22 @@ from abjad.tools.topleveltools import override
 class Hairpin(Spanner):
     r'''Hairpin.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Crescendo:
 
         ::
 
-            >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-            >>> hairpin = Hairpin(
+            >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+            >>> hairpin = abjad.Hairpin(
             ...     descriptor='p < f',
             ...     include_rests=False,
             ...     )
-            >>> attach(hairpin, staff[:])
+            >>> abjad.attach(hairpin, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -39,12 +43,12 @@ class Hairpin(Spanner):
 
         ::
 
-            >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-            >>> hairpin = Hairpin(
+            >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+            >>> hairpin = abjad.Hairpin(
             ...     descriptor='f > p',
             ...     include_rests=False,
             ...     )
-            >>> attach(hairpin, staff[:])
+            >>> abjad.attach(hairpin, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -65,12 +69,12 @@ class Hairpin(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> hairpin = Hairpin(
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> hairpin = abjad.Hairpin(
             ...     descriptor='niente < f',
             ...     include_rests=False,
             ...     )
-            >>> attach(hairpin, staff[:])
+            >>> abjad.attach(hairpin, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -88,12 +92,12 @@ class Hairpin(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> hairpin = Hairpin(
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> hairpin = abjad.Hairpin(
             ...     descriptor='f > niente',
             ...     include_rests=False,
             ...     )
-            >>> attach(hairpin, staff[:])
+            >>> abjad.attach(hairpin, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -306,12 +310,12 @@ class Hairpin(Spanner):
 
         ::
 
-            >>> Hairpin._is_hairpin_token(('p', '<', 'f'))
+            >>> abjad.Hairpin._is_hairpin_token(('p', '<', 'f'))
             True
 
         ::
 
-            >>> Hairpin._is_hairpin_token(('f', '<', 'p'))
+            >>> abjad.Hairpin._is_hairpin_token(('f', '<', 'p'))
             False
 
         Returns true or false.
@@ -400,9 +404,9 @@ class Hairpin(Spanner):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -424,12 +428,12 @@ class Hairpin(Spanner):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = Hairpin(
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> hairpin = abjad.Hairpin(
                 ...     descriptor='p < f',
                 ...     direction=Up,
                 ...     )
-                >>> attach(hairpin, staff[:])
+                >>> abjad.attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -467,12 +471,12 @@ class Hairpin(Spanner):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = Hairpin(
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> hairpin = abjad.Hairpin(
                 ...     descriptor='p < f',
                 ...     include_rests=True,
                 ...     )
-                >>> attach(hairpin, staff[:])
+                >>> abjad.attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -506,9 +510,9 @@ class Hairpin(Spanner):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -530,9 +534,9 @@ class Hairpin(Spanner):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -554,9 +558,9 @@ class Hairpin(Spanner):
 
             ::
 
-                >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-                >>> hairpin = Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
+                >>> staff = abjad.Staff("r4 c'8 d'8 e'8 f'8 r4")
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::

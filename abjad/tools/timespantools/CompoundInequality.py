@@ -4,44 +4,50 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class CompoundInequality(TypedList):
-    '''A compound time-relation inequality.
+    '''Compound time-relation inequality.
 
     ::
 
-        >>> compound_inequality = timespantools.CompoundInequality([
-        ...    timespantools.CompoundInequality([
-        ...        'timespan_1.start_offset <= timespan_2.start_offset',
-        ...        'timespan_2.start_offset < timespan_1.stop_offset'],
-        ...         logical_operator='and'),
-        ...     timespantools.CompoundInequality([
-        ...        'timespan_2.start_offset <= timespan_1.start_offset',
-        ...        'timespan_1.start_offset < timespan_2.stop_offset'],
-        ...        logical_operator='and')],
-        ...    logical_operator='or',
-        ...     )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> f(compound_inequality)
-        abjad.CompoundInequality(
-            [
-                abjad.CompoundInequality(
-                    [
-                        abjad.Inequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                        abjad.Inequality('timespan_2.start_offset < timespan_1.stop_offset'),
-                        ],
-                    logical_operator='and',
-                    ),
-                abjad.CompoundInequality(
-                    [
-                        abjad.Inequality('timespan_2.start_offset <= timespan_1.start_offset'),
-                        abjad.Inequality('timespan_1.start_offset < timespan_2.stop_offset'),
-                        ],
-                    logical_operator='and',
-                    ),
-                ],
-            logical_operator='or',
-            )
+        ::
+
+            >>> compound_inequality = abjad.timespantools.CompoundInequality([
+            ...    abjad.timespantools.CompoundInequality([
+            ...        'timespan_1.start_offset <= timespan_2.start_offset',
+            ...        'timespan_2.start_offset < timespan_1.stop_offset'],
+            ...         logical_operator='and'),
+            ...    abjad.timespantools.CompoundInequality([
+            ...        'timespan_2.start_offset <= timespan_1.start_offset',
+            ...        'timespan_1.start_offset < timespan_2.stop_offset'],
+            ...        logical_operator='and')],
+            ...    logical_operator='or',
+            ...    )
+
+        ::
+
+            >>> f(compound_inequality)
+            abjad.CompoundInequality(
+                [
+                    abjad.CompoundInequality(
+                        [
+                            abjad.TimespanInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                            abjad.TimespanInequality('timespan_2.start_offset < timespan_1.stop_offset'),
+                            ],
+                        logical_operator='and',
+                        ),
+                    abjad.CompoundInequality(
+                        [
+                            abjad.TimespanInequality('timespan_2.start_offset <= timespan_1.start_offset'),
+                            abjad.TimespanInequality('timespan_1.start_offset < timespan_2.stop_offset'),
+                            ],
+                        logical_operator='and',
+                        ),
+                    ],
+                logical_operator='or',
+                )
 
     '''
 
@@ -89,7 +95,7 @@ class CompoundInequality(TypedList):
         truth_values = []
         for inequality in self:
             # TODO: compress the following two branches
-            if isinstance(inequality, timespantools.Inequality):
+            if isinstance(inequality, timespantools.TimespanInequality):
                 truth_value = inequality.evaluate(
                     timespan_1_start_offset, timespan_1_stop_offset,
                     timespan_2_start_offset, timespan_2_stop_offset)
@@ -124,7 +130,7 @@ class CompoundInequality(TypedList):
         from abjad.tools import timespantools
         truth_values = []
         for inequality in self:
-            if isinstance(inequality, timespantools.Inequality):
+            if isinstance(inequality, timespantools.TimespanInequality):
                 truth_value = inequality.evaluate_offset_inequality(
                     timespan_start, timespan_stop, offset)
                 truth_values.append(truth_value)
@@ -168,7 +174,7 @@ class CompoundInequality(TypedList):
                     timespan_2_start_offsets,
                     timespan_2_stop_offsets)
                 timespans.extend(result)
-            elif isinstance(element, timespantools.Inequality):
+            elif isinstance(element, timespantools.TimespanInequality):
                 offset_indices = element.get_offset_indices(
                     timespan_1,
                     timespan_2_start_offsets,
@@ -199,8 +205,8 @@ class CompoundInequality(TypedList):
         from abjad.tools import timespantools
         def coerce_(argument):
             if isinstance(argument, str):
-                return timespantools.Inequality(argument)
-            elif isinstance(argument, timespantools.Inequality):
+                return timespantools.TimespanInequality(argument)
+            elif isinstance(argument, timespantools.TimespanInequality):
                 return argument
             elif isinstance(argument, timespantools.CompoundInequality):
                 return argument

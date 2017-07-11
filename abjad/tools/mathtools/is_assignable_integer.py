@@ -5,12 +5,16 @@ def is_assignable_integer(argument):
     r'''Is true when `argument` is equivalent to an integer that can be written
     without recourse to ties. Otherwise false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
             >>> for n in range(0, 16 + 1):
-            ...     print('%s\t%s' % (n, mathtools.is_assignable_integer(n)))
+            ...     print('%s\t%s' % (n, abjad.mathtools.is_assignable_integer(n)))
             ... 
             0  False
             1  True

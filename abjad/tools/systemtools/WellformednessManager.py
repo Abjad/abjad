@@ -13,7 +13,7 @@ class WellformednessManager(AbjadObject):
 
         ::
 
-            >>> systemtools.WellformednessManager()
+            >>> abjad.systemtools.WellformednessManager()
             WellformednessManager()
 
     '''
@@ -94,10 +94,10 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> staff = Staff()
-                >>> attach(Clef('bass'), staff)
-                >>> voice = Voice()
-                >>> attach(Clef('treble'), voice)
+                >>> staff = abjad.Staff()
+                >>> abjad.attach(abjad.Clef('bass'), staff)
+                >>> voice = abjad.Voice()
+                >>> abjad.attach(abjad.Clef('treble'), voice)
                 >>> staff.append(voice)
 
             ::
@@ -112,7 +112,7 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> inspect(staff).is_well_formed()
+                >>> abjad.inspect(staff).is_well_formed()
                 False
 
             This is bad.
@@ -125,11 +125,11 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> staff = Staff()
-                >>> attach(Clef('bass'), staff)
+                >>> staff = abjad.Staff()
+                >>> abjad.attach(abjad.Clef('bass'), staff)
                 >>> maker = abjad.LeafMaker()
                 >>> leaves = maker([0, 2, 4, 5], [(1, 4)])
-                >>> attach(Clef('treble'), leaves[0])
+                >>> abjad.attach(abjad.Clef('treble'), leaves[0])
                 >>> staff.extend(leaves)
 
             ::
@@ -146,7 +146,7 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> inspect(staff).is_well_formed()
+                >>> abjad.inspect(staff).is_well_formed()
                 False
 
             This is also bad.
@@ -309,13 +309,14 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> attach(Hairpin('p < f'), staff[:2])
-                >>> attach(Hairpin('p > pp'), staff[1:])
+                >>> staff = abjad.Staff("c'4 d' e' f'")
+                >>> abjad.attach(abjad.Hairpin('p < f'), staff[:2])
+                >>> abjad.attach(abjad.Hairpin('p > pp'), staff[1:])
 
             ::
 
-                >>> print(inspect(staff).tabulate_well_formedness_violations())
+                >>> agent = abjad.inspect(staff)
+                >>> print(agent.tabulate_well_formedness_violations())
                 0 /	4 beamed quarter notes
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
@@ -389,13 +390,13 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 ~ c'")
-                >>> staff[1].written_pitch = NamedPitch("d'")
+                >>> staff = abjad.Staff("c'4 ~ c'")
+                >>> staff[1].written_pitch = abjad.NamedPitch("d'")
 
             ::
 
-                >>> inspector = inspect(staff)
-                >>> print(inspector.tabulate_well_formedness_violations())
+                >>> agent = abjad.inspect(staff)
+                >>> print(agent.tabulate_well_formedness_violations())
                 0 /	2 beamed quarter notes
                 0 /	1 conflicting clefs
                 0 /	1 discontiguous spanners
@@ -423,13 +424,13 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> staff = Staff("<c' d' bf'>4 ~ <c' d' bf'>")
+                >>> staff = abjad.Staff("<c' d' bf'>4 ~ <c' d' bf'>")
                 >>> staff[1].written_pitches = [6, 9, 10]
 
             ::
 
-                >>> inspector = inspect(staff)
-                >>> print(inspector.tabulate_well_formedness_violations())
+                >>> agent = abjad.inspect(staff)
+                >>> print(agent.tabulate_well_formedness_violations())
                 0 /	2 beamed quarter notes
                 0 /	1 conflicting clefs
                 0 /	1 discontiguous spanners
@@ -612,13 +613,14 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> attach(Crescendo(), staff[:])
-                >>> attach(Decrescendo(), staff[:])
+                >>> staff = abjad.Staff("c'4 d' e' f'")
+                >>> abjad.attach(abjad.Crescendo(), staff[:])
+                >>> abjad.attach(abjad.Decrescendo(), staff[:])
 
             ::
 
-                >>> print(inspect(staff).tabulate_well_formedness_violations())
+                >>> agent = abjad.inspect(staff)
+                >>> print(agent.tabulate_well_formedness_violations())
                 0 /	4 beamed quarter notes
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
@@ -704,15 +706,16 @@ class WellformednessManager(AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 c' c' c''")
-                >>> attach(Tie(), staff[:2])
-                >>> tie = Tie()
+                >>> staff = abjad.Staff("c'4 c' c' c''")
+                >>> abjad.attach(abjad.Tie(), staff[:2])
+                >>> tie = abjad.Tie()
                 >>> tie._ignore_attachment_test = True
-                >>> attach(tie, staff[1:3])
+                >>> abjad.attach(tie, staff[1:3])
 
             ::
 
-                >>> print(inspect(staff).tabulate_well_formedness_violations())
+                >>> agent = abjad.inspect(staff)
+                >>> print(agent.tabulate_well_formedness_violations())
                 0 /	4 beamed quarter notes
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners

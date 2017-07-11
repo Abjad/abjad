@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 
 
 def test_spannertools_Beam___init___01():
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'2")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
     beam = Beam()
     attach(beam, staff[:4])
 
@@ -54,7 +55,7 @@ def test_spannertools_Beam___init___03():
     r'''Nested nonempty containers.
     '''
 
-    staff = Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
+    staff = abjad.Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
     leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
@@ -85,7 +86,7 @@ def test_spannertools_Beam___init___04():
     r'''Beamed container and top-level leaves housed in staff.
     '''
 
-    staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
+    staff = abjad.Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
     leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
@@ -112,7 +113,7 @@ def test_spannertools_Beam___init___05():
     r'''Beamed leaves housed in staff and container.
     '''
 
-    staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
+    staff = abjad.Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
     leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
@@ -139,7 +140,7 @@ def test_spannertools_Beam___init___06():
     r'''Staff with empty containers at the edges.
     '''
 
-    staff = Staff(Container([]) * 2)
+    staff = abjad.Staff(Container([]) * 2)
     staff.insert(1, Container(Note(0, (1, 8)) * 4))
     leaves = select(staff).by_leaf()
     beam = Beam()
@@ -321,7 +322,7 @@ def test_spannertools_Beam___init___12():
     r'''Beams can not cross voice boundaries.
     '''
 
-    staff = Staff([
+    staff = abjad.Staff([
         Voice("c'8 cs'8 d'8"),
         Note("ef'8"),
         Voice("e'8 f' fs' g'")]
@@ -356,7 +357,7 @@ def test_spannertools_Beam___init___13():
     r'''You can span the counttime components of like-named voices.
     '''
 
-    staff = Staff([Voice("c'8 cs'8 d'8 ef'8"), Voice("e'8 f'8 fs'8 g'8")])
+    staff = abjad.Staff([Voice("c'8 cs'8 d'8 ef'8"), Voice("e'8 f'8 fs'8 g'8")])
     staff[0].name = 'foo'
     staff[1].name = 'foo'
     beam = Beam()
@@ -578,7 +579,7 @@ def test_spannertools_Beam___init___17():
     in the same logical voice. Lilypond is happy with this situation, though.
     '''
 
-    staff = Staff(
+    staff = abjad.Staff(
         r'''
         c'8
         cs'8
@@ -635,7 +636,7 @@ def test_spannertools_Beam___init___18():
     r'''You can span counttime components in three chunks.
     '''
 
-    staff = Staff(r'''
+    staff = abjad.Staff(r'''
         \context Voice = "foo" {
             c'8
             cs'8
@@ -708,7 +709,7 @@ def test_spannertools_Beam___init___19():
     r'''You can not span across differently named voices.
     '''
 
-    staff = Staff([Voice("c'8 cs'8 d'8 ef'8"), Voice("e'8 f'8 fs'8 g'8")])
+    staff = abjad.Staff([Voice("c'8 cs'8 d'8 ef'8"), Voice("e'8 f'8 fs'8 g'8")])
     staff[0].name = 'foo'
     staff[1].name = 'bar'
 

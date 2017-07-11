@@ -5,6 +5,10 @@ from abjad.tools.abctools import AbjadObject
 class ChordInversion(AbjadObject):
     '''Chord inversion. Tertian chords 5, 63, 64 and also 7, 65, 43, 42, etc.
 
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
+
     Also root position, first, second, third inversions, etc.
 
     Chord inversions are immutable.

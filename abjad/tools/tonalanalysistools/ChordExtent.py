@@ -5,6 +5,10 @@ from abjad.tools.abctools import AbjadObject
 class ChordExtent(AbjadObject):
     '''Chord extent. Triad, seventh chord, ninth chord, etc.
 
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
+
     Chord extends are immutable.
     '''
 

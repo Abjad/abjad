@@ -8,14 +8,18 @@ from abjad.tools.topleveltools import iterate
 class Slur(Spanner):
     r'''Slur.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Slurs four notes:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(Slur(), staff[:])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Slur(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -34,8 +38,8 @@ class Slur(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(Slur(), staff[:1])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Slur(), staff[:1])
             Traceback (most recent call last):
                 ...
             Exception: Slur() attachment test fails for Selection([Note("c'4")]).
@@ -101,9 +105,9 @@ class Slur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = Slur(direction=Up)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.Slur(direction=Up)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -122,9 +126,9 @@ class Slur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = Slur(direction=Down)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.Slur(direction=Down)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -143,9 +147,9 @@ class Slur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = Slur(direction=None)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.Slur(direction=None)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

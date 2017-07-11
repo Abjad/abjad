@@ -5,13 +5,17 @@ from abjad.tools.spannertools.Spanner import Spanner
 class HiddenStaffSpanner(Spanner):
     r'''Hidden staff spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = HiddenStaffSpanner()
-            >>> attach(spanner, staff[1:3])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.HiddenStaffSpanner()
+            >>> abjad.attach(spanner, staff[1:3])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

@@ -7,7 +7,12 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QSchema(AbjadObject):
-    r'''The *schema* for a quantization run.
+    r'''Abstract Q-schema.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     ``QSchema`` allows for the specification of quantization settings
     diachronically, at any time-step of the quantization process.

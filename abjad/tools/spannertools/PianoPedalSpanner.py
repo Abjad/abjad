@@ -6,13 +6,17 @@ from abjad.tools.topleveltools import override
 class PianoPedalSpanner(Spanner):
     r'''Piano pedal spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> pedal = PianoPedalSpanner()
-            >>> attach(pedal, staff[:])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.PianoPedalSpanner()
+            >>> abjad.attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -124,9 +128,9 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = PianoPedalSpanner(kind='sustain')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(kind='sustain')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -151,9 +155,9 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = PianoPedalSpanner(kind='sostenuto')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(kind='sostenuto')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -178,9 +182,9 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = PianoPedalSpanner(kind='corda')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(kind='corda')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -213,9 +217,9 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = PianoPedalSpanner(style='mixed')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(style='mixed')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -240,9 +244,9 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = PianoPedalSpanner(style='bracket')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(style='bracket')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -267,9 +271,9 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = PianoPedalSpanner(style='text')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(style='text')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

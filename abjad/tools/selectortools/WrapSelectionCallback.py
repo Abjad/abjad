@@ -4,6 +4,11 @@ from abjad.tools.abctools import AbjadValueObject
 
 class WrapSelectionCallback(AbjadValueObject):
     r'''Wrap selection callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###

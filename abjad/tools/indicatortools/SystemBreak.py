@@ -5,15 +5,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class SystemBreak(AbjadValueObject):
     r'''System break indicator.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Default system break:
 
         ::
 
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> break_ = indicatortools.SystemBreak()
-            >>> attach(break_, staff[-1])
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> break_ = abjad.SystemBreak()
+            >>> abjad.attach(break_, staff[-1])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -62,7 +66,7 @@ class SystemBreak(AbjadValueObject):
 
             ::
 
-                >>> break_ = indicatortools.SystemBreak()
+                >>> break_ = abjad.SystemBreak()
                 >>> break_.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 

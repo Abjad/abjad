@@ -14,6 +14,11 @@ def make_lilypond_file(
     ):
     r'''Makes LilyPond file.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         Makes rhythmic staff:
@@ -31,7 +36,7 @@ def make_lilypond_file(
 
         ..  docs::
 
-            >>> score = lilypond_file[Score]
+            >>> score = lilypond_file[abjad.Score]
             >>> f(score)
             \new Score <<
                 \new TimeSignatureContext {
@@ -100,7 +105,7 @@ def make_lilypond_file(
 
         ..  docs::
 
-            >>> score = lilypond_file[Score]
+            >>> score = lilypond_file[abjad.Score]
             >>> f(score)
             \new Score <<
                 \new TimeSignatureContext {
@@ -170,7 +175,7 @@ def make_lilypond_file(
 
         ..  docs::
 
-            >>> score = lilypond_file[Score]
+            >>> score = lilypond_file[abjad.Score]
             >>> f(score)
             \new Score <<
                 \new TimeSignatureContext {
@@ -230,12 +235,12 @@ def make_lilypond_file(
 
             >>> maker_1 = rhythmmakertools.EvenRunRhythmMaker(exponent=1)
             >>> divisions = [(3, 4), (4, 8), (1, 4)]
-            >>> selection_1 = select(maker_1(divisions))
-            >>> for note in iterate(selection_1).by_class(Note):
-            ...     note.written_pitch = NamedPitch("e'")
+            >>> selection_1 = abjad.select(maker_1(divisions))
+            >>> for note in abjad.iterate(selection_1).by_class(abjad.Note):
+            ...     note.written_pitch = abjad.NamedPitch("e'")
             ...
             >>> maker_2 = rhythmmakertools.EvenRunRhythmMaker(exponent=2)
-            >>> selection_2 = select(maker_2(divisions))
+            >>> selection_2 = abjad.select(maker_2(divisions))
             >>> selections = {
             ...     'Voice 1': selection_1,
             ...     'Voice 2': selection_2,
@@ -245,14 +250,14 @@ def make_lilypond_file(
             ...     divisions,
             ...     )
             >>> voice_1 = lilypond_file['Voice 1']
-            >>> attach(LilyPondCommand('voiceOne'), voice_1)
+            >>> abjad.attach(abjad.LilyPondCommand('voiceOne'), voice_1)
             >>> voice_2 = lilypond_file['Voice 2']
-            >>> attach(LilyPondCommand('voiceTwo'), voice_2)
+            >>> abjad.attach(abjad.LilyPondCommand('voiceTwo'), voice_2)
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> f(lilypond_file[Score])
+            >>> f(lilypond_file[abjad.Score])
             \new Score <<
                 \new TimeSignatureContext {
                     {

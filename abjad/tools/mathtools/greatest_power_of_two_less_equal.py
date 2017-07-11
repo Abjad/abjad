@@ -6,12 +6,16 @@ import numbers
 def greatest_power_of_two_less_equal(n, i=0):
     r'''Gets greatest integer power of two less than or equal to positive `n`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
             >>> for n in range(10, 20):
-            ...     print('\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n)))
+            ...     print('\t%s\t%s' % (n, abjad.mathtools.greatest_power_of_two_less_equal(n)))
             ... 
                 10 8
                 11 8
@@ -30,7 +34,7 @@ def greatest_power_of_two_less_equal(n, i=0):
         ::
 
             >>> for n in range(10, 20):
-            ...     print('\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n, i=1)))
+            ...     print('\t%s\t%s' % (n, abjad.mathtools.greatest_power_of_two_less_equal(n, i=1)))
             ... 
                 10 4
                 11 4

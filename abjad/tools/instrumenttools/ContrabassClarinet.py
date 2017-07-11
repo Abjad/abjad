@@ -10,22 +10,28 @@ class ContrabassClarinet(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> contrabass_clarinet = instrumenttools.ContrabassClarinet()
-        >>> attach(contrabass_clarinet, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Contrabass clarinet" }
-            \set Staff.shortInstrumentName = \markup { "Cbass. cl." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
+            >>> abjad.attach(contrabass_clarinet, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Contrabass clarinet" }
+                \set Staff.shortInstrumentName = \markup { "Cbass. cl." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

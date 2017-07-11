@@ -5,16 +5,20 @@ import collections
 def cumulative_products(argument):
     r'''Gets cumulative products of `argument`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.cumulative_products([1, 2, 3, 4, 5, 6, 7, 8])
+            >>> abjad.mathtools.cumulative_products([1, 2, 3, 4, 5, 6, 7, 8])
             [1, 2, 6, 24, 120, 720, 5040, 40320]
 
         ::
 
-            >>> mathtools.cumulative_products([1, -2, 3, -4, 5, -6, 7, -8])
+            >>> abjad.mathtools.cumulative_products([1, -2, 3, -4, 5, -6, 7, -8])
             [1, -2, -6, 24, 120, -720, -5040, 40320]
 
     Raises exception when `argument` is not iterable.

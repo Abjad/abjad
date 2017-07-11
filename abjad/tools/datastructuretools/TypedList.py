@@ -7,6 +7,10 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 class TypedList(TypedCollection):
     r'''A typed list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         No item coercion:
@@ -40,12 +44,12 @@ class TypedList(TypedCollection):
         ::
 
             >>> pitch_list = abjad.TypedList(
-            ...     item_class=NamedPitch,
+            ...     item_class=abjad.NamedPitch,
             ...     )
             >>> pitch_list.append(0)
             >>> pitch_list.append("d'")
             >>> pitch_list.append(('e', 4))
-            >>> pitch_list.append(NamedPitch("f'"))
+            >>> pitch_list.append(abjad.NamedPitch("f'"))
 
         ::
 
@@ -118,7 +122,7 @@ class TypedList(TypedCollection):
 
             ::
 
-                >>> dynamic_list = abjad.TypedList(item_class=Dynamic)
+                >>> dynamic_list = abjad.TypedList(item_class=abjad.Dynamic)
                 >>> dynamic_list.append('ppp')
                 >>> dynamic_list += ['p', 'mp', 'mf', 'fff']
 
@@ -168,12 +172,12 @@ class TypedList(TypedCollection):
             ::
 
                 >>> pitch_list = abjad.TypedList(
-                ...     item_class=NamedPitch,
+                ...     item_class=abjad.NamedPitch,
                 ...     )
                 >>> pitch_list.append(0)
                 >>> pitch_list.append("d'")
                 >>> pitch_list.append(('e', 4))
-                >>> pitch_list.append(NamedPitch("f'"))
+                >>> pitch_list.append(abjad.NamedPitch("f'"))
 
             ::
 
@@ -321,15 +325,15 @@ class TypedList(TypedCollection):
             ::
 
                 >>> pitch_list = abjad.TypedList(
-                ...     item_class=NamedPitch,
+                ...     item_class=abjad.NamedPitch,
                 ...     )
                 >>> pitch_list.extend(['cqf', "as'", 'b,', 'dss'])
 
             ::
 
-                >>> pitch_list.index(NamedPitch('cqf'))
+                >>> pitch_list.index(abjad.NamedPitch('cqf'))
                 0
-                >>> pitch_list.index(NamedPitch("as'"))
+                >>> pitch_list.index(abjad.NamedPitch("as'"))
                 1
                 >>> pitch_list.index('b,')
                 2

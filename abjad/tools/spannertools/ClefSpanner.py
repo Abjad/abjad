@@ -8,17 +8,21 @@ from abjad.tools.topleveltools import inspect
 class ClefSpanner(Spanner):
     r'''Clef spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Attaches percussion clef spanner to notes in middle of staff:
 
         ::
 
-            >>> staff = Staff("c' d' e' f' g' a' b' c''")
-            >>> clef = Clef('treble')
-            >>> attach(clef, staff[0])
-            >>> clef_spanner = ClefSpanner('percussion')
-            >>> attach(clef_spanner, staff[2:-2])
+            >>> staff = abjad.Staff("c' d' e' f' g' a' b' c''")
+            >>> clef = abjad.Clef('treble')
+            >>> abjad.attach(clef, staff[0])
+            >>> clef_spanner = abjad.ClefSpanner('percussion')
+            >>> abjad.attach(clef_spanner, staff[2:-2])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -45,13 +49,13 @@ class ClefSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("r4 c'4 d'4 r4 e'4 f'4 r4")
-            >>> clef = Clef('treble')
-            >>> attach(clef, staff[0])
-            >>> clef_spanner = ClefSpanner('percussion')
-            >>> attach(clef_spanner, staff[1:3])
-            >>> clef_spanner = ClefSpanner('percussion')
-            >>> attach(clef_spanner, staff[4:6])
+            >>> staff = abjad.Staff("r4 c'4 d'4 r4 e'4 f'4 r4")
+            >>> clef = abjad.Clef('treble')
+            >>> abjad.attach(clef, staff[0])
+            >>> clef_spanner = abjad.ClefSpanner('percussion')
+            >>> abjad.attach(clef_spanner, staff[1:3])
+            >>> clef_spanner = abjad.ClefSpanner('percussion')
+            >>> abjad.attach(clef_spanner, staff[4:6])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

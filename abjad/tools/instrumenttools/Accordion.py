@@ -10,33 +10,39 @@ class Accordion(Instrument):
 
     ::
 
-        >>> staff_group = StaffGroup()
-        >>> staff_group.context_name = 'PianoStaff'
-        >>> staff_group.append(Staff("c'4 d'4 e'4 f'4"))
-        >>> staff_group.append(Staff("c'2 b2"))
-        >>> accordion = instrumenttools.Accordion()
-        >>> attach(accordion, staff_group)
-        >>> attach(Clef(name='bass'), staff_group[1])
-        >>> show(staff_group) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff_group)
-        \new PianoStaff <<
-            \set PianoStaff.instrumentName = \markup { Accordion }
-            \set PianoStaff.shortInstrumentName = \markup { Acc. }
-            \new Staff {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-            \new Staff {
-                \clef "bass"
-                c'2
-                b2
-            }
-        >>
+        ::
+
+            >>> staff_group = abjad.StaffGroup()
+            >>> staff_group.context_name = 'PianoStaff'
+            >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+            >>> staff_group.append(abjad.Staff("c'2 b2"))
+            >>> accordion = abjad.instrumenttools.Accordion()
+            >>> abjad.attach(accordion, staff_group)
+            >>> abjad.attach(abjad.Clef('bass'), staff_group[1])
+            >>> show(staff_group) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff_group)
+            \new PianoStaff <<
+                \set PianoStaff.instrumentName = \markup { Accordion }
+                \set PianoStaff.shortInstrumentName = \markup { Acc. }
+                \new Staff {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    c'2
+                    b2
+                }
+            >>
 
     The accordion targets the piano staff context by default.
     '''
@@ -88,7 +94,7 @@ class Accordion(Instrument):
 
             ::
 
-                >>> accordion = instrumenttools.Accordion()
+                >>> accordion = abjad.instrumenttools.Accordion()
                 >>> f(accordion)
                 instrumenttools.Accordion(
                     instrument_name='accordion',

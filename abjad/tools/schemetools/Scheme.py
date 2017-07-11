@@ -8,13 +8,17 @@ from abjad.tools.abctools import AbjadValueObject
 class Scheme(AbjadValueObject):
     r'''Abjad model of Scheme code.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         A Scheme boolean value:
 
         ::
 
-            >>> scheme = schemetools.Scheme(True)
+            >>> scheme = abjad.Scheme(True)
             >>> print(format(scheme))
             ##t
 
@@ -24,7 +28,7 @@ class Scheme(AbjadValueObject):
 
         ::
 
-            >>> scheme = schemetools.Scheme(
+            >>> scheme = abjad.Scheme(
             ...     ('left', (1, 2, False)),
             ...     ('right', (1, 2, 3.3))
             ...     )
@@ -37,8 +41,8 @@ class Scheme(AbjadValueObject):
 
         ::
 
-            >>> scheme_1 = schemetools.Scheme(1, 2, 3)
-            >>> scheme_2 = schemetools.Scheme((1, 2, 3))
+            >>> scheme_1 = abjad.Scheme(1, 2, 3)
+            >>> scheme_2 = abjad.Scheme((1, 2, 3))
             >>> format(scheme_1) == format(scheme_2)
             True
 
@@ -50,7 +54,7 @@ class Scheme(AbjadValueObject):
 
         ::
 
-            >>> scheme = schemetools.Scheme((1, 2, 3), quoting="'#")
+            >>> scheme = abjad.Scheme((1, 2, 3), quoting="'#")
             >>> print(format(scheme))
             #'#(1 2 3)
 
@@ -63,7 +67,7 @@ class Scheme(AbjadValueObject):
 
         ::
 
-            >>> scheme = schemetools.Scheme('nospaces', force_quotes=True)
+            >>> scheme = abjad.Scheme('nospaces', force_quotes=True)
             >>> print(format(scheme))
             #"nospaces"
 
@@ -79,8 +83,8 @@ class Scheme(AbjadValueObject):
 
             >>> function_1 = 'tuplet-number::append-note-wrapper'
             >>> function_2 = 'tuplet-number::calc-denominator-text'
-            >>> string = schemetools.Scheme('4', force_quotes=True)
-            >>> scheme = schemetools.Scheme(
+            >>> string = abjad.Scheme('4', force_quotes=True)
+            >>> scheme = abjad.Scheme(
             ...     function_1,
             ...     function_2,
             ...     string,
@@ -101,7 +105,7 @@ class Scheme(AbjadValueObject):
 
             >>> string = '(lambda (grob) (grob-interpret-markup grob'
             >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
-            >>> scheme = schemetools.Scheme(string, verbatim=True)
+            >>> scheme = abjad.Scheme(string, verbatim=True)
             >>> scheme
             Scheme('(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))')
             >>> print(format(scheme))
@@ -160,7 +164,7 @@ class Scheme(AbjadValueObject):
 
             ::
 
-                >>> scheme = schemetools.Scheme('foo')
+                >>> scheme = abjad.Scheme('foo')
                 >>> format(scheme)
                 '#foo'
 
@@ -296,22 +300,22 @@ class Scheme(AbjadValueObject):
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value(1)
+                >>> abjad.Scheme.format_scheme_value(1)
                 '1'
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value('foo')
+                >>> abjad.Scheme.format_scheme_value('foo')
                 'foo'
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value('bar baz')
+                >>> abjad.Scheme.format_scheme_value('bar baz')
                 '"bar baz"'
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value([1.5, True, False])
+                >>> abjad.Scheme.format_scheme_value([1.5, True, False])
                 '(1.5 #t #f)'
 
         ..  container:: example
@@ -321,7 +325,7 @@ class Scheme(AbjadValueObject):
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value(
+                >>> abjad.Scheme.format_scheme_value(
                 ...     'foo',
                 ...     force_quotes=True,
                 ...     )
@@ -336,7 +340,7 @@ class Scheme(AbjadValueObject):
 
                 >>> string = '(lambda (grob) (grob-interpret-markup grob'
                 >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
-                >>> schemetools.Scheme.format_scheme_value(string, verbatim=True)
+                >>> abjad.Scheme.format_scheme_value(string, verbatim=True)
                 '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))'
 
         ..  container:: example
@@ -347,12 +351,12 @@ class Scheme(AbjadValueObject):
             ::
 
                 >>> string = '#1-finger'
-                >>> schemetools.Scheme.format_scheme_value(string)
+                >>> abjad.Scheme.format_scheme_value(string)
                 '"#1-finger"'
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value(string, verbatim=True)
+                >>> abjad.Scheme.format_scheme_value(string, verbatim=True)
                 '#1-finger'
 
         Returns string.

@@ -7,33 +7,44 @@ from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
 class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
-    r'''A rhythm-tree leaf.
+    r'''Rhythm-tree leaf.
 
     ::
 
-        >>> leaf = rhythmtreetools.RhythmTreeLeaf(
-        ...     preprolated_duration=5, is_pitched=True)
-        >>> leaf
-        RhythmTreeLeaf(
-            preprolated_duration=Duration(5, 1),
-            is_pitched=True
-            )
+        >>> import abjad
+        >>> from abjad.tools import rhythmtreetools
 
-    Call with a pulse preprolated_duration to generate Abjad leaf objects:
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> result = leaf((1, 8))
-        >>> result
-        Selection([Note("c'2"), Note("c'8")])
+            >>> leaf = rhythmtreetools.RhythmTreeLeaf(
+            ...     preprolated_duration=5, is_pitched=True)
+            >>> leaf
+            RhythmTreeLeaf(
+                preprolated_duration=Duration(5, 1),
+                is_pitched=True
+                )
 
-    Generates rests when called, if `is_pitched` is False:
+    ..  container:: example
 
-    ::
+        Calls with a pulse preprolated duration to generate leaves:
 
-        >>> rhythmtreetools.RhythmTreeLeaf(
-        ...     preprolated_duration=7, is_pitched=False)((1, 16))
-        Selection([Rest('r4..')])
+        ::
+
+            >>> result = leaf((1, 8))
+            >>> result
+            Selection([Note("c'2"), Note("c'8")])
+
+    ..  container:: example
+
+        Generates rests when called if `is_pitched` is false:
+
+        ::
+
+            >>> rhythmtreetools.RhythmTreeLeaf(
+            ...     preprolated_duration=7, is_pitched=False)((1, 16))
+            Selection([Rest('r4..')])
 
     '''
 

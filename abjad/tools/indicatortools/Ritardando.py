@@ -6,16 +6,20 @@ from abjad.tools.topleveltools.new import new
 class Ritardando(AbjadValueObject):
     r'''Ritardando.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Default ritardando:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> score = Score([staff])
-            >>> ritardando = indicatortools.Ritardando()
-            >>> attach(ritardando, staff[0])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> score = abjad.Score([staff])
+            >>> ritardando = abjad.Ritardando()
+            >>> abjad.attach(ritardando, staff[0])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -41,11 +45,11 @@ class Ritardando(AbjadValueObject):
 
         ::
 
-            >>> markup = Markup(r'\bold { \italic { ritardando } }')
-            >>> ritardando = indicatortools.Ritardando(markup=markup)
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> score = Score([staff])
-            >>> attach(ritardando, staff[0])
+            >>> markup = abjad.Markup(r'\bold { \italic { ritardando } }')
+            >>> ritardando = abjad.Ritardando(markup=markup)
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> score = abjad.Score([staff])
+            >>> abjad.attach(ritardando, staff[0])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -107,7 +111,7 @@ class Ritardando(AbjadValueObject):
 
             ::
 
-                >>> print(str(indicatortools.Ritardando()))
+                >>> print(str(abjad.Ritardando()))
                 \markup {
                     \large
                         \upright
@@ -120,8 +124,8 @@ class Ritardando(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup(r'\bold { \italic { ritardando } }')
-                >>> ritardando = indicatortools.Ritardando(markup=markup)
+                >>> markup = abjad.Markup(r'\bold { \italic { ritardando } }')
+                >>> ritardando = abjad.Ritardando(markup=markup)
                 >>> print(str(ritardando))
                 \markup {
                     \bold
@@ -180,7 +184,7 @@ class Ritardando(AbjadValueObject):
 
             ::
 
-                >>> ritardando = indicatortools.Ritardando()
+                >>> ritardando = abjad.Ritardando()
                 >>> ritardando.default_scope is None
                 True
 
@@ -190,8 +194,8 @@ class Ritardando(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup(r'\bold { \italic { ritardando } }')
-                >>> ritardando = indicatortools.Ritardando(markup=markup)
+                >>> markup = abjad.Markup(r'\bold { \italic { ritardando } }')
+                >>> ritardando = abjad.Ritardando(markup=markup)
                 >>> ritardando.default_scope is None
                 True
 
@@ -211,7 +215,7 @@ class Ritardando(AbjadValueObject):
 
             ::
 
-                >>> ritardando = indicatortools.Ritardando()
+                >>> ritardando = abjad.Ritardando()
                 >>> ritardando.markup is None
                 True
 
@@ -221,8 +225,8 @@ class Ritardando(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup(r'\bold { \italic { ritardando } }')
-                >>> ritardando = indicatortools.Ritardando(markup=markup)
+                >>> markup = abjad.Markup(r'\bold { \italic { ritardando } }')
+                >>> ritardando = abjad.Ritardando(markup=markup)
                 >>> show(ritardando.markup) # doctest: +SKIP
 
             ..  docs::

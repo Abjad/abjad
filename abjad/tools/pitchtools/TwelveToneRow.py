@@ -6,13 +6,17 @@ from abjad.tools.topleveltools import new
 class TwelveToneRow(PitchClassSegment):
     '''Twelve-tone row.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from defaults:
 
         ::
 
-            >>> row = TwelveToneRow()
+            >>> row = abjad.TwelveToneRow()
             >>> show(row) # doctest: +SKIP
 
     ..  container:: example
@@ -22,7 +26,7 @@ class TwelveToneRow(PitchClassSegment):
         ::
 
             >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-            >>> row = TwelveToneRow(numbers)
+            >>> row = abjad.TwelveToneRow(numbers)
             >>> show(row) # doctest: +SKIP
 
     ..  container:: example
@@ -68,7 +72,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -77,17 +81,17 @@ class TwelveToneRow(PitchClassSegment):
             
             ::
 
-                >>> row([NumberedPitchClass(2)])
+                >>> row([abjad.NumberedPitchClass(2)])
                 [NumberedPitchClass(9)]
 
             ::
 
-                >>> row([NumberedPitchClass(3)])
+                >>> row([abjad.NumberedPitchClass(3)])
                 [NumberedPitchClass(3)]
 
             ::
 
-                >>> row([NumberedPitchClass(4)])
+                >>> row([abjad.NumberedPitchClass(4)])
                 [NumberedPitchClass(6)]
 
         ..  container:: example
@@ -97,7 +101,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> items = [-2, -1, 6, 7, -1, 7]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -108,7 +112,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     af'8
                     c'8
@@ -127,13 +131,13 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-                >>> row_2 = TwelveToneRow(numbers)
+                >>> row_2 = abjad.TwelveToneRow(numbers)
                 >>> show(row_2) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = row_2.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     cs'8
@@ -159,7 +163,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = row_3.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     b'8
@@ -184,13 +188,13 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-                >>> row_2 = TwelveToneRow(numbers)
+                >>> row_2 = abjad.TwelveToneRow(numbers)
                 >>> show(row_2) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = row_2.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     b'8
                     bf'8
@@ -216,7 +220,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = row_3.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     af'8
@@ -241,13 +245,13 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
-                >>> row_2 = TwelveToneRow(numbers)
+                >>> row_2 = abjad.TwelveToneRow(numbers)
                 >>> show(row_2) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = row_2.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     bf'8
                     c'8
@@ -273,7 +277,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = row_3.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     af'8
                     cs'8
@@ -314,7 +318,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -329,7 +333,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = row[:6].__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     b'8
@@ -352,7 +356,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = row[-6:].__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     f'8
                     e'8
@@ -393,13 +397,13 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> row = TwelveToneRow()
+                >>> row = abjad.TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = row.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     cs'8
@@ -425,13 +429,13 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ..  docs::
 
                 >>> lilypond_file = row.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     b'8
@@ -471,7 +475,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> row = TwelveToneRow()
+                >>> row = abjad.TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -482,7 +486,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     cs'8
@@ -519,7 +523,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -531,7 +535,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     b'8
@@ -583,7 +587,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> row = TwelveToneRow()
+                >>> row = abjad.TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -594,7 +598,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     cs'8
@@ -631,7 +635,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -642,7 +646,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     b'8
@@ -713,7 +717,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> row = TwelveToneRow()
+                >>> row = abjad.TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -728,7 +732,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -759,7 +763,7 @@ class TwelveToneRow(PitchClassSegment):
         
             ::
 
-                >>> row = TwelveToneRow()
+                >>> row = abjad.TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
 
@@ -767,6 +771,7 @@ class TwelveToneRow(PitchClassSegment):
 
                 >>> for item in row.items:
                 ...     item
+                ...
                 NumberedPitchClass(0)
                 NumberedPitchClass(1)
                 NumberedPitchClass(2)
@@ -787,7 +792,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -832,7 +837,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -896,7 +901,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
             
-                >>> row = TwelveToneRow()
+                >>> row = abjad.TwelveToneRow()
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -911,7 +916,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
             
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
             ::
@@ -936,7 +941,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -980,7 +985,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -995,7 +1000,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = inversion.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     ef'8
@@ -1033,7 +1038,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = inversion.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     ef'8
@@ -1065,7 +1070,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = inversion.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     b'8
                     cs'8
@@ -1095,7 +1100,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = inversion.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     a'8
                     b'8
@@ -1139,7 +1144,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -1154,7 +1159,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = multiplication.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     f'8
                     g'8
@@ -1184,7 +1189,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = multiplication.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     g'8
                     f'8
@@ -1214,7 +1219,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = multiplication.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     b'8
@@ -1255,7 +1260,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -1270,7 +1275,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = retrograde.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     af'8
@@ -1300,7 +1305,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = retrograde.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     b'8
@@ -1346,7 +1351,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -1361,7 +1366,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = rotation.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     cs'8
@@ -1391,7 +1396,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = rotation.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     b'8
                     a'8
@@ -1421,7 +1426,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = rotation.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     b'8
@@ -1456,7 +1461,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = rotation.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     bf'8
@@ -1497,7 +1502,7 @@ class TwelveToneRow(PitchClassSegment):
             ::
 
                 >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-                >>> row = TwelveToneRow(numbers)
+                >>> row = abjad.TwelveToneRow(numbers)
                 >>> show(row) # doctest: +SKIP
 
         ..  container:: example
@@ -1512,7 +1517,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = transposition.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     d'8
                     c'8
@@ -1542,7 +1547,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = transposition.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     c'8
                     bf'8
@@ -1572,7 +1577,7 @@ class TwelveToneRow(PitchClassSegment):
             ..  docs::
 
                 >>> lilypond_file = transposition.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     cs'8
                     b'8

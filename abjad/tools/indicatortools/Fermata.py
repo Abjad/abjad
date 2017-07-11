@@ -5,15 +5,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Fermata(AbjadValueObject):
     r'''Fermata.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         A short fermata:
 
         ::
 
-            >>> score = Score([Staff([Note("c'4")])])
-            >>> fermata = indicatortools.Fermata(command='shortfermata')
-            >>> attach(fermata, score[0][0])
+            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+            >>> fermata = abjad.Fermata(command='shortfermata')
+            >>> abjad.attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -31,9 +35,9 @@ class Fermata(AbjadValueObject):
 
         ::
 
-            >>> score = Score([Staff([Note("c'4")])])
-            >>> fermata = indicatortools.Fermata()
-            >>> attach(fermata, score[0][0])
+            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+            >>> fermata = abjad.Fermata()
+            >>> abjad.attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -51,9 +55,9 @@ class Fermata(AbjadValueObject):
 
         ::
 
-            >>> score = Score([Staff([Note("c'4")])])
-            >>> fermata = indicatortools.Fermata('longfermata')
-            >>> attach(fermata, score[0][0])
+            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+            >>> fermata = abjad.Fermata('longfermata')
+            >>> abjad.attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -71,9 +75,9 @@ class Fermata(AbjadValueObject):
 
         ::
 
-            >>> score = Score([Staff([Note("c'4")])])
-            >>> fermata = indicatortools.Fermata('verylongfermata')
-            >>> attach(fermata, score[0][0])
+            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+            >>> fermata = abjad.Fermata('verylongfermata')
+            >>> abjad.attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
         ..  docs::
@@ -122,7 +126,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.Fermata())
+                >>> str(abjad.Fermata())
                 '\\fermata'
 
         ..  container:: example
@@ -131,7 +135,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.Fermata('longfermata'))
+                >>> str(abjad.Fermata('longfermata'))
                 '\\longfermata'
 
         Returns string.
@@ -167,7 +171,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> commands = indicatortools.Fermata.list_allowable_commands()
+                >>> commands = abjad.Fermata.list_allowable_commands()
                 >>> for command in commands:
                 ...     command
                 'fermata'
@@ -191,7 +195,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> fermata = indicatortools.Fermata()
+                >>> fermata = abjad.Fermata()
                 >>> fermata.command
                 'fermata'
 
@@ -201,7 +205,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> fermata = indicatortools.Fermata('longfermata')
+                >>> fermata = abjad.Fermata('longfermata')
                 >>> fermata.command
                 'longfermata'
 
@@ -219,7 +223,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> fermata = indicatortools.Fermata()
+                >>> fermata = abjad.Fermata()
                 >>> fermata.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>
 
@@ -229,7 +233,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> fermata = indicatortools.Fermata('longfermata')
+                >>> fermata = abjad.Fermata('longfermata')
                 >>> fermata.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>
 

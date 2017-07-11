@@ -4,7 +4,14 @@ import pickle
 
 
 class ParallelJobHandlerWorker(multiprocessing.Process):
-    r'''Worker process which runs ``QuantizationJobs``.
+    r'''Parallel job-handler worker.
+    
+    Worker process which runs ``QuantizationJobs``.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     Not composer-safe.
 

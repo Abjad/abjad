@@ -6,14 +6,18 @@ from abjad.tools.topleveltools.new import new
 class Accelerando(AbjadValueObject):
     r'''Accelerando.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> score = Score([staff])
-            >>> accelerando = indicatortools.Accelerando()
-            >>> attach(accelerando, staff[0])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> score = abjad.Score([staff])
+            >>> accelerando = abjad.Accelerando()
+            >>> abjad.attach(accelerando, staff[0])
 
         ::
 
@@ -76,7 +80,7 @@ class Accelerando(AbjadValueObject):
 
             ::
 
-                >>> print(str(indicatortools.Accelerando()))
+                >>> print(str(abjad.Accelerando()))
                 \markup {
                     \large
                         \upright
@@ -89,8 +93,8 @@ class Accelerando(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup(r'\bold { \italic { accelerando } }')
-                >>> accelerando = indicatortools.Accelerando(markup=markup)
+                >>> markup = abjad.Markup(r'\bold { \italic { accelerando } }')
+                >>> accelerando = abjad.Accelerando(markup=markup)
                 >>> print(str(accelerando))
                 \markup {
                     \bold
@@ -147,7 +151,7 @@ class Accelerando(AbjadValueObject):
 
             ::
 
-                >>> accelerando = Accelerando()
+                >>> accelerando = abjad.Accelerando()
                 >>> accelerando.default_scope is None
                 True
 
@@ -165,8 +169,8 @@ class Accelerando(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup(r'\bold { \italic { accel. } }')
-                >>> accelerando = indicatortools.Accelerando(markup=markup)
+                >>> markup = abjad.Markup(r'\bold { \italic { accel. } }')
+                >>> accelerando = abjad.Accelerando(markup=markup)
                 >>> print(str(accelerando.markup))
                 \markup {
                     \bold

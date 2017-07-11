@@ -9,22 +9,28 @@ class Enumeration(enum.IntEnum):
 
     ::
 
-        >>> class Colors(datastructuretools.Enumeration):
-        ...     RED = 1
-        ...     BLUE = 2
-        ...     LIGHT_GREEN = 3
-        ...
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> color = Colors.RED
-        >>> print(repr(color))
-        Colors.RED
+        ::
 
-    ::
+            >>> class Colors(abjad.Enumeration):
+            ...     RED = 1
+            ...     BLUE = 2
+            ...     LIGHT_GREEN = 3
+            ...
 
-        >>> Colors.from_expr('light green')
-        Colors.LIGHT_GREEN
+        ::
+
+            >>> color = Colors.RED
+            >>> print(repr(color))
+            Colors.RED
+
+        ::
+
+            >>> Colors.from_expr('light green')
+            Colors.LIGHT_GREEN
 
     '''
 

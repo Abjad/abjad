@@ -5,6 +5,10 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class KeyCluster(AbjadValueObject):
     r'''Key cluster.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         
@@ -12,9 +16,9 @@ class KeyCluster(AbjadValueObject):
 
         ::
 
-            >>> chord = Chord("<c' e' g' b' d'' f''>8")
-            >>> key_cluster = indicatortools.KeyCluster()
-            >>> attach(key_cluster, chord)
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster()
+            >>> abjad.attach(key_cluster, chord)
             >>> show(chord) # doctest: +SKIP
 
         ..  docs::
@@ -106,7 +110,7 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> key_cluster = indicatortools.KeyCluster()
+                >>> key_cluster = abjad.KeyCluster()
                 >>> key_cluster.default_scope is None
                 True
 
@@ -124,11 +128,11 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     include_black_keys=True,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -159,11 +163,11 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     include_black_keys=False,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -198,11 +202,11 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     include_white_keys=True,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -233,11 +237,11 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     include_white_keys=False,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -272,11 +276,11 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     markup_direction=Up,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -307,11 +311,11 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     markup_direction=Down,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -348,11 +352,9 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
-                ...     suppress_markup=False,
-                ...     )
-                >>> attach(key_cluster, chord)
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(suppress_markup=False)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -383,11 +385,9 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
-                ...     suppress_markup=True,
-                ...     )
-                >>> attach(key_cluster, chord)
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(suppress_markup=True)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::

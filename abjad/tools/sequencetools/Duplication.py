@@ -7,11 +7,15 @@ from abjad.tools.topleveltools import new
 class Duplication(abctools.AbjadValueObject):
     r'''Duplication.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example:
 
         ::
 
-            >>> operator_ = sequencetools.Duplication(counts=2, period=4)
+            >>> operator_ = abjad.Duplication(counts=2, period=4)
 
         ::
 
@@ -70,7 +74,7 @@ class Duplication(abctools.AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(counts=1)
+                >>> operator_ = abjad.Duplication(counts=1)
                 >>> numbers = [1, 2, 3, 4]
                 >>> operator_(numbers)
                 [1, 2, 3, 4, 1, 2, 3, 4]
@@ -81,8 +85,8 @@ class Duplication(abctools.AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(counts=2)
-                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7])
+                >>> operator_ = abjad.Duplication(counts=2)
+                >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
                 >>> operator_(pitch_classes)
                 PitchClassSegment([0, 1, 4, 7, 0, 1, 4, 7, 0, 1, 4, 7])
 
@@ -92,8 +96,8 @@ class Duplication(abctools.AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(counts=1, period=3)
-                >>> pitches = pitchtools.PitchSegment("c' d' e' f' g' a' b' c''")
+                >>> operator_ = abjad.Duplication(counts=1, period=3)
+                >>> pitches = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
                 >>> for pitch in operator_(pitches):
                 ...     pitch
                 ...
@@ -120,11 +124,11 @@ class Duplication(abctools.AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(
+                >>> operator_ = abjad.Duplication(
                 ...     counts=1,
                 ...     indices=(0, -1),
                 ...     )
-                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7])
+                >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
                 >>> operator_(pitch_classes)
                 PitchClassSegment([0, 0, 1, 4, 7, 7])
 
@@ -134,12 +138,12 @@ class Duplication(abctools.AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(
+                >>> operator_ = abjad.Duplication(
                 ...     counts=1,
                 ...     indices=(0,),
                 ...     period=2,
                 ...     )
-                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7, 9])
+                >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7, 9])
                 >>> operator_(pitch_classes)
                 PitchClassSegment([0, 0, 1, 4, 4, 7, 9, 9])
 
@@ -149,12 +153,12 @@ class Duplication(abctools.AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(
+                >>> operator_ = abjad.Duplication(
                 ...     counts=(1, 2),
                 ...     indices=(0,),
                 ...     period=2,
                 ...     )
-                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7, 9])
+                >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7, 9])
                 >>> operator_(pitch_classes)
                 PitchClassSegment([0, 0, 1, 4, 4, 4, 7, 9, 9])
 
@@ -164,8 +168,8 @@ class Duplication(abctools.AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(counts=(0, 1, 2, 3))
-                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7, 9])
+                >>> operator_ = abjad.Duplication(counts=(0, 1, 2, 3))
+                >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7, 9])
                 >>> operator_(pitch_classes)
                 PitchClassSegment([0, 1, 1, 4, 4, 4, 7, 7, 7, 7, 9])
                 
@@ -248,7 +252,7 @@ class Duplication(abctools.AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(counts=1, period=3)
+                >>> operator_ = abjad.Duplication(counts=1, period=3)
                 >>> operator_.counts
                 1
 
@@ -264,7 +268,7 @@ class Duplication(abctools.AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(
+                >>> operator_ = abjad.Duplication(
                 ...     counts=1,
                 ...     indices=(0, -1),
                 ...     )
@@ -283,7 +287,7 @@ class Duplication(abctools.AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(counts=1, period=3)
+                >>> operator_ = abjad.Duplication(counts=1, period=3)
                 >>> operator_.period
                 3
 

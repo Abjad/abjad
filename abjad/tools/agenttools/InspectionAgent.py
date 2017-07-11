@@ -7,16 +7,20 @@ from abjad.tools.topleveltools.iterate import iterate
 class InspectionAgent(abctools.AbjadObject):
     r'''Inspection agent.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> inspect(staff)
+            >>> abjad.inspect(staff)
             InspectionAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''
@@ -50,9 +54,10 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> after_grace = AfterGraceContainer([Note("ds'16")])
-                >>> attach(after_grace, staff[1])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> note = abjad.Note("ds'16")
+                >>> container = abjad.AfterGraceContainer([note])
+                >>> abjad.attach(container, staff[1])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -71,7 +76,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect(staff[1]).get_after_grace_container()
+                >>> abjad.inspect(staff[1]).get_after_grace_container()
                 AfterGraceContainer("ds'16")
 
         Returns after grace container or none.
@@ -85,10 +90,10 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> staff[1].written_duration = Duration(1, 4)
-                >>> beam = spannertools.Beam()
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> staff[1].written_duration = (1, 4)
+                >>> beam = abjad.Beam()
+                >>> abjad.attach(beam, staff[:])
 
             ..  docs::
 
@@ -102,7 +107,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect(staff).get_badly_formed_components()
+                >>> abjad.inspect(staff).get_badly_formed_components()
                 [Note("d'4")]
 
             (Beamed quarter notes are not well formed.)
@@ -121,8 +126,7 @@ class InspectionAgent(abctools.AbjadObject):
         prototype=None,
         include_self=True,
         ):
-        r'''Gets all components of `prototype`
-        in the descendants of client.
+        r'''Gets all components of `prototype` in the descendants of client.
 
         Returns client selection.
         '''
@@ -182,10 +186,12 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> attach(Clef('alto'), staff)
-                >>> grace_container = AcciaccaturaContainer([Note("fs'16")])
-                >>> attach(grace_container, staff[-1])
+                >>> staff = abjad.Staff("c'4 d' e' f'")
+                >>> clef = abjad.Clef('alto')
+                >>> abjad.attach(clef, staff)
+                >>> note = abjad.Note("fs'16")
+                >>> container = abjad.AcciaccaturaContainer([note])
+                >>> abjad.attach(container, staff[-1])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -204,8 +210,11 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> for leaf in iterate(staff).by_class(with_grace_notes=True):
-                ...     clef = inspect(leaf).get_effective(Clef)
+                >>> for leaf in abjad.iterate(staff).by_class(
+                ...     with_grace_notes=True,
+                ...     ):
+                ...     agent = abjad.inspect(leaf)
+                ...     clef = agent.get_effective(abjad.Clef)
                 ...     print(leaf, clef)
                 ...
                 Staff("c'4 d'4 e'4 f'4") Clef(name='alto')
@@ -239,9 +248,10 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> acciaccatura = AcciaccaturaContainer([Note("cs'16")])
-                >>> attach(acciaccatura, staff[1])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> note = abjad.Note("cs'16")
+                >>> container = abjad.AcciaccaturaContainer([note])
+                >>> abjad.attach(container, staff[1])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -259,7 +269,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect(staff[1]).get_grace_container()
+                >>> abjad.inspect(staff[1]).get_grace_container()
                 AcciaccaturaContainer("cs'16")
 
         Returns grace container, acciaccatura container, appoggiatura container
@@ -282,9 +292,10 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> note = Note("c'4")
-                >>> attach(Down, note, name='bow_direction')
-                >>> attach(Fraction(1, 7), note, name='bow_fraction')
+                >>> note = abjad.Note("c'4")
+                >>> abjad.attach(Down, note, name='bow_direction')
+                >>> fraction = abjad.Fraction(1, 7)
+                >>> abjad.attach(fraction, note, name='bow_fraction')
 
             ::
 
@@ -341,9 +352,9 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Voice("c'8 d'8 e'8 f'8"))
-                >>> staff.append(Voice("g'8 a'8 b'8 c''8"))
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Voice("c'8 d'8 e'8 f'8"))
+                >>> staff.append(abjad.Voice("g'8 a'8 b'8 c''8"))
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -380,7 +391,8 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> for n in range(8):
-                ...     print(n, inspect(first_leaf).get_leaf(n))
+                ...     leaf = abjad.inspect(first_leaf).get_leaf(n)
+                ...     print(n, leaf)
                 ...
                 0 c'8
                 1 d'8
@@ -402,7 +414,8 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> for n in range(0, -8, -1):
-                ...     print(n, inspect(last_leaf).get_leaf(n))
+                ...     leaf = abjad.inspect(last_leaf).get_leaf(n)
+                ...     print(n, leaf)
                 ...
                 0 f'8
                 -1 e'8
@@ -429,7 +442,8 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> for n in range(8):
-                ...     print(n, inspect(first_voice).get_leaf(n))
+                ...     leaf = abjad.inspect(first_voice).get_leaf(n)
+                ...     print(n, leaf)
                 ...
                 0 c'8
                 1 d'8
@@ -451,7 +465,8 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> for n in range(-1, -9, -1):
-                ...     print(n, inspect(first_voice).get_leaf(n))
+                ...     leaf = abjad.inspect(first_voice).get_leaf(n)
+                ...     print(n, leaf)
                 ...
                 -1 f'8
                 -2 e'8
@@ -525,10 +540,9 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> voice = Voice("c'4 d'4 e'4 f'4")
-                >>> grace_notes = [Note("c'16"), Note("d'16")]
-                >>> grace_container = GraceContainer(grace_notes)
-                >>> attach(grace_container, voice[1])
+                >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+                >>> container = abjad.GraceContainer("c'16 d'16")
+                >>> abjad.attach(container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -547,7 +561,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect(grace_notes[0]).get_parentage()
+                >>> abjad.inspect(container[0]).get_parentage()
                 Parentage([Note("c'16"), GraceContainer("c'16 d'16")])
 
         .. container:: example
@@ -556,10 +570,9 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> voice = Voice("c'4 d'4 e'4 f'4")
-                >>> grace_notes = [Note("c'16"), Note("d'16")]
-                >>> grace_container = GraceContainer(grace_notes)
-                >>> attach(grace_container, voice[1])
+                >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+                >>> container = abjad.GraceContainer("c'16 d'16")
+                >>> abjad.attach(container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -578,8 +591,8 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspector = inspect(grace_notes[0])
-                >>> inspector.get_parentage(with_grace_notes=True)
+                >>> agent = abjad.inspect(container[0])
+                >>> agent.get_parentage(with_grace_notes=True)
                 Parentage([Note("c'16"), GraceContainer("c'16 d'16"), Note("d'4"), Voice("c'4 d'4 e'4 f'4")])
 
         Returns parentage.
@@ -596,10 +609,10 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("d''8 e''8 f''8 g''8")
-                >>> piccolo = instrumenttools.Piccolo()
-                >>> attach(piccolo, staff)
-                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
+                >>> staff = abjad.Staff("d''8 e''8 f''8 g''8")
+                >>> piccolo = abjad.instrumenttools.Piccolo()
+                >>> abjad.attach(piccolo, staff)
+                >>> abjad.instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
                 ...     staff)
                 >>> show(staff) # doctest: +SKIP
 
@@ -614,7 +627,7 @@ class InspectionAgent(abctools.AbjadObject):
                     f'8
                     g'8
                 }
-                >>> inspect(staff[0]).get_sounding_pitch()
+                >>> abjad.inspect(staff[0]).get_sounding_pitch()
                 NamedPitch("d''")
 
         Returns named pitch.
@@ -628,10 +641,10 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-                >>> glockenspiel = instrumenttools.Glockenspiel()
-                >>> attach(glockenspiel, staff)
-                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
+                >>> staff = abjad.Staff("<c''' e'''>4 <d''' fs'''>4")
+                >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
+                >>> abjad.attach(glockenspiel, staff)
+                >>> abjad.instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
                 ...     staff)
                 >>> show(staff) # doctest: +SKIP
 
@@ -647,7 +660,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect(staff[0]).get_sounding_pitches()
+                >>> abjad.inspect(staff[0]).get_sounding_pitches()
                 (NamedPitch("c'''"), NamedPitch("e'''"))
 
         Returns tuple.
@@ -704,13 +717,12 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                >>> grace_notes = [Note("c'16"), Note("d'16")]
-                >>> grace = GraceContainer(grace_notes)
-                >>> attach(grace, voice[1])
-                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-                >>> after_grace = AfterGraceContainer(after_grace_notes)
-                >>> attach(after_grace, voice[1])
+                >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [abjad.Note("c'16"), abjad.Note("d'16")]
+                >>> container = abjad.GraceContainer(grace_notes)
+                >>> abjad.attach(container, voice[1])
+                >>> container = abjad.AfterGraceContainer("e'16 f'16")
+                >>> abjad.attach(container, voice[1])
                 >>> show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -734,8 +746,10 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> for leaf in iterate(voice).by_leaf(with_grace_notes=True):
-                ...     timespan = inspect(leaf).get_timespan()
+                >>> for leaf in abjad.iterate(voice).by_leaf(
+                ...     with_grace_notes=True,
+                ...     ):
+                ...     timespan = abjad.inspect(leaf).get_timespan()
                 ...     print(str(leaf) + ':')
                 ...     f(timespan)
                 ...
@@ -867,9 +881,9 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 d'4 e'4")
-                >>> time_signature = TimeSignature((3, 8))
-                >>> attach(time_signature, staff)
+                >>> staff = abjad.Staff("c'4 d'4 e'4")
+                >>> time_signature = abjad.TimeSignature((3, 8))
+                >>> abjad.attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -885,7 +899,7 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> for note in staff:
-                ...     result = inspect(note).is_bar_line_crossing()
+                ...     result = abjad.inspect(note).is_bar_line_crossing()
                 ...     print(note, result)
                 ...
                 c'4 False
@@ -933,9 +947,9 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> container = Container("c'8 d'8 e'8 f'8")
-                >>> override(container).note_head.color = 'red'
-                >>> override(container).note_head.style = 'harmonic'
+                >>> container = abjad.Container("c'8 d'8 e'8 f'8")
+                >>> abjad.override(container).note_head.color = 'red'
+                >>> abjad.override(container).note_head.style = 'harmonic'
                 >>> show(container) # doctest: +SKIP
 
             ..  docs::
@@ -954,7 +968,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> report = inspect(container).report_modifications()
+                >>> report = abjad.inspect(container).report_modifications()
 
             ::
 
@@ -998,10 +1012,10 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> staff[1].written_duration = Duration(1, 4)
-                >>> beam = spannertools.Beam()
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> staff[1].written_duration = (1, 4)
+                >>> beam = abjad.Beam()
+                >>> abjad.attach(beam, staff[:])
 
             ..  docs::
 
@@ -1015,7 +1029,8 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-                >>> result = inspect(staff).tabulate_well_formedness_violations()
+                >>> agent = abjad.inspect(staff)
+                >>> result = agent.tabulate_well_formedness_violations()
 
             ::
 

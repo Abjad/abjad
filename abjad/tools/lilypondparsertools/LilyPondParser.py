@@ -28,115 +28,243 @@ class LilyPondParser(abctools.Parser):
 
     ::
 
-        >>> parser = lilypondparsertools.LilyPondParser()
-        >>> string = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
-        >>> result = parser(string)
-        >>> print(format(result))
-        \new Staff {
-            c'4 (
-            d'8
-            e'8
-            fs'2 -\fermata )
-        }
+        >>> import abjad
 
-    The LilyPond parser understands most spanners, articulations and dynamics:
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> string = r'''
-        ... \new Staff {
-        ...     c'8 \f \> (
-        ...     d' -_ [
-        ...     e' ^>
-        ...     f' \ppp \<
-        ...     g' \startTrillSpan \(
-        ...     a' \)
-        ...     b' ] \stopTrillSpan
-        ...     c'' ) \accent \sfz
-        ... }
-        ... '''
-        >>> result = parser(string)
-        >>> show(result) # doctest: +SKIP
+            >>> parser = abjad.lilypondparsertools.LilyPondParser()
+            >>> string = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
+            >>> staff = parser(string)
+            >>> show(staff) # doctest: +SKIP
 
-    The LilyPond parser understands contexts and markup:
+        ::
 
-    ::
+            >>> f(staff)
+            \new Staff {
+                c'4 (
+                d'8
+                e'8
+                fs'2 -\fermata )
+            }
 
-        >>> string = r'''\new Score <<
-        ...     \new Staff = "Treble Staff" {
-        ...         \new Voice = "Treble Voice" {
-        ...             c' ^\markup { \bold Treble! }
-        ...         }
-        ...     }
-        ...     \new Staff = "Bass Staff" {
-        ...         \new Voice = "Bass Voice" {
-        ...             \clef bass
-        ...             c, _\markup { \italic Bass! }
-        ...         }
-        ...     }
-        ... >>
-        ... '''
-        >>> result = parser(string)
-        >>> show(result) # doctest: +SKIP
+    ..  container:: example
 
-    The LilyPond parser also understands certain aspects of LilyPond file
-    layouts, such as header blocks:
+        The LilyPond parser understands most spanners, articulations and
+        dynamics:
 
-    ::
+        ::
 
-        >>> string = r'''
-        ... \header {
-        ...     composername = "Foo von Bar"
-        ...     composer = \markup { by \bold \composername }
-        ...     title = \markup { The ballad of \composername }
-        ...     tagline = \markup { "" }
-        ... }
-        ... \score {
-        ...     \new Staff {
-        ...         \time 3/4
-        ...         g' ( b' d'' )
-        ...         e''4. ( c''8 c'4 )
-        ...     }
-        ... }
-        ... '''
-        >>> result = parser(string)
-        >>> show(result) # doctest: +SKIP
+            >>> string = r'''
+            ... \new Staff {
+            ...     c'8 \f \> (
+            ...     d' -_ [
+            ...     e' ^>
+            ...     f' \ppp \<
+            ...     g' \startTrillSpan \(
+            ...     a' \)
+            ...     b' ] \stopTrillSpan
+            ...     c'' ) \accent \sfz
+            ... }
+            ... '''
+            >>> staff = parser(string)
+            >>> show(staff) # doctest: +SKIP
 
-    The LilyPond parser supports a small number of LilyPond music functions,
-    such as \relative and \transpose.
+        ..  docs::
 
-    ..  note::
+            >>> f(staff)
+            \new Staff {
+                c'8 \f \> (
+                d'8 -\portato [
+                e'8 ^\accent
+                f'8 \ppp \<
+                g'8 \( \startTrillSpan
+                a'8 \)
+                b'8 ] \stopTrillSpan
+                c''8 -\accent \sfz )
+            }
 
-        Music functions which mutate the score during compilation result in a
-        normalized Abjad score structure. The resulting structure corresponds
-        to the music as it appears on the page, rather than as it was input to
-        the parser:
+    ..  container:: example
 
-    ::
+        The LilyPond parser understands contexts and markup:
 
-        >>> string = r'''
-        ... \new Staff \relative c {
-        ...     c32 d e f g a b c d e f g a b c d e f g a b c
-        ... }
-        ... '''
-        >>> result = parser(string)
-        >>> show(result) # doctest: +SKIP
+        ::
 
-    The LilyPond parser defaults to English note names, but any of the other
-    languages supported by LilyPond may be used:
+            >>> string = r'''\new Score <<
+            ...     \new Staff = "Treble Staff" {
+            ...         \new Voice = "Treble Voice" {
+            ...             c' ^\markup { \bold Treble! }
+            ...         }
+            ...     }
+            ...     \new Staff = "Bass Staff" {
+            ...         \new Voice = "Bass Voice" {
+            ...             \clef bass
+            ...             c, _\markup { \italic Bass! }
+            ...         }
+            ...     }
+            ... >>
+            ... '''
+            >>> score = parser(string)
+            >>> show(score) # doctest: +SKIP
 
-    ::
+        ..  docs::
 
-        >>> parser = lilypondparsertools.LilyPondParser('nederlands')
-        >>> string = '{ c des e fis }'
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c4
-            df4
-            e4
-            fs4
-        }
+            >>> f(score)
+            \new Score <<
+                \context Staff = "Treble Staff" {
+                    \context Voice = "Treble Voice" {
+                        c'4
+                            ^ \markup {
+                                \bold
+                                    Treble!
+                                }
+                    }
+                }
+                \context Staff = "Bass Staff" {
+                    \context Voice = "Bass Voice" {
+                        \clef "bass"
+                        c,4
+                            _ \markup {
+                                \italic
+                                    Bass!
+                                }
+                    }
+                }
+            >>
+
+    ..  container:: example
+
+        The LilyPond parser also understands certain aspects of LilyPond file
+        layouts, such as header blocks:
+
+        ::
+
+            >>> string = r'''
+            ... \header {
+            ...     composername = "Foo von Bar"
+            ...     composer = \markup { by \bold \composername }
+            ...     title = \markup { The ballad of \composername }
+            ...     tagline = \markup { "" }
+            ... }
+            ... \score {
+            ...     \new Staff {
+            ...         \time 3/4
+            ...         g' ( b' d'' )
+            ...         e''4. ( c''8 c'4 )
+            ...     }
+            ... }
+            ... '''
+            >>> blocks = parser(string)
+            >>> show(blocks) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(blocks) # doctest: +SKIP
+            % 2017-07-11 15:13
+            <BLANKLINE>
+            \version "2.19.63"
+            \language "english"
+            <BLANKLINE>
+            \header {
+                composername = #"Foo von Bar"
+                composer = \markup {
+                    by
+                    \bold
+                        "Foo von Bar"
+                    }
+                title = \markup {
+                    The
+                    ballad
+                    of
+                    "Foo von Bar"
+                    }
+                tagline = \markup {}
+            }
+            <BLANKLINE>
+            \score {
+                \new Staff {
+                    \time 3/4
+                    g'4 (
+                    b'4
+                    d''4 )
+                    e''4. (
+                    c''8
+                    c'4 )
+                }
+            }
+
+    ..  container:: example
+
+        The LilyPond parser supports a small number of LilyPond music
+        functions, such as \relative and \transpose.
+
+        ..  note::
+
+            Music functions which mutate the score during compilation result in a
+            normalized Abjad score structure. The resulting structure corresponds
+            to the music as it appears on the page, rather than as it was input to
+            the parser:
+
+        ::
+
+            >>> string = r'''
+            ... \new Staff \relative c {
+            ...     c32 d e f g a b c d e f g a b c d e f g a b c
+            ... }
+            ... '''
+            >>> staff = parser(string)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                c32
+                d32
+                e32
+                f32
+                g32
+                a32
+                b32
+                c'32
+                d'32
+                e'32
+                f'32
+                g'32
+                a'32
+                b'32
+                c''32
+                d''32
+                e''32
+                f''32
+                g''32
+                a''32
+                b''32
+                c'''32
+            }
+
+    ..  container:: example
+
+        The LilyPond parser defaults to English note names, but any of the
+        other languages supported by LilyPond may be used:
+
+        ::
+
+            >>> parser = abjad.lilypondparsertools.LilyPondParser('nederlands')
+            >>> string = '{ c des e fis }'
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(container)
+            {
+                c4
+                df4
+                e4
+                fs4
+            }
 
     Briefly, LilyPondParser understands theses aspects of LilyPond syntax:
 
@@ -875,43 +1003,46 @@ class LilyPondParser(abctools.Parser):
     def list_known_contexts():
         r'''Lists all LilyPond contexts recognized by LilyPond parser.
 
-        ::
+        ..  container:: example
 
-            >>> for x in lilypondparsertools.LilyPondParser.list_known_contexts():
-            ...     print(x)
-            ...
-            ChoirStaff
-            ChordNames
-            CueVoice
-            Devnull
-            DrumStaff
-            DrumVoice
-            Dynamics
-            FiguredBass
-            FretBoards
-            Global
-            GrandStaff
-            GregorianTranscriptionStaff
-            GregorianTranscriptionVoice
-            KievanStaff
-            KievanVoice
-            Lyrics
-            MensuralStaff
-            MensuralVoice
-            NoteNames
-            NullVoice
-            PetrucciStaff
-            PetrucciVoice
-            PianoStaff
-            RhythmicStaff
-            Score
-            Staff
-            StaffGroup
-            TabStaff
-            TabVoice
-            VaticanaStaff
-            VaticanaVoice
-            Voice
+            ::
+
+                >>> class_ = abjad.lilypondparsertools.LilyPondParser
+                >>> for context in class_.list_known_contexts():
+                ...     print(context)
+                ...
+                ChoirStaff
+                ChordNames
+                CueVoice
+                Devnull
+                DrumStaff
+                DrumVoice
+                Dynamics
+                FiguredBass
+                FretBoards
+                Global
+                GrandStaff
+                GregorianTranscriptionStaff
+                GregorianTranscriptionVoice
+                KievanStaff
+                KievanVoice
+                Lyrics
+                MensuralStaff
+                MensuralVoice
+                NoteNames
+                NullVoice
+                PetrucciStaff
+                PetrucciVoice
+                PianoStaff
+                RhythmicStaff
+                Score
+                Staff
+                StaffGroup
+                TabStaff
+                TabVoice
+                VaticanaStaff
+                VaticanaVoice
+                Voice
 
         Returns list.
         '''
@@ -922,32 +1053,35 @@ class LilyPondParser(abctools.Parser):
     def list_known_dynamics():
         r'''Lists all dynamics recognized by LilyPond parser.
 
-        ::
+        ..  container:: example
 
-            >>> for x in lilypondparsertools.LilyPondParser.list_known_dynamics():
-            ...     print(x)
-            ...
-            f
-            ff
-            fff
-            ffff
-            fffff
-            fp
-            fz
-            mf
-            mp
-            p
-            pp
-            ppp
-            pppp
-            ppppp
-            rfz
-            sf
-            sff
-            sfp
-            sfz
-            sp
-            spp
+            ::
+
+                >>> class_ = abjad.lilypondparsertools.LilyPondParser
+                >>> for dynamic in class_.list_known_dynamics():
+                ...     print(dynamic)
+                ...
+                f
+                ff
+                fff
+                ffff
+                fffff
+                fp
+                fz
+                mf
+                mp
+                p
+                pp
+                ppp
+                pppp
+                ppppp
+                rfz
+                sf
+                sff
+                sfp
+                sfz
+                sp
+                spp
 
         Returns tuple.
         '''
@@ -966,150 +1100,153 @@ class LilyPondParser(abctools.Parser):
     def list_known_grobs():
         r'''Lists all LilyPond grobs recognized by LilyPond parser.
 
-        ::
+        ..  container:: example
 
-            >>> for x in lilypondparsertools.LilyPondParser.list_known_grobs():
-            ...     print(x)
-            ...
-            Accidental
-            AccidentalCautionary
-            AccidentalPlacement
-            AccidentalSuggestion
-            Ambitus
-            AmbitusAccidental
-            AmbitusLine
-            AmbitusNoteHead
-            Arpeggio
-            BalloonTextItem
-            BarLine
-            BarNumber
-            BassFigure
-            BassFigureAlignment
-            BassFigureAlignmentPositioning
-            BassFigureBracket
-            BassFigureContinuation
-            BassFigureLine
-            Beam
-            BendAfter
-            BreakAlignGroup
-            BreakAlignment
-            BreathingSign
-            ChordName
-            Clef
-            ClefModifier
-            ClusterSpanner
-            ClusterSpannerBeacon
-            CombineTextScript
-            CueClef
-            CueEndClef
-            Custos
-            DotColumn
-            Dots
-            DoublePercentRepeat
-            DoublePercentRepeatCounter
-            DoubleRepeatSlash
-            DynamicLineSpanner
-            DynamicText
-            DynamicTextSpanner
-            Episema
-            Fingering
-            FingeringColumn
-            Flag
-            FootnoteItem
-            FootnoteSpanner
-            FretBoard
-            Glissando
-            GraceSpacing
-            GridLine
-            GridPoint
-            Hairpin
-            HorizontalBracket
-            InstrumentName
-            InstrumentSwitch
-            KeyCancellation
-            KeySignature
-            KievanLigature
-            LaissezVibrerTie
-            LaissezVibrerTieColumn
-            LedgerLineSpanner
-            LeftEdge
-            LigatureBracket
-            LyricExtender
-            LyricHyphen
-            LyricSpace
-            LyricText
-            MeasureCounter
-            MeasureGrouping
-            MelodyItem
-            MensuralLigature
-            MetronomeMark
-            MultiMeasureRest
-            MultiMeasureRestNumber
-            MultiMeasureRestText
-            NonMusicalPaperColumn
-            NoteCollision
-            NoteColumn
-            NoteHead
-            NoteName
-            NoteSpacing
-            OttavaBracket
-            PaperColumn
-            ParenthesesItem
-            PercentRepeat
-            PercentRepeatCounter
-            PhrasingSlur
-            PianoPedalBracket
-            RehearsalMark
-            RepeatSlash
-            RepeatTie
-            RepeatTieColumn
-            Rest
-            RestCollision
-            Script
-            ScriptColumn
-            ScriptRow
-            Slur
-            SostenutoPedal
-            SostenutoPedalLineSpanner
-            SpacingSpanner
-            SpanBar
-            SpanBarStub
-            StaffGrouper
-            StaffSpacing
-            StaffSymbol
-            StanzaNumber
-            Stem
-            StemStub
-            StemTremolo
-            StringNumber
-            StrokeFinger
-            SustainPedal
-            SustainPedalLineSpanner
-            System
-            SystemStartBar
-            SystemStartBrace
-            SystemStartBracket
-            SystemStartSquare
-            TabNoteHead
-            TextScript
-            TextSpanner
-            Tie
-            TieColumn
-            TimeSignature
-            TrillPitchAccidental
-            TrillPitchGroup
-            TrillPitchHead
-            TrillSpanner
-            TupletBracket
-            TupletNumber
-            UnaCordaPedal
-            UnaCordaPedalLineSpanner
-            VaticanaLigature
-            VerticalAlignment
-            VerticalAxisGroup
-            VoiceFollower
-            VoltaBracket
-            VoltaBracketSpanner
+            ::
+
+                >>> class_ = abjad.lilypondparsertools.LilyPondParser
+                >>> for grob in class_.list_known_grobs():
+                ...     print(grob)
+                ...
+                Accidental
+                AccidentalCautionary
+                AccidentalPlacement
+                AccidentalSuggestion
+                Ambitus
+                AmbitusAccidental
+                AmbitusLine
+                AmbitusNoteHead
+                Arpeggio
+                BalloonTextItem
+                BarLine
+                BarNumber
+                BassFigure
+                BassFigureAlignment
+                BassFigureAlignmentPositioning
+                BassFigureBracket
+                BassFigureContinuation
+                BassFigureLine
+                Beam
+                BendAfter
+                BreakAlignGroup
+                BreakAlignment
+                BreathingSign
+                ChordName
+                Clef
+                ClefModifier
+                ClusterSpanner
+                ClusterSpannerBeacon
+                CombineTextScript
+                CueClef
+                CueEndClef
+                Custos
+                DotColumn
+                Dots
+                DoublePercentRepeat
+                DoublePercentRepeatCounter
+                DoubleRepeatSlash
+                DynamicLineSpanner
+                DynamicText
+                DynamicTextSpanner
+                Episema
+                Fingering
+                FingeringColumn
+                Flag
+                FootnoteItem
+                FootnoteSpanner
+                FretBoard
+                Glissando
+                GraceSpacing
+                GridLine
+                GridPoint
+                Hairpin
+                HorizontalBracket
+                InstrumentName
+                InstrumentSwitch
+                KeyCancellation
+                KeySignature
+                KievanLigature
+                LaissezVibrerTie
+                LaissezVibrerTieColumn
+                LedgerLineSpanner
+                LeftEdge
+                LigatureBracket
+                LyricExtender
+                LyricHyphen
+                LyricSpace
+                LyricText
+                MeasureCounter
+                MeasureGrouping
+                MelodyItem
+                MensuralLigature
+                MetronomeMark
+                MultiMeasureRest
+                MultiMeasureRestNumber
+                MultiMeasureRestText
+                NonMusicalPaperColumn
+                NoteCollision
+                NoteColumn
+                NoteHead
+                NoteName
+                NoteSpacing
+                OttavaBracket
+                PaperColumn
+                ParenthesesItem
+                PercentRepeat
+                PercentRepeatCounter
+                PhrasingSlur
+                PianoPedalBracket
+                RehearsalMark
+                RepeatSlash
+                RepeatTie
+                RepeatTieColumn
+                Rest
+                RestCollision
+                Script
+                ScriptColumn
+                ScriptRow
+                Slur
+                SostenutoPedal
+                SostenutoPedalLineSpanner
+                SpacingSpanner
+                SpanBar
+                SpanBarStub
+                StaffGrouper
+                StaffSpacing
+                StaffSymbol
+                StanzaNumber
+                Stem
+                StemStub
+                StemTremolo
+                StringNumber
+                StrokeFinger
+                SustainPedal
+                SustainPedalLineSpanner
+                System
+                SystemStartBar
+                SystemStartBrace
+                SystemStartBracket
+                SystemStartSquare
+                TabNoteHead
+                TextScript
+                TextSpanner
+                Tie
+                TieColumn
+                TimeSignature
+                TrillPitchAccidental
+                TrillPitchGroup
+                TrillPitchHead
+                TrillSpanner
+                TupletBracket
+                TupletNumber
+                UnaCordaPedal
+                UnaCordaPedalLineSpanner
+                VaticanaLigature
+                VerticalAlignment
+                VerticalAxisGroup
+                VoiceFollower
+                VoltaBracket
+                VoltaBracketSpanner
 
         Returns tuple.
         '''
@@ -1120,24 +1257,27 @@ class LilyPondParser(abctools.Parser):
     def list_known_languages():
         r'''Lists all note-input languages recognized by LilyPond parser.
 
-        ::
+        ..  container:: example
 
-            >>> for x in lilypondparsertools.LilyPondParser.list_known_languages():
-            ...     print(x)
-            ...
-            catalan
-            deutsch
-            english
-            espanol
-            español
-            français
-            italiano
-            nederlands
-            norsk
-            portugues
-            suomi
-            svenska
-            vlaams
+            ::
+
+                >>> class_ = abjad.lilypondparsertools.LilyPondParser
+                >>> for language in class_.list_known_languages():
+                ...     print(language)
+                ...
+                catalan
+                deutsch
+                english
+                espanol
+                español
+                français
+                italiano
+                nederlands
+                norsk
+                portugues
+                suomi
+                svenska
+                vlaams
 
         Returns list.
         '''
@@ -1148,165 +1288,168 @@ class LilyPondParser(abctools.Parser):
     def list_known_markup_functions():
         r'''Lists all markup functions recognized by LilyPond parser.
 
-        ::
+        ..  container:: example
 
-            >>> for x in lilypondparsertools.LilyPondParser.list_known_markup_functions():
-            ...     print(x)
-            ...
-            abs-fontsize
-            arrow-head
-            auto-footnote
-            backslashed-digit
-            beam
-            bold
-            box
-            bracket
-            caps
-            center-align
-            center-column
-            char
-            circle
-            column
-            column-lines
-            combine
-            compound-meter
-            concat
-            customTabClef
-            dir-column
-            doubleflat
-            doublesharp
-            draw-circle
-            draw-dashed-line
-            draw-dotted-line
-            draw-hline
-            draw-line
-            dynamic
-            ellipse
-            epsfile
-            eyeglasses
-            fermata
-            fill-line
-            fill-with-pattern
-            filled-box
-            finger
-            first-visible
-            flat
-            fontCaps
-            fontsize
-            footnote
-            fraction
-            fret-diagram
-            fret-diagram-terse
-            fret-diagram-verbose
-            fromproperty
-            general-align
-            halign
-            harp-pedal
-            hbracket
-            hcenter-in
-            hspace
-            huge
-            italic
-            justified-lines
-            justify
-            justify-field
-            justify-line
-            justify-string
-            large
-            larger
-            left-align
-            left-brace
-            left-column
-            line
-            lookup
-            lower
-            magnify
-            map-markup-commands
-            markalphabet
-            markletter
-            medium
-            musicglyph
-            natural
-            normal-size-sub
-            normal-size-super
-            normal-text
-            normalsize
-            note
-            note-by-number
-            null
-            number
-            on-the-fly
-            oval
-            override
-            override-lines
-            pad
-            pad-around
-            pad-to-box
-            pad-x
-            page-link
-            page-ref
-            parenthesize
-            path
-            pattern
-            postscript
-            property-recursive
-            put-adjacent
-            raise
-            replace
-            rest
-            rest-by-number
-            right-align
-            right-brace
-            right-column
-            roman
-            rotate
-            rounded-box
-            sans
-            scale
-            score
-            score-lines
-            semiflat
-            semisharp
-            sesquiflat
-            sesquisharp
-            sharp
-            simple
-            slashed-digit
-            small
-            smallCaps
-            smaller
-            stencil
-            strut
-            sub
-            super
-            table-of-contents
-            teeny
-            text
-            tied-lyric
-            tiny
-            translate
-            translate-scaled
-            transparent
-            triangle
-            typewriter
-            underline
-            upright
-            vcenter
-            verbatim-file
-            vspace
-            whiteout
-            whiteout-box
-            with-color
-            with-dimensions
-            with-link
-            with-url
-            woodwind-diagram
-            wordwrap
-            wordwrap-field
-            wordwrap-internal
-            wordwrap-lines
-            wordwrap-string
-            wordwrap-string-internal
+            ::
+
+                >>> class_  = abjad.lilypondparsertools.LilyPondParser
+                >>> for name in class_.list_known_markup_functions():
+                ...     print(name)
+                ...
+                abs-fontsize
+                arrow-head
+                auto-footnote
+                backslashed-digit
+                beam
+                bold
+                box
+                bracket
+                caps
+                center-align
+                center-column
+                char
+                circle
+                column
+                column-lines
+                combine
+                compound-meter
+                concat
+                customTabClef
+                dir-column
+                doubleflat
+                doublesharp
+                draw-circle
+                draw-dashed-line
+                draw-dotted-line
+                draw-hline
+                draw-line
+                dynamic
+                ellipse
+                epsfile
+                eyeglasses
+                fermata
+                fill-line
+                fill-with-pattern
+                filled-box
+                finger
+                first-visible
+                flat
+                fontCaps
+                fontsize
+                footnote
+                fraction
+                fret-diagram
+                fret-diagram-terse
+                fret-diagram-verbose
+                fromproperty
+                general-align
+                halign
+                harp-pedal
+                hbracket
+                hcenter-in
+                hspace
+                huge
+                italic
+                justified-lines
+                justify
+                justify-field
+                justify-line
+                justify-string
+                large
+                larger
+                left-align
+                left-brace
+                left-column
+                line
+                lookup
+                lower
+                magnify
+                map-markup-commands
+                markalphabet
+                markletter
+                medium
+                musicglyph
+                natural
+                normal-size-sub
+                normal-size-super
+                normal-text
+                normalsize
+                note
+                note-by-number
+                null
+                number
+                on-the-fly
+                oval
+                override
+                override-lines
+                pad
+                pad-around
+                pad-to-box
+                pad-x
+                page-link
+                page-ref
+                parenthesize
+                path
+                pattern
+                postscript
+                property-recursive
+                put-adjacent
+                raise
+                replace
+                rest
+                rest-by-number
+                right-align
+                right-brace
+                right-column
+                roman
+                rotate
+                rounded-box
+                sans
+                scale
+                score
+                score-lines
+                semiflat
+                semisharp
+                sesquiflat
+                sesquisharp
+                sharp
+                simple
+                slashed-digit
+                small
+                smallCaps
+                smaller
+                stencil
+                strut
+                sub
+                super
+                table-of-contents
+                teeny
+                text
+                tied-lyric
+                tiny
+                translate
+                translate-scaled
+                transparent
+                triangle
+                typewriter
+                underline
+                upright
+                vcenter
+                verbatim-file
+                vspace
+                whiteout
+                whiteout-box
+                with-color
+                with-dimensions
+                with-link
+                with-url
+                woodwind-diagram
+                wordwrap
+                wordwrap-field
+                wordwrap-internal
+                wordwrap-lines
+                wordwrap-string
+                wordwrap-string-internal
 
         Returns list.
         '''
@@ -1318,26 +1461,29 @@ class LilyPondParser(abctools.Parser):
     def list_known_music_functions():
         r'''Lists all music functions recognized by LilyPond parser.
 
-        ::
+        ..  container:: example
 
-            >>> for x in lilypondparsertools.LilyPondParser.list_known_music_functions():
-            ...     print(x)
-            ...
-            acciaccatura
-            appoggiatura
-            bar
-            breathe
-            clef
-            grace
-            key
-            language
-            makeClusters
-            mark
-            relative
-            skip
-            time
-            times
-            transpose
+            ::
+
+                >>> class_ = abjad.lilypondparsertools.LilyPondParser
+                >>> for name in class_.list_known_music_functions():
+                ...     print(name)
+                ...
+                acciaccatura
+                appoggiatura
+                bar
+                breathe
+                clef
+                grace
+                key
+                language
+                makeClusters
+                mark
+                relative
+                skip
+                time
+                times
+                transpose
 
         Returns list.
         '''
@@ -1364,11 +1510,12 @@ class LilyPondParser(abctools.Parser):
 
             >>> name = 'my-custom-markup-function'
             >>> signature = ['markup?']
-            >>> lilypondparsertools.LilyPondParser.register_markup_function(name, signature)
+            >>> class_ = abjad.lilypondparsertools.LilyPondParser
+            >>> class_.register_markup_function(name, signature)
 
         ::
 
-            >>> parser = lilypondparsertools.LilyPondParser()
+            >>> parser = abjad.lilypondparsertools.LilyPondParser()
             >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
             >>> parser(string)
             Markup(contents=[MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz'])])
@@ -1379,7 +1526,6 @@ class LilyPondParser(abctools.Parser):
 
         Returns none.
         '''
-
         from abjad.ly.markup_functions import markup_functions
         assert isinstance(name, str)
         assert all(not x.isspace() for x in name)
@@ -1396,24 +1542,27 @@ class LilyPondParser(abctools.Parser):
     def available_languages(self):
         r'''Tuple of pitch-name languages supported by LilyPondParser.
 
-        ::
+        ..  container:: example
 
-            >>> parser = lilypondparsertools.LilyPondParser()
-            >>> for language in parser.available_languages:
-            ...     print(language)
-            catalan
-            deutsch
-            english
-            espanol
-            español
-            français
-            italiano
-            nederlands
-            norsk
-            portugues
-            suomi
-            svenska
-            vlaams
+            ::
+
+                >>> parser = abjad.lilypondparsertools.LilyPondParser()
+                >>> for language in parser.available_languages:
+                ...     print(language)
+                ...
+                catalan
+                deutsch
+                english
+                espanol
+                español
+                français
+                italiano
+                nederlands
+                norsk
+                portugues
+                suomi
+                svenska
+                vlaams
 
         Returns tuple.
         '''
@@ -1423,30 +1572,32 @@ class LilyPondParser(abctools.Parser):
     def default_language(self):
         r'''Gets and sets default language of parser.
 
-        ::
+        ..  container:: example
 
-            >>> parser = lilypondparsertools.LilyPondParser()
+            ::
 
-        ::
+                >>> parser = abjad.lilypondparsertools.LilyPondParser()
 
-            >>> parser.default_language
-            'english'
+            ::
 
-        ::
+                >>> parser.default_language
+                'english'
 
-            >>> parser('{ c df e fs }')
-            Container('c4 df4 e4 fs4')
+            ::
 
-        ::
+                >>> parser('{ c df e fs }')
+                Container('c4 df4 e4 fs4')
 
-            >>> parser.default_language = 'nederlands'
-            >>> parser.default_language
-            'nederlands'
+            ::
 
-        ::
+                >>> parser.default_language = 'nederlands'
+                >>> parser.default_language
+                'nederlands'
 
-            >>> parser('{ c des e fis }')
-            Container('c4 df4 e4 fs4')
+            ::
+
+                >>> parser('{ c des e fis }')
+                Container('c4 df4 e4 fs4')
 
         Returns string.
         '''

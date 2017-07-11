@@ -8,15 +8,19 @@ from abjad.tools.topleveltools import new
 class PitchSet(Set):
     r'''Pitch set.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Numbered pitch set:
 
         ::
 
-            >>> setting = PitchSet(
+            >>> setting = abjad.PitchSet(
             ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-            ...     item_class=NumberedPitch,
+            ...     item_class=abjad.NumberedPitch,
             ...     )
             >>> setting
             PitchSet([-2, -1.5, 6, 7])
@@ -34,9 +38,9 @@ class PitchSet(Set):
 
         ::
 
-            >>> setting = PitchSet(
+            >>> setting = abjad.PitchSet(
             ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
-            ...     item_class=NamedPitch,
+            ...     item_class=abjad.NamedPitch,
             ...     )
             >>> setting
             PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
@@ -66,9 +70,9 @@ class PitchSet(Set):
 
             ::
 
-                >>> setting = PitchSet(
+                >>> setting = abjad.PitchSet(
                 ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-                ...     item_class=NumberedPitch,
+                ...     item_class=abjad.NumberedPitch,
                 ...     )
 
             ::
@@ -78,7 +82,7 @@ class PitchSet(Set):
             ..  docs::
 
                 >>> lilypond_file = setting.__illustrate__()
-                >>> f(lilypond_file[Score])
+                >>> f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new PianoStaff <<
                         \new Staff {
@@ -100,9 +104,9 @@ class PitchSet(Set):
 
             ::
 
-                >>> setting = PitchSet(
+                >>> setting = abjad.PitchSet(
                 ...     items=[6, 7, 7],
-                ...     item_class=NumberedPitch,
+                ...     item_class=abjad.NumberedPitch,
                 ...     )
 
             ::
@@ -112,7 +116,7 @@ class PitchSet(Set):
             ..  docs::
 
                 >>> lilypond_file = setting.__illustrate__()
-                >>> f(lilypond_file[Score])
+                >>> f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new PianoStaff <<
                         \new Staff {
@@ -227,7 +231,7 @@ class PitchSet(Set):
 
             ::
 
-                >>> pitch_set = PitchSet('c e g b')
+                >>> pitch_set = abjad.PitchSet('c e g b')
                 >>> sorted(pitch_set.hertz)
                 [130.81..., 164.81..., 195.99..., 246.94...]
 
@@ -260,10 +264,10 @@ class PitchSet(Set):
 
             ::
 
-                >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
-                >>> staff_2 = Staff("c4. r8 g2")
-                >>> selection = select((staff_1, staff_2))
-                >>> PitchSet.from_selection(selection)
+                >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
+                >>> staff_2 = abjad.Staff("c4. r8 g2")
+                >>> selection = abjad.select((staff_1, staff_2))
+                >>> abjad.PitchSet.from_selection(selection)
                 PitchSet(['c', 'g', 'b', "c'", "d'", "fs'", "a'"])
 
         Returns pitch set.
@@ -290,9 +294,9 @@ class PitchSet(Set):
 
             ::
 
-                >>> pitch_set = PitchSet(
+                >>> pitch_set = abjad.PitchSet(
                 ...     items=[10, 19, 20, 23, 24, 26, 27, 29, 30, 33, 37, 40],
-                ...     item_class=NumberedPitch,
+                ...     item_class=abjad.NumberedPitch,
                 ...     )
                 >>> pitch_classes = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
                 >>> pitches = pitch_set.register(pitch_classes)

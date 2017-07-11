@@ -10,25 +10,31 @@ class BassVoice(Instrument):
 
     ::
 
-        >>> staff = Staff("c4 d4 e4 fs4")
-        >>> bass = instrumenttools.BassVoice()
-        >>> attach(bass, staff)
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { Bass }
-            \set Staff.shortInstrumentName = \markup { Bass }
-            c4
-            d4
-            e4
-            fs4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c4 d4 e4 fs4")
+            >>> bass = abjad.instrumenttools.BassVoice()
+            >>> abjad.attach(bass, staff)
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { Bass }
+                \set Staff.shortInstrumentName = \markup { Bass }
+                c4
+                d4
+                e4
+                fs4
+            }
 
     '''
 

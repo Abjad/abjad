@@ -5,13 +5,17 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class SetClass(AbjadValueObject):
     r'''Set-class.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes transposition-inversion set-class (with Forte rank):
 
         ::
 
-            >>> set_class = SetClass(4, 29)
+            >>> set_class = abjad.SetClass(4, 29)
 
         ::
 
@@ -26,7 +30,7 @@ class SetClass(AbjadValueObject):
 
         ::
 
-            >>> set_class = SetClass(4, 29, lex_rank=True)
+            >>> set_class = abjad.SetClass(4, 29, lex_rank=True)
 
         ::
 
@@ -41,7 +45,7 @@ class SetClass(AbjadValueObject):
 
         ::
 
-            >>> set_class = SetClass(4, 29, transposition_only=True)
+            >>> set_class = abjad.SetClass(4, 29, transposition_only=True)
 
         ::
 
@@ -56,7 +60,7 @@ class SetClass(AbjadValueObject):
 
         ::
 
-            >>> set_class = SetClass(12, 1, transposition_only=True)
+            >>> set_class = abjad.SetClass(12, 1, transposition_only=True)
 
         ::
 
@@ -885,7 +889,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(4, 29)
+                >>> set_class = abjad.SetClass(4, 29)
                 >>> print(set_class)
                 SC(4-29){0, 1, 3, 7}
 
@@ -896,7 +900,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     lex_rank=True,
                 ...     )
@@ -909,7 +913,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     transposition_only=True,
                 ...     )
@@ -1015,7 +1019,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(4, 29)
+                >>> set_class = abjad.SetClass(4, 29)
                 >>> print(set_class)
                 SC(4-29){0, 1, 3, 7}
 
@@ -1031,7 +1035,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     lex_rank=True,
                 ...     )
@@ -1049,7 +1053,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     transposition_only=True,
                 ...     )
@@ -1077,7 +1081,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(4, 29)
+                >>> set_class = abjad.SetClass(4, 29)
                 >>> print(set_class)
                 SC(4-29){0, 1, 3, 7}
 
@@ -1085,7 +1089,7 @@ class SetClass(AbjadValueObject):
 
                 >>> pitch_class_set = set_class.prime_form
                 >>> inverted_pitch_class_set = pitch_class_set.invert()
-                >>> inverted_set_class = SetClass.from_pitch_class_set(
+                >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
                 ...     inverted_pitch_class_set
                 ...     )
                 >>> print(inverted_set_class)
@@ -1102,7 +1106,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     lex_rank=True,
                 ...     )
@@ -1113,7 +1117,7 @@ class SetClass(AbjadValueObject):
 
                 >>> pitch_class_set = set_class.prime_form
                 >>> inverted_pitch_class_set = pitch_class_set.invert()
-                >>> inverted_set_class = SetClass.from_pitch_class_set(
+                >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
                 ...     inverted_pitch_class_set,
                 ...     lex_rank=True,
                 ...     )
@@ -1131,7 +1135,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     transposition_only=True,
                 ...     )
@@ -1142,7 +1146,7 @@ class SetClass(AbjadValueObject):
 
                 >>> pitch_class_set = set_class.prime_form
                 >>> inverted_pitch_class_set = pitch_class_set.invert()
-                >>> inverted_set_class = SetClass.from_pitch_class_set(
+                >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
                 ...     inverted_pitch_class_set,
                 ...     transposition_only=True,
                 ...     )
@@ -1175,7 +1179,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(4, 29)
+                >>> set_class = abjad.SetClass(4, 29)
                 >>> set_class
                 SetClass(cardinality=4, rank=29)
 
@@ -1190,7 +1194,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     lex_rank=True,
                 ...     )
@@ -1208,7 +1212,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     transposition_only=True,
                 ...     )
@@ -1239,7 +1243,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(4, 29)
+                >>> set_class = abjad.SetClass(4, 29)
                 >>> print(set_class)
                 SC(4-29){0, 1, 3, 7}
 
@@ -1255,7 +1259,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     lex_rank=True,
                 ...     )
@@ -1273,7 +1277,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     transposition_only=True,
                 ...     )
@@ -1300,7 +1304,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(4, 29)
+                >>> set_class = abjad.SetClass(4, 29)
                 >>> print(set_class)
                 SC(4-29){0, 1, 3, 7}
 
@@ -1316,7 +1320,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     lex_rank=True,
                 ...     )
@@ -1334,7 +1338,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     transposition_only=True,
                 ...     )
@@ -1364,7 +1368,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(4, 29)
+                >>> set_class = abjad.SetClass(4, 29)
                 >>> print(set_class)
                 SC(4-29){0, 1, 3, 7}
 
@@ -1375,7 +1379,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     lex_rank=True,
                 ...     )
@@ -1388,7 +1392,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_class = SetClass(
+                >>> set_class = abjad.SetClass(
                 ...     4, 29,
                 ...     transposition_only=True,
                 ...     )
@@ -1420,15 +1424,15 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> pc_set = PitchClassSet([9, 0, 3, 5, 6])
-                >>> set_class = SetClass.from_pitch_class_set(pc_set)
+                >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
                 >>> print(set_class)
                 SC(5-31){0, 1, 3, 6, 9}
 
             ::
 
-                >>> pc_set = PitchClassSet([9, 0, 3, 5, 6])
-                >>> set_class = SetClass.from_pitch_class_set(
+                >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(
                 ...     pc_set,
                 ...     lex_rank=True,
                 ...     )
@@ -1437,8 +1441,8 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> pc_set = PitchClassSet([9, 0, 3, 5, 6])
-                >>> set_class = SetClass.from_pitch_class_set(
+                >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(
                 ...     pc_set,
                 ...     transposition_only=True,
                 ...     )
@@ -1451,15 +1455,15 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> pc_set = PitchClassSet([9, 11, 1, 2, 4, 6])
-                >>> set_class = SetClass.from_pitch_class_set(pc_set)
+                >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
                 >>> print(set_class)
                 SC(6-32){0, 2, 4, 5, 7, 9}
 
             ::
 
-                >>> pc_set = PitchClassSet([9, 11, 1, 2, 4, 6])
-                >>> set_class = SetClass.from_pitch_class_set(
+                >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(
                 ...     pc_set,
                 ...     lex_rank=True,
                 ...     )
@@ -1468,8 +1472,8 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> pc_set = PitchClassSet([9, 11, 1, 2, 4, 6])
-                >>> set_class = SetClass.from_pitch_class_set(
+                >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(
                 ...     pc_set,
                 ...     transposition_only=True,
                 ...     )
@@ -1482,15 +1486,15 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> pc_set = PitchClassSet([11, 0, 5, 6])
-                >>> set_class = SetClass.from_pitch_class_set(pc_set)
+                >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
                 >>> print(set_class)
                 SC(4-9){0, 1, 6, 7}
 
             ::
 
-                >>> pc_set = PitchClassSet([11, 0, 5, 6])
-                >>> set_class = SetClass.from_pitch_class_set(
+                >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(
                 ...     pc_set,
                 ...     lex_rank=True,
                 ...     )
@@ -1499,8 +1503,8 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> pc_set = PitchClassSet([11, 0, 5, 6])
-                >>> set_class = SetClass.from_pitch_class_set(
+                >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(
                 ...     pc_set,
                 ...     transposition_only=True,
                 ...     )
@@ -1544,7 +1548,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_classes = SetClass.list_set_classes(
+                >>> set_classes = abjad.SetClass.list_set_classes(
                 ...     cardinality=4,
                 ...     )
                 >>> for set_class in set_classes:
@@ -1588,7 +1592,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_classes = SetClass.list_set_classes(
+                >>> set_classes = abjad.SetClass.list_set_classes(
                 ...     cardinality=4,
                 ...     lex_rank=True,
                 ...     )
@@ -1632,7 +1636,7 @@ class SetClass(AbjadValueObject):
 
             ::
 
-                >>> set_classes = SetClass.list_set_classes(
+                >>> set_classes = abjad.SetClass.list_set_classes(
                 ...     cardinality=4,
                 ...     transposition_only=True,
                 ...     )

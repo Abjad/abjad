@@ -8,20 +8,24 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class NonreducedRatio(AbjadValueObject):
     '''Nonreduced ratio.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Nonreduced ratio of two numbers:
 
         ::
 
-            >>> mathtools.NonreducedRatio((2, 4))
+            >>> abjad.NonreducedRatio((2, 4))
             NonreducedRatio((2, 4))
 
     ..  container:: example
 
         Nonreduced ratio of three numbers:
 
-            >>> mathtools.NonreducedRatio((2, 4, 2))
+            >>> abjad.NonreducedRatio((2, 4, 2))
             NonreducedRatio((2, 4, 2))
 
     '''
@@ -70,7 +74,7 @@ class NonreducedRatio(AbjadValueObject):
 
             ::
 
-                >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
+                >>> ratio = abjad.NonreducedRatio((2, 4, 2))
                 >>> print(format(ratio))
                 abjad.NonreducedRatio((2, 4, 2))
 
@@ -88,7 +92,7 @@ class NonreducedRatio(AbjadValueObject):
 
             ::
 
-                >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
+                >>> ratio = abjad.NonreducedRatio((2, 4, 2))
                 >>> ratio[1]
                 4
 
@@ -121,7 +125,7 @@ class NonreducedRatio(AbjadValueObject):
 
             ::
 
-                >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
+                >>> ratio = abjad.NonreducedRatio((2, 4, 2))
                 >>> len(ratio)
                 3
 
@@ -136,21 +140,21 @@ class NonreducedRatio(AbjadValueObject):
 
             ::
 
-                >>> 1 / Ratio((1, 1, 3))
+                >>> 1 / abjad.Ratio((1, 1, 3))
                 [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
 
         ..  container:: example
 
             ::
 
-                >>> Fraction(1) / Ratio((1, 1, 3))
+                >>> abjad.Fraction(1) / abjad.Ratio((1, 1, 3))
                 [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
 
         ..  container:: example
 
             ::
 
-                >>> 1.0 / Ratio((1, 1, 3))
+                >>> 1.0 / abjad.Ratio((1, 1, 3))
                 [0.2, 0.2, 0.6]
 
         Returns list of fractions or list of floats.
@@ -211,7 +215,7 @@ class NonreducedRatio(AbjadValueObject):
 
             ::
 
-                >>> ratio = mathtools.NonreducedRatio((2, 4))
+                >>> ratio = abjad.NonreducedRatio((2, 4))
                 >>> ratio.multipliers
                 (Multiplier(1, 3), Multiplier(2, 3))
 
@@ -221,7 +225,7 @@ class NonreducedRatio(AbjadValueObject):
 
             ::
 
-                >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
+                >>> ratio = abjad.NonreducedRatio((2, 4, 2))
                 >>> ratio.multipliers
                 (Multiplier(1, 4), Multiplier(1, 2), Multiplier(1, 4))
 
@@ -246,7 +250,7 @@ class NonreducedRatio(AbjadValueObject):
 
             ::
 
-                >>> ratio = mathtools.NonreducedRatio((2, 4))
+                >>> ratio = abjad.NonreducedRatio((2, 4))
                 >>> ratio.numbers
                 (2, 4)
 
@@ -256,7 +260,7 @@ class NonreducedRatio(AbjadValueObject):
 
             ::
 
-                >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
+                >>> ratio = abjad.NonreducedRatio((2, 4, 2))
                 >>> ratio.numbers
                 (2, 4, 2)
 

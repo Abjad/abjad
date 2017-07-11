@@ -10,22 +10,28 @@ class BaritoneSaxophone(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> baritone_saxophone = instrumenttools.BaritoneSaxophone()
-        >>> attach(baritone_saxophone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Baritone saxophone" }
-            \set Staff.shortInstrumentName = \markup { "Bar. sax." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
+            >>> abjad.attach(baritone_saxophone, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Baritone saxophone" }
+                \set Staff.shortInstrumentName = \markup { "Bar. sax." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

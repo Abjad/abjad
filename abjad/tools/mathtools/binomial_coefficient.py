@@ -5,12 +5,16 @@ import math
 def binomial_coefficient(n, k):
     r'''Gets binomial coefficient of `n` choose `k`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
             >>> for k in range(8):
-            ...     print(k, '\t', mathtools.binomial_coefficient(8, k))
+            ...     print(k, '\t', abjad.mathtools.binomial_coefficient(8, k))
             ... 
             0  1
             1  8

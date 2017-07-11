@@ -5,15 +5,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BreathMark(AbjadValueObject):
     r'''Breath mark.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Attached to a single note:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> breath_mark = indicatortools.BreathMark()
-            >>> attach(breath_mark, note)
+            >>> note = abjad.Note("c'4")
+            >>> breath_mark = abjad.BreathMark()
+            >>> abjad.attach(breath_mark, note)
             >>> show(note) # doctest: +SKIP
 
         ..  docs::
@@ -27,11 +31,11 @@ class BreathMark(AbjadValueObject):
 
         ::
 
-            >>> staff = Staff("c'8 d' e' f' g' a' b' c''")
-            >>> attach(Beam(), staff[:4])
-            >>> attach(Beam(), staff[4:])
-            >>> attach(indicatortools.BreathMark(), staff[3])
-            >>> attach(indicatortools.BreathMark(), staff[7])
+            >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+            >>> abjad.attach(abjad.Beam(), staff[:4])
+            >>> abjad.attach(abjad.Beam(), staff[4:])
+            >>> abjad.attach(abjad.BreathMark(), staff[3])
+            >>> abjad.attach(abjad.BreathMark(), staff[7])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -76,7 +80,7 @@ class BreathMark(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.BreathMark())
+                >>> str(abjad.BreathMark())
                 '\\breathe'
 
         Returns string.
@@ -110,7 +114,7 @@ class BreathMark(AbjadValueObject):
 
             ::
 
-                >>> breath_mark = indicatortools.BreathMark()
+                >>> breath_mark = abjad.BreathMark()
                 >>> breath_mark.default_scope is None
                 True
 

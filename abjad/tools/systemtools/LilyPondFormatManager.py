@@ -4,6 +4,11 @@ from abjad.tools.abctools import AbjadObject
 
 class LilyPondFormatManager(AbjadObject):
     r'''Manages LilyPond formatting logic.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -471,22 +476,26 @@ class LilyPondFormatManager(AbjadObject):
     def report_component_format_contributions(component, verbose=False):
         r'''Reports `component` format contributions.
 
-            >>> staff = Staff("c'4 [ ( d'4 e'4 f'4 ] )")
-            >>> override(staff[0]).note_head.color = 'red'
+        ..  container:: example
 
-        ::
+            ::
 
-            >>> manager = systemtools.LilyPondFormatManager
-            >>> print(manager.report_component_format_contributions(staff[0]))
-            slot 1:
-                grob overrides:
-                    \once \override NoteHead.color = #red
-            slot 3:
-            slot 4:
-                leaf body:
-                    c'4 [ (
-            slot 5:
-            slot 7:
+                >>> staff = abjad.Staff("c'4 [ ( d'4 e'4 f'4 ] )")
+                >>> abjad.override(staff[0]).note_head.color = 'red'
+
+            ::
+
+                >>> manager = abjad.systemtools.LilyPondFormatManager
+                >>> print(manager.report_component_format_contributions(staff[0]))
+                slot 1:
+                    grob overrides:
+                        \once \override NoteHead.color = #red
+                slot 3:
+                slot 4:
+                    leaf body:
+                        c'4 [ (
+                slot 5:
+                slot 7:
 
         Returns string.
         '''
@@ -500,13 +509,13 @@ class LilyPondFormatManager(AbjadObject):
 
             ::
 
-                >>> staff = Staff("c8 d e f")
-                >>> spanner = spannertools.Beam()
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c8 d e f")
+                >>> spanner = abjad.Beam()
+                >>> abjad.attach(spanner, staff[:])
 
             ::
 
-                >>> manager = systemtools.LilyPondFormatManager
+                >>> manager = abjad.systemtools.LilyPondFormatManager
                 >>> print(manager.report_spanner_format_contributions(spanner))
                 c8	systemtools.LilyPondFormatBundle(
                         right=LilyPondFormatBundle.SlotContributions(

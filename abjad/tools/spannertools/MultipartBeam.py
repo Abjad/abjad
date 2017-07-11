@@ -5,16 +5,20 @@ from abjad.tools.spannertools.Beam import Beam
 class MultipartBeam(Beam):
     r'''Multipart beam.
 
+    ::
+
+        >>> import abjad
+
     Beams together everything that can be beamed and ignores everything else.
 
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'4 f'8 g'8 r4")
-            >>> beam = MultipartBeam()
-            >>> attach(beam, staff[:])
-            >>> setting(staff).auto_beaming = False
+            >>> staff = abjad.Staff("c'8 d'8 e'4 f'8 g'8 r4")
+            >>> beam = abjad.MultipartBeam()
+            >>> abjad.attach(beam, staff[:])
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -35,10 +39,10 @@ class MultipartBeam(Beam):
 
         ::
 
-            >>> staff = Staff("c'8 r8 d'8 r8 f'8 g'8 r4")
-            >>> beam = MultipartBeam()
-            >>> attach(beam, staff[:])
-            >>> setting(staff).auto_beaming = False
+            >>> staff = abjad.Staff("c'8 r8 d'8 r8 f'8 g'8 r4")
+            >>> beam = abjad.MultipartBeam()
+            >>> abjad.attach(beam, staff[:])
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -165,10 +169,10 @@ class MultipartBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 r8 f'8 g'8 r4.")
-                >>> setting(staff).auto_beaming = False
-                >>> beam = MultipartBeam()
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 r8 f'8 g'8 r4.")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> beam = abjad.MultipartBeam()
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -195,10 +199,10 @@ class MultipartBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 r8 f'8 g'8 r4.")
-                >>> setting(staff).auto_beaming = False
-                >>> beam = MultipartBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 r8 f'8 g'8 r4.")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> beam = abjad.MultipartBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -225,10 +229,10 @@ class MultipartBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 r4. f'8 g'8 r8")
-                >>> setting(staff).auto_beaming = False
-                >>> beam = MultipartBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 r4. f'8 g'8 r8")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> beam = abjad.MultipartBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -255,10 +259,10 @@ class MultipartBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 s4. f'8 g'8 s8")
-                >>> setting(staff).auto_beaming = False
-                >>> beam = MultipartBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 s4. f'8 g'8 s8")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> beam = abjad.MultipartBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::

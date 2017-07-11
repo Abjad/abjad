@@ -23,7 +23,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___01():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -77,7 +77,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___02():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -131,7 +131,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___03():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -175,7 +175,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___04():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -220,7 +220,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -274,7 +274,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -337,7 +337,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___07():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -392,7 +392,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___08():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -447,7 +447,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___09():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -493,7 +493,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___10():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -539,7 +539,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -596,7 +596,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -661,7 +661,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___13():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -712,7 +712,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___14():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -756,7 +756,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___15():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -804,7 +804,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -858,7 +858,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -919,7 +919,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -971,7 +971,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___19():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -1016,7 +1016,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___20():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -1065,7 +1065,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -1120,7 +1120,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(

@@ -19,7 +19,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
     selections = Sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     measures = mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == String.normalize(
@@ -64,7 +64,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
     selections = Sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     measures = mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == String.normalize(

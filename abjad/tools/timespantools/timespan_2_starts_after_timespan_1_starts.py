@@ -6,21 +6,27 @@ def timespan_2_starts_after_timespan_1_starts(
     timespan_2=None,
     hold=False,
     ):
-    r'''Makes time relation indicating that `timespan_2` happens
-    during `timespan_1`.
+    r'''Makes time relation indicating that `timespan_2` happens during
+    `timespan_1`.
 
     ::
 
-        >>> relation = timespantools.timespan_2_starts_after_timespan_1_starts()
-        >>> f(relation)
-        abjad.TimespanTimespanTimeRelation(
-            inequality=abjad.CompoundInequality(
-                [
-                    abjad.Inequality('timespan_1.start_offset < timespan_2.start_offset'),
-                    ],
-                logical_operator='and',
-                ),
-            )
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> relation = abjad.timespantools.timespan_2_starts_after_timespan_1_starts()
+            >>> f(relation)
+            abjad.TimespanTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
+                    [
+                        abjad.TimespanInequality('timespan_1.start_offset < timespan_2.start_offset'),
+                        ],
+                    logical_operator='and',
+                    ),
+                )
 
     Returns time relation or boolean.
     '''

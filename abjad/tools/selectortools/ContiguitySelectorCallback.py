@@ -5,6 +5,11 @@ from abjad.tools.topleveltools import select
 
 class ContiguitySelectorCallback(AbjadValueObject):
     r'''Contiguity selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###

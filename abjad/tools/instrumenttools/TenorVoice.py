@@ -10,22 +10,28 @@ class TenorVoice(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> tenor = instrumenttools.TenorVoice()
-        >>> attach(tenor, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Tenor }
-            \set Staff.shortInstrumentName = \markup { Ten. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> tenor = abjad.instrumenttools.TenorVoice()
+            >>> abjad.attach(tenor, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Tenor }
+                \set Staff.shortInstrumentName = \markup { Ten. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

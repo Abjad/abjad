@@ -8,16 +8,22 @@ class ReSTTOCItem(TreeNode):
 
     ::
 
-        >>> item = documentationtools.ReSTTOCItem(text='api/index')
-        >>> item
-        ReSTTOCItem(
-            text='api/index'
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> print(item.rest_format)
-        api/index
+        ::
+
+            >>> item = abjad.documentationtools.ReSTTOCItem(text='api/index')
+            >>> item
+            ReSTTOCItem(
+                text='api/index'
+                )
+
+        ::
+
+            >>> print(item.rest_format)
+            api/index
 
     '''
 

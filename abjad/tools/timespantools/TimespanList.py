@@ -10,16 +10,20 @@ from abjad.tools.topleveltools import new
 class TimespanList(TypedList):
     r'''Timespan list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Contiguous timespan list:
 
         ::
 
-            >>> timespans = timespantools.TimespanList([
-            ...     timespantools.Timespan(0, 3),
-            ...     timespantools.Timespan(3, 6),
-            ...     timespantools.Timespan(6, 10),
+            >>> timespans = abjad.TimespanList([
+            ...     abjad.Timespan(0, 3),
+            ...     abjad.Timespan(3, 6),
+            ...     abjad.Timespan(6, 10),
             ...     ])
             >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -49,12 +53,12 @@ class TimespanList(TypedList):
 
         ::
 
-            >>> timespans = timespantools.TimespanList([
-            ...     timespantools.Timespan(0, 16),
-            ...     timespantools.Timespan(5, 12),
-            ...     timespantools.Timespan(-2, 8),
-            ...     timespantools.Timespan(15, 20),
-            ...     timespantools.Timespan(24, 30),
+            >>> timespans = abjad.TimespanList([
+            ...     abjad.Timespan(0, 16),
+            ...     abjad.Timespan(5, 12),
+            ...     abjad.Timespan(-2, 8),
+            ...     abjad.Timespan(15, 20),
+            ...     abjad.Timespan(24, 30),
             ...     ])
             >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -92,7 +96,7 @@ class TimespanList(TypedList):
 
         ::
 
-            >>> timespantools.TimespanList()
+            >>> abjad.TimespanList()
             TimespanList([])
 
     ..  container:: example
@@ -101,10 +105,10 @@ class TimespanList(TypedList):
 
         ::
 
-            >>> timespans = timespantools.TimespanList([
-            ...     Timespan(0, (1, 2)),
+            >>> timespans = abjad.TimespanList([
+            ...     abjad.Timespan(0, (1, 2)),
             ...     ((1, 2), (3, 4)),
-            ...     Timespan((3, 4), 1),
+            ...     abjad.Timespan((3, 4), 1),
             ...     ])
 
         ::
@@ -148,16 +152,16 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
                 ...     ])
                 >>> show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
             ::
 
-                >>> timespan = timespantools.Timespan(5, 10)
+                >>> timespan = abjad.Timespan(5, 10)
                 >>> _ = timespans & timespan
                 >>> show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
@@ -199,16 +203,16 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
             ::
 
-                >>> timespan_operand = timespantools.Timespan(6, 10)
+                >>> timespan_operand = abjad.Timespan(6, 10)
                 >>> timespans = timespans - timespan_operand
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -281,10 +285,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -314,10 +318,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -343,16 +347,16 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
             ::
 
-                >>> timespan = timespantools.Timespan(5, 10)
+                >>> timespan = abjad.Timespan(5, 10)
                 >>> _ = timespans - timespan
                 >>> f(timespans)
                 abjad.TimespanList(
@@ -504,10 +508,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -522,12 +526,12 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -542,7 +546,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespantools.TimespanList().all_are_contiguous
+                >>> abjad.TimespanList().all_are_contiguous
                 True
 
         Returns true or false.
@@ -567,10 +571,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -585,12 +589,12 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -605,7 +609,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespantools.TimespanList().all_are_nonoverlapping
+                >>> abjad.TimespanList().all_are_nonoverlapping
                 True
 
         Returns true or false.
@@ -631,10 +635,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -649,12 +653,12 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -669,7 +673,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespantools.TimespanList().all_are_well_formed
+                >>> abjad.TimespanList().all_are_well_formed
                 True
 
         Is false when timespans are not all well-formed.
@@ -689,10 +693,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -707,12 +711,12 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -727,7 +731,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespantools.TimespanList().axis is None
+                >>> abjad.TimespanList().axis is None
                 True
 
         Returns offset or none.
@@ -745,10 +749,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -763,12 +767,12 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -783,7 +787,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespantools.TimespanList().duration
+                >>> abjad.TimespanList().duration
                 Duration(0, 1)
 
         Returns duration.
@@ -804,10 +808,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -822,10 +826,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(6, 10),
-                ...     timespantools.Timespan(3, 6),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(6, 10),
+                ...     abjad.Timespan(3, 6),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -859,10 +863,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -877,12 +881,12 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -897,7 +901,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespantools.TimespanList().start_offset
+                >>> abjad.TimespanList().start_offset
                 NegativeInfinity
 
         Returns offset or none.
@@ -920,10 +924,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -938,12 +942,12 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -959,7 +963,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespantools.TimespanList().stop_offset
+                >>> abjad.TimespanList().stop_offset
                 Infinity
 
         Returns offset or none.
@@ -979,10 +983,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1001,12 +1005,12 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1025,7 +1029,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespantools.TimespanList().timespan
+                >>> abjad.TimespanList().timespan
                 Timespan(start_offset=NegativeInfinity, stop_offset=Infinity)
 
         Returns timespan.
@@ -1044,9 +1048,9 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 1),
-                ...     timespantools.Timespan(0, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 1),
+                ...     abjad.Timespan(0, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1079,9 +1083,9 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 1),
-                ...     timespantools.Timespan(0, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 1),
+                ...     abjad.Timespan(0, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1114,9 +1118,9 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 1),
-                ...     timespantools.Timespan(0, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 1),
+                ...     abjad.Timespan(0, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1150,9 +1154,9 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 1),
-                ...     timespantools.Timespan(0, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 1),
+                ...     abjad.Timespan(0, 10),
                 ...     ])
                 >>> show(timespans, range_=(-2, 10), scale=0.5) # doctest: +SKIP
 
@@ -1226,8 +1230,8 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1254,9 +1258,9 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
-                ...     timespantools.Timespan(5, 12),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
+                ...     abjad.Timespan(5, 12),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1283,10 +1287,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
                 ...     ])
                 >>> show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
@@ -1332,7 +1336,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList()
+                >>> timespans = abjad.TimespanList()
                 >>> _ = timespans.compute_logical_or()
 
             ::
@@ -1346,8 +1350,8 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1374,9 +1378,9 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
-                ...     timespantools.Timespan(5, 12),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
+                ...     abjad.Timespan(5, 12),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1403,10 +1407,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 2),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 2),
                 ...     ])
                 >>> show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
@@ -1433,9 +1437,9 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(-2, 2),
-                ...     timespantools.Timespan(10, 20),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(-2, 2),
+                ...     abjad.Timespan(10, 20),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1483,7 +1487,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList()
+                >>> timespans = abjad.TimespanList()
                 >>> _ = timespans.compute_logical_xor()
 
             ::
@@ -1497,8 +1501,8 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1525,9 +1529,9 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
-                ...     timespantools.Timespan(5, 12),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
+                ...     abjad.Timespan(5, 12),
                 ...     ])
                 >>> show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
@@ -1558,10 +1562,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 2),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 2),
                 ...     ])
                 >>> show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
@@ -1596,9 +1600,9 @@ class TimespanList(TypedList):
             
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(-2, 2),
-                ...     timespantools.Timespan(10, 20),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(-2, 2),
+                ...     abjad.Timespan(10, 20),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1629,10 +1633,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
-                ...     timespantools.Timespan(4, 8),
-                ...     timespantools.Timespan(2, 6),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
+                ...     abjad.Timespan(4, 8),
+                ...     abjad.Timespan(2, 6),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1663,9 +1667,9 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
-                ...     timespantools.Timespan(0, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
+                ...     abjad.Timespan(0, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1709,11 +1713,11 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
-                ...     timespantools.Timespan(5, 15),
-                ...     timespantools.Timespan(20, 25),
-                ...     timespantools.Timespan(20, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
+                ...     abjad.Timespan(5, 15),
+                ...     abjad.Timespan(20, 25),
+                ...     abjad.Timespan(20, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1733,7 +1737,7 @@ class TimespanList(TypedList):
             ::
 
                 >>> timespans.compute_overlap_factor(
-                ...     timespan=timespantools.Timespan(-15, 0))
+                ...     timespan=abjad.Timespan(-15, 0))
                 Multiplier(0, 1)
 
         ..  container:: example
@@ -1743,7 +1747,8 @@ class TimespanList(TypedList):
             ::
 
                 >>> timespans.compute_overlap_factor(
-                ...     timespan=timespantools.Timespan(-10, 5))
+                ...     timespan=abjad.Timespan(-10, 5),
+                ...     )
                 Multiplier(1, 3)
 
         ..  container:: example
@@ -1753,7 +1758,7 @@ class TimespanList(TypedList):
             ::
 
                 >>> timespans.compute_overlap_factor(
-                ...     timespan=timespantools.Timespan(-5, 10))
+                ...     timespan=abjad.Timespan(-5, 10))
                 Multiplier(1, 1)
 
         ..  container:: example
@@ -1763,7 +1768,7 @@ class TimespanList(TypedList):
             ::
 
                 >>> timespans.compute_overlap_factor(
-                ...     timespan=timespantools.Timespan(0, 15))
+                ...     timespan=abjad.Timespan(0, 15))
                 Multiplier(4, 3)
 
         ..  container:: example
@@ -1773,7 +1778,7 @@ class TimespanList(TypedList):
             ::
 
                 >>> timespans.compute_overlap_factor(
-                ...     timespan=timespantools.Timespan(5, 20))
+                ...     timespan=abjad.Timespan(5, 20))
                 Multiplier(1, 1)
 
         ..  container:: example
@@ -1783,7 +1788,7 @@ class TimespanList(TypedList):
             ::
 
                 >>> timespans.compute_overlap_factor(
-                ...     timespan=timespantools.Timespan(10, 25))
+                ...     timespan=abjad.Timespan(10, 25))
                 Multiplier(1, 1)
 
         ..  container:: example
@@ -1793,7 +1798,7 @@ class TimespanList(TypedList):
             ::
 
                 >>> timespans.compute_overlap_factor(
-                ...     timespan=timespantools.Timespan(15, 30))
+                ...     timespan=abjad.Timespan(15, 30))
                 Multiplier(1, 1)
 
         Returns multiplier.
@@ -1820,11 +1825,11 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 10),
-                ...     timespantools.Timespan(5, 15),
-                ...     timespantools.Timespan(20, 25),
-                ...     timespantools.Timespan(20, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 10),
+                ...     abjad.Timespan(5, 15),
+                ...     abjad.Timespan(20, 25),
+                ...     abjad.Timespan(20, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1861,10 +1866,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1910,12 +1915,12 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1975,10 +1980,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(0, 6),
-                ...     timespantools.Timespan(0, 9),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(0, 6),
+                ...     abjad.Timespan(0, 9),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2013,19 +2018,19 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(5, 13),
-                ...     timespantools.Timespan(6, 10),
-                ...     timespantools.Timespan(8, 9),
-                ...     timespantools.Timespan(15, 23),
-                ...     timespantools.Timespan(16, 21),
-                ...     timespantools.Timespan(17, 19),
-                ...     timespantools.Timespan(19, 20),
-                ...     timespantools.Timespan(25, 30),
-                ...     timespantools.Timespan(26, 29),
-                ...     timespantools.Timespan(32, 34),
-                ...     timespantools.Timespan(34, 37),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(5, 13),
+                ...     abjad.Timespan(6, 10),
+                ...     abjad.Timespan(8, 9),
+                ...     abjad.Timespan(15, 23),
+                ...     abjad.Timespan(16, 21),
+                ...     abjad.Timespan(17, 19),
+                ...     abjad.Timespan(19, 20),
+                ...     abjad.Timespan(25, 30),
+                ...     abjad.Timespan(26, 29),
+                ...     abjad.Timespan(32, 34),
+                ...     abjad.Timespan(34, 37),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2312,18 +2317,18 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
             ::
 
-                >>> timespan = timespantools.Timespan(2, 5)
+                >>> timespan = abjad.Timespan(2, 5)
                 >>> time_relation = \
-                ...     timespantools.timespan_2_starts_during_timespan_1(
+                ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
                 ...     timespan_1=timespan)
 
             ::
@@ -2366,17 +2371,17 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
             ::
 
-                >>> timespan = timespantools.Timespan(2, 8)
-                >>> time_relation = timespantools.timespan_2_starts_during_timespan_1(
+                >>> timespan = abjad.Timespan(2, 8)
+                >>> time_relation = abjad.timespantools.timespan_2_starts_during_timespan_1(
                 ...     timespan_1=timespan)
                 >>> result = timespans.get_timespans_that_satisfy_time_relation(
                 ...     time_relation)
@@ -2427,18 +2432,18 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
             ::
 
-                >>> timespan = timespantools.Timespan(2, 8)
+                >>> timespan = abjad.Timespan(2, 8)
                 >>> time_relation = \
-                ...     timespantools.timespan_2_starts_during_timespan_1(
+                ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
                 ...     timespan_1=timespan)
                 >>> timespans.has_timespan_that_satisfies_time_relation(
                 ...     time_relation)
@@ -2450,9 +2455,9 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespan = timespantools.Timespan(10, 20)
+                >>> timespan = abjad.Timespan(10, 20)
                 >>> time_relation = \
-                ...     timespantools.timespan_2_starts_during_timespan_1(
+                ...     abjad.timespantools.timespan_2_starts_during_timespan_1(
                 ...     timespan_1=timespan)
 
             ::
@@ -2475,10 +2480,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2538,12 +2543,12 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
-                ...     timespantools.Timespan(15, 20),
-                ...     timespantools.Timespan(24, 30),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
+                ...     abjad.Timespan(15, 20),
+                ...     abjad.Timespan(24, 30),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2616,10 +2621,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2679,10 +2684,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2717,16 +2722,16 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             ::
 
-                >>> _ = timespans.reflect(axis=Offset(15))
+                >>> _ = timespans.reflect(axis=abjad.Offset(15))
                 >>> show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             ::
@@ -2770,10 +2775,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(5, 5),
-                ...     timespantools.Timespan(5, 10),
-                ...     timespantools.Timespan(5, 25),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(5, 5),
+                ...     abjad.Timespan(5, 10),
+                ...     abjad.Timespan(5, 25),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2813,10 +2818,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, range_=(0, 15), scale=0.5) # doctest: +SKIP
 
@@ -2879,10 +2884,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 4),
-                ...     timespantools.Timespan(4, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 4),
+                ...     abjad.Timespan(4, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2917,10 +2922,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 4),
-                ...     timespantools.Timespan(4, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 4),
+                ...     abjad.Timespan(4, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2985,10 +2990,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 2),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 2),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3023,10 +3028,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 2),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 2),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3061,10 +3066,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 2),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 2),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, range_=(-5, 10), scale=0.5) # doctest: +SKIP
 
@@ -3102,10 +3107,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 2),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 2),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3159,10 +3164,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, range_=(0, 14), scale=0.5) # doctest: +SKIP
 
@@ -3197,10 +3202,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, range_=(-3, 10), scale=0.5) # doctest: +SKIP
 
@@ -3247,10 +3252,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3298,10 +3303,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3345,10 +3350,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3412,11 +3417,11 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(4, 10),
-                ...     timespantools.Timespan(15, 20),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(4, 10),
+                ...     abjad.Timespan(15, 20),
                 ...     ])
                 >>> show(timespans, range_=(0, 20), scale=0.5) # doctest: +SKIP
 
@@ -3435,7 +3440,7 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([])
+                >>> timespans = abjad.TimespanList([])
                 >>> timespans.split_at_offsets(offsets)
                 [TimespanList([])]
 
@@ -3463,10 +3468,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, range_=(0, 20), scale=0.5) # doctest: +SKIP
 
@@ -3501,16 +3506,16 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, range_=(-8, 12), scale=0.5) # doctest: +SKIP
 
             ::
 
-                >>> _ = timespans.stretch(2, anchor=Offset(8))
+                >>> _ = timespans.stretch(2, anchor=abjad.Offset(8))
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
             ::
@@ -3553,10 +3558,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
@@ -3603,10 +3608,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
@@ -3641,10 +3646,10 @@ class TimespanList(TypedList):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 3),
-                ...     timespantools.Timespan(3, 6),
-                ...     timespantools.Timespan(6, 10),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 3),
+                ...     abjad.Timespan(3, 6),
+                ...     abjad.Timespan(6, 10),
                 ...     ])
                 >>> show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 

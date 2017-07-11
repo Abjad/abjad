@@ -20,7 +20,7 @@ class PitchRange(AbjadValueObject):
 
         ::
 
-            >>> pitch_range = PitchRange('[C3, C7]')
+            >>> pitch_range = abjad.PitchRange('[C3, C7]')
             >>> f(pitch_range)
             abjad.PitchRange(
                 range_string='[C3, C7]',
@@ -214,7 +214,7 @@ class PitchRange(AbjadValueObject):
             ..  docs::
 
                 >>> lilypond_file = pitch_range.__illustrate__()
-                >>> f(lilypond_file[Score])
+                >>> f(lilypond_file[abjad.Score])
                 \new Score \with {
                     \override BarLine.stencil = ##f
                     \override Glissando.thickness = #2
@@ -541,7 +541,7 @@ class PitchRange(AbjadValueObject):
 
             ::
 
-                >>> PitchRange.from_pitches(-18, 19)
+                >>> abjad.PitchRange.from_pitches(-18, 19)
                 PitchRange(range_string='[F#2, G5]')
 
         Returns pitch range.
@@ -582,7 +582,7 @@ class PitchRange(AbjadValueObject):
 
             ::
 
-                >>> PitchRange.is_range_string('[A0, C8]')
+                >>> abjad.PitchRange.is_range_string('[A0, C8]')
                 True
 
         ..  container:: example
@@ -591,7 +591,7 @@ class PitchRange(AbjadValueObject):
 
             ::
 
-                >>> PitchRange.is_range_string('text')
+                >>> abjad.PitchRange.is_range_string('text')
                 False
 
         The regex that underlies this predicate matches against two
@@ -613,8 +613,8 @@ class PitchRange(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' d' e'>4")
-                >>> pitch_range = PitchRange.from_pitches(0, 48)
+                >>> chord = abjad.Chord("<c' d' e'>4")
+                >>> pitch_range = abjad.PitchRange.from_pitches(0, 48)
                 >>> result = pitch_range.list_octave_transpositions(chord)
 
             ::
@@ -670,7 +670,7 @@ class PitchRange(AbjadValueObject):
 
             ::
 
-                >>> pitch_range = PitchRange('[C4, C6]')
+                >>> pitch_range = abjad.PitchRange('[C4, C6]')
                 >>> pitch_range.voice_pitch_class('c')
                 (NamedPitch("c'"), NamedPitch("c''"), NamedPitch("c'''"))
 
@@ -680,7 +680,7 @@ class PitchRange(AbjadValueObject):
 
             ::
 
-                >>> pitch_range = PitchRange('[C4, C6]')
+                >>> pitch_range = abjad.PitchRange('[C4, C6]')
                 >>> pitch_range.voice_pitch_class('b')
                 (NamedPitch("b'"), NamedPitch("b''"))
 
@@ -690,7 +690,7 @@ class PitchRange(AbjadValueObject):
 
             ::
 
-                >>> pitch_range = PitchRange('[C4, A4)')
+                >>> pitch_range = abjad.PitchRange('[C4, A4)')
                 >>> pitch_range.voice_pitch_class('b')
                 ()
 

@@ -4,6 +4,10 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 class Tremolo(AbjadValueObject):
     r'''Tremolo (of exactly two notes).
+
+    ::
+
+        >>> import abjad
     
     ..  container:: example
 
@@ -11,9 +15,9 @@ class Tremolo(AbjadValueObject):
 
         ::
 
-            >>> chord = Chord("<cs' e'>4")
+            >>> chord = abjad.Chord("<cs' e'>4")
             >>> tremolo = abjad.Tremolo(beam_count=2)
-            >>> attach(tremolo, chord)
+            >>> abjad.attach(tremolo, chord)
             >>> show(chord) # doctest: +SKIP
 
         ..  docs::
@@ -30,9 +34,9 @@ class Tremolo(AbjadValueObject):
 
         ::
 
-            >>> chord = Chord("<cs' e'>4")
+            >>> chord = abjad.Chord("<cs' e'>4")
             >>> tremolo = abjad.Tremolo(beam_count=3)
-            >>> attach(tremolo, chord)
+            >>> abjad.attach(tremolo, chord)
             >>> show(chord) # doctest: +SKIP
 
         ..  docs::
@@ -176,9 +180,9 @@ class Tremolo(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<cs' e'>4")
+                >>> chord = abjad.Chord("<cs' e'>4")
                 >>> tremolo = abjad.Tremolo(beam_count=2)
-                >>> attach(tremolo, chord)
+                >>> abjad.attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -195,9 +199,9 @@ class Tremolo(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<cs' e'>4")
+                >>> chord = abjad.Chord("<cs' e'>4")
                 >>> tremolo = abjad.Tremolo()
-                >>> attach(tremolo, chord)
+                >>> abjad.attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -226,9 +230,9 @@ class Tremolo(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<cs' e'>4")
+                >>> chord = abjad.Chord("<cs' e'>4")
                 >>> tremolo = abjad.Tremolo()
-                >>> attach(tremolo, chord)
+                >>> abjad.attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -245,9 +249,9 @@ class Tremolo(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<cs' e'>4")
+                >>> chord = abjad.Chord("<cs' e'>4")
                 >>> tremolo = abjad.Tremolo(is_slurred=True)
-                >>> attach(tremolo, chord)
+                >>> abjad.attach(tremolo, chord)
                 >>> show(chord) # doctest: +SKIP
 
             ..  docs::

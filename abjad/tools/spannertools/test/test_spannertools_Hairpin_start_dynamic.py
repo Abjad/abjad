@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
 def test_spannertools_Hairpin_start_dynamic_01():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
     hairpin = Hairpin(descriptor='p < f')
     attach(hairpin, staff[:])
 
@@ -24,7 +25,7 @@ def test_spannertools_Hairpin_start_dynamic_01():
 
 def test_spannertools_Hairpin_start_dynamic_02():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
     hairpin = Hairpin(descriptor='mf < f')
     attach(hairpin, staff[:])
 

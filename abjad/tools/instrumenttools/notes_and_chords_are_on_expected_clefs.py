@@ -10,6 +10,10 @@ def notes_and_chords_are_on_expected_clefs(
     ):
     r'''Is true when notes and chords in `argument` are on expected clefs.
 
+    ::
+
+        >>> import abjad
+
     ..  todo:: Move to WellformednessManager.
 
     ..  container:: example
@@ -18,16 +22,16 @@ def notes_and_chords_are_on_expected_clefs(
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> clef = Clef(name='treble')
-            >>> attach(clef, staff)
-            >>> violin = instrumenttools.Violin()
-            >>> attach(violin, staff)
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> clef = abjad.Clef(name='treble')
+            >>> abjad.attach(clef, staff)
+            >>> violin = abjad.instrumenttools.Violin()
+            >>> abjad.attach(violin, staff)
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
+            >>> abjad.instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
             True
 
     ..  container:: example
@@ -36,16 +40,16 @@ def notes_and_chords_are_on_expected_clefs(
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> clef = Clef(name='alto')
-            >>> attach(clef, staff)
-            >>> violin = instrumenttools.Violin()
-            >>> attach(violin, staff)
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> clef = abjad.Clef(name='alto')
+            >>> abjad.attach(clef, staff)
+            >>> violin = abjad.instrumenttools.Violin()
+            >>> abjad.attach(violin, staff)
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
+            >>> abjad.instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
             False
 
     ..  container:: example
@@ -54,11 +58,11 @@ def notes_and_chords_are_on_expected_clefs(
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> clef = Clef(name='percussion')
-            >>> attach(clef, staff)
-            >>> violin = instrumenttools.Violin()
-            >>> attach(violin, staff)
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> clef = abjad.Clef(name='percussion')
+            >>> abjad.attach(clef, staff)
+            >>> violin = abjad.instrumenttools.Violin()
+            >>> abjad.attach(violin, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -76,7 +80,7 @@ def notes_and_chords_are_on_expected_clefs(
 
         ::
 
-            >>> instrumenttools.notes_and_chords_are_on_expected_clefs(
+            >>> abjad.instrumenttools.notes_and_chords_are_on_expected_clefs(
             ...     staff, percussion_clef_is_allowed=True)
             True
 
@@ -86,7 +90,7 @@ def notes_and_chords_are_on_expected_clefs(
 
         ::
 
-            >>> instrumenttools.notes_and_chords_are_on_expected_clefs(
+            >>> abjad.instrumenttools.notes_and_chords_are_on_expected_clefs(
             ...     staff, percussion_clef_is_allowed=False)
             False
 

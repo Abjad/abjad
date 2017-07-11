@@ -20,10 +20,10 @@ class PerformerList(TypedList):
 
             ::
             
-                >>> flutist = instrumenttools.Performer(name='flutist')
-                >>> flutist.instruments.append(instrumenttools.Flute())
-                >>> flutist.instruments.append(instrumenttools.Piccolo())
-                >>> performers = instrumenttools.PerformerList(
+                >>> flutist = abjad.instrumenttools.Performer(name='flutist')
+                >>> flutist.instruments.append(abjad.instrumenttools.Flute())
+                >>> flutist.instruments.append(abjad.instrumenttools.Piccolo())
+                >>> performers = abjad.instrumenttools.PerformerList(
                 ...     [flutist],
                 ...     )
                 >>> performers.get_instrument('piccolo')

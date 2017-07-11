@@ -8,13 +8,17 @@ from abjad.tools.pitchtools.Pitch import Pitch
 class NumberedPitch(Pitch):
     '''Numbered pitch.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from number:
 
         ::
 
-            >>> numbered_pitch = NumberedPitch(13)
+            >>> numbered_pitch = abjad.NumberedPitch(13)
             >>> show(numbered_pitch) # doctest: +SKIP
 
     '''
@@ -127,7 +131,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitchClass(13).accidental
+                >>> abjad.NumberedPitchClass(13).accidental
                 Accidental('s')
 
         Returns accidental.
@@ -143,7 +147,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitchClass(13).alteration_in_semitones
+                >>> abjad.NumberedPitchClass(13).alteration_in_semitones
                 1
 
         Returns integer or float.
@@ -160,7 +164,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).arrow is None
+                >>> abjad.NumberedPitch(13).arrow is None
                 True
 
         ..  container:: example
@@ -169,7 +173,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13, arrow=Up).arrow
+                >>> abjad.NumberedPitch(13, arrow=Up).arrow
                 Up
 
         ..  container:: example
@@ -178,7 +182,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13, arrow=Down).arrow
+                >>> abjad.NumberedPitch(13, arrow=Down).arrow
                 Down
 
         Returns up, down or none.
@@ -195,7 +199,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).diatonic_pitch_class_name
+                >>> abjad.NumberedPitch(13).diatonic_pitch_class_name
                 'c'
 
         Returns string.
@@ -212,7 +216,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).diatonic_pitch_class_number
+                >>> abjad.NumberedPitch(13).diatonic_pitch_class_number
                 0
 
         Returns integer.
@@ -229,7 +233,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).diatonic_pitch_name
+                >>> abjad.NumberedPitch(13).diatonic_pitch_name
                 "c''"
 
         Returns string.
@@ -249,7 +253,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).diatonic_pitch_number
+                >>> abjad.NumberedPitch(13).diatonic_pitch_number
                 7
 
         Returns integer.
@@ -264,7 +268,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).name
+                >>> abjad.NumberedPitch(13).name
                 "cs''"
 
         Returns string
@@ -282,7 +286,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).named_pitch
+                >>> abjad.NumberedPitch(13).named_pitch
                 NamedPitch("cs''")
 
         Returns named pitch.
@@ -300,7 +304,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).named_pitch_class
+                >>> abjad.NumberedPitch(13).named_pitch_class
                 NamedPitchClass('cs')
 
         Returns named pitch-class.
@@ -316,7 +320,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).number
+                >>> abjad.NumberedPitch(13).number
                 13
 
         Returns number.
@@ -333,7 +337,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).numbered_pitch
+                >>> abjad.NumberedPitch(13).numbered_pitch
                 NumberedPitch(13)
 
         Returns new numbered pitch.
@@ -350,7 +354,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).numbered_pitch_class
+                >>> abjad.NumberedPitch(13).numbered_pitch_class
                 NumberedPitchClass(1)
 
         Returns numbered pitch-class.
@@ -366,7 +370,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).octave
+                >>> abjad.NumberedPitch(13).octave
                 Octave(5)
 
         Returns octave.
@@ -383,7 +387,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).pitch_class
+                >>> abjad.NumberedPitch(13).pitch_class
                 NumberedPitchClass(1)
 
         Returns numbered pitch-class.
@@ -401,7 +405,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).pitch_class_name
+                >>> abjad.NumberedPitch(13).pitch_class_name
                 'cs'
 
         Returns string.
@@ -418,7 +422,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).pitch_class_number
+                >>> abjad.NumberedPitch(13).pitch_class_number
                 1
 
         Returns integer or float.
@@ -435,7 +439,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).pitch_class_octave_label
+                >>> abjad.NumberedPitch(13).pitch_class_octave_label
                 'C#5'
 
         Returns string.
@@ -456,7 +460,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).pitch_name
+                >>> abjad.NumberedPitch(13).pitch_name
                 "cs''"
 
         Returns string.
@@ -476,7 +480,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).pitch_number
+                >>> abjad.NumberedPitch(13).pitch_number
                 13
 
         Returns number.
@@ -492,7 +496,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).apply_accidental('flat')
+                >>> abjad.NumberedPitch(13).apply_accidental('flat')
                 NumberedPitch(12)
 
         Returns new numbered pitch.
@@ -511,7 +515,7 @@ class NumberedPitch(Pitch):
             ::
 
                 >>> for octave in [1, 2, 3, 4, 5, 6, 7]:
-                ...     NumberedPitch.from_pitch_class_octave(6, octave)
+                ...     abjad.NumberedPitch.from_pitch_class_octave(6, octave)
                 ...
                 NumberedPitch(-30)
                 NumberedPitch(-18)
@@ -539,20 +543,20 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> start_pitch = NumberedPitch(0)
-                >>> stop_pitch = NumberedPitch(12)
+                >>> start_pitch = abjad.NumberedPitch(0)
+                >>> stop_pitch = abjad.NumberedPitch(12)
 
             ::
 
-                >>> start_pitch.interpolate(stop_pitch, Fraction(0))
+                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(0))
                 NumberedPitch(0)
-                >>> start_pitch.interpolate(stop_pitch, Fraction(1, 4))
+                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 4))
                 NumberedPitch(3)
-                >>> start_pitch.interpolate(stop_pitch, Fraction(1, 2))
+                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 2))
                 NumberedPitch(6)
-                >>> start_pitch.interpolate(stop_pitch, Fraction(3, 4))
+                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(3, 4))
                 NumberedPitch(9)
-                >>> start_pitch.interpolate(stop_pitch, Fraction(1))
+                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1))
                 NumberedPitch(12)
 
         ..  container:: example
@@ -561,20 +565,20 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> start_pitch = NumberedPitch(12)
-                >>> stop_pitch = NumberedPitch(0)
+                >>> start_pitch = abjad.NumberedPitch(12)
+                >>> stop_pitch = abjad.NumberedPitch(0)
 
             ::
 
-                >>> start_pitch.interpolate(stop_pitch, Fraction(0))
+                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(0))
                 NumberedPitch(12)
-                >>> start_pitch.interpolate(stop_pitch, Fraction(1, 4))
+                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 4))
                 NumberedPitch(9)
-                >>> start_pitch.interpolate(stop_pitch, Fraction(1, 2))
+                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 2))
                 NumberedPitch(6)
-                >>> start_pitch.interpolate(stop_pitch, Fraction(3, 4))
+                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(3, 4))
                 NumberedPitch(3)
-                >>> start_pitch.interpolate(stop_pitch, Fraction(1))
+                >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1))
                 NumberedPitch(0)
 
         Returns new pitch.
@@ -608,12 +612,12 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(2).invert(0)
+                >>> abjad.NumberedPitch(2).invert(0)
                 NumberedPitch(-2)
 
             ::
 
-                >>> NumberedPitch(-2).invert(0)
+                >>> abjad.NumberedPitch(-2).invert(0)
                 NumberedPitch(2)
 
         ..  container:: example
@@ -622,12 +626,12 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(2).invert()
+                >>> abjad.NumberedPitch(2).invert()
                 NumberedPitch(-2)
 
             ::
 
-                >>> NumberedPitch(-2).invert()
+                >>> abjad.NumberedPitch(-2).invert()
                 NumberedPitch(2)
 
         ..  container:: example
@@ -636,7 +640,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(2).invert(-3)
+                >>> abjad.NumberedPitch(2).invert(-3)
                 NumberedPitch(-8)
 
         Returns new numbered pitch.
@@ -650,7 +654,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(14).multiply(3)
+                >>> abjad.NumberedPitch(14).multiply(3)
                 NumberedPitch(42)
 
         Returns new numbered pitch.
@@ -667,7 +671,7 @@ class NumberedPitch(Pitch):
 
             ::
 
-                >>> NumberedPitch(13).transpose(1)
+                >>> abjad.NumberedPitch(13).transpose(1)
                 NumberedPitch(14)
 
         Returns new numbered pitch.

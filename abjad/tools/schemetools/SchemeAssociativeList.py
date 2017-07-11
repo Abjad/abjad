@@ -5,11 +5,15 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeAssociativeList(Scheme):
     '''Abjad model of Scheme associative list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> scheme_alist = schemetools.SchemeAssociativeList(
+            >>> scheme_alist = abjad.SchemeAssociativeList(
             ...     ('space', 2),
             ...     ('padding', 0.5),
             ...     )

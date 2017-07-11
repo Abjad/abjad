@@ -5,6 +5,11 @@ from abjad.tools.pitchtools.Set import Set
 
 class IntervalSet(Set):
     r'''Interval set.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -58,11 +63,10 @@ class IntervalSet(Set):
 
         ::
 
-            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
-            >>> staff_2 = Staff("c4. r8 g2")
-            >>> selection = select((staff_1, staff_2))
-            >>> intervals = pitchtools.IntervalSet.from_selection(
-            ...     selection)
+            >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
+            >>> staff_2 = abjad.Staff("c4. r8 g2")
+            >>> selection = abjad.select((staff_1, staff_2))
+            >>> intervals = abjad.IntervalSet.from_selection(selection)
             >>> for interval in sorted(intervals):
             ...     interval
             ...

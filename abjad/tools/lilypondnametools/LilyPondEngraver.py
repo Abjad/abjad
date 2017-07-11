@@ -7,6 +7,10 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
     ::
 
+        >>> from abjad.tools import lilypondnametools
+
+    ::
+
         >>> engraver = lilypondnametools.LilyPondEngraver('Auto_beam_engraver')
         >>> print(format(engraver))
         lilypondnametools.LilyPondEngraver(

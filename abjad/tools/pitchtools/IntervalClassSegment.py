@@ -7,6 +7,10 @@ from abjad.tools.topleveltools import new
 class IntervalClassSegment(Segment):
     r'''Interval-class segment.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         An interval-class segment:
@@ -14,7 +18,7 @@ class IntervalClassSegment(Segment):
         ::
 
             >>> intervals = 'm2 M10 -aug4 P5'
-            >>> pitchtools.IntervalClassSegment(intervals)
+            >>> abjad.IntervalClassSegment(intervals)
             IntervalClassSegment(['+m2', '+M3', '-aug4', '+P5'])
 
     ..  container:: example
@@ -24,7 +28,7 @@ class IntervalClassSegment(Segment):
         ::
 
             >>> intervals = 'P4 P5 P11 P12'
-            >>> pitchtools.IntervalClassSegment(intervals)
+            >>> abjad.IntervalClassSegment(intervals)
             IntervalClassSegment(['+P4', '+P5', '+P4', '+P5'])
 
     Returns interval-class segment.
@@ -57,16 +61,18 @@ class IntervalClassSegment(Segment):
     @property
     def is_tertian(self):
         r'''Is true when all named interval-classes in segment are tertian.
-        Otherwise false:
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> interval_class_segment = pitchtools.IntervalClassSegment(
-            ...     items=[('major', 3), ('minor', 6), ('major', 6)],
-            ...     item_class=pitchtools.NamedIntervalClass,
-            ...     )
-            >>> interval_class_segment.is_tertian
-            True
+            ::
+
+                >>> interval_class_segment = abjad.IntervalClassSegment(
+                ...     items=[('major', 3), ('minor', 6), ('major', 6)],
+                ...     item_class=abjad.NamedIntervalClass,
+                ...     )
+                >>> interval_class_segment.is_tertian
+                True
 
         Returns true or false.
         '''
@@ -84,15 +90,17 @@ class IntervalClassSegment(Segment):
 
     @classmethod
     def from_selection(class_, selection, item_class=None):
-        r'''Initialize interval-class segment from component selection:
+        r'''Initializes interval-class segment from component selection.
 
-        ::
+        ..  container:: example
 
-            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
-            >>> staff_2 = Staff("c4. r8 g2")
-            >>> selection = select((staff_1, staff_2))
-            >>> pitchtools.IntervalClassSegment.from_selection(selection)
-            IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
+            ::
+
+                >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
+                >>> staff_2 = abjad.Staff("c4. r8 g2")
+                >>> selection = abjad.select((staff_1, staff_2))
+                >>> abjad.IntervalClassSegment.from_selection(selection)
+                IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
 
         Returns interval-class segment.
         '''
@@ -108,19 +116,21 @@ class IntervalClassSegment(Segment):
     def has_duplicates(self):
         r'''Is true when segment contains duplicates. Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> intervals = 'm2 M3 -aug4 m2 P5'
-            >>> segment = pitchtools.IntervalClassSegment(intervals)
-            >>> segment.has_duplicates()
-            True
+            ::
 
-        ::
+                >>> intervals = 'm2 M3 -aug4 m2 P5'
+                >>> segment = abjad.IntervalClassSegment(intervals)
+                >>> segment.has_duplicates()
+                True
 
-            >>> intervals = 'M3 -aug4 m2 P5'
-            >>> segment = pitchtools.IntervalClassSegment(intervals)
-            >>> segment.has_duplicates()
-            False
+            ::
+
+                >>> intervals = 'M3 -aug4 m2 P5'
+                >>> segment = abjad.IntervalClassSegment(intervals)
+                >>> segment.has_duplicates()
+                False
 
         Returns true or false.
         '''

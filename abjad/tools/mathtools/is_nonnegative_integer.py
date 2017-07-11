@@ -5,21 +5,25 @@ import numbers
 def is_nonnegative_integer(argument):
     '''Is true when `argument` equals a nonnegative integer. Otherwise false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.is_nonnegative_integer(99)
+            >>> abjad.mathtools.is_nonnegative_integer(99)
             True
 
         ::
 
-            >>> mathtools.is_nonnegative_integer(0)
+            >>> abjad.mathtools.is_nonnegative_integer(0)
             True
 
         ::
 
-            >>> mathtools.is_nonnegative_integer(-1)
+            >>> abjad.mathtools.is_nonnegative_integer(-1)
             False
 
     Returns true or false.

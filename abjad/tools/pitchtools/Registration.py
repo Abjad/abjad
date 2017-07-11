@@ -7,6 +7,10 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class Registration(TypedList):
     '''Registration.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Registration in two parts:
@@ -14,7 +18,7 @@ class Registration(TypedList):
         ::
 
             >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-            >>> registration = Registration(components)
+            >>> registration = abjad.Registration(components)
 
         ::
 
@@ -55,10 +59,11 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = Registration(components)
+                >>> registration = abjad.Registration(components)
                 >>> pitches = registration([-24, -22, -23, -21])
                 >>> for pitch in pitches:
                 ...     pitch
+                ...
                 NamedPitch("c'''")
                 NamedPitch("d'''")
                 NamedPitch("cs'''")
@@ -71,10 +76,11 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = Registration(components)
+                >>> registration = abjad.Registration(components)
                 >>> pitches = registration([0, 2, 1, 3])
                 >>> for pitch in pitches:
                 ...     pitch
+                ...
                 NamedPitch("c''''")
                 NamedPitch("d''''")
                 NamedPitch("cs''''")
@@ -87,10 +93,11 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = Registration(components)
+                >>> registration = abjad.Registration(components)
                 >>> pitches = registration([0.5, 2.5, 1.5, 3.5])
                 >>> for pitch in pitches:
                 ...     pitch
+                ...
                 NamedPitch("cqs''''")
                 NamedPitch("dqs''''")
                 NamedPitch("dqf''''")
@@ -114,7 +121,7 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = Registration(components)
+                >>> registration = abjad.Registration(components)
 
             ::
 

@@ -7,6 +7,10 @@ from abjad.tools import pitchtools
 class Mode(AbjadObject):
     '''Mode. Major, minor, etc.
 
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
+
     Can be extended for nondiatonic mode.
 
     Modes with different ascending and descending forms not yet implemented.

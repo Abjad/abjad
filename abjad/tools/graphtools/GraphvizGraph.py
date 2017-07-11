@@ -10,147 +10,153 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
 
     ::
 
-        >>> graph = graphtools.GraphvizGraph(name='G')
+        >>> import abjad
 
-    Create other graphviz objects to insert into the graph:
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> cluster_0 = graphtools.GraphvizSubgraph(name='0')
-        >>> cluster_1 = graphtools.GraphvizSubgraph(name='1')
-        >>> a0 = graphtools.GraphvizNode(name='a0')
-        >>> a1 = graphtools.GraphvizNode(name='a1')
-        >>> a2 = graphtools.GraphvizNode(name='a2')
-        >>> a3 = graphtools.GraphvizNode(name='a3')
-        >>> b0 = graphtools.GraphvizNode(name='b0')
-        >>> b1 = graphtools.GraphvizNode(name='b1')
-        >>> b2 = graphtools.GraphvizNode(name='b2')
-        >>> b3 = graphtools.GraphvizNode(name='b3')
-        >>> start = graphtools.GraphvizNode(name='start')
-        >>> end = graphtools.GraphvizNode(name='end')
+            >>> graph = abjad.graphtools.GraphvizGraph(name='G')
 
-    Group objects together into a tree:
+        Create other graphviz objects to insert into the graph:
 
-    ::
+        ::
 
-        >>> graph.extend([cluster_0, cluster_1, start, end])
-        >>> cluster_0.extend([a0, a1, a2, a3])
-        >>> cluster_1.extend([b0, b1, b2, b3])
+            >>> cluster_0 = abjad.graphtools.GraphvizSubgraph(name='0')
+            >>> cluster_1 = abjad.graphtools.GraphvizSubgraph(name='1')
+            >>> a0 = abjad.graphtools.GraphvizNode(name='a0')
+            >>> a1 = abjad.graphtools.GraphvizNode(name='a1')
+            >>> a2 = abjad.graphtools.GraphvizNode(name='a2')
+            >>> a3 = abjad.graphtools.GraphvizNode(name='a3')
+            >>> b0 = abjad.graphtools.GraphvizNode(name='b0')
+            >>> b1 = abjad.graphtools.GraphvizNode(name='b1')
+            >>> b2 = abjad.graphtools.GraphvizNode(name='b2')
+            >>> b3 = abjad.graphtools.GraphvizNode(name='b3')
+            >>> start = abjad.graphtools.GraphvizNode(name='start')
+            >>> end = abjad.graphtools.GraphvizNode(name='end')
 
-    Connect objects together with edges:
+        Group objects together into a tree:
 
-    ::
+        ::
 
-        >>> graphtools.GraphvizEdge().attach(start, a0)
-        >>> graphtools.GraphvizEdge().attach(start, b0)
-        >>> graphtools.GraphvizEdge().attach(a0, a1)
-        >>> graphtools.GraphvizEdge().attach(a1, a2)
-        >>> graphtools.GraphvizEdge().attach(a1, b3)
-        >>> graphtools.GraphvizEdge().attach(a2, a3)
-        >>> graphtools.GraphvizEdge().attach(a3, a0)
-        >>> graphtools.GraphvizEdge().attach(a3, end)
-        >>> graphtools.GraphvizEdge().attach(b0, b1)
-        >>> graphtools.GraphvizEdge().attach(b1, b2)
-        >>> graphtools.GraphvizEdge().attach(b2, b3)
-        >>> graphtools.GraphvizEdge().attach(b2, a3)
-        >>> graphtools.GraphvizEdge().attach(b3, end)
+            >>> graph.extend([cluster_0, cluster_1, start, end])
+            >>> cluster_0.extend([a0, a1, a2, a3])
+            >>> cluster_1.extend([b0, b1, b2, b3])
 
-    Add attributes to style the objects:
+        Connect objects together with edges:
 
-    ::
+        ::
 
-        >>> cluster_0.attributes['style'] = 'filled'
-        >>> cluster_0.attributes['color'] = 'lightgrey'
-        >>> cluster_0.attributes['label'] = 'process #1'
-        >>> cluster_0.node_attributes['style'] = 'filled'
-        >>> cluster_0.node_attributes['color'] = 'white'
-        >>> cluster_1.attributes['color'] = 'blue'
-        >>> cluster_1.attributes['label'] = 'process #2'
-        >>> cluster_1.node_attributes['style'] = ('filled', 'rounded')
-        >>> start.attributes['shape'] = 'Mdiamond'
-        >>> end.attributes['shape'] = 'Msquare'
+            >>> abjad.graphtools.GraphvizEdge().attach(start, a0)
+            >>> abjad.graphtools.GraphvizEdge().attach(start, b0)
+            >>> abjad.graphtools.GraphvizEdge().attach(a0, a1)
+            >>> abjad.graphtools.GraphvizEdge().attach(a1, a2)
+            >>> abjad.graphtools.GraphvizEdge().attach(a1, b3)
+            >>> abjad.graphtools.GraphvizEdge().attach(a2, a3)
+            >>> abjad.graphtools.GraphvizEdge().attach(a3, a0)
+            >>> abjad.graphtools.GraphvizEdge().attach(a3, end)
+            >>> abjad.graphtools.GraphvizEdge().attach(b0, b1)
+            >>> abjad.graphtools.GraphvizEdge().attach(b1, b2)
+            >>> abjad.graphtools.GraphvizEdge().attach(b2, b3)
+            >>> abjad.graphtools.GraphvizEdge().attach(b2, a3)
+            >>> abjad.graphtools.GraphvizEdge().attach(b3, end)
 
-    Access the computed graphviz format of the graph:
+        Add attributes to style the objects:
 
-    ::
+        ::
 
-        >>> print(str(graph))
-        digraph G {
-            subgraph cluster_0 {
-                graph [color=lightgrey,
-                    label="process #1",
-                    style=filled];
-                node [color=white,
-                    style=filled];
-                a0;
-                a1;
-                a2;
-                a3;
-                a0 -> a1;
-                a1 -> a2;
-                a2 -> a3;
-                a3 -> a0;
-            }
-            subgraph cluster_1 {
-                graph [color=blue,
-                    label="process #2"];
-                node [style="filled, rounded"];
-                b0;
-                b1;
-                b2;
-                b3;
-                b0 -> b1;
-                b1 -> b2;
-                b2 -> b3;
-            }
-            start [shape=Mdiamond];
-            end [shape=Msquare];
-            a1 -> b3;
-            a3 -> end;
-            b2 -> a3;
-            b3 -> end;
-            start -> a0;
-            start -> b0;
-        }
+            >>> cluster_0.attributes['style'] = 'filled'
+            >>> cluster_0.attributes['color'] = 'lightgrey'
+            >>> cluster_0.attributes['label'] = 'process #1'
+            >>> cluster_0.node_attributes['style'] = 'filled'
+            >>> cluster_0.node_attributes['color'] = 'white'
+            >>> cluster_1.attributes['color'] = 'blue'
+            >>> cluster_1.attributes['label'] = 'process #2'
+            >>> cluster_1.node_attributes['style'] = ('filled', 'rounded')
+            >>> start.attributes['shape'] = 'Mdiamond'
+            >>> end.attributes['shape'] = 'Msquare'
 
-    View the graph:
+        Access the computed graphviz format of the graph:
 
-    ::
+        ::
 
-        >>> topleveltools.graph(graph) # doctest: +SKIP
-
-    Graphs can also be created without defining names.  Canonical names
-    will be automatically determined for all members whose `name` is None:
-
-    ::
-
-        >>> graph = graphtools.GraphvizGraph()
-        >>> graph.append(graphtools.GraphvizSubgraph())
-        >>> graph[0].append(graphtools.GraphvizNode())
-        >>> graph[0].append(graphtools.GraphvizNode())
-        >>> graph[0].append(graphtools.GraphvizNode())
-        >>> graph[0].append(graphtools.GraphvizSubgraph())
-        >>> graph[0][-1].append(graphtools.GraphvizNode())
-        >>> graph.append(graphtools.GraphvizNode())
-        >>> graphtools.GraphvizEdge().attach(graph[0][1], graph[1])
-        >>> graphtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
-
-    ::
-
-        >>> print(str(graph))
-        digraph G {
-            subgraph cluster_0 {
-                node_0_0;
-                node_0_1;
-                node_0_2;
-                subgraph cluster_0_3 {
-                    node_0_3_0;
+            >>> print(str(graph))
+            digraph G {
+                subgraph cluster_0 {
+                    graph [color=lightgrey,
+                        label="process #1",
+                        style=filled];
+                    node [color=white,
+                        style=filled];
+                    a0;
+                    a1;
+                    a2;
+                    a3;
+                    a0 -> a1;
+                    a1 -> a2;
+                    a2 -> a3;
+                    a3 -> a0;
                 }
-                node_0_0 -> node_0_3_0;
+                subgraph cluster_1 {
+                    graph [color=blue,
+                        label="process #2"];
+                    node [style="filled, rounded"];
+                    b0;
+                    b1;
+                    b2;
+                    b3;
+                    b0 -> b1;
+                    b1 -> b2;
+                    b2 -> b3;
+                }
+                start [shape=Mdiamond];
+                end [shape=Msquare];
+                a1 -> b3;
+                a3 -> end;
+                b2 -> a3;
+                b3 -> end;
+                start -> a0;
+                start -> b0;
             }
-            node_1;
-            node_0_1 -> node_1;
-        }
+
+        View the graph:
+
+        ::
+
+            >>> topleveltools.graph(graph) # doctest: +SKIP
+
+        Graphs can also be created without defining names.  Canonical names
+        will be automatically determined for all members whose `name` is None:
+
+        ::
+
+            >>> graph = abjad.graphtools.GraphvizGraph()
+            >>> graph.append(abjad.graphtools.GraphvizSubgraph())
+            >>> graph[0].append(abjad.graphtools.GraphvizNode())
+            >>> graph[0].append(abjad.graphtools.GraphvizNode())
+            >>> graph[0].append(abjad.graphtools.GraphvizNode())
+            >>> graph[0].append(abjad.graphtools.GraphvizSubgraph())
+            >>> graph[0][-1].append(abjad.graphtools.GraphvizNode())
+            >>> graph.append(abjad.graphtools.GraphvizNode())
+            >>> abjad.graphtools.GraphvizEdge().attach(graph[0][1], graph[1])
+            >>> abjad.graphtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
+
+        ::
+
+            >>> print(str(graph))
+            digraph G {
+                subgraph cluster_0 {
+                    node_0_0;
+                    node_0_1;
+                    node_0_2;
+                    subgraph cluster_0_3 {
+                        node_0_3_0;
+                    }
+                    node_0_0 -> node_0_3_0;
+                }
+                node_1;
+                node_0_1 -> node_1;
+            }
 
     '''
 

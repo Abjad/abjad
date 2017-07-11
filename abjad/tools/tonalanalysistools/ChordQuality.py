@@ -5,6 +5,10 @@ from abjad.tools.abctools import AbjadObject
 class ChordQuality(AbjadObject):
     '''Chord quality. Major, minor, dominant, diminished and so on.
 
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
+
     Chord qualities are immutable.
     '''
 

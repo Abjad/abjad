@@ -8,16 +8,20 @@ from abjad.tools.abctools import AbjadValueObject
 class LogicalMeasureSelectorCallback(AbjadValueObject):
     r'''Logical measure selector callback.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Score for examples 1 - 3:
 
         ::
 
-            >>> staff = Staff("c'8 d' e' f' g' a' b' c''")
-            >>> attach(TimeSignature((2, 8)), staff[0])
-            >>> attach(TimeSignature((3, 8)), staff[4])
-            >>> attach(TimeSignature((1, 8)), staff[7])
+            >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+            >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
+            >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
             >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
@@ -26,11 +30,11 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
         ::
 
-            >>> selector = selectortools.Selector()
+            >>> selector = abjad.select()
             >>> selector = selector.by_leaf()
             >>> selector = selector.by_logical_measure()
-            >>> for x in selector(staff):
-            ...     x
+            >>> for selection in selector(staff):
+            ...     selection
             ...
             Selection([Note("c'8"), Note("d'8")])
             Selection([Note("e'8"), Note("f'8")])
@@ -43,7 +47,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
         ::
 
-            >>> selector = selectortools.Selector()
+            >>> selector = abjad.select()
             >>> selector = selector.by_leaf()
             >>> selector = selector.by_logical_measure()
             >>> selector = selector[0]
@@ -56,7 +60,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
         ::
 
-            >>> selector = selectortools.Selector()
+            >>> selector = abjad.select()
             >>> selector = selector.by_leaf()
             >>> selector = selector.by_logical_measure()
             >>> selector = selector[-1]
@@ -69,19 +73,19 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f' g' a' b' c''")
-            >>> score = Score([staff])
-            >>> scheme = schemetools.SchemeMoment((1, 16))
-            >>> setting(score).proportional_notation_duration = scheme
+            >>> staff = abjad.Staff("c'4 d' e' f' g' a' b' c''")
+            >>> score = abjad.Score([staff])
+            >>> scheme = abjad.SchemeMoment((1, 16))
+            >>> abjad.setting(score).proportional_notation_duration = scheme
             >>> show(score) # doctest: +SKIP
 
         ::
 
-            >>> selector = selectortools.Selector()
+            >>> selector = abjad.select()
             >>> selector = selector.by_leaf()
             >>> selector = selector.by_logical_measure()
-            >>> for x in selector(score):
-            ...     x
+            >>> for selection in selector(score):
+            ...     selection
             ...
             Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
             Selection([Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4")])

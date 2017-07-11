@@ -13,6 +13,11 @@ from abjad.tools.topleveltools import select
 class EvenRunRhythmMaker(RhythmMaker):
     r'''Even run rhythm-maker.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         Makes even run of notes each equal in duration to ``1/d``
@@ -35,7 +40,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  docs::
 
-            >>> f(lilypond_file[Staff])
+            >>> f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 4/8
@@ -215,7 +220,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier(
-                ...     forbidden_written_duration=Duration(1, 4),
+                ...     forbidden_written_duration=(1, 4),
                 ...     )
                 >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker(
                 ...     duration_spelling_specifier=specifier,
@@ -233,7 +238,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -297,7 +302,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -353,7 +358,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -418,7 +423,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -515,7 +520,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -578,7 +583,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -642,7 +647,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8

@@ -10,11 +10,15 @@ from abjad.tools.abctools import AbjadValueObject
 class PackageGitCommitToken(AbjadValueObject):
     r'''A Python package git commit token.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> token = lilypondfiletools.PackageGitCommitToken('abjad')
+            >>> token = abjad.PackageGitCommitToken('abjad')
             >>> token
             PackageGitCommitToken(package_name='abjad')
 
@@ -43,7 +47,7 @@ class PackageGitCommitToken(AbjadValueObject):
 
         ..  container:: example
 
-            >>> token = lilypondfiletools.PackageGitCommitToken('abjad')
+            >>> token = abjad.PackageGitCommitToken('abjad')
             >>> print(format(token)) # doctest: +SKIP
             package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
 
@@ -119,7 +123,7 @@ class PackageGitCommitToken(AbjadValueObject):
 
             ::
 
-                >>> token = lilypondfiletools.PackageGitCommitToken('abjad')
+                >>> token = abjad.PackageGitCommitToken('abjad')
                 >>> token.package_name
                 'abjad'
 

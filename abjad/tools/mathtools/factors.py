@@ -4,17 +4,21 @@
 def factors(n):
     r'''Gets prime factors less than or equal to `n` .
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.factors(84)
+            >>> abjad.mathtools.factors(84)
             [2, 2, 3, 7]
 
         ::
 
             >>> for n in range(10, 20):
-            ...   print(n, mathtools.factors(n))
+            ...   print(n, abjad.mathtools.factors(n))
             ... 
             10 [2, 5]
             11 [11]

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import copy
 #from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -12,8 +13,8 @@ class LilyPondNameManager(object):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a LilyPond name manager with attribute pairs
-        equal to those of this LilyPond name manager. Otherwise false.
+        r'''Is true when `argument` is a LilyPond name manager with attribute
+        pairs equal to those of this LilyPond name manager. Otherwise false.
 
         Returns true or false.
         '''
@@ -24,7 +25,6 @@ class LilyPondNameManager(object):
     def __getstate__(self):
         r'''Gets object state.
         '''
-        import copy
         return copy.deepcopy(vars(self))
 
     def __hash__(self):

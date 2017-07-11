@@ -9,6 +9,10 @@ from abjad.tools.abctools import AbjadValueObject
 class BowContactPoint(AbjadValueObject):
     r'''Bow contact point.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Contact point exactly halfway from frog to tip of bow:

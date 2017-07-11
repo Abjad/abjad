@@ -8,12 +8,16 @@ from abjad.tools.topleveltools import setting
 def make_floating_time_signature_lilypond_file(music=None):
     r'''Makes floating time signature LilyPond file.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> score = Score()
-            >>> time_signature_context = scoretools.Context(
+            >>> score = abjad.Score()
+            >>> time_signature_context = abjad.Context(
             ...     context_name='TimeSignatureContext',
             ...     )
             >>> durations = [(2, 8), (3, 8), (4, 8)]
@@ -21,13 +25,13 @@ def make_floating_time_signature_lilypond_file(music=None):
             >>> measures = maker(durations)
             >>> time_signature_context.extend(measures)
             >>> score.append(time_signature_context)
-            >>> staff = Staff()
-            >>> staff.append(Measure((2, 8), "c'8 ( d'8 )"))
-            >>> staff.append(Measure((3, 8), "e'8 ( f'8  g'8 )"))
-            >>> staff.append(Measure((4, 8), "fs'4 ( e'8 d'8 )"))
+            >>> staff = abjad.Staff()
+            >>> staff.append(abjad.Measure((2, 8), "c'8 ( d'8 )"))
+            >>> staff.append(abjad.Measure((3, 8), "e'8 ( f'8  g'8 )"))
+            >>> staff.append(abjad.Measure((4, 8), "fs'4 ( e'8 d'8 )"))
             >>> score.append(staff)
             >>> lilypond_file = \
-            ...     lilypondfiletools.make_floating_time_signature_lilypond_file(
+            ...     abjad.make_floating_time_signature_lilypond_file(
             ...     score
             ...     )
 

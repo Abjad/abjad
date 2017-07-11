@@ -11,13 +11,16 @@ from abjad.tools.abctools import AbjadObject
 class Expression(AbjadObject):
     r'''Expression.
 
+    ::
+        >>> import abjad
+
     ..  container:: example expression
 
         Makes identity expression:
 
         ::
 
-            >>> expression = Expression()
+            >>> expression = abjad.Expression()
 
         ::
 
@@ -40,7 +43,7 @@ class Expression(AbjadObject):
 
         ::
 
-            >>> expression = Expression(evaluation_template='int({})')
+            >>> expression = abjad.Expression(evaluation_template='int({})')
 
         ::
 
@@ -63,7 +66,7 @@ class Expression(AbjadObject):
 
         ::
 
-            >>> expression = Expression(evaluation_template='int({}, base=2)')
+            >>> expression = abjad.Expression(evaluation_template='int({}, base=2)')
 
         ::
 
@@ -86,7 +89,7 @@ class Expression(AbjadObject):
 
         ::
 
-            >>> expression = Expression(
+            >>> expression = abjad.Expression(
             ...     argument_count=3,
             ...     evaluation_template='{} + {} + {}',
             ...     )
@@ -225,11 +228,11 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression_1 = Expression(
+                >>> expression_1 = abjad.Expression(
                 ...     argument_count=3,
                 ...     evaluation_template='{} + {} + {}',
                 ...     )
-                >>> expression_2 = Expression(
+                >>> expression_2 = abjad.Expression(
                 ...     argument_count=2,
                 ...     evaluation_template='{} + {}',
                 ...     )
@@ -320,7 +323,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
 
             ::
 
@@ -333,7 +336,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.markup()
                 >>> expression = expression.bold()
 
@@ -408,15 +411,15 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression_1 = Expression().sequence()
-                >>> expression_2 = Expression().sequence()
+                >>> expression_1 = abjad.Expression().sequence()
+                >>> expression_2 = abjad.Expression().sequence()
                 >>> expression_1 == expression_2
                 True
 
             ::
 
-                >>> expression_1 = Expression().sequence()
-                >>> expression_2 = new(expression_1)
+                >>> expression_1 = abjad.Expression().sequence()
+                >>> expression_2 = abjad.new(expression_1)
                 >>> expression_1 == expression_2
                 True
 
@@ -424,21 +427,21 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression_1 = Expression().sequence()
-                >>> expression_2 = Expression().sequence().reverse()
+                >>> expression_1 = abjad.Expression().sequence()
+                >>> expression_2 = abjad.Expression().sequence().reverse()
                 >>> expression_1 == expression_2
                 False
 
             ::
 
-                >>> expression_1 = Expression().sequence()
-                >>> expression_2 = Expression().markup()
+                >>> expression_1 = abjad.Expression().sequence()
+                >>> expression_2 = abjad.Expression().markup()
                 >>> expression_1 == expression_2
                 False
                 
             ::
 
-                >>> expression_1 = Expression().sequence()
+                >>> expression_1 = abjad.Expression().sequence()
                 >>> expression_1 == 'text'
                 False
 
@@ -459,7 +462,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
 
             ::
 
@@ -472,7 +475,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.markup()
                 >>> expression = expression.bold()
 
@@ -562,7 +565,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
 
             ::
 
@@ -575,7 +578,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.markup()
                 >>> expression = expression.bold()
 
@@ -604,7 +607,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
 
             ::
 
@@ -617,7 +620,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.markup()
                 >>> expression = expression.bold()
 
@@ -1269,7 +1272,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.markup()
                 >>> expression = expression.bold()
 
@@ -1286,7 +1289,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression.callbacks is None
                 True
 
@@ -1298,7 +1301,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.markup()
                 >>> expression = expression.bold()
 
@@ -1442,7 +1445,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression(name='J')
+                >>> expression = abjad.Expression(name='J')
                 >>> expression.name
                 'J'
 
@@ -1545,14 +1548,14 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression.callbacks is None
                 True
 
             ::
 
                 
-                >>> callback = Expression(evaluation_template='int({})')
+                >>> callback = abjad.Expression(evaluation_template='int({})')
                 >>> expression = expression.append_callback(callback)
                 >>> for callback in expression.callbacks:
                 ...     callback
@@ -1560,7 +1563,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> callback = Expression(evaluation_template='{}**2')
+                >>> callback = abjad.Expression(evaluation_template='{}**2')
                 >>> expression = expression.append_callback(callback)
                 >>> for expression in expression.callbacks:
                 ...     expression
@@ -1581,7 +1584,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression(name='J')
+                >>> expression = abjad.Expression(name='J')
                 >>> expression = expression.pitch_class_segment()
                 >>> expression = expression.rotate(n=1)
                 >>> expression = expression.rotate(n=2)
@@ -1700,7 +1703,7 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> expression = sequence()
+                    >>> expression = abjad.sequence()
                     >>> expression = expression.reverse()
                     >>> expression = expression.rotate(n=2)
 
@@ -1711,7 +1714,7 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> Expression.get_string(expression, name='J')
+                    >>> abjad.Expression.get_string(expression, name='J')
                     'r2(R(J))'
 
             ..  container:: example expression
@@ -1720,7 +1723,7 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.reverse()
                     >>> expression = expression.rotate(n=2)
@@ -1732,14 +1735,14 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> Expression.get_string(expression)
+                    >>> abjad.Expression.get_string(expression)
                     'r2(R(J))'
 
                 Overrides name:
 
                 ::
 
-                    >>> Expression.get_string(expression, name='K')
+                    >>> abjad.Expression.get_string(expression, name='K')
                     'r2(R(K))'
 
         ..  container:: example
@@ -1752,7 +1755,7 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> expression = Expression()
+                    >>> expression = abjad.Expression()
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.invert()
                     >>> expression = expression.rotate(n=2)
@@ -1764,7 +1767,7 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> Expression.get_string(expression, name='J')
+                    >>> abjad.Expression.get_string(expression, name='J')
                     'r2(I(J))'
 
             ..  container:: example expression
@@ -1773,7 +1776,7 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.invert()
                     >>> expression = expression.rotate(n=2)
@@ -1785,14 +1788,14 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> Expression.get_string(expression)
+                    >>> abjad.Expression.get_string(expression)
                     'r2(I(J))'
 
                 Overrides name:
 
                 ::
 
-                    >>> Expression.get_string(expression, name='K')
+                    >>> abjad.Expression.get_string(expression, name='K')
                     'r2(I(K))'
 
         Returns string or none.
@@ -1844,10 +1847,10 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                    >>> staff.append(Measure((2, 8), "af'8 r8"))
-                    >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1873,7 +1876,7 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> expression = Expression()
+                    >>> expression = abjad.Expression()
                     >>> expression = expression.iterate()
                     >>> expression = expression.by_leaf()
 
@@ -1908,13 +1911,13 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                    >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = Expression()
+                    >>> expression = abjad.Expression()
                     >>> expression = expression.label()
                     >>> expression = expression.with_durations()
 
@@ -2005,7 +2008,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.markup()
                 >>> expression = expression.bold()
 
@@ -2040,15 +2043,15 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.markup_list()
                 >>> expression = expression.concat(direction=Up)
 
             ::
 
-                >>> downbow = Markup.musicglyph('scripts.downbow')
-                >>> hspace = Markup.hspace(1)
-                >>> upbow = Markup.musicglyph('scripts.upbow')
+                >>> downbow = abjad.Markup.musicglyph('scripts.downbow')
+                >>> hspace = abjad.Markup.hspace(1)
+                >>> upbow = abjad.Markup.musicglyph('scripts.upbow')
                 >>> markups = [downbow, hspace, upbow]
                 >>> markup = expression(markups)
                 >>> show(markup) # doctest: +SKIP
@@ -2072,7 +2075,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.markup_list()
 
             Expression works with zero arguments:
@@ -2117,7 +2120,7 @@ class Expression(AbjadObject):
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-                >>> J = PitchClassSegment(items=items)
+                >>> J = abjad.PitchClassSegment(items=items)
                 >>> J
                 PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
@@ -2129,7 +2132,7 @@ class Expression(AbjadObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.pitch_class_segment()
                     >>> expression = expression.transpose(n=13)
 
@@ -2149,7 +2152,7 @@ class Expression(AbjadObject):
                     >>> lilypond_file = segment.__illustrate__(
                     ...     figure_name=markup,
                     ...     )
-                    >>> f(lilypond_file[Voice])
+                    >>> f(lilypond_file[abjad.Voice])
                     \new Voice {
                         b'8
                             ^ \markup {
@@ -2193,7 +2196,7 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = sequence()
+                >>> expression = abjad.sequence()
                 >>> expression = expression.reverse()
                 >>> expression = expression.flatten()
 
@@ -2222,12 +2225,12 @@ class Expression(AbjadObject):
 
             ::
 
-                >>> expression = Expression()
+                >>> expression = abjad.Expression()
                 >>> expression = expression.wrap_in_list()
 
             ::
 
-                >>> expression(Markup('Allegro assai'))
+                >>> expression(abjad.Markup('Allegro assai'))
                 [Markup(contents=['Allegro assai'])]
 
             ::

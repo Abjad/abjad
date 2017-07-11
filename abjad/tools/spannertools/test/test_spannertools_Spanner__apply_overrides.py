@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import sys
 from abjad import *
 
@@ -26,7 +27,7 @@ def test_spannertools_Spanner__apply_overrides_01():
 
     white_flautando_spanner = spannertools.TextSpanner(overrides=overrides)
 
-    staff = Staff("c'4 d'4 e'4 f'4")
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
     attach(white_flautando_spanner, staff[:])
 
     assert format(staff) == String.normalize(

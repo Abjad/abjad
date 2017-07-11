@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
 from abjad import *
 
@@ -8,7 +9,7 @@ def test_spannertools_StaffLinesSpanner_format_01():
     line-count property.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     spanner = spannertools.StaffLinesSpanner(lines=3)
     attach(spanner, staff[2:7])
 
@@ -38,7 +39,7 @@ def test_spannertools_StaffLinesSpanner_format_02():
     StaffSymbol's line-positions property.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     spanner = spannertools.StaffLinesSpanner(
         lines=[-5, -4, -3, -2, -1, 0, 1.5, 3, 4.5],
         )
@@ -67,7 +68,7 @@ def test_spannertools_StaffLinesSpanner_format_02():
 
 def test_spannertools_StaffLinesSpanner_format_03():
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     spanner = spannertools.StaffLinesSpanner(lines=[-1.5, 0, 1.5])
     attach(spanner, staff[1:3])
 

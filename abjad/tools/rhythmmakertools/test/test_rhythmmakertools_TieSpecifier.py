@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -20,7 +21,7 @@ def test_rhythmmakertools_TieSpecifier_01():
             ),
         )
     selections = rhythm_maker(divisions)
-    staff = Staff(selections)
+    staff = abjad.Staff(selections)
 
     assert format(staff) == String.normalize(
         r'''

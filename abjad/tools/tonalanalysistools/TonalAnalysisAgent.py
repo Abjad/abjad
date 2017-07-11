@@ -7,13 +7,18 @@ from abjad.tools import pitchtools
 class TonalAnalysisAgent(abctools.AbjadObject):
     r'''Tonal analysis agent.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import tonalanalysistools
+
     ..  container:: example
 
         Intializes agent on conjunct selection:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
+            >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -36,7 +41,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
+            >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -274,7 +279,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
             ::
 
-                >>> chord = Chord([7, 10, 12, 16], (1, 4))
+                >>> chord = abjad.Chord([7, 10, 12, 16], (1, 4))
                 >>> abjad.analyze(chord).analyze_chords()
                 [CDominantSeventhInSecondInversion]
 
@@ -295,7 +300,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
             ::
 
-                >>> chord = Chord("<g' b'>4")
+                >>> chord = abjad.Chord("<g' b'>4")
                 >>> abjad.analyze(chord).analyze_incomplete_chords()
                 [GMajorTriadInRootPosition]
 
@@ -303,7 +308,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
             ::
 
-                >>> chord = Chord("<fs g b>4")
+                >>> chord = abjad.Chord("<fs g b>4")
                 >>> abjad.analyze(chord).analyze_incomplete_chords()
                 [GMajorSeventhInSecondInversion]
 
@@ -325,8 +330,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
             ::
 
-                >>> chord = Chord("<c' e'>4")
-                >>> key_signature = KeySignature('g', 'major')
+                >>> chord = abjad.Chord("<c' e'>4")
+                >>> key_signature = abjad.KeySignature('g', 'major')
                 >>> selection = abjad.analyze(chord)
                 >>> selection.analyze_incomplete_tonal_functions(key_signature)
                 [IVMajorTriadInRootPosition]
@@ -351,7 +356,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
                 >>> selection = abjad.analyze(staff[:])
                 >>> selection.analyze_neighbor_notes()
                 [False, False, False, False]
@@ -372,7 +377,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
                 >>> selection = abjad.analyze(staff[:])
                 >>> selection.analyze_passing_tones()
                 [False, True, True, False]
@@ -391,8 +396,8 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-                >>> chord = Chord('<ef g bf>4')
-                >>> key_signature = KeySignature('c', 'major')
+                >>> chord = abjad.Chord('<ef g bf>4')
+                >>> key_signature = abjad.KeySignature('c', 'major')
                 >>> selection = abjad.analyze(chord)
                 >>> selection.analyze_tonal_functions(key_signature)
                 [FlatIIIMajorTriadInRootPosition]

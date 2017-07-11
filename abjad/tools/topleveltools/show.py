@@ -4,13 +4,17 @@
 def show(argument, return_timing=False, **keywords):
     r'''Shows `argument`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Shows note:
 
         ::
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> show(note) # doctest: +SKIP
 
         ..  docs::
@@ -24,7 +28,7 @@ def show(argument, return_timing=False, **keywords):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
+            >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

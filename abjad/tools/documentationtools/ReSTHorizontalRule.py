@@ -7,14 +7,20 @@ class ReSTHorizontalRule(TreeNode):
 
     ::
 
-        >>> rule = documentationtools.ReSTHorizontalRule()
-        >>> rule
-        ReSTHorizontalRule()
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> print(rule.rest_format)
-        --------
+        ::
+
+            >>> rule = abjad.documentationtools.ReSTHorizontalRule()
+            >>> rule
+            ReSTHorizontalRule()
+
+        ::
+
+            >>> print(rule.rest_format)
+            --------
 
     '''
 

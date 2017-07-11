@@ -7,20 +7,26 @@ class ReSTInheritanceDiagram(ReSTDirective):
 
     ::
 
-        >>> documentationtools.ReSTInheritanceDiagram(
-        ...     argument=spannertools.Beam)
-        ReSTInheritanceDiagram(
-            argument='abjad.tools.spannertools.Beam.Beam',
-            options={
-                'private-bases': True,
-                }
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> print(_.rest_format)
-        .. inheritance-diagram:: abjad.tools.spannertools.Beam.Beam
-           :private-bases:
+        ::
+
+            >>> abjad.documentationtools.ReSTInheritanceDiagram(
+            ...     argument=abjad.Beam)
+            ReSTInheritanceDiagram(
+                argument='abjad.tools.spannertools.Beam.Beam',
+                options={
+                    'private-bases': True,
+                    }
+                )
+
+        ::
+
+            >>> print(_.rest_format)
+            .. inheritance-diagram:: abjad.tools.spannertools.Beam.Beam
+            :private-bases:
 
     '''
 

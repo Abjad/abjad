@@ -7,6 +7,11 @@ class LilyPondContext(abctools.AbjadValueObject):
 
     ::
 
+        >>> import abjad
+        >>> from abjad.tools import lilypondnametools
+
+    ::
+
         >>> context = lilypondnametools.LilyPondContext('MensuralStaff')
         >>> f(context)
         lilypondnametools.LilyPondContext(

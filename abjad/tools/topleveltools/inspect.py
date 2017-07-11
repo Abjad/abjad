@@ -4,13 +4,17 @@
 def inspect(client):
     r'''Makes inspection agent.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Example staff:
 
         ::
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -29,7 +33,7 @@ def inspect(client):
 
         ::
 
-            >>> inspect(staff[0]).get_duration()
+            >>> abjad.inspect(staff[0]).get_duration()
             Duration(1, 4)
 
     ..  container:: example
@@ -38,7 +42,7 @@ def inspect(client):
 
         ::
 
-            >>> inspect(staff[0]).get_lineage()
+            >>> abjad.inspect(staff[0]).get_lineage()
             Lineage([Staff("c'4 e'4 d'4 f'4"), Note("c'4")])
 
     ..  container:: example
@@ -47,7 +51,7 @@ def inspect(client):
 
         ::
 
-            >>> inspect(staff)
+            >>> abjad.inspect(staff)
             InspectionAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''

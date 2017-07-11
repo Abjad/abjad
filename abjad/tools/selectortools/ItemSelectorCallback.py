@@ -11,6 +11,11 @@ from abjad.tools.topleveltools import select
 
 class ItemSelectorCallback(AbjadValueObject):
     r'''Item selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###

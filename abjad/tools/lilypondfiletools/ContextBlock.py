@@ -7,11 +7,15 @@ from abjad.tools.topleveltools import setting
 class ContextBlock(Block):
     r'''A LilyPond file ``\context`` block.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> block = lilypondfiletools.ContextBlock(
+            >>> block = abjad.ContextBlock(
             ...     source_context_name='Staff',
             ...     name='FluteStaff',
             ...     type_='Engraver_group',
@@ -22,10 +26,10 @@ class ContextBlock(Block):
             >>> block.accepts_commands.append('FluteUpperVoice')
             >>> block.accepts_commands.append('FluteLowerVoice')
             >>> block.items.append(r'\accidentalStyle dodecaphonic')
-            >>> override(block).beam.positions = (-4, -4)
-            >>> override(block).stem.stem_end_position = -6
-            >>> setting(block).auto_beaming = False
-            >>> setting(block).tuplet_full_length = True
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
             >>> block
             <ContextBlock(source_context_name='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
 

@@ -9,6 +9,11 @@ from abjad.tools.pitchtools.Accidental import Accidental
 
 class PitchClass(AbjadValueObject):
     '''Pitch-class base class.
+
+    ::
+
+        >>> import abjad 
+
     '''
 
     ### CLASS VARIABLES ###
@@ -286,7 +291,7 @@ class PitchClass(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.PitchClass.is_diatonic_pitch_class_name('c')
+            >>> abjad.PitchClass.is_diatonic_pitch_class_name('c')
             True
 
         The regex ``^[a-g,A-G]$`` underlies this predicate.
@@ -303,12 +308,12 @@ class PitchClass(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.PitchClass.is_diatonic_pitch_class_number(0)
+            >>> abjad.PitchClass.is_diatonic_pitch_class_number(0)
             True
 
         ::
 
-            >>> pitchtools.PitchClass.is_diatonic_pitch_class_number(-5)
+            >>> abjad.PitchClass.is_diatonic_pitch_class_number(-5)
             False
 
         The diatonic pitch-class numbers are equal to the set
@@ -326,7 +331,7 @@ class PitchClass(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.PitchClass.is_pitch_class_name('fs')
+            >>> abjad.PitchClass.is_pitch_class_name('fs')
             True
 
         The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies
@@ -344,7 +349,7 @@ class PitchClass(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.PitchClass.is_pitch_class_number(1)
+            >>> abjad.PitchClass.is_pitch_class_number(1)
             True
 
         The pitch-class numbers are equal to the set

@@ -6,17 +6,21 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class LilyPondCommand(AbjadValueObject):
     r'''LilyPond command.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Dotted slur:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> slur = spannertools.Slur()
-            >>> attach(slur, staff[:])
-            >>> command = indicatortools.LilyPondCommand('slurDotted')
-            >>> attach(command, staff[0])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> slur = abjad.Slur()
+            >>> abjad.attach(slur, staff[:])
+            >>> command = abjad.LilyPondCommand('slurDotted')
+            >>> abjad.attach(command, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -127,7 +131,7 @@ class LilyPondCommand(AbjadValueObject):
 
             Default:
 
-                >>> commands = indicatortools.LilyPondCommand.list_allowable_format_slots()
+                >>> commands = abjad.LilyPondCommand.list_allowable_format_slots()
                 >>> for command in commands:
                 ...     command
                 'after'
@@ -152,7 +156,7 @@ class LilyPondCommand(AbjadValueObject):
 
             ::
 
-                >>> command = indicatortools.LilyPondCommand('slurDotted')
+                >>> command = abjad.LilyPondCommand('slurDotted')
                 >>> command.default_scope is None
                 True
 
@@ -170,7 +174,7 @@ class LilyPondCommand(AbjadValueObject):
 
             ::
 
-                >>> command = indicatortools.LilyPondCommand('slurDotted')
+                >>> command = abjad.LilyPondCommand('slurDotted')
                 >>> command.format_slot
                 'opening'
 
@@ -190,7 +194,7 @@ class LilyPondCommand(AbjadValueObject):
 
             ::
 
-                >>> command = indicatortools.LilyPondCommand('slurDotted')
+                >>> command = abjad.LilyPondCommand('slurDotted')
                 >>> command.name
                 'slurDotted'
 

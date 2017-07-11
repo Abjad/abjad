@@ -7,15 +7,19 @@ from abjad.tools.topleveltools import override
 class PhrasingSlur(Spanner):
     r'''Phrasing slur.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Spans four notes:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> slur = PhrasingSlur()
-            >>> attach(slur, staff[:])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> slur = abjad.PhrasingSlur()
+            >>> abjad.attach(slur, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -34,9 +38,9 @@ class PhrasingSlur(Spanner):
 
         ::
 
-            >>> staff = Staff("c'8 d' e' f'")
-            >>> phrasing_slur = PhrasingSlur()
-            >>> attach(phrasing_slur, staff[:1])
+            >>> staff = abjad.Staff("c'8 d' e' f'")
+            >>> phrasing_slur = abjad.PhrasingSlur()
+            >>> abjad.attach(phrasing_slur, staff[:1])
             Traceback (most recent call last):
                 ...
             Exception: PhrasingSlur() attachment test fails for Selection([Note("c'8")]).
@@ -102,9 +106,9 @@ class PhrasingSlur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = PhrasingSlur(direction=Up)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.PhrasingSlur(direction=Up)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -123,9 +127,9 @@ class PhrasingSlur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = PhrasingSlur(direction=Down)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.PhrasingSlur(direction=Down)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -144,9 +148,9 @@ class PhrasingSlur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = PhrasingSlur(direction=None)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.PhrasingSlur(direction=None)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

@@ -13,7 +13,7 @@ def test_rhythmmakertools_NoteRhythmMaker___call___01():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(
@@ -48,7 +48,7 @@ def test_rhythmmakertools_NoteRhythmMaker___call___02():
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
-    staff = Staff(measures)
+    staff = abjad.Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
     assert format(staff) == String.normalize(

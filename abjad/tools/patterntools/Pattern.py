@@ -11,6 +11,7 @@ class Pattern(AbjadValueObject):
     ::
 
         >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
 
     ..  container:: example
 
@@ -666,7 +667,7 @@ class Pattern(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
                 ...     )
@@ -674,7 +675,7 @@ class Pattern(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -729,7 +730,7 @@ class Pattern(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
                 ...     )
@@ -737,7 +738,7 @@ class Pattern(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -780,7 +781,7 @@ class Pattern(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
                 ...     )
@@ -788,7 +789,7 @@ class Pattern(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -846,7 +847,7 @@ class Pattern(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
                 ...     )
@@ -854,7 +855,7 @@ class Pattern(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -899,7 +900,7 @@ class Pattern(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
                 ...     )
@@ -907,7 +908,7 @@ class Pattern(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -952,7 +953,7 @@ class Pattern(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
                 ...     )
@@ -960,7 +961,7 @@ class Pattern(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -1017,7 +1018,7 @@ class Pattern(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
                 ...     )
@@ -1025,7 +1026,7 @@ class Pattern(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -1073,7 +1074,7 @@ class Pattern(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
                 ...     )
@@ -1081,7 +1082,7 @@ class Pattern(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16

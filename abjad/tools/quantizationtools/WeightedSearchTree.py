@@ -4,53 +4,63 @@ from abjad.tools.quantizationtools.SearchTree import SearchTree
 
 
 class WeightedSearchTree(SearchTree):
-    r'''A search tree that allows for dividing nodes in a ``QGrid`` into
-    parts with unequal weights:
+    r'''Weighted search tree.
 
     ::
 
-        >>> search_tree = quantizationtools.WeightedSearchTree()
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
-    ::
+    ..  container:: example
 
-        >>> print(format(search_tree))
-        quantizationtools.WeightedSearchTree(
-            definition={
-                'divisors': (2, 3, 5, 7),
-                'max_depth': 3,
-                'max_divisions': 2,
-                },
-            )
+        Allows for dividing nodes in a q-grid into parts with unequal weights.
 
-    In ``WeightedSearchTree``'s definition:
+        ::
 
-        * ``divisors`` controls the sum of the parts of the ratio a node
-          may be divided into,
-        * ``max_depth`` controls how many levels of tuplet nesting
-          are permitted, and
-        * ``max_divisions`` controls the maximum permitted length of the
-          weights in the ratio.
+            >>> search_tree = quantizationtools.WeightedSearchTree()
 
-    Thus, the default ``WeightedSearchTree`` permits the following ratios:
+        ::
 
-    ::
+            >>> f(search_tree)
+            quantizationtools.WeightedSearchTree(
+                definition={
+                    'divisors': (2, 3, 5, 7),
+                    'max_depth': 3,
+                    'max_divisions': 2,
+                    },
+                )
 
-        >>> for x in search_tree.all_compositions:
-        ...     x
-        ...
-        (1, 1)
-        (2, 1)
-        (1, 2)
-        (4, 1)
-        (3, 2)
-        (2, 3)
-        (1, 4)
-        (6, 1)
-        (5, 2)
-        (4, 3)
-        (3, 4)
-        (2, 5)
-        (1, 6)
+    ..  container:: example
+
+        In ``WeightedSearchTree``'s definition:
+
+            * ``divisors`` controls the sum of the parts of the ratio a node
+                may be divided into,
+            * ``max_depth`` controls how many levels of tuplet nesting
+                are permitted, and
+            * ``max_divisions`` controls the maximum permitted length of the
+                weights in the ratio.
+
+        Thus, the default ``WeightedSearchTree`` permits the following ratios:
+
+        ::
+
+            >>> for composition in search_tree.all_compositions:
+            ...     composition
+            ...
+            (1, 1)
+            (2, 1)
+            (1, 2)
+            (4, 1)
+            (3, 2)
+            (2, 3)
+            (1, 4)
+            (6, 1)
+            (5, 2)
+            (4, 3)
+            (3, 4)
+            (2, 5)
+            (1, 6)
 
     '''
 
@@ -61,6 +71,8 @@ class WeightedSearchTree(SearchTree):
         '_compositions',
         '_definition',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

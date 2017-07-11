@@ -12,27 +12,33 @@ class DurationInequality(Inequality):
 
     ::
 
-        >>> inequality = selectortools.DurationInequality('<', (3, 4))
-        >>> f(inequality)
-        abjad.DurationInequality(
-            operator_string='<',
-            duration=abjad.Duration(3, 4),
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> inequality(Duration(1, 2))
-        True
+        ::
 
-    ::
+            >>> inequality = abjad.DurationInequality('<', (3, 4))
+            >>> f(inequality)
+            abjad.DurationInequality(
+                operator_string='<',
+                duration=abjad.Duration(3, 4),
+                )
 
-        >>> inequality(Note("c'4"))
-        True
+        ::
 
-    ::
+            >>> inequality(abjad.Duration(1, 2))
+            True
 
-        >>> inequality(Container("c'1 d'1"))
-        False
+        ::
+
+            >>> inequality(abjad.Note("c'4"))
+            True
+
+        ::
+
+            >>> inequality(abjad.Container("c'1 d'1"))
+            False
 
     '''
 

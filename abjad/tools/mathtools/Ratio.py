@@ -5,13 +5,17 @@ from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
 class Ratio(NonreducedRatio):
     '''Ratio.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Ratio of two numbers:
 
         ::
 
-            >>> mathtools.Ratio((2, 4))
+            >>> abjad.Ratio((2, 4))
             Ratio((1, 2))
 
     ..  container:: example
@@ -20,7 +24,7 @@ class Ratio(NonreducedRatio):
 
         ::
 
-            >>> mathtools.Ratio((2, 4, 2))
+            >>> abjad.Ratio((2, 4, 2))
             Ratio((1, 2, 1))
 
     '''
@@ -50,9 +54,9 @@ class Ratio(NonreducedRatio):
 
             ::
 
-                >>> ratio_1 = mathtools.Ratio((1, 2, 1))
-                >>> ratio_2 = mathtools.Ratio((1, 2, 1))
-                >>> ratio_3 = mathtools.Ratio((2, 3, 3))
+                >>> ratio_1 = abjad.Ratio((1, 2, 1))
+                >>> ratio_2 = abjad.Ratio((1, 2, 1))
+                >>> ratio_3 = abjad.Ratio((2, 3, 3))
 
             ::
 
@@ -110,7 +114,7 @@ class Ratio(NonreducedRatio):
 
             ::
 
-                >>> ratio = mathtools.Ratio((2, 4, 2))
+                >>> ratio = abjad.Ratio((2, 4, 2))
                 >>> ratio[1]
                 2
 
@@ -136,7 +140,7 @@ class Ratio(NonreducedRatio):
 
             ::
 
-                >>> ratio = mathtools.Ratio((2, 4, 2))
+                >>> ratio = abjad.Ratio((2, 4, 2))
                 >>> len(ratio)
                 3
 
@@ -153,7 +157,7 @@ class Ratio(NonreducedRatio):
 
             ::
 
-                >>> str(mathtools.Ratio((2, 4)))
+                >>> str(abjad.Ratio((2, 4)))
                 '1:2'
 
         ..  container:: example
@@ -162,7 +166,7 @@ class Ratio(NonreducedRatio):
 
             ::
 
-                >>> str(mathtools.Ratio((2, 4, 2)))
+                >>> str(abjad.Ratio((2, 4, 2)))
                 '1:2:1'
 
         Returns string.
@@ -182,7 +186,7 @@ class Ratio(NonreducedRatio):
 
             ::
 
-                >>> ratio = mathtools.Ratio((2, 4))
+                >>> ratio = abjad.Ratio((2, 4))
                 >>> ratio.multipliers
                 (Multiplier(1, 3), Multiplier(2, 3))
 
@@ -192,7 +196,7 @@ class Ratio(NonreducedRatio):
 
             ::
 
-                >>> ratio = mathtools.Ratio((2, 4, 2))
+                >>> ratio = abjad.Ratio((2, 4, 2))
                 >>> ratio.multipliers
                 (Multiplier(1, 4), Multiplier(1, 2), Multiplier(1, 4))
 
@@ -217,7 +221,7 @@ class Ratio(NonreducedRatio):
 
             ::
 
-                >>> ratio = mathtools.Ratio((2, 4))
+                >>> ratio = abjad.Ratio((2, 4))
                 >>> ratio.numbers
                 (1, 2)
 
@@ -227,7 +231,7 @@ class Ratio(NonreducedRatio):
 
             ::
 
-                >>> ratio = mathtools.Ratio((2, 4, 2))
+                >>> ratio = abjad.Ratio((2, 4, 2))
                 >>> ratio.numbers
                 (1, 2, 1)
 

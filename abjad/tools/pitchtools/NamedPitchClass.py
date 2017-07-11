@@ -6,20 +6,24 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 class NamedPitchClass(PitchClass):
     '''Named pitch-class.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from pitch-class name:
 
         ::
 
-            >>> NamedPitchClass('cs')
+            >>> abjad.NamedPitchClass('cs')
             NamedPitchClass('cs')
 
         Initializes quartertone from pitch-class name:
 
         ::
 
-            >>> NamedPitchClass('cqs')
+            >>> abjad.NamedPitchClass('cqs')
             NamedPitchClass('cqs')
 
     ..  container:: example
@@ -28,14 +32,14 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> NamedPitchClass(14)
+            >>> abjad.NamedPitchClass(14)
             NamedPitchClass('d')
 
         Initializes quartertone from number of semitones:
 
         ::
 
-            >>> NamedPitchClass(14.5)
+            >>> abjad.NamedPitchClass(14.5)
             NamedPitchClass('dqs')
 
     ..  container:: example
@@ -44,7 +48,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> NamedPitchClass(NamedPitch('g,'))
+            >>> abjad.NamedPitchClass(abjad.NamedPitch('g,'))
             NamedPitchClass('g')
 
     ..  container:: example
@@ -53,7 +57,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> NamedPitchClass(NumberedPitch(15))
+            >>> abjad.NamedPitchClass(abjad.NumberedPitch(15))
             NamedPitchClass('ef')
 
     ..  container:: example
@@ -62,7 +66,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> NamedPitchClass(NumberedPitchClass(4))
+            >>> abjad.NamedPitchClass(abjad.NumberedPitchClass(4))
             NamedPitchClass('e')
 
     ..  container:: example
@@ -71,14 +75,14 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> NamedPitchClass('C#5')
+            >>> abjad.NamedPitchClass('C#5')
             NamedPitchClass('cs')
 
         Initializes quartertone from pitch-class / octave-number string:
 
         ::
 
-            >>> NamedPitchClass('C+5')
+            >>> abjad.NamedPitchClass('C+5')
             NamedPitchClass('cqs')
 
     ..  container:: example
@@ -87,14 +91,14 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> NamedPitchClass('C#5')
+            >>> abjad.NamedPitchClass('C#5')
             NamedPitchClass('cs')
 
         Initializes quartertone from pitch-class / octave-number string:
 
         ::
 
-            >>> NamedPitchClass('C+') # doctest: +SKIP
+            >>> abjad.NamedPitchClass('C+') # doctest: +SKIP
 
         ..  note:: Make this work.
 
@@ -104,14 +108,14 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> NamedPitchClass(Note("a'8."))
+            >>> abjad.NamedPitchClass(abjad.Note("a'8."))
             NamedPitchClass('a')
 
     ..  container:: example
 
         Initializes from pitch-class name:
 
-            >>> pitch_class = NamedPitchClass('cs')
+            >>> pitch_class = abjad.NamedPitchClass('cs')
             >>> pitch_class
             NamedPitchClass('cs')
 
@@ -158,7 +162,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> pitch_class + NamedInterval('+M9')
+            >>> pitch_class + abjad.NamedInterval('+M9')
             NamedPitchClass('ds')
 
         Return new named pitch-class.
@@ -220,7 +224,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> format(NamedPitchClass('cs'))
+                >>> format(abjad.NamedPitchClass('cs'))
                 "abjad.NamedPitchClass('cs')"
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
@@ -261,7 +265,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs') < NamedPitchClass('d')
+                >>> abjad.NamedPitchClass('cs') < abjad.NamedPitchClass('d')
                 True
 
         ..  container:: example
@@ -270,7 +274,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('d') < NamedPitchClass('cs')
+                >>> abjad.NamedPitchClass('d') < abjad.NamedPitchClass('cs')
                 False
 
         Raises type error when `argument` is not a named pitch-class.
@@ -302,7 +306,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> pitch_class - NamedPitchClass('g')
+                >>> pitch_class - abjad.NamedPitchClass('g')
                 NamedInversionEquivalentIntervalClass('+aug4')
 
         Returns named inversion-equivalent interval-class.
@@ -380,7 +384,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').accidental
+                >>> abjad.NamedPitchClass('cs').accidental
                 Accidental('s')
 
         Returns accidental.
@@ -396,7 +400,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').alteration_in_semitones
+                >>> abjad.NamedPitchClass('cs').alteration_in_semitones
                 1
 
         Returns nonnegative integer or float.
@@ -412,7 +416,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').diatonic_pitch_class_name
+                >>> abjad.NamedPitchClass('cs').diatonic_pitch_class_name
                 'c'
 
         Returns string.
@@ -426,7 +430,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> NamedPitchClass('cs').diatonic_pitch_class_number
+            >>> abjad.NamedPitchClass('cs').diatonic_pitch_class_number
             0
 
         Returns nonnegative integer.
@@ -442,7 +446,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').named_pitch_class
+                >>> abjad.NamedPitchClass('cs').named_pitch_class
                 NamedPitchClass('cs')
 
         Returns new named pitch-class.
@@ -457,7 +461,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').number
+                >>> abjad.NamedPitchClass('cs').number
                 1
 
         Returns nonnegative integer or float.
@@ -474,7 +478,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').numbered_pitch_class
+                >>> abjad.NamedPitchClass('cs').numbered_pitch_class
                 NumberedPitchClass(1)
 
         Returns numbered pitch-class.
@@ -490,7 +494,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').pitch_class_label
+                >>> abjad.NamedPitchClass('cs').pitch_class_label
                 'C#'
 
         Returns string.
@@ -509,7 +513,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').pitch_class_name
+                >>> abjad.NamedPitchClass('cs').pitch_class_name
                 'cs'
 
         Returns string.
@@ -530,7 +534,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').pitch_class_number
+                >>> abjad.NamedPitchClass('cs').pitch_class_number
                 1
 
         Returns integer or float.
@@ -549,7 +553,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').apply_accidental('qs')
+                >>> abjad.NamedPitchClass('cs').apply_accidental('qs')
                 NamedPitchClass('ctqs')
 
         Returns new named pitch-class.
@@ -581,7 +585,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> NamedPitchClass('cs').multiply(3)
+                >>> abjad.NamedPitchClass('cs').multiply(3)
                 NamedPitchClass('ef')
 
         Returns new named pitch-class.
@@ -595,8 +599,8 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> named_interval = NamedInterval('major', 2)
-                >>> NamedPitchClass('cs').transpose(named_interval)
+                >>> named_interval = abjad.NamedInterval('major', 2)
+                >>> abjad.NamedPitchClass('cs').transpose(named_interval)
                 NamedPitchClass('ds')
 
         Returns new named pitch-class.

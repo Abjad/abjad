@@ -7,13 +7,17 @@ from abjad.tools.pitchtools.NumberedIntervalClass import NumberedIntervalClass
 class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
     '''Numbered inversion-equivalent interval-class.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from integer:
 
         ::
 
-            >>> pitchtools.NumberedInversionEquivalentIntervalClass(1)
+            >>> abjad.NumberedInversionEquivalentIntervalClass(1)
             NumberedInversionEquivalentIntervalClass(1)
 
     ..  container:: example
@@ -22,7 +26,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
         ::
 
-            >>> pitchtools.NumberedInversionEquivalentIntervalClass('1')
+            >>> abjad.NumberedInversionEquivalentIntervalClass('1')
             NumberedInversionEquivalentIntervalClass(1)
 
     '''

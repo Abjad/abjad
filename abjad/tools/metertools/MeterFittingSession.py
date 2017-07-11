@@ -7,7 +7,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class MeterFittingSession(AbjadValueObject):
-    r'''A meter-fitting session.
+    r'''Meter-fitting session.
 
     Used internally by Meter.fit_meters().
     '''

@@ -10,13 +10,17 @@ from abjad.tools.pitchtools.Interval import Interval
 class NumberedInterval(Interval):
     '''Numbered interval.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from number of semitones:
 
         ::
 
-            >>> numbered_interval = NumberedInterval(-14)
+            >>> numbered_interval = abjad.NumberedInterval(-14)
             >>> numbered_interval
             NumberedInterval(-14)
 
@@ -166,7 +170,7 @@ class NumberedInterval(Interval):
 
         ::
 
-            >>> NumberedInterval(-14).direction_number
+            >>> abjad.NumberedInterval(-14).direction_number
             -1
 
         Returns integer.
@@ -179,7 +183,7 @@ class NumberedInterval(Interval):
 
         ::
 
-            >>> NumberedInterval(-14).direction_string
+            >>> abjad.NumberedInterval(-14).direction_string
             'descending'
 
         Returns ``'ascending'``, ``'descending'`` or none.
@@ -205,7 +209,7 @@ class NumberedInterval(Interval):
 
         ::
 
-            >>> NumberedInterval(-14).numbered_interval_number
+            >>> abjad.NumberedInterval(-14).numbered_interval_number
             -14
 
         Returns integer or float.
@@ -229,9 +233,9 @@ class NumberedInterval(Interval):
 
         ::
 
-            >>> NumberedInterval.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
+            >>> abjad.NumberedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch(-2),
+            ...     abjad.NamedPitch(12),
             ...     )
             NumberedInterval(14)
 
@@ -257,7 +261,7 @@ class NumberedInterval(Interval):
 
             ::
 
-                >>> numbered_interval = NumberedInterval(1)
+                >>> numbered_interval = abjad.NumberedInterval(1)
                 >>> numbered_interval.to_named_interval(2)
                 NamedInterval('+m2')
 
@@ -373,11 +377,11 @@ class NumberedInterval(Interval):
 
             ::
 
-                >>> chord = Chord("<c' e' g'>4")
+                >>> chord = abjad.Chord("<c' e' g'>4")
 
             ::
 
-                >>> interval = NumberedInterval(1)
+                >>> interval = abjad.NumberedInterval(1)
                 >>> interval.transpose(chord)
                 Chord("<cs' f' af'>4")
 

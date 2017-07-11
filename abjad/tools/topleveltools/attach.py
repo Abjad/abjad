@@ -11,14 +11,18 @@ def attach(
     ):
     r'''Attaches `indicator` to `component_expression`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Attaches clef to first note in staff:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(Clef('alto'), staff[0])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Clef('alto'), staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -38,9 +42,9 @@ def attach(
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(Articulation('>'), staff[-2])
-            >>> attach(Articulation('>'), staff[-1])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Articulation('>'), staff[-2])
+            >>> abjad.attach(abjad.Articulation('>'), staff[-1])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

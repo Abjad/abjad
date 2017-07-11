@@ -5,17 +5,21 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Repeat(AbjadValueObject):
     r'''Repeat.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Volta repeat:
 
         ::
 
-            >>> container = Container("c'4 d'4 e'4 f'4")
-            >>> repeat = indicatortools.Repeat()
-            >>> attach(repeat, container)
-            >>> staff = Staff([container])
-            >>> score = Score([staff])
+            >>> container = abjad.Container("c'4 d'4 e'4 f'4")
+            >>> repeat = abjad.Repeat()
+            >>> abjad.attach(repeat, container)
+            >>> staff = abjad.Staff([container])
+            >>> score = abjad.Score([staff])
             >>> show(score)  # doctest: +SKIP
 
         ..  docs::
@@ -39,11 +43,11 @@ class Repeat(AbjadValueObject):
 
         ::
 
-            >>> container = Container("c'4 d'4 e'4 f'4")
-            >>> repeat = indicatortools.Repeat(repeat_type='unfold')
-            >>> attach(repeat, container)
-            >>> staff = Staff([container])
-            >>> score = Score([staff])
+            >>> container = abjad.Container("c'4 d'4 e'4 f'4")
+            >>> repeat = abjad.Repeat(repeat_type='unfold')
+            >>> abjad.attach(repeat, container)
+            >>> staff = abjad.Staff([container])
+            >>> score = abjad.Score([staff])
             >>> show(score)  # doctest: +SKIP
 
         ..  docs::
@@ -99,7 +103,7 @@ class Repeat(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.Repeat())
+                >>> str(abjad.Repeat())
                 '\\repeat volta 2'
 
         ..  container:: example
@@ -108,7 +112,7 @@ class Repeat(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.Repeat(repeat_type='unfold'))
+                >>> str(abjad.Repeat(repeat_type='unfold'))
                 '\\repeat unfold 2'
 
         Returns string.
@@ -141,7 +145,7 @@ class Repeat(AbjadValueObject):
 
             ::
 
-                >>> repeat = indicatortools.Repeat()
+                >>> repeat = abjad.Repeat()
                 >>> repeat.default_scope is None
                 True
 
@@ -151,7 +155,7 @@ class Repeat(AbjadValueObject):
 
             ::
 
-                >>> repeat = indicatortools.Repeat(repeat_type='unfold')
+                >>> repeat = abjad.Repeat(repeat_type='unfold')
                 >>> repeat.default_scope is None
                 True
 
@@ -171,7 +175,7 @@ class Repeat(AbjadValueObject):
 
             ::
 
-                >>> repeat = indicatortools.Repeat()
+                >>> repeat = abjad.Repeat()
                 >>> repeat.repeat_count
                 2
 
@@ -181,7 +185,7 @@ class Repeat(AbjadValueObject):
 
             ::
 
-                >>> repeat = indicatortools.Repeat(repeat_type='unfold')
+                >>> repeat = abjad.Repeat(repeat_type='unfold')
                 >>> repeat.repeat_count
                 2
 
@@ -203,7 +207,7 @@ class Repeat(AbjadValueObject):
 
             ::
 
-                >>> repeat = indicatortools.Repeat()
+                >>> repeat = abjad.Repeat()
                 >>> repeat.repeat_type
                 'volta'
 
@@ -213,7 +217,7 @@ class Repeat(AbjadValueObject):
 
             ::
 
-                >>> repeat = indicatortools.Repeat(repeat_type='unfold')
+                >>> repeat = abjad.Repeat(repeat_type='unfold')
                 >>> repeat.repeat_type
                 'unfold'
 

@@ -7,19 +7,25 @@ class ReSTHeading(TreeNode):
 
     ::
 
-        >>> heading = documentationtools.ReSTHeading(
-        ...     level=2, text='Section A')
-        >>> heading
-        ReSTHeading(
-            level=2,
-            text='Section A'
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> print(heading.rest_format)
-        Section A
-        =========
+        ::
+
+            >>> heading = abjad.documentationtools.ReSTHeading(
+            ...     level=2, text='Section A')
+            >>> heading
+            ReSTHeading(
+                level=2,
+                text='Section A'
+                )
+
+        ::
+
+            >>> print(heading.rest_format)
+            Section A
+            =========
 
     '''
 

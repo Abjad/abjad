@@ -7,13 +7,17 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 class NumberedIntervalClass(IntervalClass):
     '''Numbered interval-class.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from integer:
 
         ::
 
-            >>> NumberedIntervalClass(-14)
+            >>> abjad.NumberedIntervalClass(-14)
             NumberedIntervalClass(-2)
 
     ..  container:: example
@@ -22,7 +26,7 @@ class NumberedIntervalClass(IntervalClass):
 
         ::
 
-            >>> NumberedIntervalClass(-14.5)
+            >>> abjad.NumberedIntervalClass(-14.5)
             NumberedIntervalClass(-2.5)
 
     ..  container:: example
@@ -31,7 +35,7 @@ class NumberedIntervalClass(IntervalClass):
 
         ::
 
-            >>> NumberedIntervalClass('-14.5')
+            >>> abjad.NumberedIntervalClass('-14.5')
             NumberedIntervalClass(-2.5)
 
     '''
@@ -188,9 +192,9 @@ class NumberedIntervalClass(IntervalClass):
 
         ::
 
-            >>> NumberedIntervalClass.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
+            >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(-2),
+            ...     abjad.NamedPitch(12),
             ...     )
             NumberedIntervalClass(2)
 

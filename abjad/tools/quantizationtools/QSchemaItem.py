@@ -6,10 +6,15 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QSchemaItem(AbjadObject):
-    '''`QSchemaItem` represents a change of state in the timeline of a
-    quantization process.
+    '''Abstract q-schema item.
+    
+    Represents a change of state in the timeline of a quantization process.
 
-    `QSchemaItem` is abstract and immutable.
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
+
     '''
 
     ### CLASS VARIABLES ###

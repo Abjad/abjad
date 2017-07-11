@@ -5,6 +5,11 @@ from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 class PatternList(TypedTuple):
     r'''Pattern list.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         Three patterns:

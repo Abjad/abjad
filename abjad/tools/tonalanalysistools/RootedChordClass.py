@@ -7,6 +7,10 @@ from abjad.tools.pitchtools import PitchClassSet
 class RootedChordClass(PitchClassSet):
     '''Rooted chord class.
 
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
+
     ..  container:: example
 
         G major triad in root position:

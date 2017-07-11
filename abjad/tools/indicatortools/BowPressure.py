@@ -5,6 +5,10 @@ from abjad.tools.abctools import AbjadValueObject
 class BowPressure(AbjadValueObject):
     r'''Bow pressure indicator.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Overpressure indicator:

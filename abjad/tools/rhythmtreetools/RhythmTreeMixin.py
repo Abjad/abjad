@@ -8,7 +8,13 @@ from abjad.tools import sequencetools
 
 
 class RhythmTreeMixin(abctools.AbjadObject):
-    r'''Rhythm-tree node abstract base class.
+    r'''Abstract rhythm-tree node.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmtreetools
+
     '''
 
     ### CLASS VARIABLES ###

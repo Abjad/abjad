@@ -6,13 +6,17 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 class NamedIntervalClass(IntervalClass):
     '''Named interval-class.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes descending major second from string:
 
         ::
 
-            >>> NamedIntervalClass('-M9')
+            >>> abjad.NamedIntervalClass('-M9')
             NamedIntervalClass('-M2')
 
     ..  container:: example
@@ -22,7 +26,7 @@ class NamedIntervalClass(IntervalClass):
 
         ::
 
-            >>> NamedIntervalClass(('major', -9))
+            >>> abjad.NamedIntervalClass(('major', -9))
             NamedIntervalClass('-M2')
 
     '''
@@ -73,9 +77,11 @@ class NamedIntervalClass(IntervalClass):
 
     def __init__(self, *arguments):
         from abjad.tools import pitchtools
-        if len(arguments) == 1 and \
-            isinstance(arguments[0], (pitchtools.NamedInterval,
-                pitchtools.NamedIntervalClass)):
+        if (len(arguments) == 1 and
+            isinstance(
+                arguments[0],
+                (pitchtools.NamedInterval, pitchtools.NamedIntervalClass))
+            ):
             quality_string = arguments[0]._quality_string
             number = arguments[0].number
         elif len(arguments) == 1 and isinstance(arguments[0], str):
@@ -293,9 +299,9 @@ class NamedIntervalClass(IntervalClass):
 
         ::
 
-            >>> NamedIntervalClass.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
+            >>> abjad.NamedIntervalClass.from_pitch_carriers(
+            ...     abjad.NamedPitch(-2),
+            ...     abjad.NamedPitch(12),
             ...     )
             NamedIntervalClass('+M2')
 

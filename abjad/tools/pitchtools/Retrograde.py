@@ -7,11 +7,15 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Retrograde(AbjadValueObject):
     r'''Retrograde operator.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example:
 
         ::
 
-            >>> Retrograde()
+            >>> abjad.Retrograde()
             Retrograde()
 
     Object model of twelve-tone retrograde operator.
@@ -43,15 +47,15 @@ class Retrograde(AbjadValueObject):
             ::
 
                 >>> items = [0, 2, 4, 5]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
     
             Example operators:
 
             ::
 
-                >>> retrograde = Retrograde()
-                >>> transposition = Transposition(n=3)
+                >>> retrograde = abjad.Retrograde()
+                >>> transposition = abjad.Transposition(n=3)
 
         ..  container:: example
 
@@ -71,7 +75,7 @@ class Retrograde(AbjadValueObject):
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     af'8
                     g'8
@@ -99,7 +103,7 @@ class Retrograde(AbjadValueObject):
             ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     af'8
                     g'8
@@ -138,8 +142,8 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrograde = Retrograde()
-                >>> segment = PitchClassSegment([0, 1, 4, 7])
+                >>> retrograde = abjad.Retrograde()
+                >>> segment = abjad.PitchClassSegment([0, 1, 4, 7])
                 >>> retrograde(segment)
                 PitchClassSegment([7, 4, 1, 0])
 
@@ -149,8 +153,8 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrogresion = Retrograde()
-                >>> pitch_class = NumberedPitchClass(6)
+                >>> retrogresion = abjad.Retrograde()
+                >>> pitch_class = abjad.NumberedPitchClass(6)
                 >>> retrograde(pitch_class)
                 NumberedPitchClass(6)
 
@@ -162,8 +166,8 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrograde = Retrograde(period=3)
-                >>> segment = PitchSegment("c' d' e' f' g' a' b' c''")
+                >>> retrograde = abjad.Retrograde(period=3)
+                >>> segment = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
                 >>> retrograde(segment)
                 PitchSegment("e' d' c' a' g' f' c'' b'")
 
@@ -197,7 +201,7 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> str(Retrograde())
+                >>> str(abjad.Retrograde())
                 'R'
 
         '''
@@ -224,7 +228,7 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrograde = Retrograde(period=3)
+                >>> retrograde = abjad.Retrograde(period=3)
                 >>> retrograde.period
                 3
 

@@ -1,22 +1,26 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools import schemetools
 from abjad.tools import markuptools
+from abjad.tools import schemetools
 from abjad.tools.abctools import AbjadObject
 
 
 class WoodwindFingering(AbjadObject):
     r'''A woodwind fingering.
 
-    Initializes from a valid instrument name and up to three keyword
-    lists or tuples:
+    ::
+
+        >>> import abjad
+
+    Initializes from a valid instrument name and up to three keyword lists or
+    tuples:
 
     ::
 
         >>> center_column = ('one', 'two', 'three', 'five')
         >>> left_hand = ('R', 'thumb')
         >>> right_hand = ('e',)
-        >>> woodwind_fingering = instrumenttools.WoodwindFingering(
+        >>> woodwind_fingering = abjad.instrumenttools.WoodwindFingering(
         ...     instrument_name='clarinet',
         ...     center_column=center_column,
         ...     left_hand=left_hand,
@@ -37,7 +41,7 @@ class WoodwindFingering(AbjadObject):
 
     ::
 
-        >>> woodwind_fingering_2 = instrumenttools.WoodwindFingering(
+        >>> woodwind_fingering_2 = abjad.instrumenttools.WoodwindFingering(
         ...     woodwind_fingering)
         >>> print(format(woodwind_fingering_2))
         instrumenttools.WoodwindFingering(
@@ -72,9 +76,9 @@ class WoodwindFingering(AbjadObject):
 
     ::
 
-        >>> markup = markuptools.Markup(contents=fingering_command, direction=Down)
-        >>> chord = Chord("<ds' fs''>4")
-        >>> attach(markup, chord)
+        >>> markup = abjad.Markup(contents=fingering_command, direction=Down)
+        >>> chord = abjad.Chord("<ds' fs''>4")
+        >>> abjad.attach(markup, chord)
         >>> show(chord) # doctest: +SKIP
 
     ..  docs::
@@ -96,7 +100,7 @@ class WoodwindFingering(AbjadObject):
         ...     'saxophone', 'bassoon', 'contrabassoon',
         ...     ]
         >>> for name in instrument_names:
-        ...    instrumenttools.WoodwindFingering(name)
+        ...    abjad.instrumenttools.WoodwindFingering(name)
         ...
         WoodwindFingering(instrument_name='piccolo', center_column=(), left_hand=(), right_hand=())
         WoodwindFingering(instrument_name='flute', center_column=(), left_hand=(), right_hand=())
@@ -111,19 +115,20 @@ class WoodwindFingering(AbjadObject):
 
     ::
 
-        >>> chord = Chord("<e' as' gqf''>1")
-        >>> fingering = instrumenttools.WoodwindFingering(
+        >>> chord = abjad.Chord("<e' as' gqf''>1")
+        >>> fingering = abjad.instrumenttools.WoodwindFingering(
         ...     'clarinet',
         ...     center_column=['one', 'two', 'three', 'four'],
         ...     left_hand=['R','cis'],
         ...     right_hand=['fis'])
         >>> diagram = fingering()
-        >>> not_graphical = markuptools.MarkupCommand(
+        >>> not_graphical = abjad.MarkupCommand(
         ...     'override',
-        ...     schemetools.SchemePair('graphical', False))
-        >>> markup = markuptools.Markup(contents=
+        ...     abjad.SchemePair('graphical', False),
+        ...     )
+        >>> markup = abjad.Markup(contents=
         ...     [not_graphical, diagram], direction=Down)
-        >>> attach(markup, chord)
+        >>> abjad.attach(markup, chord)
         >>> show(chord) # doctest: +SKIP
 
     ..  docs::
@@ -142,24 +147,31 @@ class WoodwindFingering(AbjadObject):
 
     ::
 
-        >>> chord = Chord("<e' as' gqf''>1")
-        >>> fingering = instrumenttools.WoodwindFingering(
+        >>> chord = abjad.Chord("<e' as' gqf''>1")
+        >>> fingering = abjad.instrumenttools.WoodwindFingering(
         ...     'clarinet',
         ...     center_column=('one', 'two', 'three', 'four'),
         ...     left_hand=('R','cis'),
         ...     right_hand=('fis',),
         ...     )
         >>> diagram = fingering()
-        >>> not_graphical = markuptools.MarkupCommand(
+        >>> not_graphical = abjad.MarkupCommand(
         ...     'override',
-        ...     schemetools.SchemePair('graphical', False))
-        >>> size = markuptools.MarkupCommand(
-        ...     'override', schemetools.SchemePair('size', .5))
-        >>> thickness = markuptools.MarkupCommand(
-        ...     'override', schemetools.SchemePair('thickness', .4))
-        >>> markup = markuptools.Markup(contents=
-        ...     [not_graphical, size, thickness, diagram], direction=Down)
-        >>> attach(markup, chord)
+        ...     abjad.SchemePair('graphical', False),
+        ...     )
+        >>> size = abjad.MarkupCommand(
+        ...     'override',
+        ...     abjad.SchemePair('size', .5),
+        ...     )
+        >>> thickness = abjad.MarkupCommand(
+        ...     'override',
+        ...     abjad.SchemePair('thickness', .4),
+        ...     )
+        >>> markup = abjad.Markup(
+        ...     contents=[not_graphical, size, thickness, diagram],
+        ...     direction=Down,
+        ...     )
+        >>> abjad.attach(markup, chord)
         >>> show(chord) # doctest: +SKIP
 
     ..  docs::

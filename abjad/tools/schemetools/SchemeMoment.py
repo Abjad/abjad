@@ -7,15 +7,21 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 @functools.total_ordering
 class SchemeMoment(Scheme):
-    r'''A LilyPond scheme moment.
-
-    Initializes with two integers:
+    r'''Abjad model of Scheme moment.
 
     ::
 
-        >>> moment = schemetools.SchemeMoment(1, 68)
-        >>> moment
-        SchemeMoment(1, 68)
+        >>> import abjad
+
+    ..  container:: example
+
+        Initializes with two integers:
+
+        ::
+
+            >>> moment = abjad.SchemeMoment(1, 68)
+            >>> moment
+            SchemeMoment(1, 68)
 
     Scheme moments are immutable.
     '''
@@ -51,12 +57,12 @@ class SchemeMoment(Scheme):
 
         ::
 
-            >>> moment == schemetools.SchemeMoment(1, 68)
+            >>> moment == abjad.SchemeMoment(1, 68)
             True
 
         Otherwise false.
 
-            >>> moment == schemetools.SchemeMoment(1, 54)
+            >>> moment == abjad.SchemeMoment(1, 54)
             False
 
         Returns true or false.
@@ -88,14 +94,14 @@ class SchemeMoment(Scheme):
 
         ::
 
-            >>> moment < schemetools.SchemeMoment(1, 32)
+            >>> moment < abjad.SchemeMoment(1, 32)
             True
 
         Otherwise false:
 
         ::
 
-            >>> moment < schemetools.SchemeMoment(1, 78)
+            >>> moment < abjad.SchemeMoment(1, 78)
             False
 
         Returns true or false.
@@ -132,7 +138,7 @@ class SchemeMoment(Scheme):
 
         ::
 
-            >>> scheme_moment = schemetools.SchemeMoment(1, 68)
+            >>> scheme_moment = abjad.SchemeMoment(1, 68)
             >>> scheme_moment.duration
             Duration(1, 68)
 

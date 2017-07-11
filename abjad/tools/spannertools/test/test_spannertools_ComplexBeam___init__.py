@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -12,7 +13,7 @@ def test_spannertools_ComplexBeam___init___01():
 
 def test_spannertools_ComplexBeam___init___02():
 
-    staff = Staff("c'16 e'16 r16 f'16 g'2")
+    staff = abjad.Staff("c'16 e'16 r16 f'16 g'2")
     beam = spannertools.ComplexBeam()
     attach(beam, staff[:4])
 

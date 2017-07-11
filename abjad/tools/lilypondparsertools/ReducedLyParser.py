@@ -15,110 +15,166 @@ from abjad.tools.topleveltools import select
 class ReducedLyParser(abctools.Parser):
     r'''Parses the "reduced-ly" syntax, a modified subset of LilyPond syntax.
 
-        >>> parser = lilypondparsertools.ReducedLyParser()
-
-    Understands LilyPond-like representation of notes, chords and rests:
-
     ::
 
-        >>> string = "c'4 r8. <b d' fs'>16"
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c'4
-            r8.
-            <b d' fs'>16
-        }
+        >>> import abjad
 
-    Also parses bare duration as notes on middle-C, and negative bare
-    durations as rests:
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> string = '4 -8 16. -32'
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c'4
-            r8
-            c'16.
-            r32
-        }
+            >>> parser = abjad.lilypondparsertools.ReducedLyParser()
 
-    Note that the leaf syntax is greedy, and therefore duration specifiers
-    following pitch specifiers will be treated as part of the same expression.
-    The following produces 2 leaves, rather than 3:
+        Understands LilyPond-like representation of notes, chords and rests:
 
-    ::
+        ::
 
-        >>> string = "4 d' 4"
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c'4
-            d'4
-        }
+            >>> string = "c'4 r8. <b d' fs'>16"
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
 
-    Understands LilyPond-like default durations:
+        ..  docs::
 
-    ::
+            >>> f(container)
+            {
+                c'4
+                r8.
+                <b d' fs'>16
+            }
 
-        >>> string = "c'4 d' e' f'"
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c'4
-            d'4
-            e'4
-            f'4
-        }
+        Also parses bare duration as notes on middle-C, and negative bare
+        durations as rests:
+
+        ::
+
+            >>> string = '4 -8 16. -32'
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(container)
+            {
+                c'4
+                r8
+                c'16.
+                r32
+            }
+
+    ..  container:: example
+
+        Note that the leaf syntax is greedy, and therefore duration specifiers
+        following pitch specifiers will be treated as part of the same
+        expression. The following produces 2 leaves, rather than 3:
+
+        ::
+
+            >>> string = "4 d' 4"
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(container)
+            {
+                c'4
+                d'4
+            }
+
+        Understands LilyPond-like default durations:
+
+        ::
+
+            >>> string = "c'4 d' e' f'"
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(container)
+            {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
 
     Also understands various types of container specifications.
 
-    Can create arbitrarily nested tuplets:
+    ..  container:: example
 
-    ::
+        Can create arbitrarily nested tuplets:
 
-        >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
-        >>> result = parser(string)
-        >>> print(format(result))
-        \tweak edge-height #'(0.7 . 0)
-        \times 2/3 {
-            c'4
-            c'4
-            \tweak text #tuplet-number::calc-fraction-text
+        ::
+
+            >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
+            >>> tuplet = parser(string)
+            >>> show(tuplet) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(tuplet)
             \tweak edge-height #'(0.7 . 0)
-            \times 3/5 {
-                c'8
-                c'8
-                c'8
+            \times 2/3 {
+                c'4
+                c'4
+                \tweak text #tuplet-number::calc-fraction-text
+                \tweak edge-height #'(0.7 . 0)
+                \times 3/5 {
+                    c'8
+                    c'8
+                    c'8
+                }
             }
-        }
 
-    Can create measures too:
+    ..  container:: example
 
-    ::
+        Can create measures too:
 
-        >>> string = '| 4/4 4 4 4 4 || 3/8 8 8 8 |'
-        >>> result = parser(string)
-        >>> for x in result: x
-        ...
-        Measure((4, 4), "c'4 c'4 c'4 c'4")
-        Measure((3, 8), "c'8 c'8 c'8")
+        ::
 
-    Finally, understands ties, slurs and beams:
+            >>> string = '| 4/4 4 4 4 4 || 3/8 8 8 8 |'
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
 
-    ::
+        ..  docs::
 
-        >>> string = 'c16 [ ( d ~ d ) f ]'
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c16 [ (
-            d16 ~
-            d16 )
-            f16 ]
-        }
+            >>> f(container)
+            {
+                {
+                    \time 4/4
+                    c'4
+                    c'4
+                    c'4
+                    c'4
+                }
+                {
+                    \time 3/8
+                    c'8
+                    c'8
+                    c'8
+                }
+            }
+
+    ..  container:: example
+
+        Finally, understands ties, slurs and beams:
+
+        ::
+
+            >>> string = 'c16 [ ( d ~ d ) f ]'
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(container)
+            {
+                c16 [ (
+                d16 ~
+                d16 )
+                f16 ]
+            }
 
     '''
 

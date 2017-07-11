@@ -8,6 +8,10 @@ from abjad.tools.abctools import AbjadObject
 class ScaleDegree(AbjadObject):
     '''Scale degree. 1, 2, 3, 4, 5, 6, 7 and chromatic alterations.
     
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
+
     Chromatic alterations include flat-2, flat-3, flat-6, etc.
 
     ..  container:: example

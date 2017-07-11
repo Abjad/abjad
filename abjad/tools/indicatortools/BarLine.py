@@ -6,15 +6,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BarLine(AbjadValueObject):
     r'''Bar line.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Final bar line:
 
         ::
 
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> bar_line = indicatortools.BarLine('|.')
-            >>> attach(bar_line, staff[-1])
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> bar_line = abjad.BarLine('|.')
+            >>> abjad.attach(bar_line, staff[-1])
             >>> show(staff) # doctest: +SKIP
 
         ::
@@ -80,7 +84,7 @@ class BarLine(AbjadValueObject):
 
             ::
 
-                >>> bar_line = indicatortools.BarLine('|.')
+                >>> bar_line = abjad.BarLine('|.')
                 >>> bar_line.abbreviation
                 '|.'
 
@@ -96,7 +100,7 @@ class BarLine(AbjadValueObject):
 
             ::
 
-                >>> bar_line = indicatortools.BarLine('|.')
+                >>> bar_line = abjad.BarLine('|.')
                 >>> bar_line.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 

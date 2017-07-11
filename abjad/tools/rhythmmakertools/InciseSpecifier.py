@@ -7,6 +7,11 @@ from abjad.tools.abctools import AbjadValueObject
 class InciseSpecifier(AbjadValueObject):
     r'''Incise specifier.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         Specifies one sixteenth rest cut out of the beginning of every
@@ -229,7 +234,7 @@ class InciseSpecifier(AbjadValueObject):
                 ...     suffix_talea=[-1],
                 ...     suffix_counts=[1],
                 ...     talea_denominator=16,
-                ...     body_ratio=mathtools.Ratio((1, 1)),
+                ...     body_ratio=abjad.Ratio((1, 1)),
                 ...     )
                 >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=specifier,
@@ -247,7 +252,7 @@ class InciseSpecifier(AbjadValueObject):
 
             ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/16

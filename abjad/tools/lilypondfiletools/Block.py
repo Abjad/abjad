@@ -6,6 +6,10 @@ from abjad.tools.abctools import AbjadObject
 class Block(AbjadObject):
     '''A LilyPond file block.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Blocks remember attribute assignment order.
@@ -15,9 +19,9 @@ class Block(AbjadObject):
 
         ::
 
-            >>> block = lilypondfiletools.Block(name='paper')
-            >>> block.right_margin = lilypondfiletools.LilyPondDimension(2, 'cm')
-            >>> block.left_margin = lilypondfiletools.LilyPondDimension(2, 'cm')
+            >>> block = abjad.Block(name='paper')
+            >>> block.right_margin = abjad.LilyPondDimension(2, 'cm')
+            >>> block.left_margin = abjad.LilyPondDimension(2, 'cm')
             >>> block
             <Block(name='paper')>
 
@@ -33,8 +37,8 @@ class Block(AbjadObject):
 
         ::
 
-            >>> block = lilypondfiletools.Block(name='score')
-            >>> markup = Markup('foo')
+            >>> block = abjad.Block(name='score')
+            >>> markup = abjad.Markup('foo')
             >>> block.items.append(markup)
             >>> block
             <Block(name='score')>
@@ -83,8 +87,8 @@ class Block(AbjadObject):
 
             ::
 
-                >>> block = lilypondfiletools.Block(name='score')
-                >>> score = Score(name='Red Example Score')
+                >>> block = abjad.Block(name='score')
+                >>> score = abjad.Score(name='Red Example Score')
                 >>> block.items.append(score)
 
             ::
@@ -261,8 +265,8 @@ class Block(AbjadObject):
 
             ::
 
-                >>> block = lilypondfiletools.Block(name='score')
-                >>> markup = Markup('foo')
+                >>> block = abjad.Block(name='score')
+                >>> markup = abjad.Markup('foo')
                 >>> block.items.append(markup)
 
             ::
@@ -282,8 +286,8 @@ class Block(AbjadObject):
 
             ::
 
-                >>> block = lilypondfiletools.Block(name='score')
-                >>> markup = Markup('foo')
+                >>> block = abjad.Block(name='score')
+                >>> markup = abjad.Markup('foo')
                 >>> block.items.append(markup)
 
             ::

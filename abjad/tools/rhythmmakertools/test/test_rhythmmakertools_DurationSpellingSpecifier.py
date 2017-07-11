@@ -35,7 +35,7 @@ def test_rhythmmakertools_DurationSpellingSpecifier_01():
 
     result = maker(divisions)
 
-    staff = Staff(result)
+    staff = abjad.Staff(result)
 
     assert format(staff) == String.normalize(
         r"""

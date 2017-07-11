@@ -6,49 +6,52 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class VerticalMoment(Selection):
-    r'''A selection of components happening at a single moment in musical time.
+    r'''Vertical moment of a component.
 
     ::
 
-        >>> score = Score([])
-        >>> staff_group = StaffGroup()
-        >>> staff_group.context_name = 'PianoStaff'
-        >>> staff_group.append(Staff("c'4 e'4 d'4 f'4"))
-        >>> staff_group.append(Staff(r"""\clef "bass" g2 f2"""))
-        >>> score.append(staff_group)
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(score)
-        \new Score <<
-            \new PianoStaff <<
-                \new Staff {
-                    c'4
-                    e'4
-                    d'4
-                    f'4
-                }
-                \new Staff {
-                    \clef "bass"
-                    g2
-                    f2
-                }
+        ::
+
+            >>> score = abjad.Score()
+            >>> staff_group = abjad.StaffGroup()
+            >>> staff_group.context_name = 'PianoStaff'
+            >>> staff_group.append(abjad.Staff("c'4 e'4 d'4 f'4"))
+            >>> staff_group.append(abjad.Staff(r"""\clef "bass" g2 f2"""))
+            >>> score.append(staff_group)
+            >>> show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(score)
+            \new Score <<
+                \new PianoStaff <<
+                    \new Staff {
+                        c'4
+                        e'4
+                        d'4
+                        f'4
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        g2
+                        f2
+                    }
+                >>
             >>
-        >>
 
-    ::
+        ::
 
-        >>> show(score) # doctest: +SKIP
-
-    ::
-
-        >>> for x in iterate(score).by_vertical_moment():
-        ...     x
-        ...
-        VerticalMoment(0, <<2>>)
-        VerticalMoment(1/4, <<2>>)
-        VerticalMoment(1/2, <<2>>)
-        VerticalMoment(3/4, <<2>>)
+            >>> for moment in abjad.iterate(score).by_vertical_moment():
+            ...     moment
+            ...
+            VerticalMoment(0, <<2>>)
+            VerticalMoment(1/4, <<2>>)
+            VerticalMoment(1/2, <<2>>)
+            VerticalMoment(3/4, <<2>>)
 
     '''
 
@@ -83,8 +86,8 @@ class VerticalMoment(Selection):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a vertical moment with the same components as
-        this vertical moment. Otherwise false.
+        r'''Is true when `argument` is a vertical moment with the same
+        components as this vertical moment. Otherwise false.
 
         Returns true or false.
         '''
@@ -102,11 +105,6 @@ class VerticalMoment(Selection):
 
         Returns integer.
         '''
-#        result = []
-#        result.append(str(self.offset))
-#        result.extend([str(id(x)) for x in self.governors])
-#        result = '+'.join(result)
-#        return hash(repr(result))
         from abjad.tools import systemtools
         hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
         return hash(hash_values)
@@ -121,8 +119,8 @@ class VerticalMoment(Selection):
         return len(self.components)
 
     def __ne__(self, argument):
-        r'''Is true when `argument` does not equal this vertical moment. Otherwise
-        false.
+        r'''Is true when `argument` does not equal this vertical moment.
+        Otherwise false.
 
         Returns true or false.
         '''
@@ -199,8 +197,8 @@ class VerticalMoment(Selection):
     @staticmethod
     def _recurse(component, offset):
         result = []
-        if component._get_timespan().start_offset <= \
-            offset < component._get_timespan().stop_offset:
+        if (component._get_timespan().start_offset <=
+            offset < component._get_timespan().stop_offset):
             result.append(component)
             if hasattr(component, '_music'):
                 if component.is_simultaneous:
@@ -222,8 +220,8 @@ class VerticalMoment(Selection):
 
     @property
     def attack_count(self):
-        r'''Positive integer number of pitch carriers
-        starting at vertical moment.
+        r'''Positive integer number of pitch carriers starting at vertical
+        moment.
         '''
         from abjad.tools import scoretools
         attack_carriers = []
@@ -234,8 +232,7 @@ class VerticalMoment(Selection):
 
     @property
     def components(self):
-        r'''Tuple of zero or more components
-        happening at vertical moment.
+        r'''Tuple of zero or more components happening at vertical moment.
 
         It is always the case that ``self.components =
         self.overlap_components + self.start_components``.
@@ -244,15 +241,14 @@ class VerticalMoment(Selection):
 
     @property
     def governors(self):
-        r'''Tuple of one or more containers
-        in which vertical moment is evaluated.
+        r'''Tuple of one or more containers in which vertical moment is
+        evaluated.
         '''
         return self._governors
 
     @property
     def leaves(self):
-        r'''Tuple of zero or more leaves
-        at vertical moment.
+        r'''Tuple of zero or more leaves at vertical moment.
         '''
         from abjad.tools import scoretools
         result = []
@@ -264,8 +260,7 @@ class VerticalMoment(Selection):
 
     @property
     def measures(self):
-        r'''Tuplet of zero or more measures
-        at vertical moment.
+        r'''Tuplet of zero or more measures at vertical moment.
         '''
         from abjad.tools import scoretools
         result = []
@@ -290,8 +285,8 @@ class VerticalMoment(Selection):
         from abjad.tools import scoretools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
-            if leaf._get_timespan().stop_offset < \
-                candidate_shortest_leaf._get_timespan().stop_offset:
+            if (leaf._get_timespan().stop_offset <
+                candidate_shortest_leaf._get_timespan().stop_offset):
                 candidate_shortest_leaf = leaf
         next_leaf = candidate_shortest_leaf._get_in_my_logical_voice(
             1, prototype=scoretools.Leaf)

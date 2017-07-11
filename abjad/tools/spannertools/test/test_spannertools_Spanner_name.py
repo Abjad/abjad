@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
 def test_spannertools_Spanner_name_01():
-    staff = Staff("c'4 d'4 e'4 f'4")
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
     spanner = spannertools.Spanner()
     assert spanner.name is None
     attach(spanner, staff[:])
@@ -11,7 +12,7 @@ def test_spannertools_Spanner_name_01():
 
 
 def test_spannertools_Spanner_name_02():
-    staff = Staff("c'4 d'4 e'4 f'4")
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
     spanner = spannertools.Spanner(name='foo')
     assert spanner.name == 'foo'
     attach(spanner, staff[:])
@@ -19,7 +20,7 @@ def test_spannertools_Spanner_name_02():
 
 
 def test_spannertools_Spanner_name_03():
-    staff = Staff("c'4 d'4 e'4 f'4")
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
     spanner = spannertools.Spanner(name='foo')
     assert spanner.name == 'foo'
     attach(spanner, staff[:], name='bar')
@@ -27,7 +28,7 @@ def test_spannertools_Spanner_name_03():
 
 
 def test_spannertools_Spanner_name_04():
-    staff = Staff("c'4 d'4 e'4 f'4")
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
     spanner = spannertools.Spanner()
     assert spanner.name is None
     attach(spanner, staff[:], name='bar')

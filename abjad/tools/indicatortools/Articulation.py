@@ -8,13 +8,17 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Articulation(AbjadValueObject):
     r'''Articulation.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from name:
 
         ::
 
-            >>> Articulation('staccato')
+            >>> abjad.Articulation('staccato')
             Articulation('staccato')
 
     ..  container:: example
@@ -23,7 +27,7 @@ class Articulation(AbjadValueObject):
 
         ::
 
-            >>> Articulation('.')
+            >>> abjad.Articulation('.')
             Articulation('.')
 
     ..  container:: example
@@ -32,8 +36,8 @@ class Articulation(AbjadValueObject):
 
         ::
 
-            >>> articulation = Articulation('staccato')
-            >>> Articulation(articulation)
+            >>> articulation = abjad.Articulation('staccato')
+            >>> abjad.Articulation(articulation)
             Articulation('staccato')
 
     ..  container:: example
@@ -42,7 +46,7 @@ class Articulation(AbjadValueObject):
 
         ::
 
-            >>> Articulation('staccato', Up)
+            >>> abjad.Articulation('staccato', Up)
             Articulation('staccato', Up)
 
     .. container:: example
@@ -51,9 +55,9 @@ class Articulation(AbjadValueObject):
 
         ::
 
-            >>> note = Note("c'4")
-            >>> articulation = Articulation('staccato')
-            >>> attach(articulation, note)
+            >>> note = abjad.Note("c'4")
+            >>> articulation = abjad.Articulation('staccato')
+            >>> abjad.attach(articulation, note)
             >>> show(note) # doctest: +SKIP
 
     ..  todo:: Simplify initializer. Allow only initialization from name.
@@ -240,7 +244,7 @@ class Articulation(AbjadValueObject):
 
         ..  container:: example
 
-            >>> articulation = Articulation('staccato')
+            >>> articulation = abjad.Articulation('staccato')
             >>> articulation.default_scope is None
             True
 
@@ -256,7 +260,7 @@ class Articulation(AbjadValueObject):
 
             Without direction:
 
-            >>> articulation = Articulation('staccato')
+            >>> articulation = abjad.Articulation('staccato')
             >>> articulation.direction is None
             True
 
@@ -264,7 +268,7 @@ class Articulation(AbjadValueObject):
 
             With direction:
 
-            >>> articulation = Articulation('staccato', direction=Up)
+            >>> articulation = abjad.Articulation('staccato', direction=Up)
             >>> articulation.direction
             Up
 
@@ -282,7 +286,7 @@ class Articulation(AbjadValueObject):
 
             ::
 
-                >>> articulation = Articulation('staccato')
+                >>> articulation = abjad.Articulation('staccato')
                 >>> articulation.name
                 'staccato'
 
@@ -292,7 +296,7 @@ class Articulation(AbjadValueObject):
 
             ::
 
-                >>> articulation = Articulation('tenuto')
+                >>> articulation = abjad.Articulation('tenuto')
                 >>> articulation.name
                 'tenuto'
 

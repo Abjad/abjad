@@ -10,22 +10,28 @@ class BassFlute(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> bass_flute = instrumenttools.BassFlute()
-        >>> attach(bass_flute, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Bass flute" }
-            \set Staff.shortInstrumentName = \markup { "Bass fl." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> bass_flute = abjad.instrumenttools.BassFlute()
+            >>> abjad.attach(bass_flute, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Bass flute" }
+                \set Staff.shortInstrumentName = \markup { "Bass fl." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

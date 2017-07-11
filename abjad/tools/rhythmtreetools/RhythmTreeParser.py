@@ -5,98 +5,104 @@ from abjad.tools.abctools import Parser
 
 
 class RhythmTreeParser(Parser):
-    r'''A rhythm-tree syntax parser.
-
-    Abjad’s rhythm-tree parser parses a micro-language resembling Ircam’s RTM
-    Lisp syntax, and generates a sequence of RhythmTree structures, which can
-    be furthered manipulated by composers, before being converted into an Abjad
-    score object:
+    r'''Rhythm-tree parser.
 
     ::
 
-        >>> parser = rhythmtreetools.RhythmTreeParser()
+        >>> import abjad
+        >>> from abjad.tools import rhythmtreetools
 
-    ::
+    ..  container:: example
 
-        >>> string = '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
-        >>> rhythm_tree_list = parser(string)
-        >>> rhythm_tree_container = rhythm_tree_list[0]
-        >>> rhythm_tree_container.rtm_format
-        '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
+        Abjad’s rhythm-tree parser parses a micro-language resembling Ircam’s
+        RTM Lisp syntax, and generates a sequence of RhythmTree structures,
+        which can be furthered manipulated by composers, before being converted
+        into an Abjad score object:
 
-    ::
+        ::
 
-        >>> f(rhythm_tree_container)
-        rhythmtreetools.RhythmTreeContainer(
-            children=(
-                rhythmtreetools.RhythmTreeLeaf(
-                    preprolated_duration=abjad.Duration(1, 1),
-                    is_pitched=True,
-                    ),
-                rhythmtreetools.RhythmTreeContainer(
-                    children=(
-                        rhythmtreetools.RhythmTreeContainer(
-                            children=(
-                                rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=abjad.Duration(1, 1),
-                                    is_pitched=True,
-                                    ),
-                                rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=abjad.Duration(1, 1),
-                                    is_pitched=True,
-                                    ),
-                                rhythmtreetools.RhythmTreeLeaf(
-                                    preprolated_duration=abjad.Duration(1, 1),
-                                    is_pitched=True,
-                                    ),
-                                ),
-                            preprolated_duration=abjad.Duration(2, 1),
-                            ),
-                        rhythmtreetools.RhythmTreeLeaf(
-                            preprolated_duration=abjad.Duration(2, 1),
-                            is_pitched=True,
-                            ),
-                        rhythmtreetools.RhythmTreeLeaf(
-                            preprolated_duration=abjad.Duration(2, 1),
-                            is_pitched=True,
-                            ),
-                        rhythmtreetools.RhythmTreeLeaf(
-                            preprolated_duration=abjad.Duration(1, 1),
-                            is_pitched=True,
-                            ),
+            >>> parser = rhythmtreetools.RhythmTreeParser()
+
+        ::
+
+            >>> string = '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
+            >>> rhythm_tree_list = parser(string)
+            >>> rhythm_tree_container = rhythm_tree_list[0]
+            >>> rhythm_tree_container.rtm_format
+            '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
+
+        ::
+
+            >>> f(rhythm_tree_container)
+            rhythmtreetools.RhythmTreeContainer(
+                children=(
+                    rhythmtreetools.RhythmTreeLeaf(
+                        preprolated_duration=abjad.Duration(1, 1),
+                        is_pitched=True,
                         ),
-                    preprolated_duration=abjad.Duration(1, 1),
+                    rhythmtreetools.RhythmTreeContainer(
+                        children=(
+                            rhythmtreetools.RhythmTreeContainer(
+                                children=(
+                                    rhythmtreetools.RhythmTreeLeaf(
+                                        preprolated_duration=abjad.Duration(1, 1),
+                                        is_pitched=True,
+                                        ),
+                                    rhythmtreetools.RhythmTreeLeaf(
+                                        preprolated_duration=abjad.Duration(1, 1),
+                                        is_pitched=True,
+                                        ),
+                                    rhythmtreetools.RhythmTreeLeaf(
+                                        preprolated_duration=abjad.Duration(1, 1),
+                                        is_pitched=True,
+                                        ),
+                                    ),
+                                preprolated_duration=abjad.Duration(2, 1),
+                                ),
+                            rhythmtreetools.RhythmTreeLeaf(
+                                preprolated_duration=abjad.Duration(2, 1),
+                                is_pitched=True,
+                                ),
+                            rhythmtreetools.RhythmTreeLeaf(
+                                preprolated_duration=abjad.Duration(2, 1),
+                                is_pitched=True,
+                                ),
+                            rhythmtreetools.RhythmTreeLeaf(
+                                preprolated_duration=abjad.Duration(1, 1),
+                                is_pitched=True,
+                                ),
+                            ),
+                        preprolated_duration=abjad.Duration(1, 1),
+                        ),
                     ),
-                ),
-            preprolated_duration=abjad.Duration(3, 1),
-            )
+                preprolated_duration=abjad.Duration(3, 1),
+                )
 
-    ::
+        ::
 
-        >>> base_duration = (1, 4)
-        >>> component_list = rhythm_tree_container(base_duration)
-        >>> tuplet = component_list[0]
-        >>> show(tuplet) # doctest: +SKIP
+            >>> base_duration = (1, 4)
+            >>> component_list = rhythm_tree_container(base_duration)
+            >>> tuplet = component_list[0]
+            >>> show(tuplet) # doctest: +SKIP
 
-    ..  docs::
+        ..  docs::
 
-        >>> f(tuplet)
-        \tweak text #tuplet-number::calc-fraction-text
-        \times 3/4 {
-            c'2
-            \times 4/7 {
-                \times 2/3 {
-                    c'8
-                    c'8
+            >>> f(tuplet)
+            \tweak text #tuplet-number::calc-fraction-text
+            \times 3/4 {
+                c'2
+                \times 4/7 {
+                    \times 2/3 {
+                        c'8
+                        c'8
+                        c'8
+                    }
+                    c'4
+                    c'4
                     c'8
                 }
-                c'4
-                c'4
-                c'8
             }
-        }
 
-    Returns `RhythmTreeParser` instance.
     '''
 
     ### CLASS VARIABLES ###

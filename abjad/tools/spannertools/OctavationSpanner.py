@@ -6,15 +6,19 @@ from abjad.tools.spannertools.Spanner import Spanner
 class OctavationSpanner(Spanner):
     r'''Octavation spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Spans four notes:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> spanner = OctavationSpanner(start=1)
-            >>> attach(spanner, staff[:])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> spanner = abjad.OctavationSpanner(start=1)
+            >>> abjad.attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -35,9 +39,9 @@ class OctavationSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> octavation_spanner = OctavationSpanner(start=1)
-            >>> attach(octavation_spanner, staff[0])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> octavation_spanner = abjad.OctavationSpanner(start=1)
+            >>> abjad.attach(octavation_spanner, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -118,9 +122,9 @@ class OctavationSpanner(Spanner):
 
             ::
 
-                >>> measure = Measure((4, 8), "c'''8 d'''8 ef'''8 f'''8")
-                >>> octavation = OctavationSpanner()
-                >>> attach(octavation, measure[:])
+                >>> measure = abjad.Measure((4, 8), "c'''8 d'''8 ef'''8 f'''8")
+                >>> octavation = abjad.OctavationSpanner()
+                >>> abjad.attach(octavation, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -168,9 +172,9 @@ class OctavationSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = OctavationSpanner(start=1)
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.OctavationSpanner(start=1)
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -188,9 +192,9 @@ class OctavationSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = OctavationSpanner(start=2, stop=1)
-            >>> attach(spanner, staff[:])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.OctavationSpanner(start=2, stop=1)
+            >>> abjad.attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ::

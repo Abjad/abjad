@@ -8,6 +8,10 @@ from abjad.tools.markuptools.Markup import Markup
 class MarkupList(TypedList):
     '''Markup list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from strings:
@@ -17,7 +21,7 @@ class MarkupList(TypedList):
             ::
 
                 >>> markups = ['Allegro', 'assai']
-                >>> markup_list = MarkupList(markups)
+                >>> markup_list = abjad.MarkupList(markups)
                 >>> f(markup_list)
                 abjad.MarkupList(
                     items=[
@@ -49,7 +53,7 @@ class MarkupList(TypedList):
 
             ::
 
-                >>> expression = Expression().markup_list()
+                >>> expression = abjad.Expression().markup_list()
                 >>> markup_list = expression(['Allegro', 'assai'])
                 >>> f(markup_list)
                 abjad.MarkupList(
@@ -118,7 +122,7 @@ class MarkupList(TypedList):
                 ::
 
                     >>> markups = ['Allegro', 'assai']
-                    >>> markup_list = MarkupList(markups)
+                    >>> markup_list = abjad.MarkupList(markups)
 
                 ::
 
@@ -129,7 +133,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> markup_list = expression(['Allegro', 'assai'])
 
                 ::
@@ -155,7 +159,7 @@ class MarkupList(TypedList):
 
 
                     >>> markups = ['Allegro', 'assai']
-                    >>> markup_list = MarkupList(markups)
+                    >>> markup_list = abjad.MarkupList(markups)
                     >>> f(markup_list)
                     abjad.MarkupList(
                         items=[
@@ -174,7 +178,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> f(expression)
                     abjad.Expression(
                         callbacks=[
@@ -200,7 +204,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> markup_list = MarkupList()
+                    >>> markup_list = abjad.MarkupList()
                     >>> markup_list.extend(['Allegro', 'assai'])
                     >>> markup_list += ['ma', 'non', 'troppo']
                     >>> f(markup_list)
@@ -246,7 +250,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression += ['ma', 'non', 'troppo']
                     >>> markup_list = expression(['Allegro', 'assai'])
                     >>> f(markup_list)
@@ -294,7 +298,7 @@ class MarkupList(TypedList):
                 ::
 
                     >>> markups = ['Allegro', 'assai']
-                    >>> markup_list = MarkupList(markups)
+                    >>> markup_list = abjad.MarkupList(markups)
                     >>> f(markup_list)
                     abjad.MarkupList(
                         items=[
@@ -326,7 +330,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> markup_list = expression(['Allegro', 'assai'])
                     >>> f(markup_list)
                     abjad.MarkupList(
@@ -376,7 +380,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> markup_list = MarkupList()
+                    >>> markup_list = abjad.MarkupList()
                     >>> markup_list.extend(['Allegro', 'assai'])
                     >>> markup_list[-1] = 'non troppo'
                     >>> f(markup_list)
@@ -410,7 +414,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.__setitem__(-1, 'non troppo')
                     >>> markup_list = expression(['Allegro', 'assai'])
                     >>> f(markup_list)
@@ -482,7 +486,7 @@ class MarkupList(TypedList):
 
             ::
 
-                >>> MarkupList().item_class
+                >>> abjad.MarkupList().item_class
                 <class 'abjad.tools.markuptools.Markup.Markup'>
 
         Returns markup class.
@@ -503,7 +507,7 @@ class MarkupList(TypedList):
                 ::
 
                     >>> items = ['Allegro', 'assai']
-                    >>> markup_list = MarkupList(items)
+                    >>> markup_list = abjad.MarkupList(items)
                     >>> for item in markup_list.items:
                     ...     item
                     ...
@@ -515,7 +519,7 @@ class MarkupList(TypedList):
                 ::
 
                     >>> items = ['Allegro', 'assai']
-                    >>> markup_list = MarkupList(items=items)
+                    >>> markup_list = abjad.MarkupList(items=items)
                     >>> for item in markup_list.items:
                     ...     item
                     ...
@@ -529,7 +533,7 @@ class MarkupList(TypedList):
                 ::
 
                     >>> items = ['Allegro', 'assai']
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> markup_list = expression(items)
                     >>> for item in markup_list.items:
                     ...     item
@@ -542,7 +546,7 @@ class MarkupList(TypedList):
                 ::
 
                     >>> items = ['Allegro', 'assai']
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> markup_list = expression(items=items)
                     >>> for item in markup_list.items:
                     ...     item
@@ -567,7 +571,7 @@ class MarkupList(TypedList):
             ::
 
                 >>> markups = ['Allegro', 'assai']
-                >>> markup_list = MarkupList(keep_sorted=True)
+                >>> markup_list = abjad.MarkupList(keep_sorted=True)
                 >>> markup_list.append('assai')
                 >>> markup_list.append('Allegro')
                 >>> show(markup_list) # doctest: +SKIP
@@ -590,7 +594,7 @@ class MarkupList(TypedList):
             ::
 
                 >>> markups = ['Allegro', 'assai']
-                >>> markup_list = MarkupList()
+                >>> markup_list = abjad.MarkupList()
                 >>> markup_list.append('assai')
                 >>> markup_list.append('Allegro')
                 >>> show(markup_list) # doctest: +SKIP
@@ -626,7 +630,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> markup_list = MarkupList(['Allegro'])
+                    >>> markup_list = abjad.MarkupList(['Allegro'])
                     >>> markup_list.append('assai')
                     >>> f(markup_list)
                     abjad.MarkupList(
@@ -648,7 +652,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.append('assai')
                     >>> markup_list = expression(['Allegro'])
                     >>> f(markup_list)
@@ -686,10 +690,10 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> city = Markup('Los Angeles')
-                    >>> date = Markup('May - August 2014')
+                    >>> city = abjad.Markup('Los Angeles')
+                    >>> date = abjad.Markup('May - August 2014')
                     >>> markups = [city, date]
-                    >>> markup_list = MarkupList(markups)
+                    >>> markup_list = abjad.MarkupList(markups)
                     >>> markup = markup_list.center_column(direction=Up)
                     >>> f(markup)
                     ^ \markup {
@@ -708,10 +712,10 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.center_column(direction=Up)
-                    >>> city = Markup('Los Angeles')
-                    >>> date = Markup('May - August 2014')
+                    >>> city = abjad.Markup('Los Angeles')
+                    >>> date = abjad.Markup('May - August 2014')
                     >>> markups = [city, date]
                     >>> markup = expression(markups)
                     >>> f(markup)
@@ -748,9 +752,9 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> city = Markup('Los Angeles')
-                    >>> date = Markup('May - August 2014')
-                    >>> markup_list = MarkupList([city, date])
+                    >>> city = abjad.Markup('Los Angeles')
+                    >>> date = abjad.Markup('May - August 2014')
+                    >>> markup_list = abjad.MarkupList([city, date])
                     >>> markup = markup_list.column()
                     >>> f(markup)
                     \markup {
@@ -769,10 +773,10 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.column()
-                    >>> city = Markup('Los Angeles')
-                    >>> date = Markup('May - August 2014')
+                    >>> city = abjad.Markup('Los Angeles')
+                    >>> date = abjad.Markup('May - August 2014')
                     >>> markup = expression([city, date])
                     >>> f(markup)
                     \markup {
@@ -807,10 +811,10 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> markup_one = Markup('Allegro assai')
-                    >>> markup_two = Markup.draw_line(13, 0)
+                    >>> markup_one = abjad.Markup('Allegro assai')
+                    >>> markup_two = abjad.Markup.draw_line(13, 0)
                     >>> markup_list = [markup_one, markup_two]
-                    >>> markup_list = MarkupList(markup_list)
+                    >>> markup_list = abjad.MarkupList(markup_list)
                     >>> markup = markup_list.combine(direction=Up)
                     >>> f(markup)
                     ^ \markup {
@@ -828,10 +832,10 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.combine(direction=Up)
-                    >>> markup_1 = Markup('Allegro assai')
-                    >>> markup_2 = Markup.draw_line(13, 0)
+                    >>> markup_1 = abjad.Markup('Allegro assai')
+                    >>> markup_2 = abjad.Markup.draw_line(13, 0)
                     >>> markup_list = [markup_1, markup_2]
                     >>> markup = expression(markup_list)
                     >>> f(markup)
@@ -871,11 +875,11 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> downbow = Markup.musicglyph('scripts.downbow')
-                    >>> hspace = Markup.hspace(1)
-                    >>> upbow = Markup.musicglyph('scripts.upbow')
+                    >>> downbow = abjad.Markup.musicglyph('scripts.downbow')
+                    >>> hspace = abjad.Markup.hspace(1)
+                    >>> upbow = abjad.Markup.musicglyph('scripts.upbow')
                     >>> markups = [downbow, hspace, upbow]
-                    >>> markup_list = MarkupList(markups)
+                    >>> markup_list = abjad.MarkupList(markups)
                     >>> markup = markup_list.concat(direction=Up)
                     >>> f(markup)
                     ^ \markup {
@@ -898,11 +902,11 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.concat(direction=Up)
-                    >>> downbow = Markup.musicglyph('scripts.downbow')
-                    >>> hspace = Markup.hspace(1)
-                    >>> upbow = Markup.musicglyph('scripts.upbow')
+                    >>> downbow = abjad.Markup.musicglyph('scripts.downbow')
+                    >>> hspace = abjad.Markup.hspace(1)
+                    >>> upbow = abjad.Markup.musicglyph('scripts.upbow')
                     >>> markups = [downbow, hspace, upbow]
                     >>> markup = expression(markups)
                     >>> f(markup)
@@ -942,7 +946,7 @@ class MarkupList(TypedList):
 
             ::
 
-                >>> markup_list = MarkupList()
+                >>> markup_list = abjad.MarkupList()
                 >>> markup_list.extend(['Allegro', 'assai'])
 
             ::
@@ -972,7 +976,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> markup_list = MarkupList()
+                    >>> markup_list = abjad.MarkupList()
                     >>> markup_list.extend(['Allegro', 'assai'])
                     >>> f(markup_list)
                     abjad.MarkupList(
@@ -1005,7 +1009,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.extend(['assai'])
                     >>> markup_list = expression(['Allegro'])
                     >>> f(markup_list)
@@ -1052,7 +1056,7 @@ class MarkupList(TypedList):
 
             ::
 
-                >>> markup_list = MarkupList()
+                >>> markup_list = abjad.MarkupList()
                 >>> markup_list.extend(['Allegro', 'assai'])
                 >>> f(markup_list)
                 abjad.MarkupList(
@@ -1102,7 +1106,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> markup_list = MarkupList(['assai'])
+                    >>> markup_list = abjad.MarkupList(['assai'])
                     >>> markup_list.insert(0, 'Allegro')
                     >>> f(markup_list)
                     abjad.MarkupList(
@@ -1124,7 +1128,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.insert(0, 'Allegro')
                     >>> markup_list = expression(['assai'])
                     >>> f(markup_list)
@@ -1162,9 +1166,9 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> city = Markup('Los Angeles')
-                    >>> date = Markup('May - August 2014')
-                    >>> markup_list = MarkupList([city, date])
+                    >>> city = abjad.Markup('Los Angeles')
+                    >>> date = abjad.Markup('May - August 2014')
+                    >>> markup_list = abjad.MarkupList([city, date])
                     >>> markup = markup_list.left_column()
                     >>> f(markup)
                     \markup {
@@ -1183,10 +1187,10 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.left_column()
-                    >>> city = Markup('Los Angeles')
-                    >>> date = Markup('May - August 2014')
+                    >>> city = abjad.Markup('Los Angeles')
+                    >>> date = abjad.Markup('May - August 2014')
                     >>> markup = expression([city, date])
                     >>> f(markup)
                     \markup {
@@ -1222,7 +1226,7 @@ class MarkupList(TypedList):
                 ::
 
                     >>> markups = ['Allegro', 'assai']
-                    >>> markup_list = MarkupList(markups)
+                    >>> markup_list = abjad.MarkupList(markups)
                     >>> markup = markup_list.line()
                     >>> f(markup)
                     \markup {
@@ -1242,7 +1246,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.line()
                     >>> markup = expression(['Allegro', 'assai'])
                     >>> f(markup)
@@ -1279,9 +1283,9 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> city = Markup('Los Angeles')
-                    >>> date = Markup('May - August 2014')
-                    >>> markup_list = MarkupList([city, date])
+                    >>> city = abjad.Markup('Los Angeles')
+                    >>> date = abjad.Markup('May - August 2014')
+                    >>> markup_list = abjad.MarkupList([city, date])
                     >>> markup = markup_list.overlay(direction=Up)
                     >>> f(markup)
                     ^ \markup {
@@ -1300,10 +1304,10 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.overlay(direction=Up)
-                    >>> city = Markup('Los Angeles')
-                    >>> date = Markup('May - August 2014')
+                    >>> city = abjad.Markup('Los Angeles')
+                    >>> date = abjad.Markup('May - August 2014')
                     >>> markup = expression([city, date])
                     >>> f(markup)
                     ^ \markup {
@@ -1338,7 +1342,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> markup_list = MarkupList()
+                    >>> markup_list = abjad.MarkupList()
                     >>> markup_list.extend(['Allegro', 'assai'])
                     >>> markup_list.pop()
                     Markup(contents=['assai'])
@@ -1362,7 +1366,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.pop()
                     >>> markup_list = expression(['Allegro', 'assai'])
 
@@ -1400,7 +1404,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> markup_list = MarkupList()
+                    >>> markup_list = abjad.MarkupList()
                     >>> markup_list.extend(['Allegro', 'assai'])
                     >>> markup_list.remove('assai')
                     >>> f(markup_list)
@@ -1430,7 +1434,7 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.remove('assai')
                     >>> markup_list = expression(['Allegro', 'assai'])
                     >>> f(markup_list)
@@ -1475,9 +1479,9 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> city = Markup('Los Angeles')
-                    >>> date = Markup('May - August 2014')
-                    >>> markup_list = MarkupList([city, date])
+                    >>> city = abjad.Markup('Los Angeles')
+                    >>> date = abjad.Markup('May - August 2014')
+                    >>> markup_list = abjad.MarkupList([city, date])
                     >>> markup = markup_list.right_column()
                     >>> f(markup)
                     \markup {
@@ -1496,10 +1500,10 @@ class MarkupList(TypedList):
 
                 ::
 
-                    >>> expression = Expression().markup_list()
+                    >>> expression = abjad.Expression().markup_list()
                     >>> expression = expression.right_column()
-                    >>> city = Markup('Los Angeles')
-                    >>> date = Markup('May - August 2014')
+                    >>> city = abjad.Markup('Los Angeles')
+                    >>> date = abjad.Markup('May - August 2014')
                     >>> markup = expression([city, date])
                     >>> f(markup)
                     \markup {

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -12,7 +13,7 @@ def test_spannertools_Decrescendo___init___01():
 
 def test_spannertools_Decrescendo___init___02():
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'2")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
     decrescendo = Decrescendo()
     attach(decrescendo, staff[:4])
 

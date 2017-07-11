@@ -5,13 +5,17 @@ import numbers
 def integer_equivalent_number_to_integer(number):
     '''Changes integer-equivalent `number` to integer.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Returns integer-equivalent number as integer:
 
         ::
 
-            >>> mathtools.integer_equivalent_number_to_integer(17.0)
+            >>> abjad.mathtools.integer_equivalent_number_to_integer(17.0)
             17
 
     ..  container:: example
@@ -20,7 +24,7 @@ def integer_equivalent_number_to_integer(number):
 
         ::
 
-            >>> mathtools.integer_equivalent_number_to_integer(17.5)
+            >>> abjad.mathtools.integer_equivalent_number_to_integer(17.5)
             17.5
 
     Returns number.

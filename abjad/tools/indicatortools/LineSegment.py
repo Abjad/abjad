@@ -7,6 +7,10 @@ from abjad.tools.abctools import AbjadValueObject
 class LineSegment(AbjadValueObject):
     r'''Line segment.
 
+    ::
+
+        >>> import abjad
+
     Line segments format as text spanners.
 
     ..  container:: example
@@ -15,7 +19,7 @@ class LineSegment(AbjadValueObject):
 
         ::
 
-            >>> line_segment = indicatortools.LineSegment()
+            >>> line_segment = abjad.LineSegment()
             >>> f(line_segment)
             LineSegment()
 

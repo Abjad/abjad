@@ -8,6 +8,11 @@ from abjad.tools import sequencetools
 
 class PartitionByRatioCallback(AbjadValueObject):
     r'''Partition-by-ratio selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###

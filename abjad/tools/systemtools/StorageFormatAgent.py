@@ -12,6 +12,12 @@ except ImportError:
 
 class StorageFormatAgent(AbjadValueObject):
     r'''Manages Abjad object storage formats.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     '''
 
     ### CLASS VARIABLES ###
@@ -365,9 +371,9 @@ class StorageFormatAgent(AbjadValueObject):
 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
-                ...         left_classes=[Rest],
+                ...         left_classes=[abjad.Rest],
                 ...         left_counts=[1],
-                ...         right_classes=[Rest],
+                ...         right_classes=[abjad.Rest],
                 ...         right_counts=[2],
                 ...         outer_divisions_only=True,
                 ...         ),
@@ -375,7 +381,7 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> types = systemtools.StorageFormatAgent._get_types(maker)
+                >>> types = abjad.systemtools.StorageFormatAgent._get_types(maker)
                 >>> for _ in types:
                 ...     _
                 ...
@@ -387,13 +393,13 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> dictionary = datastructuretools.TypedOrderedDict(
-                ...     item_class=pitchtools.NamedPitch,
+                >>> dictionary = abjad.TypedOrderedDict(
+                ...     item_class=abjad.NamedPitch,
                 ...     )
 
             ::
 
-                >>> types = systemtools.StorageFormatAgent._get_types(dictionary)
+                >>> types = abjad.systemtools.StorageFormatAgent._get_types(dictionary)
                 >>> for _ in types:
                 ...     _
                 ...
@@ -550,7 +556,7 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> agent = systemtools.StorageFormatAgent(rhythm_maker)
+                >>> agent = abjad.systemtools.StorageFormatAgent(rhythm_maker)
                 >>> for line in agent.get_import_statements():
                 ...     line
                 ...

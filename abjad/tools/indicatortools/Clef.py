@@ -15,13 +15,13 @@ class Clef(AbjadValueObject):
 
         ::
 
-            >>> clef = Clef('treble')
+            >>> clef = abjad.Clef('treble')
             >>> clef
             Clef(name='treble')
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
             >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
@@ -30,22 +30,22 @@ class Clef(AbjadValueObject):
 
         ::
 
-            >>> clef = Clef('treble')
-            >>> attach(clef, staff)
-            >>> clef = Clef('alto')
-            >>> attach(clef, staff[1])
-            >>> clef = Clef('bass')
-            >>> attach(clef, staff[2])
-            >>> clef = Clef('treble^8')
-            >>> attach(clef, staff[3])
-            >>> clef = Clef('bass_8')
-            >>> attach(clef, staff[4])
-            >>> clef = Clef('tenor')
-            >>> attach(clef, staff[5])
-            >>> clef = Clef('bass^15')
-            >>> attach(clef, staff[6])
-            >>> clef = Clef('percussion')
-            >>> attach(clef, staff[7])
+            >>> clef = abjad.Clef('treble')
+            >>> abjad.attach(clef, staff)
+            >>> clef = abjad.Clef('alto')
+            >>> abjad.attach(clef, staff[1])
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff[2])
+            >>> clef = abjad.Clef('treble^8')
+            >>> abjad.attach(clef, staff[3])
+            >>> clef = abjad.Clef('bass_8')
+            >>> abjad.attach(clef, staff[4])
+            >>> clef = abjad.Clef('tenor')
+            >>> abjad.attach(clef, staff[5])
+            >>> clef = abjad.Clef('bass^15')
+            >>> abjad.attach(clef, staff[6])
+            >>> clef = abjad.Clef('percussion')
+            >>> abjad.attach(clef, staff[7])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -126,7 +126,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> clef = Clef('treble')
+                >>> clef = abjad.Clef('treble')
                 >>> print(format(clef))
                 abjad.Clef(
                     name='treble',
@@ -136,7 +136,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> clef = Clef('treble')
+                >>> clef = abjad.Clef('treble')
                 >>> print(format(clef, 'lilypond'))
                 \clef "treble"
 
@@ -155,8 +155,8 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> clef_1 = Clef('treble')
-                >>> clef_2 = Clef('alto')
+                >>> clef_1 = abjad.Clef('treble')
+                >>> clef_2 = abjad.Clef('alto')
 
             ::
 
@@ -243,10 +243,9 @@ class Clef(AbjadValueObject):
             ::
 
                 >>> maker = abjad.NoteMaker()
-                >>> numbers = list(range(-12, -6))
-                >>> notes = maker(numbers, [Duration(1, 4)])
-                >>> staff = Staff(notes)
-                >>> Clef.from_selection(staff)
+                >>> notes = maker(range(-12, -6), [(1, 4)])
+                >>> staff = abjad.Staff(notes)
+                >>> abjad.Clef.from_selection(staff)
                 Clef(name='bass')
 
             Choses between treble and bass based on minimal number of ledger
@@ -288,7 +287,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> clef = Clef('treble')
+                >>> clef = abjad.Clef('treble')
                 >>> clef.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 
@@ -308,7 +307,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> Clef('treble').middle_c_position
+                >>> abjad.Clef('treble').middle_c_position
                 StaffPosition(number=-6)
 
         ..  container:: example
@@ -317,7 +316,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> Clef('alto').middle_c_position
+                >>> abjad.Clef('alto').middle_c_position
                 StaffPosition(number=0)
 
         Returns nonnegative integer staff position.
@@ -334,7 +333,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> Clef('treble').name
+                >>> abjad.Clef('treble').name
                 'treble'
 
         ..  container:: example
@@ -343,7 +342,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> Clef('alto').name
+                >>> abjad.Clef('alto').name
                 'alto'
 
         Returns string.

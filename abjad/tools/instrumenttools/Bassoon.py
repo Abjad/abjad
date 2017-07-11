@@ -10,25 +10,31 @@ class Bassoon(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> bassoon = instrumenttools.Bassoon()
-        >>> attach(bassoon, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { Bassoon }
-            \set Staff.shortInstrumentName = \markup { Bsn. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff)
+            >>> bassoon = abjad.instrumenttools.Bassoon()
+            >>> abjad.attach(bassoon, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { Bassoon }
+                \set Staff.shortInstrumentName = \markup { Bsn. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

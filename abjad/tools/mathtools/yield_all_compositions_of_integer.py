@@ -5,11 +5,15 @@ import itertools
 def yield_all_compositions_of_integer(n):
     r'''Yields all compositions of positive integer `n`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> for tuple_ in mathtools.yield_all_compositions_of_integer(5):
+            >>> for tuple_ in abjad.mathtools.yield_all_compositions_of_integer(5):
             ...     tuple_
             ...
             (5,)

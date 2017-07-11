@@ -5,52 +5,57 @@ from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 
 class MeasurewiseQSchemaItem(QSchemaItem):
-    '''`MeasurewiseQSchemaItem` represents a change of state in the
-    timeline of a metered quantization process.
+    '''Measurewise q-schema item.
+    
+    Represents a change of state in the timeline of a metered quantization
+    process.
 
     ::
 
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
         >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem()
-        >>> print(format(q_schema_item))
-        quantizationtools.MeasurewiseQSchemaItem()
 
-    Define a change in tempo:
+    ..  container:: example
 
-    ::
+        Defines a change in tempo:
 
-        >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem(
-        ...     tempo=((1, 4), 60),
-        ...     )
-        >>> print(format(q_schema_item))
-        quantizationtools.MeasurewiseQSchemaItem(
-            tempo=abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4), 
-                units_per_minute=60,
-                ),
-            )
+        ::
 
-    Define a change in time signature:
+            >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem(
+            ...     tempo=((1, 4), 60),
+            ...     )
+            >>> print(format(q_schema_item))
+            quantizationtools.MeasurewiseQSchemaItem(
+                tempo=abjad.MetronomeMark(
+                    reference_duration=abjad.Duration(1, 4), 
+                    units_per_minute=60,
+                    ),
+                )
 
-    ::
+    ..  container:: example
 
-        >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem(
-        ...     time_signature=(6, 8),
-        ...     )
-        >>> print(format(q_schema_item))
-        quantizationtools.MeasurewiseQSchemaItem(
-            time_signature=abjad.TimeSignature((6, 8)),
-            )
+        Defines a change in time signature:
 
-    Test for beatspan, given a defined time signature:
+        ::
 
-    ::
+            >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem(
+            ...     time_signature=(6, 8),
+            ...     )
+            >>> print(format(q_schema_item))
+            quantizationtools.MeasurewiseQSchemaItem(
+                time_signature=abjad.TimeSignature((6, 8)),
+                )
 
-        >>> q_schema_item.beatspan
-        Duration(1, 8)
+    ..  container:: example
 
-    `MeasurewiseQSchemaItem` is immutable.
+        Tests for beatspan given a defined time signature:
 
-    Return `MeasurewiseQSchemaItem` instance.
+        ::
+
+            >>> q_schema_item.beatspan
+            Duration(1, 8)
+
     '''
 
     ### CLASS VARIABLES ###

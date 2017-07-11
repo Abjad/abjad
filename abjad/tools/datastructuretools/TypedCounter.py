@@ -9,9 +9,13 @@ class TypedCounter(TypedCollection):
 
     ::
 
-        >>> counter = datastructuretools.TypedCounter(
+        >>> import abjad
+
+    ::
+
+        >>> counter = abjad.TypedCounter(
         ...     [0, "c'", 1, True, "cs'", "df'"],
-        ...     item_class=pitchtools.NumberedPitch,
+        ...     item_class=abjad.NumberedPitch,
         ...     )
 
     ::

@@ -5,6 +5,12 @@ from abjad.tools.abctools import AbjadValueObject
 
 class DurationSpellingSpecifier(AbjadValueObject):
     r'''Duration spelling specifier.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     '''
 
     ### CLASS VARIABLES ###

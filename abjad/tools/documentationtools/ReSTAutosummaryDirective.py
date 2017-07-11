@@ -8,34 +8,40 @@ class ReSTAutosummaryDirective(ReSTDirective):
 
     ::
 
-        >>> toc = documentationtools.ReSTAutosummaryDirective()
-        >>> for item in ['foo.Foo', 'bar.Bar', 'baz.Baz']:
-        ...     toc.append(documentationtools.ReSTAutosummaryItem(text=item))
-        ...
-        >>> toc
-        ReSTAutosummaryDirective(
-            children=(
-                ReSTAutosummaryItem(
-                    text='foo.Foo'
-                    ),
-                ReSTAutosummaryItem(
-                    text='bar.Bar'
-                    ),
-                ReSTAutosummaryItem(
-                    text='baz.Baz'
-                    ),
-                ),
-            directive='autosummary'
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> print(toc.rest_format)
-        .. autosummary::
-        <BLANKLINE>
-           foo.Foo
-           bar.Bar
-           baz.Baz
+        ::
+
+            >>> toc = abjad.documentationtools.ReSTAutosummaryDirective()
+            >>> for item in ['foo.Foo', 'bar.Bar', 'baz.Baz']:
+            ...     toc.append(abjad.documentationtools.ReSTAutosummaryItem(text=item))
+            ...
+            >>> toc
+            ReSTAutosummaryDirective(
+                children=(
+                    ReSTAutosummaryItem(
+                        text='foo.Foo'
+                        ),
+                    ReSTAutosummaryItem(
+                        text='bar.Bar'
+                        ),
+                    ReSTAutosummaryItem(
+                        text='baz.Baz'
+                        ),
+                    ),
+                directive='autosummary'
+                )
+
+        ::
+
+            >>> print(toc.rest_format)
+            .. autosummary::
+            <BLANKLINE>
+            foo.Foo
+            bar.Bar
+            baz.Baz
 
     '''
 

@@ -29,7 +29,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([1, 2, 3, 4, 5, 6])
+                >>> abjad.Sequence([1, 2, 3, 4, 5, 6])
                 Sequence([1, 2, 3, 4, 5, 6])
 
         ..  container:: example expression
@@ -48,7 +48,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6])
                 >>> sequence.reverse()
                 Sequence([6, 5, 4, 3, 2, 1])
 
@@ -69,7 +69,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> sequence = Sequence([1, 2, 3, [4, 5, [6]]])
+                >>> sequence = abjad.Sequence([1, 2, 3, [4, 5, [6]]])
                 >>> sequence = sequence.reverse()
                 >>> sequence = sequence.flatten()
                 >>> sequence
@@ -122,14 +122,14 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> Sequence([1, 2, 3]) + (4, 5, 6)
+                    >>> abjad.Sequence([1, 2, 3]) + (4, 5, 6)
                     Sequence([1, 2, 3, 4, 5, 6])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression + (4, 5, 6)
 
@@ -169,14 +169,14 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> Sequence([1, 2, 3]) + [4, 5, 6]
+                    >>> abjad.Sequence([1, 2, 3]) + [4, 5, 6]
                     Sequence([1, 2, 3, 4, 5, 6])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression + [4, 5, 6]
 
@@ -216,8 +216,8 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence_1 = Sequence([1, 2, 3])
-                    >>> sequence_2 = Sequence([4, 5, 6])
+                    >>> sequence_1 = abjad.Sequence([1, 2, 3])
+                    >>> sequence_2 = abjad.Sequence([4, 5, 6])
                     >>> sequence_1 + sequence_2
                     Sequence([1, 2, 3, 4, 5, 6])
 
@@ -225,9 +225,9 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression_1 = Expression(name='J')
+                    >>> expression_1 = abjad.Expression(name='J')
                     >>> expression_1 = expression_1.sequence()
-                    >>> expression_2 = Expression(name='K')
+                    >>> expression_2 = abjad.Expression(name='K')
                     >>> expression_2 = expression_2.sequence()
                     >>> expression = expression_1 + expression_2
 
@@ -268,8 +268,8 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence_1 = Sequence([1, 2, 3])
-                    >>> sequence_2 = Sequence([4, 5, 6])
+                    >>> sequence_1 = abjad.Sequence([1, 2, 3])
+                    >>> sequence_2 = abjad.Sequence([4, 5, 6])
                     >>> sequence = sequence_1 + sequence_2
                     >>> sequence.reverse()
                     Sequence([6, 5, 4, 3, 2, 1])
@@ -278,9 +278,9 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression_1 = Expression(name='J')
+                    >>> expression_1 = abjad.Expression(name='J')
                     >>> expression_1 = expression_1.sequence()
-                    >>> expression_2 = Expression(name='K')
+                    >>> expression_2 = abjad.Expression(name='K')
                     >>> expression_2 = expression_2.sequence()
                     >>> expression = expression_1 + expression_2
                     >>> expression = expression.reverse()
@@ -342,7 +342,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([1, 2, 3, 4, 5, 6]) == Sequence([1, 2, 3, 4, 5, 6])
+                >>> abjad.Sequence([1, 2, 3, 4, 5, 6]) == abjad.Sequence([1, 2, 3, 4, 5, 6])
                 True
 
         ..  container:: example
@@ -352,7 +352,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([1, 2, 3, 4, 5, 6]) == ([1, 2, 3, 4, 5, 6])
+                >>> abjad.Sequence([1, 2, 3, 4, 5, 6]) == ([1, 2, 3, 4, 5, 6])
                 False
 
         Returns true or false.
@@ -370,7 +370,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> f(Sequence([1, 2, 3, 4, 5, 6]))
+                >>> f(abjad.Sequence([1, 2, 3, 4, 5, 6]))
                 Sequence([1, 2, 3, 4, 5, 6])
 
         ..  container:: example expression
@@ -379,7 +379,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> expression = Expression(name='J')
+                >>> expression = abjad.Expression(name='J')
                 >>> expression = expression.sequence()
                 >>> f(expression)
                 abjad.Expression(
@@ -423,7 +423,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                    >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6])
                     
                 ::
                 
@@ -434,7 +434,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression[0]
 
@@ -474,7 +474,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                    >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6])
                  
                 ::
                 
@@ -485,7 +485,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression[-1]
 
@@ -525,7 +525,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                    >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6])
                     >>> sequence = sequence[:3]
 
                 ::
@@ -537,7 +537,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression[:3]
 
@@ -577,8 +577,8 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
-                    >>> sequence = Sequence(sequence[0])
+                    >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6])
+                    >>> sequence = abjad.Sequence(sequence[0])
 
                 ::
 
@@ -589,7 +589,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression[0]
                     >>> expression = expression.sequence()
@@ -630,7 +630,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence([1, 2, [3, [4]], 5])
+                    >>> sequence = abjad.Sequence([1, 2, [3, [4]], 5])
                     >>> sequence = sequence[:-1]
                     >>> sequence = sequence.flatten()
 
@@ -643,7 +643,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression[:-1]
                     >>> expression = expression.flatten()
@@ -708,7 +708,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> len(Sequence([1, 2, 3, 4, 5, 6]))
+                >>> len(abjad.Sequence([1, 2, 3, 4, 5, 6]))
                 6
 
         ..  container:: example
@@ -717,7 +717,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> len(Sequence('text'))
+                >>> len(abjad.Sequence('text'))
                 4
 
         Returns nonnegative integer.
@@ -733,7 +733,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([1, 2, 3, 4, 5, 6]) != (1, 2, 3, 4, 5, 6)
+                >>> abjad.Sequence([1, 2, 3, 4, 5, 6]) != (1, 2, 3, 4, 5, 6)
                 True
 
         ..  container:: example
@@ -742,7 +742,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([1, 2, 3, 4, 5, 6]) != Sequence([1, 2, 3, 4, 5, 6])
+                >>> abjad.Sequence([1, 2, 3, 4, 5, 6]) != abjad.Sequence([1, 2, 3, 4, 5, 6])
                 False
 
         '''
@@ -763,14 +763,14 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> (1, 2, 3) + Sequence([4, 5, 6])
+                    >>> (1, 2, 3) + abjad.Sequence([4, 5, 6])
                     Sequence([1, 2, 3, 4, 5, 6])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = Expression(name='K')
+                    >>> expression = abjad.Expression(name='K')
                     >>> expression = expression.sequence()
                     >>> expression = (1, 2, 3) + expression
 
@@ -810,14 +810,14 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> [1, 2, 3] + Sequence([4, 5, 6])
+                    >>> [1, 2, 3] + abjad.Sequence([4, 5, 6])
                     Sequence([1, 2, 3, 4, 5, 6])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = Expression(name='K')
+                    >>> expression = abjad.Expression(name='K')
                     >>> expression = expression.sequence()
                     >>> expression = [1, 2, 3] + expression
 
@@ -857,16 +857,16 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> Sequence([1, 2, 3]) + Sequence([4, 5, 6])
+                    >>> abjad.Sequence([1, 2, 3]) + abjad.Sequence([4, 5, 6])
                     Sequence([1, 2, 3, 4, 5, 6])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression_1 = Expression(name='J')
+                    >>> expression_1 = abjad.Expression(name='J')
                     >>> expression_1 = expression_1.sequence()
-                    >>> expression_2 = Expression(name='K')
+                    >>> expression_2 = abjad.Expression(name='K')
                     >>> expression_2 = expression_2.sequence()
                     >>> expression = expression_1 + expression_2
 
@@ -916,7 +916,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([99])
+                >>> abjad.Sequence([99])
                 Sequence([99])
 
         ..  container:: example
@@ -925,7 +925,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([1, 2, 3, 4, 5, 6])
+                >>> abjad.Sequence([1, 2, 3, 4, 5, 6])
                 Sequence([1, 2, 3, 4, 5, 6])
 
         Returns string.
@@ -1213,14 +1213,14 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> Sequence([1, 2, 3, 4, 5, 6]).items
+                    >>> abjad.Sequence([1, 2, 3, 4, 5, 6]).items
                     (1, 2, 3, 4, 5, 6)
 
                 Initializes items from keyword:
 
                 ::
 
-                    >>> Sequence(items=[1, 2, 3, 4, 5, 6]).items
+                    >>> abjad.Sequence(items=[1, 2, 3, 4, 5, 6]).items
                     (1, 2, 3, 4, 5, 6)
 
             ..  container:: example expression
@@ -1260,7 +1260,7 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence = Sequence(items=items)
+                    >>> sequence = abjad.Sequence(items=items)
 
                 ::
 
@@ -1271,7 +1271,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.flatten()
 
@@ -1312,7 +1312,7 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence = Sequence(items)
+                    >>> sequence = abjad.Sequence(items)
 
                 ::
 
@@ -1323,7 +1323,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.flatten(depth=1)
 
@@ -1364,7 +1364,7 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence = Sequence(items)
+                    >>> sequence = abjad.Sequence(items)
 
                 ::
 
@@ -1375,7 +1375,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.flatten(depth=2)
 
@@ -1416,7 +1416,7 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence = Sequence(items)
+                    >>> sequence = abjad.Sequence(items)
 
                 ::
 
@@ -1427,7 +1427,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.flatten(indices=[3])
 
@@ -1468,7 +1468,7 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-                    >>> sequence = Sequence(items)
+                    >>> sequence = abjad.Sequence(items)
 
                 ::
 
@@ -1479,7 +1479,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.flatten(indices=[-1])
 
@@ -1520,7 +1520,7 @@ class Sequence(abctools.AbjadValueObject):
                 ::
 
                     >>> items = ['ab', 'cd', ('ef', 'gh'), ('ij', 'kl')]
-                    >>> sequence = Sequence(items=items)
+                    >>> sequence = abjad.Sequence(items=items)
 
                 ::
 
@@ -1531,7 +1531,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.flatten(classes=(tuple,))
 
@@ -1619,22 +1619,22 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([5, 4, 3, 2, 1, 0]).is_decreasing(strict=True)
+                >>> abjad.Sequence([5, 4, 3, 2, 1, 0]).is_decreasing(strict=True)
                 True
 
             ::
 
-                >>> Sequence([3, 3, 3, 2, 1, 0]).is_decreasing(strict=True)
+                >>> abjad.Sequence([3, 3, 3, 2, 1, 0]).is_decreasing(strict=True)
                 False
 
             ::
 
-                >>> Sequence([3, 3, 3, 3, 3, 3]).is_decreasing(strict=True)
+                >>> abjad.Sequence([3, 3, 3, 3, 3, 3]).is_decreasing(strict=True)
                 False
 
             ::
 
-                >>> Sequence().is_decreasing(strict=True)
+                >>> abjad.Sequence().is_decreasing(strict=True)
                 True
 
         ..  container:: example
@@ -1643,22 +1643,22 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([5, 4, 3, 2, 1, 0]).is_decreasing(strict=False)
+                >>> abjad.Sequence([5, 4, 3, 2, 1, 0]).is_decreasing(strict=False)
                 True
 
             ::
 
-                >>> Sequence([3, 3, 3, 2, 1, 0]).is_decreasing(strict=False)
+                >>> abjad.Sequence([3, 3, 3, 2, 1, 0]).is_decreasing(strict=False)
                 True
 
             ::
 
-                >>> Sequence([3, 3, 3, 3, 3, 3]).is_decreasing(strict=False)
+                >>> abjad.Sequence([3, 3, 3, 3, 3, 3]).is_decreasing(strict=False)
                 True
 
             ::
 
-                >>> Sequence().is_decreasing(strict=False)
+                >>> abjad.Sequence().is_decreasing(strict=False)
                 True
 
         Returns true or false.
@@ -1695,22 +1695,22 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([0, 1, 2, 3, 4, 5]).is_increasing(strict=True)
+                >>> abjad.Sequence([0, 1, 2, 3, 4, 5]).is_increasing(strict=True)
                 True
 
             ::
 
-                >>> Sequence([0, 1, 2, 3, 3, 3]).is_increasing(strict=True)
+                >>> abjad.Sequence([0, 1, 2, 3, 3, 3]).is_increasing(strict=True)
                 False
 
             ::
 
-                >>> Sequence([3, 3, 3, 3, 3, 3]).is_increasing(strict=True)
+                >>> abjad.Sequence([3, 3, 3, 3, 3, 3]).is_increasing(strict=True)
                 False
 
             ::
 
-                >>> Sequence().is_increasing(strict=True)
+                >>> abjad.Sequence().is_increasing(strict=True)
                 True
 
         ..  container:: example
@@ -1719,22 +1719,22 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([0, 1, 2, 3, 4, 5]).is_increasing(strict=False)
+                >>> abjad.Sequence([0, 1, 2, 3, 4, 5]).is_increasing(strict=False)
                 True
 
             ::
 
-                >>> Sequence([0, 1, 2, 3, 3, 3]).is_increasing(strict=False)
+                >>> abjad.Sequence([0, 1, 2, 3, 3, 3]).is_increasing(strict=False)
                 True
 
             ::
 
-                >>> Sequence([3, 3, 3, 3, 3, 3]).is_increasing(strict=False)
+                >>> abjad.Sequence([3, 3, 3, 3, 3, 3]).is_increasing(strict=False)
                 True
 
             ::
 
-                >>> Sequence().is_increasing(strict=False)
+                >>> abjad.Sequence().is_increasing(strict=False)
                 True
 
         Returns true or false.
@@ -1771,7 +1771,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([4, 5, 0, 3, 2, 1]).is_permutation()
+                >>> abjad.Sequence([4, 5, 0, 3, 2, 1]).is_permutation()
                 True
 
         ..  container:: example
@@ -1780,7 +1780,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([1, 1, 5, 3, 2, 1]).is_permutation()
+                >>> abjad.Sequence([1, 1, 5, 3, 2, 1]).is_permutation()
                 False
 
         Returns true or false.
@@ -1796,7 +1796,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([0, 1, 2, 6, 7, 8]).is_repetition_free()
+                >>> abjad.Sequence([0, 1, 2, 6, 7, 8]).is_repetition_free()
                 True
 
         ..  container:: example
@@ -1805,7 +1805,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence().is_repetition_free()
+                >>> abjad.Sequence().is_repetition_free()
                 True
 
         ..  container:: example
@@ -1814,7 +1814,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> Sequence([0, 1, 2, 2, 7, 8]).is_repetition_free()
+                >>> abjad.Sequence([0, 1, 2, 2, 7, 8]).is_repetition_free()
                 False
 
         Returns true or false.
@@ -1849,7 +1849,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> expression = Expression(name='J')
+                >>> expression = abjad.Expression(name='J')
                 >>> expression = expression.sequence()
                 >>> expression = expression.split([10], cyclic=True)
                 >>> expression = expression.join()
@@ -1910,7 +1910,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(1, 10+1))
+                    >>> sequence = abjad.Sequence(range(1, 10+1))
                     >>> sequence = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
@@ -1926,7 +1926,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
@@ -1979,7 +1979,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6])
                 >>> sequence.map()
                 Sequence([1, 2, 3, 4, 5, 6])
 
@@ -1996,7 +1996,6 @@ class Sequence(abctools.AbjadValueObject):
         else:
             items = self.items[:]
         return type(self)(items=items)
-
 
     def nwise(self, n=2, cyclic=False, wrapped=False):
         '''Iterates sequence `n` at a time.
@@ -2228,7 +2227,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> sequence = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
@@ -2250,7 +2249,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
@@ -2295,7 +2294,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
@@ -2313,7 +2312,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
@@ -2359,7 +2358,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
@@ -2380,7 +2379,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
@@ -2429,7 +2428,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
@@ -2449,7 +2448,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
@@ -2497,7 +2496,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
@@ -2515,7 +2514,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
@@ -2561,7 +2560,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
@@ -2580,7 +2579,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
@@ -2627,7 +2626,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
@@ -2649,7 +2648,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
@@ -2699,7 +2698,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
@@ -2720,7 +2719,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
@@ -2769,7 +2768,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
@@ -2787,7 +2786,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
@@ -2833,7 +2832,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
@@ -2852,7 +2851,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
@@ -2899,7 +2898,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
@@ -2921,7 +2920,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
@@ -2971,7 +2970,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
@@ -2992,7 +2991,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
@@ -3041,7 +3040,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
@@ -3060,7 +3059,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
@@ -3107,7 +3106,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=False,
@@ -3127,7 +3126,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
@@ -3175,7 +3174,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=True,
@@ -3198,7 +3197,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
@@ -3249,7 +3248,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(16))
+                    >>> sequence = abjad.Sequence(range(16))
                     >>> parts = sequence.partition_by_counts(
                     ...     [4, 3],
                     ...     cyclic=True,
@@ -3271,7 +3270,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [4, 3],
@@ -3322,7 +3321,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(10))
+                    >>> sequence = abjad.Sequence(range(10))
                     >>> parts = sequence.partition_by_counts(
                     ...     [2, 3, 5],
                     ...     cyclic=False,
@@ -3341,7 +3340,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [2, 3, 5],
@@ -3390,7 +3389,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(10))
+                    >>> sequence = abjad.Sequence(range(10))
                     >>> parts = sequence.partition_by_counts(
                     ...     [2],
                     ...     cyclic=True,
@@ -3411,7 +3410,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [2],
@@ -3460,7 +3459,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence('some text')
+                    >>> sequence = abjad.Sequence('some text')
                     >>> parts = sequence.partition_by_counts(
                     ...     [3],
                     ...     cyclic=False,
@@ -3478,7 +3477,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.partition_by_counts(
                     ...     [3],
@@ -3587,8 +3586,8 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> numbers = Sequence(range(10))
-                    >>> ratio = mathtools.Ratio((1, 1, 1))
+                    >>> numbers = abjad.Sequence(range(10))
+                    >>> ratio = abjad.Ratio((1, 1, 1))
 
                 ::
 
@@ -3602,9 +3601,9 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
-                    >>> ratio = mathtools.Ratio((1, 1, 1))
+                    >>> ratio = abjad.Ratio((1, 1, 1))
                     >>> expression = expression.partition_by_ratio_of_lengths(ratio)
 
                 ::
@@ -3646,8 +3645,8 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> numbers = Sequence(range(10))
-                    >>> ratio = mathtools.Ratio((1, 1, 2))
+                    >>> numbers = abjad.Sequence(range(10))
+                    >>> ratio = abjad.Ratio((1, 1, 2))
 
                 ::
 
@@ -3661,9 +3660,9 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
-                    >>> ratio = mathtools.Ratio((1, 1, 2))
+                    >>> ratio = abjad.Ratio((1, 1, 2))
                     >>> expression = expression.partition_by_ratio_of_lengths(ratio)
 
                 ::
@@ -4212,7 +4211,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> expression = Expression(name='J')
+                >>> expression = abjad.Expression(name='J')
                 >>> expression = expression.sequence()
                 >>> expression = expression.permute([1, 0, 3, 2])
 
@@ -4250,7 +4249,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> sequence = Sequence([1, 2, 3, 4, 5, 6])
+                >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6])
                 >>> sequence.permute([3, 0, 1, 2])
                 Traceback (most recent call last):
                     ...
@@ -4398,14 +4397,14 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> Sequence([1, 2, 3]).repeat(n=0)
+                    >>> abjad.Sequence([1, 2, 3]).repeat(n=0)
                     Sequence([])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.repeat(n=0)
 
@@ -4443,14 +4442,14 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> Sequence([1, 2, 3]).repeat(n=1)
+                    >>> abjad.Sequence([1, 2, 3]).repeat(n=1)
                     Sequence([Sequence([1, 2, 3])])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.repeat(n=1)
 
@@ -4488,14 +4487,14 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> Sequence([1, 2, 3]).repeat(n=2)
+                    >>> abjad.Sequence([1, 2, 3]).repeat(n=2)
                     Sequence([Sequence([1, 2, 3]), Sequence([1, 2, 3])])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.repeat(n=2)
 
@@ -4628,9 +4627,9 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> items = [mathtools.NonreducedFraction(3, 16)]
+                >>> items = [abjad.NonreducedFraction(3, 16)]
                 >>> sequence = abjad.Sequence(items)
-                >>> weight = NonreducedFraction(5, 4)
+                >>> weight = abjad.NonreducedFraction(5, 4)
                 >>> sequence = sequence.repeat_to_weight(weight)
                 >>> sum(sequence)
                 NonreducedFraction(20, 16)
@@ -4883,7 +4882,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence([[1, 2], 3, [4, 5]])
+                    >>> sequence = abjad.Sequence([[1, 2], 3, [4, 5]])
                     
                 ::
 
@@ -4894,7 +4893,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.reverse()
 
@@ -4933,10 +4932,10 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> segment_1 = PitchClassSegment([1, 2])
-                    >>> pitch = NumberedPitch(3)
-                    >>> segment_2 = PitchClassSegment([4, 5])
-                    >>> sequence = Sequence([segment_1, pitch, segment_2])
+                    >>> segment_1 = abjad.PitchClassSegment([1, 2])
+                    >>> pitch = abjad.NumberedPitch(3)
+                    >>> segment_2 = abjad.PitchClassSegment([4, 5])
+                    >>> sequence = abjad.Sequence([segment_1, pitch, segment_2])
                     
                 ::
 
@@ -4951,7 +4950,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.reverse(recurse=True)
 
@@ -5017,7 +5016,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(10))
+                    >>> sequence = abjad.Sequence(range(10))
                     
                 ::
                 
@@ -5028,7 +5027,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.rotate(n=4)
 
@@ -5069,7 +5068,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(10))
+                    >>> sequence = abjad.Sequence(range(10))
                     
                 ::
                 
@@ -5080,7 +5079,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.rotate(n=-3)
 
@@ -5121,7 +5120,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(10))
+                    >>> sequence = abjad.Sequence(range(10))
 
                 ::
 
@@ -5132,7 +5131,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.rotate(n=0)
 
@@ -5184,7 +5183,7 @@ class Sequence(abctools.AbjadValueObject):
 
             ::
 
-                >>> sequence = Sequence([3, 2, 5, 4, 1, 6])
+                >>> sequence = abjad.Sequence([3, 2, 5, 4, 1, 6])
                 >>> sequence.sort()
                 Sequence([1, 2, 3, 4, 5, 6])
 
@@ -5213,7 +5212,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence([10, -10, 10, -10])
+                    >>> sequence = abjad.Sequence([10, -10, 10, -10])
 
                 ::
 
@@ -5235,7 +5234,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.split(
                     ...     (3, 15, 3),
@@ -5366,7 +5365,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                    >>> sequence = abjad.Sequence([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
                     
                 ::
                 
@@ -5377,7 +5376,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.sum()
 
@@ -5417,7 +5416,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+                    >>> sequence = abjad.Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
                     
                 ::
                 
@@ -5428,7 +5427,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.sum()
 
@@ -5468,9 +5467,9 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> sequence = Sequence(range(1, 10+1))
+                    >>> sequence = abjad.Sequence(range(1, 10+1))
                     >>> result = sequence.sum()
-                    >>> sequence = Sequence(result)
+                    >>> sequence = abjad.Sequence(result)
 
                 ::
 
@@ -5481,7 +5480,7 @@ class Sequence(abctools.AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression(name='J')
+                    >>> expression = abjad.Expression(name='J')
                     >>> expression = expression.sequence()
                     >>> expression = expression.sum()
                     >>> expression = expression.sequence()

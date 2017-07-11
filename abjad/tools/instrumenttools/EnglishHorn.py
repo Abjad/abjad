@@ -10,22 +10,28 @@ class EnglishHorn(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> english_horn = instrumenttools.EnglishHorn()
-        >>> attach(english_horn, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "English horn" }
-            \set Staff.shortInstrumentName = \markup { "Eng. hn." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> english_horn = abjad.instrumenttools.EnglishHorn()
+            >>> abjad.attach(english_horn, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "English horn" }
+                \set Staff.shortInstrumentName = \markup { "Eng. hn." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

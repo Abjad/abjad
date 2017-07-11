@@ -17,6 +17,10 @@ from abjad.tools.markuptools.Postscript import Postscript
 class Markup(AbjadValueObject):
     r'''LilyPond markup.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from string:
@@ -26,7 +30,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> string = r'\italic { "Allegro assai" }'
-                >>> markup = Markup(string)
+                >>> markup = abjad.Markup(string)
                 >>> f(markup)
                 \markup { \italic { "Allegro assai" } }
 
@@ -38,7 +42,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> expression = Expression().markup()
+                >>> expression = abjad.Expression().markup()
                 >>> string = r'\italic { "Allegro assai" }'
                 >>> markup = expression(string)
                 >>> f(markup)
@@ -56,9 +60,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup('Allegro assai', direction=Up)
+                >>> markup = abjad.Markup('Allegro assai', direction=Up)
                 >>> markup = markup.italic()
-                >>> markup = Markup(markup, direction=Down)
+                >>> markup = abjad.Markup(markup, direction=Down)
                 >>> f(markup)
                 _ \markup {
                     \italic
@@ -73,8 +77,8 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> expression = Expression().markup()
-                >>> markup = Markup('Allegro assai', direction=Up)
+                >>> expression = abjad.Expression().markup()
+                >>> markup = abjad.Markup('Allegro assai', direction=Up)
                 >>> markup = markup.italic()
                 >>> markup = expression(markup, direction=Down)
                 >>> f(markup)
@@ -95,9 +99,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
                 >>> string = r'\italic { "Allegro assai" }'
-                >>> markup = Markup(string, direction=Up)
+                >>> markup = abjad.Markup(string, direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \italic
@@ -108,7 +112,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> attach(markup, staff[0])
+                >>> abjad.attach(markup, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -131,9 +135,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
                 >>> string = r'\italic { "Allegro assai" }'
-                >>> expression = Expression().markup()
+                >>> expression = abjad.Expression().markup()
                 >>> markup = expression(string, direction=Up)
                 >>> f(markup)
                 ^ \markup {
@@ -145,7 +149,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> attach(markup, staff[0])
+                >>> abjad.attach(markup, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -248,7 +252,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro') + Markup('assai')
+                    >>> markup = abjad.Markup('Allegro') + abjad.Markup('assai')
                     >>> f(markup)
                     \markup {
                         Allegro
@@ -263,9 +267,9 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = expressiontools.Expression()
+                    >>> expression = abjad.Expression()
                     >>> expression = expression.markup()
-                    >>> expression = expression + Markup('assai')
+                    >>> expression = expression + abjad.Markup('assai')
                     >>> markup = expression('Allegro')
                     >>> f(markup)
                     \markup {
@@ -285,8 +289,8 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro') + Markup.hspace(0.75)
-                    >>> markup = markup + Markup('assai')
+                    >>> markup = abjad.Markup('Allegro') + abjad.Markup.hspace(0.75)
+                    >>> markup = markup + abjad.Markup('assai')
                     >>> f(markup)
                     \markup {
                         Allegro
@@ -303,10 +307,10 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = expressiontools.Expression()
+                    >>> expression = abjad.Expression()
                     >>> expression = expression.markup()
-                    >>> expression = expression + Markup.hspace(0.75)
-                    >>> expression = expression + Markup('assai')
+                    >>> expression = expression + abjad.Markup.hspace(0.75)
+                    >>> expression = expression + abjad.Markup('assai')
                     >>> markup = expression('Allegro')
                     >>> f(markup)
                     \markup {
@@ -347,7 +351,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup_1 = Markup('Allegro assai', direction=Up)
+                >>> markup_1 = abjad.Markup('Allegro assai', direction=Up)
                 >>> markup_2 = copy.copy(markup_1)
 
             ::
@@ -384,9 +388,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup_1 = Markup('Allegro')
-                >>> markup_2 = Markup('Allegro')
-                >>> markup_3 = Markup('Allegro assai')
+                >>> markup_1 = abjad.Markup('Allegro')
+                >>> markup_2 = abjad.Markup('Allegro')
+                >>> markup_3 = abjad.Markup('Allegro assai')
 
             ::
 
@@ -415,8 +419,8 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup_1 = Markup('Allegro')
-                >>> markup_2 = Markup('Allegro', direction=Up)
+                >>> markup_1 = abjad.Markup('Allegro')
+                >>> markup_2 = abjad.Markup('Allegro', direction=Up)
 
             ::
 
@@ -446,7 +450,7 @@ class Markup(AbjadValueObject):
                 ::
 
                     >>> string = r'\italic { Allegro assai }'
-                    >>> markup = Markup(string)
+                    >>> markup = abjad.Markup(string)
                     >>> f(markup)
                     \markup {
                         \italic
@@ -463,7 +467,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> f(expression)
                     abjad.Expression(
                         callbacks=[
@@ -493,9 +497,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> hash_1 = hash(Markup('Allegro'))
-                >>> hash_2 = hash(Markup('Allegro'))
-                >>> hash_3 = hash(Markup('Allegro assai'))
+                >>> hash_1 = hash(abjad.Markup('Allegro'))
+                >>> hash_2 = hash(abjad.Markup('Allegro'))
+                >>> hash_3 = hash(abjad.Markup('Allegro assai'))
 
             ::
 
@@ -524,8 +528,8 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> hash_1 = hash(Markup('Allegro'))
-                >>> hash_2 = hash(Markup('Allegro', direction=Up))
+                >>> hash_1 = hash(abjad.Markup('Allegro'))
+                >>> hash_2 = hash(abjad.Markup('Allegro', direction=Up))
 
             ::
 
@@ -551,7 +555,7 @@ class Markup(AbjadValueObject):
                 ::
 
                     >>> string = r'\italic { Allegro assai }'
-                    >>> markup = Markup(string)
+                    >>> markup = abjad.Markup(string)
                     >>> f(markup)
                     \markup {
                         \italic
@@ -581,7 +585,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> string = r'\italic { Allegro assai }'
                     >>> markup = expression(string)
                     >>> f(markup)
@@ -625,8 +629,8 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup_1 = Markup('Allegro')
-                >>> markup_2 = Markup('assai')
+                >>> markup_1 = abjad.Markup('Allegro')
+                >>> markup_2 = abjad.Markup('assai')
 
             ::
 
@@ -655,7 +659,7 @@ class Markup(AbjadValueObject):
                 ::
 
                     >>> string = r'\italic { Allegro assai }'
-                    >>> markup = Markup(string)
+                    >>> markup = abjad.Markup(string)
                     >>> print(str(markup))
                     \markup {
                         \italic
@@ -673,7 +677,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> string = r'\italic { Allegro assai }'
                     >>> markup = expression(string)
                     >>> print(str(markup))
@@ -788,14 +792,14 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> Markup('Allegro assai')
+                    >>> abjad.Markup('Allegro assai')
                     Markup(contents=['Allegro assai'])
 
                 Initializes contents from keyword:
 
                 ::
 
-                    >>> Markup(contents='Allegro assai')
+                    >>> abjad.Markup(contents='Allegro assai')
                     Markup(contents=['Allegro assai'])
 
             ..  container:: example expression
@@ -804,7 +808,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression('Allegro assai')
                     Markup(contents=['Allegro assai'])
 
@@ -812,7 +816,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression(contents='Allegro assai')
                     Markup(contents=['Allegro assai'])
 
@@ -832,14 +836,14 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> Markup('Allegro')
+                    >>> abjad.Markup('Allegro')
                     Markup(contents=['Allegro'])
 
                 Initializes with direction:
 
                 ::
 
-                    >>> Markup('Allegro', direction=Up)
+                    >>> abjad.Markup('Allegro', direction=Up)
                     Markup(contents=['Allegro'], direction=Up)
 
             ..  container:: example expression
@@ -848,7 +852,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression('Allegro')
                     Markup(contents=['Allegro'])
 
@@ -856,7 +860,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup(direction=Up)
+                    >>> expression = abjad.Expression().markup(direction=Up)
                     >>> expression('Allegro')
                     Markup(contents=['Allegro'], direction=Up)
 
@@ -864,7 +868,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression('Allegro', direction=Down)
                     Markup(contents=['Allegro'], direction=Down)
 
@@ -872,7 +876,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup(direction=Up)
+                    >>> expression = abjad.Expression().markup(direction=Up)
                     >>> expression('Allegro', direction=Down)
                     Markup(contents=['Allegro'], direction=Down)
 
@@ -892,9 +896,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> attach(Markup(('Non',  'troppo'), stack_priority=1000), staff[1])
-                >>> attach(Markup('allegro', stack_priority=0), staff[1])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> abjad.attach(abjad.Markup(('Non',  'troppo'), stack_priority=1000), staff[1])
+                >>> abjad.attach(abjad.Markup('allegro', stack_priority=0), staff[1])
 
             ::
 
@@ -928,9 +932,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> attach(Markup(('non',  'troppo'), stack_priority=0), staff[1])
-                >>> attach(Markup('Allegro', stack_priority=1000), staff[1])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> abjad.attach(abjad.Markup(('non',  'troppo'), stack_priority=0), staff[1])
+                >>> abjad.attach(abjad.Markup('Allegro', stack_priority=1000), staff[1])
 
             ::
 
@@ -981,7 +985,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.bold()
                     >>> f(markup)
                     \markup {
@@ -997,7 +1001,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = expressiontools.Expression()
+                    >>> expression = abjad.Expression()
                     >>> expression = expression.markup()
                     >>> expression = expression.bold()
                     >>> markup = expression('Allegro assai')
@@ -1033,7 +1037,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.box()
                     >>> f(markup)
                     \markup {
@@ -1049,7 +1053,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.box()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -1070,7 +1074,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.box()
                     >>> markup = markup.override(('box-padding', 0.5))
                     >>> f(markup)
@@ -1089,7 +1093,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.box()
                     >>> expression = expression.override(('box-padding', 0.5))
                     >>> markup = expression('Allegro assai')
@@ -1122,7 +1126,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.bracket()
                     >>> f(markup)
                     \markup {
@@ -1138,7 +1142,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.bracket()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -1168,7 +1172,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.caps()
                     >>> f(markup)
                     \markup {
@@ -1184,7 +1188,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.caps()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -1214,10 +1218,10 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup_a = Markup('allegro')
-                    >>> markup_b = Markup('non').center_align()
-                    >>> markup_c = Markup('troppo')
-                    >>> markup = Markup.column([markup_a, markup_b, markup_c])
+                    >>> markup_a = abjad.Markup('allegro')
+                    >>> markup_b = abjad.Markup('non').center_align()
+                    >>> markup_c = abjad.Markup('troppo')
+                    >>> markup = abjad.Markup.column([markup_a, markup_b, markup_c])
                     >>> f(markup)
                     \markup {
                         \column
@@ -1237,13 +1241,13 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.center_align()
-                    >>> markup_a = Markup('allegro')
+                    >>> markup_a = abjad.Markup('allegro')
                     >>> markup_b = expression('non')
-                    >>> markup_c = Markup('troppo')
+                    >>> markup_c = abjad.Markup('troppo')
                     >>> markups = [markup_a, markup_b, markup_c]
-                    >>> markup_list = MarkupList()
+                    >>> markup_list = abjad.MarkupList()
                     >>> markup_list.extend([markup_a, markup_b, markup_c])
                     >>> markup = markup_list.column()
                     >>> f(markup)
@@ -1277,9 +1281,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> city = Markup('Los Angeles')
-                >>> date = Markup('May - August 2014')
-                >>> markup = Markup.center_column([city, date])
+                >>> city = abjad.Markup('Los Angeles')
+                >>> date = abjad.Markup('May - August 2014')
+                >>> markup = abjad.Markup.center_column([city, date])
                 >>> f(markup)
                 \markup {
                     \center-column
@@ -1301,7 +1305,7 @@ class Markup(AbjadValueObject):
 
                 >>> city = 'Los Angeles'
                 >>> date = 'May - August 2014'
-                >>> markup = Markup.center_column([city, date])
+                >>> markup = abjad.Markup.center_column([city, date])
                 >>> f(markup)
                 \markup {
                     \center-column
@@ -1332,7 +1336,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup.fraction(3, 5)
+                    >>> markup = abjad.Markup.fraction(3, 5)
                     >>> markup = markup.circle()
                     >>> markup = markup.override(('circle-padding', 0.45))
                     >>> f(markup)
@@ -1353,10 +1357,10 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.circle()
                     >>> expression = expression.override(('circle-padding', 0.45))
-                    >>> markup = expression(Markup.fraction(3, 5))
+                    >>> markup = expression(abjad.Markup.fraction(3, 5))
                     >>> f(markup)
                     \markup {
                         \override
@@ -1387,9 +1391,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> city = Markup('Los Angeles')
-                >>> date = Markup('May - August 2014')
-                >>> markup = Markup.column([city, date])
+                >>> city = abjad.Markup('Los Angeles')
+                >>> date = abjad.Markup('May - August 2014')
+                >>> markup = abjad.Markup.column([city, date])
                 >>> f(markup)
                 \markup {
                     \column
@@ -1419,10 +1423,10 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup_one = Markup('Allegro assai')
-                >>> markup_two = Markup.draw_line(13, 0)
+                >>> markup_one = abjad.Markup('Allegro assai')
+                >>> markup_two = abjad.Markup.draw_line(13, 0)
                 >>> markup_list = [markup_one, markup_two]
-                >>> markup = Markup.combine(markup_list, direction=Up)
+                >>> markup = abjad.Markup.combine(markup_list, direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \combine
@@ -1457,11 +1461,11 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> downbow = Markup.musicglyph('scripts.downbow')
-                    >>> hspace = Markup.hspace(1)
-                    >>> upbow = Markup.musicglyph('scripts.upbow')
+                    >>> downbow = abjad.Markup.musicglyph('scripts.downbow')
+                    >>> hspace = abjad.Markup.hspace(1)
+                    >>> upbow = abjad.Markup.musicglyph('scripts.upbow')
                     >>> markup_list = [downbow, hspace, upbow]
-                    >>> markup = Markup.concat(markup_list, direction=Up)
+                    >>> markup = abjad.Markup.concat(markup_list, direction=Up)
                     >>> f(markup)
                     ^ \markup {
                         \concat
@@ -1503,7 +1507,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.draw_circle(10, 1.5, direction=Up)
+                >>> markup = abjad.Markup.draw_circle(10, 1.5, direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \draw-circle
@@ -1529,7 +1533,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.draw_line(5, -2.5, direction=Up)
+                >>> markup = abjad.Markup.draw_line(5, -2.5, direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \draw-line
@@ -1555,7 +1559,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('sffz')
+                    >>> markup = abjad.Markup('sffz')
                     >>> markup = markup.dynamic()
                     >>> f(markup)
                     \markup {
@@ -1571,7 +1575,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.dynamic()
                     >>> markup = expression('sffz')
                     >>> f(markup)
@@ -1600,7 +1604,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.filled_box((0, 10), (2, 5), 1.5, direction=Up)
+                >>> markup = abjad.Markup.filled_box((0, 10), (2, 5), 1.5, direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \filled-box
@@ -1630,7 +1634,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup(1)
+                    >>> markup = abjad.Markup(1)
                     >>> markup = markup.finger()
                     >>> f(markup)
                     \markup {
@@ -1646,7 +1650,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.finger()
                     >>> markup = expression(1)
                     >>> f(markup)
@@ -1675,7 +1679,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.flat(direction=Up)
+                >>> markup = abjad.Markup.flat(direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \flat
@@ -1704,7 +1708,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.fontsize(-3)
                     >>> f(markup)
                     \markup {
@@ -1720,7 +1724,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.fontsize(-3)
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -1753,7 +1757,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.fraction(1, 4, direction=Up)
+                >>> markup = abjad.Markup.fraction(1, 4, direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \fraction
@@ -1771,7 +1775,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.fraction('π', 4)
+                >>> markup = abjad.Markup.fraction('π', 4)
                 >>> f(markup)
                 \markup {
                     \fraction
@@ -1799,7 +1803,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.general_align('Y', Up)
                     >>> f(markup)
                     \markup {
@@ -1817,7 +1821,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.general_align('Y', Up)
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -1840,7 +1844,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.general_align('Y', 0.75)
                     >>> f(markup)
                     \markup {
@@ -1858,7 +1862,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.general_align('Y', 0.75)
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -1904,7 +1908,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.halign(0)
                     >>> f(markup)
                     \markup {
@@ -1921,7 +1925,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.halign(0)
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -1952,7 +1956,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.hcenter_in(12)
                     >>> f(markup)
                     \markup {
@@ -1969,7 +1973,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.hcenter_in(12)
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -1999,7 +2003,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.hspace(0.75, direction=Up)
+                >>> markup = abjad.Markup.hspace(0.75, direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \hspace
@@ -2024,7 +2028,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.huge()
                     >>> f(markup)
                     \markup {
@@ -2040,7 +2044,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.huge()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -2070,7 +2074,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.italic()
                     >>> f(markup)
                     \markup {
@@ -2086,7 +2090,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.italic()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -2117,7 +2121,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.larger()
                     >>> f(markup)
                     \markup {
@@ -2133,7 +2137,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.larger()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -2162,9 +2166,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> city = Markup('Los Angeles')
-                >>> date = Markup('May - August 2014')
-                >>> markup = Markup.left_column([city, date])
+                >>> city = abjad.Markup('Los Angeles')
+                >>> date = abjad.Markup('May - August 2014')
+                >>> markup = abjad.Markup.left_column([city, date])
                 >>> f(markup)
                 \markup {
                     \left-column
@@ -2195,8 +2199,8 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> markups = ['Allegro', 'assai']
-                >>> markups = [Markup(_) for _ in markups]
-                >>> markup = Markup.line(markups)
+                >>> markups = [abjad.Markup(_) for _ in markups]
+                >>> markup = abjad.Markup.line(markups)
                 >>> f(markup)
                 \markup {
                     \line
@@ -2229,8 +2233,8 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.make_improper_fraction_markup(
-                ...     Fraction(6, 3),
+                >>> markup = abjad.Markup.make_improper_fraction_markup(
+                ...     abjad.Fraction(6, 3),
                 ...     direction=Up,
                 ...     )
                 >>> f(markup)
@@ -2246,7 +2250,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.make_improper_fraction_markup(Fraction(7, 3))
+                >>> markup = abjad.Markup.make_improper_fraction_markup(
+                ...     abjad.Fraction(7, 3),
+                ...     )
                 >>> f(markup)
                 \markup {
                     2
@@ -2288,7 +2294,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.musicglyph(
+                >>> markup = abjad.Markup.musicglyph(
                 ...     'accidentals.sharp',
                 ...     direction=Up,
                 ...     )
@@ -2320,7 +2326,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.natural(direction=Up)
+                >>> markup = abjad.Markup.natural(direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \natural
@@ -2343,7 +2349,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.note_by_number(3, 2, 1, direction=Up)
+                >>> markup = abjad.Markup.note_by_number(3, 2, 1, direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \note-by-number
@@ -2374,7 +2380,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.null()
+                >>> markup = abjad.Markup.null()
                 >>> f(markup)
                 \markup {
                     \null
@@ -2397,9 +2403,9 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> city = Markup('Los Angeles')
-                >>> date = Markup('May - August 2014')
-                >>> markup = Markup.overlay([city, date], direction=Up)
+                >>> city = abjad.Markup('Los Angeles')
+                >>> date = abjad.Markup('May - August 2014')
+                >>> markup = abjad.Markup.overlay([city, date], direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \overlay
@@ -2430,7 +2436,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.parenthesize()
                     >>> markup = markup.override(('padding', 0.75))
                     >>> f(markup)
@@ -2449,7 +2455,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.parenthesize()
                     >>> expression = expression.override(('padding', 0.75))
                     >>> markup = expression('Allegro assai')
@@ -2483,7 +2489,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.pad_around(10)
                     >>> markup = markup.box()
                     >>> f(markup)
@@ -2502,7 +2508,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.pad_around(10)
                     >>> expression = expression.box()
                     >>> markup = expression('Allegro assai')
@@ -2539,7 +2545,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> up_postscript = markuptools.Postscript()
+                >>> up_postscript = abjad.Postscript()
                 >>> up_postscript = up_postscript.newpath()
                 >>> up_postscript = up_postscript.moveto(0, 0)
                 >>> up_postscript = up_postscript.rlineto(10, 0)
@@ -2599,12 +2605,12 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.pad_to_box((0, 10), (0, 10))
 
                 ::
 
-                    >>> up_postscript = markuptools.Postscript()
+                    >>> up_postscript = abjad.Postscript()
                     >>> up_postscript = up_postscript.newpath()
                     >>> up_postscript = up_postscript.moveto(0, 0)
                     >>> up_postscript = up_postscript.rlineto(10, 0)
@@ -2657,7 +2663,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> down_postscript = markuptools.Postscript()
+                >>> down_postscript = abjad.Postscript()
                 >>> down_postscript = down_postscript.newpath()
                 >>> down_postscript = down_postscript.moveto(0, 0)
                 >>> down_postscript = down_postscript.rlineto(10, 0)
@@ -2742,7 +2748,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.parenthesize()
                     >>> f(markup)
                     \markup {
@@ -2758,7 +2764,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.parenthesize()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -2787,13 +2793,13 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> postscript = markuptools.Postscript()
+                >>> postscript = abjad.Postscript()
                 >>> postscript = postscript.moveto(1, 1)
                 >>> postscript = postscript.setlinewidth(2.5)
                 >>> postscript = postscript.setdash((2, 1))
                 >>> postscript = postscript.lineto(3, -4)
                 >>> postscript = postscript.stroke()
-                >>> markup = markuptools.Markup.postscript(postscript, direction=Up)
+                >>> markup = abjad.Markup.postscript(postscript, direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \postscript
@@ -2827,7 +2833,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.raise_(0.35)
                     >>> f(markup)
                     \markup {
@@ -2844,7 +2850,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.raise_(0.35)
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -2874,9 +2880,12 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> city = Markup('Los Angeles')
-                >>> date = Markup('May - August 2014')
-                >>> markup = Markup.right_column([city, date], direction=Up)
+                >>> city = abjad.Markup('Los Angeles')
+                >>> date = abjad.Markup('May - August 2014')
+                >>> markup = abjad.Markup.right_column(
+                ...     [city, date],
+                ...     direction=Up,
+                ...     )
                 >>> f(markup)
                 ^ \markup {
                     \right-column
@@ -2907,7 +2916,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.rotate(45)
                     >>> f(markup)
                     \markup {
@@ -2924,7 +2933,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.rotate(45)
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -2955,7 +2964,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.sans()
                     >>> f(markup)
                     \markup {
@@ -2971,7 +2980,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.sans()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -3001,7 +3010,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.scale((0.75, 0.75))
                     >>> f(markup)
                     \markup {
@@ -3018,7 +3027,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.scale((0.75, 0.75))
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -3049,7 +3058,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.sharp(direction=Up)
+                >>> markup = abjad.Markup.sharp(direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \sharp
@@ -3073,7 +3082,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.small()
                     >>> f(markup)
                     \markup {
@@ -3089,7 +3098,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.small()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -3119,7 +3128,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.smaller()
                     >>> f(markup)
                     \markup {
@@ -3135,7 +3144,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.smaller()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -3165,8 +3174,11 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup_list = [Markup('A'), Markup('j').sub()]
-                    >>> markup = Markup.concat(markup_list)
+                    >>> markup_list = [
+                    ...     abjad.Markup('A'),
+                    ...     abjad.Markup('j').sub(),
+                    ...     ]
+                    >>> markup = abjad.Markup.concat(markup_list)
                     >>> f(markup)
                     \markup {
                         \concat
@@ -3185,7 +3197,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.sub()
                     >>> expression = expression.wrap_in_list()
                     >>> expression = expression.markup_list()
@@ -3223,8 +3235,11 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markups = [Markup('1'), Markup('st').super()]
-                    >>> markup_list = MarkupList(markups)
+                    >>> markups = [
+                    ...     abjad.Markup('1'),
+                    ...     abjad.Markup('st').super(),
+                    ...     ]
+                    >>> markup_list = abjad.MarkupList(markups)
                     >>> markup = markup_list.concat()
                     >>> f(markup)
                     \markup {
@@ -3244,7 +3259,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.super()
                     >>> expression = expression.wrap_in_list()
                     >>> expression = expression.markup_list()
@@ -3282,7 +3297,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.tiny()
                     >>> f(markup)
                     \markup {
@@ -3298,7 +3313,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.tiny()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -3328,7 +3343,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.translate((2, 1))
                     >>> f(markup)
                     \markup {
@@ -3345,7 +3360,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.translate((2, 1))
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -3376,7 +3391,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.triangle(direction=Up)
+                >>> markup = abjad.Markup.triangle(direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \triangle
@@ -3401,7 +3416,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.upright()
                     >>> f(markup)
                     \markup {
@@ -3417,7 +3432,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.upright()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -3447,7 +3462,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.vcenter()
                     >>> f(markup)
                     \markup {
@@ -3463,7 +3478,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.vcenter()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -3492,7 +3507,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.vspace(0.75, direction=Up)
+                >>> markup = abjad.Markup.vspace(0.75, direction=Up)
                 >>> f(markup)
                 ^ \markup {
                     \vspace
@@ -3517,7 +3532,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.whiteout()
                     >>> f(markup)
                     \markup {
@@ -3533,7 +3548,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.whiteout()
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -3563,7 +3578,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> markup = Markup('Allegro assai')
+                    >>> markup = abjad.Markup('Allegro assai')
                     >>> markup = markup.with_color('blue')
                     >>> f(markup)
                     \markup {
@@ -3580,7 +3595,7 @@ class Markup(AbjadValueObject):
 
                 ::
 
-                    >>> expression = Expression().markup()
+                    >>> expression = abjad.Expression().markup()
                     >>> expression = expression.with_color('blue')
                     >>> markup = expression('Allegro assai')
                     >>> f(markup)
@@ -3615,7 +3630,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> up_postscript = markuptools.Postscript()
+                >>> up_postscript = abjad.Postscript()
                 >>> up_postscript = up_postscript.newpath()
                 >>> up_postscript = up_postscript.moveto(0, 0)
                 >>> up_postscript = up_postscript.rlineto(10, 0)
@@ -3654,7 +3669,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> down_postscript = markuptools.Postscript()
+                >>> down_postscript = abjad.Postscript()
                 >>> down_postscript = down_postscript.newpath()
                 >>> down_postscript = down_postscript.moveto(0, 0)
                 >>> down_postscript = down_postscript.rlineto(10, 0)

@@ -10,22 +10,28 @@ class AltoVoice(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> alto = instrumenttools.AltoVoice()
-        >>> attach(alto, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Alto }
-            \set Staff.shortInstrumentName = \markup { Alto }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> alto = abjad.instrumenttools.AltoVoice()
+            >>> abjad.attach(alto, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Alto }
+                \set Staff.shortInstrumentName = \markup { Alto }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

@@ -7,6 +7,10 @@ from abjad.tools.abctools import AbjadValueObject
 
 class RomanNumeral(AbjadValueObject):
     '''Roman numeral. I, I6, I64, V, V7, V43, V42, bII, bII6, etc.
+
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
     
     Also i, i6, i64, v, v7, etc.
 

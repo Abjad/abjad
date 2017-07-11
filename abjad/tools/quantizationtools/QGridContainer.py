@@ -3,22 +3,24 @@ from abjad.tools.rhythmtreetools import RhythmTreeContainer
 
 
 class QGridContainer(RhythmTreeContainer):
-    r'''A container in a ``QGrid`` structure:
+    r'''Q-grid container.
 
     ::
 
-        >>> container = quantizationtools.QGridContainer()
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
-    ::
+    ..  container:: example
 
-        >>> f(container)
-        quantizationtools.QGridContainer(
-            preprolated_duration=abjad.Duration(1, 1),
-            )
+        ::
+
+            >>> container = quantizationtools.QGridContainer()
+            >>> f(container)
+            quantizationtools.QGridContainer(
+                preprolated_duration=abjad.Duration(1, 1),
+                )
 
     Used internally by ``QGrid``.
-
-    Return ``QGridContainer`` instance.
     '''
 
     ### CLASS VARIABLES ###

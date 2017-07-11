@@ -5,19 +5,25 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 class ReSTLineageDirective(ReSTDirective):
     r'''A ReST lineage directive.
 
+    ::
+
+        >>> import abjad
+
     Digrams inheritance of Abjad classes.
 
-    ::
+    ..  container:: example
 
-        >>> documentationtools.ReSTLineageDirective(argument=spannertools.Beam)
-        ReSTLineageDirective(
-            argument='abjad.tools.spannertools.Beam.Beam'
-            )
+        ::
 
-    ::
+            >>> abjad.documentationtools.ReSTLineageDirective(argument=abjad.Beam)
+            ReSTLineageDirective(
+                argument='abjad.tools.spannertools.Beam.Beam'
+                )
 
-        >>> print(_.rest_format)
-        .. abjad-lineage:: abjad.tools.spannertools.Beam.Beam
+        ::
+
+            >>> print(_.rest_format)
+            .. abjad-lineage:: abjad.tools.spannertools.Beam.Beam
 
     '''
 

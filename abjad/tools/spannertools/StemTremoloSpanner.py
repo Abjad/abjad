@@ -9,17 +9,23 @@ class StemTremoloSpanner(Spanner):
 
     ::
 
-        >>> staff = Staff("c'32 d'16. e'8 f'4. g'4.")
-        >>> tremolo_spanner = StemTremoloSpanner()
-        >>> attach(tremolo_spanner, staff[:])
-        >>> f(staff)
-        \new Staff {
-            c'32 :256
-            d'16. :128
-            e'8 :64
-            f'4. :32
-            g'4. :32
-        }
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> staff = abjad.Staff("c'32 d'16. e'8 f'4. g'4.")
+            >>> tremolo_spanner = abjad.StemTremoloSpanner()
+            >>> abjad.attach(tremolo_spanner, staff[:])
+            >>> f(staff)
+            \new Staff {
+                c'32 :256
+                d'16. :128
+                e'8 :64
+                f'4. :32
+                g'4. :32
+            }
 
     '''
 

@@ -5,16 +5,20 @@ def all_are_nonnegative_integers(argument):
     '''Is true when `argument` is an iterable collection of nonnegative
     integers. Otherwise false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.all_are_nonnegative_integers([0, 1, 2, 99])
+            >>> abjad.mathtools.all_are_nonnegative_integers([0, 1, 2, 99])
             True
 
         ::
 
-            >>> mathtools.all_are_nonnegative_integers([0, 1, 2, -99])
+            >>> abjad.mathtools.all_are_nonnegative_integers([0, 1, 2, -99])
             False
 
     Returns true or false.

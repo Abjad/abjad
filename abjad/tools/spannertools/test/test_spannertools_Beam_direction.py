@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
 def test_spannertools_Beam_direction_01():
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'2")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
     beam = Beam(direction=Up)
     attach(beam, staff[:4])
 
@@ -23,7 +24,7 @@ def test_spannertools_Beam_direction_01():
 
 def test_spannertools_Beam_direction_02():
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'2")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
     beam = Beam(direction=Down)
     attach(beam, staff[:4])
 
@@ -42,7 +43,7 @@ def test_spannertools_Beam_direction_02():
 
 def test_spannertools_Beam_direction_03():
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'2")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
     beam = Beam(direction=Center)
     attach(beam, staff[:4])
 

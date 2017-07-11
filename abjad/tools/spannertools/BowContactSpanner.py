@@ -10,45 +10,49 @@ from abjad.tools.topleveltools import inspect
 class BowContactSpanner(Spanner):
     r'''Bow contact spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff()
+            >>> staff = abjad.Staff()
             >>> staff.extend(r"c'4. c'8 \times 2/3 { c'4 c'4 c'4 }")
 
         ::
 
-            >>> selector = select().by_leaf(flatten=True)
+            >>> selector = abjad.select().by_leaf(flatten=True)
             >>> leaves = selector(staff)
-            >>> attach(indicatortools.BowMotionTechnique('jete'), leaves[0])
-            >>> attach(indicatortools.BowContactPoint((1, 4)), leaves[0])
-            >>> attach(indicatortools.BowContactPoint((3, 4)), leaves[1])
-            >>> attach(indicatortools.BowContactPoint((1, 2)), leaves[2])
-            >>> attach(indicatortools.BowMotionTechnique('circular'),
+            >>> abjad.attach(abjad.BowMotionTechnique('jete'), leaves[0])
+            >>> abjad.attach(abjad.BowContactPoint((1, 4)), leaves[0])
+            >>> abjad.attach(abjad.BowContactPoint((3, 4)), leaves[1])
+            >>> abjad.attach(abjad.BowContactPoint((1, 2)), leaves[2])
+            >>> abjad.attach(abjad.BowMotionTechnique('circular'),
             ...     leaves[3])
-            >>> attach(indicatortools.BowContactPoint((1, 1)), leaves[3])
-            >>> attach(indicatortools.BowContactPoint((0, 1)), leaves[4])
+            >>> abjad.attach(abjad.BowContactPoint((1, 1)), leaves[3])
+            >>> abjad.attach(abjad.BowContactPoint((0, 1)), leaves[4])
 
         ::
 
-            >>> attach(Clef('percussion'), staff)
-            >>> override(staff).bar_line.transparent = True
-            >>> override(staff).dots.staff_position = -8
-            >>> override(staff).flag.Y_offset = -8.5
-            >>> override(staff).glissando.bound_details__left__padding = 1.5
-            >>> override(staff).glissando.bound_details__right__padding = 1.5
-            >>> override(staff).glissando.thickness = 2
-            >>> override(staff).script.staff_padding = 3
-            >>> override(staff).staff_symbol.transparent = True
-            >>> override(staff).stem.direction = Down
-            >>> override(staff).stem.length = 8
-            >>> override(staff).stem.stem_begin_position = -9
-            >>> override(staff).time_signature.stencil = False
+            >>> abjad.attach(abjad.Clef('percussion'), staff)
+            >>> abjad.override(staff).bar_line.transparent = True
+            >>> abjad.override(staff).dots.staff_position = -8
+            >>> abjad.override(staff).flag.Y_offset = -8.5
+            >>> abjad.override(staff).glissando.bound_details__left__padding = 1.5
+            >>> abjad.override(staff).glissando.bound_details__right__padding = 1.5
+            >>> abjad.override(staff).glissando.thickness = 2
+            >>> abjad.override(staff).script.staff_padding = 3
+            >>> abjad.override(staff).staff_symbol.transparent = True
+            >>> abjad.override(staff).stem.direction = Down
+            >>> abjad.override(staff).stem.length = 8
+            >>> abjad.override(staff).stem.stem_begin_position = -9
+            >>> abjad.override(staff).time_signature.stencil = False
 
         ::
 
-            >>> attach(BowContactSpanner(), leaves)
+            >>> abjad.attach(abjad.BowContactSpanner(), leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -132,36 +136,36 @@ class BowContactSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff()
+            >>> staff = abjad.Staff()
             >>> staff.extend(r"c'4 c'4 c'4 c'4")
 
         ::
 
             >>> leaves = staff[:]
-            >>> attach(indicatortools.BowContactPoint(None), leaves[0])
-            >>> attach(indicatortools.BowContactPoint((3, 4)), leaves[1])
-            >>> attach(indicatortools.BowContactPoint((1, 2)), leaves[2])
-            >>> attach(indicatortools.BowContactPoint(None), leaves[3])
+            >>> abjad.attach(abjad.BowContactPoint(None), leaves[0])
+            >>> abjad.attach(abjad.BowContactPoint((3, 4)), leaves[1])
+            >>> abjad.attach(abjad.BowContactPoint((1, 2)), leaves[2])
+            >>> abjad.attach(abjad.BowContactPoint(None), leaves[3])
 
         ::
 
-            >>> attach(Clef('percussion'), staff)
-            >>> override(staff).bar_line.transparent = True
-            >>> override(staff).dots.staff_position = -8
-            >>> override(staff).flag.Y_offset = -8.5
-            >>> override(staff).glissando.bound_details__left__padding = 1.5
-            >>> override(staff).glissando.bound_details__right__padding = 1.5
-            >>> override(staff).glissando.thickness = 2
-            >>> override(staff).script.staff_padding = 3
-            >>> override(staff).staff_symbol.transparent = True
-            >>> override(staff).stem.direction = Down
-            >>> override(staff).stem.length = 8
-            >>> override(staff).stem.stem_begin_position = -9
-            >>> override(staff).time_signature.stencil = False
+            >>> abjad.attach(abjad.Clef('percussion'), staff)
+            >>> abjad.override(staff).bar_line.transparent = True
+            >>> abjad.override(staff).dots.staff_position = -8
+            >>> abjad.override(staff).flag.Y_offset = -8.5
+            >>> abjad.override(staff).glissando.bound_details__left__padding = 1.5
+            >>> abjad.override(staff).glissando.bound_details__right__padding = 1.5
+            >>> abjad.override(staff).glissando.thickness = 2
+            >>> abjad.override(staff).script.staff_padding = 3
+            >>> abjad.override(staff).staff_symbol.transparent = True
+            >>> abjad.override(staff).stem.direction = Down
+            >>> abjad.override(staff).stem.length = 8
+            >>> abjad.override(staff).stem.stem_begin_position = -9
+            >>> abjad.override(staff).time_signature.stencil = False
 
         ::
 
-            >>> attach(BowContactSpanner(), leaves)
+            >>> abjad.attach(abjad.BowContactSpanner(), leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

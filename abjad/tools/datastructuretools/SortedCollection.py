@@ -5,6 +5,10 @@ import bisect
 class SortedCollection(object):
     r'''A sorted collection.
 
+    ::
+
+        >>> import abjad
+
     Sequence sorted by a key function.
 
     SortedCollection() is much easier to work with than using bisect()
@@ -38,7 +42,7 @@ class SortedCollection(object):
     >>> from pprint import pprint
     >>> from operator import itemgetter
 
-    >>> s = datastructuretools.SortedCollection(key=itemgetter(2))
+    >>> s = abjad.SortedCollection(key=itemgetter(2))
     >>> for record in [
     ...         ('roger', 'young', 30),
     ...         ('angela', 'jones', 28),

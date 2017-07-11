@@ -10,22 +10,28 @@ class Vibraphone(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> vibraphone = instrumenttools.Vibraphone()
-        >>> attach(vibraphone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  docs::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Vibraphone }
-            \set Staff.shortInstrumentName = \markup { Vibr. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> vibraphone = abjad.instrumenttools.Vibraphone()
+            >>> abjad.attach(vibraphone, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Vibraphone }
+                \set Staff.shortInstrumentName = \markup { Vibr. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 

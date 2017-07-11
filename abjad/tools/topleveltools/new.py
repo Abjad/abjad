@@ -5,15 +5,19 @@ import types
 def new(argument, **keywords):
     r'''Makes new `argument` with optional `keywords`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Makes markup with new direction:
 
         ::
 
-            >>> markup = Markup('Andante assai', direction=Up).italic()
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(markup, staff[0])
+            >>> markup = abjad.Markup('Andante assai', direction=Up).italic()
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(markup, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -32,9 +36,9 @@ def new(argument, **keywords):
 
         ::
 
-            >>> markup = new(markup, direction=Down)
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(markup, staff[0])
+            >>> markup = abjad.new(markup, direction=Down)
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(markup, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

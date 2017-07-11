@@ -8,6 +8,10 @@ from abjad.tools.abctools import AbjadValueObject
 
 class Interval(AbjadValueObject):
     '''Interval base class.
+    
+    ::
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -134,7 +138,7 @@ class Interval(AbjadValueObject):
 
     @property
     def cents(self):
-        r'''Cents of interval.
+        r'''Gets cents of interval.
 
         Returns nonnegative number.
         '''
@@ -145,12 +149,14 @@ class Interval(AbjadValueObject):
     @staticmethod
     def is_named_interval_abbreviation(argument):
         '''Is true when `argument` is a named interval abbreviation.
-        Otherwise false:
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.Interval.is_named_interval_abbreviation('+M9')
-            True
+            ::
+
+                >>> abjad.Interval.is_named_interval_abbreviation('+M9')
+                True
 
         The regex ``^([+,-]?)(M|m|P|aug|dim)(\d+)$`` underlies this predicate.
 
@@ -162,13 +168,15 @@ class Interval(AbjadValueObject):
 
     @staticmethod
     def is_named_interval_quality_abbreviation(argument):
-        '''Is true when `argument` is a named-interval quality abbreviation. Otherwise
-        false:
+        '''Is true when `argument` is a named-interval quality abbreviation.
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.Interval.is_named_interval_quality_abbreviation('aug')
-            True
+            ::
+
+                >>> abjad.Interval.is_named_interval_quality_abbreviation('aug')
+                True
 
         The regex ``^M|m|P|aug|dim$`` underlies this predicate.
 

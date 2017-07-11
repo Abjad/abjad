@@ -7,13 +7,17 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class NonreducedFraction(AbjadObject, Fraction):
     r'''Nonereduced fraction.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes with an integer numerator and integer denominator:
 
         ::
 
-            >>> NonreducedFraction(3, 6)
+            >>> abjad.NonreducedFraction(3, 6)
             NonreducedFraction(3, 6)
 
     ..  container:: example
@@ -22,7 +26,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         ::
 
-            >>> NonreducedFraction(3)
+            >>> abjad.NonreducedFraction(3)
             NonreducedFraction(3, 1)
 
     ..  container:: example
@@ -31,7 +35,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         ::
 
-            >>> NonreducedFraction((3, 6))
+            >>> abjad.NonreducedFraction((3, 6))
             NonreducedFraction(3, 6)
 
     ..  container:: example
@@ -40,7 +44,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         ::
 
-            >>> NonreducedFraction((3,))
+            >>> abjad.NonreducedFraction((3,))
             NonreducedFraction(3, 1)
 
     ..  container:: example
@@ -49,7 +53,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         ::
 
-            >>> isinstance(NonreducedFraction(3, 6), Fraction)
+            >>> isinstance(abjad.NonreducedFraction(3, 6), abjad.Fraction)
             True
 
     ..  container:: example
@@ -62,7 +66,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         ::
 
-            >>> isinstance(NonreducedFraction(3, 6), numbers.Number)
+            >>> isinstance(abjad.NonreducedFraction(3, 6), numbers.Number)
             True
 
     '''
@@ -132,7 +136,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> abs(NonreducedFraction(-3, 3))
+                >>> abs(abjad.NonreducedFraction(-3, 3))
                 NonreducedFraction(3, 3)
 
         Returns nonreduced fraction.
@@ -147,12 +151,12 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 3) + 1
+                >>> abjad.NonreducedFraction(3, 3) + 1
                 NonreducedFraction(6, 3)
 
             ::
 
-                >>> 1 + NonreducedFraction(3, 3)
+                >>> 1 + abjad.NonreducedFraction(3, 3)
                 NonreducedFraction(6, 3)
 
         Returns nonreduced fraction.
@@ -185,7 +189,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 3) / 1
+                >>> abjad.NonreducedFraction(3, 3) / 1
                 NonreducedFraction(3, 3)
 
         Returns nonreduced fraction.
@@ -204,7 +208,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 3) == 1
+                >>> abjad.NonreducedFraction(3, 3) == 1
                 True
 
         Returns true or false.
@@ -221,7 +225,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> fraction = NonreducedFraction(-6, 3)
+                >>> fraction = abjad.NonreducedFraction(-6, 3)
                 >>> print(format(fraction))
                 abjad.NonreducedFraction(-6, 3)
 
@@ -239,7 +243,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 3) >= 1
+                >>> abjad.NonreducedFraction(3, 3) >= 1
                 True
 
         Returns true or false.
@@ -253,7 +257,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 3) > 1
+                >>> abjad.NonreducedFraction(3, 3) > 1
                 False
 
         Returns true or false.
@@ -276,7 +280,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 3) <= 1
+                >>> abjad.NonreducedFraction(3, 3) <= 1
                 True
 
         Returns true or false.
@@ -290,7 +294,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 3) < 1
+                >>> abjad.NonreducedFraction(3, 3) < 1
                 False
 
         Returns true or false.
@@ -304,7 +308,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 3) * 3
+                >>> abjad.NonreducedFraction(3, 3) * 3
                 NonreducedFraction(9, 3)
 
         Returns nonreduced fraction.
@@ -323,7 +327,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 3) != 'foo'
+                >>> abjad.NonreducedFraction(3, 3) != 'foo'
                 True
 
         Returns true or false.
@@ -337,7 +341,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> -NonreducedFraction(3, 3)
+                >>> -abjad.NonreducedFraction(3, 3)
                 NonreducedFraction(-3, 3)
 
         Returns nonreduced fraction.
@@ -352,7 +356,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 6) ** -1
+                >>> abjad.NonreducedFraction(3, 6) ** -1
                 NonreducedFraction(6, 3)
 
         Returns nonreduced fraction.
@@ -370,7 +374,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> 1 + NonreducedFraction(3, 3)
+                >>> 1 + abjad.NonreducedFraction(3, 3)
                 NonreducedFraction(6, 3)
 
         Returns nonreduced fraction.
@@ -384,7 +388,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> 1 / NonreducedFraction(3, 3)
+                >>> 1 / abjad.NonreducedFraction(3, 3)
                 NonreducedFraction(3, 3)
 
         Returns nonreduced fraction.
@@ -405,7 +409,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 6)
+                >>> abjad.NonreducedFraction(3, 6)
                 NonreducedFraction(3, 6)
 
         Returns string.
@@ -419,7 +423,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> 3 * NonreducedFraction(3, 3)
+                >>> 3 * abjad.NonreducedFraction(3, 3)
                 NonreducedFraction(9, 3)
 
         Returns nonreduced fraction.
@@ -433,7 +437,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> 1 - NonreducedFraction(3, 3)
+                >>> 1 - abjad.NonreducedFraction(3, 3)
                 NonreducedFraction(0, 3)
 
         Returns nonreduced fraction.
@@ -447,7 +451,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> fraction = NonreducedFraction(-6, 3)
+                >>> fraction = abjad.NonreducedFraction(-6, 3)
 
             ::
 
@@ -465,17 +469,17 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 3) - 2
+                >>> abjad.NonreducedFraction(3, 3) - 2
                 NonreducedFraction(-3, 3)
 
             ::
 
-                >>> NonreducedFraction(5, 4) - NonreducedFraction(18, 16)
+                >>> abjad.NonreducedFraction(5, 4) - abjad.NonreducedFraction(18, 16)
                 NonreducedFraction(2, 16)
 
             ::
 
-                >>> NonreducedFraction(18, 16) - NonreducedFraction(5, 4)
+                >>> abjad.NonreducedFraction(18, 16) - abjad.NonreducedFraction(5, 4)
                 NonreducedFraction(-2, 16)
 
         Returns nonreduced fraction.
@@ -541,7 +545,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> fraction = NonreducedFraction(4, 8)
+                >>> fraction = abjad.NonreducedFraction(4, 8)
 
             ::
 
@@ -565,7 +569,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> fraction = NonreducedFraction(5, 6)
+                >>> fraction = abjad.NonreducedFraction(5, 6)
                 >>> fraction.multiply_with_cross_cancelation((6, 5))
                 NonreducedFraction(1, 1)
 
@@ -608,7 +612,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> fraction = NonreducedFraction(9, 16)
+                >>> fraction = abjad.NonreducedFraction(9, 16)
 
             ::
 
@@ -627,7 +631,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> fraction = NonreducedFraction(3, 8)
+                >>> fraction = abjad.NonreducedFraction(3, 8)
 
             ::
 
@@ -657,7 +661,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> fraction = NonreducedFraction(3, 8)
+                >>> fraction = abjad.NonreducedFraction(3, 8)
 
             ::
 
@@ -666,7 +670,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> fraction = NonreducedFraction(4, 8)
+                >>> fraction = abjad.NonreducedFraction(4, 8)
 
             ::
 
@@ -693,7 +697,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> fraction = NonreducedFraction(-6, 3)
+                >>> fraction = abjad.NonreducedFraction(-6, 3)
 
             ::
 
@@ -711,7 +715,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(3, 6).with_denominator(12)
+                >>> abjad.NonreducedFraction(3, 6).with_denominator(12)
                 NonreducedFraction(6, 12)
 
         ..  container:: example
@@ -719,7 +723,7 @@ class NonreducedFraction(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(12):
-                ...     fraction = NonreducedFraction(numerator, 6)
+                ...     fraction = abjad.NonreducedFraction(numerator, 6)
                 ...     print(fraction, fraction.with_denominator(12))
                 ...
                 0/6 0/12
@@ -738,7 +742,7 @@ class NonreducedFraction(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(12):
-                ...     fraction = NonreducedFraction(numerator, 6)
+                ...     fraction = abjad.NonreducedFraction(numerator, 6)
                 ...     print(fraction, fraction.with_denominator(8))
                 ...
                 0/6 0/8
@@ -757,7 +761,7 @@ class NonreducedFraction(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(12):
-                ...     fraction = NonreducedFraction(numerator, 6)
+                ...     fraction = abjad.NonreducedFraction(numerator, 6)
                 ...     print(fraction, fraction.with_denominator(12))
                 ...
                 0/6 0/12
@@ -795,7 +799,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> fraction = NonreducedFraction(3, 6)
+                >>> fraction = abjad.NonreducedFraction(3, 6)
 
             ::
 
@@ -806,22 +810,22 @@ class NonreducedFraction(AbjadObject, Fraction):
 
             ::
 
-                >>> NonreducedFraction(1, 2).with_multiple_of_denominator(2)
+                >>> abjad.NonreducedFraction(1, 2).with_multiple_of_denominator(2)
                 NonreducedFraction(1, 2)
 
             ::
 
-                >>> NonreducedFraction(1, 2).with_multiple_of_denominator(4)
+                >>> abjad.NonreducedFraction(1, 2).with_multiple_of_denominator(4)
                 NonreducedFraction(2, 4)
 
             ::
 
-                >>> NonreducedFraction(1, 2).with_multiple_of_denominator(8)
+                >>> abjad.NonreducedFraction(1, 2).with_multiple_of_denominator(8)
                 NonreducedFraction(4, 8)
 
             ::
 
-                >>> NonreducedFraction(1, 2).with_multiple_of_denominator(16)
+                >>> abjad.NonreducedFraction(1, 2).with_multiple_of_denominator(16)
                 NonreducedFraction(8, 16)
 
         Returns nonreduced fraction.
@@ -840,7 +844,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         ::
 
-            >>> fraction = mathtools.NonreducedFraction(-6, 3)
+            >>> fraction = abjad.NonreducedFraction(-6, 3)
 
         ::
 
@@ -870,7 +874,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         ::
 
-            >>> fraction = mathtools.NonreducedFraction(-6, 3)
+            >>> fraction = abjad.NonreducedFraction(-6, 3)
 
         ::
 
@@ -887,7 +891,7 @@ class NonreducedFraction(AbjadObject, Fraction):
 
         ::
 
-            >>> fraction = mathtools.NonreducedFraction(-6, 3)
+            >>> fraction = abjad.NonreducedFraction(-6, 3)
 
         ::
 

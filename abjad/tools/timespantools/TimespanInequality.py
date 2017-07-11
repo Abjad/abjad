@@ -5,16 +5,24 @@ from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
-class Inequality(AbjadObject):
-    '''An inequality.
-
-        >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
-        >>> inequality = timespantools.Inequality(template)
+class TimespanInequality(AbjadObject):
+    '''Timespan inequality.
 
     ::
 
-        >>> inequality
-        Inequality('timespan_2.start_offset < timespan_1.start_offset')
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
+            >>> inequality = abjad.TimespanInequality(template)
+
+        ::
+
+            >>> inequality
+            TimespanInequality('timespan_2.start_offset < timespan_1.start_offset')
 
     '''
 
@@ -81,7 +89,7 @@ class Inequality(AbjadObject):
         r'''Formats inequality.
 
             >>> f(inequality)
-            abjad.Inequality('timespan_2.start_offset < timespan_1.start_offset')
+            abjad.TimespanInequality('timespan_2.start_offset < timespan_1.start_offset')
 
         Returns string.
         '''
