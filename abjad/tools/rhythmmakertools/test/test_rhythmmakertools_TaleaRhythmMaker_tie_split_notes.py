@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
@@ -16,13 +16,13 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
     divisions = [(2, 8), (2, 8), (2, 8), (2, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = Sequence(selections).flatten()
+    selections = abjad.Sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    measures = mutate(staff).replace_measure_contents(selections)
+    measures = abjad.mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -45,7 +45,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
@@ -61,13 +61,13 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
     divisions = [(3, 16), (5, 8), (4, 8), (7, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = Sequence(selections).flatten()
+    selections = abjad.Sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    measures = mutate(staff).replace_measure_contents(selections)
+    measures = abjad.mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -97,4 +97,4 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

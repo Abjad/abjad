@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
 import pytest
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Text_01():
@@ -10,13 +8,13 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_01():
     '''
 
     maker = abjad.NoteMaker()
-    target = Container(maker([0] * 4, [(1, 4)]))
-    text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, target[2:])
-    text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, target[:3])
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(text_spanner, target[2:])
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(text_spanner, target[:3])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 \startTextSpan
@@ -27,7 +25,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_01():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
 
@@ -37,13 +35,13 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_02():
     '''
 
     maker = abjad.NoteMaker()
-    target = Container(maker([0] * 4, [(1, 4)]))
-    text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, target[2:])
-    text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, target[:3])
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(text_spanner, target[2:])
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(text_spanner, target[:3])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 \startTextSpan
@@ -56,7 +54,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Text_02():
 
     string = r"\relative c' { c \startTextSpan c c \startTextSpan \stopTextSpan c \stopTextSpan }"
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
 

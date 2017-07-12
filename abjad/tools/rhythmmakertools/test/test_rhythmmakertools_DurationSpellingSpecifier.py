@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_DurationSpellingSpecifier_01():
@@ -31,13 +31,13 @@ def test_rhythmmakertools_DurationSpellingSpecifier_01():
         talea=talea,
         )
 
-    divisions = [TimeSignature((3, 8)), TimeSignature((2, 4)), TimeSignature((5, 16))]
+    divisions = [abjad.TimeSignature((3, 8)), abjad.TimeSignature((2, 4)), abjad.TimeSignature((5, 16))]
 
     result = maker(divisions)
 
     staff = abjad.Staff(result)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r"""
         \new Staff {
             r16

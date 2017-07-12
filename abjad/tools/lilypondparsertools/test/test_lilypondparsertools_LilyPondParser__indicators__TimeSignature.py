@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
+import abjad
 
 
 def test_lilypondparsertools_LilyPondParser__indicators__TimeSignature_01():
 
-    target = Score([Staff([Note(0, 1)])])
-    time_signature = TimeSignature((8, 8))
-    attach(time_signature, target[0])
+    target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
+    time_signature = abjad.TimeSignature((8, 8))
+    abjad.attach(time_signature, target[0])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -20,10 +19,10 @@ def test_lilypondparsertools_LilyPondParser__indicators__TimeSignature_01():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    leaves = select(result).by_leaf()
+    leaves = abjad.select(result).by_leaf()
     leaf = leaves[0]
-    time_signatures = inspect(leaf).get_indicators(TimeSignature)
+    time_signatures = abjad.inspect(leaf).get_indicators(abjad.TimeSignature)
     assert len(time_signatures) == 1

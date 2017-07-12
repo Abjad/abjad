@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_agenttools_InspectionAgent_get_sounding_pitches_01():
 
-    staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-    glockenspiel = instrumenttools.Glockenspiel()
-    attach(glockenspiel, staff)
-    instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
+    staff = abjad.Staff("<c''' e'''>4 <d''' fs'''>4")
+    glockenspiel = abjad.instrumenttools.Glockenspiel()
+    abjad.attach(glockenspiel, staff)
+    abjad.instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Glockenspiel }
@@ -20,8 +20,8 @@ def test_agenttools_InspectionAgent_get_sounding_pitches_01():
         '''
         )
 
-    sounding_pitches = inspect(staff[0]).get_sounding_pitches()
+    sounding_pitches = abjad.inspect(staff[0]).get_sounding_pitches()
     assert sounding_pitches == (
-        NamedPitch("c'''"),
-        NamedPitch("e'''"),
+        abjad.NamedPitch("c'''"),
+        abjad.NamedPitch("e'''"),
         )

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+import abjad
 import platform
 import pytest
 import sys
-from abjad import *
+from abjad.tools import systemtools
 
 
 #@pytest.mark.skipif(

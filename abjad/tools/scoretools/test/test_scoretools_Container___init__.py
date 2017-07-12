@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Container___init___01():
     r'''Initialize empty container.
     '''
 
-    container = Container([])
+    container = abjad.Container([])
 
     r'''
     {
     }
     '''
 
-    assert isinstance(container, Container)
-    assert format(container) == String.normalize(
+    assert isinstance(container, abjad.Container)
+    assert format(container) == abjad.String.normalize(
         r'''
         {
         }
@@ -26,7 +26,7 @@ def test_scoretools_Container___init___02():
     r'''Initialize container with LilyPond note-entry string.
     '''
 
-    container = Container("c'8 d'8 e'8")
+    container = abjad.Container("c'8 d'8 e'8")
 
     r'''
     {
@@ -36,8 +36,8 @@ def test_scoretools_Container___init___02():
     }
     '''
 
-    assert isinstance(container, Container)
-    assert format(container) == String.normalize(
+    assert isinstance(container, abjad.Container)
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -52,7 +52,7 @@ def test_scoretools_Container___init___03():
     r'''Initialize container with RTM-syntax string.
     '''
 
-    container = Container('rtm: (1 (1 1 1)) (2 (2 (1 (1 1 1)) 2))')
+    container = abjad.Container('rtm: (1 (1 1 1)) (2 (2 (1 (1 1 1)) 2))')
 
     r'''
     {
@@ -73,8 +73,8 @@ def test_scoretools_Container___init___03():
     }
     '''
 
-    assert isinstance(container, Container)
-    assert format(container) == String.normalize(
+    assert isinstance(container, abjad.Container)
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \times 2/3 {
@@ -99,7 +99,7 @@ def test_scoretools_Container___init___04():
     r'''Initialize container with "reduced ly" syntax string.
     '''
 
-    container = Container('abj: 2/3 { 8 8 8 }')
+    container = abjad.Container('abj: 2/3 { 8 8 8 }')
 
     r'''
     \times 2/3 {
@@ -109,8 +109,8 @@ def test_scoretools_Container___init___04():
     }
     '''
 
-    assert isinstance(container, Container)
-    assert format(container) == String.normalize(
+    assert isinstance(container, abjad.Container)
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \times 2/3 {

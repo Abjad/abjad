@@ -41,6 +41,15 @@ class BendAfter(AbjadValueObject):
             >>> f(note)
             c'4 - \bendAfter #'2.0
 
+    ..  container:: example
+
+        Initializes from other bend:
+
+        ::
+
+            >>> abjad.BendAfter(abjad.BendAfter(16))
+            BendAfter(bend_amount=16.0)
+
     '''
 
     ### CLASS VARIABLES ###

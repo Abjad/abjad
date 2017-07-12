@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_agenttools_InspectionAgent_get_spanner_01():
 
-    container = Container("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, container[:-1])
-    slur = Slur()
-    attach(slur, container[:-1])
+    container = abjad.Container("c'8 d'8 e'8 f'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, container[:-1])
+    slur = abjad.Slur()
+    abjad.attach(slur, container[:-1])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8 [ (
@@ -25,14 +25,14 @@ def test_agenttools_InspectionAgent_get_spanner_01():
     string = 'inspect(container[0]).get_spanner()'
     assert pytest.raises(Exception, string)
 
-    assert inspect(container[-1]).get_spanner() is None
+    assert abjad.inspect(container[-1]).get_spanner() is None
 
 
 def test_agenttools_InspectionAgent_get_spanner_02():
 
-    staff = Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 } g'2")
-    leaves = select(staff).by_leaf()
-    slur = Slur()
-    attach(slur, leaves)
+    staff = abjad.Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 } g'2")
+    leaves = abjad.select(staff).by_leaf()
+    slur = abjad.Slur()
+    abjad.attach(slur, leaves)
     for leaf in leaves:
-        assert slur == inspect(leaf).get_spanner(Slur, in_parentage=True)
+        assert slur == abjad.inspect(leaf).get_spanner(abjad.Slur, in_parentage=True)

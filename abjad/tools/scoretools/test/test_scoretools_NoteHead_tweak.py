@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_NoteHead_tweak_01():
 
-    chord = Chord([0, 2, 10], (1, 4))
+    chord = abjad.Chord([0, 2, 10], (1, 4))
 
     chord.note_heads[0].tweak.color = 'red'
     chord.note_heads[0].tweak.thickness = 2

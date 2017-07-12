@@ -96,6 +96,24 @@ class PitchSegment(Segment):
                 }
             >>
 
+    ..  container:: example
+
+        Built-in max() works:
+
+        ::
+
+            >>> segment = abjad.PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
+            >>> max(segment)
+            NumberedPitch(7)
+
+        Built-in min() works:
+
+        ::
+
+            >>> segment = abjad.PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
+            >>> min(segment)
+            NumberedPitch(-2)
+
     '''
 
     ### CLASS VARIABLES ###
@@ -119,6 +137,42 @@ class PitchSegment(Segment):
             )
 
     ### SPECIAL METHODS ###
+
+    def __contains__(self, argument):
+        r'''Is true when pitch segment contains `argument`.
+        Otherwise false.
+
+        ..  container:: example
+
+            Numbered pitch segment:
+
+            ::
+
+                >>> segment = abjad.PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
+
+            ::
+
+                >>> abjad.NamedPitch('fs') in segment
+                False
+
+            ::
+
+                >>> 6 in segment
+                True
+
+            ::
+
+                >>> abjad.NamedPitch('f') in segment
+                False
+
+            ::
+
+                >>> 5 in segment
+                False
+
+        Returns true or false.
+        '''
+        return super(PitchSegment, self).__contains__(argument)
 
     def __illustrate__(self):
         r'''Illustrates pitch segment.

@@ -21,6 +21,15 @@ class NumberedPitch(Pitch):
             >>> numbered_pitch = abjad.NumberedPitch(13)
             >>> show(numbered_pitch) # doctest: +SKIP
 
+    ..  container:: example
+
+        Initializes from other numbered pitch
+
+        ::
+
+            >>> numbered_pitch = abjad.NumberedPitch(abjad.NumberedPitch(13))
+            >>> show(numbered_pitch) # doctest: +SKIP
+
     '''
 
     ### CLASS VARIABLES ###
@@ -57,6 +66,18 @@ class NumberedPitch(Pitch):
     def __add__(self, argument):
         r'''Adds `argument` to numberd pitch.
 
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NumberedPitch(12) + abjad.NumberedPitch(13)
+                NumberedPitch(25)
+
+            ::
+
+                >>> abjad.NumberedPitch(13) + abjad.NumberedPitch(12)
+                NumberedPitch(25)
+
         Returns new numbered pitch.
         '''
         argument = type(self)(argument)
@@ -66,6 +87,18 @@ class NumberedPitch(Pitch):
     def __float__(self):
         r'''Changes numbered pitch to float.
 
+        ..  container:: example
+
+            ::
+
+                >>> float(abjad.NumberedPitch(13))
+                13.0
+
+            ::
+
+                >>> float(abjad.NumberedPitch(13.5))
+                13.5
+
         Returns float.
         '''
         return float(self._pitch_number)
@@ -73,6 +106,13 @@ class NumberedPitch(Pitch):
     def __int__(self):
         r'''Changes numbered pitch to integer.
 
+        ..  container:: example
+
+            ::
+
+                >>> int(abjad.NumberedPitch(13))
+                13
+                
         Returns integer.
         '''
         return self._pitch_number
@@ -80,6 +120,59 @@ class NumberedPitch(Pitch):
     def __lt__(self, argument):
         r'''Is true when `argument` can be coerced to a numbered pitch and when this
         numbered pitch is less than `argument`. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch_1 = abjad.NumberedPitch(12)
+                >>> pitch_2 = abjad.NumberedPitch(12)
+                >>> pitch_3 = abjad.NumberedPitch(13)
+
+            ::
+
+                >>> pitch_1 < pitch_1
+                False
+
+            ::
+
+                >>> pitch_1 < pitch_2
+                False
+
+            ::
+
+                >>> pitch_1 < pitch_3
+                True
+
+            ::
+
+                >>> pitch_2 < pitch_1
+                False
+
+            ::
+
+                >>> pitch_2 < pitch_2
+                False
+
+            ::
+
+                >>> pitch_2 < pitch_3
+                True
+
+            ::
+
+                >>> pitch_3 < pitch_1
+                False
+
+            ::
+
+                >>> pitch_3 < pitch_2
+                False
+
+            ::
+
+                >>> pitch_3 < pitch_3
+                False
 
         Returns true or false.
         '''
@@ -91,6 +184,18 @@ class NumberedPitch(Pitch):
 
     def __neg__(self):
         r'''Negates numbered pitch.
+
+        ..  container:: example
+
+            ::
+
+                >>> -abjad.NumberedPitch(13.5)
+                NumberedPitch(-13.5)
+
+            ::
+
+                >>> -abjad.NumberedPitch(-13.5)
+                NumberedPitch(13.5)
 
         Returns new numbered pitch.
         '''
@@ -105,6 +210,23 @@ class NumberedPitch(Pitch):
 
     def __sub__(self, argument):
         r'''Subtracts `argument` from numbered pitch.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NumberedPitch(12) - abjad.NumberedPitch(12)
+                NumberedInterval(0)
+
+            ::
+
+                >>> abjad.NumberedPitch(12) - abjad.NumberedPitch(13)
+                NumberedInterval(1)
+
+            ::
+
+                >>> abjad.NumberedPitch(13) - abjad.NumberedPitch(12)
+                NumberedInterval(-1)
 
         Returns numbered interval.
         '''
@@ -216,8 +338,23 @@ class NumberedPitch(Pitch):
 
             ::
 
+                >>> abjad.NumberedPitch(12).diatonic_pitch_class_number
+                0
+
+            ::
+
+                >>> abjad.NumberedPitch(12.5).diatonic_pitch_class_number
+                0
+
+            ::
+
                 >>> abjad.NumberedPitch(13).diatonic_pitch_class_number
                 0
+
+            ::
+
+                >>> abjad.NumberedPitch(13.5).diatonic_pitch_class_number
+                1
 
         Returns integer.
         '''
@@ -498,6 +635,11 @@ class NumberedPitch(Pitch):
 
                 >>> abjad.NumberedPitch(13).apply_accidental('flat')
                 NumberedPitch(12)
+
+            ::
+
+                >>> abjad.NumberedPitch(13).apply_accidental('qf')
+                NumberedPitch(12.5)
 
         Returns new numbered pitch.
         '''

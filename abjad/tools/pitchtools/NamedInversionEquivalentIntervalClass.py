@@ -19,6 +19,53 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             >>> abjad.NamedInversionEquivalentIntervalClass('-m14')
             NamedInversionEquivalentIntervalClass('+M2')
 
+    ..  container:: example
+
+        Initializes from quality string and number:
+
+        ::
+
+            >>> abjad.NamedInversionEquivalentIntervalClass('perfect', 1)
+            NamedInversionEquivalentIntervalClass('P1')
+
+        ::
+
+            >>> abjad.NamedInversionEquivalentIntervalClass('perfect', -1)
+            NamedInversionEquivalentIntervalClass('P1')
+
+        ::
+
+            >>> abjad.NamedInversionEquivalentIntervalClass('augmented', 4)
+            NamedInversionEquivalentIntervalClass('+aug4')
+
+        ::
+
+            >>> abjad.NamedInversionEquivalentIntervalClass('augmented', -4)
+            NamedInversionEquivalentIntervalClass('+aug4')
+
+        ::
+
+            >>> abjad.NamedInversionEquivalentIntervalClass('augmented', 11)
+            NamedInversionEquivalentIntervalClass('+aug4')
+
+        ::
+
+            >>> abjad.NamedInversionEquivalentIntervalClass('augmented', -11)
+            NamedInversionEquivalentIntervalClass('+aug4')
+
+    ..  container:: example
+
+        Initializes from other interval-class:
+
+        ::
+
+            >>> interval_class = abjad.NamedInversionEquivalentIntervalClass(
+            ...     'perfect',
+            ...     1,
+            ...     )
+            >>> abjad.NamedInversionEquivalentIntervalClass(interval_class)
+            NamedInversionEquivalentIntervalClass('P1')
+
     Named inversion-equivalent interval-classes are immutable.
     '''
 

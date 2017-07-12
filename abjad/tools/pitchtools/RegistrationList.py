@@ -66,6 +66,44 @@ class RegistrationList(TypedList):
     __slots__ = (
         )
 
+    ### SPECIAL METHODS ###
+
+    def __contains__(self, argument):
+        r'''Is true when registration list contains `argument`.
+        Otherwise false.
+
+        ..  container:: example
+
+            Two registrations:
+            
+            ::
+
+                >>> registration_1 = abjad.Registration(
+                ...     [('[A0, C4)', 15), ('[C4, C8)', 27)]
+                ...     )
+                >>> registration_2 = abjad.Registration(
+                ...     [('[A0, C8]', -18)]
+                ...     )
+                >>> registrations = abjad.RegistrationList(
+                ...     [registration_1, registration_2]
+                ...     )
+
+            ::
+
+                >>> abjad.Registration([('[A0, C4)', 15)]) in registrations
+                False
+
+            ::
+
+                >>> abjad.Registration([
+                ...     ('[A0, C4)', 15),
+                ...     ('[C4, C8)', 27),
+                ...     ]) in registrations
+                True
+
+        '''
+        return super(RegistrationList, self).__contains__(argument)
+
     ### PRIVATE PROPERTIES ###
 
     @property

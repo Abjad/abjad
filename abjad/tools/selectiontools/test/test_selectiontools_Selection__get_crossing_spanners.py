@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 import pytest
 
 
@@ -9,14 +9,14 @@ def test_selectiontools_Selection__get_crossing_spanners_01():
     components.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = select(voice).by_leaf()
-    slur = Slur()
-    attach(slur, voice[1][:])
-    trill = spannertools.TrillSpanner()
-    attach(trill, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    slur = abjad.Slur()
+    abjad.attach(slur, voice[1][:])
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, leaves)
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -31,17 +31,17 @@ def test_selectiontools_Selection__get_crossing_spanners_01():
         '''
         )
 
-    spanners = select(voice)._get_crossing_spanners()
+    spanners = abjad.select(voice)._get_crossing_spanners()
     assert spanners == set([])
 
-    spanners = select(leaves)._get_crossing_spanners()
+    spanners = abjad.select(leaves)._get_crossing_spanners()
     assert spanners == set([])
 
     spanners = voice[:1]._get_crossing_spanners()
     assert len(spanners) == 1
     assert trill in spanners
 
-    spanners = select(leaves[:-1])._get_crossing_spanners()
+    spanners = abjad.select(leaves[:-1])._get_crossing_spanners()
     assert len(spanners) == 2
     assert slur in spanners
     assert trill in spanners
@@ -51,12 +51,12 @@ def test_selectiontools_Selection__get_crossing_spanners_02():
     r'''Helper gets spanners that cross in from above.
     '''
 
-    voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves[2:5])
+    voice = abjad.Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves[2:5])
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -76,6 +76,6 @@ def test_selectiontools_Selection__get_crossing_spanners_02():
         '''
         )
 
-    spanners = select(leaves)._get_crossing_spanners()
+    spanners = abjad.select(leaves)._get_crossing_spanners()
 
     assert len(spanners) == 0

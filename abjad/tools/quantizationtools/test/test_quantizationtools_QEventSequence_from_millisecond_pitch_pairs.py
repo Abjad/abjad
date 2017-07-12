@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import quantizationtools
 
 
 def test_quantizationtools_QEventSequence_from_millisecond_pitch_pairs_01():
@@ -13,31 +14,31 @@ def test_quantizationtools_QEventSequence_from_millisecond_pitch_pairs_01():
 
     assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(0),
-            (NamedPitch("c'"),)
+            abjad.Offset(0),
+            (abjad.NamedPitch("c'"),)
             ),
         quantizationtools.SilentQEvent(
-            durationtools.Offset(100, 1)
+            abjad.Offset(100, 1)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(400, 1),
+            abjad.Offset(400, 1),
             (
-                NamedPitch("cs'"),
-                NamedPitch("e'")
+                abjad.NamedPitch("cs'"),
+                abjad.NamedPitch("e'")
             )
             ),
         quantizationtools.SilentQEvent(
-            durationtools.Offset(700, 1)
+            abjad.Offset(700, 1)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(1050, 1),
-            (NamedPitch("f'"),)
+            abjad.Offset(1050, 1),
+            (abjad.NamedPitch("f'"),)
             ),
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(1450, 1),
-            (NamedPitch("g'"),)
+            abjad.Offset(1450, 1),
+            (abjad.NamedPitch("g'"),)
             ),
         quantizationtools.TerminalQEvent(
-            durationtools.Offset(2050, 1),
+            abjad.Offset(2050, 1),
             )
     ))

@@ -115,8 +115,7 @@ class NamedPitchClass(PitchClass):
 
         Initializes from pitch-class name:
 
-            >>> pitch_class = abjad.NamedPitchClass('cs')
-            >>> pitch_class
+            >>> abjad.NamedPitchClass('cs')
             NamedPitchClass('cs')
 
     '''
@@ -160,12 +159,19 @@ class NamedPitchClass(PitchClass):
     def __add__(self, named_interval):
         r'''Adds `named_interval` to named pitch-class.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_class + abjad.NamedInterval('+M9')
-            NamedPitchClass('ds')
+            ::
 
-        Return new named pitch-class.
+                >>> abjad.NamedPitchClass('cs') + abjad.NamedInterval('+M9')
+                NamedPitchClass('ds')
+
+            ::
+
+                >>> abjad.NamedPitchClass('cs') + abjad.NamedInterval('-M9')
+                NamedPitchClass('b')
+
+        Returns new named pitch-class.
         '''
         from abjad.tools import pitchtools
         dummy_pitch = pitchtools.NamedPitch(self.pitch_class_name, 4)
@@ -175,11 +181,13 @@ class NamedPitchClass(PitchClass):
     def __copy__(self, *arguments):
         r'''Copies named pitch-class.
 
-        ::
+        ..  container:: example
 
-            >>> import copy
-            >>> copy.copy(pitch_class)
-            NamedPitchClass('cs')
+            ::
+
+                >>> import copy
+                >>> copy.copy(abjad.NamedPitchClass('cs'))
+                NamedPitchClass('cs')
 
         Returns new named pitch-class.
         '''
@@ -189,15 +197,19 @@ class NamedPitchClass(PitchClass):
         r'''Is true when `argument` can be coerced to a named pitch-class with
         pitch-class name equal to that of this named pitch-class.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_class == 'cs'
-            True
+            ::
 
-        Otherwise false:
+                >>> abjad.NamedPitchClass('cs') == 'cs'
+                True
 
-            >>> pitch_class == 'ds'
-            False
+        ..  container:: example
+
+            Otherwise false:
+
+                >>> abjad.NamedPitchClass('cs') == 'ds'
+                False
 
         Returns true or false.
         '''
@@ -208,10 +220,12 @@ class NamedPitchClass(PitchClass):
     def __float__(self):
         r'''Changes named pitch-class to a float.
 
-        ::
+        ..  container:: example
 
-            >>> float(pitch_class)
-            1.0
+            ::
+
+                >>> float(abjad.NamedPitchClass('cs'))
+                1.0
 
         Returns float.
         '''
@@ -246,10 +260,12 @@ class NamedPitchClass(PitchClass):
     def __int__(self):
         r'''Changes named pitch-class to an integer.
 
-        ::
+        ..  container:: example
 
-            >>> int(pitch_class)
-            1
+            ::
+
+                >>> int(abjad.NamedPitchClass('cs'))
+                1
 
         Returns nonnegative integer.
         '''
@@ -292,7 +308,7 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> str(pitch_class)
+                >>> str(abjad.NamedPitchClass('cs'))
                 'cs'
 
         Returns string.
@@ -306,8 +322,18 @@ class NamedPitchClass(PitchClass):
 
             ::
 
-                >>> pitch_class - abjad.NamedPitchClass('g')
+                >>> abjad.NamedPitchClass('cs') - abjad.NamedPitchClass('g')
                 NamedInversionEquivalentIntervalClass('+aug4')
+
+            ::
+
+                >>> abjad.NamedPitchClass('c') - abjad.NamedPitchClass('cf')
+                NamedInversionEquivalentIntervalClass('aug1')
+
+            ::
+
+                >>> abjad.NamedPitchClass('cf') - abjad.NamedPitchClass('c')
+                NamedInversionEquivalentIntervalClass('aug1')
 
         Returns named inversion-equivalent interval-class.
         '''
@@ -416,6 +442,26 @@ class NamedPitchClass(PitchClass):
 
             ::
 
+                >>> abjad.NamedPitchClass('cf').diatonic_pitch_class_name
+                'c'
+
+            ::
+
+                >>> abjad.NamedPitchClass('cqf').diatonic_pitch_class_name
+                'c'
+
+            ::
+
+                >>> abjad.NamedPitchClass('c').diatonic_pitch_class_name
+                'c'
+
+            ::
+
+                >>> abjad.NamedPitchClass('cqs').diatonic_pitch_class_name
+                'c'
+
+            ::
+
                 >>> abjad.NamedPitchClass('cs').diatonic_pitch_class_name
                 'c'
 
@@ -513,6 +559,26 @@ class NamedPitchClass(PitchClass):
 
             ::
 
+                >>> abjad.NamedPitchClass('cf').pitch_class_name
+                'cf'
+
+            ::
+
+                >>> abjad.NamedPitchClass('cqf').pitch_class_name
+                'cqf'
+
+            ::
+
+                >>> abjad.NamedPitchClass('c').pitch_class_name
+                'c'
+
+            ::
+
+                >>> abjad.NamedPitchClass('cqs').pitch_class_name
+                'cqs'
+
+            ::
+
                 >>> abjad.NamedPitchClass('cs').pitch_class_name
                 'cs'
 
@@ -553,8 +619,18 @@ class NamedPitchClass(PitchClass):
 
             ::
 
+                >>> abjad.NamedPitchClass('cs').apply_accidental('natural')
+                NamedPitchClass('cs')
+
+            ::
+
                 >>> abjad.NamedPitchClass('cs').apply_accidental('qs')
                 NamedPitchClass('ctqs')
+
+            ::
+
+                >>> abjad.NamedPitchClass('cs').apply_accidental('sharp')
+                NamedPitchClass('css')
 
         Returns new named pitch-class.
         '''
@@ -593,14 +669,26 @@ class NamedPitchClass(PitchClass):
         return type(self)(self.pitch_class_number * n)
 
     def transpose(self, n=0):
-        r'''Transposes named pitch-class by index `n`.
+        r'''Transposes named pitch-class by index named interval `n`.
 
         ..  container:: example
 
             ::
 
-                >>> named_interval = abjad.NamedInterval('major', 2)
-                >>> abjad.NamedPitchClass('cs').transpose(named_interval)
+                >>> interval = abjad.NamedInterval('major', -2)
+                >>> abjad.NamedPitchClass('cs').transpose(interval)
+                NamedPitchClass('b')
+
+            ::
+
+                >>> interval = abjad.NamedInterval('perfect', 1)
+                >>> abjad.NamedPitchClass('cs').transpose(interval)
+                NamedPitchClass('cs')
+
+            ::
+
+                >>> interval = abjad.NamedInterval('major', 2)
+                >>> abjad.NamedPitchClass('cs').transpose(interval)
                 NamedPitchClass('ds')
 
         Returns new named pitch-class.

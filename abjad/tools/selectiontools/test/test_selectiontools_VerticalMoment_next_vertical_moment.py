@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_VerticalMoment_next_vertical_moment_01():
 
-    score = Score(r'''
+    score = abjad.Score(r'''
         \new Staff {
             \times 4/3 {
                 d''8
@@ -27,14 +27,14 @@ def test_selectiontools_VerticalMoment_next_vertical_moment_01():
         >>
         ''')
 
-    vertical_moment = inspect(score).get_vertical_moment_at(Offset(0))
-    assert vertical_moment.offset == Offset(0)
+    vertical_moment = abjad.inspect(score).get_vertical_moment_at(abjad.Offset(0))
+    assert vertical_moment.offset == abjad.Offset(0)
 
     vertical_moment = vertical_moment.next_vertical_moment
-    assert vertical_moment.offset == Offset(1, 8)
+    assert vertical_moment.offset == abjad.Offset(1, 8)
 
     vertical_moment = vertical_moment.next_vertical_moment
-    assert vertical_moment.offset == Offset(1, 6)
+    assert vertical_moment.offset == abjad.Offset(1, 6)
 
     vertical_moment = vertical_moment.next_vertical_moment
-    assert vertical_moment.offset == Offset(1, 4)
+    assert vertical_moment.offset == abjad.Offset(1, 4)

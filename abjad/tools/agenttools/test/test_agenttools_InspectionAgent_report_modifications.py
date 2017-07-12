@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_agenttools_InspectionAgent_report_modifications_01():
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    comment = indicatortools.LilyPondComment('Example voice', 'before')
-    attach(comment, voice)
-    override(voice).note_head.color = 'red'
-    command = indicatortools.LilyPondCommand("#(set-accidental-style 'forget)")
-    attach(command, voice)
-    beam = Beam()
-    attach(beam, voice[:])
-    override(beam).beam.thickness = 3
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    comment = abjad.LilyPondComment('Example voice', 'before')
+    abjad.attach(comment, voice)
+    abjad.override(voice).note_head.color = 'red'
+    command = abjad.LilyPondCommand("#(set-accidental-style 'forget)")
+    abjad.attach(command, voice)
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
+    abjad.override(beam).beam.thickness = 3
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         % Example voice
         \new Voice \with {
@@ -32,9 +32,9 @@ def test_agenttools_InspectionAgent_report_modifications_01():
         '''
         )
 
-    result = inspect(voice).report_modifications()
+    result = abjad.inspect(voice).report_modifications()
 
-    assert format(result) == String.normalize(
+    assert format(result) == abjad.String.normalize(
         r'''
         % Example voice
         \new Voice \with {
@@ -49,17 +49,17 @@ def test_agenttools_InspectionAgent_report_modifications_01():
 
 def test_agenttools_InspectionAgent_report_modifications_02():
 
-    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-    comment = indicatortools.LilyPondComment('Example tuplet', 'before')
-    attach(comment, tuplet)
-    override(tuplet).note_head.color = 'red'
-    command = indicatortools.LilyPondCommand("#(set-accidental-style 'forget)")
-    attach(command, tuplet)
-    beam = Beam()
-    attach(beam, tuplet[:])
-    override(beam).beam.thickness = 3
+    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    comment = abjad.LilyPondComment('Example tuplet', 'before')
+    abjad.attach(comment, tuplet)
+    abjad.override(tuplet).note_head.color = 'red'
+    command = abjad.LilyPondCommand("#(set-accidental-style 'forget)")
+    abjad.attach(command, tuplet)
+    beam = abjad.Beam()
+    abjad.attach(beam, tuplet[:])
+    abjad.override(beam).beam.thickness = 3
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         % Example tuplet
         \override NoteHead.color = #red
@@ -75,9 +75,9 @@ def test_agenttools_InspectionAgent_report_modifications_02():
         '''
         )
 
-    result = inspect(tuplet).report_modifications()
+    result = abjad.inspect(tuplet).report_modifications()
 
-    assert format(result) == String.normalize(
+    assert format(result) == abjad.String.normalize(
         r'''
         % Example tuplet
         \override NoteHead.color = #red

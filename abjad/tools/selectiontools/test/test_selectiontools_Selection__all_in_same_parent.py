@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.tools.selectiontools import Selection
+import abjad
 
 
 def test_selectiontools_Selection__all_in_same_parent_01():
@@ -8,27 +7,27 @@ def test_selectiontools_Selection__all_in_same_parent_01():
     Is false for other time orderings of leaves in voice.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
 
-    assert Selection._all_in_same_parent(voice[:])
+    assert abjad.Selection._all_in_same_parent(voice[:])
 
-    assert not Selection._all_in_same_parent(
+    assert not abjad.Selection._all_in_same_parent(
         list(reversed(voice[:])))
 
     components = []
     components.extend(voice[2:])
     components.extend(voice[:2])
-    assert not Selection._all_in_same_parent(
+    assert not abjad.Selection._all_in_same_parent(
         components)
 
     components = []
     components.extend(voice[3:4])
     components.extend(voice[:1])
-    assert not Selection._all_in_same_parent(
+    assert not abjad.Selection._all_in_same_parent(
         components)
     components = [voice]
     components.extend(voice[:])
-    assert not Selection._all_in_same_parent(
+    assert not abjad.Selection._all_in_same_parent(
         components)
 
 
@@ -37,7 +36,7 @@ def test_selectiontools_Selection__all_in_same_parent_02():
     Is false for unincorporated components when orphans not allowed.
     '''
 
-    voice = Voice(r'''
+    voice = abjad.Voice(r'''
         {
             c'8
             d'8
@@ -48,7 +47,7 @@ def test_selectiontools_Selection__all_in_same_parent_02():
         }
         ''')
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -63,17 +62,17 @@ def test_selectiontools_Selection__all_in_same_parent_02():
         '''
         )
 
-    assert Selection._all_in_same_parent([voice])
-    assert not Selection._all_in_same_parent(
+    assert abjad.Selection._all_in_same_parent([voice])
+    assert not abjad.Selection._all_in_same_parent(
         [voice], allow_orphans = False)
 
-    assert Selection._all_in_same_parent(voice[:])
+    assert abjad.Selection._all_in_same_parent(voice[:])
 
-    assert Selection._all_in_same_parent(voice[0][:])
-    assert Selection._all_in_same_parent(voice[1][:])
+    assert abjad.Selection._all_in_same_parent(voice[0][:])
+    assert abjad.Selection._all_in_same_parent(voice[1][:])
 
-    leaves = select(voice).by_leaf()
-    assert not Selection._all_in_same_parent(leaves)
+    leaves = abjad.select(voice).by_leaf()
+    assert not abjad.Selection._all_in_same_parent(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_parent_03():
@@ -81,10 +80,10 @@ def test_selectiontools_Selection__all_in_same_parent_03():
     Is false for orphan leaves when allow_orphans is false.
     '''
 
-    notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+    notes = [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
 
-    assert Selection._all_in_same_parent(notes)
-    assert not Selection._all_in_same_parent(
+    assert abjad.Selection._all_in_same_parent(notes)
+    assert not abjad.Selection._all_in_same_parent(
         notes, allow_orphans=False)
 
 
@@ -94,4 +93,4 @@ def test_selectiontools_Selection__all_in_same_parent_04():
 
     sequence = []
 
-    assert Selection._all_in_same_parent(sequence)
+    assert abjad.Selection._all_in_same_parent(sequence)

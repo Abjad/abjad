@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_Selection__get_parent_and_start_stop_indices_01():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
     parent, start, stop = staff[2:]._get_parent_and_start_stop_indices()
     assert parent is staff
     assert start == 2
@@ -13,7 +13,7 @@ def test_selectiontools_Selection__get_parent_and_start_stop_indices_01():
 
 def test_selectiontools_Selection__get_parent_and_start_stop_indices_02():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
     parent, start, stop = staff[:2]._get_parent_and_start_stop_indices()
     assert parent is staff
     assert start == 0
@@ -22,7 +22,7 @@ def test_selectiontools_Selection__get_parent_and_start_stop_indices_02():
 
 def test_selectiontools_Selection__get_parent_and_start_stop_indices_03():
 
-    selection = selectiontools.Selection()
+    selection = abjad.Selection()
     parent, start, stop = selection._get_parent_and_start_stop_indices()
     assert parent is None
     assert start is None

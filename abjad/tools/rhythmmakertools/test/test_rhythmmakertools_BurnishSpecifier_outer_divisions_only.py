@@ -2,7 +2,7 @@
 import abjad
 import pytest
 import sys
-from abjad import *
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
@@ -30,13 +30,13 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
     divisions = [(3, 16), (3, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = Sequence(selections).flatten()
+    selections = abjad.Sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(selections)
+    abjad.mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -93,13 +93,13 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
     divisions = [(3, 16), (3, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = Sequence(selections).flatten()
+    selections = abjad.Sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(selections)
+    abjad.mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -150,13 +150,13 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
     divisions = [(3, 8), (4, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = Sequence(selections).flatten()
+    selections = abjad.Sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(selections)
+    abjad.mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -211,13 +211,13 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_04():
     divisions = [(8, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = Sequence(selections).flatten()
+    selections = abjad.Sequence(selections).flatten()
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(selections)
+    abjad.mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {

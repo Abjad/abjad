@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Container_context_settings_01():
-    r'''Noncontext containers bracket context settings at opening.
+    r'''Noncontext containers bracket context abjad.settings at opening.
     '''
 
-    container = Container("c'8 d'8 e'8 f'8")
-    setting(container).score.beam_exceptions = schemetools.SchemeVector()
+    container = abjad.Container("c'8 d'8 e'8 f'8")
+    abjad.setting(container).score.beam_exceptions = abjad.SchemeVector()
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \set Score.beamExceptions = #'()

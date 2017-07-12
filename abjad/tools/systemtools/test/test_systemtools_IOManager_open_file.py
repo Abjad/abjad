@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import systemtools
+import abjad
 import pytest
 try:
     from unittest import mock
 except ImportError:
     import mock
+from abjad.tools import systemtools
 
 midi_player, text_editor, pdf_viewer = (
     'midi_player_application',

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_instrumenttools_InstrumentList__change_instrument_name_to_instrument_01():

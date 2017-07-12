@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_IncisedRhythmMaker___call___01():
@@ -19,14 +19,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___01():
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -73,14 +73,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___02():
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -127,14 +127,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___03():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -171,14 +171,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___04():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -216,14 +216,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -270,14 +270,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -333,14 +333,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___07():
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -388,14 +388,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___08():
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -443,14 +443,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___09():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -489,14 +489,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___10():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -535,14 +535,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -592,14 +592,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -657,14 +657,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___13():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -708,14 +708,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___14():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -752,14 +752,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___15():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -800,14 +800,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -854,14 +854,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -915,14 +915,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -967,14 +967,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___19():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -1012,14 +1012,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___20():
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -1061,14 +1061,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -1116,14 +1116,14 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
     maker = abjad.MeasureMaker()
     measures = maker(divisions)
     staff = abjad.Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {

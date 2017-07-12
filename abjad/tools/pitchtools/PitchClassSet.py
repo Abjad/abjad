@@ -47,15 +47,52 @@ class PitchClassSet(Set):
 
     ### SPECIAL METHODS ###
 
+    def __contains__(self, argument):
+        r'''Is true when pitch-class set contains `argument`. Otherwise false.
+
+        ..  container:: example
+
+            Initializes numbered pitch-class set:
+
+            ::
+
+                >>> set_ = abjad.PitchClassSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=abjad.NumberedPitchClass,
+                ...     )
+                >>> set_
+                PitchClassSet([6, 7, 10, 10.5])
+
+            ::
+
+                >>> abjad.NamedPitch('fs') in set_
+                True
+
+            ::
+
+                >>> abjad.NamedPitch('f') in set_
+                False
+
+            ::
+
+                >>> 6 in set_
+                True
+
+            ::
+
+                >>> 5 in set_
+                False
+
+        Returns true or false.
+        '''
+        return super(PitchClassSet, self).__contains__(argument)
+
     def __hash__(self):
         r'''Hashes pitch-class set.
 
         Returns integer.
         '''
-        #return hash(repr(self))
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(PitchClassSet, self).__hash__()
 
     def __illustrate__(self):
         r'''Illustrates pitch-class set.
@@ -546,6 +583,13 @@ class PitchClassSet(Set):
     def order_by(self, pitch_class_segment):
         r'''Orders pitch-class set by `pitch_class_segment`.
 
+        ..  container:: example
+
+            >>> set_ = abjad.PitchClassSet(['c', 'e', 'b'])
+            >>> segment = abjad.PitchClassSegment(['e', 'a', 'f'])
+            >>> set_.order_by(segment)
+            PitchClassSegment("b e c")
+
         Returns pitch-class segment.
         '''
         from abjad.tools import pitchtools
@@ -567,6 +611,33 @@ class PitchClassSet(Set):
 
     def transpose(self, n=0):
         r'''Transposes all pitch-classes in pitch-class set by index `n`.
+
+        ..  container:: example
+
+            ::
+
+                >>> set_ = abjad.PitchClassSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=abjad.NumberedPitchClass,
+                ...     )
+
+            ::
+
+                >>> for n in range(12):
+                ...     print(n, set_.transpose(n))
+                ...
+                0 PC{6, 7, 10, 10.5}
+                1 PC{7, 8, 11, 11.5}
+                2 PC{0, 0.5, 8, 9}
+                3 PC{1, 1.5, 9, 10}
+                4 PC{2, 2.5, 10, 11}
+                5 PC{0, 3, 3.5, 11}
+                6 PC{0, 1, 4, 4.5}
+                7 PC{1, 2, 5, 5.5}
+                8 PC{2, 3, 6, 6.5}
+                9 PC{3, 4, 7, 7.5}
+                10 PC{4, 5, 8, 8.5}
+                11 PC{5, 6, 9, 9.5}
 
         Returns new pitch-class set.
         '''

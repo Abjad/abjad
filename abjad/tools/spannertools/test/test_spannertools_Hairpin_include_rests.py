@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_Hairpin_include_rests_01():
     r'''Hairpin spanner avoids rests.
     '''
 
-    staff = abjad.Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-    crescendo = Crescendo(include_rests=False)
-    attach(crescendo, staff[:])
+    staff = abjad.Staff(abjad.Rest((1, 8)) * 4 + [abjad.Note(n, (1, 8)) for n in range(4, 8)])
+    crescendo = abjad.Crescendo(include_rests=False)
+    abjad.attach(crescendo, staff[:])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             r8
@@ -26,19 +25,19 @@ def test_spannertools_Hairpin_include_rests_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_Hairpin_include_rests_02():
     r'''Hairpin spanner avoids rests.
     '''
 
-    staff = abjad.Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
-    crescendo = Crescendo(include_rests=False)
-    attach(crescendo, staff[:])
+    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)] + abjad.Rest((1, 8)) * 4)
+    crescendo = abjad.Crescendo(include_rests=False)
+    abjad.attach(crescendo, staff[:])
 
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 \<
@@ -53,4 +52,4 @@ def test_spannertools_Hairpin_include_rests_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_Spanner___eq___01():
     r'''Spanner is strict comparator.
     '''
 
-    class MockSpanner(spannertools.Spanner):
+    class MockSpanner(abjad.Spanner):
 
         def __init__(self, components=None):
-            spannertools.Spanner.__init__(self, components)
+            abjad.Spanner.__init__(self, components)
 
     spanner_1 = MockSpanner()
     spanner_2 = MockSpanner()

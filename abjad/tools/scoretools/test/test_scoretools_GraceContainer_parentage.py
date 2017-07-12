@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_GraceContainer_parentage_01():
     r'''Lone grace container carrier is none.
     '''
 
-    gracecontainer = GraceContainer("c'4 d'4 e'4 f'4")
+    gracecontainer = abjad.GraceContainer("c'4 d'4 e'4 f'4")
     assert gracecontainer._carrier is None
 
 
@@ -14,11 +14,11 @@ def test_scoretools_GraceContainer_parentage_02():
     r'''Grace containers bound to leaf do have parent.
     '''
 
-    note = Note(1, (1, 4))
-    grace_container = GraceContainer()
-    attach(grace_container, note)
-    grace_container = inspect(note).get_grace_container()
-    assert isinstance(grace_container, GraceContainer)
+    note = abjad.Note(1, (1, 4))
+    grace_container = abjad.GraceContainer()
+    abjad.attach(grace_container, note)
+    grace_container = abjad.inspect(note).get_grace_container()
+    assert isinstance(grace_container, abjad.GraceContainer)
     assert grace_container._carrier is note
     assert grace_container._carrier is note
 
@@ -28,18 +28,18 @@ def test_scoretools_GraceContainer_parentage_03():
     after assignment.
     '''
 
-    note = Note(1, (1, 4))
-    after_grace = AfterGraceContainer([Note("e'16")])
-    attach(after_grace, note)
-    grace = GraceContainer([Note("e'16")])
-    attach(grace, note)
+    note = abjad.Note(1, (1, 4))
+    after_grace = abjad.AfterGraceContainer([abjad.Note("e'16")])
+    abjad.attach(after_grace, note)
+    grace = abjad.GraceContainer([abjad.Note("e'16")])
+    abjad.attach(grace, note)
     assert after_grace._carrier is note
     assert grace._carrier is note
     after_grace[:] = []
-    notes = [Note("c'8"), Note("d'8")]
+    notes = [abjad.Note("c'8"), abjad.Note("d'8")]
     after_grace.extend(notes)
     grace[:] = []
-    notes = [Note("c'8"), Note("d'8")]
+    notes = [abjad.Note("c'8"), abjad.Note("d'8")]
     grace.extend(notes)
     assert after_grace._carrier is note
     assert grace._carrier is note

@@ -1,11 +1,11 @@
 # -*- coding: utf -*-
 import abjad
-from abjad import *
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_Pattern_matches_index_01():
 
-    mask = patterntools.Pattern(
+    mask = abjad.Pattern(
         indices=[0, 1],
         period=None,
         )
@@ -23,7 +23,7 @@ def test_rhythmmakertools_Pattern_matches_index_01():
 
 def test_rhythmmakertools_Pattern_matches_index_02():
 
-    mask = patterntools.Pattern(
+    mask = abjad.Pattern(
         indices=[0, 1],
         period=4,
         )
@@ -41,7 +41,7 @@ def test_rhythmmakertools_Pattern_matches_index_02():
 
 def test_rhythmmakertools_Pattern_matches_index_03():
 
-    mask = patterntools.Pattern(
+    mask = abjad.Pattern(
         indices=[0, 1, 2, 3, 4, 5, 6, 7],
         period=None,
         )
@@ -59,7 +59,7 @@ def test_rhythmmakertools_Pattern_matches_index_03():
 
 def test_rhythmmakertools_Pattern_matches_index_04():
 
-    mask = patterntools.Pattern(
+    mask = abjad.Pattern(
         indices=[0, 1, 2, 3, 4, 5, 6, 7],
         period=None,
         )
@@ -77,7 +77,7 @@ def test_rhythmmakertools_Pattern_matches_index_04():
 
 def test_rhythmmakertools_Pattern_matches_index_05():
 
-    mask = patterntools.Pattern(
+    mask = abjad.Pattern(
         indices=[-2, -1],
         period=None,
         )
@@ -95,7 +95,7 @@ def test_rhythmmakertools_Pattern_matches_index_05():
 
 def test_rhythmmakertools_Pattern_matches_index_06():
 
-    mask = patterntools.Pattern(
+    mask = abjad.Pattern(
         indices=[-2, -1],
         period=4,
         )

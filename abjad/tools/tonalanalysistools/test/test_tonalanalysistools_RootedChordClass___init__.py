@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_RootedChordClass___init___01():
@@ -18,8 +19,8 @@ def test_tonalanalysistools_RootedChordClass___init___02():
 
     assert repr(chord_class) == 'GDominantSeventhInRootPosition'
     assert len(chord_class) == 4
-    assert chord_class.root == pitchtools.NamedPitchClass('g')
-    assert chord_class.bass == pitchtools.NamedPitchClass('g')
+    assert chord_class.root == abjad.NamedPitchClass('g')
+    assert chord_class.bass == abjad.NamedPitchClass('g')
 
 
 def test_tonalanalysistools_RootedChordClass___init___03():
@@ -29,5 +30,5 @@ def test_tonalanalysistools_RootedChordClass___init___03():
 
     assert repr(chord_class) == 'GDominantSeventhInFirstInversion'
     assert len(chord_class) == 4
-    assert chord_class.root == pitchtools.NamedPitchClass('g')
-    assert chord_class.bass == pitchtools.NamedPitchClass('b')
+    assert chord_class.root == abjad.NamedPitchClass('g')
+    assert chord_class.bass == abjad.NamedPitchClass('b')

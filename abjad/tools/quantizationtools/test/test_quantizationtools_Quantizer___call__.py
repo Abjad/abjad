@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import quantizationtools
 
 
 def test_quantizationtools_Quantizer___call___01():
@@ -8,9 +9,9 @@ def test_quantizationtools_Quantizer___call___01():
         milliseconds)
     quantizer = quantizationtools.Quantizer()
     result = quantizer(q_events)
-    staff = scoretools.Staff([result], context_name='RhythmicStaff')
-    score = Score([staff])
-    assert format(score) == String.normalize(
+    staff = abjad.Staff([result], context_name='RhythmicStaff')
+    score = abjad.Score([staff])
+    assert format(score) == abjad.String.normalize(
         r'''
         \new Score <<
             \new RhythmicStaff {
@@ -39,9 +40,9 @@ def test_quantizationtools_Quantizer___call___02():
         q_events,
         attack_point_optimizer=optimizer,
         )
-    staff = scoretools.Staff([result], context_name='RhythmicStaff')
-    score = Score([staff])
-    assert format(score) == String.normalize(
+    staff = abjad.Staff([result], context_name='RhythmicStaff')
+    score = abjad.Score([staff])
+    assert format(score) == abjad.String.normalize(
         r'''
         \new Score <<
             \new RhythmicStaff {
@@ -71,12 +72,12 @@ def test_quantizationtools_Quantizer___call___03():
 
     result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
 
-    assert isinstance(result, Voice)
-    assert inspect(result).get_duration() == 2
+    assert isinstance(result, abjad.Voice)
+    assert abjad.inspect(result).get_duration() == 2
 
-    score = Score([Staff([result])])
+    score = abjad.Score([abjad.Staff([result])])
 
-    assert format(score) == String.normalize(
+    assert format(score) == abjad.String.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -117,10 +118,10 @@ def test_quantizationtools_Quantizer___call___04():
     attack_point_optimizer = quantizationtools.NullAttackPointOptimizer()
     quantizer = quantizationtools.Quantizer()
     result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
-    staff = scoretools.Staff([result], context_name='RhythmicStaff')
-    score = Score([staff])
+    staff = abjad.Staff([result], context_name='RhythmicStaff')
+    score = abjad.Score([staff])
 
-    assert format(score) == String.normalize(
+    assert format(score) == abjad.String.normalize(
         r'''
         \new Score <<
             \new RhythmicStaff {
@@ -167,10 +168,10 @@ def test_quantizationtools_Quantizer___call___05():
         q_schema=q_schema,
         attack_point_optimizer=attack_point_optimizer,
         )
-    staff = scoretools.Staff([result], context_name='RhythmicStaff')
-    score = Score([staff])
+    staff = abjad.Staff([result], context_name='RhythmicStaff')
+    score = abjad.Score([staff])
 
-    assert format(score) == String.normalize(
+    assert format(score) == abjad.String.normalize(
         r'''
         \new Score <<
             \new RhythmicStaff {

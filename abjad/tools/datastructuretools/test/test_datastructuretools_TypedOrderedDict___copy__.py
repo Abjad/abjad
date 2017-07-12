@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad import *
+import abjad
 
 
 def test_datastructuretools_TypedOrderedDict___copy___01():
 
-    dictionary_1 = datastructuretools.TypedOrderedDict([
+    dictionary_1 = abjad.TypedOrderedDict([
         ('flavor', 'cherry'), ('count', 2),
         ])
     dictionary_2 = copy.copy(dictionary_1)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Measure___delitem___01():
@@ -8,11 +8,11 @@ def test_scoretools_Measure___delitem___01():
     Automatically update time signature.
     '''
 
-    measure = Measure((4, 8), "c'8 c'8 c'8 c'8")
+    measure = abjad.Measure((4, 8), "c'8 c'8 c'8 c'8")
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert format(measure) == String.normalize(
+    assert format(measure) == abjad.String.normalize(
         r'''
         {
             \time 3/8
@@ -23,7 +23,7 @@ def test_scoretools_Measure___delitem___01():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___02():
@@ -32,11 +32,11 @@ def test_scoretools_Measure___delitem___02():
     Automatically update time signatures.
     '''
 
-    measure = Measure((4, 8), "c'8 c'8 c'8 c'8")
+    measure = abjad.Measure((4, 8), "c'8 c'8 c'8 c'8")
     measure.automatically_adjust_time_signature = True
     del(measure[-1:])
 
-    assert format(measure) == String.normalize(
+    assert format(measure) == abjad.String.normalize(
         r'''
         {
             \time 3/8
@@ -47,7 +47,7 @@ def test_scoretools_Measure___delitem___02():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___03():
@@ -56,11 +56,11 @@ def test_scoretools_Measure___delitem___03():
     Automatically update time signature.
     '''
 
-    measure = Measure((4, 8), "c'8 c'8 c'8 c'8")
+    measure = abjad.Measure((4, 8), "c'8 c'8 c'8 c'8")
     measure.automatically_adjust_time_signature = True
     del(measure[:2])
 
-    assert format(measure) == String.normalize(
+    assert format(measure) == abjad.String.normalize(
         r'''
         {
             \time 2/8
@@ -70,7 +70,7 @@ def test_scoretools_Measure___delitem___03():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___04():
@@ -79,11 +79,11 @@ def test_scoretools_Measure___delitem___04():
     Automatically update time signature.
     '''
 
-    measure = Measure((4, 8), "c'16 c'16 c'8 c'8 c'8")
+    measure = abjad.Measure((4, 8), "c'16 c'16 c'8 c'8 c'8")
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert format(measure) == String.normalize(
+    assert format(measure) == abjad.String.normalize(
         r'''
         {
             \time 7/16
@@ -95,7 +95,7 @@ def test_scoretools_Measure___delitem___04():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___05():
@@ -104,12 +104,12 @@ def test_scoretools_Measure___delitem___05():
     Automatically update time signature.
     '''
 
-    measure = Measure((4, 9), "c'8 d'8 e'8 f'8")
+    measure = abjad.Measure((4, 9), "c'8 d'8 e'8 f'8")
     measure.implicit_scaling = True
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert format(measure) == String.normalize(
+    assert format(measure) == abjad.String.normalize(
         r'''
         {
             \time 3/9
@@ -122,7 +122,7 @@ def test_scoretools_Measure___delitem___05():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___06():
@@ -131,11 +131,11 @@ def test_scoretools_Measure___delitem___06():
     Automatically update time signature.
     '''
 
-    measure = Measure((3, 9), "c'16 d'16 e'8 f'8")
+    measure = abjad.Measure((3, 9), "c'16 d'16 e'8 f'8")
     measure.implicit_scaling = True
     measure.automatically_adjust_time_signature = True
 
-    assert format(measure) == String.normalize(
+    assert format(measure) == abjad.String.normalize(
         r'''
         {
             \time 3/9
@@ -151,7 +151,7 @@ def test_scoretools_Measure___delitem___06():
 
     del(measure[:1])
 
-    assert format(measure) == String.normalize(
+    assert format(measure) == abjad.String.normalize(
         r'''
         {
             \time 5/18
@@ -164,7 +164,7 @@ def test_scoretools_Measure___delitem___06():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___07():
@@ -173,12 +173,12 @@ def test_scoretools_Measure___delitem___07():
     Do NOT automatically update time signature.
     '''
 
-    measure = Measure((4, 8), "c'8 c' c' c'")
+    measure = abjad.Measure((4, 8), "c'8 c' c' c'")
     del(measure[:1])
 
     assert len(measure) == 3
-    assert inspect(measure).get_indicator(TimeSignature)
-    assert not inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).get_indicator(abjad.TimeSignature)
+    assert not abjad.inspect(measure).is_well_formed()
 
 
 def test_scoretools_Measure___delitem___08():
@@ -187,10 +187,10 @@ def test_scoretools_Measure___delitem___08():
     Do NOT automatically update time signature.
     '''
 
-    measure = Measure((4, 9), "c'8 d' e' f'")
+    measure = abjad.Measure((4, 9), "c'8 d' e' f'")
     measure.implicit_scaling = True
     del(measure[:1])
 
     assert len(measure) == 3
-    assert inspect(measure).get_indicator(TimeSignature)
-    assert not inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).get_indicator(abjad.TimeSignature)
+    assert not abjad.inspect(measure).is_well_formed()

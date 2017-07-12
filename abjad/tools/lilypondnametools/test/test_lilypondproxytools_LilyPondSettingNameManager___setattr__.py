@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___01():
-    r'''Define LilyPond autoBeaming context setting.
+    r'''Define LilyPond autoBeaming context abjad.setting.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    setting(staff).auto_beaming = True
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.setting(staff).auto_beaming = True
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff \with {
             autoBeaming = ##t
@@ -22,18 +22,18 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___02():
-    r'''Remove LilyPond autoBeaming context setting.
+    r'''Remove LilyPond autoBeaming context abjad.setting.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    setting(staff).auto_beaming = True
-    del(setting(staff).auto_beaming)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.setting(staff).auto_beaming = True
+    del(abjad.setting(staff).auto_beaming)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -44,17 +44,17 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___03():
-    r'''Define LilyPond currentBarNumber context setting.
+    r'''Define LilyPond currentBarNumber context abjad.setting.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    setting(staff[0]).score.current_bar_number = 12
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.setting(staff[0]).score.current_bar_number = 12
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \set Score.currentBarNumber = #12
@@ -66,19 +66,19 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___03():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___04():
-    r'''Define LilyPond currentBarNumber context setting.
+    r'''Define LilyPond currentBarNumber context abjad.setting.
     '''
 
-    staff = Staff()
-    staff.append(Measure((2, 8), "c'8 d'8"))
-    staff.append(Measure((2, 8), "e'8 f'8"))
-    setting(staff[0]).score.current_bar_number = 12
+    staff = abjad.Staff()
+    staff.append(abjad.Measure((2, 8), "c'8 d'8"))
+    staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+    abjad.setting(staff[0]).score.current_bar_number = 12
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -95,17 +95,17 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___04():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___05():
-    r'''Define LilyPond fontSize context setting.
+    r'''Define LilyPond fontSize context abjad.setting.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    setting(staff).font_size = -3
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.setting(staff).font_size = -3
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff \with {
             fontSize = #-3
@@ -118,17 +118,17 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___05():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___06():
-    r'''Define LilyPond instrumentName context setting.
+    r'''Define LilyPond instrumentName context abjad.setting.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    setting(staff).instrument_name = 'Violini I'
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.setting(staff).instrument_name = 'Violini I'
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff \with {
             instrumentName = #"Violini I"
@@ -141,17 +141,17 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___06():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___07():
-    r'''Define LilyPond instrumentName context setting.
+    r'''Define LilyPond instrumentName context abjad.setting.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    setting(staff).instrument_name = markuptools.Markup(r'\circle { V }')
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.setting(staff).instrument_name = abjad.Markup(r'\circle { V }')
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff \with {
             instrumentName = \markup {
@@ -169,18 +169,18 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___07():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___08():
-    r'''Define LilyPond proportionalNotationDuration context setting.
+    r'''Define LilyPond proportionalNotationDuration context abjad.setting.
     '''
 
-    score = Score([Staff("c'8 d'8 e'8 f'8")])
-    moment = schemetools.SchemeMoment(Fraction(1, 56))
-    setting(score).proportional_notation_duration = moment
+    score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
+    moment = abjad.SchemeMoment(abjad.Fraction(1, 56))
+    abjad.setting(score).proportional_notation_duration = moment
 
-    assert format(score) == String.normalize(
+    assert format(score) == abjad.String.normalize(
         r'''
         \new Score \with {
             proportionalNotationDuration = #(ly:make-moment 1 56)
@@ -195,17 +195,17 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___08():
         '''
         )
 
-    assert inspect(score).is_well_formed()
+    assert abjad.inspect(score).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___09():
-    r'''Define LilyPond shortInstrumentName context setting.
+    r'''Define LilyPond shortInstrumentName context abjad.setting.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    setting(staff).short_instrument_name = 'Vni. I'
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.setting(staff).short_instrument_name = 'Vni. I'
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff \with {
             shortInstrumentName = #"Vni. I"
@@ -218,18 +218,18 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___09():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___10():
-    r'''Define LilyPond shortInstrumentName context setting.
+    r'''Define LilyPond shortInstrumentName context abjad.setting.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    setting(staff).short_instrument_name = markuptools.Markup(
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.setting(staff).short_instrument_name = abjad.Markup(
         r'\circle { V }')
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff \with {
             shortInstrumentName = \markup {
@@ -247,17 +247,17 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___10():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___11():
-    r'''Define LilyPond suggestAccidentals context setting.
+    r'''Define LilyPond suggestAccidentals context abjad.setting.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    setting(staff).suggest_accidentals = True
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.setting(staff).suggest_accidentals = True
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff \with {
             suggestAccidentals = ##t
@@ -270,17 +270,17 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___11():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___12():
-    r'''Define LilyPond suggestAccidentals context setting.
+    r'''Define LilyPond suggestAccidentals context abjad.setting.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    setting(staff[1]).suggest_accidentals = True
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.setting(staff[1]).suggest_accidentals = True
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -292,17 +292,17 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___12():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
-    r'''Define LilyPond tupletFullLength context setting.
+    r'''Define LilyPond tupletFullLength context abjad.setting.
     '''
 
-    staff = Staff([])
-    setting(staff).tuplet_full_length = True
+    staff = abjad.Staff([])
+    abjad.setting(staff).tuplet_full_length = True
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff \with {
             tupletFullLength = ##t
@@ -313,9 +313,9 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
 
     assert not len(staff)
 
-    setting(staff).tuplet_full_length = False
+    abjad.setting(staff).tuplet_full_length = False
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff \with {
             tupletFullLength = ##f
@@ -326,9 +326,9 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
 
     assert not len(staff)
 
-    del(setting(staff).tuplet_full_length)
+    del(abjad.setting(staff).tuplet_full_length)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
         }

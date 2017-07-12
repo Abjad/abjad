@@ -190,13 +190,55 @@ class NumberedIntervalClass(IntervalClass):
         '''Makes numbered interval-class from `pitch_carrier_1` and
         `pitch_carrier_2`.
 
-        ::
+        ..  container:: example
 
-            >>> abjad.NumberedIntervalClass.from_pitch_carriers(
-            ...     abjad.NamedPitch(-2),
-            ...     abjad.NamedPitch(12),
-            ...     )
-            NumberedIntervalClass(2)
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(-2),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedIntervalClass(2)
+
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(0),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedIntervalClass(12)
+
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(9),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedIntervalClass(3)
+
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(9),
+                ...     )
+                NumberedIntervalClass(-3)
+
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedIntervalClass(0)
+
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(-2),
+                ...     )
+                NumberedIntervalClass(-2)
 
         Returns numbered interval-class.
         '''

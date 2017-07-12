@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_Slur___init___01():
     r'''Initialize empty slur spanner.
     '''
 
-    slur = Slur()
-    assert isinstance(slur, Slur)
+    slur = abjad.Slur()
+    assert isinstance(slur, abjad.Slur)
 
 
 def test_spannertools_Slur___init___02():
@@ -16,7 +15,7 @@ def test_spannertools_Slur___init___02():
     all their subcontexts are equally named.
     '''
 
-    container = Container(
+    container = abjad.Container(
         r'''
         \context Staff = "foo" <<
             \context Voice = "first" {
@@ -50,10 +49,10 @@ def test_spannertools_Slur___init___02():
         )
 
     leaves = container[0][0][:] + container[1][0][:]
-    slur = Slur()
-    attach(slur, leaves)
+    slur = abjad.Slur()
+    abjad.attach(slur, leaves)
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \context Staff = "foo" <<
@@ -88,7 +87,7 @@ def test_spannertools_Slur___init___02():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()
 
 
 def test_spannertools_Slur___init___03():
@@ -96,7 +95,7 @@ def test_spannertools_Slur___init___03():
     so long as the voices nested in the staves are named the same.
     '''
 
-    container = Container(
+    container = abjad.Container(
         r'''
         \context Staff = "foo" {
             \context Voice = "bar" {
@@ -117,11 +116,11 @@ def test_spannertools_Slur___init___03():
         '''
         )
 
-    slur = Slur()
-    leaves = select(container).by_leaf()
-    attach(slur, leaves)
+    slur = abjad.Slur()
+    leaves = abjad.select(container).by_leaf()
+    abjad.attach(slur, leaves)
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \context Staff = "foo" {
@@ -144,4 +143,4 @@ def test_spannertools_Slur___init___03():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()

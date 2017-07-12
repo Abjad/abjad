@@ -480,7 +480,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> segment = row * 2
+                >>> segment = 2 * row
                 >>> show(segment) # doctest: +SKIP
 
             ..  docs::
@@ -528,7 +528,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> segment = row * 2
+                >>> segment = 2 * row
                 >>> show(segment) # doctest: +SKIP
 
 
@@ -592,7 +592,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> segment = 2 * row
+                >>> segment = row * 2
                 >>> show(segment) # doctest: +SKIP
 
             ..  docs::
@@ -640,7 +640,7 @@ class TwelveToneRow(PitchClassSegment):
 
             ::
 
-                >>> segment = 2 * row
+                >>> segment = row * 2
                 >>> show(segment) # doctest: +SKIP
 
             ..  docs::

@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__functions__transpose_01():
 
     pitches = ["e'", "gs'", "b'", "e''"]
     maker = abjad.NoteMaker()
-    target = Staff(maker(pitches, (1, 4)))
-    key_signature = KeySignature('e', 'major')
-    attach(key_signature, target[0])
+    target = abjad.Staff(maker(pitches, (1, 4)))
+    key_signature = abjad.KeySignature('e', 'major')
+    abjad.attach(key_signature, target[0])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         \new Staff {
             \key e \major
@@ -25,7 +23,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_01():
         )
 
     string = r"\transpose d e \relative c' \new Staff { \key d \major d4 fs a d }"
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
 
@@ -34,11 +32,11 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_02():
 
     pitches = ["ef'", "f'", "g'", "bf'"]
     maker = abjad.NoteMaker()
-    target = Staff(maker(pitches, (1, 4)))
-    key_signature = KeySignature('ef', 'major')
-    attach(key_signature, target[0])
+    target = abjad.Staff(maker(pitches, (1, 4)))
+    key_signature = abjad.KeySignature('ef', 'major')
+    abjad.attach(key_signature, target[0])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         \new Staff {
             \key ef \major
@@ -51,7 +49,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_02():
         )
 
     string = r"\transpose a c' \relative c' \new Staff { \key c \major c4 d e g }"
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
 
@@ -59,12 +57,12 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_02():
 def test_lilypondparsertools_LilyPondParser__functions__transpose_03():
 
     maker = abjad.NoteMaker()
-    target = Staff([
-        Container(maker(["cs'", "ds'", "es'", "fs'"], (1, 4))),
-        Container(maker(["df'", "ef'", "f'", "gf'"], (1, 4)))
+    target = abjad.Staff([
+        abjad.Container(maker(["cs'", "ds'", "es'", "fs'"], (1, 4))),
+        abjad.Container(maker(["df'", "ef'", "f'", "gf'"], (1, 4)))
     ])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -90,6 +88,6 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_03():
     }
     '''
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result

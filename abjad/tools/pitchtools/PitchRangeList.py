@@ -77,6 +77,35 @@ class PitchRangeList(TypedList):
 
     ### SPECIAL METHODS ###
 
+    def __contains__(self, argument):
+        r'''Is true when pitch range list contains `argument`.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> ranges = abjad.PitchRangeList(['[C3, C6]', '[C4, C6]'])
+
+            ::
+
+                >>> '[C3, C6]' in ranges
+                True
+
+            ::
+
+                >>> (-12, 24) in ranges
+                True
+
+            ::
+
+                >>> (-39, 48) in ranges
+                False
+        
+        Returns true or false.
+        '''
+        return super(PitchRangeList, self).__contains__(argument)
+
     def __illustrate__(self):
         r"""Illustrates pitch ranges.
 
@@ -206,3 +235,33 @@ class PitchRangeList(TypedList):
             return range_
         from abjad.tools import pitchtools
         return coerce_
+
+    ### PUBLIC METHODS ###
+
+    def append(self, argument):
+        r'''Appends `argument` to pitch range list.
+
+        ..  container:: example
+
+            ::
+
+                >>> ranges = abjad.PitchRangeList(['[C3, C6]'])
+                >>> ranges.append('[C4, C6]')
+
+            ::
+
+                >>> f(ranges)
+                abjad.PitchRangeList(
+                    [
+                        abjad.PitchRange(
+                            range_string='[C3, C6]',
+                            ),
+                        abjad.PitchRange(
+                            range_string='[C4, C6]',
+                            ),
+                        ]
+                    )
+        
+        Returns none.
+        '''
+        return super(PitchRangeList, self).append(argument)

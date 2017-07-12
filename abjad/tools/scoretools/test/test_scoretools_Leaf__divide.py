@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Leaf__divide_01():
     r'''Divide chord at D4.
     '''
 
-    staff = Staff("<d' ef' e'>4")
-    pitch = NamedPitch('D4')
+    staff = abjad.Staff("<d' ef' e'>4")
+    pitch = abjad.NamedPitch('D4')
     treble, bass = staff[0]._divide(pitch)
     staff.extend([treble, bass])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             <d' ef' e'>4
@@ -21,19 +21,19 @@ def test_scoretools_Leaf__divide_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__divide_02():
     r'''Divide chord at Eb4.
     '''
 
-    staff = Staff("<d' ef' e'>4")
-    pitch = NamedPitch('Eb4')
+    staff = abjad.Staff("<d' ef' e'>4")
+    pitch = abjad.NamedPitch('Eb4')
     treble, bass = staff[0]._divide(pitch)
     staff.extend([treble, bass])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             <d' ef' e'>4
@@ -43,19 +43,19 @@ def test_scoretools_Leaf__divide_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Leaf__divide_03():
     r'''Divide chord at E4.
     '''
 
-    staff = Staff("<d' ef' e'>4")
-    pitch = NamedPitch('E4')
+    staff = abjad.Staff("<d' ef' e'>4")
+    pitch = abjad.NamedPitch('E4')
     treble, bass = staff[0]._divide(pitch)
     staff.extend([treble, bass])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             <d' ef' e'>4
@@ -65,4 +65,4 @@ def test_scoretools_Leaf__divide_03():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

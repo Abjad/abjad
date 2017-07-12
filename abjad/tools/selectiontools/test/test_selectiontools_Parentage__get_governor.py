@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_Parentage__get_governor_01( ):
@@ -8,7 +8,7 @@ def test_selectiontools_Parentage__get_governor_01( ):
     either a simultaneous container or None.
     '''
 
-    voice = Voice([Container([Voice("c'8 d'8"), Voice("e'8 f'8")])])
+    voice = abjad.Voice([abjad.Container([abjad.Voice("c'8 d'8"), abjad.Voice("e'8 f'8")])])
     voice[0].is_simultaneous = True
     voice[0][0].name = 'voice 1'
     voice[0][1].name = 'voice 2'
@@ -28,19 +28,19 @@ def test_selectiontools_Parentage__get_governor_01( ):
     }
     '''
 
-    leaves = select(voice).by_leaf()
-    assert inspect(leaves[0]).get_parentage()._get_governor() is voice[0][0]
-    assert inspect(leaves[1]).get_parentage()._get_governor() is voice[0][0]
-    assert inspect(leaves[2]).get_parentage()._get_governor() is voice[0][1]
-    assert inspect(leaves[3]).get_parentage()._get_governor() is voice[0][1]
+    leaves = abjad.select(voice).by_leaf()
+    assert abjad.inspect(leaves[0]).get_parentage()._get_governor() is voice[0][0]
+    assert abjad.inspect(leaves[1]).get_parentage()._get_governor() is voice[0][0]
+    assert abjad.inspect(leaves[2]).get_parentage()._get_governor() is voice[0][1]
+    assert abjad.inspect(leaves[3]).get_parentage()._get_governor() is voice[0][1]
 
 
 def test_selectiontools_Parentage__get_governor_02( ):
     r'''Unicorporated leaves have no governor.
     '''
 
-    note = Note(0, (1, 8))
-    assert inspect(note).get_parentage()._get_governor() is None
+    note = abjad.Note(0, (1, 8))
+    assert abjad.inspect(note).get_parentage()._get_governor() is None
 
 
 def test_selectiontools_Parentage__get_governor_03( ):
@@ -49,7 +49,7 @@ def test_selectiontools_Parentage__get_governor_03( ):
     either a simultaneous container or None.
     '''
 
-    staff = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])
+    staff = abjad.Staff([abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])])
 
     r'''
     \new Staff {
@@ -64,11 +64,11 @@ def test_selectiontools_Parentage__get_governor_03( ):
     }
     '''
 
-    leaves = select(staff).by_leaf()
-    assert inspect(leaves[0]).get_parentage()._get_governor() is staff
-    assert inspect(leaves[1]).get_parentage()._get_governor() is staff
-    assert inspect(leaves[2]).get_parentage()._get_governor() is staff
-    assert inspect(leaves[3]).get_parentage()._get_governor() is staff
+    leaves = abjad.select(staff).by_leaf()
+    assert abjad.inspect(leaves[0]).get_parentage()._get_governor() is staff
+    assert abjad.inspect(leaves[1]).get_parentage()._get_governor() is staff
+    assert abjad.inspect(leaves[2]).get_parentage()._get_governor() is staff
+    assert abjad.inspect(leaves[3]).get_parentage()._get_governor() is staff
 
 
 def test_selectiontools_Parentage__get_governor_04( ):
@@ -77,7 +77,7 @@ def test_selectiontools_Parentage__get_governor_04( ):
     either a simultaneous container or None.
     '''
 
-    staff = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])
+    staff = abjad.Staff([abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])])
 
     r'''
     \new Staff {
@@ -92,6 +92,6 @@ def test_selectiontools_Parentage__get_governor_04( ):
     }
     '''
 
-    assert inspect(staff[0][0]).get_parentage()._get_governor() is staff
-    assert inspect(staff[0]).get_parentage()._get_governor() is staff
-    assert inspect(staff).get_parentage()._get_governor() is staff
+    assert abjad.inspect(staff[0][0]).get_parentage()._get_governor() is staff
+    assert abjad.inspect(staff[0]).get_parentage()._get_governor() is staff
+    assert abjad.inspect(staff).get_parentage()._get_governor() is staff

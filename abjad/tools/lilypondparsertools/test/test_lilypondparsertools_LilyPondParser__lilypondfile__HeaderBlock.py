@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 @pytest.mark.skip('Pending 2.19.24 update.')
@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
     string = r'''
     globalvariable = "This is a global variable."
     \header {
-        globalvariable = "This overrides the global variable"
+        globalvariable = "This abjad.overrides the global variable"
         localvariable = "and this is a local variable."
         something = #4
         title = \markup { \globalvariable \localvariable }
@@ -18,22 +18,22 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
     }
     '''
     result = parse(string)
-    assert isinstance(result, lilypondfiletools.LilyPondFile)
+    assert isinstance(result, abjad.LilyPondFile)
     assert len(result.items) == 2
-    assert format(result.items[0]) == String.normalize(
+    assert format(result.items[0]) == abjad.String.normalize(
         r'''
         \header {
-            globalvariable = #"This overrides the global variable"
+            globalvariable = #"This abjad.overrides the global variable"
             localvariable = #"and this is a local variable."
             something = #4
             title = \markup {
-                "This overrides the global variable"
+                "This abjad.overrides the global variable"
                 "and this is a local variable."
                 }
         }
         '''
         )
-    assert format(result.items[1]) == String.normalize(
+    assert format(result.items[1]) == abjad.String.normalize(
         r'''
         \score {
             \new Staff {
@@ -58,9 +58,9 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_02():
     }
     '''
     result = parse(string)
-    assert isinstance(result, lilypondfiletools.LilyPondFile)
+    assert isinstance(result, abjad.LilyPondFile)
     assert len(result.items) == 2
-    assert format(result.items[0]) == String.normalize(
+    assert format(result.items[0]) == abjad.String.normalize(
         r'''
         \header {
             composer = \markup {
@@ -78,7 +78,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_02():
                 }
         }
         ''')
-    assert format(result.items[1]) == String.normalize(
+    assert format(result.items[1]) == abjad.String.normalize(
         r'''
         {
             c'1

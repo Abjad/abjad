@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_scoretools_Voice_lilypond_voice_resolution_01():
@@ -15,12 +15,12 @@ def test_scoretools_Voice_lilypond_voice_resolution_01():
     How should Abjad resolve voices?
     '''
 
-    voice = Voice("c'8 d'8 b'8 c''8")
-    voice.insert(2, Container([Voice("e'8 f'8"), Voice("g'8 a'8")]))
+    voice = abjad.Voice("c'8 d'8 b'8 c''8")
+    voice.insert(2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")]))
     voice[2].is_simultaneous = True
-    override(voice).note_head.color = 'red'
+    abjad.override(voice).note_head.color = 'red'
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice \with {
             \override NoteHead.color = #red
@@ -52,14 +52,14 @@ def test_scoretools_Voice_lilypond_voice_resolution_02():
     How does LilyPond resolve voices?
     '''
 
-    voice = Voice("c'8 d'8 b'8 c''8")
+    voice = abjad.Voice("c'8 d'8 b'8 c''8")
     voice.name = 'foo'
-    voice.insert(2, Container([Voice("e'8 f'8"), Voice("g'8 a'8")]))
+    voice.insert(2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")]))
     voice[2].is_simultaneous = True
     voice[2][0].name = 'foo'
-    override(voice).note_head.color = 'red'
+    abjad.override(voice).note_head.color = 'red'
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \context Voice = "foo" \with {
             \override NoteHead.color = #red
@@ -96,15 +96,15 @@ def test_scoretools_Voice_lilypond_voice_resolution_03():
     Good example for Abjad voice resolution.
     '''
 
-    container = Container()
-    container.append(Staff([Voice("c'8 d'8")]))
-    container.append(Staff([Voice("e'8 f'8")]))
+    container = abjad.Container()
+    container.append(abjad.Staff([abjad.Voice("c'8 d'8")]))
+    container.append(abjad.Staff([abjad.Voice("e'8 f'8")]))
     container[0].name = 'staff1'
     container[1].name = 'staff2'
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
-    beam = Beam()
-    leaves = select(container).by_leaf()
+    beam = abjad.Beam()
+    leaves = abjad.select(container).by_leaf()
     statement = 'attach(beam, leaves)'
     pytest.raises(Exception, statement)
 
@@ -117,7 +117,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
     LilyPond colors all other note_heads black.
     '''
 
-    container = Container(
+    container = abjad.Container(
         r'''
         c'8
         <<
@@ -144,10 +144,10 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
         '''
         )
 
-    override(container[1][1]).note_head.color = 'red'
-    override(container[2][1]).note_head.color = 'red'
+    abjad.override(container[1][1]).note_head.color = 'red'
+    abjad.override(container[2][1]).note_head.color = 'red'
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8

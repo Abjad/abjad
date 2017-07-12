@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_PhrasingSlur_direction_01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    slur = spannertools.PhrasingSlur(direction=Up)
-    attach(slur, staff[:])
+    slur = abjad.PhrasingSlur(direction=Up)
+    abjad.attach(slur, staff[:])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 ^ \(
@@ -20,16 +19,16 @@ def test_spannertools_PhrasingSlur_direction_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_PhrasingSlur_direction_02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    slur = spannertools.PhrasingSlur(direction=Down)
-    attach(slur, staff[:])
+    slur = abjad.PhrasingSlur(direction=Down)
+    abjad.attach(slur, staff[:])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 _ \(
@@ -40,4 +39,4 @@ def test_spannertools_PhrasingSlur_direction_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

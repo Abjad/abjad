@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_Slur___eq___01():
     r'''Spanner is strict comparator.
     '''
 
-    spanner_1 = Slur()
-    spanner_2 = Slur()
+    spanner_1 = abjad.Slur()
+    spanner_2 = abjad.Slur()
 
     assert not spanner_1 == spanner_2

@@ -238,6 +238,17 @@ class Duration(AbjadObject, Fraction):
     def __div__(self, *arguments):
         r'''Divides duration by `arguments`.
 
+        ..  container:: example
+
+            >>> abjad.Duration(1) / abjad.NonreducedFraction(3, 3)
+            NonreducedFraction(3, 3)
+
+
+        ::
+
+            >>> abjad.NonreducedFraction(3, 3) / abjad.Duration(1)
+            NonreducedFraction(3, 3)
+
         Returns multiplier.
         '''
         from abjad.tools import durationtools
@@ -460,6 +471,18 @@ class Duration(AbjadObject, Fraction):
 
     def __sub__(self, *arguments):
         r'''Subtracts `arguments` from duration.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.Duration(1, 2) - abjad.NonreducedFraction(2, 8)
+                NonreducedFraction(2, 8)
+
+            ::
+
+                >>> abjad.NonreducedFraction(4, 8) - abjad.Duration(1, 4)
+                NonreducedFraction(2, 8)
 
         Returns new duration.
         '''

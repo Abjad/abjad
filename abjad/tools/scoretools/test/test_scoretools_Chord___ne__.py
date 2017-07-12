@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Chord___ne___01():
 
-    chord_1 = Chord("<c' e' fs'>4")
-    chord_2 = Chord("<c' e' fs'>4")
-    chord_3 = Chord("<c' e' fs'>4")
+    chord_1 = abjad.Chord("<c' e' fs'>4")
+    chord_2 = abjad.Chord("<c' e' fs'>4")
+    chord_3 = abjad.Chord("<c' e' fs'>4")
 
     assert not chord_1 != chord_1
     assert     chord_1 != chord_2

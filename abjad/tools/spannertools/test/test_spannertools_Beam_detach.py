@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_Beam_detach_01():
@@ -8,10 +7,10 @@ def test_spannertools_Beam_detach_01():
     '''
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    beam = Beam()
-    attach(beam, staff[0])
+    beam = abjad.Beam()
+    abjad.attach(beam, staff[0])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [ ]
@@ -26,9 +25,9 @@ def test_spannertools_Beam_detach_01():
         '''
         )
 
-    detach(beam, staff[0])
+    abjad.detach(beam, staff[0])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -43,7 +42,7 @@ def test_spannertools_Beam_detach_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_Beam_detach_02():
@@ -51,10 +50,10 @@ def test_spannertools_Beam_detach_02():
     '''
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    beam = Beam()
-    attach(beam, staff[:4])
+    beam = abjad.Beam()
+    abjad.attach(beam, staff[:4])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -69,9 +68,9 @@ def test_spannertools_Beam_detach_02():
         '''
         )
 
-    detach(beam, staff[0])
+    abjad.detach(beam, staff[0])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -86,4 +85,4 @@ def test_spannertools_Beam_detach_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

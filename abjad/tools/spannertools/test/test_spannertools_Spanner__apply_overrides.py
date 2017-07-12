@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
 import sys
-from abjad import *
 
 
 def test_spannertools_Spanner__apply_overrides_01():
@@ -25,12 +24,12 @@ def test_spannertools_Spanner__apply_overrides_01():
         overrides['text_spanner__bound_details__left__text'] = \
             "markuptools.Markup((markuptools.MarkupCommand('italic','“white” flautando'),markuptools.MarkupCommand('hspace',1)))"
 
-    white_flautando_spanner = spannertools.TextSpanner(overrides=overrides)
+    white_flautando_spanner = abjad.TextSpanner(overrides=overrides)
 
     staff = abjad.Staff("c'4 d'4 e'4 f'4")
-    attach(white_flautando_spanner, staff[:])
+    abjad.attach(white_flautando_spanner, staff[:])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \override TextSpanner.bound-details.left-broken.text = \markup {

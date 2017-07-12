@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import quantizationtools
 
 
 def test_quantizationtools_UnweightedSearchTree__find_leaf_subdivisions_01():

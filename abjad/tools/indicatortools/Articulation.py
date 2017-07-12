@@ -63,6 +63,16 @@ class Articulation(AbjadValueObject):
     ..  todo:: Simplify initializer. Allow only initialization from name.
         Implement new ``from_abbreviation()`` and ``from_articulation()``
         methods to replace existing initializer polymorphism.
+
+    ..  container:: example
+
+        Works with new:
+
+        ::
+
+            >>> abjad.new(abjad.Articulation('.'))
+            Articulation('.')
+
     '''
 
     ### CLASS VARIABLES ###

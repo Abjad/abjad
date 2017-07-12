@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_VerticalMoment_previous_vertical_moment_01():
 
-    score = Score(r'''
+    score = abjad.Score(r'''
         \new Staff {
             \times 4/3 {
                 d''8
@@ -27,23 +27,23 @@ def test_selectiontools_VerticalMoment_previous_vertical_moment_01():
         >>
         ''')
 
-    selector = select().by_leaf(flatten=True)
+    selector = abjad.select().by_leaf(flatten=True)
     leaves = selector(score)
     last_leaf = leaves[-1]
-    vertical_moment = inspect(last_leaf).get_vertical_moment()
-    assert vertical_moment.offset == Offset(3, 8)
+    vertical_moment = abjad.inspect(last_leaf).get_vertical_moment()
+    assert vertical_moment.offset == abjad.Offset(3, 8)
 
     vertical_moment = vertical_moment.previous_vertical_moment
-    assert vertical_moment.offset == Offset(1, 3)
+    assert vertical_moment.offset == abjad.Offset(1, 3)
 
     vertical_moment = vertical_moment.previous_vertical_moment
-    assert vertical_moment.offset == Offset(1, 4)
+    assert vertical_moment.offset == abjad.Offset(1, 4)
 
     vertical_moment = vertical_moment.previous_vertical_moment
-    assert vertical_moment.offset == Offset(1, 6)
+    assert vertical_moment.offset == abjad.Offset(1, 6)
 
     vertical_moment = vertical_moment.previous_vertical_moment
-    assert vertical_moment.offset == Offset(1, 8)
+    assert vertical_moment.offset == abjad.Offset(1, 8)
 
     vertical_moment = vertical_moment.previous_vertical_moment
-    assert vertical_moment.offset == Offset(0)
+    assert vertical_moment.offset == abjad.Offset(0)

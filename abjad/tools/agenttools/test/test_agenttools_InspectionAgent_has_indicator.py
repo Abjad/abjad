@@ -1,69 +1,69 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_agenttools_InspectionAgent_has_indicator_01():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    attach('foo', staff)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.attach('foo', staff)
 
-    assert inspect(staff).has_indicator(str)
-    assert not inspect(staff[0]).has_indicator(str)
-    assert not inspect(staff[1]).has_indicator(str)
-    assert not inspect(staff[2]).has_indicator(str)
-    assert not inspect(staff[3]).has_indicator(str)
+    assert abjad.inspect(staff).has_indicator(str)
+    assert not abjad.inspect(staff[0]).has_indicator(str)
+    assert not abjad.inspect(staff[1]).has_indicator(str)
+    assert not abjad.inspect(staff[2]).has_indicator(str)
+    assert not abjad.inspect(staff[3]).has_indicator(str)
 
 
 def test_agenttools_InspectionAgent_has_indicator_02():
 
-    staff = Staff("c'2 d'2")
-    articulation = Articulation('staccato')
-    attach(articulation, staff[0])
+    staff = abjad.Staff("c'2 d'2")
+    articulation = abjad.Articulation('staccato')
+    abjad.attach(articulation, staff[0])
 
-    assert inspect(staff[0]).has_indicator(Articulation)
-    assert not inspect(staff[1]).has_indicator(Articulation)
+    assert abjad.inspect(staff[0]).has_indicator(abjad.Articulation)
+    assert not abjad.inspect(staff[1]).has_indicator(abjad.Duration)
 
 
 def test_agenttools_InspectionAgent_has_indicator_03():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    command = indicatortools.LilyPondCommand('break', 'closing')
-    attach(command, staff[-1])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    command = abjad.LilyPondCommand('break', 'closing')
+    abjad.attach(command, staff[-1])
 
-    assert not inspect(staff[0]).has_indicator(indicatortools.LilyPondCommand)
-    assert not inspect(staff[1]).has_indicator(indicatortools.LilyPondCommand)
-    assert not inspect(staff[2]).has_indicator(indicatortools.LilyPondCommand)
-    assert     inspect(staff[3]).has_indicator(indicatortools.LilyPondCommand)
+    assert not abjad.inspect(staff[0]).has_indicator(abjad.LilyPondCommand)
+    assert not abjad.inspect(staff[1]).has_indicator(abjad.LilyPondCommand)
+    assert not abjad.inspect(staff[2]).has_indicator(abjad.LilyPondCommand)
+    assert     abjad.inspect(staff[3]).has_indicator(abjad.LilyPondCommand)
 
 
 def test_agenttools_InspectionAgent_has_indicator_04():
 
-    staff = Staff("c'2 d'2")
-    comment = indicatortools.LilyPondComment('comment')
-    attach(comment, staff[0])
+    staff = abjad.Staff("c'2 d'2")
+    comment = abjad.LilyPondComment('comment')
+    abjad.attach(comment, staff[0])
 
-    assert inspect(staff[0]).has_indicator(indicatortools.LilyPondComment)
-    assert not inspect(staff[1]).has_indicator(indicatortools.LilyPondComment)
+    assert abjad.inspect(staff[0]).has_indicator(abjad.LilyPondComment)
+    assert not abjad.inspect(staff[1]).has_indicator(abjad.LilyPondComment)
 
 
 def test_agenttools_InspectionAgent_has_indicator_05():
 
-    staff = Staff("c'2 d'2")
-    stem_tremolo = indicatortools.StemTremolo(16)
-    attach(stem_tremolo, staff[0])
+    staff = abjad.Staff("c'2 d'2")
+    stem_tremolo = abjad.StemTremolo(16)
+    abjad.attach(stem_tremolo, staff[0])
 
-    assert inspect(staff[0]).has_indicator(indicatortools.StemTremolo)
-    assert not inspect(staff[1]).has_indicator(indicatortools.StemTremolo)
+    assert abjad.inspect(staff[0]).has_indicator(abjad.StemTremolo)
+    assert not abjad.inspect(staff[1]).has_indicator(abjad.StemTremolo)
 
 
 def test_agenttools_InspectionAgent_has_indicator_06():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = TimeSignature((4, 8))
-    attach(time_signature, staff[0])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    time_signature = abjad.TimeSignature((4, 8))
+    abjad.attach(time_signature, staff[0])
 
-    assert inspect(staff[0]).has_indicator(TimeSignature)
-    assert not inspect(staff[1]).has_indicator()
-    assert not inspect(staff[2]).has_indicator()
-    assert not inspect(staff[3]).has_indicator()
-    assert not inspect(staff).has_indicator()
+    assert abjad.inspect(staff[0]).has_indicator(abjad.TimeSignature)
+    assert not abjad.inspect(staff[1]).has_indicator()
+    assert not abjad.inspect(staff[2]).has_indicator()
+    assert not abjad.inspect(staff[3]).has_indicator()
+    assert not abjad.inspect(staff).has_indicator()

@@ -263,6 +263,20 @@ class Accidental(AbjadValueObject):
     def __add__(self, argument):
         r'''Adds `argument` to accidental.
 
+        ..  container:: example
+
+            ::
+
+                >>> accidental_1 = abjad.Accidental('quarter sharp') 
+                >>> accidental_1 + accidental_1
+                Accidental('s')
+
+            ::
+
+                >>> accidental_1 = abjad.Accidental('quarter sharp') 
+                >>> accidental_1 + accidental_1 + accidental_1
+                Accidental('tqs')
+
         Returns new accidental.
         '''
         if not isinstance(argument, type(self)):
@@ -313,6 +327,18 @@ class Accidental(AbjadValueObject):
     def __neg__(self):
         r'''Negates accidental.
 
+        ..  container:: example
+
+            ::
+
+                >>> -abjad.Accidental('sharp')
+                Accidental('f')
+
+            ::
+
+                >>> -abjad.Accidental('natural')
+                Accidental('')
+
         Returns new accidental.
         '''
         return type(self)(-self.semitones)
@@ -333,6 +359,22 @@ class Accidental(AbjadValueObject):
 
     def __sub__(self, argument):
         r'''Subtracts `argument` from accidental.
+
+        ..  container:: example
+
+            ::
+
+                >>> accidental = abjad.Accidental('quarter sharp')
+                
+            ::
+
+                >>> accidental - accidental
+                Accidental('')
+
+            ::
+
+                >>> accidental - accidental - accidental
+                Accidental('qf')
 
         Returns new accidental.
         '''

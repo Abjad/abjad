@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 

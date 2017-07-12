@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_Spanner_insert_01():
@@ -11,11 +10,11 @@ def test_spannertools_Spanner_insert_01():
     Inserting into middle of spanner may leave discontiguous spanner.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:2])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:2])
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -28,7 +27,7 @@ def test_spannertools_Spanner_insert_01():
 
     beam._insert(1, voice[:][-1])
 
-    assert not inspect(voice).is_well_formed()
+    assert not abjad.inspect(voice).is_well_formed()
 
 
 def test_spannertools_Spanner_insert_02():
@@ -37,11 +36,11 @@ def test_spannertools_Spanner_insert_02():
     Operation is still not composer-safe, however.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = Beam()
-    attach(beam, voice[1][:])
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[1][:])
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -62,7 +61,7 @@ def test_spannertools_Spanner_insert_02():
 
     beam._insert(0, voice[0][1])
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {

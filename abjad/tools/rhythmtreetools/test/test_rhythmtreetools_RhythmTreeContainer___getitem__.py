@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
-from abjad import *
+import abjad
+from abjad.tools import rhythmtreetools
 
 
 def test_rhythmtreetools_RhythmTreeContainer___getitem___01():

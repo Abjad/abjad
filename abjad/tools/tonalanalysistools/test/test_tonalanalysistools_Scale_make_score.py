@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_Scale_make_score_01():
@@ -7,7 +8,7 @@ def test_tonalanalysistools_Scale_make_score_01():
     scale = tonalanalysistools.Scale('E', 'major')
     score = scale.make_score()
 
-    assert format(score) == String.normalize(
+    assert format(score) == abjad.String.normalize(
         r'''
         \new Score \with {
             tempoWholesPerMinute = #(ly:make-moment 30 1)

@@ -48,6 +48,72 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  todo:: Add examples.
 
+        ..  container:: example
+
+            Copies explicit clefs:
+
+            ::
+
+                >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
+                >>> clef = abjad.Clef('treble')
+                >>> abjad.attach(clef, staff[0])
+                >>> clef = abjad.Clef('bass')
+                >>> abjad.attach(clef, staff[4])
+                >>> copied_notes = abjad.mutate(staff[:2]).copy()
+                >>> staff.extend(copied_notes)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \clef "treble"
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    \clef "bass"
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                    \clef "treble"
+                    c'8
+                    cs'8
+                }
+
+        ..  container:: example
+
+            Does not copy implicit clefs:
+
+            ::
+
+                >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
+                >>> clef = abjad.Clef('treble')
+                >>> abjad.attach(clef, staff[0])
+                >>> clef = abjad.Clef('bass')
+                >>> abjad.attach(clef, staff[4])
+                >>> copied_notes = abjad.mutate(staff[2:4]).copy()
+                >>> staff.extend(copied_notes)
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \clef "treble"
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    \clef "bass"
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                    d'8
+                    ef'8
+                }
+
         Returns new component.
         '''
         from abjad.tools import scoretools

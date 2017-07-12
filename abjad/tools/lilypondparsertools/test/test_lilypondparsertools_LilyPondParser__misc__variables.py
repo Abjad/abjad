@@ -1,28 +1,27 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.tools.lilypondparsertools import *
+import abjad
 
 
 def test_lilypondparsertools_LilyPondParser__misc__variables_01():
 
-    target = Staff([
-        Container([
-            Container([
-                Container([
-                    Container([Note(0, (1, 8))]),
-                    Note(2, (1, 8)),
-                    Note(4, (1, 4))
+    target = abjad.Staff([
+        abjad.Container([
+            abjad.Container([
+                abjad.Container([
+                    abjad.Container([abjad.Note(0, (1, 8))]),
+                    abjad.Note(2, (1, 8)),
+                    abjad.Note(4, (1, 4))
                 ]),
-                Note(5, (1, 4)),
-                Note(7, (1, 2))
+                abjad.Note(5, (1, 4)),
+                abjad.Note(7, (1, 2))
             ]),
-            Note(9, (1, 2)),
-            Note(11, 1)
+            abjad.Note(9, (1, 2)),
+            abjad.Note(11, 1)
         ]),
-        Note(12, 1)
+        abjad.Note(12, 1)
     ])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -53,6 +52,6 @@ def test_lilypondparsertools_LilyPondParser__misc__variables_01():
         \new Staff { \foo c'' }
     '''
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result

@@ -6,7 +6,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 @functools.total_ordering
 class OrdinalConstant(AbjadValueObject):
-    r'''An ordinal constant.
+    r'''Ordinal constant.
 
     ::
 
@@ -87,6 +87,37 @@ class OrdinalConstant(AbjadValueObject):
         Do not use ``is``.
 
     Ordinal constants are immutable.
+
+    ..  container:: example
+
+        Copies constants:
+
+        ::
+
+            >>> import copy
+            >>> constant_1 = abjad.OrdinalConstant('x', -1, 'left')
+            >>> constant_2 = copy.deepcopy(constant_1)
+
+        ::
+
+            >>> isinstance(constant_1, abjad.OrdinalConstant)
+            True
+
+        ::
+
+            >>> isinstance(constant_2, abjad.OrdinalConstant)
+            True
+
+        ::
+
+            >>> constant_1 is not constant_2
+            True
+
+        ::
+
+            >>> constant_1 == constant_2
+            True
+
     '''
 
     ### CLASS VARIABLES ###

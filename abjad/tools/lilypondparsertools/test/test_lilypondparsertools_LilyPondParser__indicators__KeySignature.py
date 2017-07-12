@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
+import abjad
 
 
 def test_lilypondparsertools_LilyPondParser__indicators__KeySignature_01():
 
-    target = Staff([Note("fs'", 1)])
-    key_signature = KeySignature('g', 'major')
-    attach(key_signature, target[0])
+    target = abjad.Staff([abjad.Note("fs'", 1)])
+    key_signature = abjad.KeySignature('g', 'major')
+    abjad.attach(key_signature, target[0])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         \new Staff {
             \key g \major
@@ -18,8 +17,8 @@ def test_lilypondparsertools_LilyPondParser__indicators__KeySignature_01():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    key_signatures = inspect(result[0]).get_indicators(KeySignature)
+    key_signatures = abjad.inspect(result[0]).get_indicators(abjad.KeySignature)
     assert len(key_signatures) == 1

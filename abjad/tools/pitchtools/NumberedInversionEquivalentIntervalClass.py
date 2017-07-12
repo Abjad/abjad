@@ -17,8 +17,22 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
         ::
 
+            >>> abjad.NumberedInversionEquivalentIntervalClass(0)
+            NumberedInversionEquivalentIntervalClass(0)
+
+        ::
+
             >>> abjad.NumberedInversionEquivalentIntervalClass(1)
             NumberedInversionEquivalentIntervalClass(1)
+
+    ..  container:: example
+
+        Initializes from float:
+
+        ::
+
+            >>> abjad.NumberedInversionEquivalentIntervalClass(1.5)
+            NumberedInversionEquivalentIntervalClass(1.5)
 
     ..  container:: example
 

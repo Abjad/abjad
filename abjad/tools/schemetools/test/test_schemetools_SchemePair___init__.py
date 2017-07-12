@@ -1,35 +1,35 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_schemetools_SchemePair___init___01():
-    r'''Initialize Scheme pair from two values.
+    r'''Initialize abjad.Scheme pair from two values.
     '''
 
-    scheme_pair = schemetools.SchemePair(1, 2)
+    scheme_pair = abjad.SchemePair(1, 2)
     assert str(scheme_pair) == '(1 . 2)'
 
-    scheme_pair = schemetools.SchemePair(True, False)
+    scheme_pair = abjad.SchemePair(True, False)
     assert str(scheme_pair) == '(#t . #f)'
 
-    scheme_pair = schemetools.SchemePair('spacing', 4)
+    scheme_pair = abjad.SchemePair('spacing', 4)
     assert str(scheme_pair) == '(spacing . 4)'
 
 
 def test_schemetools_SchemePair___init___02():
-    r'''Initialize Scheme pair from pair.
+    r'''Initialize abjad.Scheme pair from pair.
     '''
 
-    scheme_pair = schemetools.SchemePair((1, 2))
+    scheme_pair = abjad.SchemePair((1, 2))
     assert str(scheme_pair) == '(1 . 2)'
 
 
 def test_schemetools_SchemePair___init___03():
-    r'''Initialize Scheme pair from other Scheme pair.
+    r'''Initialize abjad.Scheme pair from other abjad.Scheme pair.
     '''
 
-    scheme_pair_1 = schemetools.SchemePair(1, 2)
-    scheme_pair_2 = schemetools.SchemePair(scheme_pair_1)
+    scheme_pair_1 = abjad.SchemePair(1, 2)
+    scheme_pair_2 = abjad.SchemePair(scheme_pair_1)
 
     assert str(scheme_pair_1) == '(1 . 2)'
     assert str(scheme_pair_2) == '(1 . 2)'

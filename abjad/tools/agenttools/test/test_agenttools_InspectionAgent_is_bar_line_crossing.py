@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_agenttools_InspectionAgent_is_bar_line_crossing_01():
     r'''Works with partial.
     '''
 
-    staff = Staff("c'8 d'8 e'4 f'8")
-    time_signature = TimeSignature((2, 8), partial=Duration(1, 8))
-    attach(time_signature, staff)
+    staff = abjad.Staff("c'8 d'8 e'4 f'8")
+    time_signature = abjad.TimeSignature((2, 8), partial=abjad.Duration(1, 8))
+    abjad.attach(time_signature, staff)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \partial 8
@@ -23,18 +23,18 @@ def test_agenttools_InspectionAgent_is_bar_line_crossing_01():
         '''
         )
 
-    assert not inspect(staff[0]).is_bar_line_crossing()
-    assert not inspect(staff[1]).is_bar_line_crossing()
-    assert inspect(staff[2]).is_bar_line_crossing()
-    assert not inspect(staff[3]).is_bar_line_crossing()
+    assert not abjad.inspect(staff[0]).is_bar_line_crossing()
+    assert not abjad.inspect(staff[1]).is_bar_line_crossing()
+    assert abjad.inspect(staff[2]).is_bar_line_crossing()
+    assert not abjad.inspect(staff[3]).is_bar_line_crossing()
 
 
 def test_agenttools_InspectionAgent_is_bar_line_crossing_02():
-    r'''Works when no explicit time signature is attached.
+    r'''Works when no explicit time signature is abjad.attached.
     '''
 
-    staff = Staff("c'2 d'1 e'2")
+    staff = abjad.Staff("c'2 d'1 e'2")
 
-    assert not inspect(staff[0]).is_bar_line_crossing()
-    assert inspect(staff[1]).is_bar_line_crossing()
-    assert not inspect(staff[2]).is_bar_line_crossing()
+    assert not abjad.inspect(staff[0]).is_bar_line_crossing()
+    assert abjad.inspect(staff[1]).is_bar_line_crossing()
+    assert not abjad.inspect(staff[2]).is_bar_line_crossing()

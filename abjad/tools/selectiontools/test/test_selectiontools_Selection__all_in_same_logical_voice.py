@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-Component = scoretools.Component
-Selection = selectiontools.Selection
-selector = select().by_leaf(flatten=True)
+import abjad
+selector = abjad.select().by_leaf(flatten=True)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_01():
@@ -11,9 +9,9 @@ def test_selectiontools_Selection__all_in_same_logical_voice_01():
     False if not allow orphans; True if allow orphans.
     '''
 
-    notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
-    assert Selection._all_in_same_logical_voice(notes)
-    assert not Selection._all_in_same_logical_voice(
+    notes = [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
+    assert abjad.Selection._all_in_same_logical_voice(notes)
+    assert not abjad.Selection._all_in_same_logical_voice(
         notes, allow_orphans=False)
 
 
@@ -21,7 +19,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_02():
     r'''Container and leaves all logical voice.
     '''
 
-    container = Container("c'8 d'8 e'8 f'8")
+    container = abjad.Container("c'8 d'8 e'8 f'8")
 
     r'''
     {
@@ -32,15 +30,15 @@ def test_selectiontools_Selection__all_in_same_logical_voice_02():
     }
     '''
 
-    assert Selection._all_in_same_logical_voice(
-        select(container).by_class())
+    assert abjad.Selection._all_in_same_logical_voice(
+        abjad.select(container).by_class())
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_03():
     r'''Tuplet and leaves all logical voice.
     '''
 
-    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
 
     r'''
     \times 2/3 {
@@ -50,15 +48,15 @@ def test_selectiontools_Selection__all_in_same_logical_voice_03():
     }
     '''
 
-    assert Selection._all_in_same_logical_voice(
-        select(tuplet).by_class())
+    assert abjad.Selection._all_in_same_logical_voice(
+        abjad.select(tuplet).by_class())
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_04():
     r'''Voice and leaves all appear in same logical voice.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
 
     r'''
     \new Voice {
@@ -69,15 +67,15 @@ def test_selectiontools_Selection__all_in_same_logical_voice_04():
     }
     '''
 
-    assert Selection._all_in_same_logical_voice(
-        select(voice).by_class())
+    assert abjad.Selection._all_in_same_logical_voice(
+        abjad.select(voice).by_class())
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_05():
     r'''Anonymous staff and leaves all appear in same logical voice.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
     r'''
     \new Staff {
@@ -88,15 +86,15 @@ def test_selectiontools_Selection__all_in_same_logical_voice_05():
     }
     '''
 
-    assert Selection._all_in_same_logical_voice(
-        select(staff).by_class())
+    assert abjad.Selection._all_in_same_logical_voice(
+        abjad.select(staff).by_class())
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_06():
     r'''Voice, sequential and leaves all appear in same logical voice.
     '''
 
-    voice = Voice(r'''
+    voice = abjad.Voice(r'''
         {
             c'8
             d'8
@@ -111,7 +109,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_06():
         }
         ''')
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -130,15 +128,15 @@ def test_selectiontools_Selection__all_in_same_logical_voice_06():
         '''
         )
 
-    assert Selection._all_in_same_logical_voice(
-        select(voice).by_class())
+    assert abjad.Selection._all_in_same_logical_voice(
+        abjad.select(voice).by_class())
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_07():
     r'''Anonymous voice, tuplets and leaves all appear in same logical voice.
     '''
 
-    voice = Voice(r'''
+    voice = abjad.Voice(r'''
         \times 2/3 {
             c'8
             d'8
@@ -151,7 +149,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_07():
         }
         ''')
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -168,15 +166,15 @@ def test_selectiontools_Selection__all_in_same_logical_voice_07():
         '''
         )
 
-    assert Selection._all_in_same_logical_voice(
-        select(voice).by_class())
+    assert abjad.Selection._all_in_same_logical_voice(
+        abjad.select(voice).by_class())
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_08():
     r'''Logical voice does not extend across anonymous voices.
     '''
 
-    staff = Staff(r'''
+    staff = abjad.Staff(r'''
         \new Voice {
             c'8
             d'8
@@ -191,7 +189,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_08():
         }
         ''')
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -211,17 +209,17 @@ def test_selectiontools_Selection__all_in_same_logical_voice_08():
         )
 
     leaves = selector(staff)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
-    assert not Selection._all_in_same_logical_voice(staff[:])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
+    assert not abjad.Selection._all_in_same_logical_voice(staff[:])
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_09():
     r'''Logical voice encompasses across like-named voices.
     '''
 
-    staff = Staff(r'''
+    staff = abjad.Staff(r'''
         \context Voice = "foo" {
             c'8
             d'8
@@ -236,7 +234,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_09():
         }
         ''')
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -256,14 +254,14 @@ def test_selectiontools_Selection__all_in_same_logical_voice_09():
         )
 
     leaves = selector(staff)
-    assert Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_10():
     r'''Logical voice does not extend across differently named voices.
     '''
 
-    staff = Staff(r'''
+    staff = abjad.Staff(r'''
         \context Voice = "foo" {
             c'8
             d'8
@@ -274,7 +272,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_10():
         }
         ''')
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -290,7 +288,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_10():
         )
 
     leaves = selector(staff)
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_11():
@@ -298,7 +296,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_11():
     Logical voice does not extend across anonymous staves.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         \new Staff {
             \new Voice {
                 c'8
@@ -313,7 +311,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_11():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \new Staff {
@@ -333,7 +331,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_11():
         )
 
     leaves = selector(container)
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_12():
@@ -341,7 +339,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_12():
     Logical voice does not extend across anonymous staves.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         \new Staff <<
             \new Voice {
                 c'8
@@ -364,7 +362,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_12():
         >>
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \new Staff <<
@@ -392,7 +390,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_12():
         )
 
     leaves = selector(container)
-    assert not Selection._all_in_same_logical_voice(leaves[:4])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves[:4])
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_13():
@@ -400,7 +398,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_13():
     logical voice.
     '''
 
-    voice = Voice(r'''
+    voice = abjad.Voice(r'''
         {
             c'8
             d'8
@@ -411,7 +409,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_13():
         }
         ''')
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -427,7 +425,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_13():
         )
 
     leaves = selector(voice)
-    assert Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_14():
@@ -435,7 +433,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_14():
     Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         \context Staff = "foo" {
             c'8
             cs'8
@@ -450,7 +448,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_14():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \context Staff = "foo" {
@@ -470,15 +468,15 @@ def test_selectiontools_Selection__all_in_same_logical_voice_14():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_15():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         {
             c'8
             d'8
@@ -493,7 +491,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_15():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             {
@@ -513,16 +511,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_15():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_16():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         \new Voice {
             c'8
             d'8
@@ -537,7 +535,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_16():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \new Voice {
@@ -557,16 +555,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_16():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_17():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         {
             c'8
             d'8
@@ -599,16 +597,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_17():
     '''
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_18():
     r'''Logical voice can not extend acrossdifferently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         \context Voice = "foo" {
             c'8
             d'8
@@ -623,7 +621,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_18():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \context Voice = "foo" {
@@ -643,16 +641,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_18():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_19():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         {
             c'8
             d'8
@@ -667,7 +665,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_19():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             {
@@ -687,16 +685,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_19():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_20():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         \new Staff {
             c'8
             cs'8
@@ -711,7 +709,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_20():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \new Staff {
@@ -731,16 +729,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_20():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_21():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         c'8
         cs'8
         d'8
@@ -753,7 +751,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_21():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -771,16 +769,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_21():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_22():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         \new Voice {
             c'8
             cs'8
@@ -793,7 +791,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_22():
         g'8
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \new Voice {
@@ -811,16 +809,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_22():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_23():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         c'8
         cs'8
         d'8
@@ -833,7 +831,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_23():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -851,9 +849,9 @@ def test_selectiontools_Selection__all_in_same_logical_voice_23():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_24():
@@ -863,7 +861,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_24():
     Abjad does not.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         \context Voice = "foo" {
             c'8
             cs'8
@@ -876,7 +874,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_24():
         g'8
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \context Voice = "foo" {
@@ -894,16 +892,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_24():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_25():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         c'8
         cs'8
         d'8
@@ -916,7 +914,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_25():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -934,16 +932,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_25():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_26():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         \new Staff {
             c'8
             d'8
@@ -956,7 +954,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_26():
         c''8
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \new Staff {
@@ -974,21 +972,21 @@ def test_selectiontools_Selection__all_in_same_logical_voice_26():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_27():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    voice = Voice([Note(n, (1, 8)) for n in range(4)])
-    container = Container([voice])
-    notes = [Note(n, (1, 8)) for n in range(4, 8)]
-    container = Container([container] + notes)
+    voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
+    container = abjad.Container([voice])
+    notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
+    container = abjad.Container([container] + notes)
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             {
@@ -1008,20 +1006,20 @@ def test_selectiontools_Selection__all_in_same_logical_voice_27():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_28():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    voice = Voice([Note(n, (1, 8)) for n in range(4)])
+    voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
     voice.name = 'foo'
-    q = Container([voice])
-    notes = [Note(n, (1, 8)) for n in range(4, 8)]
-    container = Container([q] + notes)
+    q = abjad.Container([voice])
+    notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
+    container = abjad.Container([q] + notes)
 
     r'''
     {
@@ -1041,23 +1039,23 @@ def test_selectiontools_Selection__all_in_same_logical_voice_28():
     '''
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_29():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    voice_1 = Voice([Note(n, (1, 8)) for n in range(4)])
+    voice_1 = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
     voice_1.name = 'foo'
-    voice_2 = Voice([voice_1])
+    voice_2 = abjad.Voice([voice_1])
     voice_2.name = 'bar'
-    notes = [Note(n, (1, 8)) for n in range(4, 8)]
-    container = Container([voice_2] + notes)
+    notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
+    container = abjad.Container([voice_2] + notes)
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \context Voice = "bar" {
@@ -1077,21 +1075,21 @@ def test_selectiontools_Selection__all_in_same_logical_voice_29():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_30():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    voice_1 = Voice([Note(n, (1, 8)) for n in range(4)])
-    voice_2 = Voice([voice_1])
-    notes = [Note(n, (1, 8)) for n in range(4, 8)]
-    container = Container([voice_2] + notes)
+    voice_1 = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
+    voice_2 = abjad.Voice([voice_1])
+    notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
+    container = abjad.Container([voice_2] + notes)
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \new Voice {
@@ -1111,23 +1109,23 @@ def test_selectiontools_Selection__all_in_same_logical_voice_30():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_31():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    notes = [Note(n, (1, 8)) for n in range(4)]
-    voice_1 = Voice(Note(12, (1, 8)) * 4)
-    voice_2 = Voice(Note(0, (1, 8)) * 4)
-    container = Container([voice_1, voice_2])
+    notes = [abjad.Note(n, (1, 8)) for n in range(4)]
+    voice_1 = abjad.Voice(abjad.Note(12, (1, 8)) * 4)
+    voice_2 = abjad.Voice(abjad.Note(0, (1, 8)) * 4)
+    container = abjad.Container([voice_1, voice_2])
     container.is_simultaneous = True
-    container = Container(notes + [container])
+    container = abjad.Container(notes + [container])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -1153,15 +1151,15 @@ def test_selectiontools_Selection__all_in_same_logical_voice_31():
         )
 
     leaves = selector(container)
-    assert not Selection._all_in_same_logical_voice(leaves[:8])
-    assert not Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves[:8])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves[4:])
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_32():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         <<
             \new Voice {
                 c'8
@@ -1182,7 +1180,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_32():
         b'8
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             <<
@@ -1208,8 +1206,8 @@ def test_selectiontools_Selection__all_in_same_logical_voice_32():
         )
 
     leaves = selector(container)
-    assert not Selection._all_in_same_logical_voice(leaves[:8])
-    assert not Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves[:8])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves[4:])
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_33():
@@ -1217,7 +1215,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_33():
     Logical voice can not extend across differently named voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         c'8
         cs'8
         \new Voice {
@@ -1240,7 +1238,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_33():
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -1264,13 +1262,13 @@ def test_selectiontools_Selection__all_in_same_logical_voice_33():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in outer])
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in middle])
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in inner])
-    assert not Selection._all_in_same_logical_voice(leaves[:4])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves[:4])
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_34():
@@ -1278,7 +1276,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_34():
     Logical voice can not extend across differently named implicit voices.
     '''
 
-    staff = Staff(r'''
+    staff = abjad.Staff(r'''
         c'8
         cs'8
         \new Staff {
@@ -1301,7 +1299,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_34():
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -1325,20 +1323,20 @@ def test_selectiontools_Selection__all_in_same_logical_voice_34():
         )
 
     leaves = selector(staff)
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in outer])
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in middle])
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in inner])
-    assert not Selection._all_in_same_logical_voice(leaves[:4])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves[:4])
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_35():
     r'''Containers and leaves all appear in same logical voice.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         c'8
         cs'8
         {
@@ -1357,7 +1355,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_35():
         b'8
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -1380,15 +1378,15 @@ def test_selectiontools_Selection__all_in_same_logical_voice_35():
         '''
         )
 
-    assert Selection._all_in_same_logical_voice(
-        select(container).by_class())
+    assert abjad.Selection._all_in_same_logical_voice(
+        abjad.select(container).by_class())
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_36():
     r'''Logical voice can not extend across differently named voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         c'8
         cs'8
         {
@@ -1405,7 +1403,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_36():
         g'8
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -1430,18 +1428,18 @@ def test_selectiontools_Selection__all_in_same_logical_voice_36():
     inner = (2, 3, 4, 5)
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in outer])
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in inner])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_37():
     r'''Logical voice does not extend over differently named voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         {
             {
                 \context Voice = "foo" {
@@ -1458,7 +1456,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_37():
         g'8
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             {
@@ -1480,16 +1478,16 @@ def test_selectiontools_Selection__all_in_same_logical_voice_37():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_38():
     r'''Can not nest across differently named implicit voices.
     '''
 
-    container = Voice(
+    container = abjad.Voice(
         r'''
         {
             {
@@ -1509,7 +1507,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_38():
         }
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -1536,18 +1534,18 @@ def test_selectiontools_Selection__all_in_same_logical_voice_38():
     inner = (2, 3, 4, 5)
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in outer])
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in inner])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_39():
     r'''Logical voice can not extend across differently named voices.
     '''
 
-    voice = Voice(r'''
+    voice = abjad.Voice(r'''
         c'8
         cs'8
         {
@@ -1573,7 +1571,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_39():
         ''')
     voice.name = 'foo'
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \context Voice = "foo" {
             c'8
@@ -1606,18 +1604,18 @@ def test_selectiontools_Selection__all_in_same_logical_voice_39():
     inner = (6, 7, 8, 9)
 
     leaves = selector(voice)
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in outer])
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in inner])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_40():
     r'''Logical voice can not extend across differently named anonymous voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         \new Voice {
             c'8
             cs'8
@@ -1636,7 +1634,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_40():
         b'8
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \new Voice {
@@ -1660,19 +1658,19 @@ def test_selectiontools_Selection__all_in_same_logical_voice_40():
         )
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(leaves[:4])
-    assert Selection._all_in_same_logical_voice(leaves[4:8])
-    assert Selection._all_in_same_logical_voice(leaves[8:])
-    assert not Selection._all_in_same_logical_voice(leaves[:8])
-    assert not Selection._all_in_same_logical_voice(leaves[4:])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[:4])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[4:8])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[8:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves[:8])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves[4:])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_41():
     r'''Logical voice can not extend across differently named anonymous voices.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         c'8
         cs'8
         <<
@@ -1693,7 +1691,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_41():
         b'8
         ''')
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -1721,12 +1719,12 @@ def test_selectiontools_Selection__all_in_same_logical_voice_41():
     outer = (0, 1, 10, 11)
 
     leaves = selector(container)
-    assert Selection._all_in_same_logical_voice(
+    assert abjad.Selection._all_in_same_logical_voice(
         [leaves[i] for i in outer])
-    assert Selection._all_in_same_logical_voice(leaves[2:6])
-    assert Selection._all_in_same_logical_voice(leaves[6:10])
-    assert not Selection._all_in_same_logical_voice(leaves[:6])
-    assert not Selection._all_in_same_logical_voice(leaves)
+    assert abjad.Selection._all_in_same_logical_voice(leaves[2:6])
+    assert abjad.Selection._all_in_same_logical_voice(leaves[6:10])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves[:6])
+    assert not abjad.Selection._all_in_same_logical_voice(leaves)
 
 ###############################################################################
 ########################## WITH CONTIGUITY CONSTRAINT #########################
@@ -1737,7 +1735,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_42():
     Even if components are all part of the same logical voice.
     '''
 
-    voice = Voice(r'''
+    voice = abjad.Voice(r'''
         {
             c'8
             d'8
@@ -1769,15 +1767,15 @@ def test_selectiontools_Selection__all_in_same_logical_voice_42():
     }
     '''
 
-    assert not Selection._all_in_same_logical_voice(
+    assert not abjad.Selection._all_in_same_logical_voice(
         [voice, voice[0]],
         contiguous=True,
         )
-    assert not Selection._all_in_same_logical_voice(
+    assert not abjad.Selection._all_in_same_logical_voice(
         voice[0:1] + voice[0][:],
         contiguous=True,
         )
-    assert not Selection._all_in_same_logical_voice(
+    assert not abjad.Selection._all_in_same_logical_voice(
         voice[-1:] + voice[-1][:],
         contiguous=True,
         )
@@ -1787,8 +1785,8 @@ def test_selectiontools_Selection__all_in_same_logical_voice_43():
     r'''Is true for strictly contiguous leaves in same staff.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    assert Selection._all_in_same_logical_voice(staff[:], contiguous=True)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    assert abjad.Selection._all_in_same_logical_voice(staff[:], contiguous=True)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_44():
@@ -1796,9 +1794,9 @@ def test_selectiontools_Selection__all_in_same_logical_voice_44():
     Is false for orphan components when allow_orphans is False.
     '''
 
-    notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
-    assert Selection._all_in_same_logical_voice(notes, contiguous=True)
-    assert not Selection._all_in_same_logical_voice(
+    notes = [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
+    assert abjad.Selection._all_in_same_logical_voice(notes, contiguous=True)
+    assert not abjad.Selection._all_in_same_logical_voice(
         notes,
         allow_orphans=False,
         contiguous=True,
@@ -1809,8 +1807,8 @@ def test_selectiontools_Selection__all_in_same_logical_voice_45():
     r'''Is false for time-reordered leaves in staff.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    assert not Selection._all_in_same_logical_voice(
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    assert not abjad.Selection._all_in_same_logical_voice(
         staff[2:] + staff[:2],
         contiguous=True,
         )
@@ -1820,8 +1818,8 @@ def test_selectiontools_Selection__all_in_same_logical_voice_46():
     r'''Is true for unincorporated component.
     '''
 
-    assert Selection._all_in_same_logical_voice(
-        [Staff("c'8 d'8 e'8 f'8")],
+    assert abjad.Selection._all_in_same_logical_voice(
+        [abjad.Staff("c'8 d'8 e'8 f'8")],
         contiguous=True,
         )
 
@@ -1830,18 +1828,18 @@ def test_selectiontools_Selection__all_in_same_logical_voice_47():
     r'''Is true for empty list.
     '''
 
-    assert Selection._all_in_same_logical_voice([], contiguous=True)
+    assert abjad.Selection._all_in_same_logical_voice([], contiguous=True)
 
 
 def test_selectiontools_Selection__all_in_same_logical_voice_48():
     r'''False when components belonging to same logical voice are ommitted.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8")
-    beam = Beam()
-    attach(beam, voice[:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8 g'8 a'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -1854,7 +1852,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_48():
         '''
         )
 
-    assert not Selection._all_in_same_logical_voice(
+    assert not abjad.Selection._all_in_same_logical_voice(
         voice[:2] + voice[-2:],
         contiguous=True,
         )
@@ -1864,7 +1862,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_49():
     r'''False when components belonging to same logical voice are ommitted.
     '''
 
-    voice = Voice(r'''
+    voice = abjad.Voice(r'''
         {
             c'8 [
             d'8
@@ -1879,7 +1877,7 @@ def test_selectiontools_Selection__all_in_same_logical_voice_49():
         }
         ''')
 
-    assert not Selection._all_in_same_logical_voice(
+    assert not abjad.Selection._all_in_same_logical_voice(
         voice[:1] + voice[-1:],
         contiguous=True,
         )

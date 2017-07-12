@@ -269,21 +269,56 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            C#5 equals C#5:
+            ::
+
+                >>> pitch_1 = abjad.NamedPitch('fs')
+                >>> pitch_2 = abjad.NamedPitch('fs')
+                >>> pitch_3 = abjad.NamedPitch('gf')
 
             ::
 
-                >>> abjad.NamedPitch('C#5') == abjad.NamedPitch("cs''")
+                >>> pitch_1 == pitch_1
                 True
 
-        ..  container:: example
+            ::
 
-            C#5 does not equal Db5:
+                >>> pitch_1 == pitch_2
+                True
 
             ::
 
-                >>> abjad.NamedPitch('C#5') == abjad.NamedPitch('Db5')
+                >>> pitch_1 == pitch_3
                 False
+
+            ::
+
+                >>> pitch_2 == pitch_1
+                True
+
+            ::
+
+                >>> pitch_2 == pitch_2
+                True
+
+            ::
+
+                >>> pitch_2 == pitch_3
+                False
+
+            ::
+
+                >>> pitch_3 == pitch_1
+                False
+
+            ::
+
+                >>> pitch_3 == pitch_2
+                False
+
+            ::
+
+                >>> pitch_3 == pitch_3
+                True
 
         Returns true or false.
         '''
@@ -324,6 +359,59 @@ class NamedPitch(Pitch):
         r'''Is true when named pitch is greater than or equal to `argument`.
         Otherwise false.
 
+        ..  container:: example
+
+            ::
+
+                >>> pitch_1 = abjad.NamedPitch('fs')
+                >>> pitch_2 = abjad.NamedPitch('fs')
+                >>> pitch_3 = abjad.NamedPitch('gf')
+
+            ::
+
+                >>> pitch_1 >= pitch_1
+                True
+
+            ::
+
+                >>> pitch_1 >= pitch_2
+                True
+
+            ::
+
+                >>> pitch_1 >= pitch_3
+                False
+
+            ::
+
+                >>> pitch_2 >= pitch_1
+                True
+
+            ::
+
+                >>> pitch_2 >= pitch_2
+                True
+
+            ::
+
+                >>> pitch_2 >= pitch_3
+                False
+
+            ::
+
+                >>> pitch_3 >= pitch_1
+                True
+
+            ::
+
+                >>> pitch_3 >= pitch_2
+                True
+
+            ::
+
+                >>> pitch_3 >= pitch_3
+                True
+
         Returns true or false.
         '''
         from abjad.tools import pitchtools
@@ -351,6 +439,69 @@ class NamedPitch(Pitch):
     def __gt__(self, argument):
         r'''Is true when named pitch is greater than `argument`.
         Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch_1 = abjad.NamedPitch('fs')
+                >>> pitch_2 = abjad.NamedPitch('fs')
+                >>> pitch_3 = abjad.NamedPitch('gf')
+
+            ::
+
+                >>> pitch_1 > pitch_1
+                False
+
+            ::
+
+                >>> pitch_1 > pitch_2
+                False
+
+            ::
+
+                >>> pitch_1 > pitch_3
+                False
+
+            ::
+
+                >>> pitch_2 > pitch_1
+                False
+
+            ::
+
+                >>> pitch_2 > pitch_2
+                False
+
+            ::
+
+                >>> pitch_2 > pitch_3
+                False
+
+            ::
+
+                >>> pitch_3 > pitch_1
+                True
+
+            ::
+
+                >>> pitch_3 > pitch_2
+                True
+
+            ::
+
+                >>> pitch_3 > pitch_3
+                False
+
+        ..  container:: example
+
+            Built-in max works:
+
+            ::
+
+                >>> staff = abjad.Staff("c'8 d' e' f'")
+                >>> max([_.written_pitch for _ in staff])
+                NamedPitch("f'")
 
         Returns true or false.
         '''
@@ -404,8 +555,61 @@ class NamedPitch(Pitch):
         return int(self.pitch_number)
 
     def __le__(self, argument):
-        r'''Is true when named pitch is less than or equal to `argument`. Otherwise
-        false.
+        r'''Is true when named pitch is less than or equal to `argument`.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch_1 = abjad.NamedPitch('fs')
+                >>> pitch_2 = abjad.NamedPitch('fs')
+                >>> pitch_3 = abjad.NamedPitch('gf')
+
+            ::
+
+                >>> pitch_1 <= pitch_1
+                True
+
+            ::
+
+                >>> pitch_1 <= pitch_2
+                True
+
+            ::
+
+                >>> pitch_1 <= pitch_3
+                True
+
+            ::
+
+                >>> pitch_2 <= pitch_1
+                True
+
+            ::
+
+                >>> pitch_2 <= pitch_2
+                True
+
+            ::
+
+                >>> pitch_2 <= pitch_3
+                True
+
+            ::
+
+                >>> pitch_3 <= pitch_1
+                False
+
+            ::
+
+                >>> pitch_3 <= pitch_2
+                False
+
+            ::
+
+                >>> pitch_3 <= pitch_3
+                True
 
         Returns true or false.
         '''
@@ -430,6 +634,59 @@ class NamedPitch(Pitch):
     def __lt__(self, argument):
         r'''Is true when named pitch is less than `argument`. Otherwise false.
 
+        ..  container:: example
+
+            ::
+
+                >>> pitch_1 = abjad.NamedPitch('fs')
+                >>> pitch_2 = abjad.NamedPitch('fs')
+                >>> pitch_3 = abjad.NamedPitch('gf')
+
+            ::
+
+                >>> pitch_1 < pitch_1
+                False
+
+            ::
+
+                >>> pitch_1 < pitch_2
+                False
+
+            ::
+
+                >>> pitch_1 < pitch_3
+                True
+
+            ::
+
+                >>> pitch_2 < pitch_1
+                False
+
+            ::
+
+                >>> pitch_2 < pitch_2
+                False
+
+            ::
+
+                >>> pitch_2 < pitch_3
+                True
+
+            ::
+
+                >>> pitch_3 < pitch_1
+                False
+
+            ::
+
+                >>> pitch_3 < pitch_2
+                False
+
+            ::
+
+                >>> pitch_3 < pitch_3
+                False
+
         Returns true or false.
         '''
         from abjad.tools import pitchtools
@@ -450,7 +707,8 @@ class NamedPitch(Pitch):
         return False
 
     def __ne__(self, argument):
-        r'''Is true when named pitch does not equal `argument`. Otherwise false.
+        r'''Is true when named pitch does not equal `argument`.
+        Otherwise false.
 
         ..  container:: example
 

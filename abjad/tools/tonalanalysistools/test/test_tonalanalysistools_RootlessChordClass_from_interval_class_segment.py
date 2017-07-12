@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_RootlessChordClass_from_interval_class_segment_01():
 
-    segment = pitchtools.IntervalClassSegment([
-        pitchtools.NamedInversionEquivalentIntervalClass('minor', 3),
-        pitchtools.NamedInversionEquivalentIntervalClass('minor', 3),])
+    segment = abjad.IntervalClassSegment([
+        abjad.NamedInversionEquivalentIntervalClass('minor', 3),
+        abjad.NamedInversionEquivalentIntervalClass('minor', 3),])
     class_ = tonalanalysistools.RootlessChordClass
     chord_class = class_.from_interval_class_segment(segment)
 
@@ -15,9 +16,9 @@ def test_tonalanalysistools_RootlessChordClass_from_interval_class_segment_01():
 
 def test_tonalanalysistools_RootlessChordClass_from_interval_class_segment_02():
 
-    segment = pitchtools.IntervalClassSegment([
-        pitchtools.NamedInversionEquivalentIntervalClass('minor', 3),
-        pitchtools.NamedInversionEquivalentIntervalClass('major', 3),])
+    segment = abjad.IntervalClassSegment([
+        abjad.NamedInversionEquivalentIntervalClass('minor', 3),
+        abjad.NamedInversionEquivalentIntervalClass('major', 3),])
     class_ = tonalanalysistools.RootlessChordClass
     chord_class = class_.from_interval_class_segment(segment)
 
@@ -26,9 +27,9 @@ def test_tonalanalysistools_RootlessChordClass_from_interval_class_segment_02():
 
 def test_tonalanalysistools_RootlessChordClass_from_interval_class_segment_03():
 
-    segment = pitchtools.IntervalClassSegment([
-        pitchtools.NamedInversionEquivalentIntervalClass('major', 3),
-        pitchtools.NamedInversionEquivalentIntervalClass('minor', 3),])
+    segment = abjad.IntervalClassSegment([
+        abjad.NamedInversionEquivalentIntervalClass('major', 3),
+        abjad.NamedInversionEquivalentIntervalClass('minor', 3),])
     class_ = tonalanalysistools.RootlessChordClass
     chord_class = class_.from_interval_class_segment(segment)
 

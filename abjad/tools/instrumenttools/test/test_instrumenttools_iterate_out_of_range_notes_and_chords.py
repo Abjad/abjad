@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_instrumenttools_iterate_out_of_range_notes_and_chords_01():

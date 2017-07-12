@@ -21,22 +21,17 @@ class PitchRange(AbjadValueObject):
         ::
 
             >>> pitch_range = abjad.PitchRange('[C3, C7]')
+            >>> show(pitch_range) # doctest: +SKIP
+
+        ..  docs::
+
             >>> f(pitch_range)
             abjad.PitchRange(
                 range_string='[C3, C7]',
                 )
 
-        ::
-
-            >>> show(pitch_range) # doctest: +SKIP
-
     Initalizes from pitch numbers, pitch names, pitch instances,
     one-line reprs or other pitch range objects.
-
-    Pitch ranges implement equality testing against other pitch ranges.
-
-    Pitch ranges test less than, greater than, less-equal and
-    greater-equal against pitches.
 
     Pitch ranges do not sort relative to other pitch ranges.
     """
@@ -99,6 +94,270 @@ class PitchRange(AbjadValueObject):
     def __contains__(self, argument):
         r'''Is true when pitch range contains `argument`. Otherwise false.
 
+        ..  container:: example
+
+            Closed / closed range:
+
+            ::
+
+                >>> range_ = abjad.PitchRange('[A0, C8]')
+
+            ::
+
+                >>> -99 in range_
+                False
+
+            ::
+
+                >>> -39 in range_
+                True
+
+            ::
+
+                >>> 0 in range_
+                True
+
+            ::
+
+                >>> 48 in range_
+                True
+
+            ::
+
+                >>> 99 in range_
+                False
+
+        ..  container:: example
+
+            Closed / open range:
+
+            ::
+
+                >>> range_ = abjad.PitchRange('[A0, C8)')
+
+            ::
+
+                >>> -99 in range_
+                False
+
+            ::
+
+                >>> -39 in range_
+                True
+
+            ::
+
+                >>> 0 in range_
+                True
+
+            ::
+
+                >>> 48 in range_
+                False
+
+            ::
+
+                >>> 99 in range_
+                False
+
+        ..  container:: example
+
+            Closed / infinite range:
+
+            ::
+
+                >>> range_ = abjad.PitchRange('[-39, +inf]')
+
+            ::
+
+                >>> -99 in range_
+                False
+
+            ::
+
+                >>> -39 in range_
+                True
+
+            ::
+
+                >>> 0 in range_
+                True
+
+            ::
+
+                >>> 48 in range_
+                True
+
+            ::
+
+                >>> 99 in range_
+                True
+
+        ..  container:: example
+
+            Open / closed range:
+
+            ::
+
+                >>> range_ = abjad.PitchRange('(A0, C8]')
+
+            ::
+
+                >>> -99 in range_
+                False
+
+            ::
+
+                >>> -39 in range_
+                False
+
+            ::
+
+                >>> 0 in range_
+                True
+
+            ::
+
+                >>> 48 in range_
+                True
+
+            ::
+
+                >>> 99 in range_
+                False
+
+        ..  container:: example
+
+            Open / open range:
+
+            ::
+
+                >>> range_ = abjad.PitchRange('(A0, C8)')
+
+            ::
+
+                >>> -99 in range_
+                False
+
+            ::
+
+                >>> -39 in range_
+                False
+
+            ::
+
+                >>> 0 in range_
+                True
+
+            ::
+
+                >>> 48 in range_
+                False
+
+            ::
+
+                >>> 99 in range_
+                False
+
+        ..  container:: example
+
+            Infinite / closed range:
+
+            ::
+
+                >>> range_ = abjad.PitchRange('[-inf, C8]')
+
+            ::
+
+                >>> -99 in range_
+                True
+
+            ::
+
+                >>> -39 in range_
+                True
+
+            ::
+
+                >>> 0 in range_
+                True
+
+            ::
+
+                >>> 48 in range_
+                True
+
+            ::
+
+                >>> 99 in range_
+                False
+
+        ..  container:: example
+
+            Infinite / open range:
+
+            ::
+
+                >>> range_ = abjad.PitchRange('[-inf, C8)')
+
+            ::
+
+                >>> -99 in range_
+                True
+
+            ::
+
+                >>> -39 in range_
+                True
+
+            ::
+
+                >>> 0 in range_
+                True
+
+            ::
+
+                >>> 48 in range_
+                False
+
+            ::
+
+                >>> 99 in range_
+                False
+
+        ..  container:: example
+
+            Infinite / infinite range:
+
+            ::
+
+                >>> range_ = abjad.PitchRange('[-inf, +inf]')
+
+            ::
+
+                >>> -99 in range_
+                True
+
+            ::
+
+                >>> -39 in range_
+                True
+
+            ::
+
+                >>> 0 in range_
+                True
+
+            ::
+
+                >>> 48 in range_
+                True
+
+            ::
+
+                >>> 99 in range_
+                True
+
         Returns true or false.
         '''
         from abjad.tools import pitchtools
@@ -143,6 +402,59 @@ class PitchRange(AbjadValueObject):
         r'''Is true when `argument` is a pitch range with start and stop equal
         to those of this pitch range. Otherwise false.
 
+        ..  container:: example
+
+            ::
+
+                >>> range_1 = abjad.PitchRange.from_pitches(0, 48)
+                >>> range_2 = abjad.PitchRange.from_pitches(0, 48)
+                >>> range_3 = abjad.PitchRange.from_pitches(-39, 48)
+
+            ::
+
+                >>> range_1 == range_1
+                True
+
+            ::
+
+                >>> range_1 == range_2
+                True
+
+            ::
+
+                >>> range_1 == range_3
+                False
+
+            ::
+
+                >>> range_2 == range_1
+                True
+
+            ::
+
+                >>> range_2 == range_2
+                True
+
+            ::
+
+                >>> range_2 == range_3
+                False
+
+            ::
+
+                >>> range_3 == range_1
+                False
+
+            ::
+
+                >>> range_3 == range_2
+                False
+
+            ::
+
+                >>> range_3 == range_3
+                True
+
         Returns true or false.
         '''
         from abjad.tools import systemtools
@@ -165,6 +477,37 @@ class PitchRange(AbjadValueObject):
         r'''Is true when start pitch of pitch range is greater than or equal to
         `argument`. Otherwise false.
 
+        ..  container:: example
+
+            ::
+
+                >>> range_ = abjad.PitchRange.from_pitches(-39, 48)
+
+            ::
+
+                >>> -99 >= range_
+                False
+
+            ::
+
+                >>> -39 >= range_
+                False
+
+            ::
+
+                >>> 0 >= range_
+                False
+
+            ::
+
+                >>> 48 >= range_
+                True
+
+            ::
+
+                >>> 99 >= range_
+                True
+
         Returns true or false.
         '''
         from abjad.tools import pitchtools
@@ -179,6 +522,36 @@ class PitchRange(AbjadValueObject):
     def __gt__(self, argument):
         r'''Is true when start pitch of pitch range is greater than `argument`.
         Otherwise false.
+        ..  container:: example
+
+            ::
+
+                >>> range_ = abjad.PitchRange.from_pitches(-39, 48)
+
+            ::
+
+                >>> -99 < range_
+                True
+
+            ::
+
+                >>> -39 < range_
+                False
+
+            ::
+
+                >>> 0 < range_
+                False
+
+            ::
+
+                >>> 48 < range_
+                False
+
+            ::
+
+                >>> 99 < range_
+                False
 
         Returns true or false.
         '''
@@ -283,6 +656,37 @@ class PitchRange(AbjadValueObject):
         r'''Is true when stop pitch of pitch-range is less than or equal
         to `argument`. Otherwise false.
 
+        ..  container:: example
+
+            ::
+
+                >>> range_ = abjad.PitchRange.from_pitches(-39, 48)
+
+            ::
+
+                >>> -99 <= range_
+                True
+
+            ::
+
+                >>> -39 <= range_
+                True
+
+            ::
+
+                >>> 0 <= range_
+                False
+
+            ::
+
+                >>> 48 <= range_
+                False
+
+            ::
+
+                >>> 99 <= range_
+                False
+
         Returns true or false.
         '''
         from abjad.tools import pitchtools
@@ -297,6 +701,37 @@ class PitchRange(AbjadValueObject):
     def __lt__(self, argument):
         r'''Is true when stop pitch of pitch-range is less than `argument`.
         Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> range_ = abjad.PitchRange.from_pitches(-39, 48)
+
+            ::
+
+                >>> -99 < range_
+                True
+
+            ::
+
+                >>> -39 < range_
+                False
+
+            ::
+
+                >>> 0 < range_
+                False
+
+            ::
+
+                >>> 48 < range_
+                False
+
+            ::
+
+                >>> 99 < range_
+                False
 
         Returns true or false.
         '''
@@ -578,16 +1013,27 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            Returns true:
-
             ::
 
                 >>> abjad.PitchRange.is_range_string('[A0, C8]')
                 True
 
-        ..  container:: example
+            ::
 
-            Returns false:
+                >>> abjad.PitchRange.is_range_string('[A#0, Cb~8]')
+                True
+
+            ::
+
+                >>> abjad.PitchRange.is_range_string('[A#+0, cs'')')
+                True
+
+            ::
+
+                >>> abjad.PitchRange.is_range_string('(b,,,, ctqs]')
+                True
+
+        ..  container:: example
 
             ::
 

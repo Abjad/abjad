@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_MeasuredComplexBeam_direction_01():
@@ -8,7 +7,7 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
     staff = abjad.Staff("abj: | 2/16 c'16 d'16 || 2/16 e'16 f'16 |"
         "| 2/16 g'16 a'16 |")
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -28,11 +27,11 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
         '''
         )
 
-    leaves = select(staff).by_leaf()
-    beam = spannertools.MeasuredComplexBeam(direction=Down)
-    attach(beam, leaves)
+    leaves = abjad.select(staff).by_leaf()
+    beam = abjad.MeasuredComplexBeam(direction=Down)
+    abjad.attach(beam, leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -64,4 +63,4 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

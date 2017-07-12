@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Glissando_01():
 
-    target = Container([Note(0, 1), Note(0, 1)])
-    glissando = spannertools.Glissando()
-    attach(glissando, target[:])
-    parser = LilyPondParser()
+    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, target[:])
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
 

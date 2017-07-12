@@ -81,6 +81,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
     ### PRIVATE METHODS ###
 
     def _add_time_signature_context(self, score):
+        import abjad
         time_signatures = self.time_signatures
         if not time_signatures:
             return
@@ -88,7 +89,8 @@ class PianoStaffSegmentMaker(SegmentMaker):
             context_name='TimeSignatureContext',
             name='Time Signature Context',
             )
-        measures = scoretools.make_spacer_skip_measures(time_signatures)
+        maker = abjad.MeasureMaker()
+        measures = maker(time_signatures)
         time_signature_context.extend(measures)
         score.insert(0, time_signature_context)
 

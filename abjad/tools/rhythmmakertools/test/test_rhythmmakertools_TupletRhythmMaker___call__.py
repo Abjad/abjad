@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_TupletRhythmMaker___call___01():
@@ -14,10 +14,10 @@ def test_rhythmmakertools_TupletRhythmMaker___call___01():
 
     divisions = [(1, 5), (1, 4), (1, 6), (7, 9)]
     tuplet_lists = maker(divisions)
-    tuplets = Sequence(tuplet_lists).flatten()
+    tuplets = abjad.Sequence(tuplet_lists).flatten()
     staff = abjad.Staff(tuplets)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \tweak edge-height #'(0.7 . 0)

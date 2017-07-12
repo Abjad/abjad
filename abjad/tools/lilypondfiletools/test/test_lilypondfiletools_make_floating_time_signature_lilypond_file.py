@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_lilypondfiletools_make_floating_time_signature_lilypond_file_01():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
     lilypond_file = \
-        lilypondfiletools.make_floating_time_signature_lilypond_file(staff)
+        abjad.make_floating_time_signature_lilypond_file(staff)
     context_block = lilypond_file.layout_block.items[1]
 
-    assert format(context_block) == String.normalize(
+    assert format(context_block) == abjad.String.normalize(
         r'''
         \context {
             \name TimeSignatureContext

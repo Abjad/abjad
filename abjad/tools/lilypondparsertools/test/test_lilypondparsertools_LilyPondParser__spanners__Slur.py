@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
 import pytest
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Slur_01():
@@ -10,13 +8,13 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_01():
     '''
 
     maker = abjad.NoteMaker()
-    target = Container(maker([0] * 4, [(1, 4)]))
-    slur = Slur()
-    attach(slur, target[2:])
-    slur = Slur()
-    attach(slur, target[:3])
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    slur = abjad.Slur()
+    abjad.attach(slur, target[2:])
+    slur = abjad.Slur()
+    abjad.attach(slur, target[:3])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 (
@@ -27,7 +25,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_01():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
 
@@ -37,13 +35,13 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_02():
     '''
 
     maker = abjad.NoteMaker()
-    target = Container(maker([0] * 4, [(1, 4)]))
-    slur = Slur()
-    attach(slur, target[2:])
-    slur = Slur()
-    attach(slur, target[:3])
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    slur = abjad.Slur()
+    abjad.attach(slur, target[2:])
+    slur = abjad.Slur()
+    abjad.attach(slur, target[:3])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 (
@@ -56,7 +54,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_02():
 
     string = r"\relative c' { c ( c c () c ) }"
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
 
@@ -98,13 +96,13 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_07():
     '''
 
     maker = abjad.NoteMaker()
-    target = Container(maker([0] * 4, [(1, 4)]))
-    slur = Slur(direction=Down)
-    attach(slur, target[:3])
-    slur = Slur(direction=Up)
-    attach(slur, target[2:])
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    slur = abjad.Slur(direction=Down)
+    abjad.attach(slur, target[:3])
+    slur = abjad.Slur(direction=Up)
+    abjad.attach(slur, target[2:])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 _ (
@@ -115,6 +113,6 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_07():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result

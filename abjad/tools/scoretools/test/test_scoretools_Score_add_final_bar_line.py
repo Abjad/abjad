@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Score_add_final_bar_line_01():
 
-    staff = Staff("c'4 d'4 e'4 f'4")
-    score = Score([staff])
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
+    score = abjad.Score([staff])
     score.add_final_bar_line()
 
     r'''
@@ -20,7 +20,7 @@ def test_scoretools_Score_add_final_bar_line_01():
     >>
     '''
 
-    assert format(score) == String.normalize(
+    assert format(score) == abjad.String.normalize(
         r'''
         \new Score <<
             \new Staff {

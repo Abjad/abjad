@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import quantizationtools
 
 
 def test_quantizationtools_BeatwiseQSchema___call___01():

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
+from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_TonalAnalysisAgent_are_scalar_notes_01():

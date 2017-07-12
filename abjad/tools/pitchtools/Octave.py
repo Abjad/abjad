@@ -166,6 +166,11 @@ class Octave(AbjadValueObject):
                 >>> int(abjad.Octave(3))
                 3
 
+            ::
+
+                >>> int(abjad.Octave(',,'))
+                1
+
         Returns integer.
         '''
         return self.number
@@ -311,6 +316,11 @@ class Octave(AbjadValueObject):
                 >>> abjad.Octave.from_pitch_name('cs')
                 Octave(3)
 
+            ::
+
+                >>> abjad.Octave.from_pitch_name("cs'")
+                Octave(4)
+
         Returns integer.
         '''
         if not isinstance(pitch_name, str):
@@ -329,6 +339,11 @@ class Octave(AbjadValueObject):
         r'''Makes octave from `pitch_number`.
 
         ..  container:: example
+
+            ::
+
+                >>> abjad.Octave.from_pitch_number(1)
+                Octave(4)
 
             ::
 

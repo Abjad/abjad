@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import rhythmtreetools
+import abjad
 import copy
+from abjad.tools import rhythmtreetools
 
 
 def test_rhythmtreetools_RhythmTreeLeaf___copy___01():

@@ -1,26 +1,25 @@
 # -*- coding: utf-8 -*-
 import abjad
 import pytest
-from abjad import *
 
 
 def test_spannertools_TextSpanner_format_01():
 
-    staff = scoretools.Staff("c'4 d'4 e'4 f'4")
-    markup_one = markuptools.Markup('one')
-    markup_two = markuptools.Markup('two')
-    markup_three = markuptools.Markup('three')
-    line_segment = indicatortools.LineSegment()
-    arrow = indicatortools.Arrow()
-    text_spanner = spannertools.TextSpanner()
-    attach(markup_one, staff[0], is_annotation=True)
-    attach(line_segment, staff[0])
-    attach(markup_two, staff[1], is_annotation=True)
-    attach(arrow, staff[1])
-    attach(markup_three, staff[-1], is_annotation=True)
-    attach(text_spanner, staff[:])
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
+    markup_one = abjad.Markup('one')
+    markup_two = abjad.Markup('two')
+    markup_three = abjad.Markup('three')
+    line_segment = abjad.LineSegment()
+    arrow = abjad.Arrow()
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(markup_one, staff[0], is_annotation=True)
+    abjad.attach(line_segment, staff[0])
+    abjad.attach(markup_two, staff[1], is_annotation=True)
+    abjad.attach(arrow, staff[1])
+    abjad.attach(markup_three, staff[-1], is_annotation=True)
+    abjad.attach(text_spanner, staff[:])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \once \override TextSpanner.bound-details.left.text = \markup { one }
@@ -54,21 +53,21 @@ def test_spannertools_TextSpanner_format_02():
     output.
     '''
 
-    staff = scoretools.Staff("c'4 d'4 e'4 f'4")
-    nonannotated_markup = Markup('leggieriss.')
-    attach(nonannotated_markup, staff[0])
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
+    nonannotated_markup = abjad.Markup('leggieriss.')
+    abjad.attach(nonannotated_markup, staff[0])
 
-    arrow_start = markuptools.Markup('ord.').upright()
-    arrow_stop = markuptools.Markup('pont.').upright()
-    markup_three = markuptools.Markup('three')
-    arrow = indicatortools.Arrow()
-    text_spanner = spannertools.TextSpanner()
-    attach(arrow_start, staff[0], is_annotation=True)
-    attach(arrow, staff[0])
-    attach(arrow_stop, staff[-1], is_annotation=True)
-    attach(text_spanner, staff[:])
+    arrow_start = abjad.Markup('ord.').upright()
+    arrow_stop = abjad.Markup('pont.').upright()
+    markup_three = abjad.Markup('three')
+    arrow = abjad.Arrow()
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(arrow_start, staff[0], is_annotation=True)
+    abjad.attach(arrow, staff[0])
+    abjad.attach(arrow_stop, staff[-1], is_annotation=True)
+    abjad.attach(text_spanner, staff[:])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \once \override TextSpanner.arrow-width = 0.25
@@ -101,17 +100,17 @@ def test_spannertools_TextSpanner_format_02():
 
 def test_spannertools_TextSpanner_format_03():
 
-    staff = scoretools.Staff("c'4 d'4 e'4 f'4")
-    markup_one = markuptools.Markup('one')
-    markup_two = markuptools.Markup('two')
-    markup_three = markuptools.Markup('three')
-    text_spanner = spannertools.TextSpanner()
-    attach(markup_one, staff[0], is_annotation=True)
-    attach(markup_two, staff[1], is_annotation=True)
-    attach(markup_three, staff[-1], is_annotation=True)
-    attach(text_spanner, staff[:])
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
+    markup_one = abjad.Markup('one')
+    markup_two = abjad.Markup('two')
+    markup_three = abjad.Markup('three')
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(markup_one, staff[0], is_annotation=True)
+    abjad.attach(markup_two, staff[1], is_annotation=True)
+    abjad.attach(markup_three, staff[-1], is_annotation=True)
+    abjad.attach(text_spanner, staff[:])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'4 ^ \markup { one }

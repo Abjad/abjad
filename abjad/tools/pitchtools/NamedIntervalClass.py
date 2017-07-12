@@ -151,6 +151,87 @@ class NamedIntervalClass(IntervalClass):
         quality string and number equal to those of this named interval-class.
         Otherwise false.
 
+        ..  container:: example
+
+            ::
+
+                >>> mdic_1 = abjad.NamedIntervalClass('perfect', 1)
+                >>> mdic_2 = abjad.NamedIntervalClass('perfect', -1)
+
+            ::
+
+                >>> mdic_1 == mdic_2
+                True
+
+            ::
+
+                >>> mdic_2 == mdic_1
+                True
+
+            ::
+
+                >>> mdic_1 != mdic_2
+                False
+
+            ::
+
+                >>> mdic_2 != mdic_2
+                False
+
+        ..  container:: example
+
+            ::
+
+                >>> mdic_1 = abjad.NamedIntervalClass('perfect', 2)
+                >>> mdic_2 = abjad.NamedIntervalClass('perfect', 9)
+
+            ::
+
+                >>> mdic_1 == mdic_2
+                True
+
+            ::
+
+                >>> mdic_2 == mdic_1
+                True
+
+            ::
+
+                >>> mdic_1 != mdic_2
+                False
+            
+            ::
+
+                >>> mdic_2 != mdic_2
+                False
+
+        ..  container:: example
+
+            ::
+
+                >>> mdic_1 = abjad.NamedIntervalClass('perfect', -2)
+                >>> mdic_2 = abjad.NamedIntervalClass('perfect', -9)
+
+            ::
+
+                >>> mdic_1 == mdic_2
+                True
+
+            ::
+
+                >>> mdic_2 == mdic_1
+                True
+
+            ::
+
+                >>> mdic_1 != mdic_2
+                False
+            
+            ::
+
+                >>> mdic_2 != mdic_2
+                False
+
         Returns true or false.
         '''
         if isinstance(argument, type(self)):
@@ -297,13 +378,55 @@ class NamedIntervalClass(IntervalClass):
         '''Makes named interval-class from `pitch_carrier_1` and
         `pitch_carrier_2`.
 
-        ::
+        ..  container:: example
 
-            >>> abjad.NamedIntervalClass.from_pitch_carriers(
-            ...     abjad.NamedPitch(-2),
-            ...     abjad.NamedPitch(12),
-            ...     )
-            NamedIntervalClass('+M2')
+            ::
+
+                >>> abjad.NamedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(-2),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NamedIntervalClass('+M2')
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(0),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NamedIntervalClass('+P8')
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NamedIntervalClass('P1')
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(-3),
+                ...     )
+                NamedIntervalClass('-m3')
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(9),
+                ...     )
+                NamedIntervalClass('-m3')
 
         Returns named interval-class.
         '''

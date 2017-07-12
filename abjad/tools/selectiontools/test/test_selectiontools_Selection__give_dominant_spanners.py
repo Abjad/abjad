@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_Selection__give_dominant_spanners_01():
@@ -10,15 +10,15 @@ def test_selectiontools_Selection__give_dominant_spanners_01():
     Remove donor_components from parentage immediately after.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    crescendo = Crescendo()
-    attach(crescendo, voice[:])
-    beam = Beam()
-    attach(beam, voice[:2])
-    slur = Slur()
-    attach(slur, voice[1:3])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    crescendo = abjad.Crescendo()
+    abjad.attach(crescendo, voice[:])
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:2])
+    slur = abjad.Slur()
+    abjad.attach(slur, voice[1:3])
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [ \<
@@ -29,11 +29,11 @@ def test_selectiontools_Selection__give_dominant_spanners_01():
         '''
         )
 
-    recipient = Voice("c'16 c'16 c'16")
-    beam = Beam()
-    attach(beam, recipient[:])
+    recipient = abjad.Voice("c'16 c'16 c'16")
+    beam = abjad.Beam()
+    abjad.attach(beam, recipient[:])
 
-    assert format(recipient) == String.normalize(
+    assert format(recipient) == abjad.String.normalize(
         r'''
         \new Voice {
             c'16 [
@@ -48,7 +48,7 @@ def test_selectiontools_Selection__give_dominant_spanners_01():
 
     "Both crescendo and beam are now discontiguous."
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [ \<
@@ -59,11 +59,11 @@ def test_selectiontools_Selection__give_dominant_spanners_01():
         '''
         )
 
-    assert not inspect(voice).is_well_formed()
+    assert not abjad.inspect(voice).is_well_formed()
 
     "Slur is contiguous but recipient participates in discont. cresc."
 
-    assert format(recipient) == String.normalize(
+    assert format(recipient) == abjad.String.normalize(
         r'''
         \new Voice {
             c'16 [ (
@@ -73,4 +73,4 @@ def test_selectiontools_Selection__give_dominant_spanners_01():
         '''
         )
 
-    assert not inspect(recipient).is_well_formed()
+    assert not abjad.inspect(recipient).is_well_formed()

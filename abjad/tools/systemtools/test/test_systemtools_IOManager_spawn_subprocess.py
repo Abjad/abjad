@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import systemtools
 
 
 def test_systemtools_IOManager_spawn_subprocess_01():

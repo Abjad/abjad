@@ -124,6 +124,72 @@ class TreeContainer(TreeNode):
             node._set_parent(None)
         self._mark_entire_tree_for_later_update()
 
+    def __eq__(self, argument):
+        r'''Is true when container equals `argument`. Otherwise false.
+
+        ..  container:: example
+
+            >>> tree_container_1 = abjad.TreeContainer([])
+            >>> tree_container_2 = abjad.TreeContainer([])
+
+        ::
+
+            >>> format(tree_container_1) == format(tree_container_2)
+            True
+
+        ::
+
+            >>> tree_container_1 != tree_container_2
+            True
+
+        ..  container:: example
+
+            >>> tree_container_1 = abjad.TreeContainer([abjad.TreeNode()])
+            >>> tree_container_2 = abjad.TreeContainer([abjad.TreeNode()])
+
+        ::
+
+            >>> format(tree_container_1) == format(tree_container_2)
+            True
+
+        ::
+
+            >>> tree_container_1 != tree_container_2
+            True
+
+        ..  container:: example
+
+            >>> tree_container_1 = abjad.TreeContainer([])
+            >>> tree_container_2 = abjad.TreeContainer([abjad.TreeNode()])
+            >>> tree_container_3 = abjad.TreeContainer([
+            ...    abjad.TreeNode(),
+            ...    abjad.TreeNode()
+            ...    ])
+
+        ::
+
+            >>> format(tree_container_1) != format(tree_container_2)
+            True
+
+        ::
+
+            >>> tree_container_1 != tree_container_2
+            True
+
+        ::
+
+            >>> tree_container_1 != tree_container_3
+            True
+
+        ::
+
+            >>> tree_container_2 != tree_container_3
+            True
+
+        Returns true, false or none.
+        '''
+        return super(TreeContainer, self).__eq__(argument)
+
     def __getitem__(self, argument):
         r'''Gets item or slice identified by `argument`.
 
@@ -197,6 +263,13 @@ class TreeContainer(TreeNode):
                 return tuple(children)[0]
         raise ValueError(repr(argument))
 
+    def __hash__(self):
+        r'''Hashes tree container.
+
+        Returns number.
+        '''
+        return super(TreeContainer, self).__hash__()
+
     def __iter__(self):
         r'''Iterates tree container.
 
@@ -207,6 +280,27 @@ class TreeContainer(TreeNode):
 
     def __len__(self):
         r'''Returns nonnegative integer number of nodes in container.
+
+        ..  container:: example
+
+            ::
+
+                >>> leaf_a = abjad.TreeNode()
+                >>> leaf_b = abjad.TreeNode()
+                >>> leaf_c = abjad.TreeNode()
+                >>> subcontainer = abjad.TreeContainer([leaf_b, leaf_c])
+                >>> leaf_d = abjad.TreeNode()
+                >>> container = abjad.TreeContainer([
+                ...     leaf_a,
+                ...     subcontainer,
+                ...     leaf_d,
+                ...     ])
+
+            ::
+
+                >>> len(container)
+                3
+
         '''
         return len(self._children)
 

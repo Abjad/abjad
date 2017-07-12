@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
+from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_TonalAnalysisAgent_are_stepwise_notes_01():
@@ -8,7 +8,7 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_stepwise_notes_01():
     as pitch numbers differ.
     '''
 
-    notes = [Note('c', (1, 4)), Note('cs', (1, 4))]
+    notes = [abjad.Note('c', (1, 4)), abjad.Note('cs', (1, 4))]
     selection = abjad.analyze(notes)
     assert selection.are_stepwise_notes()
 
@@ -18,19 +18,19 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_stepwise_notes_02():
     as they differ by exactly one staff space.
     '''
 
-    notes = [Note('c', (1, 4)), Note('d', (1, 4))]
+    notes = [abjad.Note('c', (1, 4)), abjad.Note('d', (1, 4))]
     selection = abjad.analyze(notes)
     assert selection.are_stepwise_notes()
 
-    notes = [Note('c', (1, 4)), Note('ds', (1, 4))]
+    notes = [abjad.Note('c', (1, 4)), abjad.Note('ds', (1, 4))]
     selection = abjad.analyze(notes)
     assert selection.are_stepwise_notes()
 
-    notes = [Note('c', (1, 4)), Note('b,', (1, 4))]
+    notes = [abjad.Note('c', (1, 4)), abjad.Note('b,', (1, 4))]
     selection = abjad.analyze(notes)
     assert selection.are_stepwise_notes()
 
-    notes = [Note('c', (1, 4)), Note('bf,', (1, 4))]
+    notes = [abjad.Note('c', (1, 4)), abjad.Note('bf,', (1, 4))]
     selection = abjad.analyze(notes)
     assert selection.are_stepwise_notes()
 
@@ -39,7 +39,7 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_stepwise_notes_03():
     r'''Notes with the same pitch are not stepwise.
     '''
 
-    notes = [Note('c', (1, 4)), Note('c', (1, 4))]
+    notes = [abjad.Note('c', (1, 4)), abjad.Note('c', (1, 4))]
     selection = abjad.analyze(notes)
     assert not selection.are_stepwise_notes()
 
@@ -48,7 +48,7 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_stepwise_notes_04():
     r'''Notes separated by more than 1 staff space are not stepwise.
     '''
 
-    notes = [Note('c', (1, 4)), Note('e', (1, 4))]
+    notes = [abjad.Note('c', (1, 4)), abjad.Note('e', (1, 4))]
     selection = abjad.analyze(notes)
     assert not selection.are_stepwise_notes()
 

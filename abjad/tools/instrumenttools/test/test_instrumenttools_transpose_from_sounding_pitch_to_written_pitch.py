@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
+import abjad
 
 
 def test_instrumenttools_transpose_from_sounding_pitch_to_written_pitch_01():
@@ -10,7 +10,7 @@ def test_instrumenttools_transpose_from_sounding_pitch_to_written_pitch_01():
     abjad.attach(clarinet, staff)
     abjad.instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { "Clarinet in B-flat" }

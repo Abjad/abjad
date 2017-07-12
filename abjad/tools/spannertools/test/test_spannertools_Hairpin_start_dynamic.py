@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_Hairpin_start_dynamic_01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    hairpin = Hairpin(descriptor='p < f')
-    attach(hairpin, staff[:])
+    hairpin = abjad.Hairpin(descriptor='p < f')
+    abjad.attach(hairpin, staff[:])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 \< \p
@@ -20,16 +19,16 @@ def test_spannertools_Hairpin_start_dynamic_01():
         '''
         )
 
-    assert hairpin.start_dynamic == Dynamic('p')
+    assert hairpin.start_dynamic == abjad.Dynamic('p')
 
 
 def test_spannertools_Hairpin_start_dynamic_02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    hairpin = Hairpin(descriptor='mf < f')
-    attach(hairpin, staff[:])
+    hairpin = abjad.Hairpin(descriptor='mf < f')
+    abjad.attach(hairpin, staff[:])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 \< \mf
@@ -40,4 +39,4 @@ def test_spannertools_Hairpin_start_dynamic_02():
         '''
         )
 
-    assert hairpin.start_dynamic == Dynamic('mf')
+    assert hairpin.start_dynamic == abjad.Dynamic('mf')

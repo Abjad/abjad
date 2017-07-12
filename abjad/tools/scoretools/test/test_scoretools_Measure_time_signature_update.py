@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Measure_time_signature_update_01():
     r'''Measures allow time signature update.
     '''
 
-    measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+    measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
     measure.pop()
-    detach(TimeSignature, measure)
-    time_signature = TimeSignature((3, 8))
-    attach(time_signature, measure)
+    abjad.detach(abjad.TimeSignature, measure)
+    time_signature = abjad.TimeSignature((3, 8))
+    abjad.attach(time_signature, measure)
 
-    assert format(measure) == String.normalize(
+    assert format(measure) == abjad.String.normalize(
         r'''
         {
             \time 3/8
@@ -23,4 +23,4 @@ def test_scoretools_Measure_time_signature_update_01():
         '''
         )
 
-    assert inspect(measure).is_well_formed()
+    assert abjad.inspect(measure).is_well_formed()

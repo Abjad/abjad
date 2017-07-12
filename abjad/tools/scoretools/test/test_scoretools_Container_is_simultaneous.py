@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_scoretools_Container_is_simultaneous_01():
@@ -8,14 +8,14 @@ def test_scoretools_Container_is_simultaneous_01():
     otherwise False.
     '''
 
-    assert not Container().is_simultaneous
-    assert not Tuplet().is_simultaneous
-    assert not Measure().is_simultaneous
-    assert Score().is_simultaneous
-    assert not Container().is_simultaneous
-    assert not Staff().is_simultaneous
-    assert scoretools.StaffGroup().is_simultaneous
-    assert not Voice().is_simultaneous
+    assert not abjad.Container().is_simultaneous
+    assert not abjad.Tuplet().is_simultaneous
+    assert not abjad.Measure().is_simultaneous
+    assert abjad.Score().is_simultaneous
+    assert not abjad.Container().is_simultaneous
+    assert not abjad.Staff().is_simultaneous
+    assert abjad.StaffGroup().is_simultaneous
+    assert not abjad.Voice().is_simultaneous
 
 
 def test_scoretools_Container_is_simultaneous_02():
@@ -23,7 +23,7 @@ def test_scoretools_Container_is_simultaneous_02():
     otherwise False.
     '''
 
-    container = Container([])
+    container = abjad.Container([])
     container.is_simultaneous = True
     assert container.is_simultaneous
 
@@ -32,7 +32,7 @@ def test_scoretools_Container_is_simultaneous_03():
     r'''Container 'simultaneous' is settable.
     '''
 
-    container = Container([])
+    container = abjad.Container([])
     assert not container.is_simultaneous
 
     container.is_simultaneous = True
@@ -43,10 +43,10 @@ def test_scoretools_Container_is_simultaneous_04():
     r'''A simultaneous container can hold Contexts.
     '''
 
-    container = Container([Voice("c'8 cs'8"), Voice("d'8 ef'8")])
+    container = abjad.Container([abjad.Voice("c'8 cs'8"), abjad.Voice("d'8 ef'8")])
     container.is_simultaneous = True
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         <<
             \new Voice {
@@ -66,7 +66,7 @@ def test_scoretools_Container_is_simultaneous_05():
     r'''Simultaneous containers must contain only contexts.
     '''
 
-    container = Container("c'8 c'8 c'8 c'8")
+    container = abjad.Container("c'8 c'8 c'8 c'8")
     pytest.raises(Exception, 'container.is_simultaneous = True')
 
 
@@ -74,5 +74,5 @@ def test_scoretools_Container_is_simultaneous_06():
     r'''Simultaneous containers must contain only Contexts.
     '''
 
-    container = Container(2 * Container("c'8 c'8 c'8 c'8"))
+    container = abjad.Container(2 * abjad.Container("c'8 c'8 c'8 c'8"))
     pytest.raises(Exception, 'container.is_simultaneous = True')

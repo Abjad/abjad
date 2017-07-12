@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_Selection__set_component_parents_01():
 
-    voice = Voice([])
-    u = Voice("c'8 d'8 e'8 f'8")
+    voice = abjad.Voice([])
+    u = abjad.Voice("c'8 d'8 e'8 f'8")
 
     selection = u[:]
     selection._set_parents(voice)
@@ -22,6 +22,6 @@ def test_selectiontools_Selection__set_component_parents_01():
 
     "Selection now in container voice."
 
-    assert inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
     assert selection[0]._parent is voice
     assert selection[0] in voice

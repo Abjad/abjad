@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 import pytest
 
 
 def test_spannertools_Spanner__is_my_first_leaf_01():
-    r'''Spanner attached to flat container.
+    r'''Spanner abjad.attached to flat container.
     '''
 
-    class MockSpanner(spannertools.Spanner):
+    class MockSpanner(abjad.Spanner):
 
         def __init__(self, components=None):
-            spannertools.Spanner.__init__(self, components)
+            abjad.Spanner.__init__(self, components)
 
-    container = Container("c'8 cs'8 d'8 ef'8")
+    container = abjad.Container("c'8 cs'8 d'8 ef'8")
     spanner = MockSpanner()
-    attach(spanner, container[:])
+    abjad.attach(spanner, container[:])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -39,15 +38,15 @@ def test_spannertools_Spanner__is_my_first_leaf_01():
 
 
 def test_spannertools_Spanner__is_my_first_leaf_02():
-    r'''Spanner attached to container with nested contents.
+    r'''Spanner abjad.attached to container with nested contents.
     '''
 
-    class MockSpanner(spannertools.Spanner):
+    class MockSpanner(abjad.Spanner):
 
         def __init__(self, components=None):
-            spannertools.Spanner.__init__(self, components)
+            abjad.Spanner.__init__(self, components)
 
-    container = Container(
+    container = abjad.Container(
         r'''
         c'8
         cs'8
@@ -60,11 +59,11 @@ def test_spannertools_Spanner__is_my_first_leaf_02():
         '''
         )
 
-    leaves = select(container).by_leaf()
+    leaves = abjad.select(container).by_leaf()
     spanner = MockSpanner()
-    attach(spanner, leaves[:4])
+    abjad.attach(spanner, leaves[:4])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8

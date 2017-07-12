@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import rhythmtreetools
 
 
 def test_rhythmtreetools_RhythmTreeNode_root_01():

@@ -20,9 +20,26 @@ class NumberedInterval(Interval):
 
         ::
 
-            >>> numbered_interval = abjad.NumberedInterval(-14)
-            >>> numbered_interval
+            >>> abjad.NumberedInterval(-14)
             NumberedInterval(-14)
+
+    ..  container:: example
+
+        Initializes from other numbered interval
+
+        ::
+
+            >>> abjad.NumberedInterval(abjad.NumberedInterval(-14))
+            NumberedInterval(-14)
+
+    ..  container:: example
+
+        Initializes from named interval:
+
+        ::
+
+            >>> abjad.NumberedInterval(abjad.NamedInterval('-P4'))
+            NumberedInterval(-5)
 
     '''
 
@@ -56,12 +73,31 @@ class NumberedInterval(Interval):
     def __abs__(self):
         r'''Absolute value of numbered interval.
 
+        ..  container:: example
+
+            ::
+
+                >>> abs(abjad.NumberedInterval(-14))
+                NumberedInterval(14)
+
         Returns new numbered interval.
         '''
         return type(self)(abs(self._number))
 
     def __add__(self, argument):
         r'''Adds `argument` to numbered interval.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NumberedInterval(3) + abjad.NumberedInterval(14)
+                NumberedInterval(17)
+
+            ::
+
+                >>> abjad.NumberedInterval(3) + abjad.NumberedInterval(-14)
+                NumberedInterval(-11)
 
         Returns new numbered interval.
         '''
@@ -75,6 +111,17 @@ class NumberedInterval(Interval):
     def __copy__(self):
         r'''Copies numbered interval.
 
+        ::
+
+            >>> import copy
+
+        ..  container:: example
+
+            ::
+
+                >>> copy.copy(abjad.NumberedInterval(-14))
+                NumberedInterval(-14)
+
         Returns new numbered interval.
         '''
         return type(self)(self.number)
@@ -82,6 +129,59 @@ class NumberedInterval(Interval):
     def __eq__(self, argument):
         r'''Is true when `argument` is a numbered interval with number equal to that of
         this numbered interval. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> interval_1 = abjad.NumberedInterval(12)
+                >>> interval_2 = abjad.NumberedInterval(12)
+                >>> interval_3 = abjad.NumberedInterval(13)
+
+            ::
+
+                >>> interval_1 == interval_1
+                True
+
+            ::
+
+                >>> interval_1 == interval_2
+                True
+
+            ::
+
+                >>> interval_1 == interval_3
+                False
+
+            ::
+
+                >>> interval_2 == interval_1
+                True
+
+            ::
+
+                >>> interval_2 == interval_2
+                True
+
+            ::
+
+                >>> interval_2 == interval_3
+                False
+
+            ::
+
+                >>> interval_3 == interval_1
+                False
+
+            ::
+
+                >>> interval_3 == interval_2
+                False
+
+            ::
+
+                >>> interval_3 == interval_3
+                True
 
         Returns true or false.
         '''
@@ -93,6 +193,13 @@ class NumberedInterval(Interval):
     def __float__(self):
         r'''Changes numbered interval to float.
 
+        ..  container:: example
+
+            ::
+
+                >>> float(abjad.NumberedInterval(-14))
+                -14.0
+
         Returns float.
         '''
         return float(self._number)
@@ -102,22 +209,79 @@ class NumberedInterval(Interval):
 
         Returns integer.
         '''
-        #return hash(repr(self))
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(NumberedInterval, self).__hash__()
 
     def __int__(self):
         r'''Changes numbered interval to integer.
+
+        ..  container:: example
+
+            ::
+
+                >>> int(abjad.NumberedInterval(-14))
+                -14
 
         Returns integer.
         '''
         return int(self._number)
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is a numbered interval with same direction number
-        as this numbered interval and with number greater than that of this
-        numbered interval. Otherwise false.
+        r'''Is true when `argument` is a numbered interval with same direction
+        number as this numbered interval and with number greater than that of
+        this numbered interval. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> interval_1 = abjad.NumberedInterval(12)
+                >>> interval_2 = abjad.NumberedInterval(12)
+                >>> interval_3 = abjad.NumberedInterval(13)
+
+            ::
+
+                >>> interval_1 < interval_1
+                False
+
+            ::
+
+                >>> interval_1 < interval_2
+                False
+
+            ::
+
+                >>> interval_1 < interval_3
+                True
+
+            ::
+
+                >>> interval_2 < interval_1
+                False
+
+            ::
+
+                >>> interval_2 < interval_2
+                False
+
+            ::
+
+                >>> interval_2 < interval_3
+                True
+
+            ::
+
+                >>> interval_3 < interval_1
+                False
+
+            ::
+
+                >>> interval_3 < interval_2
+                False
+
+            ::
+
+                >>> interval_3 < interval_3
+                False
 
         Returns true or false.
         '''
@@ -132,6 +296,13 @@ class NumberedInterval(Interval):
 
     def __neg__(self):
         r'''Negates numbered interval.
+
+        ..  container:: example
+
+            ::
+
+                >>> -abjad.NumberedInterval(-14)
+                NumberedInterval(14)
 
         Returns new numbered interval.
         '''
@@ -199,6 +370,23 @@ class NumberedInterval(Interval):
     def number(self):
         r'''Number of numbered interval.
 
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NumberedInterval(-14).number
+                -14
+
+            ::
+
+                >>> abjad.NumberedInterval(-2).number
+                -2
+
+            ::
+
+                >>> abjad.NumberedInterval(0).number
+                0 
+
         Returns number.
         '''
         return self._number
@@ -207,10 +395,12 @@ class NumberedInterval(Interval):
     def numbered_interval_number(self):
         r'''Number of numbered interval.
 
-        ::
+        ..  container:: example
 
-            >>> abjad.NumberedInterval(-14).numbered_interval_number
-            -14
+            ::
+
+                >>> abjad.NumberedInterval(-14).numbered_interval_number
+                -14
 
         Returns integer or float.
         '''
@@ -231,13 +421,47 @@ class NumberedInterval(Interval):
         '''Makes numbered interval from `pitch_carrier_1` and
         `pitch_carrier_2`.
 
-        ::
+        ..  container:: example
 
-            >>> abjad.NumberedInterval.from_pitch_carriers(
-            ...     abjad.NamedPitch(-2),
-            ...     abjad.NamedPitch(12),
-            ...     )
-            NumberedInterval(14)
+            ::
+
+                >>> abjad.NumberedInterval.from_pitch_carriers(
+                ...     abjad.NamedPitch(-2),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedInterval(14)
+
+            ::
+
+                >>> abjad.NumberedInterval.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedInterval(0)
+
+            ::
+
+                >>> abjad.NumberedInterval.from_pitch_carriers(
+                ...     abjad.NamedPitch(9),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedInterval(3)
+
+            ::
+
+                >>> abjad.NumberedInterval.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(9),
+                ...     )
+                NumberedInterval(-3)
+
+            ::
+
+                >>> abjad.NumberedInterval.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(-2),
+                ...     )
+                NumberedInterval(-14)
 
         Returns numbered interval.
         '''
@@ -261,9 +485,49 @@ class NumberedInterval(Interval):
 
             ::
 
-                >>> numbered_interval = abjad.NumberedInterval(1)
-                >>> numbered_interval.to_named_interval(2)
+                >>> abjad.NumberedInterval(0).to_named_interval(0)
+                NamedInterval('aug0')
+
+            ::
+
+                >>> abjad.NumberedInterval(0).to_named_interval(1)
+                NamedInterval('P1')
+
+            ::
+
+                >>> abjad.NumberedInterval(0).to_named_interval(2)
+                NamedInterval('+dim2')
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NumberedInterval(1).to_named_interval(1)
+                NamedInterval('+aug1')
+
+            ::
+
+                >>> abjad.NumberedInterval(1).to_named_interval(2)
                 NamedInterval('+m2')
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NumberedInterval(-1).to_named_interval(1)
+                NamedInterval('-aug1')
+
+            ::
+
+                >>> abjad.NumberedInterval(-1).to_named_interval(2)
+                NamedInterval('-m2')
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NumberedInterval(2).to_named_interval(2)
+                NamedInterval('+M2')
 
         Returns named interval.
         '''

@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_lilypondfiletools_LilyPondFile___format___01():
     r'''With empty layout and MIDI blocks.
     '''
 
-    score = Score([Staff("c'8 d'8 e'8 f'8")])
-    score_block = lilypondfiletools.Block(name='score')
-    layout_block = lilypondfiletools.Block(name='layout')
-    midi_block = lilypondfiletools.Block(name='midi')
+    score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
+    score_block = abjad.Block(name='score')
+    layout_block = abjad.Block(name='layout')
+    midi_block = abjad.Block(name='midi')
 
     score_block.items.append(score)
     score_block.items.append(layout_block)
     score_block.items.append(midi_block)
 
-    assert format(score_block) == String.normalize(
+    assert format(score_block) == abjad.String.normalize(
         r'''
         \score {
             \new Score <<
@@ -38,8 +38,8 @@ def test_lilypondfiletools_LilyPondFile___format___02():
     staff size attributes.
     '''
 
-    score = Score([Staff("c'8 d'8 e'8 f'8")])
-    lilypond_file = lilypondfiletools.LilyPondFile(
+    score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
+    lilypond_file = abjad.LilyPondFile(
         date_time_token=False,
         default_paper_size=('11x17', 'landscape'),
         global_staff_size=14,
@@ -48,7 +48,7 @@ def test_lilypondfiletools_LilyPondFile___format___02():
         )
     lilypond_file.items.append(score)
 
-    assert format(lilypond_file) == String.normalize(
+    assert format(lilypond_file) == abjad.String.normalize(
         r'''
         #(set-default-paper-size "11x17" 'landscape)
         #(set-global-staff-size 14)

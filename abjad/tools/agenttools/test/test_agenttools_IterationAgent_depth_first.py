@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 # NOTE: all tests operate on the following expression
-staff = Staff(
+staff = abjad.Staff(
     r'''
     c'8
     cs'8
@@ -34,7 +34,7 @@ def test_agenttools_IterationAgent_depth_first_01():
 
     # LEFT-TO-RIGHT #
 
-    iterator = iterate(staff[2]).depth_first()
+    iterator = abjad.iterate(staff[2]).depth_first()
 
     assert next(iterator) is staff[2]
     assert next(iterator) is staff[2][0]
@@ -46,7 +46,7 @@ def test_agenttools_IterationAgent_depth_first_01():
     assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(d'8, ef'8)
     d'8
     ef'8
@@ -57,7 +57,7 @@ def test_agenttools_IterationAgent_depth_first_01():
 
     # RIGHT-TO-LEFT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         direction=Right,
         )
 
@@ -71,7 +71,7 @@ def test_agenttools_IterationAgent_depth_first_01():
     assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(e'8, f'8)
     f'8
     e'8
@@ -88,7 +88,7 @@ def test_agenttools_IterationAgent_depth_first_02():
 
     # LEFT-TO-RIGHT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         capped=False,
         )
 
@@ -105,7 +105,7 @@ def test_agenttools_IterationAgent_depth_first_02():
     assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(d'8, ef'8)
     d'8
     ef'8
@@ -119,7 +119,7 @@ def test_agenttools_IterationAgent_depth_first_02():
 
     # RIGHT-TO-LEFT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         capped=False,
         direction=Right,
         )
@@ -137,7 +137,7 @@ def test_agenttools_IterationAgent_depth_first_02():
     assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(e'8, f'8)
     f'8
     e'8
@@ -156,7 +156,7 @@ def test_agenttools_IterationAgent_depth_first_03():
 
     # LEFT-TO-RIGHT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         unique=False,
         )
 
@@ -176,24 +176,24 @@ def test_agenttools_IterationAgent_depth_first_03():
     assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(d'8, ef'8)
     d'8
     Voice(d'8, ef'8)
     ef'8
     Voice(d'8, ef'8)
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(e'8, f'8)
     e'8
     Voice(e'8, f'8)
     f'8
     Voice(e'8, f'8)
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     '''
 
     # RIGHT-TO-LEFT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         direction=Right,
         unique=False,
         )
@@ -214,19 +214,19 @@ def test_agenttools_IterationAgent_depth_first_03():
     assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(e'8, f'8)
     f'8
     Voice(e'8, f'8)
     e'8
     Voice(e'8, f'8)
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(d'8, ef'8)
     ef'8
     Voice(d'8, ef'8)
     d'8
     Voice(d'8, ef'8)
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     '''
 
 
@@ -237,7 +237,7 @@ def test_agenttools_IterationAgent_depth_first_04():
 
     # LEFT-TO-RIGHT #
 
-    iterator = iterate(staff).depth_first(
+    iterator = abjad.iterate(staff).depth_first(
         forbid='simultaneous',
         )
 
@@ -253,14 +253,14 @@ def test_agenttools_IterationAgent_depth_first_04():
     Staff{5}
     c'8
     cs'8
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     fs'8
     iterator'8
     '''
 
     # RIGHT-TO-LEFT #
 
-    iterator = iterate(staff).depth_first(
+    iterator = abjad.iterate(staff).depth_first(
         direction=Right,
         forbid='simultaneous',
         )
@@ -277,7 +277,7 @@ def test_agenttools_IterationAgent_depth_first_04():
     Staff{5}
     iterator'8
     fs'8
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     cs'8
     c'8
     '''
@@ -289,7 +289,7 @@ def test_agenttools_IterationAgent_depth_first_05():
 
     # LEFT-TO-RIGHT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         capped=False,
         unique=False,
         )
@@ -315,19 +315,19 @@ def test_agenttools_IterationAgent_depth_first_05():
     assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(d'8, ef'8)
     d'8
     Voice(d'8, ef'8)
     ef'8
     Voice(d'8, ef'8)
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(e'8, f'8)
     e'8
     Voice(e'8, f'8)
     f'8
     Voice(e'8, f'8)
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     fs'8
     Staff{5}
@@ -337,7 +337,7 @@ def test_agenttools_IterationAgent_depth_first_05():
 
     # RIGHT-TO-LEFT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         capped=False,
         direction=Right,
         unique=False,
@@ -364,19 +364,19 @@ def test_agenttools_IterationAgent_depth_first_05():
     assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(e'8, f'8)
     f'8
     Voice(e'8, f'8)
     e'8
     Voice(e'8, f'8)
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Voice(d'8, ef'8)
     ef'8
     Voice(d'8, ef'8)
     d'8
     Voice(d'8, ef'8)
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     cs'8
     Staff{5}
@@ -391,7 +391,7 @@ def test_agenttools_IterationAgent_depth_first_06():
 
     # LEFT-TO-RIGHT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         capped=False,
         forbid='simultaneous',
         )
@@ -402,7 +402,7 @@ def test_agenttools_IterationAgent_depth_first_06():
     assert next(iterator) is staff[4]
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     fs'8
     iterator'8
@@ -410,7 +410,7 @@ def test_agenttools_IterationAgent_depth_first_06():
 
     # RIGHT-TO-LEFT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         capped=False,
         direction=Right,
         forbid='simultaneous',
@@ -422,7 +422,7 @@ def test_agenttools_IterationAgent_depth_first_06():
     assert next(iterator) is staff[0]
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     cs'8
     c'8
@@ -435,7 +435,7 @@ def test_agenttools_IterationAgent_depth_first_07():
 
     # LEFT-TO-RIGHT
 
-    iterator = iterate(staff).depth_first(
+    iterator = abjad.iterate(staff).depth_first(
         forbid='simultaneous',
         unique=False,
         )
@@ -459,7 +459,7 @@ def test_agenttools_IterationAgent_depth_first_07():
     Staff{5}
     cs'8
     Staff{5}
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     fs'8
     Staff{5}
@@ -469,7 +469,7 @@ def test_agenttools_IterationAgent_depth_first_07():
 
     # RIGHT-TO-LEFT #
 
-    iterator = iterate(staff).depth_first(
+    iterator = abjad.iterate(staff).depth_first(
         direction=Right,
         forbid='simultaneous',
         unique=False,
@@ -494,7 +494,7 @@ def test_agenttools_IterationAgent_depth_first_07():
     Staff{5}
     fs'8
     Staff{5}
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     cs'8
     Staff{5}
@@ -509,7 +509,7 @@ def test_agenttools_IterationAgent_depth_first_08():
 
     # LEFT-TO-RIGHT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         capped=False,
         forbid='simultaneous',
         unique=False,
@@ -524,7 +524,7 @@ def test_agenttools_IterationAgent_depth_first_08():
     assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     fs'8
     Staff{5}
@@ -534,7 +534,7 @@ def test_agenttools_IterationAgent_depth_first_08():
 
     # RIGHT-TO-LEFT #
 
-    iterator = iterate(staff[2]).depth_first(
+    iterator = abjad.iterate(staff[2]).depth_first(
         capped=False,
         direction=Right,
         forbid='simultaneous',
@@ -550,7 +550,7 @@ def test_agenttools_IterationAgent_depth_first_08():
     assert pytest.raises(StopIteration, 'next(iterator)')
 
     r'''
-    Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+    abjad.Container(abjad.Voice(d'8, ef'8), abjad.Voice(e'8, f'8))
     Staff{5}
     cs'8
     Staff{5}

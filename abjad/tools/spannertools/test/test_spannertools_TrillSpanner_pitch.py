@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_TrillSpanner_pitch_01():
@@ -8,10 +7,10 @@ def test_spannertools_TrillSpanner_pitch_01():
     '''
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    trill = spannertools.TrillSpanner(pitch=NamedPitch(1))
-    attach(trill, staff[:2])
+    trill = abjad.TrillSpanner(pitch=abjad.NamedPitch(1))
+    abjad.attach(trill, staff[:2])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \pitchedTrill
@@ -23,7 +22,7 @@ def test_spannertools_TrillSpanner_pitch_01():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_spannertools_TrillSpanner_pitch_02():
@@ -31,10 +30,10 @@ def test_spannertools_TrillSpanner_pitch_02():
     '''
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    trill = spannertools.TrillSpanner()
-    attach(trill, staff[:2])
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, staff[:2])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 \startTrillSpan
@@ -45,4 +44,4 @@ def test_spannertools_TrillSpanner_pitch_02():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

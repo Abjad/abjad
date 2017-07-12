@@ -18,16 +18,16 @@ class PitchSet(Set):
 
         ::
 
-            >>> setting = abjad.PitchSet(
+            >>> set_ = abjad.PitchSet(
             ...     items=[-2, -1.5, 6, 7, -1.5, 7],
             ...     item_class=abjad.NumberedPitch,
             ...     )
-            >>> setting
+            >>> set_
             PitchSet([-2, -1.5, 6, 7])
 
         ::
 
-            >>> f(setting)
+            >>> f(set_)
             abjad.PitchSet(
                 [-2, -1.5, 6, 7]
                 )
@@ -38,16 +38,16 @@ class PitchSet(Set):
 
         ::
 
-            >>> setting = abjad.PitchSet(
+            >>> set_ = abjad.PitchSet(
             ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
             ...     item_class=abjad.NamedPitch,
             ...     )
-            >>> setting
+            >>> set_
             PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
 
         ::
 
-            >>> f(setting)
+            >>> f(set_)
             abjad.PitchSet(
                 ['bf,', 'aqs', 'bqf', "fs'", "g'"]
                 )
@@ -61,6 +61,84 @@ class PitchSet(Set):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument):
+        r'''Is true when pitch set equals `argument`.
+        Otherwise false.
+
+
+        ..  container:: example
+
+            ::
+
+                >>> set_1 = abjad.PitchSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+                >>> set_2 = abjad.PitchSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+                >>> set_3 = abjad.PitchSet(
+                ...     items=[11, 12, 12.5],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+
+            ::
+
+                >>> set_1 == set_1
+                True
+
+            ::
+
+                >>> set_1 == set_2
+                True
+
+            ::
+
+                >>> set_1 == set_3
+                False
+
+            ::
+
+                >>> set_2 == set_1
+                True
+
+            ::
+
+                >>> set_2 == set_2
+                True
+
+            ::
+
+                >>> set_2 == set_3
+                False
+
+            ::
+
+                >>> set_3 == set_1
+                False
+
+            ::
+
+                >>> set_3 == set_2
+                False
+
+            ::
+
+                >>> set_3 == set_3
+                True
+
+        Return true or false.
+        '''
+        return super(PitchSet, self).__eq__(argument)
+
+    def __hash__(self):
+        r'''Hashes pitch set.
+
+        Returns number.
+        '''
+        return super(PitchSet, self).__hash__()
+
     def __illustrate__(self):
         r'''Illustrates pitch set.
 
@@ -70,18 +148,18 @@ class PitchSet(Set):
 
             ::
 
-                >>> setting = abjad.PitchSet(
+                >>> set_ = abjad.PitchSet(
                 ...     items=[-2, -1.5, 6, 7, -1.5, 7],
                 ...     item_class=abjad.NumberedPitch,
                 ...     )
 
             ::
             
-                >>> show(setting) # doctest: +SKIP
+                >>> show(set_) # doctest: +SKIP
 
             ..  docs::
 
-                >>> lilypond_file = setting.__illustrate__()
+                >>> lilypond_file = set_.__illustrate__()
                 >>> f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new PianoStaff <<
@@ -104,18 +182,18 @@ class PitchSet(Set):
 
             ::
 
-                >>> setting = abjad.PitchSet(
+                >>> set_ = abjad.PitchSet(
                 ...     items=[6, 7, 7],
                 ...     item_class=abjad.NumberedPitch,
                 ...     )
 
             ::
             
-                >>> show(setting) # doctest: +SKIP
+                >>> show(set_) # doctest: +SKIP
 
             ..  docs::
 
-                >>> lilypond_file = setting.__illustrate__()
+                >>> lilypond_file = set_.__illustrate__()
                 >>> f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new PianoStaff <<
@@ -208,6 +286,26 @@ class PitchSet(Set):
     def duplicate_pitch_classes(self):
         r'''Gets duplicate pitch-classes in pitch set.
 
+        ..  container:: example
+
+            ::
+
+                >>> set_ = abjad.PitchSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+                >>> set_.duplicate_pitch_classes
+                PitchClassSet([])
+
+            ::
+
+                >>> set_ = abjad.PitchSet(
+                ...     items=[-2, -1.5, 6, 7, 10.5, 7],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+                >>> set_.duplicate_pitch_classes
+                PitchClassSet([10.5])
+
         Returns pitch-class set.
         '''
         from abjad.tools import pitchtools
@@ -242,6 +340,34 @@ class PitchSet(Set):
     @property
     def is_pitch_class_unique(self):
         r'''Is true when pitch set is pitch-class-unique. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> set_ = abjad.PitchSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+
+            ::
+
+                >>> set_.is_pitch_class_unique
+                True
+
+        ..  container:: example
+
+            ::
+
+                >>> set_ = abjad.PitchSet(
+                ...     items=[-2, -1.5, 6, 7, 10.5, 7],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+
+            ::
+
+                >>> set_.is_pitch_class_unique
+                False
 
         Returns true or false.
         '''
@@ -286,6 +412,66 @@ class PitchSet(Set):
         '''
         items = (pitch.invert(axis) for pitch in self)
         return new(self, items=items)
+
+    def issubset(self, argument):
+        r'''Is true when pitch set is subset of `argument`.
+
+        ..  container:: example
+
+            ::
+
+                >>> set_1 = abjad.PitchSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+                >>> set_2 = abjad.PitchSet(
+                ...     items=[-1.5, 6],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+
+            ::
+
+                >>> set_1.issubset(set_2)
+                False
+
+            ::
+
+                >>> set_2.issubset(set_1)
+                True
+
+        Returns true or false.
+        '''
+        return super(PitchSet, self).issubset(argument)
+
+    def issuperset(self, argument):
+        r'''Is true when pitch set is superset of `argument`.
+
+        ..  container:: example
+
+            ::
+
+                >>> set_1 = abjad.PitchSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+                >>> set_2 = abjad.PitchSet(
+                ...     items=[-1.5, 6],
+                ...     item_class=abjad.NumberedPitch,
+                ...     )
+
+            ::
+
+                >>> set_1.issuperset(set_2)
+                False
+
+            ::
+
+                >>> set_2.issuperset(set_1)
+                True
+
+        Returns true or false.
+        '''
+        return super(PitchSet, self).issubset(argument)
 
     def register(self, pitch_classes):
         '''Registers `pitch_classes` by pitch set.

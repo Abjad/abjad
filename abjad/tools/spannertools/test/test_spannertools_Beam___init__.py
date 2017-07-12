@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 import abjad
 import pytest
-from abjad import *
 
 
 def test_spannertools_Beam___init___01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8 g'2")
-    beam = Beam()
-    attach(beam, staff[:4])
+    beam = abjad.Beam()
+    abjad.attach(beam, staff[:4])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -29,11 +28,11 @@ def test_spannertools_Beam___init___02():
     r'''Nonempty container.
     '''
 
-    container = Container("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
-    beam = Beam()
-    attach(beam, container[:])
+    container = abjad.Container("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, container[:])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8 [
@@ -56,11 +55,11 @@ def test_spannertools_Beam___init___03():
     '''
 
     staff = abjad.Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
-    leaves = select(staff).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    leaves = abjad.select(staff).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -87,11 +86,11 @@ def test_spannertools_Beam___init___04():
     '''
 
     staff = abjad.Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    leaves = select(staff).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    leaves = abjad.select(staff).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -114,11 +113,11 @@ def test_spannertools_Beam___init___05():
     '''
 
     staff = abjad.Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    leaves = select(staff).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    leaves = abjad.select(staff).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -140,13 +139,13 @@ def test_spannertools_Beam___init___06():
     r'''Staff with empty containers at the edges.
     '''
 
-    staff = abjad.Staff(Container([]) * 2)
-    staff.insert(1, Container(Note(0, (1, 8)) * 4))
-    leaves = select(staff).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    staff = abjad.Staff(abjad.Container([]) * 2)
+    staff.insert(1, abjad.Container(abjad.Note(0, (1, 8)) * 4))
+    leaves = abjad.select(staff).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -170,12 +169,12 @@ def test_spannertools_Beam___init___07():
     r'''Deeply nested containers of equal depth.
     '''
 
-    voice = Voice("{ { c'8 cs'8 d'8 ef'8 } } { { e'8 f'8 fs'8 g'8 } }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    voice = abjad.Voice("{ { c'8 cs'8 d'8 ef'8 } } { { e'8 f'8 fs'8 g'8 } }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -205,12 +204,12 @@ def test_spannertools_Beam___init___08():
     r'''Deeply nested containers of unequal depth.
     '''
 
-    voice = Voice("{ { { c'8 cs'8 d'8 ef'8 } } } { e'8 f'8 fs'8 g'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    voice = abjad.Voice("{ { { c'8 cs'8 d'8 ef'8 } } } { e'8 f'8 fs'8 g'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -240,12 +239,12 @@ def test_spannertools_Beam___init___09():
     r'''Voice with containers and top-level leaves.
     '''
 
-    voice = Voice("{ c'8 cs'8 } d'8 { ef'8 e'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    voice = abjad.Voice("{ c'8 cs'8 } d'8 { ef'8 e'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -267,12 +266,12 @@ def test_spannertools_Beam___init___10():
     r'''Voice with tuplets and top-level leaves.
     '''
 
-    voice = Voice(r"\times 2/3 { c'8 cs' d' } ef'8 \times 2/3 { e'8 f' fs' }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    voice = abjad.Voice(r"\times 2/3 { c'8 cs' d' } ef'8 \times 2/3 { e'8 f' fs' }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -297,11 +296,11 @@ def test_spannertools_Beam___init___11():
     r'''Nested tuplets.
     '''
 
-    tuplet = Tuplet((2, 3), r"c'4 \times 2/3 { c'8 c'8 c'8 } c'4")
-    beam = Beam()
-    attach(beam, tuplet[1][:])
+    tuplet = abjad.Tuplet((2, 3), r"c'4 \times 2/3 { c'8 c'8 c'8 } c'4")
+    beam = abjad.Beam()
+    abjad.attach(beam, tuplet[1][:])
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \times 2/3 {
             c'4
@@ -323,12 +322,12 @@ def test_spannertools_Beam___init___12():
     '''
 
     staff = abjad.Staff([
-        Voice("c'8 cs'8 d'8"),
-        Note("ef'8"),
-        Voice("e'8 f' fs' g'")]
+        abjad.Voice("c'8 cs'8 d'8"),
+        abjad.Note("ef'8"),
+        abjad.Voice("e'8 f' fs' g'")]
         )
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -347,8 +346,8 @@ def test_spannertools_Beam___init___12():
         '''
         )
 
-    beam = Beam()
-    leaves = select(staff).by_leaf()
+    beam = abjad.Beam()
+    leaves = abjad.select(staff).by_leaf()
     statement = 'attach(beam, leavs)'
     assert pytest.raises(Exception, statement)
 
@@ -357,13 +356,13 @@ def test_spannertools_Beam___init___13():
     r'''You can span the counttime components of like-named voices.
     '''
 
-    staff = abjad.Staff([Voice("c'8 cs'8 d'8 ef'8"), Voice("e'8 f'8 fs'8 g'8")])
+    staff = abjad.Staff([abjad.Voice("c'8 cs'8 d'8 ef'8"), abjad.Voice("e'8 f'8 fs'8 g'8")])
     staff[0].name = 'foo'
     staff[1].name = 'foo'
-    beam = Beam()
-    attach(beam, staff[0][:] + staff[1][:])
+    beam = abjad.Beam()
+    abjad.attach(beam, staff[0][:] + staff[1][:])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -389,7 +388,7 @@ def test_spannertools_Beam___init___14():
     '''Like-named containers need not be lexically contiguous.
     '''
 
-    container = Container(r'''
+    container = abjad.Container(r'''
         <<
             \context Voice = "first" {
                 c'8
@@ -420,10 +419,10 @@ def test_spannertools_Beam___init___14():
         >>
         ''')
 
-    beam = Beam()
-    attach(beam, container[0][0][:] + container[1][1][:])
+    beam = abjad.Beam()
+    abjad.attach(beam, container[0][0][:] + container[1][1][:])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             <<
@@ -465,7 +464,7 @@ def test_spannertools_Beam___init___15():
     '''Asymmetric structures are no problem.
     '''
 
-    container = Container(
+    container = abjad.Container(
         r'''
         <<
             \context Voice = "first" {
@@ -491,10 +490,10 @@ def test_spannertools_Beam___init___15():
         >>
         ''')
 
-    beam = Beam()
-    attach(beam, container[0][0][:] + container[1][0][:])
+    beam = abjad.Beam()
+    abjad.attach(beam, container[0][0][:] + container[1][0][:])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             <<
@@ -531,7 +530,7 @@ def test_spannertools_Beam___init___16():
     simultaneous parent container.
     '''
 
-    container = Container(
+    container = abjad.Container(
         r'''
         <<
             \new Voice {
@@ -549,10 +548,10 @@ def test_spannertools_Beam___init___16():
         >>
         ''')
 
-    beam = Beam()
-    attach(beam, container[0][:])
+    beam = abjad.Beam()
+    abjad.attach(beam, container[0][:])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         <<
             \new Voice {
@@ -601,7 +600,7 @@ def test_spannertools_Beam___init___17():
         b'8
         ''')
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -627,7 +626,7 @@ def test_spannertools_Beam___init___17():
         )
 
     leaves = staff[:2] + staff[-2:]
-    beam = Beam()
+    beam = abjad.Beam()
     statement = 'beam.attacch(leaves)'
     assert pytest.raises(Exception, statement)
 
@@ -666,10 +665,10 @@ def test_spannertools_Beam___init___18():
         ''')
 
     leaves = staff[0][:] + staff[1][0][:] + staff[2][:]
-    beam = Beam()
-    attach(beam, leaves)
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -709,11 +708,11 @@ def test_spannertools_Beam___init___19():
     r'''You can not span across differently named voices.
     '''
 
-    staff = abjad.Staff([Voice("c'8 cs'8 d'8 ef'8"), Voice("e'8 f'8 fs'8 g'8")])
+    staff = abjad.Staff([abjad.Voice("c'8 cs'8 d'8 ef'8"), abjad.Voice("e'8 f'8 fs'8 g'8")])
     staff[0].name = 'foo'
     staff[1].name = 'bar'
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -732,8 +731,8 @@ def test_spannertools_Beam___init___19():
         '''
         )
 
-    selector = select().by_leaf(flatten=True)
+    selector = abjad.select().by_leaf(flatten=True)
     leaves = selector(staff)
-    beam = Beam()
+    beam = abjad.Beam()
     statement = 'attach(beam, leaves)'
     assert pytest.raises(Exception, statement)

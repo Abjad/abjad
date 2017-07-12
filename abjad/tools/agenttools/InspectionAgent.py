@@ -121,11 +121,7 @@ class InspectionAgent(abctools.AbjadObject):
             violators.extend(current_violators)
         return violators
 
-    def get_components(
-        self,
-        prototype=None,
-        include_self=True,
-        ):
+    def get_components(self, prototype=None, include_self=True):
         r'''Gets all components of `prototype` in the descendants of client.
 
         Returns client selection.
@@ -135,10 +131,7 @@ class InspectionAgent(abctools.AbjadObject):
             include_self=include_self,
             )
 
-    def get_contents(
-        self,
-        include_self=True,
-        ):
+    def get_contents(self, include_self=True):
         r'''Gets contents of client.
 
         Returns sequential selection.
@@ -147,10 +140,7 @@ class InspectionAgent(abctools.AbjadObject):
             include_self=include_self,
             )
 
-    def get_descendants(
-        self,
-        include_self=True,
-        ):
+    def get_descendants(self, include_self=True):
         r'''Gets descendants of client.
 
         Returns descendants.
@@ -159,10 +149,7 @@ class InspectionAgent(abctools.AbjadObject):
             include_self=include_self,
             )
 
-    def get_duration(
-        self,
-        in_seconds=False,
-        ):
+    def get_duration(self, in_seconds=False):
         r'''Gets duration of client.
 
         Returns duration.
@@ -171,12 +158,7 @@ class InspectionAgent(abctools.AbjadObject):
             in_seconds=in_seconds,
             )
 
-    def get_effective(
-        self,
-        prototype=None,
-        unwrap=True,
-        n=0,
-        ):
+    def get_effective(self, prototype=None, unwrap=True, n=0):
         r'''Gets effective indicator that matches `prototype`
         and governs client.
 
@@ -515,10 +497,7 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_logical_tie()
 
-    def get_markup(
-        self,
-        direction=None,
-        ):
+    def get_markup(self, direction=None):
         r'''Gets all markup attached to client.
 
         Returns tuple.
@@ -527,11 +506,7 @@ class InspectionAgent(abctools.AbjadObject):
             direction=direction,
             )
 
-    def get_parentage(
-        self,
-        include_self=True,
-        with_grace_notes=False,
-        ):
+    def get_parentage(self, include_self=True, with_grace_notes=False):
         r'''Gets parentage of client.
 
         .. container:: example
@@ -667,12 +642,7 @@ class InspectionAgent(abctools.AbjadObject):
         """
         return self._client._get_sounding_pitches()
 
-    def get_spanner(
-        self,
-        prototype=None,
-        default=None,
-        in_parentage=False,
-        ):
+    def get_spanner(self, prototype=None, default=None, in_parentage=False):
         r'''Gets spanner of `prototype` attached to client.
 
         Raises exception when more than one spanner of `prototype` attaches to
@@ -694,11 +664,7 @@ class InspectionAgent(abctools.AbjadObject):
             message = 'multiple spanners attached to client.'
             raise Exception(message)
 
-    def get_spanners(
-        self,
-        prototype=None,
-        in_parentage=False,
-        ):
+    def get_spanners(self, prototype=None, in_parentage=False):
         r'''Gets spanners attached to client.
 
         Returns set.
@@ -818,11 +784,75 @@ class InspectionAgent(abctools.AbjadObject):
             in_seconds=in_seconds,
             )
 
-    def get_vertical_moment(
-        self,
-        governor=None,
-        ):
+    def get_vertical_moment(self, governor=None):
         r'''Gets vertical moment starting with client.
+
+        ..  container:: example
+
+            ::
+
+            >>> score = abjad.Score()
+            >>> tuplet = abjad.Tuplet((4, 3), "d''8 c''8 b'8")
+            >>> score.append(abjad.Staff([tuplet]))
+            >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
+            >>> staff_group.append(abjad.Staff("a'4 g'4"))
+            >>> staff_group.append(abjad.Staff("f'8 e'8 d'8 c'8"))
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff_group[1])
+            >>> score.append(staff_group)
+
+        ..  docs::
+
+            >>> f(score)
+            \new Score <<
+                \new Staff {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 4/3 {
+                        d''8
+                        c''8
+                        b'8
+                    }
+                }
+                \new PianoStaff <<
+                    \new Staff {
+                        a'4
+                        g'4
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        f'8
+                        e'8
+                        d'8
+                        c'8
+                    }
+                >>
+            >>
+
+            >>> agent = abjad.inspect(staff_group[1][0])
+            >>> moment = agent.get_vertical_moment(governor=staff_group)
+            >>> moment.leaves
+            (Note("a'4"), Note("f'8"))
+
+        ::
+
+            >>> agent = abjad.inspect(staff_group[1][1])
+            >>> moment = agent.get_vertical_moment(governor=staff_group)
+            >>> moment.leaves
+            (Note("a'4"), Note("e'8"))
+
+        ::
+
+            >>> agent = abjad.inspect(staff_group[1][2])
+            >>> moment = agent.get_vertical_moment(governor=staff_group)
+            >>> moment.leaves
+            (Note("g'4"), Note("d'8"))
+
+        ::
+
+            >>> agent = abjad.inspect(staff_group[1][3])
+            >>> moment = agent.get_vertical_moment(governor=staff_group)
+            >>> moment.leaves
+            (Note("g'4"), Note("c'8"))
 
         Returns vertical moment.
         '''
@@ -830,10 +860,7 @@ class InspectionAgent(abctools.AbjadObject):
             governor=governor,
             )
 
-    def get_vertical_moment_at(
-        self,
-        offset,
-        ):
+    def get_vertical_moment_at(self, offset):
         r'''Gets vertical moment at `offset`.
 
         Returns vertical moment.
@@ -858,11 +885,7 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._has_indicator(prototype=prototype)
 
-    def has_spanner(
-        self,
-        prototype=None,
-        in_parentage=False,
-        ):
+    def has_spanner(self, prototype=None, in_parentage=False):
         r'''Is true when client has one or more
         spanners that match `prototype`. Otherwise false.
 

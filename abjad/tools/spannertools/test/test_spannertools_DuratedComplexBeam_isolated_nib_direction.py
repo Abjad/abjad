@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_DuratedComplexBeam_isolated_nib_direction_01():
@@ -8,11 +7,11 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_01():
     true.
     '''
 
-    container = Container("c'8")
-    beam = spannertools.DuratedComplexBeam(isolated_nib_direction=True)
-    attach(beam, container[:])
+    container = abjad.Container("c'8")
+    beam = abjad.DuratedComplexBeam(isolated_nib_direction=True)
+    abjad.attach(beam, container[:])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \set stemLeftBeamCount = #1
@@ -22,7 +21,7 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_01():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()
 
 
 def test_spannertools_DuratedComplexBeam_isolated_nib_direction_02():
@@ -30,11 +29,11 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_02():
     is set to false.
     '''
 
-    container = Container("c'8")
-    beam = spannertools.DuratedComplexBeam(isolated_nib_direction=False)
-    attach(beam, container[:])
+    container = abjad.Container("c'8")
+    beam = abjad.DuratedComplexBeam(isolated_nib_direction=False)
+    abjad.attach(beam, container[:])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -42,18 +41,18 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_02():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()
 
 
 def test_spannertools_DuratedComplexBeam_isolated_nib_direction_03():
     r'''Ignore isolated_nib_direction when spanner spans more than one leaf.
     '''
 
-    container = Container("c'8 d'8")
-    beam = spannertools.DuratedComplexBeam(isolated_nib_direction=False)
-    attach(beam, container[:])
+    container = abjad.Container("c'8 d'8")
+    beam = abjad.DuratedComplexBeam(isolated_nib_direction=False)
+    abjad.attach(beam, container[:])
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \set stemLeftBeamCount = #0
@@ -66,4 +65,4 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_03():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()

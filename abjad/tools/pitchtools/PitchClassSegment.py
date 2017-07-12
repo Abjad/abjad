@@ -844,6 +844,54 @@ class PitchClassSegment(Segment):
         items = self.items + argument.items
         return type(self)(items=items)
 
+    def __contains__(self, argument):
+        r'''Is true when pitch-class segment contains `argument`.
+
+        ..  container:: example
+
+            Example segments:
+
+            ::
+
+                >>> pitch_numbers = [-2, -1.5, 6, 7, -1.5, 7]
+                >>> segment = abjad.PitchClassSegment(items=pitch_numbers)
+                >>> segment
+                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+
+            ::
+
+                >>> abjad.NamedPitch('bf') in segment
+                True
+
+            ::
+
+                >>> abjad.NamedPitch('cs') in segment
+                False
+
+            ::
+
+                >>> 'bf' in segment
+                True
+
+            ::
+
+                >>> 'cs' in segment
+                False
+
+            ::
+
+                >>> 10 in segment
+                True
+
+            ::
+
+                >>> 13 in segment
+                False
+
+        Returns true or false.
+        '''
+        return super(PitchClassSegment, self).__contains__(argument)
+
     def __format__(self, format_specification=''):
         r'''Formats segment.
 
@@ -1388,6 +1436,21 @@ class PitchClassSegment(Segment):
             **keywords
             )
 
+    def __mul__(self, n):
+        r'''Multiplies pitch-class segment by `n`.
+
+        ..  container:: example
+
+            ::
+
+                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                >>> 2 * abjad.PitchClassSegment(items=items)
+                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7])
+
+        Returns new pitch-class segment.
+        '''
+        return super(PitchClassSegment, self).__mul__(n)
+
     def __repr__(self):
         r'''Gets interpreter representation.
 
@@ -1411,6 +1474,21 @@ class PitchClassSegment(Segment):
             contents = ', '.join([str(_) for _ in self])
             contents = '[' + contents + ']'
         return '{}({})'.format(type(self).__name__, contents)
+
+    def __rmul__(self, n):
+        r'''Multiplies `n` by pitch-class segment.
+
+        ..  container:: example
+
+            ::
+
+                >>> items = [-2, -1.5, 6, 7, -1.5, 7]
+                >>> abjad.PitchClassSegment(items=items) * 2
+                PitchClassSegment([10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7])
+
+        Returns new pitch-class segment.
+        '''
+        return super(PitchClassSegment, self).__rmul__(n)
 
     def __str__(self):
         r'''Gets string representation of pitch-class segment.
@@ -1702,7 +1780,7 @@ class PitchClassSegment(Segment):
 
         ..  container:: example
 
-            itializes from selection:
+            Initializes from selection:
 
             ::
 

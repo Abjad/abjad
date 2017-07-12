@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import systemtools
 
 
 def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_01():
 
-    staff = Staff([Note(n, (1, 8)) for n in range(12)])
+    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(12)])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -28,10 +29,10 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_01():
 
 def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_02():
 
-    abjad_configuration.set_default_accidental_spelling('sharps')
-    staff = Staff([Note(n, (1, 8)) for n in range(12)])
+    abjad.abjad_configuration.set_default_accidental_spelling('sharps')
+    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(12)])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -50,15 +51,15 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_02():
         '''
         )
 
-    abjad_configuration.set_default_accidental_spelling('mixed')
+    abjad.abjad_configuration.set_default_accidental_spelling('mixed')
 
 
 def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_03():
 
-    abjad_configuration.set_default_accidental_spelling('flats')
-    staff = Staff([Note(n, (1, 8)) for n in range(12)])
+    abjad.abjad_configuration.set_default_accidental_spelling('flats')
+    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(12)])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -77,17 +78,17 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_03():
         '''
         )
 
-    abjad_configuration.set_default_accidental_spelling('mixed')
+    abjad.abjad_configuration.set_default_accidental_spelling('mixed')
 
 
 def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_04():
     r'''Revert back to default mixed spelling.
     '''
 
-    abjad_configuration.set_default_accidental_spelling('mixed')
-    staff = Staff([Note(n, (1, 8)) for n in range(12)])
+    abjad.abjad_configuration.set_default_accidental_spelling('mixed')
+    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(12)])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8

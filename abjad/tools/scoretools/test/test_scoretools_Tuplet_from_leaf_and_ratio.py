@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_scoretools_Tuplet_from_leaf_and_ratio_01():
 
-    note = Note(0, (3, 16))
+    note = abjad.Note(0, (3, 16))
 
-    tuplet = Tuplet.from_leaf_and_ratio(note, [1], is_diminution=False)
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(note, [1], is_diminution=False)
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'8.
@@ -17,9 +17,9 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2], is_diminution=False)
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(note, [1, 2], is_diminution=False)
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'16
@@ -28,13 +28,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         [1, 2, 2, 3],
         is_diminution=False,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
@@ -46,13 +46,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         [1, 2, 2, 3, 3],
         is_diminution=False,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 12/11 {
@@ -65,13 +65,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         [1, 2, 2, 3, 3, 4],
         is_diminution=False,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 8/5 {
@@ -88,11 +88,11 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
 
 def test_scoretools_Tuplet_from_leaf_and_ratio_02():
 
-    note = Note("c'8.")
+    note = abjad.Note("c'8.")
 
-    tuplet = Tuplet.from_leaf_and_ratio(note, [1], is_diminution=True)
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(note, [1], is_diminution=True)
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'8.
@@ -100,9 +100,9 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2], is_diminution=True)
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(note, [1, 2], is_diminution=True)
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'16
@@ -111,9 +111,9 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2, 2, 3], is_diminution=True)
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(note, [1, 2, 2, 3], is_diminution=True)
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -125,13 +125,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         [1, 2, 2, 3, 3],
         is_diminution=True,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/11 {
@@ -144,13 +144,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         [1, 2, 2, 3, 3, 4],
         is_diminution=True,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \times 4/5 {
             c'64
@@ -168,15 +168,15 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
     r'''Divide note into 1, ..., 5 parts.
     '''
 
-    note = Note("c'8.")
+    note = abjad.Note("c'8.")
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         1 * [1],
         is_diminution=False,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'8.
@@ -184,13 +184,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         2 * [1],
         is_diminution=False,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'16.
@@ -199,13 +199,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         3 * [1],
         is_diminution=False,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'16
@@ -215,13 +215,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         4 * [1],
         is_diminution=False,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'32.
@@ -232,13 +232,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         5 * [1],
         is_diminution=False,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 8/5 {
@@ -256,15 +256,15 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
     r'''Divide note into 1, ..., 5 parts.
     '''
 
-    note = Note("c'8.")
+    note = abjad.Note("c'8.")
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         1 * [1],
         is_diminution=True,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'8.
@@ -272,13 +272,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         2 * [1],
         is_diminution=True,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'16.
@@ -287,13 +287,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         3 * [1],
         is_diminution=True,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'16
@@ -303,13 +303,13 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
+    tuplet = abjad.Tuplet.from_leaf_and_ratio(
         note,
         4 * [1],
         is_diminution=True,
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'32.

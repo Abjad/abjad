@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_TieSpecifier_01():
@@ -8,7 +8,7 @@ def test_rhythmmakertools_TieSpecifier_01():
     divisions = [(3, 8), (5, 16), (1, 4), (5, 16)]
     rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         burnish_specifier=rhythmmakertools.BurnishSpecifier(
-            left_classes=[Rest, Note],
+            left_classes=[abjad.Rest, abjad.Note],
             left_counts=[1],
             ),
         extra_counts_per_division=[0, 1, 1],
@@ -23,7 +23,7 @@ def test_rhythmmakertools_TieSpecifier_01():
     selections = rhythm_maker(divisions)
     staff = abjad.Staff(selections)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {

@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_spannertools_ComplexBeam_direction_01():
 
     staff = abjad.Staff("c'16 e'16 r16 f'16 g'2")
-    beam = spannertools.ComplexBeam(direction=Up)
-    attach(beam, staff[:4])
+    beam = abjad.ComplexBeam(direction=Up)
+    abjad.attach(beam, staff[:4])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \set stemLeftBeamCount = #0
@@ -31,10 +30,10 @@ def test_spannertools_ComplexBeam_direction_01():
 def test_spannertools_ComplexBeam_direction_02():
 
     staff = abjad.Staff("c'16 e'16 r16 f'16 g'2")
-    beam = spannertools.ComplexBeam(direction=Down)
-    attach(beam, staff[:4])
+    beam = abjad.ComplexBeam(direction=Down)
+    abjad.attach(beam, staff[:4])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \set stemLeftBeamCount = #0

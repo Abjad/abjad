@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import copy
 import abjad
+import copy
 
 
 def add_string_music_to_score(score):

@@ -1,13 +1,14 @@
-from abjad import *
+# -*- coding: utf-8 -*-
+import abjad
 
 
 def test_scoretools_Tuplet_toggle_prolation_01():
     '''Change augmentation to diminution.
     '''
 
-    tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
+    tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 4/3 {
@@ -20,7 +21,7 @@ def test_scoretools_Tuplet_toggle_prolation_01():
 
     tuplet.toggle_prolation()
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \times 2/3 {
             c'4
@@ -30,16 +31,16 @@ def test_scoretools_Tuplet_toggle_prolation_01():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert abjad.inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_Tuplet_toggle_prolation_02():
     '''Change diminution to augmentation.
     '''
 
-    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \times 2/3 {
             c'8
@@ -51,7 +52,7 @@ def test_scoretools_Tuplet_toggle_prolation_02():
 
     tuplet.toggle_prolation()
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 4/3 {
@@ -62,4 +63,4 @@ def test_scoretools_Tuplet_toggle_prolation_02():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert abjad.inspect(tuplet).is_well_formed()

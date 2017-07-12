@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
+import abjad
 
 
-{material_name} = Markup('An example illustrable material.')
+{material_name} = abjad.Markup('An example illustrable material.')

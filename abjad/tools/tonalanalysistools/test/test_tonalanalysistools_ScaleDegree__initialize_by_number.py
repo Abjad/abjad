@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_ScaleDegree__initialize_by_number_01():
 
     degree = tonalanalysistools.ScaleDegree(2)
-    assert degree.accidental == pitchtools.Accidental('')
+    assert degree.accidental == abjad.Accidental('')
     assert degree.number == 2
 
 

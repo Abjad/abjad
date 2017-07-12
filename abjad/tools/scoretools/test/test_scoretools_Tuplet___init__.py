@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Tuplet___init___01():
     r'''Initializes tuplet from empty input.
     '''
 
-    tuplet = Tuplet()
+    tuplet = abjad.Tuplet()
 
     assert format(tuplet) == '\\times 2/3 {\n}'
-    assert tuplet.multiplier == Multiplier(2, 3)
+    assert tuplet.multiplier == abjad.Multiplier(2, 3)
     assert not len(tuplet)

@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_01():
     r'''Remove leaf from container.
     '''
 
-    container = Container("c'4 c'4 c'4 c'4 c'4 c'4")
+    container = abjad.Container("c'4 c'4 c'4 c'4 c'4 c'4")
 
     container[0]._remove_and_shrink_durated_parent_containers()
 
-    assert format(container) == String.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'4
@@ -22,18 +22,18 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_01():
         '''
         )
 
-    assert inspect(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
     r'''Remove leaf from voice.
     '''
 
-    voice = Voice(6 * Note("c'4"))
+    voice = abjad.Voice(6 * abjad.Note("c'4"))
 
     voice[0]._remove_and_shrink_durated_parent_containers()
 
-    assert format(voice) == String.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'4
@@ -45,18 +45,18 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
         '''
         )
 
-    assert inspect(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
     r'''Remove leaf from staff.
     '''
 
-    staff = Staff(Note("c'4") * 6)
+    staff = abjad.Staff(abjad.Note("c'4") * 6)
 
     staff[0]._remove_and_shrink_durated_parent_containers()
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'4
@@ -68,16 +68,16 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
     r'''Remove leaf from tuplet.
     '''
 
-    tuplet = Tuplet(Multiplier(4, 5), "c'8 d'8 e'8 f'8 g'8")
+    tuplet = abjad.Tuplet(abjad.Multiplier(4, 5), "c'8 d'8 e'8 f'8 g'8")
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \times 4/5 {
             c'8
@@ -91,7 +91,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
 
     tuplet[0]._remove_and_shrink_durated_parent_containers()
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
@@ -103,18 +103,18 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert abjad.inspect(tuplet).is_well_formed()
 
 
 def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
     r'''Remove leaf from nested tuplet.
     '''
 
-    tuplet = Tuplet(Multiplier(2, 3), [])
+    tuplet = abjad.Tuplet(abjad.Multiplier(2, 3), [])
     tuplet.extend(r"c'2 cs'2 \times 2/3 { d'4 ef'4 e'4 }")
-    leaves = select(tuplet).by_leaf()
+    leaves = abjad.select(tuplet).by_leaf()
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \times 2/3 {
             c'2
@@ -130,7 +130,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
 
     leaves[-1]._remove_and_shrink_durated_parent_containers()
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
@@ -145,4 +145,4 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
+    assert abjad.inspect(tuplet).is_well_formed()

@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_agenttools_InspectionAgent_get_effective_01():
     r'''Clef defaults to none.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     for note in staff:
-        clef = inspect(note).get_effective(Clef)
+        clef = abjad.inspect(note).get_effective(abjad.Clef)
         assert clef is None
 
 
@@ -17,48 +17,48 @@ def test_agenttools_InspectionAgent_get_effective_02():
     r'''Clefs carry over to notes following.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = Clef('treble')
-    attach(clef, staff)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    clef = abjad.Clef('treble')
+    abjad.attach(clef, staff)
     for note in staff:
-        clef = inspect(note).get_effective(Clef)
-        assert clef == Clef('treble')
+        clef = abjad.inspect(note).get_effective(abjad.Clef)
+        assert clef == abjad.Clef('treble')
 
 
 def test_agenttools_InspectionAgent_get_effective_03():
-    r'''Clef defaults to none. Clefs carry over to notes following.
+    r'''Clef defaults to none. abjad.Clefs carry over to notes following.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = Clef('bass')
-    attach(clef, staff[4])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    clef = abjad.Clef('bass')
+    abjad.attach(clef, staff[4])
     for i, note in enumerate(staff):
         if i in (0, 1, 2, 3):
-            clef = inspect(note).get_effective(Clef)
+            clef = abjad.inspect(note).get_effective(abjad.Clef)
             assert clef is None
         else:
-            clef = inspect(note).get_effective(Clef)
-            assert clef == Clef('bass')
+            clef = abjad.inspect(note).get_effective(abjad.Clef)
+            assert clef == abjad.Clef('bass')
 
 
 def test_agenttools_InspectionAgent_get_effective_04():
     r'''Clefs carry over to notes following.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = Clef('treble')
-    attach(clef, staff[0])
-    clef = Clef('bass')
-    attach(clef, staff[4])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    clef = abjad.Clef('treble')
+    abjad.attach(clef, staff[0])
+    clef = abjad.Clef('bass')
+    abjad.attach(clef, staff[4])
     result = [
-        inspect(note).get_effective(Clef)
+        abjad.inspect(note).get_effective(abjad.Clef)
         for note in staff
         ]
     clef_names = [
         'treble', 'treble', 'treble', 'treble',
         'bass', 'bass', 'bass', 'bass',
         ]
-    clefs = [Clef(name) for name in clef_names]
+    clefs = [abjad.Clef(name) for name in clef_names]
     assert result == clefs
 
 
@@ -66,30 +66,30 @@ def test_agenttools_InspectionAgent_get_effective_05():
     r'''None cancels an explicit clef.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = Clef('treble')
-    attach(clef, staff[0])
-    clef = Clef('bass')
-    attach(clef, staff[4])
-    clef = inspect(staff[4]).get_effective(Clef)
-    detach(clef, staff[4])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    clef = abjad.Clef('treble')
+    abjad.attach(clef, staff[0])
+    clef = abjad.Clef('bass')
+    abjad.attach(clef, staff[4])
+    clef = abjad.inspect(staff[4]).get_effective(abjad.Clef)
+    abjad.detach(clef, staff[4])
 
     for note in staff:
-        clef = inspect(note).get_effective(Clef)
-        assert clef == Clef('treble')
+        clef = abjad.inspect(note).get_effective(abjad.Clef)
+        assert clef == abjad.Clef('treble')
 
 
 def test_agenttools_InspectionAgent_get_effective_06():
     r'''Redudant clefs are allowed.
     '''
 
-    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    clef = Clef('treble')
-    attach(clef, staff[0])
-    clef = Clef('treble')
-    attach(clef, staff[4])
+    staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
+    clef = abjad.Clef('treble')
+    abjad.attach(clef, staff[0])
+    clef = abjad.Clef('treble')
+    abjad.attach(clef, staff[4])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \clef "treble"
@@ -106,20 +106,20 @@ def test_agenttools_InspectionAgent_get_effective_06():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_InspectionAgent_get_effective_07():
     r'''Clefs with transposition are allowed and work as expected.
     '''
 
-    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    clef = Clef('treble_8')
-    attach(clef, staff[0])
-    clef = Clef('treble')
-    attach(clef, staff[4])
+    staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
+    clef = abjad.Clef('treble_8')
+    abjad.attach(clef, staff[0])
+    clef = abjad.Clef('treble')
+    abjad.attach(clef, staff[4])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \clef "treble_8"
@@ -136,31 +136,31 @@ def test_agenttools_InspectionAgent_get_effective_07():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_InspectionAgent_get_effective_08():
-    r'''Attaching and then detaching works as expected.
+    r'''Attaching and then abjad.detaching works as expected.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    clef = Clef('alto')
-    attach(clef, staff[0])
-    clef = inspect(staff[0]).get_effective(Clef)
-    detach(clef, staff[0])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    clef = abjad.Clef('alto')
+    abjad.attach(clef, staff[0])
+    clef = abjad.inspect(staff[0]).get_effective(abjad.Clef)
+    abjad.detach(clef, staff[0])
 
     for leaf in staff:
-        clef = inspect(leaf).get_effective(Clef)
+        clef = abjad.inspect(leaf).get_effective(abjad.Clef)
         assert clef is None
 
 
 def test_agenttools_InspectionAgent_get_effective_09():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    dynamic = Dynamic('f')
-    attach(dynamic, staff[2])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    dynamic = abjad.Dynamic('f')
+    abjad.attach(dynamic, staff[2])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -171,20 +171,20 @@ def test_agenttools_InspectionAgent_get_effective_09():
         '''
         )
 
-    assert inspect(staff).get_effective(Dynamic) is None
-    assert inspect(staff[0]).get_effective(Dynamic) is None
-    assert inspect(staff[1]).get_effective(Dynamic) is None
-    assert inspect(staff[2]).get_effective(Dynamic) == Dynamic('f')
-    assert inspect(staff[3]).get_effective(Dynamic) == Dynamic('f')
+    assert abjad.inspect(staff).get_effective(abjad.Dynamic) is None
+    assert abjad.inspect(staff[0]).get_effective(abjad.Dynamic) is None
+    assert abjad.inspect(staff[1]).get_effective(abjad.Dynamic) is None
+    assert abjad.inspect(staff[2]).get_effective(abjad.Dynamic) == abjad.Dynamic('f')
+    assert abjad.inspect(staff[3]).get_effective(abjad.Dynamic) == abjad.Dynamic('f')
 
 
 def test_agenttools_InspectionAgent_get_effective_10():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    flute = instrumenttools.Flute()
-    attach(flute, staff)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    flute = abjad.instrumenttools.Flute()
+    abjad.attach(flute, staff)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Flute }
@@ -197,26 +197,26 @@ def test_agenttools_InspectionAgent_get_effective_10():
         '''
         )
 
-    flute = instrumenttools.Flute()
-    assert inspect(staff).get_effective(instrumenttools.Instrument) == flute
-    assert inspect(staff[0]).get_effective(instrumenttools.Instrument) == flute
-    assert inspect(staff[1]).get_effective(instrumenttools.Instrument) == flute
-    assert inspect(staff[2]).get_effective(instrumenttools.Instrument) == flute
-    assert inspect(staff[3]).get_effective(instrumenttools.Instrument) == flute
+    flute = abjad.instrumenttools.Flute()
+    assert abjad.inspect(staff).get_effective(abjad.instrumenttools.Instrument) == flute
+    assert abjad.inspect(staff[0]).get_effective(abjad.instrumenttools.Instrument) == flute
+    assert abjad.inspect(staff[1]).get_effective(abjad.instrumenttools.Instrument) == flute
+    assert abjad.inspect(staff[2]).get_effective(abjad.instrumenttools.Instrument) == flute
+    assert abjad.inspect(staff[3]).get_effective(abjad.instrumenttools.Instrument) == flute
 
 
 def test_agenttools_InspectionAgent_get_effective_11():
     r'''Attach key signature.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    key_signature = KeySignature('c', 'major')
-    attach(key_signature, staff)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    key_signature = abjad.KeySignature('c', 'major')
+    abjad.attach(key_signature, staff)
 
-    key_signature = inspect(staff).get_effective(KeySignature)
-    assert key_signature == KeySignature('c', 'major')
+    key_signature = abjad.inspect(staff).get_effective(abjad.KeySignature)
+    assert key_signature == abjad.KeySignature('c', 'major')
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \key c \major
@@ -228,15 +228,15 @@ def test_agenttools_InspectionAgent_get_effective_11():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_InspectionAgent_get_effective_12():
     r'''There is no default key signature.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    key_signature = inspect(staff).get_effective(KeySignature)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    key_signature = abjad.inspect(staff).get_effective(abjad.KeySignature)
     assert key_signature is None
 
 
@@ -244,13 +244,13 @@ def test_agenttools_InspectionAgent_get_effective_13():
     r'''Attaches metronome mark to staff.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    mark_1 = MetronomeMark(Duration(1, 8), 38)
-    attach(mark_1, staff, scope=Staff)
-    mark_2 = MetronomeMark(Duration(1, 8), 42)
-    attach(mark_2, staff[2], scope=Staff)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    mark_1 = abjad.MetronomeMark(abjad.Duration(1, 8), 38)
+    abjad.attach(mark_1, staff, scope=abjad.Staff)
+    mark_2 = abjad.MetronomeMark(abjad.Duration(1, 8), 42)
+    abjad.attach(mark_2, staff[2], scope=abjad.Staff)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \tempo 8=38
@@ -263,23 +263,23 @@ def test_agenttools_InspectionAgent_get_effective_13():
         '''
         )
 
-    assert inspect(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
-    assert inspect(staff[0]).get_effective(MetronomeMark) == mark_1
-    assert inspect(staff[1]).get_effective(MetronomeMark) == mark_1
-    assert inspect(staff[2]).get_effective(MetronomeMark) == mark_2
-    assert inspect(staff[3]).get_effective(MetronomeMark) == mark_2
+    assert abjad.inspect(staff[0]).get_effective(abjad.MetronomeMark) == mark_1
+    assert abjad.inspect(staff[1]).get_effective(abjad.MetronomeMark) == mark_1
+    assert abjad.inspect(staff[2]).get_effective(abjad.MetronomeMark) == mark_2
+    assert abjad.inspect(staff[3]).get_effective(abjad.MetronomeMark) == mark_2
 
 
 def test_agenttools_InspectionAgent_get_effective_14():
     r'''Attaches metronome mark to chord in staff.
     '''
 
-    staff = Staff([Chord([2, 3, 4], (1, 4))])
-    mark = MetronomeMark(Duration(1, 8), 38)
-    attach(mark, staff[0], scope=Staff)
+    staff = abjad.Staff([abjad.Chord([2, 3, 4], (1, 4))])
+    mark = abjad.MetronomeMark(abjad.Duration(1, 8), 38)
+    abjad.attach(mark, staff[0], scope=abjad.Staff)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \tempo 8=38
@@ -291,11 +291,11 @@ def test_agenttools_InspectionAgent_get_effective_14():
 
 def test_agenttools_InspectionAgent_get_effective_15():
 
-    staff = Staff([Note("c'4")])
-    mark = MetronomeMark(Duration(1, 8), 38)
-    attach(mark, staff[0], scope=Staff)
+    staff = abjad.Staff([abjad.Note("c'4")])
+    mark = abjad.MetronomeMark(abjad.Duration(1, 8), 38)
+    abjad.attach(mark, staff[0], scope=abjad.Staff)
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \tempo 8=38
@@ -309,12 +309,12 @@ def test_agenttools_InspectionAgent_get_effective_16():
     r'''Detaches metronome mark.
     '''
 
-    staff = Staff([Note("c'4")])
-    mark = MetronomeMark(Duration(1, 8), 38)
-    attach(mark, staff[0], scope=Staff)
-    detach(mark, staff[0])
+    staff = abjad.Staff([abjad.Note("c'4")])
+    mark = abjad.MetronomeMark(abjad.Duration(1, 8), 38)
+    abjad.attach(mark, staff[0], scope=abjad.Staff)
+    abjad.detach(mark, staff[0])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'4
@@ -327,22 +327,22 @@ def test_agenttools_InspectionAgent_get_effective_17():
     r'''The default effective time signature is none.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective(TimeSignature)
+        time_signature = abjad.inspect(leaf).get_effective(abjad.TimeSignature)
         assert time_signature is None
 
 
 def test_agenttools_InspectionAgent_get_effective_18():
-    r'''Forced time signature settings propagate to later leaves.
+    r'''Forced time signature abjad.settings propagate to later leaves.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = TimeSignature((2, 8))
-    attach(time_signature, staff[0])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    time_signature = abjad.TimeSignature((2, 8))
+    abjad.attach(time_signature, staff[0])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \time 2/8
@@ -355,20 +355,20 @@ def test_agenttools_InspectionAgent_get_effective_18():
         )
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective(TimeSignature)
-        assert time_signature == TimeSignature((2, 8))
+        time_signature = abjad.inspect(leaf).get_effective(abjad.TimeSignature)
+        assert time_signature == abjad.TimeSignature((2, 8))
 
 
 def test_agenttools_InspectionAgent_get_effective_19():
-    r'''Attach then detach.
+    r'''Attach then abjad.detach.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = TimeSignature((2, 8))
-    attach(time_signature, staff[0])
-    detach(time_signature, staff[0])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    time_signature = abjad.TimeSignature((2, 8))
+    abjad.attach(time_signature, staff[0])
+    abjad.detach(time_signature, staff[0])
 
-    assert format(staff) == String.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -380,7 +380,7 @@ def test_agenttools_InspectionAgent_get_effective_19():
         )
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective(TimeSignature)
+        time_signature = abjad.inspect(leaf).get_effective(abjad.TimeSignature)
         assert time_signature is None
 
 
@@ -388,46 +388,46 @@ def test_agenttools_InspectionAgent_get_effective_20():
     r'''Effective value of arbitrary object.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    attach('color', staff[1], scope=Staff)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.attach('color', staff[1], scope=abjad.Staff)
 
-    assert inspect(staff).get_effective(str) is None
-    assert inspect(staff[0]).get_effective(str) is None
-    assert inspect(staff[1]).get_effective(str) == 'color'
-    assert inspect(staff[2]).get_effective(str) == 'color'
-    assert inspect(staff[3]).get_effective(str) == 'color'
+    assert abjad.inspect(staff).get_effective(str) is None
+    assert abjad.inspect(staff[0]).get_effective(str) is None
+    assert abjad.inspect(staff[1]).get_effective(str) == 'color'
+    assert abjad.inspect(staff[2]).get_effective(str) == 'color'
+    assert abjad.inspect(staff[3]).get_effective(str) == 'color'
 
 
 def test_agenttools_InspectionAgent_get_effective_21():
-    staff = Staff("c'8 d'8 e'8 f'8 g'8")
-    attach('red', staff[0], scope=Staff)
-    attach('blue', staff[2], scope=Staff)
-    attach('yellow', staff[4], scope=Staff)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8")
+    abjad.attach('red', staff[0], scope=abjad.Staff)
+    abjad.attach('blue', staff[2], scope=abjad.Staff)
+    abjad.attach('yellow', staff[4], scope=abjad.Staff)
 
-    assert inspect(staff[0]).get_effective(str, n=-1) is None
-    assert inspect(staff[0]).get_effective(str, n=0) == 'red'
-    assert inspect(staff[0]).get_effective(str, n=1) is 'blue'
+    assert abjad.inspect(staff[0]).get_effective(str, n=-1) is None
+    assert abjad.inspect(staff[0]).get_effective(str, n=0) == 'red'
+    assert abjad.inspect(staff[0]).get_effective(str, n=1) is 'blue'
 
-    assert inspect(staff[1]).get_effective(str, n=-1) is None
-    assert inspect(staff[1]).get_effective(str, n=0) == 'red'
-    assert inspect(staff[1]).get_effective(str, n=1) == 'blue'
+    assert abjad.inspect(staff[1]).get_effective(str, n=-1) is None
+    assert abjad.inspect(staff[1]).get_effective(str, n=0) == 'red'
+    assert abjad.inspect(staff[1]).get_effective(str, n=1) == 'blue'
 
-    assert inspect(staff[2]).get_effective(str, n=-1) == 'red'
-    assert inspect(staff[2]).get_effective(str, n=0) == 'blue'
-    assert inspect(staff[2]).get_effective(str, n=1) == 'yellow'
+    assert abjad.inspect(staff[2]).get_effective(str, n=-1) == 'red'
+    assert abjad.inspect(staff[2]).get_effective(str, n=0) == 'blue'
+    assert abjad.inspect(staff[2]).get_effective(str, n=1) == 'yellow'
 
-    assert inspect(staff[3]).get_effective(str, n=-1) == 'red'
-    assert inspect(staff[3]).get_effective(str, n=0) == 'blue'
-    assert inspect(staff[3]).get_effective(str, n=1) == 'yellow'
+    assert abjad.inspect(staff[3]).get_effective(str, n=-1) == 'red'
+    assert abjad.inspect(staff[3]).get_effective(str, n=0) == 'blue'
+    assert abjad.inspect(staff[3]).get_effective(str, n=1) == 'yellow'
 
-    assert inspect(staff[4]).get_effective(str, n=-1) == 'blue'
-    assert inspect(staff[4]).get_effective(str, n=0) == 'yellow'
-    assert inspect(staff[4]).get_effective(str, n=1) is None
+    assert abjad.inspect(staff[4]).get_effective(str, n=-1) == 'blue'
+    assert abjad.inspect(staff[4]).get_effective(str, n=0) == 'yellow'
+    assert abjad.inspect(staff[4]).get_effective(str, n=1) is None
 
 
 def test_agenttools_InspectionAgent_get_effective_22():
-    staff = Staff("c'8 d'8 e'8 f'8")
-    attach('red', staff[-1], scope=Staff, synthetic_offset=-1)
-    attach('blue', staff[0], scope=Staff)
-    assert inspect(staff).get_effective(str) == 'blue'
-    assert inspect(staff).get_effective(str, n=-1) == 'red'
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.attach('red', staff[-1], scope=abjad.Staff, synthetic_offset=-1)
+    abjad.attach('blue', staff[0], scope=abjad.Staff)
+    assert abjad.inspect(staff).get_effective(str) == 'blue'
+    assert abjad.inspect(staff).get_effective(str, n=-1) == 'red'

@@ -506,7 +506,7 @@ class Pitch(AbjadValueObject):
 
             ::
 
-                >>> abjad.Pitch.is_pitch_class_octave_number_string('C#2')
+                >>> abjad.Pitch.is_pitch_class_octave_number_string('C+2')
                 True
 
         ..  container:: example
@@ -534,6 +534,11 @@ class Pitch(AbjadValueObject):
             ::
 
                 >>> abjad.Pitch.is_pitch_name('c,')
+                True
+
+            ::
+
+                >>> abjad.Pitch.is_pitch_name('cqs,')
                 True
 
         ..  container:: example

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.tools import tonalanalysistools
+import abjad
 import pytest
+from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_Scale_scale_degree_to_named_pitch_class_01():
@@ -9,19 +9,19 @@ def test_tonalanalysistools_Scale_scale_degree_to_named_pitch_class_01():
     scale = tonalanalysistools.Scale('c', 'major')
 
     assert scale.scale_degree_to_named_pitch_class(1) == \
-        pitchtools.NamedPitchClass('c')
+        abjad.NamedPitchClass('c')
     assert scale.scale_degree_to_named_pitch_class(2) == \
-        pitchtools.NamedPitchClass('d')
+        abjad.NamedPitchClass('d')
     assert scale.scale_degree_to_named_pitch_class(3) == \
-        pitchtools.NamedPitchClass('e')
+        abjad.NamedPitchClass('e')
     assert scale.scale_degree_to_named_pitch_class(4) == \
-        pitchtools.NamedPitchClass('f')
+        abjad.NamedPitchClass('f')
     assert scale.scale_degree_to_named_pitch_class(5) == \
-        pitchtools.NamedPitchClass('g')
+        abjad.NamedPitchClass('g')
     assert scale.scale_degree_to_named_pitch_class(6) == \
-        pitchtools.NamedPitchClass('a')
+        abjad.NamedPitchClass('a')
     assert scale.scale_degree_to_named_pitch_class(7) == \
-        pitchtools.NamedPitchClass('b')
+        abjad.NamedPitchClass('b')
 
 
 def test_tonalanalysistools_Scale_scale_degree_to_named_pitch_class_02():
@@ -29,19 +29,19 @@ def test_tonalanalysistools_Scale_scale_degree_to_named_pitch_class_02():
     scale = tonalanalysistools.Scale('c', 'major')
 
     assert scale.scale_degree_to_named_pitch_class('flat', 1) == \
-        pitchtools.NamedPitchClass('cf')
+        abjad.NamedPitchClass('cf')
     assert scale.scale_degree_to_named_pitch_class('flat', 2) == \
-        pitchtools.NamedPitchClass('df')
+        abjad.NamedPitchClass('df')
     assert scale.scale_degree_to_named_pitch_class('flat', 3) == \
-        pitchtools.NamedPitchClass('ef')
+        abjad.NamedPitchClass('ef')
     assert scale.scale_degree_to_named_pitch_class('flat', 4) == \
-        pitchtools.NamedPitchClass('ff')
+        abjad.NamedPitchClass('ff')
     assert scale.scale_degree_to_named_pitch_class('flat', 5) == \
-        pitchtools.NamedPitchClass('gf')
+        abjad.NamedPitchClass('gf')
     assert scale.scale_degree_to_named_pitch_class('flat', 6) == \
-        pitchtools.NamedPitchClass('af')
+        abjad.NamedPitchClass('af')
     assert scale.scale_degree_to_named_pitch_class('flat', 7) == \
-        pitchtools.NamedPitchClass('bf')
+        abjad.NamedPitchClass('bf')
 
 
 def test_tonalanalysistools_Scale_scale_degree_to_named_pitch_class_03():
@@ -49,19 +49,19 @@ def test_tonalanalysistools_Scale_scale_degree_to_named_pitch_class_03():
     scale = tonalanalysistools.Scale('c', 'major')
 
     assert scale.scale_degree_to_named_pitch_class('sharp', 1) == \
-        pitchtools.NamedPitchClass('cs')
+        abjad.NamedPitchClass('cs')
     assert scale.scale_degree_to_named_pitch_class('sharp', 2) == \
-        pitchtools.NamedPitchClass('ds')
+        abjad.NamedPitchClass('ds')
     assert scale.scale_degree_to_named_pitch_class('sharp', 3) == \
-        pitchtools.NamedPitchClass('es')
+        abjad.NamedPitchClass('es')
     assert scale.scale_degree_to_named_pitch_class('sharp', 4) == \
-        pitchtools.NamedPitchClass('fs')
+        abjad.NamedPitchClass('fs')
     assert scale.scale_degree_to_named_pitch_class('sharp', 5) == \
-        pitchtools.NamedPitchClass('gs')
+        abjad.NamedPitchClass('gs')
     assert scale.scale_degree_to_named_pitch_class('sharp', 6) == \
-        pitchtools.NamedPitchClass('as')
+        abjad.NamedPitchClass('as')
     assert scale.scale_degree_to_named_pitch_class('sharp', 7) == \
-        pitchtools.NamedPitchClass('bs')
+        abjad.NamedPitchClass('bs')
 
 
 def test_tonalanalysistools_Scale_scale_degree_to_named_pitch_class_04():

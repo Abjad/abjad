@@ -1,22 +1,20 @@
 # -*- coding: utf-8 -*-
 import abjad
 import pytest
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_01():
 
     maker = abjad.NoteMaker()
-    target = Container(maker([0] * 4, [(1, 4)]))
-    bracket = spannertools.HorizontalBracketSpanner()
-    attach(bracket, target[:])
-    bracket = spannertools.HorizontalBracketSpanner()
-    attach(bracket, target[:2])
-    bracket = spannertools.HorizontalBracketSpanner()
-    attach(bracket, target[2:])
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    bracket = abjad.HorizontalBracketSpanner()
+    abjad.attach(bracket, target[:])
+    bracket = abjad.HorizontalBracketSpanner()
+    abjad.attach(bracket, target[:2])
+    bracket = abjad.HorizontalBracketSpanner()
+    abjad.attach(bracket, target[2:])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 \startGroup \startGroup
@@ -27,7 +25,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_01():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
 

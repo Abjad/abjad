@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abjad
-from abjad import *
 
 
 def test_instrumenttools_notes_and_chords_are_on_expected_clefs_01():

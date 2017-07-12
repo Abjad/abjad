@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import abjad
 import pytest
-from abjad import *
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_TaleaRhythmMaker_read_talea_once_only_01():

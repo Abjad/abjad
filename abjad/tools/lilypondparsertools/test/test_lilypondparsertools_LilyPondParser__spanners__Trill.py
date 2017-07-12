@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import abjad
 import pytest
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Trill_01():
@@ -11,13 +9,13 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_01():
 
     maker = abjad.NoteMaker()
     notes = maker(4 * [0], [(1, 4)])
-    target = Container(notes)
-    trill = spannertools.TrillSpanner()
-    attach(trill, target[2:])
-    trill = spannertools.TrillSpanner()
-    attach(trill, target[:3])
+    target = abjad.Container(notes)
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, target[2:])
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, target[:3])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 \startTrillSpan
@@ -28,7 +26,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_01():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
 
@@ -39,13 +37,13 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_02():
 
     maker = abjad.NoteMaker()
     notes = maker(4 * [0], [(1, 4)])
-    target = Container(notes)
-    trill = spannertools.TrillSpanner()
-    attach(trill, target[2:])
-    trill = spannertools.TrillSpanner()
-    attach(trill, target[:3])
+    target = abjad.Container(notes)
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, target[2:])
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, target[:3])
 
-    assert format(target) == String.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 \startTrillSpan
@@ -58,7 +56,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_02():
 
     string = r"\relative c' { c \startTrillSpan c c \startTrillSpan \stopTrillSpan c \stopTrillSpan }"
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
 

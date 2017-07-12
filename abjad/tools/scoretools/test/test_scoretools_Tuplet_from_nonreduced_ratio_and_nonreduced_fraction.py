@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_01():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, 2, 4)),
-        mathtools.NonreducedFraction(6, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, 2, 4)),
+        abjad.NonreducedFraction(6, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/7 {
@@ -24,12 +24,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_01():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_02():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, 1, 2, 4)),
-        mathtools.NonreducedFraction(6, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, 1, 2, 4)),
+        abjad.NonreducedFraction(6, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -44,12 +44,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_02():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_03():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((-2, 3, 7)),
-        mathtools.NonreducedFraction(7, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((-2, 3, 7)),
+        abjad.NonreducedFraction(7, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 7/12 {
@@ -62,12 +62,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_03():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_04():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((7, 7, -4, -1)),
-        mathtools.NonreducedFraction(1, 4),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((7, 7, -4, -1)),
+        abjad.NonreducedFraction(1, 4),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \times 16/19 {
             c'16..
@@ -81,12 +81,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_04():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_05():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, 2, 2)),
-        mathtools.NonreducedFraction(12, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, 2, 2)),
+        abjad.NonreducedFraction(12, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
@@ -100,12 +100,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_05():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_06():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((2, 4, 4)),
-        mathtools.NonreducedFraction(12, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((2, 4, 4)),
+        abjad.NonreducedFraction(12, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
@@ -119,12 +119,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_06():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_07():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((4, 8, 8)),
-        mathtools.NonreducedFraction(12, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((4, 8, 8)),
+        abjad.NonreducedFraction(12, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
@@ -138,12 +138,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_07():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_08():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((8, 16, 16)),
-        mathtools.NonreducedFraction(12, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((8, 16, 16)),
+        abjad.NonreducedFraction(12, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
@@ -157,12 +157,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_08():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_09():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((2, 4, 4)),
-        mathtools.NonreducedFraction(3, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((2, 4, 4)),
+        abjad.NonreducedFraction(3, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
@@ -176,12 +176,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_09():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_10():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((2, 4, 4)),
-        mathtools.NonreducedFraction(6, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((2, 4, 4)),
+        abjad.NonreducedFraction(6, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
@@ -195,12 +195,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_10():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_11():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((2, 4, 4)),
-        mathtools.NonreducedFraction(12, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((2, 4, 4)),
+        abjad.NonreducedFraction(12, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
@@ -214,12 +214,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_11():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_12():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((2, 4, 4)),
-        mathtools.NonreducedFraction(24, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((2, 4, 4)),
+        abjad.NonreducedFraction(24, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
@@ -233,12 +233,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_12():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_13():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, 2, 2)),
-        mathtools.NonreducedFraction(6, 2),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, 2, 2)),
+        abjad.NonreducedFraction(6, 2),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
@@ -252,12 +252,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_13():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_14():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, 2, 2)),
-        mathtools.NonreducedFraction(6, 4),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, 2, 2)),
+        abjad.NonreducedFraction(6, 4),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
@@ -271,12 +271,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_14():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_15():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, 2, 2)),
-        mathtools.NonreducedFraction(6, 8),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, 2, 2)),
+        abjad.NonreducedFraction(6, 8),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
@@ -290,12 +290,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_15():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_16():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, 2, 2)),
-        mathtools.NonreducedFraction(6, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, 2, 2)),
+        abjad.NonreducedFraction(6, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
@@ -309,12 +309,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_16():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_17():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, -1, -1)),
-        mathtools.NonreducedFraction(3, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, -1, -1)),
+        abjad.NonreducedFraction(3, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'16
@@ -327,12 +327,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_17():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_18():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, 1, -1, -1)),
-        mathtools.NonreducedFraction(4, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, 1, -1, -1)),
+        abjad.NonreducedFraction(4, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'16
@@ -346,12 +346,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_18():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_19():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, 1, 1, -1, -1)),
-        mathtools.NonreducedFraction(5, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, 1, 1, -1, -1)),
+        abjad.NonreducedFraction(5, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'16
@@ -366,12 +366,12 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_19():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_20():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1, 1, 1, 1, -1, -1)),
-        mathtools.NonreducedFraction(6, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1, 1, 1, 1, -1, -1)),
+        abjad.NonreducedFraction(6, 16),
         )
 
-    assert format(tuplet) == String.normalize(
+    assert format(tuplet) == abjad.String.normalize(
         r'''
         {
             c'16
@@ -387,9 +387,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_20():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_21():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((1,)),
-        mathtools.NonreducedFraction(6, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((1,)),
+        abjad.NonreducedFraction(6, 16),
         )
 
     assert str(tuplet) == 'Container("c\'4.")'
@@ -397,9 +397,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_21():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_22():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((99,)),
-        mathtools.NonreducedFraction(6, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((99,)),
+        abjad.NonreducedFraction(6, 16),
         )
 
     assert str(tuplet) == 'Container("c\'4.")'
@@ -407,9 +407,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_22():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_23():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((-1,)),
-        mathtools.NonreducedFraction(6, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((-1,)),
+        abjad.NonreducedFraction(6, 16),
         )
 
     assert str(tuplet) == "Container('r4.')"
@@ -417,9 +417,9 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_23():
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_24():
 
-    tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio((-99,)),
-        mathtools.NonreducedFraction(6, 16),
+    tuplet = abjad.Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+        abjad.NonreducedRatio((-99,)),
+        abjad.NonreducedFraction(6, 16),
         )
 
     assert str(tuplet) == "Container('r4.')"

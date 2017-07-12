@@ -1607,7 +1607,8 @@ class Timespan(BoundedObject):
         return result
 
     def starts_after_offset(self, offset):
-        r'''Is true when timespan overlaps start of `timespan`. Otherwise false:
+        r'''Is true when timespan overlaps start of `timespan`.
+        Otherwise false.
 
         ::
 
@@ -1791,7 +1792,8 @@ class Timespan(BoundedObject):
         return self_start_offset < expr_start_offset
 
     def starts_before_timespan_stops(self, timespan):
-        r'''Is true when timespan starts before `timespan` stops. Otherwise false:
+        r'''Is true when timespan starts before `timespan` stops.
+        Otherwise false.
 
         ::
 
