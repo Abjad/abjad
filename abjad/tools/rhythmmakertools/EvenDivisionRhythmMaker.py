@@ -97,7 +97,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -168,7 +168,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -515,7 +515,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -567,7 +567,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(7, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -608,7 +608,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -677,7 +677,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 16), (3, 8), (3, 4)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -740,7 +740,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 16), (3, 8), (3, 4)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -795,7 +795,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 16), (3, 8), (3, 4)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -845,7 +845,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 16), (3, 8), (3, 4)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -899,7 +899,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -961,7 +961,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1013,7 +1013,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1063,7 +1063,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1143,7 +1143,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1211,7 +1211,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1279,7 +1279,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1346,7 +1346,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1414,7 +1414,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1482,7 +1482,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1556,7 +1556,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1632,7 +1632,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1709,7 +1709,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1789,7 +1789,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1851,7 +1851,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1916,7 +1916,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1978,7 +1978,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -2042,7 +2042,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -2116,7 +2116,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -2213,7 +2213,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -2305,7 +2305,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -2397,7 +2397,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -2491,7 +2491,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )

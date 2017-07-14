@@ -163,7 +163,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -226,7 +226,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -287,7 +287,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -347,7 +347,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -407,7 +407,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -469,7 +469,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -529,7 +529,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -589,7 +589,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )

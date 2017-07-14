@@ -219,7 +219,7 @@ class TypedCounter(TypedCollection):
         return self._collection.elements()
 
     @classmethod
-    def fromkeys(cls, iterable, v=None):
+    def fromkeys(class_, iterable, v=None):
         r'''Makes new typed counter from `iterable`.
 
         Not yet impelemented.
@@ -227,7 +227,7 @@ class TypedCounter(TypedCollection):
         Will return new typed counter.
         '''
         message = '{}.fromkeys() is undefined. Use {}(iterable) instead.'
-        message = message.format(cls.__name__, cls.__name__)
+        message = message.format(class_.__name__, class_.__name__)
         raise NotImplementedError(message)
 
     def items(self):

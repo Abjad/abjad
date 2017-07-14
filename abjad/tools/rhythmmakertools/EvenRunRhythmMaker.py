@@ -32,7 +32,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
             >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
             ...     divisions,
             ...     )
@@ -230,7 +230,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 4), (2, 4)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -294,7 +294,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 4), (2, 4)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -350,7 +350,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 4), (2, 4)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -415,7 +415,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 4), (2, 4)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -512,7 +512,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -575,7 +575,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -639,7 +639,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (4, 8), (2, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )

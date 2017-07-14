@@ -93,7 +93,7 @@ class RhythmMaker(AbjadValueObject):
         '''
         import abjad
         selections = self(divisions)
-        lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
+        lilypond_file = abjad.LilyPondFile.rhythm(
             selections,
             divisions,
             )

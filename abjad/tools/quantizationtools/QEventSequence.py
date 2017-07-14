@@ -217,7 +217,7 @@ class QEventSequence(AbjadObject):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_millisecond_durations(cls, milliseconds, fuse_silences=False):
+    def from_millisecond_durations(class_, milliseconds, fuse_silences=False):
         r'''Convert a sequence of millisecond durations ``durations`` into
         a ``QEventSequence``:
 
@@ -284,10 +284,10 @@ class QEventSequence(AbjadObject):
             q_events.append(q_event)
         q_events.append(quantizationtools.TerminalQEvent(
             durationtools.Offset(offsets[-1])))
-        return cls(q_events)
+        return class_(q_events)
 
     @classmethod
-    def from_millisecond_offsets(cls, offsets):
+    def from_millisecond_offsets(class_, offsets):
         r'''Convert millisecond offsets ``offsets`` into a ``QEventSequence``:
 
         ::
@@ -345,10 +345,10 @@ class QEventSequence(AbjadObject):
         q_events = [quantizationtools.PitchedQEvent(x, [0])
             for x in offsets[:-1]]
         q_events.append(quantizationtools.TerminalQEvent(offsets[-1]))
-        return cls(q_events)
+        return class_(q_events)
 
     @classmethod
-    def from_millisecond_pitch_pairs(cls, pairs):
+    def from_millisecond_pitch_pairs(class_, pairs):
         r'''Convert millisecond-duration:pitch pairs ``pairs`` into a
         ``QEventSequence``:
 
@@ -436,10 +436,10 @@ class QEventSequence(AbjadObject):
                 q_events.append(quantizationtools.PitchedQEvent(offset, [pitches]))
         q_events.append(quantizationtools.TerminalQEvent(
             durationtools.Offset(offsets[-1])))
-        return cls(q_events)
+        return class_(q_events)
 
     @classmethod
-    def from_tempo_scaled_durations(cls, durations, tempo=None):
+    def from_tempo_scaled_durations(class_, durations, tempo=None):
         r'''Convert ``durations``, scaled by ``tempo``
         into a ``QEventSequence``:
 
@@ -504,10 +504,10 @@ class QEventSequence(AbjadObject):
             q_events.append(q_event)
         # insert terminating silence QEvent
         q_events.append(quantizationtools.TerminalQEvent(offsets[-1]))
-        return cls(q_events)
+        return class_(q_events)
 
     @classmethod
-    def from_tempo_scaled_leaves(cls, leaves, tempo=None):
+    def from_tempo_scaled_leaves(class_, leaves, tempo=None):
         r'''Convert ``leaves``, optionally with ``tempo`` into a
         ``QEventSequence``:
 
@@ -612,7 +612,7 @@ class QEventSequence(AbjadObject):
                     for x in group[0].note_heads]
             pitches.append(pitch)
         # convert durations and pitches to QEvents and return
-        return cls.from_millisecond_pitch_pairs(
+        return class_.from_millisecond_pitch_pairs(
             tuple(zip(durations, pitches)))
 
     ### PUBLIC PROPERTIES ###

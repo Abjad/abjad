@@ -687,7 +687,7 @@ class StorageFormatAgent(AbjadValueObject):
         return '.'.join(parts[:-1])
 
     @classmethod
-    def inspect_signature(cls, subject):
+    def inspect_signature(class_, subject):
         positional_names = []
         keyword_names = []
         accepts_args = False
@@ -737,7 +737,7 @@ class StorageFormatAgent(AbjadValueObject):
             elif parameter.kind == funcsigs._VAR_KEYWORD:
                 accepts_kwargs = True
         if platform.python_implementation() == 'PyPy':
-            # Funcsigs under PyPy doesn't discard cls or self.
+            # Funcsigs under PyPy doesn't discard class_ or self.
             if positional_names:
                 positional_names.pop(0)
         return (

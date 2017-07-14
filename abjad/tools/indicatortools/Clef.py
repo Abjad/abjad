@@ -229,8 +229,8 @@ class Clef(AbjadValueObject):
         return r'\clef "{}"'.format(self._name)
 
     @classmethod
-    def _list_clef_names(cls):
-        return list(sorted(cls._clef_name_to_middle_c_position))
+    def _list_clef_names(class_):
+        return list(sorted(class_._clef_name_to_middle_c_position))
 
     ### PUBLIC METHODS ###
 

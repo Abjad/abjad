@@ -31,7 +31,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
             >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
             ...     divisions,
             ...     )
@@ -85,7 +85,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
             >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
             ...     divisions,
             ...     )
@@ -194,7 +194,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -248,7 +248,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -431,7 +431,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -498,7 +498,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -590,7 +590,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -671,7 +671,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -732,7 +732,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -797,7 +797,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -860,7 +860,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -921,7 +921,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -981,7 +981,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1041,7 +1041,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1103,7 +1103,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1163,7 +1163,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1223,7 +1223,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1291,7 +1291,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1342,7 +1342,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1397,7 +1397,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1463,7 +1463,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1517,7 +1517,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1588,7 +1588,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 8), (3, 8), (7, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1639,7 +1639,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 8), (3, 8), (7, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1692,7 +1692,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 8), (3, 8), (7, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1743,7 +1743,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(2, 8), (3, 8), (7, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1796,7 +1796,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1854,7 +1854,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1912,7 +1912,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1978,7 +1978,7 @@ class TupletRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )

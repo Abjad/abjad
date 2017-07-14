@@ -143,7 +143,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -197,7 +197,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -267,7 +267,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -338,7 +338,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -410,7 +410,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -455,7 +455,7 @@ class SilenceMask(AbjadValueObject):
 
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -530,7 +530,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -583,7 +583,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -636,7 +636,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -706,7 +706,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -762,7 +762,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -833,7 +833,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -905,7 +905,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -957,7 +957,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1009,7 +1009,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1078,7 +1078,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1130,7 +1130,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
@@ -1182,7 +1182,7 @@ class SilenceMask(AbjadValueObject):
                 ...     )
                 >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )

@@ -184,7 +184,7 @@ class Instrument(AbjadValueObject):
                 self._short_instrument_name_markup = None
 
     @classmethod
-    def _list_instrument_names(cls):
+    def _list_instrument_names(class_):
         r'''Lists instrument names.
 
         ::
@@ -201,7 +201,7 @@ class Instrument(AbjadValueObject):
         Returns list.
         '''
         instrument_names = []
-        for instrument_class in cls._list_instruments():
+        for instrument_class in class_._list_instruments():
             instrument = instrument_class()
             assert instrument.instrument_name is not None, repr(instrument)
             instrument_names.append(instrument.instrument_name)
@@ -243,18 +243,18 @@ class Instrument(AbjadValueObject):
         return instruments
 
     @classmethod
-    def _list_primary_instruments(cls):
+    def _list_primary_instruments(class_):
         primary_instruments = []
-        for instrument_class in cls._list_instruments():
+        for instrument_class in class_._list_instruments():
             instrument = instrument_class()
             if instrument._is_primary_instrument:
                 primary_instruments.append(instrument_class)
         return primary_instruments
 
     @classmethod
-    def _list_secondary_instruments(cls):
+    def _list_secondary_instruments(class_):
         secondary_instruments = []
-        for instrument_class in cls._list_instruments():
+        for instrument_class in class_._list_instruments():
             instrument = instrument_class()
             if not instrument._is_primary_instrument:
                 secondary_instruments.append(instrument_class)

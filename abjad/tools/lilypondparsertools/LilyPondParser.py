@@ -728,7 +728,7 @@ class LilyPondParser(abctools.Parser):
         return container
 
     @classmethod
-    def _get_scheme_predicates(cls):
+    def _get_scheme_predicates(class_):
         from abjad.tools import lilypondparsertools
         return {
             'boolean?': lambda x: isinstance(x, bool),
@@ -1503,7 +1503,7 @@ class LilyPondParser(abctools.Parser):
         return sorted(music_functions)
 
     @classmethod
-    def register_markup_function(cls, name, signature):
+    def register_markup_function(class_, name, signature):
         r'''Registers a custom markup function globally with LilyPondParser.
 
         ::

@@ -22,7 +22,7 @@ class SkipRhythmMaker(RhythmMaker):
 
             >>> divisions = [(1, 4), (3, 16), (5, 8)]
             >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
             ...     divisions,
             ...     )

@@ -558,7 +558,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'iterate', 'label', 'lilypondfiletools',
 #                    'lilypondnametools', 'lilypondparsertools',
 #                    'ly', 
-#                    'make_floating_time_signature_lilypond_file',
 #                    'markuptools',
 #                    'mathtools', 'metertools', 'mutate', 'new',
 #                    'override', 'parse', 'patterntools', 'persist',

@@ -244,7 +244,7 @@ class InciseSpecifier(AbjadValueObject):
 
                 >>> divisions = 4 * [(5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
