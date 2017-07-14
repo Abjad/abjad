@@ -571,9 +571,7 @@ class PitchRange(AbjadValueObject):
 
         Returns integer.
         '''
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(PitchRange, self).__hash__()
 
     def __illustrate__(self):
         r"""Illustrates pitch range.

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class ChordQuality(AbjadObject):
+class ChordQuality(AbjadValueObject):
     '''Chord quality. Major, minor, dominant, diminished and so on.
 
     ::
@@ -50,10 +50,11 @@ class ChordQuality(AbjadObject):
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.quality_string == argument.quality_string:
-                return True
-        return False
+#        if isinstance(argument, type(self)):
+#            if self.quality_string == argument.quality_string:
+#                return True
+#        return False
+        return super(ChordQuality, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes chord quality.

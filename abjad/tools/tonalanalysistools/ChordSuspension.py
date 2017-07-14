@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import re
 from abjad.tools import systemtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class ChordSuspension(AbjadObject):
+class ChordSuspension(AbjadValueObject):
     '''Chord suspension. 9-8, 7-6, 4-3, 2-1 and other types of
     suspension typical of, for example, the Bach chorales.
 

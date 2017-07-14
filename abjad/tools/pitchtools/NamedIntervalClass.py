@@ -147,9 +147,9 @@ class NamedIntervalClass(IntervalClass):
         return type(self)(abs(self._number))
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a named interval-class with direction number,
-        quality string and number equal to those of this named interval-class.
-        Otherwise false.
+        r'''Is true when `argument` is a named interval-class with direction
+        number, quality string and number equal to those of this named
+        interval-class. Otherwise false.
 
         ..  container:: example
 
@@ -234,6 +234,7 @@ class NamedIntervalClass(IntervalClass):
 
         Returns true or false.
         '''
+        # custom definition because __init__(*arguments):
         if isinstance(argument, type(self)):
             if self.direction_number == argument.direction_number:
                 if self._quality_string == argument._quality_string:
@@ -253,10 +254,7 @@ class NamedIntervalClass(IntervalClass):
 
         Returns integer.
         '''
-        #return hash(repr(self))
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(NamedIntervalClass, self).__hash__()
 
     def __int__(self):
         r'''Changes named interval-class to integer.

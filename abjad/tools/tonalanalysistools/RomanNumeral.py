@@ -87,6 +87,8 @@ class RomanNumeral(AbjadValueObject):
 
         Returns true or false.
         '''
+        #return super(RomanNumeral, self).__eq__(argument)
+        # custom definition because __init__(*arguments)
         if isinstance(argument, type(self)):
             if self.scale_degree == argument.scale_degree:
                 if self.quality == argument.quality:

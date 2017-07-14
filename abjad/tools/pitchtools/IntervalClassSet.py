@@ -65,9 +65,29 @@ class IntervalClassSet(Set):
 
             >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = abjad.Staff("c4. r8 g2")
-            >>> selection = abjad.select((staff_1, staff_2))
+            >>> staff_group = abjad.StaffGroup([staff_1, staff_2])
+            >>> show(staff_group) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff_group)
+            \new StaffGroup <<
+                \new Staff {
+                    c'4
+                    <d' fs' a'>4
+                    b2
+                }
+                \new Staff {
+                    c4.
+                    r8
+                    g2
+                }
+            >>
+
+        ::
+
             >>> interval_classes = abjad.IntervalClassSet.from_selection(
-            ...     selection)
+            ...     staff_group)
             >>> for interval_class in sorted(interval_classes):
             ...     interval_class
             ...

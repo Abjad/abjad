@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+#from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class ChordExtent(AbjadObject):
+#class ChordExtent(AbjadObject):
+class ChordExtent(AbjadValueObject):
     '''Chord extent. Triad, seventh chord, ninth chord, etc.
 
     ::
@@ -50,10 +52,11 @@ class ChordExtent(AbjadObject):
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.number == argument.number:
-                return True
-        return False
+#        if isinstance(argument, type(self)):
+#            if self.number == argument.number:
+#                return True
+#        return False
+        return super(ChordExtent, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes chord extent.

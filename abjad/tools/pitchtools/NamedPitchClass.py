@@ -213,9 +213,10 @@ class NamedPitchClass(PitchClass):
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            return self.pitch_class_name == argument.pitch_class_name
-        return self.pitch_class_name == argument
+#        if isinstance(argument, type(self)):
+#            return self.pitch_class_name == argument.pitch_class_name
+#        return self.pitch_class_name == argument
+        return super(NamedPitchClass, self).__eq__(argument)
 
     def __float__(self):
         r'''Changes named pitch-class to a float.

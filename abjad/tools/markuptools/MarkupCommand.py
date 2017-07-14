@@ -147,22 +147,21 @@ class MarkupCommand(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_args',
-        '_command',
+        '_arguments',
+        '_name',
         '_force_quotes',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, command=None, *arguments):
-        if command is None:
+    def __init__(self, name=None, *arguments):
+        if name is None:
             # TODO: Generalize these arbitrary default arguments away.
-            command = 'draw-circle'
+            name = 'draw-circle'
             assert len(arguments) == 0
-        assert isinstance(command, str) \
-            and len(command) and command.find(' ') == -1
-        self._command = command
-        self._args = tuple(arguments)
+        assert isinstance(name, str) and len(name) and name.find(' ') == -1
+        self._name = name
+        self._arguments = tuple(arguments)
         self._force_quotes = False
 
     ### SPECIAL METHODS ###
@@ -202,11 +201,12 @@ class MarkupCommand(AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.command == argument.command:
-                if self.arguments == argument.arguments:
-                    return True
-        return False
+#        if isinstance(argument, type(self)):
+#            if self.command == argument.command:
+#                if self.arguments == argument.arguments:
+#                    return True
+#        return False
+        return super(MarkupCommand, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats markup command.
@@ -376,6 +376,7 @@ class MarkupCommand(AbjadValueObject):
         return string
 
     def _get_format_pieces(self):
+        from abjad.tools import systemtools
         def recurse(iterable):
             result = []
             for x in iterable:
@@ -401,9 +402,8 @@ class MarkupCommand(AbjadValueObject):
                     else:
                         result.append('#{}'.format(formatted))
             return ['{}{}'.format(indent, x) for x in result]
-        from abjad.tools import systemtools
         indent = systemtools.LilyPondFormatManager.indent
-        parts = [r'\{}'.format(self.command)]
+        parts = [r'\{}'.format(self.name)]
         parts.extend(recurse(self.arguments))
         return parts
 
@@ -411,7 +411,7 @@ class MarkupCommand(AbjadValueObject):
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=False,
-            storage_format_args_values=(self.command,) + self.arguments,
+            storage_format_args_values=(self.name,) + self.arguments,
             storage_format_kwargs_names=[],
             )
 
@@ -435,25 +435,7 @@ class MarkupCommand(AbjadValueObject):
 
         Returns tuple.
         '''
-        return self._args
-
-    # TODO: change to MarkupCommand.name
-    @property
-    def command(self):
-        r'''Gets markup command name.
-
-        ..  container:: example
-
-            ::
-
-                >>> arguments = ('draw-circle', 1, 0.1, False)
-                >>> command = abjad.MarkupCommand(*arguments)
-                >>> command.command
-                'draw-circle'
-
-        Returns string.
-        '''
-        return self._command
+        return self._arguments
 
     @property
     def force_quotes(self):
@@ -521,6 +503,23 @@ class MarkupCommand(AbjadValueObject):
     def force_quotes(self, argument):
         assert isinstance(argument, bool), repr(argument)
         self._force_quotes = argument
+
+    @property
+    def name(self):
+        r'''Gets markup command name.
+
+        ..  container:: example
+
+            ::
+
+                >>> arguments = ('draw-circle', 1, 0.1, False)
+                >>> command = abjad.MarkupCommand(*arguments)
+                >>> command.name
+                'draw-circle'
+
+        Returns string.
+        '''
+        return self._name
 
     ### PUBLIC METHODS ###
 

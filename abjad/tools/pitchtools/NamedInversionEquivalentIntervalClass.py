@@ -105,12 +105,13 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a named inversion-equivalent interval-class with
-        quality string and number equal to those of this named
-        inversion-equivalent interval-class. Otherwise false.
+        r'''Is true when `argument` is a named inversion-equivalent
+        interval-class with quality string and number equal to those of this
+        named inversion-equivalent interval-class. Otherwise false.
 
         Returns true or false.
         '''
+        # custom definition because __init__(*arguments):
         if isinstance(argument, type(self)):
             if self.quality_string == argument.quality_string:
                 if self.number == argument.number:

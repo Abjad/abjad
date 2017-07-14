@@ -7,10 +7,12 @@ from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import systemtools
-from abjad.tools.abctools import AbjadObject
+#from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class Meter(AbjadObject):
+#class Meter(AbjadObject):
+class Meter(AbjadValueObject):
     '''Meter.
 
     ::
@@ -445,10 +447,11 @@ class Meter(AbjadObject):
 
         Returns true or false.
         '''
-        if type(self) == type(argument):
-            if self.rtm_format == argument.rtm_format:
-                return True
-        return False
+#        if type(self) == type(argument):
+#            if self.rtm_format == argument.rtm_format:
+#                return True
+#        return False
+        return super(Meter, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats meter.
@@ -702,11 +705,10 @@ class Meter(AbjadObject):
 
     def __hash__(self):
         r'''Hashes meter.
+
+        Returns integer.
         '''
-        #return hash((type(self), self.rtm_format))
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(Meter, self).__hash__()
 
     def __iter__(self):
         r'''Iterates meter.

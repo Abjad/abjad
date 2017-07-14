@@ -52,8 +52,8 @@ class SchemeMoment(Scheme):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a scheme moment with the same value as that of
-        this scheme moment.
+        r'''Is true when `argument` is a scheme moment with the same value as
+        that of this scheme moment.
 
         ::
 
@@ -67,6 +67,8 @@ class SchemeMoment(Scheme):
 
         Returns true or false.
         '''
+        #return super(SchemeMoment, self).__eq__(argument)
+        # custom definition preserved bc tests break otherwise:
         if isinstance(argument, type(self)):
             if self._value == argument._value:
                 return True

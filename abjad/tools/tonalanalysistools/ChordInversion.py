@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class ChordInversion(AbjadObject):
+class ChordInversion(AbjadValueObject):
     '''Chord inversion. Tertian chords 5, 63, 64 and also 7, 65, 43, 42, etc.
 
     ::
@@ -71,10 +71,11 @@ class ChordInversion(AbjadObject):
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.number == argument.number:
-                return True
-        return False
+#        if isinstance(argument, type(self)):
+#            if self.number == argument.number:
+#                return True
+#        return False
+        return super(ChordInversion, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes chord inversion.

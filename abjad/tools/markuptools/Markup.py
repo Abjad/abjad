@@ -435,8 +435,7 @@ class Markup(AbjadValueObject):
 
         Returns new markup.
         '''
-        superclass = super(Markup, self)
-        return superclass.__eq__(argument)
+        return super(Markup, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats markup.

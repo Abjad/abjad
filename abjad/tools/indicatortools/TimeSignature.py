@@ -213,6 +213,7 @@ class TimeSignature(AbjadValueObject):
 
         Returns true or false.
         '''
+        # custom definition retained only bc tests currently break with super()
         if isinstance(argument, type(self)):
             return (self.numerator == argument.numerator and
                 self.denominator == argument.denominator)

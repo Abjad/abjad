@@ -59,10 +59,11 @@ class NonreducedRatio(AbjadValueObject):
 
         Returns true or false.
         '''
-        if not isinstance(argument, type(self)):
-            return False
-        argument = type(self)(argument)
-        return self.numbers == argument.numbers
+#        if not isinstance(argument, type(self)):
+#            return False
+#        argument = type(self)(argument)
+#        return self.numbers == argument.numbers
+        return super(NonreducedRatio, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats duration.

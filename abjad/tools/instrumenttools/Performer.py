@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import collections
 from abjad.tools import datastructuretools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Performer(AbjadObject):
+#class Performer(AbjadObject):
+class Performer(AbjadValueObject):
     r'''Performer.
 
     ::
@@ -95,16 +97,17 @@ class Performer(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a performer with name and instruments equal to
-        those of this performer. Otherwise false.
+        r'''Is true when `argument` is a performer with name and instruments
+        equal to those of this performer. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.name == argument.name:
-                if self.instruments == argument.instruments:
-                    return True
-        return False
+#        if isinstance(argument, type(self)):
+#            if self.name == argument.name:
+#                if self.instruments == argument.instruments:
+#                    return True
+#        return False
+        return super(Performer, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats performer.
@@ -124,11 +127,7 @@ class Performer(AbjadObject):
 
         Returns string.
         '''
-        #return hash((type(self).__name__, self.name, tuple(self.instruments)))
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
-        hash_values = agent.get_hash_values()
-        return hash(hash_values)
+        return super(Performer, self).__hash__()
 
     ### PUBLIC METHODS ###
 

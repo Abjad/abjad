@@ -577,8 +577,8 @@ class MetricModulation(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true `argument` is another metric modulation with the same ratio as
-        this metric modulation. Otherwise false.
+        r'''Is true when `argument` is another metric modulation with the same
+        ratio as this metric modulation. Otherwise false.
 
         ..  container:: example
 
@@ -637,6 +637,7 @@ class MetricModulation(AbjadValueObject):
 
         Returns true or false.
         '''
+        # custom definition because input rhythms don't compare:
         if isinstance(argument, type(self)):
             if self.ratio == argument.ratio:
                 return True

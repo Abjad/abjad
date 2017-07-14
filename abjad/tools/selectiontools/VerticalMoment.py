@@ -105,9 +105,7 @@ class VerticalMoment(Selection):
 
         Returns integer.
         '''
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(VerticalMoment, self).__hash__()
 
     def __len__(self):
         r'''Length of vertical moment.

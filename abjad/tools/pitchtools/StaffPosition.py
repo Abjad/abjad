@@ -105,10 +105,7 @@ class StaffPosition(AbjadValueObject):
 
         Returns integer.
         '''
-        #return hash(repr(self))
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(StaffPosition, self).__hash__()
 
     def __int__(self):
         r'''Changes staff position to integer.

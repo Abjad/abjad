@@ -19,7 +19,9 @@ class LilyPondNameManager(object):
         Returns true or false.
         '''
         if isinstance(argument, type(self)):
-            return self._get_attribute_pairs() == argument._get_attribute_pairs()
+            attribute_pairs_1 = self._get_attribute_pairs()
+            attribute_pairs_2 = argument._get_attribute_pairs()
+            return attribute_pairs_1 == attribute_pairs_2
         return False
 
     def __getstate__(self):

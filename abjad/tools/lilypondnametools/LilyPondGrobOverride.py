@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class LilyPondGrobOverride(AbjadObject):
+class LilyPondGrobOverride(AbjadValueObject):
     r'''LilyPond grob override.
 
     ::
@@ -85,17 +86,16 @@ class LilyPondGrobOverride(AbjadObject):
         r'''Is true when `argument` is a LilyPond grob override with equivalent
         keyword values.
         '''
-        from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, argument)
+#        from abjad.tools import systemtools
+#        return systemtools.TestManager.compare_objects(self, argument)
+        return super(LilyPondGrobOverride, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes LilyPond grob override.
 
         Returns integer.
         '''
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(LilyPondGrobOverride, self).__hash__()
 
     ### PRIVATE METHODS ###
 

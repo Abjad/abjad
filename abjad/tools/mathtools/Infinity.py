@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import systemtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class Infinity(AbjadObject):
+class Infinity(AbjadValueObject):
     r'''Infinity.
 
     ..  container:: example
@@ -61,9 +61,10 @@ class Infinity(AbjadObject):
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            return self._value == argument._value
-        return False
+#        if isinstance(argument, type(self)):
+#            return self._value == argument._value
+#        return False
+        return super(Infinity, self).__eq__(argument)
 
     def __float__(self):
         r'''Convert infinity to float.

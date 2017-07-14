@@ -93,15 +93,16 @@ class MetricAccentKernel(AbjadValueObject):
         return response
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a metrical accent kernal with a kernal equal
-        to that of this metrical accent kernel. Otherwise false.
+        r'''Is true when `argument` is a metrical accent kernal with a kernal
+        equal to that of this metrical accent kernel. Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(argument):
-            if self._kernel == argument._kernel:
-                return True
-        return False
+#        if type(self) == type(argument):
+#            if self._kernel == argument._kernel:
+#                return True
+#        return False
+        return super(MetricAccentKernel, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes metric accent kernel.

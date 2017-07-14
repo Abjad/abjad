@@ -428,8 +428,7 @@ class MetronomeMark(AbjadValueObject):
 
         Returns true or false.
         '''
-        superclass = super(MetronomeMark, self)
-        return superclass.__eq__(argument)
+        return super(MetronomeMark, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats metronome mark.

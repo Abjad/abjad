@@ -2,10 +2,10 @@
 import re
 from abjad.tools import pitchtools
 from abjad.tools import systemtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class ScaleDegree(AbjadObject):
+class ScaleDegree(AbjadValueObject):
     '''Scale degree. 1, 2, 3, 4, 5, 6, 7 and chromatic alterations.
     
     ::
@@ -124,6 +124,8 @@ class ScaleDegree(AbjadObject):
 
         Returns true or false.
         '''
+        #return super(ScaleDegree, self).__eq__(argument)
+        # custom definition preserved until *arguments goes away:
         if isinstance(argument, type(self)):
             if self.number == argument.number:
                 if self.accidental == argument.accidental:

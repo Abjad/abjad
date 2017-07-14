@@ -104,8 +104,7 @@ class Ratio(NonreducedRatio):
                 True
             
         '''
-        superclass = super(Ratio, self)
-        return superclass.__eq__(argument)
+        return super(Ratio, self).__eq__(argument)
 
     def __getitem__(self, argument):
         r'''Gets item or slice identified by `argument`.

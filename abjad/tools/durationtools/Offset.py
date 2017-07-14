@@ -500,16 +500,7 @@ class Offset(Duration):
 
         Returns integer.
         '''
-#        return hash((
-#            type(self),
-#            self.numerator,
-#            self.denominator,
-#            self.grace_displacement,
-#            ))
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
-        hash_values = agent.get_hash_values()
-        return hash(hash_values)
+        return super(Offset, self).__hash__()
 
     def __le__(self, argument):
         r'''Is true when offset is less than or equal to `argument`.

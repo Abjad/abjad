@@ -94,7 +94,7 @@ class IntervalSet(Set):
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
         enumerator = sequencetools.Enumerator(pitch_segment)
         pairs = enumerator.yield_pairs()
-        intervals = (second - first for first, second in pairs)
+        intervals = [second - first for first, second in pairs]
         return class_(
             items=intervals,
             item_class=item_class,

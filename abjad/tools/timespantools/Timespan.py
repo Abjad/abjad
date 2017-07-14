@@ -110,8 +110,8 @@ class Timespan(BoundedObject):
             )
         return timespantools.TimespanList([timespan])
 
-    def __eq__(self, timespan):
-        r'''Is true when `timespan` is a timespan with equal offsets.
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a timespan with equal offsets.
 
         ::
 
@@ -127,8 +127,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, timespan)
+#        from abjad.tools import systemtools
+#        return systemtools.TestManager.compare_objects(self, timespan)
+        return super(Timespan, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats timespan.
@@ -215,9 +216,7 @@ class Timespan(BoundedObject):
 
         Returns integer.
         '''
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(Timespan, self).__hash__()
 
     def __illustrate__(self, range_=None, scale=None):
         r'''Illustrates timespan.

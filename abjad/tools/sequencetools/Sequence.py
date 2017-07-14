@@ -357,9 +357,10 @@ class Sequence(abctools.AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            return self._items == argument._items
-        return False
+#        if isinstance(argument, type(self)):
+#            return self._items == argument._items
+#        return False
+        return super(Sequence, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats sequence.

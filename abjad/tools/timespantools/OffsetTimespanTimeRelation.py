@@ -111,12 +111,13 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.inequality == argument.inequality:
-                if self.timespan == argument.timespan:
-                    if self.offset == argument.offset:
-                        return True
-        return False
+#        if isinstance(argument, type(self)):
+#            if self.inequality == argument.inequality:
+#                if self.timespan == argument.timespan:
+#                    if self.offset == argument.offset:
+#                        return True
+#        return False
+        return super(OffsetTimespanTimeRelation, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats time relation.

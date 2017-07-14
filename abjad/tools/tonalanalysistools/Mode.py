@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 from abjad.tools import sequencetools
 from abjad.tools import pitchtools
 
 
-class Mode(AbjadObject):
+class Mode(AbjadValueObject):
     '''Mode. Major, minor, etc.
 
     ::
@@ -46,9 +46,10 @@ class Mode(AbjadObject):
 
         Returns true or false.
         '''
-        if not isinstance(argument, type(self)):
-            return False
-        return self.mode_name == argument.mode_name
+#        if not isinstance(argument, type(self)):
+#            return False
+#        return self.mode_name == argument.mode_name
+        return super(Mode, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes mode.

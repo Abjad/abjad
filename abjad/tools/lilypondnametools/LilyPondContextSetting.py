@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class LilyPondContextSetting(AbjadObject):
+#class LilyPondContextSetting(AbjadObject):
+class LilyPondContextSetting(AbjadValueObject):
     r'''LilyPond context setting.
 
     ::
@@ -60,17 +62,16 @@ class LilyPondContextSetting(AbjadObject):
         r'''Is true when `argument` is a LilyPond context setting with
         equivalent keyword values.
         '''
-        from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, argument)
+#        from abjad.tools import systemtools
+#        return systemtools.TestManager.compare_objects(self, argument)
+        return super(LilyPondContextSetting, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes LilyPond context setting.
 
         Returns integer.
         '''
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(LilyPondContextSetting, self).__hash__()
 
     ### PRIVATE METHODS ###
 
