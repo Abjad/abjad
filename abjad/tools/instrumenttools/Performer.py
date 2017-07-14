@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Performer(AbjadObject):
-    r'''A performer.
+    r'''Performer.
 
     ::
 

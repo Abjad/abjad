@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Harp(Instrument):
-    r'''A harp.
+    r'''Harp.
 
     ::
 

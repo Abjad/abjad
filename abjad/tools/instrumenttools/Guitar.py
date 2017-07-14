@@ -4,7 +4,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Guitar(Instrument):
-    r'''A guitar.
+    r'''Guitar.
 
     ::
 

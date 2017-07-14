@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BaritoneSaxophone(Instrument):
-    r'''A baritone saxophone.
+    r'''Baritone saxophone.
 
     ::
 

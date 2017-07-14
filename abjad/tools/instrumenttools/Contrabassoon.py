@@ -3,7 +3,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Contrabassoon(Instrument):
-    r'''A contrabassoon.
+    r'''Contrabassoon.
 
     ::
 

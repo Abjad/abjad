@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Oboe(Instrument):
-    r'''An oboe.
+    r'''Oboe.
 
     ::
 

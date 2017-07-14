@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class BenchmarkScoreMaker(AbjadObject):
-    '''Benchmark score maker:
+    '''Benchmark score-maker.
 
     ::
 

@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BassTrombone(Instrument):
-    r'''A bass trombone.
+    r'''Bass trombone.
 
     ::
 

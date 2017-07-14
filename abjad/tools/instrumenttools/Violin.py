@@ -4,7 +4,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Violin(Instrument):
-    r'''A violin.
+    r'''Violin.
 
     ::
 

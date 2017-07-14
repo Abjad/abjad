@@ -456,6 +456,7 @@ class Component(AbjadObject):
 
     def _get_indicators(self, prototype=None, name=None, unwrap=True):
         from abjad.tools import indicatortools
+        from abjad.tools import systemtools
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
@@ -475,7 +476,7 @@ class Component(AbjadObject):
                 matching_indicators.append(indicator)
             elif any(indicator == x for x in prototype_objects):
                 matching_indicators.append(indicator)
-            elif isinstance(indicator, indicatortools.IndicatorExpression):
+            elif isinstance(indicator, systemtools.IndicatorExpression):
                 if isinstance(indicator.indicator, prototype_classes):
                     matching_indicators.append(indicator)
                 elif any(indicator.indicator == x for x in prototype_objects):

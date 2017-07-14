@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Cello(Instrument):
-    r'''A cello.
+    r'''Cello.
 
     ::
 

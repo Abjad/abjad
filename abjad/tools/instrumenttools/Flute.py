@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Flute(Instrument):
-    r'''A flute.
+    r'''Flute.
 
     ::
 

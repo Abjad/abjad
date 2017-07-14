@@ -2,7 +2,7 @@
 import abjad
 
 
-def test_indicatortools_IndicatorExpression_name_01():
+def test_systemtools_IndicatorExpression_name_01():
     component = abjad.Note("c'4")
     articulation = abjad.Articulation('accent', Up)
     abjad.attach(articulation, component)
@@ -10,7 +10,7 @@ def test_indicatortools_IndicatorExpression_name_01():
     assert indicator_expression.name is None
 
 
-def test_indicatortools_IndicatorExpression_name_02():
+def test_systemtools_IndicatorExpression_name_02():
     component = abjad.Note("c'4")
     articulation = abjad.Articulation('accent', Up)
     abjad.attach(articulation, component, name='foo')
@@ -18,7 +18,7 @@ def test_indicatortools_IndicatorExpression_name_02():
     assert indicator_expression.name == 'foo'
 
 
-def test_indicatortools_IndicatorExpression_name_03():
+def test_systemtools_IndicatorExpression_name_03():
     leaf_a = abjad.Note("c'4")
     articulation = abjad.Articulation('accent', Up)
     abjad.attach(articulation, leaf_a)
@@ -31,7 +31,7 @@ def test_indicatortools_IndicatorExpression_name_03():
     assert indicator_expression_b.name is None
 
 
-def test_indicatortools_IndicatorExpression_name_04():
+def test_systemtools_IndicatorExpression_name_04():
     leaf_a = abjad.Note("c'4")
     articulation = abjad.Articulation('accent', Up)
     abjad.attach(articulation, leaf_a, name='foo')
@@ -44,7 +44,7 @@ def test_indicatortools_IndicatorExpression_name_04():
     assert indicator_expression_b.name == 'foo'
 
 
-def test_indicatortools_IndicatorExpression_name_05():
+def test_systemtools_IndicatorExpression_name_05():
     leaf_a = abjad.Note("c'4")
     articulation = abjad.Articulation('accent', Up)
     abjad.attach(articulation, leaf_a, name='foo')

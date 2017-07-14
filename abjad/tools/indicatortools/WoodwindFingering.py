@@ -6,189 +6,203 @@ from abjad.tools.abctools import AbjadObject
 
 
 class WoodwindFingering(AbjadObject):
-    r'''A woodwind fingering.
+    r'''Woodwind fingering.
 
     ::
 
         >>> import abjad
 
-    Initializes from a valid instrument name and up to three keyword lists or
-    tuples:
+    ..  container:: example
 
-    ::
+        Initializes from a valid instrument name and up to three keyword lists
+        or tuples:
 
-        >>> center_column = ('one', 'two', 'three', 'five')
-        >>> left_hand = ('R', 'thumb')
-        >>> right_hand = ('e',)
-        >>> woodwind_fingering = abjad.instrumenttools.WoodwindFingering(
-        ...     instrument_name='clarinet',
-        ...     center_column=center_column,
-        ...     left_hand=left_hand,
-        ...     right_hand=right_hand,
-        ...     )
+        ::
 
-    ::
+            >>> center_column = ('one', 'two', 'three', 'five')
+            >>> left_hand = ('R', 'thumb')
+            >>> right_hand = ('e',)
+            >>> woodwind_fingering = abjad.WoodwindFingering(
+            ...     instrument_name='clarinet',
+            ...     center_column=center_column,
+            ...     left_hand=left_hand,
+            ...     right_hand=right_hand,
+            ...     )
 
-        >>> print(format(woodwind_fingering, 'storage'))
-        instrumenttools.WoodwindFingering(
-            instrument_name='clarinet',
-            center_column=('one', 'two', 'three', 'five'),
-            left_hand=('R', 'thumb'),
-            right_hand=('e',),
-            )
+        ::
 
-    Initializes a WoodwindFingering from another WoodwindFingering:
-
-    ::
-
-        >>> woodwind_fingering_2 = abjad.instrumenttools.WoodwindFingering(
-        ...     woodwind_fingering)
-        >>> print(format(woodwind_fingering_2))
-        instrumenttools.WoodwindFingering(
-            instrument_name='clarinet',
-            center_column=('one', 'two', 'three', 'five'),
-            left_hand=('R', 'thumb'),
-            right_hand=('e',),
-            )
-
-    Calls a WoodwindFingering to create a woodwind diagram MarkupCommand:
-
-    ::
-
-        >>> fingering_command = woodwind_fingering()
-        >>> print(format(fingering_command))
-        abjad.MarkupCommand(
-            'woodwind-diagram',
-            abjad.Scheme(
-                'clarinet',
-                quoting="'",
-                ),
-            abjad.Scheme(
-                abjad.SchemePair('cc', ('one', 'two', 'three', 'five')),
-                abjad.SchemePair('lh', ('R', 'thumb')),
-                abjad.SchemePair('rh', ('e',)),
-                quoting="'",
+            >>> print(format(woodwind_fingering, 'storage'))
+            abjad.WoodwindFingering(
+                instrument_name='clarinet',
+                center_column=('one', 'two', 'three', 'five'),
+                left_hand=('R', 'thumb'),
+                right_hand=('e',),
                 )
-            )
 
-    Attaches the MarkupCommand to score components, such as a chord
-    representing a multiphonic sound:
+    ..  container:: example
 
-    ::
+        Initializes a WoodwindFingering from another WoodwindFingering:
 
-        >>> markup = abjad.Markup(contents=fingering_command, direction=Down)
-        >>> chord = abjad.Chord("<ds' fs''>4")
-        >>> abjad.attach(markup, chord)
-        >>> show(chord) # doctest: +SKIP
+        ::
 
-    ..  docs::
+            >>> woodwind_fingering_2 = abjad.WoodwindFingering(
+            ...     woodwind_fingering)
+            >>> print(format(woodwind_fingering_2))
+            abjad.WoodwindFingering(
+                instrument_name='clarinet',
+                center_column=('one', 'two', 'three', 'five'),
+                left_hand=('R', 'thumb'),
+                right_hand=('e',),
+                )
 
-        >>> f(chord)
-        <ds' fs''>4
-            _ \markup {
-                \woodwind-diagram
-                    #'clarinet
-                    #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
-                }
+    ..  container:: exmaple
 
-    Initializes fingerings for eight different woodwind instruments:
+        Calls a WoodwindFingering to create a woodwind diagram MarkupCommand:
 
-    ::
+        ::
 
-        >>> instrument_names = [
-        ...     'piccolo', 'flute', 'oboe', 'clarinet', 'bass-clarinet',
-        ...     'saxophone', 'bassoon', 'contrabassoon',
-        ...     ]
-        >>> for name in instrument_names:
-        ...    abjad.instrumenttools.WoodwindFingering(name)
-        ...
-        WoodwindFingering(instrument_name='piccolo', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering(instrument_name='flute', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering(instrument_name='oboe', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering(instrument_name='clarinet', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering(instrument_name='bass-clarinet', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering(instrument_name='saxophone', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering(instrument_name='bassoon', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering(instrument_name='contrabassoon', center_column=(), left_hand=(), right_hand=())
+            >>> fingering_command = woodwind_fingering()
+            >>> print(format(fingering_command))
+            abjad.MarkupCommand(
+                'woodwind-diagram',
+                abjad.Scheme(
+                    'clarinet',
+                    quoting="'",
+                    ),
+                abjad.Scheme(
+                    abjad.SchemePair('cc', ('one', 'two', 'three', 'five')),
+                    abjad.SchemePair('lh', ('R', 'thumb')),
+                    abjad.SchemePair('rh', ('e',)),
+                    quoting="'",
+                    )
+                )
 
-    An override displays diagrams symbolically instead of graphically:
+    ..  container:: example
 
-    ::
+        Attaches the MarkupCommand to score components, such as a chord
+        representing a multiphonic sound:
 
-        >>> chord = abjad.Chord("<e' as' gqf''>1")
-        >>> fingering = abjad.instrumenttools.WoodwindFingering(
-        ...     'clarinet',
-        ...     center_column=['one', 'two', 'three', 'four'],
-        ...     left_hand=['R','cis'],
-        ...     right_hand=['fis'])
-        >>> diagram = fingering()
-        >>> not_graphical = abjad.MarkupCommand(
-        ...     'override',
-        ...     abjad.SchemePair('graphical', False),
-        ...     )
-        >>> markup = abjad.Markup(contents=
-        ...     [not_graphical, diagram], direction=Down)
-        >>> abjad.attach(markup, chord)
-        >>> show(chord) # doctest: +SKIP
+        ::
 
-    ..  docs::
+            >>> markup = abjad.Markup(contents=fingering_command, direction=Down)
+            >>> chord = abjad.Chord("<ds' fs''>4")
+            >>> abjad.attach(markup, chord)
+            >>> show(chord) # doctest: +SKIP
 
-        >>> f(chord)
-        <e' as' gqf''>1
-            _ \markup {
-                \override
-                    #'(graphical . #f)
-                \woodwind-diagram
-                    #'clarinet
-                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
-                }
+        ..  docs::
 
-    The thickness and size of diagrams can also be changed with overrides:
+            >>> f(chord)
+            <ds' fs''>4
+                _ \markup {
+                    \woodwind-diagram
+                        #'clarinet
+                        #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
+                    }
 
-    ::
+    ..  container:: example
 
-        >>> chord = abjad.Chord("<e' as' gqf''>1")
-        >>> fingering = abjad.instrumenttools.WoodwindFingering(
-        ...     'clarinet',
-        ...     center_column=('one', 'two', 'three', 'four'),
-        ...     left_hand=('R','cis'),
-        ...     right_hand=('fis',),
-        ...     )
-        >>> diagram = fingering()
-        >>> not_graphical = abjad.MarkupCommand(
-        ...     'override',
-        ...     abjad.SchemePair('graphical', False),
-        ...     )
-        >>> size = abjad.MarkupCommand(
-        ...     'override',
-        ...     abjad.SchemePair('size', .5),
-        ...     )
-        >>> thickness = abjad.MarkupCommand(
-        ...     'override',
-        ...     abjad.SchemePair('thickness', .4),
-        ...     )
-        >>> markup = abjad.Markup(
-        ...     contents=[not_graphical, size, thickness, diagram],
-        ...     direction=Down,
-        ...     )
-        >>> abjad.attach(markup, chord)
-        >>> show(chord) # doctest: +SKIP
+        Initializes fingerings for eight different woodwind instruments:
 
-    ..  docs::
+        ::
 
-        >>> f(chord)
-        <e' as' gqf''>1
-            _ \markup {
-                \override
-                    #'(graphical . #f)
-                \override
-                    #'(size . 0.5)
-                \override
-                    #'(thickness . 0.4)
-                \woodwind-diagram
-                    #'clarinet
-                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
-                }
+            >>> instrument_names = [
+            ...     'piccolo', 'flute', 'oboe', 'clarinet', 'bass-clarinet',
+            ...     'saxophone', 'bassoon', 'contrabassoon',
+            ...     ]
+            >>> for name in instrument_names:
+            ...    abjad.WoodwindFingering(name)
+            ...
+            WoodwindFingering(instrument_name='piccolo', center_column=(), left_hand=(), right_hand=())
+            WoodwindFingering(instrument_name='flute', center_column=(), left_hand=(), right_hand=())
+            WoodwindFingering(instrument_name='oboe', center_column=(), left_hand=(), right_hand=())
+            WoodwindFingering(instrument_name='clarinet', center_column=(), left_hand=(), right_hand=())
+            WoodwindFingering(instrument_name='bass-clarinet', center_column=(), left_hand=(), right_hand=())
+            WoodwindFingering(instrument_name='saxophone', center_column=(), left_hand=(), right_hand=())
+            WoodwindFingering(instrument_name='bassoon', center_column=(), left_hand=(), right_hand=())
+            WoodwindFingering(instrument_name='contrabassoon', center_column=(), left_hand=(), right_hand=())
+
+    ..  container:: example
+
+        An override displays diagrams symbolically instead of graphically:
+
+        ::
+
+            >>> chord = abjad.Chord("<e' as' gqf''>1")
+            >>> fingering = abjad.WoodwindFingering(
+            ...     'clarinet',
+            ...     center_column=['one', 'two', 'three', 'four'],
+            ...     left_hand=['R','cis'],
+            ...     right_hand=['fis'])
+            >>> diagram = fingering()
+            >>> not_graphical = abjad.MarkupCommand(
+            ...     'override',
+            ...     abjad.SchemePair('graphical', False),
+            ...     )
+            >>> markup = abjad.Markup(contents=
+            ...     [not_graphical, diagram], direction=Down)
+            >>> abjad.attach(markup, chord)
+            >>> show(chord) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(chord)
+            <e' as' gqf''>1
+                _ \markup {
+                    \override
+                        #'(graphical . #f)
+                    \woodwind-diagram
+                        #'clarinet
+                        #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
+                    }
+
+    ..  container:: example
+
+        The thickness and size of diagrams can also be changed with overrides:
+
+        ::
+
+            >>> chord = abjad.Chord("<e' as' gqf''>1")
+            >>> fingering = abjad.WoodwindFingering(
+            ...     'clarinet',
+            ...     center_column=('one', 'two', 'three', 'four'),
+            ...     left_hand=('R','cis'),
+            ...     right_hand=('fis',),
+            ...     )
+            >>> diagram = fingering()
+            >>> not_graphical = abjad.MarkupCommand(
+            ...     'override',
+            ...     abjad.SchemePair('graphical', False),
+            ...     )
+            >>> size = abjad.MarkupCommand(
+            ...     'override',
+            ...     abjad.SchemePair('size', .5),
+            ...     )
+            >>> thickness = abjad.MarkupCommand(
+            ...     'override',
+            ...     abjad.SchemePair('thickness', .4),
+            ...     )
+            >>> markup = abjad.Markup(
+            ...     contents=[not_graphical, size, thickness, diagram],
+            ...     direction=Down,
+            ...     )
+            >>> abjad.attach(markup, chord)
+            >>> show(chord) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(chord)
+            <e' as' gqf''>1
+                _ \markup {
+                    \override
+                        #'(graphical . #f)
+                    \override
+                        #'(size . 0.5)
+                    \override
+                        #'(thickness . 0.4)
+                    \woodwind-diagram
+                        #'clarinet
+                        #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
+                    }
 
     Inspired by Mike Solomon's LilyPond woodwind diagrams.
     '''

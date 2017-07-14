@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Bassoon(Instrument):
-    r'''A bassoon.
+    r'''Bassoon.
 
     ::
 

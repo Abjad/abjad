@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Vibraphone(Instrument):
-    r'''A vibraphone.
+    r'''Vibraphone.
 
     ::
 

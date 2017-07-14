@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Percussion(Instrument):
-    r'''A percussion instrument.
+    r'''Percussion instrument.
 
     ::
 

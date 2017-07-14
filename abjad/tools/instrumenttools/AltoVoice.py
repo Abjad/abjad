@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class AltoVoice(Instrument):
-    r'''A alto voice.
+    r'''Alto voice.
 
     ::
 

@@ -36,6 +36,7 @@ from abjad.tools.durationtools import *
 from abjad.tools.exceptiontools import *
 from abjad.tools.expressiontools import *
 from abjad.tools.indicatortools import *
+from abjad.tools.instrumenttools import Instrument
 from abjad.tools.lilypondfiletools import *
 from abjad.tools.markuptools import *
 from abjad.tools.patterntools import *

@@ -587,8 +587,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> staff = abjad.Staff("d''8 e''8 f''8 g''8")
                 >>> piccolo = abjad.instrumenttools.Piccolo()
                 >>> abjad.attach(piccolo, staff)
-                >>> abjad.instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
-                ...     staff)
+                >>> abjad.Instrument.transpose_from_sounding_pitch(staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -619,8 +618,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> staff = abjad.Staff("<c''' e'''>4 <d''' fs'''>4")
                 >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
                 >>> abjad.attach(glockenspiel, staff)
-                >>> abjad.instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
-                ...     staff)
+                >>> abjad.Instrument.transpose_from_sounding_pitch(staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1028,7 +1026,10 @@ class InspectionAgent(abctools.AbjadObject):
         result = '\n'.join(result)
         return result
 
-    def tabulate_well_formedness_violations(self):
+    def tabulate_well_formedness_violations(
+        self,
+        allow_percussion_clef=None,
+        ):
         r'''Tabulates well-formedness violations in client.
 
         ..  container:: example
@@ -1058,33 +1059,37 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> print(result)
-                1 / 4 beamed quarter notes
-                0 / 1 conflicting clefs
-                0 / 1 discontiguous spanners
-                0 / 5 duplicate ids
-                0 / 1 empty containers
-                0 / 0 intermarked hairpins
-                0 / 0 misdurated measures
-                0 / 0 misfilled measures
-                0 / 0 mismatched enchained hairpins
-                0 / 0 mispitched ties
-                0 / 4 misrepresented flags
-                0 / 5 missing parents
-                0 / 0 nested measures
-                0 / 1 overlapping beams
-                0 / 0 overlapping glissandi
-                0 / 0 overlapping hairpins
-                0 / 0 overlapping octavation spanners
-                0 / 0 overlapping ties
-                0 / 0 short hairpins
-                0 / 0 tied rests
+                1 /	4 beamed quarter notes
+                0 /	1 conflicting clefs
+                0 /	1 discontiguous spanners
+                0 /	5 duplicate ids
+                0 /	1 empty containers
+                0 /	0 intermarked hairpins
+                0 /	0 misdurated measures
+                0 /	0 misfilled measures
+                0 /	0 mismatched enchained hairpins
+                0 /	0 mispitched ties
+                0 /	4 misrepresented flags
+                0 /	5 missing parents
+                0 /	0 nested measures
+                0 /	4 notes on wrong clef
+                0 /	4 out of range notes
+                0 /	1 overlapping beams
+                0 /	0 overlapping glissandi
+                0 /	0 overlapping hairpins
+                0 /	0 overlapping octavation spanners
+                0 /	0 overlapping ties
+                0 /	0 short hairpins
+                0 /	0 tied rests
 
             Beamed quarter notes are not well formed.
 
         Returns string.
         '''
         from abjad.tools import systemtools
-        manager = systemtools.WellformednessManager()
+        manager = systemtools.WellformednessManager(
+            allow_percussion_clef=allow_percussion_clef,
+            )
         triples = manager(self._client)
         strings = []
         for violators, total, check_name in triples:

@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BaritoneVoice(Instrument):
-    r'''A baritone voice.
+    r'''Baritone voice.
 
     ::
 

@@ -4574,3 +4574,45 @@ class IterationAgent(abctools.AbjadObject):
                     node, rank = _advance_node_depth_first(node, rank, direction)
             queue.clear()
         return _closure()
+
+    def out_of_range(self):
+        r'''Iterates notes and chords outside traditional instrument ranges.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
+                >>> violin = abjad.instrumenttools.Violin()
+                >>> abjad.attach(violin, staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Violin }
+                    \set Staff.shortInstrumentName = \markup { Vn. }
+                    c'8
+                    r8
+                    <d fs>8
+                    r8
+                }
+
+            ::
+
+                >>> for leaf in abjad.iterate(staff).out_of_range():
+                ...     leaf
+                ...
+                Chord('<d fs>8')
+
+        Returns generator.
+        '''
+        import abjad
+        for leaf in abjad.iterate(self._client).by_leaf(pitched=True):
+            instrument = leaf._get_effective(abjad.instrumenttools.Instrument)
+            if instrument is None:
+                message = 'no instrument found.'
+                raise ValueError(message)
+            if leaf not in instrument.pitch_range:
+                yield leaf

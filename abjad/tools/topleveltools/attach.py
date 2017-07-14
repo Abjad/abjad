@@ -127,7 +127,7 @@ def attach(
         message = message.format(component)
         raise Exception(message)
 
-    if isinstance(indicator, abjad.IndicatorExpression):
+    if isinstance(indicator, abjad.systemtools.IndicatorExpression):
         is_annotation = is_annotation or indicator.is_annotation
         name = name or indicator.name
         scope = scope or indicator.scope
@@ -138,7 +138,7 @@ def attach(
     if hasattr(indicator, '_default_scope'):
         scope = scope or indicator._default_scope
 
-    expression = abjad.IndicatorExpression(
+    expression = abjad.systemtools.IndicatorExpression(
         component=component,
         indicator=indicator,
         is_annotation=is_annotation,

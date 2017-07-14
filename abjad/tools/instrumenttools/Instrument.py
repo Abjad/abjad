@@ -10,7 +10,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Instrument(AbjadValueObject):
-    '''A musical instrument.
+    '''Instrument.
 
     ::
 
@@ -336,47 +336,129 @@ class Instrument(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    def transpose_from_sounding_pitch_to_written_pitch(self, note_or_chord):
-        r'''Transposes `note_or_chord` from sounding pitch of instrument to
-        written pitch of instrument.
+    @staticmethod
+    def transpose_from_sounding_pitch(argument):
+        r'''Transpose notes and chords in `argument` from sounding pitch
+        to written pitch:
 
-        Returns `note_or_chord` with adjusted pitches.
+        ..  container:: example
+
+            ::
+
+                >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
+                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
+                >>> abjad.attach(clarinet, staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
+                    \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
+                    <c' e' g'>4
+                    d'4
+                    r4
+                    e'4
+                }
+
+            ::
+
+                >>> abjad.Instrument.transpose_from_sounding_pitch(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
+                    \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
+                    <d' fs' a'>4
+                    e'4
+                    r4
+                    fs'4
+                }
+
+        Returns none.
         '''
-        from abjad.tools import scoretools
-        sounding_pitch = self.sounding_pitch_of_written_middle_c
-        interval = pitchtools.NamedPitch('C4') - sounding_pitch
-        interval *= -1
-        if isinstance(note_or_chord, scoretools.Note):
-            pitch = note_or_chord.written_pitch
-            pitch = interval.transpose(pitch)
-            note_or_chord.written_pitch = pitch
-        elif isinstance(note_or_chord, scoretools.Chord):
-            pitches = [
-                interval.transpose(pitch)
-                for pitch in note_or_chord.written_pitches
-                ]
-            note_or_chord.written_pitches = pitches
-        else:
-            message = 'must be note or chord: {!r}.'
-            message = message.format(note_or_chord)
-            raise TypeError(message)
+        import abjad
+        for leaf in abjad.iterate(argument).by_leaf(pitched=True):
+            instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
+            if not instrument:
+                continue
+            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            interval = abjad.NamedPitch('C4') - sounding_pitch
+            interval *= -1
+            if isinstance(leaf, abjad.Note):
+                pitch = leaf.written_pitch
+                pitch = interval.transpose(pitch)
+                leaf.written_pitch = pitch
+            elif isinstance(leaf, abjad.Chord):
+                pitches = [
+                    interval.transpose(pitch)
+                    for pitch in leaf.written_pitches
+                    ]
+                leaf.written_pitches = pitches
 
-    def transpose_from_written_pitch_to_sounding_pitch(self, note_or_chord):
-        r'''Transposes `argument` from written pitch of instrument to sounding
-        pitch of instrument.
+    @staticmethod
+    def transpose_from_written_pitch(argument):
+        r'''Transposes notes and chords in `argument` from sounding pitch
+        to written pitch.
 
-        Returns `note_or_chord` with adjusted pitches.
+        ..  container:: example
+
+            ::
+
+                >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
+                >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
+                >>> abjad.attach(clarinet, staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
+                    \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
+                    <c' e' g'>4
+                    d'4
+                    r4
+                    e'4
+                }
+
+            ::
+
+                >>> abjad.Instrument.transpose_from_written_pitch(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
+                    \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
+                    <bf d' f'>4
+                    c'4
+                    r4
+                    d'4
+                }
+
+        Returns none.
         '''
-        from abjad.tools import scoretools
-        sounding_pitch = self.sounding_pitch_of_written_middle_c
-        interval = pitchtools.NamedPitch('C4') - sounding_pitch
-        if isinstance(note_or_chord, scoretools.Note):
-            pitch = note_or_chord.written_pitch
-            pitch = interval.transpose(pitch)
-            note_or_chord.written_pitch = pitch
-        elif isinstance(note_or_chord, scoretools.Chord):
-            pitches = [
-                interval.transpose(pitch)
-                for pitch in note_or_chord.written_pitches
-                ]
-            note_or_chord.written_pitches = pitches
+        import abjad
+        for leaf in abjad.iterate(argument).by_leaf(pitched=True):
+            instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
+            if not instrument:
+                continue
+            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            interval = abjad.NamedPitch('C4') - sounding_pitch
+            if isinstance(leaf, abjad.Note):
+                written_pitch = leaf.written_pitch
+                written_pitch = interval.transpose(written_pitch)
+                leaf.written_pitch = written_pitch
+            elif isinstance(leaf, abjad.Chord):
+                pitches = [
+                    interval.transpose(pitch)
+                    for pitch in leaf.written_pitches
+                    ]
+                leaf.written_pitches = pitches

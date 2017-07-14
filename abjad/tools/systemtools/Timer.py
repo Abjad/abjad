@@ -7,7 +7,7 @@ from abjad.tools.abctools import ContextManager
 
 
 class Timer(ContextManager):
-    r'''A timing context manager:
+    r'''A timing context manager.
 
     ::
 

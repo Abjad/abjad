@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Piano(Instrument):
-    r'''A piano.
+    r'''Piano.
 
     ::
 

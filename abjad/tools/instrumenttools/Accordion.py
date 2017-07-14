@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Accordion(Instrument):
-    r'''An accordion.
+    r'''Accordion.
 
     ::
 

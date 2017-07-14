@@ -3,7 +3,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Piccolo(Instrument):
-    r'''A piccolo.
+    r'''Piccolo.
 
     ::
 

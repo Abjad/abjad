@@ -7,7 +7,7 @@ def test_agenttools_InspectionAgent_get_sounding_pitches_01():
     staff = abjad.Staff("<c''' e'''>4 <d''' fs'''>4")
     glockenspiel = abjad.instrumenttools.Glockenspiel()
     abjad.attach(glockenspiel, staff)
-    abjad.instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
+    abjad.Instrument.transpose_from_sounding_pitch(staff)
 
     assert format(staff) == abjad.String.normalize(
         r'''
