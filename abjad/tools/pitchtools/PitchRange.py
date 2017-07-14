@@ -742,13 +742,6 @@ class PitchRange(AbjadValueObject):
         except (TypeError, ValueError):
             return False
 
-    def __ne__(self, argument):
-        r'''Is true when pitch range does not equal `argument`. Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     ### PRIVATE PROPERTIES ###
 
     @property

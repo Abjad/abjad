@@ -40,20 +40,7 @@ class LilyPondFile(AbjadObject):
             >>> lilypond_file.header_block.title = abjad.Markup('Missa sexti tonus')
             >>> lilypond_file.layout_block.indent = 0
             >>> lilypond_file.layout_block.left_margin = 15
-
-        ::
-
-            >>> lilypond_file
-            LilyPondFile(comments=['File construct as an example.', 'Parts
-            shown here for positioning.'],
-            date_time_token=DateTimeToken(date_string='...'),
-            default_paper_size=('a5', 'portrait'), global_staff_size=16,
-            includes=['external-settings-file-1.ly',
-            'external-settings-file-2.ly'], items=[<Block(name='header')>,
-            <Block(name='layout')>, <Block(name='paper')>,
-            <Block(name='score')>],
-            lilypond_language_token=LilyPondLanguageToken(),
-            lilypond_version_token=LilyPondVersionToken(version_string='...'))
+            >>> show(lilypond_file) # doctest: +SKIP
 
         ::
 
@@ -91,10 +78,6 @@ class LilyPondFile(AbjadObject):
                 e'8
                 f'8
             }
-
-        ::
-
-            >>> show(lilypond_file) # doctest: +SKIP
 
     '''
 
@@ -173,6 +156,36 @@ class LilyPondFile(AbjadObject):
                 \layout {}
                 <BLANKLINE>
                 \paper {}
+
+        ..  container:: example
+
+            Works with empty layout and MIDI blocks:
+
+                ::
+
+                    >>> score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
+                    >>> score_block = abjad.Block(name='score')
+                    >>> layout_block = abjad.Block(name='layout')
+                    >>> midi_block = abjad.Block(name='midi')
+                    >>> score_block.items.append(score)
+                    >>> score_block.items.append(layout_block)
+                    >>> score_block.items.append(midi_block)
+                  
+                ::
+
+                    >>> f(score_block)
+                    \score {
+                        \new Score <<
+                            \new Staff {
+                                c'8
+                                d'8
+                                e'8
+                                f'8
+                            }
+                        >>
+                        \layout {}
+                        \midi {}
+                    }
 
         Returns string.
         '''

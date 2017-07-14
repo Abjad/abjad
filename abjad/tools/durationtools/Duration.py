@@ -378,14 +378,6 @@ class Duration(AbjadObject, Fraction):
             result = type(self)(Fraction.__mul__(self, *arguments))
         return result
 
-    def __ne__(self, argument):
-        r'''Is true when duration does not equal `argument`.
-        Otherwise false.
-
-        Returns true or false.
-        '''
-        return Fraction.__ne__(self, argument)
-
     def __neg__(self, *arguments):
         r'''Negates duration.
 

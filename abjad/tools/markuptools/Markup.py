@@ -1545,7 +1545,7 @@ class Markup(AbjadValueObject):
 
         Returns new markup
         '''
-        pair = schemetools.SchemePair(x, y)
+        pair = schemetools.SchemePair((x, y))
         command = MarkupCommand('draw-line', pair)
         return Markup(contents=command, direction=direction)
 
@@ -2426,7 +2426,7 @@ class Markup(AbjadValueObject):
         command = MarkupCommand('overlay', contents)
         return Markup(contents=command, direction=direction)
 
-    def override(self, new_property):
+    def override(self, pair):
         r'''LilyPond ``\override`` markup command.
 
         ..  container:: example
@@ -2475,8 +2475,8 @@ class Markup(AbjadValueObject):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         contents = self._parse_markup_command_argument(self)
-        new_property = schemetools.SchemePair(new_property)
-        command = MarkupCommand('override', new_property, contents)
+        pair = schemetools.SchemePair(pair)
+        command = MarkupCommand('override', pair, contents)
         return new(self, contents=command)
 
     def pad_around(self, padding):

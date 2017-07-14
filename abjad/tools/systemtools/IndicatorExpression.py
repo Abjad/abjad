@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -33,6 +32,7 @@ class IndicatorExpression(AbjadValueObject):
         scope=None,
         synthetic_offset=None,
         ):
+        from abjad.tools import durationtools
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         assert not isinstance(indicator, type(self)), repr(indicator)

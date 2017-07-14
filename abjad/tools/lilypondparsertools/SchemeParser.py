@@ -617,9 +617,9 @@ class SchemeParser(abctools.Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         result = p[2] + [p[3]] + [p[5]]
         if len(result) == 2:
-            p[0] = schemetools.SchemePair(*result)
+            p[0] = schemetools.SchemePair(tuple(result))
         else:
-            p[0] = schemetools.Scheme(*result)
+            p[0] = schemetools.Scheme(result)
         self.expression_depth -= 1
 
     ### abbreviation ###

@@ -10,7 +10,7 @@ def test_spannertools_Spanner__apply_overrides_01():
         'text_spanner__bound_details__right_broken__padding': '0',
         'text_spanner__bound_details__left_broken__text': "markuptools.Markup((markuptools.MarkupCommand('italic','(fl.)'),markuptools.MarkupCommand('hspace',1)))",
         'text_spanner__bound_details__left__stencil_align_dir_y': '0',
-        'text_spanner__bound_details__right__text': "markuptools.Markup((markuptools.MarkupCommand('draw-line',schemetools.SchemePair(0, -1)),))",
+        'text_spanner__bound_details__right__text': "markuptools.Markup((markuptools.MarkupCommand('draw-line',schemetools.SchemePair((0, -1))),))",
         'text_spanner__bound_details__right_broken__text': 'None',
         'text_spanner__bound_details__right__padding': '1',
         'text_spanner__bound_details__left__padding': '-1',

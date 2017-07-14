@@ -706,32 +706,6 @@ class NamedPitch(Pitch):
                 pass
         return False
 
-    def __ne__(self, argument):
-        r'''Is true when named pitch does not equal `argument`.
-        Otherwise false.
-
-        ..  container:: example
-
-            C#5 is not equal to D#5:
-
-            ::
-
-                >>> abjad.NamedPitch("cs''") != abjad.NamedPitch("ds''")
-                True
-
-        ..  container:: example
-
-            C#5 is equal to C#5:
-
-            ::
-
-                >>> abjad.NamedPitch("cs''") != abjad.NamedPitch("cs''")
-                False
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     def __str__(self):
         r'''Gets string representation of named pitch.
 

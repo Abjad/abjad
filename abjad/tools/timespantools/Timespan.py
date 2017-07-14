@@ -299,25 +299,6 @@ class Timespan(BoundedObject):
             return False
         return self._start_offset < expr_start_offset
 
-    def __ne__(self, timespan):
-        r'''Is true when `timespan` is not a timespan with equivalent offsets.
-
-        ::
-
-            >>> abjad.Timespan(1, 3) != abjad.Timespan(2, 3)
-            True
-
-        Otherwise false:
-
-        ::
-
-            >>> abjad.Timespan(1, 3) != abjad.Timespan(2/2, (3, 1))
-            False
-
-        Returns true or false.
-        '''
-        return not self == timespan
-
     def __or__(self, argument):
         r'''Logical OR of two timespans.
 

@@ -125,14 +125,6 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         '''
         return super(NamedInversionEquivalentIntervalClass, self).__hash__()
 
-    def __ne__(self, argument):
-        r'''Is true when named inversion-equivalent interval-class does not
-        equal `argument`. Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     ### PRIVATE METHODS ###
 
     def _initialize_by_quality_string_and_number(self, quality_string, number):

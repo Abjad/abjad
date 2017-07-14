@@ -366,14 +366,6 @@ class NamedInterval(Interval):
             return -result
         return result
 
-    def __ne__(self, argument):
-        r'''Is true when `argument` does not equal this named interval.
-        Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     def __neg__(self):
         r'''Negates named interval.
 

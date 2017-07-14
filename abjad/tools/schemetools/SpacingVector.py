@@ -19,10 +19,10 @@ class SpacingVector(SchemeVector):
 
             >>> f(vector)
             abjad.SpacingVector(
-                abjad.SchemePair('basic-distance', 0),
-                abjad.SchemePair('minimum-distance', 0),
-                abjad.SchemePair('padding', 12),
-                abjad.SchemePair('stretchability', 0)
+                abjad.SchemePair(('basic-distance', 0)),
+                abjad.SchemePair(('minimum-distance', 0)),
+                abjad.SchemePair(('padding', 12)),
+                abjad.SchemePair(('stretchability', 0))
                 )
 
         Use to set paper block spacing attributes:
@@ -58,10 +58,10 @@ class SpacingVector(SchemeVector):
         stretchability=0,
         ):
         from abjad.tools import schemetools
-        return SchemeVector.__init__(
-            self,
-            schemetools.SchemePair('basic-distance', basic_distance),
-            schemetools.SchemePair('minimum-distance', minimum_distance),
-            schemetools.SchemePair('padding', padding),
-            schemetools.SchemePair('stretchability', stretchability),
-            )
+        pairs = [
+            schemetools.SchemePair(('basic-distance', basic_distance)),
+            schemetools.SchemePair(('minimum-distance', minimum_distance)),
+            schemetools.SchemePair(('padding', padding)),
+            schemetools.SchemePair(('stretchability', stretchability)),
+            ]
+        return SchemeVector.__init__(self, pairs)

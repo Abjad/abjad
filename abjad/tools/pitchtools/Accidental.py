@@ -317,13 +317,6 @@ class Accidental(AbjadValueObject):
         '''
         return self.semitones < argument.semitones
 
-    def __ne__(self, argument):
-        r'''Is true when accidental does not equal `argument`. Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     def __neg__(self):
         r'''Negates accidental.
 

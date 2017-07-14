@@ -5,8 +5,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class ChordSuspension(AbjadValueObject):
-    '''Chord suspension. 9-8, 7-6, 4-3, 2-1 and other types of
-    suspension typical of, for example, the Bach chorales.
+    '''Chord suspension.
 
     ::
 
@@ -14,13 +13,25 @@ class ChordSuspension(AbjadValueObject):
 
     ..  container:: example
 
+        Initializes from numbers:
+
         ::
 
-            >>> suspension = tonalanalysistools.ChordSuspension(4, 3)
-            >>> suspension
-            ChordSuspension(ScaleDegree(4), ScaleDegree(3))
+            >>> tonalanalysistools.ChordSuspension('4-b3')
+            ChordSuspension('4-b3')
 
-    Chord suspensions are immutable.
+    ..  container:: example
+
+        Initializes from other suspension:
+
+        ::
+
+            >>> suspension = tonalanalysistools.ChordSuspension('4-3')
+            >>> tonalanalysistools.ChordSuspension(suspension)
+            ChordSuspension('4-3')
+
+    9-8, 7-6, 4-3, 2-1 and other types of suspension typical of, for example,
+    the Bach chorales.
     '''
 
     ### CLASS VARIABLES ###
@@ -34,39 +45,59 @@ class ChordSuspension(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
-        if len(arguments) == 0:
-            start, stop = self._initialize_empty()
-        elif len(arguments) == 1 and arguments[0] in (None, ''):
-            start, stop = self._initialize_empty()
-        elif len(arguments) == 1 and isinstance(arguments[0], type(self)):
-            start, stop = self._initialize_by_reference(*arguments)
-        elif len(arguments) == 1 and isinstance(arguments[0], str):
-            start, stop = self._initialize_by_symbolic_string(*arguments)
-        elif len(arguments) == 1 and isinstance(arguments[0], tuple):
-            start, stop = self._initialize_by_pair(*arguments)
-        elif len(arguments) == 2:
-            start, stop = self._initialize_by_start_and_stop(*arguments)
-        else:
-            message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, arguments)
-            raise ValueError(message)
+    def __init__(self, figured_bass_string='4-3'):
+        if isinstance(figured_bass_string, type(self)):
+            figured_bass_string = figured_bass_string.figured_bass_string
+        start, stop = self._initialize_by_symbolic_string(figured_bass_string)
         self._start = start
         self._stop = stop
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a chord suspension when start and stop equal
-        to those of this chord suspension. Otherwise false.
+        r'''Is true when `argument` is a chord suspension when start and stop
+        equal to those of this chord suspension. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> suspension_1 = tonalanalysistools.ChordSuspension('4-3')
+                >>> suspension_2 = tonalanalysistools.ChordSuspension('4-3')
+                >>> suspension_3 = tonalanalysistools.ChordSuspension('2-1')
+
+            ::
+
+                >>> suspension_1 == suspension_1
+                True
+                >>> suspension_1 == suspension_2
+                True
+                >>> suspension_1 == suspension_3
+                False
+
+
+            ::
+
+                >>> suspension_2 == suspension_1
+                True
+                >>> suspension_2 == suspension_2
+                True
+                >>> suspension_2 == suspension_3
+                False
+
+
+            ::
+
+                >>> suspension_3 == suspension_1
+                False
+                >>> suspension_3 == suspension_2
+                False
+                >>> suspension_3 == suspension_3
+                True
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.start == argument.start:
-                if self.stop == argument.stop:
-                    return True
-        return False
+        return super(ChordSuspension, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes chord suspension.
@@ -77,16 +108,8 @@ class ChordSuspension(AbjadValueObject):
         '''
         return super(ChordSuspension, self).__hash__()
 
-    def __ne__(self, argument):
-        r'''Is true when `argument` does not equal chord suspension. Otherwise
-        false.
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     def __str__(self):
-        r'''String representation of chord suspension.
+        r'''Gets string representation of chord suspension.
 
         Returns string.
         '''
@@ -98,10 +121,7 @@ class ChordSuspension(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        values = []
-        if self.start is not None and self.stop is not None:
-            values.append(self.start)
-            values.append(self.stop)
+        values = [self.figured_bass_string]
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=False,
@@ -138,67 +158,80 @@ class ChordSuspension(AbjadValueObject):
 
     @property
     def chord_name(self):
-        r'''Chord name of suspension.
+        r'''Gets chord name.
 
-        ::
+        ..  container:: example
 
-            >>> suspension.chord_name
-            'sus4'
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('4-b3').chord_name
+                'sus4'
+
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('b2-1').chord_name
+                'susb2'
 
         Returns string.
         '''
-        if self.is_empty:
-            return ''
         return 'sus{!s}'.format(self.start)
 
     @property
     def figured_bass_pair(self):
-        r'''Figured bass pair of suspension.
+        r'''Gets figured bass pair.
 
-        ::
+        ..  container:: example
 
-            >>> suspension.figured_bass_pair
-            (4, 3)
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('4-b3').figured_bass_pair
+                ('4', 'b3')
+
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('b2-1').figured_bass_pair
+                ('b2', '1')
 
         Returns integer pair.
         '''
-        return self.start.number, self.stop.number
+        return str(self.start), str(self.stop)
 
     @property
     def figured_bass_string(self):
-        r'''Figured bass string.
+        r'''Gets figured bass string.
 
-        ::
+        ..  container:: example
 
-            >>> suspension.figured_bass_string
-            '4-3'
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('4-b3').figured_bass_string
+                '4-b3'
+
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('b2-1').figured_bass_string
+                'b2-1'
 
         Returns string.
         '''
-        if self.is_empty:
-            return ''
         return '{!s}-{!s}'.format(self.start, self.stop)
 
     @property
-    def is_empty(self):
-        r'''Is true when start and stop are none. Otherwise false.
-
-        ::
-
-            >>> suspension.is_empty
-            False
-
-        '''
-        return self.start is None and self.stop is None
-
-    @property
     def start(self):
-        r'''Start of suspension.
+        r'''Gets start.
 
         ::
+        ..  container:: example
 
-            >>> suspension.start
-            ScaleDegree(4)
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('4-b3').start
+                ScaleDegree('4')
+
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('b2-1').start
+                ScaleDegree('b2')
 
         Returns scale degree.
         '''
@@ -206,12 +239,19 @@ class ChordSuspension(AbjadValueObject):
 
     @property
     def stop(self):
-        r'''Stop of suspension.
+        r'''Gets stop.
 
-        ::
+        ..  container:: example
 
-            >>> suspension.stop
-            ScaleDegree(3)
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('4-b3').stop
+                ScaleDegree('b3')
+
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('b2-1').stop
+                ScaleDegree('1')
 
         Returns scale degree.
         '''
@@ -220,17 +260,22 @@ class ChordSuspension(AbjadValueObject):
 
     @property
     def title_string(self):
-        r'''Title string of suspension.
+        r'''Gets title string.
 
-        ::
+        ..  container:: example
 
-            >>> suspension.title_string
-            'FourThreeSuspension'
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('4-b3').title_string
+                'FourFlatThreeSuspension'
+
+            ::
+
+                >>> tonalanalysistools.ChordSuspension('b2-1').title_string
+                'FlatTwoOneSuspension'
 
         Returns string.
         '''
-        if self.is_empty:
-            return ''
         start = self.start.title_string
         stop = self.stop.title_string
         return '{!s}{!s}Suspension'.format(start, stop)

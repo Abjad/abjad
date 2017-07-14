@@ -17,7 +17,7 @@ class SchemeVector(Scheme):
 
         ::
 
-            >>> scheme = abjad.SchemeVector(True, True, False)
+            >>> scheme = abjad.SchemeVector([True, True, False])
             >>> scheme
             SchemeVector(True, True, False)
             >>> print(format(scheme))
@@ -29,7 +29,7 @@ class SchemeVector(Scheme):
 
         ::
 
-            >>> scheme = abjad.SchemeVector('foo', 'bar', 'blah')
+            >>> scheme = abjad.SchemeVector(['foo', 'bar', 'blah'])
             >>> scheme
             SchemeVector('foo', 'bar', 'blah')
             >>> print(format(scheme))
@@ -37,8 +37,6 @@ class SchemeVector(Scheme):
 
     Scheme vectors and Scheme vector constants differ in only their LilyPond
     input format.
-
-    Scheme vectors are immutable.
     '''
 
     ### CLASS VARIABLES ##
@@ -48,8 +46,8 @@ class SchemeVector(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
-        Scheme.__init__(self, *arguments, quoting="'")
+    def __init__(self, value=[]):
+        Scheme.__init__(self, value, quoting="'")
 
     ### PRIVATE METHODS ###
 

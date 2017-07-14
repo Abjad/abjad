@@ -227,22 +227,23 @@ class RootlessChordClass(IntervalSegment):
 
     @staticmethod
     def _invert_chord_quality(intervals, inversion):
+        import abjad
         if isinstance(inversion, int):
-            intervals = sequencetools.Sequence(intervals).rotate(n=-inversion)
+            intervals = abjad.Sequence(intervals).rotate(n=-inversion)
             rotation = -inversion
         elif inversion == 'root':
             rotation = 0
         elif inversion == 'first':
-            intervals = sequencetools.Sequence(intervals).rotate(n=-1)
+            intervals = abjad.Sequence(intervals).rotate(n=-1)
             rotation = -1
         elif inversion == 'second':
-            intervals = sequencetools.Sequence(intervals).rotate(n-2)
+            intervals = abjad.Sequence(intervals).rotate(n=-2)
             rotation = -2
         elif inversion == 'third':
-            intervals = sequencetools.Sequence(intervals).rotate(n=-3)
+            intervals = abjad.Sequence(intervals).rotate(n=-3)
             rotation = -3
         elif inversion == 'fourth':
-            intervals = sequencetools.Sequence(intervals).rotate(n=-4)
+            intervals = abjad.Sequence(intervals).rotate(n=-4)
             rotation = -4
         else:
             message = 'unknown chord inversion: {!r}.'
@@ -255,10 +256,43 @@ class RootlessChordClass(IntervalSegment):
     def from_interval_class_segment(segment):
         r'''Makes new rootless chord-class from `segment`.
 
+        ..  container:: example
+
+            ::
+
+                >>> segment = abjad.IntervalClassSegment([
+                ...     abjad.NamedInversionEquivalentIntervalClass('minor', 3),
+                ...     abjad.NamedInversionEquivalentIntervalClass('minor', 3),
+                ...     ])
+                >>> class_ = tonalanalysistools.RootlessChordClass
+                >>> class_.from_interval_class_segment(segment)
+                DiminishedTriadInRootPosition('P1', '+m3', '+dim5')
+
+        ..  container:: example
+
+                >>> segment = abjad.IntervalClassSegment([
+                ...     abjad.NamedInversionEquivalentIntervalClass('minor', 3),
+                ...     abjad.NamedInversionEquivalentIntervalClass('major', 3),
+                ...     ])
+                >>> class_ = tonalanalysistools.RootlessChordClass
+                >>> class_.from_interval_class_segment(segment)
+                MinorTriadInRootPosition('P1', '+m3', '+P5')
+
+        ..  container:: example
+
+                >>> segment = abjad.IntervalClassSegment([
+                ...     abjad.NamedInversionEquivalentIntervalClass('major', 3),
+                ...     abjad.NamedInversionEquivalentIntervalClass('minor', 3),
+                ...     ])
+                >>> class_ = tonalanalysistools.RootlessChordClass
+                >>> class_.from_interval_class_segment(segment)
+                MajorTriadInRootPosition('P1', '+M3', '+P5')
+
         Returns new rootless chord-class.
         '''
-        quality, extent = \
-            RootlessChordClass._segment_to_quality_and_extent[str(segment)]
+        quality, extent = RootlessChordClass._segment_to_quality_and_extent[
+            str(segment)
+            ]
         return RootlessChordClass(quality, extent=extent)
 
     ### PRIVATE PROPERTIES ###
@@ -309,7 +343,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def cardinality(self):
-        r'''Cardinality of rootless chord-class.
+        r'''Gets cardinality.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).cardinality
+                4
 
         Returns nonnegative integer.
         '''
@@ -317,7 +358,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def extent(self):
-        r'''Extent of rootless chord-class.
+        r'''Gets extent.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).extent
+                7
 
         Returns nonnegative integer.
         '''
@@ -326,7 +374,15 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def extent_name(self):
-        r'''Extent name of rootless chord class.
+        r'''Gets extent name.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).extent_name
+                'seventh'
+
         '''
         from abjad.tools import tonalanalysistools
         if self._quality_string.lower() in \
@@ -336,7 +392,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def inversion(self):
-        r'''Inversion of rootless chord-class.
+        r'''Gets inversion.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).inversion
+                0
 
         Returns nonnegative integer.
         '''
@@ -344,7 +407,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def position(self):
-        r'''Position of rootless chord-class.
+        r'''Gets position.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).position
+                'root position'
 
         Returns string.
         '''
@@ -365,7 +435,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def quality_string(self):
-        r'''Quality string of rootless chord class.
+        r'''Gets quality string.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).quality_string
+                'dominant'
 
         Returns string.
         '''
@@ -373,7 +450,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def rotation(self):
-        r'''Rotation of rootless chord-class.
+        r'''Gets rotation.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).rotation
+                0
 
         Returns nonnegative integer.
         '''

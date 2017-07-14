@@ -28,20 +28,20 @@ class Scheme(AbjadValueObject):
 
         ::
 
-            >>> scheme = abjad.Scheme(
+            >>> scheme = abjad.Scheme([
             ...     ('left', (1, 2, False)),
-            ...     ('right', (1, 2, 3.3))
-            ...     )
+            ...     ('right', (1, 2, 3.3)),
+            ...     ])
             >>> print(format(scheme))
             #((left (1 2 #f)) (right (1 2 3.3)))
 
     ..  container:: example
 
-        A variable-length argument:
+        A list:
 
         ::
 
-            >>> scheme_1 = abjad.Scheme(1, 2, 3)
+            >>> scheme_1 = abjad.Scheme([1, 2, 3])
             >>> scheme_2 = abjad.Scheme((1, 2, 3))
             >>> format(scheme_1) == format(scheme_2)
             True
@@ -84,13 +84,21 @@ class Scheme(AbjadValueObject):
             >>> function_1 = 'tuplet-number::append-note-wrapper'
             >>> function_2 = 'tuplet-number::calc-denominator-text'
             >>> string = abjad.Scheme('4', force_quotes=True)
-            >>> scheme = abjad.Scheme(
-            ...     function_1,
-            ...     function_2,
-            ...     string,
-            ...     )
-            >>> scheme
-            Scheme('tuplet-number::append-note-wrapper', 'tuplet-number::calc-denominator-text', Scheme('4', force_quotes=True))
+            >>> scheme = abjad.Scheme([function_1, function_2, string])
+            >>> f(scheme)
+            abjad.Scheme(
+                [
+                    'tuplet-number::append-note-wrapper',
+                    'tuplet-number::calc-denominator-text',
+                    abjad.Scheme(
+                        '4',
+                        force_quotes=True,
+                        ),
+                    ]
+                )
+
+        ::
+
             >>> print(format(scheme))
             #(tuplet-number::append-note-wrapper tuplet-number::calc-denominator-text "4")
 
@@ -106,8 +114,14 @@ class Scheme(AbjadValueObject):
             >>> string = '(lambda (grob) (grob-interpret-markup grob'
             >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
             >>> scheme = abjad.Scheme(string, verbatim=True)
-            >>> scheme
-            Scheme('(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))')
+            >>> f(scheme)
+            abjad.Scheme(
+                '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))',
+                verbatim=True,
+                )
+
+        ::
+
             >>> print(format(scheme))
             #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
 
@@ -127,24 +141,27 @@ class Scheme(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments, **keywords):
-        if len(arguments) == 1:
-            if isinstance(arguments[0], type(self)):
-                value = arguments[0]._value
-            else:
-                value = arguments[0]
-        else:
-            value = arguments
-        quoting = keywords.get('quoting')
-        force_quotes = keywords.get('force_quotes')
-        verbatim = keywords.get('verbatim')
+    def __init__(
+        self,
+        value=None,
+        force_quotes=None,
+        quoting=None,
+        verbatim=None,
+        ):
         if quoting is not None:
-            assert isinstance(quoting, str)
-            assert all(character in r"',@`#" for character in quoting)
-        if force_quotes is not None:
-            force_quotes = bool(force_quotes)
-        if verbatim is not None:
-            verbatim = bool(verbatim)
+            if (not isinstance(quoting, str) or
+                not all(character in r"',@`#" for character in quoting)):
+                message = r"quoting must be ' or , or @ or ` or #: {!r}."
+                message = message.format(quoting)
+                raise ValueError(message)
+        if not isinstance(force_quotes, (bool, type(None))):
+            message = 'force quotes must be true, false or none: {!r}.'
+            message = message.format(force_quotes)
+            raise TypeError(force_quotes)
+        if not isinstance(verbatim, (bool, type(None))):
+            message = 'force quotes must be true, false or none: {!r}.'
+            message = message.format(verbatim)
+            raise TypeError(verbatim)
         self._value = value
         self._quoting = quoting
         self._force_quotes = force_quotes
@@ -217,21 +234,10 @@ class Scheme(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        if stringtools.String.is_string(self._value):
-            values = [self._value]
-        elif isinstance(self._value, collections.Iterable):
-            values = self._value
-        else:
-            values = [self._value]
-        names = []
-        if self.force_quotes:
-            names.append('force_quotes')
-        if self.quoting:
-            names.append('quoting')
+        values = [self.value]
         return systemtools.FormatSpecification(
             client=self,
             storage_format_args_values=values,
-            storage_format_kwargs_names=names,
             )
 
     def _get_lilypond_format(self):
@@ -256,6 +262,12 @@ class Scheme(AbjadValueObject):
         Returns string.
         '''
         return self._quoting
+
+    @property
+    def value(self):
+        r'''Gets value.
+        '''
+        return self._value
 
     @property
     def verbatim(self):

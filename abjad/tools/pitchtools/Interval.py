@@ -78,13 +78,6 @@ class Interval(AbjadValueObject):
         message = message.format(type(self))
         raise NotImplementedError(message)
 
-    def __ne__(self, argument):
-        r'''Is true when interval does not equal `argument`.
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     def __neg__(self):
         r'''Negates interval.
 

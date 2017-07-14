@@ -708,7 +708,7 @@ class FerneyhoughDemo(object):
     def configure_score(self, score):
         r'''Configures `score`.
         '''
-        moment = abjad.SchemeMoment(1, 56)
+        moment = abjad.SchemeMoment((1, 56))
         abjad.setting(score).proportional_notation_duration = moment
         abjad.setting(score).tuplet_full_length = True
         abjad.override(score).bar_line.stencil = False

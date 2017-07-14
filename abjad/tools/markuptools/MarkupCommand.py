@@ -544,8 +544,10 @@ class MarkupCommand(AbjadValueObject):
                 ...     )
                 >>> markup_b = abjad.MarkupCommand(
                 ...     'filled-box',
-                ...     abjad.SchemePair(-4, 4),
-                ...     abjad.SchemePair(-0.5, 0.5), 1)
+                ...     abjad.SchemePair((-4, 4)),
+                ...     abjad.SchemePair((-0.5, 0.5)),
+                ...     1,
+                ...     )
                 >>> markup_c = "some text"
 
             ::

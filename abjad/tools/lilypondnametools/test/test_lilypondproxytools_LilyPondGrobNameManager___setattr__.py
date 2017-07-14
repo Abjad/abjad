@@ -949,7 +949,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___41():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.override(staff).staff_symbol.line_positions = \
-        abjad.SchemeVector(-4, -2, 2, 4)
+        abjad.SchemeVector([-4, -2, 2, 4])
 
     assert format(staff) == abjad.String.normalize(
         r'''

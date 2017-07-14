@@ -208,14 +208,6 @@ class TypedOrderedDict(TypedCollection):
         argument = type(self)(argument)
         return self._collection.__lt__(argument._collection)
 
-    def __ne__(self, argument):
-        r'''Is true when typed ordered dictionary is not equal to `argument`.
-        Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     def __reversed__(self):
         r'''Aliases OrderedDict.__reversed__().
 

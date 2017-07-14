@@ -275,14 +275,6 @@ class NamedIntervalClass(IntervalClass):
             return self.number < argument.number
         return False
 
-    def __ne__(self, argument):
-        r'''Is true when named interval-class does not equal `argument`. Otherwise
-        false.
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     def __str__(self):
         r'''String representation of named interval-class.
 

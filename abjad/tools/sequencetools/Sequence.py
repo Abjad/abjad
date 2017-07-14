@@ -725,30 +725,6 @@ class Sequence(abctools.AbjadValueObject):
         '''
         return len(self._items)
 
-    def __ne__(self, argument):
-        r'''Is true when sequence is not equal to `argument`. Otherwise false.
-
-        ..  container:: example
-
-            Is true when `argument` does not equal this sequence:
-
-            ::
-
-                >>> abjad.Sequence([1, 2, 3, 4, 5, 6]) != (1, 2, 3, 4, 5, 6)
-                True
-
-        ..  container:: example
-
-            Is false when `argument` does equal this seuqence:
-
-            ::
-
-                >>> abjad.Sequence([1, 2, 3, 4, 5, 6]) != abjad.Sequence([1, 2, 3, 4, 5, 6])
-                False
-
-        '''
-        return not self == argument
-
     @expressiontools.Signature(
         markup_expression_callback='_make___radd___markup_expression',
         string_template_callback='_make___radd___string_template',

@@ -3,13 +3,31 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class ChordQuality(AbjadValueObject):
-    '''Chord quality. Major, minor, dominant, diminished and so on.
+    '''Chord quality.
 
     ::
 
         >>> from abjad.tools import tonalanalysistools
 
-    Chord qualities are immutable.
+    ..  container:: example
+
+        Initializes from string:
+
+        ::
+
+            >>> tonalanalysistools.ChordQuality('major')
+            ChordQuality('major')
+
+    ..  container:: example
+
+        Initializes from other chord quality:
+
+        ::
+
+            >>> quality = tonalanalysistools.ChordQuality('major')
+            >>> tonalanalysistools.ChordQuality(quality)
+            ChordQuality('major')
+
     '''
 
     ### CLASS VARIABLES ###
@@ -36,6 +54,7 @@ class ChordQuality(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, quality_string='major'):
+        quality_string = str(quality_string)
         if quality_string not in self._acceptable_quality_strings:
             message = 'can not initialize chord quality: {!r}.'
             message = message.format(quality_string)
@@ -45,15 +64,46 @@ class ChordQuality(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a chord quality with quality string equal to
-        that of this chord quality. Otherwise false.
+        r'''Is true when `argument` is a chord quality with quality string
+        equal to that of this chord quality. Otherwise false.
+
+        ..  container:: example
+    
+            ::
+
+                >>> quality_1 = tonalanalysistools.ChordQuality('major')
+                >>> quality_2 = tonalanalysistools.ChordQuality('major')
+                >>> quality_3 = tonalanalysistools.ChordQuality('dominant')
+
+            ::
+
+                >>> quality_1 == quality_1
+                True
+                >>> quality_1 == quality_2
+                True
+                >>> quality_1 == quality_3
+                False
+
+            ::
+
+                >>> quality_2 == quality_1
+                True
+                >>> quality_2 == quality_2
+                True
+                >>> quality_2 == quality_3
+                False
+
+            ::
+
+                >>> quality_3 == quality_1
+                False
+                >>> quality_3 == quality_2
+                False
+                >>> quality_3 == quality_3
+                True
 
         Returns true or false.
         '''
-#        if isinstance(argument, type(self)):
-#            if self.quality_string == argument.quality_string:
-#                return True
-#        return False
         return super(ChordQuality, self).__eq__(argument)
 
     def __hash__(self):
@@ -65,19 +115,32 @@ class ChordQuality(AbjadValueObject):
         '''
         return super(ChordQuality, self).__hash__()
 
-    def __ne__(self, argument):
-        r'''Is true when chord quality does not equal `argument`. Otherwise false.
+    def __str__(self):
+        r'''Gets string representation of chord quality.
 
-        Returns true or false.
-        '''
-        return not self == argument
+        ..  container:: example
 
-    def __repr__(self):
-        r'''Gets interpreter representation of chord quality.
+            ::
+
+                >>> quality = tonalanalysistools.ChordQuality('major')
+                >>> str(quality)
+                'major'
 
         Returns string.
         '''
-        return '{}({})'.format(type(self).__name__, self.quality_string)
+        return self.quality_string
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        import abjad
+        values = [self.quality_string]
+        return abjad.systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -85,13 +148,37 @@ class ChordQuality(AbjadValueObject):
     def is_uppercase(self):
         r'''Is true when chord quality is uppercase. Otherwise false.
 
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.ChordQuality('major').is_uppercase
+                True
+
+            ::
+
+                >>> tonalanalysistools.ChordQuality('minor').is_uppercase
+                False
+
         Returns true or false.
         '''
         return self.quality_string in self._uppercase_quality_strings
 
     @property
     def quality_string(self):
-        r'''Quality string of chord quality.
+        r'''Gets quality string.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.ChordQuality('major').quality_string
+                'major'
+
+            ::
+
+                >>> tonalanalysistools.ChordQuality('minor').quality_string
+                'minor'
 
         Returns string.
         '''

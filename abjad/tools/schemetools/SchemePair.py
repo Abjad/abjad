@@ -12,15 +12,33 @@ class SchemePair(Scheme):
 
     ..  container:: example
 
+        Initializes from two values:
+
         ::
 
-            >>> abjad.SchemePair('spacing', 4)
-            SchemePair('spacing', 4)
+            >>> abjad.SchemePair(('spacing', 4))
+            SchemePair(('spacing', 4))
 
-    Initialize Scheme pairs with a tuple, two separate values or another Scheme
-    pair.
+    ..  container:: example
 
-    Scheme pairs are immutable.
+        Regression tests:
+
+        Right-hand side string forces quotes:
+
+        ::
+
+            >>> scheme_pair = abjad.SchemePair(('font-name', 'Times'))
+            >>> format(scheme_pair)
+            '#\'(font-name . "Times")'
+
+        Right-hand side nonstring does not force quotes:
+
+        ::
+
+            >>> scheme_pair = abjad.SchemePair(('spacing', 4))
+            >>> format(scheme_pair)
+            "#'(spacing . 4)"
+
     '''
 
     ### CLASS VARIABLES ##
@@ -30,47 +48,40 @@ class SchemePair(Scheme):
 
     ### INITIALIZER ##
 
-    def __init__(self, *arguments, **keywords):
-        if len(arguments) == 1 and isinstance(arguments[0], SchemePair):
-            arguments = arguments[0]._value
-        elif len(arguments) == 1 and isinstance(arguments[0], tuple):
-            arguments = arguments[0][:]
-        elif len(arguments) == 2:
-            arguments = arguments
-        elif len(arguments) == 0:
-            arguments = (0, 1)
-        else:
-            message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, arguments)
-            raise TypeError(message)
-        Scheme.__init__(self, *arguments, **keywords)
+    def __init__(self, value=(None, None)):
+        assert isinstance(value, tuple), repr(value)
+        assert len(value) == 2, repr(value)
+        Scheme.__init__(self, value=value)
 
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
         r'''Formats Scheme pair.
 
+        ..  container:: example
+
+            ::
+
+                >>> scheme_pair = abjad.SchemePair((-1, 1))
+
+            ::
+
+                >>> format(scheme_pair)
+                "#'(-1 . 1)"
+
+            ::
+
+                >>> f(scheme_pair)
+                abjad.SchemePair((-1, 1))
+
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
         Interprets `''` equal to `'lilypond'`.
 
-        ::
-
-            >>> scheme_pair = abjad.SchemePair(-1, 1)
-
-        ::
-
-            >>> format(scheme_pair)
-            "#'(-1 . 1)"
-
-        ::
-
-            >>> f(scheme_pair)
-            abjad.SchemePair(-1, 1)
-
         Returns string.
         '''
-        superclass = super(SchemePair, self)
-        return superclass.__format__(format_specification=format_specification)
+        return super(SchemePair, self).__format__(
+            format_specification=format_specification,
+            )
 
     ### PRIVATE PROPERTIES ###
 
@@ -88,12 +99,28 @@ class SchemePair(Scheme):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        specification = super(SchemePair, self)._get_format_specification()
-        return new(
-            specification,
+        import abjad
+        values = [self.value]
+        return abjad.systemtools.FormatSpecification(
+            client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
+            storage_format_args_values=values,
             )
 
     def _get_lilypond_format(self):
         return "#'%s" % self._formatted_value
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def left(self):
+        r'''Gets left value.
+        '''
+        return self._value[0]
+
+    @property
+    def right(self):
+        r'''Gets right value.
+        '''
+        return self._value[-1]

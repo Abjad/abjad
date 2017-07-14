@@ -112,6 +112,16 @@ class KeySignature(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_format_specification(self):
+        import abjad
+        values = [self.tonic, self.mode]
+        return abjad.systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            )
+
     def _get_lilypond_format(self):
         return r'\key {!s} \{!s}'.format(self.tonic, self.mode)
 
@@ -159,7 +169,7 @@ class KeySignature(AbjadValueObject):
 
                 >>> key_signature = abjad.KeySignature('e', 'major')
                 >>> key_signature.mode
-                Mode(mode_name='major')
+                Mode('major')
 
         ..  container:: example
 
@@ -169,7 +179,7 @@ class KeySignature(AbjadValueObject):
 
                 >>> key_signature = abjad.KeySignature('e', 'minor')
                 >>> key_signature.mode
-                Mode(mode_name='minor')
+                Mode('minor')
 
         Returns mode.
         '''

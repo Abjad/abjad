@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools import markuptools
-from abjad.tools import schemetools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -57,12 +55,12 @@ class WoodwindFingering(AbjadObject):
 
     ..  container:: exmaple
 
-        Calls a WoodwindFingering to create a woodwind diagram MarkupCommand:
+        Calls Woodwind fingering to create woodwind diagram markup command:
 
         ::
 
             >>> fingering_command = woodwind_fingering()
-            >>> print(format(fingering_command))
+            >>> print(format(fingering_command, 'storage'))
             abjad.MarkupCommand(
                 'woodwind-diagram',
                 abjad.Scheme(
@@ -70,9 +68,11 @@ class WoodwindFingering(AbjadObject):
                     quoting="'",
                     ),
                 abjad.Scheme(
-                    abjad.SchemePair('cc', ('one', 'two', 'three', 'five')),
-                    abjad.SchemePair('lh', ('R', 'thumb')),
-                    abjad.SchemePair('rh', ('e',)),
+                    [
+                        abjad.SchemePair(('cc', ('one', 'two', 'three', 'five'))),
+                        abjad.SchemePair(('lh', ('R', 'thumb'))),
+                        abjad.SchemePair(('rh', ('e',))),
+                        ],
                     quoting="'",
                     )
                 )
@@ -136,7 +136,7 @@ class WoodwindFingering(AbjadObject):
             >>> diagram = fingering()
             >>> not_graphical = abjad.MarkupCommand(
             ...     'override',
-            ...     abjad.SchemePair('graphical', False),
+            ...     abjad.SchemePair(('graphical', False)),
             ...     )
             >>> markup = abjad.Markup(contents=
             ...     [not_graphical, diagram], direction=Down)
@@ -171,15 +171,15 @@ class WoodwindFingering(AbjadObject):
             >>> diagram = fingering()
             >>> not_graphical = abjad.MarkupCommand(
             ...     'override',
-            ...     abjad.SchemePair('graphical', False),
+            ...     abjad.SchemePair(('graphical', False)),
             ...     )
             >>> size = abjad.MarkupCommand(
             ...     'override',
-            ...     abjad.SchemePair('size', .5),
+            ...     abjad.SchemePair(('size', .5)),
             ...     )
             >>> thickness = abjad.MarkupCommand(
             ...     'override',
-            ...     abjad.SchemePair('thickness', .4),
+            ...     abjad.SchemePair(('thickness', .4)),
             ...     )
             >>> markup = abjad.Markup(
             ...     contents=[not_graphical, size, thickness, diagram],
@@ -215,6 +215,8 @@ class WoodwindFingering(AbjadObject):
         '_left_hand',
         '_right_hand',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -265,18 +267,20 @@ class WoodwindFingering(AbjadObject):
 
         Returns markup command.
         '''
+        import abjad
         key_groups_as_scheme = []
-        cc_scheme_pair = schemetools.SchemePair('cc', self._center_column)
+        cc_scheme_pair = abjad.SchemePair(('cc', self._center_column))
         key_groups_as_scheme.append(cc_scheme_pair)
-        lh_scheme_pair = schemetools.SchemePair('lh', self._left_hand)
+        lh_scheme_pair = abjad.SchemePair(('lh', self._left_hand))
         key_groups_as_scheme.append(lh_scheme_pair)
-        rh_scheme_pair = schemetools.SchemePair('rh', self._right_hand)
+        rh_scheme_pair = abjad.SchemePair(('rh', self._right_hand))
         key_groups_as_scheme.append(rh_scheme_pair)
-        key_groups_as_scheme = schemetools.Scheme(
-            key_groups_as_scheme[:], quoting="'")
-        instrument_as_scheme = schemetools.Scheme(
-            self._instrument_name, quoting="'")
-        return markuptools.MarkupCommand(
+        key_groups_as_scheme = abjad.Scheme(
+            key_groups_as_scheme,
+            quoting="'",
+            )
+        instrument_as_scheme = abjad.Scheme(self._instrument_name, quoting="'")
+        return abjad.MarkupCommand(
             'woodwind-diagram',
             instrument_as_scheme,
             key_groups_as_scheme,

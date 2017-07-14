@@ -86,14 +86,6 @@ class TypedCollection(AbjadObject):
         '''
         return len(self._collection)
 
-    def __ne__(self, argument):
-        r'''Is true when `argument` is not a typed collection with items equal to
-        this typed collection. Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self.__eq__(argument)
-
     ### PRIVATE PROPERTIES ###
 
     @property

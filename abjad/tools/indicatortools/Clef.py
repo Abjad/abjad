@@ -147,33 +147,6 @@ class Clef(AbjadValueObject):
         superclass = super(Clef, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __ne__(self, argument):
-        r'''Is true when clef of `argument` does not equal clef name of clef.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> clef_1 = abjad.Clef('treble')
-                >>> clef_2 = abjad.Clef('alto')
-
-            ::
-
-                >>> clef_1 != clef_1
-                False
-                >>> clef_1 != clef_2
-                True
-                >>> clef_2 != clef_1
-                True
-                >>> clef_2 != clef_2
-                False
-
-        Returns true or false.
-        '''
-        superclass = super(Clef, self)
-        return superclass.__ne__(argument)
-
     ### PRIVATE PROPERTIES ###
 
     @property

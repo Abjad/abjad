@@ -171,13 +171,6 @@ class Selection(object):
         '''
         return len(self._music)
 
-    def __ne__(self, argument):
-        r'''Is true when selection does not equal `argument`. Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     def __radd__(self, argument):
         r'''Concatenates selection to `argument`.
 

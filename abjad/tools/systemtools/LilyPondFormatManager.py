@@ -374,7 +374,7 @@ class LilyPondFormatManager(AbjadObject):
         elif isinstance(argument, str) and '::' in argument:
             argument = schemetools.Scheme(argument)
         elif isinstance(argument, tuple) and len(argument) == 2:
-            argument = schemetools.SchemePair(argument[0], argument[1])
+            argument = schemetools.SchemePair(argument)
         elif isinstance(argument, str) and ' ' not in argument:
             argument = schemetools.Scheme(argument, quoting="'")
         elif isinstance(argument, str) and ' ' in argument:

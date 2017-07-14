@@ -11,8 +11,11 @@ def test_schemetools_Scheme_01():
     scheme = abjad.Scheme(None)
     scheme = abjad.Scheme('hello')
     scheme = abjad.Scheme('hello world')
-    scheme = abjad.Scheme((abjad.Scheme('foo'), abjad.Scheme(3.14159)))
-    scheme = abjad.Scheme((abjad.SchemePair('padding', 1), abjad.SchemePair('attach-dir', -1)))
+    scheme = abjad.Scheme([abjad.Scheme('foo'), abjad.Scheme(3.14159)])
+    scheme = abjad.Scheme(
+        [abjad.SchemePair(('padding', 1)),
+            abjad.SchemePair(('attach-dir', -1))]
+        )
 
 
 def test_schemetools_Scheme_02():
@@ -20,7 +23,7 @@ def test_schemetools_Scheme_02():
     quote/unquote ticks.
     '''
 
-    scheme = abjad.Scheme(('fus', 'ro', 'dah'), quoting = "',")
+    scheme = abjad.Scheme(['fus', 'ro', 'dah'], quoting = "',")
     assert str(scheme) == "',(fus ro dah)"
 
 
@@ -30,7 +33,7 @@ def test_schemetools_Scheme_03():
     allowing for nested abjad.Scheme expressions.
     '''
 
-    scheme = abjad.Scheme(('fus', 'ro', 'dah'), quoting = "'")
+    scheme = abjad.Scheme(['fus', 'ro', 'dah'], quoting = "'")
     assert str(scheme) == "'(fus ro dah)"
     assert format(scheme) == "#'(fus ro dah)"
 
@@ -44,12 +47,9 @@ def test_schemetools_Scheme_04():
     assert format(abjad.Scheme(None)) == '##f'
     assert format(abjad.Scheme('hello world')) == '#"hello world"'
     assert format(abjad.Scheme([1, 2, 3])) == '#(1 2 3)'
-    assert format(abjad.Scheme((abjad.SchemePair('padding', 1), abjad.SchemePair('attach-dir', -1)), quoting="'")) == \
-        "#'((padding . 1) (attach-dir . -1))"
-
-
-def test_schemetools_Scheme_05():
-    r'''Scheme wraps variable-length arguments into a tuple.
-    '''
-
-    assert format(abjad.Scheme(1, 2, 3)) == format(abjad.Scheme((1, 2, 3)))
+    assert format(abjad.Scheme([
+        abjad.SchemePair(('padding', 1)),
+        abjad.SchemePair(('attach-dir', -1)),
+        ],
+        quoting="'",
+        )) == "#'((padding . 1) (attach-dir . -1))"

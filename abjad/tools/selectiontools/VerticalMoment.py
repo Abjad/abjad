@@ -116,14 +116,6 @@ class VerticalMoment(Selection):
         '''
         return len(self.components)
 
-    def __ne__(self, argument):
-        r'''Is true when `argument` does not equal this vertical moment.
-        Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     def __repr__(self):
         r'''Gets interpreter representation of vertical moment.
 

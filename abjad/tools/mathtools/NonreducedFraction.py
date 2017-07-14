@@ -320,20 +320,6 @@ class NonreducedFraction(AbjadObject, Fraction):
         fraction = self.reduce() * argument
         return self._fraction_with_denominator(fraction, max(denominators))
 
-    def __ne__(self, argument):
-        r'''Is true when `argument` does not equal nonreduced fraction.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NonreducedFraction(3, 3) != 'foo'
-                True
-
-        Returns true or false.
-        '''
-        return not self == argument
-
     def __neg__(self):
         r'''Negates nonreduced fraction.
 

@@ -3,15 +3,19 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class ChordInversion(AbjadValueObject):
-    '''Chord inversion. Tertian chords 5, 63, 64 and also 7, 65, 43, 42, etc.
+    '''Chord inversion.
 
     ::
 
         >>> from abjad.tools import tonalanalysistools
 
-    Also root position, first, second, third inversions, etc.
+    ..  container:: example
 
-    Chord inversions are immutable.
+        ::
+
+            >>> tonalanalysistools.ChordInversion(1)
+            ChordInversion(1)
+
     '''
 
     ### CLASS VARIABLES ###
@@ -66,15 +70,46 @@ class ChordInversion(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a chord inversion with number equal to that
-        of this chord inversion. Otherwise false.
+        r'''Is true when `argument` is a chord inversion with number equal to
+        that of this chord inversion. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> inversion_1 = tonalanalysistools.ChordInversion(0)
+                >>> inversion_2 = tonalanalysistools.ChordInversion(0)
+                >>> inversion_3 = tonalanalysistools.ChordInversion(1)
+
+            ::
+
+                >>> inversion_1 == inversion_1
+                True
+                >>> inversion_1 == inversion_2
+                True
+                >>> inversion_1 == inversion_3
+                False
+
+            ::
+
+                >>> inversion_2 == inversion_1
+                True
+                >>> inversion_2 == inversion_2
+                True
+                >>> inversion_2 == inversion_3
+                False
+
+            ::
+
+                >>> inversion_3 == inversion_1
+                False
+                >>> inversion_3 == inversion_2
+                False
+                >>> inversion_3 == inversion_3
+                True
 
         Returns true or false.
         '''
-#        if isinstance(argument, type(self)):
-#            if self.number == argument.number:
-#                return True
-#        return False
         return super(ChordInversion, self).__eq__(argument)
 
     def __hash__(self):
@@ -86,17 +121,54 @@ class ChordInversion(AbjadValueObject):
         '''
         return super(ChordInversion, self).__hash__()
 
-    def __ne__(self, argument):
-        r'''Is true when chord inversion does not equal `argument`. Otherise false.
+    ### PRIVATE METHODS ###
 
-        Returns true or false.
-        '''
-        return not self == argument
+    def _get_format_specification(self):
+        import abjad
+        values = [self.number]
+        return abjad.systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            )
 
     ### PUBLIC METHODS ###
 
     def extent_to_figured_bass_string(self, extent):
         r'''Changes `extent` to figured bass string.
+
+        ..  container:: example
+
+            ::
+
+                >>> inversion = tonalanalysistools.ChordInversion(0)
+                >>> inversion.extent_to_figured_bass_string(5)
+                ''
+                >>> inversion.extent_to_figured_bass_string(7)
+                '7'
+
+            ::
+
+                >>> inversion = tonalanalysistools.ChordInversion(1)
+                >>> inversion.extent_to_figured_bass_string(5)
+                '6'
+                >>> inversion.extent_to_figured_bass_string(7)
+                '6/5'
+
+            ::
+
+                >>> inversion = tonalanalysistools.ChordInversion(2)
+                >>> inversion.extent_to_figured_bass_string(5)
+                '6/4'
+                >>> inversion.extent_to_figured_bass_string(7)
+                '4/3'
+
+            ::
+
+                >>> inversion = tonalanalysistools.ChordInversion(3)
+                >>> inversion.extent_to_figured_bass_string(7)
+                '4/2'
 
         Returns string.
         '''
@@ -112,7 +184,24 @@ class ChordInversion(AbjadValueObject):
 
     @property
     def name(self):
-        r'''Name of chord inversion.
+        r'''Gets name.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.ChordInversion(0).name
+                'root position'
+
+            ::
+
+                >>> tonalanalysistools.ChordInversion(1).name
+                'first'
+
+            ::
+
+                >>> tonalanalysistools.ChordInversion(2).name
+                'second'
 
         Returns string.
         '''
@@ -122,6 +211,23 @@ class ChordInversion(AbjadValueObject):
     def number(self):
         r'''Number of chord inversion.
 
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.ChordInversion(0).number
+                0
+
+            ::
+
+                >>> tonalanalysistools.ChordInversion(1).number
+                1
+
+            ::
+
+                >>> tonalanalysistools.ChordInversion(2).number
+                2
+
         Returns nonnegative integer.
         '''
         return self._number
@@ -129,6 +235,23 @@ class ChordInversion(AbjadValueObject):
     @property
     def title(self):
         r'''Title of chord inversion.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.ChordInversion(0).title
+                'RootPosition'
+
+            ::
+
+                >>> tonalanalysistools.ChordInversion(1).title
+                'FirstInversion'
+
+            ::
+
+                >>> tonalanalysistools.ChordInversion(2).title
+                'SecondInversion'
 
         Returns string.
         '''

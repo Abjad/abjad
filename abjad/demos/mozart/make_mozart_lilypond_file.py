@@ -15,9 +15,7 @@ def make_mozart_lilypond_file():
     lilypond_file.header_block.title = title
     lilypond_file.header_block.composer = composer
     lilypond_file.layout_block.ragged_right = True
-    lilypond_file.paper_block.markup_system_spacing = \
-        abjad.SchemeAssociativeList(
-        ('basic_distance', 8),
-        )
+    list_ = abjad.SchemeAssociativeList([('basic_distance', 8)])
+    lilypond_file.paper_block.markup_system_spacing = list_
     lilypond_file.paper_block.paper_width = 180
     return lilypond_file
