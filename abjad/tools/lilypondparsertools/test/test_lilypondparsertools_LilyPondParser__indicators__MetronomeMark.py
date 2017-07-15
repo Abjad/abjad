@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__MetronomeMark_01():
 
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     mark = abjad.MetronomeMark(textual_indication="As fast as possible")
-    abjad.attach(mark, target[0], scope=abjad.Staff)
+    abjad.attach(mark, target[0][0], scope=abjad.Staff)
 
     assert format(target) == abjad.String.normalize(
         r'''

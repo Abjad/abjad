@@ -12,7 +12,7 @@ def test_agenttools_InspectionAgent_get_vertical_moment_at_01():
     staff_group.append(abjad.Staff("a'4 g'4"))
     staff_group.append(abjad.Staff("f'8 e'8 d'8 c'8"))
     clef = abjad.Clef('bass')
-    abjad.attach(clef, staff_group[1])
+    abjad.attach(clef, staff_group[1][0])
     score.append(staff_group)
 
     assert format(score) == abjad.String.normalize(
@@ -72,7 +72,7 @@ def test_agenttools_InspectionAgent_get_vertical_moment_at_02():
     staff_group.append(abjad.Staff("a'4 g'4"))
     staff_group.append(abjad.Staff("f'8 e'8 d'8 c'8"))
     clef = abjad.Clef('bass')
-    abjad.attach(clef, staff_group[1])
+    abjad.attach(clef, staff_group[1][0])
     score.append(staff_group)
 
     assert format(score) == abjad.String.normalize(

@@ -6,7 +6,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__TimeSignature_01():
 
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     time_signature = abjad.TimeSignature((8, 8))
-    abjad.attach(time_signature, target[0])
+    abjad.attach(time_signature, target[0][0])
 
     assert format(target) == abjad.String.normalize(
         r'''

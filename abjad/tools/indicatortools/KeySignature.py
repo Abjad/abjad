@@ -17,7 +17,7 @@ class KeySignature(AbjadValueObject):
 
             >>> staff = abjad.Staff("e'8 fs'8 gs'8 a'8")
             >>> key_signature = abjad.KeySignature('e', 'major')
-            >>> abjad.attach(key_signature, staff)
+            >>> abjad.attach(key_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -39,7 +39,7 @@ class KeySignature(AbjadValueObject):
 
             >>> staff = abjad.Staff("e'8 fs'8 g'8 a'8")
             >>> key_signature = abjad.KeySignature('e', 'minor')
-            >>> abjad.attach(key_signature, staff)
+            >>> abjad.attach(key_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

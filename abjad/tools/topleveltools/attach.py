@@ -67,27 +67,33 @@ def attach(
 
     # NOTE: uncomment the following when working on #824
     #       "Restrict attachment to leaves".
-
-#    def _is_acceptable(component_expression):
-#        if isinstance(component_expression, abjad.Leaf):
-#            return True
-#        ss = (list, abjad.Selection)
-#        if not isinstance(component_expression, ss):
-#            return False
-#        for item in component_expression:
-#            if not isinstance(item, abjad.Leaf):
-#                return False
-#        return True
-#
-#    if (
-#        isinstance(indicator, abjad.TimeSignature) and
-#        isinstance(component_expression, abjad.Measure)
-#        ):
-#        pass
-#    elif not _is_acceptable(component_expression):
-#        message = 'attach {!r} to a leaf (or selection of leaves) not to {!r}.'
-#        message = message.format(indicator, component_expression)
-#        raise Exception(message)
+    def _is_acceptable(component_expression):
+        if isinstance(component_expression, abjad.Leaf):
+            return True
+        ss = (list, abjad.Selection, abjad.Spanner)
+        if not isinstance(component_expression, ss):
+            return False
+        for item in component_expression:
+            if not isinstance(item, abjad.Leaf):
+                return False
+        return True
+    prototype = (
+        str,
+        dict,
+        abjad.systemtools.IndicatorExpression,
+        )
+    if (isinstance(indicator, prototype) or
+        getattr(indicator, '_can_attach_to_containers', False)):
+        pass
+    elif (
+        isinstance(indicator, abjad.TimeSignature) and
+        isinstance(component_expression, abjad.Measure)
+        ):
+        pass
+    elif not _is_acceptable(component_expression):
+        message = 'attach {!r} to a leaf (or selection of leaves) not to {!r}.'
+        message = message.format(indicator, component_expression)
+        raise Exception(message)
 
     if hasattr(indicator, '_attachment_test_all'):
         if not indicator._attachment_test_all(component_expression):

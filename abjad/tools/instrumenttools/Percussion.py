@@ -18,7 +18,7 @@ class Percussion(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> percussion = abjad.instrumenttools.Percussion()
-            >>> abjad.attach(percussion, staff)
+            >>> abjad.attach(percussion, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

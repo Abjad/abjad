@@ -18,9 +18,9 @@ class Viola(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef(name='alto')
-            >>> abjad.attach(clef, staff)
+            >>> abjad.attach(clef, staff[0])
             >>> viola = abjad.instrumenttools.Viola()
-            >>> abjad.attach(viola, staff)
+            >>> abjad.attach(viola, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

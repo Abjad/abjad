@@ -8,7 +8,7 @@ def test_agenttools_InspectionAgent_is_bar_line_crossing_01():
 
     staff = abjad.Staff("c'8 d'8 e'4 f'8")
     time_signature = abjad.TimeSignature((2, 8), partial=abjad.Duration(1, 8))
-    abjad.attach(time_signature, staff)
+    abjad.attach(time_signature, staff[0])
 
     assert format(staff) == abjad.String.normalize(
         r'''

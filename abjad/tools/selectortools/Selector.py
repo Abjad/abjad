@@ -1867,7 +1867,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> abjad.attach(abjad.OctavationSpanner(), result)
+                >>> leaves = abjad.select(result).by_leaf()
+                >>> abjad.attach(abjad.OctavationSpanner(), leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

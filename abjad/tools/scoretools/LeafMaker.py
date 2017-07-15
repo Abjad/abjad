@@ -212,7 +212,7 @@ class LeafMaker(AbjadValueObject):
             >>> leaves = maker(pitches, durations)
             >>> staff = abjad.Staff(leaves)
             >>> time_signature = abjad.TimeSignature((13, 16))
-            >>> abjad.attach(time_signature, staff)
+            >>> abjad.attach(time_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -239,7 +239,7 @@ class LeafMaker(AbjadValueObject):
             >>> leaves = maker(pitches, durations)
             >>> staff = abjad.Staff(leaves)
             >>> time_signature = abjad.TimeSignature((13, 16))
-            >>> abjad.attach(time_signature, staff)
+            >>> abjad.attach(time_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -266,7 +266,7 @@ class LeafMaker(AbjadValueObject):
             >>> leaves = maker(pitches, durations)
             >>> staff = abjad.Staff(leaves)
             >>> time_signature = abjad.TimeSignature((5, 4))
-            >>> abjad.attach(time_signature, staff)
+            >>> abjad.attach(time_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -298,7 +298,7 @@ class LeafMaker(AbjadValueObject):
             >>> leaves = maker(pitches, durations)
             >>> staff = abjad.Staff(leaves)
             >>> time_signature = abjad.TimeSignature((5, 4))
-            >>> abjad.attach(time_signature, staff)
+            >>> abjad.attach(time_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -326,16 +326,17 @@ class LeafMaker(AbjadValueObject):
             >>> leaves = maker(pitches, durations)
             >>> staff = abjad.Staff(leaves)
             >>> time_signature = abjad.TimeSignature((5, 14))
-            >>> abjad.attach(time_signature, staff)
+            >>> leaf = abjad.inspect(staff).get_leaf(0)
+            >>> abjad.attach(time_signature, leaf)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
 
             >>> f(staff)
             \new Staff {
-                \time 5/14
                 \tweak edge-height #'(0.7 . 0)
                 \times 4/7 {
+                    \time 5/14
                     f'2 ~
                     f'8
                 }
@@ -355,17 +356,18 @@ class LeafMaker(AbjadValueObject):
             >>> leaves = maker(pitches, durations)
             >>> staff = abjad.Staff(leaves)
             >>> time_signature = abjad.TimeSignature((5, 14))
-            >>> abjad.attach(time_signature, staff)
+            >>> leaf = abjad.inspect(staff).get_leaf(0)
+            >>> abjad.attach(time_signature, leaf)
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::
 
             >>> f(staff)
             \new Staff {
-                \time 5/14
                 \tweak text #tuplet-number::calc-fraction-text
                 \tweak edge-height #'(0.7 . 0)
                 \times 8/7 {
+                    \time 5/14
                     f'4 ~
                     f'16
                 }

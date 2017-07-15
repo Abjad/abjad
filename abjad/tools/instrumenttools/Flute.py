@@ -18,7 +18,7 @@ class Flute(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> flute = abjad.instrumenttools.Flute()
-            >>> abjad.attach(flute, staff)
+            >>> abjad.attach(flute, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

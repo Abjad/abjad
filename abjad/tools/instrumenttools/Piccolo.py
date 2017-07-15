@@ -15,7 +15,7 @@ class Piccolo(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> piccolo = abjad.instrumenttools.Piccolo()
-            >>> abjad.attach(piccolo, staff)
+            >>> abjad.attach(piccolo, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

@@ -376,7 +376,7 @@ class Scale(PitchClassSegment):
         notes[-1].written_duration = abjad.Duration(1, 4)
         staff = abjad.Staff(notes)
         key_signature = copy.copy(self.key_signature)
-        abjad.attach(key_signature, staff)
+        abjad.attach(key_signature, staff[0])
         score = abjad.Score([staff])
         abjad.setting(score).tempo_wholes_per_minute = abjad.SchemeMoment(30)
         return score

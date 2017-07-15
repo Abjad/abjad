@@ -18,7 +18,7 @@ class FrenchHorn(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> french_horn = abjad.instrumenttools.FrenchHorn()
-            >>> abjad.attach(french_horn, staff)
+            >>> abjad.attach(french_horn, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

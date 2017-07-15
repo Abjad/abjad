@@ -208,13 +208,13 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = abjad.Staff()
-                >>> time_signature = abjad.TimeSignature((3, 4))
-                >>> abjad.attach(time_signature, staff)
                 >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
                 >>> hairpin = abjad.Hairpin('p < f')
                 >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
+                >>> time_signature = abjad.TimeSignature((3, 4))
+                >>> abjad.attach(time_signature, leaves[0])
                 >>> abjad.attach(hairpin, leaves)
                 >>> show(staff) # doctest: +SKIP
 
@@ -222,9 +222,9 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff {
-                    \time 3/4
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
+                        \time 3/4
                         c'4 \< \p
                         e'4
                     }
@@ -259,23 +259,23 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = abjad.Staff()
-                >>> time_signature = abjad.TimeSignature((3, 4))
-                >>> abjad.attach(time_signature, staff)
                 >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
-                >>> hairpin = abjad.Hairpin('p < f')
                 >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
+                >>> hairpin = abjad.Hairpin('p < f')
                 >>> abjad.attach(hairpin, leaves)
+                >>> time_signature = abjad.TimeSignature((3, 4))
+                >>> abjad.attach(time_signature, leaves[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
                 >>> f(staff)
                 \new Staff {
-                    \time 3/4
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
+                        \time 3/4
                         c'4 \< \p
                         e'4
                     }
@@ -1689,7 +1689,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> staff = abjad.Staff(r"c'8 \accent ~ c'8 d'8")
                 >>> time_signature = abjad.TimeSignature((3, 8))
-                >>> abjad.attach(time_signature, staff)
+                >>> abjad.attach(time_signature, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1785,7 +1785,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> staff = abjad.Staff(r"c'8 \accent ~ c'8 d'16")
                 >>> time_signature = abjad.TimeSignature((5, 16))
-                >>> abjad.attach(time_signature, staff)
+                >>> abjad.attach(time_signature, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2019,19 +2019,20 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = abjad.Staff()
-                >>> time_signature = abjad.TimeSignature((4, 8))
-                >>> abjad.attach(time_signature, staff)
                 >>> tuplet = abjad.Tuplet((4, 5), [])
                 >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
                 >>> staff.append(tuplet)
+                >>> time_signature = abjad.TimeSignature((4, 8))
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> abjad.attach(time_signature, leaves[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
                 >>> f(staff)
                 \new Staff {
-                    \time 4/8
                     \times 4/5 {
+                        \time 4/8
                         c'8
                         d'8
                         e'8
@@ -2049,8 +2050,8 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff {
-                    \time 4/8
                     \times 4/5 {
+                        \time 4/8
                         c'4
                         d'4
                         e'4
@@ -2061,23 +2062,24 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            Scales fixed-duration tuplet:
+            Scales tuplet:
 
             ::
 
                 >>> staff = abjad.Staff()
-                >>> time_signature = abjad.TimeSignature((4, 8))
-                >>> abjad.attach(time_signature, staff)
                 >>> tuplet = abjad.Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
                 >>> staff.append(tuplet)
+                >>> time_signature = abjad.TimeSignature((4, 8))
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(time_signature, leaf)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
                 >>> f(staff)
                 \new Staff {
-                    \time 4/8
                     \times 4/5 {
+                        \time 4/8
                         c'8
                         d'8
                         e'8
@@ -2095,8 +2097,8 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff {
-                    \time 4/8
                     \times 4/5 {
+                        \time 4/8
                         c'4
                         d'4
                         e'4

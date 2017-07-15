@@ -14,7 +14,7 @@ def test_agenttools_InspectionAgent_get_duration_01():
         )
     leaves = abjad.select(voice).by_leaf()
     mark = abjad.MetronomeMark(abjad.Duration(1, 8), 42)
-    abjad.attach(mark, voice, scope=abjad.Voice)
+    abjad.attach(mark, leaves[0], scope=abjad.Voice)
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
     crescendo = abjad.Crescendo()
@@ -25,10 +25,10 @@ def test_agenttools_InspectionAgent_get_duration_01():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            \tempo 8=42
             {
                 \time 2/12
                 \scaleDurations #'(2 . 3) {
+                    \tempo 8=42
                     c'8 [ \<
                     d'8 \!
                 }
@@ -93,7 +93,7 @@ def test_agenttools_InspectionAgent_get_duration_03():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 38)
-    abjad.attach(mark, staff)
+    abjad.attach(mark, staff[0])
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 42)
     abjad.attach(mark, staff[2])
     score = abjad.Score([staff])
@@ -132,7 +132,7 @@ def test_agenttools_InspectionAgent_get_duration_05():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 38)
-    abjad.attach(mark, staff)
+    abjad.attach(mark, staff[0])
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 42)
     abjad.attach(mark, staff[2])
     abjad.Score([staff])

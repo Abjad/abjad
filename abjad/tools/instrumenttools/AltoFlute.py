@@ -18,7 +18,7 @@ class AltoFlute(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> alto_flute = abjad.instrumenttools.AltoFlute()
-            >>> abjad.attach(alto_flute, staff)
+            >>> abjad.attach(alto_flute, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

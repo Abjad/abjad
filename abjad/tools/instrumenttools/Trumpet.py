@@ -18,7 +18,7 @@ class Trumpet(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> trumpet = abjad.instrumenttools.Trumpet()
-            >>> abjad.attach(trumpet, staff)
+            >>> abjad.attach(trumpet, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

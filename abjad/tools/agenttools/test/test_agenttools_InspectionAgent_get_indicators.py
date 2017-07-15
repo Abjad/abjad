@@ -64,7 +64,7 @@ def test_agenttools_InspectionAgent_get_indicators_03():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     clef = abjad.Clef('treble')
-    abjad.attach(clef, staff)
+    abjad.attach(clef, staff[0])
     dynamic = abjad.Dynamic('p')
     abjad.attach(dynamic, staff[0])
 
@@ -81,33 +81,7 @@ def test_agenttools_InspectionAgent_get_indicators_03():
         ), format(staff)
 
     indicators = abjad.inspect(staff[0]).get_indicators()
-    assert dynamic == indicators[0]
-    assert len(indicators) == 1
-
-
-def test_agenttools_InspectionAgent_get_indicators_04():
-
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    clef = abjad.Clef('treble')
-    abjad.attach(clef, staff)
-    dynamic = abjad.Dynamic('p')
-    abjad.attach(dynamic, staff[0])
-
-    assert format(staff) == abjad.String.normalize(
-        r'''
-        \new Staff {
-            \clef "treble"
-            c'8 \p
-            d'8
-            e'8
-            f'8
-        }
-        '''
-        ), format(staff)
-
-    dynamics = abjad.inspect(staff[0]).get_indicators(abjad.Dynamic)
-    assert dynamic == dynamics[0]
-    assert len(dynamics) == 1
+    assert len(indicators) == 2
 
 
 def test_agenttools_InspectionAgent_get_indicators_05():

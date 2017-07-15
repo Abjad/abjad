@@ -1212,10 +1212,10 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = abjad.Score([])
+                    >>> score = abjad.Score()
                     >>> score.append(abjad.Staff("c'8 d'8 e'8 f'8 g'4"))
                     >>> score.append(abjad.Staff("c4 a,4 g,4"))
-                    >>> abjad.attach(abjad.Clef('bass'), score[1])
+                    >>> abjad.attach(abjad.Clef('bass'), score[1][0])
                     >>> show(score) # doctest: +SKIP
 
                 ..  docs::
@@ -2689,7 +2689,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> score = abjad.Score()
                     >>> score.append(abjad.Staff("c'8 d' e' f' g'4"))
                     >>> score.append(abjad.Staff("c4 a, g,"))
-                    >>> abjad.attach(abjad.Clef('bass'), score[1])
+                    >>> abjad.attach(abjad.Clef('bass'), score[1][0])
                     >>> show(score) # doctest: +SKIP
 
                 ..  docs::
@@ -4584,7 +4584,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
                 >>> violin = abjad.instrumenttools.Violin()
-                >>> abjad.attach(violin, staff)
+                >>> abjad.attach(violin, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

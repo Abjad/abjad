@@ -21,17 +21,17 @@ class Harpsichord(Instrument):
             >>> staff_group = abjad.StaffGroup([upper_staff, lower_staff])
             >>> staff_group.context_name = 'PianoStaff'
             >>> harpsichord = abjad.instrumenttools.Harpsichord()
-            >>> abjad.attach(harpsichord, staff_group)
-            >>> abjad.attach(abjad.Clef(name='bass'), lower_staff)
+            >>> abjad.attach(harpsichord, staff_group[0][0])
+            >>> abjad.attach(abjad.Clef(name='bass'), lower_staff[0])
             >>> show(staff_group) # doctest: +SKIP
 
         ..  docs::
 
             >>> f(staff_group)
             \new PianoStaff <<
-                \set PianoStaff.instrumentName = \markup { Harpsichord }
-                \set PianoStaff.shortInstrumentName = \markup { Hpschd. }
                 \new Staff {
+                    \set PianoStaff.instrumentName = \markup { Harpsichord }
+                    \set PianoStaff.shortInstrumentName = \markup { Hpschd. }
                     c'4
                     d'4
                     e'4

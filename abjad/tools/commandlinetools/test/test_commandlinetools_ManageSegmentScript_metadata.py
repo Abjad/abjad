@@ -68,12 +68,12 @@ class Test(ScorePackageScriptTestCase):
                     \context StaffGroup = "String Quartet Staff Group" <<
                         \tag #'first-violin
                         \context Staff = "First Violin Staff" {
-                            \clef "treble"
-                            \set Staff.instrumentName = \markup { Violin }
-                            \set Staff.shortInstrumentName = \markup { Vn. }
                             \context Voice = "First Violin Voice" {
                                 {
                                     \time 4/4
+                                    \clef "treble"
+                                    \set Staff.instrumentName = \markup { Violin }
+                                    \set Staff.shortInstrumentName = \markup { Vn. }
                                     c'1
                                     \bar "|."
                                 }
@@ -81,12 +81,12 @@ class Test(ScorePackageScriptTestCase):
                         }
                         \tag #'second-violin
                         \context Staff = "Second Violin Staff" {
-                            \clef "treble"
-                            \set Staff.instrumentName = \markup { Violin }
-                            \set Staff.shortInstrumentName = \markup { Vn. }
                             \context Voice = "Second Violin Voice" {
                                 {
                                     \time 4/4
+                                    \clef "treble"
+                                    \set Staff.instrumentName = \markup { Violin }
+                                    \set Staff.shortInstrumentName = \markup { Vn. }
                                     c'1
                                     \bar "|."
                                 }
@@ -94,12 +94,12 @@ class Test(ScorePackageScriptTestCase):
                         }
                         \tag #'viola
                         \context Staff = "Viola Staff" {
-                            \clef "alto"
-                            \set Staff.instrumentName = \markup { Viola }
-                            \set Staff.shortInstrumentName = \markup { Va. }
                             \context Voice = "Viola Voice" {
                                 {
                                     \time 4/4
+                                    \clef "alto"
+                                    \set Staff.instrumentName = \markup { Viola }
+                                    \set Staff.shortInstrumentName = \markup { Va. }
                                     c'1
                                     \bar "|."
                                 }
@@ -107,12 +107,12 @@ class Test(ScorePackageScriptTestCase):
                         }
                         \tag #'cello
                         \context Staff = "Cello Staff" {
-                            \clef "bass"
-                            \set Staff.instrumentName = \markup { Cello }
-                            \set Staff.shortInstrumentName = \markup { Vc. }
                             \context Voice = "Cello Voice" {
                                 {
                                     \time 4/4
+                                    \clef "bass"
+                                    \set Staff.instrumentName = \markup { Cello }
+                                    \set Staff.shortInstrumentName = \markup { Vc. }
                                     c'1
                                     \bar "|."
                                 }

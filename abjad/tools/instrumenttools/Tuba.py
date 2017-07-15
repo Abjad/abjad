@@ -18,9 +18,9 @@ class Tuba(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef(name='bass')
-            >>> abjad.attach(clef, staff)
+            >>> abjad.attach(clef, staff[0])
             >>> tuba = abjad.instrumenttools.Tuba()
-            >>> abjad.attach(tuba, staff)
+            >>> abjad.attach(tuba, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

@@ -45,8 +45,8 @@ class FerneyhoughDemo(object):
                 tupletFullLength = ##t
             } <<
                 \new RhythmicStaff {
-                    \time 1/4
                     {
+                        \time 1/4
                         c'8
                         {
                             c'8
@@ -99,8 +99,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    \time 1/4
                     \times 2/3 {
+                        \time 1/4
                         c'8
                         {
                             c'4
@@ -153,8 +153,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    \time 1/4
                     {
+                        \time 1/4
                         c'16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
@@ -211,8 +211,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    \time 1/4
                     \times 4/5 {
+                        \time 1/4
                         c'16
                         {
                             c'4
@@ -265,8 +265,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    \time 1/4
                     \times 2/3 {
+                        \time 1/4
                         c'16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/8 {
@@ -324,8 +324,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    \time 1/4
                     \times 4/7 {
+                        \time 1/4
                         c'16
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
@@ -382,8 +382,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    \time 1/4
                     {
+                        \time 1/4
                         c'32
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 7/8 {
@@ -442,8 +442,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    \time 1/4
                     \times 8/9 {
+                        \time 1/4
                         c'32
                         {
                             c'4
@@ -496,8 +496,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    \time 1/4
                     \times 4/5 {
+                        \time 1/4
                         c'32
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 9/16 {
@@ -556,8 +556,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    \time 1/4
                     \times 8/11 {
+                        \time 1/4
                         c'32
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 5/8 {
@@ -615,8 +615,8 @@ class FerneyhoughDemo(object):
                     }
                 }
                 \new RhythmicStaff {
-                    \time 1/4
                     \times 2/3 {
+                        \time 1/4
                         c'32
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 11/16 {
@@ -806,6 +806,7 @@ class FerneyhoughDemo(object):
             staff = abjad.Staff(row_of_nested_tuplets)
             staff.context_name = 'RhythmicStaff'
             time_signature = abjad.TimeSignature((1, 4))
-            abjad.attach(time_signature, staff)
+            leaf = abjad.inspect(staff).get_leaf(0)
+            abjad.attach(time_signature, leaf)
             score.append(staff)
         return score

@@ -115,8 +115,8 @@ class Pitch(AbjadValueObject):
         note = abjad.Note(pitch, 1)
         abjad.attach(abjad.Multiplier(1, 4), note)
         clef = abjad.Clef.from_selection([pitch])
+        abjad.attach(clef, note)
         staff = abjad.Staff()
-        abjad.attach(clef, staff)
         staff.append(note)
         abjad.override(staff).time_signature.stencil = False
         lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(staff)

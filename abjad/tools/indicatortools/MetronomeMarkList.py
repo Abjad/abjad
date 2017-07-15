@@ -162,8 +162,6 @@ class MetronomeMarkList(TypedList):
         import abjad
         staff = abjad.Staff()
         score = abjad.Score([staff])
-        time_signature = abjad.TimeSignature((2, 4))
-        abjad.attach(time_signature, staff)
         # the zero note avoids a lilypond spacing problem:
         # score-initial metronome marks slip to the left
         zero_note = abjad.Note("c'2")
@@ -176,6 +174,9 @@ class MetronomeMarkList(TypedList):
             staff.append(note)
             command = abjad.LilyPondCommand('break')
             abjad.attach(command, note)
+        leaf = abjad.inspect(staff).get_leaf(0)
+        time_signature = abjad.TimeSignature((2, 4))
+        abjad.attach(time_signature, leaf)
         abjad.override(score).bar_line.transparent = True
         abjad.override(score).bar_number.stencil = False
         abjad.override(score).clef.stencil = False

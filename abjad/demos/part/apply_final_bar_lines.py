@@ -8,4 +8,5 @@ def apply_final_bar_lines(score):
 
     for voice in abjad.iterate(score).by_class(abjad.Voice):
         bar_line = abjad.BarLine('|.')
-        abjad.attach(bar_line, voice[-1])
+        leaf = abjad.inspect(voice).get_leaf(-1)
+        abjad.attach(bar_line, leaf)

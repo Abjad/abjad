@@ -17,8 +17,8 @@ def test_quantizationtools_Quantizer___call___01():
             \new RhythmicStaff {
                 \new Voice {
                     {
-                        \tempo 4=60
                         \time 4/4
+                        \tempo 4=60
                         c'4.
                         c'4.
                         r4
@@ -48,8 +48,8 @@ def test_quantizationtools_Quantizer___call___02():
             \new RhythmicStaff {
                 \new Voice {
                     {
-                        \tempo 4=60
                         \time 4/4
+                        \tempo 4=60
                         c'8.
                         c'16 ~
                         c'8
@@ -83,8 +83,8 @@ def test_quantizationtools_Quantizer___call___03():
             \new Staff {
                 \new Voice {
                     {
-                        \tempo 4=60
                         \time 4/4
+                        \tempo 4=60
                         c'4 ~
                         c'8
                         r8
@@ -127,8 +127,8 @@ def test_quantizationtools_Quantizer___call___04():
             \new RhythmicStaff {
                 \new Voice {
                     {
-                        \tempo 4=60
                         \time 4/4
+                        \tempo 4=60
                         c'16
                         c'16 ~
                         c'8 ~

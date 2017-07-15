@@ -18,9 +18,9 @@ class Bassoon(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff)
+            >>> abjad.attach(clef, staff[0])
             >>> bassoon = abjad.instrumenttools.Bassoon()
-            >>> abjad.attach(bassoon, staff)
+            >>> abjad.attach(bassoon, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

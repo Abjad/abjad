@@ -18,9 +18,9 @@ class Cello(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff)
+            >>> abjad.attach(clef, staff[0])
             >>> cello = abjad.instrumenttools.Cello()
-            >>> abjad.attach(cello, staff)
+            >>> abjad.attach(cello, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

@@ -6,25 +6,13 @@ import pytest
 def test_agenttools_InspectionAgent_get_indicator_01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.attach('color', staff)
+    abjad.attach('color', staff[0])
 
-    assert abjad.inspect(staff).get_indicator('color') == 'color'
-    assert abjad.inspect(staff[0]).get_indicator('color') is None
+    assert abjad.inspect(staff).get_indicator('color') is None
+    assert abjad.inspect(staff[0]).get_indicator('color') == 'color'
     assert abjad.inspect(staff[1]).get_indicator('color') is None
     assert abjad.inspect(staff[2]).get_indicator('color') is None
     assert abjad.inspect(staff[3]).get_indicator('color') is None
-
-
-def test_agenttools_InspectionAgent_get_indicator_02():
-
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.attach('color', staff)
-
-    assert abjad.inspect(staff).get_indicator(str) == 'color'
-    assert abjad.inspect(staff[0]).get_indicator(str) is None
-    assert abjad.inspect(staff[1]).get_indicator(str) is None
-    assert abjad.inspect(staff[2]).get_indicator(str) is None
-    assert abjad.inspect(staff[3]).get_indicator(str) is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_03():
@@ -165,9 +153,9 @@ def test_agenttools_InspectionAgent_get_indicator_15():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     violin = abjad.instrumenttools.Violin()
-    abjad.attach(violin, staff)
+    abjad.attach(violin, staff[0])
 
-    indicator = abjad.inspect(staff).get_indicator(abjad.instrumenttools.Instrument)
+    indicator = abjad.inspect(staff[0]).get_indicator(abjad.Instrument)
 
     assert indicator is violin
 

@@ -19,7 +19,7 @@ class MezzoSopranoVoice(Instrument):
 
             >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
             >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
-            >>> abjad.attach(mezzo_soprano, staff)
+            >>> abjad.attach(mezzo_soprano, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

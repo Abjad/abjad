@@ -53,17 +53,9 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
     """)
     fancy_segment_maker_code = stringtools.String.normalize(r"""
         # -*- coding: utf-8 -*-
-        from abjad import attach
-        from abjad import iterate
-        from abjad import setting
-        from abjad.tools import abctools
-        from abjad.tools import indicatortools
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import scoretools
-        from abjad.tools import templatetools
+        import abjad
 
-
-        class SegmentMaker(abctools.AbjadObject):
+        class SegmentMaker(abjad.abctools.AbjadObject):
 
             ### INITIALIZER ###
 
@@ -71,7 +63,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                 measure_count = int(measure_count)
                 assert 0 < measure_count
                 self.measure_count = measure_count
-                self.score_template = templatetools.StringQuartetScoreTemplate()
+                self.score_template = abjad.templatetools.StringQuartetScoreTemplate()
 
             ### SPECIAL METHODS ###
 
@@ -82,23 +74,29 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                 ):
                 score = self.score_template()
                 for i in range(self.measure_count):
-                    for voice in iterate(score).by_class(scoretools.Voice):
-                        measure = scoretools.Measure((4, 4), "c'1")
+                    for voice in abjad.iterate(score).by_class(abjad.Voice):
+                        skip = voice[0]
+                        indicators = abjad.inspect(skip).get_indicators()
+                        voice[:] = []
+                        measure = abjad.Measure((4, 4), "c'1")
+                        for indicator in indicators:
+                            abjad.detach(indicator, skip)
+                            abjad.attach(indicator, measure[0])
                         voice.append(measure)
-                lilypond_file = lilypondfiletools.LilyPondFile.new(
+                lilypond_file = abjad.LilyPondFile.new(
                     score,
                     includes=['../../stylesheets/stylesheet.ily'],
                     )
                 first_bar_number = segment_metadata.get('first_bar_number', 1)
                 if 1 < first_bar_number:
-                    setting(score).current_bar_number = first_bar_number
+                    abjad.setting(score).current_bar_number = first_bar_number
                 segment_number = segment_metadata.get('segment_number', 1)
                 segment_count = segment_metadata.get('segment_count', 1)
                 if 1 < segment_number:
-                    rehearsal_mark = indicatortools.RehearsalMark()
-                    for voice in iterate(score).by_class(scoretools.Voice):
-                        for leaf in iterate(voice).by_leaf():
-                            attach(rehearsal_mark, leaf)
+                    rehearsal_mark = abjad.RehearsalMark()
+                    for voice in abjad.iterate(score).by_class(abjad.Voice):
+                        for leaf in abjad.iterate(voice).by_leaf():
+                            abjad.attach(rehearsal_mark, leaf)
                             break
                 if segment_count <= segment_number:
                     score.add_final_bar_line(

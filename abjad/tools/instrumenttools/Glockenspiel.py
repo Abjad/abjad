@@ -18,7 +18,7 @@ class Glockenspiel(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
-            >>> abjad.attach(glockenspiel, staff)
+            >>> abjad.attach(glockenspiel, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

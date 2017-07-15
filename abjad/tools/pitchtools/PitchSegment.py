@@ -701,7 +701,7 @@ class PitchSegment(Segment):
                 >>> notes = segment.make_notes(4, abjad.Duration(5, 16))
                 >>> staff = abjad.Staff(notes)
                 >>> time_signature = abjad.TimeSignature((5, 4))
-                >>> abjad.attach(time_signature, staff)
+                >>> abjad.attach(time_signature, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

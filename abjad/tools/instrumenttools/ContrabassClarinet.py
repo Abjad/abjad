@@ -18,7 +18,7 @@ class ContrabassClarinet(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> contrabass_clarinet = abjad.instrumenttools.ContrabassClarinet()
-            >>> abjad.attach(contrabass_clarinet, staff)
+            >>> abjad.attach(contrabass_clarinet, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

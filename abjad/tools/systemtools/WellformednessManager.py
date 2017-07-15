@@ -104,73 +104,6 @@ class WellformednessManager(AbjadObject):
         But advanced users can stumble into this situation as described in
         the following examples.
 
-        ..  container:: example
-
-            Conflicting clefs result from attaching clefs to separate
-            containers and then appending one container to the other:
-
-            ::
-
-                >>> staff = abjad.Staff()
-                >>> abjad.attach(abjad.Clef('bass'), staff)
-                >>> voice = abjad.Voice()
-                >>> abjad.attach(abjad.Clef('treble'), voice)
-                >>> staff.append(voice)
-
-            ::
-
-                >>> f(staff)
-                \new Staff {
-                    \clef "bass"
-                    \new Voice {
-                        \clef "treble"
-                    }
-                }
-
-            ::
-
-                >>> abjad.inspect(staff).is_well_formed()
-                False
-
-            This is bad.
-
-        ..  container:: example
-
-            Conflicting clefs result from attaching clefs to free-standing
-            leaves, then to a container and then extending the
-            cleffed-container with the cleffed-leaves:
-
-            ::
-
-                >>> staff = abjad.Staff()
-                >>> abjad.attach(abjad.Clef('bass'), staff)
-                >>> maker = abjad.LeafMaker()
-                >>> leaves = maker([0, 2, 4, 5], [(1, 4)])
-                >>> abjad.attach(abjad.Clef('treble'), leaves[0])
-                >>> staff.extend(leaves)
-
-            ::
-
-                >>> f(staff)
-                \new Staff {
-                    \clef "bass"
-                    \clef "treble"
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-
-            ::
-
-                >>> abjad.inspect(staff).is_well_formed()
-                False
-
-            This is also bad.
-
-        ..  todo:: Raise an exception on append or extend to prohibit these
-            cases.
-
         Returns violators and total.
         '''
         import abjad
@@ -547,9 +480,9 @@ class WellformednessManager(AbjadObject):
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
                 >>> clef = abjad.Clef(name='alto')
-                >>> abjad.attach(clef, staff)
+                >>> abjad.attach(clef, staff[0])
                 >>> violin = abjad.instrumenttools.Violin()
-                >>> abjad.attach(violin, staff)
+                >>> abjad.attach(violin, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -600,9 +533,9 @@ class WellformednessManager(AbjadObject):
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
                 >>> clef = abjad.Clef(name='percussion')
-                >>> abjad.attach(clef, staff)
+                >>> abjad.attach(clef, staff[0])
                 >>> violin = abjad.instrumenttools.Violin()
-                >>> abjad.attach(violin, staff)
+                >>> abjad.attach(violin, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -712,7 +645,7 @@ class WellformednessManager(AbjadObject):
 
                 >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
                 >>> violin = abjad.instrumenttools.Violin()
-                >>> abjad.attach(violin, staff)
+                >>> abjad.attach(violin, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

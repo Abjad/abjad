@@ -43,8 +43,8 @@ class Quantizer(AbjadObject):
                 \new Staff {
                     \new Voice {
                         {
-                            \tempo 4=60
                             \time 4/4
+                            \tempo 4=60
                             c'4
                             cs'4
                             d'4
@@ -94,8 +94,8 @@ class Quantizer(AbjadObject):
                 \new Staff {
                     \new Voice {
                         {
-                            \tempo 4=78
                             \time 2/4
+                            \tempo 4=78
                             c'4 ~
                             \times 4/5 {
                                 c'16.
@@ -103,9 +103,9 @@ class Quantizer(AbjadObject):
                             }
                         }
                         {
-                            \tempo 8=57
                             \time 5/4
                             \times 4/7 {
+                                \tempo 8=57
                                 cs'16.
                                 d'8 ~
                             }

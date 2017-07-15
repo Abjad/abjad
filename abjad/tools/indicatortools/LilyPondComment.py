@@ -53,8 +53,6 @@ class LilyPondComment(AbjadValueObject):
         '_format_slot',
         )
 
-    _format_leaf_children = False
-
     _allowable_format_slots = (
         'after',
         'before',
@@ -62,6 +60,10 @@ class LilyPondComment(AbjadValueObject):
         'opening',
         'right',
         )
+
+    _can_attach_to_containers = True
+
+    _format_leaf_children = False
 
     ### INITIALIZER ###
 

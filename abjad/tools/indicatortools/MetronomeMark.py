@@ -839,7 +839,7 @@ class MetronomeMark(AbjadValueObject):
                 ...     )
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
                 >>> score = abjad.Score([staff])
-                >>> abjad.attach(mark, staff)
+                >>> abjad.attach(mark, staff[0])
                 >>> show(score) # doctest: +SKIP
 
             ..  docs::

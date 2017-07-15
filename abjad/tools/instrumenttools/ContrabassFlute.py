@@ -18,7 +18,7 @@ class ContrabassFlute(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> contrabass_flute = abjad.instrumenttools.ContrabassFlute()
-            >>> abjad.attach(contrabass_flute, staff)
+            >>> abjad.attach(contrabass_flute, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

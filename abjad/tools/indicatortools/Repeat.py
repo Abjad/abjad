@@ -75,6 +75,8 @@ class Repeat(AbjadValueObject):
         '_repeat_type',
         )
 
+    _can_attach_to_containers = True
+
     _format_leaf_children = False
 
     _format_slot = 'before'

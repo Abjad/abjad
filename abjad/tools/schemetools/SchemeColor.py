@@ -16,7 +16,22 @@ class SchemeColor(Scheme):
             >>> abjad.SchemeColor('ForestGreen')
             SchemeColor('ForestGreen')
 
-    Scheme colors are immutable.
+
+    ..  container:: example
+
+        ::
+
+            >>> note = abjad.Note("c'4")
+            >>> scheme_color = abjad.SchemeColor('ForestGreen')
+            >>> abjad.override(note).note_head.color = scheme_color
+            >>> show(note) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(note)
+            \once \override NoteHead.color = #(x11-color 'ForestGreen)
+            c'4
+
     '''
 
     ### CLASS VARIABLES ##

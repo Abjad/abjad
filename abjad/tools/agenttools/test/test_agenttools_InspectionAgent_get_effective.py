@@ -19,7 +19,7 @@ def test_agenttools_InspectionAgent_get_effective_02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     clef = abjad.Clef('treble')
-    abjad.attach(clef, staff)
+    abjad.attach(clef, staff[0])
     for note in staff:
         clef = abjad.inspect(note).get_effective(abjad.Clef)
         assert clef == abjad.Clef('treble')
@@ -182,7 +182,7 @@ def test_agenttools_InspectionAgent_get_effective_10():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     flute = abjad.instrumenttools.Flute()
-    abjad.attach(flute, staff)
+    abjad.attach(flute, staff[0])
 
     assert format(staff) == abjad.String.normalize(
         r'''
@@ -211,7 +211,7 @@ def test_agenttools_InspectionAgent_get_effective_11():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     key_signature = abjad.KeySignature('c', 'major')
-    abjad.attach(key_signature, staff)
+    abjad.attach(key_signature, staff[0])
 
     key_signature = abjad.inspect(staff).get_effective(abjad.KeySignature)
     assert key_signature == abjad.KeySignature('c', 'major')
@@ -246,7 +246,7 @@ def test_agenttools_InspectionAgent_get_effective_13():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     mark_1 = abjad.MetronomeMark(abjad.Duration(1, 8), 38)
-    abjad.attach(mark_1, staff, scope=abjad.Staff)
+    abjad.attach(mark_1, staff[0], scope=abjad.Staff)
     mark_2 = abjad.MetronomeMark(abjad.Duration(1, 8), 42)
     abjad.attach(mark_2, staff[2], scope=abjad.Staff)
 

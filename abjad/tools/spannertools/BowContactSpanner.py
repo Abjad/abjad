@@ -36,7 +36,7 @@ class BowContactSpanner(Spanner):
 
         ::
 
-            >>> abjad.attach(abjad.Clef('percussion'), staff)
+            >>> abjad.attach(abjad.Clef('percussion'), staff[0])
             >>> abjad.override(staff).bar_line.transparent = True
             >>> abjad.override(staff).dots.staff_position = -8
             >>> abjad.override(staff).flag.Y_offset = -8.5
@@ -72,7 +72,6 @@ class BowContactSpanner(Spanner):
                 \override Stem.stem-begin-position = #-9
                 \override TimeSignature.stencil = ##f
             } {
-                \clef "percussion"
                 \once \override Glissando.style = #'dotted-line
                 \once \override NoteHead.Y-offset = -1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
@@ -83,6 +82,7 @@ class BowContactSpanner(Spanner):
                                 1
                                 4
                     }
+                \clef "percussion"
                 c'4. ^\downbow \glissando
                 \once \override NoteHead.Y-offset = 1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
@@ -149,7 +149,7 @@ class BowContactSpanner(Spanner):
 
         ::
 
-            >>> abjad.attach(abjad.Clef('percussion'), staff)
+            >>> abjad.attach(abjad.Clef('percussion'), staff[0])
             >>> abjad.override(staff).bar_line.transparent = True
             >>> abjad.override(staff).dots.staff_position = -8
             >>> abjad.override(staff).flag.Y_offset = -8.5
@@ -185,8 +185,8 @@ class BowContactSpanner(Spanner):
                 \override Stem.stem-begin-position = #-9
                 \override TimeSignature.stencil = ##f
             } {
-                \clef "percussion"
                 \once \override NoteHead.style = #'cross
+                \clef "percussion"
                 c'4
                 \once \override NoteHead.Y-offset = 1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print

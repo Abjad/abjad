@@ -21,17 +21,17 @@ class Accordion(Instrument):
             >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
             >>> staff_group.append(abjad.Staff("c'2 b2"))
             >>> accordion = abjad.instrumenttools.Accordion()
-            >>> abjad.attach(accordion, staff_group)
-            >>> abjad.attach(abjad.Clef('bass'), staff_group[1])
+            >>> abjad.attach(accordion, staff_group[0][0])
+            >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
             >>> show(staff_group) # doctest: +SKIP
 
         ..  docs::
 
             >>> f(staff_group)
             \new PianoStaff <<
-                \set PianoStaff.instrumentName = \markup { Accordion }
-                \set PianoStaff.shortInstrumentName = \markup { Acc. }
                 \new Staff {
+                    \set PianoStaff.instrumentName = \markup { Accordion }
+                    \set PianoStaff.shortInstrumentName = \markup { Acc. }
                     c'4
                     d'4
                     e'4

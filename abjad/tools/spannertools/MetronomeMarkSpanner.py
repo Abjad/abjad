@@ -21,7 +21,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::
@@ -131,7 +131,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::
@@ -171,7 +171,6 @@ class MetronomeMarkSpanner(Spanner):
                 \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
-                    \time 3/8
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
@@ -211,6 +210,7 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.text = ##f
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
+                    \time 3/8
                     c'8. \startTextSpan
                     d'8.
                     e'4. \stopTextSpan ^ \markup {
@@ -272,7 +272,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::
@@ -413,7 +413,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::
@@ -455,7 +455,6 @@ class MetronomeMarkSpanner(Spanner):
                 \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
-                    \time 3/8
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
@@ -495,6 +494,7 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.text = ##f
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
+                    \time 3/8
                     c'8. \startTextSpan
                     d'8.
                     e'4. \stopTextSpan ^ \markup {
@@ -580,7 +580,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::
@@ -618,7 +618,6 @@ class MetronomeMarkSpanner(Spanner):
                 \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
-                    \time 3/8
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
@@ -647,6 +646,7 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.text = ##f
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
+                    \time 3/8
                     c'8. \startTextSpan
                     d'8.
                     e'4. \stopTextSpan ^ \markup {
@@ -708,7 +708,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::
@@ -746,7 +746,6 @@ class MetronomeMarkSpanner(Spanner):
                 \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
-                    \time 3/8
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
                     \once \override TextSpanner.bound-details.left-broken.text = \markup {
@@ -775,6 +774,7 @@ class MetronomeMarkSpanner(Spanner):
                     \once \override TextSpanner.bound-details.right.text = ##f
                     \once \override TextSpanner.dash-fraction = 0.25
                     \once \override TextSpanner.dash-period = 1.5
+                    \time 3/8
                     c'8. \startTextSpan
                     d'8.
                     e'4. \stopTextSpan ^ \markup {
@@ -836,7 +836,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::
@@ -984,7 +984,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::
@@ -1132,7 +1132,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
             >>> command = abjad.LilyPondCommand('break', 'after')
             >>> abjad.attach(command, staff[3])
@@ -1244,7 +1244,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
             >>> command = abjad.LilyPondCommand('break', 'after')
             >>> abjad.attach(command, staff[3])
@@ -1356,7 +1356,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'8. d'8. e'4. g'8. f'8. ef'4.")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::
@@ -1509,7 +1509,7 @@ class MetronomeMarkSpanner(Spanner):
         ::
 
             >>> staff = abjad.Staff("c'8. d'8. e'4. g'8. f'8. ef'4.")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::
@@ -2067,7 +2067,7 @@ class MetronomeMarkSpanner(Spanner):
             ::
 
                 >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
-                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
                 >>> score = abjad.Score([staff])
                 >>> command = abjad.LilyPondCommand('break', 'after')
                 >>> abjad.attach(command, staff[3])
@@ -2181,7 +2181,7 @@ class MetronomeMarkSpanner(Spanner):
             ::
 
                 >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
-                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
                 >>> score = abjad.Score([staff])
                 >>> command = abjad.LilyPondCommand('break', 'after')
                 >>> abjad.attach(command, staff[3])
@@ -2304,7 +2304,7 @@ class MetronomeMarkSpanner(Spanner):
             ::
 
                 >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
-                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
                 >>> score = abjad.Score([staff])
                 >>> command = abjad.LilyPondCommand('break', 'after')
                 >>> abjad.attach(command, staff[3])
@@ -2419,7 +2419,7 @@ class MetronomeMarkSpanner(Spanner):
             ::
 
                 >>> staff = abjad.Staff("c'4. d' e' f' g' a' b' c''")
-                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
                 >>> score = abjad.Score([staff])
                 >>> command = abjad.LilyPondCommand('break', 'after')
                 >>> abjad.attach(command, staff[3])
@@ -2538,7 +2538,7 @@ class MetronomeMarkSpanner(Spanner):
             ::
 
                 >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
-                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
                 >>> score = abjad.Score([staff])
 
             ::
@@ -2669,7 +2669,7 @@ class MetronomeMarkSpanner(Spanner):
             ::
 
                 >>> staff = abjad.Staff("c'8. d' e'4. g'8. f' ef'4.")
-                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff)
+                >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
                 >>> score = abjad.Score([staff])
 
             ::

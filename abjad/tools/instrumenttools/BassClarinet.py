@@ -18,7 +18,7 @@ class BassClarinet(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> bass_clarinet = abjad.instrumenttools.BassClarinet()
-            >>> abjad.attach(bass_clarinet, staff)
+            >>> abjad.attach(bass_clarinet, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

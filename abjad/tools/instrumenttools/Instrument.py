@@ -347,7 +347,7 @@ class Instrument(AbjadValueObject):
 
                 >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
                 >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
-                >>> abjad.attach(clarinet, staff)
+                >>> abjad.attach(clarinet, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -411,7 +411,7 @@ class Instrument(AbjadValueObject):
 
                 >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
                 >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
-                >>> abjad.attach(clarinet, staff)
+                >>> abjad.attach(clarinet, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

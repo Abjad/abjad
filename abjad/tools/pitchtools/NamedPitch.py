@@ -106,9 +106,9 @@ class NamedPitch(Pitch):
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
             } {
-                \clef "treble"
                 \once \override Accidental.stencil = #ly:text-interface::print
                 \once \override Accidental.text = \markup { \musicglyph #"accidentals.sharp.arrowup" }
+                \clef "treble"
                 cs''1 * 1/4
             }
 
@@ -2201,7 +2201,7 @@ class NamedPitch(Pitch):
 
                 >>> staff = abjad.Staff("g,16 a, b, c d e f g a b c' d' e' f' g' a'")
                 >>> clef = abjad.Clef('bass')
-                >>> abjad.attach(clef, staff)
+                >>> abjad.attach(clef, staff[0])
                 >>> for note in staff:
                 ...     staff_position = note.written_pitch.to_staff_position(
                 ...         clef=clef

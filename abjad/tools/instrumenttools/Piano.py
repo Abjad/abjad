@@ -21,17 +21,17 @@ class Piano(Instrument):
             >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
             >>> staff_group.append(abjad.Staff("c'2 b2"))
             >>> piano = abjad.instrumenttools.Piano()
-            >>> abjad.attach(piano, staff_group)
-            >>> abjad.attach(abjad.Clef(name='bass'), staff_group[1])
+            >>> abjad.attach(piano, staff_group[0][0])
+            >>> abjad.attach(abjad.Clef(name='bass'), staff_group[1][0])
             >>> show(staff_group) # doctest: +SKIP
 
         ..  docs::
 
             >>> f(staff_group)
             \new PianoStaff <<
-                \set PianoStaff.instrumentName = \markup { Piano }
-                \set PianoStaff.shortInstrumentName = \markup { Pf. }
                 \new Staff {
+                    \set PianoStaff.instrumentName = \markup { Piano }
+                    \set PianoStaff.shortInstrumentName = \markup { Pf. }
                     c'4
                     d'4
                     e'4

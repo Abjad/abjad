@@ -45,8 +45,6 @@ class LilyPondCommand(AbjadValueObject):
         '_prefix',
         )
 
-    _format_leaf_children = False
-
     _allowable_format_slots = (
         'after',
         'before',
@@ -54,6 +52,11 @@ class LilyPondCommand(AbjadValueObject):
         'opening',
         'right',
         )
+
+    _can_attach_to_containers = True
+
+    _format_leaf_children = False
+
 
     ### INITIALIZER ###
 

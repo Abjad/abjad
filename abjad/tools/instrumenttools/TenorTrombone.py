@@ -18,9 +18,9 @@ class TenorTrombone(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> clef = abjad.Clef(name='bass')
-            >>> abjad.attach(clef, staff)
+            >>> abjad.attach(clef, staff[0])
             >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
-            >>> abjad.attach(tenor_trombone, staff)
+            >>> abjad.attach(tenor_trombone, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

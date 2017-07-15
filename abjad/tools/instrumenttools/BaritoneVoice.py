@@ -18,9 +18,9 @@ class BaritoneVoice(Instrument):
 
             >>> staff = abjad.Staff("c4 d4 e4 fs4")
             >>> baritone = abjad.instrumenttools.BaritoneVoice()
-            >>> abjad.attach(baritone, staff)
+            >>> abjad.attach(baritone, staff[0])
             >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff)
+            >>> abjad.attach(clef, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

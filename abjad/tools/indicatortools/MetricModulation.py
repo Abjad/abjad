@@ -438,7 +438,7 @@ class MetricModulation(AbjadValueObject):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4 e'4 d'4")
-            >>> abjad.attach(abjad.TimeSignature((3, 4)), staff)
+            >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0])
             >>> score = abjad.Score([staff])
 
         ::

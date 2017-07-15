@@ -451,7 +451,7 @@ class Selection(object):
                 >>> staff = abjad.Staff(r"c'8 ( d'8 e'8 f'8 )")
                 >>> staff.append(r"g'8 a'8 b'8 c''8")
                 >>> time_signature = abjad.TimeSignature((2, 4))
-                >>> abjad.attach(time_signature, staff)
+                >>> abjad.attach(time_signature, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1700,16 +1700,17 @@ class Selection(object):
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> abjad.attach(mark, staff, scope=abjad.Staff)
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(mark, leaf, scope=abjad.Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
                 >>> f(staff)
                 \new Staff {
-                    \tempo 4=60
                     {
                         \time 2/8
+                        \tempo 4=60
                         c'8
                         d'8
                     }
@@ -1755,16 +1756,17 @@ class Selection(object):
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> abjad.attach(mark, staff, scope=abjad.Staff)
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(mark, leaf, scope=abjad.Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
                 >>> f(staff)
                 \new Staff {
-                    \tempo 4=60
                     {
                         \time 2/8
+                        \tempo 4=60
                         c'8
                         d'8
                     }
@@ -1810,16 +1812,17 @@ class Selection(object):
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> abjad.attach(mark, staff, scope=abjad.Staff)
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(mark, leaf, scope=abjad.Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
                 >>> f(staff)
                 \new Staff {
-                    \tempo 4=60
                     {
                         \time 2/8
+                        \tempo 4=60
                         c'8
                         d'8
                     }
@@ -1864,16 +1867,17 @@ class Selection(object):
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> abjad.attach(mark, staff, scope=abjad.Staff)
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(mark, leaf, scope=abjad.Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
                 >>> f(staff)
                 \new Staff {
-                    \tempo 4=60
                     {
                         \time 2/8
+                        \tempo 4=60
                         c'8
                         d'8
                     }
@@ -1924,16 +1928,17 @@ class Selection(object):
                 ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
                 ...     )
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> abjad.attach(mark, staff, scope=abjad.Staff)
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(mark, leaf, scope=abjad.Staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
                 >>> f(staff)
                 \new Staff {
-                    \tempo 4=60
                     {
                         \time 2/8
+                        \tempo 4=60
                         c'8
                         d'8
                     }

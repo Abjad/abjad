@@ -18,7 +18,7 @@ class Marimba(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> marimba = abjad.instrumenttools.Marimba()
-            >>> abjad.attach(marimba, staff)
+            >>> abjad.attach(marimba, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

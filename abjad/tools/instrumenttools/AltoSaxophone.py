@@ -18,7 +18,7 @@ class AltoSaxophone(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> alto_saxophone = abjad.instrumenttools.AltoSaxophone()
-            >>> abjad.attach(alto_saxophone, staff)
+            >>> abjad.attach(alto_saxophone, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

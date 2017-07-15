@@ -33,28 +33,33 @@ class MeasurewiseQTarget(QTarget):
         attack_point_optimizer=None,
         grace_handler=None,
         ):
-        voice = scoretools.Voice()
+        import abjad
+        voice = abjad.Voice()
 
         # generate the first
         q_target_measure = self.items[0]
-        measure = scoretools.Measure(q_target_measure.time_signature)
+        measure = abjad.Measure(q_target_measure.time_signature)
         for beat in q_target_measure.beats:
             measure.extend(beat.q_grid(beat.beatspan))
         if attach_tempos:
             tempo = copy.copy(q_target_measure.tempo)
-            attach(tempo, measure)
+            #abjad.attach(tempo, measure)
+            leaf = abjad.inspect(measure).get_leaf(0)
+            abjad.attach(tempo, leaf)
         voice.append(measure)
 
         # generate the rest pairwise, comparing tempi
-        pairs = sequencetools.Sequence(self.items).nwise()
+        pairs = abjad.Sequence(self.items).nwise()
         for q_target_measure_one, q_target_measure_two in pairs:
-            measure = scoretools.Measure(q_target_measure_two.time_signature)
+            measure = abjad.Measure(q_target_measure_two.time_signature)
             for beat in q_target_measure_two.beats:
                 measure.extend(beat.q_grid(beat.beatspan))
             if ((q_target_measure_two.tempo != q_target_measure_one.tempo) and
                 attach_tempos):
                 tempo = copy.copy(q_target_measure_two.tempo)
-                attach(tempo, measure)
+                #abjad.attach(tempo, measure)
+                leaf = abjad.inspect(measure).get_leaf(0)
+                abjad.attach(tempo, leaf)
             voice.append(measure)
 
         # apply logical ties, pitches, grace containers

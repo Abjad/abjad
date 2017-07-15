@@ -125,7 +125,109 @@ class Scheme(AbjadValueObject):
             >>> print(format(scheme))
             #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
 
-    Scheme objects are immutable.
+    ..  container:: example
+
+        More examples:
+
+        ::
+
+            >>> abjad.Scheme(True)
+            Scheme(True)
+
+        ::
+
+            >>> abjad.Scheme(False)
+            Scheme(False)
+
+        ::
+
+            >>> abjad.Scheme(None)
+            Scheme(None)
+
+        ::
+
+            >>> abjad.Scheme('hello')
+            Scheme('hello')
+
+        ::
+
+            >>> abjad.Scheme('hello world')
+            Scheme('hello world')
+
+            >>> abjad.Scheme([abjad.Scheme('foo'), abjad.Scheme(3.14159)])
+            Scheme([Scheme('foo'), Scheme(3.14159)])
+
+            >>> abjad.Scheme([
+            ...     abjad.SchemePair(('padding', 1)),
+            ...     abjad.SchemePair(('attach-dir', -1)),
+            ...     ])
+            Scheme([SchemePair(('padding', 1)), SchemePair(('attach-dir', -1))])
+
+    ..  container:: example
+
+        Scheme takes an optional `quoting` keyword, for prepending
+        quote/unquote ticks:
+
+        >>> str(abjad.Scheme(['fus', 'ro', 'dah'], quoting = "',"))
+        "',(fus ro dah)"
+
+    ..  container:: example
+
+        __str__ of abjad.Scheme returns the abjad.Scheme formatted value
+        without the hash mark, while format(Scheme) returns the formatted value
+        with the hash mark, allowing for nested abjad.Scheme expressions:
+
+        ::
+
+            >>> scheme = abjad.Scheme(['fus', 'ro', 'dah'], quoting = "'")
+            >>> str(scheme)
+            "'(fus ro dah)"
+
+        ::
+
+            >>> format(scheme)
+            "#'(fus ro dah)"
+
+    ..  container:: example
+
+        Scheme attempts to format Python values into abjad.Scheme equivalents:
+
+        ::
+
+            >>> format(abjad.Scheme(True))
+            '##t'
+
+        ::
+
+            >>> format(abjad.Scheme(False))
+            '##f'
+
+        ::
+
+            >>> format(abjad.Scheme(None))
+            '##f'
+
+        ::
+
+            >>> format(abjad.Scheme('hello world'))
+            '#"hello world"'
+
+        ::
+
+
+            >>> format(abjad.Scheme([1, 2, 3]))
+            '#(1 2 3)'
+
+        ::
+
+            >>> format(abjad.Scheme([
+            ...     abjad.SchemePair(('padding', 1)),
+            ...     abjad.SchemePair(('attach-dir', -1)),
+            ...     ],
+            ...     quoting="'",
+            ...     ))
+            "#'((padding . 1) (attach-dir . -1))"
+
     '''
 
     ### CLASS VARIABLES ###

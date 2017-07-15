@@ -217,7 +217,8 @@ class LogicalTie(Selection):
                 >>> abjad.attach(crescendo, staff[:])
                 >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = abjad.TimeSignature((7, 16))
-                >>> abjad.attach(time_signature, staff)
+                >>> abjad.attach(time_signature, staff[0])
+                >>> show(staff) # doctest: +SKIP
 
             ..  docs::
 
@@ -233,13 +234,15 @@ class LogicalTie(Selection):
 
             ::
 
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
                 >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
                 >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=True)
                 Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
+
+            ::
+
+                >>> time_signature = abjad.TimeSignature((7, 16))
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(time_signature, leaf)
 
             ..  docs::
 
@@ -247,9 +250,9 @@ class LogicalTie(Selection):
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
-                    \time 7/16
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5 {
+                        \time 7/16
                         c'8 \< \p
                         c'16
                         c'16
@@ -273,7 +276,7 @@ class LogicalTie(Selection):
                 >>> abjad.attach(crescendo, staff[:])
                 >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = abjad.TimeSignature((7, 16))
-                >>> abjad.attach(time_signature, staff)
+                >>> abjad.attach(time_signature, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -295,6 +298,9 @@ class LogicalTie(Selection):
                 ...     [2, 1, 1, 1],
                 ...     is_diminution=False,
                 ...     )
+                >>> time_signature = abjad.TimeSignature((7, 16))
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(time_signature, leaf)
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -303,9 +309,9 @@ class LogicalTie(Selection):
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
-                    \time 7/16
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/5 {
+                        \time 7/16
                         c'16 \< \p
                         c'32
                         c'32

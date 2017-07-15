@@ -23,7 +23,7 @@ class Parentage(Selection):
             >>> string = r"""\new Voice = "Bass Voice" { c4 }"""
             >>> bass_staff = abjad.Staff(string, name='Bass Staff')
             >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, bass_staff)
+            >>> abjad.attach(clef, bass_staff[0][0])
             >>> score.append(bass_staff)
             >>> show(score) # doctest: +SKIP
 
@@ -37,8 +37,8 @@ class Parentage(Selection):
                     }
                 }
                 \context Staff = "Bass Staff" {
-                    \clef "bass"
                     \context Voice = "Bass Voice" {
+                        \clef "bass"
                         c4
                     }
                 }

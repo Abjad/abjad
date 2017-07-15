@@ -305,7 +305,7 @@ def test_agenttools_InspectionAgent_get_timespan_26():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     mark = abjad.MetronomeMark(abjad.Duration(1, 8), 48)
-    abjad.attach(mark, staff, scope=abjad.Staff)
+    abjad.attach(mark, staff[0], scope=abjad.Staff)
 
     assert format(staff) == abjad.String.normalize(
         r'''

@@ -18,7 +18,7 @@ class Oboe(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> oboe = abjad.instrumenttools.Oboe()
-            >>> abjad.attach(oboe, staff)
+            >>> abjad.attach(oboe, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

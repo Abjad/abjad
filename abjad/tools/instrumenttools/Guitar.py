@@ -16,7 +16,7 @@ class Guitar(Instrument):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
             >>> guitar = abjad.instrumenttools.Guitar()
-            >>> abjad.attach(guitar, staff)
+            >>> abjad.attach(guitar, staff[0])
             >>> show(staff) # doctest: +SKIP
 
         ..  docs::

@@ -170,7 +170,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> staff = abjad.Staff("c'4 d' e' f'")
                 >>> clef = abjad.Clef('alto')
-                >>> abjad.attach(clef, staff)
+                >>> abjad.attach(clef, staff[0])
                 >>> note = abjad.Note("fs'16")
                 >>> container = abjad.AcciaccaturaContainer([note])
                 >>> abjad.attach(container, staff[-1])
@@ -586,7 +586,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> staff = abjad.Staff("d''8 e''8 f''8 g''8")
                 >>> piccolo = abjad.instrumenttools.Piccolo()
-                >>> abjad.attach(piccolo, staff)
+                >>> abjad.attach(piccolo, staff[0])
                 >>> abjad.Instrument.transpose_from_sounding_pitch(staff)
                 >>> show(staff) # doctest: +SKIP
 
@@ -617,7 +617,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> staff = abjad.Staff("<c''' e'''>4 <d''' fs'''>4")
                 >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
-                >>> abjad.attach(glockenspiel, staff)
+                >>> abjad.attach(glockenspiel, staff[0])
                 >>> abjad.Instrument.transpose_from_sounding_pitch(staff)
                 >>> show(staff) # doctest: +SKIP
 
@@ -796,7 +796,7 @@ class InspectionAgent(abctools.AbjadObject):
             >>> staff_group.append(abjad.Staff("a'4 g'4"))
             >>> staff_group.append(abjad.Staff("f'8 e'8 d'8 c'8"))
             >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff_group[1])
+            >>> abjad.attach(clef, staff_group[1][0])
             >>> score.append(staff_group)
 
         ..  docs::
@@ -904,7 +904,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4")
                 >>> time_signature = abjad.TimeSignature((3, 8))
-                >>> abjad.attach(time_signature, staff)
+                >>> abjad.attach(time_signature, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::

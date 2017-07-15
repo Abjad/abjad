@@ -31,7 +31,7 @@ class Clef(AbjadValueObject):
         ::
 
             >>> clef = abjad.Clef('treble')
-            >>> abjad.attach(clef, staff)
+            >>> abjad.attach(clef, staff[0])
             >>> clef = abjad.Clef('alto')
             >>> abjad.attach(clef, staff[1])
             >>> clef = abjad.Clef('bass')
