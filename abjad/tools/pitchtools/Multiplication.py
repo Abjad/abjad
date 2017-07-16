@@ -8,6 +8,7 @@ class Multiplication(AbjadValueObject):
     ::
 
         >>> import abjad
+        >>> import pytest
 
     ..  container:: example
 
@@ -122,7 +123,7 @@ class Multiplication(AbjadValueObject):
         return pitchtools.CompoundOperator._compose_operators(self, operator)
 
     def __call__(self, argument):
-        r'''Calls multiplication on `argument`.
+        r"""Calls multiplication on `argument`.
 
         ..  container:: example
 
@@ -144,10 +145,10 @@ class Multiplication(AbjadValueObject):
                 >>> multiplication = abjad.Multiplication(n=7)
                 >>> pitch = abjad.NamedPitch("f'")
                 >>> multiplication(pitch)
-                NamedPitch("b'")
+                NamedPitch("b'''")
 
         Returns new object with type equal to that of `argument`.
-        '''
+        """
         if hasattr(argument, 'multiply'):
             result = argument.multiply(self.n)
         else:
@@ -155,6 +156,23 @@ class Multiplication(AbjadValueObject):
             message = message.format(argument)
             raise TypeError(message)
         return result
+
+    def __radd__(self, operator):
+        r'''Right-addition not defined on multiplication.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = 'abjad.Multiplication().__radd__(abjad.Multiplication())'
+                >>> pytest.raises(NotImplementedError, string)
+                <ExceptionInfo NotImplementedError ...>
+
+        Raises not implemented error.
+        '''
+        message = 'right-addition not defined on {}.'
+        message = message.format(type(self).__name__)
+        raise NotImplementedError(message)
 
     def __str__(self):
         r'''Gets string representation of operator.

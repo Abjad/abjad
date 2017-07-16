@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import functools
 import re
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 
+@functools.total_ordering
 class Accidental(AbjadValueObject):
     '''Accidental.
 
@@ -14,66 +16,52 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-        Sharp:
-
-        ::
-
-            >>> abjad.Accidental('s')
-            Accidental('s')
-
-    ..  container:: example
-
-        Quarter-sharp:
-
-        ::
-
-            >>> abjad.Accidental('qs')
-            Accidental('qs')
-
-    ..  container:: example
-
-        Three-quarters-flat:
+            >>> abjad.Accidental('ff')
+            Accidental('double flat')
 
         ::
 
             >>> abjad.Accidental('tqf')
-            Accidental('tqf')
-
-    ..  container:: example
-
-        Three-quarters-sharp:
+            Accidental('three-quarters flat')
 
         ::
 
-            >>> abjad.Accidental('#+')
-            Accidental('tqs')
-
-    ..  container:: example
-
-        Flat:
+            >>> abjad.Accidental('f')
+            Accidental('flat')
 
         ::
 
-            >>> abjad.Accidental('flat')
-            Accidental('f')
-
-    ..  container:: example
-
-        Double-sharp:
+            >>> abjad.Accidental('')
+            Accidental('natural')
 
         ::
 
-            >>> abjad.Accidental(2)
-            Accidental('ss')
-
-    ..  container:: example
-
-        Four-and-a-half-sharps:
+            >>> abjad.Accidental('qs')
+            Accidental('quarter sharp')
 
         ::
 
-            >>> abjad.Accidental('ssssqs')
-            Accidental('ssssqs')
+            >>> abjad.Accidental('s')
+            Accidental('sharp')
+
+        ::
+
+            >>> abjad.Accidental('tqs')
+            Accidental('three-quarters sharp')
+
+        ::
+
+            >>> abjad.Accidental('ss')
+            Accidental('double sharp')
+
+    ..  container:: example
+
+        Generalized accidentals are allowed:
+
+        ::
+
+            >>> abjad.Accidental('ssss')
+            Accidental('ssss')
 
     '''
 
@@ -83,9 +71,9 @@ class Accidental(AbjadValueObject):
         'ss': 'double sharp',
         'tqs': 'three-quarters sharp',
         's': 'sharp',
-        'qs': 'quarter-sharp',
+        'qs': 'quarter sharp',
         '': 'natural',
-        'qf': 'quarter-flat',
+        'qf': 'quarter flat',
         'f': 'flat',
         'tqf': 'three-quarters flat',
         'ff': 'double flat',
@@ -103,7 +91,7 @@ class Accidental(AbjadValueObject):
         'ss': 2,
         }
 
-    _abbreviation_to_symbolic_string = {
+    _abbreviation_to_symbol = {
         'ff': 'bb',
         'tqf': 'b~',
         'f': 'b',
@@ -152,8 +140,8 @@ class Accidental(AbjadValueObject):
         2: 'ss',
         }
 
-    _symbolic_string_regex_body = '''
-        (?P<symbolic_string>
+    _symbol_regex_body = '''
+        (?P<symbol>
         [#]+[+]?
         |[b]+[~]?
         |[+]
@@ -162,12 +150,12 @@ class Accidental(AbjadValueObject):
         )
         '''
 
-    _symbolic_string_regex = re.compile(
-        '^{}$'.format(_symbolic_string_regex_body),
+    _symbol_regex = re.compile(
+        '^{}$'.format(_symbol_regex_body),
         re.VERBOSE,
         )
 
-    _symbolic_string_to_abbreviation = {
+    _symbol_to_abbreviation = {
         'bb': 'ff',
         'b~': 'tqf',
         'b': 'f',
@@ -180,7 +168,7 @@ class Accidental(AbjadValueObject):
         '##': 'ss',
         }
 
-    _symbolic_string_to_semitones = {
+    _symbol_to_semitones = {
         'bb': -2,
         'b~': -1.5,
         'b': -1,
@@ -199,56 +187,56 @@ class Accidental(AbjadValueObject):
 
     ### INITIALIZER ##
 
-    def __init__(self, argument=None, arrow=None):
-        if argument is None:
+    def __init__(self, name='', arrow=None):
+        if name is None:
             semitones = 0
-        elif isinstance(argument, str):
+        elif isinstance(name, str):
             semitones = 0
-            if self.is_abbreviation(argument):
-                if argument in self._abbreviation_to_semitones:
-                    semitones = self._abbreviation_to_semitones[argument]
+            if self._is_abbreviation(name):
+                if name in self._abbreviation_to_semitones:
+                    semitones = self._abbreviation_to_semitones[name]
                 else:
-                    while argument and argument.startswith(('f', 's')):
-                        if argument[0] == 's':
+                    while name and name.startswith(('f', 's')):
+                        if name[0] == 's':
                             semitones += 1
                         else:
                             semitones -= 1
-                        argument = argument[1:]
-                    if argument == 'qs':
+                        name = name[1:]
+                    if name == 'qs':
                         semitones += 0.5
-                    elif argument == 'qf':
+                    elif name == 'qf':
                         semitones -= 0.5
-            elif self.is_symbolic_string(argument):
-                if argument in self._symbolic_string_to_semitones:
-                    semitones = self._symbolic_string_to_semitones[argument]
+            elif self._is_symbol(name):
+                if name in self._symbol_to_semitones:
+                    semitones = self._symbol_to_semitones[name]
                 else:
-                    while argument and argument.startswith(('b', '#')):
-                        if argument[0] == '#':
+                    while name and name.startswith(('b', '#')):
+                        if name[0] == '#':
                             semitones += 1
                         else:
                             semitones -= 1
-                        argument = argument[1:]
-                    if argument == '+':
+                        name = name[1:]
+                    if name == '+':
                         semitones += 0.5
-                    elif argument == '~':
+                    elif name == '~':
                         semitones -= 0.5
-            elif argument in self._name_to_abbreviation:
-                abbreviation = self._name_to_abbreviation[argument]
-                semitones = self._abbreviation_to_semitones[abbreviation]
+            elif name in self._name_to_abbreviation:
+                name = self._name_to_abbreviation[name]
+                semitones = self._abbreviation_to_semitones[name]
             else:
                 message = 'can not initialize accidental from value: {!r}'
-                message = message.format(argument)
+                message = message.format(name)
                 raise ValueError(message)
-        elif isinstance(argument, type(self)):
-            semitones = argument.semitones
-        elif isinstance(argument, (int, float)):
-            semitones = float(argument)
+        elif isinstance(name, type(self)):
+            semitones = name.semitones
+        elif isinstance(name, (int, float)):
+            semitones = float(name)
             assert (semitones % 1.) in (0., 0.5)
-        elif hasattr(argument, 'accidental'):
-            semitones = argument.accidental.semitones
+        elif hasattr(name, 'accidental'):
+            semitones = name.accidental.semitones
         else:
             message = 'can not initialize accidental from value: {!r}'
-            message = message.format(argument)
+            message = message.format(name)
             raise ValueError(message)
         semitones = mathtools.integer_equivalent_number_to_integer(semitones)
         self._semitones = semitones
@@ -267,15 +255,17 @@ class Accidental(AbjadValueObject):
 
             ::
 
-                >>> accidental_1 = abjad.Accidental('quarter sharp') 
-                >>> accidental_1 + accidental_1
-                Accidental('s')
+                >>> accidental = abjad.Accidental('qs') 
 
             ::
 
-                >>> accidental_1 = abjad.Accidental('quarter sharp') 
-                >>> accidental_1 + accidental_1 + accidental_1
-                Accidental('tqs')
+                >>> accidental + accidental
+                Accidental('sharp')
+
+            ::
+
+                >>> accidental + accidental + accidental
+                Accidental('three-quarters sharp')
 
         Returns new accidental.
         '''
@@ -285,33 +275,105 @@ class Accidental(AbjadValueObject):
         semitones = self.semitones + argument.semitones
         return type(self)(semitones)
 
-    def __ge__(self, argument):
-        r'''Is true when `argument` is an accidental with semitones less than or equal
-        to those of this accidental. Otherwise false.
+    def __call__(self, argument):
+        r'''Calls accidental on `argument`.
 
-        Returns true or false.
+        ::
+
+            >>> accidental = abjad.Accidental('s')
+
+        ..  container:: example
+
+            Calls accidental on pitches:
+
+            ::
+
+                >>> accidental(abjad.NamedPitch("c''"))
+                NamedPitch("cs''")
+
+            ::
+
+                >>> accidental(abjad.NamedPitch("cqs''"))
+                NamedPitch("ctqs''")
+
+            ::
+
+                >>> accidental(abjad.NumberedPitch(12))
+                NumberedPitch(13)
+
+            ::
+
+                >>> accidental(abjad.NumberedPitch(12.5))
+                NumberedPitch(13.5)
+
+        ..  container:: example
+
+            Calls accidental on pitch-classes:
+
+                >>> accidental(abjad.NamedPitchClass('c'))
+                NamedPitchClass('cs')
+
+            ::
+
+                >>> accidental(abjad.NamedPitchClass('cqs'))
+                NamedPitchClass('ctqs')
+
+            ::
+
+                >>> accidental(abjad.NumberedPitchClass(0))
+                NumberedPitchClass(1)
+
+            ::
+
+                >>> accidental(abjad.NumberedPitchClass(0.5))
+                NumberedPitchClass(1.5)
+
+        Returns new object of `argument` type.
         '''
-        return self.semitones >= argument.semitones
-
-    def __gt__(self, argument):
-        r'''Is true when `argument` is an accidental with semitones less than
-        those of this accidental. Otherwise false.
-
-        Returns true or false.
-        '''
-        return self.semitones > argument.semitones
-
-    def __le__(self, argument):
-        r'''Is true when `argument` is an accidental with semitones greater than or
-        equal to those of this accidental. Otherwise false.
-
-        Returns true or false.
-        '''
-        return self.semitones <= argument.semitones
+        if not hasattr(argument, '_apply_accidental'):
+            message = 'do not know how to apply accidental to {!r}.'
+            message = message.format(argument)
+            raise TypeError(message)
+        return argument._apply_accidental(self)
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is an accidental with semitones greater than those
-        of this accidental. Otherwise false.
+        r'''Is true when `argument` is an accidental with semitones greater
+        than those of this accidental. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> accidental_1 = abjad.Accidental('f')
+                >>> accidental_2 = abjad.Accidental('f')
+                >>> accidental_3 = abjad.Accidental('s')
+
+            ::
+
+                >>> accidental_1 < accidental_1
+                False
+                >>> accidental_1 < accidental_2
+                False
+                >>> accidental_1 < accidental_3
+                True
+
+            ::
+
+                >>> accidental_2 < accidental_1
+                False
+                >>> accidental_2 < accidental_2
+                False
+                >>> accidental_2 < accidental_3
+                True
+
+            ::
+
+                >>> accidental_3 < accidental_1
+                False
+                >>> accidental_3 < accidental_2
+                False
+                >>> accidental_3 < accidental_3
+                False
 
         Returns true or false.
         '''
@@ -322,103 +384,95 @@ class Accidental(AbjadValueObject):
 
         ..  container:: example
 
-            ::
-
-                >>> -abjad.Accidental('sharp')
-                Accidental('f')
+                >>> -abjad.Accidental('ff')
+                Accidental('double sharp')
 
             ::
 
-                >>> -abjad.Accidental('natural')
-                Accidental('')
+                >>> -abjad.Accidental('tqf')
+                Accidental('three-quarters sharp')
+
+            ::
+
+                >>> -abjad.Accidental('f')
+                Accidental('sharp')
+
+            ::
+
+                >>> -abjad.Accidental('')
+                Accidental('natural')
+
+            ::
+
+                >>> -abjad.Accidental('qs')
+                Accidental('quarter flat')
+
+            ::
+
+                >>> -abjad.Accidental('s')
+                Accidental('flat')
+
+            ::
+
+                >>> -abjad.Accidental('tqs')
+                Accidental('three-quarters flat')
+
+            ::
+
+                >>> -abjad.Accidental('ss')
+                Accidental('double flat')
 
         Returns new accidental.
         '''
         return type(self)(-self.semitones)
 
-    def __nonzero__(self):
-        r'''Defined equal to true.
-
-        Returns true.
+    def __radd__(self, argument):
+        r'''Raises not implemented error on accidental.
         '''
-        return True
+        raise NotImplementedError
 
     def __str__(self):
-        r'''String representation of accidental.
-
-        Returns string.
-        '''
-        return self.abbreviation
-
-    def __sub__(self, argument):
-        r'''Subtracts `argument` from accidental.
+        r'''Gets string representation of accidental.
 
         ..  container:: example
 
-            ::
-
-                >>> accidental = abjad.Accidental('quarter sharp')
-                
-            ::
-
-                >>> accidental - accidental
-                Accidental('')
+                >>> str(abjad.Accidental('ff'))
+                'ff'
 
             ::
 
-                >>> accidental - accidental - accidental
-                Accidental('qf')
-
-        Returns new accidental.
-        '''
-        if not isinstance(argument, type(self)):
-            message = 'can only subtract accidental from other accidental.'
-            raise TypeError(message)
-        semitones = self.semitones - argument.semitones
-        return type(self)(semitones)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _all_accidental_abbreviations(self):
-        return list(self._abbreviation_to_symbolic_string.keys())
-
-    @property
-    def _all_accidental_names(self):
-        return list(self._name_to_abbreviation.keys())
-
-    @property
-    def _all_accidental_semitone_values(self):
-        return list(self._semitones_to_abbreviation.keys())
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return systemtools.FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_args_values=[self.abbreviation],
-            storage_format_is_indented=False,
-            storage_format_kwargs_names=[],
-            template_names=['abbreviation'],
-            )
-
-    def _get_lilypond_format(self):
-        return self._abbreviation
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def abbreviation(self):
-        r'''Gets abbreviation of accidental.
-
-        ..  container:: example
+                >>> str(abjad.Accidental('tqf'))
+                'tqf'
 
             ::
 
-                >>> accidental = abjad.Accidental('s')
-                >>> accidental.abbreviation
+                >>> str(abjad.Accidental('f'))
+                'f'
+
+            ::
+
+                >>> str(abjad.Accidental(''))
+                ''
+
+            ::
+
+                >>> str(abjad.Accidental('qs'))
+                'qs'
+
+            ::
+
+                >>> str(abjad.Accidental('s'))
                 's'
+
+            ::
+
+                >>> str(abjad.Accidental('tqs'))
+                'tqs'
+
+            ::
+
+                >>> str(abjad.Accidental('ss'))
+                'ss'
 
         Returns string.
         '''
@@ -434,9 +488,77 @@ class Accidental(AbjadValueObject):
             abbreviation += 'q{}'.format(character)
         return abbreviation
 
+    def __sub__(self, argument):
+        r'''Subtracts `argument` from accidental.
+
+        ..  container:: example
+
+            ::
+
+                >>> accidental = abjad.Accidental('qs')
+                
+            ::
+
+                >>> accidental - accidental
+                Accidental('natural')
+
+            ::
+
+                >>> accidental - accidental - accidental
+                Accidental('quarter flat')
+
+        Returns new accidental.
+        '''
+        if not isinstance(argument, type(self)):
+            message = 'can only subtract accidental from other accidental.'
+            raise TypeError(message)
+        semitones = self.semitones - argument.semitones
+        return type(self)(semitones)
+
+    ### PRIVATE METHODS ###
+
+    @classmethod
+    def _get_all_accidental_abbreviations(class_):
+        return list(class_._abbreviation_to_symbol.keys())
+
+    @classmethod
+    def _get_all_accidental_names(class_):
+        return list(class_._name_to_abbreviation.keys())
+
+    @classmethod
+    def _get_all_accidental_semitone_values(class_):
+        return list(class_._semitones_to_abbreviation.keys())
+
+    def _get_format_specification(self):
+        import abjad
+        return abjad.systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.name],
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=['arrow'],
+            )
+
+    def _get_lilypond_format(self):
+        return self._abbreviation
+
+    @classmethod
+    def _is_abbreviation(class_, argument):
+        if not isinstance(argument, str):
+            return False
+        return bool(class_._alphabetic_accidental_regex.match(argument))
+
+    @classmethod
+    def _is_symbol(class_, argument):
+        if not isinstance(argument, str):
+            return False
+        return bool(class_._symbol_regex.match(argument))
+
+    ### PUBLIC PROPERTIES ###
+
     @property
     def arrow(self):
-        r'''Gets accidental arrow.
+        r'''Gets arrow of accidental.
 
         ..  container:: example
 
@@ -456,8 +578,6 @@ class Accidental(AbjadValueObject):
                 >>> abjad.Accidental('sharp', arrow=Up).arrow
                 Up
 
-        ..  container:: example
-
             Sharp with down-arrow:
 
             ::
@@ -474,38 +594,56 @@ class Accidental(AbjadValueObject):
         return self._arrow
 
     @property
-    def is_adjusted(self):
-        r'''Is true for all accidentals equal to a nonzero number of semitones.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> accidental = abjad.Accidental('s')
-                >>> accidental.is_adjusted
-                True
-
-        Returns true or false.
-        '''
-        return self._semitones != 0
-
-    @property
     def name(self):
         r'''Gets name of accidental.
 
         ..  container:: example
 
+                >>> abjad.Accidental('ff').name
+                'double flat'
+
             ::
 
-                >>> accidental = abjad.Accidental('s')
-                >>> accidental.name
+                >>> abjad.Accidental('tqf').name
+                'three-quarters flat'
+
+            ::
+
+                >>> abjad.Accidental('f').name
+                'flat'
+
+            ::
+
+                >>> abjad.Accidental('').name
+                'natural'
+
+            ::
+
+                >>> abjad.Accidental('qs').name
+                'quarter sharp'
+
+            ::
+
+                >>> abjad.Accidental('s').name
                 'sharp'
+
+            ::
+
+                >>> abjad.Accidental('tqs').name
+                'three-quarters sharp'
+
+            ::
+
+                >>> abjad.Accidental('ss').name
+                'double sharp'
 
         Returns string.
         '''
-        abbreviation = self._semitones_to_abbreviation[self.semitones]
-        name = self._abbreviation_to_name[abbreviation]
+        try:
+            abbreviation = self._semitones_to_abbreviation[self.semitones]
+            name = self._abbreviation_to_name[abbreviation]
+        except KeyError:
+            name = str(self)
         return name
 
     @property
@@ -514,76 +652,203 @@ class Accidental(AbjadValueObject):
 
         ..  container:: example
 
+                >>> abjad.Accidental('ff').semitones
+                -2
+
             ::
 
-                >>> accidental = abjad.Accidental('s')
-                >>> accidental.semitones
+                >>> abjad.Accidental('tqf').semitones
+                -1.5
+
+            ::
+
+                >>> abjad.Accidental('f').semitones
+                -1
+
+            ::
+
+                >>> abjad.Accidental('').semitones
+                0
+
+            ::
+
+                >>> abjad.Accidental('qs').semitones
+                0.5
+
+            ::
+
+                >>> abjad.Accidental('s').semitones
                 1
+
+            ::
+
+                >>> abjad.Accidental('tqs').semitones
+                1.5
+
+            ::
+
+                >>> abjad.Accidental('ss').semitones
+                2
 
         Returns number.
         '''
         return self._semitones
 
     @property
-    def symbolic_string(self):
-        r'''Gets symbolic string of accidental.
+    def symbol(self):
+        r'''Gets symbol of accidental.
 
         ..  container:: example
 
+                >>> abjad.Accidental('ff').symbol
+                'bb'
+
             ::
 
-                >>> accidental = abjad.Accidental('s')
-                >>> accidental.symbolic_string
+                >>> abjad.Accidental('tqf').symbol
+                'b~'
+
+            ::
+
+                >>> abjad.Accidental('f').symbol
+                'b'
+
+            ::
+
+                >>> abjad.Accidental('').symbol
+                ''
+
+            ::
+
+                >>> abjad.Accidental('qs').symbol
+                '+'
+
+            ::
+
+                >>> abjad.Accidental('s').symbol
                 '#'
+
+            ::
+
+                >>> abjad.Accidental('tqs').symbol
+                '#+'
+
+            ::
+
+                >>> abjad.Accidental('ss').symbol
+                '##'
 
         Returns string.
         '''
         abbreviation = self._semitones_to_abbreviation[self.semitones]
-        symbolic_string = self._abbreviation_to_symbolic_string[abbreviation]
-        return symbolic_string
+        symbol = self._abbreviation_to_symbol[abbreviation]
+        return symbol
 
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def is_abbreviation(argument):
-        '''Is true when `argument` is an alphabetic accidental abbreviation.
-        Otherwise false.
+    def respell_with_flats(selection):
+        r'''Respells `selection` with flats.
 
         ..  container:: example
 
+            Respells notes in staff:
+
             ::
 
-                >>> abjad.Accidental.is_abbreviation('tqs')
-                True
+                >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+                >>> show(staff) # doctest: +SKIP
 
-        The regex ``^([s]{1,2}|[f]{1,2}|t?q?[fs])!?$`` underlies this
-        predicate.
+            ..  docs::
 
-        Returns true or false.
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                }
+
+            ::
+
+                >>> abjad.Accidental.respell_with_flats(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    df'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                }
+
+        Returns none.
         '''
-        if not isinstance(argument, str):
-            return False
-        return bool(Accidental._alphabetic_accidental_regex.match(argument))
+        import abjad
+        for leaf in abjad.iterate(selection).by_leaf():
+            if isinstance(leaf, abjad.Note):
+                leaf.written_pitch = leaf.written_pitch._respell_with_flats()
+            elif isinstance(leaf, abjad.Chord):
+                for note_head in leaf.note_heads:
+                    pitch = note_head.written_pitch._respell_with_flats()
+                    note_head.written_pitch = pitch
 
     @staticmethod
-    def is_symbolic_string(argument):
-        '''Is true when `argument` is a symbolic accidental string.
-        Otherwise false.
+    def respell_with_sharps(selection):
+        r'''Respells `selection` with sharps.
 
         ..  container:: example
 
+            Respells notes in staff:
+
             ::
 
-                >>> abjad.Accidental.is_symbolic_string('#+')
-                True
+                >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+                >>> show(staff) # doctest: +SKIP
 
-        Empty string returns true.
+            ..  docs::
 
-        The regex ``^([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)$`` underlies this
-        predicate.
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                }
 
-        Returns true or false.
+            ::
+
+                >>> abjad.Accidental.respell_with_sharps(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    cs'8
+                    d'8
+                    ds'8
+                    e'8
+                    f'8
+                }
+
+        Returns none.
         '''
-        if not isinstance(argument, str):
-            return False
-        return bool(Accidental._symbolic_string_regex.match(argument))
+        import abjad
+        for leaf in abjad.iterate(selection).by_leaf():
+            if isinstance(leaf, abjad.Note):
+                leaf.written_pitch = leaf.written_pitch._respell_with_sharps()
+            elif isinstance(leaf, abjad.Chord):
+                for note_head in leaf.note_heads:
+                    pitch = note_head.written_pitch._respell_with_sharps()
+                    note_head.written_pitch = pitch
+

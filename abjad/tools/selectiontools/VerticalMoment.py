@@ -200,12 +200,6 @@ class VerticalMoment(Selection):
                     result.extend(VerticalMoment._recurse(child, offset))
         return result
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
-        return ', '.join([str(x) for x in self.components])
-
     ### PUBLIC PROPERTIES ###
 
     @property

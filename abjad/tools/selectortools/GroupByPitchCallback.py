@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
+from abjad.tools.abctools import AbjadValueObject
 
 
 class GroupByPitchCallback(AbjadValueObject):

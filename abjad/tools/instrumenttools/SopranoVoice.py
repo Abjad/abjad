@@ -135,7 +135,7 @@ class SopranoVoice(Instrument):
             ::
 
                 >>> soprano.pitch_range
-                PitchRange(range_string='[C4, E6]')
+                PitchRange('[C4, E6]')
 
             ::
 

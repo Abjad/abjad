@@ -3,7 +3,6 @@ import inspect
 from abjad.tools import durationtools
 from abjad.tools import expressiontools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
@@ -134,11 +133,7 @@ class PitchClassSegment(Segment):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        item_class=None,
-        ):
+    def __init__(self, items=None, item_class=None):
         if not items and not item_class:
             item_class = self._named_item_class
         Segment.__init__(
@@ -1550,20 +1545,15 @@ class PitchClassSegment(Segment):
         return 'PC<' + string[1:-1] + '>'
 
     def _is_equivalent_under_transposition(self, argument):
-        r'''Is true when `argument` is equivalent to segment under
-        transposition.
-        
-        Otherwise False.
-
-        Returns true or false.
-        '''
         import abjad
         if not isinstance(argument, type(self)):
             return False
         if not len(self) == len(argument):
             return False
-        difference = -(abjad.NamedPitch(argument[0], 4) -
-            abjad.NamedPitch(self[0], 4))
+        difference = -(
+            abjad.NamedPitch((argument[0].name, 4)) -
+            abjad.NamedPitch((self[0].name, 4))
+            )
         new_pitch_classes = (x + difference for x in self)
         new_pitch_classes = new(self, items=new_pitch_classes)
         return argument == new_pitch_classes
@@ -2186,7 +2176,7 @@ class PitchClassSegment(Segment):
         logical_ties = abjad.iterate(result).by_logical_tie()
         for i, logical_tie in enumerate(logical_ties):
             pitch_class = abjad.pitchtools.NamedPitchClass(self[i % len(self)])
-            pitch = abjad.NamedPitch(pitch_class, 4)
+            pitch = abjad.NamedPitch((pitch_class.name, 4))
             for note in logical_tie:
                 note.written_pitch = pitch
         return result
@@ -3255,12 +3245,13 @@ class PitchClassSegment(Segment):
                 True
 
         '''
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         original_n = n
-        items = sequencetools.Sequence(self._collection).rotate(n=n)
+        items = abjad.Sequence(self._collection).rotate(n=n)
         if stravinsky:
-            n = 0 - float(items[0])
+            n = 0 - float(items[0].number)
             segment = new(self, items=items)
             segment = segment.transpose(n=n)
             items = segment.items[:]
@@ -3901,11 +3892,11 @@ class PitchClassSegment(Segment):
         pitches = []
         if self:
             pitch_class = abjad.pitchtools.NamedPitchClass(self[0])
-            pitch = abjad.NamedPitch(pitch_class, initial_octave)
+            pitch = abjad.NamedPitch((pitch_class.name, initial_octave))
             pitches.append(pitch)
             for pitch_class in self[1:]:
                 pitch_class = abjad.pitchtools.NamedPitchClass(pitch_class)
-                pitch = abjad.NamedPitch(pitch_class, initial_octave)
+                pitch = abjad.NamedPitch((pitch_class.name, initial_octave))
                 semitones = abs((pitch - pitches[-1]).semitones)
                 while 6 < semitones:
                     if pitch < pitches[-1]:
@@ -3996,11 +3987,11 @@ class PitchClassSegment(Segment):
         pitches = []
         if self:
             pitch_class = abjad.pitchtools.NamedPitchClass(self[0])
-            pitch = abjad.NamedPitch(pitch_class, initial_octave)
+            pitch = abjad.NamedPitch((pitch_class.name, initial_octave))
             pitches.append(pitch)
             for pitch_class in self[1:]:
                 pitch_class = abjad.pitchtools.NamedPitchClass(pitch_class)
-                pitch = abjad.NamedPitch(pitch_class, initial_octave)
+                pitch = abjad.NamedPitch((pitch_class.name, initial_octave))
                 while pitch < pitches[-1]:
                     pitch += 12
                 pitches.append(pitch)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -160,7 +160,7 @@ class Articulation(AbjadValueObject):
             direction, name = name.split('\\')
             direction = direction.strip()
             name = name.strip()
-        direction = stringtools.String.to_tridirectional_ordinal_constant(
+        direction = datastructuretools.String.to_tridirectional_ordinal_constant(
             direction)
         directions = (Up, Down, Center, None)
         assert direction in directions, repr(direction)
@@ -210,7 +210,7 @@ class Articulation(AbjadValueObject):
             if self.direction is None:
                 direction = '-'
             else:
-                direction = stringtools.String.to_tridirectional_lilypond_symbol(
+                direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
                     self.direction)
             return '{}\{}'.format(direction, string)
         else:

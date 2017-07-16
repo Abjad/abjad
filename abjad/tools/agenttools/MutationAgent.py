@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import abctools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import sequencetools
 from abjad.tools.topleveltools import iterate
 
 
@@ -2543,14 +2543,14 @@ class MutationAgent(abctools.AbjadObject):
         total_split_duration = sum(durations)
         # calculate durations
         if cyclic:
-            durations = sequencetools.Sequence(durations)
+            durations = datastructuretools.Sequence(durations)
             durations = durations.repeat_to_weight(total_component_duration)
             durations = list(durations)
         elif total_split_duration < total_component_duration:
             final_offset = total_component_duration - sum(durations)
             durations.append(final_offset)
         elif total_component_duration < total_split_duration:
-            durations = sequencetools.Sequence(durations).truncate(
+            durations = datastructuretools.Sequence(durations).truncate(
                 weight=total_component_duration,
                 )
             durations = list(durations)
@@ -2599,7 +2599,7 @@ class MutationAgent(abctools.AbjadObject):
                     current_duration = current_component._get_duration()
                     additional_required_duration = \
                         current_duration - local_split_duration
-                    split_durations = sequencetools.Sequence(durations)
+                    split_durations = datastructuretools.Sequence(durations)
                     split_durations = split_durations.split(
                         [additional_required_duration],
                         cyclic=False,
@@ -2647,7 +2647,7 @@ class MutationAgent(abctools.AbjadObject):
         if len(remaining_components):
             result.append(remaining_components)
         # partition split components according to input durations
-        result = sequencetools.Sequence(result).flatten()
+        result = datastructuretools.Sequence(result).flatten()
         result = selectiontools.Selection(result)
         result = result.partition_by_durations(durations_copy, fill=Exact)
         # return list of shards
@@ -2943,7 +2943,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> tuplet = abjad.Tuplet((2, 3), "g'8 a' fs'")
                 >>> statement = 'abjad.mutate(staff[-3:]).wrap(tuplet)'
                 >>> pytest.raises(Exception, statement)
-                <ExceptionInfo Exception tblen=3>
+                <ExceptionInfo Exception tblen=...>
 
         Returns none.
         '''

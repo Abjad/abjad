@@ -435,44 +435,45 @@ class TestManager(AbjadObject):
             string = f.read()
         return string
 
-    @staticmethod
-    def test_function_name_to_title_lines(test_function_name):
-        r'''Changes `test_function_name` to title lines.
-
-        Returns list.
-        '''
-        from abjad.tools import sequencetools
-        title_lines = []
-        test_function_name = test_function_name[5:]
-        if '__' in test_function_name:
-            left_half, right_half = test_function_name.split('__')
-            left_half = left_half.replace('_', ' ')
-            title_lines.append(left_half)
-            parts = right_half.split('_')
-        else:
-            parts = test_function_name.split('_')
-        test_number = int(parts[-1])
-        parts.pop(-1)
-        if parts[0][0].isupper() and 1 < len(parts[0]):
-            title_lines.append(parts.pop(0))
-        lengths = [len(part) for part in parts]
-        if 35 < sum(lengths):
-            halves = baca.Sequence(halves)
-            halves = halves.partition_by_ratio_of_weights(ratio=[1, 1])
-            left_count = len(halves[0])
-            right_count = len(halves[-1])
-            assert left_count + right_count == len(lengths)
-            left_parts = parts[:left_count]
-            title_lines.append(' '.join(left_parts))
-            right_parts = parts[-right_count:]
-            right_parts.append(str(test_number))
-            title_lines.append(' '.join(right_parts))
-        else:
-            title_words = ' '.join(parts)
-            if 'schematic example' in title_words:
-                space = ''
-            else:
-                space = ' '
-            title = '{}{}{}'.format(title_words, space, test_number)
-            title_lines.append(title)
-        return title_lines
+    # TODO: REMOVE
+#    @staticmethod
+#    def test_function_name_to_title_lines(test_function_name):
+#        r'''Changes `test_function_name` to title lines.
+#
+#        Returns list.
+#        '''
+#        from abjad.tools import datastructuretools
+#        title_lines = []
+#        test_function_name = test_function_name[5:]
+#        if '__' in test_function_name:
+#            left_half, right_half = test_function_name.split('__')
+#            left_half = left_half.replace('_', ' ')
+#            title_lines.append(left_half)
+#            parts = right_half.split('_')
+#        else:
+#            parts = test_function_name.split('_')
+#        test_number = int(parts[-1])
+#        parts.pop(-1)
+#        if parts[0][0].isupper() and 1 < len(parts[0]):
+#            title_lines.append(parts.pop(0))
+#        lengths = [len(part) for part in parts]
+#        if 35 < sum(lengths):
+#            halves = baca.Sequence(halves)
+#            halves = halves.partition_by_ratio_of_weights(ratio=[1, 1])
+#            left_count = len(halves[0])
+#            right_count = len(halves[-1])
+#            assert left_count + right_count == len(lengths)
+#            left_parts = parts[:left_count]
+#            title_lines.append(' '.join(left_parts))
+#            right_parts = parts[-right_count:]
+#            right_parts.append(str(test_number))
+#            title_lines.append(' '.join(right_parts))
+#        else:
+#            title_words = ' '.join(parts)
+#            if 'schematic example' in title_words:
+#                space = ''
+#            else:
+#                space = ' '
+#            title = '{}{}{}'.format(title_words, space, test_number)
+#            title_lines.append(title)
+#        return title_lines

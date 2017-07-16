@@ -135,7 +135,7 @@ class ContrabassClarinet(Instrument):
             ::
 
                 >>> contrabass_clarinet.pitch_range
-                PitchRange(range_string='[Bb0, G4]')
+                PitchRange('[Bb0, G4]')
 
             ::
 

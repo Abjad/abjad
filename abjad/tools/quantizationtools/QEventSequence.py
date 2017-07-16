@@ -3,11 +3,11 @@ import collections
 import copy
 import itertools
 import numbers
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
@@ -101,7 +101,7 @@ class QEventSequence(AbjadObject):
                 for q_event in sequence[:-1])
             assert isinstance(sequence[-1], quantizationtools.TerminalQEvent)
             offsets = [x.offset for x in sequence]
-            offsets = sequencetools.Sequence(offsets)
+            offsets = datastructuretools.Sequence(offsets)
             assert offsets.is_increasing(strict=False)
             assert 0 <= sequence[0].offset
             self._sequence = tuple(sequence)
@@ -267,7 +267,7 @@ class QEventSequence(AbjadObject):
         if fuse_silences:
             durations = [
                 x for x in
-                sequencetools.Sequence(milliseconds).sum_by_sign(sign=[-1])
+                datastructuretools.Sequence(milliseconds).sum_by_sign(sign=[-1])
                 if x
                 ]
         else:
@@ -488,7 +488,7 @@ class QEventSequence(AbjadObject):
         assert isinstance(tempo, indicatortools.MetronomeMark)
         durations = [
             x for x in
-            sequencetools.Sequence(durations).sum_by_sign(sign=[-1])
+            datastructuretools.Sequence(durations).sum_by_sign(sign=[-1])
             if x
             ]
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
@@ -606,10 +606,9 @@ class QEventSequence(AbjadObject):
             if isinstance(group[0], (scoretools.Rest, scoretools.Skip)):
                 pitch = None
             elif isinstance(group[0], scoretools.Note):
-                pitch = group[0].written_pitch.pitch_number
+                pitch = group[0].written_pitch.number
             else: # chord
-                pitch = [x.written_pitch.pitch_number
-                    for x in group[0].note_heads]
+                pitch = [x.written_pitch.number for x in group[0].note_heads]
             pitches.append(pitch)
         # convert durations and pitches to QEvents and return
         return class_.from_millisecond_pitch_pairs(

@@ -134,7 +134,7 @@ class ContrabassSaxophone(Instrument):
             ::
 
                 >>> contrabass_saxophone.pitch_range
-                PitchRange(range_string='[C1, Ab3]')
+                PitchRange('[C1, Ab3]')
 
             ::
 

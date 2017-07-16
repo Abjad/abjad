@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Set import Set
-from abjad.tools.topleveltools import new
 
 
 class PitchSet(Set):
@@ -87,14 +85,8 @@ class PitchSet(Set):
 
                 >>> set_1 == set_1
                 True
-
-            ::
-
                 >>> set_1 == set_2
                 True
-
-            ::
-
                 >>> set_1 == set_3
                 False
 
@@ -102,14 +94,8 @@ class PitchSet(Set):
 
                 >>> set_2 == set_1
                 True
-
-            ::
-
                 >>> set_2 == set_2
                 True
-
-            ::
-
                 >>> set_2 == set_3
                 False
 
@@ -117,14 +103,8 @@ class PitchSet(Set):
 
                 >>> set_3 == set_1
                 False
-
-            ::
-
                 >>> set_3 == set_2
                 False
-
-            ::
-
                 >>> set_3 == set_3
                 True
 
@@ -265,15 +245,17 @@ class PitchSet(Set):
 
         Returns true or false.
         '''
-        from abjad.tools import pitchtools
+        import abjad
         if not isinstance(argument, type(self)):
             return False
         if not len(self) == len(argument):
             return False
-        difference = -(pitchtools.NamedPitch(argument[0], 4) -
-            pitchtools.NamedPitch(self[0], 4))
+        difference = -(
+            abjad.NamedPitch(argument[0], 4) -
+            abjad.NamedPitch(self[0], 4)
+            )
         new_pitches = (x + difference for x in self)
-        new_pitches = new(self, items=new_pitch)
+        new_pitches = abjad.new(self, items=new_pitch)
         return argument == new_pitches
 
     def _sort_self(self):
@@ -410,8 +392,9 @@ class PitchSet(Set):
 
         Returns new pitch set.
         '''
+        import abjad
         items = (pitch.invert(axis) for pitch in self)
-        return new(self, items=items)
+        return abjad.new(self, items=items)
 
     def issubset(self, argument):
         r'''Is true when pitch set is subset of `argument`.
@@ -503,12 +486,13 @@ class PitchSet(Set):
 
         Returns list of zero or more numbered pitches.
         '''
+        import abjad
         if isinstance(pitch_classes, collections.Iterable):
             result = [
-                [_ for _ in self if _.pitch_number % 12 == pc]
+                [_ for _ in self if _.number % 12 == pc]
                 for pc in [x % 12 for x in pitch_classes]
                 ]
-            result = sequencetools.Sequence(result).flatten()
+            result = abjad.Sequence(result).flatten()
         elif isinstance(pitch_classes, int):
             result = [p for p in pitch_classes if p % 12 == pitch_classes][0]
         else:
@@ -521,5 +505,6 @@ class PitchSet(Set):
 
         Returns new pitch set.
         '''
+        import abjad
         items = (pitch.transpose(n=n) for pitch in self)
-        return new(self, items=items)
+        return abjad.new(self, items=items)

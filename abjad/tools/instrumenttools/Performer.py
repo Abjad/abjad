@@ -42,9 +42,7 @@ class Performer(AbjadValueObject):
                                         ),
                                     ]
                                 ),
-                            pitch_range=abjad.PitchRange(
-                                range_string='[C4, D7]',
-                                ),
+                            pitch_range=abjad.PitchRange('[C4, D7]'),
                             sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
                             ),
                         instrumenttools.Piccolo(
@@ -63,9 +61,7 @@ class Performer(AbjadValueObject):
                                         ),
                                     ]
                                 ),
-                            pitch_range=abjad.PitchRange(
-                                range_string='[D5, C8]',
-                                ),
+                            pitch_range=abjad.PitchRange('[D5, C8]'),
                             sounding_pitch_of_written_middle_c=abjad.NamedPitch("c''"),
                             ),
                         ]
@@ -100,11 +96,6 @@ class Performer(AbjadValueObject):
 
         Returns true or false.
         '''
-#        if isinstance(argument, type(self)):
-#            if self.name == argument.name:
-#                if self.instruments == argument.instruments:
-#                    return True
-#        return False
         return super(Performer, self).__eq__(argument)
 
     def __format__(self, format_specification=''):

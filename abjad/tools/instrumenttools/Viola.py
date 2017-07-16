@@ -153,7 +153,7 @@ class Viola(Instrument):
             ::
 
                 >>> viola.pitch_range
-                PitchRange(range_string='[C3, D6]')
+                PitchRange('[C3, D6]')
 
             ::
 

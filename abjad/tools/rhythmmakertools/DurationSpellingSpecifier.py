@@ -140,17 +140,13 @@ class DurationSpellingSpecifier(AbjadValueObject):
         meters,
         use_messiaen_style_ties=False,
         ):
-        from abjad.tools import metertools
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools.topleveltools import inspect
-        from abjad.tools.topleveltools import mutate
-        from abjad.tools.topleveltools import select
-        meters = [metertools.Meter(_) for _ in meters]
-        durations = [durationtools.Duration(_) for _ in meters]
-        selections = sequencetools.Sequence(selections).flatten()
+        import abjad
+        meters = [abjad.Meter(_) for _ in meters]
+        durations = [abjad.Duration(_) for _ in meters]
+        selections = abjad.Sequence(selections).flatten()
         meter_duration = sum(durations)
-        music_duration = sum(inspect(_).get_duration() for _ in selections)
+        music_duration = sum(
+            abjad.inspect(_).get_duration() for _ in selections)
         if not meter_duration == music_duration:
             message = 'Duration of meters is {!s}'
             message += ' but duration of selections is {!s}:'
@@ -158,28 +154,26 @@ class DurationSpellingSpecifier(AbjadValueObject):
             message += '\nmeters: {}.'.format(meters)
             message += '\nmusic: {}.'.format(selections)
             raise Exception(message)
-        voice = scoretools.Voice(selections)
-        mutate(voice[:]).split(
+        voice = abjad.Voice(selections)
+        abjad.mutate(voice[:]).split(
             durations=durations,
             tie_split_notes=True,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
-        #raise Exception(voice)
-        #selections = list(voice[:])
-        #return selections
-        components = mutate(voice).eject_contents()
-        component_durations = [inspect(_).get_duration() for _ in components]
-        parts = sequencetools.Sequence(component_durations)
+        components = abjad.mutate(voice).eject_contents()
+        component_durations = [
+            abjad.inspect(_).get_duration() for _ in components]
+        parts = abjad.Sequence(component_durations)
         parts = parts.partition_by_weights(
             weights=durations,
             allow_part_weights=Exact,
             )
         part_lengths = [len(_) for _ in parts]
-        parts = sequencetools.Sequence(components).partition_by_counts(
+        parts = abjad.Sequence(components).partition_by_counts(
             counts=part_lengths,
             overhang=Exact,
             )
-        selections = [select(_) for _ in parts]
+        selections = [abjad.select(_) for _ in parts]
         return selections
 
     ### PUBLIC PROPERTIES ###

@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import graphtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import systemtools
-#from abjad.tools.abctools import AbjadObject
 from abjad.tools.abctools import AbjadValueObject
 
 
-#class Meter(AbjadObject):
 class Meter(AbjadValueObject):
     '''Meter.
 
@@ -447,10 +445,6 @@ class Meter(AbjadValueObject):
 
         Returns true or false.
         '''
-#        if type(self) == type(argument):
-#            if self.rtm_format == argument.rtm_format:
-#                return True
-#        return False
         return super(Meter, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
@@ -607,6 +601,9 @@ class Meter(AbjadValueObject):
 
         Returns Graphviz graph.
         '''
+        import abjad
+        from abjad.tools import graphtools
+        from abjad.tools import metertools
         def make_offset_node(
             offset,
             leaf_one=None,
@@ -651,9 +648,8 @@ class Meter(AbjadValueObject):
                     attributes={'style': 'dotted'},
                     )
                 edge.attach(leaf_two_node, offset_node)
-        from abjad.tools import metertools
         offsets = metertools.MetricAccentKernel.count_offsets(
-            sequencetools.Sequence(self.depthwise_offset_inventory).flatten())
+            abjad.Sequence(self.depthwise_offset_inventory).flatten())
         graph = graphtools.GraphvizGraph(
             name='G',
             attributes={
@@ -696,7 +692,7 @@ class Meter(AbjadValueObject):
             )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
-        for one, two in sequencetools.Sequence(leaves).nwise():
+        for one, two in abjad.Sequence(leaves).nwise():
             offset = one.stop_offset
             make_offset_node(offset, one, two)
         offset = leaves[-1].stop_offset
@@ -1182,7 +1178,7 @@ class Meter(AbjadValueObject):
         for _ in range(extra_depth):
             old_offsets = inventory[-1]
             new_offsets = []
-            for first, second in sequencetools.Sequence(old_offsets).nwise():
+            for first, second in datastructuretools.Sequence(old_offsets).nwise():
                 new_offsets.append(first)
                 new_offsets.append((first + second) / 2)
             new_offsets.append(old_offsets[-1])

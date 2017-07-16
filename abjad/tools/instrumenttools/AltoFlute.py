@@ -100,9 +100,7 @@ class AltoFlute(Instrument):
                                 ),
                             ]
                         ),
-                    pitch_range=abjad.PitchRange(
-                        range_string='[G3, G6]',
-                        ),
+                    pitch_range=abjad.PitchRange('[G3, G6]'),
                     sounding_pitch_of_written_middle_c=abjad.NamedPitch('g'),
                     )
 
@@ -175,7 +173,7 @@ class AltoFlute(Instrument):
             ::
 
                 >>> alto_flute.pitch_range
-                PitchRange(range_string='[G3, G6]')
+                PitchRange('[G3, G6]')
 
             ::
 

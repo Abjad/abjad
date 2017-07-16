@@ -11,23 +11,25 @@ class TypedCounter(TypedCollection):
 
         >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> counter = abjad.TypedCounter(
-        ...     [0, "c'", 1, True, "cs'", "df'"],
-        ...     item_class=abjad.NumberedPitch,
-        ...     )
+        ::
 
-    ::
+            >>> counter = abjad.TypedCounter(
+            ...     [0, "c'", 1, True, "cs'", "df'"],
+            ...     item_class=abjad.NumberedPitch,
+            ...     )
 
-        >>> f(counter)
-        abjad.TypedCounter(
-            {
-                abjad.NumberedPitch(0): 2,
-                abjad.NumberedPitch(1): 4,
-                },
-            item_class=abjad.NumberedPitch,
-            )
+        ::
+
+            >>> f(counter)
+            abjad.TypedCounter(
+                {
+                    abjad.NumberedPitch(0): 2,
+                    abjad.NumberedPitch(1): 4,
+                    },
+                item_class=abjad.NumberedPitch,
+                )
 
     '''
 
@@ -56,23 +58,13 @@ class TypedCounter(TypedCollection):
 
     ### SPECIAL METHODS ###
 
-    '''
-    __cmp__
-    __ge__
-    __getattribute__
-    __gt__
-    __hash__
-    __le__
-    __lt__
-    '''
-
     def __add__(self, argument):
         r'''Adds typed counter to `argument`.
 
         Returns new typed counter.
         '''
-        if not isinstance(argument, type(self)) \
-            or not self.item_class == argument.item_class:
+        if (not isinstance(argument, type(self))
+            or not self.item_class == argument.item_class):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection + argument._collection
@@ -83,8 +75,8 @@ class TypedCounter(TypedCollection):
 
         Returns new typed counter.
         '''
-        if not isinstance(argument, type(self)) \
-            or not self.item_class == argument.item_class:
+        if (not isinstance(argument, type(self))
+            or not self.item_class == argument.item_class):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection & argument._collection
@@ -107,24 +99,36 @@ class TypedCounter(TypedCollection):
         argument = self._item_coercer(argument)
         return self._collection.__getitem__(argument)
 
-    # TODO: This method is never accessed.
-    def __missing__(self, item):
-        r'''Returns zero.
-
-        Returns zero.
-        '''
-        return 0
+#    # TODO: This method is never accessed.
+#    def __missing__(self, item):
+#        r'''Returns zero.
+#
+#        Returns zero.
+#        '''
+#        return 0
 
     def __or__(self, argument):
         r'''Logical OR of typed counter and `argument`.
 
         Returns new typed counter.
         '''
-        if not isinstance(argument, type(self)) \
-            or not self.item_class == argument.item_class:
+        if (not isinstance(argument, type(self))
+            or not self.item_class == argument.item_class):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection | argument._collection
+        return result
+
+    def __radd__(self, argument):
+        r'''Adds `argument` to typed counter.
+
+        Returns new typed counter.
+        '''
+        if (not isinstance(argument, type(self))
+            or not self.item_class == argument.item_class):
+            return NotImplemented
+        result = type(self)()
+        result._collection = argument._collection + self._collection
         return result
 
     def __reduce__(self):
@@ -147,8 +151,8 @@ class TypedCounter(TypedCollection):
 
         Returns new typed counter.
         '''
-        if not isinstance(argument, type(self)) \
-            or not self.item_class == argument.item_class:
+        if (not isinstance(argument, type(self))
+            or not self.item_class == argument.item_class):
             return NotImplemented
         result = type(self)()
         result._collection = self._collection - argument._collection
@@ -190,14 +194,6 @@ class TypedCounter(TypedCollection):
             )
 
     ### PUBLIC METHODS ###
-
-    '''
-    get
-    has_key
-    pop
-    popitem
-    setdefault
-    '''
 
     def clear(self):
         r'''Clears typed counter.

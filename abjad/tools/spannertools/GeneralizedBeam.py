@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -272,7 +272,7 @@ class GeneralizedBeam(Spanner):
         direction_string = ''
         if self.vertical_direction is not None:
             direction_string = \
-                stringtools.to_tridirectional_lilypond_symbol(
+                datastructuretools.to_tridirectional_lilypond_symbol(
                     self.vertical_direction)
         previous_leaf_is_beamable = (
             self._is_beamable(previous_leaf) and

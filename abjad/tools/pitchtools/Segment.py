@@ -9,7 +9,7 @@ from abjad.tools.datastructuretools import TypedTuple
 
 
 class Segment(TypedTuple):
-    r'''Segment base class.
+    r'''Abstract segment.
     '''
 
     ### CLASS VARIABLES ##
@@ -21,11 +21,7 @@ class Segment(TypedTuple):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        item_class=None,
-        ):
+    def __init__(self, items=None, item_class=None):
         from abjad.tools import datastructuretools
         from abjad.tools import markuptools
         prototype = (
@@ -169,8 +165,10 @@ class Segment(TypedTuple):
         elif hasattr(self.item_class, 'pitch_class_number'):
             items = [x.pitch_class_number for x in self]
         elif self.item_class.__name__.startswith('Numbered'):
-            items = [mathtools.integer_equivalent_number_to_integer(float(x))
-                for x in self]
+            items = [
+                mathtools.integer_equivalent_number_to_integer(float(x.number))
+                for x in self
+                ]
         elif hasattr(self.item_class, '__abs__'):
             items = [abs(x) for x in self]
         else:

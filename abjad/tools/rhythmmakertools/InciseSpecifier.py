@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -213,8 +212,9 @@ class InciseSpecifier(AbjadValueObject):
 
     @staticmethod
     def _rotate_tuple(argument, n):
+        import abjad
         if argument is not None:
-            return tuple(sequencetools.Sequence(argument).rotate(n=n))
+            return tuple(abjad.Sequence(argument).rotate(n=n))
 
     ### PUBLIC PROPERTIES ###
 

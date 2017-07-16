@@ -165,7 +165,7 @@ class ScaleDegree(AbjadValueObject):
 
         Returns string.
         '''
-        return '{}{}'.format(self.accidental.symbolic_string, self.number)
+        return '{}{}'.format(self.accidental.symbol, self.number)
     
     ### PRIVATE METHODS ###
 
@@ -180,27 +180,6 @@ class ScaleDegree(AbjadValueObject):
             )
 
     ### PUBLIC METHODS ###
-
-    def apply_accidental(self, accidental):
-        r'''Applies accidental to scale degree.
-
-        ..  container:: example
-
-            ::
-
-                >>> degree = tonalanalysistools.ScaleDegree('#4')
-
-            ::
-
-                >>> degree.apply_accidental('ff')
-                ScaleDegree('b4')
-
-        Returns new scale degree.
-        '''
-        import abjad
-        accidental = abjad.Accidental(accidental)
-        accidental = self.accidental + accidental
-        return self.from_accidental_and_number(accidental, self.number)
 
     @staticmethod
     def from_accidental_and_number(accidental, number):
@@ -218,7 +197,7 @@ class ScaleDegree(AbjadValueObject):
         '''
         import abjad
         accidental = abjad.Accidental(accidental)
-        string = '{}{}'.format(accidental.symbolic_string, number)
+        string = '{}{}'.format(accidental.symbol, number)
         return ScaleDegree(string=string)
 
     ### PUBLIC PROPERTIES ###
@@ -232,7 +211,7 @@ class ScaleDegree(AbjadValueObject):
             ::
 
                 >>> tonalanalysistools.ScaleDegree('#4').accidental
-                Accidental('s')
+                Accidental('sharp')
 
         Returns accidental.
         '''
@@ -263,7 +242,7 @@ class ScaleDegree(AbjadValueObject):
 
         Returns string.
         '''
-        if not self.accidental.is_adjusted:
+        if self.accidental.semitones == 0:
             return self._scale_degree_number_to_scale_degree_name[self.number]
         else:
             raise NotImplementedError
@@ -324,7 +303,7 @@ class ScaleDegree(AbjadValueObject):
         Returns string.
         '''
         return '{}{}'.format(
-            self.accidental.symbolic_string,
+            self.accidental.symbol,
             self.number,
             )
 

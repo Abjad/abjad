@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import copy
-import functools
+import numbers
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
 from abjad.tools.topleveltools import new
 
 
-@functools.total_ordering
 class NamedInterval(Interval):
     '''Named interval.
 
@@ -39,15 +38,6 @@ class NamedInterval(Interval):
         ::
 
             >>> abjad.NamedInterval(abjad.NamedInterval(-4))
-            NamedInterval('-M3')
-
-    ..  container:: example
-
-        Initializes from quality string and interval number:
-
-        ::
-
-            >>> abjad.NamedInterval('major', -3)
             NamedInterval('-M3')
 
     '''
@@ -92,54 +82,40 @@ class NamedInterval(Interval):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
+    def __init__(self, name='P1'):
         from abjad.tools import pitchtools
-        if len(arguments) == 1:
-            if isinstance(arguments[0], type(self)):
-                quality_string = arguments[0].quality_string
-                number = arguments[0].number
-            elif isinstance(arguments[0], str):
-                match = \
-                    pitchtools.Interval._interval_name_abbreviation_regex.match(
-                        arguments[0])
-                if match is None:
-                    message = '{!r} does not have the form of a mdi abbreviation.'
-                    message = message.format(arguments[0])
-                    raise ValueError(message)
-                direction_string, quality_abbreviation, number_string = \
-                    match.groups()
-                quality_string = self._quality_abbreviation_to_quality_string[
-                    quality_abbreviation]
-                number = int(direction_string + number_string)
-            elif isinstance(arguments[0], pitchtools.NamedIntervalClass):
-                quality_string = arguments[0].quality_string
-                number = arguments[0].number
-            elif isinstance(arguments[0], (
-                int,
-                float,
-                int,
-                pitchtools.NumberedInterval,
-                pitchtools.NumberedIntervalClass,
-                )):
-                number = int(arguments[0])
-                sign = mathtools.sign(number)
-                octaves, semitones = divmod(abs(number), 12)
-                quality_string, number = \
-                    self._semitones_to_quality_string_and_number[semitones]
-                number += abs(octaves) * 7
-                if sign == -1:
-                    number *= -1
-            else:
-                message = 'can not initialize {}: {!r}'
-                message = message.format(type(self).__init__, arguments)
+        named_prototype = (type(self), pitchtools.NamedIntervalClass)
+        numbered_prototype = (
+            numbers.Number,
+            pitchtools.NumberedInterval,
+            pitchtools.NumberedIntervalClass,
+            )
+        if isinstance(name, str):
+            match = Interval._interval_name_abbreviation_regex.match(name)
+            if match is None:
+                message = 'can not initialize {} from {!r}.'
+                message = message.format(type(self).__init__, name)
                 raise ValueError(message)
-        elif len(arguments) == 2:
-            quality_string, number = arguments
-        elif len(arguments) == 0:
-            quality_string = 'perfect'
-            number = 1
+            result = match.groups()
+            direction_string, quality_abbreviation, number_string = result
+            quality_string = self._quality_abbreviation_to_quality_string[
+                quality_abbreviation]
+            number = int(direction_string + number_string)
+        elif isinstance(name, named_prototype):
+            quality_string = name.quality_string
+            number = name.number
+        elif isinstance(name, numbered_prototype):
+            number = getattr(name, 'number', name)
+            number = int(number)
+            sign = mathtools.sign(number)
+            octaves, semitones = divmod(abs(number), 12)
+            pair = self._semitones_to_quality_string_and_number[semitones]
+            quality_string, number = pair
+            number += abs(octaves) * 7
+            if sign == -1:
+                number *= -1
         else:
-            message = 'can not initialize {}: {!r}'
+            message = 'can not initialize {} from {!r}'
             message = message.format(type(self).__init__, arguments)
             raise ValueError(message)
         self._quality_string = quality_string
@@ -148,7 +124,7 @@ class NamedInterval(Interval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Absolute value of named interval.
+        r'''Gets absolute value of named interval.
 
         ..  container:: example
 
@@ -164,7 +140,10 @@ class NamedInterval(Interval):
 
         Returns named interval.
         '''
-        return type(self)(self.quality_string, abs(self.number))
+        return type(self).from_quality_and_number(
+            self.quality_string,
+            abs(self.number),
+            )
 
     def __add__(self, argument):
         r'''Adds `argument` to named interval.
@@ -185,8 +164,7 @@ class NamedInterval(Interval):
             raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self + argument
-        return pitchtools.NamedInterval.from_pitch_carriers(
-            dummy_pitch, new_pitch)
+        return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
 
     def __copy__(self, *arguments):
         r'''Copies named interval.
@@ -204,7 +182,10 @@ class NamedInterval(Interval):
 
         Returns new named interval.
         '''
-        return type(self)(self.quality_string, self.number)
+        return type(self).from_quality_and_number(
+            self.quality_string,
+            self.number,
+            )
 
     def __eq__(self, argument):
         r'''Is true when named interval equal `argument`.
@@ -222,14 +203,8 @@ class NamedInterval(Interval):
 
                 >>> interval_1 == interval_1
                 True
-
-            ::
-
                 >>> interval_1 == interval_2
                 True
-
-            ::
-
                 >>> interval_1 == interval_3
                 False
 
@@ -237,14 +212,8 @@ class NamedInterval(Interval):
 
                 >>> interval_2 == interval_1
                 True
-
-            ::
-
                 >>> interval_2 == interval_2
                 True
-
-            ::
-
                 >>> interval_2 == interval_3
                 False
 
@@ -252,33 +221,13 @@ class NamedInterval(Interval):
 
                 >>> interval_3 == interval_1
                 False
-
-            ::
-
                 >>> interval_3 == interval_2
                 False
-
-            ::
-
                 >>> interval_3 == interval_3
                 True
 
         '''
         return super(NamedInterval, self).__eq__(argument)
-
-    def __float__(self):
-        r'''Changes number of named interval to a float.
-
-        ..  container:: example
-
-            ::
-
-                >>> float(abjad.NamedInterval('+M9'))
-                9.0
-
-        Returns float.
-        '''
-        return float(self._number)
 
     def __hash__(self):
         r'''Hashes named interval.
@@ -287,20 +236,6 @@ class NamedInterval(Interval):
         '''
         return super(NamedInterval, self).__hash__()
         
-    def __int__(self):
-        r'''Returns number of named interval.
-
-        ..  container:: example
-
-            ::
-
-                >>> int(abjad.NamedInterval('+M9'))
-                9
-
-        Returns integer.
-        '''
-        return self._number
-
     def __lt__(self, argument):
         r'''Is true when `argument` is a named interval with a number greater
         than that of this named interval.
@@ -360,8 +295,10 @@ class NamedInterval(Interval):
         dummy_pitch = pitchtools.NamedPitch(0)
         for i in range(abs(argument)):
             dummy_pitch += self
-        result = pitchtools.NamedInterval.from_pitch_carriers(
-            pitchtools.NamedPitch(0), dummy_pitch)
+        result = NamedInterval.from_pitch_carriers(
+            pitchtools.NamedPitch(0),
+            dummy_pitch,
+            )
         if argument < 0:
             return -result
         return result
@@ -385,22 +322,46 @@ class NamedInterval(Interval):
 
         Returns new named interval.
         '''
-        return type(self)(self.quality_string, -self.number)
+        return type(self).from_quality_and_number(
+            self.quality_string,
+            -self.number,
+            )
+
+    def __radd__(self, argument):
+        r'''Adds named interval to `argument`.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedInterval('M9') + abjad.NamedInterval('M2')
+                NamedInterval('+M10')
+
+        Returns new named interval.
+        '''
+        from abjad.tools import pitchtools
+        if not isinstance(argument, type(self)):
+            message = 'must be named interval: {!r}.'
+            message = message.format(argument)
+            raise TypeError(message)
+        return argument.__add__(self)
 
     def __rmul__(self, argument):
         r'''Multiplies `argument` by named interval.
 
-        ::
+        ..  container:: example
 
-            >>> abjad.NamedInterval('+M9') * 3
-            NamedInterval('+aug25')
+            ::
+
+                >>> abjad.NamedInterval('+M9') * 3
+                NamedInterval('+aug25')
 
         Returns new named interval.
         '''
         return self * argument
 
     def __str__(self):
-        r'''String representation of named interval.
+        r'''Gets string representation of named interval.
 
         ..  container:: example
 
@@ -411,11 +372,7 @@ class NamedInterval(Interval):
 
         Returns string.
         '''
-        return '{}{}{}'.format(
-            self._direction_symbol,
-            self._quality_abbreviation,
-            abs(self.number),
-            )
+        return self.name
 
     def __sub__(self, argument):
         r'''Subtracts `argument` from named interval.
@@ -441,14 +398,9 @@ class NamedInterval(Interval):
             raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self - argument
-        return pitchtools.NamedInterval.from_pitch_carriers(
-            dummy_pitch, new_pitch)
+        return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
-        return '{}{}'.format(self._quality_abbreviation, self.number)
 
     @property
     def _interval_string(self):
@@ -495,30 +447,36 @@ class NamedInterval(Interval):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        superclass = super(NamedInterval, self)
-        format_specification = superclass._get_format_specification()
-        return new(
-            format_specification,
-            template_names=['quality_string', 'number'],
+        import abjad
+        values = [self.name]
+        return abjad.systemtools.FormatSpecification(
+            client=self,
+            coerce_for_equality=True,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
             )
 
     def _transpose_pitch(self, pitch):
         from abjad.tools import pitchtools
-        pitch_number = pitch.pitch_number + self.semitones
+        pitch_number = pitch.number + self.semitones
         diatonic_pitch_class_number = \
-            (pitch.diatonic_pitch_class_number + self.staff_spaces) % 7
+            (pitch._get_diatonic_pitch_class_number() + self.staff_spaces) % 7
         diatonic_pitch_class_name = \
             pitchtools.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
                 diatonic_pitch_class_number]
-        named_pitch = pitchtools.NamedPitch(
-            pitch_number, diatonic_pitch_class_name)
+        class_ = pitchtools.NamedPitch
+        named_pitch = class_.from_pitch_number(
+            pitch_number,
+            diatonic_pitch_class_name,
+            )
         return type(pitch)(named_pitch)
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def direction_number(self):
-        r'''Direction number of named interval.
+        r'''Gets direction number of named interval.
 
         ..  container:: example
 
@@ -536,7 +494,7 @@ class NamedInterval(Interval):
 
     @property
     def direction_string(self):
-        r'''Direction string of named interval.
+        r'''Gets direction string of named interval.
 
         ..  container:: example
 
@@ -570,7 +528,7 @@ class NamedInterval(Interval):
 
     @property
     def interval_class(self):
-        r'''Interval class of named interval.
+        r'''Gets interval class of named interval.
 
         ..  container:: example
 
@@ -585,7 +543,7 @@ class NamedInterval(Interval):
 
     @property
     def interval_string(self):
-        r'''Interval string of named interval.
+        r'''Gets interval string of named interval.
 
         ..  container:: example
 
@@ -599,8 +557,29 @@ class NamedInterval(Interval):
         return self._interval_string
 
     @property
+    def name(self):
+        r'''Gets name of named interval.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedInterval('+M9').name
+                '+M9'
+
+        Returns string.
+        '''
+        return '{}{}{}'.format(
+            self._get_direction_symbol(),
+            self._quality_abbreviation,
+            abs(self.number),
+            )
+
+    @property
     def named_interval_class(self):
-        r'''Named interval class of named interval.
+        r'''DEPRECATED.
+        
+        Gets named interval class of named interval.
 
         ..  container:: example
 
@@ -628,11 +607,14 @@ class NamedInterval(Interval):
         '''
         from abjad.tools import pitchtools
         quality_string, number = self._quality_string, self.number
-        return pitchtools.NamedIntervalClass(quality_string, number)
+        return pitchtools.NamedIntervalClass.from_quality_and_number(
+            quality_string,
+            number,
+            )
 
     @property
     def number(self):
-        r'''Number of named interval.
+        r'''Gets number of named interval.
 
         ..  container:: example
 
@@ -647,7 +629,13 @@ class NamedInterval(Interval):
 
     @property
     def octaves(self):
-        r'''Number of octaves in interval.
+        r'''Gets octaves of named interval.
+
+        ..  container:: example
+
+            ::
+                >>> abjad.NamedInterval('+M9').octaves
+                1
 
         Returns nonnegative number.
         '''
@@ -655,7 +643,7 @@ class NamedInterval(Interval):
 
     @property
     def quality_string(self):
-        r'''Quality string of named interval.
+        r'''Gets quality string of named interval.
 
         ..  container:: example
 
@@ -685,7 +673,7 @@ class NamedInterval(Interval):
 
     @property
     def semitones(self):
-        r'''Semitones of named interval.
+        r'''Gets semitones of named interval.
 
         ..  container:: example
 
@@ -755,7 +743,7 @@ class NamedInterval(Interval):
 
     @property
     def staff_spaces(self):
-        r'''Staff spaces of named interval.
+        r'''Gets staff spaces of named interval.
 
         ..  container:: example
 
@@ -796,8 +784,31 @@ class NamedInterval(Interval):
     ### PUBLIC METHODS ###
 
     @classmethod
+    def from_quality_and_number(class_, quality, number):
+        r'''Makes named interval from `quality` and `number`.
+
+        ..  container:: example
+            
+            ::
+
+                >>> abjad.NamedInterval.from_quality_and_number(
+                ...     'major',
+                ...     -3,
+                ...     )
+                NamedInterval('-M3')
+
+        Returns newly constructed named interval.
+        '''
+        assert isinstance(quality, str), repr(quality)
+        assert isinstance(number, numbers.Number), repr(number)
+        interval = class_()
+        interval._quality_string = quality
+        interval._number = number
+        return interval
+
+    @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Calculate named interval from `pitch_carrier_1` to
+        '''Makes named interval calculated from `pitch_carrier_1` to
         `pitch_carrier_2`.
 
         ..  container:: example
@@ -822,17 +833,17 @@ class NamedInterval(Interval):
 
         Returns named interval.
         '''
-        from abjad.tools import pitchtools
-        pitch_1 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_1)
-        pitch_2 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_2)
-        degree_1 = pitch_1.diatonic_pitch_number
-        degree_2 = pitch_2.diatonic_pitch_number
+        import abjad
+        pitch_1 = abjad.NamedPitch.from_pitch_carrier(pitch_carrier_1)
+        pitch_2 = abjad.NamedPitch.from_pitch_carrier(pitch_carrier_2)
+        degree_1 = pitch_1._get_diatonic_pitch_number()
+        degree_2 = pitch_2._get_diatonic_pitch_number()
         named_interval_number = abs(degree_1 - degree_2) + 1
         numbered_interval_number = abs(
-            pitchtools.NumberedPitch(pitch_1).pitch_number -
-            pitchtools.NumberedPitch(pitch_2).pitch_number
+            abjad.NumberedPitch(pitch_1).number -
+            abjad.NumberedPitch(pitch_2).number
             )
-        numbered_interval = pitchtools.NumberedInterval(
+        numbered_interval = abjad.NumberedInterval(
             numbered_interval_number,
             )
         absolute_named_interval = numbered_interval.to_named_interval(
@@ -845,7 +856,7 @@ class NamedInterval(Interval):
         return class_(named_interval)
 
     def transpose(self, pitch_carrier):
-        r'''Transposes `pitch_carrier`.
+        r'''Transposes `pitch_carrier` by named interval.
 
         ..  container:: example
 
@@ -863,16 +874,15 @@ class NamedInterval(Interval):
 
         Returns new (copied) object of `pitch_carrier` type.
         '''
-        from abjad.tools import pitchtools
-        from abjad.tools import scoretools
-        if isinstance(pitch_carrier, pitchtools.Pitch):
+        import abjad
+        if isinstance(pitch_carrier, abjad.Pitch):
             return self._transpose_pitch(pitch_carrier)
-        elif isinstance(pitch_carrier, scoretools.Note):
+        elif isinstance(pitch_carrier, abjad.Note):
             new_note = copy.copy(pitch_carrier)
             new_pitch = self._transpose_pitch(pitch_carrier.written_pitch)
             new_note.written_pitch = new_pitch
             return new_note
-        elif isinstance(pitch_carrier, scoretools.Chord):
+        elif isinstance(pitch_carrier, abjad.Chord):
             new_chord = copy.copy(pitch_carrier)
             pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
             for new_nh, old_nh in pairs:

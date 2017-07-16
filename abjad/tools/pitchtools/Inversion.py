@@ -8,6 +8,7 @@ class Inversion(AbjadValueObject):
     ::
 
         >>> import abjad
+        >>> import pytest
 
     ..  container:: example
 
@@ -228,6 +229,23 @@ class Inversion(AbjadValueObject):
             raise TypeError(message)
         return result
 
+    def __radd__(self, operator):
+        r'''Right-addition not defined on inversion.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = 'abjad.Inversion().__radd__(abjad.Inversion())'
+                >>> pytest.raises(NotImplementedError, string)
+                <ExceptionInfo NotImplementedError ...>
+
+        Raises not implemented error.
+        '''
+        message = 'right-addition not defined on {}.'
+        message = message.format(type(self).__name__)
+        raise NotImplementedError(message)
+
     def __str__(self):
         r'''Gets string representation of operator.
 
@@ -249,7 +267,7 @@ class Inversion(AbjadValueObject):
         if self.axis is None:
             return 'I'
         string = 'I({})'
-        string = string.format(self.axis.pitch_class_octave_label)
+        string = string.format(self.axis.get_name(locale='us'))
         return string
 
     ### PRIVATE METHODS ###
@@ -258,7 +276,7 @@ class Inversion(AbjadValueObject):
         from abjad.tools import markuptools
         markup = markuptools.Markup('I', direction=direction)
         if self.axis is not None:
-            axis = self.axis.pitch_class_octave_label
+            axis = self.axis.get_name(locale='us')
             subscript = markuptools.Markup(axis).sub()
             markup = markuptools.Markup.concat([markup, subscript])
         return markup

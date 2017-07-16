@@ -3,6 +3,7 @@ import abjad
 import platform
 import unittest
 import sys
+from abjad.tools import abjadbooktools
 
 
 @unittest.skipIf(
@@ -45,7 +46,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         self.app.config.abjadbook_ignored_documents = ()
 
     def test_collect_abjad_input_blocks_01(self):
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_one)
         blocks = handler.collect_abjad_input_blocks(document)
         assert len(blocks) == 3
@@ -55,7 +56,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert nodes[2] is document[4]
 
     def test_collect_python_literal_blocks_01(self):
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_one)
         blocks = handler.collect_python_literal_blocks(
             document,
@@ -67,13 +68,13 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert nodes[1] is document[3]
 
     def test_collect_python_literal_blocks_02(self):
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_one)
         blocks = handler.collect_python_literal_blocks(document)
         assert len(blocks) == 0
 
     def test_on_doctree_read_01(self):
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_one)
         handler.on_doctree_read(self.app, document)
         actual = abjad.String.normalize(document.pformat())
@@ -122,7 +123,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             len(staff)
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = abjad.String.normalize(document.pformat())
@@ -190,7 +191,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             len(staff)
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = abjad.String.normalize(document.pformat())
@@ -284,7 +285,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             `3/4` comprises three beats.
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = abjad.String.normalize(document.pformat())
@@ -437,7 +438,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #            [x for x in dir() if not x.startswith('_')]
 #        '''
 #        source = abjad.String.normalize(source)
-#        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+#        handler = abjadbooktools.SphinxDocumentHandler()
 #        document = handler.parse_rst(source)
 #        handler.on_doctree_read(self.app, document)
 #        actual = abjad.String.normalize(document.pformat())
@@ -572,11 +573,11 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'select_nonfirst_logical_ties_in_pitched_runs',
 #                    'select_nonlast_logical_ties_in_pitched_runs',
 #                    'select_pitched_runs', 'selectiontools',
-#                    'selectortools', 'sequence', 'sequencetools',
+#                    'selectortools', 'sequence',
 #                    'setting', 'show', 'silence', 'silence_all',
 #                    'silence_every', 'silence_except',
 #                    'silence_first', 'silence_last',
-#                    'spannertools', 'stringtools', 'sustain',
+#                    'spannertools', 'datastructuretools', 'sustain',
 #                    'sustain_all', 'sustain_every',
 #                    'sustain_first', 'sustain_last', 'systemtools',
 #                    'templatetools', 'timespantools',
@@ -598,7 +599,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             print('Désordre')
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = abjad.String.normalize(document.pformat())
@@ -630,7 +631,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = abjad.String.normalize(document.pformat())
@@ -677,7 +678,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 is_last = spanner._is_my_last_leaf(leaf)
                 print(repr(leaf), is_first, is_last)
         '''
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = abjad.String.normalize(document.pformat())
@@ -724,7 +725,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             foo = Foo()
             foo.quux()
         '''
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = abjad.String.normalize(document.pformat())
@@ -771,7 +772,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             foo(23)
         '''
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = abjad.String.normalize(document.pformat())

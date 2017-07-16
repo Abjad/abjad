@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+import functools
 import math
 import numbers
 import re
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
+@functools.total_ordering
 class Octave(AbjadValueObject):
     r'''Octave.
 
@@ -53,6 +54,10 @@ class Octave(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_number',
+        )
+
     _octave_tick_regex_body = """
         (,+     # one or more commas for octaves below the bass clef
         |'+     # or one or more apostrophes for the octave of the treble clef
@@ -64,22 +69,17 @@ class Octave(AbjadValueObject):
         re.VERBOSE,
         )
 
-    __slots__ = (
-        '_number',
-        )
-
     ### INITIALIZER ###
 
-    def __init__(self, number=None):
+    def __init__(self, number=4):
         from abjad.tools import pitchtools
-        argument = number
-        if isinstance(argument, numbers.Number):
-            number = int(argument)
-        elif isinstance(argument, str):
-            match = self._octave_tick_regex.match(argument)
+        if isinstance(number, numbers.Number):
+            number = int(number)
+        elif isinstance(number, str):
+            match = self._octave_tick_regex.match(number)
             if match is None:
                 message = 'can not instantiate octave: {!r}.'
-                message = message.format(argument)
+                message = message.format(number)
                 raise Exception(message)
             group = match.group()
             if group == '':
@@ -88,63 +88,60 @@ class Octave(AbjadValueObject):
                 number = 3 + len(group)
             else:
                 number = 3 - len(group)
-        elif isinstance(argument, pitchtools.Pitch):
-            number = argument.octave.number
-        elif isinstance(argument, type(self)):
-            number = argument.number
-        elif argument is None:
-            number = 4
+        elif isinstance(number, pitchtools.Pitch):
+            number = number.octave.number
+        elif isinstance(number, type(self)):
+            number = number.number
         else:
             message = 'can not instantiate {}: {!r}.'
-            message = message.format(type(self), argument)
+            message = message.format(type(self), number)
             raise Exception(message)
         self._number = number
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        r'''Is true when `other` is octave with same octave number.
+    def __eq__(self, argument):
+        r'''Is true when `argument` is octave with same octave number.
         Otherwise False.
 
         ..  container:: example
 
             ::
 
-                >>> octave = abjad.Octave(4)
-                >>> octave == abjad.Octave(4)
+                >>> octave_1 = abjad.Octave(4)
+                >>> octave_2 = abjad.Octave(4)
+                >>> octave_3 = abjad.Octave(5)
+
+            ::
+
+                >>> octave_1 == octave_1
                 True
-
-            ::
-
-                >>> octave == abjad.Octave(3)
+                >>> octave_1 == octave_2
+                True
+                >>> octave_1 == octave_3
                 False
 
             ::
 
-                >>> octave == 'foo'
+                >>> octave_2 == octave_1
+                True
+                >>> octave_2 == octave_2
+                True
+                >>> octave_2 == octave_3
                 False
+
+            ::
+
+                >>> octave_3 == octave_1
+                False
+                >>> octave_3 == octave_2
+                False
+                >>> octave_3 == octave_3
+                True
 
         Returns true or false.
         '''
-        try:
-            other = type(self)(other)
-            return self.number == other.number
-        except:
-            return False
-
-    def __float__(self):
-        r'''Casts octave as floating-point number.
-
-        ..  container:: example
-
-            ::
-
-                >>> float(abjad.Octave(3))
-                3.0
-
-        Returns floating-point number.
-        '''
-        return float(self.number)
+        return super(Octave, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes octave.
@@ -153,24 +150,51 @@ class Octave(AbjadValueObject):
         '''
         return super(Octave, self).__hash__()
 
-    def __int__(self):
-        r'''Changes octave to integer.
+    def __lt__(self, argument):
+        r'''Is true when octave is less than `argument`.
 
         ..  container:: example
 
             ::
 
-                >>> int(abjad.Octave(3))
-                3
+                >>> octave_1 = abjad.Octave(4)
+                >>> octave_2 = abjad.Octave(4)
+                >>> octave_3 = abjad.Octave(5)
 
             ::
 
-                >>> int(abjad.Octave(',,'))
-                1
+                >>> octave_1 < octave_1
+                False
+                >>> octave_1 < octave_2
+                False
+                >>> octave_1 < octave_3
+                True
 
-        Returns integer.
+            ::
+
+                >>> octave_2 < octave_1
+                False
+                >>> octave_2 < octave_2
+                False
+                >>> octave_2 < octave_3
+                True
+
+            ::
+
+                >>> octave_3 < octave_1
+                False
+                >>> octave_3 < octave_2
+                False
+                >>> octave_3 < octave_3
+                False
+
+        Returns true or false.
         '''
-        return self.number
+        try:
+            argument = type(self)(argument)
+        except:
+            False
+        return self.number < argument.number
 
     def __str__(self):
         r'''Gets string representation of octave.
@@ -196,22 +220,25 @@ class Octave(AbjadValueObject):
 
         Returns string.
         '''
-        if 3 < self.number:
-            return "'" * (self.number - 3)
-        elif self.number < 3:
-            return ',' * abs(3 - self.number)
-        return ''
+        return self.ticks
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        import abjad
+        return abjad.systemtools.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=[self.number],
             storage_format_kwargs_names=[],
             )
+
+    @classmethod
+    def _is_tick_string(class_, argument):
+        if not isinstance(argument, str):
+            return False
+        return bool(class_._octave_tick_regex.match(argument))
 
     ### PUBLIC PROPERTIES ###
 
@@ -264,7 +291,7 @@ class Octave(AbjadValueObject):
             ::
 
                 >>> abjad.Octave(5).pitch_range
-                PitchRange(range_string='[C5, C6)')
+                PitchRange('[C5, C6)')
 
         Returns pitch range.
         '''
@@ -276,7 +303,7 @@ class Octave(AbjadValueObject):
                 ))
 
     @property
-    def tick_string(self):
+    def ticks(self):
         r"""Gets LilyPond octave tick string.
 
         ..  container:: example
@@ -284,7 +311,7 @@ class Octave(AbjadValueObject):
             ::
 
                 >>> for i in range(-1, 9):
-                ...     print(i, abjad.Octave(i).tick_string)
+                ...     print(i, abjad.Octave(i).ticks)
                 -1 ,,,,
                 0  ,,,
                 1  ,,
@@ -298,126 +325,54 @@ class Octave(AbjadValueObject):
 
         Returns string.
         """
-        return str(self)
+        if 3 < self.number:
+            return "'" * (self.number - 3)
+        elif self.number < 3:
+            return ',' * abs(3 - self.number)
+        return ''
 
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_pitch_name(class_, pitch_name):
-        '''Makes octave from `pitch_name`.
+    def from_pitch(class_, pitch):
+        '''Makes octave from `pitch`.
 
         ..  container:: example
 
             ::
 
-                >>> abjad.Octave.from_pitch_name('cs')
+                >>> abjad.Octave.from_pitch('cs')
                 Octave(3)
 
             ::
 
-                >>> abjad.Octave.from_pitch_name("cs'")
+                >>> abjad.Octave.from_pitch("cs'")
                 Octave(4)
+
+            ::
+
+                >>> abjad.Octave.from_pitch(1)
+                Octave(4)
+
+            ::
+
+                >>> abjad.Octave.from_pitch(13)
+                Octave(5)
 
         Returns integer.
         '''
-        if not isinstance(pitch_name, str):
-            message = 'must be string: {!r}.'
-            message = message.format(pitch_name)
-            raise TypeError(message)
-        match = re.match('^([a-z]+)(\,*|\'*)$', pitch_name)
+        import abjad
+        if isinstance(pitch, numbers.Number):
+            number = int(math.floor(pitch / 12)) + 4
+            return class_(number)
+        if isinstance(pitch, abjad.NamedPitch):
+            name = pitch.name
+        elif isinstance(pitch, str):
+            name = pitch
+        else:
+            raise TypeError(pitch)
+        match = re.match('^([a-z]+)(\,*|\'*)$', name)
         if match is None:
-            message = 'incorrect pitch string format.'
-            raise TypeError(message)
-        name, tick_string = match.groups()
-        return class_(tick_string)
-
-    @classmethod
-    def from_pitch_number(class_, pitch_number):
-        r'''Makes octave from `pitch_number`.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.Octave.from_pitch_number(1)
-                Octave(4)
-
-            ::
-
-                >>> abjad.Octave.from_pitch_number(13)
-                Octave(5)
-
-        Returns octave.
-        '''
-        number = int(math.floor(pitch_number / 12)) + 4
-        return class_(number)
-
-    @classmethod
-    def is_tick_string(class_, argument):
-        r"""Is true when `argument` is an octave tick string.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.Octave.is_tick_string(',,,')
-                True
-
-            ::
-
-                >>> abjad.Octave.is_tick_string(',,,')
-                True
-
-            ::
-            
-                >>> abjad.Octave.is_tick_string(',,')
-                True
-
-            ::
-
-                >>> abjad.Octave.is_tick_string(',')
-                True
-
-            ::
-
-                >>> abjad.Octave.is_tick_string('')
-                True
-
-            ::
-
-                >>> abjad.Octave.is_tick_string("")
-                True
-
-            ::
-
-                >>> abjad.Octave.is_tick_string("'")
-                True
-
-            ::
-
-                >>> abjad.Octave.is_tick_string("''")
-                True
-
-            ::
-
-                >>> abjad.Octave.is_tick_string("'''")
-                True
-
-            ::
-
-                >>> abjad.Octave.is_tick_string('foo')
-                False
-
-            ::
-
-                >>> abjad.Octave.is_tick_string(8)
-                False
-
-        The regex ``^,+|'+|$`` underlies this predicate.
-
-        Returns true or false.
-        """
-        if not isinstance(argument, str):
-            return False
-        return bool(class_._octave_tick_regex.match(argument))
+            raise Exception
+        name, ticks = match.groups()
+        return class_(ticks)

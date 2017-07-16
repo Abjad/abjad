@@ -105,7 +105,7 @@ def test_agenttools_IterationAgent_by_logical_voice_06():
     assert len(iterator) == 2
     for note in iterator:
         assert isinstance(note, abjad.Note)
-        assert note.written_pitch.numbered_pitch == 2
+        assert note.written_pitch.number == 2
 
 
 def test_agenttools_IterationAgent_by_logical_voice_07():
@@ -128,7 +128,7 @@ def test_agenttools_IterationAgent_by_logical_voice_07():
     assert len(iterator) == 2
     for e in iterator:
         assert isinstance(e, abjad.Note)
-        assert e.written_pitch.numbered_pitch == 2
+        assert e.written_pitch.number == 2
 
 
 def test_agenttools_IterationAgent_by_logical_voice_08():
@@ -227,7 +227,7 @@ def test_agenttools_IterationAgent_by_logical_voice_13():
     assert len(iterator) == 2
     for note in iterator:
         assert isinstance(note, abjad.Note)
-        assert note.written_pitch.numbered_pitch == 0
+        assert note.written_pitch.number == 0
 
 
 def test_agenttools_IterationAgent_by_logical_voice_14():
@@ -249,4 +249,4 @@ def test_agenttools_IterationAgent_by_logical_voice_14():
     assert len(iterator) == 2
     for note in iterator:
         assert isinstance(note, abjad.Note)
-        assert note.written_pitch.numbered_pitch == 0
+        assert note.written_pitch.number == 0

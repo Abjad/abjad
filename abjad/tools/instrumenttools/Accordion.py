@@ -115,9 +115,7 @@ class Accordion(Instrument):
                                 ),
                             ]
                         ),
-                    pitch_range=abjad.PitchRange(
-                        range_string='[E1, C8]',
-                        ),
+                    pitch_range=abjad.PitchRange('[E1, C8]'),
                     sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
                     )
 
@@ -190,7 +188,7 @@ class Accordion(Instrument):
             ::
 
                 >>> accordion.pitch_range
-                PitchRange(range_string='[E1, C8]')
+                PitchRange('[E1, C8]')
 
             ::
 

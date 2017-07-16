@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import abctools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
@@ -560,7 +560,7 @@ class ReducedLyParser(abctools.Parser):
         }
 
         first_leaf = leaves[0]
-        pairs = sequencetools.Sequence(leaves).nwise(wrapped=True)
+        pairs = datastructuretools.Sequence(leaves).nwise(wrapped=True)
         for leaf, next_leaf in pairs:
             span_events = self._get_span_events(leaf)
             for current_class, directions in span_events.items():

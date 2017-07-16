@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 

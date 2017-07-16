@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -72,7 +72,7 @@ class Staccato(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, direction=None):
-        direction = stringtools.String.to_tridirectional_ordinal_constant(
+        direction = datastructuretools.String.to_tridirectional_ordinal_constant(
             direction)
         directions = (Up, Down, Center, None)
         assert direction in directions, repr(direction)

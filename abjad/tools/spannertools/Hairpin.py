@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import override
 
@@ -143,7 +143,7 @@ class Hairpin(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.String.to_tridirectional_lilypond_symbol(
+        direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
         self._include_rests = include_rests
@@ -206,7 +206,7 @@ class Hairpin(Spanner):
         direction_string = ''
         if self.direction is not None:
             direction_string = \
-                stringtools.String.to_tridirectional_lilypond_symbol(
+                datastructuretools.String.to_tridirectional_lilypond_symbol(
                     self.direction)
             direction_string = '{} '.format(direction_string)
         if (self._is_my_first_leaf(leaf) and

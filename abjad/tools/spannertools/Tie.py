@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import iterate
 
@@ -86,7 +86,7 @@ class Tie(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.String.to_tridirectional_lilypond_symbol(
+        direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
         self._use_messiaen_style_ties = use_messiaen_style_ties

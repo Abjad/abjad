@@ -77,7 +77,7 @@ class ColorMap(AbjadValueObject):
         '''
         from abjad.tools import pitchtools
         pitch_class = pitchtools.NumberedPitchClass(pitch_class)
-        return self._color_dictionary[pitch_class.pitch_class_number]
+        return self._color_dictionary[pitch_class.number]
 
     def __format__(self, format_specification=''):
         r'''Formats color map.
@@ -120,12 +120,12 @@ class ColorMap(AbjadValueObject):
             for pitch in pitch_iterable:
                 pc = pitchtools.NumberedPitchClass(pitch)
                 keys = self._color_dictionary.keys()
-                if pc.pitch_class_number in list(keys):
+                if pc.number in list(keys):
                     print(pc, list(self._color_dictionary.keys()))
                     message = 'duplicated pitch-class in color map: {!r}.'
                     message = message.format(pc)
                     raise KeyError(message)
-                self._color_dictionary[pc.pitch_class_number] = color
+                self._color_dictionary[pc.number] = color
 
     ### PUBLIC PROPERTIES ###
 

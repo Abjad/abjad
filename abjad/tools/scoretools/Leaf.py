@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import abc
 import copy
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools import systemtools
 from abjad.tools import timespantools
 from abjad.tools.topleveltools import attach
@@ -496,7 +496,7 @@ class Leaf(Component):
             last_component._detach_grace_container()
         detach(object, last_component)
         # tie split notes, rests and chords as specified
-        if abjad.Pitch.is_pitch_carrier(self) and tie_split_notes:
+        if abjad.Pitch._is_pitch_carrier(self) and tie_split_notes:
             flattened_result_leaves = abjad.iterate(flattened_result).by_leaf()
             # TODO: implement Selection._attach_tie_spanner_to_leaves()
             pairs = abjad.Sequence(flattened_result_leaves).nwise()
@@ -555,7 +555,7 @@ class Leaf(Component):
                 index = spanner._index(leaf_left_of_split)
                 spanner._fracture(index, direction=Right)
         # tie split notes, rests and chords as specified
-        if abjad.Pitch.is_pitch_carrier(self) and tie_split_notes:
+        if abjad.Pitch._is_pitch_carrier(self) and tie_split_notes:
             selection = abjad.Selection(leaves_around_split)
             selection._attach_tie_spanner_to_leaf_pair(
                 use_messiaen_style_ties=use_messiaen_style_ties,

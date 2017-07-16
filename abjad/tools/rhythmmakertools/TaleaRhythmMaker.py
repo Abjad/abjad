@@ -4,7 +4,6 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
@@ -120,7 +119,7 @@ class TaleaRhythmMaker(RhythmMaker):
         if not talea:
             return talea
         voice_index, measure_index = rotation
-        talea = sequencetools.Sequence(talea).rotate(n=-voice_index)
+        talea = datastructuretools.Sequence(talea).rotate(n=-voice_index)
         return talea
 
     # used in a piece with four voices:
@@ -135,7 +134,7 @@ class TaleaRhythmMaker(RhythmMaker):
         voice_index, measure_index = rotation
         index_of_rotation = -voice_index * (len(talea) // 4)
         index_of_rotation += -4 * measure_index
-        talea = sequencetools.Sequence(talea).rotate(n=index_of_rotation)
+        talea = datastructuretools.Sequence(talea).rotate(n=index_of_rotation)
         return talea
     '''
 
@@ -427,14 +426,14 @@ class TaleaRhythmMaker(RhythmMaker):
                 )
             weight = abs(duration)
             weights.append(weight)
-        parts = sequencetools.Sequence(written_durations).partition_by_weights(
+        parts = datastructuretools.Sequence(written_durations).partition_by_weights(
             weights=weights,
             allow_part_weights=More,
             cyclic=True,
             overhang=True,
             )
         counts = [len(part) for part in parts]
-        parts = sequencetools.Sequence(leaves).partition_by_counts(counts)
+        parts = datastructuretools.Sequence(leaves).partition_by_counts(counts)
         prototype = (spannertools.Tie,)
         for part in parts:
             if any(isinstance(_, scoretools.Rest) for _ in part):
@@ -723,7 +722,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 message += '\n{!r} in {!r}.'
                 message = message.format(sequence, weights)
                 raise Exception(message)
-        sequence = sequencetools.Sequence(sequence).repeat_to_weight(weight)
+        sequence = datastructuretools.Sequence(sequence).repeat_to_weight(weight)
         sequence = sequence.split(weights, cyclic=True)
         return sequence
 

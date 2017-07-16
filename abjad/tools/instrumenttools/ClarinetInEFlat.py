@@ -135,7 +135,7 @@ class ClarinetInEFlat(Instrument):
             ::
 
                 >>> clarinet.pitch_range
-                PitchRange(range_string='[F3, C7]')
+                PitchRange('[F3, C7]')
 
             ::
 

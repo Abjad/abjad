@@ -12,22 +12,13 @@ class NamedIntervalClass(IntervalClass):
 
     ..  container:: example
 
-        Initializes descending major second from string:
+        Initializes from name:
 
         ::
 
             >>> abjad.NamedIntervalClass('-M9')
             NamedIntervalClass('-M2')
 
-    ..  container:: example
-
-        Initializes descending major second from quality string and number of
-        semitones:
-
-        ::
-
-            >>> abjad.NamedIntervalClass(('major', -9))
-            NamedIntervalClass('-M2')
 
     '''
 
@@ -75,51 +66,35 @@ class NamedIntervalClass(IntervalClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
+    def __init__(self, name='P1'):
         from abjad.tools import pitchtools
-        if (len(arguments) == 1 and
-            isinstance(
-                arguments[0],
-                (pitchtools.NamedInterval, pitchtools.NamedIntervalClass))
-            ):
-            quality_string = arguments[0]._quality_string
-            number = arguments[0].number
-        elif len(arguments) == 1 and isinstance(arguments[0], str):
-            match = \
-                pitchtools.Interval._interval_name_abbreviation_regex.match(
-                arguments[0])
+        named_prototype = (pitchtools.NamedInterval, type(self))
+        if isinstance(name, str):
+            class_ = pitchtools.Interval
+            match = class_._interval_name_abbreviation_regex.match(name)
             if match is None:
-                message = '{!r} does not have the form of an abbreviation.'
-                message = message.format(arguments[0])
+                message = 'can not initialize {} from {!r}.'
+                message = message.format(type(self).__name__, name)
                 raise ValueError(message)
-            direction_string, quality_abbreviation, number_string = \
-                match.groups()
-            quality_string = \
-                NamedIntervalClass._quality_abbreviation_to_quality_string[
-                    quality_abbreviation]
+            result = match.groups()
+            direction_string, quality_abbreviation, number_string = result
+            class_ = type(self)
+            quality_string = class_._quality_abbreviation_to_quality_string[
+                quality_abbreviation
+                ]
             number = int(direction_string + number_string)
-        elif (len(arguments) == 1 and
-            isinstance(arguments[0], tuple) and
-            len(arguments[0]) == 2):
-            quality_string, number = arguments[0]
-        elif len(arguments) == 2:
-            quality_string, number = arguments
-        elif len(arguments) == 0:
-            quality_string = 'perfect'
-            number = 1
+        elif isinstance(name, named_prototype):
+            quality_string = name._quality_string
+            number = name.number
+        elif isinstance(name, tuple) and len(name) == 2:
+            quality_string, number = name
         else:
-            message = 'bad input: {!r}.'
-            message = message.format(arguments)
+            message = 'can not initialize {} from {!r}.'
+            message = message.format(type(self).__name__, name)
             raise TypeError(message)
-        if quality_string not in \
-            NamedIntervalClass._acceptable_quality_strings:
-            message = 'not acceptable quality string: {!r}.'
-            message = message.format(quality_string)
-            raise ValueError(message)
-        if not isinstance(number, int):
-            message = 'must be integer: {!r}.'
-            message = message.format(number)
-            raise TypeError(message)
+        if quality_string not in type(self)._acceptable_quality_strings:
+            raise Exception(repr(quality_string))
+        assert isinstance(number, int), repr(number)
         if number == 0:
             message = 'must be nonzero: {!r}.'
             message = message.format(number)
@@ -140,11 +115,21 @@ class NamedIntervalClass(IntervalClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Absolute value of named interval-class.
+        r'''Gets absolute value of named interval-class.
+
+        ..  container:: example
+
+            ::
+
+                >>> abs(abjad.NamedIntervalClass('-M9'))
+                NamedIntervalClass('+M2')
 
         Returns new named interval-class.
         '''
-        return type(self)(abs(self._number))
+        return type(self).from_quality_and_number(
+            self.quality_string,
+            abs(self.number),
+            )
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a named interval-class with direction
@@ -155,99 +140,40 @@ class NamedIntervalClass(IntervalClass):
 
             ::
 
-                >>> mdic_1 = abjad.NamedIntervalClass('perfect', 1)
-                >>> mdic_2 = abjad.NamedIntervalClass('perfect', -1)
+                >>> interval_class_1 = abjad.NamedIntervalClass('P1')
+                >>> interval_class_2 = abjad.NamedIntervalClass('P1')
+                >>> interval_class_3 = abjad.NamedIntervalClass('m2')
 
             ::
 
-                >>> mdic_1 == mdic_2
+                >>> interval_class_1 == interval_class_1
                 True
-
-            ::
-
-                >>> mdic_2 == mdic_1
+                >>> interval_class_1 == interval_class_2
                 True
-
-            ::
-
-                >>> mdic_1 != mdic_2
+                >>> interval_class_1 == interval_class_3
                 False
 
             ::
 
-                >>> mdic_2 != mdic_2
-                False
-
-        ..  container:: example
-
-            ::
-
-                >>> mdic_1 = abjad.NamedIntervalClass('perfect', 2)
-                >>> mdic_2 = abjad.NamedIntervalClass('perfect', 9)
-
-            ::
-
-                >>> mdic_1 == mdic_2
+                >>> interval_class_2 == interval_class_1
                 True
-
-            ::
-
-                >>> mdic_2 == mdic_1
+                >>> interval_class_2 == interval_class_2
                 True
-
-            ::
-
-                >>> mdic_1 != mdic_2
-                False
-            
-            ::
-
-                >>> mdic_2 != mdic_2
+                >>> interval_class_2 == interval_class_3
                 False
 
-        ..  container:: example
-
             ::
 
-                >>> mdic_1 = abjad.NamedIntervalClass('perfect', -2)
-                >>> mdic_2 = abjad.NamedIntervalClass('perfect', -9)
-
-            ::
-
-                >>> mdic_1 == mdic_2
+                >>> interval_class_3 == interval_class_1
+                False
+                >>> interval_class_3 == interval_class_2
+                False
+                >>> interval_class_3 == interval_class_3
                 True
-
-            ::
-
-                >>> mdic_2 == mdic_1
-                True
-
-            ::
-
-                >>> mdic_1 != mdic_2
-                False
-            
-            ::
-
-                >>> mdic_2 != mdic_2
-                False
 
         Returns true or false.
         '''
-        # custom definition because __init__(*arguments):
-        if isinstance(argument, type(self)):
-            if self.direction_number == argument.direction_number:
-                if self._quality_string == argument._quality_string:
-                    if self.number == argument.number:
-                        return True
-        return False
-
-    def __float__(self):
-        r'''Changes named interval-class to float.
-
-        Returns float.
-        '''
-        return float(self._number)
+        return super(NamedIntervalClass, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes named interval-class.
@@ -256,44 +182,73 @@ class NamedIntervalClass(IntervalClass):
         '''
         return super(NamedIntervalClass, self).__hash__()
 
-    def __int__(self):
-        r'''Changes named interval-class to integer.
-
-        Returns integer.
-        '''
-        return self._number
-
     def __lt__(self, argument):
-        r'''Is true when `argument` is a named interval class with a number greater
-        than that of this named interval.
+        r'''Is true when `argument` is a named interval class with a number
+        greater than that of this named interval.
+
+        ..  container:: example
+
+            ::
+
+                >>> interval_class_1 = abjad.NamedIntervalClass('P1')
+                >>> interval_class_2 = abjad.NamedIntervalClass('P1')
+                >>> interval_class_3 = abjad.NamedIntervalClass('m2')
+
+            ::
+
+                >>> interval_class_1 < interval_class_1
+                False
+                >>> interval_class_1 < interval_class_2
+                False
+                >>> interval_class_1 < interval_class_3
+                True
+
+            ::
+
+                >>> interval_class_2 < interval_class_1
+                False
+                >>> interval_class_2 < interval_class_2
+                False
+                >>> interval_class_2 < interval_class_3
+                True
+
+            ::
+
+                >>> interval_class_3 < interval_class_1
+                False
+                >>> interval_class_3 < interval_class_2
+                False
+                >>> interval_class_3 < interval_class_3
+                False
+
+        Returns true or false.
         '''
-        from abjad.tools import pitchtools
-        if isinstance(argument, type(self)):
-            if self.number == argument.number:
-                return pitchtools.NamedInterval(self).semitones < \
-                    pitchtools.NamedInterval(argument).semitones
-            return self.number < argument.number
-        return False
+        import abjad
+        try:
+            argument = type(self)(argument)
+        except:
+            return False
+        if self.number == argument.number:
+            self_semitones = abjad.NamedInterval(self).semitones
+            argument_semitones = abjad.NamedInterval(argument).semitones
+            return self_semitones < argument_semitones
+        return self.number < argument.number
 
     def __str__(self):
-        r'''String representation of named interval-class.
+        r'''Gets string representation of named interval-class.
+
+        ..  container:: example
+
+            ::
+
+                >>> str(abjad.NamedIntervalClass('-M9'))
+                '-M2'
 
         Returns string.
         '''
-        return '{}{}{}'.format(
-            self.direction_symbol,
-            self._quality_abbreviation,
-            abs(self.number),
-            )
+        return self.name
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
-        return '{}{}'.format(
-            self.direction_symbol,
-            abs(self.number),
-            )
 
     @property
     def _full_name(self):
@@ -312,11 +267,41 @@ class NamedIntervalClass(IntervalClass):
         return self._quality_string_to_quality_abbreviation[
             self._quality_string]
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        import abjad
+        values = [self.name]
+        return abjad.systemtools.FormatSpecification(
+            client=self,
+            coerce_for_equality=True,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property
     def direction_number(self):
-        r'''Direction number of named interval-class.
+        r'''Gets direction number of named interval-class.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass('P1').direction_number
+                0
+
+            ::
+
+                >>> abjad.NamedIntervalClass('+M2').direction_number
+                1
+
+            ::
+
+                >>> abjad.NamedIntervalClass('-M2').direction_number
+                -1
 
         Returns -1, 0 or 1.
         '''
@@ -329,7 +314,24 @@ class NamedIntervalClass(IntervalClass):
 
     @property
     def direction_string(self):
-        r'''Direction word of named interval-class.
+        r'''Gets direction string of named interval-class.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass('P1').direction_string is None
+                True
+
+            ::
+
+                >>> abjad.NamedIntervalClass('+M2').direction_string
+                'ascending'
+
+            ::
+
+                >>> abjad.NamedIntervalClass('-M2').direction_string
+                'descending'
 
         Returns string.
         '''
@@ -342,7 +344,24 @@ class NamedIntervalClass(IntervalClass):
 
     @property
     def direction_symbol(self):
-        r'''Direction symbol of named interval-class.
+        r'''Gets direction symbol of named interval-class.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass('P1').direction_symbol
+                ''
+
+            ::
+
+                >>> abjad.NamedIntervalClass('+M2').direction_symbol
+                '+'
+
+            ::
+
+                >>> abjad.NamedIntervalClass('-M2').direction_symbol
+                '-'
 
         Returns string.
         '''
@@ -354,14 +373,70 @@ class NamedIntervalClass(IntervalClass):
             return '+'
 
     @property
+    def name(self):
+        r'''Gets name of named interval-class.
+        
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass('-M9').name
+                '-M2'
+
+        Returns string.
+        '''
+        return '{}{}{}'.format(
+            self.direction_symbol,
+            self._quality_abbreviation,
+            abs(self.number),
+            )
+
+    @property
     def quality_string(self):
-        r'''Quality string of named interval-class.
+        r'''Gets quality string of named interval-class.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass('P1').quality_string
+                'perfect'
+
+            ::
+
+                >>> abjad.NamedIntervalClass('+M2').quality_string
+                'major'
+
+            ::
+
+                >>> abjad.NamedIntervalClass('-M2').quality_string
+                'major'
 
         Returns string.
         '''
         return self._quality_string
 
     ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_quality_and_number(class_, quality, number):
+        r'''Makes named interval-class from `quality` string and number.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass.from_quality_and_number(
+                ...     'major',
+                ...     -9,
+                ...     )
+                NamedIntervalClass('-M2')
+
+        Returns newly constructed named interval-class.
+        '''
+        name = NamedIntervalClass.quality_and_number_to_name(quality, number)
+        interval_class = class_(name)
+        return interval_class
 
     @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
@@ -418,9 +493,54 @@ class NamedIntervalClass(IntervalClass):
                 ...     )
                 NamedIntervalClass('-m3')
 
-        Returns named interval-class.
+        Returns newly constructed named interval-class.
         '''
         from abjad.tools import pitchtools
         named_interval = pitchtools.NamedInterval.from_pitch_carriers(
-            pitch_carrier_1, pitch_carrier_2)
+            pitch_carrier_1,
+            pitch_carrier_2,
+            )
         return class_(named_interval)
+
+    @staticmethod
+    def quality_and_number_to_name(quality, number):
+        r'''Changes `quality` and `number` to name.
+
+        ..  container:: example
+
+            ::
+
+                >>> class_ = abjad.NamedIntervalClass
+                >>> class_.quality_and_number_to_name('minor', 2)
+                '+m2'
+                >>> class_.quality_and_number_to_name('major', 2)
+                '+M2'
+                >>> class_.quality_and_number_to_name('minor', 3)
+                '+m3'
+                >>> class_.quality_and_number_to_name('major', 3)
+                '+M3'
+
+        Returns string.
+        '''
+        class_ = NamedIntervalClass
+        abbreviation = class_._quality_string_to_quality_abbreviation[
+            quality]
+        if number == 1:
+            direction = ''
+        elif mathtools.sign(number) == 1:
+            direction = '+'
+        else:
+            direction = '-'
+        sign = mathtools.sign(number)
+        abs_number = abs(number)
+        if abs_number % 7 == 1 and 8 <= abs_number:
+            number = 8
+        else:
+            number = abs_number % 7
+            if number == 0:
+                number = 7
+        if not number == 1:
+            number *= sign
+        number = abs(number)
+        string = '{}{}{}'.format(direction, abbreviation, number)
+        return string

@@ -135,7 +135,7 @@ class FrenchHorn(Instrument):
             ::
 
                 >>> french_horn.pitch_range
-                PitchRange(range_string='[B1, F5]')
+                PitchRange('[B1, F5]')
 
             ::
 

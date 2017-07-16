@@ -3,13 +3,14 @@ import abjad
 import platform
 import textwrap
 import unittest
+from abjad.tools import abjadbooktools
 
 
 @unittest.skipIf(platform.system() == 'Windows', 'No "echo" on Windows')
 class ShellDirectiveTests(unittest.TestCase):
 
     def setUp(self):
-        self.handler = abjad.abjadbooktools.SphinxDocumentHandler
+        self.handler = abjadbooktools.SphinxDocumentHandler
 
     def test_1(self):
         source = textwrap.dedent('''

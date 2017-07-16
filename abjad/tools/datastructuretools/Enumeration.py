@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import enum
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 
 
@@ -102,7 +102,7 @@ class Enumeration(enum.IntEnum):
             return cls(argument)
         elif isinstance(argument, str):
             argument = argument.strip()
-            argument = stringtools.String(argument).to_snake_case()
+            argument = datastructuretools.String(argument).to_snake_case()
             argument = argument.upper()
             try:
                 return cls[argument]

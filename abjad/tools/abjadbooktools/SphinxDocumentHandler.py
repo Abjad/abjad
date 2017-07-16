@@ -15,7 +15,7 @@ import sys
 import traceback
 from abjad.tools.topleveltools import new
 from abjad.tools import abctools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from docutils import nodes
 from docutils.frontend import OptionParser
@@ -55,13 +55,13 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     _image_target_pattern = re.compile('.+-page(\d+)\..+')
 
-    _basic_template = stringtools.String.normalize(u'''
+    _basic_template = datastructuretools.String.normalize(u'''
         <a href="{source_path}" title="{title}" class="{cls}">
             <img src="{target_path}" alt="{alt}"/>
         </a>
         ''')
 
-    _thumbnail_template = stringtools.String.normalize(u'''
+    _thumbnail_template = datastructuretools.String.normalize(u'''
         <a data-lightbox="{group}" href="{target_path}" title="{title}" data-title="{title}" class="{cls}">
             <img src="{thumbnail_path}" alt="{alt}"/>
         </a>
@@ -131,7 +131,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def on_autodoc_process_docstring(app, what, name, obj, options, lines):
-        string = stringtools.String.normalize('\n'.join(lines))
+        string = datastructuretools.String.normalize('\n'.join(lines))
         if string:
             lines[:] = string.split('\n')
 
@@ -483,8 +483,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             new_nodes = code_block.as_docutils()
             if (
                 len(new_nodes) == 1 and
-                stringtools.String.normalize(old_node.pformat()) ==
-                stringtools.String.normalize(new_nodes[0].pformat())
+                datastructuretools.String.normalize(old_node.pformat()) ==
+                datastructuretools.String.normalize(new_nodes[0].pformat())
                 ):
                 continue
             old_node.parent.replace(old_node, new_nodes)
@@ -913,7 +913,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             #print()
             message = bold(red('Found abjad_import_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
-            #print(stringtools.String.normalize(node.pformat()))
+            #print(datastructuretools.String.normalize(node.pformat()))
         except KeyboardInterrupt:
             sys.exit(1)
         except:
@@ -926,7 +926,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             #print()
             message = bold(red('Found abjad_input_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
-            #print(stringtools.String.normalize(node.pformat()))
+            #print(datastructuretools.String.normalize(node.pformat()))
         except KeyboardInterrupt:
             sys.exit(1)
         except:
@@ -988,7 +988,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                             title='',
                             thumbnail_path=thumbnail_path,
                             )
-                        result = stringtools.String.normalize(result)
+                        result = datastructuretools.String.normalize(result)
                         result = ('    ' + _ for _ in result.splitlines())
                         result = '\n'.join(result)
                         self.body.append(result)
@@ -1010,7 +1010,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                         title='',
                         thumbnail_path=thumbnail_path,
                         )
-                    result = stringtools.String.normalize(result)
+                    result = datastructuretools.String.normalize(result)
                     self.body.append(result)
         except KeyboardInterrupt:
             sys.exit(1)
@@ -1028,7 +1028,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             #print()
             message = bold(red('Found abjad_reveal_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
-            #print(stringtools.String.normalize(node.pformat()))
+            #print(datastructuretools.String.normalize(node.pformat()))
         except KeyboardInterrupt:
             sys.exit(1)
         except:
@@ -1076,7 +1076,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             print()
             message = bold(red('Found abjad_thumbnail_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
-            print(stringtools.String.normalize(node.pformat()))
+            print(datastructuretools.String.normalize(node.pformat()))
         except KeyboardInterrupt:
             sys.exit(1)
         except:

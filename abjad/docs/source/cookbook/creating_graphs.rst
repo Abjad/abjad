@@ -53,7 +53,7 @@ Key points:
         for i, context in enumerate(lilypondnametools.LilyPondContext.list_all_contexts()):
             name = context.name
             fillcolor = i % 9 + 1
-            label = r'\n'.join(stringtools.delimit_words(name))
+            label = r'\n'.join(datastructuretools.delimit_words(name))
             node_attributes = {'label': label}
             node = graphtools.GraphvizNode(
                 name=context.name,
@@ -319,7 +319,7 @@ Configuring the graph's attributes
 
     for node in context_mapping.values():
         label = node.attributes['label']
-        words = stringtools.delimit_words(label)
+        words = datastructuretools.delimit_words(label)
         node.attributes['label'] = r'\n'.join(words)
 
 ..  abjad::

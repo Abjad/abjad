@@ -61,14 +61,14 @@ class RomanNumeral(AbjadValueObject):
         '4/2': 3,
         }
 
-    _symbolic_string_regex = re.compile(
+    _symbol_regex = re.compile(
         r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(.*)')
 
     ### INITIALIZER ###
 
-    def __init__(self, symbolic_string='V7'):
+    def __init__(self, symbol='V7'):
         from abjad.tools import tonalanalysistools
-        groups = self._symbolic_string_regex.match(symbolic_string).groups()
+        groups = self._symbol_regex.match(symbol).groups()
         accidental, roman_numeral, quality, figured_bass = groups
         scale_degree = accidental + roman_numeral
         scale_degree = tonalanalysistools.ScaleDegree(scale_degree)
@@ -152,27 +152,11 @@ class RomanNumeral(AbjadValueObject):
         '''
         return super(RomanNumeral, self).__hash__()
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
-        result = []
-        result.append(self._get_accidental_name())
-        result.append(self._get_roman_numeral_string())
-        result.append(self.quality.quality_string.title())
-        result.append(self.extent.name.title())
-        result.append('In')
-        result.append(self.inversion.title)
-        if self.suspension is not None:
-            result.append('With')
-            result.append(self.suspension.title_string)
-        return ''.join(result)
-
     ### PRIVATE METHODS ###
 
     def _get_accidental_name(self):
         accidental = self.root_scale_degree.accidental
-        if accidental.is_adjusted:
+        if accidental.semitones != 0:
             return accidental.name.title()
         return ''
 
@@ -191,7 +175,7 @@ class RomanNumeral(AbjadValueObject):
         return systemtools.FormatSpecification(
             client=self,
             storage_format_is_indented=False,
-            storage_format_args_values=[self.symbolic_string],
+            storage_format_args_values=[self.symbol],
             )
 
     def _get_quality_name(self, uppercase, quality_string, extent):
@@ -222,7 +206,7 @@ class RomanNumeral(AbjadValueObject):
         else:
             raise ValueError
 
-    def _get_quality_symbolic_string(self):
+    def _get_quality_symbol(self):
         from abjad.tools import tonalanalysistools
         if self.extent == tonalanalysistools.ChordExtent(5):
             if self.quality == tonalanalysistools.ChordQuality('diminished'):
@@ -360,9 +344,9 @@ class RomanNumeral(AbjadValueObject):
 
         Returns markup.
         '''
-        symbolic_string = self.symbolic_string
-        symbolic_string = symbolic_string.replace('#', r'\sharp ')
-        return markuptools.Markup(symbolic_string, Down)
+        symbol = self.symbol
+        symbol = symbol.replace('#', r'\sharp ')
+        return markuptools.Markup(symbol, Down)
 
     @property
     def quality(self):
@@ -420,27 +404,27 @@ class RomanNumeral(AbjadValueObject):
         return self._suspension
 
     @property
-    def symbolic_string(self):
-        r'''Gets symbolic string.
+    def symbol(self):
+        r'''Gets symbolc of Roman numeral.
 
         ..  container:: example
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('bII6/4').symbolic_string
+                >>> tonalanalysistools.RomanNumeral('bII6/4').symbol
                 'bII6/4'
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('V7').symbolic_string
+                >>> tonalanalysistools.RomanNumeral('V7').symbol
                 'V7'
 
         Returns string.
         '''
         result = ''
-        result += self.root_scale_degree.accidental.symbolic_string
+        result += self.root_scale_degree.accidental.symbol
         result += self._get_roman_numeral_string()
-        result += self._get_quality_symbolic_string()
+        result += self._get_quality_symbol()
         result += self.figured_bass_string
         return result
 

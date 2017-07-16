@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Set import Set
 
 
@@ -29,7 +28,7 @@ class IntervalClassSet(Set):
             )
         if isinstance(items, prototype):
             items = list(items)
-            enumerator = sequencetools.Enumerator(items)
+            enumerator = mathtools.Enumerator(items)
             pairs = enumerator.yield_pairs()
             items = [second - first for first, second in pairs]
         Set.__init__(

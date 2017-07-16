@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
-import functools
 import numbers
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
-@functools.total_ordering
 class NumberedPitchClass(PitchClass):
     '''Numbered pitch-class.
 
     ::
 
         >>> import abjad
+        >>> import pytest
 
     ..  container:: example
 
@@ -95,24 +94,24 @@ class NumberedPitchClass(PitchClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, argument=None):
+    def __init__(self, number=0):
         from abjad.tools import pitchtools
         prototype = (numbers.Number, pitchtools.NumberedPitch, type(self))
-        if isinstance(argument, prototype):
-            self._initialize_by_number(float(argument))
-        elif isinstance(argument, pitchtools.NamedPitch):
-            self._initialize_by_named_pitch(argument)
-        elif isinstance(argument, pitchtools.NamedPitchClass):
-            self._initialize_by_named_pitch_class(argument)
-        elif isinstance(argument, str):
-            self._initialize_by_string(argument)
-        elif pitchtools.Pitch.is_pitch_carrier(argument):
-            self._initialize_by_pitch_carrier(argument)
-        elif argument is None:
-            self._initialize_by_number(0)
+        if isinstance(number, numbers.Number):
+            self._initialize_by_number(float(number))
+        elif isinstance(number, prototype):
+            self._initialize_by_number(float(number.number))
+        elif isinstance(number, pitchtools.NamedPitch):
+            self._initialize_by_named_pitch(number)
+        elif isinstance(number, pitchtools.NamedPitchClass):
+            self._initialize_by_named_pitch_class(number)
+        elif isinstance(number, str):
+            self._initialize_by_string(number)
+        elif pitchtools.Pitch._is_pitch_carrier(number):
+            self._initialize_by_pitch_carrier(number)
         else:
             message = 'can not instantiate {} from {!r}.'
-            message = message.format(type(self).__name__, argument)
+            message = message.format(type(self).__name__, number)
             raise TypeError(message)
 
     ### SPECIAL METHODS ###
@@ -176,40 +175,40 @@ class NumberedPitchClass(PitchClass):
 
             ::
 
-                >>> pitch_class_1 = abjad.NumberedPitchClass(9)
-                >>> pitch_class_2 = abjad.NumberedPitchClass(3)
-                >>> pitch_class_1 == pitch_class_1
-                True
-
-        Otherwise false:
-
-        ..  container:: example
+                >>> pitch_class_1 = abjad.NumberedPitchClass(0)
+                >>> pitch_class_2 = abjad.NumberedPitchClass(0)
+                >>> pitch_class_3 = abjad.NumberedPitchClass(1)
 
             ::
 
+                >>> pitch_class_1 == pitch_class_1
+                True
                 >>> pitch_class_1 == pitch_class_2
+                True
+                >>> pitch_class_1 == pitch_class_3
                 False
+
+            ::
+
+                >>> pitch_class_2 == pitch_class_1
+                True
+                >>> pitch_class_2 == pitch_class_2
+                True
+                >>> pitch_class_2 == pitch_class_3
+                False
+
+            ::
+
+                >>> pitch_class_3 == pitch_class_1
+                False
+                >>> pitch_class_3 == pitch_class_2
+                False
+                >>> pitch_class_3 == pitch_class_3
+                True
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            return self.number == argument.number
-        return self.number == argument
-
-    def __float__(self):
-        r'''Changes numbered pitch-class to float.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitch_class = abjad.NumberedPitchClass(9)
-                >>> float(pitch_class)
-                9.0
-
-        Returns float.
-        '''
-        return float(self.number)
+        return super(NumberedPitchClass, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats numbered pitch-class.
@@ -236,21 +235,6 @@ class NumberedPitchClass(PitchClass):
         Returns integer.
         '''
         return super(NumberedPitchClass, self).__hash__()
-
-    def __int__(self):
-        r'''Changes numbered pitch-class to integer.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitch_class = abjad.NumberedPitchClass(9)
-                >>> int(pitch_class)
-                9
-
-        Returns integer.
-        '''
-        return self.number
 
     def __lt__(self, argument):
         r'''Is true when `argument` is a numbered pitch-class with a pitch
@@ -295,15 +279,30 @@ class NumberedPitchClass(PitchClass):
 
         Returns new numbered pitch-class.
         '''
-        #return type(self)(-self.pitch_class_number)
         return type(self)(-self.number)
+
+    def __radd__(self, argument):
+        r'''Right-addition not defined on numbered pitch-classes.
+
+        ..  container:: example
+
+            ::
+
+                >>> statement = '1 + abjad.NumberedPitchClass(9)'
+                >>> pytest.raises(NotImplementedError, statement)
+                <ExceptionInfo NotImplementedError ...>
+
+        Raises not implemented error.
+        '''
+        message = 'right-addition not defined on {}.'
+        message = message.format(type(self).__name__)
+        raise NotImplementedError(message)
 
     def __str__(self):
         r'''Gets string representation of numbered pitch-class.
 
         Returns string.
         '''
-        #return str(self.pitch_class_number)
         return str(self.number)
 
     def __sub__(self, argument):
@@ -359,16 +358,38 @@ class NumberedPitchClass(PitchClass):
                 interval_class_number)
         interval_class = pitchtools.NumberedInversionEquivalentIntervalClass(
             argument)
-        #return type(self)(self.pitch_class_number - interval_class.number % 12)
         return type(self)(self.number - interval_class.number % 12)
 
     ### PRIVATE METHODS ###
 
+    def _apply_accidental(self, accidental=None):
+        from abjad.tools import pitchtools
+        accidental = pitchtools.Accidental(accidental)
+        semitones = self.number + accidental.semitones
+        return type(self)(semitones)
+
+    def _get_diatonic_pitch_class_name(self):
+        return self.name[0]
+
+    def _get_diatonic_pitch_class_number(self):
+        return self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
+            self._get_diatonic_pitch_class_name()]
+
+    def _get_format_specification(self):
+        import abjad
+        values = [self.number]
+        return abjad.systemtools.FormatSpecification(
+            client=self,
+            coerce_for_equality=True,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            )
+
     def _initialize_by_named_pitch(self, argument):
-        self._number = argument.pitch_class_number
+        self._number = argument.pitch_class.number
 
     def _initialize_by_named_pitch_class(self, argument):
-        self._number = argument.pitch_class_number
+        self._number = argument.number
 
     def _initialize_by_number(self, argument):
         argument = round((float(argument) % 12) * 4) / 4
@@ -401,96 +422,40 @@ class NumberedPitchClass(PitchClass):
             ::
 
                 >>> abjad.NumberedPitchClass(1).accidental
-                Accidental('s')
+                Accidental('sharp')
 
         Returns accidental.
         '''
-        from abjad.tools import pitchtools
-        return pitchtools.Accidental(self.alteration_in_semitones)
+        import abjad
+        return abjad.NamedPitch(self.number).accidental
 
     @property
-    def alteration_in_semitones(self):
-        r'''Gets alteration in semitones.
+    def name(self):
+        r'''Gets name of numbered pitch-class.
 
         ..  container:: example
 
             ::
 
-                >>> abjad.NumberedPitchClass(1).alteration_in_semitones
-                1
-
-            ::
-
-                >>> abjad.NumberedPitchClass(10.5).alteration_in_semitones
-                -0.5
-
-        Returns integer or float.
-        '''
-        return (self.number -
-            self._diatonic_pitch_class_number_to_pitch_class_number[
-                self.diatonic_pitch_class_number])
-
-    @property
-    def diatonic_pitch_class_name(self):
-        r'''Gets diatonic pitch-class name.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NumberedPitchClass(1).diatonic_pitch_class_name
-                'c'
+                >>> abjad.NumberedPitchClass(13).name
+                'cs'
 
         Returns string.
         '''
-        return self.pitch_class_name[0]
-
-    @property
-    def diatonic_pitch_class_number(self):
-        r'''Gets diatonic pitch-class number.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NumberedPitchClass(0).diatonic_pitch_class_number
-                0
-
-            ::
-
-                >>> abjad.NumberedPitchClass(1).diatonic_pitch_class_number
-                0
-
-            ::
-
-                >>> abjad.NumberedPitchClass(2).diatonic_pitch_class_number
-                1
-
-            ::
-
-                >>> abjad.NumberedPitchClass(3).diatonic_pitch_class_number
-                2
-
-        Returns integer.
-        '''
-        return self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
-            self.diatonic_pitch_class_name]
-
-    @property
-    def named_pitch_class(self):
-        r'''Gets named pitch-class.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NumberedPitchClass(13).named_pitch_class
-                NamedPitchClass('cs')
-
-        Returns named pitch-class.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitchClass(self)
+        from abjad import abjad_configuration
+        accidental_spelling = abjad_configuration['accidental_spelling']
+        if accidental_spelling == 'mixed':
+            return self._pitch_class_number_to_pitch_class_name[self.number]
+        elif accidental_spelling == 'sharps':
+            return self._pitch_class_number_to_pitch_class_name_with_sharps[
+                self.number]
+        elif accidental_spelling == 'flats':
+            return self._pitch_class_number_to_pitch_class_name_with_flats[
+                self.number]
+        else:
+            message = 'unknown accidental spelling: {!r}.'
+            message = message.format(accidental_spelling)
+            raise ValueError(message)
 
     @property
     def number(self):
@@ -514,21 +479,6 @@ class NumberedPitchClass(PitchClass):
         return self._number
 
     @property
-    def numbered_pitch_class(self):
-        r'''Gets numbered pitch-class.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NumberedPitchClass(13).numbered_pitch_class
-                NumberedPitchClass(1)
-
-        Returns new numbered pitch-class.
-        '''
-        return type(self)(self)
-
-    @property
     def pitch_class_label(self):
         r'''Gets pitch-class / octave label.
 
@@ -542,91 +492,11 @@ class NumberedPitchClass(PitchClass):
         Returns string.
         '''
         return '{}{}'.format(
-            self.diatonic_pitch_class_name.upper(),
-            self.accidental.symbolic_string,
+            self._get_diatonic_pitch_class_name().upper(),
+            self.accidental.symbol,
             )
 
-    @property
-    def pitch_class_name(self):
-        r'''Gets pitch-class name.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NumberedPitchClass(1).pitch_class_name
-                'cs'
-
-        Returns string.
-        '''
-        from abjad import abjad_configuration
-        accidental_spelling = abjad_configuration['accidental_spelling']
-        if accidental_spelling == 'mixed':
-            return self._pitch_class_number_to_pitch_class_name[self.number]
-        elif accidental_spelling == 'sharps':
-            return self._pitch_class_number_to_pitch_class_name_with_sharps[
-                self.number]
-        elif accidental_spelling == 'flats':
-            return self._pitch_class_number_to_pitch_class_name_with_flats[
-                self.number]
-        else:
-            message = 'unknown accidental spelling: {!r}.'
-            message = message.format(accidental_spelling)
-            raise ValueError(message)
-
-    @property
-    def pitch_class_number(self):
-        r'''Gets pitch-class number.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NumberedPitchClass(1).pitch_class_number
-                1
-
-        Returns number.
-        '''
-        return self._number
-
     ### PUBLIC METHODS ###
-
-    def apply_accidental(self, accidental=None):
-        '''Applies `accidental` to numbered pitch-class.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NumberedPitchClass(1).apply_accidental('flat')
-                NumberedPitchClass(0)
-
-            ::
-
-                >>> abjad.NumberedPitchClass(1).apply_accidental('qf')
-                NumberedPitchClass(0.5)
-
-            ::
-
-                >>> abjad.NumberedPitchClass(1).apply_accidental('natural')
-                NumberedPitchClass(1)
-
-            ::
-
-                >>> abjad.NumberedPitchClass(1).apply_accidental('qs')
-                NumberedPitchClass(1.5)
-
-            ::
-
-                >>> abjad.NumberedPitchClass(1).apply_accidental('sharp')
-                NumberedPitchClass(2)
-
-        Returns new numbered pitch-class.
-        '''
-        from abjad.tools import pitchtools
-        accidental = pitchtools.Accidental(accidental)
-        semitones = self.number + accidental.semitones
-        return type(self)(semitones)
 
     def invert(self, axis=None):
         r'''Inverts numbered pitch-class.

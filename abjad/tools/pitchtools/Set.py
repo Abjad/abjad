@@ -8,7 +8,7 @@ from abjad.tools.datastructuretools import TypedFrozenset
 
 
 class Set(TypedFrozenset):
-    '''Set base class.
+    '''Abstract set.
     '''
 
     ### CLASS VARIABLES ###
@@ -86,11 +86,11 @@ class Set(TypedFrozenset):
             )
 
     def _get_sorted_repr_items(self):
-        items = sorted(self, key=lambda x: (float(x), str(x)))
+        items = sorted(self, key=lambda x: (float(x.number), str(x)))
         if self.item_class.__name__.startswith('Named'):
             repr_items = [str(x) for x in items]
-        elif hasattr(self.item_class, 'pitch_number'):
-            repr_items = [x.pitch_number for x in items]
+        elif hasattr(self.item_class, 'number'):
+            repr_items = [x.number for x in items]
         elif hasattr(self.item_class, 'pitch_class_number'):
             repr_items = [x.pitch_class_number for x in items]
         elif hasattr(self.item_class, '__abs__'):

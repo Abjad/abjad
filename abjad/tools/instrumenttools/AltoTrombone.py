@@ -105,9 +105,7 @@ class AltoTrombone(Instrument):
                                 ),
                             ]
                         ),
-                    pitch_range=abjad.PitchRange(
-                        range_string='[A2, Bb5]',
-                        ),
+                    pitch_range=abjad.PitchRange('[A2, Bb5]'),
                     sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
                     )
 
@@ -180,7 +178,7 @@ class AltoTrombone(Instrument):
             ::
 
                 >>> alto_trombone.pitch_range
-                PitchRange(range_string='[A2, Bb5]')
+                PitchRange('[A2, Bb5]')
 
             ::
 

@@ -2,14 +2,15 @@
 import abjad
 import sys
 import unittest
+from abjad.tools import abjadbooktools
 
 
 class CodeBlockTests(unittest.TestCase):
 
     def test_as_docutils_01(self):
-        code_block = abjad.abjadbooktools.CodeBlock(())
+        code_block = abjadbooktools.CodeBlock(())
         code_block.output_proxies.append(
-            abjad.abjadbooktools.CodeOutputProxy(
+            abjadbooktools.CodeOutputProxy(
                 (
                     '>>> for i in range(4):',
                     '...     print(i)',
@@ -52,9 +53,9 @@ class CodeBlockTests(unittest.TestCase):
         ..  import:: abjad.tools.abjadbooktools:example_function
         '''
         source = abjad.String.normalize(source)
-        document = abjad.abjadbooktools.SphinxDocumentHandler.parse_rst(source)
+        document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
-        result = abjad.abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
+        result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
         if sys.version_info[0] == 2:
             assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
@@ -110,9 +111,9 @@ class CodeBlockTests(unittest.TestCase):
             :hide:
         '''
         source = abjad.String.normalize(source)
-        document = abjad.abjadbooktools.SphinxDocumentHandler.parse_rst(source)
+        document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
-        result = abjad.abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
+        result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
         if sys.version_info[0] == 2:
             assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
@@ -177,9 +178,9 @@ class CodeBlockTests(unittest.TestCase):
                 note.written_pitch = "ds,"
         '''
         source = abjad.String.normalize(source)
-        document = abjad.abjadbooktools.SphinxDocumentHandler.parse_rst(source)
+        document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
-        result = abjad.abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
+        result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
         if sys.version_info[0] == 2:
             assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
@@ -213,9 +214,9 @@ class CodeBlockTests(unittest.TestCase):
                 note.written_pitch = "ds,"
         '''
         source = abjad.String.normalize(source)
-        document = abjad.abjadbooktools.SphinxDocumentHandler.parse_rst(source)
+        document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
-        result = abjad.abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
+        result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
         if sys.version_info[0] == 2:
             assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
@@ -253,12 +254,12 @@ class CodeBlockTests(unittest.TestCase):
             Hello, world!
         '''
         source = abjad.String.normalize(source)
-        document = abjad.abjadbooktools.SphinxDocumentHandler.parse_rst(source)
+        document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
-        result = abjad.abjadbooktools.CodeBlock.from_docutils_literal_block(block)
-        assert result == abjad.abjadbooktools.CodeBlock(
+        result = abjadbooktools.CodeBlock.from_docutils_literal_block(block)
+        assert result == abjadbooktools.CodeBlock(
             ("print('Hello, world!')",),
-            code_block_specifier=abjad.abjadbooktools.CodeBlockSpecifier(
+            code_block_specifier=abjadbooktools.CodeBlockSpecifier(
                 allow_exceptions=True,
                 ),
             starting_line_number=3,

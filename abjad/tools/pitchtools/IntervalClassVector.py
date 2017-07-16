@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
+from abjad.tools import mathtools
 from abjad.tools.pitchtools.Vector import Vector
 
 
@@ -57,7 +57,7 @@ class IntervalClassVector(Vector):
         if isinstance(items, prototype):
             intervals = []
             items = tuple(items)
-            enumerator = sequencetools.Enumerator(items)
+            enumerator = mathtools.Enumerator(items)
             pairs = enumerator.yield_pairs()
             for first, second in pairs:
                 intervals.append(second - first)

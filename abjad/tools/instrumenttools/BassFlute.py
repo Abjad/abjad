@@ -133,7 +133,7 @@ class BassFlute(Instrument):
             ::
 
                 >>> bass_flute.pitch_range
-                PitchRange(range_string='[C3, C6]')
+                PitchRange('[C3, C6]')
 
             ::
 

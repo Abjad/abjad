@@ -218,9 +218,9 @@ class TreeNode(AbjadObject):
 
         Returns tuple.
         '''
-        from abjad.tools import sequencetools
+        import abjad
         order = []
-        components = sequencetools.Sequence(reversed(self.improper_parentage))
+        components = abjad.Sequence(reversed(self.improper_parentage))
         for parent, child in components.nwise():
             order.append(parent.index(child))
         return tuple(order)

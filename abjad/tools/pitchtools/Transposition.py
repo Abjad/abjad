@@ -9,6 +9,7 @@ class Transposition(AbjadValueObject):
     ::
 
         >>> import abjad
+        >>> import pytest
 
     ..  container:: example
 
@@ -172,6 +173,23 @@ class Transposition(AbjadValueObject):
             message = message.format(argument)
             raise TypeError(message)
         return result
+
+    def __radd__(self, operator):
+        r'''Right-addition not defined on transposition.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = 'abjad.Transposition().__radd__(abjad.Transposition())'
+                >>> pytest.raises(NotImplementedError, string)
+                <ExceptionInfo NotImplementedError ...>
+
+        Raises not implemented error.
+        '''
+        message = 'right-addition not defined on {}.'
+        message = message.format(type(self).__name__)
+        raise NotImplementedError(message)
 
     def __str__(self):
         r'''Gets string representation of operator.

@@ -98,10 +98,6 @@ class MetricAccentKernel(AbjadValueObject):
 
         Returns true or false.
         '''
-#        if type(self) == type(argument):
-#            if self._kernel == argument._kernel:
-#                return True
-#        return False
         return super(MetricAccentKernel, self).__eq__(argument)
 
     def __hash__(self):

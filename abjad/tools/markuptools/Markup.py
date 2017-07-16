@@ -6,7 +6,7 @@ from abjad import Fraction
 from abjad.tools import expressiontools
 from abjad.tools import mathtools
 from abjad.tools import schemetools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -231,7 +231,7 @@ class Markup(AbjadValueObject):
             new_contents = (str(contents),)
         self._contents = new_contents
         self._format_slot = 'right'
-        direction = stringtools.String.to_tridirectional_ordinal_constant(
+        direction = datastructuretools.String.to_tridirectional_ordinal_constant(
             direction)
         self._direction = direction
         self._expression = None
@@ -648,6 +648,106 @@ class Markup(AbjadValueObject):
             raise TypeError(message)
         return self.contents < argument.contents 
 
+    def __radd__(self, argument):
+        r'''Adds `argument` to markup.
+
+        ..  container:: example
+
+            Adds markup to markup:
+
+            ..  container:: example
+
+                ::
+
+                    >>> markup = abjad.Markup('Allegro') + abjad.Markup('assai')
+                    >>> f(markup)
+                    \markup {
+                        Allegro
+                        assai
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = abjad.Expression()
+                    >>> expression = expression.markup()
+                    >>> expression = expression + abjad.Markup('assai')
+                    >>> markup = expression('Allegro')
+                    >>> f(markup)
+                    \markup {
+                        Allegro
+                        assai
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
+        ..  container:: example
+
+            Adds markup to markup command:
+
+            ..  container:: example
+
+                ::
+
+                    >>> markup = abjad.Markup('Allegro') + abjad.Markup.hspace(0.75)
+                    >>> markup = markup + abjad.Markup('assai')
+                    >>> f(markup)
+                    \markup {
+                        Allegro
+                        \hspace
+                            #0.75
+                        assai
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
+            ..  container:: example expression
+
+                ::
+
+                    >>> expression = abjad.Expression()
+                    >>> expression = expression.markup()
+                    >>> expression = expression + abjad.Markup.hspace(0.75)
+                    >>> expression = expression + abjad.Markup('assai')
+                    >>> markup = expression('Allegro')
+                    >>> f(markup)
+                    \markup {
+                        Allegro
+                        \hspace
+                            #0.75
+                        assai
+                        }
+
+                ::
+
+                    >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        commands = []
+        if isinstance(argument, type(self)):
+            commands.extend(argument.contents)
+        elif isinstance(argument, MarkupCommand):
+            commands.append(argument)
+        else:
+            message = 'must be markup or markup command: {!r}.'
+            message = message.format(argument)
+            raise TypeError(message)
+        commands.extend(self.contents)
+        markup = type(self)(contents=commands, direction=self.direction)
+        return markup
+
     def __str__(self):
         r'''Gets string representation of markup.
 
@@ -707,7 +807,7 @@ class Markup(AbjadValueObject):
         indent = systemtools.LilyPondFormatManager.indent
         direction = ''
         if self.direction is not None:
-            direction = stringtools.String.to_tridirectional_lilypond_symbol(
+            direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
                 self.direction)
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]

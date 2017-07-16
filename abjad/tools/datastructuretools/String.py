@@ -19,7 +19,6 @@ class String(str):
         re.VERBOSE,
         )
 
-
     hyphen_delimited_lowercase_file_name_regex_body = """
         {}
         (\.[a-z,0-9]+)?
@@ -29,7 +28,6 @@ class String(str):
         '^{}$'.format(hyphen_delimited_lowercase_file_name_regex_body),
         re.VERBOSE,
         )
-
 
     lowercamelcase_regex = re.compile(
         '^([a-z,0-9]+([A-Z,0-9]+[a-z,0-9]*)*)?$',
@@ -46,7 +44,6 @@ class String(str):
         '^{}$'.format(underscore_delimited_lowercase_regex_body),
         re.VERBOSE,
         )
-
 
     underscore_delimited_lowercase_file_name_regex_body = """
         {}

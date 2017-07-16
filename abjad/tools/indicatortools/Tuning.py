@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -75,7 +74,7 @@ class Tuning(AbjadValueObject):
                 >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
                 >>> string_number = abjad.StringNumber((2, 3))
                 >>> tuning.get_pitch_ranges_by_string_number(string_number)
-                (PitchRange(range_string='[A4, A6]'), PitchRange(range_string='[D4, D6]'))
+                (PitchRange('[A4, A6]'), PitchRange('[D4, D6]'))
 
         Returns pitch ranges.
         '''
@@ -130,15 +129,15 @@ class Tuning(AbjadValueObject):
                 >>> for voicing in voicings:
                 ...     voicing
                 ...
-                (NamedPitch('a'), None, None, None)
-                (NamedPitch("a'"), None, None, None)
-                (None, NamedPitch("a'"), None, None)
-                (None, NamedPitch("a''"), None, None)
+                (None, None, None, NamedPitch("a''"))
+                (None, None, None, NamedPitch("a'''"))
                 (None, None, NamedPitch("a'"), None)
                 (None, None, NamedPitch("a''"), None)
                 (None, None, NamedPitch("a'''"), None)
-                (None, None, None, NamedPitch("a''"))
-                (None, None, None, NamedPitch("a'''"))
+                (None, NamedPitch("a'"), None, None)
+                (None, NamedPitch("a''"), None, None)
+                (NamedPitch('a'), None, None, None)
+                (NamedPitch("a'"), None, None, None)
 
             ::
 
@@ -149,46 +148,6 @@ class Tuning(AbjadValueObject):
                 >>> for voicing in voicings:
                 ...     voicing
                 ...
-                (NamedPitch('a'), NamedPitch("d''"), None, None)
-                (NamedPitch('a'), NamedPitch("d'''"), None, None)
-                (NamedPitch('a'), None, NamedPitch("d''"), None)
-                (NamedPitch('a'), None, NamedPitch("d'''"), None)
-                (NamedPitch('a'), None, None, NamedPitch("d'''"))
-                (NamedPitch('a'), None, None, NamedPitch("d''''"))
-                (NamedPitch("d'"), NamedPitch("a'"), None, None)
-                (NamedPitch("d'"), NamedPitch("a''"), None, None)
-                (NamedPitch("d'"), None, NamedPitch("a''"), None)
-                (NamedPitch("d'"), None, NamedPitch("a'''"), None)
-                (NamedPitch("d'"), None, None, NamedPitch("a''"))
-                (NamedPitch("d'"), None, None, NamedPitch("a'''"))
-                (NamedPitch("a'"), NamedPitch("d''"), None, None)
-                (NamedPitch("a'"), NamedPitch("d'''"), None, None)
-                (NamedPitch("a'"), None, NamedPitch("d''"), None)
-                (NamedPitch("a'"), None, NamedPitch("d'''"), None)
-                (NamedPitch("a'"), None, None, NamedPitch("d'''"))
-                (NamedPitch("a'"), None, None, NamedPitch("d''''"))
-                (NamedPitch("d''"), NamedPitch("a'"), None, None)
-                (NamedPitch("d''"), NamedPitch("a''"), None, None)
-                (NamedPitch("d''"), None, NamedPitch("a''"), None)
-                (NamedPitch("d''"), None, NamedPitch("a'''"), None)
-                (NamedPitch("d''"), None, None, NamedPitch("a''"))
-                (NamedPitch("d''"), None, None, NamedPitch("a'''"))
-                (None, NamedPitch("a'"), NamedPitch("d''"), None)
-                (None, NamedPitch("a'"), NamedPitch("d'''"), None)
-                (None, NamedPitch("a'"), None, NamedPitch("d'''"))
-                (None, NamedPitch("a'"), None, NamedPitch("d''''"))
-                (None, NamedPitch("d''"), NamedPitch("a''"), None)
-                (None, NamedPitch("d''"), NamedPitch("a'''"), None)
-                (None, NamedPitch("d''"), None, NamedPitch("a''"))
-                (None, NamedPitch("d''"), None, NamedPitch("a'''"))
-                (None, NamedPitch("a''"), NamedPitch("d''"), None)
-                (None, NamedPitch("a''"), NamedPitch("d'''"), None)
-                (None, NamedPitch("a''"), None, NamedPitch("d'''"))
-                (None, NamedPitch("a''"), None, NamedPitch("d''''"))
-                (None, NamedPitch("d'''"), NamedPitch("a''"), None)
-                (None, NamedPitch("d'''"), NamedPitch("a'''"), None)
-                (None, NamedPitch("d'''"), None, NamedPitch("a''"))
-                (None, NamedPitch("d'''"), None, NamedPitch("a'''"))
                 (None, None, NamedPitch("d''"), NamedPitch("a''"))
                 (None, None, NamedPitch("d''"), NamedPitch("a'''"))
                 (None, None, NamedPitch("a''"), NamedPitch("d'''"))
@@ -197,13 +156,53 @@ class Tuning(AbjadValueObject):
                 (None, None, NamedPitch("d'''"), NamedPitch("a'''"))
                 (None, None, NamedPitch("a'''"), NamedPitch("d'''"))
                 (None, None, NamedPitch("a'''"), NamedPitch("d''''"))
+                (None, NamedPitch("a'"), None, NamedPitch("d'''"))
+                (None, NamedPitch("a'"), None, NamedPitch("d''''"))
+                (None, NamedPitch("a'"), NamedPitch("d''"), None)
+                (None, NamedPitch("a'"), NamedPitch("d'''"), None)
+                (None, NamedPitch("d''"), None, NamedPitch("a''"))
+                (None, NamedPitch("d''"), None, NamedPitch("a'''"))
+                (None, NamedPitch("d''"), NamedPitch("a''"), None)
+                (None, NamedPitch("d''"), NamedPitch("a'''"), None)
+                (None, NamedPitch("a''"), None, NamedPitch("d'''"))
+                (None, NamedPitch("a''"), None, NamedPitch("d''''"))
+                (None, NamedPitch("a''"), NamedPitch("d''"), None)
+                (None, NamedPitch("a''"), NamedPitch("d'''"), None)
+                (None, NamedPitch("d'''"), None, NamedPitch("a''"))
+                (None, NamedPitch("d'''"), None, NamedPitch("a'''"))
+                (None, NamedPitch("d'''"), NamedPitch("a''"), None)
+                (None, NamedPitch("d'''"), NamedPitch("a'''"), None)
+                (NamedPitch('a'), None, None, NamedPitch("d'''"))
+                (NamedPitch('a'), None, None, NamedPitch("d''''"))
+                (NamedPitch('a'), None, NamedPitch("d''"), None)
+                (NamedPitch('a'), None, NamedPitch("d'''"), None)
+                (NamedPitch('a'), NamedPitch("d''"), None, None)
+                (NamedPitch('a'), NamedPitch("d'''"), None, None)
+                (NamedPitch("d'"), None, None, NamedPitch("a''"))
+                (NamedPitch("d'"), None, None, NamedPitch("a'''"))
+                (NamedPitch("d'"), None, NamedPitch("a''"), None)
+                (NamedPitch("d'"), None, NamedPitch("a'''"), None)
+                (NamedPitch("d'"), NamedPitch("a'"), None, None)
+                (NamedPitch("d'"), NamedPitch("a''"), None, None)
+                (NamedPitch("a'"), None, None, NamedPitch("d'''"))
+                (NamedPitch("a'"), None, None, NamedPitch("d''''"))
+                (NamedPitch("a'"), None, NamedPitch("d''"), None)
+                (NamedPitch("a'"), None, NamedPitch("d'''"), None)
+                (NamedPitch("a'"), NamedPitch("d''"), None, None)
+                (NamedPitch("a'"), NamedPitch("d'''"), None, None)
+                (NamedPitch("d''"), None, None, NamedPitch("a''"))
+                (NamedPitch("d''"), None, None, NamedPitch("a'''"))
+                (NamedPitch("d''"), None, NamedPitch("a''"), None)
+                (NamedPitch("d''"), None, NamedPitch("a'''"), None)
+                (NamedPitch("d''"), NamedPitch("a'"), None, None)
+                (NamedPitch("d''"), NamedPitch("a''"), None, None)
 
         Returns tuple of sequences.
         """
-        from abjad.tools import pitchtools
-        pitch_classes = [pitchtools.NamedPitchClass(x) for x in pitch_classes]
+        import abjad
+        pitch_classes = [abjad.NamedPitchClass(_) for _ in pitch_classes]
         pitch_classes.extend([None] * (len(self.pitches) - len(pitch_classes)))
-        enumerator = sequencetools.Enumerator(pitch_classes)
+        enumerator = abjad.Enumerator(pitch_classes)
         permutations = enumerator.yield_permutations()
         permutations = set([tuple(_) for _ in permutations])
         pitch_ranges = self.pitch_ranges
@@ -222,7 +221,7 @@ class Tuning(AbjadValueObject):
                 if not pitches:
                     pitches = [None]
                 sequences.append(pitches)
-            enumerator = sequencetools.Enumerator(sequences)
+            enumerator = abjad.Enumerator(sequences)
             subresult = enumerator.yield_outer_product()
             subresult = [tuple(x) for x in subresult]
             result.extend(subresult)
@@ -263,18 +262,10 @@ class Tuning(AbjadValueObject):
                 >>> f(pitch_ranges)
                 abjad.PitchRangeList(
                     [
-                        abjad.PitchRange(
-                            range_string='[G3, G5]',
-                            ),
-                        abjad.PitchRange(
-                            range_string='[D4, D6]',
-                            ),
-                        abjad.PitchRange(
-                            range_string='[A4, A6]',
-                            ),
-                        abjad.PitchRange(
-                            range_string='[E5, E7]',
-                            ),
+                        abjad.PitchRange('[G3, G5]'),
+                        abjad.PitchRange('[D4, D6]'),
+                        abjad.PitchRange('[A4, A6]'),
+                        abjad.PitchRange('[E5, E7]'),
                         ]
                     )
 

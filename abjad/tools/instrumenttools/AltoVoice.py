@@ -135,7 +135,7 @@ class AltoVoice(Instrument):
             ::
 
                 >>> alto.pitch_range
-                PitchRange(range_string='[F3, G5]')
+                PitchRange('[F3, G5]')
 
             ::
 

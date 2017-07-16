@@ -62,8 +62,6 @@ class LilyPondContextSetting(AbjadValueObject):
         r'''Is true when `argument` is a LilyPond context setting with
         equivalent keyword values.
         '''
-#        from abjad.tools import systemtools
-#        return systemtools.TestManager.compare_objects(self, argument)
         return super(LilyPondContextSetting, self).__eq__(argument)
 
     def __hash__(self):

@@ -115,9 +115,9 @@ def test_scoretools_Staff___setitem___07():
     staff[0:4] = abjad.Note(2, (1, 8)) * 4
     assert len(staff) == 8
     for x in staff[0:4]:
-        assert x.written_pitch.numbered_pitch._pitch_number == 2
+        assert x.written_pitch == 2
     for x in staff[4:8]:
-        assert x.written_pitch.numbered_pitch._pitch_number == 0
+        assert x.written_pitch == 0
     assert abjad.inspect(staff).is_well_formed()
 
 

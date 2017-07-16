@@ -7,7 +7,6 @@ from abjad.tools import mathtools
 from abjad.tools import patterntools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import attach
@@ -336,13 +335,13 @@ class RhythmMaker(AbjadValueObject):
             division.numerator
             for division in divisions
             ]
-        secondary_numerators = sequencetools.Sequence(numerators)
+        secondary_numerators = datastructuretools.Sequence(numerators)
         secondary_numerators = secondary_numerators.split(
             split_divisions_by_counts,
             cyclic=True,
             overhang=True,
             )
-        secondary_numerators = sequencetools.Sequence(secondary_numerators)
+        secondary_numerators = datastructuretools.Sequence(secondary_numerators)
         secondary_numerators = secondary_numerators.flatten()
         denominator = divisions[0].denominator
         secondary_divisions = [
@@ -415,7 +414,7 @@ class RhythmMaker(AbjadValueObject):
     @staticmethod
     def _rotate_tuple(argument, n):
         if argument is not None:
-            return tuple(sequencetools.Sequence(argument).rotate(n=n))
+            return tuple(datastructuretools.Sequence(argument).rotate(n=n))
 
     def _scale_taleas(self, divisions, talea_denominator, taleas):
         talea_denominator = talea_denominator or 1
@@ -450,7 +449,7 @@ class RhythmMaker(AbjadValueObject):
 
     def _trivial_helper(self, sequence_, rotation):
         if isinstance(rotation, int) and len(sequence_):
-            return sequencetools.Sequence(sequence_).rotate(n=rotation)
+            return datastructuretools.Sequence(sequence_).rotate(n=rotation)
         return sequence_
 
     def _validate_selections(self, selections):

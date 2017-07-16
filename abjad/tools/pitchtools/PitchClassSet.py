@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import mathtools
 from abjad.tools.pitchtools.Set import Set
-from abjad.tools.topleveltools import new
 
 
 class PitchClassSet(Set):
@@ -356,19 +354,18 @@ class PitchClassSet(Set):
 
         Returns pitch-class segment.
         '''
-        from abjad.tools import pitchtools
-        from abjad.tools import sequencetools
+        import abjad
         if not len(self):
-            return pitchtools.PitchClassSegment(
+            return abjad.PitchClassSegment(
                 items=None,
-                item_class=pitchtools.NumberedPitchClass,
+                item_class=abjad.NumberedPitchClass,
                 )
         pitch_classes = list(self)
         pitch_classes.sort()
         candidates = []
         for i in range(self.cardinality):
-            candidate = [pitchtools.NumberedPitch(_) for _ in pitch_classes]
-            candidate = sequencetools.Sequence(candidate).rotate(n=-i)
+            candidate = [abjad.NumberedPitch(_) for _ in pitch_classes]
+            candidate = abjad.Sequence(candidate).rotate(n=-i)
             candidates.append(candidate)
         return self._get_most_compact_ordering(candidates)
 
@@ -475,7 +472,7 @@ class PitchClassSet(Set):
 
         Returns new pitch-class set.
         '''
-        from abjad.tools import pitchtools
+        import abjad
         if not len(self):
             return copy.copy(self)
         normal_orders = [self.get_normal_order()]
@@ -484,12 +481,12 @@ class PitchClassSet(Set):
             normal_order = inversion.get_normal_order()
             normal_orders.append(normal_order)
         normal_order = self._get_most_compact_ordering(normal_orders)
-        pcs = [int(_) for _ in normal_order]
+        pcs = [_.number for _ in normal_order]
         first_pc = pcs[0]
         pcs = [pc - first_pc for pc in pcs]
         prime_form = type(self)(
             items=pcs,
-            item_class=pitchtools.NumberedPitchClass,
+            item_class=abjad.NumberedPitchClass,
             )
         return prime_form
 
@@ -577,11 +574,12 @@ class PitchClassSet(Set):
 
         Returns new pitch-class set.
         '''
+        import abjad
         items = (pitch_class.multiply(n) for pitch_class in self)
-        return new(self, items=items)
+        return abjad.new(self, items=items)
 
-    def order_by(self, pitch_class_segment):
-        r'''Orders pitch-class set by `pitch_class_segment`.
+    def order_by(self, segment):
+        r'''Orders pitch-class set by pitch-class `segment`.
 
         ..  container:: example
 
@@ -592,21 +590,17 @@ class PitchClassSet(Set):
 
         Returns pitch-class segment.
         '''
-        from abjad.tools import pitchtools
-        from abjad.tools import sequencetools
-        if not len(self) == len(pitch_class_segment):
+        import abjad
+        if not len(self) == len(segment):
             message = 'set and segment must be on equal length.'
             raise ValueError(message)
-        enumerator = sequencetools.Enumerator(self)
+        enumerator = abjad.Enumerator(self)
         for pitch_classes in enumerator.yield_permutations():
-            candidate_pitch_class_segment = \
-                pitchtools.PitchClassSegment(pitch_classes)
-            if candidate_pitch_class_segment._is_equivalent_under_transposition(
-                pitch_class_segment):
-                return candidate_pitch_class_segment
-        message = 'named pitch-class set {} can not order by '
-        message += 'named pitch-class segment {}.'
-        message = message.format(self, pitch_class_segment)
+            candidate = abjad.PitchClassSegment(pitch_classes)
+            if candidate._is_equivalent_under_transposition(segment):
+                return candidate
+        message = '{!s} can not order by {!s}.'
+        message = message.format(self, segment)
         raise ValueError(message)
 
     def transpose(self, n=0):
@@ -641,5 +635,6 @@ class PitchClassSet(Set):
 
         Returns new pitch-class set.
         '''
+        import abjad
         items = (pitch_class + n for pitch_class in self)
-        return new(self, items=items)
+        return abjad.new(self, items=items)

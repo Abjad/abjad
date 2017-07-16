@@ -447,11 +447,6 @@ class Expression(AbjadObject):
 
         Returns true or false.
         '''
-#        if not isinstance(argument, type(self)):
-#            return False
-#        expression_storage_format = format(self, 'storage')
-#        argument_storage_format = format(argument, 'storage')
-#        return expression_storage_format == argument_storage_format
         from abjad.tools import systemtools
         return systemtools.TestManager.compare_objects(self, argument)
 

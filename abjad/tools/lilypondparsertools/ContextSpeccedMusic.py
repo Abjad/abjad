@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.lilypondparsertools.Music import Music
 
 
@@ -29,7 +29,7 @@ class ContextSpeccedMusic(Music):
         from abjad.tools import lilypondparsertools
         context_name = context_name or ''
         music = music or lilypondparsertools.SequentialMusic()
-        assert stringtools.String.is_string(context_name)
+        assert datastructuretools.String.is_string(context_name)
         assert isinstance(music, Music)
         self.context_name = context_name
         self.optional_id = optional_id

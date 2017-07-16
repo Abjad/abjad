@@ -26,8 +26,8 @@ def test_scoretools_NoteHead___init___03():
     new = abjad.NoteHead(notehead)
 
     assert notehead is not new
-    assert notehead.written_pitch.numbered_pitch._pitch_number == 6
-    assert new.written_pitch.numbered_pitch._pitch_number == 6
+    assert notehead.written_pitch == 6
+    assert new.written_pitch == 6
 
 
 def test_scoretools_NoteHead___init___04():

@@ -357,9 +357,6 @@ class Sequence(abctools.AbjadValueObject):
 
         Returns true or false.
         '''
-#        if isinstance(argument, type(self)):
-#            return self._items == argument._items
-#        return False
         return super(Sequence, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
@@ -386,7 +383,7 @@ class Sequence(abctools.AbjadValueObject):
                 abjad.Expression(
                     callbacks=[
                         abjad.Expression(
-                            evaluation_template='abjad.sequencetools.Sequence',
+                            evaluation_template='abjad.datastructuretools.Sequence',
                             is_initializer=True,
                             markup_expression=abjad.Expression(
                                 callbacks=[
@@ -3494,7 +3491,6 @@ class Sequence(abctools.AbjadValueObject):
 
         Returns nested sequence.
         '''
-        from abjad.tools import sequencetools
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if not all(isinstance(_, int) and 0 <= _ for _ in counts):
@@ -5291,7 +5287,6 @@ class Sequence(abctools.AbjadValueObject):
 
         Returns new sequence.
         '''
-        from abjad.tools import sequencetools
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result = []

@@ -230,19 +230,19 @@ class Clef(AbjadValueObject):
         from abjad.tools.topleveltools import iterate
         pitches = list(iterate(selection).by_pitch())
         diatonic_pitch_numbers = [
-            pitch.diatonic_pitch_number for pitch in pitches
+            pitch._get_diatonic_pitch_number() for pitch in pitches
             ]
         max_diatonic_pitch_number = max(diatonic_pitch_numbers)
         min_diatonic_pitch_number = min(diatonic_pitch_numbers)
-        lowest_treble_line_pitch = pitchtools.NamedPitch('e', 4)
+        lowest_treble_line_pitch = pitchtools.NamedPitch('E4')
         lowest_treble_line_diatonic_pitch_number = \
-            lowest_treble_line_pitch.diatonic_pitch_number
+            lowest_treble_line_pitch._get_diatonic_pitch_number()
         candidate_steps_below_treble = \
             lowest_treble_line_diatonic_pitch_number - \
             min_diatonic_pitch_number
-        highest_bass_line_pitch = pitchtools.NamedPitch('a', 3)
+        highest_bass_line_pitch = pitchtools.NamedPitch('A3')
         highest_bass_line_diatonic_pitch_number = \
-            highest_bass_line_pitch.diatonic_pitch_number
+            highest_bass_line_pitch._get_diatonic_pitch_number()
         candidate_steps_above_bass = \
             max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number
         if candidate_steps_above_bass < candidate_steps_below_treble:
@@ -281,7 +281,7 @@ class Clef(AbjadValueObject):
             ::
 
                 >>> abjad.Clef('treble').middle_c_position
-                StaffPosition(number=-6)
+                StaffPosition(-6)
 
         ..  container:: example
 
@@ -290,7 +290,7 @@ class Clef(AbjadValueObject):
             ::
 
                 >>> abjad.Clef('alto').middle_c_position
-                StaffPosition(number=0)
+                StaffPosition(0)
 
         Returns nonnegative integer staff position.
         '''

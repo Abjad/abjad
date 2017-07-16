@@ -4,7 +4,7 @@ import doctest
 import importlib
 import os
 import sys
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 try:
@@ -101,7 +101,7 @@ class DoctestScript(CommandlineScript):
             imports = config_parser.get(self.alias, 'imports')
         except:
             imports = ''
-        imports = stringtools.String.normalize(imports).split('\n')
+        imports = datastructuretools.String.normalize(imports).split('\n')
         for line in imports:
             exec(line, globs, globs)
         globs
@@ -223,8 +223,8 @@ class DoctestScript(CommandlineScript):
             print()
         else:
             result.append('')
-        test_identifier = stringtools.String('test').pluralize(total_tests)
-        module_identifier = stringtools.String('module')
+        test_identifier = datastructuretools.String('test').pluralize(total_tests)
+        module_identifier = datastructuretools.String('module')
         module_identifier = module_identifier.pluralize(total_modules)
         string = (
             '{total_successes} passed, {total_failures} failed out of '

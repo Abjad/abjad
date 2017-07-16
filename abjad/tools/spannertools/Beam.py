@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import override
 
@@ -72,7 +72,7 @@ class Beam(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.String.to_tridirectional_lilypond_symbol(
+        direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
 

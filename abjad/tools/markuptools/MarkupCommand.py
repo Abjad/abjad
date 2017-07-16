@@ -201,11 +201,6 @@ class MarkupCommand(AbjadValueObject):
 
         Returns true or false.
         '''
-#        if isinstance(argument, type(self)):
-#            if self.command == argument.command:
-#                if self.arguments == argument.arguments:
-#                    return True
-#        return False
         return super(MarkupCommand, self).__eq__(argument)
 
     def __format__(self, format_specification=''):

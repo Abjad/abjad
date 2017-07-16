@@ -139,7 +139,7 @@ class ClarinetInA(Instrument):
             ::
 
                 >>> clarinet.pitch_range
-                PitchRange(range_string='[Db3, A6]')
+                PitchRange('[Db3, A6]')
 
             ::
 

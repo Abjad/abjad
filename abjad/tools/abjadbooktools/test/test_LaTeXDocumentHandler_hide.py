@@ -2,6 +2,7 @@
 import abjad
 import platform
 import unittest
+from abjad.tools import abjadbooktools
 
 
 @unittest.skipIf(
@@ -30,7 +31,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             '</abjad>',
             '\\end{comment}',
             ]
-        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler()
+        document_handler = abjadbooktools.LaTeXDocumentHandler()
         input_blocks = document_handler.collect_input_blocks(input_file_contents)
         input_blocks = tuple(input_blocks.values())
         assert input_blocks[0].code_block_specifier is not None
@@ -55,7 +56,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             '</abjad>',
             '\\end{comment}',
             ]
-        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         rebuilt_source = document_handler(return_source=True)

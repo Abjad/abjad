@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools import sequencetools
 from abjad.tools import datastructuretools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
@@ -107,10 +106,10 @@ class CountsSelectorCallback(AbjadValueObject):
         result = []
         counts = self.counts
         if self.rotate:
-            counts = sequencetools.Sequence(counts).rotate(n=-rotation)
+            counts = datastructuretools.Sequence(counts).rotate(n=-rotation)
             counts = datastructuretools.CyclicTuple(counts)
         for subexpr in argument:
-            groups = sequencetools.Sequence(subexpr).partition_by_counts(
+            groups = datastructuretools.Sequence(subexpr).partition_by_counts(
                 [abs(_) for _ in counts],
                 cyclic=self.cyclic,
                 overhang=self.overhang,
@@ -136,7 +135,7 @@ class CountsSelectorCallback(AbjadValueObject):
                 subresult.append(group)
             result.extend(subresult)
             if self.rotate:
-                counts = sequencetools.Sequence(counts).rotate(n=-1)
+                counts = datastructuretools.Sequence(counts).rotate(n=-1)
                 counts = datastructuretools.CyclicTuple(counts)
         return tuple(result)
 

@@ -41,14 +41,14 @@ class ChordSuspension(AbjadValueObject):
         '_stop',
         )
 
-    _symbolic_string_regex = re.compile(r'([#|b]?\d+)-([#|b]?\d+)')
+    _symbol_regex = re.compile(r'([#|b]?\d+)-([#|b]?\d+)')
 
     ### INITIALIZER ###
 
     def __init__(self, figured_bass_string='4-3'):
         if isinstance(figured_bass_string, type(self)):
             figured_bass_string = figured_bass_string.figured_bass_string
-        start, stop = self._initialize_by_symbolic_string(figured_bass_string)
+        start, stop = self._initialize_by_symbol(figured_bass_string)
         self._start = start
         self._stop = stop
 
@@ -143,9 +143,9 @@ class ChordSuspension(AbjadValueObject):
         stop = tonalanalysistools.ScaleDegree(stop)
         return start, stop
 
-    def _initialize_by_symbolic_string(self, symbolic_string):
+    def _initialize_by_symbol(self, symbol):
         from abjad.tools import tonalanalysistools
-        groups = self._symbolic_string_regex.match(symbolic_string).groups()
+        groups = self._symbol_regex.match(symbol).groups()
         start, stop = groups
         start = tonalanalysistools.ScaleDegree(start)
         stop = tonalanalysistools.ScaleDegree(stop)

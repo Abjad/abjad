@@ -436,8 +436,8 @@ class RootedChordClass(PitchClassSet):
         Returns string.
         '''
         capitalized_qualities = ('major', 'dominant', 'augmented')
-        symbolic_name = self.root.pitch_class_label
-        letter, accidental = symbolic_name[0], symbolic_name[1:]
+        name = self.root.pitch_class_label
+        letter, accidental = name[0], name[1:]
         if self.chord_quality.quality_string in capitalized_qualities:
             letter = letter.upper()
         else:

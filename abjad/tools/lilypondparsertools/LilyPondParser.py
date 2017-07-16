@@ -3,13 +3,13 @@ import collections
 import itertools
 import ply
 from abjad.tools import abctools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
@@ -404,7 +404,7 @@ class LilyPondParser(abctools.Parser):
         first_leaf = None
         if leaves:
             first_leaf = leaves[0]
-        pairs = sequencetools.Sequence(leaves).nwise(wrapped=True)
+        pairs = datastructuretools.Sequence(leaves).nwise(wrapped=True)
         for leaf, next_leaf in pairs:
 
             span_events = _get_span_events(leaf)
@@ -956,14 +956,14 @@ class LilyPondParser(abctools.Parser):
             pitch_c = pitchtools.NamedPitch(pitch_c)
         scale = [0., 2., 4., 5., 7., 9., 11.]
         a_oct, a_step, a_alt = pitch_a.octave.number, \
-            pitch_a.diatonic_pitch_class_number, pitch_a.accidental.semitones
+            pitch_a._get_diatonic_pitch_class_number(), pitch_a.accidental.semitones
         b_oct, b_step, b_alt = pitch_b.octave.number, \
-            pitch_b.diatonic_pitch_class_number, pitch_b.accidental.semitones
+            pitch_b._get_diatonic_pitch_class_number(), pitch_b.accidental.semitones
         c_oct, c_step, c_alt = pitch_c.octave.number, \
-            pitch_c.diatonic_pitch_class_number, pitch_c.accidental.semitones
+            pitch_c._get_diatonic_pitch_class_number(), pitch_c.accidental.semitones
         d_oct, d_step, d_alt, d_tones = b_oct - a_oct, b_step - a_step, \
-            b_alt - a_alt, float(pitch_b) - float(pitch_a)
-        tmp_alt = float(pitch_c) + d_tones
+            b_alt - a_alt, float(pitch_b.number) - float(pitch_a.number)
+        tmp_alt = float(pitch_c.number) + d_tones
         # print 'TMP_ALT: %f' % tmp_alt
         new_oct = c_oct + d_oct
         new_step = c_step + d_step
@@ -982,7 +982,7 @@ class LilyPondParser(abctools.Parser):
         tmp_pitch = pitchtools.NamedPitch(
             pitch_class_name + accidental + octave_ticks)
         # print 'TMP(pitch): %r' % tmp_pitch
-        new_alt += tmp_alt - float(tmp_pitch)
+        new_alt += tmp_alt - float(tmp_pitch.number)
         # print 'NEW(alt): %f' % new_alt
         new_step, new_alt = normalize_alteration(new_step, new_alt)
         new_oct, new_step = normalize_octave(new_oct, new_step)

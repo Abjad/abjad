@@ -33,15 +33,11 @@ class RegistrationList(TypedList):
                     abjad.Registration(
                         [
                             abjad.RegistrationComponent(
-                                source_pitch_range=abjad.PitchRange(
-                                    range_string='[A0, C4)',
-                                    ),
+                                source_pitch_range=abjad.PitchRange('[A0, C4)'),
                                 target_octave_start_pitch=abjad.NumberedPitch(15),
                                 ),
                             abjad.RegistrationComponent(
-                                source_pitch_range=abjad.PitchRange(
-                                    range_string='[C4, C8)',
-                                    ),
+                                source_pitch_range=abjad.PitchRange('[C4, C8)'),
                                 target_octave_start_pitch=abjad.NumberedPitch(27),
                                 ),
                             ]
@@ -49,9 +45,7 @@ class RegistrationList(TypedList):
                     abjad.Registration(
                         [
                             abjad.RegistrationComponent(
-                                source_pitch_range=abjad.PitchRange(
-                                    range_string='[A0, C8]',
-                                    ),
+                                source_pitch_range=abjad.PitchRange('[A0, C8]'),
                                 target_octave_start_pitch=abjad.NumberedPitch(-18),
                                 ),
                             ]

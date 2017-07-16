@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools.abctools import AbjadValueObject
+from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
+from abjad.tools.abctools import AbjadValueObject
 
 
 class PartitionByRatioCallback(AbjadValueObject):
@@ -45,7 +45,7 @@ class PartitionByRatioCallback(AbjadValueObject):
             len(selection),
             self.ratio,
             )
-        selections = sequencetools.Sequence(selection).partition_by_counts(
+        selections = datastructuretools.Sequence(selection).partition_by_counts(
             counts=counts,
             )
         selections = [selectiontools.Selection(_) for _ in selections]

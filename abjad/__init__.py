@@ -50,15 +50,14 @@ from abjad.tools.schemetools import *
 from abjad.tools.scoretools import *
 from abjad.tools.selectiontools import *
 from abjad.tools.selectortools import *
-from abjad.tools.sequencetools import *
 from abjad.tools.spannertools import *
 from abjad.tools.spannertools import *
-from abjad.tools.stringtools import String
 from abjad.tools.topleveltools import *
 
 # mathtools classes (but not functions)
 from abjad.tools.mathtools import Infinity
 Infinity = Infinity()
+from abjad.tools.mathtools import Enumerator
 from abjad.tools.mathtools import NonreducedFraction
 from abjad.tools.mathtools import NonreducedRatio
 from abjad.tools.mathtools import Ratio

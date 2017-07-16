@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
-from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -10,6 +8,7 @@ class Retrograde(AbjadValueObject):
     ::
 
         >>> import abjad
+        >>> import pytest
 
     ..  container:: example:
 
@@ -173,18 +172,17 @@ class Retrograde(AbjadValueObject):
 
         Returns new object with type equal to that of `argument`.
         '''
-        from abjad.tools import pitchtools
-        if isinstance(argument, (pitchtools.Pitch, pitchtools.PitchClass)):
+        import abjad
+        if isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
             return argument
         if not isinstance(argument, (
-            pitchtools.PitchSegment,
-            pitchtools.PitchClassSegment,
+            abjad.PitchSegment, abjad.PitchClassSegment,
             )):
-            argument = pitchtools.PitchSegment(argument)
+            argument = abjad.PitchSegment(argument)
         if not self.period:
             return type(argument)(reversed(argument))
-        result = new(argument, items=())
-        for shard in sequencetools.Sequence(argument).partition_by_counts(
+        result = abjad.new(argument, items=())
+        for shard in abjad.Sequence(argument).partition_by_counts(
             [self.period],
             cyclic=True,
             overhang=True,
@@ -193,6 +191,23 @@ class Retrograde(AbjadValueObject):
             shard = type(argument)(reversed(shard))
             result = result + shard
         return result
+
+    def __radd__(self, operator):
+        r'''Right-addition not defined on retrograde.
+        
+        ..  container:: example
+
+            ::
+
+                >>> string = 'abjad.Retrograde().__radd__(abjad.Retrograde())'
+                >>> pytest.raises(NotImplementedError, string)
+                <ExceptionInfo NotImplementedError ...>
+
+        Raises not implemented error.
+        '''
+        message = 'right-addition not defined on {}.'
+        message = message.format(type(self).__name__)
+        raise NotImplementedError(message)
 
     def __str__(self):
         r'''Gets string representation of operator.

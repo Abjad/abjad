@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
+import abjad
 import os
 
 
@@ -8,14 +8,14 @@ other = u"ÜÖ"
 even_more_other = u"Ü"
 
 vowel_treatments = {
-     'a':   (2, pitchtools.NamedPitch("G4")),
-     'i':   (2, pitchtools.NamedPitch("E4")),
-    u'ı':   (1, pitchtools.NamedPitch("E4")),
-     'u':   (2, pitchtools.NamedPitch("C4")),
-    u'ü':   (4, pitchtools.NamedPitch("C4")),
-     'e':   (2, pitchtools.NamedPitch("A3")),
-     'o':   (2, pitchtools.NamedPitch("F3")),
-    u'ö':   (4, pitchtools.NamedPitch("F3")),
+     'a':   (2, abjad.NamedPitch("G4")),
+     'i':   (2, abjad.NamedPitch("E4")),
+    u'ı':   (1, abjad.NamedPitch("E4")),
+     'u':   (2, abjad.NamedPitch("C4")),
+    u'ü':   (4, abjad.NamedPitch("C4")),
+     'e':   (2, abjad.NamedPitch("A3")),
+     'o':   (2, abjad.NamedPitch("F3")),
+    u'ö':   (4, abjad.NamedPitch("F3")),
 }
 
 def letter_to_duration_numerator(letter):
@@ -37,26 +37,26 @@ def letter_to_pitch(letter):
     return pitch
 
 consonant_treatments = {
-    'b':    (2, pitchtools.NamedPitch("G4")),
-    'c':    (3, pitchtools.NamedPitch("G4")),
-   u'ç':    (3, pitchtools.NamedPitch("G4")),
-    'd':    (2, pitchtools.NamedPitch("G4")),
-    'f':    (3, pitchtools.NamedPitch("E4")),
-    'g':    (2, pitchtools.NamedPitch("E4")),
-   u'ğ':    (0, pitchtools.NamedPitch("E4")),
-    'h':    (3, pitchtools.NamedPitch("E4")),
-    'k':    (1, pitchtools.NamedPitch("C4")),
-    'l':    (4, pitchtools.NamedPitch("C4")),
-    'm':    (4, pitchtools.NamedPitch("C4")),
-    'n':    (4, pitchtools.NamedPitch("C4")),
-    'p':    (2, pitchtools.NamedPitch("A3")),
-    'r':    (2, pitchtools.NamedPitch("A3")),
-    's':    (4, pitchtools.NamedPitch("A3")),
-   u'ş':    (4, pitchtools.NamedPitch("A3")),
-    't':    (1, pitchtools.NamedPitch("A3")),
-    'v':    (3, pitchtools.NamedPitch("F3")),
-    'y':    (3, pitchtools.NamedPitch("F3")),
-    'z':    (4, pitchtools.NamedPitch("F3")),
+    'b':    (2, abjad.NamedPitch("G4")),
+    'c':    (3, abjad.NamedPitch("G4")),
+   u'ç':    (3, abjad.NamedPitch("G4")),
+    'd':    (2, abjad.NamedPitch("G4")),
+    'f':    (3, abjad.NamedPitch("E4")),
+    'g':    (2, abjad.NamedPitch("E4")),
+   u'ğ':    (0, abjad.NamedPitch("E4")),
+    'h':    (3, abjad.NamedPitch("E4")),
+    'k':    (1, abjad.NamedPitch("C4")),
+    'l':    (4, abjad.NamedPitch("C4")),
+    'm':    (4, abjad.NamedPitch("C4")),
+    'n':    (4, abjad.NamedPitch("C4")),
+    'p':    (2, abjad.NamedPitch("A3")),
+    'r':    (2, abjad.NamedPitch("A3")),
+    's':    (4, abjad.NamedPitch("A3")),
+   u'ş':    (4, abjad.NamedPitch("A3")),
+    't':    (1, abjad.NamedPitch("A3")),
+    'v':    (3, abjad.NamedPitch("F3")),
+    'y':    (3, abjad.NamedPitch("F3")),
+    'z':    (4, abjad.NamedPitch("F3")),
 }
 
 
@@ -135,17 +135,17 @@ def make_lilypond_file(input_text, base_duration=Duration(1, 16)):
     first_phrase = find_first_phrase(input_text)
     word_analyses = analyze_phrase(first_phrase)
     upper_music, lower_music = make_music_for_word_analyses(word_analyses, base_duration)
-    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=2)
+    score_template = abjad.GroupedStavesScoreTemplate(staff_count=2)
     score = score_template()
-    staff_1 = scoretools.get_first_component_in_expr_with_name(score, 'Staff 1')
-    staff_2 = scoretools.get_first_component_in_expr_with_name(score, 'Staff 2')
-    indicatortools.Clef('percussion')(staff_1)
-    indicatortools.Clef('percussion')(staff_2)
+    staff_1 = score['Staff 1']
+    staff_2 = score['Staff 2']
+    abjad.Clef('percussion')(staff_1)
+    abjad.Clef('percussion')(staff_2)
     staff_1.extend(upper_music)
     staff_2.extend(lower_music)
 
-    override(staff_1).staff_symbol.line_count = 4
-    override(staff_2).staff_symbol.line_count = 4
+    abjad.override(staff_1).staff_symbol.line_count = 4
+    abjad.override(staff_2).staff_symbol.line_count = 4
 
     lilypond_file = lilypondfiletools.LilyPondFile.new(score)
     format_score(score)
@@ -153,26 +153,26 @@ def make_lilypond_file(input_text, base_duration=Duration(1, 16)):
     return lilypond_file
 
 def format_score(score):
-    override(score).bar_line.transparent = True
-    override(score).beam.positions = (-6, -6)
-    override(score).spacing_spanner.strict_grace_spacing = True
-    override(score).spacing_spanner.strict_note_spacing = True
-    override(score).spacing_spanner.uniform_stretching = True
-    override(score).span_bar.transparent = True
-    override(score).stem.direction = 'down'
-    override(score).time_signature.transparent = True
-    set_(score).autoBeaming = False
-    set_(score).proportionalNotationDuration = schemetools.SchemeMoment((1, 64))
-    set_(score).tupletFullLength = True
+    abjad.override(score).bar_line.transparent = True
+    abjad.override(score).beam.positions = (-6, -6)
+    abjad.override(score).spacing_spanner.strict_grace_spacing = True
+    abjad.override(score).spacing_spanner.strict_note_spacing = True
+    abjad.override(score).spacing_spanner.uniform_stretching = True
+    abjad.override(score).span_bar.transparent = True
+    abjad.override(score).stem.direction = 'down'
+    abjad.override(score).time_signature.transparent = True
+    abjad.setting(score).autoBeaming = False
+    abjad.setting(score).proportionalNotationDuration = schemetools.SchemeMoment((1, 64))
+    abjad.setting(score).tupletFullLength = True
 
     vector = schemetools.make_spacing_vector(0, 0, 6, 0)
-    score[0].override.staff_grouper.staff_staff_spacing = vector
+    abjad.override(score[0]).staff_grouper.staff_staff_spacing = vector
 
     return score
 
 def format_lilypond_file(lilypond_file):
     lilypond_file.global_staff_size = 14
-    lilypond_file.header_block.title = markuptools.Markup('Turkish text')
+    lilypond_file.header_block.title = abjad.Markup('Turkish text')
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
     vector = schemetools.make_spacing_vector(0, 0, 12, 0)
@@ -183,7 +183,7 @@ def format_lilypond_file(lilypond_file):
 def make_music_for_word_analyses(word_analyses, base_duration):
     vowel_counts = [x.vowel_count for x in word_analyses]
     upper_durations = [base_duration * x for x in vowel_counts]
-    lower_durations = sequencetools.rotate_sequence(upper_durations, -1)
+    lower_durations = abjad.rotate_sequence(upper_durations, -1)
     upper_pitches = [x.vowel_pitches for x in word_analyses]
     lower_pitches = [x.consonant_pitches for x in word_analyses]
     upper_proportions = [x.vowel_duration_numerators for x in word_analyses]
@@ -196,7 +196,7 @@ def make_tuplets(durations, proportions, pitch_lists):
     tuplets = []
     for duration, proportion, pitch_list in zip(
         durations, proportions, pitch_lists):
-        tuplet = Tuplet.from_duration_and_ratio(duration, proportion)
+        tuplet = abjad.Tuplet.from_duration_and_ratio(duration, proportion)
         spannertools.Beam(tuplet)
         for leaf, pitch in zip(tuplet.leaves, pitch_list):
             leaf.written_pitch = pitch

@@ -89,7 +89,7 @@ class Scale(PitchClassSegment):
         dicg = self.named_interval_class_segment
         length = len(dicg)
         octave_number = 4
-        pitch = abjad.NamedPitch(self[0], octave_number)
+        pitch = abjad.NamedPitch((self[0].name, octave_number))
         for i, logical_tie in enumerate(abjad.iterate(argument).by_logical_tie()):
             if isinstance(logical_tie[0], abjad.Note):
                 for note in logical_tie:
@@ -100,7 +100,10 @@ class Scale(PitchClassSegment):
             else:
                 pass
             dic = dicg[i % length]
-            ascending_mdi = abjad.NamedInterval(dic.quality_string, dic.number)
+            ascending_mdi = abjad.NamedInterval.from_quality_and_number(
+                dic.quality_string,
+                dic.number,
+                )
             pitch += ascending_mdi
 
     ### PUBLIC PROPERTIES ###
@@ -274,9 +277,9 @@ class Scale(PitchClassSegment):
         octave = low
         while octave <= high:
             for x in self:
-                pitch = abjad.NamedPitch(x, octave)
-                if pitch_range.start_pitch <= pitch and \
-                    pitch <= pitch_range.stop_pitch:
+                pitch = abjad.NamedPitch((x.name, octave))
+                if (pitch_range.start_pitch <= pitch and
+                    pitch <= pitch_range.stop_pitch):
                     pitches.append(pitch)
             octave += 1
         return abjad.PitchSet(
@@ -414,15 +417,15 @@ class Scale(PitchClassSegment):
         import abjad
         from abjad.tools import tonalanalysistools
         foreign_pitch_class = abjad.NamedPitchClass(pitch_class)
-        letter = foreign_pitch_class.diatonic_pitch_class_name
+        letter = foreign_pitch_class._get_diatonic_pitch_class_name()
         for i, pc in enumerate(self):
-            if pc.diatonic_pitch_class_name == letter:
+            if pc._get_diatonic_pitch_class_name() == letter:
                 native_pitch_class = pc
                 scale_degree_index = i
                 number = scale_degree_index + 1
                 break
-        native_pitch = abjad.NamedPitch(native_pitch_class, 4)
-        foreign_pitch = abjad.NamedPitch(foreign_pitch_class, 4)
+        native_pitch = abjad.NamedPitch((native_pitch_class.name, 4))
+        foreign_pitch = abjad.NamedPitch((foreign_pitch_class.name, 4))
         accidental = foreign_pitch.accidental - native_pitch.accidental
         class_ = tonalanalysistools.ScaleDegree
         scale_degree = class_.from_accidental_and_number(accidental, number)
@@ -462,7 +465,7 @@ class Scale(PitchClassSegment):
         scale_degree = tonalanalysistools.ScaleDegree(scale_degree)
         scale_index = (scale_degree.number - 1) % 7
         pitch_class = self[scale_index]
-        pitch_class = pitch_class.apply_accidental(scale_degree.accidental)
+        pitch_class = scale_degree.accidental(pitch_class)
         return pitch_class
 
     def voice_scale_degrees_in_open_position(self, scale_degrees):

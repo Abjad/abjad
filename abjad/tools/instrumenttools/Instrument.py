@@ -3,7 +3,7 @@ import copy
 from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
@@ -169,7 +169,7 @@ class Instrument(AbjadValueObject):
         if self._instrument_name_markup is None:
             if self.instrument_name:
                 string = self.instrument_name
-                string = stringtools.String(string).capitalize_start()
+                string = datastructuretools.String(string).capitalize_start()
                 markup = markuptools.Markup(contents=string)
                 self._instrument_name_markup = markup
             else:
@@ -177,7 +177,7 @@ class Instrument(AbjadValueObject):
         if self._short_instrument_name_markup is None:
             if self.short_instrument_name:
                 string = self.short_instrument_name
-                string = stringtools.String(string).capitalize_start()
+                string = datastructuretools.String(string).capitalize_start()
                 markup = markuptools.Markup(contents=string)
                 self._short_instrument_name_markup = markup
             else:

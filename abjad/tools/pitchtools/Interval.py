@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 import abc
+import functools
 import re
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 
+@functools.total_ordering
 class Interval(AbjadValueObject):
-    '''Interval base class.
+    '''Abstract interval.
     
     ::
         >>> import abjad
@@ -54,29 +56,19 @@ class Interval(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Absolute value of interval.
+        r'''Gets absolute value of interval.
 
         Returns new interval.
         '''
         return type(self)(abs(self.number))
 
-    def __float__(self):
-        r'''Change interval to float.
+    @abc.abstractmethod
+    def __lt__(self, argument):
+        r'''Is true when interval is less than `argument`.
 
-        Returns float.
+        Returns true or false.
         '''
-        message = 'float needs to be implemented on {}.'
-        message = message.format(type(self))
-        raise NotImplementedError(message)
-
-    def __int__(self):
-        r'''Change interval to integer.
-
-        Returns integer.
-        '''
-        message = 'int needs to be implemented on {}.'
-        message = message.format(type(self))
-        raise NotImplementedError(message)
+        raise NotImplementedError
 
     def __neg__(self):
         r'''Negates interval.
@@ -86,16 +78,15 @@ class Interval(AbjadValueObject):
         pass
 
     def __str__(self):
-        r'''String representation of interval.
+        r'''Gets string representation of interval.
 
         Returns string.
         '''
         return str(self.number)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _direction_symbol(self):
+    def _get_direction_symbol(self):
         if self.direction_number == -1:
             return '-'
         elif self.direction_number == 0:
@@ -104,28 +95,6 @@ class Interval(AbjadValueObject):
             return '+'
         else:
             raise ValueError
-
-    @property
-    def _format_string(self):
-        return str(self.number)
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        if type(self).__name__.startswith('Named'):
-            values = [str(self)]
-        else:
-            values = [
-                mathtools.integer_equivalent_number_to_integer(float(self))
-                ]
-        return systemtools.FormatSpecification(
-            client=self,
-            coerce_for_equality=True,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
-            storage_format_args_values=values,
-            template_names=['direction_number', 'interval_number'],
-            )
 
     ### PUBLIC PROPERTIES ###
 

@@ -20,7 +20,7 @@ class RegistrationComponent(AbjadValueObject):
 
             >>> component = abjad.RegistrationComponent('[A0, C8]', 15)
             >>> component
-            RegistrationComponent(source_pitch_range=PitchRange(range_string='[A0, C8]'), target_octave_start_pitch=NumberedPitch(15))
+            RegistrationComponent(source_pitch_range=PitchRange('[A0, C8]'), target_octave_start_pitch=NumberedPitch(15))
 
     '''
 
@@ -57,12 +57,7 @@ class RegistrationComponent(AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.source_pitch_range == argument.source_pitch_range:
-                if (self.target_octave_start_pitch ==
-                    argument.target_octave_start_pitch):
-                    return True
-        return False
+        return super(RegistrationComponent, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats registration component.
@@ -98,7 +93,7 @@ class RegistrationComponent(AbjadValueObject):
             ::
 
                 >>> component.source_pitch_range
-                PitchRange(range_string='[A0, C8]')
+                PitchRange('[A0, C8]')
 
         Returns pitch range or none.
         '''

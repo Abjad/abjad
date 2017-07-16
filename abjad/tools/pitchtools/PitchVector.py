@@ -21,7 +21,7 @@ class PitchVector(Vector):
         ::
 
             >>> items = list(vector.items())
-            >>> items.sort(key=lambda x: x[0].pitch_number)
+            >>> items.sort(key=lambda x: x[0].number)
             >>> for pitch_class, count in items:
             ...     print(pitch_class, count)
             -3 2

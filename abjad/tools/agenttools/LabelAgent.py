@@ -664,20 +664,23 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         color_map = color_map or self._pc_number_to_color
         for leaf in iterate(self.client).by_leaf():
             if isinstance(leaf, scoretools.Chord):
                 for note_head in leaf.note_heads:
-                    pc = note_head.written_pitch.numbered_pitch_class
+                    number = note_head.written_pitch.number
+                    pc = abjad.NumberedPitchClass(number)
                     color = color_map.get(pc, None)
                     if color is not None:
                         note_head.tweak.color = color
             elif isinstance(leaf, scoretools.Note):
                 note_head = leaf.note_head
-                pc = note_head.written_pitch.numbered_pitch_class
-                color = color_map[pc.pitch_class_number]
+                number = note_head.written_pitch.number
+                pc = abjad.NumberedPitchClass(number)
+                color = color_map[pc.number]
                 if color is not None:
                     override(leaf).note_head.color = color
 
@@ -1850,10 +1853,7 @@ class LabelAgent(abctools.AbjadObject):
                 pitches = pitchtools.PitchSegment.from_selection(leaves)
                 if not pitches:
                     continue
-                pitch_numbers = [
-                    pitch.numbered_pitch.pitch_number
-                    for pitch in pitches
-                    ]
+                pitch_numbers = [pitch.number for pitch in pitches]
                 pitch_numbers = [markuptools.Markup(_) for _ in pitch_numbers]
                 label = markuptools.Markup.column(pitch_numbers, direction)
             elif prototype is pitchtools.NumberedPitchClass:
@@ -1861,10 +1861,7 @@ class LabelAgent(abctools.AbjadObject):
                 pitches = pitchtools.PitchSegment.from_selection(leaves)
                 if not pitches:
                     continue
-                pitch_classes = [
-                    pitch.numbered_pitch_class.pitch_class_number
-                    for pitch in pitches
-                    ]
+                pitch_classes = [pitch.pitch_class.number for pitch in pitches]
                 pitch_classes = list(set(pitch_classes))
                 pitch_classes.sort()
                 pitch_classes.reverse()
@@ -1876,7 +1873,7 @@ class LabelAgent(abctools.AbjadObject):
                 notes = [_ for _ in leaves if isinstance(_, scoretools.Note)]
                 if not notes:
                     continue
-                notes.sort(key=lambda x: x.written_pitch.numbered_pitch)
+                notes.sort(key=lambda x: x.written_pitch.number)
                 notes.reverse()
                 bass_note = notes[-1]
                 upper_notes = notes[:-1]
@@ -1893,7 +1890,7 @@ class LabelAgent(abctools.AbjadObject):
                 notes = [_ for _ in leaves if isinstance(_, scoretools.Note)]
                 if not notes:
                     continue
-                notes.sort(key=lambda x: x.written_pitch.numbered_pitch)
+                notes.sort(key=lambda x: x.written_pitch.number)
                 notes.reverse()
                 bass_note = notes[-1]
                 upper_notes = notes[:-1]
@@ -3526,27 +3523,27 @@ class LabelAgent(abctools.AbjadObject):
                     label = label.small()
             elif prototype is pitchtools.NumberedPitch:
                 if isinstance(leaf, scoretools.Note):
-                    pitch = leaf.written_pitch.pitch_number
+                    pitch = leaf.written_pitch.number
                     label = str(pitch)
                     label = markuptools.Markup(label, direction=direction)
                     label = label.small()
                 elif isinstance(leaf, scoretools.Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
-                    pitches = [_.pitch_number for _ in pitches]
+                    pitches = [_.number for _ in pitches]
                     pitches = [markuptools.Markup(_) for _ in pitches]
                     label = markuptools.Markup.column(pitches)
                     label = label.small()
             elif prototype is pitchtools.NumberedPitchClass:
                 if isinstance(leaf, scoretools.Note):
-                    pitch = leaf.written_pitch.pitch_class_number
+                    pitch = leaf.written_pitch.pitch_class.number
                     label = str(pitch)
                     label = markuptools.Markup(label, direction=direction)
                     label = label.small()
                 elif isinstance(leaf, scoretools.Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
-                    pitches = [_.pitch_class_number for _ in pitches]
+                    pitches = [_.pitch_class.number for _ in pitches]
                     pitches = [markuptools.Markup(_) for _ in pitches]
                     label = markuptools.Markup.column(pitches)
                     label = label.small()

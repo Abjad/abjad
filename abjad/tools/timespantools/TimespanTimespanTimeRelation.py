@@ -291,12 +291,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Returns true or false.
         '''
-#        if isinstance(argument, type(self)):
-#            if self.inequality == argument.inequality:
-#                if self.timespan_1 == argument.timespan_1:
-#                    if self.timespan_2 == argument.timespan_2:
-#                        return True
-#        return False
         return super(TimespanTimespanTimeRelation, self).__eq__(argument)
 
     def __hash__(self):

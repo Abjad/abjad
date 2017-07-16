@@ -9,7 +9,7 @@ from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 
@@ -2647,7 +2647,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[2].direction = p[1]
         except AttributeError:
             direction = \
-                stringtools.String.to_tridirectional_ordinal_constant(p[1])
+                datastructuretools.String.to_tridirectional_ordinal_constant(p[1])
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]
@@ -2663,7 +2663,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[2].direction = p[1]
         except AttributeError:
             direction = \
-                stringtools.String.to_tridirectional_ordinal_constant(p[1])
+                datastructuretools.String.to_tridirectional_ordinal_constant(p[1])
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]

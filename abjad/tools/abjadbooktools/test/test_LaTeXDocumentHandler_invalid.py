@@ -2,6 +2,7 @@
 import abjad
 import platform
 import unittest
+from abjad.tools import abjadbooktools
 
 
 @unittest.skipIf(
@@ -17,7 +18,7 @@ class TestLaTeXDocumentHandler_invalid(unittest.TestCase):
             '<abjad>',
             '<abjad>',
             ]
-        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         self.assertRaises(
@@ -30,7 +31,7 @@ class TestLaTeXDocumentHandler_invalid(unittest.TestCase):
             '<abjad>',
             '%%% ABJADBOOK START %%%',
             ]
-        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         self.assertRaises(
@@ -43,7 +44,7 @@ class TestLaTeXDocumentHandler_invalid(unittest.TestCase):
             '<abjad>',
             '%%% ABJADBOOK END %%%',
             ]
-        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         self.assertRaises(
@@ -56,7 +57,7 @@ class TestLaTeXDocumentHandler_invalid(unittest.TestCase):
             '%%% ABJADBOOK START %%%',
             '%%% ABJADBOOK START %%%',
             ]
-        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         self.assertRaises(
@@ -69,7 +70,7 @@ class TestLaTeXDocumentHandler_invalid(unittest.TestCase):
             '%%% ABJADBOOK START %%%',
             '<abjad>',
             ]
-        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         self.assertRaises(
@@ -82,7 +83,7 @@ class TestLaTeXDocumentHandler_invalid(unittest.TestCase):
             '%%% ABJADBOOK START %%%',
             '</abjad>',
             ]
-        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         self.assertRaises(
@@ -95,7 +96,7 @@ class TestLaTeXDocumentHandler_invalid(unittest.TestCase):
             ''
             '</abjad>',
             ]
-        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         self.assertRaises(
@@ -108,7 +109,7 @@ class TestLaTeXDocumentHandler_invalid(unittest.TestCase):
             ''
             '%%% ABJADBOOK END %%%',
             ]
-        document_handler = abjad.abjadbooktools.LaTeXDocumentHandler(
+        document_handler = abjadbooktools.LaTeXDocumentHandler(
             input_file_contents=input_file_contents,
             )
         self.assertRaises(

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import abc
 import copy
-from abjad.tools import sequencetools
+from abjad.tools import datastructuretools
+from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -84,7 +85,7 @@ class SearchTree(AbjadObject):
         indices, subdivisions = [], []
         leaves = list(q_grid.leaves)
         i = 0
-        for leaf_one, leaf_two in sequencetools.Sequence(leaves).nwise():
+        for leaf_one, leaf_two in datastructuretools.Sequence(leaves).nwise():
             if leaf_one.is_divisible:
                 succeeding_proxies = leaf_one.succeeding_q_event_proxies
                 preceding_proxies = leaf_two.preceding_q_event_proxies
@@ -112,7 +113,7 @@ class SearchTree(AbjadObject):
             self._find_divisible_leaf_indices_and_subdivisions(q_grid)
         if not indices:
             return ()
-        enumerator = sequencetools.Enumerator(subdivisions)
+        enumerator = mathtools.Enumerator(subdivisions)
         combinations = enumerator.yield_outer_product()
         combinations = [tuple(_) for _ in combinations]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)

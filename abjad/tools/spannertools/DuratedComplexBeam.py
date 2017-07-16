@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import collections
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import sequencetools
 from abjad.tools.spannertools.ComplexBeam import ComplexBeam
-from abjad.tools.topleveltools import inspect
 
 
 class DuratedComplexBeam(ComplexBeam):
@@ -161,7 +160,7 @@ class DuratedComplexBeam(ComplexBeam):
             if self.nibs_towards_nonbeamable_components:
                 right = self.span_beam_count
             else:
-                next_leaf = inspect(leaf).get_leaf(1)
+                next_leaf = abjad.inspect(leaf).get_leaf(1)
                 if self._is_beamable(
                     next_leaf,
                     beam_rests=self.beam_rests,
@@ -173,7 +172,7 @@ class DuratedComplexBeam(ComplexBeam):
             if self.nibs_towards_nonbeamable_components:
                 left = self.span_beam_count
             else:
-                previous_leaf = inspect(leaf).get_leaf(-1)
+                previous_leaf = abjad.inspect(leaf).get_leaf(-1)
                 if self._is_beamable(
                     previous_leaf,
                     beam_rests=self.beam_rests,
@@ -194,13 +193,14 @@ class DuratedComplexBeam(ComplexBeam):
         return result
 
     def _fracture_left(self, i):
+        import abjad
         self, left, right = ComplexBeam._fracture_left(self, i)
         weights = [
-            inspect(left).get_duration(),
-            inspect(right).get_duration(),
+            abjad.inspect(left).get_duration(),
+            abjad.inspect(right).get_duration(),
             ]
         assert sum(self.durations) == sum(weights)
-        split_durations = sequencetools.Sequence(self.durations)
+        split_durations = datastructuretools.Sequence(self.durations)
         split_durations = split_durations.split(
             weights,
             cyclic=False,
@@ -212,13 +212,14 @@ class DuratedComplexBeam(ComplexBeam):
         return self, left, right
 
     def _fracture_right(self, i):
+        import abjad
         self, left, right = ComplexBeam._fracture_right(self, i)
         weights = [
-            inspect(left).get_duration(),
-            inspect(right).get_duration(),
+            abjad.inspect(left).get_duration(),
+            abjad.inspect(right).get_duration(),
             ]
         assert sum(self.durations) == sum(weights)
-        split_durations = sequencetools.Sequence(self.durations)
+        split_durations = datastructuretools.Sequence(self.durations)
         split_durations = split_durations.split(
             weights,
             cyclic=False,

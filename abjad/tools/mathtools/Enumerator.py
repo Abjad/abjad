@@ -21,9 +21,9 @@ class Enumerator(abctools.AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, sequence=None):
-        from abjad.tools import sequencetools
+        from abjad.tools import datastructuretools
         if sequence is not None:
-            sequence = sequencetools.Sequence(items=sequence)
+            sequence = datastructuretools.Sequence(items=sequence)
         self._sequence = sequence
 
     ### PRIVATE METHODS ###

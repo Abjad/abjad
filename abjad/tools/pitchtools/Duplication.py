@@ -177,7 +177,6 @@ class Duplication(abctools.AbjadValueObject):
         '''
         from abjad.tools import datastructuretools
         from abjad.tools import patterntools
-        from abjad.tools import sequencetools
 
         if not isinstance(argument, collections.Sequence):
             argument = (argument,)
@@ -212,7 +211,7 @@ class Duplication(abctools.AbjadValueObject):
                 result = new(argument, items=())
             else:
                 result = type(argument)()
-            iterator = sequencetools.Sequence(argument).partition_by_counts(
+            iterator = datastructuretools.Sequence(argument).partition_by_counts(
                 [self.period],
                 cyclic=True,
                 overhang=True,

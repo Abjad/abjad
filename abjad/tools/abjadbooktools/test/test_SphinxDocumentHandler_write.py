@@ -7,6 +7,7 @@ import posixpath
 import platform
 import shutil
 import unittest
+from abjad.tools import abjadbooktools
 from sphinx.util import FilenameUniqDict
 
 
@@ -66,12 +67,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
@@ -101,12 +102,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
@@ -137,12 +138,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
@@ -174,12 +175,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
@@ -212,13 +213,13 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
-        abjad.abjadbooktools.SphinxDocumentHandler.on_builder_inited(self.app)
+        abjadbooktools.SphinxDocumentHandler.on_builder_inited(self.app)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
@@ -255,12 +256,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(staff)
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
@@ -310,12 +311,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(staff)
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
@@ -360,12 +361,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(staff)
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
@@ -415,12 +416,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(staff)
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
@@ -469,12 +470,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(staff)
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
@@ -531,12 +532,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             show(staff)
         '''
         source = abjad.String.normalize(source)
-        handler = abjad.abjadbooktools.SphinxDocumentHandler()
+        handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         node = document[0]
         try:
-            abjad.abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass

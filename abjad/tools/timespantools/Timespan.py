@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import copy
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools.topleveltools import new
 from abjad.tools.mathtools.BoundedObject import BoundedObject
 
@@ -127,8 +127,6 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-#        from abjad.tools import systemtools
-#        return systemtools.TestManager.compare_objects(self, timespan)
         return super(Timespan, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
@@ -921,7 +919,7 @@ class Timespan(BoundedObject):
             [self._start_offset] + part_durations,
             start=None,
             )
-        offset_pairs = sequencetools.Sequence(start_offsets).nwise()
+        offset_pairs = datastructuretools.Sequence(start_offsets).nwise()
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 

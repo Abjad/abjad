@@ -5,8 +5,8 @@ import inspect
 from abjad.tools import abctools
 from abjad.tools import durationtools
 from abjad.tools import expressiontools
+from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import iterate
 
@@ -161,14 +161,14 @@ class IterationAgent(abctools.AbjadObject):
         pitches_1 = sorted(iterate(expr_1).by_pitch())
         pitches_2 = sorted(iterate(expr_2).by_pitch())
         sequences = [pitches_1, pitches_2]
-        enumerator = sequencetools.Enumerator(sequences)
+        enumerator = mathtools.Enumerator(sequences)
         for pair in enumerator.yield_outer_product():
             yield pair
 
     @staticmethod
     def _list_unordered_pitch_pairs(argument):
         pitches = sorted(iterate(argument).by_pitch())
-        enumerator = sequencetools.Enumerator(pitches)
+        enumerator = mathtools.Enumerator(pitches)
         for pair in enumerator.yield_pairs():
             yield pair
 
@@ -1295,15 +1295,15 @@ class IterationAgent(abctools.AbjadObject):
         vertical_moments = self.by_vertical_moment()
         def _closure(vertical_moments):
             for moment_1, moment_2 in abjad.Sequence(vertical_moments).nwise():
-                enumerator = sequencetools.Enumerator(moment_1.start_leaves)
+                enumerator = mathtools.Enumerator(moment_1.start_leaves)
                 for pair in enumerator.yield_pairs():
                     yield abjad.select(pair)
                 sequences = [moment_1.leaves, moment_2.start_leaves]
-                enumerator = sequencetools.Enumerator(sequences)
+                enumerator = mathtools.Enumerator(sequences)
                 for pair in enumerator.yield_outer_product():
                     yield abjad.select(pair)
             else:
-                enumerator = sequencetools.Enumerator(moment_2.start_leaves)
+                enumerator = mathtools.Enumerator(moment_2.start_leaves)
                 for pair in enumerator.yield_pairs():
                     yield abjad.select(pair)
         return _closure(vertical_moments)

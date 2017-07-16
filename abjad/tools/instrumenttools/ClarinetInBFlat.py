@@ -158,7 +158,7 @@ class ClarinetInBFlat(Instrument):
             ::
 
                 >>> clarinet.pitch_range
-                PitchRange(range_string='[D3, Bb6]')
+                PitchRange('[D3, Bb6]')
 
             ::
 

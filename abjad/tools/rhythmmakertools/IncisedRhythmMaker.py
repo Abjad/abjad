@@ -4,7 +4,6 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
@@ -320,7 +319,7 @@ class IncisedRhythmMaker(RhythmMaker):
         middle = numerator - prefix_weight - suffix_weight
         if numerator < prefix_weight:
             weights = [numerator]
-            prefix = sequencetools.Sequence(prefix)
+            prefix = datastructuretools.Sequence(prefix)
             prefix = prefix.split(weights, cyclic=False, overhang=False)[0]
         middle = self._make_middle_of_numeric_map_part(middle)
         suffix_space = numerator - prefix_weight
@@ -328,7 +327,7 @@ class IncisedRhythmMaker(RhythmMaker):
             suffix = ()
         elif suffix_space < suffix_weight:
             weights = [suffix_space]
-            suffix = sequencetools.Sequence(suffix)
+            suffix = datastructuretools.Sequence(suffix)
             suffix = suffix.split(weights, cyclic=False, overhang=False)[0]
         numeric_map_part = prefix + middle + suffix
         return [durationtools.Duration(x) for x in numeric_map_part]

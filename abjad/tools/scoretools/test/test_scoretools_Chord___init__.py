@@ -31,8 +31,8 @@ def test_scoretools_Chord___init___04():
     '''
 
     pitches = []
-    pitches.append(abjad.NamedPitch('ds', 4))
-    pitches.append(abjad.NamedPitch('ef', 4))
+    pitches.append(abjad.NamedPitch('D#4'))
+    pitches.append(abjad.NamedPitch('Eb4'))
     chord = abjad.Chord(pitches, (1, 4))
     assert format(chord) == "<ds' ef'>4"
 

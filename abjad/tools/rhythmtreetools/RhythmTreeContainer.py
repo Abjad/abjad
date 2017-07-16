@@ -343,6 +343,14 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
                     )
         return graph
 
+    def __radd__(self, argument):
+        r'''Concatenates containers argument and self.
+
+        Returns new RhythmTreeContainer.
+        '''
+        assert isinstance(argument, type(self))
+        return argument.__add__(self)
+
     def __repr__(self):
         r'''Gets interpreter representation of rhythm tree container.
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import abc
 import bisect
+from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
@@ -187,7 +187,7 @@ class QTarget(AbjadObject):
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
         beats = self.beats
-        for one, two in sequencetools.Sequence(beats).nwise():
+        for one, two in datastructuretools.Sequence(beats).nwise():
             one_q_events = one.q_grid.next_downbeat.q_event_proxies
             two_q_events = two.q_grid.leaves[0].q_event_proxies
             while one_q_events:

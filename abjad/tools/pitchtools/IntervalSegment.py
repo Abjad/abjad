@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import new
 
@@ -42,15 +42,11 @@ class IntervalSegment(Segment):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        item_class=None,
-        ):
+    def __init__(self, items=None, item_class=None):
         from abjad.tools import pitchtools
         if isinstance(items, pitchtools.PitchSegment):
             intervals = []
-            for one, two in sequencetools.Sequence(items).nwise():
+            for one, two in datastructuretools.Sequence(items).nwise():
                 intervals.append(one - two)
             items = intervals
         Segment.__init__(
@@ -97,7 +93,7 @@ class IntervalSegment(Segment):
 
     @property
     def spread(self):
-        r'''Spread of interval segment.
+        r'''Gets spread of interval segment.
 
         The maximum interval spanned by any combination of
         the intervals within a numbered interval segment.
@@ -117,7 +113,7 @@ class IntervalSegment(Segment):
         from abjad.tools import pitchtools
         current = maximum = minimum = 0
         for x in self:
-            current += float(x)
+            current += float(x.number)
             if maximum < current:
                 maximum = current
             if current < minimum:

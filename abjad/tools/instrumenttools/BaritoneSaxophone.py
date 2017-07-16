@@ -134,7 +134,7 @@ class BaritoneSaxophone(Instrument):
             ::
 
                 >>> baritone_saxophone.pitch_range
-                PitchRange(range_string='[C2, Ab4]')
+                PitchRange('[C2, Ab4]')
 
             ::
 

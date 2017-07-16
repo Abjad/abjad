@@ -2,7 +2,6 @@
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -271,7 +270,7 @@ class BurnishSpecifier(AbjadValueObject):
             else:
                 middle = middle_count * [0]
             right = right[:right_count]
-            left_part, middle_part, right_part = sequencetools.Sequence(
+            left_part, middle_part, right_part = datastructuretools.Sequence(
                     division).partition_by_counts(
                     [left_count, middle_count, right_count],
                     cyclic=False,
@@ -319,7 +318,7 @@ class BurnishSpecifier(AbjadValueObject):
             middle = [middle_classes[0]]
             middle = middle_count * middle
             right = right[:right_count]
-            left_part, middle_part, right_part = sequencetools.Sequence(
+            left_part, middle_part, right_part = datastructuretools.Sequence(
                     divisions[0]).partition_by_counts(
                     [left_count, middle_count, right_count],
                     cyclic=False,
@@ -340,7 +339,7 @@ class BurnishSpecifier(AbjadValueObject):
                 middle_classes = [1]
             middle = [middle_classes[0]]
             middle = middle_count * middle
-            left_part, middle_part = sequencetools.Sequence(
+            left_part, middle_part = datastructuretools.Sequence(
                     divisions[0]).partition_by_counts(
                     [left_count, middle_count],
                     cyclic=False,
@@ -366,7 +365,7 @@ class BurnishSpecifier(AbjadValueObject):
             middle_count = len(divisions[-1]) - right_count
             right = right[:right_count]
             middle = middle_count * [middle_classes[0]]
-            middle_part, right_part = sequencetools.Sequence(
+            middle_part, right_part = datastructuretools.Sequence(
                     divisions[-1]).partition_by_counts(
                     [middle_count, right_count],
                     cyclic=False,
@@ -442,7 +441,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     def _trivial_helper(self, sequence_, rotation):
         if isinstance(rotation, int) and len(sequence_):
-            return sequencetools.Sequence(sequence_).rotate(n=rotation)
+            return datastructuretools.Sequence(sequence_).rotate(n=rotation)
         return sequence_
 
     ### PUBLIC PROPERTIES ###

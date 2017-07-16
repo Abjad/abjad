@@ -6,7 +6,7 @@ import inspect
 import os
 from abjad.tools import abctools
 from abjad.tools import documentationtools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 try:
     from ConfigParser import ConfigParser
 except ImportError:
@@ -50,7 +50,7 @@ class CommandlineScript(abctools.AbjadObject):
         short_description = getattr(self, 'short_description', None)
         long_description = getattr(self, 'long_description', None)
         if long_description:
-            long_description = stringtools.String.normalize(long_description)
+            long_description = datastructuretools.String.normalize(long_description)
         parser = self._argument_parser = argparse.ArgumentParser(
             description=short_description,
             epilog=long_description,
@@ -188,6 +188,6 @@ class CommandlineScript(abctools.AbjadObject):
         r'''The name of the script, callable from the command line.
         '''
         name = type(self).__name__[:type(self).__name__.rfind('Script')]
-        name = stringtools.String(name).to_space_delimited_lowercase()
+        name = datastructuretools.String(name).to_space_delimited_lowercase()
         name = name.replace(' ', '-')
         return name

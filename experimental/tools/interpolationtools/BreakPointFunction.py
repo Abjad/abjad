@@ -3,7 +3,6 @@ import bisect
 import numbers
 import operator
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 

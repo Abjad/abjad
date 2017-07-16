@@ -134,7 +134,7 @@ class SopraninoSaxophone(Instrument):
             ::
 
                 >>> sopranino_saxophone.pitch_range
-                PitchRange(range_string='[Db4, F#6]')
+                PitchRange('[Db4, F#6]')
 
             ::
 

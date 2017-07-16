@@ -2,7 +2,6 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
 from abjad.tools import systemtools
 from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
@@ -360,7 +359,7 @@ class Container(Component):
         graph._node_order = node_order
 
         if spanner:
-            pairs = sequencetools.Sequence(spanner.components).nwise()
+            pairs = datastructuretools.Sequence(spanner.components).nwise()
             for component_one, component_two in pairs:
                 node_one = node_mapping[component_one]
                 node_two = node_mapping[component_two]

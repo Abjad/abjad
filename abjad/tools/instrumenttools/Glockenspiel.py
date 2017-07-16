@@ -131,7 +131,7 @@ class Glockenspiel(Instrument):
             ::
 
                 >>> glockenspiel.pitch_range
-                PitchRange(range_string='[G5, C8]')
+                PitchRange('[G5, C8]')
 
             ::
 

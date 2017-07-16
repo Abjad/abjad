@@ -74,10 +74,10 @@ def sequence(items=None, **keywords):
 
     Returns sequence expression when `items` is none.
     '''
+    from abjad.tools import datastructuretools
     from abjad.tools import expressiontools
-    from abjad.tools import sequencetools
     if items:
-        return sequencetools.Sequence(items=items, **keywords)
+        return datastructuretools.Sequence(items=items, **keywords)
     else:
         expression = expressiontools.Expression()
         expression = expression.sequence(**keywords)

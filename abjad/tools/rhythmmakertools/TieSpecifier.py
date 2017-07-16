@@ -2,9 +2,9 @@
 from __future__ import print_function
 import collections
 import itertools
+from abjad.tools import datastructuretools
 from abjad.tools import patterntools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import attach

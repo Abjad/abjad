@@ -2,9 +2,9 @@
 import abc
 from abjad import Fraction
 from abjad.tools import abctools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 
 
 class RhythmTreeMixin(abctools.AbjadObject):
@@ -238,7 +238,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
         '''
         prolations = [durationtools.Multiplier(1)]
         improper_parentage = self.improper_parentage
-        pairs = sequencetools.Sequence(improper_parentage).nwise()
+        pairs = datastructuretools.Sequence(improper_parentage).nwise()
         for child, parent in pairs:
             prolations.append(durationtools.Multiplier(
                 parent.preprolated_duration, parent._get_contents_duration()))

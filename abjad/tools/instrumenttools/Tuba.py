@@ -136,7 +136,7 @@ class Tuba(Instrument):
             ::
 
                 >>> tuba.pitch_range
-                PitchRange(range_string='[D1, F4]')
+                PitchRange('[D1, F4]')
 
             ::
 

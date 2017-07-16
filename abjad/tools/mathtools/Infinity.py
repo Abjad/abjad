@@ -61,9 +61,6 @@ class Infinity(AbjadValueObject):
 
         Returns true or false.
         '''
-#        if isinstance(argument, type(self)):
-#            return self._value == argument._value
-#        return False
         return super(Infinity, self).__eq__(argument)
 
     def __float__(self):

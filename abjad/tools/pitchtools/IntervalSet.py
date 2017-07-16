@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
+from abjad.tools import mathtools
 from abjad.tools.pitchtools.Set import Set
 
 
@@ -29,7 +29,7 @@ class IntervalSet(Set):
             )
         if isinstance(items, prototype):
             items = list(items)
-            enumerator = sequencetools.Enumerator(items)
+            enumerator = mathtools.Enumerator(items)
             pairs = enumerator.yield_pairs()
             items = [second - first for first, second in pairs]
         Set.__init__(
@@ -92,7 +92,7 @@ class IntervalSet(Set):
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        enumerator = sequencetools.Enumerator(pitch_segment)
+        enumerator = mathtools.Enumerator(pitch_segment)
         pairs = enumerator.yield_pairs()
         intervals = [second - first for first, second in pairs]
         return class_(

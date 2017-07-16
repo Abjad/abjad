@@ -123,11 +123,7 @@ class PitchSegment(Segment):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        item_class=None,
-        ):
+    def __init__(self, items=None, item_class=None):
         if not items and not item_class:
             item_class = self._named_item_class
         Segment.__init__(
@@ -295,15 +291,17 @@ class PitchSegment(Segment):
     ### PRIVATE METHODS ###
 
     def _is_equivalent_under_transposition(self, argument):
-        from abjad.tools import pitchtools
+        import abjad
         if not isinstance(argument, type(self)):
             return False
         if not len(self) == len(argument):
             return False
-        difference = -(pitchtools.NamedPitch(argument[0], 4) -
-            pitchtools.NamedPitch(self[0], 4))
+        difference = -(
+            abjad.NamedPitch(argument[0], 4) -
+            abjad.NamedPitch(self[0], 4)
+            )
         new_pitches = (x + difference for x in self)
-        new_pitches = new(self, items=new_pitches)
+        new_pitches = abjad.new(self, items=new_pitches)
         return argument == new_pitches
 
     ### PUBLIC PROPERTIES ###
@@ -658,8 +656,9 @@ class PitchSegment(Segment):
 
         Returns new pitch segment.
         '''
+        import abjad
         items = [_.invert(axis=axis) for _ in self]
-        return new(self, items=items)
+        return abjad.new(self, items=items)
 
     def make_notes(self, n=None, written_duration=None):
         r'''Makes first `n` notes in pitch segment.
@@ -811,8 +810,9 @@ class PitchSegment(Segment):
 
         Returns new pitch segment.
         '''
+        import abjad
         items = [_.multiply(n=n) for _ in self]
-        return new(self, items=items)
+        return abjad.new(self, items=items)
 
     def retrograde(self):
         r'''Retrograde of pitch segment.
@@ -892,7 +892,8 @@ class PitchSegment(Segment):
 
         Returns new pitch segment.
         '''
-        return new(self, items=reversed(self))
+        import abjad
+        return abjad.new(self, items=reversed(self))
 
     def rotate(self, n=0, stravinsky=False):
         r'''Rotates pitch segment by index `n`.
@@ -972,9 +973,9 @@ class PitchSegment(Segment):
 
         Returns new pitch segment.
         '''
-        from abjad.tools import sequencetools
-        rotated_pitches = sequencetools.Sequence(self._collection).rotate(n=n)
-        new_segment = new(self, items=rotated_pitches)
+        import abjad
+        rotated_pitches = abjad.Sequence(self._collection).rotate(n=n)
+        new_segment = abjad.new(self, items=rotated_pitches)
         if stravinsky:
             if self[0] != new_segment[0]:
                 interval = new_segment[0] - self[0]
@@ -1357,5 +1358,6 @@ class PitchSegment(Segment):
 
         Returns new pitch segment.
         '''
+        import abjad
         items = [_.transpose(n=n) for _ in self]
-        return new(self, items=items)
+        return abjad.new(self, items=items)

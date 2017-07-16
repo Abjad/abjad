@@ -11,7 +11,7 @@ def test_systemtools_IOManager_save_last_ly_as_01():
         if x.endswith('.ly')]
     if not lilypond_files:
         note = abjad.Note("c'4")
-        persist(note).as_ly()
+        abjad.persist(note).as_ly()
 
     systemtools.IOManager.save_last_ly_as('tmp_foo.ly')
     assert os.path.exists('tmp_foo.ly')

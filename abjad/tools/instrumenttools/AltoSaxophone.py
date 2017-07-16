@@ -101,9 +101,7 @@ class AltoSaxophone(Instrument):
                                 ),
                             ]
                         ),
-                    pitch_range=abjad.PitchRange(
-                        range_string='[Db3, A5]',
-                        ),
+                    pitch_range=abjad.PitchRange('[Db3, A5]'),
                     sounding_pitch_of_written_middle_c=abjad.NamedPitch('ef'),
                     )
 
@@ -176,7 +174,7 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_saxophone.pitch_range
-                PitchRange(range_string='[Db3, A5]')
+                PitchRange('[Db3, A5]')
 
             ::
 

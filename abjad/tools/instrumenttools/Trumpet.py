@@ -133,7 +133,7 @@ class Trumpet(Instrument):
             ::
 
                 >>> trumpet.pitch_range
-                PitchRange(range_string='[F#3, D6]')
+                PitchRange('[F#3, D6]')
 
             ::
 

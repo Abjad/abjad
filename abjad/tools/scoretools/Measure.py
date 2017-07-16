@@ -380,24 +380,22 @@ class Measure(Container):
 
     @staticmethod
     def _get_likely_multiplier_of_components(components):
-        pass
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        from abjad.tools import sequencetools
-        assert all(isinstance(x, scoretools.Component) for x in components)
+        import abjad
+        assert all(isinstance(x, abjad.Component) for x in components)
         logical_tie_duration_numerators = []
         items = iterate(components).by_topmost_logical_ties_and_components()
         for item in items:
-            if isinstance(item, selectiontools.LogicalTie):
+            if isinstance(item, abjad.LogicalTie):
                 logical_tie_duration = item._get_preprolated_duration()
                 numerator = logical_tie_duration.numerator
                 logical_tie_duration_numerators.append(numerator)
-        numerators = sequencetools.Sequence(logical_tie_duration_numerators)
+        numerators = abjad.Sequence(logical_tie_duration_numerators)
         if len(numerators.remove_repeats()) == 1:
             numerator = logical_tie_duration_numerators[0]
-            denominator = mathtools.greatest_power_of_two_less_equal(numerator)
+            denominator = abjad.mathtools.greatest_power_of_two_less_equal(
+                numerator)
             pair = (numerator, denominator)
-            likely_multiplier = durationtools.Multiplier(*pair)
+            likely_multiplier = abjad.Multiplier(*pair)
             return likely_multiplier
 
     def _get_lilypond_format(self):

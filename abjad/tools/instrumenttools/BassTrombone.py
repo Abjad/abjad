@@ -135,7 +135,7 @@ class BassTrombone(Instrument):
             ::
 
                 >>> bass_trombone.pitch_range
-                PitchRange(range_string='[C2, F4]')
+                PitchRange('[C2, F4]')
 
             ::
 

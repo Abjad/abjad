@@ -130,7 +130,7 @@ class Piccolo(Instrument):
             ::
 
                 >>> piccolo.pitch_range
-                PitchRange(range_string='[D5, C8]')
+                PitchRange('[D5, C8]')
 
             ::
 

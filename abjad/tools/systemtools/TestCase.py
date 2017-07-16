@@ -23,21 +23,21 @@ class TestCase(unittest.TestCase):
     ### PUBLIC METHODS ###
 
     def compare_captured_output(self, expected):
-        from abjad.tools import stringtools
+        from abjad.tools import datastructuretools
         actual = self.ansi_escape.sub('', self.string_io.getvalue())
         actual = abjad.String.normalize(actual)
         expected = abjad.String.normalize(expected)
         self.compare_strings(expected, actual)
 
     def compare_file_contents(self, path, expected_contents):
-        from abjad.tools import stringtools
+        from abjad.tools import datastructuretools
         expected_contents = abjad.String.normalize(expected_contents)
         with open(str(path), 'r') as file_pointer:
             contents = abjad.String.normalize(file_pointer.read())
         self.compare_strings(expected_contents, contents)
 
     def compare_lilypond_contents(self, ly_path, expected_contents):
-        from abjad.tools import stringtools
+        from abjad.tools import datastructuretools
         expected_contents = abjad.String.normalize(expected_contents)
         with open(str(ly_path), 'r') as file_pointer:
             contents = file_pointer.read()
@@ -79,7 +79,7 @@ class TestCase(unittest.TestCase):
             raise Exception(diff)
 
     def normalize(self, string):
-        from abjad.tools import stringtools
+        from abjad.tools import datastructuretools
         return abjad.String.normalize(string)
 
     def reset_string_io(self):

@@ -26,12 +26,8 @@ class PitchRangeList(TypedList):
             >>> f(ranges)
             abjad.PitchRangeList(
                 [
-                    abjad.PitchRange(
-                        range_string='[C3, C6]',
-                        ),
-                    abjad.PitchRange(
-                        range_string='[C4, C6]',
-                        ),
+                    abjad.PitchRange('[C3, C6]'),
+                    abjad.PitchRange('[C4, C6]'),
                     ]
                 )
 
@@ -253,12 +249,8 @@ class PitchRangeList(TypedList):
                 >>> f(ranges)
                 abjad.PitchRangeList(
                     [
-                        abjad.PitchRange(
-                            range_string='[C3, C6]',
-                            ),
-                        abjad.PitchRange(
-                            range_string='[C4, C6]',
-                            ),
+                        abjad.PitchRange('[C3, C6]'),
+                        abjad.PitchRange('[C4, C6]'),
                         ]
                     )
         

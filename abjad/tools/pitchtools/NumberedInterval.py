@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 import copy
-import functools
 import numbers
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
 
 
-@functools.total_ordering
 class NumberedInterval(Interval):
     '''Numbered interval.
 
@@ -51,22 +49,21 @@ class NumberedInterval(Interval):
 
     ### INITIALIZER ###
 
-    def __init__(self, argument=None):
+    def __init__(self, number=0):
         from abjad.tools import pitchtools
-        if isinstance(argument, (int, float, int)):
-            number = argument
-        elif isinstance(argument, pitchtools.Interval):
-            number = argument.semitones
-        elif isinstance(argument, pitchtools.IntervalClass):
-            interval_class = pitchtools.NumberedIntervalClass(argument)
+        if isinstance(number, (int, float)):
+            pass
+        elif isinstance(number, pitchtools.Interval):
+            number = number.semitones
+        elif isinstance(number, pitchtools.IntervalClass):
+            interval_class = pitchtools.NumberedIntervalClass(number)
             number = interval_class.number
-        elif argument is None:
-            number = 0
         else:
-            message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, argument)
+            message = 'can not initialize {} from {!r}.'
+            message = message.format(type(self).__name__, number)
             raise TypeError(message)
-        self._number = mathtools.integer_equivalent_number_to_integer(number)
+        number = mathtools.integer_equivalent_number_to_integer(number)
+        self._number = number
 
     ### SPECIAL METHODS ###
 
@@ -142,14 +139,8 @@ class NumberedInterval(Interval):
 
                 >>> interval_1 == interval_1
                 True
-
-            ::
-
                 >>> interval_1 == interval_2
                 True
-
-            ::
-
                 >>> interval_1 == interval_3
                 False
 
@@ -157,14 +148,8 @@ class NumberedInterval(Interval):
 
                 >>> interval_2 == interval_1
                 True
-
-            ::
-
                 >>> interval_2 == interval_2
                 True
-
-            ::
-
                 >>> interval_2 == interval_3
                 False
 
@@ -172,37 +157,14 @@ class NumberedInterval(Interval):
 
                 >>> interval_3 == interval_1
                 False
-
-            ::
-
                 >>> interval_3 == interval_2
                 False
-
-            ::
-
                 >>> interval_3 == interval_3
                 True
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.number == argument.number:
-                return True
-        return False
-
-    def __float__(self):
-        r'''Changes numbered interval to float.
-
-        ..  container:: example
-
-            ::
-
-                >>> float(abjad.NumberedInterval(-14))
-                -14.0
-
-        Returns float.
-        '''
-        return float(self._number)
+        return super(NumberedInterval, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes numbered interval.
@@ -210,20 +172,6 @@ class NumberedInterval(Interval):
         Returns integer.
         '''
         return super(NumberedInterval, self).__hash__()
-
-    def __int__(self):
-        r'''Changes numbered interval to integer.
-
-        ..  container:: example
-
-            ::
-
-                >>> int(abjad.NumberedInterval(-14))
-                -14
-
-        Returns integer.
-        '''
-        return int(self._number)
 
     def __lt__(self, argument):
         r'''Is true when `argument` is a numbered interval with same direction
@@ -308,12 +256,37 @@ class NumberedInterval(Interval):
         '''
         return type(self)(-self._number)
 
+    def __radd__(self, argument):
+        r'''Adds numbered interval to `argument`.
+
+        ..  container:: example
+
+            ::
+
+                >>> interval = abjad.NumberedInterval(14)
+                >>> abjad.NumberedInterval(3).__radd__(interval)
+                NumberedInterval(17)
+
+            ::
+
+                >>> interval = abjad.NumberedInterval(-14)
+                >>> abjad.NumberedInterval(3).__radd__(interval)
+                NumberedInterval(-11)
+
+        Returns new numbered interval.
+        '''
+        if not isinstance(argument, type(self)):
+            message = '{!r} must be {}.'
+            message = message.format(argument, type(self))
+            raise TypeError(message)
+        return argument.__add__(self)
+
     def __str__(self):
         r'''String representation of numbered interval.
 
         Returns string.
         '''
-        return self._format_string
+        return '{}{}'.format(self._get_direction_symbol(), abs(self.number))
 
     def __sub__(self, argument):
         r'''Subtracts `argument` from numbered interval.
@@ -327,22 +300,31 @@ class NumberedInterval(Interval):
         message = message.format(type(self), argument)
         raise TypeError(message)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _format_string(self):
-        return '{}{}'.format(self._direction_symbol, abs(self.number))
+    def _get_format_specification(self):
+        import abjad
+        values = [self.number]
+        return abjad.systemtools.FormatSpecification(
+            client=self,
+            coerce_for_equality=True,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            )
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def direction_number(self):
-        r'''Direction sign of numbered interval.
+        r'''Gets direction number of numbered interval.
 
-        ::
+        ..  container:: example
 
-            >>> abjad.NumberedInterval(-14).direction_number
-            -1
+            ::
+
+                >>> abjad.NumberedInterval(-14).direction_number
+                -1
 
         Returns integer.
         '''
@@ -350,12 +332,14 @@ class NumberedInterval(Interval):
 
     @property
     def direction_string(self):
-        r'''Direction string of named interval.
+        r'''Gets direction string of numbered interval.
 
-        ::
+        ..  container:: example
 
-            >>> abjad.NumberedInterval(-14).direction_string
-            'descending'
+            ::
+
+                >>> abjad.NumberedInterval(-14).direction_string
+                'descending'
 
         Returns ``'ascending'``, ``'descending'`` or none.
         '''
@@ -368,7 +352,7 @@ class NumberedInterval(Interval):
 
     @property
     def number(self):
-        r'''Number of numbered interval.
+        r'''Gets number of numbered interval.
 
         ..  container:: example
 
@@ -393,7 +377,7 @@ class NumberedInterval(Interval):
 
     @property
     def numbered_interval_number(self):
-        r'''Number of numbered interval.
+        r'''DEPRECATED.
 
         ..  container:: example
 
@@ -408,7 +392,14 @@ class NumberedInterval(Interval):
 
     @property
     def semitones(self):
-        r'''Semitones corresponding to numbered interval.
+        r'''Gets semitones corresponding to numbered interval.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NumberedInterval(-14).semitones
+                -14
 
         Returns nonnegative number.
         '''
@@ -466,15 +457,11 @@ class NumberedInterval(Interval):
         Returns numbered interval.
         '''
         from abjad.tools import pitchtools
-        # get pitches
         pitch_1 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_1)
         pitch_2 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_2)
-        # get difference in semitones
-        number = pitchtools.NumberedPitch(pitch_2).pitch_number - \
-            pitchtools.NumberedPitch(pitch_1).pitch_number
-        # change 1.0, 2.0, ... into 1, 2, ...
+        number = pitchtools.NumberedPitch(pitch_2).number - \
+            pitchtools.NumberedPitch(pitch_1).number
         number = mathtools.integer_equivalent_number_to_integer(number)
-        # return numbered interval
         return class_(number)
 
     def to_named_interval(self, staff_positions):
@@ -546,8 +533,10 @@ class NumberedInterval(Interval):
             if quality_string is None:
                 # TODO: handle double-augmented named intervals
                 return pitchtools.NamedInterval(self.number)
-            named_interval = pitchtools.NamedInterval(
-                quality_string, staff_positions)
+            named_interval = pitchtools.NamedInterval.from_quality_and_number(
+                quality_string,
+                staff_positions,
+                )
             return named_interval
         named_interval_class_number = staff_positions % 7
         numbered_interval_class_number = abs(self.number) % 12
@@ -626,7 +615,7 @@ class NumberedInterval(Interval):
                 quality_string = 'augmented'
         if not direction_number == 0:
             staff_positions *= direction_number
-        named_interval = pitchtools.NamedInterval(
+        named_interval = pitchtools.NamedInterval.from_quality_and_number(
             quality_string,
             staff_positions,
             )
@@ -649,20 +638,21 @@ class NumberedInterval(Interval):
                 >>> interval.transpose(chord)
                 Chord("<cs' f' af'>4")
 
-        Returns new (copied) object of `pitch_carrier` type.
+        Returns newly constructed object of `pitch_carrier` type.
         '''
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         if isinstance(pitch_carrier, pitchtools.Pitch):
-            number = pitch_carrier.pitch_number + self.semitones
+            number = pitch_carrier.number + self.semitones
             return type(pitch_carrier)(number)
         elif isinstance(pitch_carrier, numbers.Number):
             pitch_carrier = pitchtools.NumberedPitch(pitch_carrier)
             result = self.transpose(pitch_carrier)
-            return result.pitch_number
+            return result.number
         elif isinstance(pitch_carrier, scoretools.Note):
             new_note = copy.copy(pitch_carrier)
-            number = pitchtools.NumberedPitch(pitch_carrier.written_pitch).pitch_number
+            number = pitchtools.NumberedPitch(pitch_carrier.written_pitch)
+            number = number.number
             number += self.number
             new_pitch = pitchtools.NamedPitch(number)
             new_note.written_pitch = new_pitch
@@ -672,7 +662,7 @@ class NumberedInterval(Interval):
             pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
             for new_nh, old_nh in pairs:
                 number = \
-                    pitchtools.NumberedPitch(old_nh.written_pitch).pitch_number
+                    pitchtools.NumberedPitch(old_nh.written_pitch).number
                 number += self.number
                 new_pitch = pitchtools.NamedPitch(number)
                 new_nh.written_pitch = new_pitch

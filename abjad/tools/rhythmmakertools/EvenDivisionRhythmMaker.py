@@ -5,7 +5,6 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
 from abjad.tools.topleveltools import inspect
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
@@ -257,22 +256,22 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         left_counts = self.burnish_specifier.left_counts
         right_counts = self.burnish_specifier.right_counts
         left_classes = left_classes or ()
-        left_classes = sequencetools.Sequence(left_classes).rotate(n=rotation)
+        left_classes = datastructuretools.Sequence(left_classes).rotate(n=rotation)
         left_classes = datastructuretools.CyclicTuple(left_classes)
         if middle_classes == () or middle_classes is None:
             middle_classes = (0,)
-        middle_classes = sequencetools.Sequence(
+        middle_classes = datastructuretools.Sequence(
             middle_classes).rotate(n=rotation)
         middle_classes = datastructuretools.CyclicTuple(middle_classes)
         right_classes = right_classes or ()
-        right_classes = sequencetools.Sequence(
+        right_classes = datastructuretools.Sequence(
             right_classes).rotate(n=rotation)
         right_classes = datastructuretools.CyclicTuple(right_classes)
         left_counts = left_counts or (0,)
-        left_counts = sequencetools.Sequence(left_counts).rotate(n=rotation)
+        left_counts = datastructuretools.Sequence(left_counts).rotate(n=rotation)
         left_counts = datastructuretools.CyclicTuple(left_counts)
         right_counts = right_counts or (0,)
-        right_counts = sequencetools.Sequence(right_counts).rotate(n=rotation)
+        right_counts = datastructuretools.Sequence(right_counts).rotate(n=rotation)
         right_counts = datastructuretools.CyclicTuple(right_counts)
         if self.burnish_specifier.outer_divisions_only:
             procedure = self._burnish_outer_selections
@@ -332,7 +331,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             left = left[:left_length]
             middle = middle_length * [middle_classes[selection_index]]
             right = right[:right_length]
-            left_part, middle_part, right_part = sequencetools.Sequence(
+            left_part, middle_part, right_part = datastructuretools.Sequence(
                     leaves).partition_by_counts(
                     [left_length, middle_length, right_length],
                     cyclic=False,
@@ -386,7 +385,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             middle_classes = [1]
         middle = [middle_classes[0]]
         middle = middle_length * middle
-        left_part, middle_part = sequencetools.Sequence(
+        left_part, middle_part = datastructuretools.Sequence(
                 leaves).partition_by_counts(
                 [left_length, middle_length],
                 cyclic=False,
@@ -417,7 +416,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         middle_length = len(leaves) - right_length
         right = right[:right_length]
         middle = middle_length * [middle_classes[0]]
-        middle_part, right_part = sequencetools.Sequence(
+        middle_part, right_part = datastructuretools.Sequence(
                 leaves).partition_by_counts(
                 [middle_length, right_length],
                 cyclic=False,

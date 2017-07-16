@@ -47,10 +47,7 @@ class TwelveToneRow(PitchClassSegment):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
-        ):
+    def __init__(self, items=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)):
         from abjad.tools import pitchtools
         assert items is not None
         PitchClassSegment.__init__(
@@ -302,7 +299,7 @@ class TwelveToneRow(PitchClassSegment):
         new_pitch_classes = []
         for pitch_class in pitch_classes:
             pitch_class = pitchtools.NumberedPitchClass(pitch_class)
-            i = pitch_class.pitch_class_number
+            i = pitch_class.number
             new_pitch_class = self[i]
             new_pitch_classes.append(new_pitch_class)
         result = type(pitch_classes)(new_pitch_classes)
@@ -698,7 +695,7 @@ class TwelveToneRow(PitchClassSegment):
 
     @staticmethod
     def _validate_pitch_classes(pitch_classes):
-        numbers = [pc.pitch_class_number for pc in pitch_classes]
+        numbers = [pc.number for pc in pitch_classes]
         numbers.sort()
         if not numbers == list(range(12)):
             message = 'must contain all twelve pitch-classes: {!r}.'

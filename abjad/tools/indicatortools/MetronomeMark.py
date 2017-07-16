@@ -18,6 +18,7 @@ class MetronomeMark(AbjadValueObject):
     ::
 
         >>> import abjad
+        >>> import pytest
 
     ..  container:: example
 
@@ -280,12 +281,11 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> import pytest
                 >>> mark_1 = abjad.MetronomeMark(textual_indication='Langsam')
                 >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
                 >>> statement = 'mark_1 + mark_2'
                 >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
-                <ExceptionInfo ImpreciseMetronomeMarkError tblen=3>
+                <ExceptionInfo ImpreciseMetronomeMarkError ...>
 
         ..  container:: example
 
@@ -293,44 +293,45 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> import pytest
                 >>> mark_1 = abjad.MetronomeMark((1, 8), (90, 92))
                 >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
                 >>> statement = 'mark_1 + mark_2'
                 >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
-                <ExceptionInfo ImpreciseMetronomeMarkError tblen=3>
+                <ExceptionInfo ImpreciseMetronomeMarkError ...>
 
         ..  container:: example
 
-            Returns none when `argument` is not a metronome mark:
+            Raises type error when `argument` is not a metronome mark:
 
             ::
 
-                >>> abjad.MetronomeMark((1, 4), 60) + 90 is None
-                True
+                >>> statement = 'abjad.MetronomeMark((1, 4), 60) + 90'
+                >>> pytest.raises(TypeError, statement)
+                <ExceptionInfo TypeError ...>
 
         Returns new metronome mark or none.
         '''
-        if isinstance(argument, type(self)):
-            if self.is_imprecise or argument.is_imprecise:
-                raise ImpreciseMetronomeMarkError
-            new_quarters_per_minute = \
-                self.quarters_per_minute + argument.quarters_per_minute
-            minimum_denominator = \
-                min((self.reference_duration.denominator, argument.reference_duration.denominator))
-            nonreduced_fraction = \
-                mathtools.NonreducedFraction(new_quarters_per_minute / 4)
-            nonreduced_fraction = \
-                nonreduced_fraction.with_denominator(minimum_denominator)
-            new_units_per_minute, new_reference_duration_denominator = \
-                nonreduced_fraction.pair
-            new_reference_duration = \
-                durationtools.Duration(1, new_reference_duration_denominator)
-            metronome_mark = type(self)(
-                new_reference_duration,
-                new_units_per_minute,
-                )
-            return metronome_mark
+        if not isinstance(argument, type(self)):
+            raise TypeError(argument)
+        if self.is_imprecise or argument.is_imprecise:
+            raise ImpreciseMetronomeMarkError
+        new_quarters_per_minute = \
+            self.quarters_per_minute + argument.quarters_per_minute
+        minimum_denominator = \
+            min((self.reference_duration.denominator, argument.reference_duration.denominator))
+        nonreduced_fraction = \
+            mathtools.NonreducedFraction(new_quarters_per_minute / 4)
+        nonreduced_fraction = \
+            nonreduced_fraction.with_denominator(minimum_denominator)
+        new_units_per_minute, new_reference_duration_denominator = \
+            nonreduced_fraction.pair
+        new_reference_duration = \
+            durationtools.Duration(1, new_reference_duration_denominator)
+        metronome_mark = type(self)(
+            new_reference_duration,
+            new_units_per_minute,
+            )
+        return metronome_mark
 
     def __div__(self, argument):
         r'''Divides metronome mark by `argument`.
@@ -537,6 +538,65 @@ class MetronomeMark(AbjadValueObject):
             )
         return metronome_mark
 
+    def __radd__(self, argument):
+        r'''Adds `argument` to metronome mark.
+
+        ..  container:: example
+
+            Adds one metronome mark to another:
+
+            ::
+
+                >>> mark_1 = abjad.MetronomeMark((1, 4), 60)
+                >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
+                >>> mark_1 + mark_2
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=150)
+
+            ::
+
+                >>> mark_2 + mark_1
+                MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=150)
+
+        ..  container:: example
+
+            Raises imprecise metronome mark error with textual indication:
+
+            ::
+
+                >>> mark_1 = abjad.MetronomeMark(textual_indication='Langsam')
+                >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
+                >>> statement = 'mark_1 + mark_2'
+                >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
+                <ExceptionInfo ImpreciseMetronomeMarkError ...>
+
+        ..  container:: example
+
+            Raises imprecise metronome mark error with range:
+
+            ::
+
+                >>> mark_1 = abjad.MetronomeMark((1, 8), (90, 92))
+                >>> mark_2 = abjad.MetronomeMark((1, 4), 90)
+                >>> statement = 'mark_1 + mark_2'
+                >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
+                <ExceptionInfo ImpreciseMetronomeMarkError ...>
+
+        ..  container:: example
+
+            Raises type error when `argument` is not a metronome mark:
+
+            ::
+
+                >>> statement = '90 + abjad.MetronomeMark((1, 4), 60)'
+                >>> pytest.raises(TypeError, statement)
+                <ExceptionInfo TypeError ...>
+
+        Returns new metronome mark or none.
+        '''
+        if not isinstance(argument, type(self)):
+            raise TypeError(argument)
+        return argument.__add__(self)
+
     def __rmul__(self, multiplier):
         r'''Multiplies `multiplier` by metronome mark.
 
@@ -672,12 +732,11 @@ class MetronomeMark(AbjadValueObject):
 
             ::
 
-                >>> import pytest
                 >>> mark_1 = abjad.MetronomeMark(textual_indication='Langsam')
                 >>> mark_2 = abjad.MetronomeMark((1, 2), 90)
                 >>> statement = 'mark_1 - mark_2'
                 >>> pytest.raises(ImpreciseMetronomeMarkError, statement)
-                <ExceptionInfo ImpreciseMetronomeMarkError tblen=3>
+                <ExceptionInfo ImpreciseMetronomeMarkError ...>
 
         Returns new metronome mark.
         '''
@@ -1234,11 +1293,11 @@ class MetronomeMark(AbjadValueObject):
 
         Returns list of tempo / ratio pairs.
         '''
-        from abjad.tools import sequencetools
+        import abjad
         allowable_numerators = range(1, maximum_numerator + 1)
         allowable_denominators = range(1, maximum_denominator + 1)
         numbers = [allowable_numerators, allowable_denominators]
-        enumerator = sequencetools.Enumerator(numbers)
+        enumerator = mathtools.Enumerator(numbers)
         pairs = enumerator.yield_outer_product()
         multipliers = [durationtools.Multiplier(_) for _ in pairs]
         multipliers = [
@@ -1246,7 +1305,7 @@ class MetronomeMark(AbjadValueObject):
             if Fraction(1, 2) <= _ <= Fraction(2)
             ]
         multipliers.sort()
-        multipliers = sequencetools.Sequence(multipliers).remove_repeats()
+        multipliers = abjad.Sequence(multipliers).remove_repeats()
         pairs = []
         for multiplier in multipliers:
             new_units_per_minute = multiplier * self.units_per_minute

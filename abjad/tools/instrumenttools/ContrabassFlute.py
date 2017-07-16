@@ -133,7 +133,7 @@ class ContrabassFlute(Instrument):
             ::
 
                 >>> contrabass_flute.pitch_range
-                PitchRange(range_string='[G2, G5]')
+                PitchRange('[G2, G5]')
 
             ::
 

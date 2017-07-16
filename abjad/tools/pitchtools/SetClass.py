@@ -1519,7 +1519,7 @@ class SetClass(AbjadValueObject):
             item_class=pitchtools.NumberedPitchClass,
             )
         prime_form = pitch_class_set.get_prime_form()
-        prime_form = tuple([_.pitch_class_number for _ in sorted(prime_form)])
+        prime_form = tuple([_.number for _ in sorted(prime_form)])
         if lex_rank:
             pair = SetClass._prime_form_to_lex_identifier[prime_form]
         else:

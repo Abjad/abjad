@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -376,7 +375,8 @@ class CompoundOperator(AbjadValueObject):
 
         Returns new compound operator.
         '''
-        operator = sequencetools.Duplication(
+        import abjad
+        operator = abjad.Duplication(
             counts=counts,
             indices=indices,
             period=period,

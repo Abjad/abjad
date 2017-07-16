@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadValueObject
-from abjad.tools import sequencetools
+from abjad.tools import datastructuretools
 from abjad.tools import pitchtools
+from abjad.tools.abctools import AbjadValueObject
 
 
 class Mode(AbjadValueObject):
@@ -151,24 +151,24 @@ class Mode(AbjadValueObject):
 
     def _initialize_with_mode_name(self, mode_name):
         mdi_segment = []
-        m2 = pitchtools.NamedInterval('minor', 2)
-        M2 = pitchtools.NamedInterval('major', 2)
-        A2 = pitchtools.NamedInterval('augmented', 2)
+        m2 = pitchtools.NamedInterval('m2')
+        M2 = pitchtools.NamedInterval('M2')
+        A2 = pitchtools.NamedInterval('aug2')
         dorian = [M2, m2, M2, M2, M2, m2, M2]
         if mode_name == 'dorian':
-            mdi_segment.extend(sequencetools.Sequence(dorian).rotate(n=0))
+            mdi_segment.extend(datastructuretools.Sequence(dorian).rotate(n=0))
         elif mode_name == 'phrygian':
-            mdi_segment.extend(sequencetools.Sequence(dorian).rotate(n=-1))
+            mdi_segment.extend(datastructuretools.Sequence(dorian).rotate(n=-1))
         elif mode_name == 'lydian':
-            mdi_segment.extend(sequencetools.Sequence(dorian).rotate(n=-2))
+            mdi_segment.extend(datastructuretools.Sequence(dorian).rotate(n=-2))
         elif mode_name == 'mixolydian':
-            mdi_segment.extend(sequencetools.Sequence(dorian).rotate(n=-3))
+            mdi_segment.extend(datastructuretools.Sequence(dorian).rotate(n=-3))
         elif mode_name in ('aeolian', 'minor', 'natural minor'):
-            mdi_segment.extend(sequencetools.Sequence(dorian).rotate(n=-4))
+            mdi_segment.extend(datastructuretools.Sequence(dorian).rotate(n=-4))
         elif mode_name == 'locrian':
-            mdi_segment.extend(sequencetools.Sequence(dorian).rotate(n=-5))
+            mdi_segment.extend(datastructuretools.Sequence(dorian).rotate(n=-5))
         elif mode_name in ('ionian', 'major'):
-            mdi_segment.extend(sequencetools.Sequence(dorian).rotate(n=-6))
+            mdi_segment.extend(datastructuretools.Sequence(dorian).rotate(n=-6))
         elif mode_name == 'melodic minor':
             mdi_segment.extend([M2, m2, M2, M2, M2, M2, m2])
         elif mode_name == 'harmonic minor':

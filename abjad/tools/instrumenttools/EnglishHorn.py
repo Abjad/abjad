@@ -134,7 +134,7 @@ class EnglishHorn(Instrument):
             ::
 
                 >>> english_horn.pitch_range
-                PitchRange(range_string='[E3, C6]')
+                PitchRange('[E3, C6]')
 
             ::
 

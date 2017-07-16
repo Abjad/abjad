@@ -205,10 +205,10 @@ class GuileProxy(AbjadObject):
             key_signatures = music._get_indicators(indicatortools.KeySignature)
             if key_signatures:
                 for x in key_signatures:
-                    tonic = pitchtools.NamedPitch(x.tonic, 4)
+                    tonic = pitchtools.NamedPitch((x.tonic.name, 4))
                     # TODO: cheating to assign to a read-only property
                     x._tonic = lilypondparsertools.LilyPondParser._transpose_enharmonically(
-                        from_pitch, to_pitch, tonic).named_pitch_class
+                        from_pitch, to_pitch, tonic).pitch_class
             if isinstance(music, scoretools.Note):
                 music.written_pitch = \
                     lilypondparsertools.LilyPondParser._transpose_enharmonically(
@@ -280,32 +280,35 @@ class GuileProxy(AbjadObject):
             attach(annotation, music)
 
     def _to_relative_octave(self, pitch, reference):
-        if pitch.pitch_class_number > \
-            reference.pitch_class_number:
-            up_pitch = pitchtools.NamedPitch(
-                pitch.pitch_class_name, reference.octave.number)
-            down_pitch = pitchtools.NamedPitch(
-                pitch.pitch_class_name, reference.octave.number - 1)
-            up_octave, down_octave = \
-                up_pitch.octave.number, down_pitch.octave.number
+        if pitch.pitch_class.number > reference.pitch_class.number:
+            pair = (pitch.pitch_class.name, reference.octave.number)
+            up_pitch = pitchtools.NamedPitch(pair)
+            pair = (pitch.pitch_class.name, reference.octave.number - 1)
+            down_pitch = pitchtools.NamedPitch(pair)
+            up_octave = up_pitch.octave.number
+            down_octave = down_pitch.octave.number
         else:
-            up_pitch = pitchtools.NamedPitch(
-                pitch.pitch_class_name, reference.octave.number + 1)
-            down_pitch = pitchtools.NamedPitch(
-                pitch.pitch_class_name, reference.octave.number)
-            up_octave, down_octave = \
-                up_pitch.octave.number, down_pitch.octave.number
+            pair = (pitch.pitch_class.name, reference.octave.number + 1)
+            up_pitch = pitchtools.NamedPitch(pair)
+            pair = (pitch.pitch_class.name, reference.octave.number)
+            down_pitch = pitchtools.NamedPitch(pair)
+            up_octave= up_pitch.octave.number
+            down_octave = down_pitch.octave.number
         if abs(
-                float(up_pitch.diatonic_pitch_number) -
-                float(reference.diatonic_pitch_number)) < \
+                float(up_pitch._get_diatonic_pitch_number()) -
+                float(reference._get_diatonic_pitch_number())) < \
             abs(
-                float(down_pitch.diatonic_pitch_number) -
-                float(reference.diatonic_pitch_number)):
-            pitch = pitchtools.NamedPitch(
-                up_pitch.named_pitch_class,
-                up_octave + pitch.octave.number - 3)
+                float(down_pitch._get_diatonic_pitch_number()) -
+                float(reference._get_diatonic_pitch_number())):
+            pair = (
+                up_pitch.pitch_class.name,
+                up_octave + pitch.octave.number - 3,
+                )
+            pitch = pitchtools.NamedPitch(pair)
         else:
-            pitch = pitchtools.NamedPitch(
-                down_pitch.named_pitch_class,
-                down_octave + pitch.octave.number - 3)
+            pair = (
+                down_pitch.pitch_class.name,
+                down_octave + pitch.octave.number - 3,
+                )
+            pitch = pitchtools.NamedPitch(pair)
         return pitch

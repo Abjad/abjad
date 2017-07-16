@@ -138,7 +138,7 @@ class BaritoneVoice(Instrument):
             ::
 
                 >>> baritone.pitch_range
-                PitchRange(range_string='[A2, A4]')
+                PitchRange('[A2, A4]')
 
             ::
 

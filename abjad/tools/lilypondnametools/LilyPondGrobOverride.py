@@ -86,8 +86,6 @@ class LilyPondGrobOverride(AbjadValueObject):
         r'''Is true when `argument` is a LilyPond grob override with equivalent
         keyword values.
         '''
-#        from abjad.tools import systemtools
-#        return systemtools.TestManager.compare_objects(self, argument)
         return super(LilyPondGrobOverride, self).__eq__(argument)
 
     def __hash__(self):

@@ -123,15 +123,13 @@ class NoteHead(AbjadObject):
     def __hash__(self):
         r'''Hashes note-head.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
         Returns integer.
         '''
         return super(NoteHead, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is a note-head with written pitch greater than
-        that of this note-head. Otherwise false.
+        r'''Is true when `argument` is a note-head with written pitch greater
+        than that of this note-head. Otherwise false.
 
         Returns true or false.
         '''
@@ -165,13 +163,6 @@ class NoteHead(AbjadObject):
 
         Returns string.
         '''
-        return self._format_string
-
-    ### PRIVATE PROPERTIES ###
-
-    # TODO: change to method
-    @property
-    def _format_string(self):
         result = ''
         if self.written_pitch:
             result = str(self.written_pitch)
@@ -180,6 +171,8 @@ class NoteHead(AbjadObject):
             if self.is_cautionary:
                 result += '?'
         return result
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _keyword_argument_names(self):
@@ -196,7 +189,7 @@ class NoteHead(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        arguments = [repr(self._format_string)]
+        arguments = [repr(str(self))]
         arguments.extend(self.tweak._get_attribute_pairs())
         arguments = ', '.join([str(x) for x in arguments])
         repr_text = '{}({})'.format(type(self).__name__, arguments)

@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
-from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -10,6 +8,7 @@ class Rotation(AbjadValueObject):
     ::
 
         >>> import abjad
+        >>> import pytest
 
     ..  container:: example:
 
@@ -216,18 +215,18 @@ class Rotation(AbjadValueObject):
 
         Returns new object with type equal to that of `argument`.
         '''
-        from abjad.tools import pitchtools
-        if isinstance(argument, (pitchtools.Pitch, pitchtools.PitchClass)):
+        import abjad
+        if isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
             return argument
         if not isinstance(argument, (
-            pitchtools.PitchSegment,
-            pitchtools.PitchClassSegment,
+            abjad.PitchSegment,
+            abjad.PitchClassSegment,
             )):
-            argument = pitchtools.PitchSegment(argument)
+            argument = abjad.PitchSegment(argument)
         if not self.period:
             return argument.rotate(self.n, stravinsky=self.stravinsky)
-        result = new(argument, items=())
-        for shard in sequencetools.Sequence(argument).partition_by_counts(
+        result = abjad.new(argument, items=())
+        for shard in abjad.Sequence(argument).partition_by_counts(
             [self.period],
             cyclic=True,
             overhang=True,
@@ -236,6 +235,23 @@ class Rotation(AbjadValueObject):
             shard = shard.rotate(self.n, stravinsky=self.stravinsky)
             result = result + shard
         return result
+
+    def __radd__(self, operator):
+        r'''Right-addition not defined on rotation.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = 'abjad.Rotation().__radd__(abjad.Rotation())'
+                >>> pytest.raises(NotImplementedError, string)
+                <ExceptionInfo NotImplementedError ...>
+
+        Raises not implemented error.
+        '''
+        message = 'right-addition not defined on {}.'
+        message = message.format(type(self).__name__)
+        raise NotImplementedError(message)
 
     def __str__(self):
         r'''Gets string representation of operator.

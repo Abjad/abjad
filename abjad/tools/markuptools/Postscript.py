@@ -102,8 +102,8 @@ class Postscript(AbjadValueObject):
         '''
         assert isinstance(argument, type(self))
         self_operators = self.operators or ()
-        expr_operators = argument.operators or ()
-        operators = self_operators + expr_operators
+        argument_operators = argument.operators or ()
+        operators = self_operators + argument_operators
         operators = operators or None
         return type(self)(operators)
 
@@ -115,6 +115,18 @@ class Postscript(AbjadValueObject):
         import abjad
         markup = abjad.Markup.postscript(self)
         return markup.__illustrate__()
+
+    def __radd__(self, argument):
+        r'''Adds `argument` to postscript.
+
+        Returns new postscript.
+        '''
+        assert isinstance(argument, type(self))
+        self_operators = self.operators or ()
+        argument_operators = argument.operators or ()
+        operators = argument_operators + self_operators
+        operators = operators or None
+        return type(self)(operators)
 
     def __str__(self):
         r'''Gets string representation of Postscript.

@@ -140,8 +140,6 @@ def test_datastructuretools_TypedOrderedDict_06():
 
 
 def test_datastructuretools_TypedOrderedDict_07():
-    r'''Implements __ne__().
-    '''
 
     dictionary_1 = abjad.TypedOrderedDict(item_class=abjad.Clef)
     dictionary_1['soprano'] = 'treble'

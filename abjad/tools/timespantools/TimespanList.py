@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import collections
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import markuptools
-from abjad.tools import sequencetools
 from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.topleveltools import new
 
@@ -842,7 +842,7 @@ class TimespanList(TypedList):
         '''
         if len(self) < 2:
             return True
-        pairs = sequencetools.Sequence(self).nwise()
+        pairs = datastructuretools.Sequence(self).nwise()
         for left_timespan, right_timespan in pairs:
             if right_timespan.start_offset < left_timespan.start_offset:
                 return False
@@ -1850,7 +1850,7 @@ class TimespanList(TypedList):
         '''
         from abjad.tools import timespantools
         mapping = collections.OrderedDict()
-        offsets = sequencetools.Sequence(sorted(self.count_offsets()))
+        offsets = datastructuretools.Sequence(sorted(self.count_offsets()))
         for start_offset, stop_offset in offsets.nwise():
             timespan = timespantools.Timespan(start_offset, stop_offset)
             overlap_factor = self.compute_overlap_factor(timespan=timespan)

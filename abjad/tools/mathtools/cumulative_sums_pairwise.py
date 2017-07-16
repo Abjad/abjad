@@ -18,8 +18,7 @@ def cumulative_sums_pairwise(argument):
 
     Returns pairs in new object of `argument` type.
     '''
-    from abjad.tools import mathtools
-    from abjad.tools import sequencetools
-    sums = mathtools.cumulative_sums(argument)
-    pairs = sequencetools.Sequence(sums).nwise()
+    import abjad
+    sums = abjad.mathtools.cumulative_sums(argument)
+    pairs = abjad.Sequence(sums).nwise()
     return type(argument)([tuple(_) for _ in pairs])

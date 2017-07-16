@@ -149,7 +149,7 @@ class Guitar(Instrument):
             ::
 
                 >>> guitar.pitch_range
-                PitchRange(range_string='[E2, E5]')
+                PitchRange('[E2, E5]')
 
             ::
 

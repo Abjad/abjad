@@ -88,7 +88,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
         for letter in letters:
             for npc in npcset:
-                if npc.diatonic_pitch_class_name == letter:
+                if npc._get_diatonic_pitch_class_name() == letter:
                     ordered_npcs.append(npc)
         ordered_npcs = pitchtools.PitchClassSegment(
             ordered_npcs, item_class=pitchtools.NamedPitchClass)
@@ -105,7 +105,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         root = ordered_npcs[0]
         class_ = tonalanalysistools.RootlessChordClass
         rootless_chord_class = class_.from_interval_class_segment(segment)
-        bass = min(pitches).named_pitch_class
+        bass = min(pitches).pitch_class
         inversion = ordered_npcs.index(bass)
         return tonalanalysistools.RootedChordClass(
             root,
@@ -146,7 +146,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         else:
             message = 'can not identify incomplete tertian chord.'
             raise ValueError(message)
-        bass = min(pitches).named_pitch_class
+        bass = min(pitches).pitch_class
         try:
             npcseg = npcset.order_by(
                 pitchtools.PitchClassSegment(

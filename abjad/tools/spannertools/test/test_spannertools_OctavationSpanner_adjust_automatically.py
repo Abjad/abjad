@@ -32,7 +32,8 @@ def test_spannertools_OctavationSpanner_adjust_automatically_02():
 
     note = abjad.Note(31, (1, 4))
     container = abjad.Container([note])
-    assert container[0].written_pitch.diatonic_pitch_number == 18
+    assert container[0].written_pitch.to_staff_position() == \
+        abjad.StaffPosition(18)
 
     octavation_spanner = abjad.OctavationSpanner()
     abjad.attach(octavation_spanner, container[:])

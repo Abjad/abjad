@@ -48,34 +48,32 @@ classes = documentationtools.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
 
-
-@pytest.mark.parametrize('obj', classes)
-def test_abjad___doc___01(obj):
+@pytest.mark.parametrize('class_', classes)
+def test_abjad___doc___01(class_):
     r'''All classes have a docstring. All class methods have a docstring.
     '''
     missing_doc_names = []
-    if obj.__doc__ is None:
-        missing_doc_names.append(obj.__name__)
-    for attr in inspect.classify_class_attrs(obj):
+    if class_.__doc__ is None:
+        missing_doc_names.append(class_.__name__)
+    for attr in inspect.classify_class_attrs(class_):
         if attr.name in ignored_names:
             continue
-        elif attr.defining_class is not obj:
+        elif attr.defining_class is not class_:
             continue
         if attr.name[0].isalpha() or attr.name.startswith('__'):
-            if getattr(obj, attr.name).__doc__ is None:
+            if getattr(class_, attr.name).__doc__ is None:
                 missing_doc_names.append(attr.name)
     if missing_doc_names:
-        message = '\n'.join('{}.{}'.format(obj.__name__, name)
+        message = '\n'.join('{}.{}'.format(class_.__name__, name)
             for name in missing_doc_names)
         message = 'Missing docstrings for:\n{}'.format(message)
         raise Exception(message)
 
 
 functions = documentationtools.list_all_abjad_functions()
-
-
-@pytest.mark.parametrize('obj', functions)
-def test_abjad___doc___02(obj):
-    r'''All functions have a docstring.
-    '''
-    assert obj.__doc__ is not None
+if functions:
+    @pytest.mark.parametrize('function', functions)
+    def test_abjad___doc___02(function):
+        r'''All old functions had a docstring.
+        '''
+        assert function.__doc__ is not None

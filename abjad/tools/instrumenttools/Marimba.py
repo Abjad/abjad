@@ -131,7 +131,7 @@ class Marimba(Instrument):
             ::
 
                 >>> marimba.pitch_range
-                PitchRange(range_string='[F2, C7]')
+                PitchRange('[F2, C7]')
 
             ::
 
