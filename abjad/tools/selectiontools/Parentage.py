@@ -52,7 +52,7 @@ class Parentage(Selection):
             ...     component
             ...
             Note('c4')
-            Voice('c4')
+            Voice('c4', name='Bass Voice')
             <Staff-"Bass Staff"{1}>
             <Score<<2>>>
 

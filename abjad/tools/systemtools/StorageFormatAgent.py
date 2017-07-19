@@ -489,6 +489,48 @@ class StorageFormatAgent(AbjadValueObject):
         names = names[:len(values)]
         return names
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        return self._client
+
+    @property
+    def format_specification(self):
+        from abjad.tools import systemtools
+        if self._format_specification is None:
+            if (not isinstance(self._client, type) and
+                hasattr(self._client, '_get_format_specification')):
+                self._format_specification = \
+                    self._client._get_format_specification()
+            else:
+                self._format_specification = \
+                    systemtools.FormatSpecification(self._client)
+        return self._format_specification
+
+    @property
+    def signature_accepts_args(self):
+        return self._signature_accepts_args
+
+    @property
+    def signature_accepts_kwargs(self):
+        return self._signature_accepts_kwargs
+
+    @property
+    def signature_keyword_names(self):
+        return self._signature_keyword_names
+
+    @property
+    def signature_names(self):
+        return (
+            self.signature_positional_names +
+            self.signature_keyword_names
+            )
+
+    @property
+    def signature_positional_names(self):
+        return self._signature_positional_names
+
     ### PUBLIC METHODS ###
 
     def get_class_name_prefix(
@@ -745,45 +787,3 @@ class StorageFormatAgent(AbjadValueObject):
             accepts_args,
             accepts_kwargs,
             )
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        return self._client
-
-    @property
-    def format_specification(self):
-        from abjad.tools import systemtools
-        if self._format_specification is None:
-            if (not isinstance(self._client, type) and
-                hasattr(self._client, '_get_format_specification')):
-                self._format_specification = \
-                    self._client._get_format_specification()
-            else:
-                self._format_specification = \
-                    systemtools.FormatSpecification(self._client)
-        return self._format_specification
-
-    @property
-    def signature_accepts_args(self):
-        return self._signature_accepts_args
-
-    @property
-    def signature_accepts_kwargs(self):
-        return self._signature_accepts_kwargs
-
-    @property
-    def signature_keyword_names(self):
-        return self._signature_keyword_names
-
-    @property
-    def signature_names(self):
-        return (
-            self.signature_positional_names +
-            self.signature_keyword_names
-            )
-
-    @property
-    def signature_positional_names(self):
-        return self._signature_positional_names

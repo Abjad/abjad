@@ -39,10 +39,17 @@ class Voice(Context):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, context_name='Voice', name=None):
+    def __init__(
+        self,
+        music=None,
+        context_name='Voice',
+        is_simultaneous=None,
+        name=None,
+        ):
         Context.__init__(
             self,
             music=music,
             context_name=context_name,
+            is_simultaneous=is_simultaneous,
             name=name,
             )

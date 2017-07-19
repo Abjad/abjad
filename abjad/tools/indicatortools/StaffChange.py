@@ -174,7 +174,7 @@ class StaffChange(AbjadValueObject):
 
                 >>> staff_change = abjad.StaffChange(staff=lh_staff)
                 >>> staff_change.staff
-                Staff('s2')
+                Staff('s2', name='LHStaff')
         
         Set to staff or none.
 

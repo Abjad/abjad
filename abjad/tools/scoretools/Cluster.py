@@ -41,12 +41,6 @@ class Cluster(Container):
 
     _is_counttime_component = True
 
-    ### INITIALIZER ###
-
-    def __init__(self, music=None):
-        Container.__init__(self, music)
-        self.is_simultaneous = False
-
     ### PRIVATE METHODS ###
 
     def _format_open_brackets_slot(self, bundle):

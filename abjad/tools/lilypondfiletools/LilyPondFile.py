@@ -279,17 +279,17 @@ class LilyPondFile(AbjadObject):
             ::
 
                 >>> lilypond_file['Custom Voice 1']
-                Voice("c''4 b'4 a'4 g'4")
+                Voice("c''4 b'4 a'4 g'4", name='Custom Voice 1')
 
             ::
 
                 >>> lilypond_file['Custom Voice 2']
-                Voice("c'4 d'4 e'4 f'4")
+                Voice("c'4 d'4 e'4 f'4", name='Custom Voice 2')
 
             ::
 
                 >>> lilypond_file[abjad.Voice]
-                Voice("c''4 b'4 a'4 g'4")
+                Voice("c''4 b'4 a'4 g'4", name='Custom Voice 1')
 
         Returns item.
 

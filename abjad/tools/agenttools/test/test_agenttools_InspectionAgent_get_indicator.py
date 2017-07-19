@@ -15,7 +15,7 @@ def test_agenttools_InspectionAgent_get_indicator_01():
     assert abjad.inspect(staff[3]).get_indicator('color') is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_03():
+def test_agenttools_InspectionAgent_get_indicator_02():
 
     note = abjad.Note("c'8")
     articulation = abjad.Articulation('staccato')
@@ -24,14 +24,14 @@ def test_agenttools_InspectionAgent_get_indicator_03():
     assert abjad.inspect(note).get_indicator(abjad.Articulation) is articulation
 
 
-def test_agenttools_InspectionAgent_get_indicator_04():
+def test_agenttools_InspectionAgent_get_indicator_03():
 
     note = abjad.Note("c'8")
 
     assert abjad.inspect(note).get_indicator(abjad.Articulation) is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_05():
+def test_agenttools_InspectionAgent_get_indicator_04():
 
     note = abjad.Note("c'8")
     articulation = abjad.Articulation('staccato')
@@ -43,7 +43,7 @@ def test_agenttools_InspectionAgent_get_indicator_05():
     assert pytest.raises(Exception, statement)
 
 
-def test_agenttools_InspectionAgent_get_indicator_06():
+def test_agenttools_InspectionAgent_get_indicator_05():
 
     note = abjad.Note("c'8")
     command = abjad.LilyPondCommand('stemUp')
@@ -53,14 +53,14 @@ def test_agenttools_InspectionAgent_get_indicator_06():
     assert result is command
 
 
-def test_agenttools_InspectionAgent_get_indicator_07():
+def test_agenttools_InspectionAgent_get_indicator_06():
 
     note = abjad.Note("c'8")
 
     assert abjad.inspect(note).get_indicator(abjad.LilyPondCommand) is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_08():
+def test_agenttools_InspectionAgent_get_indicator_07():
 
     note = abjad.Note("c'8")
     command = abjad.LilyPondCommand('stemUp')
@@ -72,7 +72,7 @@ def test_agenttools_InspectionAgent_get_indicator_08():
     assert pytest.raises(Exception, statement)
 
 
-def test_agenttools_InspectionAgent_get_indicator_09():
+def test_agenttools_InspectionAgent_get_indicator_08():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     slur = abjad.Slur()
@@ -103,7 +103,7 @@ def test_agenttools_InspectionAgent_get_indicator_09():
     assert len(indicators) == 2
 
 
-def test_agenttools_InspectionAgent_get_indicator_10():
+def test_agenttools_InspectionAgent_get_indicator_09():
 
     note = abjad.Note("c'8")
     comment = abjad.LilyPondComment('comment')
@@ -113,14 +113,14 @@ def test_agenttools_InspectionAgent_get_indicator_10():
     assert indicator is comment
 
 
-def test_agenttools_InspectionAgent_get_indicator_11():
+def test_agenttools_InspectionAgent_get_indicator_10():
 
     note = abjad.Note("c'8")
 
     assert abjad.inspect(note).get_indicator(abjad.LilyPondComment) is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_12():
+def test_agenttools_InspectionAgent_get_indicator_11():
 
     note = abjad.Note("c'8")
     comment = abjad.LilyPondComment('comment')
@@ -132,14 +132,14 @@ def test_agenttools_InspectionAgent_get_indicator_12():
     assert pytest.raises(Exception, statement)
 
 
-def test_agenttools_InspectionAgent_get_indicator_13():
+def test_agenttools_InspectionAgent_get_indicator_12():
 
     note = abjad.Note("c'8")
 
     assert abjad.inspect(note).get_indicator() is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_14():
+def test_agenttools_InspectionAgent_get_indicator_13():
 
     note = abjad.Note("c'4")
     stem_tremolo = abjad.StemTremolo(16)
@@ -149,7 +149,7 @@ def test_agenttools_InspectionAgent_get_indicator_14():
     assert stem_tremolo is stem_tremolo
 
 
-def test_agenttools_InspectionAgent_get_indicator_15():
+def test_agenttools_InspectionAgent_get_indicator_14():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     violin = abjad.instrumenttools.Violin()
@@ -160,7 +160,7 @@ def test_agenttools_InspectionAgent_get_indicator_15():
     assert indicator is violin
 
 
-def test_agenttools_InspectionAgent_get_indicator_16():
+def test_agenttools_InspectionAgent_get_indicator_15():
 
     measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
     indicator = abjad.inspect(measure).get_indicator(abjad.TimeSignature)

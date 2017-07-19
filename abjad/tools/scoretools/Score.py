@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import select
 from abjad.tools.scoretools.Context import Context
 
 
@@ -54,14 +50,20 @@ class Score(Context):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, context_name='Score', name=None):
+    def __init__(
+        self,
+        music=None,
+        context_name='Score',
+        is_simultaneous=True,
+        name=None,
+        ):
         Context.__init__(
             self,
             music=music,
             context_name=context_name,
+            is_simultaneous=is_simultaneous,
             name=name,
             )
-        self.is_simultaneous = True
 
     ### PUBLIC METHODS ###
 
@@ -75,6 +77,7 @@ class Score(Context):
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> score = abjad.Score([staff])
+            >>> show(score) # doctest: +SKIP
 
         ..  docs::
 
@@ -88,14 +91,11 @@ class Score(Context):
                 }
             >>
 
+
         ::
 
+            >>> bar_line = score.add_final_bar_line()
             >>> show(score) # doctest: +SKIP
-
-        ::
-
-            >>> score.add_final_bar_line()
-            BarLine('|.')
 
         ..  docs::
 
@@ -110,26 +110,21 @@ class Score(Context):
                 }
             >>
 
-        ::
-
-            >>> show(score) # doctest: +SKIP
-
         Set `to_each_voice` to true to make part extraction easier.
 
         Returns bar line.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import indicatortools
-        double_bar = indicatortools.BarLine(abbreviation)
+        import abjad
+        double_bar = abjad.BarLine(abbreviation)
         if not to_each_voice:
-            selection = select(self)
-            last_leaf = selection._get_component(scoretools.Leaf, -1)
-            attach(double_bar, last_leaf)
+            selection = abjad.select(self)
+            last_leaf = selection._get_component(abjad.Leaf, -1)
+            abjad.attach(double_bar, last_leaf)
         else:
-            for voice in iterate(self).by_class(scoretools.Voice):
-                selection = select(voice)
-                last_leaf = selection._get_component(scoretools.Leaf, -1)
-                attach(double_bar, last_leaf)
+            for voice in abjad.iterate(self).by_class(abjad.Voice):
+                selection = abjad.select(voice)
+                last_leaf = selection._get_component(abjad.Leaf, -1)
+                abjad.attach(double_bar, last_leaf)
         return double_bar
 
     def add_final_markup(self, markup, extra_offset=None):
@@ -222,17 +217,16 @@ class Score(Context):
 
         Returns none.
         '''
-        from abjad.tools import markuptools
-        from abjad.tools import scoretools
-        selection = select(self)
-        last_leaf = selection._get_component(scoretools.Leaf, -1)
+        import abjad
+        selection = abjad.select(self)
+        last_leaf = selection._get_component(abjad.Leaf, -1)
         markup = copy.copy(markup)
-        attach(markup, last_leaf)
+        abjad.attach(markup, last_leaf)
         if extra_offset is not None:
-            if isinstance(last_leaf, scoretools.MultimeasureRest):
-                grob_proxy = override(last_leaf).multi_measure_rest_text
+            if isinstance(last_leaf, abjad.MultimeasureRest):
+                grob_proxy = abjad.override(last_leaf).multi_measure_rest_text
             else:
-                grob_proxy = override(last_leaf).text_script
+                grob_proxy = abjad.override(last_leaf).text_script
             grob_proxy.extra_offset = extra_offset
         return markup
 
@@ -366,7 +360,6 @@ class Score(Context):
         staff_group.context_name = 'PianoStaff'
         score = abjad.Score([])
         score.append(staff_group)
-        #score, treble_staff, bass_staff = abjad.Score.make_piano_score()
         for leaf in leaves:
             treble_chord, bass_chord = leaf._divide(lowest_treble_pitch)
             treble_staff.append(treble_chord)

@@ -2518,20 +2518,205 @@ class MutationAgent(abctools.AbjadObject):
                     d'2 \repeatTie \f
                 }
 
+        ..  container:: example
+
+            Splits custom voice and preserves context name:
+
+            ::
+
+                >>> voice = abjad.Voice(
+                ...     "c'4 d' e' f'",
+                ...     context_name='CustomVoice',
+                ...     name='1',
+                ...     )
+                >>> staff = abjad.Staff([voice])
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, voice[:])
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override DynamicLineSpanner.staff-padding = #3
+                } {
+                    \context CustomVoice = "1" {
+                        c'4 \< \p
+                        d'4
+                        e'4
+                        f'4 \f
+                    }
+                }
+
+            ::
+
+                >>> durations = [(1, 8)]
+                >>> result = abjad.mutate(staff[:]).split(
+                ...     durations,
+                ...     cyclic=True,
+                ...     fracture_spanners=False,
+                ...     tie_split_notes=True,
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override DynamicLineSpanner.staff-padding = #3
+                } {
+                    \context CustomVoice = "1" {
+                        c'8 ~ \< \p
+                    }
+                    \context CustomVoice = "1" {
+                        c'8
+                    }
+                    \context CustomVoice = "1" {
+                        d'8 ~
+                    }
+                    \context CustomVoice = "1" {
+                        d'8
+                    }
+                    \context CustomVoice = "1" {
+                        e'8 ~
+                    }
+                    \context CustomVoice = "1" {
+                        e'8
+                    }
+                    \context CustomVoice = "1" {
+                        f'8 ~
+                    }
+                    \context CustomVoice = "1" {
+                        f'8 \f
+                    }
+                }
+
+            ::
+
+                >>> for voice in staff:
+                ...     voice
+                ...
+                Voice("c'8 ~", context_name='CustomVoice', name='1')
+                Voice("c'8", context_name='CustomVoice', name='1')
+                Voice("d'8 ~", context_name='CustomVoice', name='1')
+                Voice("d'8", context_name='CustomVoice', name='1')
+                Voice("e'8 ~", context_name='CustomVoice', name='1')
+                Voice("e'8", context_name='CustomVoice', name='1')
+                Voice("f'8 ~", context_name='CustomVoice', name='1')
+                Voice("f'8", context_name='CustomVoice', name='1')
+
+        ..  container:: example
+
+            Splits parallel container:
+
+            ::
+
+                >>> voice_1 = abjad.Voice(
+                ...     "e''4 ( es'' f'' fs'' )",
+                ...     name='Voice 1',
+                ...     )
+                >>> voice_2 = abjad.Voice(
+                ...     r"c'4 \p \< cs' d' ds' \f",
+                ...     name='Voice 2',
+                ...     )
+                >>> abjad.override(voice_1).stem.direction = Up
+                >>> abjad.override(voice_1).slur.direction = Up
+                >>> container = abjad.Container(
+                ...     [voice_1, voice_2],
+                ...     is_simultaneous=True,
+                ...     )
+                >>> abjad.override(voice_2).stem.direction = Down
+                >>> staff = abjad.Staff([container])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    <<
+                        \context Voice = "Voice 1" \with {
+                            \override Slur.direction = #up
+                            \override Stem.direction = #up
+                        } {
+                            e''4 (
+                            es''4
+                            f''4
+                            fs''4 )
+                        }
+                        \context Voice = "Voice 2" \with {
+                            \override Stem.direction = #down
+                        } {
+                            c'4 \p \<
+                            cs'4
+                            d'4
+                            ds'4 \f
+                        }
+                    >>
+                }
+
+            ::
+
+                >>> durations = [(3, 8)]
+                >>> result = abjad.mutate(container).split(
+                ...     durations,
+                ...     cyclic=False,
+                ...     fracture_spanners=False,
+                ...     tie_split_notes=True,
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> f(staff)
+                \new Staff {
+                    <<
+                        \context Voice = "Voice 1" \with {
+                            \override Slur.direction = #up
+                            \override Stem.direction = #up
+                        } {
+                            e''4 (
+                            es''8 ~
+                        }
+                        \context Voice = "Voice 2" \with {
+                            \override Stem.direction = #down
+                        } {
+                            c'4 \p \<
+                            cs'8 ~
+                        }
+                    >>
+                    <<
+                        \context Voice = "Voice 1" \with {
+                            \override Slur.direction = #up
+                            \override Stem.direction = #up
+                        } {
+                            es''8
+                            f''4
+                            fs''4 )
+                        }
+                        \context Voice = "Voice 2" \with {
+                            \override Stem.direction = #down
+                        } {
+                            cs'8
+                            d'4
+                            ds'4 \f
+                        }
+                    >>
+                }
+
         Returns list of selections.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
+        import abjad
         # check input
         components = self._client
         single_component_input = False
-        if isinstance(components, scoretools.Component):
+        if isinstance(components, abjad.Component):
             single_component_input = True
-            components = selectiontools.Selection(components)
-        assert all(isinstance(x, scoretools.Component) for x in components)
-        if not isinstance(components, selectiontools.Selection):
-            components = selectiontools.Selection(components)
-        durations = [durationtools.Duration(x) for x in durations]
+            components = abjad.select(components)
+        assert all(isinstance(_, abjad.Component) for _ in components)
+        if not isinstance(components, abjad.Selection):
+            components = abjad.select(components)
+        durations = [abjad.Duration(_) for _ in durations]
         # return if no split to be done
         if not durations:
             if single_component_input:
@@ -2543,16 +2728,15 @@ class MutationAgent(abctools.AbjadObject):
         total_split_duration = sum(durations)
         # calculate durations
         if cyclic:
-            durations = datastructuretools.Sequence(durations)
+            durations = abjad.Sequence(durations)
             durations = durations.repeat_to_weight(total_component_duration)
             durations = list(durations)
         elif total_split_duration < total_component_duration:
             final_offset = total_component_duration - sum(durations)
             durations.append(final_offset)
         elif total_component_duration < total_split_duration:
-            durations = datastructuretools.Sequence(durations).truncate(
-                weight=total_component_duration,
-                )
+            weight = total_component_duration
+            durations = abjad.Sequence(durations).truncate(weight=weight)
             durations = list(durations)
         # keep copy of durations to partition result components
         durations_copy = durations[:]
@@ -2562,11 +2746,11 @@ class MutationAgent(abctools.AbjadObject):
         # initialize loop variables
         result, shard = [], []
         offset_index, offset_count = 0, len(durations)
-        current_shard_duration = durationtools.Duration(0)
+        current_shard_duration = abjad.Duration(0)
         remaining_components = list(components[:])
         advance_to_next_offset = True
-        # loop and build shards by grabbing next component
-        # and next duration each time through loop
+        # build shards:
+        # grab next component and next duration each time through loop
         while True:
             # grab next split point
             if advance_to_next_offset:
@@ -2581,25 +2765,26 @@ class MutationAgent(abctools.AbjadObject):
             else:
                 break
             # find where current component endpoint will position us
-            candidate_shard_duration = current_shard_duration + \
-                current_component._get_duration()
+            duration_ = abjad.inspect(current_component).get_duration()
+            candidate_shard_duration = current_shard_duration + duration_
             # if current component would fill current shard exactly
             if candidate_shard_duration == next_split_point:
                 shard.append(current_component)
                 result.append(shard)
                 shard = []
-                current_shard_duration = durationtools.Duration(0)
+                current_shard_duration = abjad.Duration(0)
                 offset_index += 1
             # if current component would exceed current shard
             elif next_split_point < candidate_shard_duration:
-                local_split_duration = \
-                    next_split_point - current_shard_duration
-                if isinstance(current_component, scoretools.Leaf):
+                local_split_duration = next_split_point
+                local_split_duration -= current_shard_duration
+                if isinstance(current_component, abjad.Leaf):
                     leaf_split_durations = [local_split_duration]
-                    current_duration = current_component._get_duration()
-                    additional_required_duration = \
-                        current_duration - local_split_duration
-                    split_durations = datastructuretools.Sequence(durations)
+                    duration_ = abjad.inspect(current_component).get_duration()
+                    current_duration = duration_
+                    additional_required_duration = current_duration
+                    additional_required_duration -= local_split_duration
+                    split_durations = abjad.Sequence(durations)
                     split_durations = split_durations.split(
                         [additional_required_duration],
                         cyclic=False,
@@ -2620,23 +2805,25 @@ class MutationAgent(abctools.AbjadObject):
                     result.append(shard)
                     offset_index += len(additional_durations)
                 else:
-                    left_list, right_list = \
-                        current_component._split_by_duration(
+                    assert isinstance(current_component, abjad.Container)
+                    pair = current_component._split_by_duration(
                         local_split_duration,
                         fracture_spanners=fracture_spanners,
                         tie_split_notes=tie_split_notes,
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )
+                    left_list, right_list = pair
                     shard.extend(left_list)
                     result.append(shard)
                     remaining_components.__setitem__(slice(0, 0), right_list)
                 shard = []
                 offset_index += 1
-                current_shard_duration = durationtools.Duration(0)
+                current_shard_duration = abjad.Duration(0)
             # if current component would not fill current shard
             elif candidate_shard_duration < next_split_point:
                 shard.append(current_component)
-                current_shard_duration += current_component._get_duration()
+                duration_ = abjad.inspect(current_component).get_duration()
+                current_shard_duration += duration_
                 advance_to_next_offset = False
             else:
                 raise ValueError
@@ -2647,11 +2834,11 @@ class MutationAgent(abctools.AbjadObject):
         if len(remaining_components):
             result.append(remaining_components)
         # partition split components according to input durations
-        result = datastructuretools.Sequence(result).flatten()
-        result = selectiontools.Selection(result)
+        result = abjad.Sequence(result).flatten()
+        result = abjad.select(result)
         result = result.partition_by_durations(durations_copy, fill=Exact)
         # return list of shards
-        result = [selectiontools.Selection(_) for _ in result]
+        result = [abjad.select(_) for _ in result]
         return result
 
     def swap(self, container):

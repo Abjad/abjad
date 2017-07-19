@@ -1902,17 +1902,17 @@ class IterationAgent(abctools.AbjadObject):
                     ...     abjad.Voice("e'8 f'8"),
                     ...     ])
                     >>> container_1.is_simultaneous = True
-                    >>> container_1[0].name = 'voice 1'
+                    >>> container_1[0].name = 'Voice 1'
                     >>> abjad.override(container_1[0]).stem.direction = Down
-                    >>> container_1[1].name = 'voice 2'
+                    >>> container_1[1].name = 'Voice 2'
                     >>> container_2 = abjad.Container([
                     ...     abjad.Voice("g'8 a'8"),
                     ...     abjad.Voice("b'8 c''8"),
                     ...     ])
                     >>> container_2.is_simultaneous = True
-                    >>> container_2[0].name = 'voice 1'
+                    >>> container_2[0].name = 'Voice 1'
                     >>> abjad.override(container_2[0]).stem.direction = Down
-                    >>> container_2[1].name = 'voice 2'
+                    >>> container_2[1].name = 'Voice 2'
                     >>> staff = abjad.Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
@@ -1921,25 +1921,25 @@ class IterationAgent(abctools.AbjadObject):
                     >>> f(staff)
                     \new Staff {
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 b'8
                                 c''8
                             }
@@ -2043,17 +2043,17 @@ class IterationAgent(abctools.AbjadObject):
                     ...     abjad.Voice("e'8 f'8"),
                     ...     ])
                     >>> container_1.is_simultaneous = True
-                    >>> container_1[0].name = 'voice 1'
+                    >>> container_1[0].name = 'Voice 1'
                     >>> abjad.override(container_1[0]).stem.direction = Down
-                    >>> container_1[1].name = 'voice 2'
+                    >>> container_1[1].name = 'Voice 2'
                     >>> container_2 = abjad.Container([
                     ...     abjad.Voice("g'8 a'8"),
                     ...     abjad.Voice("b'8 c''8"),
                     ...     ])
                     >>> container_2.is_simultaneous = True
-                    >>> container_2[0].name = 'voice 1'
+                    >>> container_2[0].name = 'Voice 1'
                     >>> abjad.override(container_2[0]).stem.direction = Down
-                    >>> container_2[1].name = 'voice 2'
+                    >>> container_2[1].name = 'Voice 2'
                     >>> staff = abjad.Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
@@ -2062,25 +2062,25 @@ class IterationAgent(abctools.AbjadObject):
                     >>> f(staff)
                     \new Staff {
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 b'8
                                 c''8
                             }
@@ -2134,17 +2134,17 @@ class IterationAgent(abctools.AbjadObject):
                     ...     abjad.Voice("e'8 f'8"),
                     ...     ])
                     >>> container_1.is_simultaneous = True
-                    >>> container_1[0].name = 'voice 1'
+                    >>> container_1[0].name = 'Voice 1'
                     >>> abjad.override(container_1[0]).stem.direction = Down
-                    >>> container_1[1].name = 'voice 2'
+                    >>> container_1[1].name = 'Voice 2'
                     >>> container_2 = abjad.Container([
                     ...     abjad.Voice("g'8 a'8"),
                     ...     abjad.Voice("b'8 c''8"),
                     ...     ])
                     >>> container_2.is_simultaneous = True
-                    >>> container_2[0].name = 'voice 1'
+                    >>> container_2[0].name = 'Voice 1'
                     >>> abjad.override(container_2[0]).stem.direction = Down
-                    >>> container_2[1].name = 'voice 2'
+                    >>> container_2[1].name = 'Voice 2'
                     >>> staff = abjad.Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
@@ -2153,25 +2153,25 @@ class IterationAgent(abctools.AbjadObject):
                     >>> f(staff)
                     \new Staff {
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 b'8
                                 c''8
                             }
@@ -2222,17 +2222,17 @@ class IterationAgent(abctools.AbjadObject):
                     ...     abjad.Voice("e'8 f'8"),
                     ...     ])
                     >>> container_1.is_simultaneous = True
-                    >>> container_1[0].name = 'voice 1'
+                    >>> container_1[0].name = 'Voice 1'
                     >>> abjad.override(container_1[0]).stem.direction = Down
-                    >>> container_1[1].name = 'voice 2'
+                    >>> container_1[1].name = 'Voice 2'
                     >>> container_2 = abjad.Container([
                     ...     abjad.Voice("g'8 a'8"),
                     ...     abjad.Voice("b'8 c''8"),
                     ...     ])
                     >>> container_2.is_simultaneous = True
-                    >>> container_2[0].name = 'voice 1'
+                    >>> container_2[0].name = 'Voice 1'
                     >>> abjad.override(container_2[0]).stem.direction = Down
-                    >>> container_2[1].name = 'voice 2'
+                    >>> container_2[1].name = 'Voice 2'
                     >>> staff = abjad.Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
@@ -2241,25 +2241,25 @@ class IterationAgent(abctools.AbjadObject):
                     >>> f(staff)
                     \new Staff {
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 b'8
                                 c''8
                             }
@@ -2275,9 +2275,9 @@ class IterationAgent(abctools.AbjadObject):
                     ...     component
                     ...
                     Note("c'8")
-                    Voice("c'8 d'8")
+                    Voice("c'8 d'8", name='Voice 1')
                     Note("d'8")
-                    Voice("g'8 a'8")
+                    Voice("g'8 a'8", name='Voice 1')
                     Note("g'8")
                     Note("a'8")
 
@@ -2292,9 +2292,9 @@ class IterationAgent(abctools.AbjadObject):
                     ...     component
                     ...
                     Note("c'8")
-                    Voice("c'8 d'8")
+                    Voice("c'8 d'8", name='Voice 1')
                     Note("d'8")
-                    Voice("g'8 a'8")
+                    Voice("g'8 a'8", name='Voice 1')
                     Note("g'8")
                     Note("a'8")
 
@@ -2311,17 +2311,17 @@ class IterationAgent(abctools.AbjadObject):
                     ...     abjad.Voice("e'8 f'8"),
                     ...     ])
                     >>> container_1.is_simultaneous = True
-                    >>> container_1[0].name = 'voice 1'
+                    >>> container_1[0].name = 'Voice 1'
                     >>> abjad.override(container_1[0]).stem.direction = Down
-                    >>> container_1[1].name = 'voice 2'
+                    >>> container_1[1].name = 'Voice 2'
                     >>> container_2 = abjad.Container([
                     ...     abjad.Voice("g'8 a'8"),
                     ...     abjad.Voice("b'8 c''8"),
                     ...     ])
                     >>> container_2.is_simultaneous = True
-                    >>> container_2[0].name = 'voice 1'
+                    >>> container_2[0].name = 'Voice 1'
                     >>> abjad.override(container_2[0]).stem.direction = Down
-                    >>> container_2[1].name = 'voice 2'
+                    >>> container_2[1].name = 'Voice 2'
                     >>> staff = abjad.Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
@@ -2330,25 +2330,25 @@ class IterationAgent(abctools.AbjadObject):
                     >>> f(staff)
                     \new Staff {
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 b'8
                                 c''8
                             }
@@ -2380,9 +2380,9 @@ class IterationAgent(abctools.AbjadObject):
                     ...     component
                     ...
                     Note("c''8")
-                    Voice("b'8 c''8")
+                    Voice("b'8 c''8", name='Voice 2')
                     Note("b'8")
-                    Voice("e'8 f'8")
+                    Voice("e'8 f'8", name='Voice 2')
                     Note("f'8")
                     Note("e'8")
 
@@ -2415,9 +2415,9 @@ class IterationAgent(abctools.AbjadObject):
                     ...     component
                     ...
                     Note("c''8")
-                    Voice("b'8 c''8")
+                    Voice("b'8 c''8", name='Voice 2')
                     Note("b'8")
-                    Voice("e'8 f'8")
+                    Voice("e'8 f'8", name='Voice 2')
                     Note("f'8")
                     Note("e'8")
 

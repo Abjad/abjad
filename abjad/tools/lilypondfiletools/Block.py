@@ -94,7 +94,7 @@ class Block(AbjadObject):
             ::
 
                 >>> block['Red Example Score']
-                Score(is_simultaneous=True)
+                Score(is_simultaneous=True, name='Red Example Score')
 
         Returns item.
 

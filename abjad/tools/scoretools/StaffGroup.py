@@ -49,11 +49,17 @@ class StaffGroup(Context):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, context_name='StaffGroup', name=None):
+    def __init__(
+        self,
+        music=None,
+        context_name='StaffGroup',
+        is_simultaneous=True,
+        name=None,
+        ):
         Context.__init__(
             self,
             music=music,
             context_name=context_name,
+            is_simultaneous=is_simultaneous,
             name=name,
             )
-        self.is_simultaneous = True

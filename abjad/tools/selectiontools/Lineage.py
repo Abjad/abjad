@@ -48,10 +48,10 @@ class Lineage(Selection):
             ...
             <Score<<2>>>
             <Staff-"Treble Staff"{1}>
-            Voice("c'4")
+            Voice("c'4", name='Treble Voice')
             Note("c'4")
             <Staff-"Bass Staff"{1}>
-            Voice('b,4')
+            Voice('b,4', name='Bass Voice')
             Note('b,4')
 
         ::
@@ -62,7 +62,7 @@ class Lineage(Selection):
             ...
             <Score<<2>>>
             <Staff-"Bass Staff"{1}>
-            Voice('b,4')
+            Voice('b,4', name='Bass Voice')
             Note('b,4')
 
     '''

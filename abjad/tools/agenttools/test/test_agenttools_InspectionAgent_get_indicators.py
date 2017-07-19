@@ -84,7 +84,7 @@ def test_agenttools_InspectionAgent_get_indicators_03():
     assert len(indicators) == 2
 
 
-def test_agenttools_InspectionAgent_get_indicators_05():
+def test_agenttools_InspectionAgent_get_indicators_04():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     comment_1 = abjad.LilyPondComment('comment 1')
@@ -111,7 +111,7 @@ def test_agenttools_InspectionAgent_get_indicators_05():
     assert len(indicators) == 2
 
 
-def test_agenttools_InspectionAgent_get_indicators_06():
+def test_agenttools_InspectionAgent_get_indicators_05():
 
     note = abjad.Note("c'4")
     stem_tremolo = abjad.StemTremolo(16)

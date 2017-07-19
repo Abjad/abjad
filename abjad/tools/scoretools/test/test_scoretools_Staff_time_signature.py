@@ -27,7 +27,7 @@ def test_scoretools_Staff_time_signature_01():
         )
 
 
-def test_scoretools_Staff_time_signature_03():
+def test_scoretools_Staff_time_signature_02():
     r'''Staff time signature carries over to staff-contained leaves.
     '''
 
@@ -39,7 +39,7 @@ def test_scoretools_Staff_time_signature_03():
             == abjad.TimeSignature((2, 4))
 
 
-def test_scoretools_Staff_time_signature_04():
+def test_scoretools_Staff_time_signature_03():
     r'''Staff time signature set and then clear.
     '''
 

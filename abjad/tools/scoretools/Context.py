@@ -23,7 +23,7 @@ class Context(Container):
         ::
 
             >>> context
-            Context()
+            Context(context_name='TimeSignatureContext', name='MeterVoice')
 
         ..  docs::
 
@@ -76,7 +76,7 @@ class Context(Container):
             ...     context_name='TimeSignatureContext',
             ...     )
             >>> repr(context)
-            'Context()'
+            "Context(context_name='TimeSignatureContext', name='MeterVoice')"
 
         Returns string.
         '''
@@ -183,6 +183,12 @@ class Context(Container):
     def _get_lilypond_format(self):
         self._update_now(indicators=True)
         return self._format_component()
+
+    def _get_repr_kwargs_names(self):
+        if self.context_name == type(self).__name__:
+            return ['is_simultaneous', 'name']
+        else:
+            return ['is_simultaneous', 'context_name', 'name']
 
     ### PUBLIC PROPERTIES ###
 

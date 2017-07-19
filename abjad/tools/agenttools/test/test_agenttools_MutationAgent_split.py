@@ -4,7 +4,9 @@ import pytest
 
 
 def test_agenttools_MutationAgent_split_01():
-    r'''Cyclically splits note in score. Doesn't fracture spanners.
+    r'''Cyclically splits note in score.
+    
+    Doesn't fracture spanners.
     '''
 
     staff = abjad.Staff()
@@ -65,6 +67,7 @@ def test_agenttools_MutationAgent_split_01():
 
 def test_agenttools_MutationAgent_split_02():
     r'''Cyclically splits consecutive notes in score.
+
     Doesn't fracture spanners.
     '''
 
@@ -124,7 +127,9 @@ def test_agenttools_MutationAgent_split_02():
 
 
 def test_agenttools_MutationAgent_split_03():
-    r'''Cyclically splits measure in score. Doesn't fracture spanners.
+    r'''Cyclically splits measure in score.
+    
+    Doesn't fracture spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -190,6 +195,7 @@ def test_agenttools_MutationAgent_split_03():
 
 def test_agenttools_MutationAgent_split_04():
     r'''Cyclically splits consecutive measures in score.
+
     Doesn't fracture spanners.
     '''
 
@@ -265,10 +271,15 @@ def test_agenttools_MutationAgent_split_04():
 
 
 def test_agenttools_MutationAgent_split_05():
-    r'''Cyclically splits orphan measures. Doesn't fracture spanners.
+    r'''Cyclically splits orphan measures.
+
+    Doesn't fracture spanners.
     '''
 
-    measures = [abjad.Measure((2, 8), "c'8 d'8"), abjad.Measure((2, 8), "e'8 f'8")]
+    measures = [
+        abjad.Measure((2, 8), "c'8 d'8"),
+        abjad.Measure((2, 8), "e'8 f'8"),
+        ]
     leaves = abjad.select(measures).by_leaf()
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
@@ -324,7 +335,9 @@ def test_agenttools_MutationAgent_split_05():
 
 
 def test_agenttools_MutationAgent_split_06():
-    r'''Cyclically splits note in score. Doesn't fracture spanners.
+    r'''Cyclically splits note in score.
+
+    Doesn't fracture spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -385,6 +398,7 @@ def test_agenttools_MutationAgent_split_06():
 
 def test_agenttools_MutationAgent_split_07():
     r'''Cyclically splits consecutive notes in score.
+
     Doesn't fracture spanners.
     '''
 
@@ -445,7 +459,9 @@ def test_agenttools_MutationAgent_split_07():
 
 
 def test_agenttools_MutationAgent_split_08():
-    r'''Cyclically splits measure in score. Doesn't fracture spanners.
+    r'''Cyclically splits measure in score.
+
+    Doesn't fracture spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -512,6 +528,7 @@ def test_agenttools_MutationAgent_split_08():
 
 def test_agenttools_MutationAgent_split_09():
     r'''Cyclically splits consecutive measures in score.
+
     Doesn't fracture spanners.
     '''
 
@@ -587,7 +604,9 @@ def test_agenttools_MutationAgent_split_09():
 
 
 def test_agenttools_MutationAgent_split_10():
-    r'''Cyclically splits note in score. Fracture spanners.
+    r'''Cyclically splits note in score.
+
+    Fractures spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -645,7 +664,9 @@ def test_agenttools_MutationAgent_split_10():
 
 
 def test_agenttools_MutationAgent_split_11():
-    r'''Cyclically splits consecutive notes in score. Fracture spanners.
+    r'''Cyclically splits consecutive notes in score.
+
+    Fractures spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -704,7 +725,9 @@ def test_agenttools_MutationAgent_split_11():
 
 
 def test_agenttools_MutationAgent_split_12():
-    r'''Cyclically splits measure in score. Fracture spanners.
+    r'''Cyclically splits measure in score.
+    
+    Fractures spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -769,7 +792,9 @@ def test_agenttools_MutationAgent_split_12():
 
 
 def test_agenttools_MutationAgent_split_13():
-    r'''Cyclically splits consecutive measures in score. Fracture spanners.
+    r'''Cyclically splits consecutive measures in score.
+
+    Fractures spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -847,7 +872,12 @@ def test_agenttools_MutationAgent_split_14():
     r'''Cyclically splits orphan notes.
     '''
 
-    notes = [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8"), abjad.Note("f'8")]
+    notes = [
+        abjad.Note("c'8"),
+        abjad.Note("d'8"),
+        abjad.Note("e'8"),
+        abjad.Note("f'8"),
+        ]
 
     result = abjad.mutate(notes).split(
         [abjad.Duration(3, 32)],
@@ -878,10 +908,15 @@ def test_agenttools_MutationAgent_split_14():
 
 
 def test_agenttools_MutationAgent_split_15():
-    r'''Cyclically splits orphan measures. Fracture spanners.
+    r'''Cyclically splits orphan measures.
+
+    Fractures spanners.
     '''
 
-    measures = [abjad.Measure((2, 8), "c'8 d'8"), abjad.Measure((2, 8), "e'8 f'8")]
+    measures = [
+        abjad.Measure((2, 8), "c'8 d'8"),
+        abjad.Measure((2, 8), "e'8 f'8"),
+        ]
     beam_1 = abjad.Beam()
     beam_2 = abjad.Beam()
     abjad.attach(beam_1, measures[0][:])
@@ -936,7 +971,9 @@ def test_agenttools_MutationAgent_split_15():
 
 
 def test_agenttools_MutationAgent_split_16():
-    r'''Cyclically splits note in score. Fracture spanners.
+    r'''Cyclically splits note in score.
+
+    Fractures spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -996,7 +1033,9 @@ def test_agenttools_MutationAgent_split_16():
 
 
 def test_agenttools_MutationAgent_split_17():
-    r'''Cyclically splits consecutive notes in score. Fracture spanners.
+    r'''Cyclically splits consecutive notes in score.
+
+    Fractures spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1056,7 +1095,9 @@ def test_agenttools_MutationAgent_split_17():
 
 
 def test_agenttools_MutationAgent_split_18():
-    r'''Cyclically splits measure in score. Fracture spanners.
+    r'''Cyclically splits measure in score.
+
+    Fractures spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1122,7 +1163,9 @@ def test_agenttools_MutationAgent_split_18():
 
 
 def test_agenttools_MutationAgent_split_19():
-    r'''Cyclically splits consecutive measures in score. Fracture spanners.
+    r'''Cyclically splits consecutive measures in score.
+    
+    Fractures spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1197,7 +1240,9 @@ def test_agenttools_MutationAgent_split_19():
 
 
 def test_agenttools_MutationAgent_split_20():
-    r'''Force splits measure in score. Do not fracture spanners.
+    r'''Force-splits measure in score.
+
+    Does not fracture spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1262,7 +1307,9 @@ def test_agenttools_MutationAgent_split_20():
 
 
 def test_agenttools_MutationAgent_split_21():
-    r'''Force splits consecutive measures in score. Do not fracture spanners.
+    r'''Force-splits consecutive measures in score.
+
+    Does not fracture spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1331,7 +1378,9 @@ def test_agenttools_MutationAgent_split_21():
 
 
 def test_agenttools_MutationAgent_split_22():
-    r'''Force splits measure in score. Fracture spanners.
+    r'''Force-splits measure in score.
+    
+    Fractures spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1396,7 +1445,9 @@ def test_agenttools_MutationAgent_split_22():
 
 
 def test_agenttools_MutationAgent_split_23():
-    r'''Force splits consecutive measures in score. Fracture spanners.
+    r'''Force-splits consecutive measures in score.
+    
+    Fractures spanners.
     '''
 
     staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1463,7 +1514,9 @@ def test_agenttools_MutationAgent_split_23():
 
 
 def test_agenttools_MutationAgent_split_24():
-    r'''Force splits orphan note. abjad.Offsets sum to less than note duration.
+    r'''Force-splits orphan note.
+    
+    Offsets sum to less than note duration.
     '''
 
     note = abjad.Note("c'4")
@@ -1495,7 +1548,9 @@ def test_agenttools_MutationAgent_split_24():
 
 
 def test_agenttools_MutationAgent_split_25():
-    r'''Force splits note in score. Fracture spanners.
+    r'''Force-splits note in score.
+    
+    Fractures spanners.
     '''
 
     staff = abjad.Staff("c'8 [ ]")
@@ -1531,7 +1586,9 @@ def test_agenttools_MutationAgent_split_25():
 
 
 def test_agenttools_MutationAgent_split_26():
-    r'''Splits tuplet in score and do not fracture spanners.
+    r'''Splits tuplet in score
+    
+    Does not fracture spanners.
     '''
 
     voice = abjad.Voice()
@@ -1572,8 +1629,9 @@ def test_agenttools_MutationAgent_split_26():
 
 
 def test_agenttools_MutationAgent_split_27():
-    r'''Splits in-score measure with power-of-two denominator and
-    do not fracture spanners.
+    r'''Splits in-score measure with power-of-two denominator.
+
+    Does not fracture spanners.
     '''
 
     voice = abjad.Voice()
@@ -1615,8 +1673,9 @@ def test_agenttools_MutationAgent_split_27():
 
 
 def test_agenttools_MutationAgent_split_28():
-    r'''Splits in-score measure without power-of-two denominator
-    and do not frature spanners.
+    r'''Splits in-score measure without power-of-two denominator.
+
+    Does not frature spanners.
     '''
 
     voice = abjad.Voice()
@@ -1664,7 +1723,7 @@ def test_agenttools_MutationAgent_split_28():
 
 
 def test_agenttools_MutationAgent_split_29():
-    r'''A single container can be splits in the middle.
+    r'''Splits container in middle.
     '''
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -1761,7 +1820,9 @@ def test_agenttools_MutationAgent_split_30():
 
 
 def test_agenttools_MutationAgent_split_31():
-    r'''Slpit container in score and do not fracture spanners.
+    r'''Slpits container in score.
+    
+    Does not fracture spanners.
     '''
 
     staff = abjad.Staff([abjad.Container("c'8 d'8 e'8 f'8")])
@@ -1837,7 +1898,9 @@ def test_agenttools_MutationAgent_split_31():
 
 
 def test_agenttools_MutationAgent_split_32():
-    r'''Splits tuplet in score and do not fracture spanners.
+    r'''Splits tuplet in score.
+    
+    Does not fracture spanners.
     '''
 
     tuplet = abjad.Tuplet((4, 5), "c'8 c'8 c'8 c'8 c'8")
@@ -1924,7 +1987,9 @@ def test_agenttools_MutationAgent_split_32():
 
 
 def test_agenttools_MutationAgent_split_33():
-    r'''Splits triplet, and fracture spanners.
+    r'''Splits tuplet in score
+    
+    Fractures spanners.
     '''
 
     voice = abjad.Voice()
@@ -2007,7 +2072,8 @@ def test_agenttools_MutationAgent_split_33():
 
 def test_agenttools_MutationAgent_split_34():
     r'''Splits measure with power-of-two time signature denominator.
-    Fracture spanners.
+
+    Fractures spanners.
     '''
 
     voice = abjad.Voice()
@@ -2091,7 +2157,8 @@ def test_agenttools_MutationAgent_split_34():
 
 
 def test_agenttools_MutationAgent_split_35():
-    r'''Splits measure without power-of-two time signature denominator.
+    r'''Splits measure without power-of-two denominator.
+
     Fractures spanners.
     '''
 
@@ -2193,7 +2260,8 @@ def test_agenttools_MutationAgent_split_35():
 
 def test_agenttools_MutationAgent_split_36():
     r'''Splits voice outside of score.
-    Fracture spanners.
+
+    Fractures spanners.
     '''
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -2246,7 +2314,9 @@ def test_agenttools_MutationAgent_split_36():
 
 
 def test_agenttools_MutationAgent_split_37():
-    r'''Splits measure in score and fracture spanners.
+    r'''Splits measure in score.
+    
+    Fractures spanners.
     '''
 
     staff = abjad.Staff()
@@ -2308,9 +2378,11 @@ def test_agenttools_MutationAgent_split_37():
 
 
 def test_agenttools_MutationAgent_split_38():
-    r'''Splits in-score measure with power-of-two time signature denominator.
-    Fractured spanners but do not tie over splits locus.
-    abjad.Measure contents necessitate denominator change.
+    r'''Splits in-score measure with power-of-two denominator.
+
+    Fractures spanners but does not tie over split.
+
+    Changes measure denominator.
     '''
 
     staff = abjad.Staff([abjad.Measure((3, 8), "c'8. d'8.")])
@@ -2357,8 +2429,9 @@ def test_agenttools_MutationAgent_split_38():
 
 
 def test_agenttools_MutationAgent_split_39():
-    r'''Splits cyclic.
-    Leave spanner abjad.attaching to container contents untouched.
+    r'''Splits cyclically.
+
+    Leave spanner untouched.
     '''
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
@@ -2419,7 +2492,7 @@ def test_agenttools_MutationAgent_split_39():
 
 
 def test_agenttools_MutationAgent_split_40():
-    r'''Cyclic 1 splits all elements in container.
+    r'''Cyclically splits all components in container.
     '''
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
@@ -2472,71 +2545,7 @@ def test_agenttools_MutationAgent_split_40():
 
 
 def test_agenttools_MutationAgent_split_41():
-    r'''Splits cyclic.
-    Fracture spanners abjad.attaching directly to container.
-    Leave spanner abjad.attaching to container contents untouched.
-    '''
-
-    voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    leaves = abjad.select(voice).by_leaf()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice {
-            {
-                c'8 [ (
-                d'8
-                e'8
-                f'8
-                g'8
-                a'8
-                b'8
-                c''8 ] )
-            }
-        }
-        '''
-        ), format(voice)
-
-    container = voice[0]
-    result = abjad.mutate(container).split(
-        [abjad.Duration(1, 8), abjad.Duration(3, 8)],
-        cyclic=True,
-        fracture_spanners=True,
-        )
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice {
-            {
-                c'8 [ ]
-            }
-            {
-                d'8 [ (
-                e'8
-                f'8 ] )
-            }
-            {
-                g'8 [ ]
-            }
-            {
-                a'8 [ (
-                b'8
-                c''8 ] )
-            }
-        }
-        '''
-        ), format(voice)
-
-    assert abjad.inspect(voice).is_well_formed()
-    assert len(result) == 4
-
-
-def test_agenttools_MutationAgent_split_42():
-    r'''Cyclic by 1 splits all elements in container.
+    r'''Cyclically splits all components in container.
     '''
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
@@ -2589,8 +2598,9 @@ def test_agenttools_MutationAgent_split_42():
     assert len(result) == 4
 
 
-def test_agenttools_MutationAgent_split_43():
-    r'''Extra durations are ignored.
+def test_agenttools_MutationAgent_split_42():
+    r'''Ignores extra durations.
+
     Result contains no empty shards.
     '''
 
@@ -2640,9 +2650,8 @@ def test_agenttools_MutationAgent_split_43():
     assert len(result) == 2
 
 
-def test_agenttools_MutationAgent_split_44():
-    r'''Empty durations list.
-    Expression remains unaltered.
+def test_agenttools_MutationAgent_split_43():
+    r'''Leaves container unchanged because of empty duration list.
     '''
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
@@ -2689,132 +2698,9 @@ def test_agenttools_MutationAgent_split_44():
     assert len(result) == 1
 
 
-def test_agenttools_MutationAgent_split_45():
-    r'''Splits one time.
-    Fracture spanners abjad.attaching directly to container.
-    Leave spanner abjad.attaching to container contents untouched.
-    '''
+def test_agenttools_MutationAgent_split_44():
+    r'''Ignores extra durations.
 
-    voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    leaves = abjad.select(voice).by_leaf()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice {
-            {
-                c'8 [ (
-                d'8
-                e'8
-                f'8
-                g'8
-                a'8
-                b'8
-                c''8 ] )
-            }
-        }
-        '''
-        ), format(voice)
-
-    container = voice[0]
-    result = abjad.mutate(container).split(
-        [abjad.Duration(1, 8), abjad.Duration(3, 8)],
-        cyclic=False,
-        fracture_spanners=False,
-        )
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice {
-            {
-                c'8 [ (
-            }
-            {
-                d'8
-                e'8
-                f'8
-            }
-            {
-                g'8
-                a'8
-                b'8
-                c''8 ] )
-            }
-        }
-        '''
-        ), format(voice)
-
-    assert abjad.inspect(voice).is_well_formed()
-    assert len(result) == 3
-
-
-def test_agenttools_MutationAgent_split_46():
-    r'''Splits one time.
-    Fracture spanners abjad.attaching directly to container.
-    Leave spanner abjad.attaching to container contents untouched.
-    '''
-
-    voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    leaves = abjad.select(voice).by_leaf()
-    beam = abjad.Beam()
-    abjad.attach(beam, leaves)
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice {
-            {
-                c'8 [ (
-                d'8
-                e'8
-                f'8
-                g'8
-                a'8
-                b'8
-                c''8 ] )
-            }
-        }
-        '''
-        ), format(voice)
-
-    container = voice[0]
-    result = abjad.mutate(container).split(
-        [abjad.Duration(1, 8), abjad.Duration(3, 8)],
-        cyclic=False,
-        fracture_spanners=True,
-        )
-
-    assert format(voice) == abjad.String.normalize(
-        r'''
-        \new Voice {
-            {
-                c'8 [ ]
-            }
-            {
-                d'8 [ (
-                e'8
-                f'8 ] )
-            }
-            {
-                g'8 [ (
-                a'8
-                b'8
-                c''8 ] )
-            }
-        }
-        '''
-        ), format(voice)
-
-    assert abjad.inspect(voice).is_well_formed()
-    assert len(result) == 3
-
-
-def test_agenttools_MutationAgent_split_47():
-    r'''Extra durations are ignored.
     Result contains no empty shards.
     '''
 
@@ -2864,9 +2750,8 @@ def test_agenttools_MutationAgent_split_47():
     assert len(result) == 2
 
 
-def test_agenttools_MutationAgent_split_48():
-    r'''Splits leaf at relative offset that is both non-assignable
-    and non-power-of-two.
+def test_agenttools_MutationAgent_split_45():
+    r'''Splits leaf at non-assignable, non-power-of-two offset.
     '''
 
     staff = abjad.Staff("c'4")
@@ -2895,22 +2780,19 @@ def test_agenttools_MutationAgent_split_48():
     assert abjad.inspect(staff).is_well_formed()
 
 
-# container._split_at_index() works here;
-# abjad.split() doesn't work here.
-# eventually make abjad.split() work here.
-def test_agenttools_MutationAgent_split_49():
-    r'''Splits in-score measure without power-of-two time
-    signature denominator. Fractured spanners but do not tie
-    over splits locus. abjad.Measure contents necessitate denominator change.
-    '''
-    pytest.skip('TODO: make this work.')
+def test_agenttools_MutationAgent_split_46():
+    r'''Splits in-score measure without power-of-two denominator.
 
-    staff = abjad.Staff([abjad.Measure((3, 12), "c'8. d'8.")])
+    Fractures spanners but does not tie over split.
+    
+    Changes measure denominator.
+    '''
+
+    measure = abjad.Measure((3, 12), "c'8. d'8.", implicit_scaling=True)
+    staff = abjad.Staff([measure])
     leaves = abjad.select(staff).by_leaf()
     beam = abjad.Beam()
-    abjad.attach(beam, staff[0])
-    slur = abjad.Slur()
-    abjad.attach(slur, leaves)
+    abjad.attach(beam, leaves)
 
     assert format(staff) == abjad.String.normalize(
         r'''
@@ -2918,8 +2800,8 @@ def test_agenttools_MutationAgent_split_49():
             {
                 \time 3/12
                 \scaleDurations #'(2 . 3) {
-                    c'8. [ (
-                    d'8. ] )
+                    c'8. [
+                    d'8. ]
                 }
             }
         }
@@ -2938,12 +2820,12 @@ def test_agenttools_MutationAgent_split_49():
             {
                 \time 3/24
                 \scaleDurations #'(2 . 3) {
-                    c'8. [ ] (
+                    c'8. [ ]
                 }
             }
             {
                 \scaleDurations #'(2 . 3) {
-                    d'8. ) [ ]
+                    d'8. [ ]
                 }
             }
         }
