@@ -766,7 +766,8 @@ class Container(Component):
                 self[:] = parsed[:]
         else:
             message = 'can not initialize container from {!r}.'
-            message = message.format((music))
+            message += ' try using mutate().wrap()?'
+            message = message.format(music)
             raise TypeError(message)
 
     def _is_one_of_my_first_leaves(self, leaf):

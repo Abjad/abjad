@@ -505,7 +505,6 @@ class Leaf(Component):
                 selection._attach_tie_spanner_to_leaf_pair(
                     use_messiaen_style_ties=use_messiaen_style_ties,
                     )
-        # return result
         return result
 
     # TODO: This should be replaced in favor of self._split().
@@ -523,7 +522,9 @@ class Leaf(Component):
         duration = abjad.Duration(duration)
         # calculate durations
         leaf_multiplied_duration = self._get_multiplied_duration()
-        prolation = self._get_parentage(include_self=False).prolation
+        parentage = abjad.inspect(self).get_parentage(include_self=False)
+        old_parent = parentage.parent
+        prolation = parentage.prolation
         preprolated_duration = duration / prolation
         # handle boundary cases
         if preprolated_duration <= 0:
@@ -541,22 +542,32 @@ class Leaf(Component):
             preprolated_duration,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
-        right_preprolated_duration = \
-            leaf_multiplied_duration - preprolated_duration
+        left_leaf_list = abjad.select(left_leaf_list).by_leaf()
+        right_preprolated_duration = leaf_multiplied_duration
+        right_preprolated_duration -= preprolated_duration
         right_leaf_list = new_leaf._set_duration(
             right_preprolated_duration,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
+        right_leaf_list = abjad.select(right_leaf_list).by_leaf()
         leaf_left_of_split = left_leaf_list[-1]
         leaf_right_of_split = right_leaf_list[0]
         leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
+        left_parent = abjad.inspect(left_leaf_list[0]).get_parentage().parent
+        right_parent = abjad.inspect(right_leaf_list[0]).get_parentage().parent
+        if (isinstance(left_parent, abjad.Tuplet) and
+            left_parent is not old_parent):
+            assert isinstance(right_parent, abjad.Tuplet), repr(right_parent)
+            assert left_parent.multiplier == right_parent.multiplier
+            parents = abjad.select([left_parent, right_parent])
+            abjad.mutate(parents).fuse()
         if fracture_spanners:
-            for spanner in leaf_left_of_split._get_spanners():
+            for spanner in abjad.inspect(leaf_left_of_split).get_spanners():
                 index = spanner._index(leaf_left_of_split)
                 spanner._fracture(index, direction=Right)
         # tie split notes, rests and chords as specified
         if abjad.Pitch._is_pitch_carrier(self) and tie_split_notes:
-            selection = abjad.Selection(leaves_around_split)
+            selection = abjad.select(leaves_around_split)
             selection._attach_tie_spanner_to_leaf_pair(
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )

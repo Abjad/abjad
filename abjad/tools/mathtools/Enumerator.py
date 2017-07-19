@@ -3,7 +3,6 @@ import functools
 import itertools
 import sys
 from abjad.tools import abctools
-from abjad.tools import mathtools
 
 
 class Enumerator(abctools.AbjadValueObject):
@@ -156,7 +155,8 @@ class Enumerator(abctools.AbjadValueObject):
 
         Returns generator of tuples.
         '''
-        if not mathtools.is_positive_integer(length):
+        import abjad
+        if not abjad.mathtools.is_positive_integer(length):
             raise TypeError
         last_rgf = list(range(1, length + 1))
         rgf = length * [1]
@@ -298,7 +298,7 @@ class Enumerator(abctools.AbjadValueObject):
         import abjad
         length = len(self.sequence)
         for i in range(2**length):
-            binary_string = mathtools.integer_to_binary_string(i)
+            binary_string = abjad.mathtools.integer_to_binary_string(i)
             binary_string = binary_string.zfill(length)
             sublist = []
             for j, digit in enumerate(reversed(binary_string)):
@@ -506,7 +506,7 @@ class Enumerator(abctools.AbjadValueObject):
         import abjad
         length = len(self.sequence) - 1
         for i in range(2**length):
-            binary_string = mathtools.integer_to_binary_string(i)
+            binary_string = abjad.mathtools.integer_to_binary_string(i)
             binary_string = binary_string.zfill(length)
             part = list(self.sequence[0:1])
             partition = [part]

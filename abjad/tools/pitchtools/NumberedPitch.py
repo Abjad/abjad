@@ -49,6 +49,8 @@ class NumberedPitch(Pitch):
         if Pitch._is_pitch_number(number):
             number = number
         else:
+            if number is None:
+                number = 0
             number = pitchtools.NamedPitch(number).number
         number = mathtools.integer_equivalent_number_to_integer(number)
         self._number = number

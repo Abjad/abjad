@@ -12,6 +12,10 @@ from abjad.tools.pitchtools.Pitch import Pitch
 class PitchRange(AbjadValueObject):
     r"""Pitch range.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Pitches from C3 to C7, inclusive:

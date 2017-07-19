@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import enum
-from abjad.tools import datastructuretools
-from abjad.tools import systemtools
 
 
 class Enumeration(enum.IntEnum):
@@ -76,6 +74,7 @@ class Enumeration(enum.IntEnum):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        from abjad.tools import systemtools
         agent = systemtools.StorageFormatAgent(self)
         repr_text = '{}.{}'.format(type(self).__name__, self.name)
         storage_format_text = '{}.{}'.format(
@@ -96,6 +95,7 @@ class Enumeration(enum.IntEnum):
 
         Returns new enumeration item.
         '''
+        from abjad.tools import datastructuretools
         if isinstance(argument, cls):
             return argument
         elif isinstance(argument, int):
