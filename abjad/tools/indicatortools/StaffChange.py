@@ -55,7 +55,7 @@ class StaffChange(AbjadValueObject):
 
     _format_slot = 'opening'
 
-    _split_direction = Right
+    _time_orientation = Right
 
     ### INITIALIZER ###
 

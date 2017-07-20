@@ -67,7 +67,7 @@ class Staccato(AbjadValueObject):
 
     _format_slot = Right
 
-    _split_direction = Right
+    _time_orientation = Right
 
     ### INITIALIZER ###
 

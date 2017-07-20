@@ -307,13 +307,6 @@ class Scheme(AbjadValueObject):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self._value,)
-
     def __str__(self):
         r'''String representation of scheme object.
 

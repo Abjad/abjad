@@ -64,7 +64,7 @@ class BreathMark(AbjadValueObject):
 
     _format_slot = 'after'
 
-    _split_direction = Right
+    _time_orientation = Right
 
     ### INITIALIZER ###
 

@@ -2764,13 +2764,9 @@ def test_agenttools_MutationAgent_split_45():
     assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
-            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4 ~
                 c'16 ~
-            }
-            \tweak edge-height #'(0.7 . 0)
-            \times 2/3 {
                 c'16
             }
         }

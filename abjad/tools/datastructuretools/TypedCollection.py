@@ -56,13 +56,6 @@ class TypedCollection(AbjadObject):
             return self._collection == argument
         return False
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self._collection, self.item_class)
-
     def __hash__(self):
         r'''Hashes typed collection.
 

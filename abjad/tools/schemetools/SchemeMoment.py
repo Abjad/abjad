@@ -61,13 +61,6 @@ class SchemeMoment(Scheme):
         '''
         return super(SchemeMoment, self).__eq__(argument)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self._value,)
-
     def __hash__(self):
         r'''Hashes scheme moment.
 

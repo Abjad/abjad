@@ -324,7 +324,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> abjad.mutate(staff[1:]).fuse()
-                [Note("d'4.")]
+                Selection([Note("d'4.")])
                 >>> show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -387,7 +387,7 @@ class MutationAgent(abctools.AbjadObject):
                     }
                 }
 
-            Returns new tuplet.
+            Returns new tuplet in selection.
 
             Fuses zero or more parent-contiguous `tuplets`.
 
@@ -449,20 +449,20 @@ class MutationAgent(abctools.AbjadObject):
                     }
                 }
 
-        Returns fused mutation client.
+        Returns selection.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        if isinstance(self._client, scoretools.Component):
-            selection = selectiontools.Selection(self._client)
+        import abjad
+        if isinstance(self._client, abjad.Component):
+            selection = abjad.select(self._client)
             return selection._fuse()
         elif (
-            isinstance(self._client, selectiontools.Selection) and
+            isinstance(self._client, abjad.Selection) and
             self._client._all_in_same_logical_voice(
                 self._client,
-                contiguous=True)
+                contiguous=True,
+                )
             ):
-            selection = selectiontools.Selection(self._client)
+            selection = abjad.select(self._client)
             return selection._fuse()
 
     def replace(self, recipients):
@@ -2704,6 +2704,54 @@ class MutationAgent(abctools.AbjadObject):
                     >>
                 }
 
+        ..  container:: example
+
+            Splits leaves with articulations:
+
+            ::
+
+                >>> staff = abjad.Staff("c'4 d' e' f'")
+                >>> abjad.attach(abjad.Articulation('^'), staff[0])
+                >>> abjad.attach(abjad.LaissezVibrer(), staff[1])
+                >>> abjad.attach(abjad.Articulation('^'), staff[2])
+                >>> abjad.attach(abjad.LaissezVibrer(), staff[3])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4 -\marcato
+                    d'4 \laissezVibrer
+                    e'4 -\marcato
+                    f'4 \laissezVibrer
+                }
+
+            ::
+
+                >>> durations = [(1, 8)]
+                >>> result = abjad.mutate(staff[:]).split(
+                ...     durations,
+                ...     cyclic=True,
+                ...     fracture_spanners=False,
+                ...     tie_split_notes=True,
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 -\marcato ~
+                    c'8
+                    d'8 ~
+                    d'8 \laissezVibrer
+                    e'8 -\marcato ~
+                    e'8
+                    f'8 ~
+                    f'8 \laissezVibrer
+                }
+
         Returns list of selections.
         '''
         import abjad
@@ -2794,7 +2842,7 @@ class MutationAgent(abctools.AbjadObject):
                     additional_durations = split_durations[0]
                     leaf_split_durations.extend(additional_durations)
                     durations = split_durations[-1]
-                    leaf_shards = current_component._split(
+                    leaf_shards = current_component._split_by_durations(
                         leaf_split_durations,
                         cyclic=False,
                         fracture_spanners=fracture_spanners,

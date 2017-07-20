@@ -33,7 +33,7 @@ class LaissezVibrer(AbjadValueObject):
 
     _format_slot = 'right'
 
-    _split_direction = Right
+    _time_orientation = Right
 
     ### INITIALIZER ###
 

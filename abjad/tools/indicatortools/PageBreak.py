@@ -46,7 +46,7 @@ class PageBreak(AbjadValueObject):
 
     _format_slot = 'closing'
 
-    _split_direction = Right
+    _time_orientation = Right
 
     ### INITIALIZER ##
 

@@ -74,14 +74,25 @@ class NoteHead(AbjadObject):
         r'''Copies note-head.
 
         ::
-
+    
             >>> import copy
+
+        ::
+
             >>> copy.copy(note_head)
             NoteHead("cs''")
 
         Returns new note-head.
         '''
-        return type(self)(*self.__getnewargs__())
+        arguments = (
+            self.written_pitch,
+            None,
+            self.is_cautionary,
+            self.is_forced,
+            self.is_parenthesized,
+            self.tweak._get_attribute_pairs(),
+            )
+        return type(self)(*arguments)
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a note-head with written pitch equal to
@@ -104,21 +115,6 @@ class NoteHead(AbjadObject):
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
-
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        arguments = (
-            self.written_pitch,
-            None,
-            self.is_cautionary,
-            self.is_forced,
-            self.is_parenthesized,
-            self.tweak._get_attribute_pairs(),
-            )
-        return arguments
 
     def __hash__(self):
         r'''Hashes note-head.

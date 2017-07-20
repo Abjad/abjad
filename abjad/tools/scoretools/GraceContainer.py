@@ -78,7 +78,7 @@ class GraceContainer(Container):
         ::
 
             >>> abjad.detach(abjad.GraceContainer, voice[1])
-            (GraceContainer(),)
+            (GraceContainer("cs'16"),)
             >>> show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -93,6 +93,57 @@ class GraceContainer(Container):
                 }
                 e'4
                 f'4
+            }
+
+    ..  container:: example
+
+        Grace containers can be moved:
+
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'")
+            >>> container = abjad.GraceContainer("fs'32")
+            >>> abjad.attach(container, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \grace {
+                    fs'32
+                }
+                c'4
+                d'4
+            }
+
+        ::
+
+            >>> result = abjad.detach(abjad.GraceContainer, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                d'4
+            }
+
+        ::
+
+            >>> abjad.attach(result[0], staff[1])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                \grace {
+                    fs'32
+                }
+                d'4
             }
 
     '''
@@ -127,7 +178,6 @@ class GraceContainer(Container):
             carrier = self._carrier
             carrier._grace_container = None
             self._carrier = None
-            self[:] = []
         return self
 
     def _format_open_brackets_slot(self, bundle):

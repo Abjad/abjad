@@ -1096,8 +1096,8 @@ class Container(Component):
             timespan = abjad.inspect(bottom).get_timespan()
             start_offset = timespan.start_offset
             split_point_in_bottom = global_split_point - start_offset
-            left_list, right_list = bottom._split_by_duration(
-                split_point_in_bottom,
+            left_list, right_list = bottom._split_by_durations(
+                [split_point_in_bottom],
                 fracture_spanners=fracture_spanners,
                 tie_split_notes=tie_split_notes,
                 use_messiaen_style_ties=use_messiaen_style_ties,

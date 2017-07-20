@@ -280,22 +280,18 @@ class Leaf(Component):
         return current_leaf
 
     def _get_logical_tie(self):
-        from abjad.tools import selectiontools
-        from abjad.tools import spannertools
-        prototype = (spannertools.Tie,)
+        import abjad
         for component in self._get_parentage():
-            tie_spanners = component._get_spanners(prototype)
+            tie_spanners = component._get_spanners(abjad.Tie)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
-                return selectiontools.LogicalTie(
-                    music=tie_spanner._get_leaves()
-                    )
+                return abjad.LogicalTie(music=tie_spanner._get_leaves())
             elif 1 < len(tie_spanners):
                 message = 'parentage of {!r} contains {} tie spanners.'
                 message = message.format(self, len(tie_spanners))
                 raise Exception(message)
         else:
-            return selectiontools.LogicalTie(music=self)
+            return abjad.LogicalTie(music=self)
 
     def _process_contribution_packet(self, contribution_packet):
         manager = systemtools.LilyPondFormatManager
@@ -350,11 +346,11 @@ class Leaf(Component):
             detach(abjad.Multiplier, self)
             multiplier = new_duration.__div__(self.written_duration)
             attach(multiplier, self)
-            return [self]
+            return abjad.select(self)
         # change written duration if new duration is assignable
         try:
             self.written_duration = new_duration
-            return [self]
+            return abjad.select(self)
         except AssignabilityError:
             pass
         # make new notes or tuplets if new duration is nonassignable
@@ -366,8 +362,8 @@ class Leaf(Component):
             tied_leaf_count = len(components) - 1
             tied_leaves = tied_leaf_count * self
             all_leaves = [self] + tied_leaves
-            for x, component in zip(all_leaves, components):
-                x.written_duration = component.written_duration
+            for leaf, component in zip(all_leaves, components):
+                leaf.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
             parentage = self._get_parentage()
             if not parentage._get_spanners(abjad.Tie):
@@ -376,8 +372,8 @@ class Leaf(Component):
                     tie = abjad.Tie(
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )
-                    attach(tie, all_leaves)
-            return all_leaves
+                    abjad.attach(tie, all_leaves)
+            return abjad.select(all_leaves)
         else:
             assert isinstance(components[0], abjad.Tuplet)
             tuplet = components[0]
@@ -385,24 +381,22 @@ class Leaf(Component):
             tied_leaf_count = len(components) - 1
             tied_leaves = tied_leaf_count * self
             all_leaves = [self] + tied_leaves
-            for x, component in zip(all_leaves, components):
-                x.written_duration = component.written_duration
+            for leaf, component in zip(all_leaves, components):
+                leaf.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
             if not self._get_spanners(abjad.Tie):
-                #if abjad.Tie._attachment_test(self):
                 tie = abjad.Tie()
                 if tie._attachment_test(self):
                     tie = abjad.Tie(
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )
-                    attach(tie, all_leaves)
+                    abjad.attach(tie, all_leaves)
             multiplier = tuplet.multiplier
-            #abjad.Tuplet(multiplier, all_leaves)
             tuplet = abjad.Tuplet(multiplier, [])
             abjad.mutate(all_leaves).wrap(tuplet)
-            return [tuplet]
+            return abjad.select(tuplet)
 
-    def _split(
+    def _split_by_durations(
         self,
         durations,
         cyclic=False,
@@ -412,174 +406,104 @@ class Leaf(Component):
         ):
         import abjad
         durations = [abjad.Duration(_) for _ in durations]
+        durations = abjad.Sequence(durations)
+        leaf_duration = abjad.inspect(self).get_duration()
         if cyclic:
-            durations = abjad.Sequence(durations)
-            durations = durations.repeat_to_weight(self._get_duration())
-        durations = [abjad.Duration(_) for _ in durations]
-        if sum(durations) < self._get_duration():
-            last_duration = self._get_duration() - sum(durations)
+            durations = durations.repeat_to_weight(leaf_duration)
+        if sum(durations) < leaf_duration:
+            last_duration = leaf_duration - sum(durations)
+            durations = list(durations)
             durations.append(last_duration)
-        weight = self._get_duration()
-        durations = abjad.Sequence(durations).truncate(weight=weight)
-        result = []
-        leaf_prolation = self._get_parentage(include_self=False).prolation
-        timespan = self._get_timespan()
-        start_offset = timespan.start_offset
+            durations = abjad.sequence(durations)
+        durations = durations.truncate(weight=leaf_duration)
+        result_selections = []
+        # detach grace containers
+        grace_container = self._detach_grace_container()
+        after_grace_container = self._detach_after_grace_container()
+        leaf_prolation = abjad.inspect(self).get_parentage().prolation
         for duration in durations:
             new_leaf = copy.copy(self)
             preprolated_duration = duration / leaf_prolation
-            shard = new_leaf._set_duration(
+            selection = new_leaf._set_duration(
                 preprolated_duration,
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
-            for x in shard:
-                if isinstance(x, abjad.Leaf):
-                    x_duration = x.written_duration * leaf_prolation
-                else:
-                    x_duration = x.multiplied_duration * leaf_prolation
-                stop_offset = x_duration + start_offset
-                x._start_offset = start_offset
-                x._stop_offset = stop_offset
-                x._timespan = abjad.Timespan(
-                    start_offset=start_offset,
-                    stop_offset=stop_offset,
-                    )
-                start_offset = stop_offset
-            shard = [x._get_parentage().root for x in shard]
-            result.append(shard)
-        flattened_result = abjad.Sequence(result).flatten()
-        flattened_result = abjad.Selection(flattened_result)
-        prototype = (abjad.Tie,)
-        parentage = self._get_parentage()
-        if parentage._get_spanners(prototype=prototype):
-            selection = select(flattened_result)
-            for component in selection:
-                # TODO: make top-level detach() work here
-                for spanner in component._get_spanners(prototype):
-                    spanner._sever_all_components()
-                #detach(prototype, component)
+            result_selections.append(selection)
+        result_components = abjad.sequence(result_selections).flatten()
+        result_components = abjad.select(result_components)
+        result_leaves = abjad.select(result_components).by_leaf()
+        assert all(isinstance(_, abjad.Selection) for _ in result_selections)
+        assert all(isinstance(_, abjad.Component) for _ in result_components)
+        assert all(isinstance(_, abjad.Leaf) for _ in result_leaves)
+        if abjad.inspect(self).has_spanner(abjad.Tie):
+            for leaf in result_leaves:
+                abjad.detach(abjad.Tie, leaf)
+        # strip result leaves of indicators (other than multipliers)
+        for leaf in result_leaves:
+            multiplier = abjad.inspect(leaf).get_indicator(abjad.Multiplier)
+            abjad.detach(object, leaf)
+            abjad.attach(multiplier, leaf)
         # replace leaf with flattened result
-        selection = abjad.Selection(self)
+        selection = abjad.select(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent:
-            parent.__setitem__(slice(start, stop + 1), flattened_result)
+            parent.__setitem__(slice(start, stop + 1), result_components)
         else:
-            selection._give_dominant_spanners(flattened_result)
+            selection._give_dominant_spanners(result_components)
             selection._withdraw_from_crossing_spanners()
         # fracture spanners
         if fracture_spanners:
-            first_shard = result[0]
-            for spanner in first_shard[-1]._get_spanners():
-                index = spanner._index(first_shard[-1])
+            first_selection = result_selections[0]
+            for spanner in abjad.inspect(first_selection[-1]).get_spanners():
+                index = spanner._index(first_selection[-1])
                 spanner._fracture(index, direction=Right)
-            last_shard = result[-1]
-            for spanner in last_shard[0]._get_spanners():
-                index = spanner._index(last_shard[0])
+            last_selection = result_selections[-1]
+            for spanner in abjad.inspect(last_selection[0]).get_spanners():
+                index = spanner._index(last_selection[0])
                 spanner._fracture(index, direction=Left)
-            for middle_shard in result[1:-1]:
-                for spanner in middle_shard[0]._get_spanners():
-                    index = spanner._index(middle_shard[0])
+            for middle_selection in result_selections[1:-1]:
+                spanners = abjad.inspect(middle_selection[0]).get_spanners()
+                for spanner in spanners:
+                    index = spanner._index(middle_selection[0])
                     spanner._fracture(index, direction=Left)
-                for spanner in middle_shard[-1]._get_spanners():
-                    index = spanner._index(middle_shard[-1])
+                spanners = abjad.inspect(middle_selection[-1]).get_spanners()
+                for spanner in spanners:
+                    index = spanner._index(middle_selection[-1])
                     spanner._fracture(index, direction=Right)
-        # adjust first leaf
-        self._detach_after_grace_container()
-        # adjust any middle leaves
-        for middle_leaf in flattened_result[1:-1]:
-            middle_leaf._detach_grace_container()
-            self._detach_after_grace_container()
-            detach(object, middle_leaf)
-        # adjust last leaf
-        last_component = flattened_result[-1]
-        if isinstance(last_component, abjad.Leaf):
-            last_component._detach_grace_container()
-        detach(object, last_component)
-        # tie split notes, rests and chords as specified
-        if abjad.Pitch._is_pitch_carrier(self) and tie_split_notes:
-            flattened_result_leaves = abjad.iterate(flattened_result).by_leaf()
-            # TODO: implement Selection._attach_tie_spanner_to_leaves()
-            pairs = abjad.Sequence(flattened_result_leaves).nwise()
-            for leaf_pair in pairs:
-                selection = abjad.Selection(leaf_pair)
-                selection._attach_tie_spanner_to_leaf_pair(
-                    use_messiaen_style_ties=use_messiaen_style_ties,
-                    )
-        return result
-
-    # TODO: This should be replaced in favor of self._split().
-    #       The precondition is that self._split() must be
-    #       extended to handle graces.
-    def _split_by_duration(
-        self,
-        duration,
-        fracture_spanners=False,
-        tie_split_notes=True,
-        use_messiaen_style_ties=False,
-        ):
-        import abjad
-        # check input
-        duration = abjad.Duration(duration)
-        # calculate durations
-        leaf_multiplied_duration = self._get_multiplied_duration()
-        parentage = abjad.inspect(self).get_parentage(include_self=False)
-        old_parent = parentage.parent
-        prolation = parentage.prolation
-        preprolated_duration = duration / prolation
-        # handle boundary cases
-        if preprolated_duration <= 0:
-            return ([], [self])
-        if leaf_multiplied_duration <= preprolated_duration:
-            return ([self], [])
-        # create new leaf
-        new_leaf = copy.copy(self)
-        self._splice([new_leaf], grow_spanners=True)
-        # adjust leaf
-        self._detach_after_grace_container()
-        # adjust new leaf
-        new_leaf._detach_grace_container()
-        left_leaf_list = self._set_duration(
-            preprolated_duration,
-            use_messiaen_style_ties=use_messiaen_style_ties,
-            )
-        left_leaf_list = abjad.select(left_leaf_list).by_leaf()
-        right_preprolated_duration = leaf_multiplied_duration
-        right_preprolated_duration -= preprolated_duration
-        right_leaf_list = new_leaf._set_duration(
-            right_preprolated_duration,
-            use_messiaen_style_ties=use_messiaen_style_ties,
-            )
-        right_leaf_list = abjad.select(right_leaf_list).by_leaf()
-        leaf_left_of_split = left_leaf_list[-1]
-        leaf_right_of_split = right_leaf_list[0]
-        leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
-        left_parent = abjad.inspect(left_leaf_list[0]).get_parentage().parent
-        right_parent = abjad.inspect(right_leaf_list[0]).get_parentage().parent
-        if (isinstance(left_parent, abjad.Tuplet) and
-            left_parent is not old_parent):
-            assert isinstance(right_parent, abjad.Tuplet), repr(right_parent)
-            assert left_parent.multiplier == right_parent.multiplier
-            parents = abjad.select([left_parent, right_parent])
-            abjad.mutate(parents).fuse()
-        if fracture_spanners:
-            for spanner in abjad.inspect(leaf_left_of_split).get_spanners():
-                index = spanner._index(leaf_left_of_split)
-                spanner._fracture(index, direction=Right)
-        # tie split notes, rests and chords as specified
-        if abjad.Pitch._is_pitch_carrier(self) and tie_split_notes:
-            selection = abjad.select(leaves_around_split)
-            selection._attach_tie_spanner_to_leaf_pair(
+        # move indicators
+        first_result_leaf = result_leaves[0]
+        last_result_leaf = result_leaves[-1]
+        for indicator in abjad.inspect(self).get_indicators():
+            if isinstance(indicator, abjad.Multiplier):
+                continue
+            abjad.detach(indicator, self)
+            direction = getattr(indicator, '_time_orientation', Left)
+            if direction is Left:
+                abjad.attach(indicator, first_result_leaf)
+            elif direction is Right:
+                abjad.attach(indicator, last_result_leaf)
+            else:
+                raise ValueError(direction)
+        # move grace containers
+        if grace_container is not None:
+            container = grace_container[0]
+            assert isinstance(container, abjad.GraceContainer), repr(container)
+            abjad.attach(container, first_result_leaf)
+        if after_grace_container is not None:
+            container = after_grace_container[0]
+            prototype = abjad.AfterGraceContainer
+            assert isinstance(container, prototype), repr(container)
+            abjad.attach(container, last_result_leaf)
+        if isinstance(result_components[0], abjad.Tuplet):
+            abjad.mutate(result_components).fuse()
+        # tie split notes
+        if isinstance(self, (abjad.Note, abjad.Chord)) and tie_split_notes:
+            result_leaves._attach_tie_spanner_to_leaves(
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
-        return left_leaf_list, right_leaf_list
-        # TODO: make this substitution work
-        #return self._split(
-        #    leaf,
-        #    [duration],
-        #    cyclic=False,
-        #    fracture_spanners=fracture_spanners,
-        #    tie_split_notes=tie_split_notes,
-        #    )
+        assert isinstance(result_selections, list), repr(result_selections)
+        assert all(isinstance(_, abjad.Selection) for _ in result_selections)
+        return result_selections
 
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
         import abjad

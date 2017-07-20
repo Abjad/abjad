@@ -266,13 +266,6 @@ class NamedPitch(Pitch):
         '''
         return super(NamedPitch, self).__eq__(argument)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self.name,)
-
     def __hash__(self):
         r'''Hashes named pitch.
 

@@ -89,7 +89,6 @@ class AfterGraceContainer(Container):
             carrier = self._carrier
             carrier._after_grace_container = None
             self._carrier = None
-            self[:] = []
         return self
 
     def _format_open_brackets_slot(self, bundle):

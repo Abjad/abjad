@@ -413,6 +413,15 @@ class Selection(object):
                 )
             attach(tie, [left_leaf, right_leaf])
 
+    def _attach_tie_spanner_to_leaves(self, use_messiaen_style_ties=False):
+        import abjad
+        pairs = abjad.sequence(self).nwise()
+        for leaf_pair in pairs:
+            selection = abjad.select(leaf_pair)
+            selection._attach_tie_spanner_to_leaf_pair(
+                use_messiaen_style_ties=use_messiaen_style_ties,
+                )
+
     @staticmethod
     def _coerce_music(music):
         if music is None:

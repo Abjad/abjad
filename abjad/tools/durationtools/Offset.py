@@ -215,9 +215,8 @@ class Offset(Duration):
 
         Returns new offset.
         '''
-        arguments = self.__getnewargs__()
         return type(self)(
-            *arguments,
+            self.pair,
             grace_displacement=self.grace_displacement
             )
 
@@ -412,13 +411,6 @@ class Offset(Duration):
             return self._get_grace_displacement() >= \
                 argument._get_grace_displacement()
         return super(Offset, self).__ge__(argument)
-
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return self.pair
 
     def __gt__(self, argument):
         r'''Is true when offset is greater than `argument`.
