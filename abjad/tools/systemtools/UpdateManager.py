@@ -226,20 +226,17 @@ class UpdateManager(AbjadObject):
         from abjad.tools import durationtools
         from abjad.tools import indicatortools
         from abjad.tools.topleveltools import inspect
-        expressions = []
+        wrappers = []
         prototype = indicatortools.TimeSignature
         score_root = component._get_parentage(include_self=True).root
         for component in self._iterate_entire_score(score_root):
-            expressions_ = component._get_indicators(
-                prototype,
-                unwrap=False,
-                )
-            expressions.extend(expressions_)
+            wrappers_ = component._get_indicators(prototype, unwrap=False)
+            wrappers.extend(wrappers_)
         pairs = []
-        for expression in expressions:
-            inspector = inspect(expression.component)
+        for wrapper in wrappers:
+            inspector = inspect(wrapper.component)
             start_offset = inspector.get_timespan()._start_offset
-            time_signature = expression.indicator
+            time_signature = wrapper.indicator
             pair = start_offset, time_signature
             pairs.append(pair)
         offset_zero = durationtools.Offset(0)

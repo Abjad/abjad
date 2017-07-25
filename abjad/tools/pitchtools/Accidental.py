@@ -585,7 +585,7 @@ class Accidental(AbjadValueObject):
                 >>> abjad.Accidental('sharp', arrow=Down).arrow
                 Down
 
-        Arrow property is currently a stub in the object model. You can set the
+        ArrowLineSegment property is currently a stub in the object model. You can set the
         property but accidental math and formatting currently ignore the
         setting.
 

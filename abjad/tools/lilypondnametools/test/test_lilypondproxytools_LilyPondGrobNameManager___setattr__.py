@@ -670,8 +670,8 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___30():
     assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
-            \override Staff.OttavaBracket.staff-position = #4
             \ottava #1
+            \override Staff.OttavaBracket.staff-position = #4
             c'8
             d'8
             e'8

@@ -534,7 +534,7 @@ def test_agenttools_MutationAgent_copy_10():
     '''
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
@@ -919,37 +919,3 @@ def test_agenttools_MutationAgent_copy_18():
 
     assert abjad.inspect(staff).is_well_formed()
     assert abjad.inspect(new_staff).is_well_formed()
-
-
-def test_agenttools_MutationAgent_copy_19():
-    r'''Copy indicators while maintaining "is_annotation" flag.
-    '''
-
-    old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-    indicator = abjad.BendAfter()
-    abjad.attach(indicator, old_staff[0], is_annotation=True)
-    assert format(old_staff) == abjad.String.normalize(
-        r'''
-        \new Staff {
-            c'4
-            d'4
-            e'4
-            f'4
-        }
-        ''')
-    assert abjad.inspect(old_staff[0]).get_indicators() == (indicator,)
-
-    new_staff = abjad.mutate(old_staff).copy()
-    assert format(new_staff) == abjad.String.normalize(
-        r'''
-        \new Staff {
-            c'4
-            d'4
-            e'4
-            f'4
-        }
-        ''')
-    assert abjad.inspect(new_staff[0]).get_indicators() == (indicator,)
-
-    assert abjad.inspect(old_staff[0]).get_indicators()[0] is not \
-        abjad.inspect(new_staff[0]).get_indicators()[0]

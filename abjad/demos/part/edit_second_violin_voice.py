@@ -25,6 +25,7 @@ def edit_second_violin_voice(score, durated_reservoir):
     for _ in range(32):
         final_sustain.append(abjad.Note('a1.'))
     final_sustain.append(abjad.Note('a2'))
+    final_sustain = abjad.select(final_sustain)
     articulation = abjad.Articulation('accent')
     abjad.attach(articulation, final_sustain[0])
     articulation = abjad.Articulation('tenuto')

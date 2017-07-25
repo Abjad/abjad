@@ -17,9 +17,9 @@ def test_agenttools_InspectionAgent_get_duration_01():
     abjad.attach(mark, leaves[0], scope=abjad.Voice)
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, voice[0][:])
-    decrescendo = abjad.Decrescendo()
+    decrescendo = abjad.Hairpin('>')
     abjad.attach(decrescendo, voice[1][:])
 
     assert format(voice) == abjad.String.normalize(
@@ -57,9 +57,9 @@ def test_agenttools_InspectionAgent_get_duration_02():
     leaves = abjad.select(voice).by_leaf()
     beam = abjad.Beam()
     abjad.attach(beam, leaves)
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, voice[0][:])
-    decrescendo = abjad.Decrescendo()
+    decrescendo = abjad.Hairpin('>')
     abjad.attach(decrescendo, voice[1][:])
 
     assert format(voice) == abjad.String.normalize(

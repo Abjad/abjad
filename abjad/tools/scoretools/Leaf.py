@@ -90,7 +90,7 @@ class Leaf(Component):
             self._lilypond_setting_name_manager = copy.copy(
                 setting(leaf))
         new_indicators = []
-        for indicator in leaf._indicator_expressions:
+        for indicator in leaf._indicator_wrappers:
             new_indicator = copy.copy(indicator)
             new_indicators.append(new_indicator)
         for new_indicator in new_indicators:

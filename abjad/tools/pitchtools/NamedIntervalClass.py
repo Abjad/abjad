@@ -419,26 +419,6 @@ class NamedIntervalClass(IntervalClass):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_quality_and_number(class_, quality, number):
-        r'''Makes named interval-class from `quality` string and number.
-
-        ..  container:: example
-
-            ::
-
-                >>> abjad.NamedIntervalClass.from_quality_and_number(
-                ...     'major',
-                ...     -9,
-                ...     )
-                NamedIntervalClass('-M2')
-
-        Returns newly constructed named interval-class.
-        '''
-        name = NamedIntervalClass.quality_and_number_to_name(quality, number)
-        interval_class = class_(name)
-        return interval_class
-
-    @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
         '''Makes named interval-class from `pitch_carrier_1` and
         `pitch_carrier_2`.
@@ -501,6 +481,26 @@ class NamedIntervalClass(IntervalClass):
             pitch_carrier_2,
             )
         return class_(named_interval)
+
+    @classmethod
+    def from_quality_and_number(class_, quality, number):
+        r'''Makes named interval-class from `quality` string and number.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedIntervalClass.from_quality_and_number(
+                ...     'major',
+                ...     -9,
+                ...     )
+                NamedIntervalClass('-M2')
+
+        Returns newly constructed named interval-class.
+        '''
+        name = NamedIntervalClass.quality_and_number_to_name(quality, number)
+        interval_class = class_(name)
+        return interval_class
 
     @staticmethod
     def quality_and_number_to_name(quality, number):

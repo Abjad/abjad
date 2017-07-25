@@ -129,38 +129,38 @@ class Tie(Spanner):
         new._direction = self.direction
         new._use_messiaen_style_ties = self.use_messiaen_style_ties
 
-    def _format_right_of_leaf(self, leaf):
-        from abjad.tools import scoretools
-        result = []
+    def _get_lilypond_format_bundle(self, leaf):
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (
-            scoretools.Container,
-            scoretools.Rest,
-            scoretools.Skip,
-            scoretools.MultimeasureRest,
+            abjad.Container,
+            abjad.Rest,
+            abjad.Skip,
+            abjad.MultimeasureRest,
             )
         if not self.use_messiaen_style_ties:
             if self._is_my_last_leaf(leaf):
-                return result
+                return bundle
             elif isinstance(leaf, prototype):
-                return result
+                return bundle
             elif isinstance(leaf._get_leaf(1), prototype):
-                return result
+                return bundle
             if self.direction is not None:
                 string = '{} ~'.format(self.direction)
-                result.append(string)
+                bundle.right.spanners.append(string)
             else:
-                result.append('~')
+                bundle.right.spanners.append('~')
         else:
             if isinstance(leaf, prototype):
-                return result
+                return bundle
             elif self._is_my_first_leaf(leaf):
-                return result
+                return bundle
             if self.direction is not None:
                 string = r'{} \repeatTie'.format(self.direction)
-                result.append(string)
+                bundle.right.spanners.append(string)
             else:
-                result.append(r'\repeatTie')
-        return result
+                bundle.right.spanners.append(r'\repeatTie')
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

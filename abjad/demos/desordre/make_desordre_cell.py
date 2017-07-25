@@ -8,6 +8,7 @@ def make_desordre_cell(pitches):
     '''
 
     notes = [abjad.Note(pitch, (1, 8)) for pitch in pitches]
+    notes = abjad.select(notes)
     beam = abjad.Beam()
     abjad.attach(beam, notes)
     slur = abjad.Slur()

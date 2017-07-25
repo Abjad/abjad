@@ -133,27 +133,11 @@ class DuratedComplexBeam(ComplexBeam):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _coerce_durations(durations):
-        durations = durations or []
-        assert isinstance(durations, collections.Iterable)
-        durations = [durationtools.Duration(x) for x in durations]
-        durations = tuple(durations)
-        return durations
-
-    def _copy_keyword_args(self, new):
-        ComplexBeam._copy_keyword_args(self, new)
-        if self.durations is not None:
-            new._durations = self.durations[:]
-        new._span_beam_count = self.span_beam_count
-
-    def _format_before_leaf(self, leaf):
+    def _add_beam_counts(self, leaf, bundle):
         import abjad
-        if (not isinstance(leaf, abjad.Leaf) or
-            not self._is_beamable(leaf)):
-            return []
-        result = []
-        if self._is_exterior_leaf(leaf):
+        if (not isinstance(leaf, abjad.Leaf) or not self._is_beamable(leaf)):
+            left, right = None, None
+        elif self._is_exterior_leaf(leaf):
             left, right = self._get_left_right_for_exterior_leaf(leaf)
         elif self._is_just_left_of_gap(leaf):
             left = leaf.written_duration.flag_count
@@ -186,11 +170,24 @@ class DuratedComplexBeam(ComplexBeam):
             left, right = self._get_left_right_for_interior_leaf(leaf)
         if left is not None:
             string = r'\set stemLeftBeamCount = #{}'.format(left)
-            result.append(string)
+            bundle.before.commands.append(string)
         if right is not None:
             string = r'\set stemRightBeamCount = #{}'.format(right)
-            result.append(string)
-        return result
+            bundle.before.commands.append(string)
+
+    @staticmethod
+    def _coerce_durations(durations):
+        durations = durations or []
+        assert isinstance(durations, collections.Iterable)
+        durations = [durationtools.Duration(x) for x in durations]
+        durations = tuple(durations)
+        return durations
+
+    def _copy_keyword_args(self, new):
+        ComplexBeam._copy_keyword_args(self, new)
+        if self.durations is not None:
+            new._durations = self.durations[:]
+        new._span_beam_count = self.span_beam_count
 
     def _fracture_left(self, i):
         import abjad

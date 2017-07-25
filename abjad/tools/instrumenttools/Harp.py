@@ -22,7 +22,7 @@ class Harp(Instrument):
             >>> staff_group.append(abjad.Staff("c'2 b2"))
             >>> harp = abjad.instrumenttools.Harp()
             >>> abjad.attach(harp, staff_group[0][0])
-            >>> abjad.attach(abjad.Clef(name='bass'), staff_group[1][0])
+            >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
             >>> show(staff_group) # doctest: +SKIP
 
         ..  docs::

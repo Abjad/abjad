@@ -181,7 +181,7 @@ class PitchRangeList(TypedList):
                 stop_note = abjad.Note(pitch_range.stop_pitch, 1)
                 stop_note_clef = abjad.Clef.from_selection(
                     pitch_range.stop_pitch)
-                notes = [start_note, stop_note]
+                notes = abjad.select([start_note, stop_note])
                 glissando = abjad.Glissando()
                 skips = 2 * abjad.Skip(1)
                 treble_clef = abjad.Clef('treble')

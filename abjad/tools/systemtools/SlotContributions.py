@@ -66,16 +66,16 @@ class SlotContributions(AbjadObject):
         return self._articulations
 
     @property
-    def comments(self):
-        r'''Gets comments.
-        '''
-        return self._comments
-
-    @property
     def commands(self):
         r'''Gets commands.
         '''
         return self._commands
+
+    @property
+    def comments(self):
+        r'''Gets comments.
+        '''
+        return self._comments
 
     @property
     def has_contributions(self):
@@ -109,12 +109,6 @@ class SlotContributions(AbjadObject):
         return self._markup
 
     @property
-    def spanners(self):
-        r'''Gets spanners.
-        '''
-        return self._spanners
-
-    @property
     def spanner_starts(self):
         r'''Gets spanner starts.
         '''
@@ -125,6 +119,12 @@ class SlotContributions(AbjadObject):
         r'''Gets spanner stops.
         '''
         return self._spanner_stops
+
+    @property
+    def spanners(self):
+        r'''Gets spanners.
+        '''
+        return self._spanners
 
     @property
     def stem_tremolos(self):

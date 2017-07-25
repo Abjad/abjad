@@ -70,7 +70,7 @@ def make_bartok_score():
     abjad.attach(slur, upper_leaves[5:])
     slur = abjad.Slur()
     abjad.attach(slur, lower_leaves[1:6])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, upper_leaves[-7:-2])
     decrescendo = abjad.Decrescendo()
     abjad.attach(decrescendo, upper_leaves[-2:])

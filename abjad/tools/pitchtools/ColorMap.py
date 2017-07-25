@@ -63,22 +63,6 @@ class ColorMap(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __getitem__(self, pitch_class):
-        r'''Gets `pitch_class` color.
-
-        ..  container:: example
-
-            ::
-
-                >>> color_map[11]
-                'green'
-
-        Returns string.
-        '''
-        from abjad.tools import pitchtools
-        pitch_class = pitchtools.NumberedPitchClass(pitch_class)
-        return self._color_dictionary[pitch_class.number]
-
     def __format__(self, format_specification=''):
         r'''Formats color map.
 
@@ -111,6 +95,22 @@ class ColorMap(AbjadValueObject):
         '''
         superclass = super(ColorMap, self)
         return superclass.__format__(format_specification=format_specification)
+
+    def __getitem__(self, pitch_class):
+        r'''Gets `pitch_class` color.
+
+        ..  container:: example
+
+            ::
+
+                >>> color_map[11]
+                'green'
+
+        Returns string.
+        '''
+        from abjad.tools import pitchtools
+        pitch_class = pitchtools.NumberedPitchClass(pitch_class)
+        return self._color_dictionary[pitch_class.number]
 
     ### PRIVATE METHODS ###
 

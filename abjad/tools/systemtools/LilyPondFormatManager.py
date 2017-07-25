@@ -48,56 +48,56 @@ class LilyPondFormatManager(AbjadObject):
     @staticmethod
     def _collect_indicators(component):
         import abjad
-        expressions = []
+        wrappers = []
         parentage = abjad.inspect(component).get_parentage(include_self=True)
         for parent in parentage:
-            result = abjad.inspect(parent).get_indicators(unwrap=False)
-            expressions.extend(result)
-            result = parent._get_spanner_indicators(unwrap=False)
-            expressions.extend(result)
+            wrappers_ = abjad.inspect(parent).get_indicators(unwrap=False)
+            wrappers.extend(wrappers_)
+            wrappers_ = parent._get_spanner_indicators(unwrap=False)
+            wrappers.extend(wrappers_)
         up_markup = []
         down_markup = []
         neutral_markup = []
-        scoped_expressions = []
-        nonscoped_expressions = []
-        # classify expressions attached to component
-        for expression in expressions:
+        scoped_wrappers = []
+        nonscoped_wrappers = []
+        # classify wrappers attached to component
+        for wrapper in wrappers:
             # skip nonprinting indicators like annotation
-            indicator = expression.indicator
+            indicator = wrapper.indicator
             if (not hasattr(indicator, '_get_lilypond_format') and
                 not hasattr(indicator, '_get_lilypond_format_bundle')
                 ):
                 continue
-            elif expression.is_annotation:
+            elif wrapper.is_annotation or wrapper.is_piecewise:
                 continue
             # skip comments and commands unless attached directly to us
-            elif (expression.scope is None and
-                hasattr(expression.indicator, '_format_leaf_children') and
-                not getattr(expression.indicator, '_format_leaf_children') and
-                expression.component is not component
+            elif (wrapper.scope is None and
+                hasattr(wrapper.indicator, '_format_leaf_children') and
+                not getattr(wrapper.indicator, '_format_leaf_children') and
+                wrapper.component is not component
                 ):
                 continue
             # store markup
-            elif isinstance(expression.indicator, abjad.Markup):
-                if expression.indicator.direction == Up:
-                    up_markup.append(expression.indicator)
-                elif expression.indicator.direction == Down:
-                    down_markup.append(expression.indicator)
-                elif expression.indicator.direction in (Center, None):
-                    neutral_markup.append(expression.indicator)
-            # store scoped expressions
-            elif expression.scope is not None:
-                if expression._is_formattable_for_component(component):
-                    scoped_expressions.append(expression)
-            # store nonscoped expressions
+            elif isinstance(wrapper.indicator, abjad.Markup):
+                if wrapper.indicator.direction == Up:
+                    up_markup.append(wrapper.indicator)
+                elif wrapper.indicator.direction == Down:
+                    down_markup.append(wrapper.indicator)
+                elif wrapper.indicator.direction in (Center, None):
+                    neutral_markup.append(wrapper.indicator)
+            # store scoped wrappers
+            elif wrapper.scope is not None:
+                if wrapper._is_formattable_for_component(component):
+                    scoped_wrappers.append(wrapper)
+            # store nonscoped wrappers
             else:
-                nonscoped_expressions.append(expression)
+                nonscoped_wrappers.append(wrapper)
         indicators = (
             up_markup,
             down_markup,
             neutral_markup,
-            scoped_expressions,
-            nonscoped_expressions,
+            scoped_wrappers,
+            nonscoped_wrappers,
             )
         return indicators
 
@@ -175,8 +175,8 @@ class LilyPondFormatManager(AbjadObject):
             up_markup,
             down_markup,
             neutral_markup,
-            scoped_expressions,
-            nonscoped_expressions,
+            scoped_wrappers,
+            nonscoped_wrappers,
             ) = LilyPondFormatManager._collect_indicators(component)
         manager._populate_markup_format_contributions(
             component,
@@ -185,15 +185,15 @@ class LilyPondFormatManager(AbjadObject):
             down_markup,
             neutral_markup,
             )
-        manager._populate_scoped_expression_format_contributions(
+        manager._populate_scoped_wrapper_format_contributions(
             component,
             bundle,
-            scoped_expressions,
+            scoped_wrappers,
             )
-        manager._populate_nonscoped_expression_format_contributions(
+        manager._populate_nonscoped_wrapper_format_contributions(
             component,
             bundle,
-            nonscoped_expressions,
+            nonscoped_wrappers,
             )
 
     @staticmethod
@@ -232,30 +232,30 @@ class LilyPondFormatManager(AbjadObject):
                     bundle.right.markup.extend(format_pieces)
 
     @staticmethod
-    def _populate_nonscoped_expression_format_contributions(
+    def _populate_nonscoped_wrapper_format_contributions(
         component,
         bundle,
-        nonscoped_expressions,
+        nonscoped_wrappers,
         ):
-        for nonscoped_expression in nonscoped_expressions:
-            indicator = nonscoped_expression.indicator
+        for nonscoped_wrapper in nonscoped_wrappers:
+            indicator = nonscoped_wrapper.indicator
             if hasattr(indicator, '_get_lilypond_format_bundle'):
                 indicator_bundle = indicator._get_lilypond_format_bundle()
                 if indicator_bundle is not None:
                     bundle.update(indicator_bundle)
 
     @staticmethod
-    def _populate_scoped_expression_format_contributions(
+    def _populate_scoped_wrapper_format_contributions(
         component,
         bundle,
-        scoped_expressions,
+        scoped_wrappers,
         ):
-        for scoped_expression in scoped_expressions:
-            format_pieces = scoped_expression._get_format_pieces()
+        for scoped_wrapper in scoped_wrappers:
+            format_pieces = scoped_wrapper._get_format_pieces()
             if isinstance(format_pieces, type(bundle)):
                 bundle.update(format_pieces)
             else:
-                format_slot = scoped_expression.indicator._format_slot
+                format_slot = scoped_wrapper.indicator._format_slot
                 bundle.get(format_slot).indicators.extend(format_pieces)
 
     @staticmethod

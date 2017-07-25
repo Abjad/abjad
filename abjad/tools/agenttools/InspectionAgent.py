@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import abctools
 from abjad.tools import durationtools
-from abjad.tools.topleveltools.iterate import iterate
 
 
 class InspectionAgent(abctools.AbjadObject):
@@ -82,6 +81,44 @@ class InspectionAgent(abctools.AbjadObject):
         Returns after grace container or none.
         '''
         return self._client._after_grace_container
+
+    def get_annotation(self, name, default=None):
+        r'''Gets annotation attached to client.
+
+        ..  container:: example
+
+            Gets named indicator:
+
+            ::
+
+                >>> note = abjad.Note("c'4")
+                >>> abjad.annotate(note, 'bow_direction', Down)
+
+            ::
+
+                >>> abjad.inspect(note).get_annotation('bow_direction')
+                Down
+
+            Returns none when no annotation is found:
+
+            ::
+
+                >>> abjad.inspect(note).get_annotation('bow_fraction') is None
+                True
+
+            Returns default when no annotation is found:
+
+            ::
+
+                >>> abjad.inspect(note).get_annotation('bow_fraction', 2)
+                2
+
+        Returns annotation or default.
+        '''
+        for wrapper in self.get_indicators(unwrap=False):
+            if wrapper.name == name:
+                return wrapper.indicator
+        return default
 
     def get_badly_formed_components(self):
         r'''Gets badly formed components in client.
@@ -263,31 +300,9 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         prototype=None,
         default=None,
-        name=None,
         unwrap=True,
         ):
         r'''Gets indicator of `prototype` attached to client.
-
-        ..  container:: example
-
-            Gets named indicator:
-
-            ::
-
-                >>> note = abjad.Note("c'4")
-                >>> abjad.attach(Down, note, name='bow_direction')
-                >>> fraction = abjad.Fraction(1, 7)
-                >>> abjad.attach(fraction, note, name='bow_fraction')
-
-            ::
-
-                >>> abjad.inspect(note).get_indicator(name='bow_direction')
-                Down
-
-            ::
-
-                >>> abjad.inspect(note).get_indicator(name='bow_fraction')
-                Fraction(1, 7)
 
         Raises exception when more than one indicator of `prototype` attach to
         client.
@@ -298,7 +313,6 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         indicators = self._client._get_indicators(
             prototype=prototype,
-            name=name,
             unwrap=unwrap,
             )
         if not indicators:
@@ -312,7 +326,6 @@ class InspectionAgent(abctools.AbjadObject):
     def get_indicators(
         self,
         prototype=None,
-        name=None,
         unwrap=True,
         ):
         r'''Get all indicators matching `prototype` attached to client.
@@ -321,7 +334,6 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_indicators(
             prototype=prototype,
-            name=name,
             unwrap=unwrap,
             )
 
@@ -461,18 +473,18 @@ class InspectionAgent(abctools.AbjadObject):
 
         Returns leaf or none.
         '''
-        from abjad.tools import scoretools
-        if isinstance(self._client, scoretools.Leaf):
+        import abjad
+        if isinstance(self._client, abjad.Leaf):
             return self._client._get_leaf(n=n)
         if 0 <= n:
-            leaves = iterate(self._client).by_leaf(start=0, stop=n+1)
+            leaves = abjad.iterate(self._client).by_leaf(start=0, stop=n+1)
             leaves = list(leaves)
             if len(leaves) < n + 1:
                 return
             leaf = leaves[n]
             return leaf
         else:
-            leaves = iterate(self._client).by_leaf(
+            leaves = abjad.iterate(self._client).by_leaf(
                 start=0,
                 stop=abs(n),
                 reverse=True,
@@ -576,6 +588,78 @@ class InspectionAgent(abctools.AbjadObject):
             include_self=include_self,
             with_grace_notes=with_grace_notes,
             )
+
+    def get_piecewise(self, prototype=None, default=None):
+        r'''Gets piecewise indicators attached to client.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
+                >>> spanner.attach(abjad.Markup('pont.'), staff[0])
+                >>> spanner.attach(abjad.Markup('ord.'), staff[-1])
+                >>> spanner.attach(abjad.ArrowLineSegment(), staff[0])
+
+            ::
+
+                >>> abjad.override(staff).text_script.staff_padding = 1.25
+                >>> abjad.override(staff).text_spanner.staff_padding = 2
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
+                } {
+                    \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left.text = \markup {
+                        \concat
+                            {
+                                pont.
+                                \hspace
+                                    #0.25
+                            }
+                        }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
+                    \once \override TextSpanner.bound-details.right.arrow = ##t
+                    \once \override TextSpanner.bound-details.right.padding = 1.5
+                    \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                    \once \override TextSpanner.dash-fraction = 1
+                    c'4 \startTextSpan
+                    d'4
+                    e'4
+                    f'4 \stopTextSpan ^ \markup { ord. }
+                }
+
+            ::
+
+                >>> for leaf in staff:
+                ...     leaf, abjad.inspect(leaf).get_piecewise(abjad.Markup)
+                ...
+                (Note("c'4"), Markup(contents=['pont.']))
+                (Note("d'4"), None)
+                (Note("e'4"), None)
+                (Note("f'4"), Markup(contents=['ord.']))
+
+        Returns indicator or default.
+        '''
+        wrappers = self.get_indicators(prototype=prototype, unwrap=False)
+        wrappers = wrappers or []
+        wrappers = [_ for _ in wrappers if _.is_piecewise]
+        if not wrappers:
+            return default
+        if len(wrappers) == 1:
+            return wrappers[0].indicator
+        if 1 < len(wrappers):
+            message = 'multiple indicators attached to client.'
+            raise Exception(message)
 
     def get_sounding_pitch(self):
         r'''Gets sounding pitch of client.

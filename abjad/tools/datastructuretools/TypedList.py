@@ -131,21 +131,11 @@ class TypedList(TypedCollection):
                 >>> f(dynamic_list)
                 abjad.TypedList(
                     [
-                        abjad.Dynamic(
-                            name='ppp',
-                            ),
-                        abjad.Dynamic(
-                            name='p',
-                            ),
-                        abjad.Dynamic(
-                            name='mp',
-                            ),
-                        abjad.Dynamic(
-                            name='mf',
-                            ),
-                        abjad.Dynamic(
-                            name='fff',
-                            ),
+                        abjad.Dynamic('ppp'),
+                        abjad.Dynamic('p'),
+                        abjad.Dynamic('mp'),
+                        abjad.Dynamic('mf'),
+                        abjad.Dynamic('fff'),
                         ],
                     item_class=abjad.Dynamic,
                     )

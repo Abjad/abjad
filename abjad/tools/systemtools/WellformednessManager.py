@@ -762,8 +762,8 @@ class WellformednessManager(AbjadObject):
             ::
 
                 >>> staff = abjad.Staff("c'4 d' e' f'")
-                >>> abjad.attach(abjad.Crescendo(), staff[:])
-                >>> abjad.attach(abjad.Decrescendo(), staff[:])
+                >>> abjad.attach(abjad.Hairpin('<'), staff[:])
+                >>> abjad.attach(abjad.Hairpin('>'), staff[:])
 
             ::
 

@@ -35,10 +35,6 @@ class LogicalTie(Selection):
 
     ### PRIVATE METHODS ###
 
-    def _all_leaves_are_in_same_parent(self):
-        parents = [leaf._parent for leaf in self.leaves]
-        return mathtools.all_are_equal(parents)
-
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
         import abjad
@@ -83,7 +79,7 @@ class LogicalTie(Selection):
                 if not ties:
                     tie = abjad.Tie()
                     if all(tie._attachment_test(_) for _ in self):
-                        attach(tie, list(self))
+                        attach(tie, abjad.select(self))
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:
             durations = maker(0, new_written_duration)
@@ -96,6 +92,10 @@ class LogicalTie(Selection):
             tuplet = abjad.Tuplet(multiplier, [])
             abjad.mutate(self.leaves).wrap(tuplet)
         return self[0]._get_logical_tie()
+
+    def _all_leaves_are_in_same_parent(self):
+        parents = [leaf._parent for leaf in self.leaves]
+        return mathtools.all_are_equal(parents)
 
     def _fuse_leaves_by_immediate_parent(self):
         result = []

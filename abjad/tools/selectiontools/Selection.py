@@ -202,6 +202,65 @@ class Selection(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
+    def _all_are_contiguous_components_in_same_logical_voice(
+        argument,
+        prototype=None,
+        allow_orphans=True,
+        ):
+        from abjad.tools import scoretools
+        from abjad.tools import selectiontools
+        allowable_types = (
+            list,
+            tuple,
+            types.GeneratorType,
+            selectiontools.Selection,
+            )
+        if not isinstance(argument, allowable_types):
+            return False
+        prototype = prototype or (scoretools.Component,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype, )
+        assert isinstance(prototype, tuple)
+        if len(argument) == 0:
+            return True
+        all_are_orphans_of_correct_type = True
+        if allow_orphans:
+            for component in argument:
+                if not isinstance(component, prototype):
+                    all_are_orphans_of_correct_type = False
+                    break
+                if not component._get_parentage().is_orphan:
+                    all_are_orphans_of_correct_type = False
+                    break
+            if all_are_orphans_of_correct_type:
+                return True
+        if not allow_orphans:
+            if any(x._get_parentage().is_orphan for x in argument):
+                return False
+        first = argument[0]
+        if not isinstance(first, prototype):
+            return False
+        first_parentage = first._get_parentage()
+        first_logical_voice = first_parentage.logical_voice
+        first_root = first_parentage.root
+        previous = first
+        for current in argument[1:]:
+            current_parentage = current._get_parentage()
+            current_logical_voice = current_parentage.logical_voice
+            # false if wrong type of component found
+            if not isinstance(current, prototype):
+                return False
+            # false if in different logical voices
+            if current_logical_voice != first_logical_voice:
+                return False
+            # false if components are in same score and are discontiguous
+            if current_parentage.root == first_root:
+                if not previous._is_immediate_temporal_successor_of(current):
+                    return False
+            previous = current
+        return True
+
+    @staticmethod
     def _all_in_same_logical_voice(
         argument,
         prototype=None,
@@ -264,65 +323,6 @@ class Selection(object):
                 not same_logical_voice
                 ):
                 return False
-        return True
-
-    @staticmethod
-    def _all_are_contiguous_components_in_same_logical_voice(
-        argument,
-        prototype=None,
-        allow_orphans=True,
-        ):
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        allowable_types = (
-            list,
-            tuple,
-            types.GeneratorType,
-            selectiontools.Selection,
-            )
-        if not isinstance(argument, allowable_types):
-            return False
-        prototype = prototype or (scoretools.Component,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype, )
-        assert isinstance(prototype, tuple)
-        if len(argument) == 0:
-            return True
-        all_are_orphans_of_correct_type = True
-        if allow_orphans:
-            for component in argument:
-                if not isinstance(component, prototype):
-                    all_are_orphans_of_correct_type = False
-                    break
-                if not component._get_parentage().is_orphan:
-                    all_are_orphans_of_correct_type = False
-                    break
-            if all_are_orphans_of_correct_type:
-                return True
-        if not allow_orphans:
-            if any(x._get_parentage().is_orphan for x in argument):
-                return False
-        first = argument[0]
-        if not isinstance(first, prototype):
-            return False
-        first_parentage = first._get_parentage()
-        first_logical_voice = first_parentage.logical_voice
-        first_root = first_parentage.root
-        previous = first
-        for current in argument[1:]:
-            current_parentage = current._get_parentage()
-            current_logical_voice = current_parentage.logical_voice
-            # false if wrong type of component found
-            if not isinstance(current, prototype):
-                return False
-            # false if in different logical voices
-            if current_logical_voice != first_logical_voice:
-                return False
-            # false if components are in same score and are discontiguous
-            if current_parentage.root == first_root:
-                if not previous._is_immediate_temporal_successor_of(current):
-                    return False
-            previous = current
         return True
 
     @staticmethod
@@ -411,7 +411,8 @@ class Selection(object):
             tie = abjad.Tie(
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
-            attach(tie, [left_leaf, right_leaf])
+            leaves = abjad.select([left_leaf, right_leaf])
+            abjad.attach(tie, leaves)
 
     def _attach_tie_spanner_to_leaves(self, use_messiaen_style_ties=False):
         import abjad

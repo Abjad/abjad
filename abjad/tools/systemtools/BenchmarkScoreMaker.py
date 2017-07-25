@@ -49,7 +49,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4],
             cyclic=True,
             ):
-            crescendo = abjad.Crescendo()
+            crescendo = abjad.Hairpin('<')
             abjad.attach(crescendo, part)
             dynamic = abjad.Dynamic('p')
             abjad.attach(dynamic, part[0])
@@ -74,7 +74,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20],
             cyclic=True,
             ):
-            crescendo = abjad.Crescendo()
+            crescendo = abjad.Hairpin('<')
             abjad.attach(crescendo, part)
             dynamic = abjad.Dynamic('p')
             abjad.attach(dynamic, part[0])
@@ -99,7 +99,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [100],
             cyclic=True,
             ):
-            crescendo = abjad.Crescendo()
+            crescendo = abjad.Hairpin('<')
             abjad.attach(crescendo, part)
             dynamic = abjad.Dynamic('p')
             abjad.attach(dynamic, part[0])
@@ -125,7 +125,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4],
             cyclic=True,
             ):
-            crescendo = abjad.Crescendo()
+            crescendo = abjad.Hairpin('<')
             abjad.attach(crescendo, part)
         return voice
 
@@ -147,7 +147,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20],
             cyclic=True,
             ):
-            crescendo = abjad.Crescendo()
+            crescendo = abjad.Hairpin('<')
             abjad.attach(crescendo, part)
         return voice
 
@@ -169,7 +169,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [100],
             cyclic=True,
             ):
-            crescendo = abjad.Crescendo()
+            crescendo = abjad.Hairpin('<')
             abjad.attach(crescendo, part)
         return voice
 

@@ -13,7 +13,7 @@ def test_agenttools_MutationAgent_replace_01():
     abjad.attach(beam_1, staff[:2])
     beam_2 = abjad.Beam()
     abjad.attach(beam_2, staff[2:])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:])
 
     assert format(staff) == abjad.String.normalize(
@@ -59,7 +59,7 @@ def test_agenttools_MutationAgent_replace_02():
     abjad.attach(beam_1, staff[:2])
     beam_2 = abjad.Beam()
     abjad.attach(beam_2, staff[2:])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:])
 
     assert format(staff) == abjad.String.normalize(
@@ -106,7 +106,7 @@ def test_agenttools_MutationAgent_replace_03():
     abjad.attach(beam_1, staff[:2])
     beam_2 = abjad.Beam()
     abjad.attach(beam_2, staff[2:])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:])
 
     assert format(staff) == abjad.String.normalize(
@@ -152,7 +152,7 @@ def test_agenttools_MutationAgent_replace_04():
     abjad.attach(beam_1, staff[:2])
     beam_2 = abjad.Beam()
     abjad.attach(beam_2, staff[2:])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:])
 
     assert format(staff) == abjad.String.normalize(
@@ -197,7 +197,7 @@ def test_agenttools_MutationAgent_replace_05():
     abjad.attach(beam_1, staff[:2])
     beam_2 = abjad.Beam()
     abjad.attach(beam_2, staff[2:])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:])
 
     assert format(staff) == abjad.String.normalize(

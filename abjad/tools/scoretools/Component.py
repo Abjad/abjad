@@ -27,8 +27,8 @@ class Component(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_dependent_expressions',
-        '_indicator_expressions',
+        '_dependent_wrappers',
+        '_indicator_wrappers',
         '_indicators_are_current',
         '_is_forbidden_to_update',
         '_lilypond_grob_name_manager',
@@ -52,8 +52,8 @@ class Component(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, name=None):
-        self._dependent_expressions = []
-        self._indicator_expressions = []
+        self._dependent_wrappers = []
+        self._indicator_wrappers = []
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
         self._logical_measure_number = None
@@ -175,7 +175,6 @@ class Component(AbjadObject):
         if hasattr(self, '_named_children'):
             for name, children in self._named_children.items():
                 name_dictionary[name] = copy.copy(children)
-        #if hasattr(self, 'name') and self.name is not None:
         name = self.name
         if name is not None:
             if self.name not in name_dictionary:
@@ -199,9 +198,9 @@ class Component(AbjadObject):
             new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             new._lilypond_setting_name_manager = copy.copy(setting(self))
-        for indicator in self._get_indicators(unwrap=False):
-            new_indicator = copy.copy(indicator)
-            attach(new_indicator, new)
+        for wrapper in self._get_indicators(unwrap=False):
+            new_wrapper = copy.copy(wrapper)
+            attach(new_wrapper, new)
         return new
 
     def _detach_spanners(self, prototype=None):
@@ -332,44 +331,45 @@ class Component(AbjadObject):
                     return
         # update indicators of entire score tree if necessary
         self._update_now(indicators=True)
-        # gather candidate expressions
-        candidate_expressions = {}
+        # gather candidate wrappers
+        candidate_wrappers = {}
         for parent in self._get_parentage(
             include_self=True,
             with_grace_notes=True,
             ):
-            for indicator_expression in parent._dependent_expressions:
-                if isinstance(indicator_expression.indicator, prototype):
-                    offset = indicator_expression.start_offset
-                    candidate_expressions.setdefault(offset, []).append(
-                        indicator_expression)
-            for indicator_expression in parent._indicator_expressions:
-                if indicator_expression.scope is not None:
+            for wrapper in parent._dependent_wrappers:
+                if isinstance(wrapper.indicator, prototype):
+                    offset = wrapper.start_offset
+                    candidate_wrappers.setdefault(offset, []).append(
+                        wrapper
+                        )
+            for wrapper in parent._indicator_wrappers:
+                if wrapper.scope is not None:
                     continue
-                if isinstance(indicator_expression.indicator, prototype):
-                    offset = indicator_expression.start_offset
-                    candidate_expressions.setdefault(offset, []).append(
-                        indicator_expression)
-        if not candidate_expressions:
+                if isinstance(wrapper.indicator, prototype):
+                    offset = wrapper.start_offset
+                    candidate_wrappers.setdefault(offset, []).append(
+                        wrapper
+                        )
+        if not candidate_wrappers:
             return
-        # elect most recent candidate expression
-        all_offsets = sorted(candidate_expressions)
+        # elect most recent candidate wrapper
+        all_offsets = sorted(candidate_wrappers)
         start_offset = self._get_timespan()._start_offset
         index = bisect.bisect(all_offsets, start_offset) - 1 + int(n)
         if index < 0:
             return
-        elif len(candidate_expressions) <= index:
+        elif len(candidate_wrappers) <= index:
             return
-        expression = candidate_expressions[all_offsets[index]][0]
+        wrapper = candidate_wrappers[all_offsets[index]][0]
         if unwrap:
-            expression = expression.indicator
-        return expression
+            return wrapper.indicator
+        return wrapper
 
     def _get_effective_staff(self):
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
-        staff_change = self._get_effective(
-            indicatortools.StaffChange)
+        staff_change = self._get_effective(indicatortools.StaffChange)
         if staff_change is not None:
             effective_staff = staff_change.staff
         else:
@@ -447,12 +447,11 @@ class Component(AbjadObject):
             message = 'no attached indicators found matching {!r}.'
             message = message.format(prototype)
             raise ValueError(message)
-        elif 1 < len(indicators):
+        if 1 < len(indicators):
             message = 'multiple attached indicators found matching {!r}.'
             message = message.format(prototype)
             raise ValueError(message)
-        else:
-            return indicators[0]
+        return indicators[0]
 
     def _get_indicators(self, prototype=None, name=None, unwrap=True):
         from abjad.tools import indicatortools
@@ -469,14 +468,14 @@ class Component(AbjadObject):
         prototype_objects = tuple(prototype_objects)
         prototype_classes = tuple(prototype_classes)
         matching_indicators = []
-        for indicator in self._indicator_expressions:
+        for indicator in self._indicator_wrappers:
             if name is not None and indicator._name != name:
                 continue
             if isinstance(indicator, prototype_classes):
                 matching_indicators.append(indicator)
             elif any(indicator == x for x in prototype_objects):
                 matching_indicators.append(indicator)
-            elif isinstance(indicator, systemtools.IndicatorExpression):
+            elif isinstance(indicator, systemtools.IndicatorWrapper):
                 if isinstance(indicator.indicator, prototype_classes):
                     matching_indicators.append(indicator)
                 elif any(indicator.indicator == x for x in prototype_objects):
@@ -618,14 +617,14 @@ class Component(AbjadObject):
             raise ExtraSpannerError(message)
 
     def _get_spanner_indicators(self, prototype=None, unwrap=True):
-        matching_indicators = []
+        indicators = []
         for spanner in self._get_spanners():
-            result = spanner._get_indicators(
+            indicators_ = spanner._get_indicators(
                 prototype=prototype,
                 unwrap=unwrap,
                 )
-            matching_indicators.extend(result)
-        return matching_indicators
+            indicators.extend(indicators_)
+        return indicators
 
     def _get_spanners(
         self,

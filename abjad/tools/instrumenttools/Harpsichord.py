@@ -22,7 +22,7 @@ class Harpsichord(Instrument):
             >>> staff_group.context_name = 'PianoStaff'
             >>> harpsichord = abjad.instrumenttools.Harpsichord()
             >>> abjad.attach(harpsichord, staff_group[0][0])
-            >>> abjad.attach(abjad.Clef(name='bass'), lower_staff[0])
+            >>> abjad.attach(abjad.Clef('bass'), lower_staff[0])
             >>> show(staff_group) # doctest: +SKIP
 
         ..  docs::

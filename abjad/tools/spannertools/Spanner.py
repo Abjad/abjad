@@ -32,7 +32,7 @@ class Spanner(AbjadObject):
         '_components',
         '_contiguity_constraint',
         '_ignore_attachment_test',
-        '_indicator_expressions',
+        '_indicator_wrappers',
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
         '_name',
@@ -50,7 +50,7 @@ class Spanner(AbjadObject):
         self._contiguity_constraint = 'logical voice'
         self._apply_overrides(overrides)
         self._ignore_attachment_test = None
-        self._indicator_expressions = []
+        self._indicator_wrappers = []
         self._lilypond_setting_name_manager = None
         if name is not None:
             name = str(name)
@@ -186,6 +186,20 @@ class Spanner(AbjadObject):
         else:
             raise TypeError(components)
 
+    def _attach_piecewise(self, indicator, leaf):
+        import abjad
+        if leaf not in self:
+            message = 'must be leaf in spanner: {!r}.'
+            message = message.format(leaf)
+            raise Exception(message)
+        wrapper = abjad.systemtools.IndicatorWrapper(
+            component=leaf,
+            indicator=indicator,
+            is_piecewise=True,
+            piecewise_spanner=self,
+            )
+        wrapper._bind_to_component(leaf)
+
     def _attachment_test(self, component):
         from abjad.tools import scoretools
         return isinstance(component, scoretools.Leaf)
@@ -256,20 +270,13 @@ class Spanner(AbjadObject):
             self._append_left(component)
 
     def _format_after_leaf(self, leaf):
-        result = []
-        if self._is_my_last_leaf(leaf):
-            result.extend(getattr(self, '_reverts', []))
-        return result
+        return []
 
     def _format_before_leaf(self, leaf):
-        result = []
-        if self._is_my_first_leaf(leaf):
-            result.extend(getattr(self, '_overrides', []))
-        return result
+        return []
 
     def _format_right_of_leaf(self, leaf):
-        result = []
-        return result
+        return []
 
     def _fracture(self, i, direction=None):
         r'''Fractures spanner at `direction` of component at index `i`.
@@ -310,11 +317,6 @@ class Spanner(AbjadObject):
         return self, left, right
 
     def _fuse_by_reference(self, spanner):
-#        result = self._copy(self[:])
-#        result._extend(spanner.components)
-#        self._block_all_components()
-#        spanner._block_all_components()
-#        return [(self, spanner, result)]
         result = self._copy(self[:])
         self._block_all_components()
         spanner._block_all_components()
@@ -379,7 +381,7 @@ class Spanner(AbjadObject):
             )
 
     def _get_indicators(self, prototype=None, name=None, unwrap=True):
-        from abjad.tools import systemtools
+        import abjad
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
@@ -392,14 +394,14 @@ class Spanner(AbjadObject):
         prototype_objects = tuple(prototype_objects)
         prototype_classes = tuple(prototype_classes)
         matching_indicators = []
-        for indicator in self._indicator_expressions:
+        for indicator in self._indicator_wrappers:
             if name is not None and indicator._name != name:
                 continue
             if isinstance(indicator, prototype_classes):
                 matching_indicators.append(indicator)
             elif any(indicator == x for x in prototype_objects):
                 matching_indicators.append(indicator)
-            elif isinstance(indicator, systemtools.IndicatorExpression):
+            elif isinstance(indicator, abjad.systemtools.IndicatorWrapper):
                 if isinstance(indicator.indicator, prototype_classes):
                     matching_indicators.append(indicator)
                 elif any(indicator.indicator == x for x in prototype_objects):
@@ -421,9 +423,6 @@ class Spanner(AbjadObject):
 
     def _get_lilypond_format_bundle(self, leaf):
         bundle = self._get_basic_lilypond_format_bundle(leaf)
-        bundle.get('before').spanners.extend(self._format_before_leaf(leaf))
-        bundle.get('right').spanners.extend(self._format_right_of_leaf(leaf))
-        bundle.get('after').spanners.extend(self._format_after_leaf(leaf))
         return bundle
 
     def _get_my_first_leaf(self):
@@ -451,6 +450,28 @@ class Spanner(AbjadObject):
                     return leaf
         raise IndexError
 
+    def _get_piecewise_indicator(self, leaf, prototype=None):
+        indicators = self._get_piecewise_indicators(leaf, prototype)
+        if not indicators:
+            message = 'no piecewise indicator found.'
+            raise Exception(message)
+        if len(indicators) == 1:
+            return indicators[0]
+        message = 'multiple piecewise indicators found.'
+        raise Exception(message)
+            
+    def _get_piecewise_indicators(self, leaf, prototype=None):
+        import abjad
+        assert leaf in self, repr(leaf)
+        indicators = []
+        for wrapper in abjad.inspect(leaf).get_indicators(
+            prototype,
+            unwrap=False,
+            ):
+            if wrapper.is_piecewise and wrapper.piecewise_spanner is self:
+                indicators.append(wrapper.indicator)
+        return indicators
+
     def _get_preprolated_duration(self):
         return sum([
             component._get_preprolated_duration() for component in self]
@@ -476,6 +497,10 @@ class Spanner(AbjadObject):
             start_offset=start_offset,
             stop_offset=stop_offset,
             )
+
+    def _has_piecewise_indicator(self, leaf, prototype=None):
+        indicators = self._get_piecewise_indicators(leaf, prototype)
+        return bool(indicators)
 
     def _index(self, component):
         return self._components.index(component)

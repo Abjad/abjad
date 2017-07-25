@@ -11,7 +11,7 @@ def test_selectiontools_Selection__give_dominant_spanners_01():
     '''
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, voice[:])
     beam = abjad.Beam()
     abjad.attach(beam, voice[:2])

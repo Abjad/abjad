@@ -130,6 +130,13 @@ class NonreducedRatio(AbjadValueObject):
         '''
         return len(self._numbers)
 
+    def __reversed__(self):
+        r'''Iterates ratio in reverse.
+
+        Returns generator.
+        '''
+        return reversed(self._numbers)
+
     def __rtruediv__(self, number):
         r'''Divides `number` by ratio.
 
@@ -160,13 +167,6 @@ class NonreducedRatio(AbjadValueObject):
         factors = [fractions.Fraction(_, denominator) for _ in self.numbers]
         result = [_ * number for _ in factors]
         return result
-
-    def __reversed__(self):
-        r'''Iterates ratio in reverse.
-
-        Returns generator.
-        '''
-        return reversed(self._numbers)
 
     ### PRIVATE METHODS ###
 

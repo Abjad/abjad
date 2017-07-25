@@ -2,8 +2,8 @@
 from abjad.tools.indicatortools.LineSegment import LineSegment
 
 
-class Arrow(LineSegment):
-    r'''Arrow.
+class ArrowLineSegment(LineSegment):
+    r'''Arrow line segment.
 
     ::
 
@@ -16,14 +16,13 @@ class Arrow(LineSegment):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> start_markup = abjad.Markup('pont.').upright()
-            >>> stop_markup = abjad.Markup('ord.').upright()
-            >>> arrow = abjad.Arrow()
+            >>> spanner = abjad.TextSpanner()
+            >>> abjad.attach(spanner, staff[:])
 
         ::
 
-            >>> f(arrow)
-            abjad.Arrow(
+            >>> f(abjad.ArrowLineSegment())
+            abjad.ArrowLineSegment(
                 arrow_width=0.25,
                 dash_fraction=1,
                 left_broken_text=False,
@@ -37,10 +36,9 @@ class Arrow(LineSegment):
 
         ::
 
-            >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-            >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-            >>> abjad.attach(arrow, staff[0])
-            >>> abjad.attach(abjad.TextSpanner(), staff[:])
+            >>> spanner.attach(abjad.Markup('pont.'), staff[0])
+            >>> spanner.attach(abjad.Markup('ord.'), staff[-1])
+            >>> spanner.attach(abjad.ArrowLineSegment(), staff[0])
 
         ::
 
@@ -61,8 +59,7 @@ class Arrow(LineSegment):
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
                         {
-                            \upright
-                                pont.
+                            pont.
                             \hspace
                                 #0.25
                         }
@@ -75,15 +72,10 @@ class Arrow(LineSegment):
                 c'4 \startTextSpan
                 d'4
                 e'4
-                f'4 \stopTextSpan ^ \markup {
-                    \upright
-                        ord.
-                    }
+                f'4 \stopTextSpan ^ \markup { ord. }
             }
 
-    Arrow is a preconfigured line segment.
-
-    Arrow formats as a text spanner.
+    Arrow line segment is a preconfigured line segment.
 
     Follow the piecewise definition protocol shown here.
     '''
@@ -114,7 +106,7 @@ class Arrow(LineSegment):
         right_stencil_align_direction_y=Center,
         style=None,
         ):
-        superclass = super(Arrow, self)
+        superclass = super(ArrowLineSegment, self)
         superclass.__init__(
             arrow_width=arrow_width,
             dash_fraction=dash_fraction,
@@ -146,21 +138,22 @@ class Arrow(LineSegment):
         
         ..  container:: example
 
-            Arrow width equals ``0.25``:
+            Arrow line segment width equals ``0.25``:
 
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(arrow_width=0.25)
+                >>> arrow = abjad.ArrowLineSegment(arrow_width=0.25)
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -207,21 +200,22 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            Arrow width equals ``0.5``:
+            Arrow line segment width equals ``0.5``:
 
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(arrow_width=0.5)
+                >>> arrow = abjad.ArrowLineSegment(arrow_width=0.5)
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -266,21 +260,22 @@ class Arrow(LineSegment):
 
         ..  container:: example
 
-            Arrow width equals ``1``:
+            Arrow line segment width equals ``1``:
 
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(arrow_width=1)
+                >>> arrow = abjad.ArrowLineSegment(arrow_width=1)
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -327,7 +322,7 @@ class Arrow(LineSegment):
 
         Returns integer or float.
         '''
-        superclass = super(Arrow, self)
+        superclass = super(ArrowLineSegment, self)
         return superclass.arrow_width
 
     @property
@@ -342,16 +337,17 @@ class Arrow(LineSegment):
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(dash_fraction=1)
+                >>> arrow = abjad.ArrowLineSegment(dash_fraction=1)
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -402,16 +398,17 @@ class Arrow(LineSegment):
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(dash_fraction=0.5)
+                >>> arrow = abjad.ArrowLineSegment(dash_fraction=0.5)
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -460,16 +457,17 @@ class Arrow(LineSegment):
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(dash_fraction=0.1)
+                >>> arrow = abjad.ArrowLineSegment(dash_fraction=0.1)
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -514,7 +512,7 @@ class Arrow(LineSegment):
 
         Returns integer or float.
         '''
-        superclass = super(Arrow, self)
+        superclass = super(ArrowLineSegment, self)
         return superclass.dash_fraction
 
     @property
@@ -528,18 +526,19 @@ class Arrow(LineSegment):
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(
+                >>> arrow = abjad.ArrowLineSegment(
                 ...     dash_period=None,
                 ...     )
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -591,19 +590,20 @@ class Arrow(LineSegment):
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(
+                >>> arrow = abjad.ArrowLineSegment(
                 ...     dash_fraction=0.25,
                 ...     dash_period=1,
                 ...     )
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -654,19 +654,20 @@ class Arrow(LineSegment):
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(
+                >>> arrow = abjad.ArrowLineSegment(
                 ...     dash_fraction=0.25,
                 ...     dash_period=4,
                 ...     )
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -714,7 +715,7 @@ class Arrow(LineSegment):
 
         Returns integer or float.
         '''
-        superclass = super(Arrow, self)
+        superclass = super(ArrowLineSegment, self)
         return superclass.dash_period
 
     @property
@@ -737,14 +738,16 @@ class Arrow(LineSegment):
 
                 ::
 
+                    >>> spanner = abjad.TextSpanner()
+                    >>> abjad.attach(spanner, staff[2:])
                     >>> start_markup = abjad.Markup('pont.').upright()
                     >>> stop_markup = abjad.Markup('ord.').upright()
-                    >>> arrow = abjad.Arrow()
+                    >>> arrow = abjad.ArrowLineSegment()
 
                 ::
 
                     >>> f(arrow)
-                    abjad.Arrow(
+                    abjad.ArrowLineSegment(
                         arrow_width=0.25,
                         dash_fraction=1,
                         left_broken_text=False,
@@ -758,10 +761,9 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> abjad.attach(start_markup, staff[2], is_annotation=True)
-                    >>> abjad.attach(stop_markup, staff[6], is_annotation=True)
-                    >>> abjad.attach(arrow, staff[2])
-                    >>> abjad.attach(abjad.TextSpanner(), staff[2:])
+                    >>> spanner.attach(start_markup, staff[2])
+                    >>> spanner.attach(stop_markup, staff[6])
+                    >>> spanner.attach(arrow, staff[2])
 
                 ::
 
@@ -827,17 +829,19 @@ class Arrow(LineSegment):
 
                 ::
 
+                    >>> spanner = abjad.TextSpanner()
+                    >>> abjad.attach(spanner, staff[2:])
                     >>> start_markup = abjad.Markup('pont.').upright()
                     >>> stop_markup = abjad.Markup('ord.').upright()
                     >>> left_broken_markup = abjad.Markup('(pont./ord.)').upright()
-                    >>> arrow = abjad.Arrow(
+                    >>> arrow = abjad.ArrowLineSegment(
                     ...     left_broken_text=left_broken_markup,
                     ... )
 
                 ::
 
                     >>> f(arrow)
-                    abjad.Arrow(
+                    abjad.ArrowLineSegment(
                         arrow_width=0.25,
                         dash_fraction=1,
                         left_broken_text=abjad.Markup(
@@ -858,10 +862,9 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> abjad.attach(start_markup, staff[2], is_annotation=True)
-                    >>> abjad.attach(stop_markup, staff[6], is_annotation=True)
-                    >>> abjad.attach(arrow, staff[2])
-                    >>> abjad.attach(abjad.TextSpanner(), staff[2:])
+                    >>> spanner.attach(start_markup, staff[2])
+                    >>> spanner.attach(stop_markup, staff[6])
+                    >>> spanner.attach(arrow, staff[2])
 
                 ::
 
@@ -936,14 +939,16 @@ class Arrow(LineSegment):
 
                 ::
 
+                    >>> spanner = abjad.TextSpanner()
+                    >>> abjad.attach(spanner, staff[2:])
                     >>> start_markup = abjad.Markup('pont.').upright()
                     >>> stop_markup = abjad.Markup('ord.').upright()
-                    >>> arrow = abjad.Arrow()
+                    >>> arrow = abjad.ArrowLineSegment()
 
                 ::
 
                     >>> f(arrow)
-                    abjad.Arrow(
+                    abjad.ArrowLineSegment(
                         arrow_width=0.25,
                         dash_fraction=1,
                         left_broken_text=False,
@@ -957,10 +962,9 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> abjad.attach(start_markup, staff[2], is_annotation=True)
-                    >>> abjad.attach(stop_markup, staff[6], is_annotation=True)
-                    >>> abjad.attach(arrow, staff[2])
-                    >>> abjad.attach(abjad.TextSpanner(), staff[2:])
+                    >>> spanner.attach(start_markup, staff[2])
+                    >>> spanner.attach(stop_markup, staff[6])
+                    >>> spanner.attach(arrow, staff[2])
 
                 ::
 
@@ -1026,16 +1030,18 @@ class Arrow(LineSegment):
 
                 ::
 
+                    >>> spanner = abjad.TextSpanner()
+                    >>> abjad.attach(spanner, staff[2:])
                     >>> start_markup = abjad.Markup('pont.').upright()
                     >>> stop_markup = abjad.Markup('ord.').upright()
-                    >>> arrow = abjad.Arrow(
+                    >>> arrow = abjad.ArrowLineSegment(
                     ...     right_broken_arrow=False,
                     ... )
 
                 ::
 
                     >>> f(arrow)
-                    abjad.Arrow(
+                    abjad.ArrowLineSegment(
                         arrow_width=0.25,
                         dash_fraction=1,
                         left_broken_text=False,
@@ -1050,10 +1056,9 @@ class Arrow(LineSegment):
 
                 ::
 
-                    >>> abjad.attach(start_markup, staff[2], is_annotation=True)
-                    >>> abjad.attach(stop_markup, staff[6], is_annotation=True)
-                    >>> abjad.attach(arrow, staff[2])
-                    >>> abjad.attach(abjad.TextSpanner(), staff[2:])
+                    >>> spanner.attach(start_markup, staff[2])
+                    >>> spanner.attach(stop_markup, staff[6])
+                    >>> spanner.attach(arrow, staff[2])
 
                 ::
 
@@ -1116,16 +1121,17 @@ class Arrow(LineSegment):
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(style=None)
+                >>> arrow = abjad.ArrowLineSegment(style=None)
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -1177,16 +1183,17 @@ class Arrow(LineSegment):
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(style='zigzag')
+                >>> arrow = abjad.ArrowLineSegment(style='zigzag')
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -1235,16 +1242,17 @@ class Arrow(LineSegment):
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(style='trill')
+                >>> arrow = abjad.ArrowLineSegment(style='trill')
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -1293,16 +1301,17 @@ class Arrow(LineSegment):
             ::
 
                 >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+                >>> spanner = abjad.TextSpanner()
+                >>> abjad.attach(spanner, staff[:])
                 >>> start_markup = abjad.Markup('pont.').upright()
                 >>> stop_markup = abjad.Markup('ord.').upright()
-                >>> arrow = abjad.Arrow(style='dotted-line')
+                >>> arrow = abjad.ArrowLineSegment(style='dotted-line')
 
             ::
 
-                >>> abjad.attach(start_markup, staff[0], is_annotation=True)
-                >>> abjad.attach(stop_markup, staff[-1], is_annotation=True)
-                >>> abjad.attach(arrow, staff[0])
-                >>> abjad.attach(abjad.TextSpanner(), staff[:])
+                >>> spanner.attach(start_markup, staff[0])
+                >>> spanner.attach(stop_markup, staff[-1])
+                >>> spanner.attach(arrow, staff[0])
 
             ::
 
@@ -1348,5 +1357,5 @@ class Arrow(LineSegment):
 
         Returns string or none.
         '''
-        superclass = super(Arrow, self)
+        superclass = super(ArrowLineSegment, self)
         return superclass.style

@@ -46,12 +46,12 @@ class Dynamic(AbjadValueObject):
         ::
 
             >>> dynamic_1
-            Dynamic(name='f')
+            Dynamic('f')
 
         ::
 
             >>> dynamic_2
-            Dynamic(name='f')
+            Dynamic('f')
 
     ..  container:: example
 
@@ -179,9 +179,7 @@ class Dynamic(AbjadValueObject):
 
                 >>> dynamic = abjad.Dynamic('f')
                 >>> print(format(dynamic))
-                abjad.Dynamic(
-                    name='f',
-                    )
+                abjad.Dynamic('f')
 
         ..  container:: example
 
@@ -199,7 +197,7 @@ class Dynamic(AbjadValueObject):
             if self.name == 'niente':
                 return ''
             elif self.name not in self._lilypond_dynamic_commands:
-                message = 'dynamic name {!r} is not a LilyPond dynamic command.'
+                message = '{!r} is not a LilyPond dynamic command.'
                 message = message.format(self.name)
                 raise Exception(message)
             return self._get_lilypond_format()
@@ -221,6 +219,15 @@ class Dynamic(AbjadValueObject):
         if self.name not in self._lilypond_dynamic_commands:
             return False
         return True
+
+    def _get_format_specification(self):
+        import abjad
+        return abjad.systemtools.FormatSpecification(
+            self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.name],
+            storage_format_is_indented=False,
+            )
 
     def _get_lilypond_format(self):
         return r'\{}'.format(self.name)

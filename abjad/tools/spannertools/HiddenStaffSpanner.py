@@ -53,14 +53,11 @@ class HiddenStaffSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _format_after_leaf(self, leaf):
-        result = []
-        if self._is_my_last_leaf(leaf):
-            result.append(r'\startStaff')
-        return result
-
-    def _format_before_leaf(self, leaf):
-        result = []
+    def _get_lilypond_format_bundle(self, leaf):
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_first_leaf(leaf):
-            result.append(r'\stopStaff')
-        return result
+            bundle.before.commands.append(r'\stopStaff')
+        if self._is_my_last_leaf(leaf):
+            bundle.after.commands.append(r'\startStaff')
+        return bundle

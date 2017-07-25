@@ -90,21 +90,16 @@ class OctavationSpanner(Spanner):
         new._start = self.start
         new._stop = self.stop
 
-    def _format_after_leaf(self, leaf):
-        result = []
-        result.extend(Spanner._format_after_leaf(self, leaf))
-        if self._is_my_last_leaf(leaf):
-            string = r'\ottava #{}'.format(self.stop)
-            result.append(string)
-        return result
-
-    def _format_before_leaf(self, leaf):
-        result = []
-        result.extend(Spanner._format_before_leaf(self, leaf))
+    def _get_lilypond_format_bundle(self, leaf):
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_first_leaf(leaf):
             string = r'\ottava #{}'.format(self.start)
-            result.append(string)
-        return result
+            bundle.before.commands.append(string)
+        if self._is_my_last_leaf(leaf):
+            string = r'\ottava #{}'.format(self.stop)
+            bundle.after.commands.append(string)
+        return bundle
 
     ### PUBLIC METHODS ###
 

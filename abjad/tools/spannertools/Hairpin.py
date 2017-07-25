@@ -3,7 +3,6 @@ from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import override
 
 
 class Hairpin(Spanner):
@@ -134,33 +133,87 @@ class Hairpin(Spanner):
 
     def __init__(
         self,
-        descriptor='<',
+        descriptor=None,
         direction=None,
-        include_rests=False,
+        include_rests=None,
         overrides=None,
         ):
+        import abjad
         Spanner.__init__(
             self,
             overrides=overrides,
             )
-        direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
-            direction)
+        direction = abjad.String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction
         self._include_rests = include_rests
-        assert self._is_valid_descriptor(descriptor), repr(descriptor)
-        start_dynamic, shape_string, stop_dynamic = self._parse_descriptor(
-            descriptor)
-        self._descriptor = descriptor
-        assert shape_string in ('<', '>')
-        self._shape_string = shape_string
-        if start_dynamic is not None:
-            start_dynamic = indicatortools.Dynamic(start_dynamic)
-        self._start_dynamic = start_dynamic
-        if stop_dynamic is not None:
-            stop_dynamic = indicatortools.Dynamic(stop_dynamic)
-        self._stop_dynamic = stop_dynamic
+        if descriptor is not None:
+            assert self._is_valid_descriptor(descriptor), repr(descriptor)
+            result = self._parse_descriptor(descriptor)
+            start_dynamic, shape_string, stop_dynamic = result
+            self._descriptor = descriptor
+            assert shape_string in ('<', '>')
+            self._shape_string = shape_string
+            if start_dynamic is not None:
+                start_dynamic = abjad.Dynamic(start_dynamic)
+            self._start_dynamic = start_dynamic
+            if stop_dynamic is not None:
+                stop_dynamic = abjad.Dynamic(stop_dynamic)
+            self._stop_dynamic = stop_dynamic
+        else:
+            self._descriptor = None
+            self._shape_string = None
+            self._start_dynamic = None
+            self._stop_dynamic = None
 
     ### PRIVATE METHODS ###
+
+    def _add_circled_tip_override(self, leaf, bundle):
+        dynamic = self._get_piecewise_dynamic(leaf)
+        if not dynamic:
+            return
+        next_dynamic = self._get_next_piecewise_dynamic_from(leaf)
+        if not next_dynamic:
+            return
+        if dynamic.name == 'niente' or next_dynamic.name == 'niente':
+            string = r'\once \override Hairpin.circled-tip = ##t'
+            bundle.before.commands.append(string)
+
+    def _add_dynamic(self, leaf, bundle):
+        dynamic = self._get_piecewise_dynamic(leaf)
+        if dynamic is None:
+            return
+        string = '\\' + dynamic.name
+        if self.direction is not None:
+            direction = abjad.String.to_tridirectional_lilypond_symbol(
+                self.direction
+                )
+            string = '{} {}'.format(direction, string)
+        previous_dynamic = self._get_previous_piecewise_dynamic_from(leaf)
+        if previous_dynamic is None:
+            bundle.right.spanner_starts.append(string)
+        else:
+            bundle.right.spanner_stops.append(string)
+
+    def _add_hairpin_start(self, leaf, bundle):
+        import abjad
+        dynamic = self._get_piecewise_dynamic(leaf)
+        if dynamic is None:
+            return
+        next_dynamic = self._get_next_piecewise_dynamic_from(leaf)
+        if next_dynamic is None:
+            return
+        if dynamic.ordinal == next_dynamic.ordinal:
+            return
+        if dynamic.ordinal < next_dynamic.ordinal:
+            string = r'\<'
+        if next_dynamic.ordinal < dynamic.ordinal:
+            string = r'\>'
+        if self.direction is not None:
+            direction = abjad.String.to_tridirectional_lilypond_symbol(
+                self.direction
+                )
+            string = '{} {}'.format(direction, string)
+        bundle.right.spanner_starts.append(string)
 
     def _attachment_test_all(self, component_expression):
         if isinstance(component_expression, scoretools.Leaf):
@@ -190,19 +243,10 @@ class Hairpin(Spanner):
 
     def _get_lilypond_format_bundle(self, leaf):
         import abjad
+        if self.descriptor is None:
+            return self._get_piecewise_lilypond_format_bundle(leaf)
         self._format_time_test(leaf)
-        bundle = abjad.systemtools.LilyPondFormatBundle()
-        if self._is_my_first_leaf(leaf):
-            contributions = override(self)._list_format_contributions(
-                'override',
-                is_once=False,
-                )
-            bundle.grob_overrides.extend(contributions)
-        if self._is_my_last_leaf(leaf):
-            contributions = override(self)._list_format_contributions(
-                'revert',
-                )
-            bundle.grob_reverts.extend(contributions)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         direction_string = ''
         if self.direction is not None:
             direction_string = abjad.String.to_tridirectional_lilypond_symbol(
@@ -211,7 +255,8 @@ class Hairpin(Spanner):
         if (self._is_my_first_leaf(leaf) and
             (self.start_dynamic and self.start_dynamic.name == 'niente' or
             self.stop_dynamic and self.stop_dynamic.name == 'niente')):
-            override(leaf).hairpin.circled_tip = True
+            string = r'\once \override Hairpin.circled-tip = ##t'
+            bundle.before.commands.append(string)
         if self.include_rests:
             if self._is_my_first_leaf(leaf):
                 string = r'{}\{}'.format(direction_string, self.shape_string)
@@ -222,8 +267,7 @@ class Hairpin(Spanner):
                             direction_string,
                             self.start_dynamic.name,
                             )
-                        bundle.right.spanner_starts.append(
-                            string)
+                        bundle.right.spanner_starts.append(string)
             if self._is_my_last_leaf(leaf):
                 if (self.stop_dynamic and
                     not self.stop_dynamic.name == 'niente'):
@@ -231,15 +275,14 @@ class Hairpin(Spanner):
                             direction_string,
                             self.stop_dynamic.name,
                             )
-                        bundle.right.spanner_stops.append(
-                            string)
+                        bundle.right.spanner_stops.append(string)
                 else:
                     effective_dynamic = leaf._get_effective(abjad.Dynamic)
                     if (effective_dynamic is None or
                         effective_dynamic.name == 'niente'):
                         string = r'\!'
                         bundle.right.spanner_stops.append(string)
-                    elif effective_dynamic not in leaf._indicator_expressions:
+                    elif effective_dynamic not in leaf._indicator_wrappers:
                         found_match = False
                         for indicator in leaf._get_indicators(abjad.Dynamic):
                             if indicator == effective_dynamic:
@@ -274,9 +317,8 @@ class Hairpin(Spanner):
                     if (effective_dynamic is None or
                         effective_dynamic.name == 'niente'):
                         string = r'\!'
-                        bundle.right.spanner_stops.append(
-                            string)
-                    elif effective_dynamic not in leaf._indicator_expressions:
+                        bundle.right.spanner_stops.append(string)
+                    elif effective_dynamic not in leaf._indicator_wrappers:
                         found_match = False
                         for indicator in leaf._get_indicators(abjad.Dynamic):
                             if indicator == effective_dynamic:
@@ -289,35 +331,54 @@ class Hairpin(Spanner):
             bundle.right.spanner_stops[:] = []
         return bundle
 
+    def _get_next_piecewise_dynamic_from(self, leaf):
+        import abjad
+        index = self._index(leaf)
+        for leaf in self[index+1:]:
+            if self._has_piecewise_indicator(leaf, abjad.Dynamic):
+                return self._get_piecewise_indicator(leaf, abjad.Dynamic)
+
+    def _get_piecewise_dynamic(self, leaf):
+        import abjad
+        if self._has_piecewise_indicator(leaf, abjad.Dynamic):
+            return self._get_piecewise_indicator(leaf, abjad.Dynamic)
+
+    def _get_piecewise_lilypond_format_bundle(self, leaf):
+        import abjad
+        self._format_time_test(leaf)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
+        self._add_circled_tip_override(leaf, bundle)
+        self._add_hairpin_start(leaf, bundle)
+        self._add_dynamic(leaf, bundle)
+        if self._is_my_only_leaf(leaf):
+            bundle.right.spanner_starts.extend(bundle.right.spanner_stops)
+            bundle.right.spanner_stops[:] = []
+        return bundle
+
+    def _get_previous_piecewise_dynamic_from(self, leaf):
+        import abjad
+        index = self._index(leaf)
+        for leaf in reversed(self[:index]):
+            if self._has_piecewise_indicator(leaf, abjad.Dynamic):
+                return self._get_piecewise_indicator(leaf, abjad.Dynamic)
+
     @staticmethod
     def _is_hairpin_shape_string(argument):
         return argument in Hairpin._hairpin_shape_strings
 
     @staticmethod
     def _is_hairpin_token(argument):
-        r'''Is true when `argument` is a hairpin token. Otherwise false:
-
-        ::
-
-            >>> abjad.Hairpin._is_hairpin_token(('p', '<', 'f'))
-            True
-
-        ::
-
-            >>> abjad.Hairpin._is_hairpin_token(('f', '<', 'p'))
-            False
-
-        Returns true or false.
-        '''
-        Dynamic = indicatortools.Dynamic
+        import abjad
         if (isinstance(argument, tuple) and
             len(argument) == 3 and
-            (not argument[0] or indicatortools.Dynamic.is_dynamic_name(argument[0]))
+            (not argument[0] or abjad.Dynamic.is_dynamic_name(argument[0]))
             and Hairpin._is_hairpin_shape_string(argument[1]) and
-            (not argument[2] or indicatortools.Dynamic.is_dynamic_name(argument[2]))):
+            (not argument[2] or abjad.Dynamic.is_dynamic_name(argument[2]))):
             if argument[0] and argument[2]:
-                start_ordinal = Dynamic.dynamic_name_to_dynamic_ordinal(argument[0])
-                stop_ordinal = Dynamic.dynamic_name_to_dynamic_ordinal(argument[2])
+                start_ordinal = abjad.Dynamic.dynamic_name_to_dynamic_ordinal(
+                    argument[0])
+                stop_ordinal = abjad.Dynamic.dynamic_name_to_dynamic_ordinal(
+                    argument[2])
                 if argument[1] == '<':
                     return start_ordinal < stop_ordinal
                 else:
@@ -485,6 +546,51 @@ class Hairpin(Spanner):
                 >>> hairpin.include_rests
                 True
 
+        ..  container:: example
+
+            ::
+
+                >>> staff = abjad.Staff(abjad.Rest((1, 8)) * 4 + [abjad.Note(n, (1, 8)) for n in range(4, 8)])
+                >>> crescendo = abjad.Hairpin('<', include_rests=False)
+                >>> abjad.attach(crescendo, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    r8
+                    r8
+                    r8
+                    r8
+                    e'8 \<
+                    f'8
+                    fs'8
+                    g'8 \!
+                }
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)] + abjad.Rest((1, 8)) * 4)
+                >>> crescendo = abjad.Hairpin('<', include_rests=False)
+                >>> abjad.attach(crescendo, staff[:])
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 \<
+                    cs'8
+                    d'8
+                    ef'8 \!
+                    r8
+                    r8
+                    r8
+                    r8
+                }
+
         Returns true or false.
         '''
         return self._include_rests
@@ -531,7 +637,7 @@ class Hairpin(Spanner):
             ::
 
                 >>> hairpin.start_dynamic
-                Dynamic(name='p')
+                Dynamic('p')
 
         Returns dynamic or none.
         '''
@@ -555,8 +661,46 @@ class Hairpin(Spanner):
             ::
 
                 >>> hairpin.stop_dynamic
-                Dynamic(name='f')
+                Dynamic('f')
 
         Returns dynamic or none.
         '''
         return self._stop_dynamic
+
+    ### PUBLIC METHODS ###
+
+    def attach(self, indicator, leaf):
+        r'''Attaches `indicator` to `leaf` in spanner.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = abjad.Staff("c'8 d' e' f' c' d' e' f' c'")
+                >>> hairpin = abjad.Hairpin()
+                >>> abjad.attach(hairpin, staff[:])
+                >>> hairpin.attach(abjad.Dynamic('p'), hairpin[0])
+                >>> hairpin.attach(abjad.Dynamic('f'), hairpin[2])
+                >>> hairpin.attach(abjad.Dynamic('p'), hairpin[4])
+                >>> hairpin.attach(abjad.Dynamic('f'), hairpin[6])
+                >>> hairpin.attach(abjad.Dynamic('p'), hairpin[8])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 \< \p
+                    d'8
+                    e'8 \f \>
+                    f'8
+                    c'8 \p \<
+                    d'8
+                    e'8 \f \>
+                    f'8
+                    c'8 \p
+                }
+
+        Returns none.
+        '''
+        super(Hairpin, self)._attach_piecewise(indicator, leaf)

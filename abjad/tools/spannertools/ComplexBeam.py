@@ -87,13 +87,7 @@ class ComplexBeam(Beam):
 
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
-        Beam._copy_keyword_args(self, new)
-        self._beam_rests = self.beam_rests
-        new._isolated_nib_direction = self.isolated_nib_direction
-
-    def _format_before_leaf(self, leaf):
-        result = []
+    def _add_beam_counts(self, leaf, bundle):
         if self._is_beamable(leaf, beam_rests=self.beam_rests):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)
@@ -103,14 +97,12 @@ class ComplexBeam(Beam):
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
                 string = r'\set stemLeftBeamCount = #{}'.format(left)
-                result.append(string)
+                bundle.before.commands.append(string)
             if right is not None:
                 string = r'\set stemRightBeamCount = #{}'.format(right)
-                result.append(string)
-        return result
+                bundle.before.commands.append(string)
 
-    def _format_right_of_leaf(self, leaf):
-        result = []
+    def _add_start_and_stops(self, leaf, bundle):
         if self._is_beamable(leaf, beam_rests=self.beam_rests):
             previous_leaf = leaf._get_leaf(-1)
             next_leaf = leaf._get_leaf(1)
@@ -119,9 +111,9 @@ class ComplexBeam(Beam):
                 if self.isolated_nib_direction:
                     if self.direction is not None:
                         string = '{} ['.format(self.direction)
-                        result.append(string)
+                        bundle.right.spanner_starts.append(string)
                     else:
-                        result.append('[')
+                        bundle.right.spanner_starts.append('[')
             # otherwise
             elif (self._is_my_first_leaf(leaf) or
                 not previous_leaf or
@@ -132,23 +124,42 @@ class ComplexBeam(Beam):
                 ):
                 if self.direction is not None:
                     string = '{} ['.format(self.direction)
-                    result.append(string)
+                    bundle.right.spanner_starts.append(string)
                 else:
-                    result.append('[')
+                    bundle.right.spanner_starts.append('[')
             # isolated_nib_direction
             if self._is_my_only_leaf(leaf):
                 if self.isolated_nib_direction:
-                    result.append(']')
+                    for string in bundle.right.spanner_starts:
+                        if '[' in string:
+                            bundle.right.spanner_starts.append(']')
+                            break
+                    else:
+                        bundle.right.spanner_stops.append(']')
             # otherwise
-            elif (self._is_my_last_leaf(leaf) or
+            elif (
+                self._is_my_last_leaf(leaf) or
                 not next_leaf or
-                not self._is_beamable(
-                    next_leaf,
-                    beam_rests=self.beam_rests,
-                    )
+                not self._is_beamable(next_leaf, beam_rests=self.beam_rests)
                 ):
-                result.append(']')
-        return result
+                for string in bundle.right.spanner_starts:
+                    if '[' in string:
+                        bundle.right.spanner_starts.append(']')
+                        break
+                else:
+                    bundle.right.spanner_stops.append(']')
+
+    def _copy_keyword_args(self, new):
+        Beam._copy_keyword_args(self, new)
+        self._beam_rests = self.beam_rests
+        new._isolated_nib_direction = self.isolated_nib_direction
+
+    def _get_lilypond_format_bundle(self, leaf):
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
+        self._add_beam_counts(leaf, bundle)
+        self._add_start_and_stops(leaf, bundle)
+        return bundle
 
     def _get_left_right_for_exterior_leaf(self, leaf):
         r'''Gets left and right flag counts for exterior leaf in spanner.
@@ -263,16 +274,6 @@ class ComplexBeam(Beam):
             message = message.format(self.isolated_nib_direction)
             raise ValueError(message)
         return left, right
-
-    def _get_lilypond_format_bundle(self, leaf):
-        bundle = self._get_basic_lilypond_format_bundle(leaf)
-        bundle.get('before').spanners.extend(
-            self._format_before_leaf(leaf))
-        bundle.get('right').spanners.extend(
-            self._format_right_of_leaf(leaf))
-        bundle.get('after').spanners.extend(
-            self._format_after_leaf(leaf))
-        return bundle
 
     ### PUBLIC PROPERTIES ###
 

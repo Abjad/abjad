@@ -192,8 +192,8 @@ class Container(Component):
                 >>> voice = abjad.Voice()
                 >>> voice.append(abjad.Tuplet((2, 3), "c'4 d'4 e'4"))
                 >>> voice.append(abjad.Tuplet((2, 3), "e'4 d'4 c'4"))
-                >>> leaves = abjad.iterate(voice).by_leaf()
-                >>> abjad.attach(abjad.Slur(), list(leaves))
+                >>> leaves = abjad.select(voice).by_leaf()
+                >>> abjad.attach(abjad.Slur(), leaves)
                 >>> show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -640,9 +640,6 @@ class Container(Component):
                 duration += leaf._get_duration(in_seconds=True)
             return duration
 
-    def _get_repr_kwargs_names(self):
-        return ['is_simultaneous', 'name']
-
     def _get_format_specification(self):
         import abjad
         repr_text = None
@@ -669,6 +666,9 @@ class Container(Component):
 
     def _get_preprolated_duration(self):
         return self._get_contents_duration()
+
+    def _get_repr_kwargs_names(self):
+        return ['is_simultaneous', 'name']
 
     def _get_spanners_that_dominate_component_pair(self, left, right):
         r'''Returns spanners that dominant component pair.

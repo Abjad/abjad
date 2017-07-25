@@ -153,7 +153,7 @@ def test_scoretools_Note___copy___07():
     '''
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(8)])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:4])
 
     assert format(staff) == abjad.String.normalize(

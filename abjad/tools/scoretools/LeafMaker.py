@@ -718,6 +718,7 @@ class LeafMaker(AbjadValueObject):
             else:
                 arguments = (written_duration, )
             result.append(class_(*arguments))
+        result = abjad.select(result)
         # apply tie spanner if required
         if tie_parts and 1 < len(result):
             if not issubclass(class_, (abjad.Rest, abjad.Skip)):
@@ -726,7 +727,6 @@ class LeafMaker(AbjadValueObject):
                     )
                 abjad.attach(tie, result)
         # return result
-        result = abjad.select(result)
         return result
 
     def _partition_less_than_double(n, m):

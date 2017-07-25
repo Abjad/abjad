@@ -63,11 +63,11 @@ def detach(prototype, component_expression=None):
         elif issubclass(prototype, abjad.GraceContainer):
             grace_container = inspector.get_grace_container()
         else:
-            assert hasattr(component_expression, '_indicator_expressions')
+            assert hasattr(component_expression, '_indicator_wrappers')
             result = []
-            for item in component_expression._indicator_expressions[:]:
+            for item in component_expression._indicator_wrappers[:]:
                 if isinstance(item, prototype):
-                    component_expression._indicator_expressions.remove(item)
+                    component_expression._indicator_wrappers.remove(item)
                     result.append(item)
                 # indicator is a expression
                 elif (
@@ -86,11 +86,11 @@ def detach(prototype, component_expression=None):
         elif isinstance(prototype, abjad.GraceContainer):
             grace_container = inspector.get_grace_container()
         else:
-            assert hasattr(component_expression, '_indicator_expressions')
+            assert hasattr(component_expression, '_indicator_wrappers')
             result = []
-            for item in component_expression._indicator_expressions[:]:
+            for item in component_expression._indicator_wrappers[:]:
                 if item == prototype:
-                    component_expression._indicator_expressions.remove(item)
+                    component_expression._indicator_wrappers.remove(item)
                     result.append(item)
                 # indicator is an expression
                 elif (

@@ -784,29 +784,6 @@ class NamedInterval(Interval):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_quality_and_number(class_, quality, number):
-        r'''Makes named interval from `quality` and `number`.
-
-        ..  container:: example
-            
-            ::
-
-                >>> abjad.NamedInterval.from_quality_and_number(
-                ...     'major',
-                ...     -3,
-                ...     )
-                NamedInterval('-M3')
-
-        Returns newly constructed named interval.
-        '''
-        assert isinstance(quality, str), repr(quality)
-        assert isinstance(number, numbers.Number), repr(number)
-        interval = class_()
-        interval._quality_string = quality
-        interval._number = number
-        return interval
-
-    @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
         '''Makes named interval calculated from `pitch_carrier_1` to
         `pitch_carrier_2`.
@@ -854,6 +831,29 @@ class NamedInterval(Interval):
         else:
             named_interval = absolute_named_interval
         return class_(named_interval)
+
+    @classmethod
+    def from_quality_and_number(class_, quality, number):
+        r'''Makes named interval from `quality` and `number`.
+
+        ..  container:: example
+            
+            ::
+
+                >>> abjad.NamedInterval.from_quality_and_number(
+                ...     'major',
+                ...     -3,
+                ...     )
+                NamedInterval('-M3')
+
+        Returns newly constructed named interval.
+        '''
+        assert isinstance(quality, str), repr(quality)
+        assert isinstance(number, numbers.Number), repr(number)
+        interval = class_()
+        interval._quality_string = quality
+        interval._number = number
+        return interval
 
     def transpose(self, pitch_carrier):
         r'''Transposes `pitch_carrier` by named interval.

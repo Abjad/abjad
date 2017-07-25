@@ -149,32 +149,32 @@ class TieSpecifier(AbjadValueObject):
             tie._constrain_contiguity()
 
     def _do_tie_consecutive_notes(self, divisions):
+        import abjad
         if not self.tie_consecutive_notes:
             return
-        leaves = select(divisions).by_leaf()
+        leaves = abjad.select(divisions).by_leaf()
         for leaf in leaves:
-            detach(spannertools.Tie, leaf)
+            abjad.detach(abjad.Tie, leaf)
         pairs = itertools.groupby(leaves, lambda _: _.__class__)
-
         def _get_pitches(component):
-            if isinstance(component, scoretools.Note):
+            if isinstance(component, abjad.Note):
                 return component.written_pitch
-            elif isinstance(component, scoretools.Chord):
+            elif isinstance(component, abjad.Chord):
                 return component.written_pitches
             else:
                 raise TypeError(component)
         for class_, group in pairs:
             group = list(group)
-            if not isinstance(group[0], (scoretools.Note, scoretools.Chord)):
+            if not isinstance(group[0], (abjad.Note, abjad.Chord)):
                 continue
             subpairs = itertools.groupby(group, lambda _: _get_pitches(_))
             for pitches, subgroup in subpairs:
                 subgroup = list(subgroup)
                 if len(subgroup) == 1:
                     continue
-                tie = spannertools.Tie()
+                tie = abjad.Tie()
                 assert tie._attachment_test_all(subgroup)
-                attach(tie, subgroup)
+                abjad.attach(tie, abjad.select(subgroup))
 
     ### PUBLIC PROPERTIES ###
 

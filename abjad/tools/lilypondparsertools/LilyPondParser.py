@@ -391,6 +391,7 @@ class LilyPondParser(abctools.Parser):
     ### PRIVATE METHODS ###
 
     def _apply_spanners(self, music):
+        import abjad
         # get local reference to methods
         _get_span_events = self._get_span_events
         _span_event_name_to_spanner_class = \
@@ -434,14 +435,16 @@ class LilyPondParser(abctools.Parser):
                     if previous_spanners:
                         previous_spanners[0]._append(next_leaf)
                     else:
-                        if hasattr(span_event, 'direction') and \
-                            hasattr(spanner_class, 'direction'):
-                            spanner = spanner_class(
-                                direction=span_event.direction)
-                            attach(spanner, [leaf, next_leaf])
+                        if (hasattr(span_event, 'direction') and
+                            hasattr(spanner_class, 'direction')):
+                            direction = span_event.direction
+                            spanner = spanner_class(direction=direction)
+                            selection = abjad.select([leaf, next_leaf])
+                            attach(spanner, selection)
                         else:
                             spanner = spanner_class()
-                            attach(spanner, [leaf, next_leaf])
+                            selection = abjad.select([leaf, next_leaf])
+                            attach(spanner, selection)
 
                 # otherwise throw an error
                 else:
@@ -643,7 +646,7 @@ class LilyPondParser(abctools.Parser):
         while len(music):
             component = music.pop(0)
             context.append(component)
-        indicators = music._indicator_expressions
+        indicators = music._indicator_wrappers
         for indicator in indicators:
             attach(indicator, context)
         return context
@@ -767,25 +770,19 @@ class LilyPondParser(abctools.Parser):
             }
 
     def _get_span_events(self, leaf):
-        annotations = leaf._get_indicators(dict)
-        detach(dict, leaf)
-        if annotations:
-            spanners_annotations = [
-                _ for _ in annotations if 'spanners' in _
-                ]
-            if 1 == len(spanners_annotations):
-                return spanners_annotations[0]['spanners']
-            elif 1 < len(spanners_annotations):
-                message = 'multiple span events lists attached to {}.'
-                message = message.format(leaf)
-                raise Exception(message)
-        return []
+        import abjad
+        annotation = abjad.inspect(leaf).get_annotation('spanners', [])
+        abjad.detach(annotation, leaf)
+        assert isinstance(annotation, list), repr(annotation)
+        assert abjad.inspect(leaf).get_annotation('spanners') is None
+        return annotation
 
     def _pop_variable_scope(self):
         if self._scope_stack:
             self._scope_stack.pop()
 
     def _process_post_events(self, leaf, post_events):
+        import abjad
         for post_event in post_events:
             # TODO: the conditional logic here will have to change;
             #       post events like StemTremolo no longer implement _attach.
@@ -806,16 +803,11 @@ class LilyPondParser(abctools.Parser):
             elif isinstance(post_event, nonspanner_post_event_types):
                 attach(post_event, leaf)
             else:
-                annotation = [
-                    x for x in leaf._get_indicators(dict)
-                    if 'spanners' in x
-                    ]
-                if not annotation:
-                    annotation = {'spanners': []}
-                    attach(annotation, leaf)
-                else:
-                    annotation = annotation[0]
-                annotation['spanners'].append(post_event)
+                annotation = abjad.inspect(leaf).get_annotation('spanners')
+                if annotation is None:
+                    annotation = []
+                    abjad.annotate(leaf, 'spanners', annotation)
+                annotation.append(post_event)
 
     def _push_extra_token(self, token):
         self._parser.lookaheadstack.append(token)

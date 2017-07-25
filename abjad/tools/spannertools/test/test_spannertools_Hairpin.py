@@ -8,7 +8,7 @@ def test_spannertools_Hairpin_01():
     '''
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(8)])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:4])
 
     assert format(staff) == abjad.String.normalize(
@@ -34,7 +34,7 @@ def test_spannertools_Hairpin_02():
     '''
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(8)])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:4])
     dynamic = abjad.Dynamic('p')
     abjad.attach(dynamic, staff[0])
@@ -62,7 +62,7 @@ def test_spannertools_Hairpin_02():
 def test_spannertools_Hairpin_03():
 
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(8)])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[:4])
     dynamic = abjad.Dynamic('p')
     abjad.attach(dynamic, staff[2])
@@ -77,15 +77,15 @@ def test_spannertools_Hairpin_04():
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(8)])
     dynamic = abjad.Dynamic('p')
     abjad.attach(dynamic, staff[0])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[0:3])
     dynamic = abjad.Dynamic('f')
     abjad.attach(dynamic, staff[2])
-    decrescendo = abjad.Decrescendo()
+    decrescendo = abjad.Hairpin('>')
     abjad.attach(decrescendo, staff[2:5])
     dynamic = abjad.Dynamic('p')
     abjad.attach(dynamic, staff[4])
-    crescendo = abjad.Crescendo()
+    crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, staff[4:7])
     dynamic = abjad.Dynamic('f')
     abjad.attach(dynamic, staff[6])
@@ -113,7 +113,7 @@ def test_spannertools_Hairpin_05():
     '''
 
     staff = abjad.Staff(abjad.Rest((1, 8)) * 4 + [abjad.Note(n, (1, 8)) for n in range(4, 8)])
-    crescendo = abjad.Crescendo(include_rests=True)
+    crescendo = abjad.Hairpin('<', include_rests=True)
     abjad.attach(crescendo, staff[:])
 
     assert format(staff) == abjad.String.normalize(

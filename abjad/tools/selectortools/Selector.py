@@ -1879,12 +1879,12 @@ class Selector(AbjadValueObject):
                 } {
                     \times 2/3 {
                         r8
+                        \ottava #1
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        \ottava #1
                         d'8
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red

@@ -60,13 +60,14 @@ class HorizontalBracketSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _format_right_of_leaf(self, leaf):
-        result = []
+    def _get_lilypond_format_bundle(self, leaf):
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_first_leaf(leaf):
-            result.append(r'\startGroup')
+            bundle.right.spanner_starts.append(r'\startGroup')
         if self._is_my_last_leaf(leaf):
-            result.append(r'\stopGroup')
-        return result
+            bundle.right.spanner_stops.append(r'\stopGroup')
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

@@ -43,22 +43,19 @@ def test_agenttools_InspectionAgent_get_vertical_moment_at_01():
         '''
         )
 
-    def staff_group_moment(offset):
-        return abjad.inspect(staff_group).get_vertical_moment_at(offset)
-
-    moment = staff_group_moment(abjad.Offset(0, 8))
+    moment = abjad.inspect(staff_group).get_vertical_moment_at((0, 8))
     assert moment.leaves == (staff_group[0][0], staff_group[1][0])
 
-    moment = staff_group_moment(abjad.Offset(1, 8))
+    moment = abjad.inspect(staff_group).get_vertical_moment_at((1, 8))
     assert moment.leaves == (staff_group[0][0], staff_group[1][1])
 
-    moment = staff_group_moment(abjad.Offset(2, 8))
+    moment = abjad.inspect(staff_group).get_vertical_moment_at((2, 8))
     assert moment.leaves == (staff_group[0][1], staff_group[1][2])
 
-    moment = staff_group_moment(abjad.Offset(3, 8))
+    moment = abjad.inspect(staff_group).get_vertical_moment_at((3, 8))
     assert moment.leaves == (staff_group[0][1], staff_group[1][3])
 
-    moment = staff_group_moment(abjad.Offset(99, 8))
+    moment = abjad.inspect(staff_group).get_vertical_moment_at((99, 8))
     assert moment.leaves == ()
 
 
@@ -106,33 +103,33 @@ def test_agenttools_InspectionAgent_get_vertical_moment_at_02():
     def scorewide_vertical_moment(offset):
         return abjad.inspect(score).get_vertical_moment_at(offset)
 
-    moment = scorewide_vertical_moment(abjad.Offset(0, 8))
+    moment = abjad.inspect(score).get_vertical_moment_at((0, 8))
     assert moment.leaves == (
         score[0][0][0],
         staff_group[0][0],
         staff_group[1][0],
         )
 
-    moment = scorewide_vertical_moment(abjad.Offset(1, 8))
+    moment = abjad.inspect(score).get_vertical_moment_at((1, 8))
     assert moment.leaves == (
         score[0][0][0],
         staff_group[0][0],
         staff_group[1][1],
         )
 
-    moment = scorewide_vertical_moment(abjad.Offset(2, 8))
+    moment = abjad.inspect(score).get_vertical_moment_at((2, 8))
     assert moment.leaves == (
         score[0][0][1],
         staff_group[0][1],
         staff_group[1][2],
         )
 
-    moment = scorewide_vertical_moment(abjad.Offset(3, 8))
+    moment = abjad.inspect(score).get_vertical_moment_at((3, 8))
     assert moment.leaves == (
         score[0][0][2],
         staff_group[0][1],
         staff_group[1][3],
         )
 
-    moment = scorewide_vertical_moment(abjad.Offset(99, 8))
+    moment = abjad.inspect(score).get_vertical_moment_at((99, 8))
     assert moment.leaves == ()

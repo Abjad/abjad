@@ -7,7 +7,7 @@ from .ForbidUpdate import ForbidUpdate
 from .FormatSpecification import FormatSpecification
 from .IOManager import IOManager
 from .ImportManager import ImportManager
-from .IndicatorExpression import IndicatorExpression
+from .IndicatorWrapper import IndicatorWrapper
 from .LilyPondFormatBundle import LilyPondFormatBundle
 from .LilyPondFormatManager import LilyPondFormatManager
 from .NullContextManager import NullContextManager

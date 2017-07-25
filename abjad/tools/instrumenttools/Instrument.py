@@ -126,7 +126,7 @@ class Instrument(AbjadValueObject):
             repr_kwargs_names=[],
             )
 
-    # TODO: _scope_name needs to be taken from IndicatorExpression!
+    # TODO: _scope_name needs to be taken from IndicatorWrapper!
     #       should not be stored on instrument.
     def _get_lilypond_format(self):
         result = []
