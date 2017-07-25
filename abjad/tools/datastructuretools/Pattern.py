@@ -207,7 +207,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            Flat goruping of two patterns:
+            Flat grouping of two patterns:
 
             ::
 
@@ -304,6 +304,30 @@ class Pattern(AbjadValueObject):
 
                 >>> pattern.get_boolean_vector(total_length=16)
                 [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+
+        ..  container:: example
+
+            In-place AND is allowed:
+
+            ::
+
+                >>> pattern = abjad.index_first(3)
+                >>> pattern &= abjad.index_last(3)
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    operator='and',
+                    patterns=(
+                        abjad.Pattern(
+                            indices=[0, 1, 2],
+                            ),
+                        abjad.Pattern(
+                            indices=[-3, -2, -1],
+                            ),
+                        ),
+                    )
 
         Returns new pattern.
         '''
@@ -592,6 +616,30 @@ class Pattern(AbjadValueObject):
                 >>> pattern.get_boolean_vector(total_length=16)
                 [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
 
+        ..  container:: example
+
+            In-place OR is allowed:
+
+            ::
+
+                >>> pattern = abjad.index_first(3)
+                >>> pattern |= abjad.index_last(3)
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    operator='or',
+                    patterns=(
+                        abjad.Pattern(
+                            indices=[0, 1, 2],
+                            ),
+                        abjad.Pattern(
+                            indices=[-3, -2, -1],
+                            ),
+                        ),
+                    )
+
         Returns new pattern.
         '''
         if self._can_append_to_self(pattern, 'or'):
@@ -705,6 +753,31 @@ class Pattern(AbjadValueObject):
 
                 >>> pattern.get_boolean_vector(total_length=16)
                 [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+
+        ..  container:: example
+
+            In-place XOR is allowed:
+
+            ::
+
+                >>> pattern = abjad.index_first(3)
+                >>> pattern ^= abjad.index_last(3)
+
+            ::
+
+                >>> f(pattern)
+                abjad.Pattern(
+                    operator='xor',
+                    patterns=(
+                        abjad.Pattern(
+                            indices=[0, 1, 2],
+                            ),
+                        abjad.Pattern(
+                            indices=[-3, -2, -1],
+                            ),
+                        ),
+                    )
+
 
         Returns new pattern.
         '''

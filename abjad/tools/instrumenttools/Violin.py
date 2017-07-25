@@ -134,6 +134,42 @@ class Violin(Instrument):
 
                 >>> show(violin.instrument_name_markup) # doctest: +SKIP
 
+        ..  container:: example
+
+            Regression: markup is preserved under new-duplication:
+
+            ::
+
+                >>> markup = abjad.Markup('Violin').italic().hcenter_in(12)
+                >>> violin_1 = abjad.instrumenttools.Violin(
+                ...     instrument_name_markup=markup,
+                ...     )
+                >>> f(violin_1.instrument_name_markup)
+                \markup {
+                    \hcenter-in
+                        #12
+                        \italic
+                            Violin
+                    }
+
+            ::
+
+                >>> violin_2 = abjad.new(violin_1)
+                >>> f(violin_2.instrument_name_markup)
+                \markup {
+                    \hcenter-in
+                        #12
+                        \italic
+                            Violin
+                    }
+
+            ::
+
+                >>> markup_1 = violin_1.instrument_name_markup
+                >>> markup_2 = violin_2.instrument_name_markup
+                >>> markup_1 == markup_2
+                True
+
         Returns markup.
         '''
         return Instrument.instrument_name_markup.fget(self)
