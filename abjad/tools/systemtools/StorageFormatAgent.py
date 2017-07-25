@@ -56,7 +56,7 @@ class StorageFormatAgent(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, client):
+    def __init__(self, client=None):
         self._client = client
         self._format_specification = None
         (

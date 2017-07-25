@@ -5,6 +5,7 @@ import pytest
 import abjad
 from abjad.tools import abjadbooktools
 from abjad.tools import documentationtools
+from abjad.tools import lilypondparsertools
 from abjad.tools import metertools
 from abjad.tools import systemtools
 from abjad.tools import tonalanalysistools
@@ -22,7 +23,6 @@ ignored_classes = (
 classes = documentationtools.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
-
 
 @pytest.mark.parametrize('class_', classes)
 def test_abjad___format___01(class_):
@@ -56,7 +56,6 @@ classes = documentationtools.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
 
-
 @pytest.mark.parametrize('class_', classes)
 def test_abjad___format___02(class_):
     r'''All storage-formattable classes have evaluable storage format.
@@ -77,3 +76,34 @@ def test_abjad___format___02(class_):
     instance_two = eval(instance_one_format, environment)
     instance_two_format = format(instance_two, 'storage')
     assert instance_one_format == instance_two_format
+
+
+ignored_classes = (
+    abjad.Measure,
+    abjad.Enumeration,
+    abjadbooktools.AbjadDirective,
+    abjadbooktools.AbjadDoctestDirective,
+    abjadbooktools.CodeBlock,
+    abjadbooktools.CodeOutputProxy,
+    abjadbooktools.GraphvizOutputProxy,
+    abjadbooktools.ImportDirective,
+    abjadbooktools.LilyPondOutputProxy,
+    abjadbooktools.RevealDirective,
+    abjadbooktools.ShellDirective,
+    abjadbooktools.ThumbnailDirective,
+    lilypondparsertools.SyntaxNode,
+    )
+
+classes = documentationtools.list_all_abjad_classes(
+    ignored_classes=ignored_classes,
+    )
+
+@pytest.mark.parametrize('class_', classes)
+def test_abjad___format___03(class_):
+    r'''All concrete classes bald-format.
+    '''
+    if inspect.isabstract(class_):
+        return
+    object_ = class_()
+    string = '{}'.format(object_)
+    print(string)

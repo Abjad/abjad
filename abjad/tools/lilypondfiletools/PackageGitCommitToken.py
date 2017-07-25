@@ -54,6 +54,8 @@ class PackageGitCommitToken(AbjadValueObject):
         Return string.
         '''
         from abjad.tools import systemtools
+        if not self.package_name:
+            return ''
         if format_specification in ('', 'lilypond'):
             return self._get_lilypond_format()
         elif format_specification == 'storage':
