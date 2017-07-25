@@ -56,7 +56,6 @@ class BendAfter(AbjadValueObject):
 
     __slots__ = (
         '_bend_amount',
-        '_default_scope',
         )
 
     _format_slot = 'right'
@@ -70,7 +69,6 @@ class BendAfter(AbjadValueObject):
             bend_amount = bend_amount.bend_amount
         bend_amount = float(bend_amount)
         self._bend_amount = bend_amount
-        self._default_scope = None
 
     ### SPECIAL METHODS ###
 
@@ -100,10 +98,10 @@ class BendAfter(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.articulations.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.right.articulations.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -134,17 +132,3 @@ class BendAfter(AbjadValueObject):
         Returns float.
         '''
         return self._bend_amount
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of bend after.
-
-        ..  container:: example
-
-            >>> bend = abjad.BendAfter(-4)
-            >>> bend.default_scope is None
-            True
-
-        Returns none.
-        '''
-        return self._default_scope

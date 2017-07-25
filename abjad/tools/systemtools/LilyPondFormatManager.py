@@ -47,11 +47,11 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def _collect_indicators(component):
-        from abjad.tools import markuptools
-        from abjad.tools.topleveltools import inspect
+        import abjad
         expressions = []
-        for parent in inspect(component).get_parentage(include_self=True):
-            result = inspect(parent).get_indicators(unwrap=False)
+        parentage = abjad.inspect(component).get_parentage(include_self=True)
+        for parent in parentage:
+            result = abjad.inspect(parent).get_indicators(unwrap=False)
             expressions.extend(result)
             result = parent._get_spanner_indicators(unwrap=False)
             expressions.extend(result)
@@ -78,7 +78,7 @@ class LilyPondFormatManager(AbjadObject):
                 ):
                 continue
             # store markup
-            elif isinstance(expression.indicator, markuptools.Markup):
+            elif isinstance(expression.indicator, abjad.Markup):
                 if expression.indicator.direction == Up:
                     up_markup.append(expression.indicator)
                 elif expression.indicator.direction == Down:
@@ -169,6 +169,7 @@ class LilyPondFormatManager(AbjadObject):
 
     @staticmethod
     def _populate_indicator_format_contributions(component, bundle):
+        import abjad
         manager = LilyPondFormatManager
         (
             up_markup,
@@ -239,8 +240,7 @@ class LilyPondFormatManager(AbjadObject):
         for nonscoped_expression in nonscoped_expressions:
             indicator = nonscoped_expression.indicator
             if hasattr(indicator, '_get_lilypond_format_bundle'):
-                indicator_bundle = indicator._get_lilypond_format_bundle(
-                    component)
+                indicator_bundle = indicator._get_lilypond_format_bundle()
                 if indicator_bundle is not None:
                     bundle.update(indicator_bundle)
 
@@ -518,14 +518,14 @@ class LilyPondFormatManager(AbjadObject):
                 >>> manager = abjad.systemtools.LilyPondFormatManager
                 >>> print(manager.report_spanner_format_contributions(spanner))
                 c8	systemtools.LilyPondFormatBundle(
-                        right=LilyPondFormatBundle.SlotContributions(
+                        right=systemtools.SlotContributions(
                             spanner_starts=['['],
                             ),
                         )
                 d8	systemtools.LilyPondFormatBundle()
                 e8	systemtools.LilyPondFormatBundle()
                 f8	systemtools.LilyPondFormatBundle(
-                        right=LilyPondFormatBundle.SlotContributions(
+                        right=systemtools.SlotContributions(
                             spanner_stops=[']'],
                             ),
                         )

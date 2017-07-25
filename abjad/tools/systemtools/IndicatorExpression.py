@@ -154,7 +154,7 @@ class IndicatorExpression(AbjadValueObject):
         if self.is_annotation:
             return result
         if hasattr(self.indicator, '_get_lilypond_format_bundle'):
-            return self.indicator._get_lilypond_format_bundle(self.component)
+            return self.indicator._get_lilypond_format_bundle()
         lilypond_format = self.indicator._get_lilypond_format()
         if isinstance(lilypond_format, (tuple, list)):
             result.extend(lilypond_format)
@@ -170,8 +170,8 @@ class IndicatorExpression(AbjadValueObject):
 
     def _is_formattable_for_component(self, component):
         import abjad
-        if not hasattr(self.indicator, '_format_slot'):
-            return False
+#        if not hasattr(self.indicator, '_format_slot'):
+#            return False
         if self.is_annotation:
             return False
         if isinstance(self.component, abjad.Measure):
@@ -189,7 +189,7 @@ class IndicatorExpression(AbjadValueObject):
                         previous_effective_time_signature = None
                     if not self.indicator == previous_effective_time_signature:
                         return True
-        elif self.indicator._format_slot == 'right':
+        elif getattr(self.indicator, '_format_slot', None) == 'right':
             if self.component is component:
                 return True
         elif self.component is component:

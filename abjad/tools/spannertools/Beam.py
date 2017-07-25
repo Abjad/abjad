@@ -83,30 +83,30 @@ class Beam(Spanner):
         new._direction = self.direction
 
     def _get_lilypond_format_bundle(self, leaf):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
         if self._is_my_first_leaf(leaf):
             contributions = override(self)._list_format_contributions(
                 'override',
                 is_once=False,
                 )
-            lilypond_format_bundle.grob_overrides.extend(contributions)
+            bundle.grob_overrides.extend(contributions)
             if self.direction is not None:
                 string = '{} ['.format(self.direction)
             else:
                 string = '['
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
         if self._is_my_last_leaf(leaf):
             contributions = override(self)._list_format_contributions(
                 'revert',
                 )
-            lilypond_format_bundle.grob_reverts.extend(contributions)
+            bundle.grob_reverts.extend(contributions)
             string = ']'
             if self._is_my_first_leaf(leaf):
-                lilypond_format_bundle.right.spanner_starts.append(string)
+                bundle.right.spanner_starts.append(string)
             else:
-                lilypond_format_bundle.right.spanner_stops.append(string)
-        return lilypond_format_bundle
+                bundle.right.spanner_stops.append(string)
+        return bundle
 
     ### PUBLIC METHODS ###
 

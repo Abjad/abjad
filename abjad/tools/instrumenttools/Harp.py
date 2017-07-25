@@ -105,6 +105,21 @@ class Harp(Instrument):
         return Instrument.allowable_clefs.fget(self)
 
     @property
+    def default_scope(self):
+        r'''Gets default scope of harp.
+
+        ..  container:: example
+
+            ::
+
+                >>> harp.default_scope
+                'PianoStaff'
+
+        Returns piano staff.
+        '''
+        return self._default_scope
+
+    @property
     def instrument_name(self):
         r'''Gets harp's name.
 

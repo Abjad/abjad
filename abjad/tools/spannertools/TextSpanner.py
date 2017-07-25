@@ -206,9 +206,7 @@ class TextSpanner(Spanner):
             )
 
     def _get_lilypond_format_bundle(self, component=None):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(
-            component,
-            )
+        bundle = self._get_basic_lilypond_format_bundle(component)
         current_annotations = self._get_annotations(component)
         current_markups = current_annotations[0]
         current_markup = bool(current_markups)
@@ -220,16 +218,16 @@ class TextSpanner(Spanner):
                 'override',
                 is_once=False,
                 )
-            lilypond_format_bundle.grob_overrides.extend(contributions)
+            bundle.grob_overrides.extend(contributions)
             string = r'\startTextSpan'
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
         if stop_spanner:
             contributions = override(self)._list_format_contributions(
                 'revert',
                 )
-            lilypond_format_bundle.grob_reverts.extend(contributions)
+            bundle.grob_reverts.extend(contributions)
             string = r'\stopTextSpan'
-            lilypond_format_bundle.right.spanner_stops.append(string)
+            bundle.right.spanner_stops.append(string)
         if current_markups is not None:
             # assign markup to spanner left text
             if start_spanner:
@@ -250,19 +248,19 @@ class TextSpanner(Spanner):
                     value=markup,
                     )
                 override_string = override_.override_string
-                lilypond_format_bundle.grob_overrides.append(override_string)
+                bundle.grob_overrides.append(override_string)
             # format markup normally
             else:
                 current_markup = current_markups[0]
                 markup = new(current_markup, direction=Up)
                 string = format(markup, 'lilypond')
-                lilypond_format_bundle.right.markup.append(string)
+                bundle.right.markup.append(string)
         if current_line_segment is not None:
             overrides = current_line_segment._get_lilypond_grob_overrides()
             for override_ in overrides:
                 override_string = override_.override_string
-                lilypond_format_bundle.grob_overrides.append(override_string)
-        return lilypond_format_bundle
+                bundle.grob_overrides.append(override_string)
+        return bundle
 
     def _get_previous_annotations(self, component):
         from abjad.tools import scoretools

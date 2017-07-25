@@ -52,12 +52,18 @@ class PageBreak(AbjadValueObject):
 
     def __init__(self):
         from abjad.tools import scoretools
-        self._default_scope = scoretools.Staff
+        self._default_scope = scoretools.Score
 
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
         return r'\pageBreak'
+
+    def _get_lilypond_format_bundle(self, component=None):
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.after.commands.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -74,12 +80,8 @@ class PageBreak(AbjadValueObject):
                 
                 >>> page_break = abjad.PageBreak()
                 >>> page_break.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
+                <class 'abjad.tools.scoretools.Score.Score'>
 
-        Page breaks are staff-scoped by default.
-
-        ..  todo:: Page breaks should be score-scoped.
-
-        Returns staff (but should return score).
+        Returns score.
         '''
         return self._default_scope

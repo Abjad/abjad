@@ -78,7 +78,6 @@ class Articulation(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_direction',
         '_format_slot',
         '_name',
@@ -150,7 +149,6 @@ class Articulation(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, name=None, direction=None):
-        self._default_scope = None
         if isinstance(name, type(self)):
             argument = name
             name = argument.name
@@ -241,26 +239,12 @@ class Articulation(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.articulations.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.right.articulations.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of articulation.
-
-        ..  container:: example
-
-            >>> articulation = abjad.Articulation('staccato')
-            >>> articulation.default_scope is None
-            True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def direction(self):

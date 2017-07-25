@@ -92,9 +92,9 @@ class MultipartBeam(Beam):
         self._beam_rests = self.beam_rests
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if not self._is_beamable(leaf, beam_rests=self.beam_rests):
-            return lilypond_format_bundle
+            return bundle
         direction_string = ''
         if self.direction is not None:
             direction_string = '{} '.format(self.direction)
@@ -149,13 +149,13 @@ class MultipartBeam(Beam):
                             ):
                             stop_piece = ']'
             if start_piece and stop_piece:
-                lilypond_format_bundle.right.spanner_starts.extend([
+                bundle.right.spanner_starts.extend([
                     start_piece, stop_piece])
             elif start_piece:
-                lilypond_format_bundle.right.spanner_starts.append(start_piece)
+                bundle.right.spanner_starts.append(start_piece)
             elif stop_piece:
-                lilypond_format_bundle.right.spanner_stops.append(stop_piece)
-        return lilypond_format_bundle
+                bundle.right.spanner_stops.append(stop_piece)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

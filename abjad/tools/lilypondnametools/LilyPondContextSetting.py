@@ -74,11 +74,11 @@ class LilyPondContextSetting(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
         string = '\n'.join(self.format_pieces)
-        lilypond_format_bundle.context_settings.append(string)
-        return lilypond_format_bundle
+        bundle.context_settings.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

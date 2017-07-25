@@ -85,9 +85,7 @@ class Repeat(AbjadValueObject):
 
     def __init__(self, repeat_count=2, repeat_type='volta'):
         from abjad.tools import scoretools
-        # TODO: make score-scoped
-        #self._default_scope = scoretools.Score
-        self._default_scope = None
+        self._default_scope = scoretools.Score
         repeat_count = int(repeat_count)
         assert 1 < repeat_count
         self._repeat_count = repeat_count
@@ -130,10 +128,10 @@ class Repeat(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.before.commands.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.before.commands.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -148,8 +146,8 @@ class Repeat(AbjadValueObject):
             ::
 
                 >>> repeat = abjad.Repeat()
-                >>> repeat.default_scope is None
-                True
+                >>> repeat.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
 
         ..  container:: example
 
@@ -158,12 +156,10 @@ class Repeat(AbjadValueObject):
             ::
 
                 >>> repeat = abjad.Repeat(repeat_type='unfold')
-                >>> repeat.default_scope is None
-                True
+                >>> repeat.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
 
-        ..  todo:: Make repeats score-scoped.
-
-        Returns none (but should return score).
+        Returns score.
         '''
         return self._default_scope
 

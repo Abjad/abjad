@@ -1778,13 +1778,13 @@ class MetronomeMarkSpanner(Spanner):
             )
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         current_annotations = self._get_annotations(leaf)
         current_tempo = current_annotations[0]
         current_tempo_trend = current_annotations[1]
         current_metric_modulation = current_annotations[2]
         if current_tempo is None and current_tempo_trend is None:
-            return lilypond_format_bundle
+            return bundle
         previous_annotations = self._get_previous_annotations(leaf)
         previous_tempo = previous_annotations[0]
         previous_tempo_trend = previous_annotations[1]
@@ -1792,7 +1792,7 @@ class MetronomeMarkSpanner(Spanner):
         # stop any previous tempo trend
         if previous_tempo_trend:
             spanner_stop = r'\stopTextSpan'
-            lilypond_format_bundle.right.spanner_stops.append(spanner_stop)
+            bundle.right.spanner_stops.append(spanner_stop)
         # use markup if no tempo trend starts now
         if current_tempo_trend is None:
             markup = self._combine_tempo_and_metric_modulation(
@@ -1801,22 +1801,22 @@ class MetronomeMarkSpanner(Spanner):
                 )
             markup = new(markup, direction=Up)
             string = format(markup, 'lilypond')
-            lilypond_format_bundle.right.markup.append(string)
-            return lilypond_format_bundle
+            bundle.right.markup.append(string)
+            return bundle
         # use spanner if tempo trend starts now
         spanner_start = r'\startTextSpan'
-        lilypond_format_bundle.right.spanner_starts.append(spanner_start)
+        bundle.right.spanner_starts.append(spanner_start)
         if current_tempo or current_metric_modulation:
             self._start_tempo_trend_spanner_with_explicit_start(
                 leaf,
-                lilypond_format_bundle,
+                bundle,
                 current_tempo,
                 current_metric_modulation,
                 )
         else:
             self._start_tempo_trend_spanner_with_implicit_start(
                 leaf,
-                lilypond_format_bundle,
+                bundle,
                 current_tempo_trend,
                 previous_tempo,
                 )
@@ -1839,10 +1839,10 @@ class MetronomeMarkSpanner(Spanner):
             value=markup,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
-        self._make_other_text_spanner_overrides(lilypond_format_bundle)
-        return lilypond_format_bundle
+        self._make_other_text_spanner_overrides(bundle)
+        return bundle
 
     def _get_previous_annotations(self, leaf):
         index = self._index(leaf)
@@ -1853,7 +1853,7 @@ class MetronomeMarkSpanner(Spanner):
                 return annotations
         return None, None, None
 
-    def _make_other_text_spanner_overrides(self, lilypond_format_bundle):
+    def _make_other_text_spanner_overrides(self, bundle):
         r'''Alphabetically by property.
         '''
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1865,7 +1865,7 @@ class MetronomeMarkSpanner(Spanner):
             value=0.25,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
@@ -1876,7 +1876,7 @@ class MetronomeMarkSpanner(Spanner):
             value=0.25,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
@@ -1887,7 +1887,7 @@ class MetronomeMarkSpanner(Spanner):
             value=1.5,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
@@ -1900,7 +1900,7 @@ class MetronomeMarkSpanner(Spanner):
             value=-0.5,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
         if self.left_broken_padding is not None:
             padding = self.left_broken_padding
@@ -1917,7 +1917,7 @@ class MetronomeMarkSpanner(Spanner):
             value=padding,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1931,7 +1931,7 @@ class MetronomeMarkSpanner(Spanner):
             value=True,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
@@ -1944,7 +1944,7 @@ class MetronomeMarkSpanner(Spanner):
             value=2,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
@@ -1957,7 +1957,7 @@ class MetronomeMarkSpanner(Spanner):
             value=False,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
@@ -1970,7 +1970,7 @@ class MetronomeMarkSpanner(Spanner):
             value=False,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
@@ -1983,7 +1983,7 @@ class MetronomeMarkSpanner(Spanner):
             value=0,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='TextSpanner',
@@ -1996,12 +1996,12 @@ class MetronomeMarkSpanner(Spanner):
             value=False,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
 
     def _start_tempo_trend_spanner_with_explicit_start(
         self,
         leaf,
-        lilypond_format_bundle,
+        bundle,
         current_tempo,
         current_metric_modulation,
         ):
@@ -2023,12 +2023,12 @@ class MetronomeMarkSpanner(Spanner):
             value=markup,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
 
     def _start_tempo_trend_spanner_with_implicit_start(
         self,
         leaf,
-        lilypond_format_bundle,
+        bundle,
         current_tempo_trend,
         previous_tempo,
         ):
@@ -2052,7 +2052,7 @@ class MetronomeMarkSpanner(Spanner):
             value=markup,
             )
         override_string = override_.override_string
-        lilypond_format_bundle.grob_overrides.append(override_string)
+        bundle.grob_overrides.append(override_string)
 
     ### PUBLIC PROPERTIES ###
 

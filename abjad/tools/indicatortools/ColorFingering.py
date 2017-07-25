@@ -3,7 +3,6 @@ import functools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
-from abjad.tools.topleveltools.new import new
 
 
 @functools.total_ordering
@@ -73,7 +72,6 @@ class ColorFingering(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_number',
         )
 
@@ -87,7 +85,6 @@ class ColorFingering(AbjadValueObject):
         self,
         number=None,
         ):
-        self._default_scope = None
         if number is not None:
             assert mathtools.is_positive_integer(number)
         self._number = number
@@ -172,31 +169,15 @@ class ColorFingering(AbjadValueObject):
         return format(self.markup, 'lilypond')
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
         markup = self.markup
-        markup = new(markup, direction=Up)
+        markup = abjad.new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()
-        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
-        return lilypond_format_bundle
+        bundle.right.markup.extend(markup_format_pieces)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of color fingering.
-
-        ..  container:: example
-
-            ::
-
-                >>> fingering = abjad.ColorFingering(1)
-                >>> fingering.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def markup(self):

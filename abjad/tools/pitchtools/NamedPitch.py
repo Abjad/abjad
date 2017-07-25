@@ -108,9 +108,9 @@ class NamedPitch(Pitch):
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
             } {
+                \clef "treble"
                 \once \override Accidental.stencil = #ly:text-interface::print
                 \once \override Accidental.text = \markup { \musicglyph #"accidentals.sharp.arrowup" }
-                \clef "treble"
                 cs''1 * 1/4
             }
 

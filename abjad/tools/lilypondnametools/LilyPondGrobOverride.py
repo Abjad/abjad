@@ -98,15 +98,15 @@ class LilyPondGrobOverride(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
         if not self.is_once:
             revert_format = '\n'.join(self.revert_format_pieces)
-            lilypond_format_bundle.grob_reverts.append(revert_format)
+            bundle.grob_reverts.append(revert_format)
         if not self.is_revert:
             override_format = '\n'.join(self.override_format_pieces)
-            lilypond_format_bundle.grob_overrides.append(override_format)
-        return lilypond_format_bundle
+            bundle.grob_overrides.append(override_format)
+        return bundle
 
     ### PRIVATE PROPERTIES ###
 

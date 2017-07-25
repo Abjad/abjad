@@ -125,6 +125,12 @@ class KeySignature(AbjadValueObject):
     def _get_lilypond_format(self):
         return r'\key {!s} \{!s}'.format(self.tonic, self.mode)
 
+    def _get_lilypond_format_bundle(self, component=None):
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.before.commands.append(self._get_lilypond_format())
+        return bundle
+
     ### PUBLIC PROPERTIES ###
 
     @property

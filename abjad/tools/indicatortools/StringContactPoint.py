@@ -39,7 +39,6 @@ class StringContactPoint(AbjadValueObject):
 
     __slots__ = (
         '_contact_point',
-        '_default_scope',
         )
 
     _contact_point_abbreviations = {
@@ -75,7 +74,6 @@ class StringContactPoint(AbjadValueObject):
         contact_point = str(contact_point)
         assert contact_point in self._contact_points
         self._contact_point = contact_point
-        self._default_scope = None
 
     ### PUBLIC PROPERTIES ###
 
@@ -110,35 +108,6 @@ class StringContactPoint(AbjadValueObject):
         Returns known string.
         '''
         return self._contact_point
-
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of string contact point.
-
-        ..  container:: example
-
-            Sul ponticello:
-
-            ::
-
-                >>> indicator = abjad.StringContactPoint('sul ponticello')
-                >>> indicator.default_scope is None
-                True
-
-        ..  container:: example
-
-            Sul tasto:
-
-            ::
-
-                >>> indicator = abjad.StringContactPoint('sul tasto')
-                >>> indicator.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def markup(self):

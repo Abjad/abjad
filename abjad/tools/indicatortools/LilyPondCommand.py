@@ -39,7 +39,6 @@ class LilyPondCommand(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_format_slot',
         '_name',
         '_prefix',
@@ -57,11 +56,9 @@ class LilyPondCommand(AbjadValueObject):
 
     _format_leaf_children = False
 
-
     ### INITIALIZER ###
 
     def __init__(self, name=None, format_slot=None, prefix='\\'):
-        self._default_scope = None
         name = name or 'slurDotted'
         format_slot = format_slot or 'opening'
         assert format_slot in self._allowable_format_slots, repr(format_slot)
@@ -118,11 +115,11 @@ class LilyPondCommand(AbjadValueObject):
             return self.prefix + command
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        format_slot = lilypond_format_bundle.get(self.format_slot)
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        format_slot = bundle.get(self.format_slot)
         format_slot.commands.append(self._get_lilypond_format())
-        return lilypond_format_bundle
+        return bundle
 
     ### PUBLIC METHODS ###
 
@@ -148,24 +145,6 @@ class LilyPondCommand(AbjadValueObject):
         return LilyPondCommand._allowable_format_slots
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of LilyPond command.
-
-        ..  container:: example
-
-            Dotted slur:
-
-            ::
-
-                >>> command = abjad.LilyPondCommand('slurDotted')
-                >>> command.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def format_slot(self):

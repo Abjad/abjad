@@ -105,7 +105,7 @@ class Glissando(Spanner):
         return bend_after
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (scoretools.Chord, scoretools.Note)
         bend_after = self._get_annotations(leaf)
         should_attach_glissando = False
@@ -114,7 +114,7 @@ class Glissando(Spanner):
                 if not self._previous_leaf_changes_current_pitch(leaf):
                     self._parenthesize_leaf(leaf)
         if bend_after:
-            lilypond_format_bundle.update(
+            bundle.update(
                 bend_after._get_lilypond_format_bundle(),
                 )
         elif self._is_my_last_leaf(leaf):
@@ -135,8 +135,8 @@ class Glissando(Spanner):
                 if self._is_last_in_tie_chain(leaf):
                     should_attach_glissando = True
         if should_attach_glissando:
-            lilypond_format_bundle.right.spanner_starts.append('\glissando')
-        return lilypond_format_bundle
+            bundle.right.spanner_starts.append('\glissando')
+        return bundle
 
     @staticmethod
     def _is_last_in_tie_chain(leaf):

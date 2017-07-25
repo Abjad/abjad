@@ -265,14 +265,14 @@ class ComplexBeam(Beam):
         return left, right
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        lilypond_format_bundle.get('before').spanners.extend(
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle.get('before').spanners.extend(
             self._format_before_leaf(leaf))
-        lilypond_format_bundle.get('right').spanners.extend(
+        bundle.get('right').spanners.extend(
             self._format_right_of_leaf(leaf))
-        lilypond_format_bundle.get('after').spanners.extend(
+        bundle.get('after').spanners.extend(
             self._format_after_leaf(leaf))
-        return lilypond_format_bundle
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

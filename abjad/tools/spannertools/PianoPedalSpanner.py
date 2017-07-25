@@ -86,35 +86,34 @@ class PianoPedalSpanner(Spanner):
         new._style = self.style
 
     def _get_lilypond_format_bundle(self, leaf):
-        from abjad.tools import lilypondnametools
-        from abjad.tools import schemetools
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only_leaf(leaf):
-            style = schemetools.SchemeSymbol(self.style)
-            context_setting = lilypondnametools.LilyPondContextSetting(
+            style = abjad.SchemeSymbol(self.style)
+            context_setting = abjad.lilypondnametools.LilyPondContextSetting(
                 context_name='Staff',
                 context_property='pedalSustainStyle',
                 value=style,
                 )
-            lilypond_format_bundle.update(context_setting)
+            bundle.update(context_setting)
             string = self._kinds[self.kind][0]
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
             string = self._kinds[self.kind][1]
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
         elif self._is_my_first_leaf(leaf):
-            style = schemetools.SchemeSymbol(self.style)
-            context_setting = lilypondnametools.LilyPondContextSetting(
+            style = abjad.SchemeSymbol(self.style)
+            context_setting = abjad.lilypondnametools.LilyPondContextSetting(
                 context_name='Staff',
                 context_property='pedalSustainStyle',
                 value=style,
                 )
-            lilypond_format_bundle.update(context_setting)
+            bundle.update(context_setting)
             string = self._kinds[self.kind][0]
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
         elif self._is_my_last_leaf(leaf):
             string = self._kinds[self.kind][1]
-            lilypond_format_bundle.right.spanner_stops.append(string)
-        return lilypond_format_bundle
+            bundle.right.spanner_stops.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

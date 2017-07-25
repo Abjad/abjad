@@ -80,7 +80,7 @@ class PhrasingSlur(Spanner):
         new._direction = self.direction
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only_leaf(leaf):
             pass
         elif self._is_my_first_leaf(leaf):
@@ -88,11 +88,11 @@ class PhrasingSlur(Spanner):
                 string = '{} \('.format(self.direction)
             else:
                 string = '\('
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
         elif self._is_my_last_leaf(leaf):
             string = '\)'
-            lilypond_format_bundle.right.spanner_stops.append(string)
-        return lilypond_format_bundle
+            bundle.right.spanner_stops.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

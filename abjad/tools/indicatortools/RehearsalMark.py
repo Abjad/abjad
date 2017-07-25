@@ -82,9 +82,8 @@ class RehearsalMark(AbjadValueObject):
 
     def __init__(self, number=None, markup=None):
         from abjad.tools import markuptools
-        # TODO: make default scope work
-        #self._default_scope = scoretools.Score
-        self._default_scope = None
+        from abjad.tools import scoretools
+        self._default_scope = scoretools.Score
         if markup is not None:
             assert isinstance(markup, markuptools.Markup)
         self._markup = markup
@@ -139,10 +138,10 @@ class RehearsalMark(AbjadValueObject):
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.opening.commands.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.opening.commands.append(self._get_lilypond_format())
+        return bundle
         
     ### PUBLIC PROPERTIES ###
 
@@ -157,8 +156,8 @@ class RehearsalMark(AbjadValueObject):
             ::
 
                 >>> mark = abjad.RehearsalMark(number=1)
-                >>> mark.default_scope is None
-                True
+                >>> mark.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
 
         ..  container:: example
 
@@ -167,12 +166,10 @@ class RehearsalMark(AbjadValueObject):
             ::
 
                 >>> mark = abjad.RehearsalMark(number=2)
-                >>> mark.default_scope is None
-                True
+                >>> mark.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
 
-        ..  todo:: Make rehearsal marks score-scoped.
-
-        Returns none (but should return score).
+        Returns score.
         '''
         return self._default_scope
 

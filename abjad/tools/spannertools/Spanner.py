@@ -323,19 +323,19 @@ class Spanner(AbjadObject):
 
     def _get_basic_lilypond_format_bundle(self, leaf):
         from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        bundle = systemtools.LilyPondFormatBundle()
         if self._is_my_last_leaf(leaf):
             contributions = override(self)._list_format_contributions(
                 'revert',
                 )
-            lilypond_format_bundle.grob_reverts.extend(contributions)
+            bundle.grob_reverts.extend(contributions)
         if self._is_my_first_leaf(leaf):
             contributions = override(self)._list_format_contributions(
                 'override',
                 is_once=False,
                 )
-            lilypond_format_bundle.grob_overrides.extend(contributions)
-        return lilypond_format_bundle
+            bundle.grob_overrides.extend(contributions)
+        return bundle
 
     def _get_compact_summary(self):
         len_self = len(self)
@@ -420,14 +420,11 @@ class Spanner(AbjadObject):
         return result
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        lilypond_format_bundle.get('before').spanners.extend(
-            self._format_before_leaf(leaf))
-        lilypond_format_bundle.get('right').spanners.extend(
-            self._format_right_of_leaf(leaf))
-        lilypond_format_bundle.get('after').spanners.extend(
-            self._format_after_leaf(leaf))
-        return lilypond_format_bundle
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle.get('before').spanners.extend(self._format_before_leaf(leaf))
+        bundle.get('right').spanners.extend(self._format_right_of_leaf(leaf))
+        bundle.get('after').spanners.extend(self._format_after_leaf(leaf))
+        return bundle
 
     def _get_my_first_leaf(self):
         for leaf in iterate(self).by_leaf():

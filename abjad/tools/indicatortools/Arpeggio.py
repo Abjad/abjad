@@ -47,14 +47,12 @@ class Arpeggio(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_direction',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, direction=None):
-        self._default_scope = None
         if direction is not None:
             assert direction in (Up, Down, Center)
         self._direction = direction
@@ -65,34 +63,18 @@ class Arpeggio(AbjadValueObject):
         return r'\arpeggio'
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.articulations.append(r'\arpeggio')
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.right.articulations.append(r'\arpeggio')
         if self.direction in (Up, Down):
             if self.direction == Up:
                 command = r'\arpeggioArrowUp'
             else:
                 command = r'\arpeggioArrowDown'
-            lilypond_format_bundle.before.commands.append(command)
-        return lilypond_format_bundle
+            bundle.before.commands.append(command)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of arpeggio.
-
-        ..  container:: example
-
-            ::
-
-                >>> arpeggio = abjad.Arpeggio()
-                >>> arpeggio.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def direction(self):

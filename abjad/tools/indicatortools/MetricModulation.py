@@ -557,9 +557,7 @@ class MetricModulation(AbjadValueObject):
         ):
         from abjad.tools import markuptools
         from abjad.tools import scoretools
-        # TODO: make default scope work
-        #self._default_scope = scoretools.Score
-        self._default_scope = None
+        self._default_scope = scoretools.Score
         left_rhythm = left_rhythm or scoretools.Note('c4')
         right_rhythm = right_rhythm or scoretools.Note('c4')
         left_rhythm = self._initialize_rhythm(left_rhythm)
@@ -881,13 +879,13 @@ class MetricModulation(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
         markup = self._get_markup()
-        markup = new(markup, direction=Up)
+        markup = abjad.new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()
-        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
-        return lilypond_format_bundle
+        bundle.right.markup.extend(markup_format_pieces)
+        return bundle
 
     def _get_markup(self, music_scale_pair=(0.75, 0.75)):
         if music_scale_pair is not None:
@@ -938,12 +936,10 @@ class MetricModulation(AbjadValueObject):
                 ...     left_rhythm=abjad.Note("c'4"),
                 ...     right_rhythm=abjad.Note("c'4."),
                 ...     )
-                >>> metric_modulation.default_scope is None
-                True
+                >>> metric_modulation.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
 
-        .. todo:: Metric modulations should be score-scope.
-
-        Returns none (but should return score).
+        Returns score.
         '''
         return self._default_scope
 

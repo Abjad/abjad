@@ -49,7 +49,6 @@ class LilyPondComment(AbjadValueObject):
 
     __slots__ = (
         '_contents_string',
-        '_default_scope',
         '_format_slot',
         )
 
@@ -120,11 +119,11 @@ class LilyPondComment(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        format_slot = lilypond_format_bundle.get(self.format_slot)
-        format_slot.comments.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        format_slot = bundle.get(self.format_slot)
+        format_slot.comments.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

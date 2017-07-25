@@ -95,24 +95,22 @@ class ComplexTrillSpanner(Spanner):
         new._interval = self.interval
 
     def _get_lilypond_format_bundle(self, leaf):
-        from abjad.tools import lilypondnametools
-        from abjad.tools import markuptools
-        from abjad.tools import scoretools
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (
-            scoretools.Rest,
-            scoretools.MultimeasureRest,
-            scoretools.Skip,
+            abjad.Rest,
+            abjad.MultimeasureRest,
+            abjad.Skip,
             )
         if isinstance(leaf, prototype):
-            return lilypond_format_bundle
-        logical_tie = inspect(leaf).get_logical_tie()
+            return bundle
+        logical_tie = abjad.inspect(leaf).get_logical_tie()
         if leaf is logical_tie.head:
             previous_leaf = leaf._get_leaf(-1)
             if (previous_leaf is not None and
                 not isinstance(previous_leaf, prototype) and
-                inspect(previous_leaf).get_spanners(type(self))):
-                grob_override = lilypondnametools.LilyPondGrobOverride(
+                abjad.inspect(previous_leaf).get_spanners(type(self))):
+                grob_override = abjad.lilypondnametools.LilyPondGrobOverride(
                     grob_name='TrillSpanner',
                     is_once=True,
                     property_path=(
@@ -120,16 +118,16 @@ class ComplexTrillSpanner(Spanner):
                         'left',
                         'text',
                         ),
-                    value=markuptools.Markup(r'\null'),
+                    value=abjad.Markup(r'\null'),
                     )
                 string = grob_override.override_string
-                lilypond_format_bundle.grob_overrides.append(string)
+                bundle.grob_overrides.append(string)
             if self.interval is not None:
                 string = r'\pitchedTrill'
-                lilypond_format_bundle.opening.spanners.append(string)
-                if isinstance(leaf, scoretools.Note):
+                bundle.opening.spanners.append(string)
+                if isinstance(leaf, abjad.Note):
                     written_pitch = leaf.written_pitch
-                elif isinstance(leaf, scoretools.Chord):
+                elif isinstance(leaf, abjad.Chord):
                     if 0 < self.interval.semitones:
                         written_pitch = max(leaf.written_pitches)
                     elif self.interval.semitones < 0:
@@ -138,16 +136,16 @@ class ComplexTrillSpanner(Spanner):
                 string = r'\startTrillSpan {!s}'.format(trill_pitch)
             else:
                 string = r'\startTrillSpan'
-            lilypond_format_bundle.right.trill_pitches.append(string)
+            bundle.right.trill_pitches.append(string)
         if leaf is logical_tie.tail:
             next_leaf = leaf._get_leaf(1)
             if next_leaf is not None:
                 string = r'<> \stopTrillSpan'
-                lilypond_format_bundle.after.commands.append(string)
+                bundle.after.commands.append(string)
             else:
                 string = r'\stopTrillSpan'
-                lilypond_format_bundle.right.spanner_stops.append(string)
-        return lilypond_format_bundle
+                bundle.right.spanner_stops.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

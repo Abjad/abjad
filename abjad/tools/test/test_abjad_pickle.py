@@ -32,7 +32,7 @@ ignored_classes = (
     selectiontools.Selection,
     selectiontools.VerticalMoment,
     systemtools.LilyPondFormatBundle,
-    systemtools.LilyPondFormatBundle.SlotContributions,
+    systemtools.SlotContributions,
     systemtools.RedirectedStreams,
     systemtools.StorageFormatAgent,
     systemtools.FormatSpecification,

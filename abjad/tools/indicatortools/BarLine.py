@@ -74,6 +74,12 @@ class BarLine(AbjadValueObject):
     def _get_lilypond_format(self):
         return r'\bar "{}"'.format(self.abbreviation)
 
+    def _get_lilypond_format_bundle(self, component=None):
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.after.commands.append(self._get_lilypond_format())
+        return bundle
+
     ## PUBLIC PROPERTIES ##
 
     @property
@@ -103,8 +109,6 @@ class BarLine(AbjadValueObject):
                 >>> bar_line = abjad.BarLine('|.')
                 >>> bar_line.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
-
-        Bar lines are scoped to the staff by default.
 
         Returns staff.
         '''

@@ -63,8 +63,6 @@ class Staccatissimo(AbjadValueObject):
         '_direction',
         )
 
-    _default_scope = None
-
     _format_slot = Right
 
     _time_orientation = Right
@@ -106,25 +104,7 @@ class Staccatissimo(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.after.commands.append(str(self))
-        return lilypond_format_bundle
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of staccatissimo.
-
-        ..  container:: example
-
-            ::
-
-                >>> staccatissimo = abjad.Staccatissimo()
-                >>> staccatissimo.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.after.commands.append(self._get_lilypond_format())
+        return bundle

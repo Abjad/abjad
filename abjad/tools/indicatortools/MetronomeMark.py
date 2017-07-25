@@ -845,6 +845,12 @@ class MetronomeMark(AbjadValueObject):
         else:
             return r'\tempo \default'
 
+    def _get_lilypond_format_bundle(self, component=None):
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.before.commands.append(self._get_lilypond_format())
+        return bundle
+
     def _make_lhs_score_markup(self, reference_duration=None):
         import abjad
         reference_duration = reference_duration or self.reference_duration

@@ -42,7 +42,6 @@ class BowPressure(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_pressure',
         )
 
@@ -54,26 +53,9 @@ class BowPressure(AbjadValueObject):
         self,
         pressure=None,
         ):
-        self._default_scope = None
         self._pressure = pressure
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of bow pressure indicator.
-
-        ..  container:: example
-
-            ::
-
-                >>> bow_pressure = abjad.BowPressure('overpressure')
-                >>> bow_pressure.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def pressure(self):

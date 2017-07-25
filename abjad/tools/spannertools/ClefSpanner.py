@@ -113,7 +113,7 @@ class ClefSpanner(Spanner):
         new._clef = self.clef
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (scoretools.Note, scoretools.Chord, type(None))
         first_leaf = self._get_leaves()[0]
         current_clef = inspect(first_leaf).get_effective(indicatortools.Clef)
@@ -169,11 +169,11 @@ class ClefSpanner(Spanner):
                         reset_clef = False
         if set_clef:
             string = format(self.clef, 'lilypond')
-            lilypond_format_bundle.before.indicators.append(string)
+            bundle.before.indicators.append(string)
         if reset_clef and current_clef is not None:
             string = format(current_clef, 'lilypond')
-            lilypond_format_bundle.after.indicators.append(string)
-        return lilypond_format_bundle
+            bundle.after.indicators.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

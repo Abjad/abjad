@@ -90,9 +90,7 @@ class Arrow(LineSegment):
 
     ### CLASS VARIABLES ###
 
-    # must be present for copy, deepcopy, pickle
     __slots__ = (
-        '_default_scope',
         )
 
     _publish_storage_format = True
@@ -117,7 +115,6 @@ class Arrow(LineSegment):
         style=None,
         ):
         superclass = super(Arrow, self)
-        self._default_scope = None
         superclass.__init__(
             arrow_width=arrow_width,
             dash_fraction=dash_fraction,
@@ -134,6 +131,12 @@ class Arrow(LineSegment):
             right_stencil_align_direction_y=right_stencil_align_direction_y,
             style=style,
             )
+
+    ### PRIVATE METHODS ###
+
+    r'''No _get_lilypond_format(), _get_lilypond_format_bundle()
+    because class is used only as enchained indicator.
+    '''
 
     ### PUBLIC PROPERTIES ###
 
@@ -713,20 +716,6 @@ class Arrow(LineSegment):
         '''
         superclass = super(Arrow, self)
         return superclass.dash_period
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of arrow.
-
-        ..  container:: example
-
-            >>> arrow = abjad.Arrow()
-            >>> arrow.default_scope is None
-            True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def left_broken_text(self):

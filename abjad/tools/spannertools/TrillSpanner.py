@@ -112,39 +112,38 @@ class TrillSpanner(Spanner):
         new._pitch = self.pitch
 
     def _get_lilypond_format_bundle(self, leaf):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
         if self._is_my_first_leaf(leaf):
-            contributions = override(self)._list_format_contributions(
+            contributions = abjad.override(self)._list_format_contributions(
                 'override',
                 is_once=False,
                 )
-            lilypond_format_bundle.grob_overrides.extend(contributions)
+            bundle.grob_overrides.extend(contributions)
             string = r'\startTrillSpan'
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
             if self.pitch is not None or self.interval is not None:
                 string = r'\pitchedTrill'
-                lilypond_format_bundle.opening.spanners.append(string)
+                bundle.opening.spanners.append(string)
                 if self.pitch is not None:
                     string = str(self.pitch)
-                    lilypond_format_bundle.right.trill_pitches.append(string)
+                    bundle.right.trill_pitches.append(string)
                 elif self.interval is not None:
                     pitch = leaf.written_pitch + self.interval
                     string = str(pitch)
-                    lilypond_format_bundle.right.trill_pitches.append(string)
+                    bundle.right.trill_pitches.append(string)
                 if self.is_harmonic:
                     string = '(lambda (grob) (grob-interpret-markup grob'
                     string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
-                    scheme = schemetools.Scheme(string, verbatim=True)
-                    override(leaf).trill_pitch_head.stencil = scheme
+                    scheme = abjad.Scheme(string, verbatim=True)
+                    abjad.override(leaf).trill_pitch_head.stencil = scheme
         if self._is_my_last_leaf(leaf):
-            contributions = override(self)._list_format_contributions(
-                'revert',
-                )
-            lilypond_format_bundle.grob_reverts.extend(contributions)
+            manager = abjad.override(self)
+            contributions = manager._list_format_contributions('revert')
+            bundle.grob_reverts.extend(contributions)
             string = r'\stopTrillSpan'
-            lilypond_format_bundle.right.spanner_stops.append(string)
-        return lilypond_format_bundle
+            bundle.right.spanner_stops.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

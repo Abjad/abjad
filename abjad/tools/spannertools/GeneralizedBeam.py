@@ -210,16 +210,15 @@ class GeneralizedBeam(Spanner):
         return left, right
 
     def _get_lilypond_format_bundle(self, leaf):
-        from abjad.tools import lilypondnametools
-        from abjad.tools import scoretools
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if not self._is_beamable(leaf):
-            return lilypond_format_bundle
+            return bundle
         elif not self.use_stemlets and (
-            not isinstance(leaf, scoretools.Note) and
-            not isinstance(leaf, scoretools.Chord)
+            not isinstance(leaf, abjad.Note) and
+            not isinstance(leaf, abjad.Chord)
             ):
-            return lilypond_format_bundle
+            return bundle
         leaf_ids = [id(x) for x in self._get_leaves()]
         previous_leaf = leaf._get_leaf(-1)
         previous_leaf_is_joinable = self._leaf_is_joinable(
@@ -234,17 +233,17 @@ class GeneralizedBeam(Spanner):
             next_leaf_is_joinable,
             )
         if left_beam_count is not None:
-            context_setting = lilypondnametools.LilyPondContextSetting(
+            context_setting = abjad.lilypondnametools.LilyPondContextSetting(
                 context_property='stemLeftBeamCount',
                 value=left_beam_count,
                 )
-            lilypond_format_bundle.update(context_setting)
+            bundle.update(context_setting)
         if right_beam_count is not None:
-            context_setting = lilypondnametools.LilyPondContextSetting(
+            context_setting = abjad.lilypondnametools.LilyPondContextSetting(
                 context_property='stemRightBeamCount',
                 value=right_beam_count,
                 )
-            lilypond_format_bundle.update(context_setting)
+            bundle.update(context_setting)
         start_piece, stop_piece = self._get_start_and_stop_pieces(
             leaf,
             previous_leaf,
@@ -252,13 +251,13 @@ class GeneralizedBeam(Spanner):
             leaf_ids,
             )
         if start_piece and stop_piece:
-            lilypond_format_bundle.right.spanner_starts.extend([
+            bundle.right.spanner_starts.extend([
                 start_piece, stop_piece])
         elif start_piece:
-            lilypond_format_bundle.right.spanner_starts.append(start_piece)
+            bundle.right.spanner_starts.append(start_piece)
         elif stop_piece:
-            lilypond_format_bundle.right.spanner_stops.append(stop_piece)
-        return lilypond_format_bundle
+            bundle.right.spanner_stops.append(stop_piece)
+        return bundle
 
     def _get_start_and_stop_pieces(
         self,

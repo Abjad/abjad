@@ -36,7 +36,6 @@ class Tuning(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_pitches',
         )
 
@@ -49,7 +48,6 @@ class Tuning(AbjadValueObject):
         pitches=None,
         ):
         from abjad.tools import pitchtools
-        self._default_scope = None
         if pitches is not None:
             if isinstance(pitches, type(self)):
                 pitches = pitches.pitches
@@ -229,26 +227,6 @@ class Tuning(AbjadValueObject):
         return tuple(result)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of tuning.
-
-        ..  container:: example
-
-            Violin tuning
-
-            ::
-
-                >>> indicator = abjad.Tuning(
-                ...     pitches=('G3', 'D4', 'A4', 'E5'),
-                ...     )
-                >>> indicator.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def pitch_ranges(self):

@@ -154,10 +154,10 @@ class Fermata(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.articulations.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.right.articulations.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC METHODS ###
 
@@ -236,8 +236,6 @@ class Fermata(AbjadValueObject):
                 >>> fermata = abjad.Fermata('longfermata')
                 >>> fermata.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>
-
-        Fermatas are score-scoped by default.
 
         Returns score.
         '''

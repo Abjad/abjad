@@ -115,10 +115,10 @@ class StaffChange(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.opening.commands.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle.opening.commands.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -145,8 +145,6 @@ class StaffChange(AbjadValueObject):
                 >>> staff_change = abjad.StaffChange(staff=lh_staff)
                 >>> staff_change.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
-
-        Staff changes are staff-scoped.
 
         Returns staff.
         '''
