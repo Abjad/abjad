@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class TreeNode(AbjadObject):
-    r'''A node.
+    r'''Tree node.
 
     ::
 

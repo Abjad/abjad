@@ -32,6 +32,11 @@ del AbjadConfiguration
 from abjad.tools import *
 from abjad.tools.abctools import *
 from abjad.tools.datastructuretools import *
+index = Pattern.index
+index_all = Pattern.index_all
+index_every = Pattern.index_every
+index_first = Pattern.index_first
+index_last = Pattern.index_last
 from abjad.tools.durationtools import *
 from abjad.tools.exceptiontools import *
 from abjad.tools.expressiontools import *
@@ -39,12 +44,6 @@ from abjad.tools.indicatortools import *
 from abjad.tools.instrumenttools import Instrument
 from abjad.tools.lilypondfiletools import *
 from abjad.tools.markuptools import *
-from abjad.tools.patterntools import *
-index = Pattern.index
-index_all = Pattern.index_all
-index_every = Pattern.index_every
-index_first = Pattern.index_first
-index_last = Pattern.index_last
 from abjad.tools.pitchtools import *
 from abjad.tools.schemetools import *
 from abjad.tools.scoretools import *

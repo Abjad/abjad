@@ -3,7 +3,7 @@ import enum
 
 
 class Enumeration(enum.IntEnum):
-    r'''An enumeration.
+    r'''Enumeration.
 
     ::
 

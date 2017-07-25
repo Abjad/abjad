@@ -4,7 +4,6 @@ import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import patterntools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
@@ -375,11 +374,11 @@ class RhythmMaker(AbjadValueObject):
             )
         if masks is None:
             return
-        if isinstance(masks, patterntools.Pattern):
+        if isinstance(masks, datastructuretools.Pattern):
             masks = (masks,)
         if isinstance(masks, prototype):
             masks = (masks,)
-        masks = patterntools.PatternList(
+        masks = datastructuretools.PatternList(
             items=masks,
             )
         return masks

@@ -3,7 +3,7 @@ import bisect
 
 
 class SortedCollection(object):
-    r'''A sorted collection.
+    r'''Sorted collection.
 
     ::
 

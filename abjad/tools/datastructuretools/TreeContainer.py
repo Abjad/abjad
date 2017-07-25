@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class TreeContainer(TreeNode):
-    r'''A tree container.
+    r'''Tree container.
 
     ::
 

@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class CyclicTuple(AbjadObject):
-    '''A cylic tuple.
+    '''Cylic tuple.
 
     ::
 

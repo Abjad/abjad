@@ -5,9 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TypedCollection(AbjadObject):
-    r'''Typed collection.
-    
-    Abstract base class for typed collections.
+    r'''Abstract typed collection.
     '''
 
     ### CLASS VARIABLES ###

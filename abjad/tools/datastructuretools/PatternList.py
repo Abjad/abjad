@@ -317,7 +317,7 @@ class PatternList(TypedTuple):
 
     @property
     def _item_coercer(self):
-        from abjad.tools import patterntools
+        import abjad
         from abjad.tools import rhythmmakertools
         prototype = (
             rhythmmakertools.SilenceMask,
@@ -326,7 +326,7 @@ class PatternList(TypedTuple):
         def coerce_(argument):
             if isinstance(argument, prototype):
                 pass
-            elif not isinstance(argument, patterntools.Pattern):
-                argument = patterntools.Pattern(*argument)
+            elif not isinstance(argument, abjad.Pattern):
+                argument = abjad.Pattern(*argument)
             return argument
         return coerce_

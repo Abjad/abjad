@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import patterntools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -50,13 +49,9 @@ class SilenceMask(AbjadValueObject):
         ):
         import abjad
         from abjad.tools import rhythmmakertools
-        prototype = (
-            patterntools.Pattern,
-            patterntools.CompoundPattern,
-            )
         if pattern is None:
             pattern = abjad.index_all()
-        assert isinstance(pattern, prototype), repr(pattern)
+        assert isinstance(pattern, abjad.Pattern), repr(pattern)
         self._pattern = pattern
         if use_multimeasure_rests is not None:
             assert isinstance(use_multimeasure_rests, type(True))
@@ -241,8 +236,9 @@ class SilenceMask(AbjadValueObject):
 
                 >>> f(mask)
                 rhythmmakertools.SilenceMask(
-                    pattern=abjad.CompoundPattern(
-                        (
+                    pattern=abjad.Pattern(
+                        operator='xor',
+                        patterns=(
                             abjad.Pattern(
                                 indices=[0],
                                 period=1,
@@ -254,7 +250,6 @@ class SilenceMask(AbjadValueObject):
                                 indices=[-1],
                                 ),
                             ),
-                        operator='xor',
                         ),
                     )
 
@@ -311,8 +306,10 @@ class SilenceMask(AbjadValueObject):
 
                 >>> f(mask)
                 rhythmmakertools.SilenceMask(
-                    pattern=abjad.CompoundPattern(
-                        (
+                    pattern=abjad.Pattern(
+                        inverted=True,
+                        operator='xor',
+                        patterns=(
                             abjad.Pattern(
                                 indices=[0],
                                 period=1,
@@ -324,8 +321,6 @@ class SilenceMask(AbjadValueObject):
                                 indices=[-1],
                                 ),
                             ),
-                        inverted=True,
-                        operator='xor',
                         ),
                     )
 
@@ -369,12 +364,10 @@ class SilenceMask(AbjadValueObject):
         Returns silence mask.
         '''
         import abjad
-        indices = indices or []
-        prototype = (patterntools.Pattern, patterntools.CompoundPattern)
-        if isinstance(indices, prototype):
+        if isinstance(indices, abjad.Pattern):
             pattern = indices
         else:
-            pattern = patterntools.Pattern(
+            pattern = abjad.Pattern(
                 indices=indices,
                 inverted=inverted,
                 )
@@ -485,7 +478,8 @@ class SilenceMask(AbjadValueObject):
 
         Returns silence mask.
         '''
-        pattern = patterntools.Pattern(
+        import abjad
+        pattern = abjad.Pattern(
             indices=[0],
             inverted=inverted,
             period=1,
@@ -666,7 +660,8 @@ class SilenceMask(AbjadValueObject):
 
         Returns silence mask.
         '''
-        pattern = patterntools.Pattern(
+        import abjad
+        pattern = abjad.Pattern(
             indices=indices,
             inverted=inverted,
             period=period,
@@ -806,8 +801,10 @@ class SilenceMask(AbjadValueObject):
 
                 >>> f(mask)
                 rhythmmakertools.SilenceMask(
-                    pattern=abjad.CompoundPattern(
-                        (
+                    pattern=abjad.Pattern(
+                        inverted=True,
+                        operator='xor',
+                        patterns=(
                             abjad.Pattern(
                                 indices=[0],
                                 period=1,
@@ -819,8 +816,6 @@ class SilenceMask(AbjadValueObject):
                                 indices=[-1],
                                 ),
                             ),
-                        inverted=True,
-                        operator='xor',
                         ),
                     )
 
@@ -866,12 +861,10 @@ class SilenceMask(AbjadValueObject):
         Returns silence mask.
         '''
         import abjad
-        indices = indices or []
-        prototype = (patterntools.Pattern, patterntools.CompoundPattern)
-        if isinstance(indices, prototype):
+        if isinstance(indices, abjad.Pattern):
             pattern = indices
         else:
-            pattern = patterntools.Pattern(
+            pattern = abjad.Pattern(
                 indices=indices,
                 )
         pattern = abjad.new(pattern, inverted=True)
@@ -997,9 +990,7 @@ class SilenceMask(AbjadValueObject):
 
                 >>> f(mask)
                 rhythmmakertools.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[],
-                        ),
+                    pattern=abjad.Pattern(),
                     )
 
             ::
@@ -1039,8 +1030,12 @@ class SilenceMask(AbjadValueObject):
 
         Returns silence mask.
         '''
-        indices = list(range(n))
-        pattern = patterntools.Pattern(
+        import abjad
+        if 0 < n:
+            indices = list(range(n))
+        else:
+            indices = None
+        pattern = abjad.Pattern(
             indices=indices,
             inverted=inverted,
             )
@@ -1170,9 +1165,7 @@ class SilenceMask(AbjadValueObject):
 
                 >>> f(mask)
                 rhythmmakertools.SilenceMask(
-                    pattern=abjad.Pattern(
-                        indices=[],
-                        ),
+                    pattern=abjad.Pattern(),
                     )
 
             ::
@@ -1212,8 +1205,12 @@ class SilenceMask(AbjadValueObject):
 
         Returns silence mask.
         '''
-        indices = list(reversed(range(-1, -n-1, -1)))
-        pattern = patterntools.Pattern(
+        import abjad
+        if 0 < n:
+            indices = list(reversed(range(-1, -n-1, -1)))
+        else:
+            indices = None
+        pattern = abjad.Pattern(
             indices=indices,
             inverted=inverted,
             )

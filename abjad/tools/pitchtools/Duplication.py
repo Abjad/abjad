@@ -175,8 +175,8 @@ class Duplication(abctools.AbjadValueObject):
                 
         Returns new object with type equal to that of `argument`.
         '''
+        import abjad
         from abjad.tools import datastructuretools
-        from abjad.tools import patterntools
 
         if not isinstance(argument, collections.Sequence):
             argument = (argument,)
@@ -221,7 +221,7 @@ class Duplication(abctools.AbjadValueObject):
                 result = result + shard
             return result
 
-        pattern = patterntools.Pattern(
+        pattern = abjad.Pattern(
             indices=self.indices,
             period=self.period,
             )

@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import new
 
 
 class TypedFrozenset(TypedCollection):
-    r'''A typed fozen set.
+    r'''Typed fozen set.
     '''
 
     ### CLASS VARIABLES ###

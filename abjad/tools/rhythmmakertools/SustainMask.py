@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import patterntools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -48,13 +47,9 @@ class SustainMask(AbjadValueObject):
         pattern=None,
         ):
         import abjad
-        prototype = (
-            patterntools.Pattern,
-            patterntools.CompoundPattern,
-            )
         if pattern is None:
             pattern = abjad.index_all()
-        assert isinstance(pattern, prototype), repr(pattern)
+        assert isinstance(pattern, abjad.Pattern), repr(pattern)
         self._pattern = pattern
 
     ### PUBLIC PROPERTIES ###
@@ -199,8 +194,9 @@ class SustainMask(AbjadValueObject):
 
                 >>> f(mask)
                 rhythmmakertools.SustainMask(
-                    pattern=abjad.CompoundPattern(
-                        (
+                    pattern=abjad.Pattern(
+                        operator='xor',
+                        patterns=(
                             abjad.Pattern(
                                 indices=[0],
                                 period=1,
@@ -212,7 +208,6 @@ class SustainMask(AbjadValueObject):
                                 indices=[-1],
                                 ),
                             ),
-                        operator='xor',
                         ),
                     )
 
@@ -270,8 +265,10 @@ class SustainMask(AbjadValueObject):
 
                 >>> f(mask)
                 rhythmmakertools.SustainMask(
-                    pattern=abjad.CompoundPattern(
-                        (
+                    pattern=abjad.Pattern(
+                        inverted=True,
+                        operator='xor',
+                        patterns=(
                             abjad.Pattern(
                                 indices=[0],
                                 period=1,
@@ -283,8 +280,6 @@ class SustainMask(AbjadValueObject):
                                 indices=[-1],
                                 ),
                             ),
-                        inverted=True,
-                        operator='xor',
                         ),
                     )
 
@@ -329,12 +324,11 @@ class SustainMask(AbjadValueObject):
         Returns sustain mask.
         '''
         import abjad
-        indices = indices or []
-        prototype = (patterntools.Pattern, patterntools.CompoundPattern)
-        if isinstance(indices, prototype):
+        if isinstance(indices, abjad.Pattern):
             pattern = indices
         else:
-            pattern = patterntools.Pattern(
+            indices = indices or []
+            pattern = abjad.Pattern(
                 indices=indices,
                 inverted=inverted,
                 )
@@ -460,7 +454,8 @@ class SustainMask(AbjadValueObject):
 
         Returns sustain mask.
         '''
-        pattern = patterntools.Pattern(
+        import abjad
+        pattern = abjad.Pattern(
             indices=[0],
             inverted=inverted,
             period=1,
@@ -580,8 +575,9 @@ class SustainMask(AbjadValueObject):
 
         Returns sustain mask.
         '''
+        import abjad
         indices = list(indices)
-        pattern = patterntools.Pattern(
+        pattern = abjad.Pattern(
             indices=indices,
             inverted=inverted,
             period=period,
@@ -738,8 +734,9 @@ class SustainMask(AbjadValueObject):
 
         Returns sustain mask.
         '''
+        import abjad
         indices = list(range(n))
-        pattern = patterntools.Pattern(
+        pattern = abjad.Pattern(
             indices=indices,
             inverted=inverted,
             )
@@ -872,9 +869,7 @@ class SustainMask(AbjadValueObject):
 
                 >>> f(mask)
                 rhythmmakertools.SustainMask(
-                    pattern=abjad.Pattern(
-                        indices=[],
-                        ),
+                    pattern=abjad.Pattern(),
                     )
 
             ::
@@ -917,8 +912,12 @@ class SustainMask(AbjadValueObject):
 
         Returns sustain mask.
         '''
-        indices = list(reversed(range(-1, -n-1, -1)))
-        pattern = patterntools.Pattern(
+        import abjad
+        if 0 < n:
+            indices = list(reversed(range(-1, -n-1, -1)))
+        else:
+            indices = None
+        pattern = abjad.Pattern(
             indices=indices,
             inverted=inverted,
             )

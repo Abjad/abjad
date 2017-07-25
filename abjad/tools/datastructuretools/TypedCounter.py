@@ -5,7 +5,7 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
 class TypedCounter(TypedCollection):
-    r'''A typed counter.
+    r'''Typed counter.
 
     ::
 

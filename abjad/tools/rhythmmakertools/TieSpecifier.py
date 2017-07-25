@@ -3,7 +3,6 @@ from __future__ import print_function
 import collections
 import itertools
 from abjad.tools import datastructuretools
-from abjad.tools import patterntools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
@@ -51,8 +50,8 @@ class TieSpecifier(AbjadValueObject):
             type(None),
             bool,
             collections.Sequence,
-            patterntools.Pattern,
-            patterntools.PatternList,
+            datastructuretools.Pattern,
+            datastructuretools.PatternList,
             )
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions

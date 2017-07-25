@@ -41,7 +41,6 @@ class StorageFormatAgent(AbjadValueObject):
         'markuptools',
         'mathtools',
         'metertools',
-        'patterntools',
         'pitchtools',
         'schemetools',
         'scoretools',
@@ -601,8 +600,8 @@ class StorageFormatAgent(AbjadValueObject):
                 >>> for line in agent.get_import_statements():
                 ...     line
                 ...
+                'from abjad.tools import datastructuretools'
                 'from abjad.tools import mathtools'
-                'from abjad.tools import patterntools'
                 'from abjad.tools import rhythmmakertools'
 
         Returns tuple of strings.

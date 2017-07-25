@@ -21,6 +21,16 @@ class NumberedPitch(Pitch):
             >>> numbered_pitch = abjad.NumberedPitch(13)
             >>> show(numbered_pitch) # doctest: +SKIP
 
+        ..  docs::
+
+            >>> f(numbered_pitch.__illustrate__()[abjad.Staff])
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "treble"
+                cs''1 * 1/4
+            }
+
     ..  container:: example
 
         Initializes from other numbered pitch
@@ -29,6 +39,35 @@ class NumberedPitch(Pitch):
 
             >>> numbered_pitch = abjad.NumberedPitch(abjad.NumberedPitch(13))
             >>> show(numbered_pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(numbered_pitch.__illustrate__()[abjad.Staff])
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "treble"
+                cs''1 * 1/4
+            }
+
+    ..  container:: example
+
+        Initializes from pitch-class / octave pair:
+
+        ::
+
+            >>> numbered_pitch = abjad.NumberedPitch((1, 5))
+            >>> show(numbered_pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(numbered_pitch.__illustrate__()[abjad.Staff])
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "treble"
+                cs''1 * 1/4
+            }
 
     '''
 
@@ -48,6 +87,13 @@ class NumberedPitch(Pitch):
             pass
         if Pitch._is_pitch_number(number):
             number = number
+        elif (isinstance(number, tuple) and
+            len(number) == 2 and
+            not isinstance(number[0], str)):
+            pitch_class, octave = number
+            pitch_class = getattr(pitch_class, 'number', pitch_class)
+            assert isinstance(pitch_class, numbers.Number), repr(number)
+            number = pitch_class + 12 * (octave - 4)
         else:
             if number is None:
                 number = 0
