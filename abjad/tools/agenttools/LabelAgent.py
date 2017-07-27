@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import inspect
 from abjad.tools import abctools
-from abjad.tools import expressiontools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
@@ -72,11 +71,12 @@ class LabelAgent(abctools.AbjadObject):
                 abjad.Expression(
                     callbacks=[
                         abjad.Expression(
-                            evaluation_template='abjad.agenttools.LabelAgent',
+                            evaluation_template='abjad.LabelAgent',
                             is_initializer=True,
                             ),
                         abjad.Expression(
                             evaluation_template='{}.with_pitches()',
+                            qualified_method_name='abjad.LabelAgent.with_pitches',
                             ),
                         ],
                     proxy_class=agenttools.LabelAgent,
@@ -164,11 +164,12 @@ class LabelAgent(abctools.AbjadObject):
                 abjad.Expression(
                     callbacks=[
                         abjad.Expression(
-                            evaluation_template='abjad.agenttools.LabelAgent',
+                            evaluation_template='abjad.LabelAgent',
                             is_initializer=True,
                             ),
                         abjad.Expression(
                             evaluation_template='{}.with_durations()',
+                            qualified_method_name='abjad.LabelAgent.with_durations',
                             ),
                         ],
                     proxy_class=agenttools.LabelAgent,

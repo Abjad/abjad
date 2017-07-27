@@ -2,7 +2,6 @@
 import abc
 import collections
 import types
-from abjad.tools import expressiontools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools import TypedTuple

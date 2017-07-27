@@ -91,10 +91,9 @@ def label(client=None):
 
     Returns label expression when `client` is none.
     '''
-    from abjad.tools import agenttools
-    from abjad.tools import expressiontools
+    import abjad
     if client is not None:
-        return agenttools.LabelAgent(client=client)
-    expression = expressiontools.Expression()
+        return abjad.LabelAgent(client=client)
+    expression = abjad.Expression()
     expression = expression.label()
     return expression

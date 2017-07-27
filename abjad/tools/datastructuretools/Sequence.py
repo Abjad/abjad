@@ -10,7 +10,7 @@ import math
 import numbers
 import sys
 from abjad.tools import abctools
-from abjad.tools import expressiontools
+from abjad.tools import systemtools
 from abjad.tools import mathtools
 
 
@@ -107,8 +107,8 @@ class Sequence(abctools.AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    @expressiontools.Signature(
-        markup_expression_callback='_make___add___markup_expression',
+    @systemtools.Signature(
+        markup_maker_callback='_make___add___markup',
         string_template_callback='_make___add___string_template',
         )
     def __add__(self, argument):
@@ -383,17 +383,8 @@ class Sequence(abctools.AbjadValueObject):
                 abjad.Expression(
                     callbacks=[
                         abjad.Expression(
-                            evaluation_template='abjad.datastructuretools.Sequence',
+                            evaluation_template='abjad.Sequence',
                             is_initializer=True,
-                            markup_expression=abjad.Expression(
-                                callbacks=[
-                                    abjad.Expression(
-                                        evaluation_template='abjad.markuptools.Markup',
-                                        is_initializer=True,
-                                        ),
-                                    ],
-                                proxy_class=abjad.Markup,
-                                ),
                             string_template='{}',
                             ),
                         ],
@@ -406,8 +397,8 @@ class Sequence(abctools.AbjadValueObject):
         superclass = super(Sequence, self)
         return superclass.__format__(format_specification=format_specification)
 
-    @expressiontools.Signature(
-        markup_expression_callback='_make___getitem___markup_expression',
+    @systemtools.Signature(
+        markup_maker_callback='_make___getitem___markup',
         string_template_callback='_make___getitem___string_template',
         )
     def __getitem__(self, argument):
@@ -722,8 +713,8 @@ class Sequence(abctools.AbjadValueObject):
         '''
         return len(self._items)
 
-    @expressiontools.Signature(
-        markup_expression_callback='_make___radd___markup_expression',
+    @systemtools.Signature(
+        markup_maker_callback='_make___radd___markup',
         string_template_callback='_make___radd___string_template',
         )
     def __radd__(self, argument):
@@ -955,16 +946,16 @@ class Sequence(abctools.AbjadValueObject):
                     yield item_
 
     @staticmethod
-    def _make_map_markup_expression(operand):
-        expression = expressiontools.Expression()
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.insert(0, '/@')
+    def _make_map_markup(markup, operand):
+        import abjad
+        markup_list = abjad.MarkupList() 
         operand_markup = operand.get_markup(name='X')
-        expression = expression.insert(0, operand_markup)
-        expression = expression.line()
-        return expression
-        
+        markup_list.append(operand_markup)
+        markup_list.append('/@')
+        markup_list.append(markup)
+        markup = markup_list.line()
+        return markup
+
     @staticmethod
     def _make_map_string_template(operand):
         string_template = '{operand} /@ {{}}'
@@ -1166,7 +1157,8 @@ class Sequence(abctools.AbjadValueObject):
         evaluation_template=None,
         map_operand=None,
         ):
-        callback = expressiontools.Expression._frame_to_callback(
+        import abjad
+        callback = abjad.Expression._frame_to_callback(
             frame,
             evaluation_template=evaluation_template,
             map_operand=map_operand,
@@ -1221,7 +1213,7 @@ class Sequence(abctools.AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    @expressiontools.Signature()
+    @systemtools.Signature()
     def flatten(self, classes=None, depth=-1, indices=None):
         r'''Flattens sequence.
 
@@ -1801,7 +1793,7 @@ class Sequence(abctools.AbjadValueObject):
         except TypeError:
             return False
 
-    @expressiontools.Signature()
+    @systemtools.Signature()
     def join(self):
         '''Join subsequences in `sequence`.
 
@@ -1869,8 +1861,8 @@ class Sequence(abctools.AbjadValueObject):
         cumulative_sum = abjad.mathtools.cumulative_sums(self, start=None)[-1]
         return type(self)(items=[cumulative_sum])
 
-    @expressiontools.Signature(
-        markup_expression_callback='_make_map_markup_expression',
+    @systemtools.Signature(
+        markup_maker_callback='_make_map_markup',
         string_template_callback='_make_map_string_template',
         )
     def map(self, operand=None):
@@ -2180,7 +2172,7 @@ class Sequence(abctools.AbjadValueObject):
                     yield type(self)(items=item_buffer)
                     item_buffer.pop(0)
     
-    @expressiontools.Signature(
+    @systemtools.Signature(
         argument_list_callback='_make_partition_indicator',
         method_name='partition',
         )
@@ -3544,7 +3536,7 @@ class Sequence(abctools.AbjadValueObject):
             result = result_
         return type(self)(items=result)
 
-    @expressiontools.Signature(
+    @systemtools.Signature(
         argument_list_callback='_make_partition_ratio_indicator',
         method_name='partition',
         )
@@ -4160,7 +4152,7 @@ class Sequence(abctools.AbjadValueObject):
             message = message.format(allow_part_weights)
             raise ValueError(message)
 
-    @expressiontools.Signature()
+    @systemtools.Signature()
     def permute(self, permutation):
         r'''Permutes sequence by `permutation`.
 
@@ -4360,7 +4352,7 @@ class Sequence(abctools.AbjadValueObject):
                 items.append(item)
         return type(self)(items=items)
 
-    @expressiontools.Signature()
+    @systemtools.Signature()
     def repeat(self, n=1):
         r'''Repeats sequence.
 
@@ -4840,7 +4832,7 @@ class Sequence(abctools.AbjadValueObject):
                 items.append(item)
         return type(self)(items=items)
 
-    @expressiontools.Signature(
+    @systemtools.Signature(
         is_operator=True,
         method_name_callback='_make_reverse_method_name',
         )
@@ -4973,7 +4965,7 @@ class Sequence(abctools.AbjadValueObject):
         items = _reverse_helper(self.items)
         return type(self)(items=items)
 
-    @expressiontools.Signature( 
+    @systemtools.Signature( 
         is_operator=True,
         method_name='r',
         subscript='n',
@@ -5171,7 +5163,7 @@ class Sequence(abctools.AbjadValueObject):
         items.sort(key=key, reverse=reverse)
         return type(self)(items=items)
         
-    @expressiontools.Signature(
+    @systemtools.Signature(
         argument_list_callback='_make_split_indicator',
         )
     def split(self, weights, cyclic=False, overhang=False):
@@ -5325,7 +5317,7 @@ class Sequence(abctools.AbjadValueObject):
                 result.append(last_piece)
         return type(self)(items=result)
 
-    @expressiontools.Signature()
+    @systemtools.Signature()
     def sum(self):
         '''Sums sequence.
 

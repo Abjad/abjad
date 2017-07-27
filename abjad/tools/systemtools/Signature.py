@@ -13,7 +13,7 @@ class Signature(abctools.AbjadValueObject):
     __slots__ = (
         '_argument_list_callback',
         '_is_operator',
-        '_markup_expression_callback',
+        '_markup_maker_callback',
         '_method_name',
         '_method_name_callback',
         '_string_template_callback',
@@ -27,7 +27,7 @@ class Signature(abctools.AbjadValueObject):
         self,
         argument_list_callback=None,
         is_operator=None,
-        markup_expression_callback=None,
+        markup_maker_callback=None,
         method_name=None,
         method_name_callback=None,
         string_template_callback=None,
@@ -36,7 +36,7 @@ class Signature(abctools.AbjadValueObject):
         ):
         self._argument_list_callback = argument_list_callback
         self._is_operator = is_operator
-        self._markup_expression_callback = markup_expression_callback
+        self._markup_maker_callback = markup_maker_callback
         self._method_name = method_name
         self._method_name_callback = method_name_callback
         self._string_template_callback = string_template_callback
@@ -52,7 +52,7 @@ class Signature(abctools.AbjadValueObject):
         '''
         method.argument_list_callback = self.argument_list_callback
         method.is_operator = self.is_operator
-        method.markup_expression_callback = self.markup_expression_callback
+        method.markup_maker_callback = self.markup_maker_callback
         method.method_name = self.method_name
         method.method_name_callback = self.method_name_callback
         method.string_template_callback = self.string_template_callback
@@ -80,12 +80,12 @@ class Signature(abctools.AbjadValueObject):
         return self._is_operator
 
     @property
-    def markup_expression_callback(self):
-        r'''Gets markup expression callback.
+    def markup_maker_callback(self):
+        r'''Gets markup maker callback.
 
         Returns string or none.
         '''
-        return self._markup_expression_callback
+        return self._markup_maker_callback
 
     @property
     def method_name(self):

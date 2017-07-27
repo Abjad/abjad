@@ -154,13 +154,6 @@ class ComplexBeam(Beam):
         self._beam_rests = self.beam_rests
         new._isolated_nib_direction = self.isolated_nib_direction
 
-    def _get_lilypond_format_bundle(self, leaf):
-        import abjad
-        bundle = self._get_basic_lilypond_format_bundle(leaf)
-        self._add_beam_counts(leaf, bundle)
-        self._add_start_and_stops(leaf, bundle)
-        return bundle
-
     def _get_left_right_for_exterior_leaf(self, leaf):
         r'''Gets left and right flag counts for exterior leaf in spanner.
         '''
@@ -274,6 +267,13 @@ class ComplexBeam(Beam):
             message = message.format(self.isolated_nib_direction)
             raise ValueError(message)
         return left, right
+
+    def _get_lilypond_format_bundle(self, leaf):
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
+        self._add_beam_counts(leaf, bundle)
+        self._add_start_and_stops(leaf, bundle)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

@@ -229,6 +229,7 @@ class Hairpin(Spanner):
 
     def _copy_keyword_args(self, new):
         Spanner._copy_keyword_args(self, new)
+        new._descriptor = self.descriptor
         new._direction = self.direction
         new._include_rests = self.include_rests
         new._shape_string = self.shape_string

@@ -36,7 +36,6 @@ class StorageFormatAgent(AbjadValueObject):
     _exclude_tools_package = (
         'durationtools',
         'datastructuretools',
-        'expressiontools',
         'indicatortools',
         'markuptools',
         'mathtools',

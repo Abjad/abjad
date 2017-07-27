@@ -4,7 +4,6 @@ import collections
 import inspect
 from abjad.tools import abctools
 from abjad.tools import durationtools
-from abjad.tools import expressiontools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import spannertools

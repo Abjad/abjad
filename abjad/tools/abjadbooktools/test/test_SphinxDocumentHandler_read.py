@@ -553,7 +553,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'agenttools', 'attach', 'commandlinetools',
 #                    'datastructuretools', 'demos', 'detach',
 #                    'documentationtools', 'durationtools',
-#                    'exceptiontools', 'expressiontools', 'ext',
+#                    'exceptiontools', 'ext',
 #                    'f', 'graph', 'graphtools', 'indicatortools',
 #                    'inspect', 'instrumenttools', 'ipythontools',
 #                    'iterate', 'label', 'lilypondfiletools',

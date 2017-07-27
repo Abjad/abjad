@@ -13,6 +13,7 @@ from .LilyPondFormatManager import LilyPondFormatManager
 from .NullContextManager import NullContextManager
 from .ProgressIndicator import ProgressIndicator
 from .RedirectedStreams import RedirectedStreams
+from .Signature import Signature
 from .SlotContributions import SlotContributions
 from .StorageFormatAgent import StorageFormatAgent
 from .StorageFormatSpecification import StorageFormatSpecification

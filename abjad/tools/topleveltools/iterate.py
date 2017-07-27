@@ -60,10 +60,9 @@ def iterate(client=None):
             IterationAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''
-    from abjad.tools import agenttools
-    from abjad.tools import expressiontools
+    import abjad
     if client is not None:
-        return agenttools.IterationAgent(client=client)
-    expression = expressiontools.Expression()
+        return abjad.IterationAgent(client=client)
+    expression = abjad.Expression()
     expression = expression.iterate()
     return expression

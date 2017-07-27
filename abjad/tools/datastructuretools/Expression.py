@@ -5,13 +5,15 @@ except ImportError:
     import inspect as funcsigs
 import inspect
 import numbers
-from abjad.tools.abctools import AbjadObject
+from abjad.tools import systemtools
+from abjad.tools.abctools import AbjadValueObject
 
 
-class Expression(AbjadObject):
+class Expression(AbjadValueObject):
     r'''Expression.
 
     ::
+
         >>> import abjad
 
     ..  container:: example expression
@@ -105,6 +107,7 @@ class Expression(AbjadObject):
 
     __slots__ = (
         '_argument_count',
+        '_argument_values',
         '_callbacks',
         '_evaluation_template',
         '_force_return',
@@ -114,12 +117,13 @@ class Expression(AbjadObject):
         '_is_postfix',
         '_keywords',
         '_map_operand',
-        '_markup_expression',
+        '_markup_maker_callback',
         '_module_names',
         '_name',
         '_next_name',
         '_precedence',
         '_proxy_class',
+        '_qualified_method_name',
         '_string_template',
         '_subclass_hook',
         '_subexpressions',
@@ -134,6 +138,7 @@ class Expression(AbjadObject):
     def __init__(
         self,
         argument_count=None,
+        argument_values=None,
         callbacks=None,
         evaluation_template=None,
         force_return=None,
@@ -143,12 +148,13 @@ class Expression(AbjadObject):
         is_postfix=None,
         keywords=None,
         map_operand=None,
-        markup_expression=None,
+        markup_maker_callback=None,
         module_names=None,
         name=None,
         next_name=None,
         precedence=None,
         proxy_class=None,
+        qualified_method_name=None,
         string_template=None,
         subclass_hook=None,
         subexpressions=None,
@@ -156,6 +162,10 @@ class Expression(AbjadObject):
         if argument_count is not None:
             assert isinstance(argument_count, int) and 0 <= argument_count
         self._argument_count = argument_count
+        if argument_values is not None:
+            assert isinstance(argument_values, dict)
+            argument_values = argument_values or None
+        self._argument_values = argument_values
         if callbacks is not None:
             callbacks = tuple(callbacks)
         self._callbacks = callbacks
@@ -185,11 +195,9 @@ class Expression(AbjadObject):
             message = message.format(map_operand)
             raise TypeError(message)
         self._map_operand = map_operand
-        if not isinstance(markup_expression, (Expression, type(None))):
-            message = 'must be expression or none: {!r}.'
-            message = message.format(markup_expression)
-            raise TypeError(message)
-        self._markup_expression = markup_expression
+        if markup_maker_callback is not None:
+            assert isinstance(markup_maker_callback, str)
+        self._markup_maker_callback = markup_maker_callback
         self._module_names = module_names
         if not isinstance(name, (str, type(None))):
             message = 'name must be string or none: {!r}.'
@@ -207,6 +215,9 @@ class Expression(AbjadObject):
             message = 'must be string or none: {!r}.'
             message = message.format(string_template)
             raise TypeError(message)
+        if qualified_method_name is not None:
+            assert isinstance(qualified_method_name, str)
+        self._qualified_method_name = qualified_method_name
         self._string_template = string_template
         if not isinstance(subclass_hook, (str, type(None))):
             message = 'must be string or none: {!r}.'
@@ -219,6 +230,9 @@ class Expression(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    @systemtools.Signature(
+        markup_maker_callback='_make_expression_add_markup',
+        )
     def __add__(self, i):
         r'''Gets proxy method or adds expressions.
 
@@ -242,26 +256,8 @@ class Expression(AbjadObject):
                     argument_count=2,
                     evaluation_template='{}.__add__({})',
                     is_composite=True,
-                    markup_expression=abjad.Expression(
-                        callbacks=[
-                            abjad.Expression(
-                                argument_count=2,
-                                evaluation_template='[{}, {}]',
-                                ),
-                            abjad.Expression(
-                                evaluation_template='abjad.markuptools.MarkupList',
-                                is_initializer=True,
-                                ),
-                            abjad.Expression(
-                                evaluation_template="{}.insert(i=1, item=abjad.Markup(\n    contents=['+'],\n    ))",
-                                force_return=True,
-                                ),
-                            abjad.Expression(
-                                evaluation_template='{}.line()',
-                                ),
-                            ],
-                        proxy_class=abjad.MarkupList,
-                        ),
+                    markup_maker_callback='_make_add_expression_markup',
+                    qualified_method_name='abjad.Expression.__add__',
                     string_template='{} + {}',
                     subexpressions=(
                         abjad.Expression(
@@ -286,16 +282,6 @@ class Expression(AbjadObject):
             proxy_method = self.__getattr__('__add__')
             return proxy_method(i)
         evaluation_template = '{}.__add__({})'
-        if True:
-            expression = abjad.Expression()
-            callback = expression.make_callback(
-                argument_count=2,
-                evaluation_template='[{}, {}]'
-                )
-            expression = expression.append_callback(callback)
-            expression = expression.markup_list()
-            expression = expression.insert(1, abjad.Markup('+'))
-            expression = expression.line()
         template = '{} + {}'
         lhs_module_names = self.module_names or []
         rhs_module_names = i.module_names or []
@@ -307,9 +293,10 @@ class Expression(AbjadObject):
             argument_count=2,
             evaluation_template=evaluation_template,
             is_composite=True,
-            markup_expression=expression,
+            markup_maker_callback='_make_add_expression_markup',
             module_names=module_names,
             proxy_class=self.proxy_class,
+            qualified_method_name='abjad.Expression.__add__',
             string_template=template,
             subexpressions=[self, i],
             )
@@ -329,21 +316,6 @@ class Expression(AbjadObject):
 
                 >>> expression() is None
                 True
-
-        ..  container:: example expression
-
-            Calls markup expression:
-
-            ::
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.markup()
-                >>> expression = expression.bold()
-
-            ::
-
-                >>> expression('Allegro assai')
-                Markup(contents=[MarkupCommand('bold', 'Allegro assai')])
 
         Returns ouput of last callback.
         '''
@@ -435,20 +407,12 @@ class Expression(AbjadObject):
             ::
 
                 >>> expression_1 = abjad.Expression().sequence()
-                >>> expression_2 = abjad.Expression().markup()
-                >>> expression_1 == expression_2
-                False
-                
-            ::
-
-                >>> expression_1 = abjad.Expression().sequence()
                 >>> expression_1 == 'text'
                 False
 
         Returns true or false.
         '''
-        from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, argument)
+        return super(Expression, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats expression.
@@ -466,36 +430,9 @@ class Expression(AbjadObject):
                 >>> f(expression)
                 abjad.Expression()
 
-        ..  container:: example expression
-
-            Formats markup expression:
-
-            ::
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.markup()
-                >>> expression = expression.bold()
-
-            ::
-
-                >>> f(expression)
-                abjad.Expression(
-                    callbacks=[
-                        abjad.Expression(
-                            evaluation_template='abjad.markuptools.Markup',
-                            is_initializer=True,
-                            ),
-                        abjad.Expression(
-                            evaluation_template='{}.bold()',
-                            ),
-                        ],
-                    proxy_class=abjad.Markup,
-                    )
-
         Returns string.
         '''
-        superclass = super(Expression, self)
-        return superclass.__format__(
+        return super(Expression, self).__format__(
             format_specification=format_specification,
             )
 
@@ -569,25 +506,9 @@ class Expression(AbjadObject):
                 >>> expression
                 Expression()
 
-        ..  container:: example expression
-
-            Gets interpreter representation of markup expression:
-
-            ::
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.markup()
-                >>> expression = expression.bold()
-
-            ::
-
-                >>> expression
-                Expression(callbacks=[Expression(evaluation_template='abjad.markuptools.Markup', is_initializer=True), Expression(evaluation_template='{}.bold()')], proxy_class=Markup)
-
         Returns string.
         '''
-        superclass = super(Expression, self)
-        return superclass.__repr__()
+        return super(Expression, self).__repr__()
 
     def __setitem__(self, i, argument):
         r'''Gets proxy method.
@@ -611,29 +532,13 @@ class Expression(AbjadObject):
                 >>> str(expression)
                 'Expression()'
 
-        ..  container:: example expression
-
-            Gets string representation of markup expression:
-
-            ::
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.markup()
-                >>> expression = expression.bold()
-
-            ::
-
-                >>> str(expression)
-                "Expression(callbacks=[Expression(evaluation_template='abjad.markuptools.Markup', is_initializer=True), Expression(evaluation_template='{}.bold()')], proxy_class=Markup)"
-
         Returns string.
         '''
-        superclass = super(Expression, self)
-        return superclass.__str__()
+        return super(Expression, self).__str__()
 
     ### PRIVATE METHODS ###
 
-    def _compile_callback_markup(
+    def _apply_callback_markup(
         self,
         name,
         direction=None,
@@ -648,25 +553,17 @@ class Expression(AbjadObject):
         if not self.callbacks:
             return markup
         callback = self.callbacks[0]
-        if callback.markup_expression is None:
-            message = 'no markup expression found: {!r}.'
-            message = message.format(callback)
-            raise ValueError(message)
         if (previous_callback and
             previous_callback.is_composite and
             not callback.is_composite):
             markup = abjad.MarkupList(['(', markup, ')']).concat()
-        markup = callback.markup_expression(markup)
+        markup = callback._make_method_markup(markup)
         next_callback = None
         if 1 < len(self.callbacks):
             next_callback = self.callbacks[1]
         previous_precedence = callback.precedence or 0
         previous_callback = callback
         for callback in self.callbacks[1:]:
-            if callback.markup_expression is None:
-                message = 'callback {!r} has no markup expression.'
-                message = message.format(callback)
-                raise ValueError(message)
             if previous_callback and previous_callback.next_name:
                 markup = previous_callback.next_name
                 if isinstance(markup, str):
@@ -682,7 +579,7 @@ class Expression(AbjadObject):
                 parenthesize_argument = False
             if parenthesize_argument:
                 markup = abjad.MarkupList(['(', markup, ')']).concat()
-            markup = callback.markup_expression(markup)
+            markup = callback._make_method_markup(markup)
             previous_callback = callback
         markup = abjad.new(markup, direction=direction)
         return markup
@@ -810,7 +707,6 @@ class Expression(AbjadObject):
         is_postfix=None,
         keywords=None,
         map_operand=None,
-        markup_expression=None,
         module_names=None,
         precedence=None,
         string_template=None,
@@ -819,9 +715,11 @@ class Expression(AbjadObject):
         if evaluation_template is None:
             evaluation_template = class_._get_evaluation_template(frame)
         result = class_._read_signature_decorator(frame)
-        markup_expression = result['markup_expression'] or markup_expression
+        argument_values = result['argument_values']
+        qualified_method_name = result['qualified_method_name']
         string_template = result['string_template'] or string_template
         return class_(
+            argument_values=argument_values,
             evaluation_template=evaluation_template,
             force_return=force_return,
             is_composite=is_composite,
@@ -829,9 +727,9 @@ class Expression(AbjadObject):
             is_postfix=is_postfix,
             keywords=keywords,
             map_operand=map_operand,
-            markup_expression=markup_expression,
             module_names=module_names,
             precedence=precedence,
+            qualified_method_name=qualified_method_name,
             string_template=string_template,
             subclass_hook=subclass_hook,
             )
@@ -879,38 +777,38 @@ class Expression(AbjadObject):
         if getattr(function, 'method_name', None) is not None:
             return getattr(function, 'method_name')
         method_name_callback = Expression._get_callback(
-            'method_name_callback', function, function_self,
+            'method_name_callback',
+            function,
+            function_self,
             )
         if method_name_callback:
             return method_name_callback(**argument_values)
         return function_name
 
     @staticmethod
-    def _make___add___markup_expression(argument):
-        expression = Expression(is_postfix=True)
-        expression = expression.markup()
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.append('+')
-        expression = expression.append(str(argument))
-        expression = expression.line()
-        return expression
+    def _make___add___markup(markup, argument):
+        import abjad
+        markup_list = abjad.MarkupList()
+        markup_list.append(markup)
+        markup_list.append('+')
+        markup_list.append(str(argument))
+        markup = markup_list.line()
+        return markup
 
     @staticmethod
     def _make___add___string_template(argument):
         return '{} + ' + str(argument)
 
     @staticmethod
-    def _make___getitem___markup_expression(argument):
-        from abjad.tools import markuptools
+    def _make___getitem___markup(markup, argument):
+        import abjad
+        markup_list = abjad.MarkupList()
+        markup_list.append(markup)
         string = Expression._make_subscript_string(argument, markup=True)
-        subscript_markup = markuptools.Markup(string).sub()
-        expression = Expression(is_postfix=True)
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.append(subscript_markup)
-        expression = expression.concat()
-        return expression
+        subscript_markup = abjad.Markup(string).sub()
+        markup_list.append(subscript_markup)
+        markup = markup_list.concat()
+        return markup
 
     @staticmethod
     def _make___getitem___string_template(argument):
@@ -918,19 +816,30 @@ class Expression(AbjadObject):
         return '{}' + string
 
     @staticmethod
-    def _make___radd___markup_expression(argument):
-        expression = Expression(is_postfix=True)
-        expression = expression.markup()
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.insert(0, '+')
-        expression = expression.insert(0, str(argument))
-        expression = expression.line()
-        return expression
+    def _make___radd___markup(markup, argument):
+        import abjad
+        markup_list = abjad.MarkupList()
+        markup_list.append(str(argument))
+        markup_list.append('+')
+        markup_list.append(markup)
+        markup = markup_list.line()
+        return markup
 
     @staticmethod
     def _make___radd___string_template(argument):
         return str(argument) + ' + {}'
+
+    @staticmethod
+    def _make_establish_equivalence_markup(lhs, rhs):
+        import abjad
+        markup_list = abjad.MarkupList()
+        lhs = abjad.Markup(lhs).bold()
+        markup_list.append(lhs)
+        markup_list.append('=')
+        assert isinstance(rhs, abjad.Markup)
+        markup_list.append(rhs)
+        markup = markup_list.line()
+        return markup
 
     def _make_evaluable_keywords(self, keywords):
         result = {}
@@ -940,28 +849,39 @@ class Expression(AbjadObject):
             result[key] = value
         return result
 
-    # TODO: eventually do not pass frame
     @staticmethod
-    def _make_function_markup_expression(
-        frame,
-        function_name,
-        argument_values,
+    def _make_expression_add_markup(markups):
+        import abjad
+        assert len(markups) == 2
+        markup_list = abjad.MarkupList()
+        markup_list.append(markups[0])
+        markup_list.append('+')
+        markup_list.append(markups[1])
+        markup = markup_list.line()
+        return markup
+
+    @staticmethod
+    def _make_function_markup(
+        markup,
+        method_name,
         argument_list_callback,
+        method,
+        argument_values,
         ):
+        import abjad
         if argument_list_callback:
             arguments = argument_list_callback(**argument_values)
         else:
-            arguments = Expression._wrap_arguments(frame)
-        expression = Expression(has_parentheses=True)
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.insert(0, function_name + '(')
+            arguments = Expression._wrap_arguments_new(method, argument_values)
+        markup_list = abjad.MarkupList()
+        markup_list.append(method_name + '(')
+        markup_list.append(markup)
         if arguments:
-            expression = expression.append(', ' + arguments + ')')
+            markup_list.append(', ' + arguments + ')')
         else:
-            expression = expression.append(')')
-        expression = expression.concat()
-        return expression
+            markup_list.append(')')
+        markup = markup_list.concat()
+        return markup
 
     # TODO: eventually do not pass frame
     @staticmethod
@@ -986,7 +906,11 @@ class Expression(AbjadObject):
         import abjad
         globals_ = {'abjad': abjad}
         globals_.update(abjad.__dict__.copy())
-        module_names = self.module_names or ()
+        module_names = self.module_names or []
+        if self.qualified_method_name is not None:
+            parts = self.qualified_method_name.split('.')
+            root_package_name = parts[0]
+            module_names.append(root_package_name)
         for module_name in module_names:
             module = __import__(module_name)
             globals_[module_name] = module
@@ -1000,7 +924,6 @@ class Expression(AbjadObject):
     def _make_initializer_callback(
         self,
         class_,
-        markup_expression=None,
         module_names=None,
         string_template=None,
         **keywords
@@ -1012,7 +935,7 @@ class Expression(AbjadObject):
             raise TypeError(message)
         parts = class_.__module__.split('.')
         if 'abjad' in parts:
-            parts = [_ for _ in parts if _ != 'tools']
+            parts = [_ for _ in parts if 'tools' not in _]
         evaluation_template = '.'.join(parts)
         keywords = self._make_evaluable_keywords(keywords)
         keywords = keywords or None
@@ -1020,33 +943,108 @@ class Expression(AbjadObject):
             evaluation_template=evaluation_template,
             is_initializer=True,
             keywords=keywords,
-            markup_expression=markup_expression,
             module_names=module_names,
             string_template=string_template,
             )
 
+    def _make_method_markup(self, markup):
+        import abjad
+        if self.is_initializer:
+            assert self.qualified_method_name is None
+            return abjad.Markup(markup)
+        qualified_method_name = self.qualified_method_name
+        assert isinstance(qualified_method_name, str), repr(self)
+        if qualified_method_name == 'abjad.Expression.establish_equivalence':
+            markup = self._make_establish_equivalence_markup(
+                self.next_name,
+                markup,
+                )
+            return markup
+        assert '.' in qualified_method_name, repr(self)
+        globals_ = self._make_globals()
+        method = eval(qualified_method_name, globals_)
+        if not getattr(method, 'has_signature_decorator', False):
+            message = '{} has no signature decorator.'
+            message = message.format(method)
+            raise Exception(message)
+        callback_name = getattr(method, 'markup_maker_callback', None)
+        if callback_name is not None:
+            parts = qualified_method_name.split('.')
+            parts.pop(-1)
+            parts.append(callback_name)
+            qualified_callback_name = '.'.join(parts)
+            try:
+                callback = eval(qualified_callback_name, globals_)
+            except AttributeError:
+                callback = getattr(self, callback_name)
+            argument_values = self.argument_values or {}
+            markup = callback(markup, **argument_values)
+            return markup
+        callback_name = getattr(method, 'method_name_callback', None)
+        if callback_name is not None:
+            parts = qualified_method_name.split('.')
+            parts.pop(-1)
+            parts.append(callback_name)
+            callback_name = '.'.join(parts)
+            callback = eval(callback_name, globals_)
+            method_name = callback(**self.argument_values)
+        elif getattr(method, 'method_name', None) is not None:
+            method_name = method.method_name
+        else:
+            method_name = method.__name__
+        assert isinstance(method_name, str), repr((self, method))
+        if getattr(method, 'is_operator', None):
+            subscript = getattr(method, 'subscript', None)
+            if subscript is not None:
+                subscript = self.argument_values[subscript]
+            superscript = getattr(method, 'superscript', None)
+            if superscript is not None:
+                superscript = self.argument_values[superscript]
+            markup = Expression._make_operator_markup(
+                markup,
+                method_name=method_name,
+                subscript=subscript,
+                superscript=superscript,
+                )
+        else:
+            argument_list_callback = getattr(method, 'argument_list_callback')
+            if argument_list_callback is not None:
+                parts = qualified_method_name.split('.')
+                parts.pop(-1)
+                parts.append(argument_list_callback)
+                qualified_callback_name = '.'.join(parts)
+                argument_list_callback = eval(
+                    qualified_callback_name,
+                    globals_,
+                    )
+            markup = Expression._make_function_markup(
+                markup,
+                method_name,
+                argument_list_callback,
+                method,
+                self.argument_values,
+                )
+        return markup
+
     @staticmethod
-    def _make_operator_markup_expression(
+    def _make_operator_markup(
+        markup,
         method_name=None,
         subscript=None,
         superscript=None,
         ):
-        from abjad.tools import markuptools
-        expression = Expression()
-        expression = expression.markup()
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.insert(0, method_name)
+        import abjad
+        markup_list = abjad.MarkupList([method_name, markup])
         if superscript is not None:
-            superscript = markuptools.Markup(str(superscript))
+            superscript = abjad.Markup(str(superscript))
             superscript = superscript.super()
-            expression = expression.insert(1, superscript)
+            markup_list.insert(1, superscript)
         if subscript is not None:
-            subscript = markuptools.Markup(str(subscript))
+            subscript = abjad.Markup(str(subscript))
             subscript = subscript.sub()
-            expression = expression.insert(1, subscript)
-        expression = expression.concat()
-        return expression
+            markup_list.insert(1, subscript)
+        markup = markup_list.concat()
+        return markup
 
     @staticmethod
     def _make_operator_string_template(
@@ -1100,39 +1098,48 @@ class Expression(AbjadObject):
     def _read_signature_decorator(frame):
         try:
             function_name = inspect.getframeinfo(frame).function
-            values = inspect.getargvalues(frame)
-            assert values.args[0] == 'self'
-            function_self = values.locals['self']
+            argument_info = inspect.getargvalues(frame)
+            assert argument_info.args[0] == 'self'
+            function_self = argument_info.locals['self']
             function = getattr(function_self, function_name)
-            if not getattr(function, 'has_signature_decorator', False):
-                return {'markup_expression': None, 'string_template': None}
-            argument_names = values.args[1:]
+            class_ = function_self.__class__
+            parts = class_.__module__.split('.')
+            if 'abjad' in parts:
+                parts = [_ for _ in parts if 'tools' not in _]
+            parts.append(function_name)
+            qualified_method_name = '.'.join(parts)
+            assert '.' in qualified_method_name
             argument_values = {}
+            if not getattr(function, 'has_signature_decorator', False):
+                return {
+                    'argument_values': argument_values,
+                    'qualified_method_name': qualified_method_name,
+                    'string_template': None,
+                    }
+            argument_names = argument_info.args[1:]
             for argument_name in argument_names:
-                argument_value = values.locals[argument_name]
+                argument_value = argument_info.locals[argument_name]
                 argument_values[argument_name] = argument_value
-            markup_expression_callback = Expression._get_callback(
-                'markup_expression_callback', function, function_self)
-            if markup_expression_callback is not None:
-                string_template_callback = Expression._get_callback(
-                    'string_template_callback', function, function_self)
-                markup_expression = markup_expression_callback(
-                    **argument_values)
+            string_template_callback = Expression._get_callback(
+                'string_template_callback',
+                function,
+                function_self,
+                )
+            if string_template_callback is not None:
                 string_template = string_template_callback(**argument_values)
             elif getattr(function, 'is_operator', None):
                 method_name = Expression._get_method_name(
-                    function_name, function, function_self, argument_values)
+                    function_name,
+                    function,
+                    function_self,
+                    argument_values,
+                    )
                 subscript = getattr(function, 'subscript', None)
                 if subscript is not None:
-                    subscript = values.locals[subscript]
+                    subscript = argument_info.locals[subscript]
                 superscript = getattr(function, 'superscript', None)
                 if superscript is not None:
-                    superscript = values.locals[superscript]
-                markup_expression = \
-                    Expression._make_operator_markup_expression(
-                    method_name=method_name,
-                    subscript=subscript,
-                    superscript=superscript)
+                    superscript = argument_info.locals[superscript]
                 string_template = Expression._make_operator_string_template(
                     method_name=method_name,
                     subscript=subscript,
@@ -1140,26 +1147,28 @@ class Expression(AbjadObject):
                     )
             else:
                 method_name = Expression._get_method_name(
-                    function_name, function, function_self, argument_values)
-                argument_list_callback = Expression._get_callback(
-                    'argument_list_callback', function, function_self)
-                # TODO: eventually do not pass frame
-                markup_expression = \
-                    Expression._make_function_markup_expression(
-                    frame,
-                    method_name,
+                    function_name,
+                    function,
+                    function_self,
                     argument_values,
-                    argument_list_callback)
+                    )
+                argument_list_callback = Expression._get_callback(
+                    'argument_list_callback',
+                    function,
+                    function_self,
+                    )
                 # TODO: eventually do not pass frame
                 string_template = Expression._make_function_string_template(
                     frame,
                     method_name,
                     argument_values,
-                    argument_list_callback)
+                    argument_list_callback,
+                    )
         finally:
             del frame
         return {
-            'markup_expression': markup_expression,
+            'argument_values': argument_values,
+            'qualified_method_name': qualified_method_name,
             'string_template': string_template,
             }
 
@@ -1215,23 +1224,23 @@ class Expression(AbjadObject):
         try:
             frame_info = inspect.getframeinfo(frame)
             function_name = frame_info.function
-            values = inspect.getargvalues(frame)
+            argument_info = inspect.getargvalues(frame)
             if static_class:
                 method_name = frame.f_code.co_name
                 static_method = getattr(static_class, method_name)
                 #signature = inspect.signature(static_method)
                 signature = funcsigs.signature(static_method)
-                argument_names = values.args[:]
+                argument_names = argument_info.args[:]
             else:
-                assert values.args[0] == 'self'
-                self = values.locals['self']
+                assert argument_info.args[0] == 'self'
+                self = argument_info.locals['self']
                 function = getattr(self, function_name)
                 #signature = inspect.signature(function)
                 signature = funcsigs.signature(function)
-                argument_names = values.args[1:]
+                argument_names = argument_info.args[1:]
             argument_strings = []
             for argument_name in argument_names:
-                argument_value = values.locals[argument_name]
+                argument_value = argument_info.locals[argument_name]
                 parameter = signature.parameters[argument_name]
                 if argument_value != parameter.default:
                     argument_string = '{argument_name}={argument_value}'
@@ -1245,6 +1254,26 @@ class Expression(AbjadObject):
             arguments = ', '.join(argument_strings)
         finally:
             del frame
+        return arguments
+
+    @staticmethod
+    def _wrap_arguments_new(method, argument_values):
+        signature = funcsigs.signature(method)
+        argument_names = [_ for _ in signature.parameters][1:]
+        argument_strings = []
+        for argument_name in argument_names:
+            argument_value = argument_values[argument_name]
+            parameter = signature.parameters[argument_name]
+            if argument_value != parameter.default:
+                argument_string = '{argument_name}={argument_value}'
+                argument_value = Expression._to_evaluable_string(
+                    argument_value)
+                argument_string = argument_string.format(
+                    argument_name=argument_name,
+                    argument_value=argument_value,
+                    )
+                argument_strings.append(argument_string)
+        arguments = ', '.join(argument_strings)
         return arguments
 
     ### PUBLIC PROPERTIES ###
@@ -1262,23 +1291,20 @@ class Expression(AbjadObject):
         return self._argument_count
 
     @property
+    def argument_values(self):
+        r'''Gets argument values.
+
+        Defaults to none.
+
+        Set to dictionary or none.
+
+        Returns dictionary or none.
+        '''
+        return self._argument_values
+
+    @property
     def callbacks(self):
         r'''Gets callbacks.
-
-        ..  container:: example expression
-
-            ::
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.markup()
-                >>> expression = expression.bold()
-
-            ::
-
-                >>> for callback in expression.callbacks:
-                ...     callback
-                Expression(evaluation_template='abjad.markuptools.Markup', is_initializer=True)
-                Expression(evaluation_template='{}.bold()')
 
         ..  container:: example expression
 
@@ -1291,22 +1317,6 @@ class Expression(AbjadObject):
                 True
 
         Set to callbacks or none.
-
-        ..  container:: example expression
-
-            Returns list or none:
-
-            ::
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.markup()
-                >>> expression = expression.bold()
-
-            ::
-
-                >>> isinstance(expression.callbacks, list)
-                True
-
         '''
         if self._callbacks:
             return list(self._callbacks)
@@ -1409,16 +1419,16 @@ class Expression(AbjadObject):
         return self._map_operand
 
     @property
-    def markup_expression(self):
-        r'''Gets markup expression.
+    def markup_maker_callback(self):
+        r'''Gets markup-maker callback.
 
         Defaults to none.
 
-        Set to markup or none.
+        Set to string or none.
 
-        Returns markup or none.
+        Returns string or none.
         '''
-        return self._markup_expression
+        return self._markup_maker_callback
 
     @property
     def module_names(self):
@@ -1497,6 +1507,14 @@ class Expression(AbjadObject):
         return self._proxy_class
 
     @property
+    def qualified_method_name(self):
+        r'''Gets qualified method name of expression.
+
+        Returns string or none.
+        '''
+        return self._qualified_method_name
+
+    @property
     def string_template(self):
         r'''Gets string template.
 
@@ -1569,10 +1587,10 @@ class Expression(AbjadObject):
 
         Returns new expression.
         '''
-        from abjad.tools import topleveltools
+        import abjad
         callbacks = self.callbacks or []
         callbacks = callbacks + [callback]
-        return topleveltools.new(self, callbacks=callbacks)
+        return abjad.new(self, callbacks=callbacks)
 
     def establish_equivalence(self, name):
         r'''Makes new expression with `name`.
@@ -1631,25 +1649,21 @@ class Expression(AbjadObject):
         Returns new expression.
         '''
         import abjad
-        expression = Expression()
-        expression = expression.wrap_in_list()
-        expression = expression.markup_list()
-        expression = expression.insert(0, abjad.Markup(name).bold())
-        expression = expression.insert(1, '=')
-        expression = expression.line()
         template = '{name} = {{}}'
         template = template.format(name=name)
         callback = self.make_callback(
             evaluation_template='{}',
             is_composite=True,
-            markup_expression=expression,
             next_name=name,
+            qualified_method_name='abjad.Expression.establish_equivalence',
             string_template=template,
             )
         return self.append_callback(callback)
 
     def get_markup(self, direction=None, name=None):
-        r'''Gets markup.
+        r'''Gets markup directly.
+
+        Avoids markup expressions.
 
         Returns markup or none.
         '''
@@ -1668,18 +1682,21 @@ class Expression(AbjadObject):
                 message = 'expression name not found: {!r}.'
                 message = message.format(self)
                 raise ValueError(message)
-            markup = self._compile_callback_markup(name)
+            #markup = self._compile_callback_markup(name)
+            markup = self._apply_callback_markup(name)
         else:
             markups = []
             for subexpression in self.subexpressions or []:
+                #markup = subexpression.get_markup_directly()
                 markup = subexpression.get_markup()
                 markups.append(markup)
             if len(markups) != argument_count:
                 message = 'argument count of {} with {} markups found.'
                 message = message.format(argument_count, len(markups))
                 raise ValueError(message)
-            markup = self.markup_expression(*markups)
-            markup = self._compile_callback_markup(
+            markup = self._make_method_markup(markups)
+            #markup = self._compile_callback_markup(
+            markup = self._apply_callback_markup(
                 markup,
                 previous_callback=self,
                 )
@@ -1969,10 +1986,10 @@ class Expression(AbjadObject):
         is_postfix=None,
         keywords=None,
         map_operand=None,
-        markup_expression=None,
         module_names=None,
         next_name=None,
         precedence=None,
+        qualified_method_name=None,
         string_template=None,
         ):
         r'''Makes callback.
@@ -1989,123 +2006,12 @@ class Expression(AbjadObject):
             is_postfix=is_postfix,
             keywords=keywords,
             map_operand=map_operand,
-            markup_expression=markup_expression,
             module_names=module_names,
             next_name=next_name,
             precedence=precedence,
+            qualified_method_name=qualified_method_name,
             string_template=string_template,
             )
-
-    def markup(self, **keywords):
-        r'''Makes markup expression.
-
-        ..  container:: example expression
-
-            Makes expression to make bold markup:
-
-            ::
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.markup()
-                >>> expression = expression.bold()
-
-            ::
-
-                >>> markup = expression('Allegro assai')
-                >>> show(markup) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(markup)
-                \markup {
-                    \bold
-                        "Allegro assai"
-                    }
-
-        Returns expression.
-        '''
-        from abjad.tools import markuptools
-        from abjad.tools import topleveltools
-        class_ = markuptools.Markup
-        callback = self._make_initializer_callback(class_, **keywords)
-        expression = self.append_callback(callback)
-        return topleveltools.new(expression, proxy_class=class_)
-
-    def markup_list(self, **keywords):
-        r'''Makes markup list expression.
-
-        ..  container:: example expression
-
-            Makes expression to concatenate markups in markup list:
-
-            ::
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.markup_list()
-                >>> expression = expression.concat(direction=Up)
-
-            ::
-
-                >>> downbow = abjad.Markup.musicglyph('scripts.downbow')
-                >>> hspace = abjad.Markup.hspace(1)
-                >>> upbow = abjad.Markup.musicglyph('scripts.upbow')
-                >>> markups = [downbow, hspace, upbow]
-                >>> markup = expression(markups)
-                >>> show(markup) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> f(markup)
-                ^ \markup {
-                    \concat
-                        {
-                            \musicglyph
-                                #"scripts.downbow"
-                            \hspace
-                                #1
-                            \musicglyph
-                                #"scripts.upbow"
-                        }
-                    }
-
-        ..  container:: example expression
-
-            ::
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.markup_list()
-
-            Expression works with zero arguments:
-
-            ::
-
-                >>> expression()
-                MarkupList(items=[])
-
-            Expression works with one argument:
-
-            ::
-
-                >>> expression(['Allegro', 'ma non troppo'])
-                MarkupList(items=[Markup(contents=['Allegro']), Markup(contents=['ma non troppo'])])
-
-            Expression raises exception on more than one argument:
-
-            ::
-
-                >>> expression('Allegro', 'ma', 'non', 'troppo')
-                Traceback (most recent call last):
-                    ...
-                Exception: 1 argument (not 4) required: ('Allegro', 'ma', 'non', 'troppo').
-
-        Returns expression.
-        '''
-        from abjad.tools import markuptools
-        from abjad.tools import topleveltools
-        class_ = markuptools.MarkupList
-        callback = self._make_initializer_callback(class_, **keywords)
-        expression = self.append_callback(callback)
-        return topleveltools.new(expression, proxy_class=class_)
 
     def pitch_class_segment(self, **keywords):
         r'''Makes pitch-class segment expression.
@@ -2177,7 +2083,6 @@ class Expression(AbjadObject):
         class_ = abjad.PitchClassSegment
         callback = self._make_initializer_callback(
             class_,
-            markup_expression=type(self)().markup(),
             string_template='{}',
             **keywords
             )
@@ -2208,7 +2113,6 @@ class Expression(AbjadObject):
         class_ = abjad.Sequence
         callback = self._make_initializer_callback(
             class_,
-            markup_expression=type(self)().markup(),
             string_template='{}',
             **keywords
             )

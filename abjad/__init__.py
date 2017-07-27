@@ -31,6 +31,7 @@ del AbjadConfiguration
 # import all tools packages
 from abjad.tools import *
 from abjad.tools.abctools import *
+from abjad.tools.agenttools import *
 from abjad.tools.datastructuretools import *
 index = Pattern.index
 index_all = Pattern.index_all
@@ -39,7 +40,6 @@ index_first = Pattern.index_first
 index_last = Pattern.index_last
 from abjad.tools.durationtools import *
 from abjad.tools.exceptiontools import *
-from abjad.tools.expressiontools import *
 from abjad.tools.indicatortools import *
 from abjad.tools.instrumenttools import Instrument
 from abjad.tools.lilypondfiletools import *
@@ -50,7 +50,7 @@ from abjad.tools.scoretools import *
 from abjad.tools.selectiontools import *
 from abjad.tools.selectortools import *
 from abjad.tools.spannertools import *
-from abjad.tools.spannertools import *
+from abjad.tools.systemtools.Signature import Signature
 from abjad.tools.topleveltools import *
 
 # mathtools classes (but not functions)

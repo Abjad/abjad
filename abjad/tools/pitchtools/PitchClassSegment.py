@@ -1,8 +1,8 @@
 # -* coding: utf-8 -*-
 import inspect
 from abjad.tools import durationtools
-from abjad.tools import expressiontools
 from abjad.tools import mathtools
+from abjad.tools import systemtools
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
@@ -144,8 +144,8 @@ class PitchClassSegment(Segment):
 
     ### SPECIAL METHODS ###
 
-    @expressiontools.Signature(
-        markup_expression_callback='_make___add___markup_expression',
+    @systemtools.Signature(
+        markup_maker_callback='_make___add___markup',
         string_template_callback='_make___add___string_template',
         )
     def __add__(self, argument):
@@ -980,8 +980,8 @@ class PitchClassSegment(Segment):
         superclass = super(PitchClassSegment, self)
         return superclass.__format__(format_specification=format_specification)
 
-    @expressiontools.Signature(
-        markup_expression_callback='_make___getitem___markup_expression',
+    @systemtools.Signature(
+        markup_maker_callback='_make___getitem___markup',
         string_template_callback='_make___getitem___string_template',
         )
     def __getitem__(self, argument):
@@ -1565,7 +1565,8 @@ class PitchClassSegment(Segment):
         return 'r'
 
     def _update_expression(self, frame, precedence=None):
-        callback = expressiontools.Expression._frame_to_callback(
+        import abjad
+        callback = abjad.Expression._frame_to_callback(
             frame,
             precedence=precedence,
             )
@@ -1884,7 +1885,7 @@ class PitchClassSegment(Segment):
         superclass = super(PitchClassSegment, self)
         return superclass.index(item)
 
-    @expressiontools.Signature(
+    @systemtools.Signature(
         is_operator=True,
         method_name='I',
         subscript='axis',
@@ -2181,7 +2182,7 @@ class PitchClassSegment(Segment):
                 note.written_pitch = pitch
         return result
 
-    @expressiontools.Signature(
+    @systemtools.Signature(
         is_operator=True,
         method_name='M',
         subscript='n',
@@ -2549,7 +2550,7 @@ class PitchClassSegment(Segment):
         items = [_.multiply(n) for _ in items]
         return type(self)(items=items)
 
-    @expressiontools.Signature()
+    @systemtools.Signature()
     def permute(self, row=None):
         r'''Permutes segment by twelve-tone `row`.
 
@@ -2665,7 +2666,7 @@ class PitchClassSegment(Segment):
         items = row(self)
         return type(self)(items=items)
 
-    @expressiontools.Signature(is_operator=True, method_name='R')
+    @systemtools.Signature(is_operator=True, method_name='R')
     def retrograde(self):
         r'''Gets retrograde of segment.
 
@@ -2873,7 +2874,7 @@ class PitchClassSegment(Segment):
             return self._update_expression(inspect.currentframe())
         return type(self)(items=reversed(self))
 
-    @expressiontools.Signature( 
+    @systemtools.Signature( 
         is_operator=True,
         method_name_callback='_make_rotate_method_name',
         subscript='n',
@@ -3521,7 +3522,7 @@ class PitchClassSegment(Segment):
         item_class = class_._to_pitch_item_class(self.item_class)
         return abjad.PitchSegment(items=self.items, item_class=item_class)
 
-    @expressiontools.Signature(
+    @systemtools.Signature(
         is_operator=True,
         method_name='T',
         subscript='n',
