@@ -48,23 +48,31 @@ class CodeBlockSpecifier(abctools.AbjadValueObject):
 
         Returns code block specifier.
         '''
-        allow_exceptions = options.get('allow_exceptions', None) or None
-        hide = options.get('hide', None) or None
-        strip_prompt = options.get('strip_prompt', None) or None
-        text_width = options.get('text_width', None) or None
+        allow_exceptions = None
+        if 'allow_exceptions' in options:
+            allow_exceptions = options.pop('allow_exceptions')
+        hide = None
+        if 'hide' in options:
+            hide = options.pop('hide')
+        strip_prompt = None
+        if 'strip_prompt' in options:
+            strip_prompt = options.pop('strip_prompt')
+        text_width = None
+        if 'text_width' in options:
+            text_width = options.pop('text_width')
         if all(_ is None for _ in (
             allow_exceptions,
             hide,
             strip_prompt,
             text_width,
             )):
-            return None
+            return None, options
         return cls(
             allow_exceptions=allow_exceptions,
             hide=hide,
             strip_prompt=strip_prompt,
             text_width=text_width,
-            )
+            ), options
 
     ### PUBLIC PROPERTIES ###
 

@@ -8,9 +8,9 @@ env:
 
 python:
     - 2.7
-    - 3.3
     - 3.4
     - 3.5
+    - 3.6
     - pypy
 
 matrix:
@@ -21,6 +21,7 @@ matrix:
 addons:
     apt:
         packages:
+            - ghostscript
             - graphviz
             - imagemagick
             - lmodern

@@ -11,10 +11,12 @@ ignored_classes = (
     abjadbooktools.CodeBlock,
     abjadbooktools.CodeOutputProxy,
     abjadbooktools.GraphvizOutputProxy,
+    abjadbooktools.LilyPondBlock,
     abjadbooktools.LilyPondOutputProxy,
+    abjadbooktools.RawLilyPondOutputProxy,
     expressiontools.Expression,
-    systemtools.StorageFormatAgent,
     systemtools.FormatSpecification,
+    systemtools.StorageFormatAgent,
     )
 
 classes = documentationtools.list_all_abjad_classes(

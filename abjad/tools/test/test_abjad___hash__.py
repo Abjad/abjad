@@ -13,14 +13,17 @@ ignored_classes = (
     abjadbooktools.CodeOutputProxy,
     abjadbooktools.DoctestDirective,
     abjadbooktools.GraphvizOutputProxy,
+    abjadbooktools.ImageOutputProxy,
     abjadbooktools.ImportDirective,
+    abjadbooktools.LilyPondBlock,
     abjadbooktools.LilyPondOutputProxy,
+    abjadbooktools.RawLilyPondOutputProxy,
     abjadbooktools.RevealDirective,
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
     datastructuretools.Enumeration,
-    systemtools.StorageFormatAgent,
     systemtools.FormatSpecification,
+    systemtools.StorageFormatAgent,
     systemtools.TestCase,
     )
 
