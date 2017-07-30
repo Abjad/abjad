@@ -23,7 +23,7 @@ class Test(ScorePackageScriptTestCase):
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_one_material(self, open_file_mock):
         self.create_score()
         material_path = self.create_material('test_material')
@@ -33,8 +33,8 @@ class Test(ScorePackageScriptTestCase):
         pdf_path.unlink()
         script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--render', 'test_material']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:

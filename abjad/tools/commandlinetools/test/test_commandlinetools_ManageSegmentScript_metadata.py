@@ -10,7 +10,7 @@ except ImportError:
 
 class Test(ScorePackageScriptTestCase):
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_1(self, open_file_mock):
         self.create_score()
         self.install_fancy_segment_maker()
@@ -43,7 +43,7 @@ class Test(ScorePackageScriptTestCase):
             'segment_number': 3,
             }
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_2(self, open_file_mock):
         self.create_score()
         self.install_fancy_segment_maker()

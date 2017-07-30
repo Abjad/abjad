@@ -2,7 +2,7 @@
 import abjad
 
 
-class TestCase(abjad.systemtools.TestCase):
+class TestCase(abjad.TestCase):
 
     def test_01(self):
         graph_one = abjad.graphtools.GraphvizGraph()

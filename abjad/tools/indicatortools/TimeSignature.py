@@ -139,8 +139,8 @@ class TimeSignature(AbjadValueObject):
         assert isinstance(denominator, int), repr(denominator)
         self._numerator = numerator
         self._denominator = denominator
-        prototype = (durationtools.Duration, type(None))
-        assert isinstance(partial, prototype), repr(partial)
+        if partial is not None:
+            partial = durationtools.Duration(partial)
         self._partial = partial
         if partial is not None:
             self._partial_repr_string = ', partial=%r' % self._partial

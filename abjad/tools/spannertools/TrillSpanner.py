@@ -113,7 +113,7 @@ class TrillSpanner(Spanner):
 
     def _get_lilypond_format_bundle(self, leaf):
         import abjad
-        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle = abjad.LilyPondFormatBundle()
         if self._is_my_first_leaf(leaf):
             contributions = abjad.override(self)._list_format_contributions(
                 'override',

@@ -248,6 +248,7 @@ class Pitch(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
+    @classmethod
     @abc.abstractmethod
     def from_hertz(class_, hertz):
         r'''Creates pitch from `hertz`.
@@ -259,6 +260,7 @@ class Pitch(AbjadValueObject):
         pitch = class_(midi)
         return pitch
 
+    @classmethod
     @abc.abstractmethod
     def from_pitch_carrier(class_, pitch_carrier):
         r'''Makes new pitch from `pitch_carrier`.

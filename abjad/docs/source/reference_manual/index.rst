@@ -30,7 +30,6 @@ Attachments
 ..  toctree::
     :numbered:
 
-    annotations
     articulations
     instruments
     lilypond_commands

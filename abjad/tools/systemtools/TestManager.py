@@ -355,7 +355,7 @@ class TestManager(AbjadObject):
 
         ::
 
-            >>> diff = abjad.systemtools.TestManager.diff(one, two, 'Diff:')
+            >>> diff = abjad.TestManager.diff(one, two, 'Diff:')
             >>> print(diff)
             Diff:
               rhythmmakertools.TaleaRhythmMaker(
@@ -395,7 +395,7 @@ class TestManager(AbjadObject):
         ::
 
             >>> def foo():
-            ...        function_name = abjad.systemtools.TestManager.get_current_function_name()
+            ...        function_name = abjad.TestManager.get_current_function_name()
             ...        print('Function name is {!r}.'.format(function_name))
 
         ::

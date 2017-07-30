@@ -8,7 +8,6 @@ import unicodedata
 
 class String(str):
     r'''String.
-
     '''
 
     ### CLASS VARIABLES ###

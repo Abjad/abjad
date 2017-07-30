@@ -17,7 +17,7 @@ class Timer(ContextManager):
 
         ::
 
-            >>> timer = abjad.systemtools.Timer()
+            >>> timer = abjad.Timer()
             >>> with timer:
             ...     for _ in range(1000000):
             ...         x = 1 + 1
@@ -29,7 +29,7 @@ class Timer(ContextManager):
 
         ::
 
-            >>> with abjad.systemtools.Timer() as timer: # doctest: +SKIP
+            >>> with abjad.Timer() as timer: # doctest: +SKIP
             ...     for _ in range(5):
             ...         for _ in range(1000000):
             ...             x = 1 + 1

@@ -18,8 +18,8 @@ class Test(ScorePackageScriptTestCase):
         segment_path = self.create_segment('test_segment')
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--edit', 'test_segment']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:

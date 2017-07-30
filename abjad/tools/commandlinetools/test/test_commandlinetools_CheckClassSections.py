@@ -245,8 +245,8 @@ class TestCheckClassSections(unittest.TestCase):
                 file_pointer.write(case[1])
         self.string_io = StringIO()
         # cd into test_working_directory and run the script with commands
-        with abjad.systemtools.TemporaryDirectoryChange(str(test_working_directory)):
-            with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(test_working_directory)):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
                     script = abjad.commandlinetools.CheckClassSections()
                     script(command)

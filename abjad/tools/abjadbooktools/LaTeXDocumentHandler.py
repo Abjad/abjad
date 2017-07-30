@@ -207,7 +207,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                 )
 
         """
-        from abjad.tools import stringtools
+        import abjad
         from abjad.tools import abjadbooktools
         input_blocks = collections.OrderedDict()
         in_input_block = False
@@ -258,7 +258,8 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                     stopping_line_number,
                     )
                 current_block_lines = '\n'.join(current_block_lines)
-                current_block_lines = stringtools.normalize(current_block_lines)
+                current_block_lines = abjad.String.normalize(
+                    current_block_lines)
                 current_block_lines = current_block_lines.split('\n')
                 code_block = abjadbooktools.CodeBlock.from_latex_abjad_block(
                     current_block_lines,
@@ -279,7 +280,8 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                     stopping_line_number,
                     )
                 current_block_lines = '\n'.join(current_block_lines)
-                current_block_lines = stringtools.normalize(current_block_lines)
+                current_block_lines = abjad.String.normalize(
+                    current_block_lines)
                 current_block_lines = current_block_lines.split('\n')
                 code_block = abjadbooktools.LilyPondBlock.from_latex_lilypond_block(
                     current_block_lines,

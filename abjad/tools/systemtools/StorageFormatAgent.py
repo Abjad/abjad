@@ -378,7 +378,7 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> types = abjad.systemtools.StorageFormatAgent._get_types(maker)
+                >>> types = abjad.StorageFormatAgent._get_types(maker)
                 >>> for _ in types:
                 ...     _
                 ...
@@ -396,7 +396,7 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> types = abjad.systemtools.StorageFormatAgent._get_types(dictionary)
+                >>> types = abjad.StorageFormatAgent._get_types(dictionary)
                 >>> for _ in types:
                 ...     _
                 ...
@@ -595,7 +595,7 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> agent = abjad.systemtools.StorageFormatAgent(rhythm_maker)
+                >>> agent = abjad.StorageFormatAgent(rhythm_maker)
                 >>> for line in agent.get_import_statements():
                 ...     line
                 ...

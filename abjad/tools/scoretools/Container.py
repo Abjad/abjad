@@ -655,7 +655,7 @@ class Container(Component):
             storage_format_args_values.append(lilypond_format)
             if not all(isinstance(x, abjad.Leaf) for x in self):
                 repr_text = self._get_abbreviated_string_format()
-        return abjad.systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             repr_args_values=repr_args_values,
             repr_kwargs_names=repr_kwargs_names,

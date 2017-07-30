@@ -1,6 +1,11 @@
 Creating graphs
 ===============
 
+..  abjad::
+
+    import abjad
+    from abjad.tools import graphtools
+
 Key points:
 
 #. Build graphs from nodes, edges and subgraphs.
@@ -53,7 +58,7 @@ Key points:
         for i, context in enumerate(lilypondnametools.LilyPondContext.list_all_contexts()):
             name = context.name
             fillcolor = i % 9 + 1
-            label = r'\n'.join(datastructuretools.delimit_words(name))
+            label = r'\n'.join(abjad.String(name).delimit_words())
             node_attributes = {'label': label}
             node = graphtools.GraphvizNode(
                 name=context.name,
@@ -92,7 +97,7 @@ Key points:
     :with-thumbnail:
 
     context_graph = create_context_graph()
-    graph(context_graph)
+    abjad.graph(context_graph)
 
 Graph basics
 ------------
@@ -111,19 +116,19 @@ Graph basics
 ..  abjad::
 
     my_graph.extend([node_a, node_b, node_c, node_d])
-    graph(my_graph)
+    abjad.graph(my_graph)
 
 ..  abjad::
 
     my_graph['B'].attributes['shape'] = 'diamond'
-    graph(my_graph)
+    abjad.graph(my_graph)
 
 ..  abjad::
 
     ab_edge = my_graph['A'].attach(my_graph['B'])
     bc_edge = my_graph['B'].attach(my_graph['C'])
     bd_edge = my_graph['B'].attach(my_graph['D'])
-    graph(my_graph)
+    abjad.graph(my_graph)
 
 ..  abjad::
 
@@ -138,7 +143,7 @@ Graph basics
         color='grey',
         penwidth=2,
         )
-    graph(my_graph)
+    abjad.graph(my_graph)
     print(format(my_graph, 'graphviz'))
 
 Collecting data for the graph
@@ -221,14 +226,14 @@ Configuring the graph's attributes
     :no-trim:
     :with-thumbnail:
 
-    graph(context_graph)
+    abjad.graph(context_graph)
 
 ..  abjad::
     :no-resize:
     :no-trim:
     :with-thumbnail:
 
-    graph(context_graph, layout='twopi')
+    abjad.graph(context_graph, layout='twopi')
 
 ..  abjad::
 
@@ -244,14 +249,14 @@ Configuring the graph's attributes
     :no-trim:
     :with-thumbnail:
 
-    graph(context_graph)
+    abjad.graph(context_graph)
 
 ..  abjad::
     :no-resize:
     :no-trim:
     :with-thumbnail:
 
-    graph(context_graph, layout='twopi')
+    abjad.graph(context_graph, layout='twopi')
 
 ..  abjad::
 
@@ -268,7 +273,7 @@ Configuring the graph's attributes
     :no-trim:
     :with-thumbnail:
 
-    graph(context_graph)
+    abjad.graph(context_graph)
 
 ..  abjad::
 
@@ -282,7 +287,7 @@ Configuring the graph's attributes
     :no-trim:
     :with-thumbnail:
 
-    graph(context_graph)
+    abjad.graph(context_graph)
 
 ..  abjad::
 
@@ -299,7 +304,7 @@ Configuring the graph's attributes
     :no-trim:
     :with-thumbnail:
 
-    graph(context_graph)
+    abjad.graph(context_graph)
 
 ..  abjad::
 
@@ -313,13 +318,13 @@ Configuring the graph's attributes
     :no-trim:
     :with-thumbnail:
 
-    graph(context_graph)
+    abjad.graph(context_graph)
 
 ..  abjad::
 
     for node in context_mapping.values():
         label = node.attributes['label']
-        words = datastructuretools.delimit_words(label)
+        words = abjad.String(label).delimit_words()
         node.attributes['label'] = r'\n'.join(words)
 
 ..  abjad::
@@ -327,14 +332,14 @@ Configuring the graph's attributes
     :no-trim:
     :with-thumbnail:
 
-    graph(context_graph)
+    abjad.graph(context_graph)
 
 ..  abjad::
     :no-resize:
     :no-trim:
     :with-thumbnail:
 
-    graph(context_graph, layout='twopi')
+    abjad.graph(context_graph, layout='twopi')
 
 Putting it all together
 -----------------------
@@ -347,4 +352,4 @@ Putting it all together
     :with-thumbnail:
 
     context_graph = create_context_graph()
-    graph(context_graph)
+    abjad.graph(context_graph)

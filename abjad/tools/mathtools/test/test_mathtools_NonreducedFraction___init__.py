@@ -11,16 +11,16 @@ import sys
     )
 def test_mathtools_NonreducedFraction___init___01():
     if sys.version_info[0] == 2:
-        result = abjad.systemtools.IOManager.count_function_calls(
+        result = abjad.IOManager.count_function_calls(
             'abjad.Fraction(3, 6)', globals())
         assert result in (2, 13)
-        result = abjad.systemtools.IOManager.count_function_calls(
+        result = abjad.IOManager.count_function_calls(
             'abjad.NonreducedFraction(3, 6)', globals())
-        assert result in (20, 30)
+        assert result in (25, 30)
     else:
-        result = abjad.systemtools.IOManager.count_function_calls(
+        result = abjad.IOManager.count_function_calls(
             'abjad.Fraction(3, 6)', globals())
         assert result < 20
-        result = abjad.systemtools.IOManager.count_function_calls(
+        result = abjad.IOManager.count_function_calls(
             'abjad.NonreducedFraction(3, 6)', globals())
         assert result < 100

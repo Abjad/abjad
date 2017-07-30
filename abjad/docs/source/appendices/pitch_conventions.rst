@@ -3,6 +3,9 @@
 Pitch conventions
 =================
 
+..  abjad::
+
+    import abjad
 
 Pitch numbers
 -------------
@@ -11,8 +14,8 @@ Abjad numbers pitches like this:
 
 ..  abjad::
 
-    score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
-    duration = Duration(1, 32)
+    score, treble_staff, bass_staff = abjad.Score.make_piano_score()
+    duration = abjad.Duration(1, 32)
 
 ..  abjad::
 
@@ -22,31 +25,32 @@ Abjad numbers pitches like this:
 ..  abjad::
 
     for pitch in pitches:
-        note = Note(pitch, duration)
-        rest = Rest(duration)
-        if 0 <= note.written_pitch.pitch_number:
+        note = abjad.Note(pitch, duration)
+        rest = abjad.Rest(duration)
+        if 0 <= note.written_pitch.number:
             treble_staff.append(note)
             bass_staff.append(rest)
         else:
             treble_staff.append(rest)
             bass_staff.append(note)
-        pitch_number = note.written_pitch.pitch_number
-        markup = markuptools.Markup(str(pitch_number), Down)
-        attach(markup, bass_staff[-1])
+        number = note.written_pitch.number
+        markup = abjad.Markup(str(number), Down)
+        abjad.attach(markup, bass_staff[-1])
 
 ..  abjad::
 
-    override(score).beam.transparent = True
-    override(score).time_signature.stencil = False
-    override(score).flag.transparent = True
-    override(score).rest.transparent = True
-    override(score).stem.stencil = False
-    override(score).text_script.staff_padding = 6
-    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 56)
+    abjad.override(score).beam.transparent = True
+    abjad.override(score).time_signature.stencil = False
+    abjad.override(score).flag.transparent = True
+    abjad.override(score).rest.transparent = True
+    abjad.override(score).stem.stencil = False
+    abjad.override(score).text_script.staff_padding = 6
+    moment = abjad.SchemeMoment((1, 56))
+    abjad.setting(score).proportional_notation_duration = moment
 
 ..  abjad::
 
-    lilypond_file = lilypondfiletools.LilyPondFile.new(
+    lilypond_file = abjad.LilyPondFile.new(
         score,
         global_staff_size=15,
         )
@@ -60,8 +64,8 @@ Abjad numbers diatonic pitches like this:
 
 ..  abjad::
 
-    score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
-    duration = Duration(1, 32)
+    score, treble_staff, bass_staff = abjad.Score.make_piano_score()
+    duration = abjad.Duration(1, 32)
 
 ..  abjad::
 
@@ -80,31 +84,32 @@ Abjad numbers diatonic pitches like this:
 ..  abjad::
 
     for pitch in pitches:
-        note = Note(pitch, duration)
-        rest = Rest(duration)
-        if 0 <= note.written_pitch.pitch_number:
+        note = abjad.Note(pitch, duration)
+        rest = abjad.Rest(duration)
+        if 0 <= note.written_pitch.number:
             treble_staff.append(note)
             bass_staff.append(rest)
         else:
             treble_staff.append(rest)
             bass_staff.append(note)
-        diatonic_pitch_number = note.written_pitch.diatonic_pitch_number
-        markup = markuptools.Markup(str(diatonic_pitch_number), Down)
-        attach(markup, bass_staff[-1])
+        number = note.written_pitch._get_diatonic_pitch_number()
+        markup = markuptools.Markup(str(number), Down)
+        abjad.attach(markup, bass_staff[-1])
 
 ..  abjad::
 
-    override(score).beam.transparent = True
-    override(score).time_signature.stencil = False
-    override(score).flag.transparent = True
-    override(score).rest.transparent = True
-    override(score).stem.stencil = False
-    override(score).text_script.staff_padding = 6
-    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 52)
+    abjad.override(score).beam.transparent = True
+    abjad.override(score).time_signature.stencil = False
+    abjad.override(score).flag.transparent = True
+    abjad.override(score).rest.transparent = True
+    abjad.override(score).stem.stencil = False
+    abjad.override(score).text_script.staff_padding = 6
+    moment = abjad.SchemeMoment((1, 52))
+    abjad.setting(score).proportional_notation_duration = moment
 
 ..  abjad::
 
-    lilypond_file = lilypondfiletools.LilyPondFile.new(
+    lilypond_file = abjad.LilyPondFile.new(
         score,
         global_staff_size=15,
         )

@@ -8,6 +8,6 @@ def make_desordre_staff(pitches):
 
     staff = abjad.Staff()
     for sequence in pitches:
-        measure = abjad.demos.desordre.make_desordre_measure(sequence)
+        measure = abjad.demos.ligeti.make_desordre_measure(sequence)
         staff.append(measure)
     return staff

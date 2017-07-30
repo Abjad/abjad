@@ -47,7 +47,7 @@ def annotate(component, name, indicator):
     '''
     import abjad
     assert isinstance(name, str), repr(name)
-    wrapper = abjad.systemtools.IndicatorWrapper(
+    wrapper = abjad.IndicatorWrapper(
         component=component,
         indicator=indicator,
         is_annotation=True,

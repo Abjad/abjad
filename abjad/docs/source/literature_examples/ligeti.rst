@@ -1,11 +1,10 @@
 Ligeti: *Désordre*
 ==================
 
-..  note::
+..  abjad::
 
-    Explore the ``abjad/demos/desordre/`` directory for the complete code to
-    this example, or import it into your Python session directly with ``from
-    abjad.demos import desordre``.
+    import abjad
+    from abjad.demos import ligeti
 
 This example demonstrates the power of exploiting redundancy to model musical
 structure. The piece that concerns us here is Ligeti's *Désordre*: the first
@@ -18,14 +17,11 @@ The redundancy is immediately evident in the repeating pattern found in both
 staves. The pattern is hierarchical. At the smallest level we have what we will
 here call a *cell*:
 
-..  import:: abjad.demos.desordre.make_desordre_cell:make_desordre_cell
-    :hide:
-
 ..  abjad::
     :hide:
     :stylesheet: non-proportional.ly
 
-    cell = Staff([make_desordre_cell([1, 2, 3])])
+    cell = abjad.Staff([ligeti.make_desordre_cell([1, 2, 3])])
     show(cell)
 
 
@@ -65,22 +61,20 @@ lower Voice will hold the eighth note run. First the eighth notes:
 ..  abjad::
 
     pitches = [1,2,3]
-    notes = scoretools.make_notes(pitches, [(1, 8)])
-    beam = Beam()
-    attach(beam, notes)
-    slur = Slur()
-    attach(slur, notes)
-    dynamic = Dynamic('f')
-    attach(dynamic, notes[0])
-    dynamic = Dynamic('p')
-    attach(dynamic, notes[1])
+    maker = abjad.NoteMaker()
+    notes = maker(pitches, [(1, 8)])
+    attach(abjad.Beam(), notes)
+    attach(abjad.Slur(), notes)
+    attach(abjad.Dynamic('f'), notes[0])
+    attach(abjad.Dynamic('p'), notes[1])
 
 ..  abjad::
 
-    voice_lower = Voice(notes)
+    voice_lower = abjad.Voice(notes)
     voice_lower.name = 'rh_lower'
-    command = indicatortools.LilyPondCommand('voiceTwo')
-    attach(command, voice_lower)
+    command = abjad.LilyPondCommand('voiceTwo')
+    leaf = abjad.inspect(voice_lower).get_leaf(0)
+    attach(command, leaf)
 
 The notes belonging to the eighth note run are first beamed and slurred. Then
 we add the dynamics to the first two notes, and finally we put them inside
@@ -93,16 +87,16 @@ Now we construct the octave:
 
     import math
     n = int(math.ceil(len(pitches) / 2.))
-    chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
-    articulation = Articulation('>')
-    attach(articulation, chord)
+    chord = abjad.Chord([pitches[0], pitches[0] + 12], (n, 8))
+    articulation = abjad.Articulation('>')
+    abjad.attach(articulation, chord)
 
 ..  abjad::
 
-    voice_higher = Voice([chord])
+    voice_higher = abjad.Voice([chord])
     voice_higher.name = 'rh_higher'
-    command = indicatortools.LilyPondCommand('voiceOne')
-    attach(command, voice_higher)
+    command = abjad.LilyPondCommand('voiceOne')
+    abjad.attach(command, voice_higher)
 
 The duration of the chord is half the duration of the running eighth notes if
 the duration of the running notes is divisible by two. Otherwise the duration
@@ -114,7 +108,7 @@ Finally we combine the two voices in a simultaneous container:
 
 ..  abjad::
     
-    container = Container([voice_lower, voice_higher])
+    container = abjad.Container([voice_lower, voice_higher])
     container.is_simultaneous = True
 
 This results in the complete *Désordre* *cell*:
@@ -122,14 +116,12 @@ This results in the complete *Désordre* *cell*:
 ..  abjad::
     :stylesheet: non-proportional.ly
     
-    cell = Staff([container])
+    cell = abjad.Staff([container])
     show(cell)
 
 Because this *cell* appears over and over again, we want to reuse this code to
 generate any number of these *cells*. We here encapsulate it in a function that
-will take only a list of pitches:
-
-..  import:: abjad.demos.desordre.make_desordre_cell:make_desordre_cell
+will take only a list of pitches.
 
 Now we can call this function to create any number of *cells*. That was
 actually the hardest part of reconstructing the opening of Ligeti's *Désordre*.
@@ -140,9 +132,7 @@ constructs.
 The measure
 -----------
 
-We define a function to create a measure from a list of lists of numbers:
-
-..  import:: abjad.demos.desordre.make_desordre_measure:make_desordre_measure
+We define a function to create a measure from a list of lists of numbers.
 
 The function is very simple. It simply creates a DynamicMeasure and then
 populates it with *cells* that are created internally with the function
@@ -158,16 +148,14 @@ a Ligeti measure we would call the function like so:
     :stylesheet: non-proportional.ly
 
     pitches = [[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]]
-    measure = make_desordre_measure(pitches)
-    staff = Staff([measure])
+    measure = ligeti.make_desordre_measure(pitches)
+    staff = abjad.Staff([measure])
     show(staff)
 
 The staff
 ---------
 
-Now we move up to the next level, the staff:
-
-..  import:: abjad.demos.desordre.make_desordre_staff:make_desordre_staff
+Now we move up to the next level, the staff.
 
 The function again takes a plain list as argument. The list must be a list of
 lists (for measures) of lists (for cells) of pitches. The function simply
@@ -179,16 +167,14 @@ full measure sequences with this new function:
     :stylesheet: non-proportional.ly
 
     pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
-    staff = make_desordre_staff(pitches)
+    staff = ligeti.make_desordre_staff(pitches)
     show(staff)
 
 The score
 ---------
 
 Finally a function that will generate the whole opening section of the piece
-*Désordre*:
-
-..  import:: abjad.demos.desordre.make_desordre_score:make_desordre_score
+*Désordre*.
 
 The function creates a PianoStaff, constructs Staves with Ligeti music and
 appends these to the empty PianoStaff. Finally it sets the clef and key
@@ -228,11 +214,11 @@ The final result:
 
 ..  abjad::
 
-    score = make_desordre_score([top, bottom])
+    score = ligeti.make_desordre_score([top, bottom])
 
 ..  abjad::
 
-    lilypond_file = documentationtools.make_ligeti_example_lilypond_file(score)
+    lilypond_file = abjad.documentationtools.make_ligeti_example_lilypond_file(score)
 
 ..  abjad::
     :stylesheet: non-proportional.ly
@@ -253,3 +239,7 @@ to learn all about how this works.)
 
 In this example we a custom ``documentationtools`` function to set up our
 LilyPond file automatically.
+
+Explore the ``abjad/demos/desordre/`` directory for the complete code to
+this example, or import it into your Python session directly with ``from
+abjad.demos import desordre``.

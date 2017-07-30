@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import abjad
 import os
-configuration = abjad.systemtools.AbjadConfiguration()
+configuration = abjad.AbjadConfiguration()
 ly_path = os.path.join(
     configuration.abjad_directory, 
     'test.ly',
@@ -13,7 +13,7 @@ def test_agenttools_PersistenceAgent_as_ly_01():
     '''
 
     note = abjad.Note("c'4")
-    with abjad.systemtools.FilesystemState(remove=[ly_path]):
+    with abjad.FilesystemState(remove=[ly_path]):
         result = abjad.persist(note).as_ly(ly_path)
         assert os.path.isfile(ly_path)
         assert isinstance(result, tuple)
@@ -24,7 +24,7 @@ def test_agenttools_PersistenceAgent_as_ly_02():
     '''
 
     note = abjad.Note("c'4")
-    with abjad.systemtools.FilesystemState(remove=[ly_path]):
+    with abjad.FilesystemState(remove=[ly_path]):
         result = abjad.persist(note).as_ly(ly_path)
         assert isinstance(result, tuple)
         assert os.path.isfile(ly_path)

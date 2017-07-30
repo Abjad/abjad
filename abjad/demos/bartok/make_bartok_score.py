@@ -4,7 +4,7 @@ import copy
 
 
 def make_bartok_score():
-    score = abjad.Score([])
+    score = abjad.Score()
     piano_staff = abjad.StaffGroup([], context_name='PianoStaff')
     upper_staff = abjad.Staff([])
     lower_staff = abjad.Staff([])
@@ -45,7 +45,8 @@ def make_bartok_score():
     lower_measures[4].extend([upper_voice, lower_voice])
     lower_measures[4].is_simultaneous = True
     clef = abjad.Clef('bass')
-    abjad.attach(clef, lower_staff)
+    leaf = abjad.inspect(lower_staff).get_leaf(0)
+    abjad.attach(clef, leaf)
     dynamic = abjad.Dynamic('pp')
     abjad.attach(dynamic, upper_measures[0][0])
     dynamic = abjad.Dynamic('mp')
@@ -72,7 +73,7 @@ def make_bartok_score():
     abjad.attach(slur, lower_leaves[1:6])
     crescendo = abjad.Hairpin('<')
     abjad.attach(crescendo, upper_leaves[-7:-2])
-    decrescendo = abjad.Decrescendo()
+    decrescendo = abjad.Hairpin('>')
     abjad.attach(decrescendo, upper_leaves[-2:])
     markup = abjad.Markup('ritard.')
     text_spanner = abjad.TextSpanner()
@@ -82,7 +83,6 @@ def make_bartok_score():
     abjad.attach(tie, upper_leaves[-2:])
     note_1 = lower_staff[-2]['upper voice'][0]
     note_2 = lower_staff[-1]['upper voice'][0]
-    notes = [note_1, note_2]
-    tie = abjad.Tie()
-    abjad.attach(tie, notes)
+    notes = abjad.select([note_1, note_2])
+    abjad.attach(abjad.Tie(), notes)
     return score

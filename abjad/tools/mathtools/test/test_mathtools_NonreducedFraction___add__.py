@@ -36,9 +36,9 @@ def test_mathtools_NonreducedFraction___add___03():
     a = abjad.NonreducedFraction(3, 6)
     b = abjad.NonreducedFraction(3, 12)
 
-    result_one = abjad.systemtools.IOManager.count_function_calls(
+    result_one = abjad.IOManager.count_function_calls(
         'a + b', locals())
-    result_two = abjad.systemtools.IOManager.count_function_calls(
+    result_two = abjad.IOManager.count_function_calls(
         'a + 10', locals())
 
     if sys.version_info[0] == 2:

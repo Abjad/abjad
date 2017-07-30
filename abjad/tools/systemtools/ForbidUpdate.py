@@ -14,7 +14,7 @@ class ForbidUpdate(ContextManager):
         ::
 
             >>> staff = abjad.Staff("c'8 d'8 ~ d'2 e'4")
-            >>> with abjad.systemtools.ForbidUpdate(component=staff):
+            >>> with abjad.ForbidUpdate(component=staff):
             ...     for note in staff[:]:
             ...         pitch_1 = note.written_pitch
             ...         pitch_2 = pitch_1 + abjad.NamedInterval('M3')

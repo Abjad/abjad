@@ -10,7 +10,7 @@ def make_desordre_measure(pitches):
     Returns a measure.
     '''
     for sequence in pitches:
-        container = abjad.demos.desordre.make_desordre_cell(sequence)
+        container = abjad.demos.ligeti.make_desordre_cell(sequence)
         time_signature = abjad.inspect(container).get_duration()
         time_signature = abjad.NonreducedFraction(time_signature)
         time_signature = time_signature.with_denominator(8)

@@ -431,7 +431,7 @@ class NamedPitch(Pitch):
 
     def _get_format_specification(self):
         import abjad
-        return abjad.systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             self,
             coerce_for_equality=True,
             repr_is_indented=False,
@@ -719,7 +719,7 @@ class NamedPitch(Pitch):
 
         Returns newly constructed named pitch.
         '''
-        return Pitch.from_hertz(class_, hertz)
+        return super(NamedPitch, class_).from_hertz(hertz)
 
     @classmethod
     def from_pitch_carrier(class_, pitch_carrier):
@@ -790,7 +790,7 @@ class NamedPitch(Pitch):
 
         Returns new named pitch.
         '''
-        return Pitch.from_pitch_carrier(class_, pitch_carrier)
+        return super(NamedPitch, class_).from_pitch_carrier(pitch_carrier)
 
     @classmethod
     def from_pitch_number(

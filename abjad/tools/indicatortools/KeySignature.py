@@ -115,7 +115,7 @@ class KeySignature(AbjadValueObject):
     def _get_format_specification(self):
         import abjad
         values = [self.tonic, self.mode]
-        return abjad.systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
@@ -127,7 +127,7 @@ class KeySignature(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
-        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle = abjad.LilyPondFormatBundle()
         bundle.before.commands.append(self._get_lilypond_format())
         return bundle
 

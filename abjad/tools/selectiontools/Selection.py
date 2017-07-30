@@ -129,7 +129,7 @@ class Selection(object):
         Returns integer.
         '''
         import abjad
-        agent = abjad.systemtools.StorageFormatAgent(self)
+        agent = abjad.StorageFormatAgent(self)
         hash_values = agent.get_hash_values()
         return hash(hash_values)
 
@@ -170,6 +170,16 @@ class Selection(object):
         Returns nonnegative integer.
         '''
         return len(self._music)
+
+    def __ne__(self, argument):
+        r'''Is true when self does not equal argument.
+
+        ..  note:: this definition can be removed after support for Python is
+            dropped.
+
+        Returns true or false.
+        '''
+        return not self.__eq__(argument)
 
     def __radd__(self, argument):
         r'''Concatenates selection to `argument`.

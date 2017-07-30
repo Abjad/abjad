@@ -913,28 +913,28 @@ class InspectionAgent(abctools.AbjadObject):
             >>> agent = abjad.inspect(staff_group[1][0])
             >>> moment = agent.get_vertical_moment(governor=staff_group)
             >>> moment.leaves
-            (Note("a'4"), Note("f'8"))
+            Selection([Note("a'4"), Note("f'8")])
 
         ::
 
             >>> agent = abjad.inspect(staff_group[1][1])
             >>> moment = agent.get_vertical_moment(governor=staff_group)
             >>> moment.leaves
-            (Note("a'4"), Note("e'8"))
+            Selection([Note("a'4"), Note("e'8")])
 
         ::
 
             >>> agent = abjad.inspect(staff_group[1][2])
             >>> moment = agent.get_vertical_moment(governor=staff_group)
             >>> moment.leaves
-            (Note("g'4"), Note("d'8"))
+            Selection([Note("g'4"), Note("d'8")])
 
         ::
 
             >>> agent = abjad.inspect(staff_group[1][3])
             >>> moment = agent.get_vertical_moment(governor=staff_group)
             >>> moment.leaves
-            (Note("g'4"), Note("c'8"))
+            Selection([Note("g'4"), Note("c'8")])
 
         Returns vertical moment.
         '''

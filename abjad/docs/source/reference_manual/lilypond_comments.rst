@@ -1,6 +1,10 @@
 LilyPond comments
 =================
 
+..  abjad::
+
+    import abjad
+
 LilyPond comments begin with the ``%`` sign.
 
 You can include comments in the LilyPond output of the scores you create with
@@ -10,12 +14,12 @@ Abjad.
 Creating LilyPond comments
 --------------------------
 
-Use ``indicatortools`` to create a LilyPond comment:
+Use ``LilyPondComment`` to create a LilyPond comment:
 
 ..  abjad::
 
     contents_string = 'This is a LilyPond comment before a note.'
-    comment_1 = indicatortools.LilyPondComment(contents_string, 'before')
+    comment_1 = abjad.LilyPondComment(contents_string, 'before')
 
 
 Understanding the interpreter representation of a LilyPond comment
@@ -83,11 +87,11 @@ of any container:
 
 ..  abjad::
 
-    staff_comment_1 = indicatortools.LilyPondComment(contents_string_1, 'before')
-    staff_comment_2 = indicatortools.LilyPondComment(contents_string_2, 'opening')
-    staff_comment_3 = indicatortools.LilyPondComment(contents_string_3, 'opening')
-    staff_comment_4 = indicatortools.LilyPondComment(contents_string_4, 'closing')
-    staff_comment_5 = indicatortools.LilyPondComment(contents_string_5, 'after')
+    staff_comment_1 = abjad.LilyPondComment(contents_string_1, 'before')
+    staff_comment_2 = abjad.LilyPondComment(contents_string_2, 'opening')
+    staff_comment_3 = abjad.LilyPondComment(contents_string_3, 'opening')
+    staff_comment_4 = abjad.LilyPondComment(contents_string_4, 'closing')
+    staff_comment_5 = abjad.LilyPondComment(contents_string_5, 'after')
 
 ..  abjad::
 
@@ -109,7 +113,7 @@ Use the inspector to get the LilyPond comments attached to any component:
 
 ..  abjad::
 
-    inspect(note).get_indicators(indicatortools.LilyPondComment)
+    inspect(note).get_indicators(abjad.LilyPondComment)
 
 
 Detaching LilyPond comments
@@ -127,7 +131,7 @@ Use ``detach()`` to detach LilyPond comments:
 
 ..  abjad::
 
-    detached_comments = detach(indicatortools.LilyPondComment, staff)
+    detached_comments = detach(abjad.LilyPondComment, staff)
     for comment in detached_comments: comment
 
 ..  abjad::

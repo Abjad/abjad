@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import indicatortools
-from abjad.tools import lilypondnametools
-from abjad.tools import schemetools
-from abjad.tools import scoretools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -269,17 +265,18 @@ class BowContactSpanner(Spanner):
         bow_contact_point=None,
         bundle=None,
         ):
+        import abjad
         if bow_contact_point is None:
             return
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='NoteHead',
             is_once=True,
             property_path='stencil',
-            value=schemetools.Scheme('ly:text-interface::print'),
+            value=abjad.Scheme('ly:text-interface::print'),
             )
         string = override_.override_string
         bundle.grob_overrides.append(string)
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='NoteHead',
             is_once=True,
             property_path='text',
@@ -288,7 +285,7 @@ class BowContactSpanner(Spanner):
         string = override_.override_string
         bundle.grob_overrides.append(string)
         y_offset = float((4 * bow_contact_point.contact_point) - 2)
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='NoteHead',
             is_once=True,
             property_path='Y-offset',
@@ -311,14 +308,14 @@ class BowContactSpanner(Spanner):
         if this_contact_point is None:
             return
         next_contact_point = abjad.inspect(next_leaf).get_indicator(
-            indicatortools.BowContactPoint)
+            abjad.BowContactPoint)
         if next_contact_point is None:
             return
         previous_leaf = abjad.inspect(leaf).get_leaf(-1)
         previous_contact_point = None
         if previous_leaf is not None:
             previous_contact_points = abjad.inspect(previous_leaf
-                ).get_indicators(indicatortools.BowContactPoint)
+                ).get_indicators(abjad.BowContactPoint)
             if previous_contact_points:
                 previous_contact_point = previous_contact_points[0]
         if (self._is_my_first_leaf(leaf) or
@@ -332,7 +329,7 @@ class BowContactSpanner(Spanner):
         else:
             previous_leaf = abjad.inspect(leaf).get_leaf(-1)
             previous_contact_point = abjad.inspect(previous_leaf
-                ).get_indicator(indicatortools.BowContactPoint)
+                ).get_indicator(abjad.BowContactPoint)
             if (previous_contact_point < this_contact_point and
                 next_contact_point < this_contact_point):
                 direction_change = Up
@@ -355,9 +352,9 @@ class BowContactSpanner(Spanner):
                 string = r'^ \parenthesize \downbow'
         else:
             if direction_change == Up:
-                articulation = indicatortools.Articulation('upbow', Up)
+                articulation = abjad.Articulation('upbow', Up)
             elif direction_change == Down:
-                articulation = indicatortools.Articulation('downbow', Up)
+                articulation = abjad.Articulation('downbow', Up)
             string = str(articulation)
         bundle.right.articulations.append(string)
 
@@ -366,11 +363,10 @@ class BowContactSpanner(Spanner):
         bow_motion_technique=None,
         bundle=None,
         ):
+        import abjad
         if bow_motion_technique is not None:
-            style = schemetools.SchemeSymbol(
-                bow_motion_technique.glissando_style,
-                )
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            style = abjad.SchemeSymbol(bow_motion_technique.glissando_style)
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='Glissando',
                 is_once=True,
                 property_path='style',
@@ -383,8 +379,9 @@ class BowContactSpanner(Spanner):
         self,
         bundle=None,
         ):
-        style = schemetools.SchemeSymbol('cross')
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        import abjad
+        style = abjad.SchemeSymbol('cross')
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='NoteHead',
             is_once=True,
             property_path='style',
@@ -398,15 +395,15 @@ class BowContactSpanner(Spanner):
         if self._is_my_last_leaf(leaf):
             return False
         prototype = (
-            scoretools.MultimeasureRest,
-            scoretools.Rest,
-            scoretools.Skip,
+            abjad.MultimeasureRest,
+            abjad.Rest,
+            abjad.Skip,
             )
         next_leaf = abjad.inspect(leaf).get_leaf(1)
         if next_leaf is None or isinstance(next_leaf, prototype):
             return False
         next_contact_point = abjad.inspect(next_leaf).get_indicator(
-            indicatortools.BowContactPoint)
+            abjad.BowContactPoint)
         if next_contact_point is None:
             return False
         elif next_contact_point.contact_point is None:

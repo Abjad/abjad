@@ -63,7 +63,7 @@ def show(argument, return_timing=False, **keywords):
     lilypond_rendering_time = result[2]
     success = result[3]
     if success:
-        abjad.systemtools.IOManager.open_file(pdf_file_path)
+        abjad.IOManager.open_file(pdf_file_path)
     else:
         with open(abjad.abjad_configuration.lilypond_log_file_path, 'r') as fp:
             print(fp.read())

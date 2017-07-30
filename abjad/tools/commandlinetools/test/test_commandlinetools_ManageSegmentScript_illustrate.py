@@ -83,8 +83,8 @@ class Test(ScorePackageScriptTestCase):
             '''))
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 1
@@ -134,8 +134,8 @@ class Test(ScorePackageScriptTestCase):
         definition_path.unlink()
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 1
@@ -174,8 +174,8 @@ class Test(ScorePackageScriptTestCase):
             '''))
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 1
@@ -199,8 +199,8 @@ class Test(ScorePackageScriptTestCase):
             file_pointer.write('\n\nfailure = 1 / 0\n')
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 1
@@ -213,7 +213,7 @@ class Test(ScorePackageScriptTestCase):
                 Importing test_score.segments.test_segment.definition
         '''.replace('/', os.path.sep))
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_all_segments(self, open_file_mock):
         self.create_score()
         self.create_segment('segment_one')
@@ -221,8 +221,8 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_three')
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--illustrate', '*']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
@@ -276,7 +276,7 @@ class Test(ScorePackageScriptTestCase):
             'illustration.pdf',
             ).exists()
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_filtered_segments(self, open_file_mock):
         self.create_score()
         self.create_segment('segment_one')
@@ -284,8 +284,8 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_three')
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--illustrate', 'segment_t*']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
@@ -329,14 +329,14 @@ class Test(ScorePackageScriptTestCase):
             'illustration.pdf',
             ).exists()
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_one_segment(self, open_file_mock):
         self.create_score()
         self.create_segment('test_segment')
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--illustrate', 'test_segment']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:

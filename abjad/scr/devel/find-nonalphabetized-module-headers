@@ -43,7 +43,7 @@ def main():
 
 
 if __name__ == '__main__':
-    abjad.systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     #print 'Finding nonalphabetized module headers ...'
     #print
     #main()

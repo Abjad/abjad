@@ -427,7 +427,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                          comprises three beats.
             """)
         assert actual == target, \
-            abjad.systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     # I hate this test.
 #    def test_on_doctree_read_05(self):
@@ -619,7 +619,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     Désordre
             """)
         assert actual == target, \
-            abjad.systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_07(self):
         source = '''
@@ -661,7 +661,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         }
             """)
         assert actual == target, \
-            abjad.systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_08(self):
         source = '''
@@ -702,7 +702,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         Note("f'4") False True
             """)
         assert actual == target, \
-            abjad.systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_09(self):
         source = '''
@@ -750,7 +750,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         23
             """)
         assert actual == target, \
-            abjad.systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_10(self):
         source = '''
@@ -791,4 +791,4 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         24
             """)
         assert actual == target, \
-            abjad.systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')

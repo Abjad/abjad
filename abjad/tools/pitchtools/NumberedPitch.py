@@ -6,7 +6,7 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 
 class NumberedPitch(Pitch):
-    '''Numbered pitch.
+    r'''Numbered pitch.
 
     ::
 
@@ -289,7 +289,7 @@ class NumberedPitch(Pitch):
 
     def _get_format_specification(self):
         import abjad
-        return abjad.systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             coerce_for_equality=True,
             repr_is_indented=False,
@@ -465,7 +465,7 @@ class NumberedPitch(Pitch):
 
         Returns newly constructed numbered pitch.
         '''
-        return Pitch.from_hertz(class_, hertz)
+        return super(NumberedPitch, class_).from_hertz(hertz)
 
     @classmethod
     def from_pitch_carrier(class_, pitch_carrier):
@@ -536,7 +536,7 @@ class NumberedPitch(Pitch):
 
         Returns new numbered pitch.
         '''
-        return Pitch.from_pitch_carrier(class_, pitch_carrier)
+        return super(NumberedPitch, class_).from_pitch_carrier(pitch_carrier)
 
     def get_name(self, locale=None):
         r'''Gets name of numbered pitch name according to `locale`.

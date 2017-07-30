@@ -1,9 +1,13 @@
 Bartók: *Mikrokosmos*
 =====================
 
+..  abjad::
+
+    import abjad
+
 This example reconstructs the last five measures of Bartók's "Wandering" from
 *Mikrokosmos*, volume III. The end result is just a few measures long but
-covers the basic features you'll use most often in Abjad.
+covers the basic features you'll use most often in Abjad. 
 
 Here is what we want to end up with:
 
@@ -27,10 +31,10 @@ First let's create an empty score with a pair of staves connected by a brace:
 
 ..  abjad::
 
-    score = Score([])
-    piano_staff = scoretools.StaffGroup([], context_name='PianoStaff')
-    upper_staff = Staff([])
-    lower_staff = Staff([])
+    score = abjad.Score()
+    piano_staff = abjad.StaffGroup([], context_name='PianoStaff')
+    upper_staff = abjad.Staff()
+    lower_staff = abjad.Staff()
 
 ..  abjad::
 
@@ -47,11 +51,11 @@ Now let's add some empty measures:
 ..  abjad::
 
     upper_measures = []
-    upper_measures.append(Measure((2, 4), []))
-    upper_measures.append(Measure((3, 4), []))
-    upper_measures.append(Measure((2, 4), []))
-    upper_measures.append(Measure((2, 4), []))
-    upper_measures.append(Measure((2, 4), []))
+    upper_measures.append(abjad.Measure((2, 4), []))
+    upper_measures.append(abjad.Measure((3, 4), []))
+    upper_measures.append(abjad.Measure((2, 4), []))
+    upper_measures.append(abjad.Measure((2, 4), []))
+    upper_measures.append(abjad.Measure((2, 4), []))
 
 ..  abjad::
 
@@ -95,23 +99,23 @@ to true for each of the last two measures:
 
 ..  abjad::
 
-    upper_voice = Voice("b2", name='upper voice')
-    command = indicatortools.LilyPondCommand('voiceOne')
-    attach(command, upper_voice)
-    lower_voice = Voice("b4 a4", name='lower voice')
-    command = indicatortools.LilyPondCommand('voiceTwo')
-    attach(command, lower_voice)
+    upper_voice = abjad.Voice("b2", name='upper voice')
+    command = abjad.LilyPondCommand('voiceOne')
+    abjad.attach(command, upper_voice)
+    lower_voice = abjad.Voice("b4 a4", name='lower voice')
+    command = abjad.LilyPondCommand('voiceTwo')
+    abjad.attach(command, lower_voice)
     lower_measures[3].extend([upper_voice, lower_voice])
     lower_measures[3].is_simultaneous = True
 
 ..  abjad::
 
-    upper_voice = Voice("b2", name='upper voice')
-    command = indicatortools.LilyPondCommand('voiceOne')
-    attach(command, upper_voice)
-    lower_voice = Voice("g2", name='lower voice')
-    command = indicatortools.LilyPondCommand('voiceTwo')
-    attach(command, lower_voice)
+    upper_voice = abjad.Voice("b2", name='upper voice')
+    command = abjad.LilyPondCommand('voiceOne')
+    abjad.attach(command, upper_voice)
+    lower_voice = abjad.Voice("g2", name='lower voice')
+    command = abjad.LilyPondCommand('voiceTwo')
+    abjad.attach(command, lower_voice)
     lower_measures[4].extend([upper_voice, lower_voice])
     lower_measures[4].is_simultaneous = True
 
@@ -131,8 +135,8 @@ clef just like the top staff. Let's change that:
 
 ..  abjad::
 
-    clef = Clef('bass')
-    attach(clef, lower_staff)
+    leaf = abjad.inspect(lower_staff).get_leaf(0)
+    attach(abjad.Clef('bass'), leaf)
 
 Now let's add dynamics. For the top staff, we'll add them to the first
 note of the first measure and the second note of the second measure. For the
@@ -141,23 +145,19 @@ measure and the fourth note of the second measure:
 
 ..  abjad::
 
-    dynamic = Dynamic('pp')
-    attach(dynamic, upper_measures[0][0])
+    attach(abjad.Dynamic('pp'), upper_measures[0][0])
 
 ..  abjad::
 
-    dynamic = Dynamic('mp')
-    attach(dynamic, upper_measures[1][1])
+    attach(abjad.Dynamic('mp'), upper_measures[1][1])
 
 ..  abjad::
 
-    dynamic = Dynamic('pp')
-    attach(dynamic, lower_measures[0][1])
+    attach(abjad.Dynamic('pp'), lower_measures[0][1])
 
 ..  abjad::
 
-    dynamic = Dynamic('mp')
-    attach(dynamic, lower_measures[1][3])
+    attach(abjad.Dynamic('mp'), lower_measures[1][3])
 
 Let's add a double bar to the end of the piece:
 
@@ -179,23 +179,20 @@ Let's set the beams as Bartók did with some crossing the bar lines:
 
 ..  abjad::
 
-    upper_leaves = list(iterate(upper_staff).by_leaf())
-    lower_leaves = list(iterate(lower_staff).by_leaf())
+    upper_leaves = abjad.select(upper_staff).by_leaf()
+    lower_leaves = abjad.select(lower_staff).by_leaf()
 
 ..  abjad::
 
-    beam = Beam()
-    attach(beam, upper_leaves[:4])
+    attach(abjad.Beam(), upper_leaves[:4])
 
 ..  abjad::
 
-    beam = Beam()
-    attach(beam, lower_leaves[1:5])
+    attach(abjad.Beam(), lower_leaves[1:5])
 
 ..  abjad::
 
-    beam = Beam()
-    attach(beam, lower_leaves[6:10])
+    attach(abjad.Beam(), lower_leaves[6:10])
 
 ..  abjad::
     :stylesheet: non-proportional.ly
@@ -206,54 +203,47 @@ Now some slurs:
 
 ..  abjad::
 
-    slur = Slur()
-    attach(slur, upper_leaves[:5])
+    attach(abjad.Slur(), upper_leaves[:5])
 
 ..  abjad::
 
-    slur = Slur()
-    attach(slur, upper_leaves[5:])
+    attach(abjad.Slur(), upper_leaves[5:])
 
 ..  abjad::
 
-    slur = Slur()
-    attach(slur, lower_leaves[1:6])
+    attach(abjad.Slur(), lower_leaves[1:6])
 
 Hairpins:
 
 ..  abjad::
 
-    crescendo = Crescendo()
-    attach(crescendo, upper_leaves[-7:-2])
+    attach(abjad.Hairpin('<'), upper_leaves[-7:-2])
 
 ..  abjad::
 
-    decrescendo = Decrescendo()
-    attach(decrescendo, upper_leaves[-2:])
+    attach(abjad.Hairpin('>'), upper_leaves[-2:])
 
 A ritardando marking above the last seven notes of the upper staff:
 
 ..  abjad::
 
-    markup = Markup('ritard.')
-    text_spanner = spannertools.TextSpanner()
-    override(text_spanner).text_spanner.bound_details__left__text = markup
-    attach(text_spanner, upper_leaves[-7:])
+    markup = abjad.Markup('ritard.')
+    text_spanner = abjad.TextSpanner()
+    abjad.override(text_spanner).text_spanner.bound_details__left__text = markup
+    abjad.attach(text_spanner, upper_leaves[-7:])
 
 And ties connecting the last two notes in each staff:
 
 ..  abjad::
 
-    tie = Tie()
-    attach(tie, upper_leaves[-2:])
+    attach(abjad.Tie(), upper_leaves[-2:])
 
 ..  abjad::
 
     note_1 = lower_staff[-2]['upper voice'][0]
     note_2 = lower_staff[-1]['upper voice'][0]
-    notes = [note_1, note_2]
-    tie = Tie()
-    attach(tie, notes)
+    notes = abjad.select([note_1, note_2])
+    attach(abjad.Tie(), notes)
 
 The final result:
 

@@ -17,8 +17,8 @@ class Test(ScorePackageScriptTestCase):
         material_path = self.create_material('test_material')
         script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--edit', 'test_material']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:

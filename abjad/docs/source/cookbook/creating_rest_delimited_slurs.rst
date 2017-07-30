@@ -1,6 +1,11 @@
 Creating rest-delimited slurs
 =============================
 
+..  abjad::
+
+    import abjad
+
+
 Take a look at the slurs in the following example and notice that
 there is a pattern to how they arranged.
 
@@ -13,17 +18,17 @@ there is a pattern to how they arranged.
         \times 4/5 { r16 g' r b' d'' } 
         df'4 c' ~ c'1
         """
-    staff = Staff(string)
-    leaves = iterate(staff).by_class(scoretools.Leaf)
-    for group in iterate(leaves).by_run((Note, Chord)):
+    staff = abjad.Staff(string)
+    leaves = abjad.select(staff).by_leaf()
+    for group in abjad.iterate(leaves).by_run((abjad.Note, abjad.Chord)):
         if 1 < len(group):
-            slur = Slur()
-            attach(slur, group)
+            selection = abjad.select(group)
+            attach(abjad.Slur(), group)
 
     show(staff)
 
 The pattern?  Slurs in the example span groups of notes and chords separated by
-rests.
+rests. 
 
 Abjad makes it easy to create rest-delimited slurs in a structured way.
 
@@ -41,25 +46,23 @@ Let's start with the note input like this:
         \times 4/5 { r16 g' r b' d'' } 
         df'4 c' ~ c'1
         """
-    staff = Staff(string)
+    staff = abjad.Staff(string)
     show(staff)
 
 
 Grouping notes and chords
 -------------------------
 
-Next we'll group notes and chords together with one of the functions
-available in the ``scoretools`` package.
+Next we'll group notes and chords together.
 
 We add slur spanners inside our loop:
 
 ..  abjad::
 
-    leaves = iterate(staff).by_class(scoretools.Leaf)
-    for group in iterate(leaves).by_run((Note, Chord)):
+    leaves = abjad.select(staff).by_leaf()
+    for group in abjad.iterate(leaves).by_run((abjad.Note, abjad.Chord)):
         if 1 < len(group):
-            slur = Slur()
-            attach(slur, group)
+            attach(abjad.Slur(), group)
 
 Here's the result:
 
@@ -81,12 +84,11 @@ Let's rewrite our example to prevent that from happening:
 
 ..  abjad::
 
-    staff = Staff(string)
-    leaves = iterate(staff).by_class(scoretools.Leaf)
-    for group in iterate(leaves).by_run((Note, Chord)):
+    staff = abjad.Staff(string)
+    leaves = abjad.select(staff).by_leaf()
+    for group in abjad.iterate(leaves).by_run((abjad.Note, abjad.Chord)):
         if 1 < len(group):
-            slur = Slur()
-            attach(slur, group)
+            attach(abjad.Slur(), group)
 
 And here's the corrected result:
 

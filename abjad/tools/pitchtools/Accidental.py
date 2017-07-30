@@ -531,7 +531,7 @@ class Accidental(AbjadValueObject):
 
     def _get_format_specification(self):
         import abjad
-        return abjad.systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.name],

@@ -1,17 +1,19 @@
 Spacing music proportionally
 ============================
 
-..  note::
+..  abjad::
+    
+    import abjad
 
-    Abjad's proportional-by-default stylesheets have been disabled for this
-    cookbook article.
+(Note that Abjad's proportional-by-default stylesheets have been disabled for
+this cookbook article.)
 
 ..  abjad::
     :no-stylesheet:
 
-    voice = Voice(r"c'4.. g'16 \times 2/3 { e'4 a'4 c''4 }")
-    staff = Staff([voice])
-    score = Score([staff])
+    voice = abjad.Voice(r"c'4.. g'16 \times 2/3 { e'4 a'4 c''4 }")
+    staff = abjad.Staff([voice])
+    score = abjad.Score([staff])
     show(score)
 
 Uniform stretching
@@ -20,7 +22,7 @@ Uniform stretching
 ..  abjad::
     :no-stylesheet:
 
-    override(score).spacing_spanner.uniform_stretching = True
+    abjad.override(score).spacing_spanner.uniform_stretching = True
     show(score)
 
 Proportional notation duration
@@ -29,25 +31,25 @@ Proportional notation duration
 ..  abjad::
     :no-stylesheet:
 
-    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 16)
+    abjad.setting(score).proportional_notation_duration = abjad.SchemeMoment((1, 16))
     show(score)
 
 ..  abjad::
     :no-stylesheet:
 
-    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 24)
+    abjad.setting(score).proportional_notation_duration = abjad.SchemeMoment((1, 24))
     show(score)
 
 ..  abjad::
     :no-stylesheet:
 
-    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 32)
+    abjad.setting(score).proportional_notation_duration = abjad.SchemeMoment((1, 32))
     show(score)
 
 ..  abjad::
     :no-stylesheet:
 
-    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 48)
+    abjad.setting(score).proportional_notation_duration = abjad.SchemeMoment((1, 48))
     show(score)
 
 Strict note spacing
@@ -56,7 +58,7 @@ Strict note spacing
 ..  abjad::
     :no-stylesheet:
 
-    override(score).spacing_spanner.strict_note_spacing = True
+    abjad.override(score).spacing_spanner.strict_note_spacing = True
     show(score)
 
 Strict grace spacing

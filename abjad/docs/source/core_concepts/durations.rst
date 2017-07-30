@@ -3,6 +3,10 @@
 Durations
 =========
 
+..  abjad::
+
+    import abjad
+
 
 Breves, longas and other long durations
 ---------------------------------------
@@ -14,15 +18,15 @@ You can create breves with a LilyPond input string:
 
 ..  abjad::
 
-    note_1 = Note(r"c'\breve")
-    note_2 = Note(r"d'\breve.")
+    note_1 = abjad.Note(r"c'\breve")
+    note_2 = abjad.Note(r"d'\breve.")
 
 Or with an explicit duration:
 
 ..  abjad::
 
-    note_3 = Note("e'", Duration(2, 1))
-    note_4 = Note("f'", Duration(3, 1))
+    note_3 = Note("e'", abjad.Duration(2, 1))
+    note_4 = Note("f'", abjad.Duration(3, 1))
 
 The written duration of a breve always returns an Abjad duration object:
 
@@ -36,15 +40,15 @@ LilyPond renders breves like this:
 
 ..  abjad::
 
-    staff = Staff(notes)
+    staff = abjad.Staff(notes)
     show(staff)
 
 Abjad also supports longas. A longa equals two breves:
 
 ..  abjad::
 
-    note_1 = Note(r"c'\longa")
-    note_2 = Note("d'", Duration(6, 1))
+    note_1 = abjad.Note(r"c'\longa")
+    note_2 = abjad.Note("d'", abjad.Duration(6, 1))
 
 ..  abjad::
 
@@ -54,15 +58,15 @@ Abjad also supports longas. A longa equals two breves:
 
 ..  abjad::
 
-    staff = Staff(notes)
+    staff = abjad.Staff(notes)
     show(staff)
 
 A maxima is a duration equal to two longas:
 
 ..  abjad::
 
-    note_1 = Note(r"c'\maxima")
-    note_2 = Note("d'", Duration(12, 1))
+    note_1 = abjad.Note(r"c'\maxima")
+    note_2 = abjad.Note("d'", abjad.Duration(12, 1))
 
 ..  abjad::
 
@@ -93,8 +97,8 @@ Abjad implements LilyPond multpliers as multiplier objects.
 
 ..  abjad::
 
-    note = Note("c'4")
-    attach(Multiplier(1, 2), note)
+    note = abjad.Note("c'4")
+    attach(abjad.Multiplier(1, 2), note)
 
 ..  abjad::
 
@@ -103,7 +107,7 @@ Abjad implements LilyPond multpliers as multiplier objects.
 ..  abjad::
 
     note.written_duration
-    inspect(note).get_duration()
+    abjad.inspect(note).get_duration()
 
 ..  abjad::
 
@@ -114,13 +118,13 @@ quarter notes:
 
 ..  abjad::
 
-    quarter_notes = 4 * Note("c'4")
-    half_note = Note("c'2")
-    attach(Multiplier(1, 2), half_note)
+    quarter_notes = 4 * abjad.Note("c'4")
+    half_note = abjad.Note("c'2")
+    abjad.attach(abjad.Multiplier(1, 2), half_note)
     half_notes = 4 * half_note
-    top_staff = scoretools.Staff(quarter_notes, context_name='RhythmicStaff')
-    bottom_staff = scoretools.Staff(half_notes, context_name='RhythmicStaff')
-    staff_group = scoretools.StaffGroup([top_staff, bottom_staff])
+    top_staff = abjad.Staff(quarter_notes, context_name='RhythmicStaff')
+    bottom_staff = abjad.Staff(half_notes, context_name='RhythmicStaff')
+    staff_group = abjad.StaffGroup([top_staff, bottom_staff])
 
 ..  abjad::
 
@@ -144,10 +148,11 @@ Consider the measure below:
 
 ..  abjad::
 
-    measure = Measure((5, 16), "c16 c c c c")
-    beam = Beam()
-    attach(beam, [measure])
-    staff = scoretools.Staff([measure], context_name='RhythmicStaff')
+    measure = abjad.Measure((5, 16), "c16 c c c c")
+    leaves = abjad.select(measure).by_leaf()
+    beam = abjad.Beam()
+    attach(beam, leaves)
+    staff = abjad.Staff([measure], context_name='RhythmicStaff')
 
 ..  abjad::
 
@@ -158,17 +163,18 @@ Every note in the measure equals one sixteenth of a whole note:
 ..  abjad::
 
     note = measure[0]
-    inspect(note).get_duration()
+    abjad.inspect(note).get_duration()
 
 But now consider this measure:
 
 ..  abjad::
 
-    tuplet = Tuplet((4, 5), "c16 c c c c")
-    measure = Measure((4, 16), [tuplet])
+    tuplet = abjad.Tuplet((4, 5), "c16 c c c c")
+    measure = abjad.Measure((4, 16), [tuplet])
+    leaves = abjad.select(measure).by_leaf()
     beam = Beam()
-    attach(beam, [measure])
-    staff = scoretools.Staff([measure], context_name='RhythmicStaff')
+    attach(beam, leaves)
+    staff = abjad.Staff([measure], context_name='RhythmicStaff')
 
 ..  abjad::
 
@@ -180,7 +186,7 @@ Every note in this measures
 ..  abjad::
 
     note = tuplet[0]
-    inspect(note).get_duration()
+    abjad.inspect(note).get_duration()
 
 The notes in this measure are "sixteenth notes" with a duration equal to a
 value other than ``1/16``. Abjad formalizes this distinction in the difference

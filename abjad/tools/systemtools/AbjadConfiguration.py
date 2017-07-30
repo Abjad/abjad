@@ -17,7 +17,7 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> abjad_configuration = abjad.systemtools.AbjadConfiguration()
+            >>> abjad_configuration = abjad.AbjadConfiguration()
 
         ::
 

@@ -11,7 +11,7 @@ except ImportError:
 
 class Test(ScorePackageScriptTestCase):
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_all(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/.gitignore',
@@ -43,8 +43,8 @@ class Test(ScorePackageScriptTestCase):
         self.create_build_target()
         script = abjad.commandlinetools.ManageBuildTargetScript()
         command = ['--render', 'letter-portrait']
-        #with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-        with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        #with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -52,7 +52,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_path_contents(self.build_path, expected_files)
         assert open_file_mock.called
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_back_cover(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.pdf',
@@ -75,8 +75,8 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--back-cover',
             ]
-        #with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-        with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        #with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -84,7 +84,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_path_contents(target_path, expected_files)
         assert open_file_mock.called
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_front_cover(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.tex',
@@ -107,8 +107,8 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--front-cover',
             ]
-        #with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-        with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        #with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -116,7 +116,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_path_contents(target_path, expected_files)
         assert open_file_mock.called
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_music(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.tex',
@@ -139,8 +139,8 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--music',
             ]
-        #with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-        with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        #with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -148,7 +148,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_path_contents(target_path, expected_files)
         assert open_file_mock.called
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_parts(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.tex',
@@ -175,8 +175,8 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--parts',
             ]
-        #with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-        with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        #with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
@@ -184,7 +184,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_path_contents(target_path, expected_files)
         assert open_file_mock.called
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_preface(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.tex',
@@ -207,8 +207,8 @@ class Test(ScorePackageScriptTestCase):
             '--render', 'letter-portrait',
             '--preface',
             ]
-        #with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-        with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        #with abjad.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:

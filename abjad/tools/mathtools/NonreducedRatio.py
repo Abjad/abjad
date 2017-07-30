@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
 import fractions
-from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -77,9 +76,9 @@ class NonreducedRatio(AbjadValueObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
+        import abjad
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
+            return abjad.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, argument):
@@ -168,10 +167,13 @@ class NonreducedRatio(AbjadValueObject):
         result = [_ * number for _ in factors]
         return result
 
+    __rdiv__ = __rtruediv__
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        import abjad
+        return abjad.FormatSpecification(
             client=self,
             storage_format_args_values=[self.numbers],
             storage_format_is_indented=False,

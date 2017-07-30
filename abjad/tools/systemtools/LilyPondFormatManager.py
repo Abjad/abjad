@@ -485,7 +485,7 @@ class LilyPondFormatManager(AbjadObject):
 
             ::
 
-                >>> manager = abjad.systemtools.LilyPondFormatManager
+                >>> manager = abjad.LilyPondFormatManager
                 >>> print(manager.report_component_format_contributions(staff[0]))
                 slot 1:
                     grob overrides:
@@ -515,7 +515,7 @@ class LilyPondFormatManager(AbjadObject):
 
             ::
 
-                >>> manager = abjad.systemtools.LilyPondFormatManager
+                >>> manager = abjad.LilyPondFormatManager
                 >>> print(manager.report_spanner_format_contributions(spanner))
                 c8	systemtools.LilyPondFormatBundle(
                         right=systemtools.SlotContributions(

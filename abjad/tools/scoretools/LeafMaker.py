@@ -729,6 +729,7 @@ class LeafMaker(AbjadValueObject):
         # return result
         return result
 
+    @staticmethod
     def _partition_less_than_double(n, m):
         import abjad
         assert abjad.mathtools.is_positive_integer_equivalent_number(n)

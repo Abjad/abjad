@@ -75,7 +75,7 @@ class LilyPondContextSetting(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
-        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle = abjad.LilyPondFormatBundle()
         string = '\n'.join(self.format_pieces)
         bundle.context_settings.append(string)
         return bundle

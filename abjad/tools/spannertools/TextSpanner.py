@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
-from abjad.tools import lilypondnametools
 from abjad.tools import markuptools
 from abjad.tools.spannertools.Spanner import Spanner
 
@@ -291,7 +290,7 @@ class TextSpanner(Spanner):
                         hspace = current_line_segment.left_hspace
                         hspace = markuptools.Markup.hspace(hspace)
                         markup = markuptools.Markup.concat([markup, hspace])
-                override_ = lilypondnametools.LilyPondGrobOverride(
+                override_ = abjad.LilyPondGrobOverride(
                     grob_name='TextSpanner',
                     is_once=True,
                     property_path=(

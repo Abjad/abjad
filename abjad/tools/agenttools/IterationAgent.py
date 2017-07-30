@@ -2888,8 +2888,8 @@ class IterationAgent(abctools.AbjadObject):
                     ...     ):
                     ...     run
                     ...
-                    (Note("g'8"), Note("a'8"))
-                    (Chord("<b' d''>8"), Chord("<c'' e''>8"))
+                    Selection([Note("g'8"), Note("a'8")])
+                    Selection([Chord("<b' d''>8"), Chord("<c'' e''>8")])
 
             ..  container:: example expression
 
@@ -2901,8 +2901,8 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for run in expression(staff[:]):
                     ...     run
                     ...
-                    (Note("g'8"), Note("a'8"))
-                    (Chord("<b' d''>8"), Chord("<c'' e''>8"))
+                    Selection([Note("g'8"), Note("a'8")])
+                    Selection([Chord("<b' d''>8"), Chord("<c'' e''>8")])
 
         ..  container:: example
 
@@ -2950,9 +2950,9 @@ class IterationAgent(abctools.AbjadObject):
                     ...     ):
                     ...     run
                     ...
-                    (Note("c'8"), Note("d'8"))
-                    (Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8"))
-                    (Chord("<b' d''>8"), Chord("<c'' e''>8"))
+                    Selection([Note("c'8"), Note("d'8")])
+                    Selection([Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8")])
+                    Selection([Chord("<b' d''>8"), Chord("<c'' e''>8")])
 
             ..  container:: example expression
 
@@ -2965,9 +2965,9 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for run in expression(leaves):
                     ...     run
                     ...
-                    (Note("c'8"), Note("d'8"))
-                    (Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8"))
-                    (Chord("<b' d''>8"), Chord("<c'' e''>8"))
+                    Selection([Note("c'8"), Note("d'8")])
+                    Selection([Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8")])
+                    Selection([Chord("<b' d''>8"), Chord("<c'' e''>8")])
 
         ..  container:: example
 
@@ -2994,30 +2994,29 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for run in abjad.iterate(components).by_run():
                     ...     run
                     ...
-                    (Note("c'4"), Note("d'4"))
-                    (Note("e'4"), Note("f'4"))
-                    (Rest('r4'),)
+                    Selection([Note("c'4"), Note("d'4")])
+                    Selection([Note("e'4"), Note("f'4")])
+                    Selection([Rest('r4')])
 
         Returns generator.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        prototype = prototype or scoretools.Leaf
+        prototype = prototype or abjad.Leaf
         if not isinstance(prototype, collections.Sequence):
             prototype = (prototype,)
-        sequence = selectiontools.Selection(self._client)
+        selection = abjad.select(self._client)
         def _closure():
             current_run = ()
-            for run in sequence.group_by(type):
+            for run in selection.group_by(type):
                 if isinstance(run[0], prototype):
                     current_run = current_run + run
                 elif current_run:
-                    yield current_run
+                    yield abjad.select(current_run)
                     current_run = ()
             if current_run:
-                yield current_run
+                yield abjad.select(current_run)
         return _closure()
 
     def by_spanner(
@@ -3969,22 +3968,22 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for vertical_moment in abjad.iterate(score).by_vertical_moment():
                     ...     vertical_moment.leaves
                     ...
-                    (Note("d''8"), Note("a'4"), Note("f'8"))
-                    (Note("d''8"), Note("a'4"), Note("e'8"))
-                    (Note("c''8"), Note("a'4"), Note("e'8"))
-                    (Note("c''8"), Note("g'4"), Note("d'8"))
-                    (Note("b'8"), Note("g'4"), Note("d'8"))
-                    (Note("b'8"), Note("g'4"), Note("c'8"))
+                    Selection([Note("d''8"), Note("a'4"), Note("f'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("c''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("c''8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("c'8")])
 
                 ::
 
                     >>> for vertical_moment in abjad.iterate(staff_group).by_vertical_moment():
                     ...     vertical_moment.leaves
                     ...
-                    (Note("a'4"), Note("f'8"))
-                    (Note("a'4"), Note("e'8"))
-                    (Note("g'4"), Note("d'8"))
-                    (Note("g'4"), Note("c'8"))
+                    Selection([Note("a'4"), Note("f'8")])
+                    Selection([Note("a'4"), Note("e'8")])
+                    Selection([Note("g'4"), Note("d'8")])
+                    Selection([Note("g'4"), Note("c'8")])
 
             ..  container:: example expression
 
@@ -3995,12 +3994,12 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for vertical_moment in expression(score):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("d''8"), Note("a'4"), Note("f'8"))
-                    (Note("d''8"), Note("a'4"), Note("e'8"))
-                    (Note("c''8"), Note("a'4"), Note("e'8"))
-                    (Note("c''8"), Note("g'4"), Note("d'8"))
-                    (Note("b'8"), Note("g'4"), Note("d'8"))
-                    (Note("b'8"), Note("g'4"), Note("c'8"))
+                    Selection([Note("d''8"), Note("a'4"), Note("f'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("c''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("c''8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("c'8")])
 
                 ::
 
@@ -4009,10 +4008,10 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for vertical_moment in expression(staff_group):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("a'4"), Note("f'8"))
-                    (Note("a'4"), Note("e'8"))
-                    (Note("g'4"), Note("d'8"))
-                    (Note("g'4"), Note("c'8"))
+                    Selection([Note("a'4"), Note("f'8")])
+                    Selection([Note("a'4"), Note("e'8")])
+                    Selection([Note("g'4"), Note("d'8")])
+                    Selection([Note("g'4"), Note("c'8")])
 
         ..  container:: example
 
@@ -4069,12 +4068,12 @@ class IterationAgent(abctools.AbjadObject):
                     ...     ):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("b'8"), Note("g'4"), Note("c'8"))
-                    (Note("b'8"), Note("g'4"), Note("d'8"))
-                    (Note("c''8"), Note("g'4"), Note("d'8"))
-                    (Note("c''8"), Note("a'4"), Note("e'8"))
-                    (Note("d''8"), Note("a'4"), Note("e'8"))
-                    (Note("d''8"), Note("a'4"), Note("f'8"))
+                    Selection([Note("b'8"), Note("g'4"), Note("c'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("c''8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("c''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("f'8")])
 
                 ::
 
@@ -4085,10 +4084,10 @@ class IterationAgent(abctools.AbjadObject):
                     ...     ):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("g'4"), Note("c'8"))
-                    (Note("g'4"), Note("d'8"))
-                    (Note("a'4"), Note("e'8"))
-                    (Note("a'4"), Note("f'8"))
+                    Selection([Note("g'4"), Note("c'8")])
+                    Selection([Note("g'4"), Note("d'8")])
+                    Selection([Note("a'4"), Note("e'8")])
+                    Selection([Note("a'4"), Note("f'8")])
 
             ..  container:: example expression
 
@@ -4099,12 +4098,12 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for vertical_moment in expression(score):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("b'8"), Note("g'4"), Note("c'8"))
-                    (Note("b'8"), Note("g'4"), Note("d'8"))
-                    (Note("c''8"), Note("g'4"), Note("d'8"))
-                    (Note("c''8"), Note("a'4"), Note("e'8"))
-                    (Note("d''8"), Note("a'4"), Note("e'8"))
-                    (Note("d''8"), Note("a'4"), Note("f'8"))
+                    Selection([Note("b'8"), Note("g'4"), Note("c'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("c''8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("c''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("f'8")])
 
                 ::
 
@@ -4114,10 +4113,10 @@ class IterationAgent(abctools.AbjadObject):
                     >>> for vertical_moment in expression(staff_group):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("g'4"), Note("c'8"))
-                    (Note("g'4"), Note("d'8"))
-                    (Note("a'4"), Note("e'8"))
-                    (Note("a'4"), Note("f'8"))
+                    Selection([Note("g'4"), Note("c'8")])
+                    Selection([Note("g'4"), Note("d'8")])
+                    Selection([Note("a'4"), Note("e'8")])
+                    Selection([Note("a'4"), Note("f'8")])
 
         Returns generator.
         '''
@@ -4125,8 +4124,6 @@ class IterationAgent(abctools.AbjadObject):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def _buffer_components_starting_with(component, buffer, stop_offsets):
-            #if not isinstance(component, scoretools.Component):
-            #    raise TypeError
             buffer.append(component)
             stop_offsets.append(component._get_timespan().stop_offset)
             if isinstance(component, scoretools.Container):

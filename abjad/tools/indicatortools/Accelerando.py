@@ -123,7 +123,7 @@ class Accelerando(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
-        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle = abjad.LilyPondFormatBundle()
         markup = self._to_markup()
         markup = abjad.new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()

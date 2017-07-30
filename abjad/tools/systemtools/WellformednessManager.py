@@ -13,7 +13,7 @@ class WellformednessManager(AbjadObject):
 
         ::
 
-            >>> abjad.systemtools.WellformednessManager()
+            >>> abjad.WellformednessManager()
             WellformednessManager()
 
     '''

@@ -49,10 +49,10 @@ class Test(ScorePackageScriptTestCase):
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
     def test_exists(self):
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_score()
         assert self.score_path.exists()
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_score(expect_error=True)
         assert self.score_path.exists()
         shutil.rmtree(str(self.score_path))
@@ -67,10 +67,10 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_force_replace(self):
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_score()
         assert self.score_path.exists()
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_score(force=True)
         assert self.score_path.exists()
         shutil.rmtree(str(self.score_path))
@@ -86,7 +86,7 @@ class Test(ScorePackageScriptTestCase):
         '''.replace('/', os.path.sep))
 
     def test_success(self):
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_score()
         assert self.score_path.exists()
         self.compare_path_contents(self.score_path, self.expected_files)

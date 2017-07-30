@@ -8,7 +8,7 @@ except ImportError:
     import pathlib2 as pathlib
 
 
-class TestCase(abjad.systemtools.TestCase):
+class TestCase(abjad.TestCase):
 
     test_path = pathlib.Path(__file__).parent
     doctest_path = test_path.joinpath('doctest_test')
@@ -59,8 +59,8 @@ class TestCase(abjad.systemtools.TestCase):
     def test_both(self):
         script = abjad.commandlinetools.DoctestScript()
         command = [str(self.doctest_path)]
-        with abjad.systemtools.TemporaryDirectoryChange(str(self.test_path)):
-            with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.test_path)):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
         assert context_manager.exception.code == 1
@@ -92,8 +92,8 @@ class TestCase(abjad.systemtools.TestCase):
     def test_diff(self):
         script = abjad.commandlinetools.DoctestScript()
         command = ['--diff', str(self.failing_module_path)]
-        with abjad.systemtools.TemporaryDirectoryChange(str(self.test_path)):
-            with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.test_path)):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
         assert context_manager.exception.code == 1
@@ -123,8 +123,8 @@ class TestCase(abjad.systemtools.TestCase):
     def test_fail(self):
         script = abjad.commandlinetools.DoctestScript()
         command = [str(self.failing_module_path)]
-        with abjad.systemtools.TemporaryDirectoryChange(str(self.test_path)):
-            with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.test_path)):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
         assert context_manager.exception.code == 1
@@ -155,8 +155,8 @@ class TestCase(abjad.systemtools.TestCase):
     def test_pass(self):
         script = abjad.commandlinetools.DoctestScript()
         command = [str(self.passing_module_path)]
-        with abjad.systemtools.TemporaryDirectoryChange(str(self.test_path)):
-            with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.test_path)):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
         assert context_manager.exception.code == 0

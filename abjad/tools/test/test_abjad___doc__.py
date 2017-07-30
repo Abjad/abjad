@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
+import abjad
 import inspect
+import platform
 import pytest
 from abjad.tools import abjadbooktools
-from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import lilypondparsertools
 from abjad.tools import rhythmtreetools
-from abjad.tools import systemtools
 
 
 ignored_names = (
@@ -33,15 +33,15 @@ ignored_classes = (
     abjadbooktools.LaTeXDocumentHandler,
     abjadbooktools.LilyPondBlock,
     abjadbooktools.SphinxDocumentHandler,
-    datastructuretools.Enumeration,
+    abjad.Enumeration,
     lilypondparsertools.LilyPondLexicalDefinition,
     lilypondparsertools.LilyPondSyntacticalDefinition,
     lilypondparsertools.ReducedLyParser,
     lilypondparsertools.SchemeParser,
     rhythmtreetools.RhythmTreeParser,
-    systemtools.StorageFormatAgent,
-    systemtools.FormatSpecification,
-    systemtools.TestCase,
+    abjad.StorageFormatAgent,
+    abjad.FormatSpecification,
+    abjad.TestCase,
     )
 
 classes = documentationtools.list_all_abjad_classes(
@@ -55,18 +55,21 @@ def test_abjad___doc___01(class_):
     missing_doc_names = []
     if class_.__doc__ is None:
         missing_doc_names.append(class_.__name__)
-    for attr in inspect.classify_class_attrs(class_):
-        if attr.name in ignored_names:
+    if class_ is abjad.String and platform.python_implementation() == 'PyPy':
+        return
+    for attribute in inspect.classify_class_attrs(class_):
+        if attribute.name in ignored_names:
             continue
-        elif attr.defining_class is not class_:
+        elif attribute.defining_class is not class_:
             continue
-        if attr.name[0].isalpha() or attr.name.startswith('__'):
-            if getattr(class_, attr.name).__doc__ is None:
-                missing_doc_names.append(attr.name)
+        if attribute.name[0].isalpha() or attribute.name.startswith('__'):
+            if getattr(class_, attribute.name).__doc__ is None:
+                missing_doc_names.append(attribute.name)
     if missing_doc_names:
         message = '\n'.join('{}.{}'.format(class_.__name__, name)
             for name in missing_doc_names)
-        message = 'Missing docstrings for:\n{}'.format(message)
+        message = 'Missing docstrings for: {}'
+        message = message.format(message)
         raise Exception(message)
 
 

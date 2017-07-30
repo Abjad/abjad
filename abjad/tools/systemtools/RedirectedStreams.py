@@ -20,7 +20,7 @@ class RedirectedStreams(ContextManager):
             ...     from io import StringIO
             ...
             >>> string_io = StringIO()
-            >>> with abjad.systemtools.RedirectedStreams(stdout=string_io):
+            >>> with abjad.RedirectedStreams(stdout=string_io):
             ...     print("hello, world!")
             ...
             >>> result = string_io.getvalue()
@@ -81,7 +81,7 @@ class RedirectedStreams(ContextManager):
 
             ::
 
-                >>> context_manager = abjad.systemtools.RedirectedStreams()
+                >>> context_manager = abjad.RedirectedStreams()
                 >>> context_manager
                 <RedirectedStreams()>
 

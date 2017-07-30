@@ -13,8 +13,8 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_three')
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--list']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 2
@@ -30,8 +30,8 @@ class Test(ScorePackageScriptTestCase):
         self.create_score()
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--list']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 2
@@ -58,8 +58,8 @@ class Test(ScorePackageScriptTestCase):
             verbose=False,
             )
         command = ['--list']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 2

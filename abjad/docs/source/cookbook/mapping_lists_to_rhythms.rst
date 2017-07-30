@@ -1,6 +1,11 @@
 Mapping lists to rhythms
 ========================
 
+..  abjad::
+
+    import abjad
+
+
 Let's say you have a list of numbers that you want to convert into rhythmic
 notation.  This is very easy to do. There are a number of related topics
 that are presented separately as other tutorials.
@@ -15,14 +20,15 @@ into a list of Durations instances:
 
     integers = [4, 2, 2, 4, 3, 1, 5]
     denominator = 8
-    durations = [Duration(i, denominator) for i in integers]
+    durations = [abjad.Duration(i, denominator) for i in integers]
 
-Now we notate them using a single pitch with the function `scoretools.make_notes()`:
+Now we notate them using a single pitch with ``abjad.NoteMaker``:
 
 ..  abjad::
 
-    notes = scoretools.make_notes(["c'"], durations)
-    staff = Staff(notes)
+    maker = abjad.NoteMaker()
+    notes = maker(["c'"], durations)
+    staff = abjad.Staff(notes)
     show(staff)
 
 There we have it. Durations notated based on a simple list of numbers.

@@ -192,7 +192,7 @@ class Spanner(AbjadObject):
             message = 'must be leaf in spanner: {!r}.'
             message = message.format(leaf)
             raise Exception(message)
-        wrapper = abjad.systemtools.IndicatorWrapper(
+        wrapper = abjad.IndicatorWrapper(
             component=leaf,
             indicator=indicator,
             is_piecewise=True,
@@ -401,7 +401,7 @@ class Spanner(AbjadObject):
                 matching_indicators.append(indicator)
             elif any(indicator == x for x in prototype_objects):
                 matching_indicators.append(indicator)
-            elif isinstance(indicator, abjad.systemtools.IndicatorWrapper):
+            elif isinstance(indicator, abjad.IndicatorWrapper):
                 if isinstance(indicator.indicator, prototype_classes):
                     matching_indicators.append(indicator)
                 elif any(indicator.indicator == x for x in prototype_objects):

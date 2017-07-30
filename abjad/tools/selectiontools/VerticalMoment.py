@@ -234,12 +234,12 @@ class VerticalMoment(Selection):
     def leaves(self):
         r'''Tuple of zero or more leaves at vertical moment.
         '''
-        from abjad.tools import scoretools
+        import abjad
         result = []
         for component in self.components:
-            if isinstance(component, scoretools.Leaf):
+            if isinstance(component, abjad.Leaf):
                 result.append(component)
-        result = tuple(result)
+        result = abjad.select(result)
         return result
 
     @property

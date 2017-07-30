@@ -13,7 +13,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
         ::
 
-            >>> benchmark_score_maker = abjad.systemtools.BenchmarkScoreMaker()
+            >>> benchmark_score_maker = abjad.BenchmarkScoreMaker()
 
         ::
 

@@ -87,11 +87,14 @@ ignored_classes = (
     abjadbooktools.CodeOutputProxy,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.ImportDirective,
+    abjadbooktools.LilyPondBlock,
     abjadbooktools.LilyPondOutputProxy,
+    abjadbooktools.RawLilyPondOutputProxy,
     abjadbooktools.RevealDirective,
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
     lilypondparsertools.SyntaxNode,
+    systemtools.TestCase,
     )
 
 classes = documentationtools.list_all_abjad_classes(

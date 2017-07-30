@@ -1,6 +1,10 @@
 Scores
 ======
 
+..  abjad::
+
+    import abjad
+
 
 Making a score from a LilyPond input string
 -------------------------------------------
@@ -9,17 +13,11 @@ You can make an Abjad score from a LilyPond input string:
 
 ..  abjad::
 
-    input = r'''
+    string = r'''
     \new Staff { e''4 d''8 ( c''8 ) d''4 g'4 }
     \new Staff { \clef bass c4 a,4 b,4 e4 }
     '''
-
-..  abjad::
-
-    score = Score(input)
-
-..  abjad::
-
+    score = abjad.Score(string)
     show(score)
 
 
@@ -30,15 +28,9 @@ You can also make a score from a list of other Abjad components:
 
 ..  abjad::
 
-    treble_staff_1 = Staff("e'4 d'4 e'4 f'4 g'1")
-    treble_staff_2 = Staff("c'2. b8 a8 b1")
-
-..  abjad::
-
-    score = Score([treble_staff_1, treble_staff_2])
-
-..  abjad::
-
+    treble_staff_1 = abjad.Staff("e'4 d'4 e'4 f'4 g'1")
+    treble_staff_2 = abjad.Staff("c'2. b8 a8 b1")
+    score = abjad.Score([treble_staff_1, treble_staff_2])
     show(score)
 
 
@@ -83,11 +75,11 @@ Slice a score to select its components:
 Selecting a score's leaves
 --------------------------
 
-Use ``list(iterate(score).by_leaf())`` to select the leaves in a score:
+Use ``abjad.select().by_leaf())`` to select the leaves in a score:
 
 ..  abjad::
 
-    list(iterate(score).by_leaf())
+    abjad.select(score).by_leaf()
 
 
 Getting the length of a score
@@ -110,7 +102,7 @@ Use the inspector to get the duration of a score:
 
 ..  abjad::
 
-    inspect(score).get_duration()
+    abjad.inspect(score).get_duration()
 
 
 Appending one component to the bottom of a score
@@ -120,16 +112,10 @@ Use ``append()`` to append one component to the bottom of a score:
 
 ..  abjad::
 
-    staff = Staff("g4 f4 e4 d4 d1")
-    clef = Clef('bass')
-    attach(clef, staff)
-
-..  abjad::
-
+    staff = abjad.Staff("g4 f4 e4 d4 d1")
+    clef = abjad.Clef('bass')
+    abjad.attach(clef, staff[0])
     score.append(staff)
-
-..  abjad::
-
     show(score)
 
 
@@ -151,9 +137,6 @@ Use ``pop()`` to remove a score component by index:
 ..  abjad::
 
     score.pop(1)
-
-..  abjad::
-
     show(score)
 
 
@@ -165,9 +148,6 @@ Use ``remove()`` to remove a score component by reference:
 ..  abjad::
 
     score.remove(treble_staff_1)
-
-..  abjad::
-
     show(score)
 
 
@@ -197,13 +177,10 @@ You can name Abjad scores:
 ..  abjad::
 
     score.name = 'Example Score'
+    show(score)
 
 Score names appear in LilyPond input but not in notational output:
 
 ..  abjad::
 
     f(score)
-
-..  abjad::
-
-    show(score)

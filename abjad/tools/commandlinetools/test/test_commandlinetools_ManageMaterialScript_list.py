@@ -13,8 +13,8 @@ class Test(ScorePackageScriptTestCase):
         self.create_material('quux')
         script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--list']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 2
@@ -31,8 +31,8 @@ class Test(ScorePackageScriptTestCase):
         self.create_score()
         script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--list']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 2

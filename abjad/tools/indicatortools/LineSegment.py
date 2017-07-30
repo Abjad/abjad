@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import lilypondnametools
-from abjad.tools import schemetools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -84,9 +82,10 @@ class LineSegment(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_grob_overrides(self):
+        import abjad
         overrides = []
         if self.arrow_width is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -96,7 +95,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.dash_fraction is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -106,7 +105,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.dash_period is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -116,7 +115,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.left_broken_padding is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -128,7 +127,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.left_broken_text is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -140,7 +139,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.left_padding is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -152,7 +151,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.left_stencil_align_direction_y is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -164,7 +163,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.right_arrow is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -176,7 +175,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.right_broken_arrow is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -188,7 +187,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.right_broken_padding is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -200,7 +199,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.right_padding is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -212,7 +211,7 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.right_stencil_align_direction_y is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
@@ -224,8 +223,8 @@ class LineSegment(AbjadValueObject):
                 )
             overrides.append(override_)
         if self.style is not None:
-            style = schemetools.Scheme(self.style, quoting="'")
-            override_ = lilypondnametools.LilyPondGrobOverride(
+            style = abjad.Scheme(self.style, quoting="'")
+            override_ = abjad.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(

@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import indicatortools
-from abjad.tools import lilypondnametools
 from abjad.tools import markuptools
 from abjad.tools.spannertools.Spanner import Spanner
 
@@ -1742,7 +1740,7 @@ class MetronomeMarkSpanner(Spanner):
             markup = markup.parenthesize()
             markup = markup.override(('padding', 0.45))
             markup = markup + markup.hspace(0.75)
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1790,7 +1788,8 @@ class MetronomeMarkSpanner(Spanner):
     def _make_other_text_spanner_overrides(self, bundle):
         r'''Alphabetical by property.
         '''
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        import abjad
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1801,7 +1800,7 @@ class MetronomeMarkSpanner(Spanner):
         override_string = override_.override_string
         bundle.grob_overrides.append(override_string)
         #
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1812,7 +1811,7 @@ class MetronomeMarkSpanner(Spanner):
         override_string = override_.override_string
         bundle.grob_overrides.append(override_string)
         #
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1823,7 +1822,7 @@ class MetronomeMarkSpanner(Spanner):
         override_string = override_.override_string
         bundle.grob_overrides.append(override_string)
         #
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1840,7 +1839,7 @@ class MetronomeMarkSpanner(Spanner):
             padding = self.left_broken_padding
         else:
             padding = -2
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1854,7 +1853,7 @@ class MetronomeMarkSpanner(Spanner):
         bundle.grob_overrides.append(override_string)
         #
         #
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1867,7 +1866,7 @@ class MetronomeMarkSpanner(Spanner):
         override_string = override_.override_string
         bundle.grob_overrides.append(override_string)
         #
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1880,7 +1879,7 @@ class MetronomeMarkSpanner(Spanner):
         override_string = override_.override_string
         bundle.grob_overrides.append(override_string)
         #
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1893,7 +1892,7 @@ class MetronomeMarkSpanner(Spanner):
         override_string = override_.override_string
         bundle.grob_overrides.append(override_string)
         #
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1906,7 +1905,7 @@ class MetronomeMarkSpanner(Spanner):
         override_string = override_.override_string
         bundle.grob_overrides.append(override_string)
         #
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1919,7 +1918,7 @@ class MetronomeMarkSpanner(Spanner):
         override_string = override_.override_string
         bundle.grob_overrides.append(override_string)
         #
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1939,6 +1938,7 @@ class MetronomeMarkSpanner(Spanner):
         current_tempo,
         current_metric_modulation,
         ):
+        import abjad
         #
         #markup = current_tempo._to_markup()
         markup = self._combine_tempo_and_metric_modulation(
@@ -1946,7 +1946,7 @@ class MetronomeMarkSpanner(Spanner):
             current_metric_modulation,
             )
         markup = markup + markup.hspace(1.25)
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(
@@ -1966,6 +1966,7 @@ class MetronomeMarkSpanner(Spanner):
         current_tempo_trend,
         previous_tempo,
         ):
+        import abjad
         if self.start_with_parenthesized_tempo and previous_tempo:
             markup = previous_tempo._to_markup()
             markup = markup.line([markup])
@@ -1975,7 +1976,7 @@ class MetronomeMarkSpanner(Spanner):
         else:
             markup = current_tempo_trend._to_markup()
             markup = markup + markup.hspace(0.75)
-        override_ = lilypondnametools.LilyPondGrobOverride(
+        override_ = abjad.LilyPondGrobOverride(
             grob_name='TextSpanner',
             is_once=True,
             property_path=(

@@ -376,7 +376,7 @@ class NamedPitchClass(PitchClass):
     def _get_format_specification(self):
         import abjad
         values = [self.name]
-        return abjad.systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             coerce_for_equality=True,
             storage_format_is_indented=False,

@@ -2,14 +2,12 @@
 import functools
 import inspect
 import pytest
-#import sys
 from abjad.tools import abjadbooktools
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
-#from distutils.version import StrictVersion
 
 
 ignored_classes = (
@@ -62,29 +60,25 @@ valid_types = (
 def test_abjad___init___02(class_):
     r'''Make sure class initializer keyword argument values are immutable.
     '''
-    #version = StrictVersion('.'.join(str(x) for x in sys.version_info[:3]))
-    #if StrictVersion('3.5.0') <= version:
-    #    return
-    for attr in inspect.classify_class_attrs(obj):
-        if attr.defining_class is not obj:
+    if inspect.isabstract(class_):
+        return
+    object_ = class_()
+    initializer = object_.__init__
+    if not inspect.ismethod(initializer):
+        return
+    argument_specification = inspect.getargspec(initializer)
+    if argument_specification.keywords is None:
+        return
+    keyword_argument_names = argument_specification.args[1:]
+    keyword_argument_values = argument_specification.defaults or []
+    assert len(keyword_argument_names) == len(keyword_argument_values)
+    pairs = zip(keyword_argument_names, keyword_argument_values)
+    for name, value in pairs:
+        if value is NotImplemented:
             continue
-        elif attr.kind != 'method':
-            continue
-        obj = attr.object
-        if isinstance(obj, functools.partial):
-            obj = obj.function
-        argument_specification = inspect.getargspec(obj)
-        keyword_argument_names = argument_specification.args[1:]
-        keyword_argument_values = argument_specification.defaults
-        if keyword_argument_values is None:
-            continue
-        for name, value in zip(
-            keyword_argument_names, keyword_argument_values):
-            if value is NotImplemented:
-                continue
-            assert isinstance(value, valid_types), (attr.name, name, value)
-            if isinstance(value, tuple):
-                assert all(isinstance(x, valid_types) for x in value)
+        assert isinstance(value, valid_types), (name, value)
+        if isinstance(value, tuple):
+            assert all(isinstance(_, valid_types) for _ in value)
 
 
 functions = documentationtools.list_all_abjad_functions()

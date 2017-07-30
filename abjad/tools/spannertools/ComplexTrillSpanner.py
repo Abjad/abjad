@@ -110,7 +110,7 @@ class ComplexTrillSpanner(Spanner):
             if (previous_leaf is not None and
                 not isinstance(previous_leaf, prototype) and
                 abjad.inspect(previous_leaf).get_spanners(type(self))):
-                grob_override = abjad.lilypondnametools.LilyPondGrobOverride(
+                grob_override = abjad.LilyPondGrobOverride(
                     grob_name='TrillSpanner',
                     is_once=True,
                     property_path=(

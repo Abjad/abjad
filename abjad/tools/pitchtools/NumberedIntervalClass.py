@@ -228,7 +228,7 @@ class NumberedIntervalClass(IntervalClass):
 
     def _get_format_specification(self):
         import abjad
-        return abjad.systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             coerce_for_equality=True,
             repr_is_indented=False,

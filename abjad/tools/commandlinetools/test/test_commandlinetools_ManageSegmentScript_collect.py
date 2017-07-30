@@ -27,7 +27,7 @@ class Test(ScorePackageScriptTestCase):
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success(self, open_file_mock):
         self.create_score()
         self.create_segment('segment_one')
@@ -35,8 +35,8 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_three')
         self.illustrate_segments()
         collect_script = abjad.commandlinetools.ManageSegmentScript()
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     collect_script(['--collect'])
                 except SystemExit as e:

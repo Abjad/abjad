@@ -30,8 +30,8 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_c')
         script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--stage']
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
@@ -49,8 +49,8 @@ class Test(ScorePackageScriptTestCase):
             )
         call_subprocess_mock.side_effect = self.side_effect
         self.reset_string_io()
-        with abjad.systemtools.RedirectedStreams(stdout=self.string_io):
-            with abjad.systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:

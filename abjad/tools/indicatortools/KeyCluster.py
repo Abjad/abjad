@@ -72,7 +72,7 @@ class KeyCluster(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
-        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle = abjad.LilyPondFormatBundle()
         bundle.grob_overrides.append(
             '\\once \\override Accidental.stencil = ##f\n'
             '\\once \\override AccidentalCautionary.stencil = ##f\n'

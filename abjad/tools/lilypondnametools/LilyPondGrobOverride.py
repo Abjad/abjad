@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -9,11 +8,10 @@ class LilyPondGrobOverride(AbjadValueObject):
     ::
 
         >>> import abjad
-        >>> from abjad.tools import lilypondnametools
 
     ::
 
-        >>> override = lilypondnametools.LilyPondGrobOverride(
+        >>> override = abjad.LilyPondGrobOverride(
         ...    context_name='Staff',
         ...    grob_name='TextSpanner',
         ...    is_once=True,
@@ -99,7 +97,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
-        bundle = abjad.systemtools.LilyPondFormatBundle()
+        bundle = abjad.LilyPondFormatBundle()
         if not self.is_once:
             revert_format = '\n'.join(self.revert_format_pieces)
             bundle.grob_reverts.append(revert_format)
@@ -138,7 +136,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...    context_name='Staff',
             ...    grob_name='TextSpanner',
             ...    is_once=True,
@@ -154,7 +152,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
             ...     value=abjad.SchemeSymbol('zigzag'),
@@ -172,7 +170,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
             ...     value=abjad.SchemeSymbol('zigzag'),
@@ -191,7 +189,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...    context_name='Staff',
             ...    grob_name='TextSpanner',
             ...    is_once=True,
@@ -207,7 +205,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
             ...     value=abjad.SchemeSymbol('zigzag'),
@@ -225,7 +223,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
             ...     value=abjad.SchemeSymbol('zigzag'),
@@ -235,7 +233,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     is_revert=True,
             ...     property_path='style',
@@ -253,7 +251,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...    context_name='Staff',
             ...    grob_name='TextSpanner',
             ...    is_once=True,
@@ -298,7 +296,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
             ...     value=abjad.SchemeSymbol('zigzag'),
@@ -316,7 +314,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...    context_name='Staff',
             ...    grob_name='TextSpanner',
             ...    is_once=True,
@@ -340,7 +338,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
             ...     value=abjad.SchemeSymbol('zigzag'),
@@ -359,7 +357,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...     grob_name='Glissando',
             ...     property_path='style',
             ...     value=abjad.SchemeSymbol('zigzag'),
@@ -377,7 +375,7 @@ class LilyPondGrobOverride(AbjadValueObject):
 
         ::
 
-            >>> override = lilypondnametools.LilyPondGrobOverride(
+            >>> override = abjad.LilyPondGrobOverride(
             ...    context_name='Staff',
             ...    grob_name='TextSpanner',
             ...    is_once=True,

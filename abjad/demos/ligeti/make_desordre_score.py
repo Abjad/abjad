@@ -12,7 +12,7 @@ def make_desordre_score(pitches):
 
     # build the music
     for hand in pitches:
-        staff = abjad.demos.desordre.make_desordre_staff(hand)
+        staff = abjad.demos.ligeti.make_desordre_staff(hand)
         staff_group.append(staff)
 
     # set clef and key signature to left hand staff

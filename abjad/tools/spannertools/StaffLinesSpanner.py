@@ -89,7 +89,7 @@ class StaffLinesSpanner(Spanner):
         if self._is_my_first_leaf(leaf):
             bundle.before.commands.append(r'\stopStaff')
             if isinstance(self.lines, int):
-                override = abjad.lilypondnametools.LilyPondGrobOverride(
+                override = abjad.LilyPondGrobOverride(
                     context_name='Staff',
                     grob_name='StaffSymbol',
                     is_once=True,
@@ -99,7 +99,7 @@ class StaffLinesSpanner(Spanner):
                 string = override.override_string
                 bundle.before.commands.append(string)
             else:
-                override = abjad.lilypondnametools.LilyPondGrobOverride(
+                override = abjad.LilyPondGrobOverride(
                     context_name='Staff',
                     grob_name='StaffSymbol',
                     is_once=True,

@@ -64,7 +64,7 @@ class ProgressIndicator(ContextManager):
 
             ::
 
-                >>> context_manager = abjad.systemtools.ProgressIndicator()
+                >>> context_manager = abjad.ProgressIndicator()
                 >>> context_manager
                 <ProgressIndicator()>
 

@@ -1,6 +1,9 @@
 Changing notes to rests
 =======================
 
+..  abjad::
+
+    import abjad
 
 Making a repeating pattern of notes
 -----------------------------------
@@ -10,14 +13,15 @@ It is easy to make a repeating pattern of notes.
 Multiplying the list ``[0, 2, 4, 9, 7]`` by ``4`` creates a new list of twenty
 pitch numbers.
 
-The call to ``scoretools.make_notes()`` creates our notes:
+The call to ``NoteMaker`` creates our notes:
 
 ..  abjad::
 
     pitch_numbers = 4 * [0, 2, 4, 9, 7]
-    duration = Duration(1, 8)
-    notes = scoretools.make_notes(pitch_numbers, duration)
-    staff = Staff(notes)
+    duration = abjad.Duration(1, 8)
+    maker = abjad.NoteMaker()
+    notes = maker(pitch_numbers, duration)
+    staff = abjad.Staff(notes)
     show(staff)
 
 
@@ -28,19 +32,19 @@ Use ``iterate()`` to iterate the notes in any expression:
 
 ..  abjad::
 
-    for note in iterate(staff).by_class(Note):
+    for note in abjad.iterate(staff).by_leaf():
         note
 
 
 Enumerating the notes in a staff
 --------------------------------
 
-Use Python's built-in ``enumerate()``
-function to enumerate the elements in any iterable:
+Use Python's built-in ``enumerate()`` function to enumerate the elements in any
+iterable:
 
 ..  abjad::
 
-    generator = iterate(staff).by_class(Note)
+    generator = abjad.iterate(staff).by_leaf()
     for i, note in enumerate(generator):
         i, note
 
@@ -52,10 +56,10 @@ We can change every sixth note in a our score to a rest like this:
 
 ..  abjad::
 
-    generator = iterate(staff).by_class(Note)
+    generator = abjad.iterate(staff).by_leaf()
     for i, note in enumerate(generator):
         if i % 6 == 5:
-            rest = Rest('r8')
+            rest = abjad.Rest('r8')
             staff[i] = rest
 
 ..  abjad::
@@ -71,19 +75,20 @@ Let's make a new staff:
 ..  abjad::
 
     pitch_numbers = 4 * [0, 2, 4, 9, 7]
-    duration = Duration(1, 8)
-    notes = scoretools.make_notes(pitch_numbers, duration)
-    staff = Staff(notes)
+    duration = abjad.Duration(1, 8)
+    maker = abjad.NoteMaker()
+    notes = maker(pitch_numbers, duration)
+    staff = abjad.Staff(notes)
     show(staff)
 
 Now we can change every D4 to a rest like this:
 
 ..  abjad::
 
-    generator = iterate(staff).by_class(Note)
+    generator = abjad.iterate(staff).by_leaf()
     for i, note in enumerate(generator):
-        if inspect(note).get_sounding_pitch == "d'":
-            rest = Rest('r8')
+        if abjad.inspect(note).get_sounding_pitch == "d'":
+            rest = abjad.Rest('r8')
             staff[i] = rest
 
 ..  abjad::
