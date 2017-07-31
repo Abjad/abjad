@@ -17,6 +17,7 @@ class ImageOutputProxy(abctools.AbjadValueObject):
     __slots__ = (
         '_image_layout_specifier',
         '_image_render_specifier',
+        '_options',
         '_payload',
         )
 
@@ -26,9 +27,11 @@ class ImageOutputProxy(abctools.AbjadValueObject):
         self,
         image_layout_specifier=None,
         image_render_specifier=None,
+        **options
         ):
         self._image_layout_specifier = image_layout_specifier
         self._image_render_specifier = image_render_specifier
+        self._options = options
 
     ### PRIVATE METHODS ###
 
@@ -58,8 +61,16 @@ class ImageOutputProxy(abctools.AbjadValueObject):
             string = '\\noindent\\includegraphics{{{}}}'.format(
                 relative_file_path,
                 )
-        before = latex_configuration.get('before-includegraphics', ())
-        after = latex_configuration.get('after-includegraphics', ())
+        before = self.options.get('before_includegraphics', ())
+        if isinstance(before, str):
+            before = (before,)
+        if not before:
+            before = latex_configuration.get('before-includegraphics', ())
+        after = self.options.get('after_includegraphics', ())
+        if isinstance(after, str):
+            after = (after,)
+        if not after:
+            after = latex_configuration.get('after-includegraphics', ())
         result.extend(before)
         result.append(string)
         result.extend(after)
@@ -85,7 +96,11 @@ class ImageOutputProxy(abctools.AbjadValueObject):
         configuration = configuration or {}
         latex_configuration = configuration.get('latex', {})
         options_key = '{}-options'.format(self.file_name_prefix)
-        options = latex_configuration.get(options_key, ())
+        options = self.options.get(options_key.replace('-', '_'), ())
+        if isinstance(options, str):
+            options = (options,)
+        if not options:
+            options = latex_configuration.get(options_key, ())
         options = ''.join(options)
         file_extension = '.pdf'
         file_name = self.file_name_without_extension + file_extension
@@ -176,6 +191,10 @@ class ImageOutputProxy(abctools.AbjadValueObject):
         r'''Gets image specifier.
         '''
         return self._image_render_specifier
+
+    @property
+    def options(self):
+        return self._options
 
     @property
     def payload(self):

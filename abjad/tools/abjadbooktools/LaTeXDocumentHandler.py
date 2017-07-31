@@ -37,6 +37,12 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         ... </abjad>
         ... \\end{comment}
         ...
+        ... \\begin{comment}
+        ... <lilypond>
+        ... { c'4 d'4 e'4 f'4 }
+        ... </lilypond>
+        ... \\end{comment}
+        ...
         ... That's it!
         ... '''
 
@@ -176,6 +182,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
             (3, 5)
             (11, 15)
             (21, 23)
+            (27, 29)
 
         ::
 
@@ -194,8 +201,13 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                 ('show(Note("c\'4"))',),
                 starting_line_number=23,
                 )
+            abjadbooktools.LilyPondBlock(
+                ("{ c'4 d'4 e'4 f'4 }",),
+                starting_line_number=29,
+                )
 
         """
+        from abjad.tools import stringtools
         from abjad.tools import abjadbooktools
         input_blocks = collections.OrderedDict()
         in_input_block = False
@@ -203,7 +215,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         current_block_lines = None
         current_block_options = None
         for i, line in enumerate(input_file_contents):
-            if line.startswith('<abjad'):
+            if line.strip().startswith(('<abjad', '<lilypond>')):
                 if in_input_block:
                     message = 'Extra opening tag at line {}.'.format(i + 1)
                     raise ValueError(message)
@@ -211,11 +223,15 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                 current_block_options.update(
                     self.extract_code_block_options(line),
                     )
-                if line.startswith('<abjad>'):
-                    in_input_block = True
+                if line.strip().startswith('<abjad>'):
+                    in_input_block = '<abjad>'
                     current_block_lines = []
                     starting_line_number = i
-                elif line.startswith('<abjadextract '):
+                elif line.strip().startswith('<lilypond>'):
+                    in_input_block = '<lilypond>'
+                    current_block_lines = []
+                    starting_line_number = i
+                elif line.strip().startswith('<abjadextract '):
                     starting_line_number = stopping_line_number = i
                     code_block = abjadbooktools.CodeBlock.from_latex_abjadextract_block(
                         line,
@@ -227,17 +243,45 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                         stopping_line_number,
                         )
                     input_blocks[source_line_range] = code_block
-            elif line.startswith('</abjad>'):
+                else:
+                    raise ValueError
+            elif line.strip().startswith('</abjad>'):
                 if not in_input_block:
                     message = 'Extra closing tag at line {}'.format(i + 1)
                     raise ValueError(message)
+                elif in_input_block != '<abjad>':
+                    raise ValueError
                 in_input_block = False
                 stopping_line_number = i
                 source_line_range = (
                     starting_line_number,
                     stopping_line_number,
                     )
+                current_block_lines = '\n'.join(current_block_lines)
+                current_block_lines = stringtools.normalize(current_block_lines)
+                current_block_lines = current_block_lines.split('\n')
                 code_block = abjadbooktools.CodeBlock.from_latex_abjad_block(
+                    current_block_lines,
+                    starting_line_number=i,
+                    **current_block_options
+                    )
+                input_blocks[source_line_range] = code_block
+            elif line.strip().startswith('</lilypond>'):
+                if not in_input_block:
+                    message = 'Extra closing tag at line {}'.format(i + 1)
+                    raise ValueError(message)
+                elif in_input_block != '<lilypond>':
+                    raise ValueError
+                in_input_block = False
+                stopping_line_number = i
+                source_line_range = (
+                    starting_line_number,
+                    stopping_line_number,
+                    )
+                current_block_lines = '\n'.join(current_block_lines)
+                current_block_lines = stringtools.normalize(current_block_lines)
+                current_block_lines = current_block_lines.split('\n')
+                code_block = abjadbooktools.LilyPondBlock.from_latex_lilypond_block(
                     current_block_lines,
                     starting_line_number=i,
                     **current_block_options
@@ -266,13 +310,13 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         in_output_block = False
         starting_line_number = None
         for i, line in enumerate(input_file_contents):
-            if line.startswith(output_start_delimiter):
+            if line.strip().startswith(output_start_delimiter):
                 if in_output_block:
                     message = 'Extra opening tag at line {}'.format(i + 1)
                     raise ValueError(message)
                 in_output_block = True
                 starting_line_number = i
-            elif line.startswith(output_stop_delimiter):
+            elif line.strip().startswith(output_stop_delimiter):
                 if not in_output_block:
                     message = 'Extra closing tag at line {}'.format(i + 1)
                     raise ValueError(message)
@@ -404,11 +448,21 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                     not input_file_contents[start].strip():
                     input_file_contents[start:start + 1] = []
                 continue
-            output_lines = block.as_latex(
+            first_line = input_file_contents[source_line_range[0]]
+            indent = ''
+            for character in first_line:
+                if character.isspace():
+                    indent += character
+                else:
+                    break
+            output_lines = []
+            for string in block.as_latex(
                 configuration=configuration,
                 output_directory=self.assets_directory,
                 relative_output_directory=self.latex_assets_prefix,
-                )
+                ):
+                for line in string.split('\n'):
+                    output_lines.append(indent + line)
             if output_lines:
                 output_lines.insert(0, '')
                 stop += 1
@@ -528,7 +582,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
             assets_directory,
             self.input_directory,
             )
+
     @property
     def latex_root_directory(self):
         return self._latex_root_directory
-

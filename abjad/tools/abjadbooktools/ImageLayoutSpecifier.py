@@ -40,20 +40,26 @@ class ImageLayoutSpecifier(abctools.AbjadValueObject):
 
         Returns image specifier.
         '''
-        pages = options.get('pages', None) or None
-        with_columns = options.get('with_columns', None) or None
-        with_thumbnail = options.get('with_thumbnail', None) or None
+        pages = None
+        if 'pages' in options:
+            pages = options.pop('pages')
+        with_columns = None
+        if 'with_columns' in options:
+            with_columns = options.pop('with_columns')
+        with_thumbnail = None
+        if 'with_thumbnail' in options:
+            with_thumbnail = options.pop('with_thumbnail')
         if all(_ is None for _ in (
             pages,
             with_columns,
             with_thumbnail,
             )):
-            return None
+            return None, options
         return cls(
             pages=pages,
             with_columns=with_columns,
             with_thumbnail=with_thumbnail,
-            )
+            ), options
 
     ### PUBLIC PROPERTIES ###
 

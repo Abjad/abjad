@@ -156,12 +156,12 @@ class CodeBlock(abctools.AbjadValueObject):
         for key, value in block.attlist():
             key = key.replace('-', '_')
             cleaned_options[key] = value
-        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
-            **cleaned_options)
-        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
-            **cleaned_options)
-        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
-            **cleaned_options)
+        code_block_specifier, cleaned_options = \
+            abjadbooktools.CodeBlockSpecifier.from_options(**cleaned_options)
+        image_layout_specifier, cleaned_options = \
+            abjadbooktools.ImageLayoutSpecifier.from_options(**cleaned_options)
+        image_render_specifier, cleaned_options = \
+            abjadbooktools.ImageRenderSpecifier.from_options(**cleaned_options)
         code_block = abjadbooktools.CodeBlock(
             code_block_specifier=code_block_specifier,
             executed_lines=executed_lines,
@@ -182,12 +182,12 @@ class CodeBlock(abctools.AbjadValueObject):
         for key, value in block.attlist():
             key = key.replace('-', '_')
             cleaned_options[key] = value
-        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
-            **cleaned_options)
-        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
-            **cleaned_options)
-        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
-            **cleaned_options)
+        code_block_specifier, cleaned_options = \
+            abjadbooktools.CodeBlockSpecifier.from_options(**cleaned_options)
+        image_layout_specifier, cleaned_options = \
+            abjadbooktools.ImageLayoutSpecifier.from_options(**cleaned_options)
+        image_render_specifier, cleaned_options = \
+            abjadbooktools.ImageRenderSpecifier.from_options(**cleaned_options)
         code_block = abjadbooktools.CodeBlock(
             code_block_specifier=code_block_specifier,
             image_layout_specifier=image_layout_specifier,
@@ -231,12 +231,12 @@ class CodeBlock(abctools.AbjadValueObject):
         for key, value in options.items():
             key = key.replace('-', '_')
             cleaned_options[key] = value
-        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
-            **cleaned_options)
-        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
-            **cleaned_options)
-        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
-            **cleaned_options)
+        code_block_specifier, cleaned_options = \
+            abjadbooktools.CodeBlockSpecifier.from_options(**cleaned_options)
+        image_layout_specifier, cleaned_options = \
+            abjadbooktools.ImageLayoutSpecifier.from_options(**cleaned_options)
+        image_render_specifier, cleaned_options = \
+            abjadbooktools.ImageRenderSpecifier.from_options(**cleaned_options)
         code_block = abjadbooktools.CodeBlock(
             code_block_specifier=code_block_specifier,
             image_layout_specifier=image_layout_specifier,
@@ -267,12 +267,12 @@ class CodeBlock(abctools.AbjadValueObject):
         for key, value in options.items():
             key = key.replace('-', '_')
             cleaned_options[key] = value
-        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
-            **cleaned_options)
-        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
-            **cleaned_options)
-        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
-            **cleaned_options)
+        code_block_specifier, cleaned_options = \
+            abjadbooktools.CodeBlockSpecifier.from_options(**cleaned_options)
+        image_layout_specifier, cleaned_options = \
+            abjadbooktools.ImageLayoutSpecifier.from_options(**cleaned_options)
+        image_render_specifier, cleaned_options = \
+            abjadbooktools.ImageRenderSpecifier.from_options(**cleaned_options)
         code_block = abjadbooktools.CodeBlock(
             code_block_specifier=code_block_specifier,
             executed_lines=executed_lines,
