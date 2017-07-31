@@ -8,7 +8,55 @@ from abjad.tools.topleveltools import inspect_
 
 
 class Note(Leaf):
-    r'''A note.
+    r'''A Note in Abjad represents a single, monophonic, pitched note head.
+    In other words, a note is not a chord (see ``Chord``), not a drum note
+    (see ``DrumNote``), and not several tied notes (see ``LogicalTie``).
+
+    A Note's pitch is given by its ``written_pitch`` property, which is an
+    instance of ``NamedPitch``. Written pitch is pitch without considering
+    transposition of the instrument.
+
+    A Note's duration is given by its ``written_duration`` property, which is
+    an instance of ``Duration``. Written duration is duration without
+    considering time scaling due to tuplets or grace containers. Written
+    duration does, however, include augmentation dots.
+
+    If you pass in a string to the constructor, it will be parsed as LilyPond
+    notation (remember that Abjad uses ``\language "english"`` for pitch
+    names)::
+
+        >>> note = Note("cs''8.")
+        >>> note.written_pitch
+        NamedPitch("cs''")
+        >>> note.written_duration
+        Duration(3, 16)
+
+    If you leave out the duration, a quarter note is assumed::
+
+        >>> Note("c").written_duration
+        Duration(1, 4)
+
+    If you pass in a ``Leaf`` object as the sole argument, its pitch and
+    duration info will be copied into the new ``Note``.
+
+    If you pass in two arguments, the first is taken as the pitch, and the
+    second the duration. You can pass in ``NamedPitch`` and ``Duration``
+    objects::
+
+        >>> Note(NamedPitch("dqf'"), Duration(3, 4))
+        Note("dqf'2.")
+
+    or, for convenience, you can pass in other objects, which will be forwarded
+    to the ``NamedPitch`` and ``Duration`` constructors respectively::
+
+        >>> Note(6, (1, 4))
+        Note("fs'4")
+
+    If you don't pass in any arguments, the default Note is a quarter note
+    middle C::
+
+        >>> Note()
+        Note("c'4")
 
     ..  container:: example
 
