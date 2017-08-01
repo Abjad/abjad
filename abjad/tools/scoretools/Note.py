@@ -4,23 +4,27 @@ from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 
 
 class Note(Leaf):
-    r'''A note.
+    r'''Note.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> note = Note("cs''8.")
-            >>> measure = Measure((3, 16), [note])
+            >>> note = abjad.Note("cs''8.")
+            >>> measure = abjad.Measure((3, 16), [note])
             >>> show(measure) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(measure))
+            >>> f(measure)
             {
                 \time 3/16
                 cs''8.
@@ -41,11 +45,11 @@ class Note(Leaf):
     def __init__(self, *arguments):
         from abjad.ly import drums
         from abjad.tools import scoretools
-        from abjad.tools.topleveltools import parse
+        from abjad.tools import topleveltools
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = '{{ {} }}'.format(arguments[0])
-            parsed = parse(string)
+            parsed = topleveltools.parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = [parsed[0]]
         is_cautionary = False
@@ -131,25 +135,7 @@ class Note(Leaf):
             markup(bass)
         return treble, bass
 
-    def _get_sounding_pitch(self):
-        from abjad.tools import instrumenttools
-        from abjad.tools import pitchtools
-        if 'sounding pitch' in inspect_(self).get_indicators(str):
-            return self.written_pitch
-        else:
-            instrument = self._get_effective(instrumenttools.Instrument)
-            if instrument:
-                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
-            else:
-                sounding_pitch = pitchtools.NamedPitch('C4')
-            interval = pitchtools.NamedPitch('C4') - sounding_pitch
-            sounding_pitch = interval.transpose(self.written_pitch)
-            return sounding_pitch
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _body(self):
+    def _get_body(self):
         result = []
         if self.note_head is not None and self.note_head.is_parenthesized:
             result.append(r'\parenthesize')
@@ -160,22 +146,35 @@ class Note(Leaf):
                 body += '!'
             if self.note_head.is_cautionary:
                 body += '?'
-        body += self._formatted_duration
+        body += self._get_formatted_duration()
         result.append(body)
         result = ['\n'.join(result)]
         return result
 
-    @property
-    def _compact_representation(self):
-        return self._body[0]
+    def _get_compact_representation(self):
+        return self._get_body()[0]
 
-    @property
-    def _compact_representation_with_tie(self):
+    def _get_compact_representation_with_tie(self):
         logical_tie = self._get_logical_tie()
         if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            return '{} ~'.format(self._body[0])
+            return '{} ~'.format(self._get_body()[0])
         else:
-            return self._body[0]
+            return self._get_body()[0]
+
+    def _get_sounding_pitch(self):
+        from abjad.tools import instrumenttools
+        from abjad.tools import pitchtools
+        if 'sounding pitch' in inspect(self).get_indicators(str):
+            return self.written_pitch
+        else:
+            instrument = self._get_effective(instrumenttools.Instrument)
+            if instrument:
+                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            else:
+                sounding_pitch = pitchtools.NamedPitch('C4')
+            interval = pitchtools.NamedPitch('C4') - sounding_pitch
+            sounding_pitch = interval.transpose(self.written_pitch)
+            return sounding_pitch
 
     ### PUBLIC PROPERTIES ###
 
@@ -189,7 +188,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note = Note(13, (3, 16))
+                >>> note = abjad.Note(13, (3, 16))
                 >>> note.note_head
                 NoteHead("cs''")
 
@@ -199,7 +198,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note = Note(13, (3, 16))
+                >>> note = abjad.Note(13, (3, 16))
                 >>> note.note_head = 14
                 >>> note
                 Note("d''8.")
@@ -209,14 +208,14 @@ class Note(Leaf):
         return self._note_head
 
     @note_head.setter
-    def note_head(self, arg):
+    def note_head(self, argument):
         from abjad.tools.scoretools.NoteHead import NoteHead
-        if isinstance(arg, type(None)):
+        if isinstance(argument, type(None)):
             self._note_head = None
-        elif isinstance(arg, NoteHead):
-            self._note_head = arg
+        elif isinstance(argument, NoteHead):
+            self._note_head = argument
         else:
-            note_head = NoteHead(client=self, written_pitch=arg)
+            note_head = NoteHead(client=self, written_pitch=argument)
             self._note_head = note_head
 
     @property
@@ -229,7 +228,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note = Note("c'4")
+                >>> note = abjad.Note("c'4")
                 >>> note.written_duration
                 Duration(1, 4)
 
@@ -239,7 +238,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note.written_duration = Duration(1, 16)
+                >>> note.written_duration = abjad.Duration(1, 16)
                 >>> note.written_duration
                 Duration(1, 16)
 
@@ -261,7 +260,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note = Note(13, (3, 16))
+                >>> note = abjad.Note(13, (3, 16))
                 >>> note.written_pitch
                 NamedPitch("cs''")
 
@@ -271,7 +270,7 @@ class Note(Leaf):
 
             ::
 
-                >>> note = Note(13, (3, 16))
+                >>> note = abjad.Note(13, (3, 16))
                 >>> note.written_pitch = 14
                 >>> note
                 Note("d''8.")
@@ -279,19 +278,18 @@ class Note(Leaf):
         Returns named pitch.
         '''
         if self.note_head is not None:
-            if hasattr(self.note_head, 'written_pitch'):
-                return self._note_head.written_pitch
+            return self.note_head.written_pitch
 
     @written_pitch.setter
-    def written_pitch(self, arg):
+    def written_pitch(self, argument):
         from abjad.tools import pitchtools
-        from abjad.tools.scoretools.NoteHead import NoteHead
-        if arg is None:
+        from abjad.tools import scoretools
+        if argument is None:
             if self.note_head is not None:
                 self.note_head.written_pitch = None
         else:
             if self.note_head is None:
-                self.note_head = NoteHead(self, written_pitch=None)
+                self.note_head = scoretools.NoteHead(self, written_pitch=None)
             else:
-                pitch = pitchtools.NamedPitch(arg)
+                pitch = pitchtools.NamedPitch(argument)
                 self.note_head.written_pitch = pitch

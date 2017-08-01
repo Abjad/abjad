@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class FrenchHorn(Instrument):
-    r'''A French horn.
+    r'''French horn.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> french_horn = instrumenttools.FrenchHorn()
-        >>> attach(french_horn, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Horn }
-            \set Staff.shortInstrumentName = \markup { Hn. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> french_horn = abjad.instrumenttools.FrenchHorn()
+            >>> abjad.attach(french_horn, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Horn }
+                \set Staff.shortInstrumentName = \markup { Hn. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -128,7 +135,7 @@ class FrenchHorn(Instrument):
             ::
 
                 >>> french_horn.pitch_range
-                PitchRange(range_string='[B1, F5]')
+                PitchRange('[B1, F5]')
 
             ::
 

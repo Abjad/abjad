@@ -1,16 +1,19 @@
 LilyPond files
 ==============
 
+..  abjad::
+
+    import abjad
 
 Making LilyPond files
 ---------------------
 
-Make a basic LilyPond file with the ``lilypondfiletools`` package:
+Make a basic LilyPond file with ``LilyPondFile.new()``:
 
 ..  abjad::
 
-    staff = Staff("c'4 d'4 e'4 f'4")
-    lilypond_file = lilypondfiletools.LilyPondFile.new(staff)
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
+    lilypond_file = abjad.LilyPondFile.new(staff)
 
 ..  abjad::
 
@@ -53,7 +56,7 @@ Via templating:
 
 ..  abjad::
 
-    lilypond_file = new(
+    lilypond_file = abjad.new(
         lilypond_file,
         global_staff_size=14,
         default_paper_size=('A7', 'portrait'),
@@ -63,7 +66,7 @@ When instantiating:
 
 ..  abjad::
 
-    lilypond_file = lilypondfiletools.LilyPondFile.new(
+    lilypond_file = abjad.LilyPondFile.new(
         staff,
         global_staff_size=14,
         default_paper_size=('A7', 'portrait'),
@@ -86,8 +89,8 @@ information:
 
 ..  abjad::
 
-    lilypond_file.header_block.title = markuptools.Markup('Missa sexti tonus')
-    lilypond_file.header_block.composer = markuptools.Markup('Josquin')
+    lilypond_file.header_block.title = abjad.Markup('Missa sexti tonus')
+    lilypond_file.header_block.composer = abjad.Markup('Josquin')
 
 ..  abjad::
 

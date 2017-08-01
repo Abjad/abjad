@@ -6,7 +6,13 @@ def list_all_abjad_functions(modules=None):
 
     ::
 
-        >>> all_functions = documentationtools.list_all_abjad_functions()
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> all_functions = abjad.documentationtools.list_all_abjad_functions()
 
     '''
     from abjad.tools import documentationtools

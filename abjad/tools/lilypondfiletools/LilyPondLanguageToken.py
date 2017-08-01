@@ -5,18 +5,23 @@ from abjad.tools.abctools import AbjadValueObject
 class LilyPondLanguageToken(AbjadValueObject):
     r'''A LilyPond file ``\language`` token.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> lilypondfiletools.LilyPondLanguageToken()
+            >>> abjad.LilyPondLanguageToken()
             LilyPondLanguageToken()
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
@@ -27,7 +32,7 @@ class LilyPondLanguageToken(AbjadValueObject):
 
             ::
 
-                >>> token = lilypondfiletools.LilyPondLanguageToken()
+                >>> token = abjad.LilyPondLanguageToken()
                 >>> print(format(token))
                 \language "english"
 
@@ -47,7 +52,7 @@ class LilyPondLanguageToken(AbjadValueObject):
 
             ::
 
-                >>> token = lilypondfiletools.LilyPondLanguageToken()
+                >>> token = abjad.LilyPondLanguageToken()
                 >>> token
                 LilyPondLanguageToken()
 

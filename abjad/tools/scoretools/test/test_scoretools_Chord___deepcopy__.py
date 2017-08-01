@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 import copy
 
 
@@ -7,11 +7,11 @@ def test_scoretools_Chord___deepcopy___01():
     r'''Chord deepchopies note-heads.
     '''
 
-    chord_1 = Chord("<c' e' g'>4")
+    chord_1 = abjad.Chord("<c' e' g'>4")
     chord_1.note_heads[0].tweak.color = 'red'
     chord_2 = copy.deepcopy(chord_1)
 
-    assert format(chord_1) == stringtools.normalize(
+    assert format(chord_1) == abjad.String.normalize(
         r'''
         <
             \tweak color #red
@@ -22,7 +22,7 @@ def test_scoretools_Chord___deepcopy___01():
         '''
         )
 
-    assert format(chord_2) == stringtools.normalize(
+    assert format(chord_2) == abjad.String.normalize(
         r'''
         <
             \tweak color #red

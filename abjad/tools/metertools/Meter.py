@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import graphtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import systemtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class Meter(AbjadObject):
-    '''A meter.
+class Meter(AbjadValueObject):
+    '''Meter.
+
+    ::
+
+        >>> import abjad
 
     Meter models a common practice understanding of beats and other levels of
     rhythmic organization structured as a tree. Meter structure corresponds to
@@ -244,7 +248,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> parser = rhythmtreetools.RhythmTreeParser()
+            >>> parser = abjad.rhythmtreetools.RhythmTreeParser()
             >>> meter = abjad.Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
             >>> meter
             Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
@@ -291,12 +295,12 @@ class Meter(AbjadObject):
 
     def __init__(
         self,
-        arg=None,
+        argument=None,
         decrease_durations_monotonically=True,
         preferred_boundary_depth=None,
         ):
 
-        arg = arg or (4, 4)
+        argument = argument or (4, 4)
         assert isinstance(preferred_boundary_depth, (int, type(None)))
         self._preferred_boundary_depth = preferred_boundary_depth
 
@@ -365,36 +369,49 @@ class Meter(AbjadObject):
         decrease_durations_monotonically = \
             bool(decrease_durations_monotonically)
 
-        if isinstance(arg, type(self)):
-            root = arg.root_node
-            numerator, denominator = arg.numerator, arg.denominator
-            decrease_durations_monotonically = \
-                arg.decrease_durations_monotonically
+        try:
+            numerator = argument.numerator
+            denominator = argument.denominator
+            is_fraction_like = True
+        except AttributeError:
+            is_fraction_like = False
 
-        elif isinstance(arg, (str, rhythmtreetools.RhythmTreeContainer)):
-            if isinstance(arg, str):
-                parsed = rhythmtreetools.RhythmTreeParser()(arg)
+        if isinstance(argument, type(self)):
+            root = argument.root_node
+            numerator, denominator = argument.numerator, argument.denominator
+            decrease_durations_monotonically = \
+                argument.decrease_durations_monotonically
+
+        elif isinstance(argument, (str, rhythmtreetools.RhythmTreeContainer)):
+            if isinstance(argument, str):
+                parsed = rhythmtreetools.RhythmTreeParser()(argument)
                 assert len(parsed) == 1
                 root = parsed[0]
             else:
-                root = arg
+                root = argument
             for node in root.nodes:
                 assert node.prolation == 1
             numerator = root.preprolated_duration.numerator
             denominator = root.preprolated_duration.denominator
 
-        elif (isinstance(arg, (tuple, scoretools.Measure)) or
-            (hasattr(arg, 'numerator') and hasattr(arg, 'denominator'))):
-            if isinstance(arg, tuple):
-                fraction = mathtools.NonreducedFraction(arg)
-            elif isinstance(arg, scoretools.Measure):
-                time_signature = arg._get_effective(
-                    indicatortools.TimeSignature)
+        elif (
+            isinstance(argument, (tuple, scoretools.Measure)) or
+            is_fraction_like
+            ):
+            if isinstance(argument, tuple):
+                fraction = mathtools.NonreducedFraction(argument)
+            elif isinstance(argument, scoretools.Measure):
+                prototype = indicatortools.TimeSignature
+                time_signature = argument._get_effective(prototype)
                 fraction = mathtools.NonreducedFraction(
-                    time_signature.numerator, time_signature.denominator)
+                    time_signature.numerator,
+                    time_signature.denominator,
+                    )
             else:
                 fraction = mathtools.NonreducedFraction(
-                    arg.numerator, arg.denominator)
+                    argument.numerator,
+                    argument.denominator,
+                    )
             numerator, denominator = fraction.numerator, fraction.denominator
             factors = mathtools.factors(numerator)
             # group two nested levels of 2s into a 4
@@ -411,7 +428,7 @@ class Meter(AbjadObject):
 
         else:
             message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, arg)
+            message = message.format(type(self).__name__, argument)
             raise ValueError(message)
 
         self._root_node = root
@@ -428,10 +445,7 @@ class Meter(AbjadObject):
 
         Returns true or false.
         '''
-        if type(self) == type(argument):
-            if self.rtm_format == argument.rtm_format:
-                return True
-        return False
+        return super(Meter, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats meter.
@@ -471,7 +485,7 @@ class Meter(AbjadObject):
                 >>> meter_graph = meter.__graph__()
                 >>> graph(meter_graph) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(str(meter_graph))
                 digraph G {
@@ -587,6 +601,9 @@ class Meter(AbjadObject):
 
         Returns Graphviz graph.
         '''
+        import abjad
+        from abjad.tools import graphtools
+        from abjad.tools import metertools
         def make_offset_node(
             offset,
             leaf_one=None,
@@ -631,9 +648,8 @@ class Meter(AbjadObject):
                     attributes={'style': 'dotted'},
                     )
                 edge.attach(leaf_two_node, offset_node)
-        from abjad.tools import metertools
         offsets = metertools.MetricAccentKernel.count_offsets(
-            sequencetools.Sequence(self.depthwise_offset_inventory).flatten())
+            abjad.Sequence(self.depthwise_offset_inventory).flatten())
         graph = graphtools.GraphvizGraph(
             name='G',
             attributes={
@@ -676,7 +692,7 @@ class Meter(AbjadObject):
             )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
-        for one, two in sequencetools.Sequence(leaves).nwise():
+        for one, two in abjad.Sequence(leaves).nwise():
             offset = one.stop_offset
             make_offset_node(offset, one, two)
         offset = leaves[-1].stop_offset
@@ -685,8 +701,10 @@ class Meter(AbjadObject):
 
     def __hash__(self):
         r'''Hashes meter.
+
+        Returns integer.
         '''
-        return hash((type(self), self.rtm_format))
+        return super(Meter, self).__hash__()
 
     def __iter__(self):
         r'''Iterates meter.
@@ -777,11 +795,10 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> from abjad.tools.metertools import Meter
                 >>> for rhythm_number in range(8):
-                ...     notes = Meter._make_gridded_test_rhythm(
+                ...     notes = abjad.Meter._make_gridded_test_rhythm(
                 ...         4, rhythm_number, denominator=4)
-                ...     measure = Measure((4, 4), notes)
+                ...     measure = abjad.Measure((4, 4), notes)
                 ...     print('{}\t{}'.format(rhythm_number, str(measure)))
                 ...
                 0	Measure((4, 4), "c'1")
@@ -800,9 +817,9 @@ class Meter(AbjadObject):
             ::
 
                 >>> for rhythm_number in range(16):
-                ...     notes = Meter._make_gridded_test_rhythm(
+                ...     notes = abjad.Meter._make_gridded_test_rhythm(
                 ...         5, rhythm_number, denominator=4)
-                ...     measure = Measure((5, 4), notes)
+                ...     measure = abjad.Measure((5, 4), notes)
                 ...     print('{}\t{}'.format(rhythm_number, str(measure)))
                 ...
                 0	Measure((5, 4), "c'1 ~ c'4")
@@ -824,36 +841,230 @@ class Meter(AbjadObject):
 
         Use for testing meter establishment.
         '''
-        from abjad.tools import scoretools
+        import abjad
         # check input
-        assert mathtools.is_positive_integer(grid_length)
+        assert abjad.mathtools.is_positive_integer(grid_length)
         assert isinstance(rhythm_number, int)
-        assert mathtools.is_positive_integer_power_of_two(denominator)
+        assert abjad.mathtools.is_positive_integer_power_of_two(denominator)
         # find count of all rhythms that fit grid length
         rhythm_count = 2 ** (grid_length - 1)
         # read rhythm number cyclically to allow large and
         # negative rhythm numbers
         rhythm_number = rhythm_number % rhythm_count
         # find binary representation of rhythm
-        binary_representation = mathtools.integer_to_binary_string(
+        binary_representation = abjad.mathtools.integer_to_binary_string(
             rhythm_number)
         binary_representation = binary_representation.zfill(grid_length)
         # partition binary representation of rhythm
-        parts = sequencetools.Sequence(binary_representation).group_by()
+        parts = abjad.Sequence(binary_representation).group_by()
         # find durations
         durations = [
-            durationtools.Duration(len(part), denominator)
+            abjad.Duration(len(part), denominator)
             for part in parts
             ]
         # make notes
-        notes = scoretools.make_notes([0], durations)
+        maker = abjad.NoteMaker()
+        notes = maker([0], durations)
         # return notes
         return notes
+
+    @staticmethod
+    def _rewrite_meter(
+        components,
+        meter,
+        boundary_depth=None,
+        initial_offset=None,
+        maximum_dot_count=None,
+        rewrite_tuplets=True,
+        use_messiaen_style_ties=False,
+        ):
+        from abjad.tools import metertools
+        from abjad.tools import selectiontools
+        from abjad.tools import mathtools
+        from abjad.tools.topleveltools import inspect
+        from abjad.tools.topleveltools import mutate
+        prototype = selectiontools.Selection
+        assert isinstance(components, prototype), repr(components)
+        if not isinstance(meter, metertools.Meter):
+            meter = metertools.Meter(meter)
+        boundary_depth = boundary_depth or meter.preferred_boundary_depth
+        def recurse(
+            boundary_depth=None,
+            boundary_offsets=None,
+            depth=0,
+            logical_tie=None,
+            ):
+            offsets = metertools.MeterManager.get_offsets_at_depth(
+                depth,
+                offset_inventory,
+                )
+            #print('DEPTH:', depth)
+            logical_tie_duration = logical_tie._get_preprolated_duration()
+            logical_tie_timespan = logical_tie.get_timespan()
+            logical_tie_start_offset = logical_tie_timespan.start_offset
+            logical_tie_stop_offset = logical_tie_timespan.stop_offset
+            logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
+            logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
+            if not metertools.MeterManager.is_acceptable_logical_tie(
+                logical_tie_duration=logical_tie_duration,
+                logical_tie_starts_in_offsets=logical_tie_starts_in_offsets,
+                logical_tie_stops_in_offsets=logical_tie_stops_in_offsets,
+                maximum_dot_count=maximum_dot_count,
+                ):
+                #print('UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
+                #print('\t', ' '.join([str(x) for x in offsets]))
+                split_offset = None
+                offsets = metertools.MeterManager.get_offsets_at_depth(
+                    depth,
+                    offset_inventory,
+                    )
+                # If the logical tie's start aligns, take the latest possible offset.
+                if logical_tie_starts_in_offsets:
+                    offsets = reversed(offsets)
+                for offset in offsets:
+                    if logical_tie_start_offset < offset < logical_tie_stop_offset:
+                        split_offset = offset
+                        break
+                #print('\tABS:', split_offset)
+                if split_offset is not None:
+                    split_offset -= logical_tie_start_offset
+                    #print('\tREL:', split_offset)
+                    #print()
+                    shards = mutate(logical_tie[:]).split(
+                        [split_offset],
+                        use_messiaen_style_ties=use_messiaen_style_ties,
+                        )
+                    logical_ties = \
+                        [selectiontools.LogicalTie(shard) for shard in shards]
+                    for logical_tie in logical_ties:
+                        recurse(
+                            boundary_depth=boundary_depth,
+                            boundary_offsets=boundary_offsets,
+                            depth=depth,
+                            logical_tie=logical_tie,
+                            )
+                else:
+                    #print()
+                    recurse(
+                        boundary_depth=boundary_depth,
+                        boundary_offsets=boundary_offsets,
+                        depth=depth + 1,
+                        logical_tie=logical_tie,
+                        )
+            elif metertools.MeterManager.is_boundary_crossing_logical_tie(
+                boundary_depth=boundary_depth,
+                boundary_offsets=boundary_offsets,
+                logical_tie_start_offset=logical_tie_start_offset,
+                logical_tie_stop_offset=logical_tie_stop_offset,
+                ):
+                #print('BOUNDARY CROSSING', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
+                offsets = boundary_offsets
+                if logical_tie_start_offset in boundary_offsets:
+                    offsets = reversed(boundary_offsets)
+                split_offset = None
+                for offset in offsets:
+                    if logical_tie_start_offset < offset < logical_tie_stop_offset:
+                        split_offset = offset
+                        break
+                assert split_offset is not None
+                #print('\tABS:', split_offset)
+                split_offset -= logical_tie_start_offset
+                #print('\tREL:', split_offset)
+                #print()
+                shards = mutate(logical_tie[:]).split(
+                    [split_offset],
+                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    )
+                logical_ties = [
+                    selectiontools.LogicalTie(shard) for shard in shards
+                    ]
+                for logical_tie in logical_ties:
+                    recurse(
+                        boundary_depth=boundary_depth,
+                        boundary_offsets=boundary_offsets,
+                        depth=depth,
+                        logical_tie=logical_tie,
+                        )
+            else:
+                #print('ACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
+                #print('\t', ' '.join([str(x) for x in offsets]))
+                #print()
+                logical_tie[:]._fuse()
+        # Validate arguments.
+        assert selectiontools.Selection._all_in_same_logical_voice(
+            components,
+            contiguous=True,
+            )
+        if not isinstance(meter, metertools.Meter):
+            meter = metertools.Meter(meter)
+        #assert sum([x._get_preprolated_duration() for x in components]) == \
+        #    meter.preprolated_duration
+        if boundary_depth is not None:
+            boundary_depth = int(boundary_depth)
+        if maximum_dot_count is not None:
+            maximum_dot_count = int(maximum_dot_count)
+            assert 0 <= maximum_dot_count
+        if initial_offset is None:
+            initial_offset = durationtools.Offset(0)
+        initial_offset = durationtools.Offset(initial_offset)
+        first_start_offset = inspect(
+            components[0]).get_timespan().start_offset
+        last_start_offset = inspect(
+            components[-1]).get_timespan().start_offset
+        difference = last_start_offset - first_start_offset + initial_offset
+        assert difference < meter.implied_time_signature.duration
+        # Build offset inventory, adjusted for initial offset and prolation.
+        first_offset = components[0]._get_timespan().start_offset
+        first_offset -= initial_offset
+        prolation = components[0]._get_parentage(include_self=False).prolation
+        offset_inventory = []
+        for offsets in meter.depthwise_offset_inventory:
+            offsets = [(x * prolation) + first_offset for x in offsets]
+            offset_inventory.append(tuple(offsets))
+        # Build boundary offset inventory, if applicable.
+        if boundary_depth is not None:
+            boundary_offsets = offset_inventory[boundary_depth]
+        else:
+            boundary_offsets = None
+        # Cache results of iterator, as we'll be mutating the underlying collection
+        iterator = metertools.MeterManager.iterate_rewrite_inputs(components)
+        items = tuple(iterator)
+        for item in items:
+            if isinstance(item, selectiontools.LogicalTie):
+                #print('RECURSING:', item)
+                recurse(
+                    boundary_depth=boundary_depth,
+                    boundary_offsets=boundary_offsets,
+                    depth=0,
+                    logical_tie=item,
+                    )
+            elif isinstance(item, scoretools.Tuplet) and rewrite_tuplets == False:
+                pass
+            else:
+                #print('DESCENDING:', item)
+                preprolated_duration = sum(
+                    [x._get_preprolated_duration() for x in item]
+                    )
+                if preprolated_duration.numerator == 1:
+                    preprolated_duration = mathtools.NonreducedFraction(
+                        preprolated_duration)
+                    preprolated_duration = preprolated_duration.with_denominator(
+                        preprolated_duration.denominator * 4)
+                sub_metrical_hierarchy = metertools.Meter(preprolated_duration)
+                sub_boundary_depth = 1
+                if boundary_depth is None:
+                    sub_boundary_depth = None
+                Meter._rewrite_meter(
+                    item[:],
+                    sub_metrical_hierarchy,
+                    boundary_depth=sub_boundary_depth,
+                    maximum_dot_count=maximum_dot_count,
+                    )
 
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def fit_meters_to_expr(
+    def fit_meters(
         argument,
         meters,
         denominator=32,
@@ -878,7 +1089,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> argument = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-                >>> for x in abjad.Meter.fit_meters_to_expr(
+                >>> for x in abjad.Meter.fit_meters(
                 ...     argument, meters):
                 ...     print(x.implied_time_signature)
                 ...
@@ -894,7 +1105,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> argument = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-                >>> for x in abjad.Meter.fit_meters_to_expr(
+                >>> for x in abjad.Meter.fit_meters(
                 ...     argument, meters):
                 ...     print(x.implied_time_signature)
                 ...
@@ -967,7 +1178,7 @@ class Meter(AbjadObject):
         for _ in range(extra_depth):
             old_offsets = inventory[-1]
             new_offsets = []
-            for first, second in sequencetools.Sequence(old_offsets).nwise():
+            for first, second in datastructuretools.Sequence(old_offsets).nwise():
                 new_offsets.append(first)
                 new_offsets.append((first + second) / 2)
             new_offsets.append(old_offsets[-1])

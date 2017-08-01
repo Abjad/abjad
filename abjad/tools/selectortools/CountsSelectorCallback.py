@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
+import collections
 from abjad.tools import datastructuretools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
@@ -8,13 +8,17 @@ from abjad.tools.abctools import AbjadValueObject
 class CountsSelectorCallback(AbjadValueObject):
     r'''Counts selector callback.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes callback by hand:
 
         ::
 
-            >>> callback = selectortools.CountsSelectorCallback([3])
+            >>> callback = abjad.CountsSelectorCallback([3])
             >>> f(callback)
             abjad.CountsSelectorCallback(
                 counts=abjad.CyclicTuple(
@@ -33,10 +37,10 @@ class CountsSelectorCallback(AbjadValueObject):
 
         ::
 
-            >>> selector = selectortools.Selector()
+            >>> selector = abjad.select()
             >>> selector = selector.by_leaf()
             >>> selector = selector.by_counts([3])
-            >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
+            >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
             >>> selector(staff)
             Selection([Selection([Note("c'8"), Rest('r8'), Note("d'8")])])
 
@@ -46,7 +50,7 @@ class CountsSelectorCallback(AbjadValueObject):
 
         ::
 
-            >>> selector = selectortools.Selector()
+            >>> selector = abjad.select()
             >>> selector = selector.by_counts([3])
             >>> numbers = [1, 'two', 'three', 4, -5, 'foo', 7.0, 8]
             >>> selector(numbers)
@@ -95,17 +99,17 @@ class CountsSelectorCallback(AbjadValueObject):
 
         Returns tuple in which each item is a selection or component.
         '''
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         if rotation is None:
             rotation = 0
         rotation = int(rotation)
         result = []
         counts = self.counts
         if self.rotate:
-            counts = sequencetools.Sequence(counts).rotate(n=-rotation)
+            counts = datastructuretools.Sequence(counts).rotate(n=-rotation)
             counts = datastructuretools.CyclicTuple(counts)
         for subexpr in argument:
-            groups = sequencetools.Sequence(subexpr).partition_by_counts(
+            groups = datastructuretools.Sequence(subexpr).partition_by_counts(
                 [abs(_) for _ in counts],
                 cyclic=self.cyclic,
                 overhang=self.overhang,
@@ -131,7 +135,7 @@ class CountsSelectorCallback(AbjadValueObject):
                 subresult.append(group)
             result.extend(subresult)
             if self.rotate:
-                counts = sequencetools.Sequence(counts).rotate(n=-1)
+                counts = datastructuretools.Sequence(counts).rotate(n=-1)
                 counts = datastructuretools.CyclicTuple(counts)
         return tuple(result)
 

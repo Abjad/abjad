@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-import copy
 import abjad
-from abjad.tools import scoretools
-from abjad.tools import systemtools
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import mutate
+import copy
 
 
 def add_string_music_to_score(score):
@@ -36,8 +32,9 @@ def add_string_music_to_score(score):
 
     # chop all string parts into 6/4 measures
     strings_staff_group = score['Strings Staff Group']
-    with systemtools.ForbidUpdate(score):
-        for voice in  iterate(strings_staff_group).by_class(scoretools.Voice):
-            shards = mutate(voice[:]).split([(6, 4)], cyclic=True)
+    with abjad.ForbidUpdate(score):
+        for voice in  abjad.iterate(strings_staff_group).by_class(abjad.Voice):
+            shards = abjad.mutate(voice[:]).split([(6, 4)], cyclic=True)
             for shard in shards:
-                scoretools.Measure((6, 4), shard)
+                measure = abjad.Measure((6, 4), [])
+                abjad.mutate(shard).wrap(measure)

@@ -11,7 +11,7 @@ import sys
 import subprocess
 import traceback
 from abjad.tools import systemtools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 try:
     import pathlib
@@ -25,6 +25,17 @@ class ScorePackageScript(CommandlineScript):
     '''
 
     ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_build_path',
+        '_cwd',
+        '_distribution_path',
+        '_materials_path',
+        '_root_parent_path',
+        '_score_package_path',
+        '_score_repository_path',
+        '_segments_path',
+        )
 
     _name_re = re.compile('^[a-z][a-z0-9_]*$')
 
@@ -204,7 +215,7 @@ class ScorePackageScript(CommandlineScript):
 
     def _name_to_score_subdirectory_path(self, name, section, score_path):
         score_path = self._path_to_score_package_path(score_path)
-        name = stringtools.to_accent_free_snake_case(name)
+        name = datastructuretools.String(name).to_accent_free_snake_case()
         path = score_path.joinpath(section, name)
         return path
 
@@ -325,7 +336,7 @@ class ScorePackageScript(CommandlineScript):
     def _report_time(self, timer, prefix='Runtime'):
         message = '        {}: {} {}'
         total_time = int(timer.elapsed_time)
-        identifier = stringtools.pluralize('second', total_time)
+        identifier = datastructuretools.String('second').pluralize(total_time)
         message = message.format(prefix, total_time, identifier)
         print(message)
 

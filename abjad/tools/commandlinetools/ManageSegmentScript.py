@@ -3,7 +3,7 @@ from __future__ import print_function
 import os
 import sys
 import traceback
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.commandlinetools.ScorePackageScript import ScorePackageScript
 
@@ -19,6 +19,9 @@ class ManageSegmentScript(ScorePackageScript):
     '''
 
     ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     alias = 'segment'
     short_description = 'Manage score package segments.'
@@ -57,7 +60,7 @@ class ManageSegmentScript(ScorePackageScript):
             if name not in staged_names:
                 names_list.append('# {}'.format(name))
         names_list = '\n'.join(names_list)
-        contents = stringtools.normalize('''
+        contents = datastructuretools.String.normalize('''
         {}
 
         # Instructions:
@@ -82,7 +85,7 @@ class ManageSegmentScript(ScorePackageScript):
             collected_names.append(segment_path.name)
             target_path = self._build_path.joinpath(
                 'segments',
-                stringtools.to_dash_case(segment_path.name) + '.ily'
+                datastructuretools.String(segment_path.name).to_dash_case() + '.ily'
                 )
             contents = self._process_illustration_contents(source_path)
             with open(str(target_path), 'w') as file_pointer:
@@ -100,7 +103,7 @@ class ManageSegmentScript(ScorePackageScript):
             for name in staged_names:
                 if name not in collected_names:
                     continue
-                name = stringtools.to_dash_case(name)
+                name = datastructuretools.String(name).to_dash_case()
                 file_pointer.write(include_template.format(
                     name=name,
                     sep=os.path.sep))

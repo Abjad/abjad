@@ -5,20 +5,24 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BreathMark(AbjadValueObject):
     r'''Breath mark.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Attached to a single note:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> breath_mark = indicatortools.BreathMark()
-            >>> attach(breath_mark, note)
+            >>> note = abjad.Note("c'4")
+            >>> breath_mark = abjad.BreathMark()
+            >>> abjad.attach(breath_mark, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4 \breathe
 
     ..  container:: example
@@ -27,16 +31,16 @@ class BreathMark(AbjadValueObject):
 
         ::
 
-            >>> staff = Staff("c'8 d' e' f' g' a' b' c''")
-            >>> attach(Beam(), staff[:4])
-            >>> attach(Beam(), staff[4:])
-            >>> attach(indicatortools.BreathMark(), staff[3])
-            >>> attach(indicatortools.BreathMark(), staff[7])
+            >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+            >>> abjad.attach(abjad.Beam(), staff[:4])
+            >>> abjad.attach(abjad.Beam(), staff[4:])
+            >>> abjad.attach(abjad.BreathMark(), staff[3])
+            >>> abjad.attach(abjad.BreathMark(), staff[7])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8 [
                 d'8
@@ -55,15 +59,11 @@ class BreathMark(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         )
 
     _format_slot = 'after'
 
-    ### INITIALIZER ###
-
-    def __init__(self):
-        self._default_scope = None
+    _time_orientation = Right
 
     ### SPECIAL METHODS ###
 
@@ -74,7 +74,7 @@ class BreathMark(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.BreathMark())
+                >>> str(abjad.BreathMark())
                 '\\breathe'
 
         Returns string.
@@ -93,25 +93,7 @@ class BreathMark(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.after.commands.append(str(self))
-        return lilypond_format_bundle
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of breath mark.
-
-        ..  container:: example
-
-            ::
-
-                >>> breath_mark = indicatortools.BreathMark()
-                >>> breath_mark.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.after.commands.append(self._get_lilypond_format())
+        return bundle

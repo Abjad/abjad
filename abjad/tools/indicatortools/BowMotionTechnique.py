@@ -5,6 +5,10 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BowMotionTechnique(AbjadValueObject):
     r'''Bow motion technique.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Jété:
@@ -35,7 +39,6 @@ class BowMotionTechnique(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_technique_name',
         )
 
@@ -54,27 +57,10 @@ class BowMotionTechnique(AbjadValueObject):
         self,
         technique_name=None,
         ):
-        self._default_scope = None
         assert technique_name in self._valid_technique_names
         self._technique_name = technique_name
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of bow motion technique.
-
-        ..  container:: example
-
-            ::
-
-                >>> technique = abjad.BowMotionTechnique('jete')
-                >>> technique.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def glissando_style(self):

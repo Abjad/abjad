@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
@@ -19,14 +20,15 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
     divisions = [(2, 16), (5, 16)]
     selections = rhythm_maker(divisions)
 
-    selections = Sequence(selections).flatten()
-    measures = scoretools.make_spacer_skip_measures(divisions)
-    staff = Staff(measures)
-    mutate(staff).replace_measure_contents(selections)
-    score = Score([staff])
-    set_(score).autoBeaming = False
+    selections = abjad.Sequence(selections).flatten()
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = abjad.Staff(measures)
+    abjad.mutate(staff).replace_measure_contents(selections)
+    score = abjad.Score([staff])
+    abjad.setting(score).autoBeaming = False
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {

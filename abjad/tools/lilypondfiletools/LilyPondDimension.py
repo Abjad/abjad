@@ -6,11 +6,15 @@ from abjad.tools import abctools
 class LilyPondDimension(abctools.AbjadObject):
     r'''A LilyPond file ``\paper`` block dimension.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> lilypondfiletools.LilyPondDimension(2, 'in')
+            >>> abjad.LilyPondDimension(2, 'in')
             LilyPondDimension(value=2, unit='in')
 
     Use for LilyPond file ``\paper`` block attributes.
@@ -40,7 +44,7 @@ class LilyPondDimension(abctools.AbjadObject):
 
             ::
 
-                >>> dimension = lilypondfiletools.LilyPondDimension(2, 'in')
+                >>> dimension = abjad.LilyPondDimension(2, 'in')
                 >>> print(format(dimension))
                 2\in
 
@@ -71,7 +75,7 @@ class LilyPondDimension(abctools.AbjadObject):
 
             ::
 
-                >>> dimension = lilypondfiletools.LilyPondDimension(2, 'in')
+                >>> dimension = abjad.LilyPondDimension(2, 'in')
                 >>> dimension.unit
                 'in'
 
@@ -87,7 +91,7 @@ class LilyPondDimension(abctools.AbjadObject):
 
             ::
 
-                >>> dimension = lilypondfiletools.LilyPondDimension(2, 'in')
+                >>> dimension = abjad.LilyPondDimension(2, 'in')
                 >>> dimension.value
                 2
 

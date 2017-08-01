@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.schemetools.Scheme import Scheme
 
@@ -7,22 +7,24 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeVectorConstant(Scheme):
     '''Abjad model of Scheme vector constant.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Scheme vector constant of boolean values:
 
         ::
 
-            >>> scheme = schemetools.SchemeVectorConstant(True, True, False)
+            >>> scheme = abjad.SchemeVectorConstant([True, True, False])
             >>> scheme
             SchemeVectorConstant(True, True, False)
             >>> print(format(scheme))
             #'#(#t #t #f)
 
-    Scheme vectors and Scheme vector constants differ in
-    only their LilyPond input format.
-
-    Scheme vector constants are immutable.
+    Scheme vectors and Scheme vector constants differ in only their LilyPond
+    input format.
     '''
 
     ### CLASS VARIABLES ##
@@ -32,14 +34,14 @@ class SchemeVectorConstant(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
-        Scheme.__init__(self, *arguments, quoting="'#")
+    def __init__(self, value=[]):
+        Scheme.__init__(self, value, quoting="'#")
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         values = self._value
-        if stringtools.is_string(self._value):
+        if datastructuretools.String.is_string(self._value):
             values = [self._value]
         return systemtools.FormatSpecification(
             client=self,

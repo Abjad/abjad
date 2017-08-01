@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+import abjad
 import textwrap
 import unittest
 from abjad.tools import abjadbooktools
-from abjad.tools import stringtools
 
 
 class ImportDirectiveTests(unittest.TestCase):
@@ -12,27 +12,27 @@ class ImportDirectiveTests(unittest.TestCase):
 
     def test_1(self):
         source = textwrap.dedent('''
-        ..  import:: abjad.tools.scoretools.make_notes
+        ..  import:: abjad.tools.topleveltools.attach
         ''')
         document = self.handler.parse_rst(source)
-        result = stringtools.normalize(document.pformat())
-        expected = stringtools.normalize(
+        result = abjad.String.normalize(document.pformat())
+        expected = abjad.String.normalize(
             r'''
             <document source="test">
-                <abjad_import_block path="abjad.tools.scoretools.make_notes">
+                <abjad_import_block path="abjad.tools.topleveltools.attach">
             ''')
         self.assertEqual(result, expected)
 
     def test_2(self):
         source = textwrap.dedent('''
-        ..  import:: abjad.tools.scoretools.make_notes
+        ..  import:: abjad.tools.topleveltools.attach
             :hide:
         ''')
         document = self.handler.parse_rst(source)
-        result = stringtools.normalize(document.pformat())
-        expected = stringtools.normalize(
+        result = abjad.String.normalize(document.pformat())
+        expected = abjad.String.normalize(
             r'''
             <document source="test">
-                <abjad_import_block hide="True" path="abjad.tools.scoretools.make_notes">
+                <abjad_import_block hide="True" path="abjad.tools.topleveltools.attach">
             ''')
         self.assertEqual(result, expected)

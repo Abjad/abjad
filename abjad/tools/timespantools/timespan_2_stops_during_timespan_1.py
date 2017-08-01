@@ -11,17 +11,23 @@ def timespan_2_stops_during_timespan_1(
 
     ::
 
-        >>> relation = timespantools.timespan_2_stops_during_timespan_1()
-        >>> f(relation)
-        abjad.TimespanTimespanTimeRelation(
-            inequality=abjad.CompoundInequality(
-                [
-                    abjad.Inequality('timespan_1.start_offset < timespan_2.stop_offset'),
-                    abjad.Inequality('timespan_2.stop_offset <= timespan_1.stop_offset'),
-                    ],
-                logical_operator='and',
-                ),
-            )
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> relation = abjad.timespantools.timespan_2_stops_during_timespan_1()
+            >>> f(relation)
+            abjad.TimespanTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
+                    [
+                        abjad.TimespanInequality('timespan_1.start_offset < timespan_2.stop_offset'),
+                        abjad.TimespanInequality('timespan_2.stop_offset <= timespan_1.stop_offset'),
+                        ],
+                    logical_operator='and',
+                    ),
+                )
 
     Returns time relation or boolean.
     '''

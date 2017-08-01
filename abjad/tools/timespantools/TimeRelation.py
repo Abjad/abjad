@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import abc
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class TimeRelation(AbjadObject):
-    r'''A time relation.
+#class TimeRelation(AbjadObject):
+class TimeRelation(AbjadValueObject):
+    r'''Time relation.
 
     Time relations are immutable.
     '''
@@ -34,15 +36,6 @@ class TimeRelation(AbjadObject):
     @abc.abstractmethod
     def __call__(self):
         r'''Evaluates time relation.
-
-        Returns true or false.
-        '''
-        pass
-
-    @abc.abstractmethod
-    def __eq__(self, argument):
-        r'''Is true when `argument` is a equal-valued time relation.
-        Otherwise false.
 
         Returns true or false.
         '''

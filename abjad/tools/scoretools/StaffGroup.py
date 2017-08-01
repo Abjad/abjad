@@ -3,34 +3,38 @@ from abjad.tools.scoretools.Context import Context
 
 
 class StaffGroup(Context):
-    r'''A staff group.
+    r'''Staff group.
 
     ::
 
-        >>> staff_1 = Staff("c'4 d'4 e'4 f'4 g'1")
-        >>> staff_2 = Staff("g2 f2 e1")
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> staff_group = scoretools.StaffGroup([staff_1, staff_2])
+        ::
 
-    ..  doctest::
+            >>> staff_1 = abjad.Staff("c'4 d'4 e'4 f'4 g'1")
+            >>> staff_2 = abjad.Staff("g2 f2 e1")
+            >>> staff_group = abjad.StaffGroup([staff_1, staff_2])
+            >>> show(staff_group) # doctest: +SKIP
 
-        >>> print(format(staff_group))
-        \new StaffGroup <<
-            \new Staff {
-                c'4
-                d'4
-                e'4
-                f'4
-                g'1
-            }
-            \new Staff {
-                g2
-                f2
-                e1
-            }
-        >>
+        ..  docs::
+
+            >>> f(staff_group)
+            \new StaffGroup <<
+                \new Staff {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                    g'1
+                }
+                \new Staff {
+                    g2
+                    f2
+                    e1
+                }
+            >>
 
     '''
 
@@ -38,17 +42,24 @@ class StaffGroup(Context):
 
     __documentation_section__ = 'Contexts'
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     _default_context_name = 'StaffGroup'
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, context_name='StaffGroup', name=None):
+    def __init__(
+        self,
+        music=None,
+        context_name='StaffGroup',
+        is_simultaneous=True,
+        name=None,
+        ):
         Context.__init__(
             self,
             music=music,
             context_name=context_name,
+            is_simultaneous=is_simultaneous,
             name=name,
             )
-        self.is_simultaneous = True

@@ -5,20 +5,24 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Fermata(AbjadValueObject):
     r'''Fermata.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         A short fermata:
 
         ::
 
-            >>> score = Score([Staff([Note("c'4")])])
-            >>> fermata = indicatortools.Fermata(command='shortfermata')
-            >>> attach(fermata, score[0][0])
+            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+            >>> fermata = abjad.Fermata(command='shortfermata')
+            >>> abjad.attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4 \shortfermata
@@ -31,14 +35,14 @@ class Fermata(AbjadValueObject):
 
         ::
 
-            >>> score = Score([Staff([Note("c'4")])])
-            >>> fermata = indicatortools.Fermata()
-            >>> attach(fermata, score[0][0])
+            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+            >>> fermata = abjad.Fermata()
+            >>> abjad.attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4 \fermata
@@ -51,14 +55,14 @@ class Fermata(AbjadValueObject):
 
         ::
 
-            >>> score = Score([Staff([Note("c'4")])])
-            >>> fermata = indicatortools.Fermata('longfermata')
-            >>> attach(fermata, score[0][0])
+            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+            >>> fermata = abjad.Fermata('longfermata')
+            >>> abjad.attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4 \longfermata
@@ -71,14 +75,14 @@ class Fermata(AbjadValueObject):
 
         ::
 
-            >>> score = Score([Staff([Note("c'4")])])
-            >>> fermata = indicatortools.Fermata('verylongfermata')
-            >>> attach(fermata, score[0][0])
+            >>> score = abjad.Score([abjad.Staff([abjad.Note("c'4")])])
+            >>> fermata = abjad.Fermata('verylongfermata')
+            >>> abjad.attach(fermata, score[0][0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4 \verylongfermata
@@ -122,7 +126,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.Fermata())
+                >>> str(abjad.Fermata())
                 '\\fermata'
 
         ..  container:: example
@@ -131,7 +135,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.Fermata('longfermata'))
+                >>> str(abjad.Fermata('longfermata'))
                 '\\longfermata'
 
         Returns string.
@@ -150,10 +154,10 @@ class Fermata(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.articulations.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.right.articulations.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC METHODS ###
 
@@ -167,7 +171,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> commands = indicatortools.Fermata.list_allowable_commands()
+                >>> commands = abjad.Fermata.list_allowable_commands()
                 >>> for command in commands:
                 ...     command
                 'fermata'
@@ -191,7 +195,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> fermata = indicatortools.Fermata()
+                >>> fermata = abjad.Fermata()
                 >>> fermata.command
                 'fermata'
 
@@ -201,7 +205,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> fermata = indicatortools.Fermata('longfermata')
+                >>> fermata = abjad.Fermata('longfermata')
                 >>> fermata.command
                 'longfermata'
 
@@ -219,7 +223,7 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> fermata = indicatortools.Fermata()
+                >>> fermata = abjad.Fermata()
                 >>> fermata.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>
 
@@ -229,11 +233,9 @@ class Fermata(AbjadValueObject):
 
             ::
 
-                >>> fermata = indicatortools.Fermata('longfermata')
+                >>> fermata = abjad.Fermata('longfermata')
                 >>> fermata.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>
-
-        Fermatas are score-scoped by default.
 
         Returns score.
         '''

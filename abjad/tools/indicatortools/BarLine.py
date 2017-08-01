@@ -6,15 +6,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BarLine(AbjadValueObject):
     r'''Bar line.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Final bar line:
 
         ::
 
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> bar_line = indicatortools.BarLine('|.')
-            >>> attach(bar_line, staff[-1])
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> bar_line = abjad.BarLine('|.')
+            >>> abjad.attach(bar_line, staff[-1])
             >>> show(staff) # doctest: +SKIP
 
         ::
@@ -22,9 +26,9 @@ class BarLine(AbjadValueObject):
             >>> bar_line
             BarLine('|.')
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4
                 d'4
@@ -70,6 +74,12 @@ class BarLine(AbjadValueObject):
     def _get_lilypond_format(self):
         return r'\bar "{}"'.format(self.abbreviation)
 
+    def _get_lilypond_format_bundle(self, component=None):
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.after.commands.append(self._get_lilypond_format())
+        return bundle
+
     ## PUBLIC PROPERTIES ##
 
     @property
@@ -80,7 +90,7 @@ class BarLine(AbjadValueObject):
 
             ::
 
-                >>> bar_line = indicatortools.BarLine('|.')
+                >>> bar_line = abjad.BarLine('|.')
                 >>> bar_line.abbreviation
                 '|.'
 
@@ -96,11 +106,9 @@ class BarLine(AbjadValueObject):
 
             ::
 
-                >>> bar_line = indicatortools.BarLine('|.')
+                >>> bar_line = abjad.BarLine('|.')
                 >>> bar_line.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
-
-        Bar lines are scoped to the staff by default.
 
         Returns staff.
         '''

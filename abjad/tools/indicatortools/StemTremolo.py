@@ -7,20 +7,24 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class StemTremolo(AbjadValueObject):
     r'''Stem tremolo.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Sixteenth-note tremolo:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> stem_tremolo = indicatortools.StemTremolo(16)
-            >>> attach(stem_tremolo, note)
+            >>> note = abjad.Note("c'4")
+            >>> stem_tremolo = abjad.StemTremolo(16)
+            >>> abjad.attach(stem_tremolo, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4 :16
 
     ..  container:: example
@@ -29,14 +33,14 @@ class StemTremolo(AbjadValueObject):
 
         ::
 
-            >>> note = Note("c'4")
-            >>> stem_tremolo = indicatortools.StemTremolo(32)
-            >>> attach(stem_tremolo, note)
+            >>> note = abjad.Note("c'4")
+            >>> stem_tremolo = abjad.StemTremolo(32)
+            >>> abjad.attach(stem_tremolo, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4 :32
 
     '''
@@ -44,7 +48,6 @@ class StemTremolo(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_tremolo_flags',
         )
 
@@ -53,7 +56,6 @@ class StemTremolo(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, tremolo_flags=16):
-        self._default_scope = None
         if isinstance(tremolo_flags, type(self)):
             tremolo_flags = tremolo_flags.tremolo_flags
         tremolo_flags = int(tremolo_flags)
@@ -74,7 +76,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> stem_tremolo = abjad.StemTremolo(16)
                 >>> print(format(stem_tremolo))
                 :16
 
@@ -84,7 +86,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> stem_tremolo = abjad.StemTremolo(32)
                 >>> print(format(stem_tremolo))
                 :32
 
@@ -106,7 +108,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> stem_tremolo = abjad.StemTremolo(16)
                 >>> print(str(stem_tremolo))
                 :16
 
@@ -116,7 +118,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> stem_tremolo = abjad.StemTremolo(32)
                 >>> print(str(stem_tremolo))
                 :32
 
@@ -136,40 +138,12 @@ class StemTremolo(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.stem_tremolos.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.right.stem_tremolos.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of stem tremolo.
-
-        ..  container:: example
-
-            Sixteenth-note tremolo:
-
-            ::
-
-                >>> stem_tremolo = indicatortools.StemTremolo(16)
-                >>> stem_tremolo.default_scope is None
-                True
-
-        ..  container:: example
-
-            Thirty-second-note tremolo:
-
-            ::
-
-                >>> stem_tremolo = indicatortools.StemTremolo(32)
-                >>> stem_tremolo.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def tremolo_flags(self):
@@ -181,7 +155,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> stem_tremolo = abjad.StemTremolo(16)
                 >>> stem_tremolo.tremolo_flags
                 16
 
@@ -191,7 +165,7 @@ class StemTremolo(AbjadValueObject):
 
             ::
 
-                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> stem_tremolo = abjad.StemTremolo(32)
                 >>> stem_tremolo.tremolo_flags
                 32
 

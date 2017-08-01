@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
+import collections
+from abjad.tools import datastructuretools
 from abjad.tools.abctools import AbjadValueObject
 
 
 class FlattenSelectorCallback(AbjadValueObject):
     r'''Flatten selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -23,10 +29,10 @@ class FlattenSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument, rotation=None):
-        r'''Iterates tuple `argument`.
+        r'''Iterates `argument`.
         '''
-        assert isinstance(argument, tuple), repr(argument)
-        argument = sequencetools.Sequence(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
+        argument = datastructuretools.Sequence(argument)
         argument = argument.flatten(depth=self.depth)
         return tuple(argument)
 

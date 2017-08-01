@@ -6,4 +6,7 @@ class SimultaneousMusic(Music):
     r'''Abjad model of the LilyPond AST simultaneous music node.
     '''
 
-    pass
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )

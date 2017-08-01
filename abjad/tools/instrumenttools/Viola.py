@@ -6,29 +6,35 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Viola(Instrument):
-    r'''A viola.
+    r'''Viola.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef(name='alto')
-        >>> attach(clef, staff)
-        >>> viola = instrumenttools.Viola()
-        >>> attach(viola, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "alto"
-            \set Staff.instrumentName = \markup { Viola }
-            \set Staff.shortInstrumentName = \markup { Va. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> clef = abjad.Clef(name='alto')
+            >>> abjad.attach(clef, staff[0])
+            >>> viola = abjad.instrumenttools.Viola()
+            >>> abjad.attach(viola, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "alto"
+                \set Staff.instrumentName = \markup { Viola }
+                \set Staff.shortInstrumentName = \markup { Va. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
@@ -147,7 +153,7 @@ class Viola(Instrument):
             ::
 
                 >>> viola.pitch_range
-                PitchRange(range_string='[C3, D6]')
+                PitchRange('[C3, D6]')
 
             ::
 

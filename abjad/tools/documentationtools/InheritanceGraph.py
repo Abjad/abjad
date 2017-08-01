@@ -12,22 +12,28 @@ class InheritanceGraph(AbjadObject):
 
     ::
 
-        >>> class A(object): pass
-        ...
-        >>> class B(A): pass
-        ...
-        >>> class C(B): pass
-        ...
-        >>> class D(B): pass
-        ...
-        >>> class E(C, D): pass
-        ...
-        >>> class F(A): pass
-        ...
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> graph = documentationtools.InheritanceGraph(addresses=(F, E))
+        ::
+
+            >>> class A(object): pass
+            ...
+            >>> class B(A): pass
+            ...
+            >>> class C(B): pass
+            ...
+            >>> class D(B): pass
+            ...
+            >>> class E(C, D): pass
+            ...
+            >>> class F(A): pass
+            ...
+
+        ::
+
+            >>> graph = abjad.documentationtools.InheritanceGraph(addresses=(F, E))
 
     ``InheritanceGraph`` may be instantiated from one or more instances,
     classes or modules. If instantiated from a module, all public classes
@@ -39,7 +45,7 @@ class InheritanceGraph(AbjadObject):
 
     ::
 
-        >>> graph = documentationtools.InheritanceGraph(
+        >>> graph = abjad.documentationtools.InheritanceGraph(
         ...     (A, B, C, D, E, F),
         ...     root_addresses=(B,),
         ...     )
@@ -50,7 +56,7 @@ class InheritanceGraph(AbjadObject):
 
     ::
 
-        >>> graph = documentationtools.InheritanceGraph(
+        >>> graph = abjad.documentationtools.InheritanceGraph(
         ...     addresses=('abjad',),
         ...     )
 
@@ -59,9 +65,9 @@ class InheritanceGraph(AbjadObject):
 
     ::
 
-        >>> graph = documentationtools.InheritanceGraph(
+        >>> graph = abjad.documentationtools.InheritanceGraph(
         ...     addresses=('abjad',),
-        ...     root_addresses=(Container,),
+        ...     root_addresses=(abjad.Container,),
         ...     )
 
     To document only those classes whose lineage pass through scoretools,
@@ -69,9 +75,9 @@ class InheritanceGraph(AbjadObject):
 
     ::
 
-        >>> graph = documentationtools.InheritanceGraph(
+        >>> graph = abjad.documentationtools.InheritanceGraph(
         ...     addresses=('abjad',),
-        ...     lineage_addresses=(scoretools,),
+        ...     lineage_addresses=(abjad.scoretools,),
         ...     )
 
     When creating the Graphviz representation, classes in the inheritance
@@ -80,9 +86,9 @@ class InheritanceGraph(AbjadObject):
 
     ::
 
-        >>> graph = documentationtools.InheritanceGraph(
+        >>> graph = abjad.documentationtools.InheritanceGraph(
         ...     addresses=('abjad',),
-        ...     lineage_addresses=(instrumenttools.Instrument,),
+        ...     lineage_addresses=(abjad.instrumenttools.Instrument,),
         ...     lineage_prune_distance=1,
         ...     )
 

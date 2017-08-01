@@ -7,35 +7,24 @@ class GraphvizTable(TreeContainer):
 
     ::
 
-        >>> table = graphtools.GraphvizTable(
-        ...     attributes={'style': 'rounded'},
-        ...     )
-        >>> row_1 = graphtools.GraphvizTableRow()
-        >>> row_1.append(graphtools.GraphvizTableCell(label='foo'))
-        >>> row_1.append(graphtools.GraphvizTableVerticalRule())
-        >>> row_1.append(graphtools.GraphvizTableCell(label='bar'))
-        >>> row_2 = graphtools.GraphvizTableRow()
-        >>> row_2.append(graphtools.GraphvizTableCell(label='quux'))
-        >>> table.extend([row_1, row_2])
-        >>> print(table)
-        <
-        <TABLE STYLE="ROUNDED">
-            <TR>
-                <TD>foo</TD>
-                <VR/>
-                <TD>bar</TD>
-            </TR>
-            <TR>
-                <TD>quux</TD>
-            </TR>
-        </TABLE>>
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> node = graphtools.GraphvizNode()
-        >>> node.append(table)
-        >>> print(node)
-        node_0 [label=<
+        ::
+
+            >>> table = abjad.graphtools.GraphvizTable(
+            ...     attributes={'style': 'rounded'},
+            ...     )
+            >>> row_1 = abjad.graphtools.GraphvizTableRow()
+            >>> row_1.append(abjad.graphtools.GraphvizTableCell(label='foo'))
+            >>> row_1.append(abjad.graphtools.GraphvizTableVerticalRule())
+            >>> row_1.append(abjad.graphtools.GraphvizTableCell(label='bar'))
+            >>> row_2 = abjad.graphtools.GraphvizTableRow()
+            >>> row_2.append(abjad.graphtools.GraphvizTableCell(label='quux'))
+            >>> table.extend([row_1, row_2])
+            >>> print(table)
+            <
             <TABLE STYLE="ROUNDED">
                 <TR>
                     <TD>foo</TD>
@@ -45,7 +34,24 @@ class GraphvizTable(TreeContainer):
                 <TR>
                     <TD>quux</TD>
                 </TR>
-            </TABLE>>];
+            </TABLE>>
+
+        ::
+
+            >>> node = abjad.graphtools.GraphvizNode()
+            >>> node.append(table)
+            >>> print(node)
+            node_0 [label=<
+                <TABLE STYLE="ROUNDED">
+                    <TR>
+                        <TD>foo</TD>
+                        <VR/>
+                        <TD>bar</TD>
+                    </TR>
+                    <TR>
+                        <TD>quux</TD>
+                    </TR>
+                </TABLE>>];
 
     '''
 

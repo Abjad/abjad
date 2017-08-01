@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_spannertools_TextSpanner_position_01():
 
-    staff = Staff("c'8 c'8 c'8 c'8")
-    text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, staff[:])
+    staff = abjad.Staff("c'8 c'8 c'8 c'8")
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(text_spanner, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 \startTextSpan
@@ -22,13 +22,13 @@ def test_spannertools_TextSpanner_position_01():
 
 def test_spannertools_TextSpanner_position_02():
 
-    staff = Staff("c'8 c'8 c'8 c'8")
-    text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, staff[:])
-    command = indicatortools.LilyPondCommand('textSpannerNeutral')
-    attach(command, text_spanner[0])
+    staff = abjad.Staff("c'8 c'8 c'8 c'8")
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(text_spanner, staff[:])
+    command = abjad.LilyPondCommand('textSpannerNeutral')
+    abjad.attach(command, text_spanner[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \textSpannerNeutral
@@ -43,13 +43,13 @@ def test_spannertools_TextSpanner_position_02():
 
 def test_spannertools_TextSpanner_position_03():
 
-    staff = Staff("c'8 c'8 c'8 c'8")
-    text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, staff[:])
-    command = indicatortools.LilyPondCommand('textSpannerUp')
-    attach(command, text_spanner[0])
+    staff = abjad.Staff("c'8 c'8 c'8 c'8")
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(text_spanner, staff[:])
+    command = abjad.LilyPondCommand('textSpannerUp')
+    abjad.attach(command, text_spanner[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \textSpannerUp
@@ -64,13 +64,13 @@ def test_spannertools_TextSpanner_position_03():
 
 def test_spannertools_TextSpanner_position_04():
 
-    staff = Staff("c'8 c'8 c'8 c'8")
-    text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, staff[:])
-    command = indicatortools.LilyPondCommand('textSpannerDown')
-    attach(command, text_spanner[0])
+    staff = abjad.Staff("c'8 c'8 c'8 c'8")
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(text_spanner, staff[:])
+    command = abjad.LilyPondCommand('textSpannerDown')
+    abjad.attach(command, text_spanner[0])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \textSpannerDown
@@ -84,14 +84,14 @@ def test_spannertools_TextSpanner_position_04():
 
 
 def test_spannertools_TextSpanner_position_05():
-    r'''TextSpanner attaching to container formats correctly.
+    r'''TextSpanner abjad.attaching to container formats correctly.
     '''
 
-    container = Container("c'8 c'8 c'8 c'8")
-    text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, container[:])
+    container = abjad.Container("c'8 c'8 c'8 c'8")
+    text_spanner = abjad.TextSpanner()
+    abjad.attach(text_spanner, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8 \startTextSpan

@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
+import collections
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import sequencetools
 from abjad.tools.spannertools.ComplexBeam import ComplexBeam
-from abjad.tools.topleveltools import inspect_
 
 
 class DuratedComplexBeam(ComplexBeam):
     r'''Durated complex beam.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -14,17 +18,17 @@ class DuratedComplexBeam(ComplexBeam):
 
         ::
 
-            >>> staff = Staff("c'16 d'16 e'16 f'16 g'16")
-            >>> set_(staff).auto_beaming = False
-            >>> durations = [Duration(2, 16), Duration(3, 16)]
-            >>> beam = spannertools.DuratedComplexBeam(
+            >>> staff = abjad.Staff("c'16 d'16 e'16 f'16 g'16")
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> durations = [(2, 16), (3, 16)]
+            >>> beam = abjad.DuratedComplexBeam(
             ...     durations=durations,
             ...     span_beam_count=1,
             ...     )
-            >>> attach(beam, staff[:])
+            >>> abjad.attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -53,17 +57,17 @@ class DuratedComplexBeam(ComplexBeam):
 
         ::
 
-            >>> staff = Staff("c'16 d'16 e'16 f'16 g'16")
-            >>> set_(staff).auto_beaming = False
-            >>> durations = [Duration(3, 16), Duration(2, 16)]
-            >>> beam = spannertools.DuratedComplexBeam(
+            >>> staff = abjad.Staff("c'16 d'16 e'16 f'16 g'16")
+            >>> abjad.setting(staff).auto_beaming = False
+            >>> durations = [(3, 16), (2, 16)]
+            >>> beam = abjad.DuratedComplexBeam(
             ...     durations=durations,
             ...     span_beam_count=1,
             ...     )
-            >>> attach(beam, staff[:])
+            >>> abjad.attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -129,34 +133,18 @@ class DuratedComplexBeam(ComplexBeam):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _coerce_durations(durations):
-        durations = durations or ()
-        assert isinstance(durations, (list, tuple))
-        durations = [durationtools.Duration(x) for x in durations]
-        durations = tuple(durations)
-        return durations
-
-    def _copy_keyword_args(self, new):
-        ComplexBeam._copy_keyword_args(self, new)
-        if self.durations is not None:
-            new._durations = self.durations[:]
-        new._span_beam_count = self.span_beam_count
-
-    def _format_before_leaf(self, leaf):
+    def _add_beam_counts(self, leaf, bundle):
         import abjad
-        if (not isinstance(leaf, abjad.Leaf) or
-            not self._is_beamable(leaf)):
-            return []
-        result = []
-        if self._is_exterior_leaf(leaf):
+        if (not isinstance(leaf, abjad.Leaf) or not self._is_beamable(leaf)):
+            left, right = None, None
+        elif self._is_exterior_leaf(leaf):
             left, right = self._get_left_right_for_exterior_leaf(leaf)
         elif self._is_just_left_of_gap(leaf):
             left = leaf.written_duration.flag_count
             if self.nibs_towards_nonbeamable_components:
                 right = self.span_beam_count
             else:
-                next_leaf = inspect_(leaf).get_leaf(1)
+                next_leaf = abjad.inspect(leaf).get_leaf(1)
                 if self._is_beamable(
                     next_leaf,
                     beam_rests=self.beam_rests,
@@ -168,7 +156,7 @@ class DuratedComplexBeam(ComplexBeam):
             if self.nibs_towards_nonbeamable_components:
                 left = self.span_beam_count
             else:
-                previous_leaf = inspect_(leaf).get_leaf(-1)
+                previous_leaf = abjad.inspect(leaf).get_leaf(-1)
                 if self._is_beamable(
                     previous_leaf,
                     beam_rests=self.beam_rests,
@@ -182,20 +170,34 @@ class DuratedComplexBeam(ComplexBeam):
             left, right = self._get_left_right_for_interior_leaf(leaf)
         if left is not None:
             string = r'\set stemLeftBeamCount = #{}'.format(left)
-            result.append(string)
+            bundle.before.commands.append(string)
         if right is not None:
             string = r'\set stemRightBeamCount = #{}'.format(right)
-            result.append(string)
-        return result
+            bundle.before.commands.append(string)
+
+    @staticmethod
+    def _coerce_durations(durations):
+        durations = durations or []
+        assert isinstance(durations, collections.Iterable)
+        durations = [durationtools.Duration(x) for x in durations]
+        durations = tuple(durations)
+        return durations
+
+    def _copy_keyword_args(self, new):
+        ComplexBeam._copy_keyword_args(self, new)
+        if self.durations is not None:
+            new._durations = self.durations[:]
+        new._span_beam_count = self.span_beam_count
 
     def _fracture_left(self, i):
+        import abjad
         self, left, right = ComplexBeam._fracture_left(self, i)
         weights = [
-            inspect_(left).get_duration(),
-            inspect_(right).get_duration(),
+            abjad.inspect(left).get_duration(),
+            abjad.inspect(right).get_duration(),
             ]
         assert sum(self.durations) == sum(weights)
-        split_durations = sequencetools.Sequence(self.durations)
+        split_durations = datastructuretools.Sequence(self.durations)
         split_durations = split_durations.split(
             weights,
             cyclic=False,
@@ -207,13 +209,14 @@ class DuratedComplexBeam(ComplexBeam):
         return self, left, right
 
     def _fracture_right(self, i):
+        import abjad
         self, left, right = ComplexBeam._fracture_right(self, i)
         weights = [
-            inspect_(left).get_duration(),
-            inspect_(right).get_duration(),
+            abjad.inspect(left).get_duration(),
+            abjad.inspect(right).get_duration(),
             ]
         assert sum(self.durations) == sum(weights)
-        split_durations = sequencetools.Sequence(self.durations)
+        split_durations = datastructuretools.Sequence(self.durations)
         split_durations = split_durations.split(
             weights,
             cyclic=False,
@@ -275,12 +278,12 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'8 r r d'")
-                >>> beam = spannertools.DuratedComplexBeam(beam_rests=False)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 r r d'")
+                >>> beam = abjad.DuratedComplexBeam(beam_rests=False)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -302,12 +305,12 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'8 r r d'")
-                >>> beam = spannertools.DuratedComplexBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 r r d'")
+                >>> beam = abjad.DuratedComplexBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -327,12 +330,12 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'8 s s d'")
-                >>> beam = spannertools.DuratedComplexBeam(beam_rests=False)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 s s d'")
+                >>> beam = abjad.DuratedComplexBeam(beam_rests=False)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -354,12 +357,12 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'8 s s d'")
-                >>> beam = spannertools.DuratedComplexBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 s s d'")
+                >>> beam = abjad.DuratedComplexBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -380,12 +383,12 @@ class DuratedComplexBeam(ComplexBeam):
             ::
 
                 >>> string = "c'8 s4 d'8 s8"
-                >>> staff = Staff(string)
-                >>> beam = spannertools.DuratedComplexBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff(string)
+                >>> beam = abjad.DuratedComplexBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -418,15 +421,13 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'16 d'16 e'16 f'16")
-                >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
-                ...     durations=durations,
-                ...     )
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'16 d'16 e'16 f'16")
+                >>> durations = [(1, 8), (1, 8)]
+                >>> beam = abjad.DuratedComplexBeam(durations=durations)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -455,17 +456,17 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'16 d'16 e'8 f'16 c'16")
-                >>> set_(staff).auto_beaming = False
-                >>> durations = [Duration(1, 8), Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> staff = abjad.Staff("c'16 d'16 e'8 f'16 c'16")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> durations = [(1, 8), (1, 8), (1, 8)]
+                >>> beam = abjad.DuratedComplexBeam(
                 ...     durations=durations,
                 ...     span_beam_count=1,
                 ...     )
-                >>> attach(beam, staff[:])
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -511,16 +512,16 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'16 d'16 r4 e'16 f'16")
-                >>> durations = [Duration(1, 8), Duration(1, 4), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> staff = abjad.Staff("c'16 d'16 r4 e'16 f'16")
+                >>> durations = [(1, 8), (1, 4), (1, 8)]
+                >>> beam = abjad.DuratedComplexBeam(
                 ...     durations=durations,
                 ...     nibs_towards_nonbeamable_components=False
                 ...     )
-                >>> attach(beam, staff[:])
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -545,16 +546,16 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'16 d'16 r4 e'16 f'16")
-                >>> durations = [Duration(1, 8), Duration(1, 4), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> staff = abjad.Staff("c'16 d'16 r4 e'16 f'16")
+                >>> durations = [(1, 8), (1, 4), (1, 8)]
+                >>> beam = abjad.DuratedComplexBeam(
                 ...     durations=durations,
                 ...     nibs_towards_nonbeamable_components=True
                 ...     )
-                >>> attach(beam, staff[:])
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -591,16 +592,16 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'32 d'32 e'32 f'32")
-                >>> durations = [Duration(1, 16), Duration(1, 16)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> staff = abjad.Staff("c'32 d'32 e'32 f'32")
+                >>> durations = [(1, 16), (1, 16)]
+                >>> beam = abjad.DuratedComplexBeam(
                 ...     durations=durations,
                 ...     span_beam_count=1,
                 ...     )
-                >>> attach(beam, staff[:])
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -629,16 +630,16 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'32 d'32 e'32 f'32")
-                >>> durations = [Duration(1, 16), Duration(1, 16)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> staff = abjad.Staff("c'32 d'32 e'32 f'32")
+                >>> durations = [(1, 16), (1, 16)]
+                >>> beam = abjad.DuratedComplexBeam(
                 ...     durations=durations,
                 ...     span_beam_count=2,
                 ...     )
-                >>> attach(beam, staff[:])
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -667,16 +668,16 @@ class DuratedComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff("c'32 d'32 e'32 f'32")
-                >>> durations = [Duration(1, 16), Duration(1, 16)]
-                >>> beam = spannertools.DuratedComplexBeam(
+                >>> staff = abjad.Staff("c'32 d'32 e'32 f'32")
+                >>> durations = [(1, 16), (1, 16)]
+                >>> beam = abjad.DuratedComplexBeam(
                 ...     durations=durations,
                 ...     span_beam_count=0,
                 ...     )
-                >>> attach(beam, staff[:])
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

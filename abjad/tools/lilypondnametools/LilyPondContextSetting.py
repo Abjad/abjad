@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class LilyPondContextSetting(AbjadObject):
+#class LilyPondContextSetting(AbjadObject):
+class LilyPondContextSetting(AbjadValueObject):
     r'''LilyPond context setting.
+
+    ::
+
+        >>> from abjad.tools import lilypondnametools
 
     ::
 
@@ -53,29 +59,26 @@ class LilyPondContextSetting(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a LilyPond context setting with equivalent
-        keyword values.
+        r'''Is true when `argument` is a LilyPond context setting with
+        equivalent keyword values.
         '''
-        from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, argument)
+        return super(LilyPondContextSetting, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes LilyPond context setting.
 
         Returns integer.
         '''
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
-        return hash(hash_values)
+        return super(LilyPondContextSetting, self).__hash__()
 
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
         string = '\n'.join(self.format_pieces)
-        lilypond_format_bundle.context_settings.append(string)
-        return lilypond_format_bundle
+        bundle.context_settings.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

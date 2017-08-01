@@ -7,37 +7,46 @@ class ReSTOnlyDirective(ReSTDirective):
 
     ::
 
-        >>> only = documentationtools.ReSTOnlyDirective(argument='latex')
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> heading = documentationtools.ReSTHeading(
-        ...     level=3, text='A LaTeX-Only Heading')
-        >>> only.append(heading)
-        >>> only
-        ReSTOnlyDirective(
-            argument='latex',
-            children=(
-                ReSTHeading(
-                    level=3,
-                    text='A LaTeX-Only Heading'
-                    ),
+        ::
+
+            >>> only = abjad.documentationtools.ReSTOnlyDirective(argument='latex')
+
+        ::
+
+            >>> heading = abjad.documentationtools.ReSTHeading(
+            ...     level=3, text='A LaTeX-Only Heading')
+            >>> only.append(heading)
+            >>> only
+            ReSTOnlyDirective(
+                argument='latex',
+                children=(
+                    ReSTHeading(
+                        level=3,
+                        text='A LaTeX-Only Heading'
+                        ),
+                    )
                 )
-            )
 
-    ::
+        ::
 
-        >>> print(only.rest_format)
-        .. only:: latex
-        <BLANKLINE>
-           A LaTeX-Only Heading
-           --------------------
+            >>> print(only.rest_format)
+            .. only:: latex
+            <BLANKLINE>
+            A LaTeX-Only Heading
+            --------------------
 
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'reStructuredText'
+
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

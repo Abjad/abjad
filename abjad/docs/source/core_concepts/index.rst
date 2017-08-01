@@ -6,5 +6,5 @@ Core concepts
     from_abjads_developers
     lcsi
     durations
-    component_parentage
+    parentage
     logical_voices

@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_Parentage__get_spanners_01():
     '''Get spanners in proper parentage.
     '''
 
-    container = Container("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(Beam(), container[:])
-    slur = Slur()
-    attach(slur, container[:])
-    trill = spannertools.TrillSpanner()
-    attach(trill, container[:])
+    container = abjad.Container("c'8 d'8 e'8 f'8")
+    beam = abjad.Beam()
+    abjad.attach(abjad.Beam(), container[:])
+    slur = abjad.Slur()
+    abjad.attach(slur, container[:])
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8 [ ( \startTrillSpan
@@ -35,15 +35,15 @@ def test_selectiontools_Parentage__get_spanners_02():
     '''Get spanners in improper parentage.
     '''
 
-    container = Container("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, container[:])
-    slur = Slur()
-    attach(slur, container[:])
-    trill = spannertools.TrillSpanner()
-    attach(trill, container[:])
+    container = abjad.Container("c'8 d'8 e'8 f'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, container[:])
+    slur = abjad.Slur()
+    abjad.attach(slur, container[:])
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8 [ ( \startTrillSpan

@@ -7,20 +7,26 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 @functools.total_ordering
 class NoteHead(AbjadObject):
-    r'''A note-head.
+    r'''Note-head.
 
     ::
 
-        >>> note_head = scoretools.NoteHead(13)
-        >>> note_head
-        NoteHead("cs''")
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> note_head = abjad.NoteHead(13)
+            >>> note_head
+            NoteHead("cs''")
 
     Note heads are immutable.
     '''
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Note heads'
+    __documentation_section__ = 'Note-heads'
 
     __slots__ = (
         '_client',
@@ -68,14 +74,25 @@ class NoteHead(AbjadObject):
         r'''Copies note-head.
 
         ::
-
+    
             >>> import copy
+
+        ::
+
             >>> copy.copy(note_head)
             NoteHead("cs''")
 
         Returns new note-head.
         '''
-        return type(self)(*self.__getnewargs__())
+        arguments = (
+            self.written_pitch,
+            None,
+            self.is_cautionary,
+            self.is_forced,
+            self.is_parenthesized,
+            self.tweak._get_attribute_pairs(),
+            )
+        return type(self)(*arguments)
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a note-head with written pitch equal to
@@ -99,33 +116,16 @@ class NoteHead(AbjadObject):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        arguments = (
-            self.written_pitch,
-            None,
-            self.is_cautionary,
-            self.is_forced,
-            self.is_parenthesized,
-            self.tweak._get_attribute_pairs(),
-            )
-        return arguments
-
     def __hash__(self):
         r'''Hashes note-head.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
         '''
         return super(NoteHead, self).__hash__()
 
     def __lt__(self, argument):
-        r'''Is true when `argument` is a note-head with written pitch greater than
-        that of this note-head. Otherwise false.
+        r'''Is true when `argument` is a note-head with written pitch greater
+        than that of this note-head. Otherwise false.
 
         Returns true or false.
         '''
@@ -159,12 +159,6 @@ class NoteHead(AbjadObject):
 
         Returns string.
         '''
-        return self._format_string
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
         result = ''
         if self.written_pitch:
             result = str(self.written_pitch)
@@ -173,6 +167,8 @@ class NoteHead(AbjadObject):
             if self.is_cautionary:
                 result += '?'
         return result
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _keyword_argument_names(self):
@@ -189,7 +185,7 @@ class NoteHead(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        arguments = [repr(self._format_string)]
+        arguments = [repr(str(self))]
         arguments.extend(self.tweak._get_attribute_pairs())
         arguments = ', '.join([str(x) for x in arguments])
         repr_text = '{}({})'.format(type(self).__name__, arguments)
@@ -256,7 +252,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_cautionary is None
             True
 
@@ -264,7 +260,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_cautionary = True
 
         Returns true or false.
@@ -272,10 +268,10 @@ class NoteHead(AbjadObject):
         return self._is_cautionary
 
     @is_cautionary.setter
-    def is_cautionary(self, arg):
-        if arg is not None:
-            arg = bool(arg)
-        self._is_cautionary = arg
+    def is_cautionary(self, argument):
+        if argument is not None:
+            argument = bool(argument)
+        self._is_cautionary = argument
 
     @property
     def is_forced(self):
@@ -285,7 +281,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_forced is None
             True
 
@@ -293,7 +289,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_forced = True
 
         Returns true or false.
@@ -301,10 +297,10 @@ class NoteHead(AbjadObject):
         return self._is_forced
 
     @is_forced.setter
-    def is_forced(self, arg):
-        if arg is not None:
-            arg = bool(arg)
-        self._is_forced = arg
+    def is_forced(self, argument):
+        if argument is not None:
+            argument = bool(argument)
+        self._is_forced = argument
 
     @property
     def is_parenthesized(self):
@@ -314,7 +310,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_parenthesized is None
             True
 
@@ -322,7 +318,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.is_parenthesized = True
 
         Returns true or false.
@@ -330,10 +326,10 @@ class NoteHead(AbjadObject):
         return self._is_parenthesized
 
     @is_parenthesized.setter
-    def is_parenthesized(self, arg):
-        if arg is not None:
-            arg = bool(arg)
-        self._is_parenthesized = arg
+    def is_parenthesized(self, argument):
+        if argument is not None:
+            argument = bool(argument)
+        self._is_parenthesized = argument
 
     @property
     def named_pitch(self):
@@ -341,7 +337,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.named_pitch
             NamedPitch("cs''")
 
@@ -355,7 +351,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.tweak
             LilyPondNameManager()
 
@@ -374,7 +370,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.written_pitch
             NamedPitch("cs''")
 
@@ -382,7 +378,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.written_pitch = "d''"
             >>> note_head.written_pitch
             NamedPitch("d''")
@@ -392,7 +388,7 @@ class NoteHead(AbjadObject):
         return self._written_pitch
 
     @written_pitch.setter
-    def written_pitch(self, arg):
+    def written_pitch(self, argument):
         from abjad.tools import pitchtools
-        written_pitch = pitchtools.NamedPitch(arg)
+        written_pitch = pitchtools.NamedPitch(argument)
         self._written_pitch = written_pitch

@@ -7,33 +7,39 @@ from abjad.tools.abctools import ContextManager
 
 
 class Timer(ContextManager):
-    r'''A timing context manager:
+    r'''A timing context manager.
 
     ::
 
-        >>> timer = systemtools.Timer()
-        >>> with timer:
-        ...     for _ in range(1000000):
-        ...         x = 1 + 1
-        ...
-        >>> timer.elapsed_time # doctest: +SKIP
-        0.092742919921875
+        >>> import abjad
 
-    The timer can also be accessed from within the `with` block:
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> with systemtools.Timer() as timer: # doctest: +SKIP
-        ...     for _ in range(5):
-        ...         for _ in range(1000000):
-        ...             x = 1 + 1
-        ...         print(timer.elapsed_time)
-        ...
-        0.101150989532
-        0.203935861588
-        0.304930925369
-        0.4057970047
-        0.50649189949
+            >>> timer = abjad.Timer()
+            >>> with timer:
+            ...     for _ in range(1000000):
+            ...         x = 1 + 1
+            ...
+            >>> timer.elapsed_time # doctest: +SKIP
+            0.092742919921875
+
+        The timer can also be accessed from within the `with` block:
+
+        ::
+
+            >>> with abjad.Timer() as timer: # doctest: +SKIP
+            ...     for _ in range(5):
+            ...         for _ in range(1000000):
+            ...             x = 1 + 1
+            ...         print(timer.elapsed_time)
+            ...
+            0.101150989532
+            0.203935861588
+            0.304930925369
+            0.4057970047
+            0.50649189949
 
     Timers can be reused between `with` blocks. They will reset their clock on
     entering any `with` block.
@@ -173,8 +179,8 @@ class Timer(ContextManager):
 
         Returns string.
         '''
-        from abjad.tools import stringtools
-        identifier = stringtools.pluralize('second', int(self.elapsed_time))
+        import abjad
+        identifier = abjad.String('second').pluralize(int(self.elapsed_time))
         message = 'total time {} {} ...'
         message = message.format(int(self.elapsed_time), identifier)
         return message

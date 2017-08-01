@@ -6,6 +6,10 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class TimeSignatureList(TypedList):
     r'''Time signature list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Two time signatures:
@@ -33,7 +37,7 @@ class TimeSignatureList(TypedList):
 
         ::
 
-            >>> TimeSignature((4, 4)) in time_signatures
+            >>> abjad.TimeSignature((4, 4)) in time_signatures
             True
 
         ::
@@ -45,10 +49,10 @@ class TimeSignatureList(TypedList):
 
             >>> show(time_signatures) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> lilypond_file = time_signatures.__illustrate__()
-            >>> f(lilypond_file[Score])
+            >>> f(lilypond_file[abjad.Score])
             \new Score <<
                 \new RhythmicStaff {
                     {
@@ -88,10 +92,10 @@ class TimeSignatureList(TypedList):
 
                 >>> show(time_signatures) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = time_signatures.__illustrate__()
-                >>> f(lilypond_file[Score])
+                >>> f(lilypond_file[abjad.Score])
                 \new Score <<
                     \new RhythmicStaff {
                         {
@@ -108,7 +112,8 @@ class TimeSignatureList(TypedList):
         Returns LilyPond file.
         '''
         import abjad
-        measures = abjad.scoretools.make_spacer_skip_measures(self)
+        maker = abjad.MeasureMaker()
+        measures = maker(self)
         staff = abjad.Staff(measures)
         staff.context_name = 'RhythmicStaff'
         score = abjad.Score([staff])

@@ -1,28 +1,32 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class GeneralizedBeam(Spanner):
     r'''Generalized beam.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example::
 
         ::
 
-            >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> set_(staff).auto_beaming = False
+            >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> beam = spannertools.GeneralizedBeam()
-            >>> attach(beam, staff[:])
+            >>> beam = abjad.GeneralizedBeam()
+            >>> abjad.attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -43,19 +47,19 @@ class GeneralizedBeam(Spanner):
 
         ::
 
-            >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> set_(staff).auto_beaming = False
+            >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> beam = spannertools.GeneralizedBeam(
+            >>> beam = abjad.GeneralizedBeam(
             ...     isolated_nib_direction=Right,
             ...     )
-            >>> attach(beam, staff[:])
+            >>> abjad.attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -76,19 +80,17 @@ class GeneralizedBeam(Spanner):
 
         ::
 
-            >>> staff = Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
-            >>> set_(staff).auto_beaming = False
+            >>> staff = abjad.Staff("r4 c'8 d'16 e'16 r8 fs'8 g'4")
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> beam = spannertools.GeneralizedBeam(
-            ...     use_stemlets=True,
-            ...     )
-            >>> attach(beam, staff[:])
+            >>> beam = abjad.GeneralizedBeam(use_stemlets=True)
+            >>> abjad.attach(beam, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -208,14 +210,15 @@ class GeneralizedBeam(Spanner):
         return left, right
 
     def _get_lilypond_format_bundle(self, leaf):
-        from abjad.tools import lilypondnametools
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if not self._is_beamable(leaf):
-            return lilypond_format_bundle
+            return bundle
         elif not self.use_stemlets and (
-            not hasattr(leaf, 'written_pitch') and
-            not hasattr(leaf, 'written_pitches')):
-            return lilypond_format_bundle
+            not isinstance(leaf, abjad.Note) and
+            not isinstance(leaf, abjad.Chord)
+            ):
+            return bundle
         leaf_ids = [id(x) for x in self._get_leaves()]
         previous_leaf = leaf._get_leaf(-1)
         previous_leaf_is_joinable = self._leaf_is_joinable(
@@ -230,17 +233,17 @@ class GeneralizedBeam(Spanner):
             next_leaf_is_joinable,
             )
         if left_beam_count is not None:
-            context_setting = lilypondnametools.LilyPondContextSetting(
+            context_setting = abjad.lilypondnametools.LilyPondContextSetting(
                 context_property='stemLeftBeamCount',
                 value=left_beam_count,
                 )
-            lilypond_format_bundle.update(context_setting)
+            bundle.update(context_setting)
         if right_beam_count is not None:
-            context_setting = lilypondnametools.LilyPondContextSetting(
+            context_setting = abjad.lilypondnametools.LilyPondContextSetting(
                 context_property='stemRightBeamCount',
                 value=right_beam_count,
                 )
-            lilypond_format_bundle.update(context_setting)
+            bundle.update(context_setting)
         start_piece, stop_piece = self._get_start_and_stop_pieces(
             leaf,
             previous_leaf,
@@ -248,13 +251,13 @@ class GeneralizedBeam(Spanner):
             leaf_ids,
             )
         if start_piece and stop_piece:
-            lilypond_format_bundle.right.spanner_starts.extend([
+            bundle.right.spanner_starts.extend([
                 start_piece, stop_piece])
         elif start_piece:
-            lilypond_format_bundle.right.spanner_starts.append(start_piece)
+            bundle.right.spanner_starts.append(start_piece)
         elif stop_piece:
-            lilypond_format_bundle.right.spanner_stops.append(stop_piece)
-        return lilypond_format_bundle
+            bundle.right.spanner_stops.append(stop_piece)
+        return bundle
 
     def _get_start_and_stop_pieces(
         self,
@@ -268,7 +271,7 @@ class GeneralizedBeam(Spanner):
         direction_string = ''
         if self.vertical_direction is not None:
             direction_string = \
-                stringtools.to_tridirectional_lilypond_symbol(
+                datastructuretools.to_tridirectional_lilypond_symbol(
                     self.vertical_direction)
         previous_leaf_is_beamable = (
             self._is_beamable(previous_leaf) and
@@ -298,8 +301,7 @@ class GeneralizedBeam(Spanner):
             return True
         if isinstance(argument, scoretools.Leaf):
             if 0 < argument.written_duration.flag_count:
-                if (hasattr(argument, 'written_pitch') or
-                    hasattr(argument, 'written_pitches')):
+                if isinstance(argument, (scoretools.Note, scoretools.Chord)):
                     return True
                 elif self.use_stemlets:
                     return True
@@ -322,9 +324,10 @@ class GeneralizedBeam(Spanner):
         return False
 
     def _leaf_is_joinable(self, leaf, leaf_ids):
+        from abjad.tools import scoretools
         if id(leaf) not in leaf_ids:
             return False
-        if hasattr(leaf, 'written_pitch') or hasattr(leaf, 'written_pitches'):
+        if isinstance(leaf, (scoretools.Note, scoretools.Chord)):
             if self._is_beamable(leaf):
                 return True
             elif self.include_long_duration_notes:

@@ -5,20 +5,24 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class LilyPondComment(AbjadValueObject):
     r'''LilyPond comment.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Two-word comment:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> comment = indicatortools.LilyPondComment('a comment')
-            >>> attach(comment, note)
+            >>> note = abjad.Note("c'4")
+            >>> comment = abjad.LilyPondComment('a comment')
+            >>> abjad.attach(comment, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(note))
+            >>> f(note)
             % a comment
             c'4
 
@@ -28,14 +32,14 @@ class LilyPondComment(AbjadValueObject):
 
         ::
 
-            >>> note = Note("c'4")
-            >>> comment = indicatortools.LilyPondComment('yet another comment')
-            >>> attach(comment, note)
+            >>> note = abjad.Note("c'4")
+            >>> comment = abjad.LilyPondComment('yet another comment')
+            >>> abjad.attach(comment, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(note))
+            >>> f(note)
             % yet another comment
             c'4
 
@@ -45,11 +49,8 @@ class LilyPondComment(AbjadValueObject):
 
     __slots__ = (
         '_contents_string',
-        '_default_scope',
         '_format_slot',
         )
-
-    _format_leaf_children = False
 
     _allowable_format_slots = (
         'after',
@@ -58,6 +59,10 @@ class LilyPondComment(AbjadValueObject):
         'opening',
         'right',
         )
+
+    _can_attach_to_containers = True
+
+    _format_leaf_children = False
 
     ### INITIALIZER ###
 
@@ -84,7 +89,7 @@ class LilyPondComment(AbjadValueObject):
 
             ::
 
-                >>> comment = indicatortools.LilyPondComment('a comment')
+                >>> comment = abjad.LilyPondComment('a comment')
                 >>> str(comment)
                 '% a comment'
 
@@ -94,7 +99,7 @@ class LilyPondComment(AbjadValueObject):
 
             ::
 
-                >>> comment = indicatortools.LilyPondComment('yet another comment')
+                >>> comment = abjad.LilyPondComment('yet another comment')
                 >>> str(comment)
                 '% yet another comment'
 
@@ -114,11 +119,11 @@ class LilyPondComment(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        format_slot = lilypond_format_bundle.get(self.format_slot)
-        format_slot.comments.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        format_slot = bundle.get(self.format_slot)
+        format_slot.comments.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -132,7 +137,7 @@ class LilyPondComment(AbjadValueObject):
 
             ::
 
-                >>> comment = indicatortools.LilyPondComment('a comment')
+                >>> comment = abjad.LilyPondComment('a comment')
                 >>> comment.contents_string
                 'a comment'
 
@@ -142,7 +147,7 @@ class LilyPondComment(AbjadValueObject):
 
             ::
 
-                >>> comment = indicatortools.LilyPondComment('yet another comment')
+                >>> comment = abjad.LilyPondComment('yet another comment')
                 >>> comment.contents_string
                 'yet another comment'
 
@@ -160,7 +165,7 @@ class LilyPondComment(AbjadValueObject):
 
             ::
 
-                >>> comment = indicatortools.LilyPondComment('a comment')
+                >>> comment = abjad.LilyPondComment('a comment')
                 >>> comment.format_slot
                 'before'
 
@@ -170,7 +175,7 @@ class LilyPondComment(AbjadValueObject):
 
             ::
 
-                >>> comment = indicatortools.LilyPondComment('yet another comment')
+                >>> comment = abjad.LilyPondComment('yet another comment')
                 >>> comment.format_slot
                 'before'
 
@@ -192,7 +197,7 @@ class LilyPondComment(AbjadValueObject):
 
             Default:
 
-                >>> commands = indicatortools.LilyPondComment.list_allowable_format_slots()
+                >>> commands = abjad.LilyPondComment.list_allowable_format_slots()
                 >>> for command in commands:
                 ...     command
                 'after'

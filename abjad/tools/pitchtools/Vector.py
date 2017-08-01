@@ -9,7 +9,7 @@ from abjad.tools.datastructuretools import TypedCounter
 
 
 class Vector(TypedCounter):
-    '''Vector base class.
+    '''Abstract vector.
     '''
 
     ### CLASS VARIABLES ##
@@ -110,7 +110,8 @@ class Vector(TypedCounter):
             repr_items = {str(k): v for k, v in self.items()}
         else:
             repr_items = {
-                mathtools.integer_equivalent_number_to_integer(float(k)): v
+                mathtools.integer_equivalent_number_to_integer(
+                    float(k.number)): v
                 for k, v in self.items()
                 }
         return systemtools.FormatSpecification(

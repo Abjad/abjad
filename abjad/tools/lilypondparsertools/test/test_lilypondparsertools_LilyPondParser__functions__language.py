@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
+import abjad
 
 
 def test_lilypondparsertools_LilyPondParser__functions__language_01():
 
-    target = Container([
-        Note("cs'8"),
-        Note("ds'8"),
-        Note("ff'8")
+    target = abjad.Container([
+        abjad.Note("cs'8"),
+        abjad.Note("ds'8"),
+        abjad.Note("ff'8")
     ])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             cs'8
@@ -22,6 +21,6 @@ def test_lilypondparsertools_LilyPondParser__functions__language_01():
         )
 
     string = r"\language nederlands { cis'8 dis'8 fes'8 }"
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result

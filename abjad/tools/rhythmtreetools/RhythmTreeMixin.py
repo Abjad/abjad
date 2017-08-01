@@ -2,18 +2,25 @@
 import abc
 from abjad import Fraction
 from abjad.tools import abctools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 
 
 class RhythmTreeMixin(abctools.AbjadObject):
-    r'''Rhythm-tree node abstract base class.
+    r'''Abstract rhythm-tree node.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmtreetools
+
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -39,7 +46,7 @@ class RhythmTreeMixin(abctools.AbjadObject):
             container._offset = current_offset
             container._offsets_are_current = True
             for child in container:
-                if hasattr(child, 'children'):
+                if getattr(child, 'children', None) is not None:
                     current_offset = recurse(child, current_offset)
                 else:
                     child._offset = current_offset
@@ -48,7 +55,12 @@ class RhythmTreeMixin(abctools.AbjadObject):
             return current_offset
         offset = durationtools.Offset(0)
         root = self.root
-        if root is self and not hasattr(self, 'children'):
+        try:
+            children = self.children
+            has_children = True
+        except AttributeError:
+            has_children = False
+        if root is self and not has_children:
             self._offset = offset
             self._offsets_are_current = True
         else:
@@ -153,7 +165,9 @@ class RhythmTreeMixin(abctools.AbjadObject):
         node = self
         while node.parent is not None:
             result.append(
-                (node.preprolated_duration, node.parent._contents_duration))
+                (node.preprolated_duration,
+                node.parent._get_contents_duration())
+                )
             node = node.parent
         result.append(node.preprolated_duration)
         return tuple(reversed(result))
@@ -180,11 +194,11 @@ class RhythmTreeMixin(abctools.AbjadObject):
         return self._duration
 
     @preprolated_duration.setter
-    def preprolated_duration(self, arg):
-        if not isinstance(arg, Fraction):
-            arg = durationtools.Duration(arg)
-        assert 0 < arg
-        self._duration = arg
+    def preprolated_duration(self, argument):
+        if not isinstance(argument, Fraction):
+            argument = durationtools.Duration(argument)
+        assert 0 < argument
+        self._duration = argument
         self._mark_entire_tree_for_later_update()
 
     @property
@@ -224,10 +238,10 @@ class RhythmTreeMixin(abctools.AbjadObject):
         '''
         prolations = [durationtools.Multiplier(1)]
         improper_parentage = self.improper_parentage
-        pairs = sequencetools.Sequence(improper_parentage).nwise()
+        pairs = datastructuretools.Sequence(improper_parentage).nwise()
         for child, parent in pairs:
             prolations.append(durationtools.Multiplier(
-                parent.preprolated_duration, parent._contents_duration))
+                parent.preprolated_duration, parent._get_contents_duration()))
         return tuple(prolations)
 
     @abc.abstractproperty

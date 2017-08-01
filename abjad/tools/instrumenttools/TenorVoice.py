@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class TenorVoice(Instrument):
-    r'''A tenor voice.
+    r'''Tenor voice.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> tenor = instrumenttools.TenorVoice()
-        >>> attach(tenor, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Tenor }
-            \set Staff.shortInstrumentName = \markup { Ten. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> tenor = abjad.instrumenttools.TenorVoice()
+            >>> abjad.attach(tenor, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Tenor }
+                \set Staff.shortInstrumentName = \markup { Ten. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     performer_abbreviation = 'ten.'
 
@@ -128,7 +135,7 @@ class TenorVoice(Instrument):
             ::
 
                 >>> tenor.pitch_range
-                PitchRange(range_string='[C3, D5]')
+                PitchRange('[C3, D5]')
 
             ::
 

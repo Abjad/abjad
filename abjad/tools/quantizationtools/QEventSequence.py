@@ -3,68 +3,75 @@ import collections
 import copy
 import itertools
 import numbers
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
 class QEventSequence(AbjadObject):
-    r'''A well-formed sequence of q-events.
+    r'''Q-event sequence.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     Contains only pitched q-events and silent q-events, and terminates with a
     single terminal q-event.
 
     A q-event sequence is the primary input to the quantizer.
 
-    A q-event sequence provides a number of convenience functions to
-    assist with instantiating new sequences:
+    ..  container:: example
 
-    ::
+        A q-event sequence provides a number of convenience functions to assist
+        with instantiating new sequences:
 
-        >>> durations = (1000, -500, 1250, -500, 750)
+        ::
 
-    ::
+            >>> durations = (1000, -500, 1250, -500, 750)
 
-        >>> sequence = \
-        ...     quantizationtools.QEventSequence.from_millisecond_durations(
-        ...     durations)
+        ::
 
-    ::
+            >>> sequence = \
+            ...     quantizationtools.QEventSequence.from_millisecond_durations(
+            ...     durations)
 
-        >>> for q_event in sequence:
-        ...     print(format(q_event, 'storage'))
-        ...
-        quantizationtools.PitchedQEvent(
-            offset=abjad.Offset(0, 1),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        quantizationtools.SilentQEvent(
-            offset=abjad.Offset(1000, 1),
-            )
-        quantizationtools.PitchedQEvent(
-            offset=abjad.Offset(1500, 1),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        quantizationtools.SilentQEvent(
-            offset=abjad.Offset(2750, 1),
-            )
-        quantizationtools.PitchedQEvent(
-            offset=abjad.Offset(3250, 1),
-            pitches=(
-                abjad.NamedPitch("c'"),
-                ),
-            )
-        quantizationtools.TerminalQEvent(
-            offset=abjad.Offset(4000, 1),
-            )
+        ::
+
+            >>> for q_event in sequence:
+            ...     f(q_event)
+            ...
+            quantizationtools.PitchedQEvent(
+                offset=abjad.Offset(0, 1),
+                pitches=(
+                    abjad.NamedPitch("c'"),
+                    ),
+                )
+            quantizationtools.SilentQEvent(
+                offset=abjad.Offset(1000, 1),
+                )
+            quantizationtools.PitchedQEvent(
+                offset=abjad.Offset(1500, 1),
+                pitches=(
+                    abjad.NamedPitch("c'"),
+                    ),
+                )
+            quantizationtools.SilentQEvent(
+                offset=abjad.Offset(2750, 1),
+                )
+            quantizationtools.PitchedQEvent(
+                offset=abjad.Offset(3250, 1),
+                pitches=(
+                    abjad.NamedPitch("c'"),
+                    ),
+                )
+            quantizationtools.TerminalQEvent(
+                offset=abjad.Offset(4000, 1),
+                )
 
     '''
 
@@ -73,6 +80,8 @@ class QEventSequence(AbjadObject):
     __slots__ = (
         '_sequence',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -92,7 +101,7 @@ class QEventSequence(AbjadObject):
                 for q_event in sequence[:-1])
             assert isinstance(sequence[-1], quantizationtools.TerminalQEvent)
             offsets = [x.offset for x in sequence]
-            offsets = sequencetools.Sequence(offsets)
+            offsets = datastructuretools.Sequence(offsets)
             assert offsets.is_increasing(strict=False)
             assert 0 <= sequence[0].offset
             self._sequence = tuple(sequence)
@@ -208,7 +217,7 @@ class QEventSequence(AbjadObject):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_millisecond_durations(cls, milliseconds, fuse_silences=False):
+    def from_millisecond_durations(class_, milliseconds, fuse_silences=False):
         r'''Convert a sequence of millisecond durations ``durations`` into
         a ``QEventSequence``:
 
@@ -258,7 +267,7 @@ class QEventSequence(AbjadObject):
         if fuse_silences:
             durations = [
                 x for x in
-                sequencetools.Sequence(milliseconds).sum_by_sign(sign=[-1])
+                datastructuretools.Sequence(milliseconds).sum_by_sign(sign=[-1])
                 if x
                 ]
         else:
@@ -275,10 +284,10 @@ class QEventSequence(AbjadObject):
             q_events.append(q_event)
         q_events.append(quantizationtools.TerminalQEvent(
             durationtools.Offset(offsets[-1])))
-        return cls(q_events)
+        return class_(q_events)
 
     @classmethod
-    def from_millisecond_offsets(cls, offsets):
+    def from_millisecond_offsets(class_, offsets):
         r'''Convert millisecond offsets ``offsets`` into a ``QEventSequence``:
 
         ::
@@ -336,10 +345,10 @@ class QEventSequence(AbjadObject):
         q_events = [quantizationtools.PitchedQEvent(x, [0])
             for x in offsets[:-1]]
         q_events.append(quantizationtools.TerminalQEvent(offsets[-1]))
-        return cls(q_events)
+        return class_(q_events)
 
     @classmethod
-    def from_millisecond_pitch_pairs(cls, pairs):
+    def from_millisecond_pitch_pairs(class_, pairs):
         r'''Convert millisecond-duration:pitch pairs ``pairs`` into a
         ``QEventSequence``:
 
@@ -427,16 +436,16 @@ class QEventSequence(AbjadObject):
                 q_events.append(quantizationtools.PitchedQEvent(offset, [pitches]))
         q_events.append(quantizationtools.TerminalQEvent(
             durationtools.Offset(offsets[-1])))
-        return cls(q_events)
+        return class_(q_events)
 
     @classmethod
-    def from_tempo_scaled_durations(cls, durations, tempo=None):
+    def from_tempo_scaled_durations(class_, durations, tempo=None):
         r'''Convert ``durations``, scaled by ``tempo``
         into a ``QEventSequence``:
 
         ::
 
-            >>> tempo = Tempo((1, 4), 174)
+            >>> tempo = abjad.MetronomeMark((1, 4), 174)
             >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
 
         ::
@@ -476,10 +485,10 @@ class QEventSequence(AbjadObject):
         '''
         from abjad.tools import quantizationtools
         durations = [durationtools.Duration(x) for x in durations]
-        assert isinstance(tempo, indicatortools.Tempo)
+        assert isinstance(tempo, indicatortools.MetronomeMark)
         durations = [
             x for x in
-            sequencetools.Sequence(durations).sum_by_sign(sign=[-1])
+            datastructuretools.Sequence(durations).sum_by_sign(sign=[-1])
             if x
             ]
         durations = [tempo.duration_to_milliseconds(_) for _ in durations]
@@ -495,17 +504,17 @@ class QEventSequence(AbjadObject):
             q_events.append(q_event)
         # insert terminating silence QEvent
         q_events.append(quantizationtools.TerminalQEvent(offsets[-1]))
-        return cls(q_events)
+        return class_(q_events)
 
     @classmethod
-    def from_tempo_scaled_leaves(cls, leaves, tempo=None):
+    def from_tempo_scaled_leaves(class_, leaves, tempo=None):
         r'''Convert ``leaves``, optionally with ``tempo`` into a
         ``QEventSequence``:
 
         ::
 
-            >>> staff = Staff("c'4 <d' fs'>8. r16 gqs'2")
-            >>> tempo = Tempo((1, 4), 72)
+            >>> staff = abjad.Staff("c'4 <d' fs'>8. r16 gqs'2")
+            >>> tempo = abjad.MetronomeMark((1, 4), 72)
 
         ::
 
@@ -554,17 +563,17 @@ class QEventSequence(AbjadObject):
         from abjad.tools import quantizationtools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
-        assert Selection._all_are_contiguous_components_in_same_logical_voice(
-            leaves)
+        assert Selection._all_in_same_logical_voice(leaves, contiguous=True)
         assert len(leaves)
         if tempo is None:
-            assert leaves[0]._get_effective(indicatortools.Tempo) is not None
+            prototype = indicatortools.MetronomeMark
+            assert leaves[0]._get_effective(prototype) is not None
         #else:
-        #    #tempo = indicatortools.Tempo(tempo)
-        elif isinstance(tempo, indicatortools.Tempo):
+        #    #tempo = indicatortools.MetronomeMark(tempo)
+        elif isinstance(tempo, indicatortools.MetronomeMark):
             tempo = copy.copy(tempo)
         elif isinstance(tempo, tuple):
-            tempo = indicatortools.Tempo(*tempo)
+            tempo = indicatortools.MetronomeMark(*tempo)
         else:
             raise TypeError(tempo)
         # sort by silence and tied leaves
@@ -589,7 +598,7 @@ class QEventSequence(AbjadObject):
                     for x in group)
             else:
                 duration = sum(x._get_effective(
-                    indicatortools.Tempo).duration_to_milliseconds(
+                    indicatortools.MetronomeMark).duration_to_milliseconds(
                     x._get_duration())
                     for x in group)
             durations.append(duration)
@@ -597,13 +606,12 @@ class QEventSequence(AbjadObject):
             if isinstance(group[0], (scoretools.Rest, scoretools.Skip)):
                 pitch = None
             elif isinstance(group[0], scoretools.Note):
-                pitch = group[0].written_pitch.pitch_number
+                pitch = group[0].written_pitch.number
             else: # chord
-                pitch = [x.written_pitch.pitch_number
-                    for x in group[0].note_heads]
+                pitch = [x.written_pitch.number for x in group[0].note_heads]
             pitches.append(pitch)
         # convert durations and pitches to QEvents and return
-        return cls.from_millisecond_pitch_pairs(
+        return class_.from_millisecond_pitch_pairs(
             tuple(zip(durations, pitches)))
 
     ### PUBLIC PROPERTIES ###

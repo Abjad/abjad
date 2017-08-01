@@ -6,19 +6,23 @@ from abjad.tools.topleveltools import detach
 
 
 class Rest(Leaf):
-    r'''A rest.
+    r'''Rest.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> rest = Rest('r8.')
-            >>> measure = Measure((3, 16), [rest])
+            >>> rest = abjad.Rest('r8.')
+            >>> measure = abjad.Measure((3, 16), [rest])
             >>> show(measure) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(measure))
+            >>> f(measure)
             {
                 \time 3/16
                 r8.
@@ -30,7 +34,8 @@ class Rest(Leaf):
 
     __documentation_section__ = 'Leaves'
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -70,12 +75,8 @@ class Rest(Leaf):
             markup(bass)
         return treble, bass
 
-    ### PRIVATE PROPERTIES ###
+    def _get_body(self):
+        return [self._get_compact_representation()]
 
-    @property
-    def _body(self):
-        return [self._compact_representation]
-
-    @property
-    def _compact_representation(self):
-        return 'r{}'.format(self._formatted_duration)
+    def _get_compact_representation(self):
+        return 'r{}'.format(self._get_formatted_duration())

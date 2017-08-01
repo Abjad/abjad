@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Set import Set
 
 
 class IntervalClassSet(Set):
     r'''Interval-class set.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -24,8 +28,8 @@ class IntervalClassSet(Set):
             )
         if isinstance(items, prototype):
             items = list(items)
-            enumeration = sequencetools.Enumeration(items)
-            pairs = enumeration.yield_pairs()
+            enumerator = mathtools.Enumerator(items)
+            pairs = enumerator.yield_pairs()
             items = [second - first for first, second in pairs]
         Set.__init__(
             self,
@@ -58,11 +62,31 @@ class IntervalClassSet(Set):
 
         ::
 
-            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
-            >>> staff_2 = Staff("c4. r8 g2")
-            >>> selection = select((staff_1, staff_2))
-            >>> interval_classes = pitchtools.IntervalClassSet.from_selection(
-            ...     selection)
+            >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
+            >>> staff_2 = abjad.Staff("c4. r8 g2")
+            >>> staff_group = abjad.StaffGroup([staff_1, staff_2])
+            >>> show(staff_group) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff_group)
+            \new StaffGroup <<
+                \new Staff {
+                    c'4
+                    <d' fs' a'>4
+                    b2
+                }
+                \new Staff {
+                    c4.
+                    r8
+                    g2
+                }
+            >>
+
+        ::
+
+            >>> interval_classes = abjad.IntervalClassSet.from_selection(
+            ...     staff_group)
             >>> for interval_class in sorted(interval_classes):
             ...     interval_class
             ...

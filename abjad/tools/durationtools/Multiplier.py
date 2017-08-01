@@ -5,13 +5,17 @@ from abjad.tools.durationtools.Duration import Duration
 class Multiplier(Duration):
     '''Multiplier.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from integer numerator:
 
         ::
 
-            >>> Multiplier(3)
+            >>> abjad.Multiplier(3)
             Multiplier(3, 1)
 
     ..  container:: example
@@ -20,7 +24,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> Multiplier(3, 16)
+            >>> abjad.Multiplier(3, 16)
             Multiplier(3, 16)
 
     ..  container:: example
@@ -29,7 +33,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> Multiplier(3.0)
+            >>> abjad.Multiplier(3.0)
             Multiplier(3, 1)
 
     ..  container:: example
@@ -38,7 +42,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> Multiplier(3.0, 16)
+            >>> abjad.Multiplier(3.0, 16)
             Multiplier(3, 16)
 
     ..  container:: example
@@ -47,7 +51,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> Multiplier((3,))
+            >>> abjad.Multiplier((3,))
             Multiplier(3, 1)
 
     ..  container:: example
@@ -56,7 +60,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> Multiplier((3, 16))
+            >>> abjad.Multiplier((3, 16))
             Multiplier(3, 16)
 
     ..  container:: example
@@ -65,7 +69,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> Multiplier(Duration(3, 16))
+            >>> abjad.Multiplier(abjad.Duration(3, 16))
             Multiplier(3, 16)
 
     ..  container:: example
@@ -74,7 +78,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> Multiplier(Fraction(3, 16))
+            >>> abjad.Multiplier(abjad.Fraction(3, 16))
             Multiplier(3, 16)
 
     ..  container:: example
@@ -83,7 +87,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> Multiplier('3/16')
+            >>> abjad.Multiplier('3/16')
             Multiplier(3, 16)
 
     ..  container:: example
@@ -92,7 +96,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> Multiplier(mathtools.NonreducedFraction(6, 32))
+            >>> abjad.Multiplier(abjad.NonreducedFraction(6, 32))
             Multiplier(3, 16)
 
     ..  container:: example
@@ -101,12 +105,12 @@ class Multiplier(Duration):
 
         ::
 
-            >>> isinstance(Multiplier(3, 16), Fraction)
+            >>> isinstance(abjad.Multiplier(3, 16), abjad.Fraction)
             True
 
     ..  container:: example
 
-        Multipliers are numeric:
+        Multipliers are numbers:
 
         ::
 
@@ -114,7 +118,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> isinstance(Multiplier(3, 16), numbers.Number)
+            >>> isinstance(abjad.Multiplier(3, 16), numbers.Number)
             True
 
     ..  container:: example
@@ -124,22 +128,23 @@ class Multiplier(Duration):
 
         ::
 
-            >>> note = Note("c'1")
-            >>> print(format(note))
+            >>> note = abjad.Note("c'1")
+            >>> f(note)
             c'1
 
         ::
 
-            >>> multiplier = Multiplier(3, 8)
-            >>> attach(multiplier, note)
-            >>> print(format(note))
+            >>> multiplier = abjad.Multiplier(3, 8)
+            >>> abjad.attach(multiplier, note)
+            >>> f(note)
             c'1 * 3/8
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
@@ -162,7 +167,7 @@ class Multiplier(Duration):
 
         ::
 
-            >>> Multiplier(3, 2).is_proper_tuplet_multiplier
+            >>> abjad.Multiplier(3, 2).is_proper_tuplet_multiplier
             True
 
         Returns true or false.

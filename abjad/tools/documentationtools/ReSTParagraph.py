@@ -8,18 +8,24 @@ class ReSTParagraph(TreeNode):
 
     ::
 
-        >>> paragraph = documentationtools.ReSTParagraph(
-        ...     text='blah blah blah')
-        >>> paragraph
-        ReSTParagraph(
-            text='blah blah blah',
-            wrap=True
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> print(_.rest_format)
-        blah blah blah
+        ::
+
+            >>> paragraph = abjad.documentationtools.ReSTParagraph(
+            ...     text='blah blah blah')
+            >>> paragraph
+            ReSTParagraph(
+                text='blah blah blah',
+                wrap=True
+                )
+
+        ::
+
+            >>> print(_.rest_format)
+            blah blah blah
 
     Handles automatic linewrapping.
     '''
@@ -28,12 +34,19 @@ class ReSTParagraph(TreeNode):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        '_text',
+        '_wrap',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, name=None, text='foo', wrap=True):
         TreeNode.__init__(self, name=name)
-        self.text = text
-        self.wrap = wrap
+        #self.text = text
+        #self.wrap = wrap
+        self._text = text
+        self._wrap = wrap
 
     ### PRIVATE PROPERTIES ###
 

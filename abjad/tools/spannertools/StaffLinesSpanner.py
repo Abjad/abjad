@@ -6,16 +6,20 @@ from abjad.tools.spannertools.Spanner import Spanner
 class StaffLinesSpanner(Spanner):
     r'''Staff lines spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.StaffLinesSpanner(lines=1)
-            >>> attach(spanner, staff[1:3])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.StaffLinesSpanner(lines=1)
+            >>> abjad.attach(spanner, staff[1:3])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -76,20 +80,16 @@ class StaffLinesSpanner(Spanner):
     def _copy_keyword_args(self, new):
         new._lines = self.lines
 
-    def _format_after_leaf(self, leaf):
-        result = []
+    def _get_lilypond_format_bundle(self, leaf):
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_last_leaf(leaf) and not self.forbid_restarting:
-            result.append(r'\stopStaff')
-            result.append(r'\startStaff')
-        return result
-
-    def _format_before_leaf(self, leaf):
-        from abjad.tools import lilypondnametools
-        result = []
+            bundle.after.commands.append(r'\stopStaff')
+            bundle.after.commands.append(r'\startStaff')
         if self._is_my_first_leaf(leaf):
-            result.append(r'\stopStaff')
+            bundle.before.commands.append(r'\stopStaff')
             if isinstance(self.lines, int):
-                override = lilypondnametools.LilyPondGrobOverride(
+                override = abjad.LilyPondGrobOverride(
                     context_name='Staff',
                     grob_name='StaffSymbol',
                     is_once=True,
@@ -97,9 +97,9 @@ class StaffLinesSpanner(Spanner):
                     value=self.lines,
                     )
                 string = override.override_string
-                result.append(string)
+                bundle.before.commands.append(string)
             else:
-                override = lilypondnametools.LilyPondGrobOverride(
+                override = abjad.LilyPondGrobOverride(
                     context_name='Staff',
                     grob_name='StaffSymbol',
                     is_once=True,
@@ -107,9 +107,9 @@ class StaffLinesSpanner(Spanner):
                     value=schemetools.SchemeVector(self.lines),
                     )
                 string = override.override_string
-                result.append(string)
-            result.append(r'\startStaff')
-        return result
+                bundle.before.commands.append(string)
+            bundle.before.commands.append(r'\startStaff')
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -120,15 +120,15 @@ class StaffLinesSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.StaffLinesSpanner(
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.StaffLinesSpanner(
             ...     lines=1,
             ...     forbid_restarting=True,
             ...     )
-            >>> attach(spanner, staff[:])
+            >>> abjad.attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -154,9 +154,9 @@ class StaffLinesSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.StaffLinesSpanner(lines=1)
-            >>> attach(spanner, staff[1:3])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.StaffLinesSpanner(lines=1)
+            >>> abjad.attach(spanner, staff[1:3])
             >>> show(staff) # doctest: +SKIP
 
         ::

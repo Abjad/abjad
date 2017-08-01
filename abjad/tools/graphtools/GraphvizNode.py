@@ -5,6 +5,11 @@ from abjad.tools.graphtools.GraphvizMixin import GraphvizMixin
 
 class GraphvizNode(GraphvizMixin, TreeContainer):
     r'''A Graphviz node.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -53,14 +58,14 @@ class GraphvizNode(GraphvizMixin, TreeContainer):
 
         ::
 
-            >>> my_graph = graphtools.GraphvizGraph()
-            >>> node_one = graphtools.GraphvizNode(attributes={'label': 'One'})
-            >>> node_two = graphtools.GraphvizNode(attributes={'label': 'Two'})
+            >>> my_graph = abjad.graphtools.GraphvizGraph()
+            >>> node_one = abjad.graphtools.GraphvizNode(attributes={'label': 'One'})
+            >>> node_two = abjad.graphtools.GraphvizNode(attributes={'label': 'Two'})
             >>> my_graph.extend([node_one, node_two])
             >>> edge = node_one.attach(node_two)
             >>> graph(my_graph)  # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(str(my_graph))
             digraph G {

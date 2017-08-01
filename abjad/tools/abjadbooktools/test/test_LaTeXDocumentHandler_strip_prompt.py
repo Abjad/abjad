@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+import abjad
 import platform
 import unittest
 from abjad.tools import abjadbooktools
-from abjad.tools import stringtools
 
 
 @unittest.skipIf(
@@ -60,7 +60,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             input_file_contents=input_file_contents,
             )
         rebuilt_source = document_handler(return_source=True)
-        assert rebuilt_source == stringtools.normalize(
+        assert rebuilt_source == abjad.String.normalize(
             """
             \\begin{comment}
             <abjad>[strip_prompt=true]

@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 import platform
-from abjad.tools import commandlinetools
-from abjad.tools import stringtools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
 try:
     from unittest import mock
@@ -25,7 +23,7 @@ class Test(ScorePackageScriptTestCase):
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
-    expected_illustration_contents = stringtools.normalize(
+    expected_illustration_contents = abjad.String.normalize(
         r'''
         \language "english"
 
@@ -49,7 +47,7 @@ class Test(ScorePackageScriptTestCase):
         material_path = self.create_material('test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
-            file_pointer.write(stringtools.normalize(r'''
+            file_pointer.write(abjad.String.normalize(r'''
             # -*- coding: utf-8 -*-
             from abjad.tools import lilypondfiletools
 
@@ -57,10 +55,10 @@ class Test(ScorePackageScriptTestCase):
             test_material = lilypondfiletools.LilyPondFile.new()
             test_material.items.append(r'\this-does-not-exist')
             '''))
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 1
@@ -75,7 +73,7 @@ class Test(ScorePackageScriptTestCase):
         illustration_ly_path = material_path.joinpath('illustration.ly')
         assert illustration_ly_path.exists()
         self.compare_lilypond_contents(
-            illustration_ly_path, stringtools.normalize(r'''
+            illustration_ly_path, abjad.String.normalize(r'''
             \language "english"
 
             \header {}
@@ -95,10 +93,10 @@ class Test(ScorePackageScriptTestCase):
         material_path = self.create_material('test_material')
         definition_path = material_path.joinpath('definition.py')
         definition_path.unlink()
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 1
@@ -116,15 +114,15 @@ class Test(ScorePackageScriptTestCase):
         material_path = self.create_material('test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
-            file_pointer.write(stringtools.normalize(r'''
+            file_pointer.write(abjad.String.normalize(r'''
             # -*- coding: utf-8 -*-
 
             test_material = None
             '''))
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 1
@@ -143,7 +141,7 @@ class Test(ScorePackageScriptTestCase):
         material_path = self.create_material('test_material')
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'w') as file_pointer:
-            file_pointer.write(stringtools.normalize(r'''
+            file_pointer.write(abjad.String.normalize(r'''
             # -*- coding: utf-8 -*-
             from abjad.tools import abctools
 
@@ -154,10 +152,10 @@ class Test(ScorePackageScriptTestCase):
 
             test_material = Foo()
             '''))
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 1
@@ -176,10 +174,10 @@ class Test(ScorePackageScriptTestCase):
         definition_path = material_path.joinpath('definition.py')
         with open(str(definition_path), 'a') as file_pointer:
             file_pointer.write('\n\nfailure = 1 / 0\n')
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 1
@@ -189,16 +187,16 @@ class Test(ScorePackageScriptTestCase):
                 Importing test_score.materials.test_material.definition
         '''.replace('/', os.path.sep))
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_all_materials(self, open_file_mock):
         self.create_score()
         self.create_material('material_one')
         self.create_material('material_two')
         self.create_material('material_three')
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--illustrate', '*']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
@@ -240,16 +238,16 @@ class Test(ScorePackageScriptTestCase):
             'illustration.pdf',
             ).exists()
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_filtered_materials(self, open_file_mock):
         self.create_score()
         self.create_material('material_one')
         self.create_material('material_two')
         self.create_material('material_three')
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--illustrate', 'material_t*']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
@@ -284,14 +282,14 @@ class Test(ScorePackageScriptTestCase):
             'illustration.pdf',
             ).exists()
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success_one_material(self, open_file_mock):
         self.create_score()
         self.create_material('test_material')
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--illustrate', 'test_material']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:

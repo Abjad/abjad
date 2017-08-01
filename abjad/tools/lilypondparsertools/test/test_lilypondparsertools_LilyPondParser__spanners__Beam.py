@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Beam_01():
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    beam = Beam()
-    attach(beam, target[0:3])
-    beam = Beam()
-    attach(beam, target[3:])
+    maker = abjad.NoteMaker()
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    beam = abjad.Beam()
+    abjad.attach(beam, target[0:3])
+    beam = abjad.Beam()
+    abjad.attach(beam, target[3:])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 [
@@ -23,7 +23,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_01():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
 
@@ -32,13 +32,14 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_02():
     r'''With start and stop reversed.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    beam = Beam()
-    attach(beam, target[0:3])
-    beam = Beam()
-    attach(beam, target[3:])
+    maker = abjad.NoteMaker()
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    beam = abjad.Beam()
+    abjad.attach(beam, target[0:3])
+    beam = abjad.Beam()
+    abjad.attach(beam, target[3:])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 [
@@ -50,20 +51,21 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_02():
         )
 
     string = r'''\relative c' { c [ c c ] c ] [ }'''
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Beam_03():
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    beam = Beam()
-    attach(beam, target[:])
-    beam = Beam()
-    attach(beam, target[1:3])
+    maker = abjad.NoteMaker()
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    beam = abjad.Beam()
+    abjad.attach(beam, target[:])
+    beam = abjad.Beam()
+    abjad.attach(beam, target[1:3])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 [
@@ -79,13 +81,14 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_03():
 
 def test_lilypondparsertools_LilyPondParser__spanners__Beam_04():
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    beam = Beam()
-    attach(beam, target[:3])
-    beam = Beam()
-    attach(beam, target[2:])
+    maker = abjad.NoteMaker()
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    beam = abjad.Beam()
+    abjad.attach(beam, target[:3])
+    beam = abjad.Beam()
+    abjad.attach(beam, target[2:])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 [
@@ -108,21 +111,22 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_05():
 def test_lilypondparsertools_LilyPondParser__spanners__Beam_06():
 
     string = "{ c'4 c'4 c'4 c'4 ] }"
-    result = LilyPondParser()(string)
-    assert not inspect_(result[-1]).get_spanners()
+    result = abjad.lilypondparsertools.LilyPondParser()(string)
+    assert not abjad.inspect(result[-1]).get_spanners()
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Beam_07():
     r'''With direction.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    beam = Beam(direction=Up)
-    attach(beam, target[0:3])
-    beam = Beam(direction=Down)
-    attach(beam, target[3:])
+    maker = abjad.NoteMaker()
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    beam = abjad.Beam(direction=Up)
+    abjad.attach(beam, target[0:3])
+    beam = abjad.Beam(direction=Down)
+    abjad.attach(beam, target[3:])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 ^ [
@@ -133,6 +137,6 @@ def test_lilypondparsertools_LilyPondParser__spanners__Beam_07():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result

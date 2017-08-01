@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
+import abjad
 import copy
-from abjad import *
 
 
 def test_scoretools_GraceContainer___copy___01():
-    r'''Grace containers copy kind.
-    '''
 
-    grace_container_1 = scoretools.GraceContainer([Note("d'32")], kind='after')
+    grace_container_1 = abjad.AfterGraceContainer([abjad.Note("d'32")])
     grace_container_2 = copy.copy(grace_container_1)
 
     assert grace_container_1 is not grace_container_2
-    assert grace_container_1.kind == grace_container_2.kind == 'after'
+    assert isinstance(grace_container_2, abjad.AfterGraceContainer)

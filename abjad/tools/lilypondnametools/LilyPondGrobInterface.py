@@ -5,9 +5,14 @@ from abjad.tools import abctools
 class LilyPondGrobInterface(abctools.AbjadValueObject):
     r'''LilyPond grob interface.
 
+    :: 
+
+        >>> from abjad.tools import lilypondnametools
+
     ::
 
-        >>> interface = lilypondnametools.LilyPondGrobInterface('beam-interface')
+        >>> string = 'beam-interface'
+        >>> interface = lilypondnametools.LilyPondGrobInterface(string)
         >>> print(format(interface))
         lilypondnametools.LilyPondGrobInterface(
             name='beam-interface',

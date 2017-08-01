@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import abctools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
@@ -15,121 +15,166 @@ from abjad.tools.topleveltools import select
 class ReducedLyParser(abctools.Parser):
     r'''Parses the "reduced-ly" syntax, a modified subset of LilyPond syntax.
 
-        >>> parser = lilypondparsertools.ReducedLyParser()
-
-    Understands LilyPond-like representation of notes, chords and rests:
-
     ::
 
-        >>> string = "c'4 r8. <b d' fs'>16"
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c'4
-            r8.
-            <b d' fs'>16
-        }
+        >>> import abjad
 
-    Also parses bare duration as notes on middle-C, and negative bare
-    durations as rests:
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> string = '4 -8 16. -32'
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c'4
-            r8
-            c'16.
-            r32
-        }
+            >>> parser = abjad.lilypondparsertools.ReducedLyParser()
 
-    Note that the leaf syntax is greedy, and therefore duration specifiers
-    following pitch specifiers will be treated as part of the same expression.
-    The following produces 2 leaves, rather than 3:
+        Understands LilyPond-like representation of notes, chords and rests:
 
-    ::
+        ::
 
-        >>> string = "4 d' 4"
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c'4
-            d'4
-        }
+            >>> string = "c'4 r8. <b d' fs'>16"
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
 
-    Understands LilyPond-like default durations:
+        ..  docs::
 
-    ::
+            >>> f(container)
+            {
+                c'4
+                r8.
+                <b d' fs'>16
+            }
 
-        >>> string = "c'4 d' e' f'"
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c'4
-            d'4
-            e'4
-            f'4
-        }
+        Also parses bare duration as notes on middle-C, and negative bare
+        durations as rests:
+
+        ::
+
+            >>> string = '4 -8 16. -32'
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(container)
+            {
+                c'4
+                r8
+                c'16.
+                r32
+            }
+
+    ..  container:: example
+
+        Note that the leaf syntax is greedy, and therefore duration specifiers
+        following pitch specifiers will be treated as part of the same
+        expression. The following produces 2 leaves, rather than 3:
+
+        ::
+
+            >>> string = "4 d' 4"
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(container)
+            {
+                c'4
+                d'4
+            }
+
+        Understands LilyPond-like default durations:
+
+        ::
+
+            >>> string = "c'4 d' e' f'"
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(container)
+            {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
 
     Also understands various types of container specifications.
 
-    Can create arbitrarily nested tuplets:
+    ..  container:: example
 
-    ::
+        Can create arbitrarily nested tuplets:
 
-        >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
-        >>> result = parser(string)
-        >>> print(format(result))
-        \tweak edge-height #'(0.7 . 0)
-        \times 2/3 {
-            c'4
-            c'4
-            \tweak text #tuplet-number::calc-fraction-text
+        ::
+
+            >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
+            >>> tuplet = parser(string)
+            >>> show(tuplet) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(tuplet)
             \tweak edge-height #'(0.7 . 0)
-            \times 3/5 {
-                c'8
-                c'8
-                c'8
+            \times 2/3 {
+                c'4
+                c'4
+                \tweak text #tuplet-number::calc-fraction-text
+                \tweak edge-height #'(0.7 . 0)
+                \times 3/5 {
+                    c'8
+                    c'8
+                    c'8
+                }
             }
-        }
 
-    Can also create empty `FixedDurationContainers`:
+    ..  container:: example
 
-    ::
+        Can create measures too:
 
-        >>> string = '{1/4} {3/4}'
-        >>> result = parser(string)
-        >>> for x in result: x
-        ...
-        FixedDurationContainer(Duration(1, 4), [])
-        FixedDurationContainer(Duration(3, 4), [])
+        ::
 
-    Can create measures too:
+            >>> string = '| 4/4 4 4 4 4 || 3/8 8 8 8 |'
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
 
-    ::
+        ..  docs::
 
-        >>> string = '| 4/4 4 4 4 4 || 3/8 8 8 8 |'
-        >>> result = parser(string)
-        >>> for x in result: x
-        ...
-        Measure((4, 4), "c'4 c'4 c'4 c'4")
-        Measure((3, 8), "c'8 c'8 c'8")
+            >>> f(container)
+            {
+                {
+                    \time 4/4
+                    c'4
+                    c'4
+                    c'4
+                    c'4
+                }
+                {
+                    \time 3/8
+                    c'8
+                    c'8
+                    c'8
+                }
+            }
 
-    Finally, understands ties, slurs and beams:
+    ..  container:: example
 
-    ::
+        Finally, understands ties, slurs and beams:
 
-        >>> string = 'c16 [ ( d ~ d ) f ]'
-        >>> result = parser(string)
-        >>> print(format(result))
-        {
-            c16 [ (
-            d16 ~
-            d16 )
-            f16 ]
-        }
+        ::
+
+            >>> string = 'c16 [ ( d ~ d ) f ]'
+            >>> container = parser(string)
+            >>> show(container) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(container)
+            {
+                c16 [ (
+                d16 ~
+                d16 )
+                f16 ]
+            }
 
     '''
 
@@ -325,14 +370,14 @@ class ReducedLyParser(abctools.Parser):
     def p_fixed_duration_container__BRACE_L__FRACTION__BRACE_R(self, p):
         r'''fixed_duration_container : BRACE_L FRACTION BRACE_R
         '''
-        p[0] = scoretools.FixedDurationContainer(durationtools.Duration(p[2]))
+        raise Exception('fixed-duration containers no longer supported.')
 
     def p_leaf__leaf_body__post_events(self, p):
         r'''leaf : leaf_body post_events
         '''
         p[0] = p[1]
         if p[2]:
-            annotation = indicatortools.Annotation('post events', p[2])
+            annotation = {'post events': p[2]}
             attach(annotation, p[0])
 
     def p_leaf_body__chord_body(self, p):
@@ -499,11 +544,15 @@ class ReducedLyParser(abctools.Parser):
     def p_tuplet__FRACTION__container(self, p):
         r'''tuplet : FRACTION container
         '''
-        p[0] = scoretools.Tuplet(p[1], p[2][:])
+        assert isinstance(p[2], scoretools.Container)
+        leaves = p[2][:]
+        p[2][:] = []
+        p[0] = scoretools.Tuplet(p[1], leaves)
 
     ### PRIVATE METHODS ###
 
     def _apply_spanners(self, leaves):
+        import abjad
 
         spanner_references = {
             spannertools.Beam: None,
@@ -511,7 +560,7 @@ class ReducedLyParser(abctools.Parser):
         }
 
         first_leaf = leaves[0]
-        pairs = sequencetools.Sequence(leaves).nwise(wrapped=True)
+        pairs = datastructuretools.Sequence(leaves).nwise(wrapped=True)
         for leaf, next_leaf in pairs:
             span_events = self._get_span_events(leaf)
             for current_class, directions in span_events.items():
@@ -537,7 +586,8 @@ class ReducedLyParser(abctools.Parser):
                         previous_tie[0]._append(next_leaf)
                     else:
                         tie = spannertools.Tie()
-                        attach(tie, (leaf, next_leaf))
+                        selection = abjad.select([leaf, next_leaf])
+                        attach(tie, selection)
 
                 elif current_class is spannertools.Beam:
                     # A beam may begin and end on the same leaf
@@ -595,17 +645,17 @@ class ReducedLyParser(abctools.Parser):
         if leaves:
             self._apply_spanners(leaves)
         for leaf in leaves:
-            detach(indicatortools.Annotation, leaf)
+            detach(dict, leaf)
         if 1 < self._toplevel_component_count:
             return parsed
         return parsed[0]
 
     def _get_span_events(self, leaf):
-        annotations = leaf._get_indicators(indicatortools.Annotation)
-        detach(indicatortools.Annotation, leaf)
-        annotations = [x for x in annotations if x.name == 'post events']
+        annotations = leaf._get_indicators(dict)
+        detach(dict, leaf)
+        annotations = [x for x in annotations if 'post events' in x]
         if annotations:
-            return annotations[0].value
+            return annotations[0]['post events']
         return {}
 
     def _setup(self):

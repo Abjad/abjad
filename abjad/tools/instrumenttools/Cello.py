@@ -6,29 +6,35 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Cello(Instrument):
-    r'''A cello.
+    r'''Cello.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> cello = instrumenttools.Cello()
-        >>> attach(cello, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { Cello }
-            \set Staff.shortInstrumentName = \markup { Vc. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff[0])
+            >>> cello = abjad.instrumenttools.Cello()
+            >>> abjad.attach(cello, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { Cello }
+                \set Staff.shortInstrumentName = \markup { Vc. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
@@ -147,7 +153,7 @@ class Cello(Instrument):
             ::
 
                 >>> cello.pitch_range
-                PitchRange(range_string='[C2, G5]')
+                PitchRange('[C2, G5]')
 
             ::
 

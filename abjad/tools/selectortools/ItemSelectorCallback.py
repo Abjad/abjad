@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
+import collections
 import numbers
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import select
 
 
 class ItemSelectorCallback(AbjadValueObject):
     r'''Item selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -36,7 +42,7 @@ class ItemSelectorCallback(AbjadValueObject):
         Returns item.
         '''
         import abjad
-        assert isinstance(argument, (abjad.Selection, tuple)), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         if self.apply_to_each:
             result = []
             for item in argument:

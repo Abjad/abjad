@@ -1,39 +1,39 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 import pytest
 
 
 def test_scoretools_NoteHead_written_pitch_01():
-    r'''Set Note head pitch with integer.
+    r'''Set abjad.Note head pitch with integer.
     '''
 
-    note = Note(13, (1, 4))
+    note = abjad.Note(13, (1, 4))
     note.note_head.written_pitch = 14
 
     "NoteHead(d'')"
 
     assert format(note.note_head) == "d''"
-    assert note.note_head.written_pitch.numbered_pitch._pitch_number == 14
+    assert note.note_head.written_pitch == 14
 
 
 def test_scoretools_NoteHead_written_pitch_02():
-    r'''Set Note head pitch with pitch.
+    r'''Set abjad.Note head pitch with pitch.
     '''
 
-    note = Note(13, (1, 4))
-    note.note_head.written_pitch = NamedPitch(14)
+    note = abjad.Note(13, (1, 4))
+    note.note_head.written_pitch = abjad.NamedPitch(14)
 
     "NoteHead(d'')"
 
     assert format(note.note_head) == "d''"
-    assert note.note_head.written_pitch.numbered_pitch._pitch_number == 14
+    assert note.note_head.written_pitch == 14
 
 
 def test_scoretools_NoteHead_written_pitch_03():
     r'''Can not set note-head pitch to none.
     '''
 
-    note = Note(13, (1, 4))
+    note = abjad.Note(13, (1, 4))
 
     assert pytest.raises(Exception, 'note.note_head.written_pitch = None')
 
@@ -43,10 +43,10 @@ def test_scoretools_NoteHead_written_pitch_04():
     Make sure this does not cause reference problems.
     '''
 
-    n1 = Note(12, (1, 4))
-    n2 = Note(14, (1, 4))
+    n1 = abjad.Note(12, (1, 4))
+    n2 = abjad.Note(14, (1, 4))
     n1.written_pitch = n2.written_pitch
 
-    assert n1.written_pitch == NamedPitch(14)
-    assert n2.written_pitch == NamedPitch(14)
+    assert n1.written_pitch == abjad.NamedPitch(14)
+    assert n2.written_pitch == abjad.NamedPitch(14)
     assert n1.written_pitch is not n2.written_pitch

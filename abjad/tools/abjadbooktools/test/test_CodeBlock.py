@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+import abjad
 import sys
 import unittest
 from abjad.tools import abjadbooktools
-from abjad.tools import stringtools
 
 
 class CodeBlockTests(unittest.TestCase):
@@ -26,8 +26,8 @@ class CodeBlockTests(unittest.TestCase):
         result = code_block.as_docutils()
         self.assertEqual(len(result), 2)
         self.assertEqual(
-            stringtools.normalize(result[0].pformat()),
-            stringtools.normalize(
+            abjad.String.normalize(result[0].pformat()),
+            abjad.String.normalize(
                 r'''
                 <literal_block xml:space="preserve">
                     >>> for i in range(4):
@@ -39,8 +39,8 @@ class CodeBlockTests(unittest.TestCase):
                 '''),
             )
         self.assertEqual(
-            stringtools.normalize(result[1].pformat()),
-            stringtools.normalize(
+            abjad.String.normalize(result[1].pformat()),
+            abjad.String.normalize(
                 r'''
                 <literal_block xml:space="preserve">
                     >>> 1 + 1
@@ -52,12 +52,12 @@ class CodeBlockTests(unittest.TestCase):
         source = '''
         ..  import:: abjad.tools.abjadbooktools:example_function
         '''
-        source = stringtools.normalize(source)
+        source = abjad.String.normalize(source)
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
         if sys.version_info[0] == 2:
-            assert format(result) == stringtools.normalize(r"""
+            assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         u'def example_function(argument):',
@@ -81,7 +81,7 @@ class CodeBlockTests(unittest.TestCase):
                     )
                 """)
         else:            
-            assert format(result) == stringtools.normalize(r"""
+            assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         'def example_function(argument):',
@@ -110,12 +110,12 @@ class CodeBlockTests(unittest.TestCase):
         ..  import:: abjad.tools.abjadbooktools:example_function
             :hide:
         '''
-        source = stringtools.normalize(source)
+        source = abjad.String.normalize(source)
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
         if sys.version_info[0] == 2:
-            assert format(result) == stringtools.normalize(r"""
+            assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         u'def example_function(argument):',
@@ -142,7 +142,7 @@ class CodeBlockTests(unittest.TestCase):
                     )
                 """)
         else:
-            assert format(result) == stringtools.normalize(r"""
+            assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         'def example_function(argument):',
@@ -177,12 +177,12 @@ class CodeBlockTests(unittest.TestCase):
             if True:
                 note.written_pitch = "ds,"
         '''
-        source = stringtools.normalize(source)
+        source = abjad.String.normalize(source)
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
         if sys.version_info[0] == 2:
-            assert format(result) == stringtools.normalize(r"""
+            assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         u'note = Note("c\'4")',
@@ -193,7 +193,7 @@ class CodeBlockTests(unittest.TestCase):
                     )
                 """)
         else:
-            assert format(result) == stringtools.normalize(r"""
+            assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         'note = Note("c\'4")',
@@ -213,12 +213,12 @@ class CodeBlockTests(unittest.TestCase):
             if True:
                 note.written_pitch = "ds,"
         '''
-        source = stringtools.normalize(source)
+        source = abjad.String.normalize(source)
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
         if sys.version_info[0] == 2:
-            assert format(result) == stringtools.normalize(r"""
+            assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         u'note = Note("c\'4")',
@@ -232,7 +232,7 @@ class CodeBlockTests(unittest.TestCase):
                     )
                 """)
         else:
-            assert format(result) == stringtools.normalize(r"""
+            assert format(result) == abjad.String.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         'note = Note("c\'4")',
@@ -253,7 +253,7 @@ class CodeBlockTests(unittest.TestCase):
             >>> print('Hello, world!')
             Hello, world!
         '''
-        source = stringtools.normalize(source)
+        source = abjad.String.normalize(source)
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_literal_block(block)

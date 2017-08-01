@@ -6,22 +6,28 @@ def timespan_2_overlaps_stop_of_timespan_1(
     timespan_2=None,
     hold=False,
     ):
-    r'''Make time relation indicating that `timespan_2` overlaps
-    stop of `timespan_1`.
+    r'''Make time relation indicating that `timespan_2` overlaps stop of
+    `timespan_1`.
 
     ::
 
-        >>> relation = timespantools.timespan_2_overlaps_stop_of_timespan_1()
-        >>> f(relation)
-        abjad.TimespanTimespanTimeRelation(
-            inequality=abjad.CompoundInequality(
-                [
-                    abjad.Inequality('timespan_2.start_offset < timespan_1.stop_offset'),
-                    abjad.Inequality('timespan_1.stop_offset < timespan_2.stop_offset'),
-                    ],
-                logical_operator='and',
-                ),
-            )
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> relation = abjad.timespantools.timespan_2_overlaps_stop_of_timespan_1()
+            >>> f(relation)
+            abjad.TimespanTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
+                    [
+                        abjad.TimespanInequality('timespan_2.start_offset < timespan_1.stop_offset'),
+                        abjad.TimespanInequality('timespan_1.stop_offset < timespan_2.stop_offset'),
+                        ],
+                    logical_operator='and',
+                    ),
+                )
 
     Returns time relation or boolean.
     '''

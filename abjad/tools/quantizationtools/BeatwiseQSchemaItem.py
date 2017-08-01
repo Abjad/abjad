@@ -4,41 +4,52 @@ from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 
 class BeatwiseQSchemaItem(QSchemaItem):
-    '''`BeatwiseQSchemaItem` represents a change of state in the timeline
-    of an unmetered quantization process.
+    '''Beatwise q-schema item.
+
+    Represents a change of state in the timeline of an unmetered quantization
+    process.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     ::
 
         >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem()
-        >>> print(format(q_schema_item))
+        >>> f(q_schema_item)
         quantizationtools.BeatwiseQSchemaItem()
 
-    Define a change in tempo:
+    ..  container:: example
 
-    ::
+        Defines a change in tempo:
 
-        >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem(
-        ...     tempo=((1, 4), 60),
-        ...     )
-        >>> print(format(q_schema_item))
-        quantizationtools.BeatwiseQSchemaItem(
-            tempo=abjad.Tempo(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=60,
-                ),
-            )
+        ::
 
-    Define a change in beatspan:
+            >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem(
+            ...     tempo=((1, 4), 60),
+            ...     )
+            >>> f(q_schema_item)
+            quantizationtools.BeatwiseQSchemaItem(
+                tempo=abjad.MetronomeMark(
+                    reference_duration=abjad.Duration(1, 4),
+                    units_per_minute=60,
+                    ),
+                )
 
-    ::
+    ..  container:: example
 
-        >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem(
-        ...     beatspan=(1, 8),
-        ...     )
-        >>> print(format(q_schema_item))
-        quantizationtools.BeatwiseQSchemaItem(
-            beatspan=abjad.Duration(1, 8),
-            )
+        Defines a change in beatspan:
+
+        ::
+
+            >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem(
+            ...     beatspan=(1, 8),
+            ...     )
+            >>> f(q_schema_item)
+            quantizationtools.BeatwiseQSchemaItem(
+                beatspan=abjad.Duration(1, 8),
+                )
 
     '''
 
@@ -47,6 +58,8 @@ class BeatwiseQSchemaItem(QSchemaItem):
     __slots__ = (
         '_beatspan',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

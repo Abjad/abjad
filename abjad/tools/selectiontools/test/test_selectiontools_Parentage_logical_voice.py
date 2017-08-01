@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 import pytest
 
 
@@ -8,11 +8,11 @@ def test_selectiontools_Parentage_logical_voice_01():
     the same signature.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
-    containment = inspect_(staff).get_parentage().logical_voice
-    for component in iterate(staff).by_class():
-        assert inspect_(component).get_parentage().logical_voice == containment
+    containment = abjad.inspect(staff).get_parentage().logical_voice
+    for component in abjad.iterate(staff).by_class():
+        assert abjad.inspect(component).get_parentage().logical_voice == containment
 
 
 def test_selectiontools_Parentage_logical_voice_02():
@@ -20,25 +20,25 @@ def test_selectiontools_Parentage_logical_voice_02():
     the same signature.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff.name = 'foo'
 
-    containment = inspect_(staff).get_parentage().logical_voice
-    for component in iterate(staff).by_class():
-        assert inspect_(component).get_parentage().logical_voice == containment
+    containment = abjad.inspect(staff).get_parentage().logical_voice
+    for component in abjad.iterate(staff).by_class():
+        assert abjad.inspect(component).get_parentage().logical_voice == containment
 
 def test_selectiontools_Parentage_logical_voice_03():
     r'''Leaves inside equally named sequential voices inside a staff
     share the same signature.
     '''
 
-    staff = Staff(Voice("c'8 d'8 e'8 f'8") * 2)
+    staff = abjad.Staff(abjad.Voice("c'8 d'8 e'8 f'8") * 2)
     staff[0].name = 'foo'
     staff[1].name = 'foo'
 
-    containment = inspect_(staff[0][0]).get_parentage().logical_voice
-    for leaf in iterate(staff).by_leaf():
-        assert inspect_(leaf).get_parentage().logical_voice == containment
+    containment = abjad.inspect(staff[0][0]).get_parentage().logical_voice
+    for leaf in abjad.iterate(staff).by_leaf():
+        assert abjad.inspect(leaf).get_parentage().logical_voice == containment
 
 
 def test_selectiontools_Parentage_logical_voice_04():
@@ -46,7 +46,7 @@ def test_selectiontools_Parentage_logical_voice_04():
     first voice, staff and score in the parentage of component.
     '''
 
-    voice = Voice(
+    voice = abjad.Voice(
         r'''
         c'8
         d'8
@@ -65,9 +65,9 @@ def test_selectiontools_Parentage_logical_voice_04():
         '''
         )
 
-    override(voice).note_head.color = 'red'
+    abjad.override(voice).note_head.color = 'red'
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice \with {
             \override NoteHead.color = #red
@@ -90,8 +90,8 @@ def test_selectiontools_Parentage_logical_voice_04():
         '''
         )
 
-    signatures = [inspect_(leaf).get_parentage().logical_voice
-        for leaf in iterate(voice).by_leaf()]
+    signatures = [abjad.inspect(leaf).get_parentage().logical_voice
+        for leaf in abjad.iterate(voice).by_leaf()]
 
     assert signatures[0] == signatures[1]
     assert signatures[0] != signatures[2]
@@ -107,7 +107,7 @@ def test_selectiontools_Parentage_logical_voice_05():
     first voice, staff and score in parentage of component.
     '''
 
-    voice = Voice(
+    voice = abjad.Voice(
         r'''
         c'8
         d'8
@@ -126,10 +126,10 @@ def test_selectiontools_Parentage_logical_voice_05():
         '''
         )
 
-    override(voice).note_head.color = 'red'
+    abjad.override(voice).note_head.color = 'red'
     voice.name = 'foo'
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \context Voice = "foo" \with {
             \override NoteHead.color = #red
@@ -153,8 +153,8 @@ def test_selectiontools_Parentage_logical_voice_05():
         )
 
     signatures = [
-        inspect_(leaf).get_parentage().logical_voice
-        for leaf in iterate(voice).by_leaf()
+        abjad.inspect(leaf).get_parentage().logical_voice
+        for leaf in abjad.iterate(voice).by_leaf()
         ]
 
     signatures[0] == signatures[1]
@@ -178,24 +178,24 @@ def test_selectiontools_Parentage_logical_voice_06():
     first voice, staff and score in parentage of component.
     '''
 
-    container = Container([
-        Staff([Voice("c'8 d'8")]),
-        Staff([Voice("e'8 f'8")]),
+    container = abjad.Container([
+        abjad.Staff([abjad.Voice("c'8 d'8")]),
+        abjad.Staff([abjad.Voice("e'8 f'8")]),
         ])
     container[0].name = 'staff1'
     container[1].name = 'staff2'
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
-    beam = Beam()
-    leaves = select(container).by_leaf()
+    beam = abjad.Beam()
+    leaves = abjad.select(container).by_leaf()
     statement = 'attach(beam, leaves)'
     assert pytest.raises(Exception, statement)
-    beam = Beam()
-    attach(beam, leaves[:2])
-    beam = Beam()
-    attach(beam, leaves[2:])
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves[:2])
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves[2:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \context Staff = "staff1" {
@@ -214,7 +214,7 @@ def test_selectiontools_Parentage_logical_voice_06():
         '''
         )
 
-    signatures = [inspect_(leaf).get_parentage().logical_voice
+    signatures = [abjad.inspect(leaf).get_parentage().logical_voice
         for leaf in leaves]
 
     signatures[0] == signatures[1]
@@ -229,7 +229,7 @@ def test_selectiontools_Parentage_logical_voice_07():
     first voice, staff and score in parentage of component.
     '''
 
-    container = Container(
+    container = abjad.Container(
         r'''
         c'8
         <<
@@ -252,10 +252,10 @@ def test_selectiontools_Parentage_logical_voice_07():
         '''
         )
 
-    override(container[1][1]).note_head.color = 'red'
-    override(container[2][1]).note_head.color = 'red'
+    abjad.override(container[1][1]).note_head.color = 'red'
+    abjad.override(container[2][1]).note_head.color = 'red'
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8
@@ -285,8 +285,8 @@ def test_selectiontools_Parentage_logical_voice_07():
         )
 
     signatures = [
-        inspect_(leaf).get_parentage().logical_voice
-        for leaf in iterate(container).by_leaf()
+        abjad.inspect(leaf).get_parentage().logical_voice
+        for leaf in abjad.iterate(container).by_leaf()
         ]
 
     signatures[0] != signatures[1]
@@ -312,11 +312,11 @@ def test_selectiontools_Parentage_logical_voice_08():
     r'''Unicorporated leaves carry equivalent containment signatures.
     '''
 
-    note_1 = Note(0, (1, 8))
-    note_2 = Note(0, (1, 8))
+    note_1 = abjad.Note(0, (1, 8))
+    note_2 = abjad.Note(0, (1, 8))
 
-    signature_1 = inspect_(note_1).get_parentage().logical_voice
-    signature_2 = inspect_(note_2).get_parentage().logical_voice
+    signature_1 = abjad.inspect(note_1).get_parentage().logical_voice
+    signature_2 = abjad.inspect(note_2).get_parentage().logical_voice
     assert signature_1 == signature_2
 
 
@@ -324,17 +324,17 @@ def test_selectiontools_Parentage_logical_voice_09():
     r'''Notes appear in the same logical voice.
     '''
 
-    staff_1 = Staff([Voice([Note(0, (1, 8))])])
+    staff_1 = abjad.Staff([abjad.Voice([abjad.Note(0, (1, 8))])])
     staff_1.name = 'staff'
     staff_1[0].name = 'voice'
 
-    staff_2 = Staff([Voice([Note(0, (1, 8))])])
+    staff_2 = abjad.Staff([abjad.Voice([abjad.Note(0, (1, 8))])])
     staff_2.name = 'staff'
     staff_2[0].name = 'voice'
 
-    staff_1_leaf_signature = inspect_(
+    staff_1_leaf_signature = abjad.inspect(
         staff_1[0][0]).get_parentage().logical_voice
-    staff_2_leaf_signature = inspect_(
+    staff_2_leaf_signature = abjad.inspect(
         staff_2[0][0]).get_parentage().logical_voice
     assert staff_1_leaf_signature == staff_2_leaf_signature
 
@@ -343,7 +343,7 @@ def test_selectiontools_Parentage_logical_voice_10():
     r'''Measure and leaves must carry same logical voice signature.
     '''
 
-    staff = Staff(r'''
+    staff = abjad.Staff(r'''
         {
             \time 2/8
             c'8
@@ -353,7 +353,7 @@ def test_selectiontools_Parentage_logical_voice_10():
         f'8
         ''')
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -367,12 +367,12 @@ def test_selectiontools_Parentage_logical_voice_10():
         '''
         )
 
-    assert inspect_(staff[0]).get_parentage().logical_voice == \
-        inspect_(staff[-1]).get_parentage().logical_voice
-    assert inspect_(staff[0]).get_parentage().logical_voice == \
-        inspect_(staff[0][0]).get_parentage().logical_voice
-    assert inspect_(staff[0][0]).get_parentage().logical_voice == \
-        inspect_(staff[-1]).get_parentage().logical_voice
+    assert abjad.inspect(staff[0]).get_parentage().logical_voice == \
+        abjad.inspect(staff[-1]).get_parentage().logical_voice
+    assert abjad.inspect(staff[0]).get_parentage().logical_voice == \
+        abjad.inspect(staff[0][0]).get_parentage().logical_voice
+    assert abjad.inspect(staff[0][0]).get_parentage().logical_voice == \
+        abjad.inspect(staff[-1]).get_parentage().logical_voice
 
 
 def test_selectiontools_Parentage_logical_voice_11():
@@ -380,10 +380,10 @@ def test_selectiontools_Parentage_logical_voice_11():
     signatures, even when the staves have the same name.
     '''
 
-    container = Container(2 * Staff("c'8 c'8"))
+    container = abjad.Container(2 * abjad.Staff("c'8 c'8"))
     container[0].name = container[1].name = 'staff'
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \context Staff = "staff" {
@@ -398,12 +398,12 @@ def test_selectiontools_Parentage_logical_voice_11():
         '''
         )
 
-    leaves = select(container).by_leaf()
-    assert inspect_(leaves[0]).get_parentage().logical_voice == \
-        inspect_(leaves[1]).get_parentage().logical_voice
-    assert inspect_(leaves[0]).get_parentage().logical_voice != \
-        inspect_(leaves[2]).get_parentage().logical_voice
-    assert inspect_(leaves[2]).get_parentage().logical_voice == \
-        inspect_(leaves[3]).get_parentage().logical_voice
-    assert inspect_(leaves[2]).get_parentage().logical_voice != \
-        inspect_(leaves[0]).get_parentage().logical_voice
+    leaves = abjad.select(container).by_leaf()
+    assert abjad.inspect(leaves[0]).get_parentage().logical_voice == \
+        abjad.inspect(leaves[1]).get_parentage().logical_voice
+    assert abjad.inspect(leaves[0]).get_parentage().logical_voice != \
+        abjad.inspect(leaves[2]).get_parentage().logical_voice
+    assert abjad.inspect(leaves[2]).get_parentage().logical_voice == \
+        abjad.inspect(leaves[3]).get_parentage().logical_voice
+    assert abjad.inspect(leaves[2]).get_parentage().logical_voice != \
+        abjad.inspect(leaves[0]).get_parentage().logical_voice

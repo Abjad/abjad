@@ -4,16 +4,20 @@
 def show(argument, return_timing=False, **keywords):
     r'''Shows `argument`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Shows note:
 
         ::
 
-            >>> note = Note("c'4")
+            >>> note = abjad.Note("c'4")
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4
@@ -24,10 +28,10 @@ def show(argument, return_timing=False, **keywords):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
+            >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -59,7 +63,7 @@ def show(argument, return_timing=False, **keywords):
     lilypond_rendering_time = result[2]
     success = result[3]
     if success:
-        abjad.systemtools.IOManager.open_file(pdf_file_path)
+        abjad.IOManager.open_file(pdf_file_path)
     else:
         with open(abjad.abjad_configuration.lilypond_log_file_path, 'r') as fp:
             print(fp.read())

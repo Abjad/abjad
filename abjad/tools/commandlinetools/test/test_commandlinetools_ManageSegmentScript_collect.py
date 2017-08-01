@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 import platform
-from abjad.tools import commandlinetools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
 try:
     from unittest import mock
@@ -28,16 +27,16 @@ class Test(ScorePackageScriptTestCase):
     if platform.system().lower() == 'windows':
         expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
-    @mock.patch('abjad.systemtools.IOManager.open_file')
+    @mock.patch('abjad.IOManager.open_file')
     def test_success(self, open_file_mock):
         self.create_score()
         self.create_segment('segment_one')
         self.create_segment('segment_two')
         self.create_segment('segment_three')
         self.illustrate_segments()
-        collect_script = commandlinetools.ManageSegmentScript()
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        collect_script = abjad.commandlinetools.ManageSegmentScript()
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     collect_script(['--collect'])
                 except SystemExit as e:

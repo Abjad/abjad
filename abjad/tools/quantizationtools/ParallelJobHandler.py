@@ -5,9 +5,22 @@ from abjad.tools.quantizationtools.JobHandler import JobHandler
 
 
 class ParallelJobHandler(JobHandler):
-    r'''Processes ``QuantizationJob`` instances in parallel,
-    based on the number of CPUs available.
+    r'''Parallel job-handler.
+
+    Processes ``QuantizationJob`` instances in parallel, based on the number of
+    CPUs available.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
+
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 

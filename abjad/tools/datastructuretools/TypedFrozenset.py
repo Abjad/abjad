@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import new
 
 
 class TypedFrozenset(TypedCollection):
-    r'''A typed fozen set.
+    r'''Typed fozen set.
     '''
 
     ### CLASS VARIABLES ###
@@ -59,11 +59,7 @@ class TypedFrozenset(TypedCollection):
 
         Returns integer.
         '''
-        return hash((
-            type(self),
-            self._collection,
-            self.item_class,
-            ))
+        return super(TypedFrozenset, self).__hash__()
 
     def __le__(self, argument):
         r'''Is true when typed frozen set is less than or equal to `argument`.
@@ -81,15 +77,6 @@ class TypedFrozenset(TypedCollection):
         '''
         argument = type(self)(argument)
         return self._collection.__lt__(argument._collection)
-
-    def __ne__(self, argument):
-        r'''Is true when typed frozen set is not equal to `argument`. Otherwise
-        false.
-
-        Returns true or false.
-        '''
-        argument = type(self)(argument)
-        return self._collection.__ne__(argument._collection)
 
     def __or__(self, argument):
         r'''Logical OR of typed frozen set and `argument`.

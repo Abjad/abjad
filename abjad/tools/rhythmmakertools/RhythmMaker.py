@@ -1,23 +1,28 @@
 # -*- coding: utf-8 -*-
+import collections
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import patterntools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 
 
 class RhythmMaker(AbjadValueObject):
-    '''Rhythm-maker.
+    '''Abstract rhythm-maker.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     '''
 
     ### CLASS VARIABLES ###
@@ -86,7 +91,7 @@ class RhythmMaker(AbjadValueObject):
         '''
         import abjad
         selections = self(divisions)
-        lilypond_file = abjad.rhythmmakertools.make_lilypond_file(
+        lilypond_file = abjad.LilyPondFile.rhythm(
             selections,
             divisions,
             )
@@ -104,6 +109,7 @@ class RhythmMaker(AbjadValueObject):
             return False
 
     def _apply_division_masks(self, selections, rotation=None):
+        import abjad
         from abjad.tools import rhythmmakertools
         if not self.division_masks:
             return selections
@@ -116,6 +122,11 @@ class RhythmMaker(AbjadValueObject):
         tie_specifier = self._get_tie_specifier()
         length = len(selections)
         division_masks = self.division_masks
+        leaf_maker = abjad.LeafMaker(
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
+            use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
+            )
         for i, selection in enumerate(selections):
             matching_division_mask = division_masks.get_matching_pattern(
                 i,
@@ -130,29 +141,22 @@ class RhythmMaker(AbjadValueObject):
                 matching_division_mask,
                 rhythmmakertools.SustainMask,
                 ):
-                new_selection = scoretools.make_leaves(
-                    [0],
-                    [duration],
-                    decrease_durations_monotonically=\
-                        decrease_durations_monotonically,
-                    forbidden_written_duration=forbidden_written_duration,
-                    use_messiaen_style_ties=\
-                        tie_specifier.use_messiaen_style_ties,
+                leaf_maker = abjad.new(
+                    leaf_maker,
+                    use_multimeasure_rests=False,
                     )
+                new_selection = leaf_maker([0], [duration])
             else:
                 use_multimeasure_rests = getattr(
                     matching_division_mask,
                     'use_multimeasure_rests',
                     False,
                     )
-                new_selection = scoretools.make_leaves(
-                    [None],
-                    [duration],
-                    decrease_durations_monotonically=\
-                        decrease_durations_monotonically,
-                    forbidden_written_duration=forbidden_written_duration,
+                leaf_maker = abjad.new(
+                    leaf_maker,
                     use_multimeasure_rests=use_multimeasure_rests,
                     )
+                new_selection = leaf_maker([None], [duration])
             for component in iterate(selection).by_class():
                 detach(spannertools.Tie, component)
             new_selections.append(new_selection)
@@ -183,7 +187,7 @@ class RhythmMaker(AbjadValueObject):
                 continue
             for leaf in logical_tie:
                 rest = scoretools.Rest(leaf.written_duration)
-                inspector = inspect_(leaf)
+                inspector = inspect(leaf)
                 if inspector.has_indicator(durationtools.Multiplier):
                     multiplier = inspector.get_indicator(
                         durationtools.Multiplier,
@@ -195,7 +199,7 @@ class RhythmMaker(AbjadValueObject):
         # remove every temporary container and recreate selections
         new_selections = []
         for container in containers:
-            inspector = inspect_(container)
+            inspector = inspect(container)
             assert inspector.get_indicator(str) == 'temporary container'
             new_selection = mutate(container).eject_contents()
             new_selections.append(new_selection)
@@ -231,7 +235,7 @@ class RhythmMaker(AbjadValueObject):
 
     def _check_well_formedness(self, selections):
         for component in iterate(selections).by_class():
-            inspector = inspect_(component)
+            inspector = inspect(component)
             if not inspector.is_well_formed():
                 report = inspector.tabulate_well_formedness_violations()
                 report = repr(component) + '\n' + report
@@ -263,7 +267,7 @@ class RhythmMaker(AbjadValueObject):
                     component.is_trivial):
                     new_selection.append(component)
                     continue
-                spanners = inspect_(component).get_spanners()
+                spanners = inspect(component).get_spanners()
                 contents = component[:]
                 for spanner in spanners:
                     new_spanner = copy.copy(spanner)
@@ -330,13 +334,13 @@ class RhythmMaker(AbjadValueObject):
             division.numerator
             for division in divisions
             ]
-        secondary_numerators = sequencetools.Sequence(numerators)
+        secondary_numerators = datastructuretools.Sequence(numerators)
         secondary_numerators = secondary_numerators.split(
             split_divisions_by_counts,
             cyclic=True,
             overhang=True,
             )
-        secondary_numerators = sequencetools.Sequence(secondary_numerators)
+        secondary_numerators = datastructuretools.Sequence(secondary_numerators)
         secondary_numerators = secondary_numerators.flatten()
         denominator = divisions[0].denominator
         secondary_divisions = [
@@ -346,10 +350,12 @@ class RhythmMaker(AbjadValueObject):
         return secondary_divisions
 
     def _make_tuplets(self, divisions, leaf_lists):
+        import abjad
         assert len(divisions) == len(leaf_lists)
         tuplets = []
         for division, leaf_list in zip(divisions, leaf_lists):
-            tuplet = scoretools.FixedDurationTuplet(division, leaf_list)
+            duration = abjad.Duration(division)
+            tuplet = abjad.Tuplet.from_duration(duration, leaf_list)
             tuplets.append(tuplet)
         return tuplets
 
@@ -368,11 +374,11 @@ class RhythmMaker(AbjadValueObject):
             )
         if masks is None:
             return
-        if isinstance(masks, patterntools.Pattern):
+        if isinstance(masks, datastructuretools.Pattern):
             masks = (masks,)
         if isinstance(masks, prototype):
             masks = (masks,)
-        masks = patterntools.PatternList(
+        masks = datastructuretools.PatternList(
             items=masks,
             )
         return masks
@@ -383,29 +389,31 @@ class RhythmMaker(AbjadValueObject):
             return tuple(reversed(argument))
 
     def _rewrite_rest_filled_tuplets(self, selections):
+        import abjad
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         if not tuplet_spelling_specifier.rewrite_rest_filled_tuplets:
             return selections
         new_selections = []
+        maker = abjad.LeafMaker()
         for selection in selections:
             new_selection = []
             for component in selection:
-                if not (isinstance(component, scoretools.Tuplet) and
+                if not (isinstance(component, abjad.Tuplet) and
                     component._is_rest_filled):
                     new_selection.append(component)
                     continue
-                duration = inspect_(component).get_duration()
-                new_rests = scoretools.make_rests([duration])
+                duration = inspect(component).get_duration()
+                new_rests = maker([None], [duration])
                 mutate(component[:]).replace(new_rests)
                 new_selection.append(component)
-            new_selection = selectiontools.Selection(new_selection)
+            new_selection = abjad.select(new_selection)
             new_selections.append(new_selection)
         return new_selections
 
     @staticmethod
     def _rotate_tuple(argument, n):
         if argument is not None:
-            return tuple(sequencetools.Sequence(argument).rotate(n=n))
+            return tuple(datastructuretools.Sequence(argument).rotate(n=n))
 
     def _scale_taleas(self, divisions, talea_denominator, taleas):
         talea_denominator = talea_denominator or 1
@@ -440,11 +448,11 @@ class RhythmMaker(AbjadValueObject):
 
     def _trivial_helper(self, sequence_, rotation):
         if isinstance(rotation, int) and len(sequence_):
-            return sequencetools.Sequence(sequence_).rotate(n=rotation)
+            return datastructuretools.Sequence(sequence_).rotate(n=rotation)
         return sequence_
 
     def _validate_selections(self, selections):
-        assert isinstance(selections, list), repr(selections)
+        assert isinstance(selections, collections.Sequence), repr(selections)
         assert len(selections), repr(selections)
         for selection in selections:
             assert isinstance(selection, selectiontools.Selection), selection

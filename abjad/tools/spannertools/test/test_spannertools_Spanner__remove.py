@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_spannertools_Spanner__remove_01():
@@ -11,11 +11,11 @@ def test_spannertools_Spanner__remove_01():
     Follow immediately with operation to remove component from score.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -30,7 +30,7 @@ def test_spannertools_Spanner__remove_01():
 
     "Spanner is now discontiguous: c'8, e'8, f'8 but no d'8."
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -41,7 +41,7 @@ def test_spannertools_Spanner__remove_01():
         '''
         )
 
-    assert not inspect_(voice).is_well_formed()
+    assert not abjad.inspect(voice).is_well_formed()
 
 
 def test_spannertools_Spanner__remove_02():
@@ -52,12 +52,12 @@ def test_spannertools_Spanner__remove_02():
     Still not composer-safe.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -79,7 +79,7 @@ def test_spannertools_Spanner__remove_02():
     result = beam._remove(beam.components[-1])
     result = beam._remove(beam.components[-1])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -98,20 +98,20 @@ def test_spannertools_Spanner__remove_02():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
 
 
 def test_spannertools_Spanner__remove_03():
     r'''Remove works only on references and not on equality.
     '''
 
-    class MockSpanner(spannertools.Spanner):
+    class MockSpanner(abjad.Spanner):
 
         def __init__(self, components=None):
-            spannertools.Spanner.__init__(self, components)
+            abjad.Spanner.__init__(self, components)
 
-    note = Note("c'4")
+    note = abjad.Note("c'4")
     spanner = MockSpanner()
-    attach(spanner, Note("c'4"))
+    abjad.attach(spanner, abjad.Note("c'4"))
 
     assert pytest.raises(Exception, 'spanner._remove(note)')

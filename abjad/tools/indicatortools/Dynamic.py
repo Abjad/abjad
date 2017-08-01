@@ -6,19 +6,23 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Dynamic(AbjadValueObject):
     r'''Dynamic.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from dynamic name:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> dynamic = Dynamic('f')
-            >>> attach(dynamic, staff[0])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> dynamic = abjad.Dynamic('f')
+            >>> abjad.attach(dynamic, staff[0])
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8 \f
                 d'8
@@ -36,18 +40,18 @@ class Dynamic(AbjadValueObject):
 
         ::
 
-            >>> dynamic_1 = Dynamic('f')
-            >>> dynamic_2 = Dynamic(dynamic_1)
+            >>> dynamic_1 = abjad.Dynamic('f')
+            >>> dynamic_2 = abjad.Dynamic(dynamic_1)
 
         ::
 
             >>> dynamic_1
-            Dynamic(name='f')
+            Dynamic('f')
 
         ::
 
             >>> dynamic_2
-            Dynamic(name='f')
+            Dynamic('f')
 
     ..  container:: example
 
@@ -55,7 +59,7 @@ class Dynamic(AbjadValueObject):
 
         ::
 
-            >>> dynamic = Dynamic('niente')
+            >>> dynamic = abjad.Dynamic('niente')
             >>> format(dynamic, 'lilypond')
             ''
 
@@ -173,11 +177,9 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> dynamic = Dynamic('f')
+                >>> dynamic = abjad.Dynamic('f')
                 >>> print(format(dynamic))
-                abjad.Dynamic(
-                    name='f',
-                    )
+                abjad.Dynamic('f')
 
         ..  container:: example
 
@@ -185,7 +187,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> dynamic = Dynamic('f')
+                >>> dynamic = abjad.Dynamic('f')
                 >>> print(format(dynamic, 'lilypond'))
                 \f
 
@@ -195,7 +197,7 @@ class Dynamic(AbjadValueObject):
             if self.name == 'niente':
                 return ''
             elif self.name not in self._lilypond_dynamic_commands:
-                message = 'dynamic name {!r} is not a LilyPond dynamic command.'
+                message = '{!r} is not a LilyPond dynamic command.'
                 message = message.format(self.name)
                 raise Exception(message)
             return self._get_lilypond_format()
@@ -218,8 +220,23 @@ class Dynamic(AbjadValueObject):
             return False
         return True
 
+    def _get_format_specification(self):
+        import abjad
+        return abjad.FormatSpecification(
+            self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.name],
+            storage_format_is_indented=False,
+            )
+
     def _get_lilypond_format(self):
         return r'\{}'.format(self.name)
+
+    def _get_lilypond_format_bundle(self, component=None):
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.right.articulations.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC METHODS ###
 
@@ -233,7 +250,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
+                >>> abjad.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
                 'p'
 
         ..  container:: example
@@ -242,7 +259,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('rfz')
+                >>> abjad.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('rfz')
                 'f'
 
         Returns string.
@@ -260,7 +277,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic.dynamic_name_to_dynamic_ordinal('fff')
+                >>> abjad.Dynamic.dynamic_name_to_dynamic_ordinal('fff')
                 4
 
         ..  container:: example
@@ -269,7 +286,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic.dynamic_name_to_dynamic_ordinal('niente')
+                >>> abjad.Dynamic.dynamic_name_to_dynamic_ordinal('niente')
                 NegativeInfinity
 
         Returns integer or negative infinity.
@@ -291,7 +308,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic.dynamic_ordinal_to_dynamic_name(-5)
+                >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(-5)
                 'pppp'
 
         ..  container:: example
@@ -300,8 +317,8 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> negative_infinity = mathtools.NegativeInfinity()
-                >>> Dynamic.dynamic_ordinal_to_dynamic_name(negative_infinity)
+                >>> negative_infinity = abjad.mathtools.NegativeInfinity()
+                >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(negative_infinity)
                 'niente'
 
         Returns string.
@@ -321,12 +338,12 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic.is_dynamic_name('f')
+                >>> abjad.Dynamic.is_dynamic_name('f')
                 True
 
             ::
 
-                >>> Dynamic.is_dynamic_name('sfz')
+                >>> abjad.Dynamic.is_dynamic_name('sfz')
                 True
 
         ..  container:: example
@@ -335,7 +352,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic.is_dynamic_name('niente')
+                >>> abjad.Dynamic.is_dynamic_name('niente')
                 True
 
         Returns true or false.
@@ -354,7 +371,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> dynamic = Dynamic('f')
+                >>> dynamic = abjad.Dynamic('f')
                 >>> dynamic.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 
@@ -364,7 +381,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> dynamic = Dynamic('p')
+                >>> dynamic = abjad.Dynamic('p')
                 >>> dynamic.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 
@@ -384,7 +401,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic('f').name
+                >>> abjad.Dynamic('f').name
                 'f'
 
         ..  container:: example
@@ -393,7 +410,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic('p').name
+                >>> abjad.Dynamic('p').name
                 'p'
 
         ..  container:: example
@@ -402,7 +419,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic('sffz').name
+                >>> abjad.Dynamic('sffz').name
                 'sffz'
 
         ..  container:: example
@@ -411,7 +428,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic('sffp').name
+                >>> abjad.Dynamic('sffp').name
                 'sffp'
 
         Returns string.
@@ -428,7 +445,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic('f').ordinal
+                >>> abjad.Dynamic('f').ordinal
                 2
 
         ..  container:: example
@@ -437,7 +454,7 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> Dynamic('p').ordinal
+                >>> abjad.Dynamic('p').ordinal
                 -2
 
         Returns integer.

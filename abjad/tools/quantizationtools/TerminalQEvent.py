@@ -3,13 +3,22 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 
 
 class TerminalQEvent(QEvent):
-    r'''The terminal event in a series of ``QEvents``:
+    r'''Terminal q-event.
 
-        >>> q_event = quantizationtools.TerminalQEvent(1000)
-        >>> print(format(q_event))
-        quantizationtools.TerminalQEvent(
-            offset=abjad.Offset(1000, 1),
-            )
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
+
+    ..  container:: example
+
+        ::
+
+            >>> q_event = quantizationtools.TerminalQEvent(1000)
+            >>> print(format(q_event))
+            quantizationtools.TerminalQEvent(
+                offset=abjad.Offset(1000, 1),
+                )
 
     Carries no significance outside the context of a ``QEventSequence``.
     '''
@@ -20,6 +29,8 @@ class TerminalQEvent(QEvent):
         '_offset',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(self, offset=0):
@@ -28,13 +39,12 @@ class TerminalQEvent(QEvent):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a terminal q-event with offset equal to that
-        of this terminal q-event. Otherwise false.
+        r'''Is true when `argument` is a terminal q-event with offset equal to
+        that of this terminal q-event. Otherwise false.
 
         Returns true or false.
         '''
-        if type(self) == type(argument) and \
-            self.offset == argument.offset:
+        if type(self) == type(argument) and self.offset == argument.offset:
             return True
         return False
 

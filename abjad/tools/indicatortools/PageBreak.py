@@ -5,15 +5,19 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class PageBreak(AbjadValueObject):
     r'''Page break.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Default page break:
 
         ::
 
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> page_break = indicatortools.PageBreak()
-            >>> attach(page_break, staff[-1])
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> page_break = abjad.PageBreak()
+            >>> abjad.attach(page_break, staff[-1])
             >>> show(staff) # doctest: +SKIP
 
         ::
@@ -21,9 +25,9 @@ class PageBreak(AbjadValueObject):
             >>> page_break
             PageBreak()
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4
                 d'4
@@ -42,16 +46,24 @@ class PageBreak(AbjadValueObject):
 
     _format_slot = 'closing'
 
+    _time_orientation = Right
+
     ### INITIALIZER ##
 
     def __init__(self):
         from abjad.tools import scoretools
-        self._default_scope = scoretools.Staff
+        self._default_scope = scoretools.Score
 
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
         return r'\pageBreak'
+
+    def _get_lilypond_format_bundle(self, component=None):
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.after.commands.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -66,14 +78,10 @@ class PageBreak(AbjadValueObject):
             ::
 
                 
-                >>> page_break = indicatortools.PageBreak()
+                >>> page_break = abjad.PageBreak()
                 >>> page_break.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
+                <class 'abjad.tools.scoretools.Score.Score'>
 
-        Page breaks are staff-scoped by default.
-
-        ..  todo:: Page breaks should be score-scoped.
-
-        Returns staff (but should return score).
+        Returns score.
         '''
         return self._default_scope

@@ -1,22 +1,20 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 import shutil
-from abjad.tools import commandlinetools
-from abjad.tools import stringtools
-from abjad.tools import systemtools
 try:
     import pathlib
 except ImportError:
     import pathlib2 as pathlib
 
 
-class TestCase(systemtools.TestCase):
+class TestCase(abjad.TestCase):
 
     test_path = pathlib.Path(__file__).parent
     doctest_path = test_path.joinpath('doctest_test')
 
     failing_module_path = doctest_path.joinpath('doctest_fail.py')
-    failing_module_contents = stringtools.normalize(r'''
+    failing_module_contents = abjad.String.normalize(r'''
         def fail():
             """
             A failing module.
@@ -31,7 +29,7 @@ class TestCase(systemtools.TestCase):
     ''')
 
     passing_module_path = doctest_path.joinpath('doctest_pass.py')
-    passing_module_contents = stringtools.normalize(r'''
+    passing_module_contents = abjad.String.normalize(r'''
         def pass():
             """
             A passing module.
@@ -59,16 +57,16 @@ class TestCase(systemtools.TestCase):
         shutil.rmtree(str(self.doctest_path))
 
     def test_both(self):
-        script = commandlinetools.DoctestScript()
+        script = abjad.commandlinetools.DoctestScript()
         command = [str(self.doctest_path)]
-        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
-            with systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.test_path)):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
         assert context_manager.exception.code == 1
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
-        script_output = stringtools.normalize(script_output)
-        expected = stringtools.normalize('''
+        script_output = abjad.String.normalize(script_output)
+        expected = abjad.String.normalize('''
         doctest_test/doctest_fail.py FAILED
         doctest_test/doctest_pass.py OK
 
@@ -92,16 +90,16 @@ class TestCase(systemtools.TestCase):
         self.compare_strings(expected, script_output)
 
     def test_diff(self):
-        script = commandlinetools.DoctestScript()
+        script = abjad.commandlinetools.DoctestScript()
         command = ['--diff', str(self.failing_module_path)]
-        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
-            with systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.test_path)):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
         assert context_manager.exception.code == 1
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
-        script_output = stringtools.normalize(script_output)
-        expected = stringtools.normalize('''
+        script_output = abjad.String.normalize(script_output)
+        expected = abjad.String.normalize('''
         doctest_test/doctest_fail.py FAILED
 
         **********************************************************************
@@ -123,16 +121,16 @@ class TestCase(systemtools.TestCase):
         self.compare_strings(expected, script_output)
 
     def test_fail(self):
-        script = commandlinetools.DoctestScript()
+        script = abjad.commandlinetools.DoctestScript()
         command = [str(self.failing_module_path)]
-        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
-            with systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.test_path)):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
         assert context_manager.exception.code == 1
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
-        script_output = stringtools.normalize(script_output)
-        expected = stringtools.normalize('''
+        script_output = abjad.String.normalize(script_output)
+        expected = abjad.String.normalize('''
         doctest_test/doctest_fail.py FAILED
 
         **********************************************************************
@@ -155,16 +153,16 @@ class TestCase(systemtools.TestCase):
         self.compare_strings(expected, script_output)
 
     def test_pass(self):
-        script = commandlinetools.DoctestScript()
+        script = abjad.commandlinetools.DoctestScript()
         command = [str(self.passing_module_path)]
-        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
-            with systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.TemporaryDirectoryChange(str(self.test_path)):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
         assert context_manager.exception.code == 0
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
-        script_output = stringtools.normalize(script_output)
-        expected = stringtools.normalize('''
+        script_output = abjad.String.normalize(script_output)
+        expected = abjad.String.normalize('''
         doctest_test/doctest_pass.py OK
 
         1 passed, 0 failed out of 1 test in 1 module.

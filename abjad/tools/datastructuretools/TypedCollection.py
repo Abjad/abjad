@@ -5,9 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TypedCollection(AbjadObject):
-    r'''Typed collection.
-    
-    Abstract base class for typed collections.
+    r'''Abstract typed collection.
     '''
 
     ### CLASS VARIABLES ###
@@ -56,13 +54,6 @@ class TypedCollection(AbjadObject):
             return self._collection == argument
         return False
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self._collection, self.item_class)
-
     def __hash__(self):
         r'''Hashes typed collection.
 
@@ -85,14 +76,6 @@ class TypedCollection(AbjadObject):
         Returns nonnegative integer.
         '''
         return len(self._collection)
-
-    def __ne__(self, argument):
-        r'''Is true when `argument` is not a typed collection with items equal to
-        this typed collection. Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self.__eq__(argument)
 
     ### PRIVATE PROPERTIES ###
 

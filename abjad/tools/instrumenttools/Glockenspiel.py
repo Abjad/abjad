@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Glockenspiel(Instrument):
-    r'''A glockenspiel.
+    r'''Glockenspiel.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> glockenspiel = instrumenttools.Glockenspiel()
-        >>> attach(glockenspiel, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Glockenspiel }
-            \set Staff.shortInstrumentName = \markup { Gkspl. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> glockenspiel = abjad.instrumenttools.Glockenspiel()
+            >>> abjad.attach(glockenspiel, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Glockenspiel }
+                \set Staff.shortInstrumentName = \markup { Gkspl. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -124,7 +131,7 @@ class Glockenspiel(Instrument):
             ::
 
                 >>> glockenspiel.pitch_range
-                PitchRange(range_string='[G5, C8]')
+                PitchRange('[G5, C8]')
 
             ::
 

@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_spannertools_Spanner__get_my_nth_leaf_01():
 
-    staff = Staff()
-    staff.append(Measure((2, 8), "c'8 d'8"))
-    staff.append(Measure((2, 8), "e'8 f'8"))
-    leaves = select(staff).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    staff = abjad.Staff()
+    staff.append(abjad.Measure((2, 8), "c'8 d'8"))
+    staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+    leaves = abjad.select(staff).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -28,7 +28,7 @@ def test_spannertools_Spanner__get_my_nth_leaf_01():
         '''
         )
 
-    selector = select().by_leaf(flatten=True)
+    selector = abjad.select().by_leaf(flatten=True)
     leaves = selector(staff)
 
     assert beam._get_my_nth_leaf(0) is leaves[0]

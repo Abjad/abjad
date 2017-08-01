@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Note_written_pitch_01():
 
 
-    staff = Staff("d''8 e''8 f''8 g''8")
-    piccolo = instrumenttools.Piccolo()
-    attach(piccolo, staff)
-    instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
+    staff = abjad.Staff("d''8 e''8 f''8 g''8")
+    piccolo = abjad.instrumenttools.Piccolo()
+    abjad.attach(piccolo, staff[0])
+    abjad.Instrument.transpose_from_sounding_pitch(staff)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Piccolo }

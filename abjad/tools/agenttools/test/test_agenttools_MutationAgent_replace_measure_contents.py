@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
+from abjad.tools import rhythmmakertools
 
 
 def test_agenttools_MutationAgent_replace_measure_contents_01():
     r'''Contents duration less than sum of duration of measures.
-    Note spacer skip at end of second measure.
+    abjad.Note spacer skip at end of second measure.
     '''
 
-    measures = scoretools.make_spacer_skip_measures([(1, 8), (3, 16)])
-    staff = Staff(measures)
-    notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16")]
-    mutate(staff).replace_measure_contents(notes)
+    maker = abjad.MeasureMaker()
+    measures = maker([(1, 8), (3, 16)])
+    staff = abjad.Staff(measures)
+    notes = [abjad.Note("c'16"), abjad.Note("d'16"), abjad.Note("e'16"), abjad.Note("f'16")]
+    abjad.mutate(staff).replace_measure_contents(notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -31,7 +33,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_01():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_measure_contents_02():
@@ -40,12 +42,13 @@ def test_agenttools_MutationAgent_replace_measure_contents_02():
     '''
 
     time_signatures = [(1, 16), (3, 16), (1, 16), (3, 16)]
-    measures = scoretools.make_spacer_skip_measures(time_signatures)
-    staff = Staff(measures)
-    notes = [Note("c'8"), Note("d'8")]
-    mutate(staff).replace_measure_contents(notes)
+    maker = abjad.MeasureMaker()
+    measures = maker(time_signatures)
+    staff = abjad.Staff(measures)
+    notes = [abjad.Note("c'8"), abjad.Note("d'8")]
+    abjad.mutate(staff).replace_measure_contents(notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -70,7 +73,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_measure_contents_03():
@@ -78,9 +81,9 @@ def test_agenttools_MutationAgent_replace_measure_contents_03():
     contains no measures.
     '''
 
-    note = Note("c'4")
-    notes = [Note("c'8"), Note("d'8")]
-    statement = 'mutate(note).replace_measure_contents(notes)'
+    note = abjad.Note("c'4")
+    notes = [abjad.Note("c'8"), abjad.Note("d'8")]
+    statement = 'abjad.mutate(note).replace_measure_contents(notes)'
     assert pytest.raises(MissingMeasureError, statement)
 
 
@@ -88,11 +91,12 @@ def test_agenttools_MutationAgent_replace_measure_contents_04():
     r'''Raise StopIteration when not enough measures.
     '''
 
-    measures = scoretools.make_spacer_skip_measures([(1, 8), (1, 8)])
-    staff = Staff(measures)
-    notes = [Note("c'16"), Note("d'16"), Note("e'16"),
-        Note("f'16"), Note("g'16"), Note("a'16")]
-    statement = 'mutate(staff).replace_measure_contents(notes)'
+    maker = abjad.MeasureMaker()
+    measures = maker([(1, 8), (1, 8)])
+    staff = abjad.Staff(measures)
+    notes = [abjad.Note("c'16"), abjad.Note("d'16"), abjad.Note("e'16"),
+        abjad.Note("f'16"), abjad.Note("g'16"), abjad.Note("a'16")]
+    statement = 'abjad.mutate(staff).replace_measure_contents(notes)'
     assert pytest.raises(StopIteration, statement)
 
 
@@ -100,17 +104,18 @@ def test_agenttools_MutationAgent_replace_measure_contents_05():
     r'''Populate measures even when not enough total measures.
     '''
 
-    measures = scoretools.make_spacer_skip_measures([(1, 8), (1, 8)])
-    staff = Staff(measures)
-    notes = [Note("c'16"), Note("d'16"), Note("e'16"),
-        Note("f'16"), Note("g'16"), Note("a'16")]
+    maker = abjad.MeasureMaker()
+    measures = maker([(1, 8), (1, 8)])
+    staff = abjad.Staff(measures)
+    notes = [abjad.Note("c'16"), abjad.Note("d'16"), abjad.Note("e'16"),
+        abjad.Note("f'16"), abjad.Note("g'16"), abjad.Note("a'16")]
 
     try:
-        mutate(staff).replace_measure_contents(notes)
+        abjad.mutate(staff).replace_measure_contents(notes)
     except StopIteration:
         pass
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -126,7 +131,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_05():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_measure_contents_06():
@@ -136,12 +141,13 @@ def test_agenttools_MutationAgent_replace_measure_contents_06():
     maker = rhythmmakertools.NoteRhythmMaker()
     durations = [(5, 16), (3, 16)]
     leaf_lists = maker(durations)
-    leaves = Sequence(leaf_lists).flatten()
-    measures = scoretools.make_spacer_skip_measures(durations)
-    staff = Staff(measures)
-    measures = mutate(staff).replace_measure_contents(leaves)
+    leaves = abjad.Sequence(leaf_lists).flatten()
+    maker = abjad.MeasureMaker()
+    measures = maker(durations)
+    staff = abjad.Staff(measures)
+    measures = abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -157,4 +163,4 @@ def test_agenttools_MutationAgent_replace_measure_contents_06():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

@@ -1,12 +1,22 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import abctools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import sequencetools
 
 
 class MeterManager(abctools.AbjadObject):
-    r'''A meter manager.
+    r'''Meter manager.
+
+    ::
+
+        >>> import abjad
+
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     ### PUBLIC METHODS ###
 
@@ -19,7 +29,7 @@ class MeterManager(abctools.AbjadObject):
         while len(offset_inventory) <= depth:
             new_offsets = []
             old_offsets = offset_inventory[-1]
-            for first, second in sequencetools.Sequence(old_offsets).nwise():
+            for first, second in datastructuretools.Sequence(old_offsets).nwise():
                 new_offsets.append(first)
                 difference = second - first
                 half = (first + second) / 2
@@ -82,22 +92,17 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> from abjad.tools import metertools
-            >>> from abjad.tools import scoretools
-
-        ::
-
             >>> string = "abj: ! 2/4 c'4 d'4 ~ !"
             >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
             >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ !"
             >>> string += "! 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ !"
             >>> string += "! 2/4 b'4 c''4 !"
             >>> string = string.replace('!', '|')
-            >>> staff = scoretools.Staff(string)
+            >>> staff = abjad.Staff(string)
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 {
                     \time 2/4
@@ -134,7 +139,7 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> for x in metertools.MeterManager.iterate_rewrite_inputs(
+            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
             ...     staff[0]): x
             ...
             LogicalTie([Note("c'4")])
@@ -142,7 +147,7 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> for x in metertools.MeterManager.iterate_rewrite_inputs(
+            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
             ...     staff[1]): x
             ...
             LogicalTie([Note("d'8.")])
@@ -153,7 +158,7 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> for x in metertools.MeterManager.iterate_rewrite_inputs(
+            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
             ...     staff[2]): x
             ...
             LogicalTie([Note("f'8")])
@@ -163,7 +168,7 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> for x in metertools.MeterManager.iterate_rewrite_inputs(
+            >>> for x in abjad.MeterManager.iterate_rewrite_inputs(
             ...     staff[3]): x
             ...
             LogicalTie([Note("b'4")])

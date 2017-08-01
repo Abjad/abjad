@@ -3,26 +3,32 @@ from abjad.tools.scoretools.Container import Container
 
 
 class Cluster(Container):
-    '''A cluster.
+    '''Cluster.
 
     ::
 
-        >>> cluster = scoretools.Cluster("c'8 <d' g'>8 b'8")
-        >>> show(cluster) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> print(format(cluster))
-        \makeClusters {
-            c'8
-            <d' g'>8
-            b'8
-        }
+        ::
 
-    ::
+            >>> cluster = abjad.Cluster("c'8 <d' g'>8 b'8")
+            >>> show(cluster) # doctest: +SKIP
 
-        >>> cluster
-        Cluster("c'8 <d' g'>8 b'8")
+        ..  docs::
+
+            >>> f(cluster)
+            \makeClusters {
+                c'8
+                <d' g'>8
+                b'8
+            }
+
+        ::
+
+            >>> cluster
+            Cluster("c'8 <d' g'>8 b'8")
 
     '''
 
@@ -34,12 +40,6 @@ class Cluster(Container):
         )
 
     _is_counttime_component = True
-
-    ### INITIALIZER ###
-
-    def __init__(self, music=None):
-        Container.__init__(self, music)
-        self.is_simultaneous = False
 
     ### PRIVATE METHODS ###
 

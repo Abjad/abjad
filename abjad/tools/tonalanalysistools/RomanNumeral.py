@@ -6,10 +6,29 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class RomanNumeral(AbjadValueObject):
-    '''A functions in tonal harmony: I, I6, I64, V, V7, V43, V42,
-    bII, bII6, etc., also i, i6, i64, v, v7, etc.
+    '''Roman numeral.
 
-    Value object that can not be changed after instantiation.
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
+
+    ..  container:: example
+
+        Initializes from string:
+
+        ::
+
+            >>> tonalanalysistools.RomanNumeral('bII6/4')
+            RomanNumeral('bII6/4')
+
+    ..  container:: example
+
+        Initializes from other Roman numeral:
+
+        ::
+
+            >>> roman_numeral = tonalanalysistools.RomanNumeral('bII')
+    
     '''
 
     ### CLASS VARIABLES ###
@@ -18,7 +37,7 @@ class RomanNumeral(AbjadValueObject):
         '_extent',
         '_inversion',
         '_quality',
-        '_scale_degree',
+        '_root_scale_degree',
         '_suspension',
         )
 
@@ -42,85 +61,121 @@ class RomanNumeral(AbjadValueObject):
         '4/2': 3,
         }
 
-    _symbolic_string_regex = re.compile(
+    _symbol_regex = re.compile(
         r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(.*)')
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
-        if len(arguments) == 1 and isinstance(arguments[0], type(self)):
-            scale_degree, quality, extent, inversion, suspension = \
-                self._initialize_by_reference(arguments[0])
-        elif len(arguments) == 1 and isinstance(arguments[0], str):
-            scale_degree, quality, extent, inversion, suspension = \
-                self._initialize_by_symbolic_string(arguments[0])
-        elif len(arguments) == 4:
-            scale_degree, quality, extent, inversion, suspension = \
-                self._initialize_by_scale_degree_quality_extent_and_inversion(*arguments)
-        elif len(arguments) == 5:
-            scale_degree, quality, extent, inversion, suspension = \
-                self._initialize_with_suspension(*arguments)
-        elif len(arguments) == 0:
-            scale_degree, quality, extent, inversion, suspension = \
-                self._initialize_by_symbolic_string('I')
+    def __init__(self, symbol='V7'):
+        from abjad.tools import tonalanalysistools
+        groups = self._symbol_regex.match(symbol).groups()
+        accidental, roman_numeral, quality, figured_bass = groups
+        scale_degree = accidental + roman_numeral
+        scale_degree = tonalanalysistools.ScaleDegree(scale_degree)
+        figured_bass_parts = figured_bass.split('/')
+        naive_figured_bass = [x for x in figured_bass_parts if '-' not in x]
+        naive_figured_bass = '/'.join(naive_figured_bass)
+        extent = self._figured_bass_string_to_extent[naive_figured_bass]
+        extent = tonalanalysistools.ChordExtent(extent)
+        uppercase = roman_numeral == roman_numeral.upper()
+        quality = self._get_quality_name(uppercase, quality, extent.number)
+        quality = tonalanalysistools.ChordQuality(quality)
+        inversion = self._figured_bass_string_to_inversion[naive_figured_bass]
+        inversion = tonalanalysistools.ChordInversion(inversion)
+        suspension = [x for x in figured_bass_parts if '-' in x]
+        if not suspension:
+            suspension = None
+        elif 1 < len(suspension):
+            message = 'no multiple suspensions yet.'
+            raise NotImplementedError(message)
         else:
-            message = 'can not initialize tonal function: {!r}.'
-            message = message.format(arguments)
-            raise ValueError(message)
-        self._scale_degree = scale_degree
+            suspension = tonalanalysistools.ChordSuspension(suspension[0])
+        self._root_scale_degree = scale_degree
         self._quality = quality
         self._extent = extent
         self._inversion = inversion
+        if suspension is not None and suspension.start is None:
+            suspension = None
         self._suspension = suspension
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a roman numeral with scale degree, quality,
-        extent, inversion and suspension equal to those of this roman numeral.
-        Otherwise false.
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a Roman numeral with scale degree,
+        quality, extent, inversion and suspension equal to those of this Roman
+        numeral. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> roman_numeral_1 = tonalanalysistools.RomanNumeral('I')
+                >>> roman_numeral_2 = tonalanalysistools.RomanNumeral('I')
+                >>> roman_numeral_3 = tonalanalysistools.RomanNumeral('V7')
+
+            ::
+
+                >>> roman_numeral_1 == roman_numeral_1
+                True
+                >>> roman_numeral_1 == roman_numeral_2
+                True
+                >>> roman_numeral_1 == roman_numeral_3
+                False
+
+
+            ::
+
+                >>> roman_numeral_2 == roman_numeral_1
+                True
+                >>> roman_numeral_2 == roman_numeral_2
+                True
+                >>> roman_numeral_2 == roman_numeral_3
+                False
+
+            ::
+
+                >>> roman_numeral_3 == roman_numeral_1
+                False
+                >>> roman_numeral_3 == roman_numeral_2
+                False
+                >>> roman_numeral_3 == roman_numeral_3
+                True
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.scale_degree == arg.scale_degree:
-                if self.quality == arg.quality:
-                    if self.extent == arg.extent:
-                        if self.inversion == arg.inversion:
-                            if self.suspension == arg.suspension:
-                                return True
-        return False
+        return super(RomanNumeral, self).__eq__(argument)
 
     def __hash__(self):
-        r'''Hashes roman numeral.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
+        r'''Hashes Roman numeral.
 
         Returns integer.
         '''
         return super(RomanNumeral, self).__hash__()
 
-    def __ne__(self, arg):
-        r'''Is true when roman numeral does not equal `arg`. Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self == arg
-
-    def __repr__(self):
-        r'''Gets interpreter representation of `arg`.
-
-        Returns string.
-        '''
-        return self._format_string
-
     ### PRIVATE METHODS ###
+
+    def _get_accidental_name(self):
+        accidental = self.root_scale_degree.accidental
+        if accidental.semitones != 0:
+            return accidental.name.title()
+        return ''
+
+    def _get_figured_bass_digits(self):
+        characters = self._get_figured_bass_string()
+        if characters:
+            characters = characters.split('/')
+            digits = [int(x) for x in characters]
+            return tuple(digits)
+        return ()
+
+    def _get_figured_bass_string(self):
+        return self.inversion.extent_to_figured_bass_string(self.extent.number)
 
     def _get_format_specification(self):
         return systemtools.FormatSpecification(
             client=self,
             storage_format_is_indented=False,
-            storage_format_args_values=[self.symbolic_string],
+            storage_format_args_values=[self.symbol],
             )
 
     def _get_quality_name(self, uppercase, quality_string, extent):
@@ -151,93 +206,7 @@ class RomanNumeral(AbjadValueObject):
         else:
             raise ValueError
 
-    def _initialize_by_reference(self, tonal_function):
-        arguments = (tonal_function.scale_degree, tonal_function.quality,
-            tonal_function.extent, tonal_function.inversion)
-        return self._initialize_by_scale_degree_quality_extent_and_inversion(
-            self, *arguments)
-
-    def _initialize_by_scale_degree_quality_extent_and_inversion(self, *arguments):
-        from abjad.tools import tonalanalysistools
-        scale_degree, quality, extent, inversion = arguments
-        scale_degree = tonalanalysistools.ScaleDegree(scale_degree)
-        quality = tonalanalysistools.ChordQuality(quality)
-        extent = tonalanalysistools.ChordExtent(extent)
-        inversion = tonalanalysistools.ChordInversion(inversion)
-        suspension = tonalanalysistools.ChordSuspension()
-        return scale_degree, quality, extent, inversion, suspension
-
-    def _initialize_by_symbolic_string(self, symbolic_string):
-        from abjad.tools import tonalanalysistools
-        groups = self._symbolic_string_regex.match(symbolic_string).groups()
-        accidental, roman_numeral, quality, figured_bass = groups
-        scale_degree = tonalanalysistools.ScaleDegree(accidental + roman_numeral)
-        figured_bass_parts = figured_bass.split('/')
-        naive_figured_bass = [x for x in figured_bass_parts if '-' not in x]
-        naive_figured_bass = '/'.join(naive_figured_bass)
-        extent = self._figured_bass_string_to_extent[naive_figured_bass]
-        extent = tonalanalysistools.ChordExtent(extent)
-        uppercase = roman_numeral == roman_numeral.upper()
-        quality = self._get_quality_name(uppercase, quality, extent.number)
-        quality = tonalanalysistools.ChordQuality(quality)
-        inversion = self._figured_bass_string_to_inversion[naive_figured_bass]
-        inversion = tonalanalysistools.ChordInversion(inversion)
-        suspension = [x for x in figured_bass_parts if '-' in x]
-        if not suspension:
-            suspension = tonalanalysistools.ChordSuspension()
-        elif 1 < len(suspension):
-            message = 'no multiple suspensions yet.'
-            raise NotImplementedError(message)
-        else:
-            suspension = tonalanalysistools.ChordSuspension(suspension[0])
-        return scale_degree, quality, extent, inversion, suspension
-
-    def _initialize_with_suspension(self, *arguments):
-        from abjad.tools import tonalanalysistools
-        scale_degree, quality, extent, inversion, suspension = \
-            self._initialize_by_scale_degree_quality_extent_and_inversion(*arguments[:-1])
-        suspension = arguments[-1]
-        suspension = tonalanalysistools.ChordSuspension(suspension)
-        return scale_degree, quality, extent, inversion, suspension
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _accidental_name(self):
-        accidental = self.scale_degree.accidental
-        if accidental.is_adjusted:
-            return accidental.name.title()
-        return ''
-
-    @property
-    def _figured_bass_digits(self):
-        characters = self._figured_bass_string
-        if characters:
-            characters = characters.split('/')
-            digits = [int(x) for x in characters]
-            return tuple(digits)
-        return ()
-
-    @property
-    def _figured_bass_string(self):
-        return self.inversion.extent_to_figured_bass_string(self.extent.number)
-
-    @property
-    def _format_string(self):
-        result = []
-        result.append(self._accidental_name)
-        result.append(self._roman_numeral_string)
-        result.append(self.quality.quality_string.title())
-        result.append(self.extent.name.title())
-        result.append('In')
-        result.append(self.inversion.title)
-        if not self.suspension.is_empty:
-            result.append('With')
-            result.append(self.suspension.title_string)
-        return ''.join(result)
-
-    @property
-    def _quality_symbolic_string(self):
+    def _get_quality_symbol(self):
         from abjad.tools import tonalanalysistools
         if self.extent == tonalanalysistools.ChordExtent(5):
             if self.quality == tonalanalysistools.ChordQuality('diminished'):
@@ -264,9 +233,8 @@ class RomanNumeral(AbjadValueObject):
         else:
             raise NotImplementedError
 
-    @property
-    def _roman_numeral_string(self):
-        roman_numeral_string = self.scale_degree.roman_numeral_string
+    def _get_roman_numeral_string(self):
+        roman_numeral_string = self.root_scale_degree.roman_numeral_string
         if not self.quality.is_uppercase:
             roman_numeral_string = roman_numeral_string.lower()
         return roman_numeral_string
@@ -275,7 +243,19 @@ class RomanNumeral(AbjadValueObject):
 
     @property
     def bass_scale_degree(self):
-        r'''Base scale degree of roman numeral.
+        r'''Gets bass scale degree.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('bII6/4').bass_scale_degree
+                ScaleDegree('6')
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('V7').bass_scale_degree
+                ScaleDegree('5')
 
         Returns scale degree.
         '''
@@ -290,7 +270,14 @@ class RomanNumeral(AbjadValueObject):
 
     @property
     def extent(self):
-        r'''Extend of roman numeral.
+        r'''Gets extent.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('bII').extent
+                ChordExtent(5)
 
         Returns extent.
         '''
@@ -298,13 +285,20 @@ class RomanNumeral(AbjadValueObject):
 
     @property
     def figured_bass_string(self):
-        r'''Figured bass string of roman numeral.
+        r'''Gets figured bass string.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('II6/5').figured_bass_string
+                '6/5'
 
         Returns string.
         '''
-        digits = self._figured_bass_digits
-        if self.suspension.is_empty:
-            return '/'.join([str(x) for x in digits])
+        digits = self._get_figured_bass_digits()
+        if self.suspension is None:
+            return '/'.join([str(_) for _ in digits])
         suspension_pair = self.suspension.figured_bass_pair
         figured_bass_list = []
         for n in range(9, 1, -1):
@@ -319,7 +313,14 @@ class RomanNumeral(AbjadValueObject):
 
     @property
     def inversion(self):
-        r'''Inversion of roman numeral.
+        r'''Gets inversion.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('bII').inversion
+                ChordInversion(0)
 
         Returns nonnegative integer.
         '''
@@ -327,17 +328,36 @@ class RomanNumeral(AbjadValueObject):
 
     @property
     def markup(self):
-        r'''Markup of roman numeral.
+        r'''Gets markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = tonalanalysistools.RomanNumeral('bII').markup
+                >>> show(markup) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(markup)
+                _ \markup { bII }
 
         Returns markup.
         '''
-        symbolic_string = self.symbolic_string
-        symbolic_string = symbolic_string.replace('#', r'\sharp ')
-        return markuptools.Markup(symbolic_string, Down)
+        symbol = self.symbol
+        symbol = symbol.replace('#', r'\sharp ')
+        return markuptools.Markup(symbol, Down)
 
     @property
     def quality(self):
-        r'''Quality of roman numeral.
+        r'''Gets quality.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('bII').quality
+                ChordQuality('major')
 
         Returns chord quality.
         '''
@@ -345,38 +365,92 @@ class RomanNumeral(AbjadValueObject):
 
     @property
     def root_scale_degree(self):
-        r'''Root scale degree.
+        r'''Gets root scale degree.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('bII').root_scale_degree
+                ScaleDegree('b2')
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('bII6/4').root_scale_degree
+                ScaleDegree('b2')
 
         Returns scale degree.
         '''
-        return self._scale_degree
-
-    # TODO: deprecate scale_degree in favor of root_scale_degree
-    @property
-    def scale_degree(self):
-        r'''Scale degree of roman numeral.
-
-        Returns scale degree.
-        '''
-        return self._scale_degree
+        return self._root_scale_degree
 
     @property
     def suspension(self):
-        r'''Suspension of roman numeral.
+        r'''Gets suspension.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('bII6/4').suspension is None
+                True
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('V7').suspension is None
+                True
 
         Returns suspension.
         '''
         return self._suspension
 
     @property
-    def symbolic_string(self):
-        r'''Symbolic string of roman numeral.
+    def symbol(self):
+        r'''Gets symbolc of Roman numeral.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('bII6/4').symbol
+                'bII6/4'
+
+            ::
+
+                >>> tonalanalysistools.RomanNumeral('V7').symbol
+                'V7'
 
         Returns string.
         '''
         result = ''
-        result += self.scale_degree.accidental.symbolic_string
-        result += self._roman_numeral_string
-        result += self._quality_symbolic_string
+        result += self.root_scale_degree.accidental.symbol
+        result += self._get_roman_numeral_string()
+        result += self._get_quality_symbol()
         result += self.figured_bass_string
         return result
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_scale_degree_quality_extent_and_inversion(
+        scale_degree,
+        quality,
+        extent,
+        inversion,
+        ):
+        r'''Makes Roman numeral from `scale_degree`, `quality`, `extent` and
+        `inversion`.
+
+        Returns new Roman numeral.
+        '''
+        from abjad.tools import tonalanalysistools
+        scale_degree = tonalanalysistools.ScaleDegree(scale_degree)
+        quality = tonalanalysistools.ChordQuality(quality)
+        extent = tonalanalysistools.ChordExtent(extent)
+        inversion = tonalanalysistools.ChordInversion(inversion)
+        suspension = None
+        roman_numeral = RomanNumeral()
+        roman_numeral._root_scale_degree = scale_degree
+        roman_numeral._quality = quality
+        roman_numeral._extent = extent
+        roman_numeral._inversion = inversion
+        return roman_numeral

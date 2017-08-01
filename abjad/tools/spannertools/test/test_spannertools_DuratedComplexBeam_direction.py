@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_spannertools_DuratedComplexBeam_direction_01():
 
-    container = Container("c'16 d'16 e'16 f'16")
+    container = abjad.Container("c'16 d'16 e'16 f'16")
 
-    beam = spannertools.DuratedComplexBeam(
+    beam = abjad.DuratedComplexBeam(
         durations=[(1, 8), (1, 8)],
         span_beam_count=1,
         direction=Up,
         )
 
-    attach(beam, container[:])
+    abjad.attach(beam, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             \set stemLeftBeamCount = #0
@@ -33,4 +33,4 @@ def test_spannertools_DuratedComplexBeam_direction_01():
         '''
         )
 
-    assert inspect_(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()

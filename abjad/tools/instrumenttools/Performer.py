@@ -1,19 +1,23 @@
 # -*- coding: utf-8 -*-
 import collections
 from abjad.tools import datastructuretools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Performer(AbjadObject):
-    r'''A performer.
+class Performer(AbjadValueObject):
+    r'''Performer.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> performer = instrumenttools.Performer(name='flutist')
-            >>> performer.instruments.append(instrumenttools.Flute())
-            >>> performer.instruments.append(instrumenttools.Piccolo())
+            >>> performer = abjad.instrumenttools.Performer(name='flutist')
+            >>> performer.instruments.append(abjad.instrumenttools.Flute())
+            >>> performer.instruments.append(abjad.instrumenttools.Piccolo())
 
         ::
 
@@ -38,9 +42,7 @@ class Performer(AbjadObject):
                                         ),
                                     ]
                                 ),
-                            pitch_range=abjad.PitchRange(
-                                range_string='[C4, D7]',
-                                ),
+                            pitch_range=abjad.PitchRange('[C4, D7]'),
                             sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
                             ),
                         instrumenttools.Piccolo(
@@ -59,9 +61,7 @@ class Performer(AbjadObject):
                                         ),
                                     ]
                                 ),
-                            pitch_range=abjad.PitchRange(
-                                range_string='[D5, C8]',
-                                ),
+                            pitch_range=abjad.PitchRange('[D5, C8]'),
                             sounding_pitch_of_written_middle_c=abjad.NamedPitch("c''"),
                             ),
                         ]
@@ -75,6 +75,11 @@ class Performer(AbjadObject):
 
     _publish_storage_format = True
 
+    __slots__ = (
+        '_instruments',
+        '_name',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, name=None, instruments=None):
@@ -86,16 +91,12 @@ class Performer(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a performer with name and instruments equal to
-        those of this performer. Otherwise false.
+        r'''Is true when `argument` is a performer with name and instruments
+        equal to those of this performer. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.name == argument.name:
-                if self.instruments == argument.instruments:
-                    return True
-        return False
+        return super(Performer, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats performer.
@@ -115,7 +116,7 @@ class Performer(AbjadObject):
 
         Returns string.
         '''
-        return hash((type(self).__name__, self.name, tuple(self.instruments)))
+        return super(Performer, self).__hash__()
 
     ### PUBLIC METHODS ###
 
@@ -128,9 +129,9 @@ class Performer(AbjadObject):
 
             ::
 
-                >>> flutist = instrumenttools.Performer(name='flutist')
-                >>> flutist.instruments.append(instrumenttools.Flute())
-                >>> flutist.instruments.append(instrumenttools.Piccolo())
+                >>> flutist = abjad.instrumenttools.Performer(name='flutist')
+                >>> flutist.instruments.append(abjad.instrumenttools.Flute())
+                >>> flutist.instruments.append(abjad.instrumenttools.Piccolo())
 
         ..  container:: example
 
@@ -186,7 +187,8 @@ class Performer(AbjadObject):
 
             ::
 
-                >>> for name in instrumenttools.Performer.list_performer_names():
+                >>> class_ = abjad.instrumenttools.Performer
+                >>> for name in class_.list_performer_names():
                 ...     name
                 ...
                 'accordionist'
@@ -236,7 +238,8 @@ class Performer(AbjadObject):
 
             ::
 
-                >>> for pair in instrumenttools.Performer.list_primary_performer_names():
+                >>> class_ = abjad.instrumenttools.Performer
+                >>> for pair in class_.list_primary_performer_names():
                 ...     pair
                 ...
                 ('accordionist', 'acc.')
@@ -541,9 +544,9 @@ class Performer(AbjadObject):
 
             ::
 
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
+                >>> performer = abjad.instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(abjad.instrumenttools.Flute())
+                >>> performer.instruments.append(abjad.instrumenttools.Piccolo())
 
             ::
 
@@ -562,9 +565,9 @@ class Performer(AbjadObject):
 
             ::
 
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
+                >>> performer = abjad.instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(abjad.instrumenttools.Flute())
+                >>> performer.instruments.append(abjad.instrumenttools.Piccolo())
 
             ::
 
@@ -601,9 +604,9 @@ class Performer(AbjadObject):
 
             ::
 
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
+                >>> performer = abjad.instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(abjad.instrumenttools.Flute())
+                >>> performer.instruments.append(abjad.instrumenttools.Piccolo())
 
             ::
 
@@ -623,9 +626,9 @@ class Performer(AbjadObject):
 
             ::
 
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
+                >>> performer = abjad.instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(abjad.instrumenttools.Flute())
+                >>> performer.instruments.append(abjad.instrumenttools.Piccolo())
 
             ::
 
@@ -657,9 +660,9 @@ class Performer(AbjadObject):
 
             ::
 
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
+                >>> performer = abjad.instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(abjad.instrumenttools.Flute())
+                >>> performer.instruments.append(abjad.instrumenttools.Piccolo())
 
             ::
 
@@ -682,9 +685,9 @@ class Performer(AbjadObject):
 
             ::
 
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
+                >>> performer = abjad.instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(abjad.instrumenttools.Flute())
+                >>> performer.instruments.append(abjad.instrumenttools.Piccolo())
 
             ::
 

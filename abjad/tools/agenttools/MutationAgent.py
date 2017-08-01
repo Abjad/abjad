@@ -1,25 +1,31 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import abctools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import sequencetools
 from abjad.tools.topleveltools import iterate
 
 
 class MutationAgent(abctools.AbjadObject):
     r'''Mutation agent.
 
+    ::
+
+        >>> import abjad
+        >>> import pytest
+
     ..  container:: example
 
         Creates mutation agent for last two notes in staff:
 
+
         ::
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> mutate(staff[2:])
+            >>> abjad.mutate(staff[2:])
             MutationAgent(client=Selection([Note("d'4"), Note("f'4")]))
 
     '''
@@ -41,6 +47,72 @@ class MutationAgent(abctools.AbjadObject):
         r'''Copies component and fractures crossing spanners.
 
         ..  todo:: Add examples.
+
+        ..  container:: example
+
+            Copies explicit clefs:
+
+            ::
+
+                >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
+                >>> clef = abjad.Clef('treble')
+                >>> abjad.attach(clef, staff[0])
+                >>> clef = abjad.Clef('bass')
+                >>> abjad.attach(clef, staff[4])
+                >>> copied_notes = abjad.mutate(staff[:2]).copy()
+                >>> staff.extend(copied_notes)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \clef "treble"
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    \clef "bass"
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                    \clef "treble"
+                    c'8
+                    cs'8
+                }
+
+        ..  container:: example
+
+            Does not copy implicit clefs:
+
+            ::
+
+                >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
+                >>> clef = abjad.Clef('treble')
+                >>> abjad.attach(clef, staff[0])
+                >>> clef = abjad.Clef('bass')
+                >>> abjad.attach(clef, staff[4])
+                >>> copied_notes = abjad.mutate(staff[2:4]).copy()
+                >>> staff.extend(copied_notes)
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \clef "treble"
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    \clef "bass"
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                    d'8
+                    ef'8
+                }
 
         Returns new component.
         '''
@@ -68,10 +140,10 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> container = Container("c'4 ~ c'4 d'4 ~ d'4")
+                >>> container = abjad.Container("c'4 ~ c'4 d'4 ~ d'4")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(container)
                 {
@@ -85,7 +157,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> contents = mutate(container).eject_contents()
+                >>> contents = abjad.mutate(container).eject_contents()
                 >>> contents
                 Selection([Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4")])
 
@@ -93,10 +165,10 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff(contents, context_name='RhythmicStaff')
+                >>> staff = abjad.Staff(contents, context_name='RhythmicStaff')
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -110,7 +182,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> inspect_(staff).is_well_formed()
+                >>> abjad.inspect(staff).is_well_formed()
                 True
 
             Old container is empty:
@@ -135,24 +207,24 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff()
-                >>> time_signature = TimeSignature((3, 4))
-                >>> attach(time_signature, staff)
-                >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
-                >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
-                >>> hairpin = spannertools.Hairpin('p < f')
-                >>> selector = select().by_leaf(flatten=True)
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
+                >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
+                >>> hairpin = abjad.Hairpin('p < f')
+                >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
-                >>> attach(hairpin, leaves)
+                >>> time_signature = abjad.TimeSignature((3, 4))
+                >>> abjad.attach(time_signature, leaves[0])
+                >>> abjad.attach(hairpin, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
-                    \time 3/4
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
+                        \time 3/4
                         c'4 \< \p
                         e'4
                     }
@@ -165,13 +237,13 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> empty_tuplet = mutate(staff[-1]).extract()
-                >>> empty_tuplet = mutate(staff[0]).extract()
+                >>> empty_tuplet = abjad.mutate(staff[-1]).extract()
+                >>> empty_tuplet = abjad.mutate(staff[0]).extract()
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \time 3/4
                     c'4 \< \p
@@ -186,24 +258,24 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff()
-                >>> time_signature = TimeSignature((3, 4))
-                >>> attach(time_signature, staff)
-                >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
-                >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
-                >>> hairpin = spannertools.Hairpin('p < f')
-                >>> selector = select().by_leaf(flatten=True)
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
+                >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
+                >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
-                >>> attach(hairpin, leaves)
+                >>> hairpin = abjad.Hairpin('p < f')
+                >>> abjad.attach(hairpin, leaves)
+                >>> time_signature = abjad.TimeSignature((3, 4))
+                >>> abjad.attach(time_signature, leaves[0])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
-                    \time 3/4
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
+                        \time 3/4
                         c'4 \< \p
                         e'4
                     }
@@ -216,15 +288,15 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> empty_tuplet = mutate(staff[-1]).extract(
+                >>> empty_tuplet = abjad.mutate(staff[-1]).extract(
                 ...     scale_contents=True)
-                >>> empty_tuplet = mutate(staff[0]).extract(
+                >>> empty_tuplet = abjad.mutate(staff[0]).extract(
                 ...     scale_contents=True)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \time 3/4
                     c'4. \< \p
@@ -246,18 +318,18 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
                 >>> show(staff) # doctest: +SKIP
 
             ::
 
-                >>> mutate(staff[1:]).fuse()
-                [Note("d'4.")]
+                >>> abjad.mutate(staff[1:]).fuse()
+                Selection([Note("d'4.")])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8
                     d'4.
@@ -265,26 +337,22 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            Fuses parent-contiguous fixed-duration tuplets in selection:
+            Fuses parent-contiguous tuplets in selection:
 
             ::
 
-                >>> tuplet_1 = scoretools.FixedDurationTuplet(
-                ...     Duration(2, 8), [])
-                >>> tuplet_1.extend("c'8 d'8 e'8")
-                >>> beam = spannertools.Beam()
-                >>> attach(beam, tuplet_1[:])
-                >>> duration = Duration(2, 16)
-                >>> tuplet_2 = scoretools.FixedDurationTuplet(duration, [])
-                >>> tuplet_2.extend("c'16 d'16 e'16")
-                >>> slur = spannertools.Slur()
-                >>> attach(slur, tuplet_2[:])
-                >>> staff = Staff([tuplet_1, tuplet_2])
+                >>> tuplet_1 = abjad.Tuplet((2, 3), "c'8 d' e'")
+                >>> beam = abjad.Beam()
+                >>> abjad.attach(beam, tuplet_1[:])
+                >>> tuplet_2 = abjad.Tuplet((2, 3), "c'16 d' e'")
+                >>> slur = abjad.Slur()
+                >>> abjad.attach(slur, tuplet_2[:])
+                >>> staff = abjad.Staff([tuplet_1, tuplet_2])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \times 2/3 {
                         c'8 [
@@ -301,13 +369,13 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> tuplets = staff[:]
-                >>> mutate(tuplets).fuse()
-                FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8 c'16 d'16 e'16")
+                >>> abjad.mutate(tuplets).fuse()
+                Tuplet(Multiplier(2, 3), "c'8 d'8 e'8 c'16 d'16 e'16")
                 >>> show(staff) #doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \times 2/3 {
                         c'8 [
@@ -319,7 +387,7 @@ class MutationAgent(abctools.AbjadObject):
                     }
                 }
 
-            Returns new tuplet.
+            Returns new tuplet in selection.
 
             Fuses zero or more parent-contiguous `tuplets`.
 
@@ -337,17 +405,17 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((1, 4), "c'8 d'8"))
-                >>> staff.append(Measure((2, 8), "e'8 f'8"))
-                >>> slur = spannertools.Slur()
-                >>> leaves = select(staff).by_leaf()
-                >>> attach(slur, leaves)
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((1, 4), "c'8 d'8"))
+                >>> staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+                >>> slur = abjad.Slur()
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> abjad.attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 1/4
@@ -364,13 +432,13 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> measures = staff[:]
-                >>> mutate(measures).fuse()
+                >>> abjad.mutate(measures).fuse()
                 Measure((2, 4), "c'8 d'8 e'8 f'8")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 2/4
@@ -381,17 +449,20 @@ class MutationAgent(abctools.AbjadObject):
                     }
                 }
 
-        Returns fused mutation client.
+        Returns selection.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        if isinstance(self._client, scoretools.Component):
-            selection = selectiontools.Selection(self._client)
+        import abjad
+        if isinstance(self._client, abjad.Component):
+            selection = abjad.select(self._client)
             return selection._fuse()
-        elif isinstance(self._client, selectiontools.Selection) and \
-            self._client._all_are_contiguous_components_in_same_logical_voice(
-            self._client):
-            selection = selectiontools.Selection(self._client)
+        elif (
+            isinstance(self._client, abjad.Selection) and
+            self._client._all_in_same_logical_voice(
+                self._client,
+                contiguous=True,
+                )
+            ):
+            selection = abjad.select(self._client)
             return selection._fuse()
 
     def replace(self, recipients):
@@ -403,20 +474,20 @@ class MutationAgent(abctools.AbjadObject):
             Replaces in-score tuplet (and children of tuplet) with notes.
             Functions exactly the same as container setitem:
 
-                >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
-                >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
-                >>> staff = Staff([tuplet_1, tuplet_2])
-                >>> hairpin = spannertools.Hairpin('p < f')
-                >>> selector = select().by_leaf(flatten=True)
+                >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
+                >>> staff = abjad.Staff([tuplet_1, tuplet_2])
+                >>> hairpin = abjad.Hairpin('p < f')
+                >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
-                >>> attach(hairpin, leaves)
-                >>> slur = spannertools.Slur()
-                >>> attach(slur, leaves)
+                >>> abjad.attach(hairpin, leaves)
+                >>> slur = abjad.Slur()
+                >>> abjad.attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \times 2/3 {
                         c'4 \< \p (
@@ -432,16 +503,14 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> notes = scoretools.make_notes(
-                ...     "c' d' e' f' c' d' e' f'",
-                ...     Duration(1, 16),
-                ...     )
-                >>> mutate([tuplet_1]).replace(notes)
+                >>> maker = abjad.NoteMaker()
+                >>> notes = maker("c' d' e' f' c' d' e' f'", (1, 16))
+                >>> abjad.mutate([tuplet_1]).replace(notes)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'16 \< \p (
                     d'16
@@ -467,14 +536,13 @@ class MutationAgent(abctools.AbjadObject):
             donors = self._client
         else:
             donors = selectiontools.Selection(self._client)
-        assert donors._all_are_contiguous_components_in_same_parent(donors)
+        assert donors._all_in_same_parent(donors)
         if not isinstance(recipients, selectiontools.Selection):
             recipients = selectiontools.Selection(recipients)
-        assert recipients._all_are_contiguous_components_in_same_parent(
+        assert recipients._all_in_same_parent(
             recipients)
         if donors:
-            parent, start, stop = \
-                donors._get_parent_and_start_stop_indices()
+            parent, start, stop = donors._get_parent_and_start_stop_indices()
             assert parent is not None, repr(donors)
             parent.__setitem__(slice(start, stop + 1), recipients)
 
@@ -488,14 +556,14 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> pairs = [(1, 8), (3, 16)]
-                >>> measures = scoretools.make_spacer_skip_measures(pairs)
-                >>> staff = Staff(measures)
+                >>> maker = abjad.MeasureMaker()
+                >>> measures = maker([(1, 8), (3, 16)])
+                >>> staff = abjad.Staff(measures)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 1/8
@@ -509,14 +577,19 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16")]
-                >>> mutate(staff).replace_measure_contents(notes)
+                >>> notes = [
+                ...     abjad.Note("c'16"),
+                ...     abjad.Note("d'16"),
+                ...     abjad.Note("e'16"),
+                ...     abjad.Note("f'16"),
+                ...     ]
+                >>> abjad.mutate(staff).replace_measure_contents(notes)
                 [Measure((1, 8), "c'16 d'16"), Measure((3, 16), "e'16 f'16 s1 * 1/16")]
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 1/8
@@ -541,15 +614,11 @@ class MutationAgent(abctools.AbjadObject):
 
         Returns measures iterated.
         '''
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools.topleveltools import attach
-        from abjad.tools.topleveltools import detach
+        import abjad
         # init return list
         result = []
         # get first measure and first time signature
-        current_measure = scoretools.get_next_measure_from_component(
-            self._client)
+        current_measure = self._client._get_next_measure()
         result.append(current_measure)
         current_time_signature = current_measure.time_signature
         # to avoide pychecker slice assignment error
@@ -561,7 +630,7 @@ class MutationAgent(abctools.AbjadObject):
             # find candidate duration of new element plus current measure
             current_element = new_contents[0]
             multiplier = current_time_signature.implied_prolation
-            preprolated_duration = current_element._preprolated_duration
+            preprolated_duration = current_element._get_preprolated_duration()
             duration = multiplier * preprolated_duration
             candidate_duration = current_measure._get_duration() + duration
             # if new element fits in current measure
@@ -571,14 +640,13 @@ class MutationAgent(abctools.AbjadObject):
                     current_element)
             # otherwise restore current measure and advance to next measure
             else:
-                current_time_signature = \
-                    indicatortools.TimeSignature(current_time_signature)
-                detach(indicatortools.TimeSignature, current_measure)
-                attach(current_time_signature, current_measure)
-                scoretools.append_spacer_skips_to_underfull_measures(
-                    [current_measure])
-                current_measure = scoretools.get_next_measure_from_component(
-                    current_measure)
+                current_time_signature = abjad.TimeSignature(
+                    current_time_signature
+                    )
+                abjad.detach(abjad.TimeSignature, current_measure)
+                abjad.attach(current_time_signature, current_measure)
+                current_measure._append_spacer_skip()
+                current_measure = current_measure._get_next_measure()
                 if current_measure is None:
                     raise StopIteration
                 result.append(current_measure)
@@ -587,122 +655,14 @@ class MutationAgent(abctools.AbjadObject):
                 #del(current_measure[:])
                 current_measure.__delitem__(slice(0, len(current_measure)))
         # restore last iterated measure
-        current_time_signature = \
-            indicatortools.TimeSignature(current_time_signature)
-        detach(indicatortools.TimeSignature, current_measure)
-        attach(current_time_signature, current_measure)
-        scoretools.append_spacer_skips_to_underfull_measures(
-            current_measure)
+        current_time_signature = abjad.TimeSignature(
+            current_time_signature
+            )
+        abjad.detach(abjad.TimeSignature, current_measure)
+        abjad.attach(current_time_signature, current_measure)
+        current_measure._append_spacer_skip()
         # return iterated measures
         return result
-
-    def respell_with_flats(self):
-        r'''Respells named pitches in mutation client with flats.
-
-        ..  todo:: Move to pitchtools package.
-
-        ..  container:: example
-
-            Respells notes in staff:
-
-            ::
-
-                >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    c'8
-                    cs'8
-                    d'8
-                    ef'8
-                    e'8
-                    f'8
-                }
-
-            ::
-
-                >>> mutate(staff).respell_with_flats()
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    c'8
-                    df'8
-                    d'8
-                    ef'8
-                    e'8
-                    f'8
-                }
-
-        Returns none.
-        '''
-        from abjad.tools import scoretools
-        for leaf in iterate(self._client).by_leaf():
-            if isinstance(leaf, scoretools.Chord):
-                for note_head in leaf.note_heads:
-                    note_head.written_pitch = \
-                        note_head.written_pitch.respell_with_flats()
-            elif hasattr(leaf, 'written_pitch'):
-                leaf.written_pitch = leaf.written_pitch.respell_with_flats()
-
-    def respell_with_sharps(self):
-        r'''Respells named pitches in mutation client with sharps.
-
-        ..  todo:: Move to pitchtools package.
-
-        ..  container:: example
-
-            Respells notes in staff:
-
-            ::
-
-                >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    c'8
-                    cs'8
-                    d'8
-                    ef'8
-                    e'8
-                    f'8
-                }
-
-            ::
-
-                >>> mutate(staff).respell_with_sharps()
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    c'8
-                    cs'8
-                    d'8
-                    ds'8
-                    e'8
-                    f'8
-                }
-
-        Returns none.
-        '''
-        from abjad.tools import scoretools
-        for leaf in iterate(self._client).by_leaf():
-            if isinstance(leaf, scoretools.Chord):
-                for note_head in leaf.note_heads:
-                    note_head.written_pitch = \
-                        note_head.written_pitch.respell_with_sharps()
-            elif hasattr(leaf, 'written_pitch'):
-                leaf.written_pitch = leaf.written_pitch.respell_with_sharps()
 
     def rewrite_meter(
         self,
@@ -723,15 +683,15 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> parseable = "abj: | 2/4 c'2 ~ |"
-                >>> parseable += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
-                >>> parseable += "| 2/4 e'2 |"
-                >>> staff = Staff(parseable)
+                >>> string = "abj: | 2/4 c'2 ~ |"
+                >>> string += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
+                >>> string += "| 2/4 e'2 |"
+                >>> staff = abjad.Staff(string)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 2/4
@@ -752,7 +712,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((4, 4))
+                >>> meter = abjad.Meter((4, 4))
                 >>> print(meter.pretty_rtm_format)
                 (4/4 (
                     1/4
@@ -762,12 +722,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(staff[1][:]).rewrite_meter(meter)
+                >>> abjad.mutate(staff[1][:]).rewrite_meter(meter)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 2/4
@@ -793,12 +753,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff(parseable)
+                >>> staff = abjad.Staff(string)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 2/4
@@ -820,7 +780,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-                >>> meter = metertools.Meter(rtm)
+                >>> meter = abjad.Meter(rtm)
                 >>> print(meter.pretty_rtm_format) # doctest: +SKIP
                 (4/4 (
                     (2/4 (
@@ -832,12 +792,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(staff[1][:]).rewrite_meter(meter)
+                >>> abjad.mutate(staff[1][:]).rewrite_meter(meter)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 2/4
@@ -863,13 +823,13 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> parseable = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
-                >>> measure = parse(parseable)
+                >>> string = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
+                >>> measure = abjad.parse(string)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/4
                     c'32
@@ -882,12 +842,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(measure[:]).rewrite_meter(measure)
+                >>> abjad.mutate(measure[:]).rewrite_meter(measure)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/4
                     c'32
@@ -902,16 +862,16 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = parse(parseable)
-                >>> mutate(measure[:]).rewrite_meter(
+                >>> measure = abjad.parse(string)
+                >>> abjad.mutate(measure[:]).rewrite_meter(
                 ...     measure,
                 ...     maximum_dot_count=2,
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/4
                     c'32
@@ -927,16 +887,16 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = parse(parseable)
-                >>> mutate(measure[:]).rewrite_meter(
+                >>> measure = abjad.parse(string)
+                >>> abjad.mutate(measure[:]).rewrite_meter(
                 ...     measure,
                 ...     maximum_dot_count=1,
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/4
                     c'32
@@ -953,16 +913,16 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = parse(parseable)
-                >>> mutate(measure[:]).rewrite_meter(
+                >>> measure = abjad.parse(string)
+                >>> abjad.mutate(measure[:]).rewrite_meter(
                 ...     measure,
                 ...     maximum_dot_count=0,
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/4
                     c'32
@@ -988,7 +948,7 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((9, 8))
+                >>> meter = abjad.Meter((9, 8))
                 >>> print(meter.pretty_rtm_format)
                 (9/8 (
                     (3/8 (
@@ -1009,13 +969,13 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> parseable = "abj: | 9/8 c'2 d'2 e'8 |"
-                >>> measure = parse(parseable)
+                >>> string = "abj: | 9/8 c'2 d'2 e'8 |"
+                >>> measure = abjad.parse(string)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 9/8
                     c'2
@@ -1025,12 +985,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(measure[:]).rewrite_meter(measure)
+                >>> abjad.mutate(measure[:]).rewrite_meter(measure)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 9/8
                     c'2
@@ -1046,16 +1006,16 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = parse(parseable)
-                >>> mutate(measure[:]).rewrite_meter(
+                >>> measure = abjad.parse(string)
+                >>> abjad.mutate(measure[:]).rewrite_meter(
                 ...     measure,
                 ...     boundary_depth=1,
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 9/8
                     c'4. ~
@@ -1071,16 +1031,16 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = parse(parseable)
-                >>> mutate(measure[:]).rewrite_meter(
+                >>> measure = abjad.parse(string)
+                >>> abjad.mutate(measure[:]).rewrite_meter(
                 ...     measure,
                 ...     boundary_depth=2,
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 9/8
                     c'2
@@ -1099,7 +1059,10 @@ class MutationAgent(abctools.AbjadObject):
                 >>> triple += "| 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
                 >>> duples = "abj: | 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. |"
                 >>> duples += "| 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
-                >>> score = Score([Staff(triple), Staff(duples)])
+                >>> score = abjad.Score([
+                ...     abjad.Staff(triple),
+                ...     abjad.Staff(duples),
+                ...     ])
 
             In order to see the different time signatures on each staff,
             we need to move some engravers from the Score context to the
@@ -1117,9 +1080,9 @@ class MutationAgent(abctools.AbjadObject):
                 >>> score[1].consists_commands.extend(engravers)
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \remove Timing_translator
                     \remove Time_signature_engraver
@@ -1185,19 +1148,18 @@ class MutationAgent(abctools.AbjadObject):
                     }
                 >>
 
-            Here we establish a meter without specifying any boundary
-            depth:
+            Here we establish a meter without specifying any boundary depth:
 
             ::
 
-                >>> for measure in iterate(score).by_class(scoretools.Measure):
-                ...     mutate(measure[:]).rewrite_meter(measure)
+                >>> for measure in abjad.iterate(score).by_class(abjad.Measure):
+                ...     abjad.mutate(measure[:]).rewrite_meter(measure)
                 ...
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \remove Timing_translator
                     \remove Time_signature_engraver
@@ -1263,21 +1225,21 @@ class MutationAgent(abctools.AbjadObject):
                     }
                 >>
 
-            Here we re-establish meter at a boundary depth of `1`:
+            Here we reestablish meter at a boundary depth of `1`:
 
             ::
 
-                >>> for measure in iterate(score).by_class(scoretools.Measure):
-                ...     mutate(measure[:]).rewrite_meter(
+                >>> for measure in abjad.iterate(score).by_class(abjad.Measure):
+                ...     abjad.mutate(measure[:]).rewrite_meter(
                 ...         measure,
                 ...         boundary_depth=1,
                 ...         )
                 ...
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \remove Timing_translator
                     \remove Time_signature_engraver
@@ -1356,15 +1318,15 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> parseable = "abj: | 4/4 c'16 ~ c'4 d'8. ~ "
-                >>> parseable += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
-                >>> parseable += "f'4 |"
-                >>> measure = parse(parseable)
+                >>> string = "abj: | 4/4 c'16 ~ c'4 d'8. ~ "
+                >>> string += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
+                >>> string += "f'4 |"
+                >>> measure = abjad.parse(string)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 4/4
                     c'16 ~
@@ -1391,15 +1353,15 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(measure[:]).rewrite_meter(
+                >>> abjad.mutate(measure[:]).rewrite_meter(
                 ...     measure,
                 ...     boundary_depth=1,
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 4/4
                     c'4 ~
@@ -1427,14 +1389,14 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = Measure((6, 8), "c'4.. c'16 ~ c'4")
-                >>> meter = metertools.Meter((6, 8))
-                >>> mutate(measure[:]).rewrite_meter(meter)
+                >>> measure = abjad.Measure((6, 8), "c'4.. c'16 ~ c'4")
+                >>> meter = abjad.Meter((6, 8))
+                >>> abjad.mutate(measure[:]).rewrite_meter(meter)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 6/8
                     c'4..
@@ -1447,14 +1409,14 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = Measure((6, 8), "c'4.. c'16 ~ c'4")
-                >>> meter = metertools.Meter((6, 8))
-                >>> mutate(measure[:]).rewrite_meter(meter, boundary_depth=1)
+                >>> measure = abjad.Measure((6, 8), "c'4.. c'16 ~ c'4")
+                >>> meter = abjad.Meter((6, 8))
+                >>> abjad.mutate(measure[:]).rewrite_meter(meter, boundary_depth=1)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 6/8
                     c'4. ~
@@ -1468,17 +1430,17 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = Measure((6, 8), "c'4.. c'16 ~ c'4")
-                >>> meter = metertools.Meter(
+                >>> measure = abjad.Measure((6, 8), "c'4.. c'16 ~ c'4")
+                >>> meter = abjad.Meter(
                 ...     (6, 8),
                 ...     preferred_boundary_depth=1,
                 ...     )
-                >>> mutate(measure[:]).rewrite_meter(meter)
+                >>> abjad.mutate(measure[:]).rewrite_meter(meter)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 6/8
                     c'4. ~
@@ -1496,12 +1458,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = Measure((4, 4), "c'4. c'4. c'4")
+                >>> measure = abjad.Measure((4, 4), "c'4. c'4. c'4")
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 4/4
                     c'4.
@@ -1511,17 +1473,17 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((4, 4))
-                >>> mutate(measure[:]).rewrite_meter(
+                >>> meter = abjad.Meter((4, 4))
+                >>> abjad.mutate(measure[:]).rewrite_meter(
                 ...     meter,
                 ...     boundary_depth=1,
                 ...     use_messiaen_style_ties=True,
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 4/4
                     c'4
@@ -1537,20 +1499,20 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = Measure((6, 4), [
-                ...     Note("c'4."),
-                ...     Tuplet((6, 7), "c'4. r16"),
-                ...     Tuplet((6, 7), "r16 c'4."),
-                ...     Note("c'4."),
+                >>> measure = abjad.Measure((6, 4), [
+                ...     abjad.Note("c'4."),
+                ...     abjad.Tuplet((6, 7), "c'4. r16"),
+                ...     abjad.Tuplet((6, 7), "r16 c'4."),
+                ...     abjad.Note("c'4."),
                 ...     ])
                 >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
                 >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
-                >>> measure = Measure((6, 4), string)
+                >>> measure = abjad.Measure((6, 4), string)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 6/4
                     c'8 ~
@@ -1573,16 +1535,16 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((6, 4))
-                >>> mutate(measure[:]).rewrite_meter(
+                >>> meter = abjad.Meter((6, 4))
+                >>> abjad.mutate(measure[:]).rewrite_meter(
                 ...     meter,
                 ...     boundary_depth=1,
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 6/4
                     c'4.
@@ -1609,20 +1571,20 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> measure = Measure((6, 4), [
-                ...     Note("c'4."),
-                ...     Tuplet((6, 7), "c'4. r16"),
-                ...     Tuplet((6, 7), "r16 c'4."),
-                ...     Note("c'4."),
+                >>> measure = abjad.Measure((6, 4), [
+                ...     abjad.Note("c'4."),
+                ...     abjad.Tuplet((6, 7), "c'4. r16"),
+                ...     abjad.Tuplet((6, 7), "r16 c'4."),
+                ...     abjad.Note("c'4."),
                 ...     ])
                 >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
                 >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
-                >>> measure = Measure((6, 4), string)
+                >>> measure = abjad.Measure((6, 4), string)
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 6/4
                     c'8 ~
@@ -1645,17 +1607,17 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> meter = metertools.Meter((6, 4))
-                >>> mutate(measure[:]).rewrite_meter(
+                >>> meter = abjad.Meter((6, 4))
+                >>> abjad.mutate(measure[:]).rewrite_meter(
                 ...     meter,
                 ...     boundary_depth=1,
                 ...     rewrite_tuplets=False,
                 ...     )
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 6/4
                     c'4.
@@ -1674,14 +1636,14 @@ class MutationAgent(abctools.AbjadObject):
 
         Operates in place and returns none.
         '''
+        from abjad.tools import metertools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools.metertools._rewrite_meter import _rewrite_meter
         selection = self._client
         if isinstance(selection, scoretools.Container):
             selection = selection[:]
         assert isinstance(selection, selectiontools.Selection)
-        result = _rewrite_meter(
+        result = metertools.Meter._rewrite_meter(
             selection,
             meter,
             boundary_depth=boundary_depth,
@@ -1701,17 +1663,17 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 ( d'8 e'8 f'8 )")
+                >>> staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
                 >>> show(staff) # doctest: +SKIP
 
             ::
 
-                >>> mutate(staff[1]).scale(Multiplier(3, 2))
+                >>> abjad.mutate(staff[1]).scale(abjad.Multiplier(3, 2))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 (
                     d'8.
@@ -1725,14 +1687,14 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff(r"c'8 \accent ~ c'8 d'8")
-                >>> time_signature = TimeSignature((3, 8))
-                >>> attach(time_signature, staff)
+                >>> staff = abjad.Staff(r"c'8 \accent ~ c'8 d'8")
+                >>> time_signature = abjad.TimeSignature((3, 8))
+                >>> abjad.attach(time_signature, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \time 3/8
                     c'8 -\accent ~
@@ -1742,13 +1704,14 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> logical_tie = inspect_(staff[0]).get_logical_tie()
-                >>> logical_tie = mutate(logical_tie).scale(Multiplier(3, 2))
+                >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+                >>> agent = abjad.mutate(logical_tie)
+                >>> logical_tie = agent.scale(abjad.Multiplier(3, 2))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \time 3/8
                     c'4. -\accent
@@ -1761,12 +1724,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
+                >>> container = abjad.Container(r"c'8 ( d'8 e'8 f'8 )")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(container))
+                >>> f(container)
                 {
                     c'8 (
                     d'8
@@ -1776,12 +1739,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(container).scale(Multiplier(3, 2))
+                >>> abjad.mutate(container).scale(abjad.Multiplier(3, 2))
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(container))
+                >>> f(container)
                 {
                     c'8. (
                     d'8.
@@ -1795,17 +1758,17 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 ( d'8 e'8 f'8 )")
+                >>> staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
                 >>> show(staff) # doctest: +SKIP
 
             ::
 
-                >>> mutate(staff[1]).scale(Multiplier(5, 4))
+                >>> abjad.mutate(staff[1]).scale(abjad.Multiplier(5, 4))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 (
                     d'8 ~
@@ -1820,14 +1783,14 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff(r"c'8 \accent ~ c'8 d'16")
-                >>> time_signature = TimeSignature((5, 16))
-                >>> attach(time_signature, staff)
+                >>> staff = abjad.Staff(r"c'8 \accent ~ c'8 d'16")
+                >>> time_signature = abjad.TimeSignature((5, 16))
+                >>> abjad.attach(time_signature, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \time 5/16
                     c'8 -\accent ~
@@ -1837,13 +1800,14 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> logical_tie = inspect_(staff[0]).get_logical_tie()
-                >>> logical_tie = mutate(logical_tie).scale(Multiplier(5, 4))
+                >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+                >>> agent = abjad.mutate(logical_tie)
+                >>> logical_tie = agent.scale(abjad.Multiplier(5, 4))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \time 5/16
                     c'4 -\accent ~
@@ -1857,12 +1821,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
+                >>> container = abjad.Container(r"c'8 ( d'8 e'8 f'8 )")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(container))
+                >>> f(container)
                 {
                     c'8 (
                     d'8
@@ -1872,12 +1836,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(container).scale(Multiplier(5, 4))
+                >>> abjad.mutate(container).scale(abjad.Multiplier(5, 4))
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(container))
+                >>> f(container)
                 {
                     c'8 ~ (
                     c'32
@@ -1895,17 +1859,17 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 ( d'8 e'8 f'8 )")
+                >>> staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
                 >>> show(staff) # doctest: +SKIP
 
             ::
 
-                >>> mutate(staff[1]).scale(Multiplier(2, 3))
+                >>> abjad.mutate(staff[1]).scale(abjad.Multiplier(2, 3))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 (
                     \tweak edge-height #'(0.7 . 0)
@@ -1922,25 +1886,26 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff(r"c'8 \accent")
+                >>> staff = abjad.Staff(r"c'8 \accent")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 -\accent
                 }
 
             ::
 
-                >>> logical_tie = inspect_(staff[0]).get_logical_tie()
-                >>> logical_tie = mutate(logical_tie).scale(Multiplier(4, 3))
+                >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+                >>> agent = abjad.mutate(logical_tie)
+                >>> logical_tie = agent.scale(abjad.Multiplier(4, 3))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
@@ -1954,12 +1919,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
+                >>> container = abjad.Container(r"c'8 ( d'8 e'8 f'8 )")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(container))
+                >>> f(container)
                 {
                     c'8 (
                     d'8
@@ -1969,12 +1934,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(container).scale(Multiplier(4, 3))
+                >>> abjad.mutate(container).scale(abjad.Multiplier(4, 3))
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(container))
+                >>> f(container)
                 {
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
@@ -2000,17 +1965,17 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 ( d'8 e'8 f'8 )")
+                >>> staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
                 >>> show(staff) # doctest: +SKIP
 
             ::
 
-                >>> mutate(staff[1]).scale(Multiplier(5, 6))
+                >>> abjad.mutate(staff[1]).scale(abjad.Multiplier(5, 6))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 (
                     \tweak edge-height #'(0.7 . 0)
@@ -2028,23 +1993,23 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> note = Note("c'8")
-                >>> attach(Multiplier(1, 2), note)
+                >>> note = abjad.Note("c'8")
+                >>> abjad.attach(abjad.Multiplier(1, 2), note)
                 >>> show(note) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(note))
+                >>> f(note)
                 c'8 * 1/2
 
             ::
 
-                >>> mutate(note).scale(Multiplier(5, 3))
+                >>> abjad.mutate(note).scale(abjad.Multiplier(5, 3))
                 >>> show(note) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(note))
+                >>> f(note)
                 c'8 * 5/6
 
         ..  container:: example
@@ -2053,20 +2018,21 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff()
-                >>> time_signature = TimeSignature((4, 8))
-                >>> attach(time_signature, staff)
-                >>> tuplet = scoretools.Tuplet((4, 5), [])
+                >>> staff = abjad.Staff()
+                >>> tuplet = abjad.Tuplet((4, 5), [])
                 >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
                 >>> staff.append(tuplet)
+                >>> time_signature = abjad.TimeSignature((4, 8))
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> abjad.attach(time_signature, leaves[0])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
-                    \time 4/8
                     \times 4/5 {
+                        \time 4/8
                         c'8
                         d'8
                         e'8
@@ -2077,15 +2043,15 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(tuplet).scale(Multiplier(2))
+                >>> abjad.mutate(tuplet).scale(abjad.Multiplier(2))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
-                    \time 4/8
                     \times 4/5 {
+                        \time 4/8
                         c'4
                         d'4
                         e'4
@@ -2096,24 +2062,24 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            Scales fixed-duration tuplet:
+            Scales tuplet:
 
             ::
 
-                >>> staff = Staff()
-                >>> time_signature = TimeSignature((4, 8))
-                >>> attach(time_signature, staff)
-                >>> tuplet = scoretools.FixedDurationTuplet((4, 8), [])
-                >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
+                >>> staff = abjad.Staff()
+                >>> tuplet = abjad.Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
                 >>> staff.append(tuplet)
+                >>> time_signature = abjad.TimeSignature((4, 8))
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(time_signature, leaf)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
-                    \time 4/8
                     \times 4/5 {
+                        \time 4/8
                         c'8
                         d'8
                         e'8
@@ -2124,15 +2090,15 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(tuplet).scale(Multiplier(2))
+                >>> abjad.mutate(tuplet).scale(abjad.Multiplier(2))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
-                    \time 4/8
                     \times 4/5 {
+                        \time 4/8
                         c'4
                         d'4
                         e'4
@@ -2182,7 +2148,7 @@ class MutationAgent(abctools.AbjadObject):
         tie_split_notes=True,
         use_messiaen_style_ties=False,
         ):
-        r'''Splits component or selection by `durations`.
+        r'''Splits mutation client by `durations`.
 
         ..  container:: example
 
@@ -2190,16 +2156,16 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
+                >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff[:]
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, leaves)
-                >>> override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, leaves)
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2215,16 +2181,16 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> durations = [Duration(3, 16), Duration(7, 32)]
-                >>> result = mutate(leaves).split(
+                >>> durations = [(3, 16), (7, 32)]
+                >>> result = abjad.mutate(leaves).split(
                 ...     durations,
                 ...     tie_split_notes=False,
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2246,15 +2212,15 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
-                >>> override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, staff[:])
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2270,18 +2236,18 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> durations = [Duration(3, 16), Duration(7, 32)]
+                >>> durations = [(3, 16), (7, 32)]
                 >>> leaves = staff[:]
-                >>> result = mutate(leaves).split(
+                >>> result = abjad.mutate(leaves).split(
                 ...     durations,
                 ...     fracture_spanners=True,
                 ...     tie_split_notes=False,
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2303,16 +2269,16 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
+                >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff[:]
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, leaves)
-                >>> override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, leaves)
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2328,17 +2294,17 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> durations = [Duration(3, 16), Duration(7, 32)]
-                >>> result = mutate(leaves).split(
+                >>> durations = [(3, 16), (7, 32)]
+                >>> result = abjad.mutate(leaves).split(
                 ...     durations,
                 ...     cyclic=True,
                 ...     tie_split_notes=False,
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2362,16 +2328,16 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
+                >>> staff = abjad.Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff[:]
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, leaves)
-                >>> override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, leaves)
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2387,8 +2353,8 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> durations = [Duration(3, 16), Duration(7, 32)]
-                >>> result = mutate(leaves).split(
+                >>> durations = [(3, 16), (7, 32)]
+                >>> result = abjad.mutate(leaves).split(
                 ...     durations,
                 ...     cyclic=True,
                 ...     fracture_spanners=True,
@@ -2396,9 +2362,9 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2422,18 +2388,18 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
-                >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
-                >>> selector = select().by_leaf(flatten=True)
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
+                >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
+                >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
-                >>> slur = spannertools.Slur()
-                >>> attach(slur, leaves)
+                >>> slur = abjad.Slur()
+                >>> abjad.attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \times 2/3 {
                         c'4 (
@@ -2449,17 +2415,17 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> durations = [Duration(1, 4)]
-                >>> result = mutate(leaves).split(
+                >>> durations = [(1, 4)]
+                >>> result = abjad.mutate(leaves).split(
                 ...     durations,
                 ...     fracture_spanners=True,
                 ...     tie_split_notes=False,
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \times 2/3 {
                         c'4 (
@@ -2480,15 +2446,15 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'1 d'1")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
-                >>> override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> staff = abjad.Staff("c'1 d'1")
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, staff[:])
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2498,8 +2464,8 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> durations = [Duration(3, 4)]
-                >>> result = mutate(staff[:]).split(
+                >>> durations = [(3, 4)]
+                >>> result = abjad.mutate(staff[:]).split(
                 ...     durations,
                 ...     cyclic=True,
                 ...     fracture_spanners=False,
@@ -2507,9 +2473,9 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2523,15 +2489,15 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'1 d'1")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
-                >>> override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> staff = abjad.Staff("c'1 d'1")
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, staff[:])
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
 
             ::
 
-                >>> durations = [Duration(3, 4)]
-                >>> result = mutate(staff[:]).split(
+                >>> durations = [(3, 4)]
+                >>> result = abjad.mutate(staff[:]).split(
                 ...     durations,
                 ...     cyclic=True,
                 ...     fracture_spanners=False,
@@ -2540,9 +2506,9 @@ class MutationAgent(abctools.AbjadObject):
                 ...     )
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -2552,20 +2518,253 @@ class MutationAgent(abctools.AbjadObject):
                     d'2 \repeatTie \f
                 }
 
+        ..  container:: example
+
+            Splits custom voice and preserves context name:
+
+            ::
+
+                >>> voice = abjad.Voice(
+                ...     "c'4 d' e' f'",
+                ...     context_name='CustomVoice',
+                ...     name='1',
+                ...     )
+                >>> staff = abjad.Staff([voice])
+                >>> hairpin = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(hairpin, voice[:])
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override DynamicLineSpanner.staff-padding = #3
+                } {
+                    \context CustomVoice = "1" {
+                        c'4 \< \p
+                        d'4
+                        e'4
+                        f'4 \f
+                    }
+                }
+
+            ::
+
+                >>> durations = [(1, 8)]
+                >>> result = abjad.mutate(staff[:]).split(
+                ...     durations,
+                ...     cyclic=True,
+                ...     fracture_spanners=False,
+                ...     tie_split_notes=True,
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override DynamicLineSpanner.staff-padding = #3
+                } {
+                    \context CustomVoice = "1" {
+                        c'8 ~ \< \p
+                    }
+                    \context CustomVoice = "1" {
+                        c'8
+                    }
+                    \context CustomVoice = "1" {
+                        d'8 ~
+                    }
+                    \context CustomVoice = "1" {
+                        d'8
+                    }
+                    \context CustomVoice = "1" {
+                        e'8 ~
+                    }
+                    \context CustomVoice = "1" {
+                        e'8
+                    }
+                    \context CustomVoice = "1" {
+                        f'8 ~
+                    }
+                    \context CustomVoice = "1" {
+                        f'8 \f
+                    }
+                }
+
+            ::
+
+                >>> for voice in staff:
+                ...     voice
+                ...
+                Voice("c'8 ~", context_name='CustomVoice', name='1')
+                Voice("c'8", context_name='CustomVoice', name='1')
+                Voice("d'8 ~", context_name='CustomVoice', name='1')
+                Voice("d'8", context_name='CustomVoice', name='1')
+                Voice("e'8 ~", context_name='CustomVoice', name='1')
+                Voice("e'8", context_name='CustomVoice', name='1')
+                Voice("f'8 ~", context_name='CustomVoice', name='1')
+                Voice("f'8", context_name='CustomVoice', name='1')
+
+        ..  container:: example
+
+            Splits parallel container:
+
+            ::
+
+                >>> voice_1 = abjad.Voice(
+                ...     "e''4 ( es'' f'' fs'' )",
+                ...     name='Voice 1',
+                ...     )
+                >>> voice_2 = abjad.Voice(
+                ...     r"c'4 \p \< cs' d' ds' \f",
+                ...     name='Voice 2',
+                ...     )
+                >>> abjad.override(voice_1).stem.direction = Up
+                >>> abjad.override(voice_1).slur.direction = Up
+                >>> container = abjad.Container(
+                ...     [voice_1, voice_2],
+                ...     is_simultaneous=True,
+                ...     )
+                >>> abjad.override(voice_2).stem.direction = Down
+                >>> staff = abjad.Staff([container])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    <<
+                        \context Voice = "Voice 1" \with {
+                            \override Slur.direction = #up
+                            \override Stem.direction = #up
+                        } {
+                            e''4 (
+                            es''4
+                            f''4
+                            fs''4 )
+                        }
+                        \context Voice = "Voice 2" \with {
+                            \override Stem.direction = #down
+                        } {
+                            c'4 \p \<
+                            cs'4
+                            d'4
+                            ds'4 \f
+                        }
+                    >>
+                }
+
+            ::
+
+                >>> durations = [(3, 8)]
+                >>> result = abjad.mutate(container).split(
+                ...     durations,
+                ...     cyclic=False,
+                ...     fracture_spanners=False,
+                ...     tie_split_notes=True,
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> f(staff)
+                \new Staff {
+                    <<
+                        \context Voice = "Voice 1" \with {
+                            \override Slur.direction = #up
+                            \override Stem.direction = #up
+                        } {
+                            e''4 (
+                            es''8 ~
+                        }
+                        \context Voice = "Voice 2" \with {
+                            \override Stem.direction = #down
+                        } {
+                            c'4 \p \<
+                            cs'8 ~
+                        }
+                    >>
+                    <<
+                        \context Voice = "Voice 1" \with {
+                            \override Slur.direction = #up
+                            \override Stem.direction = #up
+                        } {
+                            es''8
+                            f''4
+                            fs''4 )
+                        }
+                        \context Voice = "Voice 2" \with {
+                            \override Stem.direction = #down
+                        } {
+                            cs'8
+                            d'4
+                            ds'4 \f
+                        }
+                    >>
+                }
+
+        ..  container:: example
+
+            Splits leaves with articulations:
+
+            ::
+
+                >>> staff = abjad.Staff("c'4 d' e' f'")
+                >>> abjad.attach(abjad.Articulation('^'), staff[0])
+                >>> abjad.attach(abjad.LaissezVibrer(), staff[1])
+                >>> abjad.attach(abjad.Articulation('^'), staff[2])
+                >>> abjad.attach(abjad.LaissezVibrer(), staff[3])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4 -\marcato
+                    d'4 \laissezVibrer
+                    e'4 -\marcato
+                    f'4 \laissezVibrer
+                }
+
+            ::
+
+                >>> durations = [(1, 8)]
+                >>> result = abjad.mutate(staff[:]).split(
+                ...     durations,
+                ...     cyclic=True,
+                ...     fracture_spanners=False,
+                ...     tie_split_notes=True,
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 -\marcato ~
+                    c'8
+                    d'8 ~
+                    d'8 \laissezVibrer
+                    e'8 -\marcato ~
+                    e'8
+                    f'8 ~
+                    f'8 \laissezVibrer
+                }
+
         Returns list of selections.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
+        import abjad
         # check input
         components = self._client
         single_component_input = False
-        if isinstance(components, scoretools.Component):
+        if isinstance(components, abjad.Component):
             single_component_input = True
-            components = selectiontools.Selection(components)
-        assert all(isinstance(x, scoretools.Component) for x in components)
-        if not isinstance(components, selectiontools.Selection):
-            components = selectiontools.Selection(components)
-        durations = [durationtools.Duration(x) for x in durations]
+            components = abjad.select(components)
+        assert all(isinstance(_, abjad.Component) for _ in components)
+        if not isinstance(components, abjad.Selection):
+            components = abjad.select(components)
+        durations = [abjad.Duration(_) for _ in durations]
         # return if no split to be done
         if not durations:
             if single_component_input:
@@ -2577,16 +2776,15 @@ class MutationAgent(abctools.AbjadObject):
         total_split_duration = sum(durations)
         # calculate durations
         if cyclic:
-            durations = sequencetools.Sequence(durations)
+            durations = abjad.Sequence(durations)
             durations = durations.repeat_to_weight(total_component_duration)
             durations = list(durations)
         elif total_split_duration < total_component_duration:
             final_offset = total_component_duration - sum(durations)
             durations.append(final_offset)
         elif total_component_duration < total_split_duration:
-            durations = sequencetools.Sequence(durations).truncate(
-                weight=total_component_duration,
-                )
+            weight = total_component_duration
+            durations = abjad.Sequence(durations).truncate(weight=weight)
             durations = list(durations)
         # keep copy of durations to partition result components
         durations_copy = durations[:]
@@ -2596,11 +2794,11 @@ class MutationAgent(abctools.AbjadObject):
         # initialize loop variables
         result, shard = [], []
         offset_index, offset_count = 0, len(durations)
-        current_shard_duration = durationtools.Duration(0)
+        current_shard_duration = abjad.Duration(0)
         remaining_components = list(components[:])
         advance_to_next_offset = True
-        # loop and build shards by grabbing next component
-        # and next duration each time through loop
+        # build shards:
+        # grab next component and next duration each time through loop
         while True:
             # grab next split point
             if advance_to_next_offset:
@@ -2615,25 +2813,26 @@ class MutationAgent(abctools.AbjadObject):
             else:
                 break
             # find where current component endpoint will position us
-            candidate_shard_duration = current_shard_duration + \
-                current_component._get_duration()
+            duration_ = abjad.inspect(current_component).get_duration()
+            candidate_shard_duration = current_shard_duration + duration_
             # if current component would fill current shard exactly
             if candidate_shard_duration == next_split_point:
                 shard.append(current_component)
                 result.append(shard)
                 shard = []
-                current_shard_duration = durationtools.Duration(0)
+                current_shard_duration = abjad.Duration(0)
                 offset_index += 1
             # if current component would exceed current shard
             elif next_split_point < candidate_shard_duration:
-                local_split_duration = \
-                    next_split_point - current_shard_duration
-                if isinstance(current_component, scoretools.Leaf):
+                local_split_duration = next_split_point
+                local_split_duration -= current_shard_duration
+                if isinstance(current_component, abjad.Leaf):
                     leaf_split_durations = [local_split_duration]
-                    current_duration = current_component._get_duration()
-                    additional_required_duration = \
-                        current_duration - local_split_duration
-                    split_durations = sequencetools.Sequence(durations)
+                    duration_ = abjad.inspect(current_component).get_duration()
+                    current_duration = duration_
+                    additional_required_duration = current_duration
+                    additional_required_duration -= local_split_duration
+                    split_durations = abjad.Sequence(durations)
                     split_durations = split_durations.split(
                         [additional_required_duration],
                         cyclic=False,
@@ -2643,7 +2842,7 @@ class MutationAgent(abctools.AbjadObject):
                     additional_durations = split_durations[0]
                     leaf_split_durations.extend(additional_durations)
                     durations = split_durations[-1]
-                    leaf_shards = current_component._split(
+                    leaf_shards = current_component._split_by_durations(
                         leaf_split_durations,
                         cyclic=False,
                         fracture_spanners=fracture_spanners,
@@ -2654,23 +2853,25 @@ class MutationAgent(abctools.AbjadObject):
                     result.append(shard)
                     offset_index += len(additional_durations)
                 else:
-                    left_list, right_list = \
-                        current_component._split_by_duration(
+                    assert isinstance(current_component, abjad.Container)
+                    pair = current_component._split_by_duration(
                         local_split_duration,
                         fracture_spanners=fracture_spanners,
                         tie_split_notes=tie_split_notes,
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )
+                    left_list, right_list = pair
                     shard.extend(left_list)
                     result.append(shard)
                     remaining_components.__setitem__(slice(0, 0), right_list)
                 shard = []
                 offset_index += 1
-                current_shard_duration = durationtools.Duration(0)
+                current_shard_duration = abjad.Duration(0)
             # if current component would not fill current shard
             elif candidate_shard_duration < next_split_point:
                 shard.append(current_component)
-                current_shard_duration += current_component._get_duration()
+                duration_ = abjad.inspect(current_component).get_duration()
+                current_shard_duration += duration_
                 advance_to_next_offset = False
             else:
                 raise ValueError
@@ -2681,11 +2882,11 @@ class MutationAgent(abctools.AbjadObject):
         if len(remaining_components):
             result.append(remaining_components)
         # partition split components according to input durations
-        result = sequencetools.Sequence(result).flatten()
-        result = selectiontools.Selection(result)
+        result = abjad.Sequence(result).flatten()
+        result = abjad.select(result)
         result = result.partition_by_durations(durations_copy, fill=Exact)
         # return list of shards
-        result = [selectiontools.Selection(x) for x in result]
+        result = [abjad.select(_) for _ in result]
         return result
 
     def swap(self, container):
@@ -2695,21 +2896,21 @@ class MutationAgent(abctools.AbjadObject):
 
             Swaps measures for tuplet:
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((3, 4), "c'4 d'4 e'4"))
-                >>> staff.append(Measure((3, 4), "d'4 e'4 f'4"))
-                >>> selector = select().by_leaf(flatten=True)
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((3, 4), "c'4 d'4 e'4"))
+                >>> staff.append(abjad.Measure((3, 4), "d'4 e'4 f'4"))
+                >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
-                >>> hairpin = spannertools.Hairpin('p < f')
-                >>> attach(hairpin, leaves)
+                >>> hairpin = abjad.Hairpin('p < f')
+                >>> abjad.attach(hairpin, leaves)
                 >>> measures = staff[:]
-                >>> slur = spannertools.Slur()
-                >>> attach(slur, leaves)
+                >>> slur = abjad.Slur()
+                >>> abjad.attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 3/4
@@ -2727,14 +2928,14 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> measures = staff[:]
-                >>> tuplet = Tuplet(Multiplier(2, 3), [])
+                >>> tuplet = abjad.Tuplet((2, 3), [])
                 >>> tuplet.preferred_denominator = 4
-                >>> mutate(measures).swap(tuplet)
+                >>> abjad.mutate(measures).swap(tuplet)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \times 4/6 {
                         c'4 \< \p (
@@ -2755,7 +2956,7 @@ class MutationAgent(abctools.AbjadObject):
             donors = self._client
         else:
             donors = selectiontools.Selection(self._client)
-        assert donors._all_are_contiguous_components_in_same_parent(donors)
+        assert donors._all_in_same_parent(donors)
         assert isinstance(container, scoretools.Container)
         assert not container, repr(container)
         donors._give_music_to_empty_container(container)
@@ -2773,14 +2974,14 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((4, 4), "c'4 d'4 e'4 r4"))
-                >>> staff.append(Measure((3, 4), "d'4 e'4 <f' a' c''>4"))
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((4, 4), "c'4 d'4 e'4 r4"))
+                >>> staff.append(abjad.Measure((3, 4), "d'4 e'4 <f' a' c''>4"))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                    >>> print(format(staff))
+                    >>> f(staff)
                     \new Staff {
                         {
                             \time 4/4
@@ -2799,12 +3000,12 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> mutate(staff).transpose("+m3")
+                >>> abjad.mutate(staff).transpose("+m3")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 4/4
@@ -2838,6 +3039,179 @@ class MutationAgent(abctools.AbjadObject):
                     new_written_pitch = old_written_pitch.transpose(
                         named_interval)
                     note_head.written_pitch = new_written_pitch
+
+    def wrap(self, container):
+        r'''Wraps mutation client in empty `container`.
+
+        ..  container:: example
+
+            Wraps in-score notes in tuplet:
+
+            ::
+
+                >>> staff = abjad.Staff("c'8 [ ( d' e' ] ) c' [ ( d' e' ] )")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 [ (
+                    d'8
+                    e'8 ] )
+                    c'8 [ (
+                    d'8
+                    e'8 ] )
+                }
+
+            ::
+
+                >>> tuplet = abjad.Tuplet((2, 3), [])
+                >>> abjad.mutate(staff[-3:]).wrap(tuplet)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 [ (
+                    d'8
+                    e'8 ] )
+                    \times 2/3 {
+                        c'8 [ (
+                        d'8
+                        e'8 ] )
+                    }
+                }
+
+        ..  container:: example
+
+            Wraps outside-score notes in tuplet:
+
+            ::
+
+                >>> maker = abjad.NoteMaker()
+                >>> notes = maker([0, 2, 4], [(1, 8)])
+                >>> tuplet = abjad.Tuplet((2, 3), [])
+                >>> abjad.mutate(notes).wrap(tuplet)
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            (This usage merely substitutes for the tuplet initializer.)
+
+        ..  container:: example
+        
+            Wraps leaves in measure:
+
+            ::
+
+                >>> notes = [abjad.Note(n, (1, 8)) for n in range(8)]
+                >>> voice = abjad.Voice(notes)
+                >>> measure = abjad.Measure((4, 8), [])
+                >>> abjad.mutate(voice[:4]).wrap(measure)
+                >>> show(voice) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(voice)
+                \new Voice {
+                    {
+                        \time 4/8
+                        c'8
+                        cs'8
+                        d'8
+                        ef'8
+                    }
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                }
+
+        ..  container:: example
+
+            Wraps each leaf in measure:
+
+            ::
+
+                >>> notes = [abjad.Note(n, (1, 1)) for n in range(4)]
+                >>> staff = abjad.Staff(notes)
+                >>> for note in staff:
+                ...     measure = abjad.Measure((1, 1), [])
+                ...     abjad.mutate(note).wrap(measure)
+                ...
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 1/1
+                        c'1
+                    }
+                    {
+                        cs'1
+                    }
+                    {
+                        d'1
+                    }
+                    {
+                        ef'1
+                    }
+                }
+
+        ..  container:: example
+
+            Raises exception on nonempty `container`:
+
+            ::
+
+                >>> staff = abjad.Staff("c'8 [ ( d' e' ] ) c' [ ( d' e' ] )")
+                >>> tuplet = abjad.Tuplet((2, 3), "g'8 a' fs'")
+                >>> statement = 'abjad.mutate(staff[-3:]).wrap(tuplet)'
+                >>> pytest.raises(Exception, statement)
+                <ExceptionInfo Exception tblen=...>
+
+        Returns none.
+        '''
+        import abjad
+        if (not isinstance(container, abjad.Container) or
+            0 < len(container)):
+            message = 'must be empty container: {!r}.'
+            message = message.format(container)
+            raise Exception(message)
+        if isinstance(self._client, abjad.Component):
+            selection = abjad.select(self._client)
+        else:
+            selection = self._client
+        assert isinstance(selection, abjad.Selection), repr(selection)
+        parent, start, stop = selection._get_parent_and_start_stop_indices()
+#        if parent is None:
+#            message = 'just use normal container initialization'
+#            message += ' for unincorporated components: {!r}.'
+#            message = message.format(selection)
+#            raise Exception(message)
+        if not selection._all_in_same_logical_voice(
+            selection,
+            contiguous=True,
+            ):
+            message = 'must be contiguous components in same logical voice:'
+            message += ' {!r}.'
+            message = message.format(selection)
+            raise Exception(message)
+        container._music = list(selection)
+        container[:]._set_parents(container)
+        if parent is not None:
+            parent._music.insert(start, container)
+            container._set_parent(parent)
 
     ### PUBLIC PROPERTIES ###
 

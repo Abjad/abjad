@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 import platform
-from abjad.tools import commandlinetools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
 
 
@@ -29,14 +28,14 @@ class Test(ScorePackageScriptTestCase):
 
     def test_exists(self):
         self.create_score()
-        script = commandlinetools.ManageBuildTargetScript()
+        script = abjad.commandlinetools.ManageBuildTargetScript()
         command = ['--new']
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-            with systemtools.RedirectedStreams(stdout=self.string_io):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 1
@@ -47,14 +46,14 @@ class Test(ScorePackageScriptTestCase):
 
     def test_explicit(self):
         self.create_score()
-        script = commandlinetools.ManageBuildTargetScript()
+        script = abjad.commandlinetools.ManageBuildTargetScript()
         command = [
             '--new',
             '--paper-size', 'a3',
             '--orientation', 'landscape',
             ]
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:
@@ -81,14 +80,14 @@ class Test(ScorePackageScriptTestCase):
 
     def test_force_replace(self):
         self.create_score()
-        script = commandlinetools.ManageBuildTargetScript()
+        script = abjad.commandlinetools.ManageBuildTargetScript()
         command = ['-f', '--new']
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.TemporaryDirectoryChange(str(self.score_path)):
             try:
                 script(command)
             except SystemExit:
                 raise RuntimeError('SystemExit')
-            with systemtools.RedirectedStreams(stdout=self.string_io):
+            with abjad.RedirectedStreams(stdout=self.string_io):
                 try:
                     script(command)
                 except SystemExit:
@@ -101,10 +100,10 @@ class Test(ScorePackageScriptTestCase):
 
     def test_implicit(self):
         self.create_score()
-        script = commandlinetools.ManageBuildTargetScript()
+        script = abjad.commandlinetools.ManageBuildTargetScript()
         command = ['--new']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:
@@ -281,12 +280,12 @@ class Test(ScorePackageScriptTestCase):
 
     def test_internal_path(self):
         self.create_score()
-        script = commandlinetools.ManageBuildTargetScript()
+        script = abjad.commandlinetools.ManageBuildTargetScript()
         command = ['--new']
         internal_path = self.score_path.joinpath('test_score', 'build')
         assert internal_path.exists()
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(internal_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(internal_path)):
                 try:
                     script(command)
                 except SystemExit:
@@ -299,15 +298,15 @@ class Test(ScorePackageScriptTestCase):
 
     def test_named(self):
         self.create_score()
-        script = commandlinetools.ManageBuildTargetScript()
+        script = abjad.commandlinetools.ManageBuildTargetScript()
         command = [
             '--new',
             'World Premiere Version',
             '--paper-size', 'a3',
             '--orientation', 'landscape',
             ]
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import abc
+import functools
 import math
+import numbers
 import re
 from abjad.tools import mathtools
 from abjad.tools import systemtools
@@ -10,13 +12,20 @@ from abjad.tools.pitchtools.Octave import Octave
 from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
+@functools.total_ordering
 class Pitch(AbjadValueObject):
-    '''Pitch base class.
+    '''Abstract pitch.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_arrow',
         )
 
     _diatonic_pitch_name_regex_body = '''
@@ -37,14 +46,14 @@ class Pitch(AbjadValueObject):
         (?P<diatonic_pitch_class_name>
             [A-G]   # exactly one diatonic pitch-class name
         )
-        {}          # plus an optional symbolic accidental string
+        {}          # plus an optional accidental symbol 
         (?P<octave_number>
             [-]?    # plus an optional negative sign
             [0-9]+  # plus one or more digits
         )
         )
         '''.format(
-        Accidental._symbolic_string_regex_body,
+        Accidental._symbol_regex_body,
         )
 
     _pitch_class_octave_number_regex = re.compile(
@@ -75,15 +84,6 @@ class Pitch(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    @abc.abstractmethod
-    def __float__(self):
-        r'''Changes pitch to float.
-
-        Returns float.
-        '''
-        message = 'TODO: all pitch-related classes must implement float.'
-        raise NotImplementedError(message)
-
     def __format__(self, format_specification=''):
         r'''Formats pitch.
 
@@ -108,8 +108,8 @@ class Pitch(AbjadValueObject):
         note = abjad.Note(pitch, 1)
         abjad.attach(abjad.Multiplier(1, 4), note)
         clef = abjad.Clef.from_selection([pitch])
+        abjad.attach(clef, note)
         staff = abjad.Staff()
-        abjad.attach(clef, staff)
         staff.append(note)
         abjad.override(staff).time_signature.stencil = False
         lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(staff)
@@ -117,31 +117,14 @@ class Pitch(AbjadValueObject):
         return lilypond_file
 
     @abc.abstractmethod
-    def __int__(self):
-        r'''Changes pitch to integer.
+    def __lt__(self, argument):
+        r'''Is true when pitch is less than `argument`.
 
-        Returns integer.
+        Returns true or false.
         '''
-        message = 'TODO: all pitch-related classes must implement int.'
-        raise NotImplementedError(message)
+        raise NotImplementedError
 
     ### PRIVATE PROPERTIES ###
-
-    def _get_format_specification(self):
-        if type(self).__name__.startswith('Named'):
-            values = [str(self)]
-        else:
-            values = [
-                mathtools.integer_equivalent_number_to_integer(float(self))
-                ]
-        return systemtools.FormatSpecification(
-            client=self,
-            coerce_for_equality=True,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
-            storage_format_args_values=values,
-            template_names=['pitch_name'],
-            )
 
     @abc.abstractmethod
     def _get_lilypond_format(self):
@@ -173,113 +156,77 @@ class Pitch(AbjadValueObject):
         else:
             raise TypeError(item_class)
 
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _is_diatonic_pitch_name(argument):
+        if not isinstance(argument, str):
+            return False
+        return bool(Pitch._diatonic_pitch_name_regex.match(argument))
+
+    @staticmethod
+    def _is_diatonic_pitch_number(argument):
+        return isinstance(argument, int)
+
+    @staticmethod
+    def _is_pitch_carrier(argument):
+        import abjad
+        prototype = (
+            abjad.Chord,
+            abjad.NamedPitch,
+            abjad.Note,
+            abjad.NoteHead,
+            )
+        return isinstance(argument, prototype)
+
+    @staticmethod
+    def _is_pitch_class_octave_number_string(argument):
+        if not isinstance(argument, str):
+            return False
+        return bool(Pitch._pitch_class_octave_number_regex.match(argument))
+
+    @staticmethod
+    def _is_pitch_name(argument):
+        if not isinstance(argument, str):
+            return False
+        return bool(Pitch._pitch_name_regex.match(argument))
+
+    @staticmethod
+    def _is_pitch_number(argument):
+        if isinstance(argument, (int, float)):
+            return argument % 0.5 == 0
+        return False
+
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def alteration_in_semitones(self):
-        r'''Gets alteration of pitch in semitones.
+    def arrow(self):
+        r'''Gets arrow of pitch.
         '''
         raise NotImplementedError
 
     @abc.abstractproperty
-    def diatonic_pitch_class_name(self):
-        r'''Gets diatonic pitch-class name of pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_class_number(self):
-        r'''Gets diatonic pitch-class number of pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_name(self):
-        r'''Gets diatonic pitch name of pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_number(self):
-        r'''Gets diatonic pitch number of pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
-    @property
     def hertz(self):
-        r'''Gets frequency of pitch in Herz.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.NamedPitch("a'").hertz
-                440.0
-
-            ::
-
-                >>> pitchtools.NamedPitch("c'").hertz
-                261.62...
-
-            ::
-
-                >>> pitchtools.NamedPitch("c''").hertz
-                523.25...
+        r'''Gets frequency of pitch in Hertz.
 
         Returns float.
         '''
-        hertz = pow(2., (float(self) - 9.) / 12.) * 440.
+        hertz = pow(2., (float(self.number) - 9.) / 12.) * 440.
         return hertz
 
     @abc.abstractproperty
     def name(self):
-        r'''Gets pitch name.
-        '''
-        raise NotImplementedError
+        r'''Gets name of pitch.
 
-    @abc.abstractproperty
-    def named_pitch(self):
-        r'''Gets named pitch corresponding to pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def named_pitch_class(self):
-        r'''Gets named pitch-class corresponding to pitch.
-
-        ..  note:: Deprecated.
+        Returns string.
         '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def number(self):
-        r'''Gets pitch number.
-        '''
-        raise NotImplementedError
+        r'''Gets number of pitch.
 
-    @abc.abstractproperty
-    def numbered_pitch(self):
-        r'''Gets numbered pitch corresponding to pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def numbered_pitch_class(self):
-        r'''Gets numbered pitch-class corresponding to pitch.
-
-        ..  note:: Deprecated.
+        Returns number.
         '''
         raise NotImplementedError
 
@@ -293,82 +240,18 @@ class Pitch(AbjadValueObject):
             
     @abc.abstractproperty
     def pitch_class(self):
-        r'''Gets pitch-class.
+        r'''Gets pitch-class of pitch.
 
         Returns pitch-class.
         '''
         raise NotImplementedError
 
-    @abc.abstractproperty
-    def pitch_class_name(self):
-        r'''Gets pitch-class name corresponding to pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_number(self):
-        r'''Gets pitch-class number of pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_octave_label(self):
-        r'''Gets pitch-class / octave label of pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_name(self):
-        r'''Gets pitch name of pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_number(self):
-        r'''Get pitch number of pitch.
-
-        ..  note:: Deprecated.
-        '''
-        raise NotImplementedError
-
     ### PUBLIC METHODS ###
 
-    @abc.abstractmethod
-    def apply_accidental(self, accidental=None):
-        r'''Applies `accidental` to pitch.
-
-        Returns new pitch.
-        '''
-        raise NotImplementedError
-
     @classmethod
+    @abc.abstractmethod
     def from_hertz(class_, hertz):
         r'''Creates pitch from `hertz`.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.NamedPitch.from_hertz(440)
-                NamedPitch("a'")
-
-            ::
-
-                >>> pitchtools.NumberedPitch.from_hertz(440)
-                NumberedPitch(9)
-
-            ::
-
-                >>> pitchtools.NamedPitch.from_hertz(519)
-                NamedPitch("c'")
 
         Returns new pitch.
         '''
@@ -376,6 +259,65 @@ class Pitch(AbjadValueObject):
         midi = 9. + (12. * math.log(hertz / 440., 2))
         pitch = class_(midi)
         return pitch
+
+    @classmethod
+    @abc.abstractmethod
+    def from_pitch_carrier(class_, pitch_carrier):
+        r'''Makes new pitch from `pitch_carrier`.
+
+        Returns new pitch.
+        '''
+        import abjad
+        if isinstance(pitch_carrier, abjad.NamedPitch):
+            return class_(pitch_carrier)
+        elif isinstance(pitch_carrier, abjad.NumberedPitch):
+            return class_(pitch_carrier)
+        elif isinstance(pitch_carrier, numbers.Number):
+            return class_(pitch_carrier)
+        elif isinstance(pitch_carrier, abjad.Note):
+            pitch = pitch_carrier.written_pitch
+            if pitch is not None:
+                return class_.from_pitch_carrier(pitch)
+            else:
+                message = 'no pitch found on {!r}.'
+                message = message.format(pitch_carrier)
+                raise ValueError(message)
+        elif isinstance(pitch_carrier, abjad.NoteHead):
+            pitch = pitch_carrier.written_pitch
+            if pitch is not None:
+                return class_.from_pitch_carrier(pitch)
+            else:
+                message = 'no pitch found on {!r}.'
+                message = message.format(pitch_carrier)
+                raise ValueError(message)
+        elif isinstance(pitch_carrier, abjad.Chord):
+            pitches = pitch_carrier.written_pitches
+            if len(pitches) == 0:
+                message = 'no pitch found on {!r}.'
+                message = message.format(pitch_carrier)
+                raise ValueError(message)
+            elif len(pitches) == 1:
+                return class_.from_pitch_carrier(pitches[0])
+            else:
+                message = 'multiple pitches found on {!r}.'
+                message = message.format(pitch_carrier)
+                raise ValueError(message)
+        elif isinstance(pitch_carrier, abjad.NumberedPitchClass):
+            named_pitch = class_((pitch_carrier.name, 4))
+            return named_pitch
+        else:
+            message = 'pitch carrier {!r} must be'
+            message += ' pitch, note, note-head or chord.'
+            message = message.format(pitch_carrier)
+            raise TypeError(message)
+
+    @abc.abstractmethod
+    def get_name(self, locale=None):
+        r'''Gets name of pitch according to `locale`.
+
+        Returns string.
+        '''
+        raise NotImplementedError
 
     @abc.abstractmethod
     def invert(self, axis=None):
@@ -385,192 +327,20 @@ class Pitch(AbjadValueObject):
 
         Returns new pitch.
         '''
-        from abjad.tools import pitchtools
-        axis = axis or pitchtools.NamedPitch("c'")
+        import abjad
+        axis = axis or abjad.NamedPitch("c'")
         axis = type(self)(axis)
         interval = self - axis
         result = axis.transpose(interval)
         return result
 
-    @staticmethod
-    def is_diatonic_pitch_name(argument):
-        '''Is true when `argument` is a diatonic pitch name. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_diatonic_pitch_name("c''")
-                True
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_diatonic_pitch_name("cs''")
-                False
-
-        The regex ``(^[a-g,A-G])(,+|'+|)$`` underlies this predicate.
-
-        Returns true or false.
-        '''
-        if not isinstance(argument, str):
-            return False
-        return bool(Pitch._diatonic_pitch_name_regex.match(argument))
-
-    @staticmethod
-    def is_diatonic_pitch_number(argument):
-        '''Is true when `argument` is a diatonic pitch number. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_diatonic_pitch_number(7)
-                True
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_diatonic_pitch_number(7.5)
-                False
-
-        Diatonic pitch numbers are equal to the set of integers.
-
-        Returns true or false.
-        '''
-        return isinstance(argument, int)
-
-    @staticmethod
-    def is_pitch_carrier(argument):
-        '''Is true when `argument` is an Abjad pitch, note, note-head of chord
-        instance. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> note = Note("c'4")
-                >>> pitchtools.Pitch.is_pitch_carrier(note)
-                True
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_pitch_carrier('text')
-                False
-
-        Returns true or false.
-        '''
-        from abjad.tools import scoretools
-        from abjad.tools import pitchtools
-        return isinstance(
-            argument, (
-                pitchtools.NamedPitch,
-                scoretools.Note,
-                scoretools.NoteHead,
-                scoretools.Chord
-                )
-            )
-
-    @staticmethod
-    def is_pitch_class_octave_number_string(argument):
-        '''Is true when `argument` is a pitch-class / octave number string.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_pitch_class_octave_number_string('C#2')
-                True
-
-        ..  container:: example
-
-            Supports quartertone accidentals:
-
-            ::
-
-                >>> pitchtools.Pitch.is_pitch_class_octave_number_string('C#2')
-                True
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_pitch_class_octave_number_string('C#')
-                False
-
-        The regex ``^([A-G])([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)([-]?[0-9]+)$``
-        underlies this predicate.
-
-        Returns true or false.
-        '''
-        if not isinstance(argument, str):
-            return False
-        return bool(Pitch._pitch_class_octave_number_regex.match(argument))
-
-    @staticmethod
-    def is_pitch_name(argument):
-        '''Is true when `argument` is a pitch name. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_pitch_name('c,')
-                True
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_pitch_name('z')
-                False
-
-        The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[f,s]|)!?)(,+|'+|)$``
-        underlies this predicate.
-
-        Returns true or false.
-        '''
-        if not isinstance(argument, str):
-            return False
-        return bool(Pitch._pitch_name_regex.match(argument))
-
-    @staticmethod
-    def is_pitch_number(argument):
-        '''Is true when `argument` is a pitch number. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_pitch_number(13)
-                True
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.Pitch.is_pitch_number('text')
-                False
-
-        Pitch numbers are equal to the set of all integers in union with the
-        set of all integers plus of minus 0.5.
-
-        Returns true or false.
-        '''
-        if isinstance(argument, (int, float)):
-            return argument % 0.5 == 0
-        return False
-
     @abc.abstractmethod
     def multiply(self, n=1):
         r'''Multiplies pitch by `n`.
+
+        Returns new pitch.
         '''
-        raise NotImplementedError
+        return type(self)(n * self.number)
 
     @abc.abstractmethod
     def transpose(self, n):

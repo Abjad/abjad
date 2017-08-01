@@ -7,17 +7,23 @@ class ReSTAutosummaryItem(TreeNode):
 
     ::
 
-        >>> item = documentationtools.ReSTAutosummaryItem(
-        ...     text='abjad.tools.scoretools.Note')
-        >>> item
-        ReSTAutosummaryItem(
-            text='abjad.tools.scoretools.Note'
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> print(item.rest_format)
-        abjad.tools.scoretools.Note
+        ::
+
+            >>> item = abjad.documentationtools.ReSTAutosummaryItem(
+            ...     text='abjad.tools.scoretools.Note')
+            >>> item
+            ReSTAutosummaryItem(
+                text='abjad.tools.scoretools.Note'
+                )
+
+        ::
+
+            >>> print(item.rest_format)
+            abjad.tools.scoretools.Note
 
     '''
 
@@ -25,11 +31,16 @@ class ReSTAutosummaryItem(TreeNode):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        '_text',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, name=None, text='foo'):
         TreeNode.__init__(self, name)
-        self.text = text
+        #self.text = text
+        self._text = text
 
     ### PRIVATE PROPERTIES ###
 

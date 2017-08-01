@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadValueObject
+import collections
+from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
+from abjad.tools.abctools import AbjadValueObject
 
 
 class PartitionByRatioCallback(AbjadValueObject):
     r'''Partition-by-ratio selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -27,11 +33,11 @@ class PartitionByRatioCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument, rotation=None):
-        r'''Calls ratio selector callback on `argument`.
+        r'''Calls ratio selector callback on iterable `argument`.
 
         Returns tuple of selections.
         '''
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         assert len(argument) == 1, repr(argument)
         assert isinstance(argument[0], selectiontools.Selection), repr(argument)
         selection = argument[0]
@@ -39,7 +45,7 @@ class PartitionByRatioCallback(AbjadValueObject):
             len(selection),
             self.ratio,
             )
-        selections = sequencetools.Sequence(selection).partition_by_counts(
+        selections = datastructuretools.Sequence(selection).partition_by_counts(
             counts=counts,
             )
         selections = [selectiontools.Selection(_) for _ in selections]

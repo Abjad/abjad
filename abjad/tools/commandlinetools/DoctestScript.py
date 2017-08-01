@@ -4,7 +4,7 @@ import doctest
 import importlib
 import os
 import sys
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 try:
@@ -24,13 +24,17 @@ class DoctestScript(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
-    alias = 'doctest'
-    short_description = 'Run doctests on all modules in current path.'
+    __slots__ = (
+        )
 
     _module_names_for_globs = (
         'abjad',
         'experimental',
         )
+
+    alias = 'doctest'
+
+    short_description = 'Run doctests on all modules in current path.'
 
     ### PRIVATE METHODS ###
 
@@ -63,17 +67,29 @@ class DoctestScript(CommandlineScript):
                     file_paths.append(file_path)
         return file_paths
 
-    def _get_namespace(self, abjad_only=False):
+    def _get_namespace(self, abjad_only=False, external_modules=''):
         globs = {}
         globs['abjad'] = importlib.import_module('abjad')
         globs['f'] = getattr(globs['abjad'], 'f')
-        if True:
+        globs['show'] = getattr(globs['abjad'], 'show')
+        module_names_for_globs = list(self._module_names_for_globs)
+        if not abjad_only:
             for module_name in self._module_names_for_globs:
                 try:
                     module = importlib.import_module(module_name)
                     globs.update(module.__dict__)
                 except:
                     pass
+        external_modules = external_modules or ''
+        external_modules = external_modules.split(',')
+        for module_name in external_modules:
+            if not module_name:
+                continue
+            try:
+                module = importlib.import_module(module_name)
+                globs[module_name] = module
+            except ImportError:
+                pass
         try:
             ide_module = importlib.import_module('ide')
             globs['ide'] = ide_module
@@ -85,7 +101,7 @@ class DoctestScript(CommandlineScript):
             imports = config_parser.get(self.alias, 'imports')
         except:
             imports = ''
-        imports = stringtools.normalize(imports).split('\n')
+        imports = datastructuretools.String.normalize(imports).split('\n')
         for line in imports:
             exec(line, globs, globs)
         globs
@@ -110,8 +126,11 @@ class DoctestScript(CommandlineScript):
         ):
         assert not (arguments and file_paths)
         result = []
-        globs = self._get_namespace(abjad_only=arguments.abjad_only)
-        #raise Exception(globs['abjad'])
+        globs = self._get_namespace(
+            abjad_only=arguments.abjad_only,
+            external_modules=arguments.external_modules,
+            )
+        #raise Exception(globs)
         optionflags = self._get_optionflags(arguments)
         total_failures = 0
         total_modules = 0
@@ -204,8 +223,9 @@ class DoctestScript(CommandlineScript):
             print()
         else:
             result.append('')
-        test_identifier = stringtools.pluralize('test', total_tests)
-        module_identifier = stringtools.pluralize('module', total_modules)
+        test_identifier = datastructuretools.String('test').pluralize(total_tests)
+        module_identifier = datastructuretools.String('module')
+        module_identifier = module_identifier.pluralize(total_modules)
         string = (
             '{total_successes} passed, {total_failures} failed out of '
             '{total_tests} {test_identifier} '
@@ -245,6 +265,10 @@ class DoctestScript(CommandlineScript):
             '--diff',
             action='store_true',
             help='print diff-like output on failed tests.',
+            )
+        parser.add_argument(
+            '--external-modules',
+            help='comma-delimited list of modules names to import.',
             )
         parser.add_argument(
             '-x',

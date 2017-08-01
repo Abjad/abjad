@@ -73,11 +73,7 @@ class TypedTuple(TypedCollection):
 
         Returns integer.
         '''
-        return hash((
-            type(self),
-            self._collection,
-            self.item_class,
-            ))
+        return super(TypedTuple, self).__hash__()
 
     def __mul__(self, argument):
         r'''Multiplies typed tuple by `argument`.

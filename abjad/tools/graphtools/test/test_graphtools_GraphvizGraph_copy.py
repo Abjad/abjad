@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import graphtools
-from abjad.tools import stringtools
+import abjad
 
 
-def test_documentationtools_GraphvizGraph_copy_01():
-    graph = graphtools.GraphvizGraph()
-    assert str(graph) == stringtools.normalize(
+def test_graphtools_GraphvizGraph_copy_01():
+    graph = abjad.graphtools.GraphvizGraph()
+    assert str(graph) == abjad.String.normalize(
         r'''
         digraph G {
         }
@@ -15,10 +14,10 @@ def test_documentationtools_GraphvizGraph_copy_01():
     assert str(graph) == str(copied)
 
 
-def test_documentationtools_GraphvizGraph_copy_02():
-    graph = graphtools.GraphvizGraph()
-    graph.append(graphtools.GraphvizSubgraph())
-    assert str(graph) == stringtools.normalize(
+def test_graphtools_GraphvizGraph_copy_02():
+    graph = abjad.graphtools.GraphvizGraph()
+    graph.append(abjad.graphtools.GraphvizSubgraph())
+    assert str(graph) == abjad.String.normalize(
         r'''
         digraph G {
             subgraph cluster_0 {
@@ -29,11 +28,11 @@ def test_documentationtools_GraphvizGraph_copy_02():
     assert str(graph) == str(copied)
 
 
-def test_documentationtools_GraphvizGraph_copy_03():
-    graph = graphtools.GraphvizGraph()
-    graph.append(graphtools.GraphvizNode())
-    graph.append(graphtools.GraphvizNode())
-    assert str(graph) == stringtools.normalize(
+def test_graphtools_GraphvizGraph_copy_03():
+    graph = abjad.graphtools.GraphvizGraph()
+    graph.append(abjad.graphtools.GraphvizNode())
+    graph.append(abjad.graphtools.GraphvizNode())
+    assert str(graph) == abjad.String.normalize(
         r'''
         digraph G {
             node_0;
@@ -44,12 +43,12 @@ def test_documentationtools_GraphvizGraph_copy_03():
     assert str(graph) == str(copied)
 
 
-def test_documentationtools_GraphvizGraph_copy_04():
-    graph = graphtools.GraphvizGraph()
-    graph.append(graphtools.GraphvizNode())
-    graph.append(graphtools.GraphvizNode())
-    graphtools.GraphvizEdge().attach(graph[0], graph[1])
-    assert str(graph) == stringtools.normalize(
+def test_graphtools_GraphvizGraph_copy_04():
+    graph = abjad.graphtools.GraphvizGraph()
+    graph.append(abjad.graphtools.GraphvizNode())
+    graph.append(abjad.graphtools.GraphvizNode())
+    abjad.graphtools.GraphvizEdge().attach(graph[0], graph[1])
+    assert str(graph) == abjad.String.normalize(
         r'''
         digraph G {
             node_0;
@@ -61,18 +60,18 @@ def test_documentationtools_GraphvizGraph_copy_04():
     assert str(graph) == str(copied)
 
 
-def test_documentationtools_GraphvizGraph_copy_05():
-    graph = graphtools.GraphvizGraph()
-    graph.append(graphtools.GraphvizSubgraph())
-    graph[0].append(graphtools.GraphvizNode())
-    graph[0].append(graphtools.GraphvizNode())
-    graph[0].append(graphtools.GraphvizNode())
-    graph[0].append(graphtools.GraphvizSubgraph())
-    graph[0][-1].append(graphtools.GraphvizNode())
-    graph.append(graphtools.GraphvizNode())
-    graphtools.GraphvizEdge().attach(graph[0][1], graph[1])
-    graphtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
-    assert str(graph) == stringtools.normalize(
+def test_graphtools_GraphvizGraph_copy_05():
+    graph = abjad.graphtools.GraphvizGraph()
+    graph.append(abjad.graphtools.GraphvizSubgraph())
+    graph[0].append(abjad.graphtools.GraphvizNode())
+    graph[0].append(abjad.graphtools.GraphvizNode())
+    graph[0].append(abjad.graphtools.GraphvizNode())
+    graph[0].append(abjad.graphtools.GraphvizSubgraph())
+    graph[0][-1].append(abjad.graphtools.GraphvizNode())
+    graph.append(abjad.graphtools.GraphvizNode())
+    abjad.graphtools.GraphvizEdge().attach(graph[0][1], graph[1])
+    abjad.graphtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
+    assert str(graph) == abjad.String.normalize(
         r'''
         digraph G {
             subgraph cluster_0 {
@@ -93,19 +92,19 @@ def test_documentationtools_GraphvizGraph_copy_05():
     assert str(graph) == str(copied)
 
 
-def test_documentationtools_GraphvizGraph_copy_06():
-    graph = graphtools.GraphvizGraph()
-    graph.append(graphtools.GraphvizSubgraph())
-    graph[0].append(graphtools.GraphvizNode())
-    graph[0].append(graphtools.GraphvizNode())
-    graph[0].append(graphtools.GraphvizNode())
-    graph[0].append(graphtools.GraphvizSubgraph())
-    graph[0][-1].append(graphtools.GraphvizNode())
-    graph.append(graphtools.GraphvizNode())
-    graphtools.GraphvizEdge().attach(graph[0][1], graph[1])
-    graphtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
+def test_graphtools_GraphvizGraph_copy_06():
+    graph = abjad.graphtools.GraphvizGraph()
+    graph.append(abjad.graphtools.GraphvizSubgraph())
+    graph[0].append(abjad.graphtools.GraphvizNode())
+    graph[0].append(abjad.graphtools.GraphvizNode())
+    graph[0].append(abjad.graphtools.GraphvizNode())
+    graph[0].append(abjad.graphtools.GraphvizSubgraph())
+    graph[0][-1].append(abjad.graphtools.GraphvizNode())
+    graph.append(abjad.graphtools.GraphvizNode())
+    abjad.graphtools.GraphvizEdge().attach(graph[0][1], graph[1])
+    abjad.graphtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
     copied = copy.copy(graph[0])
-    assert str(copied) == stringtools.normalize(
+    assert str(copied) == abjad.String.normalize(
         r'''
         digraph cluster_ {
             node_0;

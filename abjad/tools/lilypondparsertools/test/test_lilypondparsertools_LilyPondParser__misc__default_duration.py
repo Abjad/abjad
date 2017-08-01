@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__misc__default_duration_01():
 
-    target = Container(scoretools.make_notes([0],
-        [(1, 4), (1, 2), (1, 2), (1, 8), (1, 8), (3, 16), (3, 16)]))
-    attach(Multiplier(5, 17), target[-2])
-    attach(Multiplier(5, 17), target[-1])
+    maker = abjad.NoteMaker()
+    target = abjad.Container(maker(
+        [0],
+        [(1, 4), (1, 2), (1, 2), (1, 8), (1, 8), (3, 16), (3, 16)]
+        ))
+    abjad.attach(abjad.Multiplier(5, 17), target[-2])
+    abjad.attach(abjad.Multiplier(5, 17), target[-1])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4
@@ -27,6 +29,6 @@ def test_lilypondparsertools_LilyPondParser__misc__default_duration_01():
 
     string = r'''{ c' c'2 c' c'8 c' c'8. * 5/17 c' }'''
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result

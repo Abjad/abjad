@@ -5,26 +5,31 @@ from abjad.tools.scoretools.Container import Container
 
 
 class Context(Container):
-    '''A horizontal layer of music.
-
+    '''LilyPond context.
+    
     ::
 
-        >>> context = scoretools.Context(
-        ...     name='MeterVoice',
-        ...     context_name='TimeSignatureContext',
-        ...     )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> context
-        Context()
+        ::
 
-    ..  doctest::
+            >>> context = abjad.Context(
+            ...     name='MeterVoice',
+            ...     context_name='TimeSignatureContext',
+            ...     )
 
-        >>> print(format(context))
-        \context TimeSignatureContext = "MeterVoice" {
-        }
+        ::
 
+            >>> context
+            Context(context_name='TimeSignatureContext', name='MeterVoice')
+
+        ..  docs::
+
+            >>> f(context)
+            \context TimeSignatureContext = "MeterVoice" {
+            }
 
     '''
 
@@ -36,7 +41,6 @@ class Context(Container):
         '_context_name',
         '_consists_commands',
         '_remove_commands',
-        '_is_nonsemantic',
         )
 
     _default_context_name = 'Voice'
@@ -59,7 +63,6 @@ class Context(Container):
         self.context_name = context_name
         self._consists_commands = []
         self._remove_commands = []
-        self.is_nonsemantic = False
 
     ### SPECIAL METHODS ###
 
@@ -68,12 +71,12 @@ class Context(Container):
 
         ::
 
-            >>> context = scoretools.Context(
+            >>> context = abjad.Context(
             ...     name='MeterVoice',
             ...     context_name='TimeSignatureContext',
             ...     )
             >>> repr(context)
-            'Context()'
+            "Context(context_name='TimeSignatureContext', name='MeterVoice')"
 
         Returns string.
         '''
@@ -90,7 +93,6 @@ class Context(Container):
         new._remove_commands = copy.copy(self.remove_commands)
         new.context_name = copy.copy(self.context_name)
         new.name = copy.copy(self.name)
-        new.is_nonsemantic = copy.copy(self.is_nonsemantic)
         return new
 
     def _format_closing_slot(context, bundle):
@@ -182,6 +184,12 @@ class Context(Container):
         self._update_now(indicators=True)
         return self._format_component()
 
+    def _get_repr_kwargs_names(self):
+        if self.context_name == type(self).__name__:
+            return ['is_simultaneous', 'name']
+        else:
+            return ['is_simultaneous', 'context_name', 'name']
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -193,9 +201,9 @@ class Context(Container):
 
         ::
 
-            >>> staff = Staff([])
+            >>> staff = abjad.Staff([])
             >>> staff.consists_commands.append('Horizontal_bracket_engraver')
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 \consists Horizontal_bracket_engraver
             } {
@@ -219,78 +227,6 @@ class Context(Container):
         else:
             argument = str(argument)
         self._context_name = argument
-
-    @property
-    def is_nonsemantic(self):
-        r'''Gets and sets nonsemantic voice flag.
-
-        ::
-
-            >>> pairs = [(1, 8), (5, 16), (5, 16)]
-            >>> measures = scoretools.make_spacer_skip_measures(pairs)
-            >>> voice = Voice(measures)
-            >>> voice.name = 'HiddenTimeSignatureVoice'
-
-        ::
-
-            >>> voice.is_nonsemantic = True
-
-        ..  doctest::
-
-            >>> print(format(voice))
-            \context Voice = "HiddenTimeSignatureVoice" {
-                {
-                    \time 1/8
-                    s1 * 1/8
-                }
-                {
-                    \time 5/16
-                    s1 * 5/16
-                }
-                {
-                    s1 * 5/16
-                }
-            }
-
-        ::
-
-            >>> voice.is_nonsemantic
-            True
-
-        Gets nonsemantic voice voice:
-
-        ::
-
-            >>> voice = Voice([])
-
-        ::
-
-            >>> voice.is_nonsemantic
-            False
-
-        Returns true or false.
-
-        The intent of this read / write attribute is to allow composers
-        to tag invisible voices used to house time signatures indications,
-        bar number directives or other pieces of score-global non-musical
-        information. Such nonsemantic voices can then be omitted from
-        voice interation and other functions.
-        '''
-        return self._is_nonsemantic
-
-    @is_nonsemantic.setter
-    def is_nonsemantic(self, arg):
-        if not isinstance(arg, bool):
-            raise TypeError
-        self._is_nonsemantic = arg
-
-    @property
-    def is_semantic(self):
-        r'''Is true when context is semantic. Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self.is_nonsemantic
 
     @property
     def lilypond_context(self):
@@ -317,9 +253,9 @@ class Context(Container):
 
         ::
 
-            >>> staff = Staff([])
+            >>> staff = abjad.Staff([])
             >>> staff.remove_commands.append('Time_signature_engraver')
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 \remove Time_signature_engraver
             } {

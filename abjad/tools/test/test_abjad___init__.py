@@ -2,21 +2,19 @@
 import functools
 import inspect
 import pytest
-#import sys
 from abjad.tools import abjadbooktools
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
-#from distutils.version import StrictVersion
 
 
 ignored_classes = (
     abjadbooktools.AbjadDirective,
     abjadbooktools.CodeBlock,
     abjadbooktools.CodeOutputProxy,
-    abjadbooktools.DoctestDirective,
+    abjadbooktools.AbjadDoctestDirective,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.ImportDirective,
     abjadbooktools.LilyPondBlock,
@@ -34,7 +32,6 @@ ignored_classes = (
 classes = documentationtools.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
-
 
 @pytest.mark.parametrize('class_', classes)
 def test_abjad___init___01(class_):
@@ -59,52 +56,48 @@ valid_types = (
     type(None),
     )
 
-
-@pytest.mark.parametrize('obj', classes)
-def test_abjad___init___02(obj):
+@pytest.mark.parametrize('class_', classes)
+def test_abjad___init___02(class_):
     r'''Make sure class initializer keyword argument values are immutable.
     '''
-    #version = StrictVersion('.'.join(str(x) for x in sys.version_info[:3]))
-    #if StrictVersion('3.5.0') <= version:
-    #    return
-    for attr in inspect.classify_class_attrs(obj):
-        if attr.defining_class is not obj:
+    if inspect.isabstract(class_):
+        return
+    object_ = class_()
+    initializer = object_.__init__
+    if not inspect.ismethod(initializer):
+        return
+    argument_specification = inspect.getargspec(initializer)
+    if argument_specification.keywords is None:
+        return
+    keyword_argument_names = argument_specification.args[1:]
+    keyword_argument_values = argument_specification.defaults or []
+    assert len(keyword_argument_names) == len(keyword_argument_values)
+    pairs = zip(keyword_argument_names, keyword_argument_values)
+    for name, value in pairs:
+        if value is NotImplemented:
             continue
-        elif attr.kind != 'method':
-            continue
-        obj = attr.object
-        if isinstance(obj, functools.partial):
-            obj = obj.function
-        argument_specification = inspect.getargspec(obj)
-        keyword_argument_names = argument_specification.args[1:]
-        keyword_argument_values = argument_specification.defaults
-        if keyword_argument_values is None:
-            continue
-        for name, value in zip(
-            keyword_argument_names, keyword_argument_values):
-            if value is NotImplemented:
-                continue
-            assert isinstance(value, valid_types), (attr.name, name, value)
-            if isinstance(value, tuple):
-                assert all(isinstance(x, valid_types) for x in value)
+        assert isinstance(value, valid_types), (name, value)
+        if isinstance(value, tuple):
+            assert all(isinstance(_, valid_types) for _ in value)
 
 
 functions = documentationtools.list_all_abjad_functions()
+if functions:
+    @pytest.mark.parametrize('function', functions)
+    def test_abjad___init___03(function):
+        r'''Function keyword argments are immutable.
 
-
-@pytest.mark.parametrize('obj', functions)
-def test_abjad___init___03(obj):
-    r'''Make sure function keyword argument values are immutable.
-    '''
-    if isinstance(obj, functools.partial):
-        obj = obj.function
-    argument_specification = inspect.getargspec(obj)
-    keyword_argument_names = argument_specification.args[1:]
-    keyword_argument_values = argument_specification.defaults
-    if keyword_argument_values is None:
-        return
-    for name, value in zip(
-        keyword_argument_names, keyword_argument_values):
-        assert isinstance(value, valid_types), (name, value)
-        if isinstance(value, tuple):
-            assert all(isinstance(x, valid_types) for x in value)
+        Abjad no longer contains public function.s
+        '''
+        if isinstance(function, functools.partial):
+            function = function.function
+        argument_specification = inspect.getargspec(function)
+        keyword_argument_names = argument_specification.args[1:]
+        keyword_argument_values = argument_specification.defaults
+        if keyword_argument_values is None:
+            return
+        for name, value in zip(
+            keyword_argument_names, keyword_argument_values):
+            assert isinstance(value, valid_types), (name, value)
+            if isinstance(value, tuple):
+                assert all(isinstance(x, valid_types) for x in value)

@@ -6,23 +6,27 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class RehearsalMark(AbjadValueObject):
     r'''Rehearsal mark.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Rehearsal A:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> score = Score([staff])
-            >>> mark = indicatortools.RehearsalMark(number=1)
-            >>> attach(mark, staff[0])
-            >>> scheme = schemetools.Scheme('format-mark-box-alphabet')
-            >>> set_(score).markFormatter = scheme
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> score = abjad.Score([staff])
+            >>> mark = abjad.RehearsalMark(number=1)
+            >>> abjad.attach(mark, staff[0])
+            >>> scheme = abjad.Scheme('format-mark-box-alphabet')
+            >>> abjad.setting(score).markFormatter = scheme
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 markFormatter = #format-mark-box-alphabet
             } <<
@@ -41,17 +45,17 @@ class RehearsalMark(AbjadValueObject):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> score = Score([staff])
-            >>> mark = indicatortools.RehearsalMark(number=2)
-            >>> attach(mark, staff[0])
-            >>> scheme = schemetools.Scheme('format-mark-box-alphabet')
-            >>> set_(score).markFormatter = scheme
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> score = abjad.Score([staff])
+            >>> mark = abjad.RehearsalMark(number=2)
+            >>> abjad.attach(mark, staff[0])
+            >>> scheme = abjad.Scheme('format-mark-box-alphabet')
+            >>> abjad.setting(score).markFormatter = scheme
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 markFormatter = #format-mark-box-alphabet
             } <<
@@ -78,9 +82,8 @@ class RehearsalMark(AbjadValueObject):
 
     def __init__(self, number=None, markup=None):
         from abjad.tools import markuptools
-        # TODO: make default scope work
-        #self._default_scope = scoretools.Score
-        self._default_scope = None
+        from abjad.tools import scoretools
+        self._default_scope = scoretools.Score
         if markup is not None:
             assert isinstance(markup, markuptools.Markup)
         self._markup = markup
@@ -99,7 +102,7 @@ class RehearsalMark(AbjadValueObject):
 
             ::
 
-                >>> mark = indicatortools.RehearsalMark(number=1)
+                >>> mark = abjad.RehearsalMark(number=1)
                 >>> print(str(mark))
                 \mark #1
 
@@ -109,7 +112,7 @@ class RehearsalMark(AbjadValueObject):
 
             ::
 
-                >>> mark = indicatortools.RehearsalMark(number=2)
+                >>> mark = abjad.RehearsalMark(number=2)
                 >>> print(str(mark))
                 \mark #2
 
@@ -135,10 +138,10 @@ class RehearsalMark(AbjadValueObject):
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.opening.commands.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.opening.commands.append(self._get_lilypond_format())
+        return bundle
         
     ### PUBLIC PROPERTIES ###
 
@@ -152,9 +155,9 @@ class RehearsalMark(AbjadValueObject):
 
             ::
 
-                >>> mark = indicatortools.RehearsalMark(number=1)
-                >>> mark.default_scope is None
-                True
+                >>> mark = abjad.RehearsalMark(number=1)
+                >>> mark.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
 
         ..  container:: example
 
@@ -162,13 +165,11 @@ class RehearsalMark(AbjadValueObject):
 
             ::
 
-                >>> mark = indicatortools.RehearsalMark(number=2)
-                >>> mark.default_scope is None
-                True
+                >>> mark = abjad.RehearsalMark(number=2)
+                >>> mark.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
 
-        ..  todo:: Make rehearsal marks score-scoped.
-
-        Returns none (but should return score).
+        Returns score.
         '''
         return self._default_scope
 
@@ -182,11 +183,11 @@ class RehearsalMark(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup(r'\bold { \italic { A } }')
-                >>> mark = indicatortools.RehearsalMark(markup=markup)
+                >>> markup = abjad.Markup(r'\bold { \italic { A } }')
+                >>> mark = abjad.RehearsalMark(markup=markup)
                 >>> show(mark.markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(str(mark.markup))
                 \markup {
@@ -205,11 +206,11 @@ class RehearsalMark(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup(r'\bold { \italic { B } }')
-                >>> mark = indicatortools.RehearsalMark(markup=markup)
+                >>> markup = abjad.Markup(r'\bold { \italic { B } }')
+                >>> mark = abjad.RehearsalMark(markup=markup)
                 >>> show(mark.markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> print(str(mark.markup))
                 \markup {
@@ -236,7 +237,7 @@ class RehearsalMark(AbjadValueObject):
 
             ::
 
-                >>> mark = indicatortools.RehearsalMark(number=1)
+                >>> mark = abjad.RehearsalMark(number=1)
                 >>> mark.number
                 1
 
@@ -246,7 +247,7 @@ class RehearsalMark(AbjadValueObject):
 
             ::
 
-                >>> mark = indicatortools.RehearsalMark(number=2)
+                >>> mark = abjad.RehearsalMark(number=2)
                 >>> mark.number
                 2
 

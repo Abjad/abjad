@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Note_grace_01():
-    r'''Attach one grace note.
+    r'''Attaches one grace note.
     '''
 
-    note = Note("c'4")
-    grace_container = scoretools.GraceContainer([Note(2, (1, 16))])
-    attach(grace_container, note)
+    note = abjad.Note("c'4")
+    grace_container = abjad.GraceContainer([abjad.Note(2, (1, 16))])
+    abjad.attach(grace_container, note)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == abjad.String.normalize(
         r'''
         \grace {
             d'16
@@ -21,14 +21,15 @@ def test_scoretools_Note_grace_01():
 
 
 def test_scoretools_Note_grace_02():
-    r'''Attach several grace notes.
+    r'''Attaches several grace notes.
     '''
 
-    note = Note("c'4")
-    grace_container = scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
-    attach(grace_container, note)
+    note = abjad.Note("c'4")
+    grace_notes = [abjad.Note(0, (1, 16)), abjad.Note(2, (1, 16)), abjad.Note(4, (1, 16))]
+    grace_container = abjad.GraceContainer(grace_notes)
+    abjad.attach(grace_container, note)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == abjad.String.normalize(
         r'''
         \grace {
             c'16
@@ -41,14 +42,14 @@ def test_scoretools_Note_grace_02():
 
 
 def test_scoretools_Note_grace_03():
-    r'''Attach one appoggiatura.
+    r'''Attaches one appoggiatura.
     '''
 
-    note = Note("c'4")
-    grace_container = scoretools.GraceContainer([Note(2, (1, 16))], kind='appoggiatura')
-    attach(grace_container, note)
+    note = abjad.Note("c'4")
+    grace_container = abjad.AppoggiaturaContainer([abjad.Note(2, (1, 16))])
+    abjad.attach(grace_container, note)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == abjad.String.normalize(
         r'''
         \appoggiatura {
             d'16
@@ -59,14 +60,14 @@ def test_scoretools_Note_grace_03():
 
 
 def test_scoretools_Note_grace_04():
-    r'''Attach one acciaccatura.
+    r'''Attaches one acciaccatura.
     '''
 
-    note = Note("c'4")
-    grace = scoretools.GraceContainer([Note(2, (1, 16))], kind='acciaccatura')
-    attach(grace, note)
+    note = abjad.Note("c'4")
+    grace = abjad.AcciaccaturaContainer([abjad.Note(2, (1, 16))])
+    abjad.attach(grace, note)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == abjad.String.normalize(
         r'''
         \acciaccatura {
             d'16
@@ -77,14 +78,14 @@ def test_scoretools_Note_grace_04():
 
 
 def test_scoretools_Note_grace_05():
-    r'''Attach one after grace note.
+    r'''Attaches one after grace note.
     '''
 
-    note = Note("c'4")
-    grace = scoretools.GraceContainer([Note(2, (1, 16))], kind='after')
-    attach(grace, note)
+    note = abjad.Note("c'4")
+    grace = abjad.AfterGraceContainer([abjad.Note(2, (1, 16))])
+    abjad.attach(grace, note)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == abjad.String.normalize(
         r'''
         \afterGrace
         c'4
@@ -96,14 +97,15 @@ def test_scoretools_Note_grace_05():
 
 
 def test_scoretools_Note_grace_06():
-    r'''Attach several after grace notes.
+    r'''Attaches several after grace notes.
     '''
 
-    note = Note("c'4")
-    grace = scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))], kind='after')
-    attach(grace, note)
+    note = abjad.Note("c'4")
+    grace_notes = [abjad.Note(0, (1, 16)), abjad.Note(2, (1, 16)), abjad.Note(4, (1, 16))]
+    grace = abjad.AfterGraceContainer(grace_notes)
+    abjad.attach(grace, note)
 
-    assert format(note) == stringtools.normalize(
+    assert format(note) == abjad.String.normalize(
         r'''
         \afterGrace
         c'4

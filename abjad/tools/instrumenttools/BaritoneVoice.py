@@ -6,35 +6,42 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BaritoneVoice(Instrument):
-    r'''A baritone voice.
+    r'''Baritone voice.
 
     ::
 
-        >>> staff = Staff("c4 d4 e4 fs4")
-        >>> baritone = instrumenttools.BaritoneVoice()
-        >>> attach(baritone, staff)
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { Baritone }
-            \set Staff.shortInstrumentName = \markup { Bar. }
-            c4
-            d4
-            e4
-            fs4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c4 d4 e4 fs4")
+            >>> baritone = abjad.instrumenttools.BaritoneVoice()
+            >>> abjad.attach(baritone, staff[0])
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { Baritone }
+                \set Staff.shortInstrumentName = \markup { Bar. }
+                c4
+                d4
+                e4
+                fs4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     performer_abbreviation = 'bar.'
 
@@ -131,7 +138,7 @@ class BaritoneVoice(Instrument):
             ::
 
                 >>> baritone.pitch_range
-                PitchRange(range_string='[A2, A4]')
+                PitchRange('[A2, A4]')
 
             ::
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_spannertools_Spanner_format_01():
@@ -7,16 +7,16 @@ def test_spannertools_Spanner_format_01():
     However, base spanner causes no explosions at format-time, either.
     '''
 
-    class MockSpanner(spannertools.Spanner):
+    class MockSpanner(abjad.Spanner):
 
         def __init__(self, components=None):
-            spannertools.Spanner.__init__(self, components)
+            abjad.Spanner.__init__(self, components)
 
-    staff = Staff("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
     spanner = MockSpanner()
-    attach(spanner, staff[:])
+    abjad.attach(spanner, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -27,4 +27,4 @@ def test_spannertools_Spanner_format_01():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

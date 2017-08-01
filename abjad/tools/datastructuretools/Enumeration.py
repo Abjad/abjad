@@ -1,30 +1,34 @@
 # -*- coding: utf-8 -*-
 import enum
-from abjad.tools import stringtools
-from abjad.tools import systemtools
 
 
 class Enumeration(enum.IntEnum):
-    r'''An enumeration.
+    r'''Enumeration.
 
     ::
 
-        >>> class Colors(datastructuretools.Enumeration):
-        ...     RED = 1
-        ...     BLUE = 2
-        ...     LIGHT_GREEN = 3
-        ...
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> color = Colors.RED
-        >>> print(repr(color))
-        Colors.RED
+        ::
 
-    ::
+            >>> class Colors(abjad.Enumeration):
+            ...     RED = 1
+            ...     BLUE = 2
+            ...     LIGHT_GREEN = 3
+            ...
 
-        >>> Colors.from_expr('light green')
-        Colors.LIGHT_GREEN
+        ::
+
+            >>> color = Colors.RED
+            >>> print(repr(color))
+            Colors.RED
+
+        ::
+
+            >>> Colors.from_expr('light green')
+            Colors.LIGHT_GREEN
 
     '''
 
@@ -70,6 +74,7 @@ class Enumeration(enum.IntEnum):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        from abjad.tools import systemtools
         agent = systemtools.StorageFormatAgent(self)
         repr_text = '{}.{}'.format(type(self).__name__, self.name)
         storage_format_text = '{}.{}'.format(
@@ -90,13 +95,14 @@ class Enumeration(enum.IntEnum):
 
         Returns new enumeration item.
         '''
+        from abjad.tools import datastructuretools
         if isinstance(argument, cls):
             return argument
         elif isinstance(argument, int):
             return cls(argument)
         elif isinstance(argument, str):
             argument = argument.strip()
-            argument = stringtools.to_snake_case(argument)
+            argument = datastructuretools.String(argument).to_snake_case()
             argument = argument.upper()
             try:
                 return cls[argument]
@@ -104,5 +110,8 @@ class Enumeration(enum.IntEnum):
                 return cls[argument.replace('_', '')]
         elif argument is None:
             return cls(0)
-        message = 'Cannot instantiate {} from {}.'.format(cls.__name__, argument)
+        message = 'Cannot instantiate {} from {}.'.format(
+            cls.__name__,
+            argument,
+            )
         raise ValueError(message)

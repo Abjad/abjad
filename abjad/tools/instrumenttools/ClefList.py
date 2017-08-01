@@ -8,11 +8,15 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class ClefList(TypedList):
     r'''Clef list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> clefs = instrumenttools.ClefList(['treble', 'bass'])
+            >>> clefs = abjad.instrumenttools.ClefList(['treble', 'bass'])
 
         ::
 
@@ -35,7 +39,7 @@ class ClefList(TypedList):
 
         ::
 
-            >>> Clef('treble') in clefs
+            >>> abjad.Clef('treble') in clefs
             True
 
         ::
@@ -47,10 +51,10 @@ class ClefList(TypedList):
 
             >>> show(clefs) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> lilypond_file = clefs.__illustrate__()
-            >>> f(lilypond_file[Staff])
+            >>> f(lilypond_file[abjad.Staff])
             \new Staff \with {
                 \override Clef.full-size-change = ##t
                 \override Rest.transparent = ##t
@@ -80,10 +84,10 @@ class ClefList(TypedList):
 
                 >>> show(clefs) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = clefs.__illustrate__()
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new Staff \with {
                     \override Clef.full-size-change = ##t
                     \override Rest.transparent = ##t

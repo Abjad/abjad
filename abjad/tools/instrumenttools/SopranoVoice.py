@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class SopranoVoice(Instrument):
-    r'''A soprano voice.
+    r'''Soprano voice.
 
     ::
 
-        >>> staff = Staff("c''4 d''4 e''4 fs''4")
-        >>> soprano = instrumenttools.SopranoVoice()
-        >>> attach(soprano, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Soprano }
-            \set Staff.shortInstrumentName = \markup { Sop. }
-            c''4
-            d''4
-            e''4
-            fs''4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
+            >>> soprano = abjad.instrumenttools.SopranoVoice()
+            >>> abjad.attach(soprano, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Soprano }
+                \set Staff.shortInstrumentName = \markup { Sop. }
+                c''4
+                d''4
+                e''4
+                fs''4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     performer_abbreviation = 'sop.'
 
@@ -128,7 +135,7 @@ class SopranoVoice(Instrument):
             ::
 
                 >>> soprano.pitch_range
-                PitchRange(range_string='[C4, E6]')
+                PitchRange('[C4, E6]')
 
             ::
 

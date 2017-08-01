@@ -9,16 +9,20 @@ from abjad.tools import abctools
 class PersistenceAgent(abctools.AbjadObject):
     r'''Persistence agent.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> persist(staff)
+            >>> abjad.persist(staff)
             PersistenceAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''
@@ -48,14 +52,16 @@ class PersistenceAgent(abctools.AbjadObject):
 
         Autogenerates file path when `ly_file_path` is none.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
-            >>> for x in persist(staff).as_ly('~/example.ly'): # doctest: +SKIP
-            ...     x
-            ...
-            '/Users/josiah/Desktop/test.ly'
-            0.04491996765136719
+            ::
+
+                >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+                >>> for x in persist(staff).as_ly('~/example.ly'): # doctest: +SKIP
+                ...     x
+                ...
+                '/Users/josiah/Desktop/test.ly'
+                0.04491996765136719
 
         Returns output path and elapsed formatting time when LilyPond output is
         written.
@@ -90,15 +96,17 @@ class PersistenceAgent(abctools.AbjadObject):
 
         Autogenerates file path when `midi_file_path` is none.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
-            >>> for x in persist(staff).as_midi(): # doctest: +SKIP
-            ...     x
-            ...
-            '/Users/josiah/.abjad/output/1415.midi'
-            0.07831692695617676
-            1.0882699489593506
+            ::
+
+                >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+                >>> for x in persist(staff).as_midi(): # doctest: +SKIP
+                ...     x
+                ...
+                '/Users/josiah/.abjad/output/1415.midi'
+                0.07831692695617676
+                1.0882699489593506
 
         Returns output path, elapsed formatting time and elapsed rendering
         time.
@@ -137,17 +145,19 @@ class PersistenceAgent(abctools.AbjadObject):
     def as_module(self, module_file_path, object_name):
         r'''Persists client as Python module.
 
-        ::
+        ..  container:: example
 
-            >>> timespans = timespantools.TimespanList([
-            ...     timespantools.Timespan(0, 1),
-            ...     timespantools.Timespan(2, 4),
-            ...     timespantools.Timespan(6, 8),
-            ...     ])
-            >>> persist(timespans).as_module( # doctest: +SKIP
-            ...     '~/example.py',
-            ...     'timespans',
-            ...     )
+            ::
+
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 1),
+                ...     abjad.Timespan(2, 4),
+                ...     abjad.Timespan(6, 8),
+                ...     ])
+                >>> abjad.persist(timespans).as_module( # doctest: +SKIP
+                ...     '~/example.py',
+                ...     'timespans',
+                ...     )
 
         Returns none.
         '''
@@ -190,15 +200,17 @@ class PersistenceAgent(abctools.AbjadObject):
 
         Autogenerates file path when `pdf_file_path` is none.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
-            >>> for x in persist(staff).as_pdf(): # doctest: +SKIP
-            ...     x
-            ...
-            '/Users/josiah/.abjad/output/1416.pdf'
-            0.047142982482910156
-            0.7839350700378418
+            ::
+
+                >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+                >>> for x in persist(staff).as_pdf(): # doctest: +SKIP
+                ...     x
+                ...
+                '/Users/josiah/.abjad/output/1416.pdf'
+                0.047142982482910156
+                0.7839350700378418
 
         Returns output path, elapsed formatting time and elapsed rendering
         time when PDF output is written.
@@ -242,35 +254,37 @@ class PersistenceAgent(abctools.AbjadObject):
         ):
         r'''Persists client as PNG.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff()
-            >>> measure = Measure((4, 4), "c'4 d'4 e'4 f'4")
-            >>> command = indicatortools.LilyPondCommand('break', 'after')
-            >>> attach(command, measure[-1])
-            >>> staff.extend(measure * 200)
+            ::
 
-        ::
+                >>> staff = abjad.Staff()
+                >>> measure = abjad.Measure((4, 4), "c'4 d'4 e'4 f'4")
+                >>> command = abjad.LilyPondCommand('break', 'after')
+                >>> abjad.attach(command, measure[-1])
+                >>> staff.extend(measure * 200)
 
-            >>> result = persist(staff).as_png() # doctest: +SKIP
-            >>> for x in result[0]: # doctest: +SKIP
-            ...     x
-            ...
-            '/Users/josiah/Desktop/test-page1.png'
-            '/Users/josiah/Desktop/test-page2.png'
-            '/Users/josiah/Desktop/test-page3.png'
-            '/Users/josiah/Desktop/test-page4.png'
-            '/Users/josiah/Desktop/test-page5.png'
-            '/Users/josiah/Desktop/test-page6.png'
-            '/Users/josiah/Desktop/test-page7.png'
-            '/Users/josiah/Desktop/test-page8.png'
-            '/Users/josiah/Desktop/test-page9.png'
-            '/Users/josiah/Desktop/test-page10.png'
-            '/Users/josiah/Desktop/test-page11.png'
-            '/Users/josiah/Desktop/test-page12.png'
-            '/Users/josiah/Desktop/test-page13.png'
-            '/Users/josiah/Desktop/test-page14.png'
-            '/Users/josiah/Desktop/test-page15.png'
+            ::
+
+                >>> result = persist(staff).as_png() # doctest: +SKIP
+                >>> for x in result[0]: # doctest: +SKIP
+                ...     x
+                ...
+                '/Users/josiah/Desktop/test-page1.png'
+                '/Users/josiah/Desktop/test-page2.png'
+                '/Users/josiah/Desktop/test-page3.png'
+                '/Users/josiah/Desktop/test-page4.png'
+                '/Users/josiah/Desktop/test-page5.png'
+                '/Users/josiah/Desktop/test-page6.png'
+                '/Users/josiah/Desktop/test-page7.png'
+                '/Users/josiah/Desktop/test-page8.png'
+                '/Users/josiah/Desktop/test-page9.png'
+                '/Users/josiah/Desktop/test-page10.png'
+                '/Users/josiah/Desktop/test-page11.png'
+                '/Users/josiah/Desktop/test-page12.png'
+                '/Users/josiah/Desktop/test-page13.png'
+                '/Users/josiah/Desktop/test-page14.png'
+                '/Users/josiah/Desktop/test-page15.png'
 
         Autogenerates file path when `png_file_path` is none.
 

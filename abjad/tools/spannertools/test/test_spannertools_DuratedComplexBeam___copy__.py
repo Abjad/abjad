@@ -1,27 +1,27 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_spannertools_DuratedComplexBeam___copy___01():
 
-    staff = Staff([
-        Container("c'32 d'32 e'32"),
-        Container("f'32 g'32 a'32"),
-        Container("b'32 c'32")
+    staff = abjad.Staff([
+        abjad.Container("c'32 d'32 e'32"),
+        abjad.Container("f'32 g'32 a'32"),
+        abjad.Container("b'32 c'32")
         ])
-    durations = [inspect_(x).get_duration() for x in staff]
+    durations = [abjad.inspect(x).get_duration() for x in staff]
 
-    beam = spannertools.DuratedComplexBeam(
+    beam = abjad.DuratedComplexBeam(
         durations=durations,
         span_beam_count=2,
         direction=Down,
         )
-    leaves = select(staff).by_leaf()
-    attach(beam, leaves)
+    leaves = abjad.select(staff).by_leaf()
+    abjad.attach(beam, leaves)
 
-    new_staff = mutate(staff).copy()
-    new_leaves = select(new_staff).by_leaf()
-    new_beam = inspect_(new_leaves[0]).get_spanner(Beam)
+    new_staff = abjad.mutate(staff).copy()
+    new_leaves = abjad.select(new_staff).by_leaf()
+    new_beam = abjad.inspect(new_leaves[0]).get_spanner(abjad.Beam)
 
     assert format(staff) == format(new_staff)
     assert new_beam.durations == beam.durations

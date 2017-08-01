@@ -5,7 +5,11 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
 class TypedList(TypedCollection):
-    r'''A typed list.
+    r'''Typed list.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -40,12 +44,12 @@ class TypedList(TypedCollection):
         ::
 
             >>> pitch_list = abjad.TypedList(
-            ...     item_class=NamedPitch,
+            ...     item_class=abjad.NamedPitch,
             ...     )
             >>> pitch_list.append(0)
             >>> pitch_list.append("d'")
             >>> pitch_list.append(('e', 4))
-            >>> pitch_list.append(NamedPitch("f'"))
+            >>> pitch_list.append(abjad.NamedPitch("f'"))
 
         ::
 
@@ -118,7 +122,7 @@ class TypedList(TypedCollection):
 
             ::
 
-                >>> dynamic_list = abjad.TypedList(item_class=Dynamic)
+                >>> dynamic_list = abjad.TypedList(item_class=abjad.Dynamic)
                 >>> dynamic_list.append('ppp')
                 >>> dynamic_list += ['p', 'mp', 'mf', 'fff']
 
@@ -127,21 +131,11 @@ class TypedList(TypedCollection):
                 >>> f(dynamic_list)
                 abjad.TypedList(
                     [
-                        abjad.Dynamic(
-                            name='ppp',
-                            ),
-                        abjad.Dynamic(
-                            name='p',
-                            ),
-                        abjad.Dynamic(
-                            name='mp',
-                            ),
-                        abjad.Dynamic(
-                            name='mf',
-                            ),
-                        abjad.Dynamic(
-                            name='fff',
-                            ),
+                        abjad.Dynamic('ppp'),
+                        abjad.Dynamic('p'),
+                        abjad.Dynamic('mp'),
+                        abjad.Dynamic('mf'),
+                        abjad.Dynamic('fff'),
                         ],
                     item_class=abjad.Dynamic,
                     )
@@ -168,12 +162,12 @@ class TypedList(TypedCollection):
             ::
 
                 >>> pitch_list = abjad.TypedList(
-                ...     item_class=NamedPitch,
+                ...     item_class=abjad.NamedPitch,
                 ...     )
                 >>> pitch_list.append(0)
                 >>> pitch_list.append("d'")
                 >>> pitch_list.append(('e', 4))
-                >>> pitch_list.append(NamedPitch("f'"))
+                >>> pitch_list.append(abjad.NamedPitch("f'"))
 
             ::
 
@@ -321,15 +315,15 @@ class TypedList(TypedCollection):
             ::
 
                 >>> pitch_list = abjad.TypedList(
-                ...     item_class=NamedPitch,
+                ...     item_class=abjad.NamedPitch,
                 ...     )
                 >>> pitch_list.extend(['cqf', "as'", 'b,', 'dss'])
 
             ::
 
-                >>> pitch_list.index(NamedPitch('cqf'))
+                >>> pitch_list.index(abjad.NamedPitch('cqf'))
                 0
-                >>> pitch_list.index(NamedPitch("as'"))
+                >>> pitch_list.index(abjad.NamedPitch("as'"))
                 1
                 >>> pitch_list.index('b,')
                 2

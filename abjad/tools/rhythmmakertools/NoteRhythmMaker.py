@@ -12,6 +12,11 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class NoteRhythmMaker(RhythmMaker):
     r'''Note rhythm-maker.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         Makes notes equal to the duration of input divisions. Adds ties where
@@ -25,15 +30,15 @@ class NoteRhythmMaker(RhythmMaker):
 
             >>> divisions = [(5, 8), (3, 8)]
             >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> f(lilypond_file[Staff])
+            >>> f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 5/8
@@ -213,11 +218,20 @@ class NoteRhythmMaker(RhythmMaker):
         return new_selection
 
     def _make_music(self, divisions, rotation):
+        import abjad
         from abjad.tools import rhythmmakertools
         selections = []
         duration_specifier = self._get_duration_spelling_specifier()
         tie_specifier = self._get_tie_specifier()
         tuplet_specifier = self._get_tuplet_spelling_specifier()
+        leaf_maker = abjad.LeafMaker(
+            decrease_durations_monotonically=\
+                duration_specifier.decrease_durations_monotonically,
+            forbidden_written_duration=\
+                duration_specifier.forbidden_written_duration,
+            is_diminution=tuplet_specifier.is_diminution,
+            use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
+            )
         for division in divisions:
             if (duration_specifier.spell_metrically == True or
                 (duration_specifier.spell_metrically == 'unassignable' and
@@ -231,16 +245,7 @@ class NoteRhythmMaker(RhythmMaker):
                 durations = partition_table.respell_division(division)
             else:
                 durations = [division]
-            selection = scoretools.make_leaves(
-                pitches=0,
-                durations=durations,
-                decrease_durations_monotonically=\
-                    duration_specifier.decrease_durations_monotonically,
-                forbidden_written_duration=\
-                    duration_specifier.forbidden_written_duration,
-                is_diminution=tuplet_specifier.is_diminution,
-                use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
-                )
+            selection = leaf_maker(pitches=0, durations=durations)
             if (
                 1 < len(selection) and
                 not selection[0]._has_spanner(spannertools.Tie)
@@ -284,15 +289,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 32), (5, 32)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/32
@@ -321,21 +326,21 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 32), (5, 32)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/32
                         \set stemLeftBeamCount = #0
                         \set stemRightBeamCount = #1
-                        c'8 [ ~
+                        c'8 ~ [
                         \set stemLeftBeamCount = #3
                         \set stemRightBeamCount = #1
                         c'32
@@ -367,15 +372,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 32), (5, 32)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/32
@@ -409,15 +414,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (2, 8), (2, 8), (5, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -446,7 +451,7 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
                 ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
-                ...         left_classes=[Rest],
+                ...         left_classes=[abjad.Rest],
                 ...         left_counts=[1],
                 ...         outer_divisions_only=True,
                 ...         ),
@@ -456,15 +461,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (2, 8), (2, 8), (5, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -493,7 +498,7 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
                 ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
-                ...         left_classes=[Rest],
+                ...         left_classes=[abjad.Rest],
                 ...         left_counts=[2],
                 ...         outer_divisions_only=True,
                 ...         ),
@@ -503,15 +508,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (2, 8), (2, 8), (5, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -540,9 +545,9 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
                 ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
-                ...         left_classes=[Rest],
+                ...         left_classes=[abjad.Rest],
                 ...         left_counts=[1],
-                ...         right_classes=[Rest],
+                ...         right_classes=[abjad.Rest],
                 ...         right_counts=[1],
                 ...         outer_divisions_only=True,
                 ...         ),
@@ -552,15 +557,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (2, 8), (2, 8), (5, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -603,15 +608,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -640,7 +645,7 @@ class NoteRhythmMaker(RhythmMaker):
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         rhythmmakertools.SilenceMask(
-                ...             pattern=patterntools.select_every([0], period=2),
+                ...             pattern=abjad.index_every([0], period=2),
                 ...             ),
                 ...         ],
                 ...     )
@@ -649,15 +654,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -684,22 +689,22 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[rhythmmakertools.silence_all()],
+                ...     division_masks=[abjad.silence_all()],
                 ...     )
 
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -726,7 +731,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> mask = rhythmmakertools.SilenceMask(
-                ...     pattern=patterntools.select_all(),
+                ...     pattern=abjad.index_all(),
                 ...     use_multimeasure_rests=True,
                 ...     )
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
@@ -737,15 +742,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -771,8 +776,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> pattern_1 = patterntools.select_every([0], period=2)
-                >>> pattern_2 = patterntools.select([0, -1])
+                >>> pattern_1 = abjad.index_every([0], period=2)
+                >>> pattern_2 = abjad.index([0, -1])
                 >>> pattern = pattern_1 & ~pattern_2
                 >>> mask = rhythmmakertools.SilenceMask(
                 ...     pattern=pattern,
@@ -785,15 +790,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8), (2, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -838,15 +843,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -868,7 +873,7 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
                 ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                ...         forbidden_written_duration=Duration(1, 2),
+                ...         forbidden_written_duration=(1, 2),
                 ...         ),
                 ...     )
 
@@ -876,15 +881,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -914,15 +919,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 4), (6, 16), (9, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -960,15 +965,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 4), (6, 16), (9, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -1010,15 +1015,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 16), (9, 16), (10, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/16
@@ -1054,15 +1059,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(3, 4), (6, 16), (9, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -1099,15 +1104,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1134,22 +1139,22 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     logical_tie_masks=rhythmmakertools.silence_every([0], period=2)
+                ...     logical_tie_masks=abjad.silence_every([0], period=2)
                 ...     )
 
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1176,22 +1181,22 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
-                ...     logical_tie_masks=rhythmmakertools.silence_all(),
+                ...     logical_tie_masks=abjad.silence_all(),
                 ...     )
 
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1236,15 +1241,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1280,15 +1285,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1314,7 +1319,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...     indices=[0],
                 ...     period=2,
                 ...     )
@@ -1328,15 +1333,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1373,15 +1378,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(4, 8), (3, 8), (9, 16), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1419,15 +1424,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(7, 16), (1, 4), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -1463,15 +1468,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(7, 16), (1, 4), (5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/16
@@ -1511,15 +1516,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 14), (3, 7)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/14
@@ -1554,15 +1559,15 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 14), (3, 7)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/14

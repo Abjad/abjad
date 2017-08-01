@@ -13,21 +13,26 @@ from abjad.tools.topleveltools import select
 class BeamSpecifier(AbjadValueObject):
     r'''Beam specifier.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     ..  container:: example
 
         Beams each division by default:
 
         ::
 
-            >>> staff = Staff(name='RhythmicStaff')
+            >>> staff = abjad.Staff(name='RhythmicStaff')
             >>> staff.extend("c'8 c' c'16 c' c' c' c'8 c' c' c'")
-            >>> set_(staff).auto_beaming = False
+            >>> abjad.setting(staff).auto_beaming = False
             >>> selections = [staff[:4], staff[4:]]
             >>> specifier = rhythmmakertools.BeamSpecifier()
             >>> specifier(selections)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \context Staff = "RhythmicStaff" \with {
@@ -189,15 +194,15 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 c' c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier()
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -221,9 +226,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_divisions_together=True,
@@ -232,7 +237,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -274,9 +279,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_divisions_together=True,
@@ -285,7 +290,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -347,9 +352,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 c' c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_each_division=False,
@@ -357,7 +362,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -381,9 +386,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_each_division=True,
@@ -392,7 +397,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -416,9 +421,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_each_division=True,
@@ -427,7 +432,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -471,15 +476,15 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier()
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -503,9 +508,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_rests=True,
@@ -513,7 +518,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -537,9 +542,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 s c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_rests=True,
@@ -547,7 +552,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -591,9 +596,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 r c'16 c' c' c' c'8 r c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_divisions_together=True,
@@ -602,7 +607,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -642,9 +647,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 r c'16 c' c' c' c'8 r c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_divisions_together=True,
@@ -654,7 +659,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -690,9 +695,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_rests=True,
@@ -700,7 +705,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -724,9 +729,9 @@ class BeamSpecifier(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff = abjad.Staff(name='RhythmicStaff')
                 >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> selections = [staff[:4], staff[4:]]
                 >>> specifier = rhythmmakertools.BeamSpecifier(
                 ...     beam_rests=True,
@@ -735,7 +740,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier(selections)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \context Staff = "RhythmicStaff" \with {
@@ -745,16 +750,16 @@ class BeamSpecifier(AbjadValueObject):
                     c'8 [
                     c'8
                     c'16
-                    c'16 ]
                     \revert Staff.Stem.stemlet-length
+                    c'16 ]
                     \override Staff.Stem.stemlet-length = #2
                     c'16 [
                     c'16
                     c'8
                     r8
                     c'8
-                    c'8 ]
                     \revert Staff.Stem.stemlet-length
+                    c'8 ]
                 }
 
         Stemlets appear only when `beam_rests` is set to true.

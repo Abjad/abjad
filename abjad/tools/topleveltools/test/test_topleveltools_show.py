@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*- from abjad import *
-from abjad.tools import systemtools
+# -*- coding: utf-8 -*-
+import abjad
 
 
 # stub test module #

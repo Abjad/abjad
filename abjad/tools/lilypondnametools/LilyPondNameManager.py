@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import copy
+#from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class LilyPondNameManager(AbjadObject):
+#class LilyPondNameManager(AbjadObject):
+class LilyPondNameManager(object):
     r'''LilyPond name manager.
     
     Base class from which grob, context setting and tweak managers inherit.
@@ -10,20 +12,21 @@ class LilyPondNameManager(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a LilyPond name manager with attribute pairs
-        equal to those of this LilyPond name manager. Otherwise false.
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a LilyPond name manager with attribute
+        pairs equal to those of this LilyPond name manager. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            return self._get_attribute_pairs() == arg._get_attribute_pairs()
+        if isinstance(argument, type(self)):
+            attribute_pairs_1 = self._get_attribute_pairs()
+            attribute_pairs_2 = argument._get_attribute_pairs()
+            return attribute_pairs_1 == attribute_pairs_2
         return False
 
     def __getstate__(self):
         r'''Gets object state.
         '''
-        import copy
         return copy.deepcopy(vars(self))
 
     def __hash__(self):

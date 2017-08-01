@@ -7,13 +7,17 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 class NumberedIntervalClass(IntervalClass):
     '''Numbered interval-class.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from integer:
 
         ::
 
-            >>> NumberedIntervalClass(-14)
+            >>> abjad.NumberedIntervalClass(-14)
             NumberedIntervalClass(-2)
 
     ..  container:: example
@@ -22,7 +26,7 @@ class NumberedIntervalClass(IntervalClass):
 
         ::
 
-            >>> NumberedIntervalClass(-14.5)
+            >>> abjad.NumberedIntervalClass(-14.5)
             NumberedIntervalClass(-2.5)
 
     ..  container:: example
@@ -31,7 +35,7 @@ class NumberedIntervalClass(IntervalClass):
 
         ::
 
-            >>> NumberedIntervalClass('-14.5')
+            >>> abjad.NumberedIntervalClass('-14.5')
             NumberedIntervalClass(-2.5)
 
     '''
@@ -44,18 +48,18 @@ class NumberedIntervalClass(IntervalClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, item=None):
+    def __init__(self, number=0):
         from abjad.tools import pitchtools
-        if isinstance(item, numbers.Number):
-            sign = mathtools.sign(item)
-            abs_token = abs(item)
+        if isinstance(number, numbers.Number):
+            sign = mathtools.sign(number)
+            abs_token = abs(number)
             if abs_token % 12 == 0 and 12 <= abs_token:
                 number = 12
             else:
                 number = abs_token % 12
             number *= sign
-        elif isinstance(item, pitchtools.Interval):
-            number = item.semitones
+        elif isinstance(number, pitchtools.Interval):
+            number = number.semitones
             sign = mathtools.sign(number)
             abs_number = abs(number)
             if abs_number % 12 == 0 and 12 <= abs_number:
@@ -63,8 +67,8 @@ class NumberedIntervalClass(IntervalClass):
             else:
                 number = abs_number % 12
             number *= sign
-        elif isinstance(item, pitchtools.IntervalClass):
-            number = item.number
+        elif isinstance(number, pitchtools.IntervalClass):
+            number = number.number
             sign = mathtools.sign(number)
             abs_number = abs(number)
             if abs_number % 12 == 0 and 12 <= abs_number:
@@ -72,10 +76,8 @@ class NumberedIntervalClass(IntervalClass):
             else:
                 number = abs_number % 12
             number *= sign
-        elif item is None:
-            number = 0
-        elif isinstance(item, str):
-            number = float(item)
+        elif isinstance(number, str):
+            number = float(number)
             if mathtools.is_integer_equivalent(number):
                 number = int(number)
             sign = mathtools.sign(number)
@@ -86,7 +88,7 @@ class NumberedIntervalClass(IntervalClass):
                 number = abs_token % 12
             number *= sign
         else:
-            message = 'can not initialize {}: {!r}.'
+            message = 'can not initialize {} from {!r}.'
             message = message.format(type(self).__name__, item)
             raise ValueError(message)
         self._number = number
@@ -94,57 +96,151 @@ class NumberedIntervalClass(IntervalClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Absolute value of numbered interval-class.
+        r'''Gets absolute value of numbered interval-class.
 
         Returns new numbered interval-class.
         '''
-        return type(self)(abs(self._number))
+        return type(self)(abs(self.number))
 
     def __eq__(self, argument):
-        r'''Is true when `argument` is a numbered interval-class with number equal to
-        that of this numbered interval-class. Otherwise false.
+        r'''Is true when `argument` is a numbered interval-class with number
+        equal to that of this numbered interval-class. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> interval_class_1 = abjad.NumberedIntervalClass(0)
+                >>> interval_class_2 = abjad.NumberedIntervalClass(0)
+                >>> interval_class_3 = abjad.NumberedIntervalClass(1)
+
+            ::
+
+                >>> interval_class_1 == interval_class_1
+                True
+                >>> interval_class_1 == interval_class_2
+                True
+                >>> interval_class_1 == interval_class_3
+                False
+
+            ::
+
+                >>> interval_class_2 == interval_class_1
+                True
+                >>> interval_class_2 == interval_class_2
+                True
+                >>> interval_class_2 == interval_class_3
+                False
+
+            ::
+
+                >>> interval_class_3 == interval_class_1
+                False
+                >>> interval_class_3 == interval_class_2
+                False
+                >>> interval_class_3 == interval_class_3
+                True
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.number == argument.number:
-                return True
-        return False
-
-    def __float__(self):
-        r'''Changes numbered interval-class to float.
-
-        Returns float.
-        '''
-        return float(self._number)
+        return super(NumberedIntervalClass, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes numbered interval-class.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
         '''
         return super(NumberedIntervalClass, self).__hash__()
 
-    def __int__(self):
-        r'''Changes numbered interval-class to integer.
+    def __lt__(self, argument):
+        r'''Is true when numbered interval-class is less than `argument`.
 
-        Returns integer.
+        ..  container:: example
+
+            ::
+
+                >>> interval_class_1 = abjad.NumberedIntervalClass(0)
+                >>> interval_class_2 = abjad.NumberedIntervalClass(0)
+                >>> interval_class_3 = abjad.NumberedIntervalClass(1)
+
+            ::
+
+                >>> interval_class_1 < interval_class_1
+                False
+                >>> interval_class_1 < interval_class_2
+                False
+                >>> interval_class_1 < interval_class_3
+                True
+
+            ::
+
+                >>> interval_class_2 < interval_class_1
+                False
+                >>> interval_class_2 < interval_class_2
+                False
+                >>> interval_class_2 < interval_class_3
+                True
+
+            ::
+
+                >>> interval_class_3 < interval_class_1
+                False
+                >>> interval_class_3 < interval_class_2
+                False
+                >>> interval_class_3 < interval_class_3
+                False
+
+        Returns true or false.
         '''
-        return self._number
+        try:
+            argument = type(self)(argument)
+        except:
+            return False
+        return self.number < argument.number
 
-    ### PRIVATE PROPERTIES ###
+    def __str__(self):
+        r'''Gets string representation of numbered interval-class.
 
-    @property
-    def _format_string(self):
-        return '{}{}'.format(self.direction_symbol, abs(self.number))
+        ..  container:: example
+
+            ::
+
+                >>> str(abjad.NumberedIntervalClass(-13))
+                '-1'
+
+            ::
+
+                >>> str(abjad.NumberedIntervalClass(0))
+                '0'
+
+            ::
+
+                >>> str(abjad.NumberedIntervalClass(13))
+                '+1'
+
+        '''
+        string = super(NumberedIntervalClass, self).__str__()
+        if 0 < self.number:
+            string = '+' + string
+        return string
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        import abjad
+        return abjad.FormatSpecification(
+            client=self,
+            coerce_for_equality=True,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=[self.number],
+            )
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def direction_number(self):
-        r'''Direction number of numbered interval-class.
+        r'''Gets direction number of numbered interval-class.
 
         Returns -1, 0 or 1.
         '''
@@ -157,7 +253,7 @@ class NumberedIntervalClass(IntervalClass):
 
     @property
     def direction_symbol(self):
-        r'''Direction symbol of numbered interval class.
+        r'''Gets direction symbol of numbered interval-class.
 
         Returns string.
         '''
@@ -168,7 +264,7 @@ class NumberedIntervalClass(IntervalClass):
 
     @property
     def direction_word(self):
-        r'''Direction word of numbered interval-class.
+        r'''Gets direction word of numbered interval-class.
 
         Returns string.
         '''
@@ -186,19 +282,61 @@ class NumberedIntervalClass(IntervalClass):
         '''Makes numbered interval-class from `pitch_carrier_1` and
         `pitch_carrier_2`.
 
-        ::
+        ..  container:: example
 
-            >>> NumberedIntervalClass.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
-            ...     )
-            NumberedIntervalClass(2)
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(-2),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedIntervalClass(2)
+
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(0),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedIntervalClass(12)
+
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(9),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedIntervalClass(3)
+
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(9),
+                ...     )
+                NumberedIntervalClass(-3)
+
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(12),
+                ...     )
+                NumberedIntervalClass(0)
+
+            ::
+
+                >>> abjad.NumberedIntervalClass.from_pitch_carriers(
+                ...     abjad.NamedPitch(12),
+                ...     abjad.NamedPitch(-2),
+                ...     )
+                NumberedIntervalClass(-2)
 
         Returns numbered interval-class.
         '''
         from abjad.tools import pitchtools
-        # get numbered interval
         interval = pitchtools.NumberedInterval.from_pitch_carriers(
-            pitch_carrier_1, pitch_carrier_2)
-        # return numbered interval-class
+            pitch_carrier_1,
+            pitch_carrier_2,
+            )
         return class_(interval)

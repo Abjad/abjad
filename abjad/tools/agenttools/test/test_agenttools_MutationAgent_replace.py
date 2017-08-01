@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_agenttools_MutationAgent_replace_01():
@@ -8,15 +8,15 @@ def test_agenttools_MutationAgent_replace_01():
     Equivalent to staff[1:3] = new_notes.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = Beam()
-    attach(beam_1, staff[:2])
-    beam_2 = Beam()
-    attach(beam_2, staff[2:])
-    crescendo = Crescendo()
-    attach(crescendo, staff[:])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    beam_1 = abjad.Beam()
+    abjad.attach(beam_1, staff[:2])
+    beam_2 = abjad.Beam()
+    abjad.attach(beam_2, staff[2:])
+    crescendo = abjad.Hairpin('<')
+    abjad.attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [ \<
@@ -28,10 +28,10 @@ def test_agenttools_MutationAgent_replace_01():
         ), format(staff)
 
     old_notes = staff[1:3]
-    new_notes = 5 * Note("c''16")
-    mutate(old_notes).replace(new_notes)
+    new_notes = 5 * abjad.Note("c''16")
+    abjad.mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [ ] \<
@@ -45,7 +45,7 @@ def test_agenttools_MutationAgent_replace_01():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_02():
@@ -54,15 +54,15 @@ def test_agenttools_MutationAgent_replace_02():
     Equivalent to staff[:1] = new_notes.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = Beam()
-    attach(beam_1, staff[:2])
-    beam_2 = Beam()
-    attach(beam_2, staff[2:])
-    crescendo = Crescendo()
-    attach(crescendo, staff[:])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    beam_1 = abjad.Beam()
+    abjad.attach(beam_1, staff[:2])
+    beam_2 = abjad.Beam()
+    abjad.attach(beam_2, staff[2:])
+    crescendo = abjad.Hairpin('<')
+    abjad.attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [ \<
@@ -74,10 +74,10 @@ def test_agenttools_MutationAgent_replace_02():
         ), format(staff)
 
     old_notes = staff[:1]
-    new_notes = 5 * Note("c''16")
-    mutate(old_notes).replace(new_notes)
+    new_notes = 5 * abjad.Note("c''16")
+    abjad.mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c''16 [ \<
@@ -92,7 +92,7 @@ def test_agenttools_MutationAgent_replace_02():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_03():
@@ -101,15 +101,15 @@ def test_agenttools_MutationAgent_replace_03():
     Equivalent to staff[:2] = new_notes.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = Beam()
-    attach(beam_1, staff[:2])
-    beam_2 = Beam()
-    attach(beam_2, staff[2:])
-    crescendo = Crescendo()
-    attach(crescendo, staff[:])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    beam_1 = abjad.Beam()
+    abjad.attach(beam_1, staff[:2])
+    beam_2 = abjad.Beam()
+    abjad.attach(beam_2, staff[2:])
+    crescendo = abjad.Hairpin('<')
+    abjad.attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [ \<
@@ -121,10 +121,10 @@ def test_agenttools_MutationAgent_replace_03():
         ), format(staff)
 
     old_notes = staff[:2]
-    new_notes = 5 * Note("c''16")
-    mutate(old_notes).replace(new_notes)
+    new_notes = 5 * abjad.Note("c''16")
+    abjad.mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c''16 [ \<
@@ -138,7 +138,7 @@ def test_agenttools_MutationAgent_replace_03():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_04():
@@ -147,15 +147,15 @@ def test_agenttools_MutationAgent_replace_04():
     "Equivalent to staff[:3] = new_notes."
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = Beam()
-    attach(beam_1, staff[:2])
-    beam_2 = Beam()
-    attach(beam_2, staff[2:])
-    crescendo = Crescendo()
-    attach(crescendo, staff[:])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    beam_1 = abjad.Beam()
+    abjad.attach(beam_1, staff[:2])
+    beam_2 = abjad.Beam()
+    abjad.attach(beam_2, staff[2:])
+    crescendo = abjad.Hairpin('<')
+    abjad.attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [ \<
@@ -167,10 +167,10 @@ def test_agenttools_MutationAgent_replace_04():
         ), format(staff)
 
     old_notes = staff[:3]
-    new_notes = 5 * Note("c''16")
-    mutate(old_notes).replace(new_notes)
+    new_notes = 5 * abjad.Note("c''16")
+    abjad.mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c''16 \<
@@ -183,7 +183,7 @@ def test_agenttools_MutationAgent_replace_04():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_05():
@@ -192,15 +192,15 @@ def test_agenttools_MutationAgent_replace_05():
     Equivalent to staff[:] = new_notes.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = Beam()
-    attach(beam_1, staff[:2])
-    beam_2 = Beam()
-    attach(beam_2, staff[2:])
-    crescendo = Crescendo()
-    attach(crescendo, staff[:])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    beam_1 = abjad.Beam()
+    abjad.attach(beam_1, staff[:2])
+    beam_2 = abjad.Beam()
+    abjad.attach(beam_2, staff[2:])
+    crescendo = abjad.Hairpin('<')
+    abjad.attach(crescendo, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [ \<
@@ -212,10 +212,10 @@ def test_agenttools_MutationAgent_replace_05():
         ), format(staff)
 
     old_notes = staff[:]
-    new_notes = 5 * Note("c''16")
-    mutate(old_notes).replace(new_notes)
+    new_notes = 5 * abjad.Note("c''16")
+    abjad.mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c''16 \<
@@ -227,7 +227,7 @@ def test_agenttools_MutationAgent_replace_05():
         '''
         ), format(staff)
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_agenttools_MutationAgent_replace_06():
@@ -240,11 +240,11 @@ def test_agenttools_MutationAgent_replace_06():
     Equivalent to staff[:1] = staff[0][:].
     '''
 
-    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    beam = Beam()
-    attach(beam, staff[0][:])
+    staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8")])
+    beam = abjad.Beam()
+    abjad.attach(beam, staff[0][:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -259,9 +259,9 @@ def test_agenttools_MutationAgent_replace_06():
 
     voice_selection = staff[:1]
     voice = voice_selection[0]
-    old_components = mutate(voice_selection).replace(staff[0][:])
+    old_components = abjad.mutate(voice_selection).replace(staff[0][:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -273,4 +273,4 @@ def test_agenttools_MutationAgent_replace_06():
         ), format(staff)
 
     assert not voice
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

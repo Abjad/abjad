@@ -10,6 +10,9 @@ class NullContextManager(ContextManager):
 
     __documentation_section__ = 'Context managers'
 
+    __slots__ = (
+        )
+
     ### INITIALIZER ###
 
     def __init__(self):

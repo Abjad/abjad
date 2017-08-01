@@ -5,11 +5,15 @@ from abjad.tools.abctools import AbjadObject
 class LilyPondVersionToken(AbjadObject):
     r'''A LilyPond file ``\version`` token.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> lilypondfiletools.LilyPondVersionToken() # doctest: +SKIP
+            >>> abjad.LilyPondVersionToken() # doctest: +SKIP
             LilyPondVersionToken('2.19.0')
 
     '''
@@ -36,7 +40,7 @@ class LilyPondVersionToken(AbjadObject):
 
         ..  container:: example
 
-            >>> token = lilypondfiletools.LilyPondVersionToken()
+            >>> token = abjad.LilyPondVersionToken()
             >>> print(format(token)) # doctest: +SKIP
             \version "2.19.0"
 
@@ -54,7 +58,7 @@ class LilyPondVersionToken(AbjadObject):
 
         ..  container:: example
 
-            >>> token = lilypondfiletools.LilyPondVersionToken()
+            >>> token = abjad.LilyPondVersionToken()
             >>> token # doctest: +SKIP
             LilyPondVersionToken('2.19.0')
 
@@ -79,7 +83,7 @@ class LilyPondVersionToken(AbjadObject):
 
             ::
 
-                >>> token = lilypondfiletools.LilyPondVersionToken(
+                >>> token = abjad.LilyPondVersionToken(
                 ...     version_string=None,
                 ...     )
                 >>> token.version_string # doctest: +SKIP
@@ -91,7 +95,7 @@ class LilyPondVersionToken(AbjadObject):
 
             ::
 
-                >>> token = lilypondfiletools.LilyPondVersionToken(
+                >>> token = abjad.LilyPondVersionToken(
                 ...     version_string='2.19.0',
                 ...     )
                 >>> token.version_string

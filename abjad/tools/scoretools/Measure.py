@@ -9,22 +9,25 @@ from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import set_
-from abjad.tools.scoretools.FixedDurationContainer \
-    import FixedDurationContainer
+from abjad.tools.topleveltools import setting
+from abjad.tools.scoretools.Container import Container
 
 
-class Measure(FixedDurationContainer):
-    r'''A measure.
+class Measure(Container):
+    r'''Measure.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
-        >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+        >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
         >>> show(measure) # doctest: +SKIP
 
-    ..  doctest::
+    ..  docs::
 
-        >>> print(format(measure))
+        >>> f(measure)
         {
             \time 4/8
             c'8
@@ -44,6 +47,7 @@ class Measure(FixedDurationContainer):
         '_automatically_adjust_time_signature',
         '_measure_number',
         '_implicit_scaling',
+        #'_target_duration',
         )
 
     _is_counttime_component = True
@@ -56,11 +60,13 @@ class Measure(FixedDurationContainer):
         music=None,
         implicit_scaling=False,
         ):
+        import abjad
         # set time signature adjustment before contents initialization
         self._automatically_adjust_time_signature = False
-        time_signature = time_signature or (4, 4)
+        time_signature = time_signature or abjad.TimeSignature((4, 4))
+        time_signature = abjad.TimeSignature(time_signature)
         self.implicit_scaling = bool(implicit_scaling)
-        FixedDurationContainer.__init__(self, time_signature, music)
+        Container.__init__(self, music)
         self._always_format_time_signature = False
         self._measure_number = None
         time_signature = indicatortools.TimeSignature(time_signature)
@@ -75,7 +81,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
                 >>> measure.automatically_adjust_time_signature = True
                 >>> show(measure) # doctest: +SKIP
 
@@ -84,7 +90,7 @@ class Measure(FixedDurationContainer):
                 >>> del(measure[1])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 {
                     \time 3/8
@@ -97,7 +103,7 @@ class Measure(FixedDurationContainer):
         '''
         old_time_signature = self.time_signature
         old_denominator = getattr(old_time_signature, 'denominator', None)
-        FixedDurationContainer.__delitem__(self, i)
+        Container.__delitem__(self, i)
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __getnewargs__(self):
@@ -115,7 +121,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+                >>> measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -129,7 +135,7 @@ class Measure(FixedDurationContainer):
         indicator = self._get_indicator(indicatortools.TimeSignature)
         forced_time_signature = indicator
         forced_time_signature = forced_time_signature.pair
-        summary = self._contents_summary
+        summary = self._get_contents_summary()
         if forced_time_signature and len(self):
             if self.implicit_scaling:
                 result = '{}({!s}, {!r}, implicit_scaling=True)'
@@ -166,16 +172,16 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
                 >>> measure.automatically_adjust_time_signature = True
                 >>> show(measure) # doctest: +SKIP
 
             ::
 
-                >>> measure[1] = Note("ds'8.")
+                >>> measure[1] = abjad.Note("ds'8.")
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 {
                     \time 9/16
@@ -189,26 +195,8 @@ class Measure(FixedDurationContainer):
         '''
         old_time_signature = self.time_signature
         old_denominator = getattr(old_time_signature, 'denominator', None)
-        FixedDurationContainer.__setitem__(self, i, argument)
+        Container.__setitem__(self, i, argument)
         self._conditionally_adjust_time_signature(old_denominator)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_representation(self):
-        if not self:
-            return '| {!s} |'.format(self.time_signature)
-        return '| {!s} {} |'.format(
-            self.time_signature,
-            self._contents_summary,
-            )
-
-    @property
-    def _preprolated_duration(self):
-        time_signature_prolation = 1
-        if self.implicit_scaling:
-            time_signature_prolation = self.time_signature.implied_prolation
-        return time_signature_prolation * self._contents_duration
 
     ### PRIVATE METHODS ###
 
@@ -221,6 +209,19 @@ class Measure(FixedDurationContainer):
                 if not candidate_duration.is_assignable:
                     return False
         return True
+
+    def _append_spacer_skip(self):
+        from abjad.tools import scoretools
+        if not self.is_underfull:
+            return
+        target_duration = self.time_signature.duration
+        duration = self._get_duration()
+        skip = scoretools.Skip((1, 1))
+        time_signature_multiplier = self.time_signature.implied_prolation
+        new_duration = target_duration - duration
+        new_multiplier = new_duration.__div__(time_signature_multiplier)
+        attach(new_multiplier, skip)
+        self.append(skip)
 
     def _as_graphviz_node(self):
         from abjad.tools import documentationtools
@@ -254,14 +255,14 @@ class Measure(FixedDurationContainer):
             message = 'can not suppress time signature'
             message += ' with non-power-of-two denominator.'
             raise Exception(message)
-        if effective_time_signature.duration < self._preprolated_duration:
+        if effective_time_signature.duration < self._get_preprolated_duration():
             raise OverfullContainerError
-        if self._preprolated_duration < effective_time_signature.duration:
+        if self._get_preprolated_duration() < effective_time_signature.duration:
             raise UnderfullContainerError
 
     def _conditionally_adjust_time_signature(self, old_denominator):
         if self.automatically_adjust_time_signature:
-            naive_time_signature = self._preprolated_duration
+            naive_time_signature = self._get_preprolated_duration()
             better_time_signature = \
                 mathtools.NonreducedFraction(naive_time_signature)
             better_time_signature = \
@@ -283,7 +284,7 @@ class Measure(FixedDurationContainer):
         if getattr(self, '_lilypond_grob_name_manager', None) is not None:
             new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
-            new._lilypond_setting_name_manager = copy.copy(set_(self))
+            new._lilypond_setting_name_manager = copy.copy(setting(self))
         for indicator in self._get_indicators():
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)
@@ -336,12 +337,12 @@ class Measure(FixedDurationContainer):
                 self.implied_prolation.denominator,
                 )
             result.append(string)
-            pieces = FixedDurationContainer._format_content_pieces(self)
+            pieces = Container._format_content_pieces(self)
             pieces = [indent + x for x in pieces]
             result.extend(pieces)
             result.append(indent + '}')
         else:
-            result.extend(FixedDurationContainer._format_content_pieces(self))
+            result.extend(Container._format_content_pieces(self))
         return result
 
     def _format_opening_slot(self, bundle):
@@ -352,6 +353,14 @@ class Measure(FixedDurationContainer):
         result.append(('indicators', bundle.opening.indicators))
         return self._format_slot_contributions_with_indent(result)
 
+    def _get_compact_representation(self):
+        if not self:
+            return '| {!s} |'.format(self.time_signature)
+        return '| {!s} {} |'.format(
+            self.time_signature,
+            self._get_contents_summary(),
+            )
+
     def _get_format_specification(self):
         names = []
         if self.implicit_scaling:
@@ -360,56 +369,60 @@ class Measure(FixedDurationContainer):
             client=self,
             repr_args_values=[
                 self.time_signature.pair,
-                self._contents_summary,
+                self._get_contents_summary(),
                 ],
             storage_format_args_values=[
                 self.time_signature,
-                self._contents_summary,
+                self._get_contents_summary(),
                 ],
             storage_format_kwargs_names=names,
             )
 
     @staticmethod
     def _get_likely_multiplier_of_components(components):
-        pass
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        from abjad.tools import sequencetools
-        assert all(isinstance(x, scoretools.Component) for x in components)
+        import abjad
+        assert all(isinstance(x, abjad.Component) for x in components)
         logical_tie_duration_numerators = []
         items = iterate(components).by_topmost_logical_ties_and_components()
         for item in items:
-            if isinstance(item, selectiontools.LogicalTie):
-                logical_tie_duration = item._preprolated_duration
+            if isinstance(item, abjad.LogicalTie):
+                logical_tie_duration = item._get_preprolated_duration()
                 numerator = logical_tie_duration.numerator
                 logical_tie_duration_numerators.append(numerator)
-        numerators = sequencetools.Sequence(logical_tie_duration_numerators)
+        numerators = abjad.Sequence(logical_tie_duration_numerators)
         if len(numerators.remove_repeats()) == 1:
             numerator = logical_tie_duration_numerators[0]
-            denominator = mathtools.greatest_power_of_two_less_equal(numerator)
+            denominator = abjad.mathtools.greatest_power_of_two_less_equal(
+                numerator)
             pair = (numerator, denominator)
-            likely_multiplier = durationtools.Multiplier(*pair)
+            likely_multiplier = abjad.Multiplier(*pair)
             return likely_multiplier
 
     def _get_lilypond_format(self):
         self._check_duration()
         return self._format_component()
 
+    def _get_preprolated_duration(self):
+        time_signature_prolation = 1
+        if self.implicit_scaling:
+            time_signature_prolation = self.time_signature.implied_prolation
+        return time_signature_prolation * self._get_contents_duration()
+
     # TODO: see if self._scale can be combined with
     #       with self.scale_and_adjust_time_signature()
     def _scale(self, multiplier=None):
-        from abjad.tools import indicatortools
+        import abjad
         if multiplier is None:
             return
-        multiplier = durationtools.Multiplier(multiplier)
+        multiplier = abjad.Multiplier(multiplier)
         old_time_signature = self.time_signature
-        if (mathtools.is_nonnegative_integer_power_of_two(multiplier) and
+        if (abjad.mathtools.is_nonnegative_integer_power_of_two(multiplier) and
             1 <= multiplier):
             old_numerator = old_time_signature.numerator
             old_denominator = old_time_signature.denominator
             new_denominator = old_denominator // multiplier.numerator
             pair = (old_numerator, new_denominator)
-            new_time_signature = indicatortools.TimeSignature(pair)
+            new_time_signature = abjad.TimeSignature(pair)
         else:
             old_denominator = old_time_signature.denominator
             old_duration = old_time_signature.duration
@@ -420,13 +433,33 @@ class Measure(FixedDurationContainer):
                     [old_denominator],
                     multiplier.denominator,
                     )
-        detach(indicatortools.TimeSignature, self)
-        attach(new_time_signature, self)
+        abjad.detach(abjad.TimeSignature, self)
+        abjad.attach(new_time_signature, self)
         contents_multiplier_denominator = \
-            mathtools.greatest_power_of_two_less_equal(multiplier.denominator)
+            abjad.mathtools.greatest_power_of_two_less_equal(
+                multiplier.denominator)
         pair = (multiplier.numerator, contents_multiplier_denominator)
-        contents_multiplier = durationtools.Multiplier(*pair)
+        contents_multiplier = abjad.Multiplier(*pair)
         self._scale_contents(contents_multiplier)
+
+    def _scale_denominator(self, factor):
+        import abjad
+        # save old time signature duration
+        old_time_signature_duration = self.time_signature.duration
+        # find new time signature
+        new_time_signature = \
+            self._duration_and_possible_denominators_to_time_signature(
+            old_time_signature_duration,
+            factor=factor,
+            )
+        # scale contents of measures in argument
+        multiplier = new_time_signature.implied_prolation.reciprocal
+        self._scale(multiplier)
+        # assign new time signature
+        abjad.detach(abjad.TimeSignature, self)
+        abjad.attach(new_time_signature, self)
+        if new_time_signature.has_non_power_of_two_denominator:
+            self.implicit_scaling = True
 
     ### PUBLIC PROPERTIES ###
 
@@ -464,7 +497,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((3, 4), "c' d' e'")
+                >>> measure = abjad.Measure((3, 4), "c' d' e'")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -493,7 +526,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+                >>> measure = abjad.Measure((5, 9), "c'8 d' e' f' g'")
                 >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
@@ -508,7 +541,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+                >>> measure = abjad.Measure((5, 8), "c'8 d' e' f' g'")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -530,7 +563,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+                >>> measure = abjad.Measure((5, 8), "c'8 d' e' f' g'")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -544,7 +577,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+                >>> measure = abjad.Measure((5, 9), "c'8 d' e' f' g'")
                 >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
@@ -566,9 +599,9 @@ class Measure(FixedDurationContainer):
         return self._implicit_scaling
 
     @implicit_scaling.setter
-    def implicit_scaling(self, arg):
-        assert isinstance(arg, bool)
-        self._implicit_scaling = arg
+    def implicit_scaling(self, argument):
+        assert isinstance(argument, bool)
+        self._implicit_scaling = argument
 
     @property
     def implied_prolation(self):
@@ -581,7 +614,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((5, 12), "c'8 d'8 e'8 f'8 g'8")
+                >>> measure = abjad.Measure((5, 12), "c'8 d'8 e'8 f'8 g'8")
                 >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
@@ -593,7 +626,7 @@ class Measure(FixedDurationContainer):
             ::
 
                 >>> for note in measure:
-                ...     note, inspect_(note).get_duration()
+                ...     note, abjad.inspect(note).get_duration()
                 (Note("c'8"), Duration(1, 12))
                 (Note("d'8"), Duration(1, 12))
                 (Note("e'8"), Duration(1, 12))
@@ -607,7 +640,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((5, 12), [])
+                >>> measure = abjad.Measure((5, 12), [])
                 >>> measure.implicit_scaling = False
 
             ::
@@ -630,7 +663,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+                >>> measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -642,7 +675,7 @@ class Measure(FixedDurationContainer):
 
         Returns true or false.
         '''
-        return FixedDurationContainer.is_full.fget(self)
+        return self._get_preprolated_duration() == self.target_duration
 
     @property
     def is_misfilled(self):
@@ -652,7 +685,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((3, 4), "c'4 d'4 e'4 f'4")
+                >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4 f'4")
                 >>> measure.is_misfilled
                 True
 
@@ -662,7 +695,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((3, 4), "c' d' e'")
+                >>> measure = abjad.Measure((3, 4), "c' d' e'")
                 >>> show(measure) # doctest: +SKIP
 
             ::
@@ -672,7 +705,7 @@ class Measure(FixedDurationContainer):
 
         Returns true or false.
         '''
-        return FixedDurationContainer.is_overfull.fget(self)
+        return not self.is_full
 
     @property
     def is_overfull(self):
@@ -683,7 +716,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((3, 4), "c'4 d' e' f'")
+                >>> measure = abjad.Measure((3, 4), "c'4 d' e' f'")
 
             ::
 
@@ -694,7 +727,7 @@ class Measure(FixedDurationContainer):
 
         Returns true or false.
         '''
-        return FixedDurationContainer.is_overfull.fget(self)
+        return self.target_duration < self._get_preprolated_duration()
 
     @property
     def is_underfull(self):
@@ -704,7 +737,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((3, 4), "c'4 d'")
+                >>> measure = abjad.Measure((3, 4), "c'4 d'")
 
             ::
 
@@ -715,7 +748,7 @@ class Measure(FixedDurationContainer):
 
         Returns true or false.
         '''
-        return FixedDurationContainer.is_underfull.fget(self)
+        return self._get_preprolated_duration() < self.target_duration
 
     @property
     def measure_number(self):
@@ -725,14 +758,14 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((3, 4), "c' d' e'"))
-                >>> staff.append(Measure((2, 4), "f' g'"))
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((3, 4), "c' d' e'"))
+                >>> staff.append(abjad.Measure((2, 4), "f' g'"))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 3/4
@@ -773,7 +806,7 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((3, 4), "c'4 d'4 e'4")
+                >>> measure = abjad.Measure((3, 4), "c'4 d'4 e'4")
                 >>> measure.target_duration
                 Duration(3, 4)
 
@@ -805,16 +838,17 @@ class Measure(FixedDurationContainer):
 
         Returns selections.
         '''
-        from abjad.tools import scoretools
+        import abjad
         assert len(selections)
         if not time_signatures:
             time_signatures = [_.get_duration() for _ in selections]
         assert len(selections) == len(time_signatures)
-        assert [_.get_duration() for _ in selections] == \
-            [durationtools.Duration(_) for _ in time_signatures]
-        measures = scoretools.make_spacer_skip_measures(time_signatures)
-        temporary_voice = scoretools.Voice(measures)
-        mutate(temporary_voice).replace_measure_contents(selections)
+        durations = [_.get_duration() for _ in selections]
+        assert durations == [abjad.Duration(_) for _ in time_signatures]
+        maker = abjad.MeasureMaker()
+        measures = maker(time_signatures)
+        temporary_voice = abjad.Voice(measures)
+        abjad.mutate(temporary_voice).replace_measure_contents(selections)
         temporary_voice[:] = []
         return measures
 
@@ -829,13 +863,13 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+                >>> measure = abjad.Measure((3, 8), "c'8 d'8 e'8")
                 >>> measure.implicit_scaling = True
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/8
                     c'8
@@ -845,12 +879,12 @@ class Measure(FixedDurationContainer):
 
             ::
 
-                >>> measure.scale_and_adjust_time_signature(Multiplier(2, 3))
+                >>> measure.scale_and_adjust_time_signature(abjad.Multiplier(2, 3))
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 3/12
                     \scaleDurations #'(2 . 3) {

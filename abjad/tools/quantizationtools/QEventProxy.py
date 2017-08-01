@@ -5,25 +5,33 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QEventProxy(AbjadObject):
-    r'''Proxies a `QEvent`, mapping that QEvent's offset with the range of
-    its beatspan to the range 0-1.
+    r'''Q-event proxy.
+
+    Maps Q-event offset with the range of its beatspan to the range 0-1.
 
     ::
 
-        >>> q_event = quantizationtools.PitchedQEvent(130, [0, 1, 4])
-        >>> proxy = quantizationtools.QEventProxy(q_event, 0.5)
-        >>> print(format(proxy, 'storage'))
-        quantizationtools.QEventProxy(
-            quantizationtools.PitchedQEvent(
-                offset=abjad.Offset(130, 1),
-                pitches=(
-                    abjad.NamedPitch("c'"),
-                    abjad.NamedPitch("cs'"),
-                    abjad.NamedPitch("e'"),
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
+
+    ..  container:: example
+
+        ::
+
+            >>> q_event = quantizationtools.PitchedQEvent(130, [0, 1, 4])
+            >>> proxy = quantizationtools.QEventProxy(q_event, 0.5)
+            >>> f(proxy)
+            quantizationtools.QEventProxy(
+                quantizationtools.PitchedQEvent(
+                    offset=abjad.Offset(130, 1),
+                    pitches=(
+                        abjad.NamedPitch("c'"),
+                        abjad.NamedPitch("cs'"),
+                        abjad.NamedPitch("e'"),
+                        ),
                     ),
-                ),
-            abjad.Offset(1, 2)
-            )
+                abjad.Offset(1, 2)
+                )
 
     Not composer-safe.
 
@@ -36,6 +44,8 @@ class QEventProxy(AbjadObject):
         '_offset',
         '_q_event',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

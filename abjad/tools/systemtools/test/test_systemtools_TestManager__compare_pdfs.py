@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
-from abjad import *
+import abjad
+from abjad.tools import systemtools
 configuration = systemtools.AbjadConfiguration()
 
 path_1 = os.path.join(
@@ -18,8 +19,8 @@ def test_systemtools_TestManager__compare_pdfs_01():
     '''
 
     with systemtools.FilesystemState(remove=[path_1]):
-        note = Note("c'4")
-        persist(note).as_pdf(path_1, remove_ly=True)
+        note = abjad.Note("c'4")
+        abjad.persist(note).as_pdf(path_1, remove_ly=True)
         assert systemtools.TestManager._compare_pdfs(path_1, path_1)
 
 
@@ -28,10 +29,10 @@ def test_systemtools_TestManager__compare_pdfs_02():
     '''
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
-        note = Note("c'4")
-        persist(note).as_pdf(path_1, remove_ly=True)
-        note = Note("c'4")
-        persist(note).as_pdf(path_2, remove_ly=True)
+        note = abjad.Note("c'4")
+        abjad.persist(note).as_pdf(path_1, remove_ly=True)
+        note = abjad.Note("c'4")
+        abjad.persist(note).as_pdf(path_2, remove_ly=True)
         assert systemtools.TestManager._compare_pdfs(path_1, path_2)
 
 
@@ -40,8 +41,8 @@ def test_systemtools_TestManager__compare_pdfs_03():
     '''
 
     with systemtools.FilesystemState(remove=[path_1, path_2]):
-        note = Note("c'4")
-        persist(note).as_pdf(path_1, remove_ly=True)
-        note = Note("d'4")
-        persist(note).as_pdf(path_2, remove_ly=True)
+        note = abjad.Note("c'4")
+        abjad.persist(note).as_pdf(path_1, remove_ly=True)
+        note = abjad.Note("d'4")
+        abjad.persist(note).as_pdf(path_2, remove_ly=True)
         assert not systemtools.TestManager._compare_pdfs(path_1, path_2)

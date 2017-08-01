@@ -7,7 +7,7 @@ from abjad.tools import selectiontools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
@@ -15,6 +15,11 @@ from abjad.tools.topleveltools import override
 
 class AccelerandoRhythmMaker(RhythmMaker):
     r'''Accelerando rhythm-maker.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
 
     ..  container:: example
 
@@ -27,9 +32,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...         use_feather_beams=True,
             ...         ),
             ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-            ...         start_duration=Duration(1, 8),
-            ...         stop_duration=Duration(1, 20),
-            ...         written_duration=Duration(1, 16),
+            ...         start_duration=(1, 8),
+            ...         stop_duration=(1, 20),
+            ...         written_duration=(1, 16),
             ...         ),
             ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
             ...         use_note_duration_bracket=True,
@@ -40,15 +45,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
             >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> f(lilypond_file[Staff])
+            >>> f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 5/8
@@ -239,9 +244,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...         use_feather_beams=True,
             ...         ),
             ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-            ...         start_duration=Duration(1, 20),
-            ...         stop_duration=Duration(1, 8),
-            ...         written_duration=Duration(1, 16),
+            ...         start_duration=(1, 20),
+            ...         stop_duration=(1, 8),
+            ...         written_duration=(1, 16),
             ...         ),
             ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
             ...         use_note_duration_bracket=True,
@@ -252,15 +257,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
             >>> selections = rhythm_maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            >>> lilypond_file = abjad.LilyPondFile.rhythm(
             ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> f(lilypond_file[Staff])
+            >>> f(lilypond_file[abjad.Staff])
             \new RhythmicStaff {
                 {
                     \time 5/8
@@ -727,16 +732,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _is_accelerando(selection):
-        first_duration = inspect_(selection[0]).get_duration()
-        last_duration = inspect_(selection[-1]).get_duration()
+        first_duration = inspect(selection[0]).get_duration()
+        last_duration = inspect(selection[-1]).get_duration()
         if last_duration < first_duration:
             return True
         return False
 
     @staticmethod
     def _is_ritardando(selection):
-        first_duration = inspect_(selection[0]).get_duration()
-        last_duration = inspect_(selection[-1]).get_duration()
+        first_duration = inspect(selection[0]).get_duration()
+        last_duration = inspect(selection[-1]).get_duration()
         if first_duration < last_duration:
             return True
         return False
@@ -766,8 +771,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         Returns selection of notes.
         '''
+        import abjad
         from abjad.tools import rhythmmakertools
-        total_duration = durationtools.Duration(total_duration)
+        total_duration = abjad.Duration(total_duration)
         interpolation_specifier = interpolation_specifiers[index]
         durations = AccelerandoRhythmMaker._interpolate_divide(
             total_duration=total_duration,
@@ -775,20 +781,21 @@ class AccelerandoRhythmMaker(RhythmMaker):
             stop_duration=interpolation_specifier.stop_duration,
             )
         if durations == 'too small':
-            notes = scoretools.make_notes([0], [total_duration])
-            tuplet = scoretools.Tuplet((1, 1), notes)
-            selection = selectiontools.Selection([tuplet])
+            maker = abjad.NoteMaker()
+            notes = maker([0], [total_duration])
+            tuplet = abjad.Tuplet((1, 1), notes)
+            selection = abjad.select([tuplet])
             return selection
         durations = class_._round_durations(durations, 2**10)
         notes = []
         for i, duration in enumerate(durations):
             written_duration = interpolation_specifier.written_duration
-            note = scoretools.Note(0, written_duration)
+            note = abjad.Note(0, written_duration)
             multiplier = duration / written_duration
-            multiplier = durationtools.Multiplier(multiplier)
+            multiplier = abjad.Multiplier(multiplier)
             attach(multiplier, note)
             notes.append(note)
-        selection = selectiontools.Selection(notes)
+        selection = abjad.select(notes)
         class_._fix_rounding_error(
             selection, 
             total_duration,
@@ -802,14 +809,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
             override(selection[0]).beam.grow_direction = Right
         elif class_._is_ritardando(selection):
             override(selection[0]).beam.grow_direction = Left
-        tuplet = scoretools.Tuplet((1, 1), selection)
+        tuplet = abjad.Tuplet((1, 1), selection)
         if tuplet_spelling_specifier.use_note_duration_bracket:
             tuplet.force_times_command = True
-            duration = inspect_(tuplet).get_duration()
+            duration = inspect(tuplet).get_duration()
             markup = duration.to_score_markup()
             markup = markup.scale((0.75, 0.75))
             override(tuplet).tuplet_number.text = markup
-        selection = selectiontools.Selection([tuplet])
+        selection = abjad.select([tuplet])
         return selection
 
     def _make_music(self, divisions, rotation):
@@ -858,9 +865,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
@@ -871,15 +878,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -1071,9 +1078,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=False,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
@@ -1084,15 +1091,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -1335,9 +1342,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         beam_each_division=False,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
@@ -1348,15 +1355,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -1552,9 +1559,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     division_masks=None,
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
@@ -1566,15 +1573,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -1765,13 +1772,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     division_masks=[
                 ...         rhythmmakertools.SilenceMask(
-                ...             pattern=patterntools.select_every([1], period=2),
+                ...             pattern=abjad.index_every([1], period=2),
                 ...             ),
                 ...         ],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
@@ -1783,15 +1790,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -1914,9 +1921,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
@@ -1927,15 +1934,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -2127,14 +2134,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     interpolation_specifiers=[
                 ...         rhythmmakertools.InterpolationSpecifier(
-                ...             start_duration=Duration(1, 8),
-                ...             stop_duration=Duration(1, 20),
-                ...             written_duration=Duration(1, 16),
+                ...             start_duration=(1, 8),
+                ...             stop_duration=(1, 20),
+                ...             written_duration=(1, 16),
                 ...             ),
                 ...         rhythmmakertools.InterpolationSpecifier(
-                ...             start_duration=Duration(1, 20),
-                ...             stop_duration=Duration(1, 8),
-                ...             written_duration=Duration(1, 16),
+                ...             start_duration=(1, 20),
+                ...             stop_duration=(1, 8),
+                ...             written_duration=(1, 16),
                 ...             ),
                 ...         ],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
@@ -2146,15 +2153,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -2348,9 +2355,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
@@ -2361,15 +2368,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (1, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -2493,19 +2500,19 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     logical_tie_masks=[
-                ...         rhythmmakertools.silence_first(),
-                ...         rhythmmakertools.silence_last(),
+                ...         abjad.silence_first(),
+                ...         abjad.silence_last(),
                 ...         ],
                 ...     interpolation_specifiers=[
                 ...         rhythmmakertools.InterpolationSpecifier(
-                ...             start_duration=Duration(1, 8),
-                ...             stop_duration=Duration(1, 20),
-                ...             written_duration=Duration(1, 16),
+                ...             start_duration=(1, 8),
+                ...             stop_duration=(1, 20),
+                ...             written_duration=(1, 16),
                 ...             ),
                 ...         rhythmmakertools.InterpolationSpecifier(
-                ...             start_duration=Duration(1, 20),
-                ...             stop_duration=Duration(1, 8),
-                ...             written_duration=Duration(1, 16),
+                ...             start_duration=(1, 20),
+                ...             stop_duration=(1, 8),
+                ...             written_duration=(1, 16),
                 ...             ),
                 ...         ],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
@@ -2517,15 +2524,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -2569,8 +2576,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2614,8 +2621,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 51/64
                             c'16 * 65/64
                             c'16 * 85/64
-                            c'16 * 25/16 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2662,8 +2669,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 33/32
                             c'16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2707,8 +2714,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 51/64
                             c'16 * 65/64
                             c'16 * 85/64
-                            r16 * 25/16 ]
                             \revert Staff.Stem.stemlet-length
+                            r16 * 25/16 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2728,18 +2735,18 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     logical_tie_masks=[
-                ...         rhythmmakertools.silence_every([2], period=3),
+                ...         abjad.silence_every([2], period=3),
                 ...         ],
                 ...     interpolation_specifiers=[
                 ...         rhythmmakertools.InterpolationSpecifier(
-                ...             start_duration=Duration(1, 8),
-                ...             stop_duration=Duration(1, 20),
-                ...             written_duration=Duration(1, 16),
+                ...             start_duration=(1, 8),
+                ...             stop_duration=(1, 20),
+                ...             written_duration=(1, 16),
                 ...             ),
                 ...         rhythmmakertools.InterpolationSpecifier(
-                ...             start_duration=Duration(1, 20),
-                ...             stop_duration=Duration(1, 8),
-                ...             written_duration=Duration(1, 16),
+                ...             start_duration=(1, 20),
+                ...             stop_duration=(1, 8),
+                ...             written_duration=(1, 16),
                 ...             ),
                 ...         ],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
@@ -2751,15 +2758,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -2804,8 +2811,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 33/32
                             r16 * 57/64
                             c'16 * 13/16
-                            c'16 * 25/32 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2848,8 +2855,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 51/64
                             r16 * 65/64
                             c'16 * 85/64
-                            c'16 * 25/16 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2895,8 +2902,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 33/32
                             c'16 * 57/64
                             r16 * 13/16
-                            c'16 * 25/32 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/32 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2940,8 +2947,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 51/64
                             c'16 * 65/64
                             r16 * 85/64
-                            c'16 * 25/16 ]
                             \revert Staff.Stem.stemlet-length
+                            c'16 * 25/16 ]
                         }
                         \revert TupletNumber.text
                     }
@@ -2971,9 +2978,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
@@ -2987,15 +2994,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -3186,9 +3193,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
@@ -3202,15 +3209,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -3396,7 +3403,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> pattern = patterntools.Pattern(
+                >>> pattern = abjad.Pattern(
                 ...      indices=[0],
                 ...      period=2,
                 ...  )
@@ -3405,9 +3412,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
@@ -3421,15 +3428,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -3629,9 +3636,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
@@ -3645,15 +3652,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -3844,9 +3851,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         use_feather_beams=True,
                 ...         ),
                 ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
-                ...         start_duration=Duration(1, 8),
-                ...         stop_duration=Duration(1, 20),
-                ...         written_duration=Duration(1, 16),
+                ...         start_duration=(1, 8),
+                ...         stop_duration=(1, 20),
+                ...         written_duration=(1, 16),
                 ...         ),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
@@ -3860,15 +3867,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8

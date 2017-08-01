@@ -94,7 +94,7 @@ Use the inspector to get the duration of a voice:
 
 ..  abjad::
 
-    inspect_(voice).get_duration()
+    inspect(voice).get_duration()
 
 
 Appending one component to the end of a voice
@@ -183,7 +183,7 @@ Voice names appear in LilyPond input but not in notation output:
 
 ..  abjad::
 
-    print(format(voice))
+    f(voice)
 
 ..  abjad::
 
@@ -214,4 +214,4 @@ based on a LilyPond voice:
 
 ..  abjad::
 
-    print(format(voice))
+    f(voice)

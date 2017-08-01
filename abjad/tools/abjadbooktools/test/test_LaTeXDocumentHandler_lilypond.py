@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+import abjad
 import platform
 import unittest
 from abjad.tools import abjadbooktools
-from abjad.tools import stringtools
 
 
 @unittest.skipIf(
@@ -13,7 +13,7 @@ class TestCase(unittest.TestCase):
 
     maxDiff = None
 
-    input_file_contents = stringtools.normalize(r'''
+    input_file_contents = abjad.String.normalize(r'''
     foo
 
     \begin{comment}
@@ -66,7 +66,7 @@ class TestCase(unittest.TestCase):
             input_file_contents=self.input_file_contents,
             )
         rebuilt_source = document_handler(return_source=True)
-        assert rebuilt_source == stringtools.normalize(r"""
+        assert rebuilt_source == abjad.String.normalize(r"""
             foo
 
             \begin{comment}

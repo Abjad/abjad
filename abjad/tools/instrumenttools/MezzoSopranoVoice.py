@@ -6,32 +6,40 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class MezzoSopranoVoice(Instrument):
-    r'''A mezzo-soprano voice.
+    r'''Mezzo-soprano voice.
 
     ::
 
-        >>> staff = Staff("c''4 d''4 e''4 fs''4")
-        >>> mezzo_soprano = instrumenttools.MezzoSopranoVoice()
-        >>> attach(mezzo_soprano, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Mezzo-soprano }
-            \set Staff.shortInstrumentName = \markup { Mezz. }
-            c''4
-            d''4
-            e''4
-            fs''4
-        }
+        ::
+
+
+            >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
+            >>> mezzo_soprano = abjad.instrumenttools.MezzoSopranoVoice()
+            >>> abjad.attach(mezzo_soprano, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Mezzo-soprano }
+                \set Staff.shortInstrumentName = \markup { Mezz. }
+                c''4
+                d''4
+                e''4
+                fs''4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     performer_abbreviation = 'ms.'
 
@@ -128,7 +136,7 @@ class MezzoSopranoVoice(Instrument):
             ::
 
                 >>> mezzo_soprano.pitch_range
-                PitchRange(range_string='[A3, C6]')
+                PitchRange('[A3, C6]')
 
             ::
 

@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_spannertools_Spanner_stop_offset_01():
     r'''Returns stop time of spanner in score.
     '''
 
-    container = Container("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, container[1:3])
-    glissando = spannertools.Glissando()
-    attach(glissando, container[:])
+    container = abjad.Container("c'8 d'8 e'8 f'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, container[1:3])
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8 \glissando
@@ -23,5 +23,5 @@ def test_spannertools_Spanner_stop_offset_01():
         '''
         )
 
-    assert inspect_(beam).get_timespan().stop_offset == Duration(3, 8)
-    assert inspect_(glissando).get_timespan().stop_offset == Duration(4, 8)
+    assert abjad.inspect(beam).get_timespan().stop_offset == abjad.Duration(3, 8)
+    assert abjad.inspect(glissando).get_timespan().stop_offset == abjad.Duration(4, 8)

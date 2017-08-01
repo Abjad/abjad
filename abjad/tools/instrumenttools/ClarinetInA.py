@@ -6,36 +6,43 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class ClarinetInA(Instrument):
-    r'''A clarinet in A.
+    r'''Clarinet in A.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clarinet = instrumenttools.ClarinetInA()
-        >>> attach(clarinet, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Clarinet in A" }
-            \set Staff.shortInstrumentName = \markup {
-                Cl.
-                A
-                \natural
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> clarinet = abjad.instrumenttools.ClarinetInA()
+            >>> abjad.attach(clarinet, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Clarinet in A" }
+                \set Staff.shortInstrumentName = \markup {
+                    Cl.
+                    A
+                    \natural
+                }
+                c'4
+                d'4
+                e'4
+                fs'4
             }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -132,7 +139,7 @@ class ClarinetInA(Instrument):
             ::
 
                 >>> clarinet.pitch_range
-                PitchRange(range_string='[Db3, A6]')
+                PitchRange('[Db3, A6]')
 
             ::
 

@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_agenttools_MutationAgent_splice_01():
 
-    voice = Voice("c'8 d'8 e'8")
-    beam = Beam()
-    attach(beam, voice[:])
+    voice = abjad.Voice("c'8 d'8 e'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
 
-    result = mutate(voice[-1]).splice(
-        [Note("c'8"), Note("d'8"), Note("e'8")],
+    result = abjad.mutate(voice[-1]).splice(
+        [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8")],
         grow_spanners=True,
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
     assert result == voice[-4:]
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -33,15 +33,15 @@ def test_agenttools_MutationAgent_splice_02():
     r'''Splices leaf after interior leaf.
     '''
 
-    voice = Voice("c'8 d'8 e'8")
-    beam = Beam()
-    attach(beam, voice[:])
-    result = mutate(voice[1]).splice(
-        [Note("dqs'8")],
+    voice = abjad.Voice("c'8 d'8 e'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
+    result = abjad.mutate(voice[1]).splice(
+        [abjad.Note("dqs'8")],
         grow_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -53,24 +53,24 @@ def test_agenttools_MutationAgent_splice_02():
         )
 
     assert result == voice[1:3]
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_splice_03():
     r'''Splices tuplet after tuplet.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    voice = Voice([tuplet])
-    beam = Beam()
-    attach(beam, tuplet[:])
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    result = mutate(voice[-1]).splice(
+    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    voice = abjad.Voice([tuplet])
+    beam = abjad.Beam()
+    abjad.attach(beam, tuplet[:])
+    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    result = abjad.mutate(voice[-1]).splice(
         [tuplet],
         grow_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -87,7 +87,7 @@ def test_agenttools_MutationAgent_splice_03():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
     assert result == voice[:]
 
 
@@ -95,16 +95,16 @@ def test_agenttools_MutationAgent_splice_04():
     r'''Splices after container with underspanners.
     '''
 
-    voice = Voice(Container("c'8 c'8") * 2)
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
-    result = mutate(voice[0]).splice(
-        [Note("dqs'8")],
+    voice = abjad.Voice(abjad.Container("c'8 c'8") * 2)
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
+    result = abjad.mutate(voice[0]).splice(
+        [abjad.Note("dqs'8")],
         grow_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -120,7 +120,7 @@ def test_agenttools_MutationAgent_splice_04():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
     assert result == voice[0:2]
 
 
@@ -128,16 +128,16 @@ def test_agenttools_MutationAgent_splice_05():
     r'''Extends leaves rightwards after leaf.
     '''
 
-    voice = Voice("c'8 d'8 e'8")
-    beam = Beam()
-    attach(beam, voice[:])
+    voice = abjad.Voice("c'8 d'8 e'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
 
-    result = mutate(voice[-1]).splice(
-        [Note("c'8"), Note("d'8"), Note("e'8")],
+    result = abjad.mutate(voice[-1]).splice(
+        [abjad.Note("c'8"), abjad.Note("d'8"), abjad.Note("e'8")],
         grow_spanners=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -150,7 +150,7 @@ def test_agenttools_MutationAgent_splice_05():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
     assert result == voice[-4:]
 
 
@@ -158,16 +158,16 @@ def test_agenttools_MutationAgent_splice_06():
     r'''Extends leaf rightwards after interior leaf.
     '''
 
-    voice = Voice("c'8 d'8 e'8")
-    beam = Beam()
-    attach(beam, voice[:])
+    voice = abjad.Voice("c'8 d'8 e'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
 
-    result = mutate(voice[1]).splice(
-        [Note("dqs'8")],
+    result = abjad.mutate(voice[1]).splice(
+        [abjad.Note("dqs'8")],
         grow_spanners=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -179,24 +179,24 @@ def test_agenttools_MutationAgent_splice_06():
         )
 
     assert result == voice[1:3]
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_splice_07():
     r'''Splices leaves left of leaf.
     '''
 
-    voice = Voice("c'8 d'8 e'8")
-    beam = Beam()
-    attach(beam, voice[:])
-    notes = [Note("c'16"), Note("d'16"), Note("e'16")]
-    result = mutate(voice[0]).splice(
+    voice = abjad.Voice("c'8 d'8 e'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
+    notes = [abjad.Note("c'16"), abjad.Note("d'16"), abjad.Note("e'16")]
+    result = abjad.mutate(voice[0]).splice(
         notes,
         direction=Left,
         grow_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'16 [
@@ -209,7 +209,7 @@ def test_agenttools_MutationAgent_splice_07():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
     assert result == voice[:4]
 
 
@@ -217,16 +217,16 @@ def test_agenttools_MutationAgent_splice_08():
     r'''Splices leaf left of interior leaf.
     '''
 
-    voice = Voice("c'8 d'8 e'8")
-    beam = Beam()
-    attach(beam, voice[:])
-    result = mutate(voice[1]).splice(
-        [Note("dqf'8")],
+    voice = abjad.Voice("c'8 d'8 e'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
+    result = abjad.mutate(voice[1]).splice(
+        [abjad.Note("dqf'8")],
         direction=Left,
         grow_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -237,7 +237,7 @@ def test_agenttools_MutationAgent_splice_08():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
     assert result == voice[1:3]
 
 
@@ -245,18 +245,18 @@ def test_agenttools_MutationAgent_splice_09():
     r'''Splices tuplet left of tuplet.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    voice = Voice([tuplet])
-    beam = Beam()
-    attach(beam, tuplet[:])
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    result = mutate(voice[0]).splice(
+    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    voice = abjad.Voice([tuplet])
+    beam = abjad.Beam()
+    abjad.attach(beam, tuplet[:])
+    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    result = abjad.mutate(voice[0]).splice(
         [tuplet],
         direction=Left,
         grow_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -273,7 +273,7 @@ def test_agenttools_MutationAgent_splice_09():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
     assert result == voice[:]
 
 
@@ -281,17 +281,17 @@ def test_agenttools_MutationAgent_splice_10():
     r'''Splices left of container with underspanners.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
-    result = mutate(voice[1]).splice(
-        [Note("dqs'8")],
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
+    result = abjad.mutate(voice[1]).splice(
+        [abjad.Note("dqs'8")],
         direction=Left,
         grow_spanners=True,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -308,24 +308,24 @@ def test_agenttools_MutationAgent_splice_10():
         )
 
     assert result == voice[1:]
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_splice_11():
     r'''Extends leaves leftwards of leaf. Do not extend edge spanners.
     '''
 
-    voice = Voice("c'8 d'8 e'8")
-    beam = Beam()
-    attach(beam, voice[:])
-    notes = [Note("c'16"), Note("d'16"), Note("e'16")]
-    result = mutate(voice[0]).splice(
+    voice = abjad.Voice("c'8 d'8 e'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
+    notes = [abjad.Note("c'16"), abjad.Note("d'16"), abjad.Note("e'16")]
+    result = abjad.mutate(voice[0]).splice(
         notes,
         direction=Left,
         grow_spanners=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'16
@@ -338,7 +338,7 @@ def test_agenttools_MutationAgent_splice_11():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
     assert result == voice[:4]
 
 
@@ -346,16 +346,16 @@ def test_agenttools_MutationAgent_splice_12():
     r'''Extends leaf leftwards of interior leaf. Does extend interior spanners.
     '''
 
-    voice = Voice("c'8 d'8 e'8")
-    beam = Beam()
-    attach(beam, voice[:])
-    result = mutate(voice[1]).splice(
-        [Note("dqf'8")],
+    voice = abjad.Voice("c'8 d'8 e'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:])
+    result = abjad.mutate(voice[1]).splice(
+        [abjad.Note("dqf'8")],
         direction=Left,
         grow_spanners=False,
         )
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -367,4 +367,4 @@ def test_agenttools_MutationAgent_splice_12():
         )
 
     assert result == voice[1:3]
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()

@@ -7,7 +7,12 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QSchema(AbjadObject):
-    r'''The *schema* for a quantization run.
+    r'''Abstract Q-schema.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     ``QSchema`` allows for the specification of quantization settings
     diachronically, at any time-step of the quantization process.
@@ -68,8 +73,10 @@ class QSchema(AbjadObject):
     def __call__(self, duration):
         r'''Calls QSchema on `duration`.
         '''
+        import abjad
         target_items = []
         idx, current_offset = 0, 0
+        duration = abjad.Duration(duration)
         while current_offset < duration:
             lookup = self[idx]
             lookup['offset_in_ms'] = current_offset

@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadValueObject
+import collections
+from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
+from abjad.tools.abctools import AbjadValueObject
 
 
 class GroupByPitchCallback(AbjadValueObject):
     r'''Group-by-pitch selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -31,12 +37,12 @@ class GroupByPitchCallback(AbjadValueObject):
         argument,
         rotation=None,
         ):
-        r'''Calls selector callback on `argument`.
+        r'''Calls selector callback on iterable `argument`.
 
         Returns tuple of selections.
         '''
         import abjad
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         if len(argument) == 1 and isinstance(argument[0], abjad.Selection):
             selection = argument[0]
         else:

@@ -7,25 +7,29 @@ from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 class MeasuredComplexBeam(ComplexBeam):
     r'''Measured complex beam.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff()
-            >>> staff.append(Measure((2, 16), "c'16 d'16"))
-            >>> staff.append(Measure((2, 16), "e'16 f'16"))
-            >>> set_(staff).auto_beaming = False
+            >>> staff = abjad.Staff()
+            >>> staff.append(abjad.Measure((2, 16), "c'16 d'16"))
+            >>> staff.append(abjad.Measure((2, 16), "e'16 f'16"))
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> beam = spannertools.MeasuredComplexBeam()
-            >>> selector = select().by_leaf(flatten=True)
+            >>> beam = abjad.MeasuredComplexBeam()
+            >>> selector = abjad.select().by_leaf(flatten=True)
             >>> leaves = selector(staff)
-            >>> attach(beam, leaves)
+            >>> abjad.attach(beam, leaves)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -83,12 +87,7 @@ class MeasuredComplexBeam(ComplexBeam):
 
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
-        ComplexBeam._copy_keyword_args(self, new)
-        new._span_beam_count = self.span_beam_count
-
-    def _format_before_leaf(self, leaf):
-        result = []
+    def _add_beam_counts(self, leaf, bundle):
         left, right = None, None
         #if leaf.beam.beamable:
         if self._is_beamable(leaf):
@@ -112,11 +111,14 @@ class MeasuredComplexBeam(ComplexBeam):
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
                 string = r'\set stemLeftBeamCount = #{}'.format(left)
-                result.append(string)
+                bundle.before.commands.append(string)
             if right is not None:
                 string = r'\set stemRightBeamCount = #{}'.format(right)
-                result.append(string)
-        return result
+                bundle.before.commands.append(string)
+
+    def _copy_keyword_args(self, new):
+        ComplexBeam._copy_keyword_args(self, new)
+        new._span_beam_count = self.span_beam_count
 
     ### PUBLIC PROPERTIES ###
 
@@ -130,13 +132,13 @@ class MeasuredComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((2, 32), "c'32 d'32"))
-                >>> staff.append(Measure((2, 32), "e'32 f'32"))
-                >>> selector = select().by_leaf(flatten=True)
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((2, 32), "c'32 d'32"))
+                >>> staff.append(abjad.Measure((2, 32), "e'32 f'32"))
+                >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
-                >>> beam = spannertools.MeasuredComplexBeam(span_beam_count=1)
-                >>> attach(beam, leaves)
+                >>> beam = abjad.MeasuredComplexBeam(span_beam_count=1)
+                >>> abjad.attach(beam, leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -150,13 +152,13 @@ class MeasuredComplexBeam(ComplexBeam):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((2, 32), "c'32 d'32"))
-                >>> staff.append(Measure((2, 32), "e'32 f'32"))
-                >>> beam = spannertools.MeasuredComplexBeam(span_beam_count=2)
-                >>> selector = select().by_leaf(flatten=True)
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((2, 32), "c'32 d'32"))
+                >>> staff.append(abjad.Measure((2, 32), "e'32 f'32"))
+                >>> beam = abjad.MeasuredComplexBeam(span_beam_count=2)
+                >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
-                >>> attach(beam, leaves)
+                >>> abjad.attach(beam, leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ::

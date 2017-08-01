@@ -1,6 +1,10 @@
 Creating annotation-aware spanners
 ==================================
 
+..  abjad::
+
+    import abjad
+
 Key points:
 
 #. Investigate the internals of Abjad's ``Spanner`` class.
@@ -14,9 +18,9 @@ Key points:
     :reveal-label: OscillationSpanner
     :strip-prompt:
 
-    class OscillationSpanner(spannertools.Spanner):
+    class OscillationSpanner(abjad.Spanner):
 
-        class Size(datastructuretools.Enumeration):
+        class Size(abjad.Enumeration):
             NONE = 0
             SMALL = 1
             MEDIUM = 2
@@ -26,7 +30,7 @@ Key points:
             annotation = self._get_annotation(leaf)
             zigzag_width = int(annotation)
             if zigzag_width:
-                zigzag_width_override = lilypondnametools.LilyPondGrobOverride(
+                zigzag_width_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
                     is_once=True,
                     property_path='zigzag-width',
@@ -34,26 +38,26 @@ Key points:
                     )
                 override_string = zigzag_width_override.override_string
             else:
-                zigzag_off_override = lilypondnametools.LilyPondGrobOverride(
+                zigzag_off_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
                     is_once=True,
                     property_path='style',
-                    value=schemetools.SchemeSymbol('line'),
+                    value=abjad.SchemeSymbol('line'),
                     )
                 override_string = zigzag_off_override.override_string
             lilypond_format_bundle.grob_overrides.append(override_string)
 
         def _apply_spanner_start_overrides(self, lilypond_format_bundle):
-            grob_override = lilypondnametools.LilyPondGrobOverride(
+            grob_override = abjad.LilyPondGrobOverride(
                 grob_name='Glissando',
                 property_path='style',
-                value=schemetools.SchemeSymbol('zigzag'),
+                value=abjad.SchemeSymbol('zigzag'),
                 )
             override_string = grob_override.override_string
             lilypond_format_bundle.grob_overrides.append(override_string)
 
         def _apply_spanner_stop_overrides(self, lilypond_format_bundle):
-            grob_override = lilypondnametools.LilyPondGrobOverride(
+            grob_override = abjad.LilyPondGrobOverride(
                 grob_name='Glissando',
                 property_path='style',
                 )
@@ -61,7 +65,7 @@ Key points:
             lilypond_format_bundle.grob_reverts.append(revert_string)
 
         def _get_annotation(self, leaf):
-            annotations = inspect_(leaf).get_indicators(self.Size)
+            annotations = abjad.inspect(leaf).get_indicators(self.Size)
             if not annotations:
                 annotations = [self.Size.SMALL]
             return annotations[0]
@@ -75,8 +79,8 @@ Key points:
             if self._is_my_last_leaf(leaf):
                 self._apply_spanner_stop_overrides(lilypond_format_bundle)
                 return lilypond_format_bundle
-            prototype = (scoretools.Chord, scoretools.Note)
-            next_leaf = inspect_(leaf).get_leaf(1)
+            prototype = (abjad.Chord, abjad.Note)
+            next_leaf = abjad.inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
                 lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
                 self._apply_annotation_overrides(leaf, lilypond_format_bundle)
@@ -86,12 +90,12 @@ Key points:
     :hide:
 
     def make_annotated_staff():
-        staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
-        attach(OscillationSpanner.Size.LARGE, staff[0])
-        attach(OscillationSpanner.Size.MEDIUM, staff[1])
-        attach(OscillationSpanner.Size.SMALL, staff[2])
-        attach(OscillationSpanner.Size.NONE, staff[5])
-        attach(OscillationSpanner.Size.LARGE, staff[6])
+        staff = abjad.Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+        abjad.attach(OscillationSpanner.Size.LARGE, staff[0])
+        abjad.attach(OscillationSpanner.Size.MEDIUM, staff[1])
+        abjad.attach(OscillationSpanner.Size.SMALL, staff[2])
+        abjad.attach(OscillationSpanner.Size.NONE, staff[5])
+        abjad.attach(OscillationSpanner.Size.LARGE, staff[6])
         return staff
 
 ..  abjad::
@@ -99,7 +103,7 @@ Key points:
 
     staff = make_annotated_staff()
     spanner = OscillationSpanner()
-    attach(spanner, staff[:])
+    abjad.attach(spanner, staff[:])
     show(staff)
 
 Basic glissando functionality
@@ -107,17 +111,17 @@ Basic glissando functionality
 
 ..  abjad::
 
-    staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+    staff = abjad.Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
     show(staff)
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSpanner(spannertools.Spanner):
+    class OscillationSpanner(abjad.Spanner):
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
@@ -127,12 +131,12 @@ Basic glissando functionality
 ..  abjad::
 
     spanner = OscillationSpanner()
-    attach(spanner, staff[:])
+    abjad.attach(spanner, staff[:])
     show(staff)
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 Avoiding orphan and final leaves
 --------------------------------
@@ -147,7 +151,7 @@ Avoiding orphan and final leaves
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSpanner(spannertools.Spanner):
+    class OscillationSpanner(abjad.Spanner):
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
@@ -158,9 +162,9 @@ Avoiding orphan and final leaves
 
 ..  abjad::
 
-    staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+    staff = abjad.Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
     spanner = OscillationSpanner()
-    attach(spanner, staff[:])
+    abjad.attach(spanner, staff[:])
 
 ..  abjad::
 
@@ -168,7 +172,7 @@ Avoiding orphan and final leaves
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 Avoiding silences
 -----------------
@@ -176,23 +180,23 @@ Avoiding silences
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSpanner(spannertools.Spanner):
+    class OscillationSpanner(abjad.Spanner):
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
             if self._is_my_last_leaf(leaf) or self._is_my_only_leaf(leaf):
                 return lilypond_format_bundle
-            prototype = (scoretools.Chord, scoretools.Note)
-            next_leaf = inspect_(leaf).get_leaf(1)
+            prototype = (abjad.Chord, abjad.Note)
+            next_leaf = abjad.inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
                 lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
             return lilypond_format_bundle
 
 ..  abjad::
 
-    staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+    staff = abjad.Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
     spanner = OscillationSpanner()
-    attach(spanner, staff[:])
+    abjad.attach(spanner, staff[:])
 
 ..  abjad::
 
@@ -200,36 +204,36 @@ Avoiding silences
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 Making object-oriented typographic overrides
 --------------------------------------------
 
 ..  abjad::
 
-    staff = Staff("c'4 d'4 e'4 f'4")
-    override(staff[1]).note_head.style = 'cross'
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
+    abjad.override(staff[1]).note_head.style = 'cross'
     show(staff)
-    print(format(staff))
+    f(staff)
 
 ..  abjad::
 
-    grob_override = lilypondnametools.LilyPondGrobOverride(
+    grob_override = abjad.LilyPondGrobOverride(
         grob_name='NoteHead',
         is_once=True,
         property_path='style',
-        value=schemetools.SchemeSymbol('cross'),
+        value=abjad.SchemeSymbol('cross'),
         )
-    attach(grob_override, staff[2])
+    abjad.attach(grob_override, staff[2])
     show(staff)
-    print(format(staff))
+    f(staff)
 
 ..  abjad::
 
-    zigzag_override = lilypondnametools.LilyPondGrobOverride(
+    zigzag_override = abjad.LilyPondGrobOverride(
         grob_name='Glissando',
         property_path='style',
-        value=schemetools.SchemeSymbol('zigzag'),
+        value=abjad.SchemeSymbol('zigzag'),
         )
     zigzag_override.override_string
     zigzag_override.revert_string
@@ -240,44 +244,44 @@ Integrating overrides during formatting
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSpanner(spannertools.Spanner):
+    class OscillationSpanner(abjad.Spanner):
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
             if self._is_my_only_leaf(leaf):
                 return lilypond_format_bundle
             if self._is_my_first_leaf(leaf):
-                grob_override = lilypondnametools.LilyPondGrobOverride(
+                grob_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
                     property_path='style',
-                    value=schemetools.SchemeSymbol('zigzag'),
+                    value=abjad.SchemeSymbol('zigzag'),
                     )
                 override_string = grob_override.override_string
                 lilypond_format_bundle.grob_overrides.append(override_string)
             if self._is_my_last_leaf(leaf):
-                grob_override = lilypondnametools.LilyPondGrobOverride(
+                grob_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
                     property_path='style',
                     )
                 revert_string = grob_override.revert_string
                 lilypond_format_bundle.grob_reverts.append(revert_string)
                 return lilypond_format_bundle
-            prototype = (scoretools.Chord, scoretools.Note)
-            next_leaf = inspect_(leaf).get_leaf(1)
+            prototype = (abjad.Chord, abjad.Note)
+            next_leaf = abjad.inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
                 lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
             return lilypond_format_bundle
 
 ..  abjad::
 
-    staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+    staff = abjad.Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
     spanner = OscillationSpanner()
-    attach(spanner, staff[:])
+    abjad.attach(spanner, staff[:])
     show(staff)
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 A simple non-formatting annotation class
 ----------------------------------------
@@ -285,7 +289,7 @@ A simple non-formatting annotation class
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSize(datastructuretools.Enumeration):
+    class OscillationSize(abjad.Enumeration):
         NONE = 0
         SMALL = 1
         MEDIUM = 2
@@ -295,12 +299,12 @@ A simple non-formatting annotation class
     :strip-prompt:
 
     def make_annotated_staff():
-        staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
-        attach(OscillationSize.LARGE, staff[0])
-        attach(OscillationSize.MEDIUM, staff[1])
-        attach(OscillationSize.SMALL, staff[2])
-        attach(OscillationSize.NONE, staff[5])
-        attach(OscillationSize.MEDIUM, staff[6])
+        staff = abjad.Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+        abjad.attach(OscillationSize.LARGE, staff[0])
+        abjad.attach(OscillationSize.MEDIUM, staff[1])
+        abjad.attach(OscillationSize.SMALL, staff[2])
+        abjad.attach(OscillationSize.NONE, staff[5])
+        abjad.attach(OscillationSize.MEDIUM, staff[6])
         return staff
 
 ..  abjad::
@@ -310,7 +314,7 @@ A simple non-formatting annotation class
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 Making the spanner annotation-aware
 -----------------------------------
@@ -318,39 +322,39 @@ Making the spanner annotation-aware
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSpanner(spannertools.Spanner):
+    class OscillationSpanner(abjad.Spanner):
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
             if self._is_my_only_leaf(leaf):
                 return lilypond_format_bundle
             if self._is_my_first_leaf(leaf):
-                grob_override = lilypondnametools.LilyPondGrobOverride(
+                grob_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
                     property_path='style',
-                    value=schemetools.SchemeSymbol('zigzag'),
+                    value=abjad.SchemeSymbol('zigzag'),
                     )
                 override_string = grob_override.override_string
                 lilypond_format_bundle.grob_overrides.append(override_string)
             if self._is_my_last_leaf(leaf):
-                grob_override = lilypondnametools.LilyPondGrobOverride(
+                grob_override = abjad.LilyPondGrobOverride(
                     grob_name='Glissando',
                     property_path='style',
                     )
                 revert_string = grob_override.revert_string
                 lilypond_format_bundle.grob_reverts.append(revert_string)
                 return lilypond_format_bundle
-            prototype = (scoretools.Chord, scoretools.Note)
-            next_leaf = inspect_(leaf).get_leaf(1)
+            prototype = (abjad.Chord, abjad.Note)
+            next_leaf = abjad.inspect(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
                 lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
-                annotations = inspect_(leaf).get_indicators(OscillationSize)
+                annotations = abjad.inspect(leaf).get_indicators(OscillationSize)
                 if not annotations:
                     annotations = [OscillationSize.SMALL]
                 annotation = annotations[0]
                 zigzag_width = int(annotation)
                 if zigzag_width:
-                    zigzag_width_override = lilypondnametools.LilyPondGrobOverride(
+                    zigzag_width_override = abjad.LilyPondGrobOverride(
                         grob_name='Glissando',
                         is_once=True,
                         property_path='zigzag-width',
@@ -358,11 +362,11 @@ Making the spanner annotation-aware
                         )
                     override_string = zigzag_width_override.override_string
                 else:
-                    zigzag_off_override = lilypondnametools.LilyPondGrobOverride(
+                    zigzag_off_override = abjad.LilyPondGrobOverride(
                         grob_name='Glissando',
                         is_once=True,
                         property_path='style',
-                        value=schemetools.SchemeSymbol('line'),
+                        value=abjad.SchemeSymbol('line'),
                         )
                     override_string = zigzag_off_override.override_string
                 lilypond_format_bundle.grob_overrides.append(override_string)
@@ -372,12 +376,12 @@ Making the spanner annotation-aware
 
     staff = make_annotated_staff()
     spanner = OscillationSpanner()
-    attach(spanner, staff[:])
+    abjad.attach(spanner, staff[:])
     show(staff)
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 Refactoring the custom spanner class
 ------------------------------------
@@ -389,15 +393,15 @@ Preparing for deployment
 
 ..  abjad::
 
-    staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+    staff = abjad.Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
 
 ..  abjad::
 
-    selector = selectortools.Selector().by_leaf().by_run(Note)[:-1].flatten()
+    selector = abjad.Selector().by_leaf().by_run(abjad.Note)[:-1].flatten()
 
 ..  abjad::
 
-    selector = selectortools.Selector()
+    selector = abjad.Selector()
     for x in selector(staff):
         x
 
@@ -427,7 +431,7 @@ Preparing for deployment
 
 ..  abjad::
 
-    annotations = datastructuretools.CyclicTuple([
+    annotations = abjad.CyclicTuple([
         OscillationSpanner.Size.LARGE,
         OscillationSpanner.Size.MEDIUM,
         OscillationSpanner.Size.SMALL,
@@ -442,9 +446,9 @@ Preparing for deployment
 
 ..  abjad::
 
-    attach(OscillationSpanner(), staff)
+    abjad.attach(OscillationSpanner(), staff)
     for i, leaf in enumerate(selector(staff)):
-        attach(annotations[i], leaf)
+        abjad.attach(annotations[i], leaf)
 
     show(staff)
 
@@ -455,9 +459,9 @@ Deploying the spanner
 
     talea_rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         burnish_specifier=rhythmmakertools.BurnishSpecifier(
-            left_classes=[Rest],
+            left_classes=[abjad.Rest],
             left_counts=[0, 1],
-            right_classes=[Rest],
+            right_classes=[abjad.Rest],
             right_counts=[0, 0, 1],
             ),
         extra_counts_per_division=[1, 0, 0],
@@ -472,8 +476,8 @@ Deploying the spanner
 
     divisions = [(5, 8), (7, 8), (4, 8), (6, 8), (5, 4), (4, 4), (3, 4)]
     selections = talea_rhythm_maker(divisions)
-    measures = Measure.from_selections(selections, time_signatures=divisions)
-    staff = Staff(measures)
+    measures = abjad.Measure.from_selections(selections, time_signatures=divisions)
+    staff = abjad.Staff(measures)
     show(staff)
 
 All of the notes' pitches are middle-C, so we'll apply some pitches cyclically
@@ -481,7 +485,7 @@ to each logical tie:
 
 ..  abjad::
 
-    pitches = datastructuretools.CyclicTuple(
+    pitches = abjad.CyclicTuple(
         ["b'", "d''", "g'", "f''", "b'", "g'", "c'", "e'", "g'"],
         )
     for i, logical_tie in enumerate(iterate(staff).by_logical_tie(pitched=True)):
@@ -493,9 +497,9 @@ Now we apply the ``OscillationSpanner`` and the cyclic sequence of
 
 ..  abjad::
 
-    attach(OscillationSpanner(), staff)
+    abjad.attach(OscillationSpanner(), staff)
     for i, leaf in enumerate(selector(staff)):
-        attach(annotations[i], leaf)
+        abjad.attach(annotations[i], leaf)
 
 The result?
 
@@ -511,27 +515,27 @@ via rotation:
     :strip-prompt:
 
     def make_fancy_staff(rotation=0):
-        annotations = datastructuretools.CyclicTuple(sequence([
+        annotations = abjad.CyclicTuple(sequence([
             OscillationSpanner.Size.LARGE,
             OscillationSpanner.Size.MEDIUM,
             OscillationSpanner.Size.SMALL,
             OscillationSpanner.Size.NONE,
             ]).rotate(rotation))
         divisions = [(5, 8), (7, 8), (4, 8), (6, 8), (5, 4), (4, 4), (3, 4)]
-        divisions = sequence(divisions).rotate(rotation)
-        pitches = datastructuretools.CyclicTuple(sequence(
+        divisions = abjad.sequence(divisions).rotate(rotation)
+        pitches = abjad.CyclicTuple(sequence(
             ["b'", "d''", "g'", "f''", "b'", "g'", "c'", "e'", "g'"],
             ).rotate(rotation))
         selections = talea_rhythm_maker(divisions, rotation=rotation)
-        measures = Measure.from_selections(selections, time_signatures=divisions)
-        staff = Staff(measures)
+        measures = abjad.Measure.from_selections(selections, time_signatures=divisions)
+        staff = abjad.Staff(measures)
         for i, logical_tie in enumerate(iterate(staff).by_logical_tie(pitched=True)):
             for note in logical_tie:
                 note.written_pitch = pitches[i]
-        selector = selectortools.Selector().by_leaf().by_run(Note)[:-1].flatten()
+        selector = abjad.Selector().by_leaf().by_run(abjad.Note)[:-1].flatten()
         for i, leaf in enumerate(selector(staff)):
-            attach(annotations[i], leaf)
-        attach(OscillationSpanner(), staff)
+            abjad.attach(annotations[i], leaf)
+        abjad.attach(OscillationSpanner(), staff)
         return staff
 
 ..  abjad::

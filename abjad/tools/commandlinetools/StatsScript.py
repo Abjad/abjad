@@ -3,7 +3,7 @@ from __future__ import print_function
 import inspect
 import os
 import types
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 
 
@@ -17,6 +17,9 @@ class StatsScript(CommandlineScript):
     '''
 
     ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     alias = 'stats'
     short_description = 'Build statistics about Python modules in PATH.'
@@ -35,7 +38,7 @@ class StatsScript(CommandlineScript):
         return results
 
     def _print_results(self, counts):
-        template = stringtools.normalize('''
+        template = datastructuretools.String.normalize('''
         Source lines: {source_lines}
         Public classes: {public_classes}
             Unique public methods: {unique_public_methods}

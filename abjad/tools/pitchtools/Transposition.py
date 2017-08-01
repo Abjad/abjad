@@ -6,18 +6,23 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Transposition(AbjadValueObject):
     r'''Transposition operator.
 
+    ::
+
+        >>> import abjad
+        >>> import pytest
+
     ..  container:: example
 
         ::
 
-            >>> Transposition()
+            >>> abjad.Transposition()
             Transposition(n=0)
 
     ..  container:: example
 
         ::
 
-            >>> Transposition(n=2)
+            >>> abjad.Transposition(n=2)
             Transposition(n=2)
 
     Object model of twelve-tone transposition operator.
@@ -46,15 +51,15 @@ class Transposition(AbjadValueObject):
             ::
 
                 >>> items = [0, 2, 4, 5]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
     
             Example operators:
 
             ::
 
-                >>> T_1 = Transposition(n=1)
-                >>> T_3 = Transposition(n=3)
+                >>> T_1 = abjad.Transposition(n=1)
+                >>> T_3 = abjad.Transposition(n=3)
 
         ..  container:: example
 
@@ -71,10 +76,10 @@ class Transposition(AbjadValueObject):
                 >>> segment_ = operator(segment)
                 >>> show(segment_) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     e'8
                     fs'8
@@ -99,10 +104,10 @@ class Transposition(AbjadValueObject):
                 >>> segment_ = operator(segment)
                 >>> show(segment_) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     e'8
                     fs'8
@@ -126,8 +131,8 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> transposition = Transposition(n=2)
-                >>> pitch_class = NumberedPitchClass(1)
+                >>> transposition = abjad.Transposition(n=2)
+                >>> pitch_class = abjad.NumberedPitchClass(1)
                 >>> transposition(pitch_class)
                 NumberedPitchClass(3)
 
@@ -137,8 +142,8 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> transposition = Transposition(n=2)
-                >>> pitch = NumberedPitch(15)
+                >>> transposition = abjad.Transposition(n=2)
+                >>> pitch = abjad.NumberedPitch(15)
                 >>> transposition(pitch)
                 NumberedPitch(17)
 
@@ -148,8 +153,8 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> transposition = Transposition(n=2)
-                >>> pitches = [NumberedPitch(_) for _ in [15, 16]]
+                >>> transposition = abjad.Transposition(n=2)
+                >>> pitches = [abjad.NumberedPitch(_) for _ in [15, 16]]
                 >>> transposition(pitches)
                 [NumberedPitch(17), NumberedPitch(18)]
 
@@ -169,6 +174,23 @@ class Transposition(AbjadValueObject):
             raise TypeError(message)
         return result
 
+    def __radd__(self, operator):
+        r'''Right-addition not defined on transposition.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = 'abjad.Transposition().__radd__(abjad.Transposition())'
+                >>> pytest.raises(NotImplementedError, string)
+                <ExceptionInfo NotImplementedError ...>
+
+        Raises not implemented error.
+        '''
+        message = 'right-addition not defined on {}.'
+        message = message.format(type(self).__name__)
+        raise NotImplementedError(message)
+
     def __str__(self):
         r'''Gets string representation of operator.
 
@@ -176,14 +198,14 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> str(Transposition())
+                >>> str(abjad.Transposition())
                 'T0'
 
         ..  container:: example
 
             ::
 
-                >>> str(Transposition(n=2))
+                >>> str(abjad.Transposition(n=2))
                 'T2'
 
         '''
@@ -215,7 +237,7 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> transposition = Transposition()
+                >>> transposition = abjad.Transposition()
                 >>> transposition.n
                 0
 
@@ -223,7 +245,7 @@ class Transposition(AbjadValueObject):
 
             ::
 
-                >>> transposition = Transposition(n=2)
+                >>> transposition = abjad.Transposition(n=2)
                 >>> transposition.n
                 2
 

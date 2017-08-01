@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 from abjad import abjad_configuration
-from abjad.tools import commandlinetools
-from abjad.tools import stringtools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
 try:
     from unittest import mock
@@ -15,7 +13,7 @@ class Test(ScorePackageScriptTestCase):
 
     def side_effect(self, command, **keywords):
         _, file_name = command.split()
-        contents = stringtools.normalize('''
+        contents = abjad.String.normalize('''
         segment_c
         segment_b
         segment_a
@@ -30,10 +28,10 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_a')
         self.create_segment('segment_b')
         self.create_segment('segment_c')
-        script = commandlinetools.ManageSegmentScript()
+        script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--stage']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:
@@ -51,8 +49,8 @@ class Test(ScorePackageScriptTestCase):
             )
         call_subprocess_mock.side_effect = self.side_effect
         self.reset_string_io()
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:

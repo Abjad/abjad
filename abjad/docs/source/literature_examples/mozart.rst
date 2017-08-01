@@ -1,11 +1,10 @@
 Mozart: *Musikalisches Würfelspiel*
 ===================================
 
-..  note::
+..  abjad::
 
-    Explore the ``abjad/demos/mozart/`` directory for the complete code to this
-    example, or import it into your Python session directly with ``from
-    abjad.demos import mozart``.
+    import abjad
+    from abjad.demos import mozart
 
 ..  abjad::
     :hide:
@@ -63,11 +62,11 @@ well as beams, slurs, ties, and articulations.
 
 ..  abjad::
 
-    staff = Staff("""
+    staff = abjad.Staff("""
         c'4 ( d'4 <cs' e'>8 ) -. r8 
         <g' b' d''>4 ^ \marcato ~ <g' b' d''>1
         """)
-    print(format(staff))
+    f(staff)
 
 ..  abjad::
     :stylesheet: non-proportional.ly
@@ -96,21 +95,17 @@ in the piece will be represented by a list of fragment dictionaries.
 Furthermore, the 8th measure, which breaks the pattern, will simply be a list
 of two fragment dictionaries.  Structuring our information in this way lets us
 avoid using measure number tables entirely; Python's list-indexing affordances
-will take care of that for us.  The complete corpus looks like this:
+will take care of that for us.  The complete corpus looks like this.
 
-..  import:: abjad.demos.mozart.make_mozart_measure_corpus:make_mozart_measure_corpus
-
-We can then use the :py:func:`~abjad.tools.systemtools.p` function we saw earlier
-to "build" the treble and bass components of a measure like this:
-
-..  import:: abjad.demos.mozart.make_mozart_measure:make_mozart_measure
+We can then use the :py:func:`~abjad.tools.systemtools.p` function we saw
+earlier to "build" the treble and bass components of a measure like this:
 
 Let's try with a measure-definition of our own:
 
 ..  abjad::
 
     my_measure_dict = {'b': r'c4 ^\trill r8', 't': "e''8 ( c''8 g'8 )"}
-    treble, bass = make_mozart_measure(my_measure_dict)
+    treble, bass = mozart.make_mozart_measure(my_measure_dict)
 
 ..  abjad::
 
@@ -125,8 +120,8 @@ We'll grab the very last choice for the very last measure:
 
 ..  abjad::
 
-    my_measure_dict = make_mozart_measure_corpus()[-1][-1]
-    treble, bass = make_mozart_measure(my_measure_dict)
+    my_measure_dict = mozart.make_mozart_measure_corpus()[-1][-1]
+    treble, bass = mozart.make_mozart_measure(my_measure_dict)
 
 ..  abjad::
 
@@ -147,9 +142,9 @@ elements into a musical structure is relatively trivial.  We'll use the
 ..  abjad::
 
     import random
-    my_list = [1, 'b', 3]
-    my_result = [random.choice(my_list) for i in range(20)]
-    my_result
+    list_ = [1, 'b', 3]
+    result = [random.choice(list_) for i in range(20)]
+    result
 
 Our corpus is a list comprising sixteen sublists, one for each measure in the
 minuet.  To build our musical structure, we can simply iterate through the
@@ -163,20 +158,15 @@ iterate through the corpus and apply some different logic.
 
 The easist way to intercept measure eight is to use the Python builtin
 `enumerate`, which allows you to iterate through a collection while also
-getting the index of each element in that collection:
-
-..  import:: abjad.demos.mozart.choose_mozart_measures:choose_mozart_measures
-
-..  note::
-
-    In `choose_mozart_measures` we test for index *7*, rather then *8*, because
-    list indices count from *0* instead of *1*.
+getting the index of each element in that collection. Note that In
+`mozart.choose_mozart_measures()` we test for index *7*, rather then *8*,
+because list indices count from *0* instead of *1*.
 
 The result will be a *seventeen*-item-long list of measure definitions:
 
 ..  abjad::
 
-    choices = choose_mozart_measures()
+    choices = mozart.choose_mozart_measures()
     for i, measure in enumerate(choices):
         print(i, measure)
 
@@ -210,18 +200,18 @@ to place LilyPond commands like "\break" relative to any score component:
 
 ..  abjad::
 
-    container = Container("c'4 d'4 e'4 f'4")
-    command = indicatortools.LilyPondCommand('before-the-container', 'before')
-    attach(command, container)
-    command = indicatortools.LilyPondCommand('after-the-container', 'after')
-    attach(command, container)
-    command = indicatortools.LilyPondCommand('opening-of-the-container', 'opening')
-    attach(command, container)
-    command = indicatortools.LilyPondCommand('closing-of-the-container', 'closing')
-    attach(command, container)
-    command = indicatortools.LilyPondCommand('to-the-right-of-a-note', 'right')
-    attach(command, container[2])
-    print(format(container))
+    container = abjad.Container("c'4 d'4 e'4 f'4")
+    command = abjad.LilyPondCommand('before-the-container', 'before')
+    abjad.attach(command, container)
+    command = abjad.LilyPondCommand('after-the-container', 'after')
+    abjad.attach(command, container)
+    command = abjad.LilyPondCommand('opening-of-the-container', 'opening')
+    abjad.attach(command, container)
+    command = abjad.LilyPondCommand('closing-of-the-container', 'closing')
+    abjad.attach(command, container)
+    command = abjad.LilyPondCommand('to-the-right-of-a-note', 'right')
+    abjad.attach(command, container[2])
+    f(container)
 
 Notice the second argument to each
 :py:class:`~abjad.tools.indicatortools.LilyPondCommand` above, like `before`
@@ -234,18 +224,13 @@ container's opening curly brace.
 
 Now let's take a look at the code that puts our score together:
 
-..  import:: abjad.demos.mozart.make_mozart_score:make_mozart_score
-
 ..  abjad::
     :stylesheet: non-proportional.ly
 
-    score = make_mozart_score()
+    score = mozart.make_mozart_score()
     show(score)
 
-..  note::
-
-    Our instrument name got cut off!  Looks like we need to do a little
-    formatting.  Keep reading...
+Our instrument name got cut off!  Looks like we need to do a little formatting.
 
 The document
 ------------
@@ -263,11 +248,9 @@ wrap our :py:class:`~abjad.tools.scoretools.Score` inside a
 we can access the other "blocks" of our document to add a title, a composer's
 name, change the global staff size, paper size, staff spacing and so forth.
 
-..  import:: abjad.demos.mozart.make_mozart_lilypond_file:make_mozart_lilypond_file
-
 ..  abjad::
 
-    lilypond_file = make_mozart_lilypond_file()
+    lilypond_file = mozart.make_mozart_lilypond_file()
     print(lilypond_file)
 
 ..  abjad::
@@ -300,3 +283,7 @@ And now the final result:
     :stylesheet: non-proportional.ly
 
     show(lilypond_file)
+
+Explore the ``abjad/demos/mozart/`` directory for the complete code to this
+example, or import it into your Python session directly with ``from
+abjad.demos import mozart``.

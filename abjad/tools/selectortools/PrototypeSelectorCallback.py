@@ -7,6 +7,11 @@ from abjad.tools.topleveltools import select
 
 class PrototypeSelectorCallback(AbjadValueObject):
     r'''Prototype selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -34,7 +39,7 @@ class PrototypeSelectorCallback(AbjadValueObject):
         prototype = prototype or ()
         if isinstance(prototype, collections.Sequence):
             prototype = tuple(prototype)
-            assert all(isinstance(x, type) for x in prototype)
+            assert all(isinstance(_, type) for _ in prototype)
         assert isinstance(prototype, (tuple, type))
         self._prototype = prototype
         if flatten is not None:
@@ -56,12 +61,12 @@ class PrototypeSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument, rotation=None):
-        r'''Iterates tuple `argument`.
+        r'''Iterates `argument`.
 
         Returns tuple of selections.
         '''
         import abjad
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         result = []
         prototype = self.prototype
         if not isinstance(prototype, tuple):
@@ -96,7 +101,7 @@ class PrototypeSelectorCallback(AbjadValueObject):
         result_ = []
         for item in result:
             if isinstance(item, abjad.Component):
-                logical_tie = abjad.inspect_(item).get_logical_tie()
+                logical_tie = abjad.inspect(item).get_logical_tie()
                 if head == (item is logical_tie.head):
                     result_.append(item)
                 else:
@@ -106,7 +111,7 @@ class PrototypeSelectorCallback(AbjadValueObject):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
-                    logical_tie = abjad.inspect_(component).get_logical_tie()
+                    logical_tie = abjad.inspect(component).get_logical_tie()
                     if head == logical_tie.head:
                         selection.append(item)
                     else:
@@ -124,7 +129,7 @@ class PrototypeSelectorCallback(AbjadValueObject):
         result_ = []
         for item in result:
             if isinstance(item, abjad.Component):
-                logical_tie = abjad.inspect_(item).get_logical_tie()
+                logical_tie = abjad.inspect(item).get_logical_tie()
                 if tail == (item is logical_tie.tail):
                     result_.append(item)
                 else:
@@ -134,7 +139,7 @@ class PrototypeSelectorCallback(AbjadValueObject):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
-                    logical_tie = abjad.inspect_(component).get_logical_tie()
+                    logical_tie = abjad.inspect(component).get_logical_tie()
                     if tail == logical_tie.tail:
                         selection.append(item)
                     else:

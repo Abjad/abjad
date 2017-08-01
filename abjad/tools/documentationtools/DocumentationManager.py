@@ -20,6 +20,9 @@ class DocumentationManager(abctools.AbjadObject):
 
     __documentation_section__ = 'Documenters'
 
+    __slots__ = (
+        )
+
     api_directory_name = 'api'
 
     api_title = 'Abjad API'

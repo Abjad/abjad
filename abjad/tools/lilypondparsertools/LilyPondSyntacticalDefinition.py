@@ -9,11 +9,12 @@ from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 
 
+# TODO: should not inherit from AbjadObject because no slots
 class LilyPondSyntacticalDefinition(AbjadObject):
     r'''The syntactical definition of LilyPond's syntax.
 
@@ -23,8 +24,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     Used internally by ``LilyPondParser``.
     '''
-
-    ### CLASS VARIABLES ###
 
     start = 'start_symbol'
 
@@ -1104,7 +1103,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             multiplier = durationtools.Multiplier(p[2].multiplier)
             attach(multiplier, chord)
         self.client._process_post_events(chord, p[3])
-        annotation = indicatortools.Annotation('UnrelativableMusic')
+        annotation = {'UnrelativableMusic': True}
         attach(annotation, chord)
         if self.client._last_chord not in self.client._repeated_chords:
             self.client._repeated_chords[self.client._last_chord] = []
@@ -2648,7 +2647,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[2].direction = p[1]
         except AttributeError:
             direction = \
-                stringtools.to_tridirectional_ordinal_constant(p[1])
+                datastructuretools.String.to_tridirectional_ordinal_constant(p[1])
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]
@@ -2664,7 +2663,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[2].direction = p[1]
         except AttributeError:
             direction = \
-                stringtools.to_tridirectional_ordinal_constant(p[1])
+                datastructuretools.String.to_tridirectional_ordinal_constant(p[1])
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]
@@ -3266,12 +3265,12 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_tempo_event__TEMPO__scalar(self, p):
         'tempo_event : TEMPO scalar'
-        p[0] = indicatortools.Tempo(textual_indication=str(p[2]))
+        p[0] = indicatortools.MetronomeMark(textual_indication=str(p[2]))
 
     def p_tempo_event__TEMPO__scalar_closed__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO scalar_closed steno_duration '=' tempo_range"
-        #p[0] = indicatortools.Tempo(str(p[2]), p[3].duration, p[5])
-        p[0] = indicatortools.Tempo(
+        #p[0] = indicatortools.MetronomeMark(str(p[2]), p[3].duration, p[5])
+        p[0] = indicatortools.MetronomeMark(
             reference_duration=p[3].duration,
             units_per_minute=p[5],
             textual_indication=str(p[2]),
@@ -3279,7 +3278,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_tempo_event__TEMPO__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO steno_duration '=' tempo_range"
-        p[0] = indicatortools.Tempo(
+        p[0] = indicatortools.MetronomeMark(
             reference_duration=p[2].duration,
             units_per_minute=p[4],
             )

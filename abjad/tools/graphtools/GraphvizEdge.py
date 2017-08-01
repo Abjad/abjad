@@ -144,8 +144,8 @@ class GraphvizEdge(GraphvizMixin):
         return self._is_directed
 
     @is_directed.setter
-    def is_directed(self, arg):
-        self._is_directed = bool(arg)
+    def is_directed(self, argument):
+        self._is_directed = bool(argument)
 
     @property
     def tail(self):

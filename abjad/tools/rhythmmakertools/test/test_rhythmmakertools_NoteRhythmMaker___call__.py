@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_NoteRhythmMaker___call___01():
@@ -8,13 +9,14 @@ def test_rhythmmakertools_NoteRhythmMaker___call___01():
 
     divisions = [(5, 16), (3, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
-    staff = Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = abjad.Staff(measures)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -42,13 +44,14 @@ def test_rhythmmakertools_NoteRhythmMaker___call___02():
 
     divisions = [(5, 16), (3, 8)]
     leaf_lists = maker(divisions)
-    leaves = Sequence(leaf_lists).flatten()
+    leaves = abjad.Sequence(leaf_lists).flatten()
 
-    measures = scoretools.make_spacer_skip_measures(divisions)
-    staff = Staff(measures)
-    mutate(staff).replace_measure_contents(leaves)
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = abjad.Staff(measures)
+    abjad.mutate(staff).replace_measure_contents(leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {

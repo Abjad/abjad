@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
-from abjad.tools import commandlinetools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
 
 
@@ -12,10 +11,10 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_one')
         self.create_segment('segment_two')
         self.create_segment('segment_three')
-        script = commandlinetools.ManageSegmentScript()
+        script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--list']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 2
@@ -29,10 +28,10 @@ class Test(ScorePackageScriptTestCase):
 
     def test_list_segments_no_segments(self):
         self.create_score()
-        script = commandlinetools.ManageSegmentScript()
+        script = abjad.commandlinetools.ManageSegmentScript()
         command = ['--list']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 2
@@ -47,7 +46,7 @@ class Test(ScorePackageScriptTestCase):
         self.create_segment('segment_one')
         self.create_segment('segment_two')
         self.create_segment('segment_three')
-        script = commandlinetools.ManageSegmentScript()
+        script = abjad.commandlinetools.ManageSegmentScript()
         segment_names = script._read_segments_list_json(
             self.score_path,
             verbose=False,
@@ -59,8 +58,8 @@ class Test(ScorePackageScriptTestCase):
             verbose=False,
             )
         command = ['--list']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 2

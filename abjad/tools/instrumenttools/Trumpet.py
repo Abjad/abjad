@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Trumpet(Instrument):
-    r'''A trumpet.
+    r'''Trumpet.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> trumpet = instrumenttools.Trumpet()
-        >>> attach(trumpet, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Trumpet }
-            \set Staff.shortInstrumentName = \markup { Tp. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> trumpet = abjad.instrumenttools.Trumpet()
+            >>> abjad.attach(trumpet, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Trumpet }
+                \set Staff.shortInstrumentName = \markup { Tp. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -126,7 +133,7 @@ class Trumpet(Instrument):
             ::
 
                 >>> trumpet.pitch_range
-                PitchRange(range_string='[F#3, D6]')
+                PitchRange('[F#3, D6]')
 
             ::
 

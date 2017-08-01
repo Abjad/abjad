@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import abjad_configuration
-from abjad.tools import commandlinetools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
 try:
     from unittest import mock
@@ -16,10 +15,10 @@ class Test(ScorePackageScriptTestCase):
         call_subprocess_mock.return_value = 0
         self.create_score()
         material_path = self.create_material('test_material')
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--edit', 'test_material']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit as e:

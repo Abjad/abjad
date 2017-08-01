@@ -7,11 +7,19 @@ from abjad.tools.abctools import AbjadObject
 
 class TestManager(AbjadObject):
     r'''Manages test logic.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Managers'
+
+    __slots__ = (
+        )
 
     ### PRIVATE METHODS ###
 
@@ -199,9 +207,9 @@ class TestManager(AbjadObject):
                 voice_2 = staff[1]
                 topleveltools.override(voice_2).note_head.Y_offset = -0.5
                 topleveltools.override(voice_2).stem.direction = Down
-                spacing_vector = schemetools.make_spacing_vector(0, 0, 6, 0)
+                vector = schemetools.SpacingVector(0, 0, 6, 0)
                 manager = topleveltools.override(staff)
-                manager.vertical_axis_group.staff_staff_spacing = spacing_vector
+                manager.vertical_axis_group.staff_staff_spacing = vector
         # provide more space between staves with pitched notes
         score = lilypond_file[Score]
         for staff in topleveltools.iterate(score).by_class(scoretools.Staff):
@@ -214,17 +222,10 @@ class TestManager(AbjadObject):
                 else:
                     message = 'no staff group context block found.'
                     raise Exception(message)
-                spacing_vector = schemetools.make_spacing_vector(0, 0, 6, 0)
+                spacing_vector = schemetools.SpacingVector(0, 0, 6, 0)
                 manager = topleveltools.override(item)
                 manager.vertical_axis_group.staff_staff_spacing = spacing_vector
             break
-
-    @staticmethod
-    def clean_string(string):
-        r'''Cleans string.
-        '''
-        from abjad.tools import stringtools
-        return stringtools.normalize(string)
 
     @staticmethod
     def compare(string_1, string_2):
@@ -325,7 +326,9 @@ class TestManager(AbjadObject):
         elif not isinstance(object_two, type(object_one)):
             return False
         agent_two = systemtools.StorageFormatAgent(object_two)
-        return agent_one.get_template_dict() == agent_two.get_template_dict()
+        template_1 = agent_one.get_template_dict()
+        template_2 = agent_two.get_template_dict()
+        return template_1 == template_2
 
     @staticmethod
     def diff(object_a, object_b, title=None):
@@ -333,6 +336,7 @@ class TestManager(AbjadObject):
 
         ::
 
+            >>> from abjad.tools import rhythmmakertools
             >>> one = rhythmmakertools.TaleaRhythmMaker(
             ...     talea=rhythmmakertools.Talea(
             ...         counts=[1, 2, 3],
@@ -351,7 +355,7 @@ class TestManager(AbjadObject):
 
         ::
 
-            >>> diff = systemtools.TestManager.diff(one, two, 'Diff:')
+            >>> diff = abjad.TestManager.diff(one, two, 'Diff:')
             >>> print(diff)
             Diff:
               rhythmmakertools.TaleaRhythmMaker(
@@ -391,7 +395,7 @@ class TestManager(AbjadObject):
         ::
 
             >>> def foo():
-            ...        function_name = systemtools.TestManager.get_current_function_name()
+            ...        function_name = abjad.TestManager.get_current_function_name()
             ...        print('Function name is {!r}.'.format(function_name))
 
         ::
@@ -431,44 +435,45 @@ class TestManager(AbjadObject):
             string = f.read()
         return string
 
-    @staticmethod
-    def test_function_name_to_title_lines(test_function_name):
-        r'''Changes `test_function_name` to title lines.
-
-        Returns list.
-        '''
-        from abjad.tools import sequencetools
-        title_lines = []
-        test_function_name = test_function_name[5:]
-        if '__' in test_function_name:
-            left_half, right_half = test_function_name.split('__')
-            left_half = left_half.replace('_', ' ')
-            title_lines.append(left_half)
-            parts = right_half.split('_')
-        else:
-            parts = test_function_name.split('_')
-        test_number = int(parts[-1])
-        parts.pop(-1)
-        if parts[0][0].isupper() and 1 < len(parts[0]):
-            title_lines.append(parts.pop(0))
-        lengths = [len(part) for part in parts]
-        if 35 < sum(lengths):
-            halves = baca.Sequence(halves)
-            halves = halves.partition_by_ratio_of_weights(ratio=[1, 1])
-            left_count = len(halves[0])
-            right_count = len(halves[-1])
-            assert left_count + right_count == len(lengths)
-            left_parts = parts[:left_count]
-            title_lines.append(' '.join(left_parts))
-            right_parts = parts[-right_count:]
-            right_parts.append(str(test_number))
-            title_lines.append(' '.join(right_parts))
-        else:
-            title_words = ' '.join(parts)
-            if 'schematic example' in title_words:
-                space = ''
-            else:
-                space = ' '
-            title = '{}{}{}'.format(title_words, space, test_number)
-            title_lines.append(title)
-        return title_lines
+    # TODO: REMOVE
+#    @staticmethod
+#    def test_function_name_to_title_lines(test_function_name):
+#        r'''Changes `test_function_name` to title lines.
+#
+#        Returns list.
+#        '''
+#        from abjad.tools import datastructuretools
+#        title_lines = []
+#        test_function_name = test_function_name[5:]
+#        if '__' in test_function_name:
+#            left_half, right_half = test_function_name.split('__')
+#            left_half = left_half.replace('_', ' ')
+#            title_lines.append(left_half)
+#            parts = right_half.split('_')
+#        else:
+#            parts = test_function_name.split('_')
+#        test_number = int(parts[-1])
+#        parts.pop(-1)
+#        if parts[0][0].isupper() and 1 < len(parts[0]):
+#            title_lines.append(parts.pop(0))
+#        lengths = [len(part) for part in parts]
+#        if 35 < sum(lengths):
+#            halves = baca.Sequence(halves)
+#            halves = halves.partition_by_ratio_of_weights(ratio=[1, 1])
+#            left_count = len(halves[0])
+#            right_count = len(halves[-1])
+#            assert left_count + right_count == len(lengths)
+#            left_parts = parts[:left_count]
+#            title_lines.append(' '.join(left_parts))
+#            right_parts = parts[-right_count:]
+#            right_parts.append(str(test_number))
+#            title_lines.append(' '.join(right_parts))
+#        else:
+#            title_words = ' '.join(parts)
+#            if 'schematic example' in title_words:
+#                space = ''
+#            else:
+#                space = ' '
+#            title = '{}{}{}'.format(title_words, space, test_number)
+#            title_lines.append(title)
+#        return title_lines

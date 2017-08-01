@@ -2,11 +2,15 @@
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 
 
 class ClefSpanner(Spanner):
     r'''Clef spanner.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -14,14 +18,14 @@ class ClefSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("c' d' e' f' g' a' b' c''")
-            >>> clef = Clef('treble')
-            >>> attach(clef, staff[0])
-            >>> clef_spanner = spannertools.ClefSpanner('percussion')
-            >>> attach(clef_spanner, staff[2:-2])
+            >>> staff = abjad.Staff("c' d' e' f' g' a' b' c''")
+            >>> clef = abjad.Clef('treble')
+            >>> abjad.attach(clef, staff[0])
+            >>> clef_spanner = abjad.ClefSpanner('percussion')
+            >>> abjad.attach(clef_spanner, staff[2:-2])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -45,16 +49,16 @@ class ClefSpanner(Spanner):
 
         ::
 
-            >>> staff = Staff("r4 c'4 d'4 r4 e'4 f'4 r4")
-            >>> clef = Clef('treble')
-            >>> attach(clef, staff[0])
-            >>> clef_spanner = spannertools.ClefSpanner('percussion')
-            >>> attach(clef_spanner, staff[1:3])
-            >>> clef_spanner = spannertools.ClefSpanner('percussion')
-            >>> attach(clef_spanner, staff[4:6])
+            >>> staff = abjad.Staff("r4 c'4 d'4 r4 e'4 f'4 r4")
+            >>> clef = abjad.Clef('treble')
+            >>> abjad.attach(clef, staff[0])
+            >>> clef_spanner = abjad.ClefSpanner('percussion')
+            >>> abjad.attach(clef_spanner, staff[1:3])
+            >>> clef_spanner = abjad.ClefSpanner('percussion')
+            >>> abjad.attach(clef_spanner, staff[4:6])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -109,10 +113,10 @@ class ClefSpanner(Spanner):
         new._clef = self.clef
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (scoretools.Note, scoretools.Chord, type(None))
         first_leaf = self._get_leaves()[0]
-        current_clef = inspect_(first_leaf).get_effective(indicatortools.Clef)
+        current_clef = inspect(first_leaf).get_effective(indicatortools.Clef)
         set_clef = False
         reset_clef = False
         if self._is_my_only_leaf(leaf):
@@ -120,20 +124,20 @@ class ClefSpanner(Spanner):
                 set_clef = True
                 reset_clef = True
 
-            previous_leaf = inspect_(leaf).get_leaf(-1)
+            previous_leaf = inspect(leaf).get_leaf(-1)
             while not isinstance(previous_leaf, prototype):
-                previous_leaf = inspect_(previous_leaf).get_leaf(-1)
+                previous_leaf = inspect(previous_leaf).get_leaf(-1)
             if previous_leaf is not None:
-                spanners = inspect_(previous_leaf).get_spanners(type(self))
+                spanners = inspect(previous_leaf).get_spanners(type(self))
                 spanners = tuple(spanners)
                 if spanners:
                     if spanners[0].clef == self.clef:
                         set_clef = False
-            next_leaf = inspect_(leaf).get_leaf(1)
+            next_leaf = inspect(leaf).get_leaf(1)
             while not isinstance(next_leaf, prototype):
-                next_leaf = inspect_(next_leaf).get_leaf(1)
+                next_leaf = inspect(next_leaf).get_leaf(1)
             if next_leaf is not None:
-                spanners = inspect_(next_leaf).get_spanners(type(self))
+                spanners = inspect(next_leaf).get_spanners(type(self))
                 spanners = tuple(spanners)
                 if spanners:
                     if spanners[0].clef == self.clef:
@@ -141,11 +145,11 @@ class ClefSpanner(Spanner):
         elif self._is_my_first_leaf(leaf):
             if self.clef != current_clef:
                 set_clef = True
-            previous_leaf = inspect_(leaf).get_leaf(-1)
+            previous_leaf = inspect(leaf).get_leaf(-1)
             while not isinstance(previous_leaf, prototype):
-                previous_leaf = inspect_(previous_leaf).get_leaf(-1)
+                previous_leaf = inspect(previous_leaf).get_leaf(-1)
             if previous_leaf is not None:
-                spanners = inspect_(previous_leaf).get_spanners(type(self))
+                spanners = inspect(previous_leaf).get_spanners(type(self))
                 spanners = tuple(spanners)
                 if spanners:
                     if spanners[0].clef == self.clef:
@@ -154,22 +158,22 @@ class ClefSpanner(Spanner):
             if self.clef != current_clef and current_clef is not None:
                 reset_clef = True
 
-            next_leaf = inspect_(leaf).get_leaf(1)
+            next_leaf = inspect(leaf).get_leaf(1)
             while not isinstance(next_leaf, prototype):
-                next_leaf = inspect_(next_leaf).get_leaf(1)
+                next_leaf = inspect(next_leaf).get_leaf(1)
             if next_leaf is not None:
-                spanners = inspect_(next_leaf).get_spanners(type(self))
+                spanners = inspect(next_leaf).get_spanners(type(self))
                 spanners = tuple(spanners)
                 if spanners:
                     if spanners[0].clef == self.clef:
                         reset_clef = False
         if set_clef:
             string = format(self.clef, 'lilypond')
-            lilypond_format_bundle.before.indicators.append(string)
+            bundle.before.indicators.append(string)
         if reset_clef and current_clef is not None:
             string = format(current_clef, 'lilypond')
-            lilypond_format_bundle.after.indicators.append(string)
-        return lilypond_format_bundle
+            bundle.after.indicators.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

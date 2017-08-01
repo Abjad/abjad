@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_spannertools_StaffLinesSpanner_format_01():
-    r'''StaffLinesSpanner with int argument overrides StaffSymbol's
+    r'''StaffLinesSpanner with int argument abjad.overrides StaffSymbol's
     line-count property.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    spanner = spannertools.StaffLinesSpanner(lines=3)
-    attach(spanner, staff[2:7])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    spanner = abjad.StaffLinesSpanner(lines=3)
+    abjad.attach(spanner, staff[2:7])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -34,17 +34,17 @@ def test_spannertools_StaffLinesSpanner_format_01():
 
 
 def test_spannertools_StaffLinesSpanner_format_02():
-    r'''StaffLinesSpanner with list argument overrides
+    r'''StaffLinesSpanner with list argument abjad.overrides
     StaffSymbol's line-positions property.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    spanner = spannertools.StaffLinesSpanner(
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    spanner = abjad.StaffLinesSpanner(
         lines=[-5, -4, -3, -2, -1, 0, 1.5, 3, 4.5],
         )
-    attach(spanner, staff[2:7])
+    abjad.attach(spanner, staff[2:7])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8
@@ -67,11 +67,11 @@ def test_spannertools_StaffLinesSpanner_format_02():
 
 def test_spannertools_StaffLinesSpanner_format_03():
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    spanner = spannertools.StaffLinesSpanner(lines=[-1.5, 0, 1.5])
-    attach(spanner, staff[1:3])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    spanner = abjad.StaffLinesSpanner(lines=[-1.5, 0, 1.5])
+    abjad.attach(spanner, staff[1:3])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8

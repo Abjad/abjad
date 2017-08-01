@@ -9,9 +9,15 @@ from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 
 class ConcatenatingGraceHandler(GraceHandler):
-    r'''Concrete ``GraceHandler`` subclass which concatenates all but the
-    final ``QEvent`` attached to a ``QGrid`` offset into a ``GraceContainer``,
-    using a fixed leaf duration ``duration``.
+    r'''Concatenating grace-handler.
+
+    Concatenates all but the final ``QEvent`` attached to a ``QGrid`` offset
+    into a ``GraceContainer``, using a fixed leaf duration ``duration``.
+    
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     When called, it returns pitch information of final ``QEvent``, and the
     generated ``GraceContainer``, if any.

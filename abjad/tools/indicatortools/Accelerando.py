@@ -1,27 +1,27 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.topleveltools.new import new
 
 
 class Accelerando(AbjadValueObject):
     r'''Accelerando.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> score = Score([staff])
-            >>> accelerando = indicatortools.Accelerando()
-            >>> attach(accelerando, staff[0])
-
-        ::
-
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> score = abjad.Score([staff])
+            >>> accelerando = abjad.Accelerando()
+            >>> abjad.attach(accelerando, staff[0])
             >>> show(score) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \new Staff {
                     c'4
@@ -40,10 +40,10 @@ class Accelerando(AbjadValueObject):
 
     Accelerandi are not followed by any type of dashed line or other spanner.
 
-    Use accelerandi with a tempo spanner to generate dashed lines and other
-    spanners.
+    Use accelerandi with a metronome mark spanner to generate dashed lines and
+    other spanners.
 
-    ..  todo:: add example tempo spanner example.
+    ..  todo:: add metronome mark spanner example.
     '''
 
     ### CLASS VARIABLES ###
@@ -58,9 +58,7 @@ class Accelerando(AbjadValueObject):
     def __init__(self, markup=None):
         from abjad.tools import markuptools
         from abjad.tools import scoretools
-        # TODO: make default scope work
-        #self._default_scope = scoretools.Score
-        self._default_scope = None
+        self._default_scope = scoretools.Score
         if markup is not None:
             assert isinstance(markup, markuptools.Markup)
         self._markup = markup
@@ -76,7 +74,7 @@ class Accelerando(AbjadValueObject):
 
             ::
 
-                >>> print(str(indicatortools.Accelerando()))
+                >>> print(str(abjad.Accelerando()))
                 \markup {
                     \large
                         \upright
@@ -89,8 +87,8 @@ class Accelerando(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup(r'\bold { \italic { accelerando } }')
-                >>> accelerando = indicatortools.Accelerando(markup=markup)
+                >>> markup = abjad.Markup(r'\bold { \italic { accelerando } }')
+                >>> accelerando = abjad.Accelerando(markup=markup)
                 >>> print(str(accelerando))
                 \markup {
                     \bold
@@ -124,13 +122,13 @@ class Accelerando(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
         markup = self._to_markup()
-        markup = new(markup, direction=Up)
+        markup = abjad.new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()
-        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
-        return lilypond_format_bundle
+        bundle.right.markup.extend(markup_format_pieces)
+        return bundle
 
     def _to_markup(self):
         if self.markup is not None:
@@ -147,13 +145,11 @@ class Accelerando(AbjadValueObject):
 
             ::
 
-                >>> accelerando = Accelerando()
-                >>> accelerando.default_scope is None
-                True
+                >>> accelerando = abjad.Accelerando()
+                >>> accelerando.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
 
-        .. todo:: Default scope should return score.
-
-        Returns none (but should return score).
+        Returns score.
         '''
         return self._default_scope
 
@@ -165,8 +161,8 @@ class Accelerando(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup(r'\bold { \italic { accel. } }')
-                >>> accelerando = indicatortools.Accelerando(markup=markup)
+                >>> markup = abjad.Markup(r'\bold { \italic { accel. } }')
+                >>> accelerando = abjad.Accelerando(markup=markup)
                 >>> print(str(accelerando.markup))
                 \markup {
                     \bold

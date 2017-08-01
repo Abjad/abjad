@@ -13,14 +13,20 @@ from abjad.tools.topleveltools import select
 
 
 class Selection(object):
-    r'''A selection of components.
+    r'''Selection of components.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 f'4")
-        >>> selection = selectiontools.Selection(staff[:])
-        >>> selection
-        Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> selection = abjad.select(staff[:])
+            >>> selection
+            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
     '''
 
@@ -43,11 +49,11 @@ class Selection(object):
 
         Returns new selection.
         '''
-        assert isinstance(argument, (type(self), list, tuple))
+        assert isinstance(argument, collections.Iterable)
         if isinstance(argument, type(self)):
             music = self._music + argument._music
             return type(self)(music)
-        elif isinstance(argument, (tuple, list)):
+        else:
             music = self._music + tuple(argument)
         return type(self)(music)
 
@@ -116,11 +122,15 @@ class Selection(object):
     def __hash__(self):
         r'''Hashes selection.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
+        ..  note:: Hash defines explicitly in terms of storage format.
+            Most Abjad classes don't need to do this.
+            But selection classes do need to.
 
         Returns integer.
         '''
-        hash_values = (type(self), self._music)
+        import abjad
+        agent = abjad.StorageFormatAgent(self)
+        hash_values = agent.get_hash_values()
         return hash(hash_values)
 
     def __illustrate__(self):
@@ -162,22 +172,25 @@ class Selection(object):
         return len(self._music)
 
     def __ne__(self, argument):
-        r'''Is true when selection does not equal `argument`. Otherwise false.
+        r'''Is true when self does not equal argument.
+
+        ..  note:: this definition can be removed after support for Python is
+            dropped.
 
         Returns true or false.
         '''
-        return not self == argument
+        return not self.__eq__(argument)
 
     def __radd__(self, argument):
         r'''Concatenates selection to `argument`.
 
         Returns newly created selection.
         '''
-        assert isinstance(argument, (type(self), list, tuple))
+        assert isinstance(argument, collections.Iterable)
         if isinstance(argument, type(self)):
             music = argument._music + self._music
             return type(self)(music)
-        elif isinstance(argument, (tuple, list)):
+        else:
             music = tuple(argument) + self._music
         return type(self)(music)
 
@@ -199,10 +212,79 @@ class Selection(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _all_are_components_in_same_logical_voice(
-        argument, prototype=None, allow_orphans=True):
+    def _all_are_contiguous_components_in_same_logical_voice(
+        argument,
+        prototype=None,
+        allow_orphans=True,
+        ):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
+        allowable_types = (
+            list,
+            tuple,
+            types.GeneratorType,
+            selectiontools.Selection,
+            )
+        if not isinstance(argument, allowable_types):
+            return False
+        prototype = prototype or (scoretools.Component,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype, )
+        assert isinstance(prototype, tuple)
+        if len(argument) == 0:
+            return True
+        all_are_orphans_of_correct_type = True
+        if allow_orphans:
+            for component in argument:
+                if not isinstance(component, prototype):
+                    all_are_orphans_of_correct_type = False
+                    break
+                if not component._get_parentage().is_orphan:
+                    all_are_orphans_of_correct_type = False
+                    break
+            if all_are_orphans_of_correct_type:
+                return True
+        if not allow_orphans:
+            if any(x._get_parentage().is_orphan for x in argument):
+                return False
+        first = argument[0]
+        if not isinstance(first, prototype):
+            return False
+        first_parentage = first._get_parentage()
+        first_logical_voice = first_parentage.logical_voice
+        first_root = first_parentage.root
+        previous = first
+        for current in argument[1:]:
+            current_parentage = current._get_parentage()
+            current_logical_voice = current_parentage.logical_voice
+            # false if wrong type of component found
+            if not isinstance(current, prototype):
+                return False
+            # false if in different logical voices
+            if current_logical_voice != first_logical_voice:
+                return False
+            # false if components are in same score and are discontiguous
+            if current_parentage.root == first_root:
+                if not previous._is_immediate_temporal_successor_of(current):
+                    return False
+            previous = current
+        return True
+
+    @staticmethod
+    def _all_in_same_logical_voice(
+        argument,
+        prototype=None,
+        allow_orphans=True,
+        contiguous=False,
+        ):
+        from abjad.tools import scoretools
+        from abjad.tools import selectiontools
+        if contiguous:
+            return Selection._all_are_contiguous_components_in_same_logical_voice(
+                argument,
+                prototype=prototype,
+                allow_orphans=allow_orphans,
+                )
         allowable_types = (
             list,
             tuple,
@@ -246,70 +328,15 @@ class Selection(object):
                 same_logical_voice = False
             if not allow_orphans and not same_logical_voice:
                 return False
-            if allow_orphans and not orphan_components and \
-                not same_logical_voice:
+            if (allow_orphans and
+                not orphan_components and
+                not same_logical_voice
+                ):
                 return False
         return True
 
     @staticmethod
-    def _all_are_contiguous_components_in_same_logical_voice(
-        argument, prototype=None, allow_orphans=True):
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        allowable_types = (
-            list,
-            tuple,
-            types.GeneratorType,
-            selectiontools.Selection,
-            )
-        if not isinstance(argument, allowable_types):
-            return False
-        prototype = prototype or (scoretools.Component,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype, )
-        assert isinstance(prototype, tuple)
-        if len(argument) == 0:
-            return True
-        all_are_orphans_of_correct_type = True
-        if allow_orphans:
-            for component in argument:
-                if not isinstance(component, prototype):
-                    all_are_orphans_of_correct_type = False
-                    break
-                if not component._get_parentage().is_orphan:
-                    all_are_orphans_of_correct_type = False
-                    break
-            if all_are_orphans_of_correct_type:
-                return True
-        if not allow_orphans:
-            if any(x._get_parentage().is_orphan for x in argument):
-                return False
-        first = argument[0]
-        if not isinstance(first, prototype):
-            return False
-        first_parentage = first._get_parentage()
-        first_logical_voice = first_parentage.logical_voice
-        first_root = first_parentage.root
-        previous = first
-        for current in argument[1:]:
-            current_parentage = current._get_parentage()
-            current_logical_voice = \
-                current_parentage.logical_voice
-            # false if wrong type of component found
-            if not isinstance(current, prototype):
-                return False
-            # false if in different logical voices
-            if current_logical_voice != first_logical_voice:
-                return False
-            # false if components are in same score and are discontiguous
-            if current_parentage.root == first_root:
-                if not previous._is_immediate_temporal_successor_of(current):
-                    return False
-            previous = current
-        return True
-
-    @staticmethod
-    def _all_are_contiguous_components_in_same_parent(
+    def _all_in_same_parent(
         argument, prototype=None, allow_orphans=True):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
@@ -359,31 +386,29 @@ class Selection(object):
                 same_parent = False
             if not previous._is_immediate_temporal_successor_of(current):
                 strictly_contiguous = False
-            if (not allow_orphans or
-                (allow_orphans and not orphan_components)) and \
-                (not same_parent or not strictly_contiguous):
+            if ((not allow_orphans or
+                (allow_orphans and not orphan_components)) and
+                (not same_parent or not strictly_contiguous)):
                 return False
             previous = current
         return True
 
     def _attach_tie_spanner_to_leaf_pair(self, use_messiaen_style_ties=False):
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
+        import abjad
         assert len(self) == 2
         left_leaf, right_leaf = self
-        assert isinstance(left_leaf, scoretools.Leaf), left_leaf
-        assert isinstance(right_leaf, scoretools.Leaf), right_leaf
+        assert isinstance(left_leaf, abjad.Leaf), left_leaf
+        assert isinstance(right_leaf, abjad.Leaf), right_leaf
         left_logical_tie = left_leaf._get_logical_tie()
         right_logical_tie = right_leaf._get_logical_tie()
-        prototype = (spannertools.Tie,)
         if left_logical_tie == right_logical_tie:
             return
         try:
-            left_tie_spanner = left_leaf._get_spanner(prototype)
+            left_tie_spanner = left_leaf._get_spanner(abjad.Tie)
         except MissingSpannerError:
             left_tie_spanner = None
         try:
-            right_tie_spanner = right_leaf._get_spanner(prototype)
+            right_tie_spanner = right_leaf._get_spanner(abjad.Tie)
         except MissingSpannerError:
             right_tie_spanner = None
         if left_tie_spanner is not None and right_tie_spanner is not None:
@@ -393,10 +418,20 @@ class Selection(object):
         elif left_tie_spanner is None and right_tie_spanner is not None:
             right_tie_spanner._append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
-            tie = spannertools.Tie(
+            tie = abjad.Tie(
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
-            attach(tie, [left_leaf, right_leaf])
+            leaves = abjad.select([left_leaf, right_leaf])
+            abjad.attach(tie, leaves)
+
+    def _attach_tie_spanner_to_leaves(self, use_messiaen_style_ties=False):
+        import abjad
+        pairs = abjad.sequence(self).nwise()
+        for leaf_pair in pairs:
+            selection = abjad.select(leaf_pair)
+            selection._attach_tie_spanner_to_leaf_pair(
+                use_messiaen_style_ties=use_messiaen_style_ties,
+                )
 
     @staticmethod
     def _coerce_music(music):
@@ -433,15 +468,15 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(r"c'8 ( d'8 e'8 f'8 )")
+                >>> staff = abjad.Staff(r"c'8 ( d'8 e'8 f'8 )")
                 >>> staff.append(r"g'8 a'8 b'8 c''8")
-                >>> time_signature = TimeSignature((2, 4))
-                >>> attach(time_signature, staff)
+                >>> time_signature = abjad.TimeSignature((2, 4))
+                >>> abjad.attach(time_signature, staff[0])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \time 2/4
                     c'8 (
@@ -458,12 +493,12 @@ class Selection(object):
 
                 >>> selection = staff[2:4]
                 >>> result = selection._copy()
-                >>> new_staff = Staff(result)
+                >>> new_staff = abjad.Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(new_staff))
+                >>> f(new_staff)
                 \new Staff {
                     e'8 (
                     f'8 )
@@ -484,12 +519,12 @@ class Selection(object):
 
                 >>> selection = staff[2:4]
                 >>> result = selection._copy(n=4)
-                >>> new_staff = Staff(result)
+                >>> new_staff = abjad.Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
 
             ::
 
-                >>> print(format(new_staff))
+                >>> f(new_staff)
                 \new Staff {
                     e'8 (
                     f'8 )
@@ -505,14 +540,14 @@ class Selection(object):
 
             Copy leaves and include enclosing conatiners:
 
-                >>> voice = Voice(r"\times 2/3 { c'4 d'4 e'4 }")
+                >>> voice = abjad.Voice(r"\times 2/3 { c'4 d'4 e'4 }")
                 >>> voice.append(r"\times 2/3 { f'4 e'4 d'4 }")
-                >>> staff = Staff([voice])
+                >>> staff = abjad.Staff([voice])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \new Voice {
                         \times 2/3 {
@@ -530,15 +565,15 @@ class Selection(object):
 
             ::
 
-                >>> selector = select().by_leaf(flatten=True)
+                >>> selector = abjad.select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
                 >>> leaves = leaves[1:5]
                 >>> new_staff = leaves._copy(include_enclosing_containers=True)
                 >>> show(new_staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(new_staff))
+                >>> f(new_staff)
                 \new Staff {
                     \new Voice {
                         \tweak edge-height #'(0.7 . 0)
@@ -557,7 +592,7 @@ class Selection(object):
         Returns contiguous selection.
         '''
         # check input
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         # return empty list when nothing to copy
         if n < 1:
             return []
@@ -601,7 +636,7 @@ class Selection(object):
 
     def _copy_and_include_enclosing_containers(self):
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         # get governor
         parentage = self[0]._get_parentage(include_self=True)
         governor = parentage._get_governor()
@@ -641,7 +676,7 @@ class Selection(object):
 
     def _fuse(self):
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         if all(isinstance(x, scoretools.Leaf) for x in self):
             return self._fuse_leaves()
         elif all(isinstance(x, scoretools.Tuplet) for x in self):
@@ -654,12 +689,12 @@ class Selection(object):
 
     def _fuse_leaves(self):
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         assert all(isinstance(x, scoretools.Leaf) for x in self)
         leaves = self
         if len(leaves) <= 1:
             return leaves
-        total_preprolated = leaves._preprolated_duration
+        total_preprolated = leaves._get_preprolated_duration()
         for leaf in leaves[1:]:
             parent = leaf._parent
             if parent:
@@ -672,7 +707,7 @@ class Selection(object):
         from abjad.tools import selectiontools
         # check input
         prototype = (scoretools.Measure,)
-        assert self._all_are_contiguous_components_in_same_parent(
+        assert self._all_in_same_parent(
             self, prototype)
         # return none on empty measures
         if len(self) == 0:
@@ -718,8 +753,7 @@ class Selection(object):
 
     def _fuse_tuplets(self):
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_parent(
-            self, prototype=(scoretools.Tuplet,))
+        assert self._all_in_same_parent(self, prototype=scoretools.Tuplet)
         if len(self) == 0:
             return None
         first = self[0]
@@ -732,17 +766,8 @@ class Selection(object):
             if type(tuplet) != first_type:
                 message = 'tuplets must be same type.'
                 raise TypeError(message)
-        if isinstance(first, scoretools.FixedDurationTuplet):
-            total_contents_duration = sum(
-                [x._contents_duration for x in self])
-            new_target_duration = first_multiplier * total_contents_duration
-            new_tuplet = scoretools.FixedDurationTuplet(
-                new_target_duration, [])
-        elif isinstance(first, scoretools.Tuplet):
-            new_tuplet = scoretools.Tuplet(first_multiplier, [])
-        else:
-            message = 'unknown tuplet type.'
-            raise TypeError(message)
+        assert isinstance(first, scoretools.Tuplet)
+        new_tuplet = scoretools.Tuplet(first_multiplier, [])
         wrapped = False
         if (self[0]._get_parentage().root is not
             self[-1]._get_parentage().root):
@@ -786,7 +811,7 @@ class Selection(object):
         In other words, there is some intersection -- but not total
         intersection -- between the components of P and C.
         '''
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         all_components = set(iterate(self).by_class())
         contained_spanners = set()
         for component in iterate(self).by_class():
@@ -809,7 +834,7 @@ class Selection(object):
         score tree before reattaching spanners.
         score components.
         '''
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         receipt = set([])
         if len(self) == 0:
             return receipt
@@ -841,7 +866,7 @@ class Selection(object):
         return start_offsets, stop_offsets
 
     def _get_parent_and_start_stop_indices(self):
-        assert self._all_are_contiguous_components_in_same_parent(self)
+        assert self._all_in_same_parent(self)
         if self:
             first, last = self[0], self[-1]
             parent = first._parent
@@ -850,6 +875,9 @@ class Selection(object):
                 last_index = parent.index(last)
                 return parent, first_index, last_index
         return None, None, None
+
+    def _get_preprolated_duration(self):
+        return sum(component._get_preprolated_duration() for component in self)
 
     def _get_spanner(self, prototype=None):
         spanners = self._get_spanners(prototype=prototype)
@@ -881,9 +909,8 @@ class Selection(object):
         Returns none.
         Not composer-safe.
         '''
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
-        assert self._all_are_contiguous_components_in_same_logical_voice(
-            recipients)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
+        assert self._all_in_same_logical_voice(recipients, contiguous=True)
         receipt = self._get_dominant_spanners()
         for spanner, index in receipt:
             for recipient in reversed(recipients):
@@ -895,7 +922,7 @@ class Selection(object):
         r'''Not composer-safe.
         '''
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_parent(self)
+        assert self._all_in_same_parent(self)
         assert isinstance(container, scoretools.Container)
         assert not container
         music = []
@@ -908,7 +935,7 @@ class Selection(object):
         r'''Not composer-safe.
         '''
         from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_parent(self)
+        assert self._all_in_same_parent(self)
         assert isinstance(container, scoretools.Container)
         parent, start, stop = self._get_parent_and_start_stop_indices()
         if parent is not None:
@@ -956,7 +983,7 @@ class Selection(object):
     def _withdraw_from_crossing_spanners(self):
         r'''Not composer-safe.
         '''
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert self._all_in_same_logical_voice(self, contiguous=True)
         crossing_spanners = self._get_crossing_spanners()
         components_including_children = select(self).by_class()
         for crossing_spanner in list(crossing_spanners):
@@ -982,13 +1009,13 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((2, 8), "c'8 d'8"))
-                >>> staff.append(Measure((2, 8), "e'8 f'8"))
-                >>> staff.append(Measure((2, 8), "g'8 a'8"))
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((2, 8), "c'8 d'8"))
+                >>> staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+                >>> staff.append(abjad.Measure((2, 8), "g'8 a'8"))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1009,7 +1036,7 @@ class Selection(object):
 
             ::
 
-                >>> for note in select(staff).by_class(prototype=Note):
+                >>> for note in abjad.select(staff).by_class(prototype=abjad.Note):
                 ...     note
                 ...
                 Note("c'8")
@@ -1044,13 +1071,13 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                >>> staff.append(Measure((2, 8), "af'8 r8"))
-                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1071,7 +1098,7 @@ class Selection(object):
 
             ::
 
-                >>> for leaf in select(staff).by_leaf():
+                >>> for leaf in abjad.select(staff).by_leaf():
                 ...     leaf
                 ...
                 Chord("<c' bf'>8")
@@ -1106,10 +1133,11 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+                >>> string = r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16"
+                >>> staff = abjad.Staff(string)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1125,7 +1153,7 @@ class Selection(object):
 
             ::
 
-                >>> for logical_tie in select(staff).by_logical_tie():
+                >>> for logical_tie in abjad.select(staff).by_logical_tie():
                 ...     logical_tie
                 ...
                 LogicalTie([Note("c'4"), Note("c'16")])
@@ -1151,12 +1179,12 @@ class Selection(object):
 
             ::
 
-                >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 }")
+                >>> staff = abjad.Staff(r"\times 2/3 { c'8 d'8 r8 }")
                 >>> staff.append(r"\times 2/3 { r8 <e' g'>8 <f' a'>8 }")
                 >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -1180,7 +1208,8 @@ class Selection(object):
 
             ::
 
-                >>> for group in select(staff[:]).by_run((Note, Chord)):
+                >>> prototype = (abjad.Note, abjad.Chord)
+                >>> for group in abjad.select(staff[:]).by_run(prototype):
                 ...     group
                 ...
                 Selection([Note("g'8"), Note("a'8")])
@@ -1198,12 +1227,12 @@ class Selection(object):
 
             ::
 
-                >>> score = Score([])
-                >>> score.append(Staff("c'4 d'4 e'4 f'4"))
-                >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                >>> score = abjad.Score()
+                >>> score.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+                >>> score.append(abjad.Staff("g'8 a'8 b'8 c''8"))
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score <<
@@ -1223,7 +1252,7 @@ class Selection(object):
 
             ::
 
-                >>> for leaf in select(score).by_timeline():
+                >>> for leaf in abjad.select(score).by_timeline():
                 ...     leaf
                 ...
                 Note("c'4")
@@ -1256,12 +1285,12 @@ class Selection(object):
 
             ::
 
-                >>> score = Score([])
-                >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
-                >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                >>> score = abjad.Score()
+                >>> score.append(abjad.Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                >>> score.append(abjad.Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                 >>> show(score) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(score)
                 \new Score <<
@@ -1284,7 +1313,7 @@ class Selection(object):
 
             ::
 
-                >>> for logical_tie in select(score).by_timeline_and_logical_tie():
+                >>> for logical_tie in abjad.select(score).by_timeline_and_logical_tie():
                 ...     logical_tie
                 ...
                 LogicalTie([Note("c''4"), Note("c''8")])
@@ -1359,7 +1388,38 @@ class Selection(object):
         return selectiontools.VerticalMoment(self, offset)
 
     def group_by(self, predicate):
-        '''Groups components in contiguous selection by `predicate`.
+        r'''Groups components in contiguous selection by `predicate`.
+
+        ..  container:: example
+
+            ::
+
+                >>> maker = abjad.LeafMaker()
+                >>> leaves = maker([0, 2, 4, None, None, 5, 7], [(1, 8)])
+                >>> staff = abjad.Staff(leaves)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    r8
+                    r8
+                    f'8
+                    g'8
+                }
+
+            ::
+
+                >>> for group in leaves.group_by(type):
+                ...     group
+                ...
+                (Note("c'8"), Note("d'8"), Note("e'8"))
+                (Rest('r8'), Rest('r8'))
+                (Note("f'8"), Note("g'8"))
 
         Returns list of tuples.
         '''
@@ -1378,15 +1438,564 @@ class Selection(object):
         in_seconds=False,
         overhang=False,
         ):
-        r'''Partitions `components` according to `durations`.
+        r'''Partitions selection by `durations`.
 
-        When `fill` is `Exact` then parts must equal `durations` exactly.
+        ..  container:: example
 
-        When `fill` is `Less` then parts must be
-        less than or equal to `durations`.
+            Cyclically partitions exactly 3/8 (of a whole note) with overhang
+            returned at end:
 
-        When `fill` is `More` then parts must be
-        greater or equal to `durations`.
+            ::
+
+                >>> staff = abjad.Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [abjad.Duration(3, 8)],
+                ...     cyclic=True,
+                ...     fill=Exact,
+                ...     in_seconds=False,
+                ...     overhang=True,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+                Selection([Note("b'8"), Note("c''8")])
+
+        ..  container:: example
+
+            Partitions exactly 3/8 (of a whole note) one time only:
+
+            ::
+
+                >>> staff = abjad.Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [abjad.Duration(3, 8)],
+                ...     cyclic=False,
+                ...     fill=Exact,
+                ...     in_seconds=False,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+
+        ..  container:: example
+
+            Cyclically partitions 3/16 and 1/16 (of a whole note) with part
+            durations allowed to be just more than 3/16 and 1/16 (of a whole
+            note) and with overhang returned at end:
+
+            ::
+
+                >>> staff = abjad.Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [abjad.Duration(3, 16), abjad.Duration(1, 16)],
+                ...     cyclic=True,
+                ...     fill=More,
+                ...     in_seconds=False,
+                ...     overhang=True,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8")])
+                Selection([Note("e'8")])
+                Selection([Note("f'8"), Note("g'8")])
+                Selection([Note("a'8")])
+                Selection([Note("b'8"), Note("c''8")])
+
+        ..  container:: example
+
+            Cyclically partitions 3/16 (of a whole note) with part durations
+            allowed to be just less than 3/16 (of a whole note):
+
+            ::
+
+                >>> staff = abjad.Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [abjad.Duration(3, 16)],
+                ...     cyclic=True,
+                ...     fill=Less,
+                ...     in_seconds=False,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8")])
+                Selection([Note("d'8")])
+                Selection([Note("e'8")])
+                Selection([Note("f'8")])
+                Selection([Note("g'8")])
+                Selection([Note("a'8")])
+                Selection([Note("b'8")])
+
+        ..  container:: example
+
+            Partitions 3/16 (of a whole note) just once with part duration
+            allowed to be just less than 3/16 (of a whole note):
+
+            ::
+
+                >>> staff = abjad.Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [abjad.Duration(3, 16)],
+                ...     cyclic=False,
+                ...     fill=Less,
+                ...     in_seconds=False,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8")])
+
+        Examples in seconds appear below.
+
+        ..  container:: example
+
+            Cyclically partitions exactly 1.5 seconds at a time:
+
+            ::
+
+                >>> staff = abjad.Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(mark, leaf, scope=abjad.Staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        \tempo 4=60
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [1.5],
+                ...     cyclic=True,
+                ...     fill=Exact,
+                ...     in_seconds=True,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+
+        ..  container:: example
+
+            Cyclically partitions exactly 1.5 seconds at a time with overhang
+            returned at end:
+
+            ::
+
+                >>> staff = abjad.Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(mark, leaf, scope=abjad.Staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        \tempo 4=60
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [1.5],
+                ...     cyclic=True,
+                ...     fill=Exact,
+                ...     in_seconds=True,
+                ...     overhang=True,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+                Selection([Note("b'8"), Note("c''8")])
+
+        ..  container:: example
+
+            Partitions exactly 1.5 seconds one time only:
+
+            ::
+
+                >>> staff = abjad.Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(mark, leaf, scope=abjad.Staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        \tempo 4=60
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [1.5],
+                ...     cyclic=False,
+                ...     fill=Exact,
+                ...     in_seconds=True,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+
+        ..  container:: example
+
+            Cyclically partitions 0.75 seconds with part durations allowed to
+            be just less than 0.75 seconds:
+
+            ::
+
+                >>> staff = abjad.Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(mark, leaf, scope=abjad.Staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        \tempo 4=60
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [0.75],
+                ...     cyclic=True,
+                ...     fill=Less,
+                ...     in_seconds=True,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8")])
+                Selection([Note("d'8")])
+                Selection([Note("e'8")])
+                Selection([Note("f'8")])
+                Selection([Note("g'8")])
+                Selection([Note("a'8")])
+                Selection([Note("b'8")])
+
+        ..  container:: example
+
+            Partitions 0.75 seconds just once with part duration allowed to be
+            just less than 0.75 seconds:
+
+            ::
+
+                >>> staff = abjad.Staff(
+                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+                ...     )
+                >>> mark = abjad.MetronomeMark((1, 4), 60)
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(mark, leaf, scope=abjad.Staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        \tempo 4=60
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                    {
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> leaves = abjad.select(staff).by_leaf()
+                >>> selections = leaves.partition_by_durations(
+                ...     [0.75],
+                ...     cyclic=False,
+                ...     fill=Less,
+                ...     in_seconds=True,
+                ...     overhang=False,
+                ...     )
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection([Note("c'8")])
+
+        Parts must equal `durations` exactly when `fill` is `Exact`.
+
+        Parts must be less than or equal to `durations` when `fill` is `Less`.
+
+        Parts must be greater or equal to `durations` when `fill` is `More`.
 
         Reads `durations` cyclically when `cyclic` is true.
 
@@ -1394,15 +2003,18 @@ class Selection(object):
 
         Returns remaining components at end in final part when `overhang`
         is true.
+
+        Returns list of selections.
         '''
-        durations = [durationtools.Duration(x) for x in durations]
+        import abjad
+        durations = [abjad.Duration(_) for _ in durations]
         if cyclic:
-            durations = datastructuretools.CyclicTuple(durations)
+            durations = abjad.CyclicTuple(durations)
         result = []
         part = []
         current_duration_index = 0
         target_duration = durations[current_duration_index]
-        cumulative_duration = durationtools.Duration(0)
+        cumulative_duration = abjad.Duration(0)
         components_copy = list(self)
         while True:
             try:
@@ -1420,7 +2032,7 @@ class Selection(object):
                 part.append(component)
                 result.append(part)
                 part = []
-                cumulative_duration = durationtools.Duration(0)
+                cumulative_duration = abjad.Duration(0)
                 current_duration_index += 1
                 try:
                     target_duration = durations[current_duration_index]
@@ -1434,12 +2046,14 @@ class Selection(object):
                     result.append(part)
                     part = [component]
                     if in_seconds:
-                        cumulative_duration = \
-                            sum([x._get_duration(in_seconds=True)
-                            for x in part])
+                        cumulative_duration = sum([
+                            _._get_duration(in_seconds=True)
+                            for _ in part
+                            ])
                     else:
-                        cumulative_duration = \
-                            sum([x._get_duration() for x in part])
+                        cumulative_duration = sum([
+                            _._get_duration() for _ in part
+                            ])
                     current_duration_index += 1
                     try:
                         target_duration = durations[current_duration_index]
@@ -1457,7 +2071,7 @@ class Selection(object):
                     part.append(component)
                     result.append(part)
                     part = []
-                    cumulative_duration = durationtools.Duration(0)
+                    cumulative_duration = abjad.Duration(0)
                     current_duration_index += 1
                     try:
                         target_duration = durations[current_duration_index]
@@ -1469,12 +2083,7 @@ class Selection(object):
         if len(components_copy):
             if overhang:
                 result.append(components_copy)
+        result = [abjad.select(_) for _ in result]
         return result
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _preprolated_duration(self):
-        return sum(component._preprolated_duration for component in self)
 
 collections.Sequence.register(Selection)

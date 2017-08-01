@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 import platform
-from abjad.tools import commandlinetools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
 
 
@@ -21,7 +20,7 @@ class Test(ScorePackageScriptTestCase):
     def test_exists(self):
         self.create_score()
         self.create_material('test_material')
-        with systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_material('test_material', expect_error=True)
         self.compare_captured_output(r'''
             Creating material subpackage 'test_material' ...
@@ -31,7 +30,7 @@ class Test(ScorePackageScriptTestCase):
     def test_force_replace(self):
         self.create_score()
         self.create_material('test_material')
-        with systemtools.RedirectedStreams(stdout=self.string_io):
+        with abjad.RedirectedStreams(stdout=self.string_io):
             self.create_material('test_material', force=True)
         self.compare_captured_output(r'''
             Creating material subpackage 'test_material' ...
@@ -41,12 +40,12 @@ class Test(ScorePackageScriptTestCase):
 
     def test_internal_path(self):
         self.create_score()
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--new', 'test_material']
         internal_path = self.score_path.joinpath('test_score', 'build')
         assert internal_path.exists()
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(internal_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(internal_path)):
                 try:
                     script(command)
                 except SystemExit:
@@ -59,10 +58,10 @@ class Test(ScorePackageScriptTestCase):
 
     def test_success(self):
         self.create_score()
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--new', 'test_material']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 try:
                     script(command)
                 except SystemExit:

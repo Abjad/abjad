@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
@@ -8,16 +8,16 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
     No spanners dominate voice[0:0].
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves[:4])
-    glissando = spannertools.Glissando()
-    attach(glissando, leaves[-4:])
-    trill = spannertools.TrillSpanner()
-    attach(trill, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves[:4])
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, leaves[-4:])
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -46,16 +46,16 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_02():
     r'''Beam and trill both dominate crack at voice[1:1].
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves[:4])
-    glissando = spannertools.Glissando()
-    attach(glissando, leaves[-4:])
-    trill = spannertools.TrillSpanner()
-    attach(trill, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves[:4])
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, leaves[-4:])
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -86,16 +86,16 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_03():
     r'''Glissando and trill both dominate crack at voice[2:2].
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves[:4])
-    glissando = spannertools.Glissando()
-    attach(glissando, leaves[-4:])
-    trill = spannertools.TrillSpanner()
-    attach(trill, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves[:4])
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, leaves[-4:])
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -126,16 +126,16 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_04():
     r'''No spanners dominate empty slice following voice.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves[:4])
-    glissando = spannertools.Glissando()
-    attach(glissando, leaves[-4:])
-    trill = spannertools.TrillSpanner()
-    attach(trill, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves[:4])
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, leaves[-4:])
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {

@@ -9,9 +9,15 @@ def list_all_classes(modules=None, ignored_classes=None):
 
     ::
 
-        >>> all_classes = documentationtools.list_all_classes(
-        ...     modules='abjad',
-        ...     )
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> all_classes = abjad.documentationtools.list_all_classes(
+            ...     modules='abjad',
+            ...     )
 
     '''
     from abjad import abjad_configuration

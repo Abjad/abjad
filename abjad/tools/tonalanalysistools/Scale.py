@@ -1,25 +1,24 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import durationtools
-from abjad.tools import indicatortools
-from abjad.tools import pitchtools
-from abjad.tools import schemetools
-from abjad.tools import scoretools
-from abjad.tools import selectiontools
-from abjad.tools import sequencetools
-from abjad.tools import systemtools
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import set_
 from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 
 
 class Scale(PitchClassSegment):
-    '''A diatonic scale.
+    '''Scale.
 
     ::
 
-        >>> scale = tonalanalysistools.Scale('c', 'minor')
+        >>> import abjad
+        >>> from abjad.tools import tonalanalysistools
+
+    ..  container:: example
+
+        Initializes from pair:
+
+        ::
+
+            >>> tonalanalysistools.Scale(('c', 'minor'))
+            Scale("c d ef f g af bf")
 
     '''
 
@@ -31,18 +30,16 @@ class Scale(PitchClassSegment):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
-        if len(arguments) == 0:
-            key_signature = indicatortools.KeySignature('c', 'major')
-        elif len(arguments) == 1 and isinstance(
-            arguments[0], indicatortools.KeySignature):
-            key_signature = arguments[0]
-        elif len(arguments) == 1 and isinstance(arguments[0], Scale):
-            key_signature = arguments[0].key_signature
-        elif len(arguments) == 2:
-            key_signature = indicatortools.KeySignature(*arguments)
-        else:
-            raise TypeError
+    def __init__(self, key_signature=None):
+        import abjad
+        if key_signature is None:
+            key_signature = abjad.KeySignature('c', 'major')
+        elif isinstance(key_signature, tuple):
+            key_signature = abjad.KeySignature(*key_signature)
+        elif isinstance(key_signature, type(self)):
+            key_signature = key_signature.key_signature
+        if not isinstance(key_signature, abjad.KeySignature):
+            raise Exception(key_signature)
         npcs = [key_signature.tonic]
         for mdi in key_signature.mode.named_interval_segment[:-1]:
             named_pitch_class = npcs[-1] + mdi
@@ -50,14 +47,33 @@ class Scale(PitchClassSegment):
         PitchClassSegment.__init__(
             self,
             items=npcs,
-            item_class=pitchtools.NamedPitchClass,
+            item_class=abjad.NamedPitchClass,
             )
         self._key_signature = key_signature
+
+    ### SPECIAL METHODS ###
+
+    def __getitem__(self, argument):
+        r'''Gets item in scale.
+
+        Returns pitch-class segment.
+        '''
+        segment = PitchClassSegment(self)
+        return segment.__getitem__(argument)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _capital_name(self):
+        letter = str(self.key_signature.tonic).title()
+        mode = self.key_signature.mode.mode_name.title()
+        return '{}{}'.format(letter, mode)
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return systemtools.FormatSpecification(
+        import abjad
+        return abjad.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
@@ -69,263 +85,39 @@ class Scale(PitchClassSegment):
 
     def _set_ascending_named_diatonic_pitches_on_logical_ties(
         self, argument):
-        from abjad.tools import pitchtools
-        from abjad.tools import scoretools
+        import abjad
         dicg = self.named_interval_class_segment
         length = len(dicg)
         octave_number = 4
-        pitch = pitchtools.NamedPitch(self[0], octave_number)
-        for i, logical_tie in enumerate(iterate(argument).by_logical_tie()):
-            if isinstance(logical_tie[0], scoretools.Note):
+        pitch = abjad.NamedPitch((self[0].name, octave_number))
+        for i, logical_tie in enumerate(abjad.iterate(argument).by_logical_tie()):
+            if isinstance(logical_tie[0], abjad.Note):
                 for note in logical_tie:
                     note.written_pitch = pitch
-            elif isinstance(logical_tie[0], scoretools.Chord):
+            elif isinstance(logical_tie[0], abjad.Chord):
                 for chord in logical_tie:
                     chord.written_pitches = [pitch]
             else:
                 pass
             dic = dicg[i % length]
-            ascending_mdi = pitchtools.NamedInterval(dic.quality_string, dic.number)
+            ascending_mdi = abjad.NamedInterval.from_quality_and_number(
+                dic.quality_string,
+                dic.number,
+                )
             pitch += ascending_mdi
-
-    ### PUBLIC METHODS ###
-
-    def create_named_pitch_set_in_pitch_range(self, pitch_range):
-        r'''Creates named pitch-set in `pitch_range`.
-
-        Returns pitch-set.
-        '''
-        if not isinstance(pitch_range, pitchtools.PitchRange):
-            pitch_range = pitchtools.PitchRange(
-                float(pitchtools.NamedPitch(pitch_range[0])),
-                float(pitchtools.NamedPitch(pitch_range[1])))
-        low = pitch_range.start_pitch.octave.number
-        high = pitch_range.stop_pitch.octave.number
-        pitches = []
-        octave = low
-        while octave <= high:
-            for x in self:
-                pitch = pitchtools.NamedPitch(x, octave)
-                if pitch_range.start_pitch <= pitch and \
-                    pitch <= pitch_range.stop_pitch:
-                    pitches.append(pitch)
-            octave += 1
-        return pitchtools.PitchSet(
-            items=pitches,
-            item_class=pitchtools.NamedPitch,
-            )
-
-    @classmethod
-    def from_selection(class_, selection, item_class=None, name=None):
-        r'''Make scale from `selection`.
-
-        Returns new scale.
-        '''
-        raise NotImplementedError
-
-    def make_notes(self, n, written_duration=None):
-        r'''Makes first `n` notes in ascending diatonic scale
-        according to `key_signature`.
-
-        Set `written_duration` equal to `written_duration` or ``1/8``:
-
-        ::
-
-            >>> scale = tonalanalysistools.Scale('c', 'major')
-            >>> notes = scale.make_notes(8)
-            >>> staff = Staff(notes)
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                c'8
-                d'8
-                e'8
-                f'8
-                g'8
-                a'8
-                b'8
-                c''8
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        Allow nonassignable `written_duration`:
-
-        ::
-
-            >>> notes = scale.make_notes(4, Duration(5, 16))
-            >>> staff = Staff(notes)
-            >>> time_signature = TimeSignature((5, 4))
-            >>> attach(time_signature, staff)
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                \time 5/4
-                c'4 ~
-                c'16
-                d'4 ~
-                d'16
-                e'4 ~
-                e'16
-                f'4 ~
-                f'16
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        Returns list of notes.
-        '''
-        written_duration = written_duration or durationtools.Duration(1, 8)
-        result = scoretools.make_notes(n * [0], [written_duration])
-        self._set_ascending_named_diatonic_pitches_on_logical_ties(
-            result)
-        return result
-
-    def make_score(self):
-        r'''Make MIDI playback score from scale:
-
-        ::
-
-            >>> scale = tonalanalysistools.Scale('E', 'major')
-            >>> score = scale.make_score()
-            >>> show(score) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> f(score)
-            \new Score \with {
-                tempoWholesPerMinute = #(ly:make-moment 30 1)
-            } <<
-                \new Staff {
-                    \key e \major
-                    e'8
-                    fs'8
-                    gs'8
-                    a'8
-                    b'8
-                    cs''8
-                    ds''8
-                    e''8
-                    ds''8
-                    cs''8
-                    b'8
-                    a'8
-                    gs'8
-                    fs'8
-                    e'4
-                }
-            >>
-
-        Returns score.
-        '''
-        ascending_notes = self.make_notes(8, durationtools.Duration(1, 8))
-        descending_notes = copy.deepcopy(ascending_notes[:-1])
-        descending_notes = list(descending_notes)
-        descending_notes.reverse()
-        descending_notes = selectiontools.Selection(descending_notes)
-        notes = ascending_notes + descending_notes
-        notes[-1].written_duration = durationtools.Duration(1, 4)
-        staff = scoretools.Staff(notes)
-        key_signature = copy.copy(self.key_signature)
-        attach(key_signature, staff)
-        score = scoretools.Score([staff])
-        set_(score).tempo_wholes_per_minute = schemetools.SchemeMoment(30)
-        return score
-
-    def named_pitch_class_to_scale_degree(self, *arguments):
-        r'''Changes named pitch-class to scale degree.
-
-        Returns scale degree.
-        '''
-        from abjad.tools import tonalanalysistools
-        foreign_pitch_class = pitchtools.NamedPitchClass(*arguments)
-        letter = foreign_pitch_class.diatonic_pitch_class_name
-        for i, pc in enumerate(self):
-            if pc.diatonic_pitch_class_name == letter:
-                native_pitch_class = pc
-                scale_degree_index = i
-                scale_degree_number = scale_degree_index + 1
-                break
-        native_pitch = pitchtools.NamedPitch(native_pitch_class, 4)
-        foreign_pitch = pitchtools.NamedPitch(foreign_pitch_class, 4)
-        accidental = foreign_pitch.accidental - native_pitch.accidental
-        return tonalanalysistools.ScaleDegree(accidental, scale_degree_number)
-
-    def scale_degree_to_named_pitch_class(self, *arguments):
-        r'''Changes scale degree to named pitch-class.
-
-        ::
-
-            >>> scale = tonalanalysistools.Scale('c', 'major')
-            >>> scale_degree = tonalanalysistools.ScaleDegree('flat', 5)
-            >>> scale.scale_degree_to_named_pitch_class(scale_degree)
-            NamedPitchClass('gf')
-
-        ::
-
-            >>> scale_degree = tonalanalysistools.ScaleDegree('flat', 9)
-            >>> scale.scale_degree_to_named_pitch_class(scale_degree)
-            NamedPitchClass('df')
-
-        Returns named pitch-class.
-        '''
-        from abjad.tools import tonalanalysistools
-        scale_degree = tonalanalysistools.ScaleDegree(*arguments)
-        scale_index = (scale_degree.number - 1) % 7
-        pitch_class = self[scale_index]
-        pitch_class = pitch_class.apply_accidental(scale_degree.accidental)
-        return pitch_class
-
-    def voice_scale_degrees_in_open_position(self, scale_degrees):
-        r'''Voice `scale_degrees` in open position:
-
-        ::
-
-            >>> scale = tonalanalysistools.Scale('c', 'major')
-            >>> scale_degrees = [1, 3, ('flat', 5), 7, ('sharp', 9)]
-            >>> segment = scale.voice_scale_degrees_in_open_position(
-            ...     scale_degrees)
-            >>> segment
-            PitchSegment("c' e' gf' b' ds''")
-
-        Return pitch segment.
-        '''
-        from abjad.tools import pitchtools
-        from abjad.tools import tonalanalysistools
-        scale_degrees = [tonalanalysistools.ScaleDegree(x)
-            for x in scale_degrees]
-        pitch_classes = [self.scale_degree_to_named_pitch_class(x)
-            for x in scale_degrees]
-        pitches = [pitchtools.NamedPitch(pitch_classes[0])]
-        for pitch_class in pitch_classes[1:]:
-            pitch = pitchtools.NamedPitch(pitch_class)
-            while pitch < pitches[-1]:
-                pitch += 12
-            pitches.append(pitch)
-        pitches = pitchtools.PitchSegment(pitches)
-        return pitches
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _capital_name(self):
-        letter = str(self.key_signature.tonic).title()
-        mode = self.key_signature.mode.mode_name.title()
-        return '{}{}'.format(letter, mode)
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def dominant(self):
-        r'''Dominant of scale.
+        r'''Gets dominant.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.Scale(('c', 'minor')).dominant
+                NamedPitchClass('g')
 
         Return pitch-class.
         '''
@@ -333,7 +125,14 @@ class Scale(PitchClassSegment):
 
     @property
     def key_signature(self):
-        r'''Key signature of scale.
+        r'''Gets key signature.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.Scale(('c', 'minor')).key_signature
+                KeySignature(NamedPitchClass('c'), Mode('minor'))
 
         Returns key signature.
         '''
@@ -341,7 +140,14 @@ class Scale(PitchClassSegment):
 
     @property
     def leading_tone(self):
-        r'''Leading tone of scale.
+        r'''Gets leading tone.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.Scale(('c', 'minor')).leading_tone
+                NamedPitchClass('bf')
 
         Returns pitch-class.
         '''
@@ -349,7 +155,14 @@ class Scale(PitchClassSegment):
 
     @property
     def mediant(self):
-        r'''Mediant of scale.
+        r'''Gets mediant.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.Scale(('c', 'minor')).mediant
+                NamedPitchClass('ef')
 
         Returns pitch-class.
         '''
@@ -357,23 +170,45 @@ class Scale(PitchClassSegment):
 
     @property
     def named_interval_class_segment(self):
-        r'''Named interval class segment of scale.
+        r'''Gets named interval class segment.
+
+        ..  container:: example
+
+            ::
+
+                >>> scale = tonalanalysistools.Scale(('c', 'minor'))
+                >>> str(scale.named_interval_class_segment)
+                '<+M2, +m2, +M2, +M2, +m2, +M2, +M2>'
+
+            ::
+
+                >>> scale = tonalanalysistools.Scale(('d', 'dorian'))
+                >>> str(scale.named_interval_class_segment)
+                '<+M2, +m2, +M2, +M2, +M2, +m2, +M2>'
 
         Returns interval-class segment.
         '''
+        import abjad
         dics = []
-        for left, right in sequencetools.Sequence(self).nwise(wrapped=True):
+        for left, right in abjad.Sequence(self).nwise(wrapped=True):
             dic = left - right
             dics.append(dic)
-        dicg = pitchtools.IntervalClassSegment(
+        dicg = abjad.IntervalClassSegment(
             items=dics,
-            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+            item_class=abjad.NamedInversionEquivalentIntervalClass,
             )
         return dicg
 
     @property
     def subdominant(self):
-        r'''Subdominant of scale.
+        r'''Gets subdominant.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.Scale(('c', 'minor')).subdominant
+                NamedPitchClass('f')
 
         Returns pitch-class.
         '''
@@ -383,13 +218,27 @@ class Scale(PitchClassSegment):
     def submediant(self):
         r'''Submediate of scale.
 
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.Scale(('c', 'minor')).submediant
+                NamedPitchClass('af')
+
         Returns pitch-class.
         '''
         return self[5]
 
     @property
     def superdominant(self):
-        r'''Superdominant of scale.
+        r'''Gets superdominant.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.Scale(('c', 'minor')).superdominant
+                NamedPitchClass('d')
 
         Returns pitch-class.
         '''
@@ -397,8 +246,253 @@ class Scale(PitchClassSegment):
 
     @property
     def tonic(self):
-        r'''Tonic of scale.
+        r'''Gets tonic.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.Scale(('c', 'minor')).tonic
+                NamedPitchClass('c')
 
         Returns pitch-class.
         '''
         return self[0]
+
+    ### PUBLIC METHODS ###
+
+    def create_named_pitch_set_in_pitch_range(self, pitch_range):
+        r'''Creates named pitch-set in `pitch_range`.
+
+        Returns pitch-set.
+        '''
+        import abjad
+        if not isinstance(pitch_range, abjad.PitchRange):
+            pitch_range = abjad.PitchRange(
+                float(abjad.NamedPitch(pitch_range[0])),
+                float(abjad.NamedPitch(pitch_range[1])))
+        low = pitch_range.start_pitch.octave.number
+        high = pitch_range.stop_pitch.octave.number
+        pitches = []
+        octave = low
+        while octave <= high:
+            for x in self:
+                pitch = abjad.NamedPitch((x.name, octave))
+                if (pitch_range.start_pitch <= pitch and
+                    pitch <= pitch_range.stop_pitch):
+                    pitches.append(pitch)
+            octave += 1
+        return abjad.PitchSet(
+            items=pitches,
+            item_class=abjad.NamedPitch,
+            )
+
+    @classmethod
+    def from_selection(class_, selection, item_class=None, name=None):
+        r'''Makes scale from `selection`.
+
+        Returns new scale.
+        '''
+        raise NotImplementedError
+
+    def make_notes(self, n, written_duration=(1, 8)):
+        r'''Makes first `n` notes in ascending scale.
+
+        ..  container:: example
+
+            ::
+
+                >>> scale = tonalanalysistools.Scale(('c', 'major'))
+                >>> notes = scale.make_notes(8)
+                >>> staff = abjad.Staff(notes)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                    g'8
+                    a'8
+                    b'8
+                    c''8
+                }
+
+        Returns selection of notes.
+        '''
+        import abjad
+        written_duration = written_duration or abjad.Duration(1, 8)
+        maker = abjad.NoteMaker()
+        result = maker(n * [0], [written_duration])
+        self._set_ascending_named_diatonic_pitches_on_logical_ties(result)
+        return result
+
+    def make_score(self):
+        r'''Makes MIDI playback score from scale.
+
+        ..  container:: example
+
+            ::
+
+                >>> scale = tonalanalysistools.Scale(('E', 'major'))
+                >>> score = scale.make_score()
+                >>> show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(score)
+                \new Score \with {
+                    tempoWholesPerMinute = #(ly:make-moment 30 1)
+                } <<
+                    \new Staff {
+                        \key e \major
+                        e'8
+                        fs'8
+                        gs'8
+                        a'8
+                        b'8
+                        cs''8
+                        ds''8
+                        e''8
+                        ds''8
+                        cs''8
+                        b'8
+                        a'8
+                        gs'8
+                        fs'8
+                        e'4
+                    }
+                >>
+
+        Returns score.
+        '''
+        import abjad
+        ascending_notes = self.make_notes(8, abjad.Duration(1, 8))
+        descending_notes = copy.deepcopy(ascending_notes[:-1])
+        descending_notes = list(descending_notes)
+        descending_notes.reverse()
+        descending_notes = abjad.select(descending_notes)
+        notes = ascending_notes + descending_notes
+        notes[-1].written_duration = abjad.Duration(1, 4)
+        staff = abjad.Staff(notes)
+        key_signature = copy.copy(self.key_signature)
+        abjad.attach(key_signature, staff[0])
+        score = abjad.Score([staff])
+        abjad.setting(score).tempo_wholes_per_minute = abjad.SchemeMoment(30)
+        return score
+
+    def named_pitch_class_to_scale_degree(self, pitch_class):
+        r'''Changes named `pitch_class` to scale degree.
+
+        ..  container:: example
+
+            ::
+
+                >>> scale = tonalanalysistools.Scale(('c', 'major'))
+                >>> scale.named_pitch_class_to_scale_degree('c')
+                ScaleDegree('1')
+                >>> scale.named_pitch_class_to_scale_degree('d')
+                ScaleDegree('2')
+                >>> scale.named_pitch_class_to_scale_degree('e')
+                ScaleDegree('3')
+                >>> scale.named_pitch_class_to_scale_degree('f')
+                ScaleDegree('4')
+                >>> scale.named_pitch_class_to_scale_degree('g')
+                ScaleDegree('5')
+                >>> scale.named_pitch_class_to_scale_degree('a')
+                ScaleDegree('6')
+                >>> scale.named_pitch_class_to_scale_degree('b')
+                ScaleDegree('7')
+
+            ::
+
+                >>> scale.named_pitch_class_to_scale_degree('df')
+                ScaleDegree('b2')
+
+        Returns scale degree.
+        '''
+        import abjad
+        from abjad.tools import tonalanalysistools
+        foreign_pitch_class = abjad.NamedPitchClass(pitch_class)
+        letter = foreign_pitch_class._get_diatonic_pitch_class_name()
+        for i, pc in enumerate(self):
+            if pc._get_diatonic_pitch_class_name() == letter:
+                native_pitch_class = pc
+                scale_degree_index = i
+                number = scale_degree_index + 1
+                break
+        native_pitch = abjad.NamedPitch((native_pitch_class.name, 4))
+        foreign_pitch = abjad.NamedPitch((foreign_pitch_class.name, 4))
+        accidental = foreign_pitch.accidental - native_pitch.accidental
+        class_ = tonalanalysistools.ScaleDegree
+        scale_degree = class_.from_accidental_and_number(accidental, number)
+        return scale_degree
+
+    def scale_degree_to_named_pitch_class(self, scale_degree):
+        r'''Changes scale degree to named pitch-class.
+
+        ..  container:: example
+
+            ::
+
+                >>> scale = tonalanalysistools.Scale(('c', 'major'))
+                >>> scale.scale_degree_to_named_pitch_class('1')
+                NamedPitchClass('c')
+                >>> scale.scale_degree_to_named_pitch_class('2')
+                NamedPitchClass('d')
+                >>> scale.scale_degree_to_named_pitch_class('3')
+                NamedPitchClass('e')
+                >>> scale.scale_degree_to_named_pitch_class('4')
+                NamedPitchClass('f')
+                >>> scale.scale_degree_to_named_pitch_class('5')
+                NamedPitchClass('g')
+                >>> scale.scale_degree_to_named_pitch_class('6')
+                NamedPitchClass('a')
+                >>> scale.scale_degree_to_named_pitch_class('7')
+                NamedPitchClass('b')
+
+            ::
+
+                >>> scale.scale_degree_to_named_pitch_class('b2')
+                NamedPitchClass('df')
+
+        Returns named pitch-class.
+        '''
+        from abjad.tools import tonalanalysistools
+        scale_degree = tonalanalysistools.ScaleDegree(scale_degree)
+        scale_index = (scale_degree.number - 1) % 7
+        pitch_class = self[scale_index]
+        pitch_class = scale_degree.accidental(pitch_class)
+        return pitch_class
+
+    def voice_scale_degrees_in_open_position(self, scale_degrees):
+        r'''Voices `scale_degrees` in open position.
+
+        ::
+
+            >>> scale = tonalanalysistools.Scale(('c', 'major'))
+            >>> scale_degrees = [1, 3, 'b5', 7, '#9']
+            >>> segment = scale.voice_scale_degrees_in_open_position(
+            ...     scale_degrees)
+            >>> segment
+            PitchSegment("c' e' gf' b' ds''")
+
+        Return pitch segment.
+        '''
+        import abjad
+        from abjad.tools import tonalanalysistools
+        scale_degrees = [tonalanalysistools.ScaleDegree(x)
+            for x in scale_degrees]
+        pitch_classes = [self.scale_degree_to_named_pitch_class(x)
+            for x in scale_degrees]
+        pitches = [abjad.NamedPitch(pitch_classes[0])]
+        for pitch_class in pitch_classes[1:]:
+            pitch = abjad.NamedPitch(pitch_class)
+            while pitch < pitches[-1]:
+                pitch += 12
+            pitches.append(pitch)
+        pitches = abjad.PitchSegment(pitches)
+        return pitches

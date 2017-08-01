@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_spannertools_MultipartBeam_direction_01():
 
-    container = Container("c'8 d'8 r8 e'8 f'8 g'4")
-    beam = spannertools.MultipartBeam(direction=Up)
-    attach(beam, container[:])
+    container = abjad.Container("c'8 d'8 r8 e'8 f'8 g'4")
+    beam = abjad.MultipartBeam(direction=Up)
+    abjad.attach(beam, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8 ^ [
@@ -21,11 +21,11 @@ def test_spannertools_MultipartBeam_direction_01():
         '''
         )
 
-    detach(beam, container[:])
-    beam = spannertools.MultipartBeam(direction=Down)
-    attach(beam, container[:])
+    abjad.detach(beam, container[:])
+    beam = abjad.MultipartBeam(direction=Down)
+    abjad.attach(beam, container[:])
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             c'8 _ [

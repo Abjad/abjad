@@ -4,13 +4,17 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeSymbol(Scheme):
-    r'''A Scheme symbol.
+    r'''Abjad model of Scheme symbol.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> scheme = schemetools.SchemeSymbol('cross')
+            >>> scheme = abjad.SchemeSymbol('cross')
             >>> scheme
             SchemeSymbol('cross')
 
@@ -23,24 +27,19 @@ class SchemeSymbol(Scheme):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
-    def __init__(self, symbol=None):
-        if symbol is None:
-            symbol = 'cross'
+    def __init__(self, symbol='cross'):
         symbol = str(symbol)
-        Scheme.__init__(
-            self,
-            symbol,
-            quoting="'",
-            )
+        Scheme.__init__(self, value=symbol, quoting="'")
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        values = [self._value]
+        values = [self.symbol]
         return systemtools.FormatSpecification(
             client=self,
             storage_format_args_values=values,

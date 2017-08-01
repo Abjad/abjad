@@ -6,35 +6,42 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class TenorTrombone(Instrument):
-    r'''A tenor trombone.
+    r'''Tenor trombone.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> tenor_trombone = instrumenttools.TenorTrombone()
-        >>> attach(tenor_trombone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { "Tenor trombone" }
-            \set Staff.shortInstrumentName = \markup { "Ten. trb." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> clef = abjad.Clef(name='bass')
+            >>> abjad.attach(clef, staff[0])
+            >>> tenor_trombone = abjad.instrumenttools.TenorTrombone()
+            >>> abjad.attach(tenor_trombone, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { "Tenor trombone" }
+                \set Staff.shortInstrumentName = \markup { "Ten. trb." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -129,7 +136,7 @@ class TenorTrombone(Instrument):
             ::
 
                 >>> tenor_trombone.pitch_range
-                PitchRange(range_string='[E2, Eb5]')
+                PitchRange('[E2, Eb5]')
 
             ::
 

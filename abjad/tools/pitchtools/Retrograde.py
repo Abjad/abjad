@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
-from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Retrograde(AbjadValueObject):
     r'''Retrograde operator.
 
+    ::
+
+        >>> import abjad
+        >>> import pytest
+
     ..  container:: example:
 
         ::
 
-            >>> Retrograde()
+            >>> abjad.Retrograde()
             Retrograde()
 
     Object model of twelve-tone retrograde operator.
@@ -43,15 +46,15 @@ class Retrograde(AbjadValueObject):
             ::
 
                 >>> items = [0, 2, 4, 5]
-                >>> segment = PitchClassSegment(items=items)
+                >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
     
             Example operators:
 
             ::
 
-                >>> retrograde = Retrograde()
-                >>> transposition = Transposition(n=3)
+                >>> retrograde = abjad.Retrograde()
+                >>> transposition = abjad.Transposition(n=3)
 
         ..  container:: example
 
@@ -68,10 +71,10 @@ class Retrograde(AbjadValueObject):
                 >>> segment_ = operator(segment)
                 >>> show(segment_) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     af'8
                     g'8
@@ -96,10 +99,10 @@ class Retrograde(AbjadValueObject):
                 >>> segment_ = operator(segment)
                 >>> show(segment_) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     af'8
                     g'8
@@ -138,8 +141,8 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrograde = Retrograde()
-                >>> segment = PitchClassSegment([0, 1, 4, 7])
+                >>> retrograde = abjad.Retrograde()
+                >>> segment = abjad.PitchClassSegment([0, 1, 4, 7])
                 >>> retrograde(segment)
                 PitchClassSegment([7, 4, 1, 0])
 
@@ -149,8 +152,8 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrogresion = Retrograde()
-                >>> pitch_class = NumberedPitchClass(6)
+                >>> retrogresion = abjad.Retrograde()
+                >>> pitch_class = abjad.NumberedPitchClass(6)
                 >>> retrograde(pitch_class)
                 NumberedPitchClass(6)
 
@@ -162,25 +165,24 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrograde = Retrograde(period=3)
-                >>> segment = PitchSegment("c' d' e' f' g' a' b' c''")
+                >>> retrograde = abjad.Retrograde(period=3)
+                >>> segment = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
                 >>> retrograde(segment)
                 PitchSegment("e' d' c' a' g' f' c'' b'")
 
         Returns new object with type equal to that of `argument`.
         '''
-        from abjad.tools import pitchtools
-        if isinstance(argument, (pitchtools.Pitch, pitchtools.PitchClass)):
+        import abjad
+        if isinstance(argument, (abjad.Pitch, abjad.PitchClass)):
             return argument
         if not isinstance(argument, (
-            pitchtools.PitchSegment,
-            pitchtools.PitchClassSegment,
+            abjad.PitchSegment, abjad.PitchClassSegment,
             )):
-            argument = pitchtools.PitchSegment(argument)
+            argument = abjad.PitchSegment(argument)
         if not self.period:
             return type(argument)(reversed(argument))
-        result = new(argument, items=())
-        for shard in sequencetools.Sequence(argument).partition_by_counts(
+        result = abjad.new(argument, items=())
+        for shard in abjad.Sequence(argument).partition_by_counts(
             [self.period],
             cyclic=True,
             overhang=True,
@@ -190,6 +192,23 @@ class Retrograde(AbjadValueObject):
             result = result + shard
         return result
 
+    def __radd__(self, operator):
+        r'''Right-addition not defined on retrograde.
+        
+        ..  container:: example
+
+            ::
+
+                >>> string = 'abjad.Retrograde().__radd__(abjad.Retrograde())'
+                >>> pytest.raises(NotImplementedError, string)
+                <ExceptionInfo NotImplementedError ...>
+
+        Raises not implemented error.
+        '''
+        message = 'right-addition not defined on {}.'
+        message = message.format(type(self).__name__)
+        raise NotImplementedError(message)
+
     def __str__(self):
         r'''Gets string representation of operator.
 
@@ -197,7 +216,7 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> str(Retrograde())
+                >>> str(abjad.Retrograde())
                 'R'
 
         '''
@@ -224,7 +243,7 @@ class Retrograde(AbjadValueObject):
 
             ::
 
-                >>> retrograde = Retrograde(period=3)
+                >>> retrograde = abjad.Retrograde(period=3)
                 >>> retrograde.period
                 3
 

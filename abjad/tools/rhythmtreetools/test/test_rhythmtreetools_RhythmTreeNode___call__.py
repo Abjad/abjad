@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 from abjad.tools import rhythmtreetools
 
 
@@ -9,10 +9,10 @@ def test_rhythmtreetools_RhythmTreeNode___call___01():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert isinstance(result, (list, selectiontools.Selection))
+    assert isinstance(result, abjad.Selection)
     assert len(result) == 4
-    assert all(isinstance(x, Note) for x in result)
-    assert all(x.written_duration == Duration(1, 16) for x in result)
+    assert all(isinstance(x, abjad.Note) for x in result)
+    assert all(x.written_duration == abjad.Duration(1, 16) for x in result)
 
 
 def test_rhythmtreetools_RhythmTreeNode___call___02():
@@ -21,10 +21,9 @@ def test_rhythmtreetools_RhythmTreeNode___call___02():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert isinstance(result, (list, selectiontools.Selection))
+    assert isinstance(result, list)
     assert len(result) == 1
-    assert isinstance(result[0], scoretools.FixedDurationTuplet)
-    assert format(result[0]) == stringtools.normalize(
+    assert format(result[0]) == abjad.String.normalize(
         r'''
         \times 4/5 {
             c'16
@@ -45,7 +44,7 @@ def test_rhythmtreetools_RhythmTreeNode___call___03():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert format(result[0]) == stringtools.normalize(
+    assert format(result[0]) == abjad.String.normalize(
         r'''
         \times 4/5 {
             c'16

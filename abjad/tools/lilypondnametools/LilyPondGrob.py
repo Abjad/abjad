@@ -5,6 +5,10 @@ from abjad.tools import abctools
 class LilyPondGrob(abctools.AbjadValueObject):
     r'''LilyPond grob.
 
+    :: 
+
+        >>> from abjad.tools import lilypondnametools
+
     ::
 
         >>> grob = lilypondnametools.LilyPondGrob('Beam')

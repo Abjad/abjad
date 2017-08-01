@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_VerticalMoment_notes_01():
 
-    score = Score(
+    score = abjad.Score(
         r'''
         \new Staff {
             \times 4/3 {
@@ -31,9 +31,9 @@ def test_selectiontools_VerticalMoment_notes_01():
 
     staff_group = score[1]
 
-    vertical_moment = inspect_(score).get_vertical_moment_at(Offset(1, 8))
+    vertical_moment = abjad.inspect(score).get_vertical_moment_at(abjad.Offset(1, 8))
 
-    "(Note(d'', 8), Note(a', 4), Note(e', 8))"
+    "(abjad.Note(d'', 8), abjad.Note(a', 4), abjad.Note(e', 8))"
 
     assert vertical_moment.notes == (
         score[0][0][0], staff_group[0][0], staff_group[1][1])

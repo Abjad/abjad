@@ -8,48 +8,57 @@ class ReSTTOCDirective(ReSTDirective):
 
     ::
 
-        >>> toc = documentationtools.ReSTTOCDirective()
-        >>> for item in ['foo/index', 'bar/index', 'baz/index']:
-        ...     toc.append(documentationtools.ReSTTOCItem(text=item))
-        ...
-        >>> toc.options['maxdepth'] = 1
-        >>> toc.options['hidden'] = True
-        >>> toc
-        ReSTTOCDirective(
-            children=(
-                ReSTTOCItem(
-                    text='foo/index'
-                    ),
-                ReSTTOCItem(
-                    text='bar/index'
-                    ),
-                ReSTTOCItem(
-                    text='baz/index'
-                    ),
-                ),
-            directive='toctree',
-            options={
-                'hidden': True,
-                'maxdepth': 1,
-                }
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> print(toc.rest_format)
-        .. toctree::
-           :hidden:
-           :maxdepth: 1
-        <BLANKLINE>
-           foo/index
-           bar/index
-           baz/index
+        ::
+
+            >>> toc = abjad.documentationtools.ReSTTOCDirective()
+            >>> for item in ['foo/index', 'bar/index', 'baz/index']:
+            ...     toc.append(abjad.documentationtools.ReSTTOCItem(text=item))
+            ...
+            >>> toc.options['maxdepth'] = 1
+            >>> toc.options['hidden'] = True
+            >>> toc
+            ReSTTOCDirective(
+                children=(
+                    ReSTTOCItem(
+                        text='foo/index'
+                        ),
+                    ReSTTOCItem(
+                        text='bar/index'
+                        ),
+                    ReSTTOCItem(
+                        text='baz/index'
+                        ),
+                    ),
+                directive='toctree',
+                options={
+                    'hidden': True,
+                    'maxdepth': 1,
+                    }
+                )
+
+        ::
+
+            >>> print(toc.rest_format)
+            .. toctree::
+            :hidden:
+            :maxdepth: 1
+            <BLANKLINE>
+            foo/index
+            bar/index
+            baz/index
 
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'reStructuredText'
+
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 

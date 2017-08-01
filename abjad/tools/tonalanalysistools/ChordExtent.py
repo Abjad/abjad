@@ -1,11 +1,34 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class ChordExtent(AbjadObject):
-    '''A chord extent, such as triad, seventh chord, ninth chord, etc.
+class ChordExtent(AbjadValueObject):
+    '''Chord extent.
 
-    Value object that can not be changed after instantiation.
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
+
+    ..  container:: example
+
+        Initializes from number:
+
+        ::
+
+            >>> tonalanalysistools.ChordExtent(7)
+            ChordExtent(7)
+
+    ..  container:: example
+
+        Initializes from other chord extent:
+
+        ::
+
+            >>> extent = tonalanalysistools.ChordExtent(7)
+            >>> tonalanalysistools.ChordExtent(extent)
+            ChordExtent(7)
+
+    Defined equal to outer interval of any root-position chord.
     '''
 
     ### CLASS VARIABLES ###
@@ -40,38 +63,85 @@ class ChordExtent(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a chord extent with number equal to that of
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a chord extent with number equal to that of
         this chord extent. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> extent_1 = tonalanalysistools.ChordExtent(5)
+                >>> extent_2 = tonalanalysistools.ChordExtent(5)
+                >>> extent_3 = tonalanalysistools.ChordExtent(7)
+
+            ::
+
+                >>> extent_1 == extent_1
+                True
+                >>> extent_1 == extent_2
+                True
+                >>> extent_1 == extent_3
+                False
+
+            ::
+
+                >>> extent_2 == extent_1
+                True
+                >>> extent_2 == extent_2
+                True
+                >>> extent_2 == extent_3
+                False
+
+            ::
+
+                >>> extent_3 == extent_1
+                False
+                >>> extent_3 == extent_2
+                False
+                >>> extent_3 == extent_3
+                True
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)):
-            if self.number == arg.number:
-                return True
-        return False
+        return super(ChordExtent, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes chord extent.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
         '''
         return super(ChordExtent, self).__hash__()
 
-    def __ne__(self, arg):
-        r'''Is true when chord extent does not equal `arg`. Otherwise false.
+    ### PRIVATE METHODS ###
 
-        Returns true or false.
-        '''
-        return not self == arg
+    def _get_format_specification(self):
+        import abjad
+        values = [self.number]
+        return abjad.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            )
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def name(self):
-        r'''Name of chord extent.
+        r'''Gets name.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.ChordExtent(5).name
+                'triad'
+
+            ::
+
+                >>> tonalanalysistools.ChordExtent(7).name
+                'seventh'
 
         Returns string.
         '''
@@ -79,7 +149,14 @@ class ChordExtent(AbjadObject):
 
     @property
     def number(self):
-        r'''Number of chord extent.
+        r'''Gets number.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.ChordExtent(7).number
+                7
 
         Returns nonnegative integer.
         '''

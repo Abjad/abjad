@@ -3,8 +3,19 @@ from abjad.tools.quantizationtools.JobHandler import JobHandler
 
 
 class SerialJobHandler(JobHandler):
-    r'''Processes ``QuantizationJob`` instances sequentially.
+    r'''Serial job-handler.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
+
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 

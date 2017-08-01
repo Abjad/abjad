@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 import platform
 import shutil
 import unittest
 from abjad.tools import abjadbooktools
-from abjad.tools import stringtools
 
 
 @unittest.skipIf(
@@ -77,7 +77,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             latex_root_directory=latex_root_directory,
             )
         rebuilt_source = document_handler(return_source=True)
-        assert rebuilt_source == stringtools.normalize(
+        assert rebuilt_source == abjad.String.normalize(
             '''
             \\begin{comment}
             <abjad>
@@ -109,7 +109,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         assert os.path.exists(self.assets_directory)
         with open(self.target_path, 'r') as file_pointer:
             target_contents = file_pointer.read()
-        assert stringtools.normalize(target_contents) == \
-            stringtools.normalize(self.expected_contents)
+        assert abjad.String.normalize(target_contents) == \
+            abjad.String.normalize(self.expected_contents)
         assert tuple(sorted(os.listdir(self.assets_directory))) == \
             self.expected_asset_names

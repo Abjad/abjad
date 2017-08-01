@@ -7,33 +7,44 @@ from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
 class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
-    r'''A rhythm-tree leaf.
+    r'''Rhythm-tree leaf.
 
     ::
 
-        >>> leaf = rhythmtreetools.RhythmTreeLeaf(
-        ...     preprolated_duration=5, is_pitched=True)
-        >>> leaf
-        RhythmTreeLeaf(
-            preprolated_duration=Duration(5, 1),
-            is_pitched=True
-            )
+        >>> import abjad
+        >>> from abjad.tools import rhythmtreetools
 
-    Call with a pulse preprolated_duration to generate Abjad leaf objects:
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> result = leaf((1, 8))
-        >>> result
-        Selection([Note("c'2"), Note("c'8")])
+            >>> leaf = rhythmtreetools.RhythmTreeLeaf(
+            ...     preprolated_duration=5, is_pitched=True)
+            >>> leaf
+            RhythmTreeLeaf(
+                preprolated_duration=Duration(5, 1),
+                is_pitched=True
+                )
 
-    Generates rests when called, if `is_pitched` is False:
+    ..  container:: example
 
-    ::
+        Calls with a pulse preprolated duration to generate leaves:
 
-        >>> rhythmtreetools.RhythmTreeLeaf(
-        ...     preprolated_duration=7, is_pitched=False)((1, 16))
-        Selection([Rest('r4..')])
+        ::
+
+            >>> result = leaf((1, 8))
+            >>> result
+            Selection([Note("c'2"), Note("c'8")])
+
+    ..  container:: example
+
+        Generates rests when called if `is_pitched` is false:
+
+        ::
+
+            >>> rhythmtreetools.RhythmTreeLeaf(
+            ...     preprolated_duration=7, is_pitched=False)((1, 16))
+            Selection([Rest('r4..')])
 
     '''
 
@@ -71,11 +82,13 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
 
         Returns sequence of components.
         '''
-        pulse_duration = durationtools.Duration(pulse_duration)
+        import abjad
+        pulse_duration = abjad.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
+        maker = abjad.LeafMaker()
         if self.is_pitched:
-            return scoretools.make_notes(0, total_duration)
-        return scoretools.make_rests(total_duration)
+            return maker(0, total_duration)
+        return maker([None], total_duration)
 
     def __graph__(self, **keywords):
         r'''Graphviz graph of rhythm tree leaf.
@@ -139,5 +152,5 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
         return self._is_pitched
 
     @is_pitched.setter
-    def is_pitched(self, arg):
-        self._is_pitched = bool(arg)
+    def is_pitched(self, argument):
+        self._is_pitched = bool(argument)

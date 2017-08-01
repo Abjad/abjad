@@ -6,44 +6,51 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Piano(Instrument):
-    r'''A piano.
+    r'''Piano.
 
     ::
 
-        >>> staff_group = StaffGroup()
-        >>> staff_group.context_name = 'PianoStaff'
-        >>> staff_group.append(Staff("c'4 d'4 e'4 f'4"))
-        >>> staff_group.append(Staff("c'2 b2"))
-        >>> piano = instrumenttools.Piano()
-        >>> attach(piano, staff_group)
-        >>> attach(Clef(name='bass'), staff_group[1])
-        >>> show(staff_group) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff_group)
-        \new PianoStaff <<
-            \set PianoStaff.instrumentName = \markup { Piano }
-            \set PianoStaff.shortInstrumentName = \markup { Pf. }
-            \new Staff {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-            \new Staff {
-                \clef "bass"
-                c'2
-                b2
-            }
-        >>
+        ::
+
+            >>> staff_group = abjad.StaffGroup()
+            >>> staff_group.context_name = 'PianoStaff'
+            >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+            >>> staff_group.append(abjad.Staff("c'2 b2"))
+            >>> piano = abjad.instrumenttools.Piano()
+            >>> abjad.attach(piano, staff_group[0][0])
+            >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
+            >>> show(staff_group) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff_group)
+            \new PianoStaff <<
+                \new Staff {
+                    \set PianoStaff.instrumentName = \markup { Piano }
+                    \set PianoStaff.shortInstrumentName = \markup { Pf. }
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    c'2
+                    b2
+                }
+            >>
 
     The piano targets piano staff context by default.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -98,6 +105,21 @@ class Piano(Instrument):
         return Instrument.allowable_clefs.fget(self)
 
     @property
+    def default_scope(self):
+        r'''Gets default scope of piano.
+
+        ..  container:: example
+
+            ::
+
+                >>> piano.default_scope
+                'PianoStaff'
+
+        Returns piano staff.
+        '''
+        return self._default_scope
+
+    @property
     def instrument_name(self):
         r'''Gets piano's name.
 
@@ -140,7 +162,7 @@ class Piano(Instrument):
             ::
 
                 >>> piano.pitch_range
-                PitchRange(range_string='[A0, C8]')
+                PitchRange('[A0, C8]')
 
             ::
 

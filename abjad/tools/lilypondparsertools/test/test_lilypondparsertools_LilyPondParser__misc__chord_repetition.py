@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_01():
 
-    target = Container([
-        Chord([0, 4, 7], (1, 4)),
-        Chord([0, 4, 7], (1, 4)),
-        Chord([0, 4, 7], (1, 4)),
-        Chord([0, 4, 7], (1, 4)),
+    target = abjad.Container([
+        abjad.Chord([0, 4, 7], (1, 4)),
+        abjad.Chord([0, 4, 7], (1, 4)),
+        abjad.Chord([0, 4, 7], (1, 4)),
+        abjad.Chord([0, 4, 7], (1, 4)),
     ])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             <c' e' g'>4
@@ -25,32 +24,32 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_01():
         )
 
     string = r'''{ <c' e' g'> q q q }'''
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_02():
 
-    target = Staff([
-        Chord([0, 4, 7], (1, 8)),
-        Chord([0, 4, 7], (1, 8)),
-        Chord([0, 4, 7], (1, 4)),
-        Chord([0, 4, 7], (3, 16)),
-        Chord([0, 4, 7], (1, 16)),
-        Chord([0, 4, 7], (1, 4))
+    target = abjad.Staff([
+        abjad.Chord([0, 4, 7], (1, 8)),
+        abjad.Chord([0, 4, 7], (1, 8)),
+        abjad.Chord([0, 4, 7], (1, 4)),
+        abjad.Chord([0, 4, 7], (3, 16)),
+        abjad.Chord([0, 4, 7], (1, 16)),
+        abjad.Chord([0, 4, 7], (1, 4))
     ])
 
-    dynamic = Dynamic('p')
-    attach(dynamic, target[0])
-    articulation = Articulation('staccatissimo')
-    attach(articulation, target[2])
-    markup = markuptools.Markup('text', Up)
-    attach(markup, target[3])
-    articulation = Articulation('staccatissimo')
-    attach(articulation, target[-1])
+    dynamic = abjad.Dynamic('p')
+    abjad.attach(dynamic, target[0])
+    articulation = abjad.Articulation('staccatissimo')
+    abjad.attach(articulation, target[2])
+    markup = abjad.Markup('text', Up)
+    abjad.attach(markup, target[3])
+    articulation = abjad.Articulation('staccatissimo')
+    abjad.attach(articulation, target[-1])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         \new Staff {
             <c' e' g'>8 \p
@@ -64,23 +63,23 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_02():
         )
 
     string = r'''\new Staff { <c' e' g'>8\p q q4-| q8.^"text" q16 q4-| }'''
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_03():
 
-    target = Container([
-        Chord([0, 4, 7], (1, 8)),
-        Note(12, (1, 8)),
-        Chord([0, 4, 7], (1, 8)),
-        Note(12, (1, 8)),
-        Rest((1, 4)),
-        Chord([0, 4, 7], (1, 4)),
+    target = abjad.Container([
+        abjad.Chord([0, 4, 7], (1, 8)),
+        abjad.Note(12, (1, 8)),
+        abjad.Chord([0, 4, 7], (1, 8)),
+        abjad.Note(12, (1, 8)),
+        abjad.Rest((1, 4)),
+        abjad.Chord([0, 4, 7], (1, 4)),
     ])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             <c' e' g'>8
@@ -94,6 +93,6 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_03():
         )
 
     string = r'''{ <c' e' g'>8 c'' q c'' r4 q }'''
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result

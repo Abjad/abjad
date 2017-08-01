@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools import indicatortools
-from abjad.tools import scoretools
-from abjad.tools.topleveltools import attach
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class GroupedRhythmicStavesScoreTemplate(AbjadObject):
+class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
     r'''Grouped rhythmic staves score template.
 
     ::
 
-            >>> from abjad.tools.templatetools import *
-            >>> template_class = GroupedRhythmicStavesScoreTemplate
+        >>> import abjad
 
     ..  container:: example
 
@@ -20,25 +16,34 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
         ::
 
-            >>> template_1 = template_class(staff_count=4)
+            >>> class_ = abjad.templatetools.GroupedRhythmicStavesScoreTemplate
+            >>> template_1 = class_(staff_count=4)
             >>> score = template_1()
-            >>> print(format(score))
+            >>> show(score) # doctest: +SKIP
+
+        ::
+
+            >>> f(score)
             \context Score = "Grouped Rhythmic Staves Score" <<
                 \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                     \context RhythmicStaff = "Staff 1" {
                         \context Voice = "Voice 1" {
+                            s1
                         }
                     }
                     \context RhythmicStaff = "Staff 2" {
                         \context Voice = "Voice 2" {
+                            s1
                         }
                     }
                     \context RhythmicStaff = "Staff 3" {
                         \context Voice = "Voice 3" {
+                            s1
                         }
                     }
                     \context RhythmicStaff = "Staff 4" {
                         \context Voice = "Voice 4" {
+                            s1
                         }
                     }
                 >>
@@ -50,59 +55,34 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
         ::
 
-            >>> template_2 = template_class(staff_count=[2, 1, 2])
+            >>> template_2 = class_(staff_count=[2, 1, 2])
             >>> score = template_2()
-            >>> print(format(score))
+            >>> show(score) # doctest: +SKIP
+
+        ::
+
+            >>> f(score)
             \context Score = "Grouped Rhythmic Staves Score" <<
                 \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                     \context RhythmicStaff = "Staff 1" <<
                         \context Voice = "Voice 1-1" {
+                            s1
                         }
                         \context Voice = "Voice 1-2" {
+                            s1
                         }
                     >>
                     \context RhythmicStaff = "Staff 2" {
                         \context Voice = "Voice 2" {
+                            s1
                         }
                     }
                     \context RhythmicStaff = "Staff 3" <<
                         \context Voice = "Voice 3-1" {
+                            s1
                         }
                         \context Voice = "Voice 3-2" {
-                        }
-                    >>
-                >>
-            >>
-
-    ..  container:: example
-
-        With percussion clefs attached.
-
-            >>> template_3 = template_class(
-            ...     staff_count=[2, 1, 2],
-            ...     with_clefs=True,
-            ...     )
-            >>> score = template_3()
-            >>> print(format(score))
-            \context Score = "Grouped Rhythmic Staves Score" <<
-                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                    \context RhythmicStaff = "Staff 1" <<
-                        \clef "percussion"
-                        \context Voice = "Voice 1-1" {
-                        }
-                        \context Voice = "Voice 1-2" {
-                        }
-                    >>
-                    \context RhythmicStaff = "Staff 2" {
-                        \clef "percussion"
-                        \context Voice = "Voice 2" {
-                        }
-                    }
-                    \context RhythmicStaff = "Staff 3" <<
-                        \clef "percussion"
-                        \context Voice = "Voice 3-1" {
-                        }
-                        \context Voice = "Voice 3-2" {
+                            s1
                         }
                     >>
                 >>
@@ -110,15 +90,21 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_context_name_abbreviations',
+        '_staff_count',
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, staff_count=2, with_clefs=None):
-        assert isinstance(staff_count, (int, list))
-        self.context_name_abbreviations = collections.OrderedDict()
+    def __init__(self, staff_count=2):
+        self._context_name_abbreviations = collections.OrderedDict()
+        assert isinstance(staff_count, (int, collections.Iterable))
+        if isinstance(staff_count, collections.Iterable):
+            staff_count = list(staff_count)
         self._staff_count = staff_count
-        if with_clefs is not None:
-            with_clefs = bool(with_clefs)
-        self._with_clefs = with_clefs
 
     ### SPECIAL METHODS ###
 
@@ -132,26 +118,31 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
             ::
 
                 >>> score_1 = template_1()
+                >>> show(score_1) # doctest: +SKIP
 
             ::
 
-                >>> print(format(score_1))
+                >>> f(score_1)
                 \context Score = "Grouped Rhythmic Staves Score" <<
                     \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                         \context RhythmicStaff = "Staff 1" {
                             \context Voice = "Voice 1" {
+                                s1
                             }
                         }
                         \context RhythmicStaff = "Staff 2" {
                             \context Voice = "Voice 2" {
+                                s1
                             }
                         }
                         \context RhythmicStaff = "Staff 3" {
                             \context Voice = "Voice 3" {
+                                s1
                             }
                         }
                         \context RhythmicStaff = "Staff 4" {
                             \context Voice = "Voice 4" {
+                                s1
                             }
                         }
                     >>
@@ -164,26 +155,32 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
             ::
 
                 >>> score_2 = template_2()
+                >>> show(score_2) # doctest: +SKIP
 
             ::
 
-                >>> print(format(score_2))
+                >>> f(score_2)
                 \context Score = "Grouped Rhythmic Staves Score" <<
                     \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                         \context RhythmicStaff = "Staff 1" <<
                             \context Voice = "Voice 1-1" {
+                                s1
                             }
                             \context Voice = "Voice 1-2" {
+                                s1
                             }
                         >>
                         \context RhythmicStaff = "Staff 2" {
                             \context Voice = "Voice 2" {
+                                s1
                             }
                         }
                         \context RhythmicStaff = "Staff 3" <<
                             \context Voice = "Voice 3-1" {
+                                s1
                             }
                             \context Voice = "Voice 3-2" {
+                                s1
                             }
                         >>
                     >>
@@ -191,14 +188,18 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
         Returns score.
         '''
+        import abjad
         staves = []
         if isinstance(self.staff_count, int):
             for index in range(self.staff_count):
                 number = index + 1
                 name = 'Voice {}'.format(number)
-                voice = scoretools.Voice(name=name)
+                voice = abjad.Voice(
+                    [abjad.Skip('s1')],
+                    name=name,
+                    )
                 name='Staff {}'.format(number)
-                staff = scoretools.Staff([voice], name=name)
+                staff = abjad.Staff([voice], name=name)
                 staff.context_name = 'RhythmicStaff'
                 staves.append(staff)
                 key = 'v{}'.format(number)
@@ -207,7 +208,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
             for staff_index, voice_count in enumerate(self.staff_count):
                 staff_number = staff_index + 1
                 name = 'Staff {}'.format(staff_number)
-                staff = scoretools.Staff(name=name)
+                staff = abjad.Staff(name=name)
                 staff.context_name = 'RhythmicStaff'
                 assert 1 <= voice_count
                 for voice_index in range(voice_count):
@@ -219,25 +220,31 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
                             staff_number, voice_number)
                         staff.is_simultaneous = True
                     name = 'Voice {}'.format(voice_identifier)
-                    voice = scoretools.Voice(name=name)
+                    voice = abjad.Voice(
+                        [abjad.Skip('s1')],
+                        name=name,
+                        )
                     staff.append(voice)
                     key = 'v{}'.format(voice_identifier)
                     self.context_name_abbreviations[key] = voice.name
                 staves.append(staff)
-        if self.with_clefs:
-            for staff in staves:
-                attach(indicatortools.Clef('percussion'), staff)
-        grouped_rhythmic_staves_staff_group = scoretools.StaffGroup(
+        grouped_rhythmic_staves_staff_group = abjad.StaffGroup(
             staves,
             name='Grouped Rhythmic Staves Staff Group',
             )
-        grouped_rhythmic_staves_score = scoretools.Score(
+        grouped_rhythmic_staves_score = abjad.Score(
             [grouped_rhythmic_staves_staff_group],
             name='Grouped Rhythmic Staves Score',
             )
         return grouped_rhythmic_staves_score
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def context_name_abbreviations(self):
+        r'''Gets context name abbreviations.
+        '''
+        return self._context_name_abbreviations
 
     @property
     def staff_count(self):
@@ -251,12 +258,3 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
         Returns nonnegative integer.
         '''
         return self._staff_count
-
-    @property
-    def with_clefs(self):
-        r'''Is true if template should attach percussion clefs. Otherwise
-        false.
-
-        Returns true or false.
-        '''
-        return self._with_clefs

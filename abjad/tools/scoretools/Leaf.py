@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import abc
 import copy
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools import systemtools
 from abjad.tools import timespantools
 from abjad.tools.topleveltools import attach
@@ -11,12 +11,12 @@ from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import select
-from abjad.tools.topleveltools import set_
+from abjad.tools.topleveltools import setting
 from abjad.tools.scoretools.Component import Component
 
 
 class Leaf(Component):
-    r'''Abstract base class from which leaves inherit.
+    r'''Abstract leaf.
 
     Leaves include notes, rests, chords and skips.
     '''
@@ -24,6 +24,8 @@ class Leaf(Component):
     ### CLASS VARIABLES ##
 
     __slots__ = (
+        '_after_grace_container',
+        '_grace_container',
         '_leaf_index',
         '_written_duration',
         )
@@ -35,6 +37,8 @@ class Leaf(Component):
     @abc.abstractmethod
     def __init__(self, written_duration, name=None):
         Component.__init__(self, name=name)
+        self._after_grace_container = None
+        self._grace_container = None
         self._leaf_index = None
         self.written_duration = durationtools.Duration(written_duration)
 
@@ -48,17 +52,17 @@ class Leaf(Component):
         return (self.written_duration,)
 
     def __str__(self):
-        '''String representation of leaf.
+        '''Gets string representation of leaf.
 
         Returns string.
         '''
-        return self._compact_representation
+        return self._get_compact_representation()
 
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
         from abjad.tools import graphtools
-        lilypond_format = self._compact_representation
+        lilypond_format = self._get_compact_representation()
         lilypond_format = lilypond_format.replace('<', '&lt;')
         lilypond_format = lilypond_format.replace('>', '&gt;')
         node = Component._as_graphviz_node(self)
@@ -84,41 +88,55 @@ class Leaf(Component):
             self._lilypond_grob_name_manager = copy.copy(override(leaf))
         if getattr(leaf, '_lilypond_setting_name_manager', None) is not None:
             self._lilypond_setting_name_manager = copy.copy(
-                set_(leaf))
+                setting(leaf))
         new_indicators = []
-        for indicator in leaf._indicator_expressions:
+        for indicator in leaf._indicator_wrappers:
             new_indicator = copy.copy(indicator)
             new_indicators.append(new_indicator)
         for new_indicator in new_indicators:
             attach(new_indicator, self)
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
-        new = Component._copy_with_indicators_but_without_children_or_spanners(self)
-        for grace_container in self._get_grace_containers():
+        new = Component._copy_with_indicators_but_without_children_or_spanners(
+            self)
+        grace_container = self._grace_container
+        if grace_container is not None:
             new_grace_container = \
                 grace_container._copy_with_children_and_indicators_but_without_spanners()
             attach(new_grace_container, new)
+        after_grace_container = self._after_grace_container
+        if after_grace_container is not None:
+            new_after_grace_container = \
+                after_grace_container._copy_with_children_and_indicators_but_without_spanners()
+            attach(new_after_grace_container, new)
         return new
+
+    def _detach_after_grace_container(self):
+        if self._after_grace_container is not None:
+            return detach(self._after_grace_container, self)
+
+    def _detach_grace_container(self):
+        if self._grace_container is not None:
+            return detach(self._grace_container, self)
 
     def _format_after_grace_body(self):
         result = []
-        if self._after_grace is not None:
-            after_grace = self._after_grace
+        if self._after_grace_container is not None:
+            after_grace = self._after_grace_container
             if len(after_grace):
                 result.append(format(after_grace))
         return ['after grace body', result]
 
     def _format_after_grace_opening(self):
         result = []
-        if self._after_grace is not None:
-            if len(self._after_grace):
+        if self._after_grace_container is not None:
+            if len(self._after_grace_container):
                 result.append(r'\afterGrace')
         return ['after grace opening', result]
 
     def _format_after_slot(self, bundle):
         result = []
         result.append(('spanners', bundle.after.spanners))
-        result.append(('grob reverts', bundle.grob_reverts))
         result.append(('indicators', bundle.after.indicators))
         result.append(('commands', bundle.after.commands))
         result.append(('comments', bundle.after.comments))
@@ -130,6 +148,7 @@ class Leaf(Component):
         result.append(('comments', bundle.before.comments))
         result.append(('commands', bundle.before.commands))
         result.append(('indicators', bundle.before.indicators))
+        result.append(('grob reverts', bundle.grob_reverts))
         result.append(('grob overrides', bundle.grob_overrides))
         result.append(('context settings', bundle.context_settings))
         result.append(('spanners', bundle.before.spanners))
@@ -154,8 +173,8 @@ class Leaf(Component):
 
     def _format_grace_body(self):
         result = []
-        if self._grace is not None:
-            grace = self._grace
+        if self._grace_container is not None:
+            grace = self._grace_container
             if len(grace):
                 result.append(format(grace))
         return ['grace body', result]
@@ -186,7 +205,7 @@ class Leaf(Component):
         return ['self body', result]
 
     def _format_leaf_nucleus(self):
-        return ['nucleus', self._body]
+        return ['nucleus', self._get_body()]
 
     def _format_open_brackets_slot(self, bundle):
         return []
@@ -200,11 +219,14 @@ class Leaf(Component):
         result.append(('spanners', bundle.opening.spanners))
         return result
 
+    def _get_compact_representation(self):
+        return '({})'.format(self._get_formatted_duration())
+
     def _get_format_pieces(self):
         return self._get_lilypond_format().split('\n')
 
     def _get_format_specification(self):
-        summary = self._compact_representation
+        summary = self._get_compact_representation()
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=False,
@@ -218,7 +240,6 @@ class Leaf(Component):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
-
         def next(component):
             new_component = component._get_nth_component_in_time_order_from(1)
             if new_component is None:
@@ -228,10 +249,9 @@ class Leaf(Component):
                 x for x in candidates if isinstance(x, scoretools.Leaf)
                 ]
             for candidate in candidates:
-                if Selection._all_are_components_in_same_logical_voice(
+                if Selection._all_in_same_logical_voice(
                     [component, candidate]):
                     return candidate
-
         def previous(component):
             new_component = component._get_nth_component_in_time_order_from(-1)
             if new_component is None:
@@ -241,10 +261,9 @@ class Leaf(Component):
                 x for x in candidates if isinstance(x, scoretools.Leaf)
                 ]
             for candidate in candidates:
-                if Selection._all_are_components_in_same_logical_voice(
+                if Selection._all_in_same_logical_voice(
                     [component, candidate]):
                     return candidate
-
         current_leaf = self
         if n < 0:
             for i in range(abs(n)):
@@ -260,27 +279,19 @@ class Leaf(Component):
                     break
         return current_leaf
 
-    def _get_leaf_index(self):
-        self._update_now(offsets=True)
-        return self._leaf_index
-
     def _get_logical_tie(self):
-        from abjad.tools import selectiontools
-        from abjad.tools import spannertools
-        prototype = (spannertools.Tie,)
+        import abjad
         for component in self._get_parentage():
-            tie_spanners = component._get_spanners(prototype)
+            tie_spanners = component._get_spanners(abjad.Tie)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
-                return selectiontools.LogicalTie(
-                    music=tie_spanner._get_leaves()
-                    )
+                return abjad.LogicalTie(music=tie_spanner._get_leaves())
             elif 1 < len(tie_spanners):
                 message = 'parentage of {!r} contains {} tie spanners.'
                 message = message.format(self, len(tie_spanners))
                 raise Exception(message)
         else:
-            return selectiontools.LogicalTie(music=self)
+            return abjad.LogicalTie(music=self)
 
     def _process_contribution_packet(self, contribution_packet):
         manager = systemtools.LilyPondFormatManager
@@ -328,67 +339,64 @@ class Leaf(Component):
         self._set_duration(new_duration)
 
     def _set_duration(self, new_duration, use_messiaen_style_ties=False):
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        new_duration = durationtools.Duration(new_duration)
+        import abjad
+        new_duration = abjad.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
-        if self._get_indicators(durationtools.Multiplier):
-            detach(durationtools.Multiplier, self)
+        if self._get_indicators(abjad.Multiplier):
+            detach(abjad.Multiplier, self)
             multiplier = new_duration.__div__(self.written_duration)
             attach(multiplier, self)
-            return [self]
+            return abjad.select(self)
         # change written duration if new duration is assignable
         try:
             self.written_duration = new_duration
-            return [self]
+            return abjad.select(self)
         except AssignabilityError:
             pass
         # make new notes or tuplets if new duration is nonassignable
-        components = scoretools.make_notes(
-            0,
-            new_duration,
+        maker = abjad.NoteMaker(
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
-        if isinstance(components[0], scoretools.Leaf):
+        components = maker(0, new_duration)
+        if isinstance(components[0], abjad.Leaf):
             tied_leaf_count = len(components) - 1
             tied_leaves = tied_leaf_count * self
             all_leaves = [self] + tied_leaves
-            for x, component in zip(all_leaves, components):
-                x.written_duration = component.written_duration
+            for leaf, component in zip(all_leaves, components):
+                leaf.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
             parentage = self._get_parentage()
-            if not parentage._get_spanners(spannertools.Tie):
-                #if spannertools.Tie._attachment_test(self):
-                tie = spannertools.Tie()
+            if not parentage._get_spanners(abjad.Tie):
+                tie = abjad.Tie()
                 if tie._attachment_test(self):
-                    tie = spannertools.Tie(
+                    tie = abjad.Tie(
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )
-                    attach(tie, all_leaves)
-            return all_leaves
+                    abjad.attach(tie, all_leaves)
+            return abjad.select(all_leaves)
         else:
-            assert isinstance(components[0], scoretools.Tuplet)
+            assert isinstance(components[0], abjad.Tuplet)
             tuplet = components[0]
             components = tuplet[:]
             tied_leaf_count = len(components) - 1
             tied_leaves = tied_leaf_count * self
             all_leaves = [self] + tied_leaves
-            for x, component in zip(all_leaves, components):
-                x.written_duration = component.written_duration
+            for leaf, component in zip(all_leaves, components):
+                leaf.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
-            if not self._get_spanners(spannertools.Tie):
-                #if spannertools.Tie._attachment_test(self):
-                tie = spannertools.Tie()
+            if not self._get_spanners(abjad.Tie):
+                tie = abjad.Tie()
                 if tie._attachment_test(self):
-                    tie = spannertools.Tie(
+                    tie = abjad.Tie(
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )
-                    attach(tie, all_leaves)
-            tuplet_multiplier = tuplet.multiplier
-            scoretools.Tuplet(tuplet_multiplier, all_leaves)
-            return [tuplet]
+                    abjad.attach(tie, all_leaves)
+            multiplier = tuplet.multiplier
+            tuplet = abjad.Tuplet(multiplier, [])
+            abjad.mutate(all_leaves).wrap(tuplet)
+            return abjad.select(tuplet)
 
-    def _split(
+    def _split_by_durations(
         self,
         durations,
         cyclic=False,
@@ -396,173 +404,111 @@ class Leaf(Component):
         tie_split_notes=True,
         use_messiaen_style_ties=False,
         ):
-        from abjad.tools import pitchtools
-        from abjad.tools import selectiontools
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        durations = [durationtools.Duration(x) for x in durations]
+        import abjad
+        durations = [abjad.Duration(_) for _ in durations]
+        durations = abjad.Sequence(durations)
+        leaf_duration = abjad.inspect(self).get_duration()
         if cyclic:
-            durations = sequencetools.Sequence(durations)
-            durations = durations.repeat_to_weight(self._get_duration())
-        durations = [durationtools.Duration(x) for x in durations]
-        if sum(durations) < self._get_duration():
-            last_duration = self._get_duration() - sum(durations)
+            durations = durations.repeat_to_weight(leaf_duration)
+        if sum(durations) < leaf_duration:
+            last_duration = leaf_duration - sum(durations)
+            durations = list(durations)
             durations.append(last_duration)
-        weight = self._get_duration()
-        durations = sequencetools.Sequence(durations).truncate(weight=weight)
-        result = []
-        leaf_prolation = self._get_parentage(include_self=False).prolation
-        timespan = self._get_timespan()
-        start_offset = timespan.start_offset
+            durations = abjad.sequence(durations)
+        durations = durations.truncate(weight=leaf_duration)
+        result_selections = []
+        # detach grace containers
+        grace_container = self._detach_grace_container()
+        after_grace_container = self._detach_after_grace_container()
+        leaf_prolation = abjad.inspect(self).get_parentage().prolation
         for duration in durations:
             new_leaf = copy.copy(self)
             preprolated_duration = duration / leaf_prolation
-            shard = new_leaf._set_duration(
+            selection = new_leaf._set_duration(
                 preprolated_duration,
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
-            for x in shard:
-                if isinstance(x, scoretools.Leaf):
-                    x_duration = x.written_duration * leaf_prolation
-                else:
-                    x_duration = x.multiplied_duration * leaf_prolation
-                stop_offset = x_duration + start_offset
-                x._start_offset = start_offset
-                x._stop_offset = stop_offset
-                x._timespan = timespantools.Timespan(
-                    start_offset=start_offset,
-                    stop_offset=stop_offset,
-                    )
-                start_offset = stop_offset
-            shard = [x._get_parentage().root for x in shard]
-            result.append(shard)
-        flattened_result = sequencetools.Sequence(result).flatten()
-        flattened_result = selectiontools.Selection(flattened_result)
-        prototype = (spannertools.Tie,)
-        parentage = self._get_parentage()
-        if parentage._get_spanners(prototype=prototype):
-            selection = select(flattened_result)
-            for component in selection:
-                # TODO: make top-level detach() work here
-                for spanner in component._get_spanners(prototype):
-                    spanner._sever_all_components()
-                #detach(prototype, component)
+            result_selections.append(selection)
+        result_components = abjad.sequence(result_selections).flatten()
+        result_components = abjad.select(result_components)
+        result_leaves = abjad.select(result_components).by_leaf()
+        assert all(isinstance(_, abjad.Selection) for _ in result_selections)
+        assert all(isinstance(_, abjad.Component) for _ in result_components)
+        assert all(isinstance(_, abjad.Leaf) for _ in result_leaves)
+        if abjad.inspect(self).has_spanner(abjad.Tie):
+            for leaf in result_leaves:
+                abjad.detach(abjad.Tie, leaf)
+        # strip result leaves of indicators (other than multipliers)
+        for leaf in result_leaves:
+            multiplier = abjad.inspect(leaf).get_indicator(abjad.Multiplier)
+            abjad.detach(object, leaf)
+            abjad.attach(multiplier, leaf)
         # replace leaf with flattened result
-        selection = selectiontools.Selection(self)
+        selection = abjad.select(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent:
-            parent.__setitem__(slice(start, stop + 1), flattened_result)
+            parent.__setitem__(slice(start, stop + 1), result_components)
         else:
-            selection._give_dominant_spanners(flattened_result)
+            selection._give_dominant_spanners(result_components)
             selection._withdraw_from_crossing_spanners()
         # fracture spanners
         if fracture_spanners:
-            first_shard = result[0]
-            for spanner in first_shard[-1]._get_spanners():
-                index = spanner._index(first_shard[-1])
+            first_selection = result_selections[0]
+            for spanner in abjad.inspect(first_selection[-1]).get_spanners():
+                index = spanner._index(first_selection[-1])
                 spanner._fracture(index, direction=Right)
-            last_shard = result[-1]
-            for spanner in last_shard[0]._get_spanners():
-                index = spanner._index(last_shard[0])
+            last_selection = result_selections[-1]
+            for spanner in abjad.inspect(last_selection[0]).get_spanners():
+                index = spanner._index(last_selection[0])
                 spanner._fracture(index, direction=Left)
-            for middle_shard in result[1:-1]:
-                for spanner in middle_shard[0]._get_spanners():
-                    index = spanner._index(middle_shard[0])
+            for middle_selection in result_selections[1:-1]:
+                spanners = abjad.inspect(middle_selection[0]).get_spanners()
+                for spanner in spanners:
+                    index = spanner._index(middle_selection[0])
                     spanner._fracture(index, direction=Left)
-                for spanner in middle_shard[-1]._get_spanners():
-                    index = spanner._index(middle_shard[-1])
+                spanners = abjad.inspect(middle_selection[-1]).get_spanners()
+                for spanner in spanners:
+                    index = spanner._index(middle_selection[-1])
                     spanner._fracture(index, direction=Right)
-        # adjust first leaf
-        self._detach_grace_containers(kind='after')
-        # adjust any middle leaves
-        for middle_leaf in flattened_result[1:-1]:
-            middle_leaf._detach_grace_containers(kind='grace')
-            self._detach_grace_containers(kind='after')
-            detach(object, middle_leaf)
-        # adjust last leaf
-        last_leaf = flattened_result[-1]
-        last_leaf._detach_grace_containers(kind='grace')
-        detach(object, last_leaf)
-        # tie split notes, rests and chords as specified
-        if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
-            flattened_result_leaves = iterate(flattened_result).by_leaf()
-            # TODO: implement Selection._attach_tie_spanner_to_leaves()
-            pairs = sequencetools.Sequence(flattened_result_leaves).nwise()
-            for leaf_pair in pairs:
-                selection = selectiontools.Selection(leaf_pair)
-                selection._attach_tie_spanner_to_leaf_pair(
-                    use_messiaen_style_ties=use_messiaen_style_ties,
-                    )
-        # return result
-        return result
-
-    # TODO: This should be replaced in favor of self._split().
-    #       The precondition is that self._split() must be
-    #       extended to handle graces.
-    def _split_by_duration(
-        self,
-        duration,
-        fracture_spanners=False,
-        tie_split_notes=True,
-        use_messiaen_style_ties=False,
-        ):
-        from abjad.tools import pitchtools
-        from abjad.tools import selectiontools
-        # check input
-        duration = durationtools.Duration(duration)
-        # calculate durations
-        leaf_multiplied_duration = self._multiplied_duration
-        prolation = self._get_parentage(include_self=False).prolation
-        preprolated_duration = duration / prolation
-        # handle boundary cases
-        if preprolated_duration <= 0:
-            return ([], [self])
-        if leaf_multiplied_duration <= preprolated_duration:
-            return ([self], [])
-        # create new leaf
-        new_leaf = copy.copy(self)
-        self._splice([new_leaf], grow_spanners=True)
-        # adjust leaf
-        self._detach_grace_containers(kind='after')
-        # adjust new leaf
-        new_leaf._detach_grace_containers(kind='grace')
-        left_leaf_list = self._set_duration(
-            preprolated_duration,
-            use_messiaen_style_ties=use_messiaen_style_ties,
-            )
-        right_preprolated_duration = \
-            leaf_multiplied_duration - preprolated_duration
-        right_leaf_list = new_leaf._set_duration(
-            right_preprolated_duration,
-            use_messiaen_style_ties=use_messiaen_style_ties,
-            )
-        leaf_left_of_split = left_leaf_list[-1]
-        leaf_right_of_split = right_leaf_list[0]
-        leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
-        if fracture_spanners:
-            for spanner in leaf_left_of_split._get_spanners():
-                index = spanner._index(leaf_left_of_split)
-                spanner._fracture(index, direction=Right)
-        # tie split notes, rests and chords as specified
-        if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
-            selection = selectiontools.Selection(leaves_around_split)
-            selection._attach_tie_spanner_to_leaf_pair(
+        # move indicators
+        first_result_leaf = result_leaves[0]
+        last_result_leaf = result_leaves[-1]
+        for indicator in abjad.inspect(self).get_indicators():
+            if isinstance(indicator, abjad.Multiplier):
+                continue
+            abjad.detach(indicator, self)
+            direction = getattr(indicator, '_time_orientation', Left)
+            if direction is Left:
+                abjad.attach(indicator, first_result_leaf)
+            elif direction is Right:
+                abjad.attach(indicator, last_result_leaf)
+            else:
+                raise ValueError(direction)
+        # move grace containers
+        if grace_container is not None:
+            container = grace_container[0]
+            assert isinstance(container, abjad.GraceContainer), repr(container)
+            abjad.attach(container, first_result_leaf)
+        if after_grace_container is not None:
+            container = after_grace_container[0]
+            prototype = abjad.AfterGraceContainer
+            assert isinstance(container, prototype), repr(container)
+            abjad.attach(container, last_result_leaf)
+        if isinstance(result_components[0], abjad.Tuplet):
+            abjad.mutate(result_components).fuse()
+        # tie split notes
+        if isinstance(self, (abjad.Note, abjad.Chord)) and tie_split_notes:
+            result_leaves._attach_tie_spanner_to_leaves(
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
-        return left_leaf_list, right_leaf_list
-        # TODO: make this substitution work
-        #return self._split(
-        #    leaf,
-        #    [duration],
-        #    cyclic=False,
-        #    fracture_spanners=fracture_spanners,
-        #    tie_split_notes=tie_split_notes,
-        #    )
+        assert isinstance(result_selections, list), repr(result_selections)
+        assert all(isinstance(_, abjad.Selection) for _ in result_selections)
+        return result_selections
 
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
-        from abjad.tools import scoretools
+        import abjad
         # check input
-        proportions = mathtools.Ratio(proportions)
+        proportions = abjad.Ratio(proportions)
         # find target duration of fixed-duration tuplet
         target_duration = self.written_duration
         # find basic duration of note in tuplet
@@ -575,17 +521,21 @@ class Leaf(Component):
             _ * basic_written_duration for _ in proportions.numbers
             ]
         # make tuplet notes
+        maker = abjad.NoteMaker()
         try:
-            notes = [scoretools.Note(0, x) for x in written_durations]
+            notes = [abjad.Note(0, x) for x in written_durations]
         except AssignabilityError:
             denominator = target_duration.denominator
             note_durations = [
-                durationtools.Duration(_, denominator)
+                abjad.Duration(_, denominator)
                 for _ in proportions.numbers
                 ]
-            notes = scoretools.make_notes(0, note_durations)
+            notes = maker(0, note_durations)
         # make tuplet
-        tuplet = scoretools.FixedDurationTuplet(target_duration, notes)
+        notes = abjad.select(notes)
+        contents_duration = notes.get_duration()
+        multiplier = target_duration / contents_duration
+        tuplet = abjad.Tuplet(multiplier, notes)
         # fix tuplet contents if necessary
         tuplet._fix()
         # change prolation if necessary
@@ -601,25 +551,19 @@ class Leaf(Component):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _compact_representation(self):
-        return '({})'.format(self._formatted_duration)
-
-    @property
-    def _duration_in_seconds(self):
+    def _get_duration_in_seconds(self):
         from abjad.tools import indicatortools
-        tempo = self._get_effective(indicatortools.Tempo)
-        if tempo is not None and not tempo.is_imprecise:
+        mark = self._get_effective(indicatortools.MetronomeMark)
+        if mark is not None and not mark.is_imprecise:
             result = (
                 self._get_duration() /
-                tempo.reference_duration /
-                tempo.units_per_minute * 60
+                mark.reference_duration /
+                mark.units_per_minute * 60
                 )
             return durationtools.Duration(result)
-        raise MissingTempoError
+        raise MissingMetronomeMarkError
 
-    @property
-    def _formatted_duration(self):
+    def _get_formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string
         multiplier = None
         multiplier_prototype = (
@@ -640,8 +584,7 @@ class Leaf(Component):
             result = duration_string
         return result
 
-    @property
-    def _multiplied_duration(self):
+    def _get_multiplied_duration(self):
         if self.written_duration:
             multiplier_prototype = (
                 durationtools.Multiplier,
@@ -662,9 +605,8 @@ class Leaf(Component):
         else:
             return None
 
-    @property
-    def _preprolated_duration(self):
-        return self._multiplied_duration
+    def _get_preprolated_duration(self):
+        return self._get_multiplied_duration()
 
     ### PUBLIC PROPERTIES ###
 

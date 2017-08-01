@@ -6,20 +6,24 @@ from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 
 
 class Chord(Leaf):
-    r'''A chord.
+    r'''Chord.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> chord = Chord("<e' cs'' f''>4")
+            >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> show(chord) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(chord)
             <e' cs'' f''>4
@@ -125,22 +129,6 @@ class Chord(Leaf):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _compact_representation(self):
-        return '<{}>{}'.format(self._summary, self._formatted_duration)
-
-    @property
-    def _compact_representation_with_tie(self):
-        logical_tie = self._get_logical_tie()
-        if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            return '{} ~'.format(self._body[0])
-        else:
-            return self._body[0]
-
-    @property
-    def _summary(self):
-        return ' '.join([str(x) for x in self.note_heads])
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -211,7 +199,7 @@ class Chord(Leaf):
         result.append(self._format_grace_body())
         result.append(('comments', bundle.before.comments))
         commands = bundle.before.commands
-        if inspect_(self).has_indicator(indicatortools.Tremolo):
+        if inspect(self).has_indicator(indicatortools.Tremolo):
             tremolo_command = self._format_repeat_tremolo_command()
             commands = list(commands)
             commands.append(tremolo_command)
@@ -225,7 +213,7 @@ class Chord(Leaf):
 
     def _format_close_brackets_slot(self, bundle):
         result = []
-        if inspect_(self).has_indicator(indicatortools.Tremolo):
+        if inspect(self).has_indicator(indicatortools.Tremolo):
             brackets_close = ['}']
             result.append([('close brackets', ''), brackets_close])
         return result
@@ -244,34 +232,37 @@ class Chord(Leaf):
             result.insert(0, '<')
             result.append('>')
             result = '\n'.join(result)
-            result += str(self._formatted_duration)
-        elif inspect_(self).has_indicator(indicatortools.Tremolo):
+            result += str(self._get_formatted_duration())
+        elif inspect(self).has_indicator(indicatortools.Tremolo):
             reattack_duration = self._get_tremolo_reattack_duration()
             duration_string = reattack_duration.lilypond_duration_string
             durated_pitches = []
             for note_head in note_heads:
                 durated_pitch = format(note_head) + duration_string
                 durated_pitches.append(durated_pitch)
-            tremolo = inspect_(self).get_indicator(indicatortools.Tremolo)
+            tremolo = inspect(self).get_indicator(indicatortools.Tremolo)
             if tremolo.is_slurred:
                 durated_pitches[0] = durated_pitches[0] + r' \('
                 durated_pitches[-1] = durated_pitches[-1] + r' \)'
             result = ' '.join(durated_pitches)
         else:
             result.extend([format(_) for _ in note_heads])
-            result = '<%s>%s' % (' '.join(result), self._formatted_duration)
+            result = '<%s>%s' % (
+                ' '.join(result),
+                self._get_formatted_duration(),
+                )
         # single string, but wrapped in list bc contribution
         return ['nucleus', [result]]
 
     def _format_open_brackets_slot(self, bundle):
         result = []
-        if inspect_(self).has_indicator(indicatortools.Tremolo):
+        if inspect(self).has_indicator(indicatortools.Tremolo):
             brackets_open = ['{']
             result.append([('open brackets', ''), brackets_open])
         return result
 
     def _format_repeat_tremolo_command(self):
-        tremolo = inspect_(self).get_indicator(indicatortools.Tremolo)
+        tremolo = inspect(self).get_indicator(indicatortools.Tremolo)
         reattack_duration = self._get_tremolo_reattack_duration()
         repeat_count = self.written_duration / reattack_duration / 2
         if not mathtools.is_integer_equivalent(repeat_count):
@@ -282,13 +273,28 @@ class Chord(Leaf):
         command = r'\repeat tremolo {}'.format(repeat_count)
         return command
 
+    def _get_compact_representation(self):
+        return '<{}>{}'.format(
+            self._get_summary(),
+            self._get_formatted_duration(),
+            )
+
+    def _get_compact_representation_with_tie(self):
+        logical_tie = self._get_logical_tie()
+        if 1 < len(logical_tie) and self is not logical_tie[-1]:
+            #return '{} ~'.format(self._get_body()[0])
+            return '{} ~'.format(self._get_compact_representation())
+        else:
+            #return self._get_body()[0]
+            return self._get_compact_representation()
+
     def _get_lilypond_format(self):
         return super(Chord, self)._get_lilypond_format()
 
     def _get_sounding_pitches(self):
         from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
-        if 'sounding pitch' in inspect_(self).get_indicators(str):
+        if 'sounding pitch' in inspect(self).get_indicators(str):
             return self.written_pitches
         else:
             instrument = self._get_effective(
@@ -304,8 +310,11 @@ class Chord(Leaf):
                 ]
             return tuple(sounding_pitches)
 
+    def _get_summary(self):
+        return ' '.join([str(x) for x in self.note_heads])
+
     def _get_tremolo_reattack_duration(self):
-        tremolos = inspect_(self).get_indicators(indicatortools.Tremolo)
+        tremolos = inspect(self).get_indicators(indicatortools.Tremolo)
         if not tremolos:
             return
         tremolo = tremolos[0]
@@ -326,7 +335,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord = Chord("<g' c'' e''>4")
+                >>> chord = abjad.Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -352,7 +361,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord = Chord("<g' c'' e''>4")
+                >>> chord = abjad.Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -360,7 +369,7 @@ class Chord(Leaf):
                 >>> chord.note_heads = "c' d' fs'"
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <c' d' fs'>4
@@ -369,7 +378,7 @@ class Chord(Leaf):
 
             Sets note-heads with pitch numbers:
 
-                >>> chord = Chord("<g' c'' e''>4")
+                >>> chord = abjad.Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -377,7 +386,7 @@ class Chord(Leaf):
                 >>> chord.note_heads = [16, 17, 19]
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <e'' f'' g''>4
@@ -405,7 +414,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord = Chord("<e' cs'' f''>4")
+                >>> chord = abjad.Chord("<e' cs'' f''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -419,12 +428,12 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord = Chord("<e' cs'' f''>4")
+                >>> chord = abjad.Chord("<e' cs'' f''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
 
-                >>> chord.written_duration = Duration(1, 16)
+                >>> chord.written_duration = abjad.Duration(1, 16)
                 >>> show(chord) # doctest: +SKIP
 
         Set duration.
@@ -445,7 +454,7 @@ class Chord(Leaf):
 
             Get written pitches:
 
-                >>> chord = Chord("<g' c'' e''>4")
+                >>> chord = abjad.Chord("<g' c'' e''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -459,7 +468,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord = Chord("<e' g' c''>4")
+                >>> chord = abjad.Chord("<e' g' c''>4")
                 >>> show(chord) # doctest: +SKIP
 
             ::
@@ -467,7 +476,7 @@ class Chord(Leaf):
                 >>> chord.written_pitches = "f' b' d''"
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(chord)
                 <f' b' d''>4

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
+import abjad
 from {score_package_name}.tools import SegmentMaker
 
 

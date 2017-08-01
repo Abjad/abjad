@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_agenttools_MutationAgent_swap_01():
@@ -8,12 +8,12 @@ def test_agenttools_MutationAgent_swap_01():
     to empty tuplet.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -32,10 +32,10 @@ def test_agenttools_MutationAgent_swap_01():
         '''
         )
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(3, 8), [])
-    mutate(voice[:2]).swap(tuplet)
+    tuplet = abjad.Tuplet((3, 4), [])
+    abjad.mutate(voice[:2]).swap(tuplet)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             \tweak text #tuplet-number::calc-fraction-text
@@ -53,22 +53,22 @@ def test_agenttools_MutationAgent_swap_01():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_swap_02():
     r'''Moves parentage, children and spanners from container to empty voice.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = select(voice).by_leaf()
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = abjad.select(voice).by_leaf()
     voice.name = 'foo'
-    glissando = spannertools.Glissando()
-    attach(glissando, leaves)
-    beam = Beam()
-    attach(beam, leaves)
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, leaves)
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \context Voice = "foo" {
             {
@@ -87,11 +87,11 @@ def test_agenttools_MutationAgent_swap_02():
         '''
         )
 
-    new_voice = Voice()
+    new_voice = abjad.Voice()
     new_voice.name = 'foo'
-    mutate(voice[1:2]).swap(new_voice)
+    abjad.mutate(voice[1:2]).swap(new_voice)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \context Voice = "foo" {
             {
@@ -110,21 +110,21 @@ def test_agenttools_MutationAgent_swap_02():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_swap_03():
     r'''Moves parentage, children and spanners from container to empty tuplet.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = select(voice).by_leaf()
-    glissando = spannertools.Glissando()
-    attach(glissando, leaves)
-    beam = Beam()
-    attach(beam, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, leaves)
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -143,11 +143,11 @@ def test_agenttools_MutationAgent_swap_03():
         '''
         )
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(3, 16), [])
-    mutate(voice[1:2]).swap(tuplet)
+    tuplet = abjad.Tuplet((3, 4), [])
+    abjad.mutate(voice[1:2]).swap(tuplet)
 
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -167,7 +167,7 @@ def test_agenttools_MutationAgent_swap_03():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert abjad.inspect(voice).is_well_formed()
 
 
 def test_agenttools_MutationAgent_swap_04():
@@ -175,13 +175,13 @@ def test_agenttools_MutationAgent_swap_04():
     raises exception.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    note = Note("c'4")
-    assert pytest.raises(Exception, 'mutate(voice[1:2]).swap(note)')
+    note = abjad.Note("c'4")
+    assert pytest.raises(Exception, 'abjad.mutate(voice[1:2]).swap(note)')
 
 
 def test_agenttools_MutationAgent_swap_05():
@@ -189,13 +189,13 @@ def test_agenttools_MutationAgent_swap_05():
     nonempty container to nonempty container raises exception.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    assert pytest.raises(Exception, 'mutate(voice[1:2]).swap(tuplet)')
+    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    assert pytest.raises(Exception, 'abjad.mutate(voice[1:2]).swap(tuplet)')
 
 
 def test_agenttools_MutationAgent_swap_06():
@@ -203,12 +203,12 @@ def test_agenttools_MutationAgent_swap_06():
     that are not parent-contiguous raises exception.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = select(voice).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = abjad.select(voice).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             {
@@ -227,8 +227,8 @@ def test_agenttools_MutationAgent_swap_06():
         '''
         )
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(3, 8), [])
-    statement = 'mutate([voice[0], voice[2]]).swap(tuplet)'
+    tuplet = abjad.Tuplet((2, 3), [])
+    statement = 'abjad.mutate([voice[0], voice[2]]).swap(tuplet)'
     assert pytest.raises(Exception, statement)
 
 
@@ -236,9 +236,9 @@ def test_agenttools_MutationAgent_swap_07():
     r'''Moves parentage, children and spanners from one measure to another.
     '''
 
-    measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+    measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
 
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == abjad.String.normalize(
         r'''
         {
             \time 4/8
@@ -250,10 +250,10 @@ def test_agenttools_MutationAgent_swap_07():
         '''
         )
 
-    new_measure = Measure((4, 8), [])
-    mutate(measure).swap(new_measure)
+    new_measure = abjad.Measure((4, 8), [])
+    abjad.mutate(measure).swap(new_measure)
 
-    assert format(new_measure) == stringtools.normalize(
+    assert format(new_measure) == abjad.String.normalize(
         r'''
         {
             \time 4/8
@@ -265,4 +265,4 @@ def test_agenttools_MutationAgent_swap_07():
         '''
         )
 
-    assert inspect_(new_measure).is_well_formed()
+    assert abjad.inspect(new_measure).is_well_formed()

@@ -1,6 +1,10 @@
 Logical voices
 ==============
 
+..  abjad::
+
+    import abjad
+
 
 What is a logical voice?
 ------------------------
@@ -23,11 +27,11 @@ contained in an explicit voice always belong to the same logical voice:
 
 ..  abjad::
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    staff = Staff([voice])
-    notes = list(iterate(voice).by_leaf())
-    slur = Slur()
-    attach(slur, notes)
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff([voice])
+    notes = abjad.select(staff).by_leaf()
+    slur = abjad.Slur()
+    abjad.attach(slur, notes)
     show(staff)
 
 Here is a staff without an explicit voice. You can slur these notes together
@@ -36,10 +40,10 @@ logical voice even though no explicit voice is present:
 
 ..  abjad::
 
-    staff = Staff("g'4 fs'8 e'8")
-    notes = list(iterate(staff).by_leaf())
-    slur = Slur()
-    attach(slur, notes)
+    staff = abjad.Staff("g'4 fs'8 e'8")
+    notes = abjad.select(staff).by_leaf()
+    slur = abjad.Slur()
+    abjad.attach(slur, notes)
     show(staff)
 
 
@@ -54,9 +58,9 @@ impact Abjad's determination of logical voices:
 
 ..  abjad::
 
-    voice_1 = Voice("c'16 d'16 e'16 f'16", name='First Short Voice')
-    voice_2 = Voice("e'8 d'8", name='Second Short Voice')
-    staff = Staff([voice_1, voice_2])
+    voice_1 = abjad.Voice("c'16 d'16 e'16 f'16", name='First Short Voice')
+    voice_2 = abjad.Voice("e'8 d'8", name='Second Short Voice')
+    staff = abjad.Staff([voice_1, voice_2])
     show(staff)
 
 You can't tell that the score above comprises two voices from the notation
@@ -64,24 +68,24 @@ alone. But the LilyPond input makes this clear:
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 You can slur together the notes in the first voice:
 
 ..  abjad::
 
-    notes = list(iterate(voice_1).by_leaf())
-    slur = Slur()
-    attach(slur, notes)
+    notes = abjad.select(voice_1).by_leaf()
+    slur = abjad.Slur()
+    abjad.attach(slur, notes)
     show(staff)
 
 And you can slur together the notes in the second voice:
 
 ..  abjad::
 
-    notes = list(iterate(voice_2).by_leaf())
-    slur = Slur()
-    attach(slur, notes)
+    notes = abjad.select(voice_2).by_leaf()
+    slur = abjad.Slur()
+    abjad.attach(slur, notes)
     show(staff)
 
 But you can not slur together all the notes in the staff.
@@ -103,9 +107,9 @@ Now let's consider an example in which both voices carry the same name:
 
 ..  abjad::
 
-    voice_1 = Voice("c''16 b'16 a'16 g'16", name='Unified Voice')
-    voice_2 = Voice("fs'8 g'8", name='Unified Voice')
-    staff = Staff([voice_1, voice_2])
+    voice_1 = abjad.Voice("c''16 b'16 a'16 g'16", name='Unified Voice')
+    voice_2 = abjad.Voice("fs'8 g'8", name='Unified Voice')
+    staff = abjad.Staff([voice_1, voice_2])
     show(staff)
 
 All six notes in the staff now belong to the same logical voice. We can see
@@ -113,11 +117,11 @@ that this is the case because it's now possible to slur all six notes together:
 
 ..  abjad::
 
-    voice_1_notes = list(iterate(voice_1).by_leaf())
-    voice_2_notes = list(iterate(voice_2).by_leaf())
+    voice_1_notes = abjad.select(voice_1).by_leaf()
+    voice_2_notes = abjad.select(voice_2).by_leaf()
     all_notes = voice_1_notes + voice_2_notes
-    slur = Slur()
-    attach(slur, all_notes)
+    slur = abjad.Slur()
+    abjad.attach(slur, all_notes)
     show(staff)
 
 We can say that this example comprises two explicit voices but only a single
@@ -125,7 +129,7 @@ logical voice. The LilyPond input code also makes this clear:
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 
 The importance of naming voices
@@ -138,9 +142,9 @@ defines.  Do the notes below belong to one logical voice or two?
 
 ..  abjad::
 
-    voice_1 = Voice("c'8 e'16 fs'16")
-    voice_2 = Voice("g'16 gs'16 a'16 as'16")
-    staff = Staff([voice_1, voice_2])
+    voice_1 = abjad.Voice("c'8 e'16 fs'16")
+    voice_2 = abjad.Voice("g'16 gs'16 a'16 as'16")
+    staff = abjad.Staff([voice_1, voice_2])
     show(staff)
 
 Abjad defers to LilyPond in answering this question. LilyPond interprets
@@ -151,12 +155,10 @@ together all of the notes at once:
 
 ..  abjad::
 
-    voice_1_notes = list(iterate(voice_1).by_leaf())
-    voice_2_notes = list(iterate(voice_2).by_leaf())
-    slur = Slur()
-    attach(slur, voice_1_notes)
-    slur = Slur()
-    attach(slur, voice_2_notes)
+    voice_1_notes = abjad.select(voice_1).by_leaf()
+    voice_2_notes = abjad.select(voice_2).by_leaf()
+    attach(abjad.Slur(), voice_1_notes)
+    attach(abjad.Slur(), voice_2_notes)
     show(staff)
 
 This point can be something of a gotcha. If you start working with increasingly

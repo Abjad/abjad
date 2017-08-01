@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_spannertools_Glissando_01():
 
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    glissando = spannertools.Glissando()
-    attach(glissando, staff[:4])
+    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(8)])
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, staff[:4])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 \glissando

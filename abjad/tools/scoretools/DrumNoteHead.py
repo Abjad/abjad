@@ -2,21 +2,28 @@ from abjad.tools.scoretools.NoteHead import NoteHead
 
 
 class DrumNoteHead(NoteHead):
-    r'''A drum note-head.
+    r'''Drum note-head.
 
     ::
 
-        >>> note_head = scoretools.DrumNoteHead('snare')
-        >>> note_head
-        DrumNoteHead('snare')
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> note_head = abjad.DrumNoteHead('snare')
+            >>> note_head
+            DrumNoteHead('snare')
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Note heads'
+    __documentation_section__ = 'Note-heads'
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

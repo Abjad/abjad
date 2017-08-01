@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class AltoSaxophone(Instrument):
-    r'''An alto saxophone.
+    r'''Alto saxophone.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> alto_saxophone = instrumenttools.AltoSaxophone()
-        >>> attach(alto_saxophone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Alto saxophone" }
-            \set Staff.shortInstrumentName = \markup { "Alt. sax." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> alto_saxophone = abjad.instrumenttools.AltoSaxophone()
+            >>> abjad.attach(alto_saxophone, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Alto saxophone" }
+                \set Staff.shortInstrumentName = \markup { "Alt. sax." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -76,7 +83,7 @@ class AltoSaxophone(Instrument):
 
             ::
 
-                >>> alto_sax = instrumenttools.AltoSaxophone()
+                >>> alto_sax = abjad.instrumenttools.AltoSaxophone()
                 >>> f(alto_sax)
                 instrumenttools.AltoSaxophone(
                     instrument_name='alto saxophone',
@@ -94,9 +101,7 @@ class AltoSaxophone(Instrument):
                                 ),
                             ]
                         ),
-                    pitch_range=abjad.PitchRange(
-                        range_string='[Db3, A5]',
-                        ),
+                    pitch_range=abjad.PitchRange('[Db3, A5]'),
                     sounding_pitch_of_written_middle_c=abjad.NamedPitch('ef'),
                     )
 
@@ -169,7 +174,7 @@ class AltoSaxophone(Instrument):
             ::
 
                 >>> alto_saxophone.pitch_range
-                PitchRange(range_string='[Db3, A5]')
+                PitchRange('[Db3, A5]')
 
             ::
 

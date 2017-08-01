@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_datastructuretools_TypedOrderedDict___eq___01():
 
-    dictionary_1 = datastructuretools.TypedOrderedDict([
+    dictionary_1 = abjad.TypedOrderedDict([
         ('flavor', 'cherry'), ('count', 2),
         ])
-    dictionary_2 = datastructuretools.TypedOrderedDict([
+    dictionary_2 = abjad.TypedOrderedDict([
         ('flavor', 'cherry'), ('count', 2),
         ])
-    dictionary_3 = datastructuretools.TypedOrderedDict([
+    dictionary_3 = abjad.TypedOrderedDict([
         ('flavor', 'chocolate'), ('count', 2),
         ])
 
@@ -27,10 +27,10 @@ def test_datastructuretools_TypedOrderedDict___eq___01():
 
 def test_datastructuretools_TypedOrderedDict___eq___02():
 
-    dictionary_1 = datastructuretools.TypedOrderedDict([
+    dictionary_1 = abjad.TypedOrderedDict([
         ('flavor', 'cherry'), ('count', 2),
         ])
-    dictionary_2 = datastructuretools.TypedOrderedDict([
+    dictionary_2 = abjad.TypedOrderedDict([
         ('flavor', 'cherry'), ('count', 2), ('color', 'red'),
         ])
 

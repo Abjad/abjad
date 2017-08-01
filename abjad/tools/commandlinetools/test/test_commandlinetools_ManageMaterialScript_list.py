@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import commandlinetools
-from abjad.tools import systemtools
+import abjad
 from base import ScorePackageScriptTestCase
 
 
@@ -12,10 +11,10 @@ class Test(ScorePackageScriptTestCase):
         self.create_material('bar')
         self.create_material('baz')
         self.create_material('quux')
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--list']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 2
@@ -30,10 +29,10 @@ class Test(ScorePackageScriptTestCase):
 
     def test_list_materials_no_materials(self):
         self.create_score()
-        script = commandlinetools.ManageMaterialScript()
+        script = abjad.commandlinetools.ManageMaterialScript()
         command = ['--list']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+        with abjad.RedirectedStreams(stdout=self.string_io):
+            with abjad.TemporaryDirectoryChange(str(self.score_path)):
                 with self.assertRaises(SystemExit) as context_manager:
                     script(command)
                 assert context_manager.exception.code == 2

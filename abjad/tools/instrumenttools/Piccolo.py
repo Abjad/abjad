@@ -3,32 +3,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Piccolo(Instrument):
-    r'''A piccolo.
+    r'''Piccolo.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> piccolo = instrumenttools.Piccolo()
-        >>> attach(piccolo, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Piccolo }
-            \set Staff.shortInstrumentName = \markup { Picc. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> piccolo = abjad.instrumenttools.Piccolo()
+            >>> abjad.attach(piccolo, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Piccolo }
+                \set Staff.shortInstrumentName = \markup { Picc. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -123,7 +130,7 @@ class Piccolo(Instrument):
             ::
 
                 >>> piccolo.pitch_range
-                PitchRange(range_string='[D5, C8]')
+                PitchRange('[D5, C8]')
 
             ::
 

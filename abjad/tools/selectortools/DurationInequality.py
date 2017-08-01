@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.selectortools.Inequality import Inequality
 
 
@@ -12,27 +12,33 @@ class DurationInequality(Inequality):
 
     ::
 
-        >>> inequality = selectortools.DurationInequality('<', (3, 4))
-        >>> f(inequality)
-        abjad.DurationInequality(
-            operator_string='<',
-            duration=abjad.Duration(3, 4),
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> inequality(Duration(1, 2))
-        True
+        ::
 
-    ::
+            >>> inequality = abjad.DurationInequality('<', (3, 4))
+            >>> f(inequality)
+            abjad.DurationInequality(
+                operator_string='<',
+                duration=abjad.Duration(3, 4),
+                )
 
-        >>> inequality(Note("c'4"))
-        True
+        ::
 
-    ::
+            >>> inequality(abjad.Duration(1, 2))
+            True
 
-        >>> inequality(Container("c'1 d'1"))
-        False
+        ::
+
+            >>> inequality(abjad.Note("c'4"))
+            True
+
+        ::
+
+            >>> inequality(abjad.Container("c'1 d'1"))
+            False
 
     '''
 
@@ -74,7 +80,7 @@ class DurationInequality(Inequality):
         Returns true or false.
         '''
         if isinstance(argument, scoretools.Component):
-            duration = inspect_(argument).get_duration()
+            duration = inspect(argument).get_duration()
         elif isinstance(argument, selectiontools.Selection):
             duration = argument.get_duration()
         else:

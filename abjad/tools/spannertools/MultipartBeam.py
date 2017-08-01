@@ -5,19 +5,23 @@ from abjad.tools.spannertools.Beam import Beam
 class MultipartBeam(Beam):
     r'''Multipart beam.
 
+    ::
+
+        >>> import abjad
+
     Beams together everything that can be beamed and ignores everything else.
 
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'4 f'8 g'8 r4")
-            >>> beam = spannertools.MultipartBeam()
-            >>> attach(beam, staff[:])
-            >>> set_(staff).auto_beaming = False
+            >>> staff = abjad.Staff("c'8 d'8 e'4 f'8 g'8 r4")
+            >>> beam = abjad.MultipartBeam()
+            >>> abjad.attach(beam, staff[:])
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -35,13 +39,13 @@ class MultipartBeam(Beam):
 
         ::
 
-            >>> staff = Staff("c'8 r8 d'8 r8 f'8 g'8 r4")
-            >>> beam = spannertools.MultipartBeam()
-            >>> attach(beam, staff[:])
-            >>> set_(staff).auto_beaming = False
+            >>> staff = abjad.Staff("c'8 r8 d'8 r8 f'8 g'8 r4")
+            >>> beam = abjad.MultipartBeam()
+            >>> abjad.attach(beam, staff[:])
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -88,9 +92,9 @@ class MultipartBeam(Beam):
         self._beam_rests = self.beam_rests
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if not self._is_beamable(leaf, beam_rests=self.beam_rests):
-            return lilypond_format_bundle
+            return bundle
         direction_string = ''
         if self.direction is not None:
             direction_string = '{} '.format(self.direction)
@@ -145,13 +149,13 @@ class MultipartBeam(Beam):
                             ):
                             stop_piece = ']'
             if start_piece and stop_piece:
-                lilypond_format_bundle.right.spanner_starts.extend([
+                bundle.right.spanner_starts.extend([
                     start_piece, stop_piece])
             elif start_piece:
-                lilypond_format_bundle.right.spanner_starts.append(start_piece)
+                bundle.right.spanner_starts.append(start_piece)
             elif stop_piece:
-                lilypond_format_bundle.right.spanner_stops.append(stop_piece)
-        return lilypond_format_bundle
+                bundle.right.spanner_stops.append(stop_piece)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -165,10 +169,10 @@ class MultipartBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 r8 f'8 g'8 r4.")
-                >>> set_(staff).auto_beaming = False
-                >>> beam = spannertools.MultipartBeam()
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 r8 f'8 g'8 r4.")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> beam = abjad.MultipartBeam()
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -195,10 +199,10 @@ class MultipartBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 r8 f'8 g'8 r4.")
-                >>> set_(staff).auto_beaming = False
-                >>> beam = spannertools.MultipartBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 r8 f'8 g'8 r4.")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> beam = abjad.MultipartBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -225,10 +229,10 @@ class MultipartBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 r4. f'8 g'8 r8")
-                >>> set_(staff).auto_beaming = False
-                >>> beam = spannertools.MultipartBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 r4. f'8 g'8 r8")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> beam = abjad.MultipartBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -255,10 +259,10 @@ class MultipartBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 s4. f'8 g'8 s8")
-                >>> set_(staff).auto_beaming = False
-                >>> beam = spannertools.MultipartBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 s4. f'8 g'8 s8")
+                >>> abjad.setting(staff).auto_beaming = False
+                >>> beam = abjad.MultipartBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ::

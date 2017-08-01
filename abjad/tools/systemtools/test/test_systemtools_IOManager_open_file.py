@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import systemtools
+import abjad
 import pytest
 try:
     from unittest import mock
 except ImportError:
     import mock
+from abjad.tools import systemtools
 
 midi_player, text_editor, pdf_viewer = (
     'midi_player_application',
@@ -42,7 +43,7 @@ applications = (None, 'custom-viewer')
 
 
 @mock.patch('sys.platform', 'linux2')
-@mock.patch('abjad.systemtools.IOManager.spawn_subprocess')
+@mock.patch('abjad.IOManager.spawn_subprocess')
 @pytest.mark.parametrize('configuration', abjad_configurations)
 @pytest.mark.parametrize('file_path', test_files)
 @pytest.mark.parametrize('application', applications)
@@ -64,7 +65,7 @@ def test_systemtools_IOManager_open_file_01(spawn_subprocess_mock,
 
 
 @mock.patch('sys.platform', 'darwin')
-@mock.patch('abjad.systemtools.IOManager.spawn_subprocess')
+@mock.patch('abjad.IOManager.spawn_subprocess')
 @pytest.mark.parametrize('configuration', abjad_configurations)
 @pytest.mark.parametrize('file_path', test_files)
 @pytest.mark.parametrize('application', applications)

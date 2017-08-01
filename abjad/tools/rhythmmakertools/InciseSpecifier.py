@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadValueObject
 
 
 class InciseSpecifier(AbjadValueObject):
     r'''Incise specifier.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
 
     ..  container:: example
 
@@ -208,8 +212,9 @@ class InciseSpecifier(AbjadValueObject):
 
     @staticmethod
     def _rotate_tuple(argument, n):
+        import abjad
         if argument is not None:
-            return tuple(sequencetools.Sequence(argument).rotate(n=n))
+            return tuple(abjad.Sequence(argument).rotate(n=n))
 
     ### PUBLIC PROPERTIES ###
 
@@ -229,7 +234,7 @@ class InciseSpecifier(AbjadValueObject):
                 ...     suffix_talea=[-1],
                 ...     suffix_counts=[1],
                 ...     talea_denominator=16,
-                ...     body_ratio=mathtools.Ratio((1, 1)),
+                ...     body_ratio=abjad.Ratio((1, 1)),
                 ...     )
                 >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=specifier,
@@ -239,15 +244,15 @@ class InciseSpecifier(AbjadValueObject):
 
                 >>> divisions = 4 * [(5, 16)]
                 >>> selections = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                >>> lilypond_file = abjad.LilyPondFile.rhythm(
                 ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> f(lilypond_file[Staff])
+                >>> f(lilypond_file[abjad.Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/16

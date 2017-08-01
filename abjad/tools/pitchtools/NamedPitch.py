@@ -2,13 +2,19 @@
 import collections
 import math
 import numbers
+import re
 from abjad.tools import mathtools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.pitchtools.Pitch import Pitch
 
 
 class NamedPitch(Pitch):
-    '''Named pitch.
+    r'''Named pitch.
+
+    ::
+
+        >>> import abjad
+        >>> import pytest
 
     ..  container:: example
 
@@ -16,8 +22,37 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitch = NamedPitch("cs''")
+            >>> pitch = abjad.NamedPitch("cs''")
             >>> show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "treble"
+                cs''1 * 1/4
+            }
+
+        Initializes quartertone from pitch name:
+
+        ::
+
+            >>> pitch = abjad.NamedPitch("aqs")
+            >>> show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "bass"
+                aqs1 * 1/4
+            }
 
     ..  container:: example
 
@@ -25,84 +60,102 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitch = NamedPitch('C#5')
+            >>> pitch = abjad.NamedPitch('C#5')
             >>> show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "treble"
+                cs''1 * 1/4
+            }
+
+        Initializes quartertone from pitch-class / octave string:
+
+        ::
+
+            >>> pitch = abjad.NamedPitch('A+3')
+            >>> show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "bass"
+                aqs1 * 1/4
+            }
+
+    ..  container:: example
+
+        Initializes arrowed pitch:
+
+        ::
+
+            >>> pitch = abjad.NamedPitch('C#5', arrow=Up)
+            >>> show(pitch) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> staff = pitch.__illustrate__()[abjad.Staff]
+            >>> f(staff)
+            \new Staff \with {
+                \override TimeSignature.stencil = ##f
+            } {
+                \clef "treble"
+                \once \override Accidental.stencil = #ly:text-interface::print
+                \once \override Accidental.text = \markup { \musicglyph #"accidentals.sharp.arrowup" }
+                cs''1 * 1/4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_alteration_in_semitones',
-        '_diatonic_pitch_class_number',
-        '_octave_number',
+        '_name',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments):
-        from abjad.tools import pitchtools
-        if (
-            arguments and
-            isinstance(arguments[0], collections.Iterable) and
-            not stringtools.is_string(arguments[0]) and
-            len(arguments) == 1
-            ):
-            arguments = arguments[0]
-        if len(arguments) == 1:
-            if isinstance(arguments[0], (int, float)):
-                argument = mathtools.integer_equivalent_number_to_integer(
-                    float(arguments[0]))
-                self._initialize_by_pitch_number(argument)
-            elif isinstance(arguments[0], type(self)):
-                self._initialize_by_named_pitch(*arguments)
-            elif isinstance(arguments[0], pitchtools.NumberedPitch):
-                self._initialize_by_pitch_number(
-                    arguments[0].pitch_number)
-            elif isinstance(arguments[0], pitchtools.PitchClass):
-                self._initialize_by_named_pitch_class_and_octave_number(
-                    pitchtools.NamedPitchClass(arguments[0]), 4)
-            elif hasattr(arguments[0], 'named_pitch'):
-                self._initialize_by_named_pitch(arguments[0].named_pitch)
-            elif self.is_pitch_class_octave_number_string(arguments[0]):
-                self._initialize_by_pitch_class_octave_number_string(*arguments)
-            elif isinstance(arguments[0], str):
-                self._initialize_by_pitch_name(*arguments)
-            else:
-                message = 'can not initialize {} from {!r}.'
-                message = message.format(type(self).__name__, arguments)
-                raise ValueError(message)
-        elif len(arguments) == 2:
-            if isinstance(arguments[0], str):
-                self._initialize_by_pitch_class_name_and_octave_number(
-                    *arguments)
-            elif isinstance(arguments[0], pitchtools.NamedPitchClass):
-                self._initialize_by_named_pitch_class_and_octave_number(
-                    *arguments)
-            elif isinstance(arguments[0], (int, float)):
-                if isinstance(arguments[1], str):
-                    self._initialize_by_pitch_number_and_diatonic_pitch_class_name(
-                        *arguments)
-                elif isinstance(arguments[1], (int, float)):
-                    self._initialize_by_pitch_number_and_octave_number(
-                        *arguments)
-                elif isinstance(arguments[1], pitchtools.NamedPitchClass):
-                    self._initialize_by_pitch_number_and_named_pitch_class(
-                        *arguments)
-                else:
-                    message = 'can not initialize {}: {!r}.'
-                    message = message.format(type(self).__name__, arguments)
-                    raise TypeError(message)
-            else:
-                message = 'can not initialize {}: {!r}.'
-                message = message.format(type(self).__name__, arguments)
-                raise ValueError(message)
-        elif len(arguments) == 0:
-            self._initialize_by_pitch_class_name_and_octave_number('c', 4)
+    def __init__(self, name="c'", arrow=None):
+        import abjad
+        if self._is_pitch_name(name):
+            pass
+        elif self._is_pitch_class_octave_number_string(name):
+            name = self._american_name_to_lilypond_name(name)
+        elif isinstance(name, type(self)):
+            arrow = name.arrow
+            name = name.name
+        elif isinstance(name, abjad.NamedPitchClass):
+            name = name.name + "'"
+        elif isinstance(name, tuple) and len(name) == 2:
+            pitch_class, octave = name
+            assert isinstance(pitch_class, str), repr(name)
+            name = pitch_class + abjad.Octave(octave).ticks
+        elif isinstance(name, numbers.Number) or hasattr(name, 'number'):
+            number = getattr(name, 'number', name)
+            named_pitch_class = abjad.NamedPitchClass(number)
+            octave = number // 12 + 4
+            name = named_pitch_class.name + abjad.Octave(octave).ticks
         else:
-            message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, arguments)
+            message = 'can not initialize {} from {!r}.'
+            message = message.format(type(self).__name__, name)
             raise ValueError(message)
+        assert self._is_pitch_name(name)
+        self._name = name
+        if arrow not in (Up, Down, None):
+            message = 'arrow must be up, down or none: {!r}.'
+            message = message.format(arrow)
+            raise TypeError(message)
+        if not hasattr(self, '_arrow'):
+            self._arrow = arrow
 
     ### SPECIAL METHODS ###
 
@@ -111,54 +164,64 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            Adds an ascending major second to C#5:
-
             ::
 
-                >>> NamedPitch("cs''") + NamedInterval('+M2')
-                NamedPitch("ds''")
-
-        ..  container:: example
-
-            Adds a descending major second to C#5:
-
-            ::
-
-                >>> NamedPitch("cs''") + NamedInterval('-M2')
+                >>> abjad.NamedPitch("cs''") + abjad.NamedInterval('-M2')
                 NamedPitch("b'")
+
+            ::
+
+                >>> abjad.NamedPitch("cs''") + abjad.NamedInterval('P1')
+                NamedPitch("cs''")
+
+            ::
+
+                >>> abjad.NamedPitch("cs''") + abjad.NamedInterval('+M2')
+                NamedPitch("ds''")
 
         Returns new named pitch.
         '''
-        from abjad.tools import pitchtools
-        interval = pitchtools.NamedInterval(interval)
-        pitch = interval.transpose(self)
-        return pitch
+        import abjad
+        interval = abjad.NamedInterval(interval)
+        return interval.transpose(self)
 
     def __copy__(self, *arguments):
         r'''Copies named pitch.
 
-        ..  container:: example
+        ::
 
-            Copies C#5:
+            >>> import copy
+
+        ..  container:: example
 
             ::
 
-                >>> import copy
-                >>> copy.copy(NamedPitch("cs''"))
+                >>> copy.copy(abjad.NamedPitch("c''"))
+                NamedPitch("c''")
+
+            ::
+
+                >>> copy.copy(abjad.NamedPitch("cs''"))
                 NamedPitch("cs''")
 
+            ::
+
+                >>> copy.copy(abjad.NamedPitch("df''"))
+                NamedPitch("df''")
+
         ..  container:: example
 
-            Copies Db5:
+            Copies arrowed pitch:
 
             ::
 
-                >>> copy.copy(NamedPitch("df''"))
-                NamedPitch("df''")
+                >>> pitch = abjad.NamedPitch("cs''", arrow=Up)
+                >>> copy.copy(pitch)
+                NamedPitch("cs''", arrow=Up)
 
         Returns new named pitch.
         '''
-        return type(self)(self)
+        return type(self)(self, arrow=self.arrow)
 
     def __eq__(self, argument):
         r'''Is true when `argument` is a named pitch equal to this named pitch.
@@ -166,372 +229,269 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            C#5 equals C#5:
+            ::
+
+                >>> pitch_1 = abjad.NamedPitch('fs')
+                >>> pitch_2 = abjad.NamedPitch('fs')
+                >>> pitch_3 = abjad.NamedPitch('gf')
 
             ::
 
-                >>> NamedPitch('C#5') == NamedPitch("cs''")
+                >>> pitch_1 == pitch_1
                 True
+                >>> pitch_1 == pitch_2
+                True
+                >>> pitch_1 == pitch_3
+                False
+
+            ::
+
+                >>> pitch_2 == pitch_1
+                True
+                >>> pitch_2 == pitch_2
+                True
+                >>> pitch_2 == pitch_3
+                False
+
+            ::
+
+                >>> pitch_3 == pitch_1
+                False
+                >>> pitch_3 == pitch_2
+                False
+                >>> pitch_3 == pitch_3
+                True
+
+        Returns true or false.
+        '''
+        return super(NamedPitch, self).__eq__(argument)
+
+    def __hash__(self):
+        r'''Hashes named pitch.
+
+        Returns integer.
+        '''
+        return super(NamedPitch, self).__hash__()
+
+    def __lt__(self, argument):
+        r'''Is true when named pitch is less than `argument`. Otherwise false.
 
         ..  container:: example
 
-            C#5 does not equal Db5:
+            ::
+
+                >>> pitch_1 = abjad.NamedPitch('fs')
+                >>> pitch_2 = abjad.NamedPitch('fs')
+                >>> pitch_3 = abjad.NamedPitch('gf')
 
             ::
 
-                >>> NamedPitch('C#5') == NamedPitch('Db5')
+                >>> pitch_1 < pitch_1
+                False
+                >>> pitch_1 < pitch_2
+                False
+                >>> pitch_1 < pitch_3
+                True
+
+            ::
+
+                >>> pitch_2 < pitch_1
+                False
+                >>> pitch_2 < pitch_2
+                False
+                >>> pitch_2 < pitch_3
+                True
+
+            ::
+
+                >>> pitch_3 < pitch_1
+                False
+                >>> pitch_3 < pitch_2
+                False
+                >>> pitch_3 < pitch_3
                 False
 
         Returns true or false.
         '''
         try:
             argument = type(self)(argument)
-            if str(self) == str(argument):
-                return True
-            return False
         except (TypeError, ValueError):
             return False
+        self_dpn = self._get_diatonic_pitch_number()
+        argument_dpn = argument._get_diatonic_pitch_number()
+        if self_dpn == argument_dpn:
+            return self.accidental < argument.accidental
+        return self_dpn < argument_dpn
 
-    def __float__(self):
-        r'''Changes named pitch to float.
-
-        ..  container:: example
-
-            Changes C#5 to float:
-
-            ::
-
-                >>> float(NamedPitch('C#5'))
-                13.0
+    def __radd__(self, interval):
+        r'''Right-addition not defined on named pitches.
 
         ..  container:: example
 
-            Changes Ctqs5 to float:
-
             ::
 
-                >>> float(NamedPitch('C#+5'))
-                13.5
+                >>> statement = 'abjad.NamedPitch("cs\'").__radd__(1)'
+                >>> pytest.raises(NotImplementedError, statement)
+                <ExceptionInfo NotImplementedError ...>
 
-        Returns float.
         '''
-        return float(self.pitch_number)
-
-    def __ge__(self, argument):
-        r'''Is true when named pitch is greater than or equal to `argument`.
-        Otherwise false.
-
-        Returns true or false.
-        '''
-        from abjad.tools import pitchtools
-        if isinstance(argument, type(self)):
-            return self.diatonic_pitch_number > argument.diatonic_pitch_number or \
-                (self.diatonic_pitch_number == argument.diatonic_pitch_number and
-                self.alteration_in_semitones >= argument.alteration_in_semitones)
-        elif isinstance(argument, pitchtools.PitchRange):
-            return self >= argument.stop_pitch
-        else:
-            try:
-                argument = type(self)(argument)
-                return self.__ge__(argument)
-            except (TypeError, ValueError):
-                pass
-        return False
-
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self.pitch_name,)
-
-    def __gt__(self, argument):
-        r'''Is true when named pitch is greater than `argument`. Otherwise false.
-
-        Returns true or false.
-        '''
-        from abjad.tools import pitchtools
-        if isinstance(argument, type(self)):
-            return (self.diatonic_pitch_number > argument.diatonic_pitch_number or
-                (self.diatonic_pitch_number == argument.diatonic_pitch_number and
-                self.alteration_in_semitones > argument.alteration_in_semitones))
-        elif isinstance(argument, pitchtools.PitchRange):
-            return self > argument.stop_pitch
-        else:
-            try:
-                argument = type(self)(argument)
-                return self.__gt__(argument)
-            except (TypeError, ValueError):
-                pass
-        return False
-
-    def __hash__(self):
-        r'''Required to be explicitly redefined on Python 3 if
-        __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(NamedPitch, self).__hash__()
-
-    def __int__(self):
-        r'''Changes named pitch to integer.
-
-        ..  container:: example
-
-            Changes C#5 to integer:
-
-            ::
-
-                >>> int(NamedPitch('C#5'))
-                13
-
-        ..  container:: example
-
-            Changes Db5 to integer:
-
-            ::
-
-                >>> int(NamedPitch('Db5'))
-                13
-
-        Returns integer.
-        '''
-        if not mathtools.is_integer_equivalent_number(self.pitch_number):
-            raise TypeError
-        return int(self.pitch_number)
-
-    def __le__(self, argument):
-        r'''Is true when named pitch is less than or equal to `argument`. Otherwise
-        false.
-
-        Returns true or false.
-        '''
-        from abjad.tools import pitchtools
-        if isinstance(argument, type(self)):
-            if not self.diatonic_pitch_number == argument.diatonic_pitch_number:
-                return self.diatonic_pitch_number <= argument.diatonic_pitch_number
-            if not self.alteration_in_semitones == argument.alteration_in_semitones:
-                return self.alteration_in_semitones <= \
-                    argument.alteration_in_semitones
-            return True
-        elif isinstance(argument, pitchtools.PitchRange):
-            return self <= argument.start_pitch
-        else:
-            try:
-                argument = type(self)(argument)
-                return self.__le__(argument)
-            except (TypeError, ValueError):
-                pass
-        return False
-
-    def __lt__(self, argument):
-        r'''Is true when named pitch is less than `argument`. Otherwise false.
-
-        Returns true or false.
-        '''
-        from abjad.tools import pitchtools
-        if isinstance(argument, type(self)):
-            return (self.diatonic_pitch_number < argument.diatonic_pitch_number or
-                (self.diatonic_pitch_number == argument.diatonic_pitch_number and
-                self.alteration_in_semitones < argument.alteration_in_semitones))
-        elif isinstance(argument, pitchtools.PitchRange):
-            return self < argument.start_pitch
-        elif argument is None:
-            return True
-        else:
-            try:
-                argument = type(self)(argument)
-                return self.__lt__(argument)
-            except (TypeError, ValueError):
-                pass
-        return False
-
-    def __ne__(self, argument):
-        r'''Is true when named pitch does not equal `argument`. Otherwise false.
-
-        ..  container:: example
-
-            C#5 is not equal to D#5:
-
-            ::
-
-                >>> NamedPitch("cs''") != NamedPitch("ds''")
-                True
-
-        ..  container:: example
-
-            C#5 is equal to C#5:
-
-            ::
-
-                >>> NamedPitch("cs''") != NamedPitch("cs''")
-                False
-
-        Returns true or false.
-        '''
-        return not self == argument
+        message = 'right-addition not defined on named pitches.'
+        raise NotImplementedError(message)
 
     def __str__(self):
         r'''Gets string representation of named pitch.
 
         ..  container:: example
 
-            Gets string representation of C#5:
+            ::
+
+                >>> str(abjad.NamedPitch("c''"))
+                "c''"
 
             ::
 
-                >>> str(NamedPitch("cs''"))
+                >>> str(abjad.NamedPitch("cs''"))
                 "cs''"
 
-        ..  container:: example
-
-            Gets string representation of Db5:
-
             ::
 
-                >>> str(NamedPitch("df''"))
+                >>> str(abjad.NamedPitch("df''"))
                 "df''"
 
         Returns string.
         '''
-        return self.pitch_name
+        return self.name
 
     def __sub__(self, argument):
         r'''Subtracts `argument` from named pitch.
 
         ..  container:: example
 
-            Subtracts B4 from C#5:
-
             ::
 
-                >>> NamedPitch("cs''") - NamedPitch("b'")
+                >>> abjad.NamedPitch("cs''") - abjad.NamedPitch("b'")
                 NamedInterval('-M2')
 
-        ..  container:: example
-
-            Subtracts F#5 from C#5:
-
             ::
 
-                >>> NamedPitch("cs''") - NamedPitch("fs''")
+                >>> abjad.NamedPitch("cs''") - abjad.NamedPitch("fs''")
                 NamedInterval('+P4')
 
         Returns named interval.
         '''
-        from abjad.tools import pitchtools
+        import abjad
         if isinstance(argument, type(self)):
-            return pitchtools.NamedInterval.from_pitch_carriers(self, argument)
-        interval = pitchtools.NamedInterval(argument)
+            return abjad.NamedInterval.from_pitch_carriers(self, argument)
+        interval = abjad.NamedInterval(argument)
         interval = -interval
-        pitch = interval.transpose(self)
-        return pitch
+        return interval.transpose(self)
 
     ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _american_name_to_lilypond_name(name):
+        import abjad
+        match = NamedPitch._pitch_class_octave_number_regex.match(name)
+        group_dict = match.groupdict()
+        name = abjad.NamedPitchClass(name).name
+        name += abjad.Octave(int(group_dict['octave_number'])).ticks
+        return name
+
+    def _apply_accidental(self, accidental):
+        import abjad
+        name = self._get_diatonic_pitch_class_name()
+        name += str(self.accidental + abjad.Accidental(accidental))
+        name += self.octave.ticks
+        return type(self)(name)
+
+    def _get_alteration(self):
+        return self.accidental.semitones
+
+    def _get_diatonic_pitch_class_name(self):
+        return self._parse_name()[0]
+
+    def _get_diatonic_pitch_class_number(self):
+        import abjad
+        diatonic_pitch_class_name = self._get_diatonic_pitch_class_name()
+        class_ = abjad.PitchClass
+        diatonic_pitch_class_number = \
+            class_._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
+            diatonic_pitch_class_name
+            ]
+        return diatonic_pitch_class_number
+
+    def _get_diatonic_pitch_name(self):
+        diatonic_pitch_class_name, accidental, ticks = self._parse_name()
+        return diatonic_pitch_class_name + ticks
+
+    def _get_diatonic_pitch_number(self):
+        diatonic_pitch_number = 7 * (self.octave.number - 4)
+        diatonic_pitch_number += self._get_diatonic_pitch_class_number()
+        return diatonic_pitch_number
+
+    def _get_format_specification(self):
+        import abjad
+        return abjad.FormatSpecification(
+            self,
+            coerce_for_equality=True,
+            repr_is_indented=False,
+            storage_format_args_values=[self.name],
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=['arrow'],
+            )
 
     def _get_lilypond_format(self):
         return str(self)
 
-    def _initialize_by_named_pitch(self, named_pitch):
-        self._alteration_in_semitones = named_pitch._alteration_in_semitones
-        self._diatonic_pitch_class_number = \
-            named_pitch.diatonic_pitch_class_number
-        self._octave_number = named_pitch.octave.number
+    def _get_pitch_class_name(self):
+        parts = self._parse_name()
+        return parts[0] + parts[1]
 
-    def _initialize_by_named_pitch_class_and_octave_number(
-        self, named_pitch_class, octave_number):
-        self._alteration_in_semitones = \
-            named_pitch_class._alteration_in_semitones
-        self._diatonic_pitch_class_number = \
-            named_pitch_class._diatonic_pitch_class_number
-        self._octave_number = int(octave_number)
+    def _list_format_contributions(self):
+        contributions = []
+        if self.arrow is None:
+            return contributions
+        override_string = r'\once \override Accidental.stencil ='
+        override_string += ' #ly:text-interface::print'
+        contributions.append(override_string)
+        string = 'accidentals.{}.arrow{}'
+        string = string.format(self.accidental.name, str(self.arrow).lower())
+        override_string = r'\once \override Accidental.text ='
+        override_string += r' \markup {{ \musicglyph #"{}" }}'
+        override_string = override_string.format(string)
+        contributions.append(override_string)
+        return contributions
 
-    def _initialize_by_pitch_class_name_and_octave_number(
-        self, pitch_class_name, octave_number):
-        from abjad.tools import pitchtools
-        named_pitch_class = pitchtools.NamedPitchClass(pitch_class_name)
-        self._initialize_by_named_pitch_class_and_octave_number(
-            named_pitch_class, octave_number)
+    def _parse_name(self):
+        match = self._pitch_name_regex.match(self.name)
+        if match is None:
+            raise Exception(repr(self.name))
+        groups = match.groups()
+        assert len(groups) == 5, repr(groups)
+        diatonic_pitch_class_name = groups[0]
+        accidental_abbreviation = groups[1]
+        groups[2] is None
+        groups[3] is None
+        ticks = groups[4]
+        return diatonic_pitch_class_name, accidental_abbreviation, ticks
 
-    def _initialize_by_pitch_class_name_octave_number_pair(self, pair):
-        pitch_class_name, octave_number = pair
-        self._initialize_by_pitch_class_name_and_octave_number(
-            pitch_class_name, octave_number)
+    def _respell_with_flats(self):
+        import abjad
+        class_ = abjad.PitchClass
+        name = class_._pitch_class_number_to_pitch_class_name_with_flats[
+            self.pitch_class.number
+            ]
+        pitch = type(self)((name, self.octave.number))
+        return pitch
 
-    def _initialize_by_pitch_class_octave_number_string(
-        self, pitch_class_octave_number_string):
-        from abjad.tools import pitchtools
-        group_dict = self._pitch_class_octave_number_regex.match(
-            pitch_class_octave_number_string).groupdict()
-        named_pitch_class = pitchtools.NamedPitchClass(
-            pitch_class_octave_number_string)
-        octave_number = int(group_dict['octave_number'])
-        self._initialize_by_named_pitch_class_and_octave_number(
-            named_pitch_class, octave_number)
-
-    def _initialize_by_pitch_name(self, pitch_string):
-        from abjad.tools import pitchtools
-        named_pitch_class = pitchtools.NamedPitchClass(pitch_string)
-        octave = pitchtools.Octave.from_pitch_name(pitch_string)
-        self._initialize_by_named_pitch_class_and_octave_number(
-            named_pitch_class, octave.number)
-
-    def _initialize_by_pitch_number(self, pitch_number):
-        from abjad.tools import pitchtools
-        named_pitch_class = pitchtools.NamedPitchClass(pitch_number)
-        octave_number = pitch_number // 12 + 4
-        self._initialize_by_named_pitch_class_and_octave_number(
-            named_pitch_class, octave_number)
-
-    def _initialize_by_pitch_number_and_diatonic_pitch_class_name(
-        self, pitch_number, diatonic_pitch_class_name):
-        from abjad.tools import pitchtools
-        accidental, octave_number = self._spell_pitch_number(
-            pitch_number,
-            diatonic_pitch_class_name,
-            )
-        pitch_class_name = diatonic_pitch_class_name + \
-            accidental.abbreviation
-        named_pitch_class = pitchtools.NamedPitchClass(pitch_class_name)
-        self._initialize_by_named_pitch_class_and_octave_number(
-            named_pitch_class, octave_number)
-
-    def _initialize_by_pitch_number_and_named_pitch_class(
-        self, pitch_number, named_pitch_class):
-        diatonic_pitch_class_name = named_pitch_class.diatonic_pitch_class_name
-        self._initialize_by_pitch_number_and_diatonic_pitch_class_name(
-            pitch_number, diatonic_pitch_class_name)
-
-    def _initialize_by_pitch_number_and_octave_number(
-        self, pitch_number, octave_number):
-        pitch_class_name = type(self)(pitch_number).pitch_class_name
-        octave_number = int(octave_number)
-        self._initialize_by_pitch_class_name_and_octave_number(
-            pitch_class_name, octave_number)
-
-    @staticmethod
-    def _spell_pitch_number(pitch_number, diatonic_pitch_class_name):
-        from abjad.tools import pitchtools
-        # check input
-        if not isinstance(pitch_number, (int, float)):
-            raise TypeError
-        if not isinstance(diatonic_pitch_class_name, str):
-            raise TypeError
-        if diatonic_pitch_class_name not in ['c', 'd', 'e', 'f', 'g', 'a', 'b']:
-            raise ValueError
-        # find accidental semitones
-        pc = pitchtools.PitchClass._diatonic_pitch_class_name_to_pitch_class_number[
-            diatonic_pitch_class_name]
-        nearest_neighbor = NamedPitch._to_nearest_octave(pitch_number, pc)
-        semitones = pitch_number - nearest_neighbor
-        # find accidental alphabetic string
-        abbreviation = pitchtools.Accidental._semitones_to_abbreviation[
-            semitones]
-        accidental = pitchtools.Accidental(abbreviation)
-        # find octave
-        octave_number = int(math.floor((pitch_number - semitones) / 12)) + 4
-        # return accidental and octave
-        return accidental, octave_number
+    def _respell_with_sharps(self):
+        import abjad
+        class_ = abjad.PitchClass
+        name = class_._pitch_class_number_to_pitch_class_name_with_sharps[
+            self.pitch_class.number
+            ]
+        pitch = type(self)((name, self.octave.number))
+        return pitch
 
     @staticmethod
     def _to_nearest_octave(pitch_number, pitch_class_number):
@@ -551,440 +511,141 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            Gets accidental of C#5:
+            ::
+
+                >>> abjad.NamedPitch("c''").accidental
+                Accidental('natural')
 
             ::
 
-                >>> NamedPitch("cs''").accidental
-                Accidental('s')
-
-        ..  container:: example
-
-            Gets accidental of C5:
+                >>> abjad.NamedPitch("cs''").accidental
+                Accidental('sharp')
 
             ::
 
-                >>> NamedPitch("c''").accidental
-                Accidental('')
+                >>> abjad.NamedPitch("df''").accidental
+                Accidental('flat')
 
         Returns accidental.
         '''
-        from abjad.tools import pitchtools
-        return pitchtools.Accidental(self._alteration_in_semitones)
+        import abjad
+        return abjad.Accidental(self._parse_name()[1])
 
     @property
-    def alteration_in_semitones(self):
-        r'''Gets alteration of named pitch in semitones.
+    def arrow(self):
+        r'''Gets arrow of named pitch.
 
         ..  container:: example
 
-            Gets alteration of C#5 in semitones:
+            ::
+
+                >>> abjad.NamedPitch("cs''").arrow is None
+                True
 
             ::
 
-                >>> NamedPitch("cs''").alteration_in_semitones
-                1
+                >>> abjad.NamedPitch("cs''", arrow=Up).arrow
+                Up
+
+            ::
+
+                >>> abjad.NamedPitch("cs''", arrow=Down).arrow
+                Down
 
         ..  container:: example
 
-            Gets alteration of Ctqs5 in semitones:
+            Displays arrow in interpreter representation:
 
             ::
 
-                >>> NamedPitch("ctqs''").alteration_in_semitones
-                1.5
+                >>> abjad.NamedPitch("cs''", arrow=Down)
+                NamedPitch("cs''", arrow=Down)
 
-        Returns integer or float.
+        Returns up, down or none.
         '''
-        return self._alteration_in_semitones
+        return self._arrow
 
     @property
-    def diatonic_pitch_class_name(self):
-        r'''Gets diatonic pitch-class name of named pitch.
-
-        ..  note:: Deprecated.
+    def hertz(self):
+        r'''Gets frequency of named pitch in Hertz.
 
         ..  container:: example
 
-            Gets diatonic pitch-class name of C#5:
+            ::
+
+                >>> abjad.NamedPitch("c''").hertz
+                523.25...
 
             ::
 
-                >>> NamedPitch("cs''").diatonic_pitch_class_name
-                'c'
-
-        ..  container:: example
-
-            Gets diatonic pitch-class names of many pitches:
+                >>> abjad.NamedPitch("cs''").hertz
+                554.36...
 
             ::
 
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
-                >>> for note in staff:
-                ...     name = note.written_pitch.diatonic_pitch_class_name
-                ...     markup = Markup(name)
-                ...     attach(markup, note)
-                ...
-                >>> override(staff).text_script.staff_padding = 5
-                >>> show(staff) # doctest: +SKIP
+                >>> abjad.NamedPitch("df''").hertz
+                554.36...
 
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #5
-                } {
-                    g16 - \markup { g }
-                    a16 - \markup { a }
-                    b16 - \markup { b }
-                    c'16 - \markup { c }
-                    d'16 - \markup { d }
-                    e'16 - \markup { e }
-                    f'16 - \markup { f }
-                    g'16 - \markup { g }
-                    a'16 - \markup { a }
-                    b'16 - \markup { b }
-                    c''16 - \markup { c }
-                    d''16 - \markup { d }
-                    e''16 - \markup { e }
-                    f''16 - \markup { f }
-                    g''16 - \markup { g }
-                    a''16 - \markup { a }
-                }
-
-        Returns string.
+        Returns float.
         '''
-        from abjad.tools import pitchtools
-        class_ = pitchtools.PitchClass
-        return class_._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
-            self._diatonic_pitch_class_number]
-
-    @property
-    def diatonic_pitch_class_number(self):
-        r'''Gets diatonic pitch-class number of named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets diatonic pitch-class number of C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").diatonic_pitch_class_number
-                0
-
-        ..  container:: example
-
-            Gets diatonic pitch-class numbers of many pitches:
-
-            ::
-
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
-                >>> for note in staff:
-                ...     number = note.written_pitch.diatonic_pitch_class_number
-                ...     markup = Markup(number)
-                ...     attach(markup, note)
-                ...
-                >>> override(staff).text_script.staff_padding = 5
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #5
-                } {
-                    g16 - \markup { 4 }
-                    a16 - \markup { 5 }
-                    b16 - \markup { 6 }
-                    c'16 - \markup { 0 }
-                    d'16 - \markup { 1 }
-                    e'16 - \markup { 2 }
-                    f'16 - \markup { 3 }
-                    g'16 - \markup { 4 }
-                    a'16 - \markup { 5 }
-                    b'16 - \markup { 6 }
-                    c''16 - \markup { 0 }
-                    d''16 - \markup { 1 }
-                    e''16 - \markup { 2 }
-                    f''16 - \markup { 3 }
-                    g''16 - \markup { 4 }
-                    a''16 - \markup { 5 }
-                }
-
-        Returns integer.
-        '''
-        return self._diatonic_pitch_class_number
-
-    @property
-    def diatonic_pitch_name(self):
-        r'''Gets diatonic pitch name of named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets diatonic pitch name of C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").diatonic_pitch_name
-                "c''"
-
-        ..  container:: example
-
-            Gets diatonic pitch names of many pitches:
-
-            ::
-
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
-                >>> for note in staff:
-                ...     name = note.written_pitch.diatonic_pitch_name
-                ...     markup = Markup(name)
-                ...     attach(markup, note)
-                ...
-                >>> override(staff).text_script.staff_padding = 5
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #5
-                } {
-                    g16 - \markup { g }
-                    a16 - \markup { a }
-                    b16 - \markup { b }
-                    c'16 - \markup { c' }
-                    d'16 - \markup { d' }
-                    e'16 - \markup { e' }
-                    f'16 - \markup { f' }
-                    g'16 - \markup { g' }
-                    a'16 - \markup { a' }
-                    b'16 - \markup { b' }
-                    c''16 - \markup { c'' }
-                    d''16 - \markup { d'' }
-                    e''16 - \markup { e'' }
-                    f''16 - \markup { f'' }
-                    g''16 - \markup { g'' }
-                    a''16 - \markup { a'' }
-                }
-
-        Returns string.
-        '''
-        return '{}{}'.format(
-            self.diatonic_pitch_class_name,
-            self.octave.tick_string,
-            )
-
-    @property
-    def diatonic_pitch_number(self):
-        r'''Gets diatonic pitch number of named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets diatonic pitch number of C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").diatonic_pitch_number
-                7
-
-        ..  container:: example
-
-            Gets diatonic pitch numbers of many pitches:
-
-            ::
-
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
-                >>> for note in staff:
-                ...     number = note.written_pitch.diatonic_pitch_number
-                ...     markup = Markup(number)
-                ...     attach(markup, note)
-                ...
-                >>> override(staff).text_script.staff_padding = 5
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript.staff-padding = #5
-                } {
-                    g16 - \markup { -3 }
-                    a16 - \markup { -2 }
-                    b16 - \markup { -1 }
-                    c'16 - \markup { 0 }
-                    d'16 - \markup { 1 }
-                    e'16 - \markup { 2 }
-                    f'16 - \markup { 3 }
-                    g'16 - \markup { 4 }
-                    a'16 - \markup { 5 }
-                    b'16 - \markup { 6 }
-                    c''16 - \markup { 7 }
-                    d''16 - \markup { 8 }
-                    e''16 - \markup { 9 }
-                    f''16 - \markup { 10 }
-                    g''16 - \markup { 11 }
-                    a''16 - \markup { 12 }
-                }
-
-        Returns integer.
-        '''
-        diatonic_pitch_number = 7 * (self.octave.number - 4)
-        diatonic_pitch_number += self.diatonic_pitch_class_number
-        return diatonic_pitch_number
+        return super(NamedPitch, self).hertz
 
     @property
     def name(self):
-        r'''Gets pitch name.
+        r'''Gets name of named pitch.
 
         ..  container:: example
 
             ::
 
-                >>> NamedPitch("cs''").name
+                >>> abjad.NamedPitch("c''").name
+                "c''"
+
+            ::
+
+                >>> abjad.NamedPitch("cs''").name
                 "cs''"
+
+            ::
+
+                >>> abjad.NamedPitch("df''").name
+                "df''"
 
         Returns string.
         '''
-        return self.pitch_name
-
-    @property
-    def named_pitch(self):
-        r'''Gets new named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets new named pitch from C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").named_pitch
-                NamedPitch("cs''")
-
-        ..  container:: example
-
-            Gets new named pitch from Db5:
-
-            ::
-
-                >>> NamedPitch("df''").named_pitch
-                NamedPitch("df''")
-
-        Returns new named pitch.
-        '''
-        return type(self)(self)
-
-    @property
-    def named_pitch_class(self):
-        r'''Gets named pitch-class of named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets named pitch-class of C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").named_pitch_class
-                NamedPitchClass('cs')
-
-        ..  container:: example
-
-            Gets named pitch-class of Db5:
-
-            ::
-
-                >>> NamedPitch("df''").named_pitch_class
-                NamedPitchClass('df')
-
-        Returns named pitch-class.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitchClass(self)
+        return self._name
 
     @property
     def number(self):
-        r'''Gets pitch number.
+        r'''Gets number of named pitch.
 
-        ..  container:: ex
-
-            Gets pitch number of C#5:
+        ..  container:: example
 
             ::
 
-                >>> NamedPitch("cs''").number
+                >>> abjad.NamedPitch("c''").number
+                12
+
+            ::
+
+                >>> abjad.NamedPitch("cs''").number
                 13
 
+            ::
+
+                >>> abjad.NamedPitch("df''").number
+                13
 
         Returns number.
         '''
-        return self.numbered_pitch.number
-
-    @property
-    def numbered_pitch(self):
-        r'''Gets numbered pitch corresponding to named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets numbered pitch corresponding to C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").numbered_pitch
-                NumberedPitch(13)
-
-        ..  container:: example
-
-            Gets numbered pitch corresponding to Db5:
-
-            ::
-
-                >>> NamedPitch("df''").numbered_pitch
-                NumberedPitch(13)
-
-        Returns numbered pitch.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedPitch(self)
-
-    @property
-    def numbered_pitch_class(self):
-        r'''Gets numbered pitch-class corresponding to named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets numbered pitch-class corresponding to C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").numbered_pitch_class
-                NumberedPitchClass(1)
-
-        ..  container:: example
-
-            Gets numbered pitch-class corresponding to Db5:
-
-            ::
-
-                >>> NamedPitch("df''").numbered_pitch_class
-                NumberedPitchClass(1)
-
-        Returns numbered pitch-class.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedPitchClass(self)
+        import abjad
+        number = 12 * (self.octave.number - 4)
+        class_ = abjad.PitchClass
+        number += class_._diatonic_pitch_class_name_to_pitch_class_number[
+            self._get_diatonic_pitch_class_name()
+            ]
+        number += self._get_alteration()
+        return number
 
     @property
     def octave(self):
@@ -992,296 +653,135 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            Gets octave of C#5:
-
             ::
 
-                >>> NamedPitch("cs''").octave
+                >>> abjad.NamedPitch("c''").octave
                 Octave(5)
 
-        ..  container:: example
+            ::
 
-            Gets octave of Db5:
+                >>> abjad.NamedPitch("cs''").octave
+                Octave(5)
 
             ::
 
-                >>> NamedPitch("df''").octave
+                >>> abjad.NamedPitch("df''").octave
                 Octave(5)
 
         Returns octave.
         '''
-        from abjad.tools import pitchtools
-        return pitchtools.Octave(self._octave_number)
+        import abjad
+        return abjad.Octave(self._parse_name()[2])
 
     @property
     def pitch_class(self):
-        r'''Gets pitch-class.
+        r'''Gets pitch-class of named pitch.
 
         ..  container:: example
 
             ::
 
-                >>> NamedPitch("cs''").pitch_class
+                >>> abjad.NamedPitch("c''").pitch_class
+                NamedPitchClass('c')
+
+            ::
+
+                >>> abjad.NamedPitch("cs''").pitch_class
                 NamedPitchClass('cs')
+
+            ::
+
+                >>> abjad.NamedPitch("df''").pitch_class
+                NamedPitchClass('df')
 
         Returns named pitch-class.
         '''
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitchClass(self)
-
-    @property
-    def pitch_class_name(self):
-        r'''Gets pitch-class name of named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets pitch-class name of C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").pitch_class_name
-                'cs'
-
-        ..  container:: example
-
-            Gets pitch-class name of Db5:
-
-            ::
-
-                >>> NamedPitch("df''").pitch_class_name
-                'df'
-
-        Returns string.
-        '''
-        from abjad.tools import pitchtools
-        return '{}{}'.format(
-            self.diatonic_pitch_class_name,
-            pitchtools.Accidental(self._alteration_in_semitones).abbreviation
-            )
-
-    @property
-    def pitch_class_number(self):
-        r'''Gets pitch-class number of named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets pitch-class number of C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").pitch_class_number
-                1
-
-        ..  container:: example
-
-            Gets pitch-class number of Ctqs5:
-
-            ::
-
-                >>> NamedPitch("ctqs''").pitch_class_number
-                1.5
-
-        Returns integer or float.
-        '''
-        from abjad.tools import pitchtools
-        class_ = pitchtools.PitchClass
-        return (class_._diatonic_pitch_class_number_to_pitch_class_number[
-            self._diatonic_pitch_class_number] +
-            self._alteration_in_semitones) % 12
-
-    @property
-    def pitch_class_octave_label(self):
-        r'''Gets pitch-class / octave label of named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets pitch-class / octave label of C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").pitch_class_octave_label
-                'C#5'
-
-        ..  container:: example
-
-            Gets pitch-class / octave label of Ctqs5:
-
-            ::
-
-                >>> NamedPitch("ctqs''").pitch_class_octave_label
-                'C#+5'
-
-        Returns string.
-        '''
-        return '{}{}{}'.format(
-            self.diatonic_pitch_class_name.upper(),
-            self.accidental.symbolic_string,
-            self.octave.number,
-            )
-
-    @property
-    def pitch_name(self):
-        r'''Gets pitch name of named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets pitch name of C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").pitch_name
-                "cs''"
-
-        ..  container:: example
-
-            Gets pitch name of Ctqs5:
-
-            ::
-
-                >>> NamedPitch("ctqs''").pitch_name
-                "ctqs''"
-
-        Returns string.
-        '''
-        return '{}{}'.format(
-            self.pitch_class_name,
-            self.octave.tick_string,
-            )
-
-    @property
-    def pitch_number(self):
-        r'''Gets pitch number of named pitch.
-
-        ..  note:: Deprecated.
-
-        ..  container:: example
-
-            Gets pitch number of C#5:
-
-            ::
-
-                >>> NamedPitch("cs''").pitch_number
-                13
-
-        ..  container:: example
-
-            Gets pitch number of Cbb5:
-
-            ::
-
-                >>> NamedPitch("cff''").pitch_number
-                10
-
-        Returns integer or float.
-        '''
-        from abjad.tools import pitchtools
-        pitch_class_number = pitchtools.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
-            self.diatonic_pitch_class_number]
-        pitch_number = pitch_class_number + 12 * (self.octave.number - 4)
-        pitch_number += self.alteration_in_semitones
-        return pitch_number
+        import abjad
+        return abjad.NamedPitchClass(self._get_pitch_class_name())
 
     ### PUBLIC METHODS ###
 
-    def apply_accidental(self, accidental=None):
-        '''Applies `accidental` to named pitch.
+    @classmethod
+    def from_hertz(class_, hertz):
+        r'''Makes named pitch from `hertz`.
 
         ..  container:: example
 
-            Applies sharp to C#5:
+            ::
+
+                >>> abjad.NamedPitch.from_hertz(440)
+                NamedPitch("a'")
 
             ::
 
-                >>> NamedPitch("cs''").apply_accidental('s')
-                NamedPitch("css''")
+                >>> abjad.NamedPitch.from_hertz(519)
+                NamedPitch("c'")
 
-        ..  container:: example
-
-            Applies sharp to Db5:
-
-            ::
-
-                >>> NamedPitch("df''").apply_accidental('s')
-                NamedPitch("d''")
-
-        Returns new named pitch.
+        Returns newly constructed named pitch.
         '''
-        from abjad.tools import pitchtools
-        accidental = pitchtools.Accidental(accidental)
-        new_accidental = self.accidental + accidental
-        new_name = self.diatonic_pitch_class_name
-        new_name += new_accidental.abbreviation
-        return type(self)(new_name, self.octave.number)
+        return super(NamedPitch, class_).from_hertz(hertz)
 
-    @staticmethod
-    def from_pitch_carrier(pitch_carrier):
-        r'''Initializes named pitch from `pitch_carrier`.
+    @classmethod
+    def from_pitch_carrier(class_, pitch_carrier):
+        r'''Makes named pitch from `pitch_carrier`.
 
         ..  container:: example
 
-            Initializes named pitch from named pitch:
+            Makes named pitch from named pitch:
 
             ::
 
-                >>> pitch = NamedPitch('df', 5)
-                >>> NamedPitch.from_pitch_carrier(pitch)
+                >>> pitch = abjad.NamedPitch(('df', 5))
+                >>> abjad.NamedPitch.from_pitch_carrier(pitch)
                 NamedPitch("df''")
 
         ..  container:: example
 
-            Initializes named pitch from note:
+            Makes named pitch from note:
 
             ::
 
-                >>> note = Note("df''4")
-                >>> NamedPitch.from_pitch_carrier(note)
+                >>> note = abjad.Note("df''4")
+                >>> abjad.NamedPitch.from_pitch_carrier(note)
                 NamedPitch("df''")
 
         ..  container:: example
 
-            Initializes named pitch from note-head:
+            Makes named pitch from note-head:
 
             ::
 
-                >>> note = Note("df''4")
-                >>> NamedPitch.from_pitch_carrier(note.note_head)
+                >>> note = abjad.Note("df''4")
+                >>> abjad.NamedPitch.from_pitch_carrier(note.note_head)
                 NamedPitch("df''")
 
         ..  container:: example
 
-            Initializes named pitch from chord:
+            Makes named pitch from chord:
 
             ::
 
-                >>> chord = Chord("<df''>4")
-                >>> NamedPitch.from_pitch_carrier(chord)
+                >>> chord = abjad.Chord("<df''>4")
+                >>> abjad.NamedPitch.from_pitch_carrier(chord)
                 NamedPitch("df''")
 
         ..  container:: example
 
-            Initializes named pitch from integer:
+            Makes named pitch from integer:
 
             ::
 
-                >>> NamedPitch.from_pitch_carrier(13)
+                >>> abjad.NamedPitch.from_pitch_carrier(13)
                 NamedPitch("cs''")
 
         ..  container:: example
 
-            Initializes named pitch from numbered pitch-class:
+            Makes named pitch from numbered pitch-class:
 
             ::
 
-                >>> pitch_class = NumberedPitchClass(7)
-                >>> NamedPitch.from_pitch_carrier(pitch_class)
+                >>> pitch_class = abjad.NumberedPitchClass(7)
+                >>> abjad.NamedPitch.from_pitch_carrier(pitch_class)
                 NamedPitch("g'")
 
         Raises value error when `pitch_carrier` carries no pitch.
@@ -1290,184 +790,90 @@ class NamedPitch(Pitch):
 
         Returns new named pitch.
         '''
-        from abjad.tools import pitchtools
-        from abjad.tools import scoretools
-        if isinstance(pitch_carrier, pitchtools.NamedPitch):
-            return pitch_carrier
-        elif isinstance(pitch_carrier, pitchtools.NumberedPitch):
-            return pitchtools.NamedPitch(pitch_carrier)
-        elif isinstance(pitch_carrier, numbers.Number):
-            return pitchtools.NamedPitch(pitch_carrier)
-        elif isinstance(pitch_carrier, scoretools.Note):
-            pitch = pitch_carrier.written_pitch
-            if pitch is not None:
-                return NamedPitch.from_pitch_carrier(pitch)
-            else:
-                message = 'no pitch found on {!r}.'
-                message = message.format(pitch_carrier)
-                raise ValueError(message)
-        elif isinstance(pitch_carrier, scoretools.NoteHead):
-            pitch = pitch_carrier.written_pitch
-            if pitch is not None:
-                return NamedPitch.from_pitch_carrier(pitch)
-            else:
-                message = 'no pitch found on {!r}.'
-                message = message.format(pitch_carrier)
-                raise ValueError(message)
-        elif isinstance(pitch_carrier, scoretools.Chord):
-            pitches = pitch_carrier.written_pitches
-            if len(pitches) == 0:
-                message = 'no pitch found on {!r}.'
-                message = message.format(pitch_carrier)
-                raise ValueError(message)
-            elif len(pitches) == 1:
-                return NamedPitch.from_pitch_carrier(pitches[0])
-            else:
-                message = 'multiple pitches found on {!r}.'
-                message = message.format(pitch_carrier)
-                raise ValueError(message)
-        elif isinstance(pitch_carrier, pitchtools.NumberedPitchClass):
-            named_pitch_class = pitch_carrier.named_pitch_class
-            named_pitch = pitchtools.NamedPitch(named_pitch_class)
-            return named_pitch
-        else:
-            message = 'pitch carrier {!r} must be'
-            message += ' pitch, note, note-head or chord.'
-            message = message.format(pitch_carrier)
-            raise TypeError(message)
+        return super(NamedPitch, class_).from_pitch_carrier(pitch_carrier)
 
-    @staticmethod
-    def from_staff_position(staff_position, clef=None):
-        r'''Initializes named pitch from `staff_position` and optional `clef`.
+    @classmethod
+    def from_pitch_number(
+        class_,
+        pitch_number,
+        diatonic_pitch_class_name,
+        ):
+        r'''Makes named pitch from `pitch_number`.
 
         ..  container:: example
 
-            Initializes notes from absolute staff positions:
-
-            ::
-
-                >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_staff_position(staff_position)
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	d
-                StaffPosition(-5)	e
-                StaffPosition(-4)	f
-                StaffPosition(-3)	g
-                StaffPosition(-2)	a
-                StaffPosition(-1)	b
-                StaffPosition(0)	c'
-                StaffPosition(1)	d'
-                StaffPosition(2)	e'
-                StaffPosition(3)	f'
-                StaffPosition(4)	g'
-                StaffPosition(5)	a'
+            >>> abjad.NamedPitch.from_pitch_number(12, 'b')
+            NamedPitch("bs'")
+            >>> abjad.NamedPitch.from_pitch_number(12, 'c')
+            NamedPitch("c''")
+            >>> abjad.NamedPitch.from_pitch_number(12, 'd')
+            NamedPitch("dff''")
 
         ..  container:: example
 
-            Initializes notes inside treble staff from staff positions:
 
-            ::
-
-                >>> clef = Clef('treble')
-                >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_staff_position(
-                ...         staff_position,
-                ...         clef=clef,
-                ...         )
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	c'
-                StaffPosition(-5)	d'
-                StaffPosition(-4)	e'
-                StaffPosition(-3)	f'
-                StaffPosition(-2)	g'
-                StaffPosition(-1)	a'
-                StaffPosition(0)	b'
-                StaffPosition(1)	c''
-                StaffPosition(2)	d''
-                StaffPosition(3)	e''
-                StaffPosition(4)	f''
-                StaffPosition(5)	g''
+            >>> abjad.NamedPitch.from_pitch_number(13, 'b')
+            NamedPitch("bss'")
+            >>> abjad.NamedPitch.from_pitch_number(13, 'c')
+            NamedPitch("cs''")
+            >>> abjad.NamedPitch.from_pitch_number(13, 'd')
+            NamedPitch("df''")
 
         ..  container:: example
 
-            Initializes notes inside bass staff from staff positions:
 
-            ::
-
-                >>> clef = Clef('bass')
-                >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_staff_position(
-                ...         staff_position,
-                ...         clef=clef,
-                ...         )
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	e,
-                StaffPosition(-5)	f,
-                StaffPosition(-4)	g,
-                StaffPosition(-3)	a,
-                StaffPosition(-2)	b,
-                StaffPosition(-1)	c
-                StaffPosition(0)	d
-                StaffPosition(1)	e
-                StaffPosition(2)	f
-                StaffPosition(3)	g
-                StaffPosition(4)	a
-                StaffPosition(5)	b
-
-        ..  container:: example
-
-            Initializes notes inside alto staff from staff positions:
-
-            ::
-
-                >>> clef = Clef('alto')
-                >>> for n in range(-6, 6):
-                ...     staff_position = pitchtools.StaffPosition(n)
-                ...     pitch = NamedPitch.from_staff_position(
-                ...         staff_position,
-                ...         clef=clef,
-                ...         )
-                ...     message = '{!s}\t{}'.format(staff_position, pitch)
-                ...     print(message)
-                StaffPosition(-6)	d
-                StaffPosition(-5)	e
-                StaffPosition(-4)	f
-                StaffPosition(-3)	g
-                StaffPosition(-2)	a
-                StaffPosition(-1)	b
-                StaffPosition(0)	c'
-                StaffPosition(1)	d'
-                StaffPosition(2)	e'
-                StaffPosition(3)	f'
-                StaffPosition(4)	g'
-                StaffPosition(5)	a'
+            >>> abjad.NamedPitch.from_pitch_number(14, 'c')
+            NamedPitch("css''")
+            >>> abjad.NamedPitch.from_pitch_number(14, 'd')
+            NamedPitch("d''")
+            >>> abjad.NamedPitch.from_pitch_number(14, 'e')
+            NamedPitch("eff''")
 
         Returns new named pitch.
         '''
-        from abjad.tools import pitchtools
-        if not isinstance(staff_position, pitchtools.StaffPosition):
-            staff_position = pitchtools.StaffPosition(staff_position)
-        if clef is not None:
-            offset_staff_position_number = staff_position.number
-            offset_staff_position_number -= clef.middle_c_position.number
-            offset_staff_position = pitchtools.StaffPosition(
-                offset_staff_position_number)
+        import abjad
+        pc = abjad.PitchClass._diatonic_pitch_class_name_to_pitch_class_number[
+            diatonic_pitch_class_name
+            ]
+        nearest_neighbor = class_._to_nearest_octave(pitch_number, pc)
+        semitones = pitch_number - nearest_neighbor
+        accidental = abjad.Accidental(semitones)
+        octave = int(math.floor((pitch_number - semitones) / 12)) + 4
+        octave = abjad.Octave(octave)
+        name = diatonic_pitch_class_name + str(accidental) + octave.ticks
+        return class_(name)
+
+    def get_name(self, locale=None):
+        r'''Gets name of named pitch according to `locale`.
+
+        ..  container:: example
+
+            ::
+
+                >>> abjad.NamedPitch("cs''").get_name()
+                "cs''"
+
+            ::
+
+                >>> abjad.NamedPitch("cs''").get_name(locale='us')
+                'C#5'
+
+        Set `locale` to `'us'` or none.
+
+        Returns string.
+        '''
+        if locale is None:
+            return self.name
+        elif locale == 'us':
+            return '{}{}{}'.format(
+                self._get_diatonic_pitch_class_name().upper(),
+                self.accidental.symbol,
+                self.octave.number,
+                )
         else:
-            offset_staff_position = staff_position
-        octave_number = offset_staff_position.number // 7 + 4
-        diatonic_pitch_class_number = offset_staff_position.number % 7
-        pitch_class_number = pitchtools.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
-            diatonic_pitch_class_number]
-        pitch_number = 12 * (octave_number - 4)
-        pitch_number += pitch_class_number
-        named_pitch = NamedPitch(pitch_number)
-        return named_pitch
+            message = "must be 'us' or none: {!r}."
+            message = message.format(locale)
+            raise ValueError(message)
 
     def invert(self, axis=None):
         r'''Inverts named pitch around `axis`.
@@ -1478,12 +884,12 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("d'").invert("c'")
+                >>> abjad.NamedPitch("d'").invert("c'")
                 NamedPitch('bf')
 
             ::
 
-                >>> NamedPitch('bf').invert("c'")
+                >>> abjad.NamedPitch('bf').invert("c'")
                 NamedPitch("d'")
 
         ..  container:: example
@@ -1492,12 +898,12 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("d'").invert()
+                >>> abjad.NamedPitch("d'").invert()
                 NamedPitch('bf')
 
             ::
 
-                >>> NamedPitch('bf').invert()
+                >>> abjad.NamedPitch('bf').invert()
                 NamedPitch("d'")
 
         ..  container:: example
@@ -1506,114 +912,47 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("d'").invert('a')
+                >>> abjad.NamedPitch("d'").invert('a')
                 NamedPitch('e')
 
         Interprets none-valued `axis` equal to middle C.
 
         Returns new named pitch.
         '''
-        try:
-            return Pitch.invert(self, axis=axis)
-        except:
-            return Pitch.invert(type(self)(float(self)), axis=axis)
+        return super(NamedPitch, self).invert(axis=axis)
 
     def multiply(self, n=1):
-        r'''Multiplies pitch-class of named pitch by `n` while maintaining
-        octave of named pitch.
-
-        ..  note:: This is wrong. Should not preserve octave.
+        r'''Multiplies named pitch.
 
         ..  container:: example
 
-            Multiplies D2 by 3:
+            ::
+
+                >>> abjad.NamedPitch("d'").multiply(1)
+                NamedPitch("d'")
 
             ::
 
-                >>> NamedPitch('d,').multiply(3)
-                NamedPitch('fs,')
-
-        ..  container:: example
-
-            Multiplies D2 by 4:
+                >>> abjad.NamedPitch("d'").multiply(3)
+                NamedPitch("fs'")
 
             ::
 
-                >>> NamedPitch('d,').multiply(4)
-                NamedPitch('af,')
-
-        Returns new named pitch.
-        '''
-        pitch_class_number = (self.pitch_class_number * n) % 12
-        octave_floor = (self.octave.number - 4) * 12
-        return type(self)(pitch_class_number + octave_floor)
-
-    def respell_with_flats(self):
-        r'''Respells named pitch with flats.
-
-        ..  container:: example
-
-            Respells C#5 with flats:
+                >>> abjad.NamedPitch("d'").multiply(6)
+                NamedPitch("c''")
 
             ::
 
-                >>> NamedPitch("cs''").respell_with_flats()
-                NamedPitch("df''")
-
-        ..  container:: example
-
-            Respells Db5 with flats:
-
-            ::
-
-                >>> NamedPitch("df''").respell_with_flats()
-                NamedPitch("df''")
-
-        Returns new named pitch.
-        '''
-        from abjad.tools import pitchtools
-        class_ = pitchtools.PitchClass
-        octave = pitchtools.Octave.from_pitch_number(
-            self.numbered_pitch.pitch_number)
-        name = class_._pitch_class_number_to_pitch_class_name_with_flats[
-            self.pitch_class_number]
-        pitch = type(self)(name, octave.number)
-        return pitch
-
-    def respell_with_sharps(self):
-        r'''Respells named pitch with sharps.
-
-        ..  container:: example
-
-            Respells Db5 with sharps:
-
-            ::
-
-                >>> NamedPitch("df''").respell_with_sharps()
-                NamedPitch("cs''")
-
-        ..  container:: example
-
-            Respells C#5 with sharps:
-
-            ::
-
-                >>> NamedPitch("cs''").respell_with_sharps()
+                >>> abjad.NamedPitch("d'").multiply(6.5)
                 NamedPitch("cs''")
 
         Returns new named pitch.
         '''
-        from abjad.tools import pitchtools
-        class_ = pitchtools.PitchClass
-        octave = pitchtools.Octave.from_pitch_number(
-            self.numbered_pitch.pitch_number)
-        name = class_._pitch_class_number_to_pitch_class_name_with_sharps[
-            self.pitch_class_number]
-        pitch = type(self)(name, octave.number)
-        return pitch
+        return super(NamedPitch, self).multiply(n=n)
 
+    # TODO: duplicate on NumberedPitch
     def to_staff_position(self, clef=None):
-        r'''Changes named pitch to staff position with optional `clef`.
+        r'''Changes named pitch to staff position.
 
         ..  container:: example
 
@@ -1621,8 +960,8 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch('C#5').to_staff_position()
-                StaffPosition(number=7)
+                >>> abjad.NamedPitch('C#5').to_staff_position()
+                StaffPosition(7)
 
         ..  container:: example
 
@@ -1631,8 +970,8 @@ class NamedPitch(Pitch):
             ::
 
 
-                >>> NamedPitch('C#5').to_staff_position(clef=Clef('treble'))
-                StaffPosition(number=1)
+                >>> abjad.NamedPitch('C#5').to_staff_position(clef=abjad.Clef('treble'))
+                StaffPosition(1)
 
         ..  container:: example
 
@@ -1641,8 +980,8 @@ class NamedPitch(Pitch):
             ::
 
 
-                >>> NamedPitch('C#5').to_staff_position(clef=Clef('bass'))
-                StaffPosition(number=13)
+                >>> abjad.NamedPitch('C#5').to_staff_position(clef=abjad.Clef('bass'))
+                StaffPosition(13)
 
         ..  container:: example
 
@@ -1650,16 +989,16 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> staff = abjad.Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
                 >>> for note in staff:
                 ...     staff_position = note.written_pitch.to_staff_position()
-                ...     markup = Markup(staff_position.number)
-                ...     attach(markup, note)
+                ...     markup = abjad.Markup(staff_position.number)
+                ...     abjad.attach(markup, note)
                 ...
-                >>> override(staff).text_script.staff_padding = 5
+                >>> abjad.override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1689,19 +1028,19 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
-                >>> clef = Clef('treble')
+                >>> staff = abjad.Staff("g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''")
+                >>> clef = abjad.Clef('treble')
                 >>> for note in staff:
                 ...     staff_position = note.written_pitch.to_staff_position(
                 ...         clef=clef
                 ...         )
-                ...     markup = Markup(staff_position.number)
-                ...     attach(markup, note)
+                ...     markup = abjad.Markup(staff_position.number)
+                ...     abjad.attach(markup, note)
                 ...
-                >>> override(staff).text_script.staff_padding = 5
+                >>> abjad.override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1731,20 +1070,20 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> staff = Staff("g,16 a, b, c d e f g a b c' d' e' f' g' a'")
-                >>> clef = Clef('bass')
-                >>> attach(clef, staff)
+                >>> staff = abjad.Staff("g,16 a, b, c d e f g a b c' d' e' f' g' a'")
+                >>> clef = abjad.Clef('bass')
+                >>> abjad.attach(clef, staff[0])
                 >>> for note in staff:
                 ...     staff_position = note.written_pitch.to_staff_position(
                 ...         clef=clef
                 ...         )
-                ...     markup = Markup(staff_position.number)
-                ...     attach(markup, note)
+                ...     markup = abjad.Markup(staff_position.number)
+                ...     abjad.attach(markup, note)
                 ...
-                >>> override(staff).text_script.staff_padding = 5
+                >>> abjad.override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1771,13 +1110,14 @@ class NamedPitch(Pitch):
 
         Returns staff position.
         '''
-        from abjad.tools import pitchtools
-        staff_position_number = self.diatonic_pitch_number
+        import abjad
+        staff_position_number = self._get_diatonic_pitch_number()
         if clef is not None:
             staff_position_number += clef.middle_c_position.number
-        staff_position = pitchtools.StaffPosition(staff_position_number)
+        staff_position = abjad.StaffPosition(staff_position_number)
         return staff_position
 
+    # TODO: combine with transpose_staff_position()
     def transpose(self, n=0):
         r'''Transposes named pitch by index `n`.
 
@@ -1787,7 +1127,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("c'").transpose(n='m2')
+                >>> abjad.NamedPitch("c'").transpose(n='m2')
                 NamedPitch("df'")
 
         ..  container:: example
@@ -1796,16 +1136,16 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> NamedPitch("c'").transpose(n='-M2')
+                >>> abjad.NamedPitch("c'").transpose(n='-M2')
                 NamedPitch('bf')
 
         Returns new named pitch.
         '''
-        from abjad.tools import pitchtools
-        interval = pitchtools.NamedInterval(n)
-        pitch = interval.transpose(self)
-        return type(self)(pitch)
+        import abjad
+        interval = abjad.NamedInterval(n)
+        return interval.transpose(self)
 
+    # TODO: combine with transpose()
     def transpose_staff_position(self, staff_positions, interval):
         '''Transposes named pitch by `staff_positions` and `interval`.
 
@@ -1815,7 +1155,7 @@ class NamedPitch(Pitch):
 
             ::
 
-                >>> pitch = NamedPitch(0)
+                >>> pitch = abjad.NamedPitch(0)
 
             ::
 
@@ -1861,13 +1201,16 @@ class NamedPitch(Pitch):
 
         Returns new named pitch.
         '''
-        from abjad.tools import pitchtools
-        pitch_number = self.pitch_number + interval
-        diatonic_pitch_class_number = self.diatonic_pitch_class_number
+        import abjad
+        pitch_number = self.number + interval
+        diatonic_pitch_class_number = self._get_diatonic_pitch_class_number()
         diatonic_pitch_class_number += staff_positions
         diatonic_pitch_class_number %= 7
-        class_ = pitchtools.PitchClass
+        class_ = abjad.PitchClass
         dictionary = \
             class_._diatonic_pitch_class_number_to_diatonic_pitch_class_name
         diatonic_pitch_class_name = dictionary[diatonic_pitch_class_number]
-        return type(self)(pitch_number, diatonic_pitch_class_name)
+        return type(self).from_pitch_number(
+            pitch_number,
+            diatonic_pitch_class_name,
+            )

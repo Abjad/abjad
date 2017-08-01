@@ -1,14 +1,13 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import systemtools
-from abjad.tools import graphtools
+import abjad
 
 
-class TestCase(systemtools.TestCase):
+class TestCase(abjad.TestCase):
 
     def test_01(self):
-        graph_one = graphtools.GraphvizGraph()
-        node_one = graphtools.GraphvizNode()
-        node_two = graphtools.GraphvizNode()
+        graph_one = abjad.graphtools.GraphvizGraph()
+        node_one = abjad.graphtools.GraphvizNode()
+        node_two = abjad.graphtools.GraphvizNode()
         node_one.attach(node_two)
         graph_one.extend([node_one, node_two])
         assert str(graph_one) == self.normalize('''
@@ -18,7 +17,7 @@ class TestCase(systemtools.TestCase):
                 node_0 -> node_1;
             }
             ''')
-        graph_two = graphtools.GraphvizGraph()
+        graph_two = abjad.graphtools.GraphvizGraph()
         assert str(graph_two) == self.normalize('''
             digraph G {
             }

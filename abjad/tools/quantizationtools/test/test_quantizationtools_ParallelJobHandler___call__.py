@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
-from abjad.tools.abctools import AbjadObject
+from abjad.tools import quantizationtools
 
 
-class Job(AbjadObject):
+class Job(abjad.abctools.AbjadObject):
 
     ### INITIALIZER ###
 
@@ -14,7 +14,7 @@ class Job(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        self.result = [x for x in mathtools.yield_all_compositions_of_integer(self.number)]
+        self.result = [x for x in abjad.mathtools.yield_all_compositions_of_integer(self.number)]
 
 
 @pytest.mark.skip()

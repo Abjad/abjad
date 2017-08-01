@@ -4,22 +4,26 @@
 def select(argument=None):
     r'''Selects `argument` or makes empty selector.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Selects first two notes in staff:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> selection = select(staff[:2])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> selection = abjad.select(staff[:2])
             >>> for note in selection:
-            ...     override(note).note_head.color = 'red'
+            ...     abjad.override(note).note_head.color = 'red'
 
         ::
 
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -37,7 +41,7 @@ def select(argument=None):
 
         ::
 
-            >>> select()
+            >>> abjad.select()
             Selector()
 
     Returns selection when `argument` is not none.

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import iterate
@@ -8,17 +8,21 @@ from abjad.tools.topleveltools import iterate
 class Slur(Spanner):
     r'''Slur.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Slurs four notes:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(Slur(), staff[:])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Slur(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -34,8 +38,8 @@ class Slur(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(Slur(), staff[:1])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Slur(), staff[:1])
             Traceback (most recent call last):
                 ...
             Exception: Slur() attachment test fails for Selection([Note("c'4")]).
@@ -62,7 +66,7 @@ class Slur(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.to_tridirectional_lilypond_symbol(
+        direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
 
@@ -75,7 +79,7 @@ class Slur(Spanner):
         new._direction = self.direction
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only_leaf(leaf):
             pass
         elif self._is_my_first_leaf(leaf):
@@ -83,11 +87,11 @@ class Slur(Spanner):
                 string = '{} ('.format(self.direction)
             else:
                 string = '('
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
         elif self._is_my_last_leaf(leaf):
             string = ')'
-            lilypond_format_bundle.right.spanner_stops.append(string)
-        return lilypond_format_bundle
+            bundle.right.spanner_stops.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -101,12 +105,12 @@ class Slur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.Slur(direction=Up)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.Slur(direction=Up)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -122,12 +126,12 @@ class Slur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.Slur(direction=Down)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.Slur(direction=Down)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -143,12 +147,12 @@ class Slur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.Slur(direction=None)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.Slur(direction=None)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

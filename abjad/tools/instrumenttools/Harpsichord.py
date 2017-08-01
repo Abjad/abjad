@@ -6,44 +6,51 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Harpsichord(Instrument):
-    r'''A harpsichord.
+    r'''Harpsichord.
 
     ::
 
-        >>> upper_staff = Staff("c'4 d'4 e'4 f'4")
-        >>> lower_staff = Staff("c'2 b2")
-        >>> staff_group = StaffGroup([upper_staff, lower_staff])
-        >>> staff_group.context_name = 'PianoStaff'
-        >>> harpsichord = instrumenttools.Harpsichord()
-        >>> attach(harpsichord, staff_group)
-        >>> attach(Clef(name='bass'), lower_staff)
-        >>> show(staff_group) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff_group)
-        \new PianoStaff <<
-            \set PianoStaff.instrumentName = \markup { Harpsichord }
-            \set PianoStaff.shortInstrumentName = \markup { Hpschd. }
-            \new Staff {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-            \new Staff {
-                \clef "bass"
-                c'2
-                b2
-            }
-        >>
+        ::
+
+            >>> upper_staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> lower_staff = abjad.Staff("c'2 b2")
+            >>> staff_group = abjad.StaffGroup([upper_staff, lower_staff])
+            >>> staff_group.context_name = 'PianoStaff'
+            >>> harpsichord = abjad.instrumenttools.Harpsichord()
+            >>> abjad.attach(harpsichord, staff_group[0][0])
+            >>> abjad.attach(abjad.Clef('bass'), lower_staff[0])
+            >>> show(staff_group) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff_group)
+            \new PianoStaff <<
+                \new Staff {
+                    \set PianoStaff.instrumentName = \markup { Harpsichord }
+                    \set PianoStaff.shortInstrumentName = \markup { Hpschd. }
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    c'2
+                    b2
+                }
+            >>
 
     The harpsichord targets piano staff context by default.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -98,6 +105,21 @@ class Harpsichord(Instrument):
         return Instrument.allowable_clefs.fget(self)
 
     @property
+    def default_scope(self):
+        r'''Gets default scope of harpsichord.
+
+        ..  container:: example
+
+            ::
+
+                >>> harpsichord.default_scope
+                'PianoStaff'
+
+        Returns piano staff.
+        '''
+        return self._default_scope
+
+    @property
     def instrument_name(self):
         r'''Gets harpsichord's name.
 
@@ -140,7 +162,7 @@ class Harpsichord(Instrument):
             ::
 
                 >>> harpsichord.pitch_range
-                PitchRange(range_string='[C2, C7]')
+                PitchRange('[C2, C7]')
 
             ::
 

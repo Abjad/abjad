@@ -5,7 +5,11 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
 class TypedOrderedDict(TypedCollection):
-    r'''A typed ordered dictionary.
+    r'''Typed ordered dictionary.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -15,7 +19,7 @@ class TypedOrderedDict(TypedCollection):
 
             >>> dictionary = abjad.TypedOrderedDict([
             ...     ('color', 'red'),
-            ...     ('directive', Markup(r'\italic Allegretto')),
+            ...     ('directive', abjad.Markup(r'\italic Allegretto')),
             ...     ])
 
         ::
@@ -46,7 +50,7 @@ class TypedOrderedDict(TypedCollection):
 
             >>> dictionary = {
             ...     'color': 'red',
-            ...     'directive': Markup(r'\italic Allegretto'),
+            ...     'directive': abjad.Markup(r'\italic Allegretto'),
             ...     }
             >>> dictionary = abjad.TypedOrderedDict(
             ...     dictionary
@@ -80,7 +84,7 @@ class TypedOrderedDict(TypedCollection):
 
             >>> dictionary_1 = abjad.TypedOrderedDict([
             ...     ('color', 'red'),
-            ...     ('directive', Markup(r'\italic Allegretto')),
+            ...     ('directive', abjad.Markup(r'\italic Allegretto')),
             ...     ])
             >>> dictionary_2 = abjad.TypedOrderedDict(
             ...     dictionary_1
@@ -203,14 +207,6 @@ class TypedOrderedDict(TypedCollection):
         '''
         argument = type(self)(argument)
         return self._collection.__lt__(argument._collection)
-
-    def __ne__(self, argument):
-        r'''Is true when typed ordered dictionary is not equal to `argument`.
-        Otherwise false.
-
-        Returns true or false.
-        '''
-        return not self == argument
 
     def __reversed__(self):
         r'''Aliases OrderedDict.__reversed__().

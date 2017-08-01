@@ -14,6 +14,7 @@ class CustomLatexFormatter(LatexFormatter):
 PygmentsBridge.latex_formatter = CustomLatexFormatter
 
 ### CORE ###
+
 add_function_parentheses = True
 copyright = u'2008-2017, Trevor Bača & Josiah Wolf Oberholtzer'
 exclude_patterns = []
@@ -33,7 +34,9 @@ release = abjad_configuration.get_abjad_version_string()
 source_suffix = '.rst'
 templates_path = ['_templates']
 version = abjad_configuration.get_abjad_version_string()
+
 ### HTML ###
+
 html_domain_indices = False
 html_favicon = '_static/favicon.ico'
 html_last_updated_fmt = '%b %d, %Y'
@@ -44,9 +47,13 @@ html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_use_index = False
 html_use_smartypants = True
+
 ### HTML HELP ###
+
 htmlhelp_basename = 'Abjaddoc'
+
 ### LATEX ###
+
 latex_elements = {
     'inputenc': r'\usepackage[utf8x]{inputenc}',
     'utf8extra': '',
@@ -79,7 +86,9 @@ latex_documents = [
     ]
 #latex_use_parts = True
 latex_toplevel_sectioning = 'chapter' # just guessing?
+
 ### MAN ###
+
 man_pages = [
     (
         'index',
@@ -89,7 +98,9 @@ man_pages = [
         1,
         )
     ]
+
 ### TEXINFO ###
+
 texinfo_documents = [
     (
         'index',
@@ -101,7 +112,9 @@ texinfo_documents = [
         'Miscellaneous',
         ),
     ]
+
 ### EXTENSIONS ###
+
 abjadbook_ignored_documents = ()
 autodoc_member_order = 'groupwise'
 graphviz_dot_args = ['-s32']

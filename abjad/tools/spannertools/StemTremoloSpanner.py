@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 
 
 class StemTremoloSpanner(Spanner):
@@ -9,17 +9,23 @@ class StemTremoloSpanner(Spanner):
 
     ::
 
-        >>> staff = Staff("c'32 d'16. e'8 f'4. g'4.")
-        >>> tremolo_spanner = spannertools.StemTremoloSpanner()
-        >>> attach(tremolo_spanner, staff[:])
-        >>> f(staff)
-        \new Staff {
-            c'32 :256
-            d'16. :128
-            e'8 :64
-            f'4. :32
-            g'4. :32
-        }
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> staff = abjad.Staff("c'32 d'16. e'8 f'4. g'4.")
+            >>> tremolo_spanner = abjad.StemTremoloSpanner()
+            >>> abjad.attach(tremolo_spanner, staff[:])
+            >>> f(staff)
+            \new Staff {
+                c'32 :256
+                d'16. :128
+                e'8 :64
+                f'4. :32
+                g'4. :32
+            }
 
     '''
 
@@ -50,25 +56,21 @@ class StemTremoloSpanner(Spanner):
         new._minimum_duration = self.minimum_duration
 
     def _get_lilypond_format_bundle(self, leaf):
-        from abjad.tools import scoretools
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        prototype = (
-            scoretools.Note,
-            scoretools.Chord,
-            )
-        if not isinstance(leaf, prototype):
-            return lilypond_format_bundle
-        logical_tie = inspect_(leaf).get_logical_tie()
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
+        if not isinstance(leaf, (abjad.Chord, abjad.Note)):
+            return bundle
+        logical_tie = abjad.inspect(leaf).get_logical_tie()
         if (self.minimum_duration is not None and
             logical_tie.get_duration() < self.minimum_duration):
-            return lilypond_format_bundle
+            return bundle
         flag_count = leaf.written_duration.flag_count
         tremolo_count = 32
         if flag_count:
             tremolo_count *= pow(2, flag_count)
         tremolo_string = ':{}'.format(tremolo_count)
-        lilypond_format_bundle.right.stem_tremolos.append(tremolo_string)
-        return lilypond_format_bundle
+        bundle.right.stem_tremolos.append(tremolo_string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 

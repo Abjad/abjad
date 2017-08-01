@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.lilypondnametools.LilyPondNameManager \
     import LilyPondNameManager
 
@@ -7,14 +7,18 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 class LilyPondSettingNameManager(LilyPondNameManager):
     '''LilyPond setting name manager.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes with toplevel function:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> set_(note)
+            >>> note = abjad.Note("c'4")
+            >>> abjad.setting(note)
             LilyPondSettingNameManager()
 
     '''
@@ -28,11 +32,11 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> set_(staff).instrument_name = Markup('Vn. I')
+                >>> staff = abjad.Staff("c'4 d' e' f'")
+                >>> abjad.setting(staff).instrument_name = abjad.Markup('Vn. I')
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -50,13 +54,13 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
             ::
 
-                >>> set_(staff).instrument_name
+                >>> abjad.setting(staff).instrument_name
                 Markup(contents=['Vn. I'])
 
         '''
         from abjad import ly
         from abjad.tools import lilypondnametools
-        camel_name = stringtools.to_upper_camel_case(name)
+        camel_name = datastructuretools.String(name).to_upper_camel_case()
         if name.startswith('_'):
             try:
                 return vars(self)[name]

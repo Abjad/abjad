@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Component__logical_measure_number_01():
 
-    staff = Staff("c'4 d' e' f' g' a' b' c''")
-    attach(TimeSignature((2, 4)), staff[0])
-    attach(TimeSignature((3, 4)), staff[4])
-    attach(TimeSignature((1, 4)), staff[7])
+    staff = abjad.Staff("c'4 d' e' f' g' a' b' c''")
+    abjad.attach(abjad.TimeSignature((2, 4)), staff[0])
+    abjad.attach(abjad.TimeSignature((3, 4)), staff[4])
+    abjad.attach(abjad.TimeSignature((1, 4)), staff[7])
     staff._update_logical_measure_numbers()
 
     assert staff._logical_measure_number == 1
@@ -24,11 +24,11 @@ def test_scoretools_Component__logical_measure_number_01():
 def test_scoretools_Component__logical_measure_number_02():
 
     
-    staff = Staff()
-    staff.append(Measure((2, 4), "c'4 d'4"))
-    staff.append(Measure((2, 4), "e'4 f'4"))
-    staff.append(Measure((3, 4), "g'4 a'4 b'4"))
-    staff.append(Measure((1, 4), "c''4"))
+    staff = abjad.Staff()
+    staff.append(abjad.Measure((2, 4), "c'4 d'4"))
+    staff.append(abjad.Measure((2, 4), "e'4 f'4"))
+    staff.append(abjad.Measure((3, 4), "g'4 a'4 b'4"))
+    staff.append(abjad.Measure((1, 4), "c''4"))
     staff._update_logical_measure_numbers()
 
     assert staff._logical_measure_number == 1
@@ -38,7 +38,7 @@ def test_scoretools_Component__logical_measure_number_02():
     assert staff[2]._logical_measure_number == 3
     assert staff[3]._logical_measure_number == 4
 
-    leaves = iterate(staff).by_leaf()
+    leaves = abjad.iterate(staff).by_leaf()
     leaves = list(leaves)
     assert leaves[0]._logical_measure_number == 1
     assert leaves[1]._logical_measure_number == 1
@@ -54,7 +54,7 @@ def test_scoretools_Component__logical_measure_number_03():
     r'''Works with implicit time signatures.
     '''
 
-    staff = Staff("c'4 d' e' f' g' a' b' c''")
+    staff = abjad.Staff("c'4 d' e' f' g' a' b' c''")
     staff._update_logical_measure_numbers()
 
     assert staff._logical_measure_number == 1
@@ -72,8 +72,8 @@ def test_scoretools_Component__logical_measure_number_04():
     r'''Works with a mix of implicit and explicit time signatures.
     '''
 
-    staff = Staff("c'4 d' e' f' g' a' b' c''")
-    attach(TimeSignature((2, 4)), staff[4])
+    staff = abjad.Staff("c'4 d' e' f' g' a' b' c''")
+    abjad.attach(abjad.TimeSignature((2, 4)), staff[4])
     staff._update_logical_measure_numbers()
 
     assert staff._logical_measure_number == 1

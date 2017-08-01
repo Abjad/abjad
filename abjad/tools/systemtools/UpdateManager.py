@@ -12,6 +12,9 @@ class UpdateManager(AbjadObject):
 
     __documentation_section__ = 'Managers'
 
+    __slots__ = (
+        )
+
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -99,14 +102,11 @@ class UpdateManager(AbjadObject):
 
     @classmethod
     def _update_component_offsets(class_, component):
-        from abjad.tools import durationtools
-        from abjad.tools import scoretools
-        if (isinstance(component._parent, scoretools.GraceContainer) and
-            not component._parent.kind == 'after'):
+        import abjad
+        if isinstance(component._parent, abjad.GraceContainer):
             pair = class_._get_grace_note_offsets(component)
             start_offset, stop_offset = pair
-        elif (isinstance(component._parent, scoretools.GraceContainer) and
-            component._parent.kind == 'after'):
+        elif isinstance(component._parent, abjad.AfterGraceContainer):
             pair = class_._get_after_grace_note_offsets(component)
             start_offset, stop_offset = pair
         else:
@@ -114,7 +114,7 @@ class UpdateManager(AbjadObject):
             if previous is not None:
                 start_offset = previous._stop_offset
             else:
-                start_offset = durationtools.Offset(0)
+                start_offset = abjad.Offset(0)
             stop_offset = start_offset + component._get_duration()
         component._start_offset = start_offset
         component._stop_offset = stop_offset
@@ -135,11 +135,11 @@ class UpdateManager(AbjadObject):
                 component._start_offset_in_seconds = durationtools.Offset(0)
             # this one case is possible for containers only
             if component._start_offset_in_seconds is None:
-                raise MissingTempoError
+                raise MissingMetronomeMarkError
             component._stop_offset_in_seconds = \
                 component._start_offset_in_seconds + \
                 current_duration_in_seconds
-        except MissingTempoError:
+        except MissingMetronomeMarkError:
             pass
 
     def _update_now(
@@ -178,9 +178,9 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _get_after_grace_note_offsets(grace_note):
-        from abjad.tools import durationtools
+        import abjad
         after_grace_container = grace_note._parent
-        assert after_grace_container.kind == 'after'
+        assert isinstance(after_grace_container, abjad.AfterGraceContainer)
         carrier_leaf = after_grace_container._carrier
         carrier_leaf_stop_offset = carrier_leaf._stop_offset
         grace_displacement = -grace_note.written_duration
@@ -188,12 +188,12 @@ class UpdateManager(AbjadObject):
         while sibling is not None:
             grace_displacement -= sibling.written_duration
             sibling = sibling._get_sibling(1)
-        start_offset = durationtools.Offset(
+        start_offset = abjad.Offset(
             carrier_leaf_stop_offset,
             grace_displacement=grace_displacement,
             )
         grace_displacement += grace_note.written_duration
-        stop_offset = durationtools.Offset(
+        stop_offset = abjad.Offset(
             carrier_leaf_stop_offset,
             grace_displacement=grace_displacement,
             )
@@ -201,7 +201,7 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _get_grace_note_offsets(grace_note):
-        from abjad.tools import durationtools
+        import abjad
         grace_container = grace_note._parent
         carrier_leaf = grace_container._carrier
         carrier_leaf_start_offset = carrier_leaf._start_offset
@@ -210,36 +210,33 @@ class UpdateManager(AbjadObject):
         while sibling is not None:
             grace_displacement -= sibling.written_duration
             sibling = sibling._get_sibling(1)
-        start_offset = durationtools.Offset(
+        start_offset = abjad.Offset(
             carrier_leaf_start_offset,
             grace_displacement=grace_displacement,
             )
         grace_displacement += grace_note.written_duration
-        stop_offset = durationtools.Offset(
+        stop_offset = abjad.Offset(
             carrier_leaf_start_offset,
             grace_displacement=grace_displacement,
             )
         return start_offset, stop_offset
 
     def _get_logical_measure_start_offsets(self, component):
+        from abjad.tools import datastructuretools
         from abjad.tools import durationtools
         from abjad.tools import indicatortools
-        from abjad.tools import sequencetools
-        from abjad.tools.topleveltools import inspect_
-        expressions = []
+        from abjad.tools.topleveltools import inspect
+        wrappers = []
         prototype = indicatortools.TimeSignature
         score_root = component._get_parentage(include_self=True).root
         for component in self._iterate_entire_score(score_root):
-            expressions_ = component._get_indicators(
-                prototype,
-                unwrap=False,
-                )
-            expressions.extend(expressions_)
+            wrappers_ = component._get_indicators(prototype, unwrap=False)
+            wrappers.extend(wrappers_)
         pairs = []
-        for expression in expressions:
-            inspector = inspect_(expression.component)
+        for wrapper in wrappers:
+            inspector = inspect(wrapper.component)
             start_offset = inspector.get_timespan()._start_offset
-            time_signature = expression.indicator
+            time_signature = wrapper.indicator
             pair = start_offset, time_signature
             pairs.append(pair)
         offset_zero = durationtools.Offset(0)
@@ -252,12 +249,12 @@ class UpdateManager(AbjadObject):
         pairs.sort(key=lambda x: x[0])
         parentage = component._get_parentage()
         score_root = parentage.root
-        inspector = inspect_(score_root)
+        inspector = inspect(score_root)
         score_stop_offset = inspector.get_timespan()._stop_offset
         dummy_last_pair = (score_stop_offset, None)
         pairs.append(dummy_last_pair)
         measure_start_offsets = []
-        for current_pair, next_pair in sequencetools.Sequence(pairs).nwise():
+        for current_pair, next_pair in datastructuretools.Sequence(pairs).nwise():
             current_start_offset, current_time_signature = current_pair
             next_start_offset, next_time_signature = next_pair
             measure_start_offset = current_start_offset
@@ -272,15 +269,15 @@ class UpdateManager(AbjadObject):
         component,
         logical_measure_number_start_offsets,
         ):
+        from abjad.tools import datastructuretools
         from abjad.tools import mathtools
-        from abjad.tools import sequencetools
-        from abjad.tools.topleveltools import inspect_
-        inspector = inspect_(component)
+        from abjad.tools.topleveltools import inspect
+        inspector = inspect(component)
         component_start_offset = inspector.get_timespan()._start_offset
         logical_measure_number_start_offsets = \
             logical_measure_number_start_offsets[:]
         logical_measure_number_start_offsets.append(mathtools.Infinity())
-        pairs = sequencetools.Sequence(logical_measure_number_start_offsets)
+        pairs = datastructuretools.Sequence(logical_measure_number_start_offsets)
         pairs = pairs.nwise()
         for logical_measure_index, pair in enumerate(pairs):
             if pair[0] <= component_start_offset < pair[-1]:

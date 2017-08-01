@@ -2,6 +2,10 @@ Literature examples
 ===================
 
 ..  abjad::
+
+    import abjad
+
+..  abjad::
     :hide:
 
     import random
@@ -10,16 +14,14 @@ Literature examples
 ..  rubric:: Bartók: *Mikrokosmos*
 
 Build up a score fragment manually, piece-by-piece, in this implementation of a
-few measure from Bartók's *Mikrokosmos*.
-
-..  import:: abjad.demos.bartok:make_bartok_score
-    :hide:
+few measure from Bartók's *Mikrokosmos*. 
 
 ..  abjad::
     :hide:
     :stylesheet: non-proportional.ly
 
-    score = make_bartok_score()
+    from abjad.demos import bartok
+    score = bartok.make_bartok_score()
     show(score)
 
 ..  toctree::
@@ -31,13 +33,12 @@ few measure from Bartók's *Mikrokosmos*.
 Use functions to create an array of nested tuplets in this implementation of
 Ferneyhough's pre-compositional process.
 
-..  import:: abjad.demos.ferneyhough.make_lilypond_file:make_lilypond_file
-    :hide:
-
 ..  abjad::
     :hide:
 
-    lilypond_file = make_lilypond_file(Duration(1, 4), 6, 6)
+    from abjad.demos.ferneyhough import FerneyhoughDemo
+    ferneyhough = FerneyhoughDemo()
+    lilypond_file = ferneyhough.make_lilypond_file(Duration(1, 4), 6, 6)
     show(lilypond_file)
 
 ..  toctree::
@@ -49,13 +50,11 @@ Ferneyhough's pre-compositional process.
 Create a polymetric score by aggregating musical cells in this implementation
 of Ligeti's *Désordre*.
 
-..  import:: abjad.demos.desordre.make_desordre_score:make_desordre_score
-    :hide:
-
 ..  abjad::
     :hide:
     :stylesheet: non-proportional.ly
 
+    from abjad.demos import ligeti
     top = [
         [[-1, 4, 5], [-1, 4, 5, 7, 9]], 
         [[0, 7, 9], [-1, 4, 5, 7, 9]], 
@@ -78,8 +77,8 @@ of Ligeti's *Désordre*.
         [[-11, -2, 1, -6, -4, -2, 1, 3]], 
         [[-6, 1, 3], [-6, -4, -2, 1, 3]],
         ]
-    score = make_desordre_score([top, bottom])
-    lilypond_file = documentationtools.make_ligeti_example_lilypond_file(score)
+    score = ligeti.make_desordre_score([top, bottom])
+    lilypond_file = abjad.documentationtools.make_ligeti_example_lilypond_file(score)
     show(lilypond_file)
 
 ..  toctree::
@@ -91,16 +90,14 @@ of Ligeti's *Désordre*.
 Create randomly-generated scores from a corpus of LilyPond syntax strings in
 this implementation of Mozart's dice game.
 
-..  import:: abjad.demos.mozart.make_mozart_lilypond_file:make_mozart_lilypond_file
-    :hide:
-
 ..  abjad::
     :hide:
     :no-stylesheet:
     :no-trim:
     :with-columns: 1
 
-    lilypond_file = make_mozart_lilypond_file()
+    from abjad.demos import mozart
+    lilypond_file = mozart.make_mozart_lilypond_file()
     show(lilypond_file)
 
 ..  toctree::
@@ -112,9 +109,6 @@ this implementation of Mozart's dice game.
 Build up a full-fledged score in this implementation of Pärt's *Cantus in
 Memory of Benhamin Britten*.
 
-..  import:: abjad.demos.part:make_part_lilypond_file
-    :hide:
-
 ..  abjad::
     :hide:
     :no-stylesheet:
@@ -122,7 +116,8 @@ Memory of Benhamin Britten*.
     :pages: 1-2
     :with-columns: 2
 
-    lilypond_file = make_part_lilypond_file()
+    from abjad.demos import part
+    lilypond_file = part.make_part_lilypond_file()
     show(lilypond_file)
 
 ..  toctree::

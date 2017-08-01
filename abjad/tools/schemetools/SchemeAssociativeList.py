@@ -5,16 +5,25 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeAssociativeList(Scheme):
     '''Abjad model of Scheme associative list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> scheme_alist = schemetools.SchemeAssociativeList(
+            >>> scheme_alist = abjad.SchemeAssociativeList([
             ...     ('space', 2),
             ...     ('padding', 0.5),
-            ...     )
-            >>> scheme_alist
-            SchemeAssociativeList(SchemePair('space', 2), SchemePair('padding', 0.5), quoting="'")
+            ...     ])
+            >>> f(scheme_alist)
+            abjad.SchemeAssociativeList(
+                [
+                    abjad.SchemePair(('space', 2)),
+                    abjad.SchemePair(('padding', 0.5)),
+                    ]
+                )
 
         ::
 
@@ -31,13 +40,18 @@ class SchemeAssociativeList(Scheme):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments, **keywords):
+    def __init__(self, value=None):
         from abjad.tools import schemetools
-        args_as_pairs = []
-        for arg in arguments:
-            if not isinstance(arg, (tuple, schemetools.SchemePair)):
-                message = 'must be Python pair or Scheme pair: "%s".'
-                raise TypeError(message % arg)
-            arg_as_pair = schemetools.SchemePair(*arg)
-            args_as_pairs.append(arg_as_pair)
-        Scheme.__init__(self, *args_as_pairs, **{'quoting': "'"})
+        value = value or []
+        pairs = []
+        for item in value:
+            if isinstance(item, tuple):
+                pair = schemetools.SchemePair(item)
+            elif isinstance(item, schemetools.SchemePair):
+                pair = item
+            else:
+                message = 'must be Python pair or Scheme pair: {!r}.'
+                message = message.format(item)
+                raise TypeError(message)
+            pairs.append(pair)
+        Scheme.__init__(self, value=pairs, quoting="'")

@@ -6,16 +6,20 @@ from abjad.tools.topleveltools import override
 class PianoPedalSpanner(Spanner):
     r'''Piano pedal spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> pedal = spannertools.PianoPedalSpanner()
-            >>> attach(pedal, staff[:])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.PianoPedalSpanner()
+            >>> abjad.attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -82,35 +86,34 @@ class PianoPedalSpanner(Spanner):
         new._style = self.style
 
     def _get_lilypond_format_bundle(self, leaf):
-        from abjad.tools import lilypondnametools
-        from abjad.tools import schemetools
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only_leaf(leaf):
-            style = schemetools.SchemeSymbol(self.style)
-            context_setting = lilypondnametools.LilyPondContextSetting(
+            style = abjad.SchemeSymbol(self.style)
+            context_setting = abjad.lilypondnametools.LilyPondContextSetting(
                 context_name='Staff',
                 context_property='pedalSustainStyle',
                 value=style,
                 )
-            lilypond_format_bundle.update(context_setting)
+            bundle.update(context_setting)
             string = self._kinds[self.kind][0]
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
             string = self._kinds[self.kind][1]
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
         elif self._is_my_first_leaf(leaf):
-            style = schemetools.SchemeSymbol(self.style)
-            context_setting = lilypondnametools.LilyPondContextSetting(
+            style = abjad.SchemeSymbol(self.style)
+            context_setting = abjad.lilypondnametools.LilyPondContextSetting(
                 context_name='Staff',
                 context_property='pedalSustainStyle',
                 value=style,
                 )
-            lilypond_format_bundle.update(context_setting)
+            bundle.update(context_setting)
             string = self._kinds[self.kind][0]
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
         elif self._is_my_last_leaf(leaf):
             string = self._kinds[self.kind][1]
-            lilypond_format_bundle.right.spanner_stops.append(string)
-        return lilypond_format_bundle
+            bundle.right.spanner_stops.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -124,12 +127,12 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(kind='sustain')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(kind='sustain')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -151,12 +154,12 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(kind='sostenuto')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(kind='sostenuto')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -178,12 +181,12 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(kind='corda')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(kind='corda')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -213,12 +216,12 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(style='mixed')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(style='mixed')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -240,12 +243,12 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(style='bracket')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(style='bracket')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -267,12 +270,12 @@ class PianoPedalSpanner(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(style='text')
-                >>> attach(spanner, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = abjad.PianoPedalSpanner(style='text')
+                >>> abjad.attach(spanner, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

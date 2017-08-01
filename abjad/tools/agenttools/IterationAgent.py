@@ -4,16 +4,18 @@ import collections
 import inspect
 from abjad.tools import abctools
 from abjad.tools import durationtools
-from abjad.tools import expressiontools
+from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 
 
 class IterationAgent(abctools.AbjadObject):
     r'''Iteration agent.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -23,10 +25,10 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 e'4 d'4 f'4")
+                >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -40,7 +42,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> for component in iterate(staff).by_class():
+                >>> for component in abjad.iterate(staff).by_class():
                 ...     component
                 Staff("c'4 e'4 d'4 f'4")
                 Note("c'4")
@@ -52,7 +54,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> expression = iterate()
+                >>> expression = abjad.iterate()
                 >>> expression = expression.by_class()
                 >>> for component in expression(staff):
                 ...     component
@@ -70,10 +72,10 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 e'4 d'4 f'4")
+                >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -87,7 +89,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> for leaf in iterate(staff).by_leaf():
+                >>> for leaf in abjad.iterate(staff).by_leaf():
                 ...     leaf
                 Note("c'4")
                 Note("e'4")
@@ -98,7 +100,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> expression = iterate()
+                >>> expression = abjad.iterate()
                 >>> expression = expression.by_leaf()
                 >>> for leaf in expression(staff):
                 ...     leaf
@@ -126,16 +128,16 @@ class IterationAgent(abctools.AbjadObject):
 
     def _by_components_and_grace_containers(self, prototype=None):
         prototype = prototype or scoretools.Leaf
-        if getattr(self._client, '_grace', None) is not None:
-            for component in self._client._grace:
+        if getattr(self._client, '_grace_container', None) is not None:
+            for component in self._client._grace_container:
                 for x in iterate(component)._by_components_and_grace_containers(
                     prototype,
                     ):
                     yield x
         if isinstance(self._client, prototype):
             yield self._client
-        if getattr(self._client, '_after_grace', None) is not None:
-            for component in self._client._after_grace:
+        if getattr(self._client, '_after_grace_container', None) is not None:
+            for component in self._client._after_grace_container:
                 for x in iterate(component)._by_components_and_grace_containers(
                     prototype,
                     ):
@@ -158,15 +160,15 @@ class IterationAgent(abctools.AbjadObject):
         pitches_1 = sorted(iterate(expr_1).by_pitch())
         pitches_2 = sorted(iterate(expr_2).by_pitch())
         sequences = [pitches_1, pitches_2]
-        enumeration = sequencetools.Enumeration(sequences)
-        for pair in enumeration.yield_outer_product():
+        enumerator = mathtools.Enumerator(sequences)
+        for pair in enumerator.yield_outer_product():
             yield pair
 
     @staticmethod
     def _list_unordered_pitch_pairs(argument):
         pitches = sorted(iterate(argument).by_pitch())
-        enumeration = sequencetools.Enumeration(pitches)
-        for pair in enumeration.yield_pairs():
+        enumerator = mathtools.Enumerator(pitches)
+        for pair in enumerator.yield_pairs():
             yield pair
 
     def _update_expression(self, frame):
@@ -186,8 +188,8 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> agent = iterate(staff)
+                >>> staff = abjad.Staff("c'4 d' e' f'")
+                >>> agent = abjad.iterate(staff)
 
             ::
 
@@ -200,8 +202,8 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> agent = iterate(staff[:2])
+                >>> staff = abjad.Staff("c'4 d' e' f'")
+                >>> agent = abjad.iterate(staff[:2])
 
             ::
 
@@ -233,13 +235,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "c'8 d'8"))
-                    >>> staff.append(Measure((2, 8), "e'8 f'8"))
-                    >>> staff.append(Measure((2, 8), "g'8 a'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "c'8 d'8"))
+                    >>> staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+                    >>> staff.append(abjad.Measure((2, 8), "g'8 a'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -262,7 +264,8 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for note in iterate(staff).by_class(prototype=Note):
+                    >>> agent = abjad.iterate(staff)
+                    >>> for note in agent.by_class(prototype=abjad.Note):
                     ...     note
                     ...
                     Note("c'8")
@@ -276,8 +279,8 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
-                    >>> expression = expression.by_class(prototype=Note)
+                    >>> expression = abjad.iterate()
+                    >>> expression = expression.by_class(prototype=abjad.Note)
                     >>> for note in expression(staff):
                     ...     note
                     ...
@@ -296,13 +299,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "c'8 d'8"))
-                    >>> staff.append(Measure((2, 8), "e'8 f'8"))
-                    >>> staff.append(Measure((2, 8), "g'8 a'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "c'8 d'8"))
+                    >>> staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+                    >>> staff.append(abjad.Measure((2, 8), "g'8 a'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -325,8 +328,8 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for note in iterate(staff).by_class(
-                    ...     prototype=Note,
+                    >>> for note in abjad.iterate(staff).by_class(
+                    ...     prototype=abjad.Note,
                     ...     start=0,
                     ...     stop=3,
                     ...     ):
@@ -338,8 +341,8 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for note in iterate(staff).by_class(
-                    ...     prototype=Note,
+                    >>> for note in abjad.iterate(staff).by_class(
+                    ...     prototype=abjad.Note,
                     ...     start=2,
                     ...     stop=4,
                     ...     ):
@@ -352,9 +355,9 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_class(
-                    ...     prototype=Note,
+                    ...     prototype=abjad.Note,
                     ...     start=0,
                     ...     stop=3,
                     ...     )
@@ -367,9 +370,9 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_class(
-                    ...     prototype=Note,
+                    ...     prototype=abjad.Note,
                     ...     start=2,
                     ...     stop=4,
                     ...     )
@@ -387,13 +390,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "c'8 d'8"))
-                    >>> staff.append(Measure((2, 8), "e'8 f'8"))
-                    >>> staff.append(Measure((2, 8), "g'8 a'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "c'8 d'8"))
+                    >>> staff.append(abjad.Measure((2, 8), "e'8 f'8"))
+                    >>> staff.append(abjad.Measure((2, 8), "g'8 a'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -416,8 +419,8 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for note in iterate(staff).by_class(
-                    ...     prototype=Note,
+                    >>> for note in abjad.iterate(staff).by_class(
+                    ...     prototype=abjad.Note,
                     ...     reverse=True,
                     ...     ):
                     ...     note
@@ -433,9 +436,9 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_class(
-                    ...     prototype=Note,
+                    ...     prototype=abjad.Note,
                     ...     reverse=True,
                     ...     )
                     >>> for note in expression(staff):
@@ -456,16 +459,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                    >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
-                    >>> attach(grace, voice[1])
+                    >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+                    >>> container = abjad.GraceContainer("cf''16 bf'16")
+                    >>> abjad.attach(container, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -483,7 +482,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for component in iterate(voice).by_class(
+                    >>> for component in abjad.iterate(voice).by_class(
                     ...     with_grace_notes=True,
                     ...     ):
                     ...     component
@@ -501,7 +500,7 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_class(
                     ...     with_grace_notes=True,
                     ...     )
@@ -525,21 +524,14 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                    >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
-                    >>> attach(grace, voice[1])
-                    >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
-                    >>> after_grace = scoretools.GraceContainer(
-                    ...     after_grace_notes,
-                    ...     kind='after')
-                    >>> attach(after_grace, voice[1])
+                    >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+                    >>> container = abjad.GraceContainer("cf''16 bf'16")
+                    >>> abjad.attach(container, voice[1])
+                    >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                    >>> abjad.attach(container, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -562,7 +554,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(voice).by_class(
+                    >>> for leaf in abjad.iterate(voice).by_class(
                     ...     with_grace_notes=True,
                     ...     ):
                     ...     leaf
@@ -581,7 +573,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_class(
                     ...     with_grace_notes=True,
                     ...     )
@@ -606,13 +598,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                    >>> staff.append(Measure((2, 8), "af'8 r8"))
-                    >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -635,7 +627,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(staff).by_class(pitched=True):
+                    >>> for leaf in abjad.iterate(staff).by_class(pitched=True):
                     ...     leaf
                     ...
                     Chord("<c' bf'>8")
@@ -647,7 +639,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_class(pitched=True)
                     >>> for leaf in expression(staff):
                     ...     leaf
@@ -665,13 +657,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                    >>> staff.append(Measure((2, 8), "af'8 r8"))
-                    >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -694,7 +686,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(staff).by_class(pitched=False):
+                    >>> for leaf in abjad.iterate(staff).by_class(pitched=False):
                     ...     leaf
                     ...
                     <Staff{3}>
@@ -708,7 +700,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_class(pitched=False)
                     >>> for leaf in expression(staff):
                     ...     leaf
@@ -815,13 +807,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                    >>> staff.append(Measure((2, 8), "af'8 r8"))
-                    >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -844,7 +836,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(staff).by_leaf():
+                    >>> for leaf in abjad.iterate(staff).by_leaf():
                     ...     leaf
                     ...
                     Chord("<c' bf'>8")
@@ -858,7 +850,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_leaf()
                     >>> for leaf in expression(staff):
                     ...     leaf
@@ -878,13 +870,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                    >>> staff.append(Measure((2, 8), "af'8 r8"))
-                    >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -907,7 +899,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(staff).by_leaf(start=0, stop=3):
+                    >>> for leaf in abjad.iterate(staff).by_leaf(start=0, stop=3):
                     ...     leaf
                     ...
                     Chord("<c' bf'>8")
@@ -916,7 +908,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(staff).by_leaf(start=2, stop=4):
+                    >>> for leaf in abjad.iterate(staff).by_leaf(start=2, stop=4):
                     ...     leaf
                     ...
                     Note("af'8")
@@ -926,7 +918,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_leaf(start=0, stop=3)
                     >>> for leaf in expression(staff):
                     ...     leaf
@@ -937,7 +929,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_leaf(start=2, stop=4)
                     >>> for leaf in expression(staff):
                     ...     leaf
@@ -953,13 +945,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                    >>> staff.append(Measure((2, 8), "af'8 r8"))
-                    >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -982,7 +974,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(staff).by_leaf(reverse=True):
+                    >>> for leaf in abjad.iterate(staff).by_leaf(reverse=True):
                     ...     leaf
                     ...
                     Note("gf'8")
@@ -996,7 +988,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_leaf(reverse=True)
                     >>> for leaf in expression(staff):
                     ...     leaf
@@ -1016,21 +1008,14 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                    >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
-                    >>> attach(grace, voice[1])
-                    >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
-                    >>> after_grace = scoretools.GraceContainer(
-                    ...     after_grace_notes,
-                    ...     kind='after')
-                    >>> attach(after_grace, voice[1])
+                    >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+                    >>> container = abjad.GraceContainer("cf''16 bf'16")
+                    >>> abjad.attach(container, voice[1])
+                    >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                    >>> abjad.attach(container, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -1053,7 +1038,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(voice).by_leaf(
+                    >>> for leaf in abjad.iterate(voice).by_leaf(
                     ...     with_grace_notes=True,
                     ...     ):
                     ...     leaf
@@ -1071,7 +1056,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_leaf(
                     ...     with_grace_notes=True,
                     ...     )
@@ -1095,13 +1080,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                    >>> staff.append(Measure((2, 8), "af'8 r8"))
-                    >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1124,7 +1109,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(staff).by_leaf(pitched=True):
+                    >>> for leaf in abjad.iterate(staff).by_leaf(pitched=True):
                     ...     leaf
                     ...
                     Chord("<c' bf'>8")
@@ -1136,7 +1121,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_leaf(pitched=True)
                     >>> for leaf in expression(staff):
                     ...     leaf
@@ -1154,13 +1139,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
-                    >>> staff.append(Measure((2, 8), "af'8 r8"))
-                    >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                    >>> staff = abjad.Staff()
+                    >>> staff.append(abjad.Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                    >>> staff.append(abjad.Measure((2, 8), "af'8 r8"))
+                    >>> staff.append(abjad.Measure((2, 8), "r8 gf'8"))
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1183,7 +1168,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(staff).by_leaf(pitched=False):
+                    >>> for leaf in abjad.iterate(staff).by_leaf(pitched=False):
                     ...     leaf
                     ...
                     Rest('r8')
@@ -1193,7 +1178,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_leaf(pitched=False)
                     >>> for leaf in expression(staff):
                     ...     leaf
@@ -1226,13 +1211,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> score.append(Staff("c'8 d'8 e'8 f'8 g'4"))
-                    >>> score.append(Staff("c4 a,4 g,4"))
-                    >>> attach(Clef('bass'), score[1])
+                    >>> score = abjad.Score()
+                    >>> score.append(abjad.Staff("c'8 d'8 e'8 f'8 g'4"))
+                    >>> score.append(abjad.Staff("c4 a,4 g,4"))
+                    >>> abjad.attach(abjad.Clef('bass'), score[1][0])
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -1255,7 +1240,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf_pair in iterate(score).by_leaf_pair():
+                    >>> for leaf_pair in abjad.iterate(score).by_leaf_pair():
                     ...     leaf_pair
                     ...
                     Selection([Note("c'8"), Note('c4')])
@@ -1278,7 +1263,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_leaf_pair()
                     >>> for leaf_pair in expression(score):
                     ...     leaf_pair
@@ -1309,16 +1294,16 @@ class IterationAgent(abctools.AbjadObject):
         vertical_moments = self.by_vertical_moment()
         def _closure(vertical_moments):
             for moment_1, moment_2 in abjad.Sequence(vertical_moments).nwise():
-                enumeration = sequencetools.Enumeration(moment_1.start_leaves)
-                for pair in enumeration.yield_pairs():
+                enumerator = mathtools.Enumerator(moment_1.start_leaves)
+                for pair in enumerator.yield_pairs():
                     yield abjad.select(pair)
                 sequences = [moment_1.leaves, moment_2.start_leaves]
-                enumeration = sequencetools.Enumeration(sequences)
-                for pair in enumeration.yield_outer_product():
+                enumerator = mathtools.Enumerator(sequences)
+                for pair in enumerator.yield_outer_product():
                     yield abjad.select(pair)
             else:
-                enumeration = sequencetools.Enumeration(moment_2.start_leaves)
-                for pair in enumeration.yield_pairs():
+                enumerator = mathtools.Enumerator(moment_2.start_leaves)
+                for pair in enumerator.yield_pairs():
                     yield abjad.select(pair)
         return _closure(vertical_moments)
 
@@ -1341,10 +1326,10 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> string = r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16"
-                    >>> staff = Staff(string)
+                    >>> staff = abjad.Staff(string)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1362,7 +1347,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for logical_tie in iterate(staff).by_logical_tie():
+                    >>> for logical_tie in abjad.iterate(staff).by_logical_tie():
                     ...     logical_tie
                     ...
                     LogicalTie([Note("c'4"), Note("c'16")])
@@ -1374,7 +1359,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_tie()
                     >>> for logical_tie in expression(staff):
                     ...     logical_tie
@@ -1393,10 +1378,10 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> string = r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16"
-                    >>> staff = Staff(string)
+                    >>> staff = abjad.Staff(string)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1414,7 +1399,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for logical_tie in iterate(staff).by_logical_tie(
+                    >>> for logical_tie in abjad.iterate(staff).by_logical_tie(
                     ...     reverse=True,
                     ...     ):
                     ...     logical_tie
@@ -1428,7 +1413,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_tie(reverse=True)
                     >>> for logical_tie in expression(staff):
                     ...     logical_tie
@@ -1447,10 +1432,10 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> string = r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16"
-                    >>> staff = Staff(string)
+                    >>> staff = abjad.Staff(string)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1468,7 +1453,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for logical_tie in iterate(staff).by_logical_tie(
+                    >>> for logical_tie in abjad.iterate(staff).by_logical_tie(
                     ...     pitched=True,
                     ...     ):
                     ...     logical_tie
@@ -1482,7 +1467,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_tie(pitched=True)
                     >>> for logical_tie in expression(staff):
                     ...     logical_tie
@@ -1501,10 +1486,10 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> string = r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16"
-                    >>> staff = Staff(string)
+                    >>> staff = abjad.Staff(string)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1522,7 +1507,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for logical_tie in iterate(staff).by_logical_tie(
+                    >>> for logical_tie in abjad.iterate(staff).by_logical_tie(
                     ...     nontrivial=True,
                     ...     ):
                     ...     logical_tie
@@ -1534,7 +1519,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_tie(nontrivial=True)
                     >>> for logical_tie in expression(staff):
                     ...     logical_tie
@@ -1558,10 +1543,10 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("{ c'1 ~ } { c'2 d'2 ~ } { d'1 }")
+                    >>> staff = abjad.Staff("{ c'1 ~ } { c'2 d'2 ~ } { d'1 }")
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1581,7 +1566,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for logical_tie in iterate(staff[1]).by_logical_tie():
+                    >>> for logical_tie in abjad.iterate(staff[1]).by_logical_tie():
                     ...     logical_tie
                     ...
                     LogicalTie([Note("c'1"), Note("c'2")])
@@ -1589,7 +1574,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for logical_tie in iterate(staff[1]).by_logical_tie(
+                    >>> for logical_tie in abjad.iterate(staff[1]).by_logical_tie(
                     ...     parentage_mask=staff[1]):
                     ...     logical_tie
                     ...
@@ -1600,7 +1585,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_tie()
                     >>> for logical_tie in expression(staff[1]):
                     ...     logical_tie
@@ -1610,7 +1595,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_tie(
                     ...     parentage_mask=staff[1],
                     ...     )
@@ -1627,16 +1612,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                    >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
-                    >>> attach(grace, voice[1])
+                    >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+                    >>> container = abjad.GraceContainer("cf''16 bf'16")
+                    >>> abjad.attach(container, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -1654,10 +1635,11 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for logical_tie in iterate(voice).by_logical_tie(
+                    >>> for logical_tie in abjad.iterate(voice).by_logical_tie(
                     ...     with_grace_notes=True,
                     ...     ):
                     ...     logical_tie
+                    ...
                     LogicalTie([Note("c'8")])
                     LogicalTie([Note("cf''16")])
                     LogicalTie([Note("bf'16")])
@@ -1669,7 +1651,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_tie(
                     ...     with_grace_notes=True,
                     ...     )
@@ -1691,15 +1673,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                    >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
-                    >>> after_grace = scoretools.GraceContainer(
-                    ...     after_grace_notes,
-                    ...     kind='after')
-                    >>> attach(after_grace, voice[1])
+                    >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+                    >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                    >>> abjad.attach(container, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -1718,10 +1697,11 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for logical_tie in iterate(voice).by_logical_tie(
+                    >>> for logical_tie in abjad.iterate(voice).by_logical_tie(
                     ...     with_grace_notes=True,
                     ...     ):
                     ...     logical_tie
+                    ...
                     LogicalTie([Note("c'8")])
                     LogicalTie([Note("d'8")])
                     LogicalTie([Note("af'16")])
@@ -1733,7 +1713,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_tie(
                     ...     with_grace_notes=True,
                     ...     )
@@ -1756,21 +1736,14 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                    >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
-                    >>> attach(grace, voice[1])
-                    >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
-                    >>> after_grace = scoretools.GraceContainer(
-                    ...     after_grace_notes,
-                    ...     kind='after')
-                    >>> attach(after_grace, voice[1])
+                    >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+                    >>> container = abjad.GraceContainer("cf''16 bf'16")
+                    >>> abjad.attach(container, voice[1])
+                    >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                    >>> abjad.attach(container, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -1793,7 +1766,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for logical_tie in iterate(voice).by_logical_tie(
+                    >>> for logical_tie in abjad.iterate(voice).by_logical_tie(
                     ...     with_grace_notes=True,
                     ...     ):
                     ...     logical_tie
@@ -1811,7 +1784,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_tie(
                     ...     with_grace_notes=True,
                     ...     )
@@ -1923,43 +1896,49 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+                    >>> container_1 = abjad.Container([
+                    ...     abjad.Voice("c'8 d'8"),
+                    ...     abjad.Voice("e'8 f'8"),
+                    ...     ])
                     >>> container_1.is_simultaneous = True
-                    >>> container_1[0].name = 'voice 1'
-                    >>> override(container_1[0]).stem.direction = Down
-                    >>> container_1[1].name = 'voice 2'
-                    >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+                    >>> container_1[0].name = 'Voice 1'
+                    >>> abjad.override(container_1[0]).stem.direction = Down
+                    >>> container_1[1].name = 'Voice 2'
+                    >>> container_2 = abjad.Container([
+                    ...     abjad.Voice("g'8 a'8"),
+                    ...     abjad.Voice("b'8 c''8"),
+                    ...     ])
                     >>> container_2.is_simultaneous = True
-                    >>> container_2[0].name = 'voice 1'
-                    >>> override(container_2[0]).stem.direction = Down
-                    >>> container_2[1].name = 'voice 2'
-                    >>> staff = Staff([container_1, container_2])
+                    >>> container_2[0].name = 'Voice 1'
+                    >>> abjad.override(container_2[0]).stem.direction = Down
+                    >>> container_2[1].name = 'Voice 2'
+                    >>> staff = abjad.Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 b'8
                                 c''8
                             }
@@ -1970,12 +1949,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> selector = select().by_leaf(flatten=True)
+                    >>> selector = abjad.select().by_leaf(flatten=True)
                     >>> leaves = selector(staff)
                     >>> leaf = leaves[0]
-                    >>> signature = inspect_(leaf).get_parentage().logical_voice
-                    >>> for note in iterate(staff).by_logical_voice(
-                    ...     prototype=Note,
+                    >>> agent = abjad.inspect(leaf)
+                    >>> signature = agent.get_parentage().logical_voice
+                    >>> for note in abjad.iterate(staff).by_logical_voice(
+                    ...     prototype=abjad.Note,
                     ...     logical_voice=signature,
                     ...     ):
                     ...     note
@@ -1989,11 +1969,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> selector = select().by_leaf(flatten=True)
+                    >>> selector = abjad.select().by_leaf(flatten=True)
                     >>> leaves = selector(staff)
                     >>> leaf = leaves[0]
-                    >>> signature = inspect_(leaf).get_parentage().logical_voice
-                    >>> expression = iterate()
+                    >>> agent = abjad.inspect(leaf)
+                    >>> signature = agent.get_parentage().logical_voice
+                    >>> expression = abjad.iterate()
 
                 ..  todo:: Implement a persistable signature (in terms of
                     container names or score position). Method will then work
@@ -2056,43 +2037,49 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+                    >>> container_1 = abjad.Container([
+                    ...     abjad.Voice("c'8 d'8"),
+                    ...     abjad.Voice("e'8 f'8"),
+                    ...     ])
                     >>> container_1.is_simultaneous = True
-                    >>> container_1[0].name = 'voice 1'
-                    >>> override(container_1[0]).stem.direction = Down
-                    >>> container_1[1].name = 'voice 2'
-                    >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+                    >>> container_1[0].name = 'Voice 1'
+                    >>> abjad.override(container_1[0]).stem.direction = Down
+                    >>> container_1[1].name = 'Voice 2'
+                    >>> container_2 = abjad.Container([
+                    ...     abjad.Voice("g'8 a'8"),
+                    ...     abjad.Voice("b'8 c''8"),
+                    ...     ])
                     >>> container_2.is_simultaneous = True
-                    >>> container_2[0].name = 'voice 1'
-                    >>> override(container_2[0]).stem.direction = Down
-                    >>> container_2[1].name = 'voice 2'
-                    >>> staff = Staff([container_1, container_2])
+                    >>> container_2[0].name = 'Voice 1'
+                    >>> abjad.override(container_2[0]).stem.direction = Down
+                    >>> container_2[1].name = 'Voice 2'
+                    >>> staff = abjad.Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 b'8
                                 c''8
                             }
@@ -2103,11 +2090,11 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> selector = select().by_leaf(flatten=True)
+                    >>> selector = abjad.select().by_leaf(flatten=True)
                     >>> leaves = selector(staff)
                     >>> leaf = leaves[0]
-                    >>> for note in iterate(leaf).by_logical_voice_from_component(
-                    ...     prototype=Note,
+                    >>> for note in abjad.iterate(leaf).by_logical_voice_from_component(
+                    ...     prototype=abjad.Note,
                     ...     ):
                     ...     note
                     ...
@@ -2120,12 +2107,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> selector = select().by_leaf(flatten=True)
+                    >>> selector = abjad.select().by_leaf(flatten=True)
                     >>> leaves = selector(staff)
                     >>> leaf = leaves[0]
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_voice_from_component(
-                    ...     prototype=Note,
+                    ...     prototype=abjad.Note,
                     ...     )
                     >>> for note in expression(leaf):
                     ...     note
@@ -2141,43 +2128,49 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+                    >>> container_1 = abjad.Container([
+                    ...     abjad.Voice("c'8 d'8"),
+                    ...     abjad.Voice("e'8 f'8"),
+                    ...     ])
                     >>> container_1.is_simultaneous = True
-                    >>> container_1[0].name = 'voice 1'
-                    >>> override(container_1[0]).stem.direction = Down
-                    >>> container_1[1].name = 'voice 2'
-                    >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+                    >>> container_1[0].name = 'Voice 1'
+                    >>> abjad.override(container_1[0]).stem.direction = Down
+                    >>> container_1[1].name = 'Voice 2'
+                    >>> container_2 = abjad.Container([
+                    ...     abjad.Voice("g'8 a'8"),
+                    ...     abjad.Voice("b'8 c''8"),
+                    ...     ])
                     >>> container_2.is_simultaneous = True
-                    >>> container_2[0].name = 'voice 1'
-                    >>> override(container_2[0]).stem.direction = Down
-                    >>> container_2[1].name = 'voice 2'
-                    >>> staff = Staff([container_1, container_2])
+                    >>> container_2[0].name = 'Voice 1'
+                    >>> abjad.override(container_2[0]).stem.direction = Down
+                    >>> container_2[1].name = 'Voice 2'
+                    >>> staff = abjad.Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 b'8
                                 c''8
                             }
@@ -2189,9 +2182,9 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> leaf = leaves[1]
-                    >>> agent = iterate(leaf)
+                    >>> agent = abjad.iterate(leaf)
                     >>> for note in agent.by_logical_voice_from_component(
-                    ...     prototype=Note,
+                    ...     prototype=abjad.Note,
                     ...     ):
                     ...     note
                     ...
@@ -2204,9 +2197,9 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> leaf = leaves[1]
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_voice_from_component(
-                    ...     prototype=Note,
+                    ...     prototype=abjad.Note,
                     ...     )
                     >>> for note in expression(leaf):
                     ...     note
@@ -2223,43 +2216,49 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+                    >>> container_1 = abjad.Container([
+                    ...     abjad.Voice("c'8 d'8"),
+                    ...     abjad.Voice("e'8 f'8"),
+                    ...     ])
                     >>> container_1.is_simultaneous = True
-                    >>> container_1[0].name = 'voice 1'
-                    >>> override(container_1[0]).stem.direction = Down
-                    >>> container_1[1].name = 'voice 2'
-                    >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+                    >>> container_1[0].name = 'Voice 1'
+                    >>> abjad.override(container_1[0]).stem.direction = Down
+                    >>> container_1[1].name = 'Voice 2'
+                    >>> container_2 = abjad.Container([
+                    ...     abjad.Voice("g'8 a'8"),
+                    ...     abjad.Voice("b'8 c''8"),
+                    ...     ])
                     >>> container_2.is_simultaneous = True
-                    >>> container_2[0].name = 'voice 1'
-                    >>> override(container_2[0]).stem.direction = Down
-                    >>> container_2[1].name = 'voice 2'
-                    >>> staff = Staff([container_1, container_2])
+                    >>> container_2[0].name = 'Voice 1'
+                    >>> abjad.override(container_2[0]).stem.direction = Down
+                    >>> container_2[1].name = 'Voice 2'
+                    >>> staff = abjad.Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 b'8
                                 c''8
                             }
@@ -2271,13 +2270,13 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> leaf = leaves[0]
-                    >>> for component in iterate(leaf).by_logical_voice_from_component():
+                    >>> for component in abjad.iterate(leaf).by_logical_voice_from_component():
                     ...     component
                     ...
                     Note("c'8")
-                    Voice("c'8 d'8")
+                    Voice("c'8 d'8", name='Voice 1')
                     Note("d'8")
-                    Voice("g'8 a'8")
+                    Voice("g'8 a'8", name='Voice 1')
                     Note("g'8")
                     Note("a'8")
 
@@ -2286,15 +2285,15 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> leaf = leaves[0]
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_voice_from_component()
                     >>> for component in expression(leaf):
                     ...     component
                     ...
                     Note("c'8")
-                    Voice("c'8 d'8")
+                    Voice("c'8 d'8", name='Voice 1')
                     Note("d'8")
-                    Voice("g'8 a'8")
+                    Voice("g'8 a'8", name='Voice 1')
                     Note("g'8")
                     Note("a'8")
 
@@ -2306,43 +2305,49 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+                    >>> container_1 = abjad.Container([
+                    ...     abjad.Voice("c'8 d'8"),
+                    ...     abjad.Voice("e'8 f'8"),
+                    ...     ])
                     >>> container_1.is_simultaneous = True
-                    >>> container_1[0].name = 'voice 1'
-                    >>> override(container_1[0]).stem.direction = Down
-                    >>> container_1[1].name = 'voice 2'
-                    >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+                    >>> container_1[0].name = 'Voice 1'
+                    >>> abjad.override(container_1[0]).stem.direction = Down
+                    >>> container_1[1].name = 'Voice 2'
+                    >>> container_2 = abjad.Container([
+                    ...     abjad.Voice("g'8 a'8"),
+                    ...     abjad.Voice("b'8 c''8"),
+                    ...     ])
                     >>> container_2.is_simultaneous = True
-                    >>> container_2[0].name = 'voice 1'
-                    >>> override(container_2[0]).stem.direction = Down
-                    >>> container_2[1].name = 'voice 2'
-                    >>> staff = Staff([container_1, container_2])
+                    >>> container_2[0].name = 'Voice 1'
+                    >>> abjad.override(container_2[0]).stem.direction = Down
+                    >>> container_2[1].name = 'Voice 2'
+                    >>> staff = abjad.Staff([container_1, container_2])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 c'8
                                 d'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 e'8
                                 f'8
                             }
                         >>
                         <<
-                            \context Voice = "voice 1" \with {
+                            \context Voice = "Voice 1" \with {
                                 \override Stem.direction = #down
                             } {
                                 g'8
                                 a'8
                             }
-                            \context Voice = "voice 2" {
+                            \context Voice = "Voice 2" {
                                 b'8
                                 c''8
                             }
@@ -2354,8 +2359,8 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> leaf = leaves[-1]
-                    >>> for note in iterate(leaf).by_logical_voice_from_component(
-                    ...     prototype=Note,
+                    >>> for note in abjad.iterate(leaf).by_logical_voice_from_component(
+                    ...     prototype=abjad.Note,
                     ...     reverse=True,
                     ...     ):
                     ...     note
@@ -2368,15 +2373,15 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> leaf = leaves[-1]
-                    >>> for component in iterate(leaf).by_logical_voice_from_component(
+                    >>> for component in abjad.iterate(leaf).by_logical_voice_from_component(
                     ...     reverse=True,
                     ...     ):
                     ...     component
                     ...
                     Note("c''8")
-                    Voice("b'8 c''8")
+                    Voice("b'8 c''8", name='Voice 2')
                     Note("b'8")
-                    Voice("e'8 f'8")
+                    Voice("e'8 f'8", name='Voice 2')
                     Note("f'8")
                     Note("e'8")
 
@@ -2385,9 +2390,9 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> leaf = leaves[-1]
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_voice_from_component(
-                    ...     prototype=Note,
+                    ...     prototype=abjad.Note,
                     ...     reverse=True,
                     ...     )
                     >>> for note in expression(leaf):
@@ -2401,7 +2406,7 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> leaf = leaves[-1]
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_logical_voice_from_component(
                     ...     reverse=True,
                     ...     )
@@ -2409,9 +2414,9 @@ class IterationAgent(abctools.AbjadObject):
                     ...     component
                     ...
                     Note("c''8")
-                    Voice("b'8 c''8")
+                    Voice("b'8 c''8", name='Voice 2')
                     Note("b'8")
-                    Voice("e'8 f'8")
+                    Voice("e'8 f'8", name='Voice 2')
                     Note("f'8")
                     Note("e'8")
 
@@ -2452,12 +2457,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("c'8 d'8 e'8 f'8")
-                    >>> beam = spannertools.Beam()
-                    >>> attach(beam, staff[:])
+                    >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                    >>> beam = abjad.Beam()
+                    >>> abjad.attach(beam, staff[:])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2471,7 +2476,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for pitch in iterate(staff).by_pitch():
+                    >>> for pitch in abjad.iterate(staff).by_pitch():
                     ...     pitch
                     ...
                     NamedPitch("c'")
@@ -2483,7 +2488,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_pitch()
                     >>> for pitch in expression(staff):
                     ...     pitch
@@ -2501,12 +2506,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("c'8 d'8 e'8 f'8")
-                    >>> beam = spannertools.Beam()
-                    >>> attach(beam, staff[:])
+                    >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                    >>> beam = abjad.Beam()
+                    >>> abjad.attach(beam, staff[:])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2520,7 +2525,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for pitch in iterate(beam).by_pitch():
+                    >>> for pitch in abjad.iterate(beam).by_pitch():
                     ...     pitch
                     ...
                     NamedPitch("c'")
@@ -2532,7 +2537,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_pitch()
                     >>> for pitch in expression(beam):
                     ...     pitch
@@ -2550,13 +2555,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> pitch_set = pitchtools.PitchSet([0, 2, 4, 5])
+                    >>> pitch_set = abjad.PitchSet([0, 2, 4, 5])
 
             ..  container:: example
 
                 ::
 
-                    >>> for pitch in iterate(pitch_set).by_pitch():
+                    >>> for pitch in abjad.iterate(pitch_set).by_pitch():
                     ...     pitch
                     ...
                     NumberedPitch(0)
@@ -2568,7 +2573,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_pitch()
                     >>> for pitch in expression(pitch_set):
                     ...     pitch
@@ -2587,16 +2592,16 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> pitches = (
-                    ...     NamedPitch("c'"),
-                    ...     Note("d'4"),
-                    ...     Chord("<e' fs' g>4"),
+                    ...     abjad.NamedPitch("c'"),
+                    ...     abjad.Note("d'4"),
+                    ...     abjad.Chord("<e' fs' g>4"),
                     ...     )
 
             ..  container:: example
 
                 ::
 
-                    >>> for pitch in iterate(pitches).by_pitch():
+                    >>> for pitch in abjad.iterate(pitches).by_pitch():
                     ...     pitch
                     ...
                     NamedPitch("c'")
@@ -2609,7 +2614,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_pitch()
                     >>> for pitch in expression(pitches):
                     ...     pitch
@@ -2633,18 +2638,22 @@ class IterationAgent(abctools.AbjadObject):
                 pitch = pitchtools.NamedPitch.from_pitch_carrier(self._client)
                 yield pitch
             result = []
-            if hasattr(self._client, 'written_pitches'):
-                result.extend(self._client.written_pitches)
-            # for pitch arrays
-            elif hasattr(self._client, 'pitches'):
+            try:
                 result.extend(self._client.pitches)
+            except AttributeError:
+                pass
+            if isinstance(self._client, scoretools.Chord):
+                result.extend(self._client.written_pitches)
             elif isinstance(self._client, spannertools.Spanner):
                 for leaf in self._client._get_leaves():
-                    if (hasattr(leaf, 'written_pitch') and
-                        not isinstance(leaf, scoretools.Rest)):
+                    try:
                         result.append(leaf.written_pitch)
-                    elif hasattr(leaf, 'written_pitches'):
-                        result.extend(leaf.written_pitches)
+                    except AttributeError:
+                        pass
+                    try:
+                        result.extedn(leaf.written_pitches)
+                    except AttributeError:
+                        pass
             elif isinstance(self._client, pitchtools.PitchSet):
                 result.extend(sorted(list(self._client)))
             elif isinstance(self._client, (list, tuple, set)):
@@ -2653,11 +2662,14 @@ class IterationAgent(abctools.AbjadObject):
                         result.append(pitch_)
             else:
                 for leaf in iterate(self._client).by_leaf():
-                    if (hasattr(leaf, 'written_pitch') and
-                        not isinstance(leaf, scoretools.Rest)):
+                    try:
                         result.append(leaf.written_pitch)
-                    elif hasattr(leaf, 'written_pitches'):
-                        result.extend(leaf.written_pitches)
+                    except AttributeError:
+                        pass
+                    try:
+                        result.extedn(leaf.written_pitches)
+                    except AttributeError:
+                        pass
             for pitch in result:
                 yield pitch
         return _closure()
@@ -2673,16 +2685,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
-                    >>> score.append(Staff(notes))
-                    >>> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
-                    >>> score.append(Staff(notes))
-                    >>> clef = Clef('bass')
-                    >>> attach(clef, score[1])
+                    >>> score = abjad.Score()
+                    >>> score.append(abjad.Staff("c'8 d' e' f' g'4"))
+                    >>> score.append(abjad.Staff("c4 a, g,"))
+                    >>> abjad.attach(abjad.Clef('bass'), score[1][0])
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -2705,7 +2714,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for pair in iterate(score).by_pitch_pair():
+                    >>> for pair in abjad.iterate(score).by_pitch_pair():
                     ...     pair
                     ...
                     PitchSegment("c' c")
@@ -2728,7 +2737,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_pitch_pair()
                     >>> for pair in expression(score):
                     ...     pair
@@ -2757,11 +2766,11 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> chord_1 = Chord([0, 2, 4], (1, 4))
-                    >>> chord_2 = Chord([17, 19], (1, 4))
-                    >>> staff = Staff([chord_1, chord_2])
+                    >>> chord_1 = abjad.Chord([0, 2, 4], (1, 4))
+                    >>> chord_2 = abjad.Chord([17, 19], (1, 4))
+                    >>> staff = abjad.Staff([chord_1, chord_2])
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2773,7 +2782,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for pair in iterate(staff).by_pitch_pair():
+                    >>> for pair in abjad.iterate(staff).by_pitch_pair():
                     ...     pair
                     ...
                     PitchSegment("c' d'")
@@ -2791,7 +2800,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_pitch_pair()
                     >>> for pair in expression(staff):
                     ...     pair
@@ -2842,12 +2851,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 }")
+                    >>> staff = abjad.Staff(r"\times 2/3 { c'8 d'8 r8 }")
                     >>> staff.append(r"\times 2/3 { r8 <e' g'>8 <f' a'>8 }")
                     >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2873,27 +2882,27 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> prototype = (Note, Chord)
-                    >>> for run in iterate(staff[:]).by_run(
+                    >>> prototype = (abjad.Note, abjad.Chord)
+                    >>> for run in abjad.iterate(staff[:]).by_run(
                     ...     prototype=prototype,
                     ...     ):
                     ...     run
                     ...
-                    (Note("g'8"), Note("a'8"))
-                    (Chord("<b' d''>8"), Chord("<c'' e''>8"))
+                    Selection([Note("g'8"), Note("a'8")])
+                    Selection([Chord("<b' d''>8"), Chord("<c'' e''>8")])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> prototype = (Note, Chord)
-                    >>> expression = iterate()
+                    >>> prototype = (abjad.Note, abjad.Chord)
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_run(prototype=prototype)
                     >>> for run in expression(staff[:]):
                     ...     run
                     ...
-                    (Note("g'8"), Note("a'8"))
-                    (Chord("<b' d''>8"), Chord("<c'' e''>8"))
+                    Selection([Note("g'8"), Note("a'8")])
+                    Selection([Chord("<b' d''>8"), Chord("<c'' e''>8")])
 
         ..  container:: example
 
@@ -2903,12 +2912,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 }")
+                    >>> staff = abjad.Staff(r"\times 2/3 { c'8 d'8 r8 }")
                     >>> staff.append(r"\times 2/3 { r8 <e' g'>8 <f' a'>8 }")
                     >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2934,31 +2943,31 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> leaves = iterate(staff).by_leaf()
-                    >>> prototype = (Note, Chord)
-                    >>> for run in iterate(leaves).by_run(
+                    >>> leaves = abjad.iterate(staff).by_leaf()
+                    >>> prototype = (abjad.Note, abjad.Chord)
+                    >>> for run in abjad.iterate(leaves).by_run(
                     ...     prototype=prototype,
                     ...     ):
                     ...     run
                     ...
-                    (Note("c'8"), Note("d'8"))
-                    (Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8"))
-                    (Chord("<b' d''>8"), Chord("<c'' e''>8"))
+                    Selection([Note("c'8"), Note("d'8")])
+                    Selection([Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8")])
+                    Selection([Chord("<b' d''>8"), Chord("<c'' e''>8")])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> leaves = iterate(staff).by_leaf()
-                    >>> prototype = (Note, Chord)
-                    >>> expression = iterate()
+                    >>> leaves = abjad.iterate(staff).by_leaf()
+                    >>> prototype = (abjad.Note, abjad.Chord)
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_run(prototype=prototype)
                     >>> for run in expression(leaves):
                     ...     run
                     ...
-                    (Note("c'8"), Note("d'8"))
-                    (Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8"))
-                    (Chord("<b' d''>8"), Chord("<c'' e''>8"))
+                    Selection([Note("c'8"), Note("d'8")])
+                    Selection([Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8")])
+                    Selection([Chord("<b' d''>8"), Chord("<c'' e''>8")])
 
         ..  container:: example
 
@@ -2969,171 +2978,46 @@ class IterationAgent(abctools.AbjadObject):
                 ::
 
                     >>> components = [
-                    ...     Note("c'4"),
-                    ...     Note("d'4"),
-                    ...     Staff(),
-                    ...     Note("e'4"),
-                    ...     Note("f'4"),
-                    ...     Staff(),
-                    ...     Rest('r4'),
+                    ...     abjad.Note("c'4"),
+                    ...     abjad.Note("d'4"),
+                    ...     abjad.Staff(),
+                    ...     abjad.Note("e'4"),
+                    ...     abjad.Note("f'4"),
+                    ...     abjad.Staff(),
+                    ...     abjad.Rest('r4'),
                     ...     ]
 
             ..  container:: example
 
                 ::
 
-                    >>> for run in iterate(components).by_run():
+                    >>> for run in abjad.iterate(components).by_run():
                     ...     run
                     ...
-                    (Note("c'4"), Note("d'4"))
-                    (Note("e'4"), Note("f'4"))
-                    (Rest('r4'),)
+                    Selection([Note("c'4"), Note("d'4")])
+                    Selection([Note("e'4"), Note("f'4")])
+                    Selection([Rest('r4')])
 
         Returns generator.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        prototype = prototype or scoretools.Leaf
+        prototype = prototype or abjad.Leaf
         if not isinstance(prototype, collections.Sequence):
             prototype = (prototype,)
-        sequence = selectiontools.Selection(self._client)
+        selection = abjad.select(self._client)
         def _closure():
             current_run = ()
-            for run in sequence.group_by(type):
+            for run in selection.group_by(type):
                 if isinstance(run[0], prototype):
                     current_run = current_run + run
                 elif current_run:
-                    yield current_run
+                    yield abjad.select(current_run)
                     current_run = ()
             if current_run:
-                yield current_run
+                yield abjad.select(current_run)
         return _closure()
-
-    def by_semantic_voice(
-        self,
-        reverse=False,
-        start=0,
-        stop=None,
-        ):
-        r'''Iterates by semantic voice.
-
-        ..  todo:: Deprecated. Use ``IterationAgent.by_class(Voice)`` instead.
-
-        ..  container:: example
-
-            Iterates semantic voices:
-
-            ::
-
-                >>> pairs = [(3, 8), (5, 16), (5, 16)]
-                >>> measures = scoretools.make_spacer_skip_measures(pairs)
-                >>> time_signature_voice = Voice(measures)
-                >>> time_signature_voice.name = 'TimeSignatureVoice'
-                >>> time_signature_voice.is_nonsemantic = True
-                >>> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
-                >>> music_voice.name = 'MusicVoice'
-                >>> staff = Staff([time_signature_voice, music_voice])
-                >>> staff.is_simultaneous = True
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff <<
-                    \context Voice = "TimeSignatureVoice" {
-                        {
-                            \time 3/8
-                            s1 * 3/8
-                        }
-                        {
-                            \time 5/16
-                            s1 * 5/16
-                        }
-                        {
-                            s1 * 5/16
-                        }
-                    }
-                    \context Voice = "MusicVoice" {
-                        c'4.
-                        d'4
-                        e'16
-                        f'4
-                        g'16
-                    }
-                >>
-
-                >>> for voice in iterate(staff).by_semantic_voice():
-                ...   voice
-                ...
-                Voice("c'4. d'4 e'16 f'4 g'16")
-
-        ..  container:: example
-
-            Iterates semantic voices in reverse:
-
-            ::
-
-                >>> pairs = [(3, 8), (5, 16), (5, 16)]
-                >>> measures = scoretools.make_spacer_skip_measures(pairs)
-                >>> time_signature_voice = Voice(measures)
-                >>> time_signature_voice.name = 'TimeSignatureVoice'
-                >>> time_signature_voice.is_nonsemantic = True
-                >>> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
-                >>> music_voice.name = 'MusicVoice'
-                >>> staff = Staff([time_signature_voice, music_voice])
-                >>> staff.is_simultaneous = True
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff <<
-                    \context Voice = "TimeSignatureVoice" {
-                        {
-                            \time 3/8
-                            s1 * 3/8
-                        }
-                        {
-                            \time 5/16
-                            s1 * 5/16
-                        }
-                        {
-                            s1 * 5/16
-                        }
-                    }
-                    \context Voice = "MusicVoice" {
-                        c'4.
-                        d'4
-                        e'16
-                        f'4
-                        g'16
-                    }
-                >>
-
-            ::
-
-                >>> for voice in iterate(staff).by_semantic_voice(reverse=True):
-                ...   voice
-                ...
-                Voice("c'4. d'4 e'16 f'4 g'16")
-
-        Note: returns list.
-        '''
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
-        result = []
-        for voice in self.by_class(
-            scoretools.Voice,
-            reverse=reverse,
-            start=start,
-            stop=stop,
-            ):
-            if not voice.is_nonsemantic:
-                #yield voice
-                result.append(voice)
-        return result
 
     def by_spanner(
         self,
@@ -3150,13 +3034,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 f'8 b'8 c''8")
-                    >>> attach(Slur(), staff[:4])
-                    >>> attach(Slur(), staff[4:])
-                    >>> attach(Beam(), staff[:])
+                    >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 f'8 b'8 c''8")
+                    >>> abjad.attach(abjad.Slur(), staff[:4])
+                    >>> abjad.attach(abjad.Slur(), staff[4:])
+                    >>> abjad.attach(abjad.Beam(), staff[:])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -3175,7 +3059,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for spanner in iterate(staff).by_spanner():
+                    >>> for spanner in abjad.iterate(staff).by_spanner():
                     ...     spanner
                     ...
                     Beam("c'8, d'8, ... [5] ..., b'8, c''8")
@@ -3186,7 +3070,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_spanner()
                     >>> for spanner in expression(staff):
                     ...     spanner
@@ -3203,13 +3087,13 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 f'8 b'8 c''8")
-                    >>> attach(Slur(), staff[:4])
-                    >>> attach(Slur(), staff[4:])
-                    >>> attach(Beam(), staff[:])
+                    >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 f'8 b'8 c''8")
+                    >>> abjad.attach(abjad.Slur(), staff[:4])
+                    >>> abjad.attach(abjad.Slur(), staff[4:])
+                    >>> abjad.attach(abjad.Beam(), staff[:])
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -3228,7 +3112,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for spanner in iterate(staff).by_spanner(reverse=True):
+                    >>> for spanner in abjad.iterate(staff).by_spanner(reverse=True):
                     ...     spanner
                     ...
                     Beam("c'8, d'8, ... [5] ..., b'8, c''8")
@@ -3239,7 +3123,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_spanner(reverse=True)
                     >>> for spanner in expression(staff):
                     ...     spanner
@@ -3250,16 +3134,19 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
+        from abjad.tools.topleveltools import inspect as abjad_inspect
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def _closure():
             visited_spanners = set()
             for component in self.by_class(reverse=reverse):
-                spanners = inspect_(component).get_spanners(prototype=prototype)
+                spanners = abjad_inspect(component).get_spanners(
+                    prototype=prototype,
+                    )
                 spanners = sorted(spanners,
                     key=lambda x: (
                         type(x).__name__,
-                        inspect_(x).get_timespan(),
+                        abjad_inspect(x).get_timespan(),
                         ),
                     )
                 for spanner in spanners:
@@ -3281,12 +3168,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> score.append(Staff("c'4 d'4 e'4 f'4"))
-                    >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                    >>> score = abjad.Score()
+                    >>> score.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+                    >>> score.append(abjad.Staff("g'8 a'8 b'8 c''8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3308,7 +3195,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(score).by_timeline():
+                    >>> for leaf in abjad.iterate(score).by_timeline():
                     ...     leaf
                     ...
                     Note("c'4")
@@ -3324,7 +3211,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_timeline()
                     >>> for leaf in expression(score):
                     ...     leaf
@@ -3346,12 +3233,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> score.append(Staff("c'4 d'4 e'4 f'4"))
-                    >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                    >>> score = abjad.Score()
+                    >>> score.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+                    >>> score.append(abjad.Staff("g'8 a'8 b'8 c''8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3373,7 +3260,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for leaf in iterate(score).by_timeline(reverse=True):
+                    >>> for leaf in abjad.iterate(score).by_timeline(reverse=True):
                     ...     leaf
                     ...
                     Note("f'4")
@@ -3389,7 +3276,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_timeline(reverse=True)
                     >>> for leaf in expression(score):
                     ...     leaf
@@ -3411,16 +3298,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                    >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
-                    >>> attach(grace, voice[1])
+                    >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+                    >>> container = abjad.GraceContainer("cf''16 bf'16")
+                    >>> abjad.attach(container, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -3438,7 +3321,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for component in iterate(voice).by_timeline():
+                    >>> for component in abjad.iterate(voice).by_timeline():
                     ...     component
                     ...
                     Note("c'8")
@@ -3452,7 +3335,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_timeline()
                     >>> for component in expression(voice):
                     ...     component
@@ -3561,12 +3444,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
-                    >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                    >>> score = abjad.Score()
+                    >>> score.append(abjad.Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                    >>> score.append(abjad.Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3591,7 +3474,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> agent = iterate(score)
+                    >>> agent = abjad.iterate(score)
                     >>> for logical_tie in agent.by_timeline_and_logical_tie():
                     ...     logical_tie
                     ...
@@ -3608,7 +3491,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_timeline_and_logical_tie()
                     >>> for logical_tie in expression(score):
                     ...     logical_tie
@@ -3630,12 +3513,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
-                    >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                    >>> score = abjad.Score([])
+                    >>> score.append(abjad.Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                    >>> score.append(abjad.Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3660,7 +3543,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> agent = iterate(score)
+                    >>> agent = abjad.iterate(score)
                     >>> for logical_tie in agent.by_timeline_and_logical_tie(
                     ...     reverse=True,
                     ...     ):
@@ -3679,7 +3562,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_timeline_and_logical_tie(
                     ...     reverse=True,
                     ...     )
@@ -3703,7 +3586,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> agent = iterate(score)
+                    >>> agent = abjad.iterate(score)
                     >>> for logical_tie in agent.by_timeline_and_logical_tie(
                     ...     pitched=True,
                     ...     ):
@@ -3719,7 +3602,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_timeline_and_logical_tie(
                     ...     pitched=True,
                     ...     )
@@ -3740,7 +3623,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> agent = iterate(score)
+                    >>> agent = abjad.iterate(score)
                     >>> for logical_tie in agent.by_timeline_and_logical_tie(
                     ...     nontrivial=True,
                     ...     ):
@@ -3754,7 +3637,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_timeline_and_logical_tie(
                     ...     nontrivial=True,
                     ...     )
@@ -3799,12 +3682,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> score.append(Staff("c'4 d'4 e'4 f'4"))
-                    >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                    >>> score = abjad.Score()
+                    >>> score.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+                    >>> score.append(abjad.Staff("g'8 a'8 b'8 c''8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3826,7 +3709,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> agent = iterate(score[1][2])
+                    >>> agent = abjad.iterate(score[1][2])
                     >>> for leaf in agent.by_timeline_from_component():
                     ...     leaf
                     ...
@@ -3839,7 +3722,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_timeline_from_component()
                     >>> for leaf in expression(score[1][2]):
                     ...     leaf
@@ -3857,12 +3740,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> score.append(Staff("c'4 d'4 e'4 f'4"))
-                    >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                    >>> score = abjad.Score([])
+                    >>> score.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+                    >>> score.append(abjad.Staff("g'8 a'8 b'8 c''8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3884,7 +3767,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> agent = iterate(score[1][2])
+                    >>> agent = abjad.iterate(score[1][2])
                     >>> for leaf in agent.by_timeline_from_component(
                     ...     reverse=True,
                     ...     ):
@@ -3899,7 +3782,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_timeline_from_component(
                     ...     reverse=True,
                     ...     )
@@ -3945,10 +3828,10 @@ class IterationAgent(abctools.AbjadObject):
 
                     >>> string = r"c'8 ~ c'32 d'8 ~ d'32 \times 2/3 { e'8 f'8 g'8 } "
                     >>> string += "a'8 ~ a'32 b'8 ~ b'32"
-                    >>> staff = Staff(string)
+                    >>> staff = abjad.Staff(string)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -3971,7 +3854,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> agent = iterate(staff)
+                    >>> agent = abjad.iterate(staff)
                     >>> for item in agent.by_topmost_logical_ties_and_components():
                     ...     item
                     ...
@@ -3985,7 +3868,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_topmost_logical_ties_and_components()
                     >>> for item in expression(staff):
                     ...     item
@@ -4041,17 +3924,17 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
+                    >>> score = abjad.Score([])
+                    >>> staff = abjad.Staff(r"\times 4/3 { d''8 c''8 b'8 }")
                     >>> score.append(staff)
-                    >>> staff_group = StaffGroup([])
+                    >>> staff_group = abjad.StaffGroup([])
                     >>> staff_group.context_name = 'PianoStaff'
-                    >>> staff_group.append(Staff("a'4 g'4"))
-                    >>> staff_group.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
+                    >>> staff_group.append(abjad.Staff("a'4 g'4"))
+                    >>> staff_group.append(abjad.Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
                     >>> score.append(staff_group)
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4082,53 +3965,53 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for vertical_moment in iterate(score).by_vertical_moment():
+                    >>> for vertical_moment in abjad.iterate(score).by_vertical_moment():
                     ...     vertical_moment.leaves
                     ...
-                    (Note("d''8"), Note("a'4"), Note("f'8"))
-                    (Note("d''8"), Note("a'4"), Note("e'8"))
-                    (Note("c''8"), Note("a'4"), Note("e'8"))
-                    (Note("c''8"), Note("g'4"), Note("d'8"))
-                    (Note("b'8"), Note("g'4"), Note("d'8"))
-                    (Note("b'8"), Note("g'4"), Note("c'8"))
+                    Selection([Note("d''8"), Note("a'4"), Note("f'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("c''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("c''8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("c'8")])
 
                 ::
 
-                    >>> for vertical_moment in iterate(staff_group).by_vertical_moment():
+                    >>> for vertical_moment in abjad.iterate(staff_group).by_vertical_moment():
                     ...     vertical_moment.leaves
                     ...
-                    (Note("a'4"), Note("f'8"))
-                    (Note("a'4"), Note("e'8"))
-                    (Note("g'4"), Note("d'8"))
-                    (Note("g'4"), Note("c'8"))
+                    Selection([Note("a'4"), Note("f'8")])
+                    Selection([Note("a'4"), Note("e'8")])
+                    Selection([Note("g'4"), Note("d'8")])
+                    Selection([Note("g'4"), Note("c'8")])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_vertical_moment()
                     >>> for vertical_moment in expression(score):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("d''8"), Note("a'4"), Note("f'8"))
-                    (Note("d''8"), Note("a'4"), Note("e'8"))
-                    (Note("c''8"), Note("a'4"), Note("e'8"))
-                    (Note("c''8"), Note("g'4"), Note("d'8"))
-                    (Note("b'8"), Note("g'4"), Note("d'8"))
-                    (Note("b'8"), Note("g'4"), Note("c'8"))
+                    Selection([Note("d''8"), Note("a'4"), Note("f'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("c''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("c''8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("c'8")])
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_vertical_moment()
                     >>> for vertical_moment in expression(staff_group):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("a'4"), Note("f'8"))
-                    (Note("a'4"), Note("e'8"))
-                    (Note("g'4"), Note("d'8"))
-                    (Note("g'4"), Note("c'8"))
+                    Selection([Note("a'4"), Note("f'8")])
+                    Selection([Note("a'4"), Note("e'8")])
+                    Selection([Note("g'4"), Note("d'8")])
+                    Selection([Note("g'4"), Note("c'8")])
 
         ..  container:: example
 
@@ -4138,17 +4021,17 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
+                    >>> score = abjad.Score([])
+                    >>> staff = abjad.Staff(r"\times 4/3 { d''8 c''8 b'8 }")
                     >>> score.append(staff)
-                    >>> staff_group = StaffGroup([])
+                    >>> staff_group = abjad.StaffGroup([])
                     >>> staff_group.context_name = 'PianoStaff'
-                    >>> staff_group.append(Staff("a'4 g'4"))
-                    >>> staff_group.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
+                    >>> staff_group.append(abjad.Staff("a'4 g'4"))
+                    >>> staff_group.append(abjad.Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
                     >>> score.append(staff_group)
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4179,61 +4062,61 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> agent = iterate(score)
+                    >>> agent = abjad.iterate(score)
                     >>> for vertical_moment in agent.by_vertical_moment(
                     ...     reverse=True,
                     ...     ):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("b'8"), Note("g'4"), Note("c'8"))
-                    (Note("b'8"), Note("g'4"), Note("d'8"))
-                    (Note("c''8"), Note("g'4"), Note("d'8"))
-                    (Note("c''8"), Note("a'4"), Note("e'8"))
-                    (Note("d''8"), Note("a'4"), Note("e'8"))
-                    (Note("d''8"), Note("a'4"), Note("f'8"))
+                    Selection([Note("b'8"), Note("g'4"), Note("c'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("c''8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("c''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("f'8")])
 
                 ::
 
                 
-                    >>> agent = iterate(staff_group)
+                    >>> agent = abjad.iterate(staff_group)
                     >>> for vertical_moment in agent.by_vertical_moment(
                     ...     reverse=True,
                     ...     ):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("g'4"), Note("c'8"))
-                    (Note("g'4"), Note("d'8"))
-                    (Note("a'4"), Note("e'8"))
-                    (Note("a'4"), Note("f'8"))
+                    Selection([Note("g'4"), Note("c'8")])
+                    Selection([Note("g'4"), Note("d'8")])
+                    Selection([Note("a'4"), Note("e'8")])
+                    Selection([Note("a'4"), Note("f'8")])
 
             ..  container:: example expression
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_vertical_moment(reverse=True)
                     >>> for vertical_moment in expression(score):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("b'8"), Note("g'4"), Note("c'8"))
-                    (Note("b'8"), Note("g'4"), Note("d'8"))
-                    (Note("c''8"), Note("g'4"), Note("d'8"))
-                    (Note("c''8"), Note("a'4"), Note("e'8"))
-                    (Note("d''8"), Note("a'4"), Note("e'8"))
-                    (Note("d''8"), Note("a'4"), Note("f'8"))
+                    Selection([Note("b'8"), Note("g'4"), Note("c'8")])
+                    Selection([Note("b'8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("c''8"), Note("g'4"), Note("d'8")])
+                    Selection([Note("c''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("e'8")])
+                    Selection([Note("d''8"), Note("a'4"), Note("f'8")])
 
                 ::
 
                 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.by_vertical_moment(reverse=True)
                     >>> for vertical_moment in expression(staff_group):
                     ...     vertical_moment.leaves
                     ...
-                    (Note("g'4"), Note("c'8"))
-                    (Note("g'4"), Note("d'8"))
-                    (Note("a'4"), Note("e'8"))
-                    (Note("a'4"), Note("f'8"))
+                    Selection([Note("g'4"), Note("c'8")])
+                    Selection([Note("g'4"), Note("d'8")])
+                    Selection([Note("a'4"), Note("e'8")])
+                    Selection([Note("a'4"), Note("f'8")])
 
         Returns generator.
         '''
@@ -4241,8 +4124,6 @@ class IterationAgent(abctools.AbjadObject):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         def _buffer_components_starting_with(component, buffer, stop_offsets):
-            #if not isinstance(component, scoretools.Component):
-            #    raise TypeError
             buffer.append(component)
             stop_offsets.append(component._get_timespan().stop_offset)
             if isinstance(component, scoretools.Container):
@@ -4334,12 +4215,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
-                    >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                    >>> score = abjad.Score([])
+                    >>> score.append(abjad.Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                    >>> score.append(abjad.Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4364,7 +4245,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for component in iterate(score).depth_first():
+                    >>> for component in abjad.iterate(score).depth_first():
                     ...     component
                     ...
                     <Score<<2>>>
@@ -4386,7 +4267,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.depth_first()
                     >>> for component in expression(score):
                     ...     component
@@ -4414,12 +4295,12 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> score = Score([])
-                    >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
-                    >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                    >>> score = abjad.Score([])
+                    >>> score.append(abjad.Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                    >>> score.append(abjad.Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4444,7 +4325,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> agent = iterate(score)
+                    >>> agent = abjad.iterate(score)
                     >>> for component in agent.depth_first(direction=Right):
                     ...     component
                     ...
@@ -4467,7 +4348,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.depth_first(direction=Right)
                     >>> for component in expression(score):
                     ...     component
@@ -4495,21 +4376,14 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                    >>> grace_notes = [Note("cf''16"), Note("bf'16")]
-                    >>> grace = scoretools.GraceContainer(
-                    ...     grace_notes,
-                    ...     kind='grace',
-                    ...     )
-                    >>> attach(grace, voice[1])
-                    >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
-                    >>> after_grace = scoretools.GraceContainer(
-                    ...     after_grace_notes,
-                    ...     kind='after')
-                    >>> attach(after_grace, voice[1])
+                    >>> voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
+                    >>> container = abjad.GraceContainer("cf''16 bf'16")
+                    >>> abjad.attach(container, voice[1])
+                    >>> container = abjad.AfterGraceContainer("af'16 gf'16")
+                    >>> abjad.attach(container, voice[1])
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice {
@@ -4532,7 +4406,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> for component in iterate(voice).depth_first():
+                    >>> for component in abjad.iterate(voice).depth_first():
                     ...     component
                     ...
                     Voice("c'8 d'8 e'8 f'8")
@@ -4541,7 +4415,7 @@ class IterationAgent(abctools.AbjadObject):
                     GraceContainer("cf''16 bf'16")
                     Note("cf''16")
                     Note("bf'16")
-                    GraceContainer("af'16 gf'16")
+                    AfterGraceContainer("af'16 gf'16")
                     Note("af'16")
                     Note("gf'16")
                     Note("e'8")
@@ -4551,7 +4425,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = iterate()
+                    >>> expression = abjad.iterate()
                     >>> expression = expression.depth_first()
                     >>> for component in expression(voice):
                     ...     component
@@ -4562,7 +4436,7 @@ class IterationAgent(abctools.AbjadObject):
                     GraceContainer("cf''16 bf'16")
                     Note("cf''16")
                     Note("bf'16")
-                    GraceContainer("af'16 gf'16")
+                    AfterGraceContainer("af'16 gf'16")
                     Note("af'16")
                     Note("gf'16")
                     Note("e'8")
@@ -4584,6 +4458,7 @@ class IterationAgent(abctools.AbjadObject):
 
             If client has no univisited music and no parent, return none.
             '''
+            import abjad
             # if component is a container with not-yet-returned children
             if (
                 hasattr(component, '_music') and
@@ -4593,13 +4468,13 @@ class IterationAgent(abctools.AbjadObject):
                 # return next not-yet-returned child
                 return component[total], 0
             # if component is a leaf with grace container attached
-            elif getattr(component, '_grace', None) is not None:
+            elif getattr(component, '_grace_container', None) is not None:
                 # return grace container
-                return component._grace, 0
+                return component._grace_container, 0
             # if component is a leaf with after grace container attached
-            elif getattr(component, '_after_grace', None) is not None:
+            elif getattr(component, '_after_grace_container', None) is not None:
                 # return after grace container
-                return component._after_grace, 0
+                return component._after_grace_container, 0
             # if component is grace container with all children returned
             elif hasattr(component, '_carrier'):
                 carrier = component._carrier
@@ -4608,10 +4483,10 @@ class IterationAgent(abctools.AbjadObject):
                     return None, None
                 # if there's also an after grace container
                 if (
-                    not component.kind == 'after' and
-                    carrier._after_grace is not None
+                    not isinstance(component, abjad.AfterGraceContainer) and
+                    carrier._after_grace_container is not None
                     ):
-                    return carrier._after_grace, 0
+                    return carrier._after_grace_container, 0
                 carrier_parent = carrier._parent
                 # if carrier has no parent
                 if carrier_parent is None:
@@ -4695,3 +4570,45 @@ class IterationAgent(abctools.AbjadObject):
                     node, rank = _advance_node_depth_first(node, rank, direction)
             queue.clear()
         return _closure()
+
+    def out_of_range(self):
+        r'''Iterates notes and chords outside traditional instrument ranges.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
+                >>> violin = abjad.instrumenttools.Violin()
+                >>> abjad.attach(violin, staff[0])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Violin }
+                    \set Staff.shortInstrumentName = \markup { Vn. }
+                    c'8
+                    r8
+                    <d fs>8
+                    r8
+                }
+
+            ::
+
+                >>> for leaf in abjad.iterate(staff).out_of_range():
+                ...     leaf
+                ...
+                Chord('<d fs>8')
+
+        Returns generator.
+        '''
+        import abjad
+        for leaf in abjad.iterate(self._client).by_leaf(pitched=True):
+            instrument = leaf._get_effective(abjad.instrumenttools.Instrument)
+            if instrument is None:
+                message = 'no instrument found.'
+                raise ValueError(message)
+            if leaf not in instrument.pitch_range:
+                yield leaf

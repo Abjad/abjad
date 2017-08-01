@@ -6,6 +6,10 @@ from abjad.tools.abctools import AbjadValueObject
 class StringNumber(AbjadValueObject):
     r'''String number.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         String I:
@@ -35,7 +39,6 @@ class StringNumber(AbjadValueObject):
     ### CLASS VARIABLES
 
     __slots__ = (
-        '_default_scope',
         '_numbers',
         )
 
@@ -47,7 +50,6 @@ class StringNumber(AbjadValueObject):
         self,
         numbers=None,
         ):
-        self._default_scope = None
         numbers = numbers or ()
         if isinstance(numbers, type(self)):
             numbers = numbers.numbers
@@ -59,34 +61,6 @@ class StringNumber(AbjadValueObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def default_scope(self):
-        r'''Gets default scope of string number indicator.
-
-        ..  container:: example
-
-            String I:
-
-            ::
-
-                >>> indicator = abjad.StringNumber(1)
-                >>> indicator.default_scope is None
-                True
-
-        ..  container:: example
-            
-            Strings II and III:
-
-            ::
-
-                >>> indicator = abjad.StringNumber((2, 3))
-                >>> indicator.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
-        
     @property
     def numbers(self):
         r'''Gets numbers of string number indicator:

@@ -5,30 +5,34 @@ from abjad.tools.abctools import ContextManager
 class ForbidUpdate(ContextManager):
     r'''A context manager for forbidding score updates.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 ~ d'2 e'4")
-            >>> with systemtools.ForbidUpdate(component=staff):
+            >>> staff = abjad.Staff("c'8 d'8 ~ d'2 e'4")
+            >>> with abjad.ForbidUpdate(component=staff):
             ...     for note in staff[:]:
             ...         pitch_1 = note.written_pitch
-            ...         pitch_2 = pitch_1 + pitchtools.NamedInterval('M3')
+            ...         pitch_2 = pitch_1 + abjad.NamedInterval('M3')
             ...         pitches = [pitch_1, pitch_2]
-            ...         chord = Chord(pitches, note.written_duration)
-            ...         mutate(note).replace(chord)
+            ...         chord = abjad.Chord(pitches, note.written_duration)
+            ...         abjad.mutate(note).replace(chord)
             ...
 
         ::
 
-            >>> inspect_(staff).is_well_formed()
+            >>> abjad.inspect(staff).is_well_formed()
             True
 
         ::
 
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {

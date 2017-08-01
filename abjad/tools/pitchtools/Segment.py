@@ -2,14 +2,13 @@
 import abc
 import collections
 import types
-from abjad.tools import expressiontools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.datastructuretools import TypedTuple
 
 
 class Segment(TypedTuple):
-    r'''Segment base class.
+    r'''Abstract segment.
     '''
 
     ### CLASS VARIABLES ##
@@ -21,11 +20,7 @@ class Segment(TypedTuple):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        item_class=None,
-        ):
+    def __init__(self, items=None, item_class=None):
         from abjad.tools import datastructuretools
         from abjad.tools import markuptools
         prototype = (
@@ -108,7 +103,7 @@ class Segment(TypedTuple):
         last_leaf = abjad.select().by_leaf()(score)[-1][-1]
         abjad.attach(command, last_leaf)
         moment = abjad.schemetools.SchemeMoment((1, 12))
-        abjad.set_(score).proportional_notation_duration = moment
+        abjad.setting(score).proportional_notation_duration = moment
         lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(music=score)
         if 'title' in keywords:
             title = keywords.get('title')
@@ -169,8 +164,10 @@ class Segment(TypedTuple):
         elif hasattr(self.item_class, 'pitch_class_number'):
             items = [x.pitch_class_number for x in self]
         elif self.item_class.__name__.startswith('Numbered'):
-            items = [mathtools.integer_equivalent_number_to_integer(float(x))
-                for x in self]
+            items = [
+                mathtools.integer_equivalent_number_to_integer(float(x.number))
+                for x in self
+                ]
         elif hasattr(self.item_class, '__abs__'):
             items = [abs(x) for x in self]
         else:

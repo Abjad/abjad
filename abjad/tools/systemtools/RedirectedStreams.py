@@ -8,19 +8,25 @@ class RedirectedStreams(ContextManager):
 
     ::
 
-        >>> try:
-        ...     from StringIO import StringIO
-        ... except ImportError:
-        ...     from io import StringIO
-        ...
-        >>> string_io = StringIO()
-        >>> with systemtools.RedirectedStreams(stdout=string_io):
-        ...     print("hello, world!")
-        ...
-        >>> result = string_io.getvalue()
-        >>> string_io.close()
-        >>> print(result)
-        hello, world!
+        >>> import abjad
+
+    ..  container:: example
+
+        ::
+
+            >>> try:
+            ...     from StringIO import StringIO
+            ... except ImportError:
+            ...     from io import StringIO
+            ...
+            >>> string_io = StringIO()
+            >>> with abjad.RedirectedStreams(stdout=string_io):
+            ...     print("hello, world!")
+            ...
+            >>> result = string_io.getvalue()
+            >>> string_io.close()
+            >>> print(result)
+            hello, world!
 
     Redirected streams context manager is immutable.
     '''
@@ -28,6 +34,13 @@ class RedirectedStreams(ContextManager):
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Context managers'
+
+    __slots__ = (
+        '_stdout',
+        '_stderr',
+        '_old_stderr',
+        '_old_stdout',
+        )
 
     ### INITIALIZER ###
 
@@ -42,9 +55,9 @@ class RedirectedStreams(ContextManager):
 
         Returns none.
         '''
-        self.old_stdout, self.old_stderr = sys.stdout, sys.stderr
-        self.old_stdout.flush()
-        self.old_stderr.flush()
+        self._old_stdout, self._old_stderr = sys.stdout, sys.stderr
+        self._old_stdout.flush()
+        self._old_stderr.flush()
         sys.stdout, sys.stderr = self._stdout, self._stderr
         return self
 
@@ -58,8 +71,8 @@ class RedirectedStreams(ContextManager):
             self._stderr.flush()
         except:
             pass
-        sys.stdout = self.old_stdout
-        sys.stderr = self.old_stderr
+        sys.stdout = self._old_stdout
+        sys.stderr = self._old_stderr
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.
@@ -68,7 +81,7 @@ class RedirectedStreams(ContextManager):
 
             ::
 
-                >>> context_manager = systemtools.RedirectedStreams()
+                >>> context_manager = abjad.RedirectedStreams()
                 >>> context_manager
                 <RedirectedStreams()>
 

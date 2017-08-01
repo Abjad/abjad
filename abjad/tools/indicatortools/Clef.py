@@ -5,19 +5,23 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Clef(AbjadValueObject):
     r'''Clef.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         At the beginning of a staff:
 
         ::
 
-            >>> clef = Clef('treble')
+            >>> clef = abjad.Clef('treble')
             >>> clef
             Clef(name='treble')
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
             >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
@@ -26,27 +30,27 @@ class Clef(AbjadValueObject):
 
         ::
 
-            >>> clef = Clef('treble')
-            >>> attach(clef, staff)
-            >>> clef = Clef('alto')
-            >>> attach(clef, staff[1])
-            >>> clef = Clef('bass')
-            >>> attach(clef, staff[2])
-            >>> clef = Clef('treble^8')
-            >>> attach(clef, staff[3])
-            >>> clef = Clef('bass_8')
-            >>> attach(clef, staff[4])
-            >>> clef = Clef('tenor')
-            >>> attach(clef, staff[5])
-            >>> clef = Clef('bass^15')
-            >>> attach(clef, staff[6])
-            >>> clef = Clef('percussion')
-            >>> attach(clef, staff[7])
+            >>> clef = abjad.Clef('treble')
+            >>> abjad.attach(clef, staff[0])
+            >>> clef = abjad.Clef('alto')
+            >>> abjad.attach(clef, staff[1])
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff[2])
+            >>> clef = abjad.Clef('treble^8')
+            >>> abjad.attach(clef, staff[3])
+            >>> clef = abjad.Clef('bass_8')
+            >>> abjad.attach(clef, staff[4])
+            >>> clef = abjad.Clef('tenor')
+            >>> abjad.attach(clef, staff[5])
+            >>> clef = abjad.Clef('bass^15')
+            >>> abjad.attach(clef, staff[6])
+            >>> clef = abjad.Clef('percussion')
+            >>> abjad.attach(clef, staff[7])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \clef "treble"
                 c'8
@@ -122,7 +126,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> clef = Clef('treble')
+                >>> clef = abjad.Clef('treble')
                 >>> print(format(clef))
                 abjad.Clef(
                     name='treble',
@@ -132,7 +136,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> clef = Clef('treble')
+                >>> clef = abjad.Clef('treble')
                 >>> print(format(clef, 'lilypond'))
                 \clef "treble"
 
@@ -142,33 +146,6 @@ class Clef(AbjadValueObject):
             return self._get_lilypond_format()
         superclass = super(Clef, self)
         return superclass.__format__(format_specification=format_specification)
-
-    def __ne__(self, argument):
-        r'''Is true when clef of `argument` does not equal clef name of clef.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> clef_1 = Clef('treble')
-                >>> clef_2 = Clef('alto')
-
-            ::
-
-                >>> clef_1 != clef_1
-                False
-                >>> clef_1 != clef_2
-                True
-                >>> clef_2 != clef_1
-                True
-                >>> clef_2 != clef_2
-                False
-
-        Returns true or false.
-        '''
-        superclass = super(Clef, self)
-        return superclass.__ne__(argument)
 
     ### PRIVATE PROPERTIES ###
 
@@ -224,9 +201,15 @@ class Clef(AbjadValueObject):
     def _get_lilypond_format(self):
         return r'\clef "{}"'.format(self._name)
 
+    def _get_lilypond_format_bundle(self, component=None):
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.before.commands.append(self._get_lilypond_format())
+        return bundle
+
     @classmethod
-    def _list_clef_names(cls):
-        return list(sorted(cls._clef_name_to_middle_c_position))
+    def _list_clef_names(class_):
+        return list(sorted(class_._clef_name_to_middle_c_position))
 
     ### PUBLIC METHODS ###
 
@@ -238,10 +221,10 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> numbers = list(range(-12, -6))
-                >>> notes = scoretools.make_notes(numbers, [Duration(1, 4)])
-                >>> staff = Staff(notes)
-                >>> Clef.from_selection(staff)
+                >>> maker = abjad.NoteMaker()
+                >>> notes = maker(range(-12, -6), [(1, 4)])
+                >>> staff = abjad.Staff(notes)
+                >>> abjad.Clef.from_selection(staff)
                 Clef(name='bass')
 
             Choses between treble and bass based on minimal number of ledger
@@ -253,19 +236,19 @@ class Clef(AbjadValueObject):
         from abjad.tools.topleveltools import iterate
         pitches = list(iterate(selection).by_pitch())
         diatonic_pitch_numbers = [
-            pitch.diatonic_pitch_number for pitch in pitches
+            pitch._get_diatonic_pitch_number() for pitch in pitches
             ]
         max_diatonic_pitch_number = max(diatonic_pitch_numbers)
         min_diatonic_pitch_number = min(diatonic_pitch_numbers)
-        lowest_treble_line_pitch = pitchtools.NamedPitch('e', 4)
+        lowest_treble_line_pitch = pitchtools.NamedPitch('E4')
         lowest_treble_line_diatonic_pitch_number = \
-            lowest_treble_line_pitch.diatonic_pitch_number
+            lowest_treble_line_pitch._get_diatonic_pitch_number()
         candidate_steps_below_treble = \
             lowest_treble_line_diatonic_pitch_number - \
             min_diatonic_pitch_number
-        highest_bass_line_pitch = pitchtools.NamedPitch('a', 3)
+        highest_bass_line_pitch = pitchtools.NamedPitch('A3')
         highest_bass_line_diatonic_pitch_number = \
-            highest_bass_line_pitch.diatonic_pitch_number
+            highest_bass_line_pitch._get_diatonic_pitch_number()
         candidate_steps_above_bass = \
             max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number
         if candidate_steps_above_bass < candidate_steps_below_treble:
@@ -283,7 +266,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> clef = Clef('treble')
+                >>> clef = abjad.Clef('treble')
                 >>> clef.default_scope
                 <class 'abjad.tools.scoretools.Staff.Staff'>
 
@@ -303,8 +286,8 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> Clef('treble').middle_c_position
-                StaffPosition(number=-6)
+                >>> abjad.Clef('treble').middle_c_position
+                StaffPosition(-6)
 
         ..  container:: example
 
@@ -312,8 +295,8 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> Clef('alto').middle_c_position
-                StaffPosition(number=0)
+                >>> abjad.Clef('alto').middle_c_position
+                StaffPosition(0)
 
         Returns nonnegative integer staff position.
         '''
@@ -329,7 +312,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> Clef('treble').name
+                >>> abjad.Clef('treble').name
                 'treble'
 
         ..  container:: example
@@ -338,7 +321,7 @@ class Clef(AbjadValueObject):
 
             ::
 
-                >>> Clef('alto').name
+                >>> abjad.Clef('alto').name
                 'alto'
 
         Returns string.

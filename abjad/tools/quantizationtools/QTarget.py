@@ -1,20 +1,25 @@
 # -*- coding: utf-8 -*-
 import abc
 import bisect
+from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 
 
 class QTarget(AbjadObject):
-    r'''Abstract base class from which concrete ``QTarget`` subclasses inherit.
+    r'''Abstract q-target.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     ``QTarget`` is created by a concrete ``QSchema`` instance, and represents
     the mold into which the timepoints contained by a ``QSequence`` instance
@@ -137,9 +142,10 @@ class QTarget(AbjadObject):
         voice=None,
         ):
         for leaf in iterate(voice).by_leaf():
-            if leaf._has_indicator(indicatortools.Annotation):
-                annotation = leaf._get_indicator(indicatortools.Annotation)
-                pitches, grace_container = grace_handler(annotation.value)
+            if leaf._has_indicator(dict):
+                annotation = leaf._get_indicator(dict)
+                q_events = annotation['q_events']
+                pitches, grace_container = grace_handler(q_events)
                 if not pitches:
                     new_leaf = scoretools.Rest(leaf)
                 elif 1 < len(pitches):
@@ -171,17 +177,17 @@ class QTarget(AbjadObject):
                         leaf.written_duration,
                         )
                 mutate(leaf).replace(new_leaf)
-                tie = inspect_(previous_leaf).get_spanner(spannertools.Tie)
+                tie = inspect(previous_leaf).get_spanner(spannertools.Tie)
                 if tie is not None:
                     tie._append(new_leaf)
-            if leaf._has_indicator(indicatortools.Tempo):
-                tempo = leaf._get_indicator(indicatortools.Tempo)
-                detach(indicatortools.Tempo, leaf)
+            if leaf._has_indicator(indicatortools.MetronomeMark):
+                tempo = leaf._get_indicator(indicatortools.MetronomeMark)
+                detach(indicatortools.MetronomeMark, leaf)
                 attach(tempo, new_leaf)
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
         beats = self.beats
-        for one, two in sequencetools.Sequence(beats).nwise():
+        for one, two in datastructuretools.Sequence(beats).nwise():
             one_q_events = one.q_grid.next_downbeat.q_event_proxies
             two_q_events = two.q_grid.leaves[0].q_event_proxies
             while one_q_events:

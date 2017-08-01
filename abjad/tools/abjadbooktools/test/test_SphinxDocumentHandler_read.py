@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
+import abjad
 import platform
 import unittest
 import sys
 from abjad.tools import abjadbooktools
-from abjad.tools import stringtools
-from abjad.tools import systemtools
 
 
 @unittest.skipIf(
@@ -37,7 +36,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
         example_function(23)
     '''
-    source_one = stringtools.normalize(source_one)
+    source_one = abjad.String.normalize(source_one)
 
     def setUp(self):
         app = self.Namespace()
@@ -78,8 +77,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_one)
         handler.on_doctree_read(self.app, document)
-        actual = stringtools.normalize(document.pformat())
-        target = stringtools.normalize(
+        actual = abjad.String.normalize(document.pformat())
+        target = abjad.String.normalize(
             r"""
             <document source="test">
                 <literal_block xml:space="preserve">
@@ -123,12 +122,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             len(staff)
         '''
-        source = stringtools.normalize(source)
+        source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
-        actual = stringtools.normalize(document.pformat())
-        target = stringtools.normalize(
+        actual = abjad.String.normalize(document.pformat())
+        target = abjad.String.normalize(
             r"""
             <document source="test">
                 <literal_block xml:space="preserve">
@@ -191,12 +190,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             len(staff)
         '''
-        source = stringtools.normalize(source)
+        source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
-        actual = stringtools.normalize(document.pformat())
-        target = stringtools.normalize(
+        actual = abjad.String.normalize(document.pformat())
+        target = abjad.String.normalize(
             r"""
             <document source="test">
                 <literal_block xml:space="preserve">
@@ -285,12 +284,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             `3/4` comprises three beats.
         '''
-        source = stringtools.normalize(source)
+        source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
-        actual = stringtools.normalize(document.pformat())
-        target = stringtools.normalize(
+        actual = abjad.String.normalize(document.pformat())
+        target = abjad.String.normalize(
             r"""
             <document source="test">
                 <container classes="example">
@@ -428,7 +427,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                          comprises three beats.
             """)
         assert actual == target, \
-            systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     # I hate this test.
 #    def test_on_doctree_read_05(self):
@@ -438,19 +437,19 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #
 #            [x for x in dir() if not x.startswith('_')]
 #        '''
-#        source = stringtools.normalize(source)
+#        source = abjad.String.normalize(source)
 #        handler = abjadbooktools.SphinxDocumentHandler()
 #        document = handler.parse_rst(source)
 #        handler.on_doctree_read(self.app, document)
-#        actual = stringtools.normalize(document.pformat())
-#        target = stringtools.normalize(
+#        actual = abjad.String.normalize(document.pformat())
+#        target = abjad.String.normalize(
 #            r"""
 #            <document source="test">
 #                <literal_block xml:space="preserve">
 #                    >>> [x for x in dir() if not x.startswith('_')]
 #                    ['AbjadObject', 'AbjadValueObject',
-#                    'Accelerando', 'Accidental', 'Annotation',
-#                    'Arpeggio', 'Arrow', 'Articulation',
+#                    'Accelerando', 'Accidental',
+#                    'Arpeggio', 'ArrowLineSegment', 'Articulation',
 #                    'AssignabilityError', 'BarLine', 'Beam',
 #                    'BendAfter', 'Block', 'BowContactPoint',
 #                    'BowContactSpanner', 'BowMotionTechnique',
@@ -458,11 +457,11 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'ClefSpanner', 'Cluster', 'ColorFingering',
 #                    'ComplexBeam', 'ComplexTrillSpanner',
 #                    'Component', 'CompoundOperator',
-#                    'CompoundPattern', 'Container', 'Context',
+#                    'Container', 'Context',
 #                    'ContextBlock', 'ContextManager',
 #                    'ContiguitySelectorCallback',
-#                    'CountsSelectorCallback', 'Crescendo',
-#                    'CyclicTuple', 'DateTimeToken', 'Decrescendo',
+#                    'CountsSelectorCallback',
+#                    'CyclicTuple', 'DateTimeToken',
 #                    'Descendants', 'Duplication',
 #                    'DuratedComplexBeam', 'Duration',
 #                    'DurationInequality',
@@ -470,13 +469,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'Enumeration', 'Expression',
 #                    'ExtraLeafSelectorCallback',
 #                    'ExtraSpannerError', 'Fermata',
-#                    'FixedDurationTuplet',
 #                    'FlattenSelectorCallback', 'Fraction',
 #                    'GeneralizedBeam', 'Glissando',
 #                    'GraceContainer', 'GroupByPitchCallback',
 #                    'Hairpin', 'HiddenStaffSpanner',
 #                    'HorizontalBracketSpanner',
-#                    'ImpreciseTempoError', 'IndicatorExpression',
+#                    'ImpreciseMetronomeMarkError', 'IndicatorWrapper',
 #                    'Inequality', 'Infinity', 'Interval',
 #                    'IntervalClass', 'IntervalClassSegment',
 #                    'IntervalClassSet', 'IntervalClassVector',
@@ -495,7 +493,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'MarkupCommand', 'MarkupList', 'Measure',
 #                    'MeasuredComplexBeam', 'Meter',
 #                    'MetricModulation', 'MissingMeasureError',
-#                    'MissingSpannerError', 'MissingTempoError',
+#                    'MissingSpannerError', 'MissingMetronomeMarkError',
 #                    'MultimeasureRest', 'MultipartBeam',
 #                    'Multiplication', 'Multiplier',
 #                    'NamedInterval', 'NamedIntervalClass',
@@ -506,7 +504,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'NumberedIntervalClass',
 #                    'NumberedInversionEquivalentIntervalClass',
 #                    'NumberedPitch', 'NumberedPitchClass',
-#                    'NumberedPitchClassColorMap',
+#                    'ColorMap',
 #                    'OctavationSpanner', 'Octave', 'Offset',
 #                    'OrdinalConstant', 'OverfullContainerError',
 #                    'PackageGitCommitToken', 'PageBreak',
@@ -538,8 +536,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'StaffLinesSpanner', 'StaffPosition',
 #                    'StemTremolo', 'StemTremoloSpanner',
 #                    'StringContactPoint', 'StringNumber',
-#                    'SystemBreak', 'Tempo', 'TempoList',
-#                    'TempoSpanner', 'TextSpanner', 'Tie',
+#                    'SystemBreak', 'MetronomeMark', 'MetronomeMarkList',
+#                    'MetronomeMarkSpanner', 'TextSpanner', 'Tie',
 #                    'TimeSignature', 'TimeSignatureList',
 #                    'Timespan', 'Transposition', 'TreeContainer',
 #                    'TreeNode', 'Tremolo', 'TrillSpanner',
@@ -555,18 +553,15 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'agenttools', 'attach', 'commandlinetools',
 #                    'datastructuretools', 'demos', 'detach',
 #                    'documentationtools', 'durationtools',
-#                    'exceptiontools', 'expressiontools', 'ext',
+#                    'exceptiontools', 'ext',
 #                    'f', 'graph', 'graphtools', 'indicatortools',
-#                    'inspect_', 'instrumenttools', 'ipythontools',
+#                    'inspect', 'instrumenttools', 'ipythontools',
 #                    'iterate', 'label', 'lilypondfiletools',
 #                    'lilypondnametools', 'lilypondparsertools',
-#                    'ly', 'make_colored_text_spanner_with_nibs',
-#                    'make_dynamic_spanner_below_with_nib_at_right',
-#                    'make_floating_time_signature_lilypond_file',
-#                    'make_solid_text_spanner_with_nib',
-#                    'make_spacing_vector', 'markuptools',
+#                    'ly', 
+#                    'markuptools',
 #                    'mathtools', 'metertools', 'mutate', 'new',
-#                    'override', 'parse', 'patterntools', 'persist',
+#                    'override', 'parse', 'persist',
 #                    'pitchtools', 'play', 'print_function',
 #                    'quantizationtools', 'rhythmmakertools',
 #                    'rhythmtreetools', 'schemetools', 'scoretools',
@@ -578,11 +573,11 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 #                    'select_nonfirst_logical_ties_in_pitched_runs',
 #                    'select_nonlast_logical_ties_in_pitched_runs',
 #                    'select_pitched_runs', 'selectiontools',
-#                    'selectortools', 'sequence', 'sequencetools',
-#                    'set_', 'show', 'silence', 'silence_all',
+#                    'selectortools', 'sequence',
+#                    'setting', 'show', 'silence', 'silence_all',
 #                    'silence_every', 'silence_except',
 #                    'silence_first', 'silence_last',
-#                    'spannertools', 'stringtools', 'sustain',
+#                    'spannertools', 'datastructuretools', 'sustain',
 #                    'sustain_all', 'sustain_every',
 #                    'sustain_first', 'sustain_last', 'systemtools',
 #                    'templatetools', 'timespantools',
@@ -603,12 +598,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             print('Désordre')
         '''
-        source = stringtools.normalize(source)
+        source = abjad.String.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
-        actual = stringtools.normalize(document.pformat())
-        target = stringtools.normalize(
+        actual = abjad.String.normalize(document.pformat())
+        target = abjad.String.normalize(
             u"""
             <document source="test">
                 <paragraph>
@@ -624,7 +619,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     Désordre
             """)
         assert actual == target, \
-            systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_07(self):
         source = '''
@@ -639,8 +634,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
-        actual = stringtools.normalize(document.pformat())
-        target = stringtools.normalize(
+        actual = abjad.String.normalize(document.pformat())
+        target = abjad.String.normalize(
             r"""
             <document source="test">
                 <block_quote>
@@ -666,7 +661,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         }
             """)
         assert actual == target, \
-            systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_08(self):
         source = '''
@@ -686,8 +681,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
-        actual = stringtools.normalize(document.pformat())
-        target = stringtools.normalize(
+        actual = abjad.String.normalize(document.pformat())
+        target = abjad.String.normalize(
             r"""
             <document source="test">
                 <block_quote>
@@ -707,7 +702,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         Note("f'4") False True
             """)
         assert actual == target, \
-            systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_09(self):
         source = '''
@@ -733,8 +728,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
-        actual = stringtools.normalize(document.pformat())
-        target = stringtools.normalize(
+        actual = abjad.String.normalize(document.pformat())
+        target = abjad.String.normalize(
             r"""
             <document source="test">
                 <block_quote>
@@ -755,7 +750,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         23
             """)
         assert actual == target, \
-            systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_10(self):
         source = '''
@@ -780,8 +775,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
-        actual = stringtools.normalize(document.pformat())
-        target = stringtools.normalize(
+        actual = abjad.String.normalize(document.pformat())
+        target = abjad.String.normalize(
             r"""
             <document source="test">
                 <block_quote>
@@ -796,4 +791,4 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         24
             """)
         assert actual == target, \
-            systemtools.TestManager.diff(actual, target, 'Diff:')
+            abjad.TestManager.diff(actual, target, 'Diff:')

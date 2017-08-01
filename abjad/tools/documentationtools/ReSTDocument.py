@@ -7,72 +7,81 @@ class ReSTDocument(TreeContainer):
 
     ::
 
-        >>> document = documentationtools.ReSTDocument()
-        >>> document
-        ReSTDocument()
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> document.append(documentationtools.ReSTHeading(
-        ...     level=0, text='Hello World!'))
-        >>> document.append(documentationtools.ReSTParagraph(
-        ...     text='blah blah blah'))
-        >>> toc = documentationtools.ReSTTOCDirective()
-        >>> toc.append('foo/bar')
-        >>> toc.append('bar/baz')
-        >>> toc.append('quux')
-        >>> document.append(toc)
+        ::
 
-    ::
+            >>> document = abjad.documentationtools.ReSTDocument()
+            >>> document
+            ReSTDocument()
 
-        >>> document
-        ReSTDocument(
-            children=(
-                ReSTHeading(
-                    level=0,
-                    text='Hello World!'
-                    ),
-                ReSTParagraph(
-                    text='blah blah blah',
-                    wrap=True
-                    ),
-                ReSTTOCDirective(
-                    children=(
-                        ReSTTOCItem(
-                            text='foo/bar'
-                            ),
-                        ReSTTOCItem(
-                            text='bar/baz'
-                            ),
-                        ReSTTOCItem(
-                            text='quux'
-                            ),
+        ::
+
+            >>> document.append(abjad.documentationtools.ReSTHeading(
+            ...     level=0, text='Hello World!'))
+            >>> document.append(abjad.documentationtools.ReSTParagraph(
+            ...     text='blah blah blah'))
+            >>> toc = abjad.documentationtools.ReSTTOCDirective()
+            >>> toc.append('foo/bar')
+            >>> toc.append('bar/baz')
+            >>> toc.append('quux')
+            >>> document.append(toc)
+
+        ::
+
+            >>> document
+            ReSTDocument(
+                children=(
+                    ReSTHeading(
+                        level=0,
+                        text='Hello World!'
                         ),
-                    directive='toctree'
-                    ),
+                    ReSTParagraph(
+                        text='blah blah blah',
+                        wrap=True
+                        ),
+                    ReSTTOCDirective(
+                        children=(
+                            ReSTTOCItem(
+                                text='foo/bar'
+                                ),
+                            ReSTTOCItem(
+                                text='bar/baz'
+                                ),
+                            ReSTTOCItem(
+                                text='quux'
+                                ),
+                            ),
+                        directive='toctree'
+                        ),
+                    )
                 )
-            )
 
-    ::
+        ::
 
-        >>> print(document.rest_format)
-        ############
-        Hello World!
-        ############
-        <BLANKLINE>
-        blah blah blah
-        <BLANKLINE>
-        .. toctree::
-        <BLANKLINE>
-           foo/bar
-           bar/baz
-           quux
+            >>> print(document.rest_format)
+            ############
+            Hello World!
+            ############
+            <BLANKLINE>
+            blah blah blah
+            <BLANKLINE>
+            .. toctree::
+            <BLANKLINE>
+            foo/bar
+            bar/baz
+            quux
 
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'reStructuredText'
+
+    __slots__ = (
+        )
 
     ### PRIVATE PROPERTIES ###
 

@@ -3,16 +3,35 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeColor(Scheme):
-    r'''A Scheme color.
+    r'''Abjad model of Scheme color.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> schemetools.SchemeColor('ForestGreen')
+            >>> abjad.SchemeColor('ForestGreen')
             SchemeColor('ForestGreen')
 
-    Scheme colors are immutable.
+
+    ..  container:: example
+
+        ::
+
+            >>> note = abjad.Note("c'4")
+            >>> scheme_color = abjad.SchemeColor('ForestGreen')
+            >>> abjad.override(note).note_head.color = scheme_color
+            >>> show(note) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(note)
+            \once \override NoteHead.color = #(x11-color 'ForestGreen)
+            c'4
+
     '''
 
     ### CLASS VARIABLES ##

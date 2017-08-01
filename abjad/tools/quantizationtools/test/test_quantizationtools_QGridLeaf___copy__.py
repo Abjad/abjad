@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import copy
-from abjad import *
+from abjad.tools import quantizationtools
 
 
 def test_quantizationtools_QGridLeaf___copy___01():

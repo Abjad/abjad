@@ -5,11 +5,15 @@ import sys
 def partition_integer_by_ratio(n, ratio):
     r'''Partitions positive integer-equivalent `n` by `ratio`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.partition_integer_by_ratio(10, [1, 2])
+            >>> abjad.mathtools.partition_integer_by_ratio(10, [1, 2])
             [3, 7]
 
     ..  container:: example
@@ -19,7 +23,7 @@ def partition_integer_by_ratio(n, ratio):
 
         ::
 
-            >>> mathtools.partition_integer_by_ratio(10, [1, -2])
+            >>> abjad.mathtools.partition_integer_by_ratio(10, [1, -2])
             [3, -7]
 
     ..  container:: example
@@ -28,7 +32,7 @@ def partition_integer_by_ratio(n, ratio):
 
         ::
 
-            >>> mathtools.partition_integer_by_ratio(-10, [1, 2])
+            >>> abjad.mathtools.partition_integer_by_ratio(-10, [1, 2])
             [-3, -7]
 
     ..  container:: example
@@ -38,7 +42,7 @@ def partition_integer_by_ratio(n, ratio):
 
         ::
 
-            >>> mathtools.partition_integer_by_ratio(-10, [1, -2])
+            >>> abjad.mathtools.partition_integer_by_ratio(-10, [1, -2])
             [-3, 7]
 
     ..  container:: example
@@ -47,27 +51,27 @@ def partition_integer_by_ratio(n, ratio):
 
         ::
 
-            >>> mathtools.partition_integer_by_ratio(10, [1])
+            >>> abjad.mathtools.partition_integer_by_ratio(10, [1])
             [10]
 
         ::
 
-            >>> mathtools.partition_integer_by_ratio(10, [1, 1])
+            >>> abjad.mathtools.partition_integer_by_ratio(10, [1, 1])
             [5, 5]
 
         ::
 
-            >>> mathtools.partition_integer_by_ratio(10, [1, -1, -1])
+            >>> abjad.mathtools.partition_integer_by_ratio(10, [1, -1, -1])
             [3, -4, -3]
 
         ::
 
-            >>> mathtools.partition_integer_by_ratio(-10, [1, 1, 1, 1])
+            >>> abjad.mathtools.partition_integer_by_ratio(-10, [1, 1, 1, 1])
             [-3, -2, -3, -2]
 
         ::
 
-            >>> mathtools.partition_integer_by_ratio(-10, [1, 1, 1, 1, 1])
+            >>> abjad.mathtools.partition_integer_by_ratio(-10, [1, 1, 1, 1, 1])
             [-2, -2, -2, -2, -2]
 
     Returns result with weight equal to absolute value of `n`.

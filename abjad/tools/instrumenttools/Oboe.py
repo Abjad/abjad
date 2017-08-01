@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Oboe(Instrument):
-    r'''An oboe.
+    r'''Oboe.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> oboe = instrumenttools.Oboe()
-        >>> attach(oboe, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Oboe }
-            \set Staff.shortInstrumentName = \markup { Ob. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> oboe = abjad.instrumenttools.Oboe()
+            >>> abjad.attach(oboe, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Oboe }
+                \set Staff.shortInstrumentName = \markup { Ob. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -128,7 +135,7 @@ class Oboe(Instrument):
             ::
 
                 >>> oboe.pitch_range
-                PitchRange(range_string='[Bb3, A6]')
+                PitchRange('[Bb3, A6]')
 
             ::
 

@@ -4,26 +4,32 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Violin(Instrument):
-    r'''A violin.
+    r'''Violin.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> violin = instrumenttools.Violin()
-        >>> attach(violin, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Violin }
-            \set Staff.shortInstrumentName = \markup { Vn. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> violin = abjad.instrumenttools.Violin()
+            >>> abjad.attach(violin, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Violin }
+                \set Staff.shortInstrumentName = \markup { Vn. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
@@ -128,6 +134,42 @@ class Violin(Instrument):
 
                 >>> show(violin.instrument_name_markup) # doctest: +SKIP
 
+        ..  container:: example
+
+            Regression: markup is preserved under new-duplication:
+
+            ::
+
+                >>> markup = abjad.Markup('Violin').italic().hcenter_in(12)
+                >>> violin_1 = abjad.instrumenttools.Violin(
+                ...     instrument_name_markup=markup,
+                ...     )
+                >>> f(violin_1.instrument_name_markup)
+                \markup {
+                    \hcenter-in
+                        #12
+                        \italic
+                            Violin
+                    }
+
+            ::
+
+                >>> violin_2 = abjad.new(violin_1)
+                >>> f(violin_2.instrument_name_markup)
+                \markup {
+                    \hcenter-in
+                        #12
+                        \italic
+                            Violin
+                    }
+
+            ::
+
+                >>> markup_1 = violin_1.instrument_name_markup
+                >>> markup_2 = violin_2.instrument_name_markup
+                >>> markup_1 == markup_2
+                True
+
         Returns markup.
         '''
         return Instrument.instrument_name_markup.fget(self)
@@ -141,7 +183,7 @@ class Violin(Instrument):
             ::
 
                 >>> violin.pitch_range
-                PitchRange(range_string='[G3, G7]')
+                PitchRange('[G3, G7]')
 
             ::
 

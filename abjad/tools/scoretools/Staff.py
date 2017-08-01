@@ -3,35 +3,37 @@ from abjad.tools.scoretools.Context import Context
 
 
 class Staff(Context):
-    r'''A staff.
+    r'''Staff.
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> print(format(staff))
-        \new Staff {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
+        ::
 
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+        ..  docs::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> f(staff)
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
 
-    Returns Staff instance.
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Contexts'
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     _default_context_name = 'Staff'
 

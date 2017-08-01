@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Vibraphone(Instrument):
-    r'''A vibraphone.
+    r'''Vibraphone.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> vibraphone = instrumenttools.Vibraphone()
-        >>> attach(vibraphone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Vibraphone }
-            \set Staff.shortInstrumentName = \markup { Vibr. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> vibraphone = abjad.instrumenttools.Vibraphone()
+            >>> abjad.attach(vibraphone, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Vibraphone }
+                \set Staff.shortInstrumentName = \markup { Vibr. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -125,7 +132,7 @@ class Vibraphone(Instrument):
             ::
 
                 >>> vibraphone.pitch_range
-                PitchRange(range_string='[F3, F6]')
+                PitchRange('[F3, F6]')
 
             ::
 

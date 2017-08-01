@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import iterate
@@ -7,6 +8,11 @@ from abjad.tools.abctools import AbjadValueObject
 
 class LogicalTieSelectorCallback(AbjadValueObject):
     r'''Logical tie selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -34,11 +40,11 @@ class LogicalTieSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, argument, rotation=None):
-        r'''Iterates tuple `argument`.
+        r'''Iterates `argument`.
 
         Returns tuple of selections.
         '''
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         result = []
         if self.flatten:
             visited_logical_ties = set()

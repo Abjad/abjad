@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_spannertools_PhrasingSlur___init___01():
     r'''Initialize empty phrasing slur.
     '''
 
-    phrasing_slur = spannertools.PhrasingSlur()
-    assert isinstance(phrasing_slur, spannertools.PhrasingSlur)
+    phrasing_slur = abjad.PhrasingSlur()
+    assert isinstance(phrasing_slur, abjad.PhrasingSlur)
 
 
 def test_spannertools_PhrasingSlur___init___02():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    phrasing_slur = spannertools.PhrasingSlur()
-    attach(phrasing_slur, staff[:])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    phrasing_slur = abjad.PhrasingSlur()
+    abjad.attach(phrasing_slur, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 \(
@@ -27,4 +27,4 @@ def test_spannertools_PhrasingSlur___init___02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()

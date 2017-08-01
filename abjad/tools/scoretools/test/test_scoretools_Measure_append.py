@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 import pytest
 
 
@@ -7,7 +7,7 @@ def test_scoretools_Measure_append_01():
     r'''Time signature does not automatically adjust.
     '''
 
-    measure = Measure((3, 4), "c' d' e'")
+    measure = abjad.Measure((3, 4), "c' d' e'")
     measure.append('r')
 
     assert measure.is_overfull
@@ -18,12 +18,12 @@ def test_scoretools_Measure_append_02():
     r'''Time signature adjusts automatically.
     '''
 
-    measure = Measure((3, 4), "c' d' e'")
+    measure = abjad.Measure((3, 4), "c' d' e'")
     measure.automatically_adjust_time_signature = True
     measure.append('r')
 
     assert not measure.is_misfilled
-    assert format(measure) == stringtools.normalize(
+    assert format(measure) == abjad.String.normalize(
         r'''
         {
             \time 4/4

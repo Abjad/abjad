@@ -5,6 +5,7 @@ from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 
 
+# TODO: should not inherit from AbjadObject because no slots
 class LilyPondLexicalDefinition(AbjadObject):
     r'''The lexical definition of LilyPond's syntax.
 
@@ -14,6 +15,8 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     Used internally by ``LilyPondParser``.
     '''
+
+    ### INITIALIZER ###
 
     def __init__(self, client=None):
         self.client = client

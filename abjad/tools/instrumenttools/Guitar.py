@@ -4,26 +4,32 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Guitar(Instrument):
-    r'''A guitar.
+    r'''Guitar.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> guitar = instrumenttools.Guitar()
-        >>> attach(guitar, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Guitar }
-            \set Staff.shortInstrumentName = \markup { Gt. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> guitar = abjad.instrumenttools.Guitar()
+            >>> abjad.attach(guitar, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Guitar }
+                \set Staff.shortInstrumentName = \markup { Gt. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
@@ -143,7 +149,7 @@ class Guitar(Instrument):
             ::
 
                 >>> guitar.pitch_range
-                PitchRange(range_string='[E2, E5]')
+                PitchRange('[E2, E5]')
 
             ::
 

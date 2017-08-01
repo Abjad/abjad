@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class SopraninoSaxophone(Instrument):
-    r'''A sopranino saxophone.
+    r'''Sopranino saxophone.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> sopranino_saxophone = instrumenttools.SopraninoSaxophone()
-        >>> attach(sopranino_saxophone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Sopranino saxophone" }
-            \set Staff.shortInstrumentName = \markup { "Sopranino sax." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> sopranino_saxophone = abjad.instrumenttools.SopraninoSaxophone()
+            >>> abjad.attach(sopranino_saxophone, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Sopranino saxophone" }
+                \set Staff.shortInstrumentName = \markup { "Sopranino sax." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -127,7 +134,7 @@ class SopraninoSaxophone(Instrument):
             ::
 
                 >>> sopranino_saxophone.pitch_range
-                PitchRange(range_string='[Db4, F#6]')
+                PitchRange('[Db4, F#6]')
 
             ::
 

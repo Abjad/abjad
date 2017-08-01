@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -7,22 +6,26 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class LilyPondCommand(AbjadValueObject):
     r'''LilyPond command.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Dotted slur:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> slur = spannertools.Slur()
-            >>> attach(slur, staff[:])
-            >>> command = indicatortools.LilyPondCommand('slurDotted')
-            >>> attach(command, staff[0])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> slur = abjad.Slur()
+            >>> abjad.attach(slur, staff[:])
+            >>> command = abjad.LilyPondCommand('slurDotted')
+            >>> abjad.attach(command, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \slurDotted
                 c'8 (
@@ -36,13 +39,10 @@ class LilyPondCommand(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_format_slot',
         '_name',
         '_prefix',
         )
-
-    _format_leaf_children = False
 
     _allowable_format_slots = (
         'after',
@@ -52,10 +52,13 @@ class LilyPondCommand(AbjadValueObject):
         'right',
         )
 
+    _can_attach_to_containers = True
+
+    _format_leaf_children = False
+
     ### INITIALIZER ###
 
     def __init__(self, name=None, format_slot=None, prefix='\\'):
-        self._default_scope = None
         name = name or 'slurDotted'
         format_slot = format_slot or 'opening'
         assert format_slot in self._allowable_format_slots, repr(format_slot)
@@ -102,20 +105,21 @@ class LilyPondCommand(AbjadValueObject):
             )
 
     def _get_lilypond_format(self):
+        import abjad
         command = self._name
         if command.startswith('#'):
             return command
         elif ' ' not in command:
-            return self.prefix + stringtools.to_lower_camel_case(command)
+            return self.prefix + abjad.String(command).to_lower_camel_case()
         else:
             return self.prefix + command
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        format_slot = lilypond_format_bundle.get(self.format_slot)
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        format_slot = bundle.get(self.format_slot)
         format_slot.commands.append(self._get_lilypond_format())
-        return lilypond_format_bundle
+        return bundle
 
     ### PUBLIC METHODS ###
 
@@ -127,7 +131,7 @@ class LilyPondCommand(AbjadValueObject):
 
             Default:
 
-                >>> commands = indicatortools.LilyPondCommand.list_allowable_format_slots()
+                >>> commands = abjad.LilyPondCommand.list_allowable_format_slots()
                 >>> for command in commands:
                 ...     command
                 'after'
@@ -143,24 +147,6 @@ class LilyPondCommand(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def default_scope(self):
-        r'''Gets default scope of LilyPond command.
-
-        ..  container:: example
-
-            Dotted slur:
-
-            ::
-
-                >>> command = indicatortools.LilyPondCommand('slurDotted')
-                >>> command.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
-
-    @property
     def format_slot(self):
         r'''Gets format slot of LilyPond command.
 
@@ -170,7 +156,7 @@ class LilyPondCommand(AbjadValueObject):
 
             ::
 
-                >>> command = indicatortools.LilyPondCommand('slurDotted')
+                >>> command = abjad.LilyPondCommand('slurDotted')
                 >>> command.format_slot
                 'opening'
 
@@ -190,7 +176,7 @@ class LilyPondCommand(AbjadValueObject):
 
             ::
 
-                >>> command = indicatortools.LilyPondCommand('slurDotted')
+                >>> command = abjad.LilyPondCommand('slurDotted')
                 >>> command.name
                 'slurDotted'
 

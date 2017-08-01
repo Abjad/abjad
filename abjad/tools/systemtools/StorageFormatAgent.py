@@ -12,6 +12,12 @@ except ImportError:
 
 class StorageFormatAgent(AbjadValueObject):
     r'''Manages Abjad object storage formats.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     '''
 
     ### CLASS VARIABLES ###
@@ -30,18 +36,15 @@ class StorageFormatAgent(AbjadValueObject):
     _exclude_tools_package = (
         'durationtools',
         'datastructuretools',
-        'expressiontools',
         'indicatortools',
         'markuptools',
         'mathtools',
         'metertools',
-        'patterntools',
         'pitchtools',
         'schemetools',
         'scoretools',
         'selectiontools',
         'selectortools',
-        'sequencetools',
         'timespantools',
         )
 
@@ -51,7 +54,7 @@ class StorageFormatAgent(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, client):
+    def __init__(self, client=None):
         self._client = client
         self._format_specification = None
         (
@@ -81,8 +84,7 @@ class StorageFormatAgent(AbjadValueObject):
                 as_storage_format=as_storage_format,
                 )
             return list(pieces)
-        elif not as_storage_format and (
-            hasattr(self._client, '_repr_specification') or
+        elif (not as_storage_format and 
             hasattr(self._client, '_get_format_specification')
             ):
             pieces = self._format_specced_object(
@@ -303,29 +305,19 @@ class StorageFormatAgent(AbjadValueObject):
                 kwargs_names = spec.storage_format_kwargs_names
                 text = spec.storage_format_text
         else:
-            spec = getattr(self._client, '_repr_specification', None)
-            if spec:
-                #print('REPR', type(self._client), getattr(self._client, 'name', None))
-                via = '_repr_specification'
-                args_values = spec.positional_argument_values
-                is_bracketed = spec.is_bracketed
-                is_indented = spec.is_indented
-                kwargs_names = spec.keyword_argument_names
-                text = spec.repr_text
-            else:
-                spec = self.format_specification
-                via = '_get_format_specification()'
-                args_values = spec.repr_args_values
-                if args_values is None:
-                    args_values = spec.storage_format_args_values
-                is_bracketed = spec.repr_is_bracketed
-                is_indented = spec.repr_is_indented
-                kwargs_names = spec.repr_kwargs_names
-                if kwargs_names is None:
-                    kwargs_names = spec.storage_format_kwargs_names
-                text = spec.repr_text
-                if text is None:
-                    text = spec.storage_format_text
+            spec = self.format_specification
+            via = '_get_format_specification()'
+            args_values = spec.repr_args_values
+            if args_values is None:
+                args_values = spec.storage_format_args_values
+            is_bracketed = spec.repr_is_bracketed
+            is_indented = spec.repr_is_indented
+            kwargs_names = spec.repr_kwargs_names
+            if kwargs_names is None:
+                kwargs_names = spec.storage_format_kwargs_names
+            text = spec.repr_text
+            if text is None:
+                text = spec.storage_format_text
         if kwargs_names is None:
             kwargs_names = self.signature_keyword_names
         if args_values is None:
@@ -376,9 +368,9 @@ class StorageFormatAgent(AbjadValueObject):
 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
-                ...         left_classes=[Rest],
+                ...         left_classes=[abjad.Rest],
                 ...         left_counts=[1],
-                ...         right_classes=[Rest],
+                ...         right_classes=[abjad.Rest],
                 ...         right_counts=[2],
                 ...         outer_divisions_only=True,
                 ...         ),
@@ -386,7 +378,7 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> types = systemtools.StorageFormatAgent._get_types(maker)
+                >>> types = abjad.StorageFormatAgent._get_types(maker)
                 >>> for _ in types:
                 ...     _
                 ...
@@ -398,13 +390,13 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> dictionary = datastructuretools.TypedOrderedDict(
-                ...     item_class=pitchtools.NamedPitch,
+                >>> dictionary = abjad.TypedOrderedDict(
+                ...     item_class=abjad.NamedPitch,
                 ...     )
 
             ::
 
-                >>> types = systemtools.StorageFormatAgent._get_types(dictionary)
+                >>> types = abjad.StorageFormatAgent._get_types(dictionary)
                 >>> for _ in types:
                 ...     _
                 ...
@@ -495,6 +487,48 @@ class StorageFormatAgent(AbjadValueObject):
         names = names[:len(values)]
         return names
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        return self._client
+
+    @property
+    def format_specification(self):
+        from abjad.tools import systemtools
+        if self._format_specification is None:
+            if (not isinstance(self._client, type) and
+                hasattr(self._client, '_get_format_specification')):
+                self._format_specification = \
+                    self._client._get_format_specification()
+            else:
+                self._format_specification = \
+                    systemtools.FormatSpecification(self._client)
+        return self._format_specification
+
+    @property
+    def signature_accepts_args(self):
+        return self._signature_accepts_args
+
+    @property
+    def signature_accepts_kwargs(self):
+        return self._signature_accepts_kwargs
+
+    @property
+    def signature_keyword_names(self):
+        return self._signature_keyword_names
+
+    @property
+    def signature_names(self):
+        return (
+            self.signature_positional_names +
+            self.signature_keyword_names
+            )
+
+    @property
+    def signature_positional_names(self):
+        return self._signature_positional_names
+
     ### PUBLIC METHODS ###
 
     def get_class_name_prefix(
@@ -539,7 +573,7 @@ class StorageFormatAgent(AbjadValueObject):
                 >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, 2)],
                 ...     division_masks=[
-                ...         rhythmmakertools.silence_every([1], period=2),
+                ...         abjad.silence_every([1], period=2),
                 ...         ],
                 ...     )
                 >>> f(rhythm_maker)
@@ -561,12 +595,12 @@ class StorageFormatAgent(AbjadValueObject):
 
             ::
 
-                >>> agent = systemtools.StorageFormatAgent(rhythm_maker)
+                >>> agent = abjad.StorageFormatAgent(rhythm_maker)
                 >>> for line in agent.get_import_statements():
                 ...     line
                 ...
+                'from abjad.tools import datastructuretools'
                 'from abjad.tools import mathtools'
-                'from abjad.tools import patterntools'
                 'from abjad.tools import rhythmmakertools'
 
         Returns tuple of strings.
@@ -592,11 +626,7 @@ class StorageFormatAgent(AbjadValueObject):
         return tuple(sorted(import_statements))
 
     def get_repr_format(self):
-        assert (
-            '_repr_specification' in dir(self._client) or
-            hasattr(self._client, '_repr_specification') or
-            hasattr(self._client, '_get_format_specification')
-            )
+        assert hasattr(self._client, '_get_format_specification')
         pieces = self._format_specced_object(
             as_storage_format=False,
             )
@@ -606,8 +636,8 @@ class StorageFormatAgent(AbjadValueObject):
         from abjad.tools import systemtools
         names = self.specification.repr_kwargs_names
         if names is None:
-            specification = getattr(self.client, '_repr_specification',
-                systemtools.StorageFormatSpecification(self.client))
+            specification = systemtools.StorageFormatSpecification(
+                self.client)
             names = specification.keyword_argument_names or ()
         keyword_dict = {}
         for name in names:
@@ -618,8 +648,8 @@ class StorageFormatAgent(AbjadValueObject):
         from abjad.tools import systemtools
         values = self.specification.repr_args_values
         if values is None:
-            specification = getattr(self.client, '_repr_specification',
-                systemtools.StorageFormatSpecification(self.client))
+            specification = systemtools.StorageFormatSpecification(
+                self.client)
             values = specification.positional_argument_values or ()
         return tuple(values)
 
@@ -696,7 +726,7 @@ class StorageFormatAgent(AbjadValueObject):
         return '.'.join(parts[:-1])
 
     @classmethod
-    def inspect_signature(cls, subject):
+    def inspect_signature(class_, subject):
         positional_names = []
         keyword_names = []
         accepts_args = False
@@ -746,7 +776,7 @@ class StorageFormatAgent(AbjadValueObject):
             elif parameter.kind == funcsigs._VAR_KEYWORD:
                 accepts_kwargs = True
         if platform.python_implementation() == 'PyPy':
-            # Funcsigs under PyPy doesn't discard cls or self.
+            # Funcsigs under PyPy doesn't discard class_ or self.
             if positional_names:
                 positional_names.pop(0)
         return (
@@ -755,45 +785,3 @@ class StorageFormatAgent(AbjadValueObject):
             accepts_args,
             accepts_kwargs,
             )
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        return self._client
-
-    @property
-    def format_specification(self):
-        from abjad.tools import systemtools
-        if self._format_specification is None:
-            if (not isinstance(self._client, type) and
-                hasattr(self._client, '_get_format_specification')):
-                self._format_specification = \
-                    self._client._get_format_specification()
-            else:
-                self._format_specification = \
-                    systemtools.FormatSpecification(self._client)
-        return self._format_specification
-
-    @property
-    def signature_accepts_args(self):
-        return self._signature_accepts_args
-
-    @property
-    def signature_accepts_kwargs(self):
-        return self._signature_accepts_kwargs
-
-    @property
-    def signature_keyword_names(self):
-        return self._signature_keyword_names
-
-    @property
-    def signature_names(self):
-        return (
-            self.signature_positional_names +
-            self.signature_keyword_names
-            )
-
-    @property
-    def signature_positional_names(self):
-        return self._signature_positional_names

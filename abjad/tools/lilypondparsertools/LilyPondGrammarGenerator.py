@@ -6,6 +6,11 @@ class LilyPondGrammarGenerator(AbjadObject):
     r'''Generates a syntax skeleton from LilyPond grammar files.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __call__(

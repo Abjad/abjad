@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class AltoVoice(Instrument):
-    r'''A alto voice.
+    r'''Alto voice.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> alto = instrumenttools.AltoVoice()
-        >>> attach(alto, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Alto }
-            \set Staff.shortInstrumentName = \markup { Alto }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> alto = abjad.instrumenttools.AltoVoice()
+            >>> abjad.attach(alto, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Alto }
+                \set Staff.shortInstrumentName = \markup { Alto }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     performer_abbreviation = 'alto'
 
@@ -128,7 +135,7 @@ class AltoVoice(Instrument):
             ::
 
                 >>> alto.pitch_range
-                PitchRange(range_string='[F3, G5]')
+                PitchRange('[F3, G5]')
 
             ::
 

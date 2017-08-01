@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
-from abjad import *
-configuration = systemtools.AbjadConfiguration()
+configuration = abjad.AbjadConfiguration()
 ly_path = os.path.join(
     configuration.abjad_directory, 
     'test.ly',
@@ -9,24 +9,24 @@ ly_path = os.path.join(
 
 
 def test_agenttools_PersistenceAgent_as_ly_01():
-    r'''Agent persists LilyPond file when no LilyPond file exists.
+    r'''Agent abjad.persists LilyPond file when no LilyPond file exists.
     '''
 
-    note = Note("c'4")
-    with systemtools.FilesystemState(remove=[ly_path]):
-        result = persist(note).as_ly(ly_path)
+    note = abjad.Note("c'4")
+    with abjad.FilesystemState(remove=[ly_path]):
+        result = abjad.persist(note).as_ly(ly_path)
         assert os.path.isfile(ly_path)
         assert isinstance(result, tuple)
 
         
 def test_agenttools_PersistenceAgent_as_ly_02():
-    r'''Agent persists LilyPond file when LilyPond file already exists.
+    r'''Agent abjad.persists LilyPond file when LilyPond file already exists.
     '''
 
-    note = Note("c'4")
-    with systemtools.FilesystemState(remove=[ly_path]):
-        result = persist(note).as_ly(ly_path)
+    note = abjad.Note("c'4")
+    with abjad.FilesystemState(remove=[ly_path]):
+        result = abjad.persist(note).as_ly(ly_path)
         assert isinstance(result, tuple)
         assert os.path.isfile(ly_path)
-        persist(note).as_ly(ly_path)
+        abjad.persist(note).as_ly(ly_path)
         assert os.path.isfile(ly_path)

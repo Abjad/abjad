@@ -5,16 +5,20 @@ from abjad.tools.spannertools.Spanner import Spanner
 class HiddenStaffSpanner(Spanner):
     r'''Hidden staff spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.HiddenStaffSpanner()
-            >>> attach(spanner, staff[1:3])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = abjad.HiddenStaffSpanner()
+            >>> abjad.attach(spanner, staff[1:3])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -49,14 +53,11 @@ class HiddenStaffSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _format_after_leaf(self, leaf):
-        result = []
-        if self._is_my_last_leaf(leaf):
-            result.append(r'\startStaff')
-        return result
-
-    def _format_before_leaf(self, leaf):
-        result = []
+    def _get_lilypond_format_bundle(self, leaf):
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_first_leaf(leaf):
-            result.append(r'\stopStaff')
-        return result
+            bundle.before.commands.append(r'\stopStaff')
+        if self._is_my_last_leaf(leaf):
+            bundle.after.commands.append(r'\startStaff')
+        return bundle

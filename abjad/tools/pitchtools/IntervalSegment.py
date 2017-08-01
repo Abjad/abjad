@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import new
 
 
 class IntervalSegment(Segment):
     r'''Interval segment.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -16,7 +20,7 @@ class IntervalSegment(Segment):
         ::
 
             >>> intervals = 'm2 M10 -aug4 P5'
-            >>> pitchtools.IntervalSegment(intervals)
+            >>> abjad.IntervalSegment(intervals)
             IntervalSegment(['+m2', '+M10', '-aug4', '+P5'])
 
     ..  container:: example
@@ -25,8 +29,8 @@ class IntervalSegment(Segment):
 
         ::
 
-            >>> pitch_segment = pitchtools.PitchSegment("c d e f g a b c'")
-            >>> pitchtools.IntervalSegment(pitch_segment)
+            >>> pitch_segment = abjad.PitchSegment("c d e f g a b c'")
+            >>> abjad.IntervalSegment(pitch_segment)
             IntervalSegment(['+M2', '+M2', '+m2', '+M2', '+M2', '+M2', '+m2'])
 
     '''
@@ -38,15 +42,11 @@ class IntervalSegment(Segment):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        item_class=None,
-        ):
+    def __init__(self, items=None, item_class=None):
         from abjad.tools import pitchtools
         if isinstance(items, pitchtools.PitchSegment):
             intervals = []
-            for one, two in sequencetools.Sequence(items).nwise():
+            for one, two in datastructuretools.Sequence(items).nwise():
                 intervals.append(one - two)
             items = intervals
         Segment.__init__(
@@ -83,7 +83,7 @@ class IntervalSegment(Segment):
 
         ::
 
-            >>> pitchtools.IntervalSegment([1, 2]).slope
+            >>> abjad.IntervalSegment([1, 2]).slope
             Multiplier(3, 2)
 
         Returns multiplier.
@@ -93,19 +93,19 @@ class IntervalSegment(Segment):
 
     @property
     def spread(self):
-        r'''Spread of interval segment.
+        r'''Gets spread of interval segment.
 
         The maximum interval spanned by any combination of
         the intervals within a numbered interval segment.
 
         ::
 
-            >>> pitchtools.IntervalSegment([1, 2, -3, 1, -2, 1]).spread
+            >>> abjad.IntervalSegment([1, 2, -3, 1, -2, 1]).spread
             NumberedInterval(4)
 
         ::
 
-            >>> pitchtools.IntervalSegment([1, 1, 1, 2, -3, -2]).spread
+            >>> abjad.IntervalSegment([1, 1, 1, 2, -3, -2]).spread
             NumberedInterval(5)
 
         Returns numbered interval.
@@ -113,7 +113,7 @@ class IntervalSegment(Segment):
         from abjad.tools import pitchtools
         current = maximum = minimum = 0
         for x in self:
-            current += float(x)
+            current += float(x.number)
             if maximum < current:
                 maximum = current
             if current < minimum:
@@ -132,9 +132,11 @@ class IntervalSegment(Segment):
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-            >>> pitchtools.IntervalSegment.from_selection(
-            ...     staff, item_class=pitchtools.NumberedInterval)
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+            >>> abjad.IntervalSegment.from_selection(
+            ...     staff,
+            ...     item_class=abjad.NumberedInterval,
+            ...     )
             IntervalSegment([2, 2, 1, 2, 2, 2, 1])
 
         Returns interval segment.
@@ -154,14 +156,14 @@ class IntervalSegment(Segment):
         ::
 
             >>> intervals = 'm2 M3 -aug4 m2 P5'
-            >>> segment = pitchtools.IntervalSegment(intervals)
+            >>> segment = abjad.IntervalSegment(intervals)
             >>> segment.has_duplicates()
             True
 
         ::
 
             >>> intervals = 'M3 -aug4 m2 P5'
-            >>> segment = pitchtools.IntervalSegment(intervals)
+            >>> segment = abjad.IntervalSegment(intervals)
             >>> segment.has_duplicates()
             False
 

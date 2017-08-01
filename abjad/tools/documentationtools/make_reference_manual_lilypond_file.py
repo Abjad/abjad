@@ -1,61 +1,69 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import set_
+from abjad.tools.topleveltools import setting
 
 
 def make_reference_manual_lilypond_file(music=None, **keywords):
     r'''Makes reference manual LilyPond file.
 
-        >>> score = Score([Staff('c d e f')])
-        >>> lilypond_file = \
-        ...     documentationtools.make_reference_manual_lilypond_file(score)
+    ::
 
-    ..  doctest::
+        >>> import abjad
 
-        >>> print(format(lilypond_file)) # doctest: +SKIP
-        \version "2.19.15"
-        \language "english"
-        <BLANKLINE>
-        #(set-global-staff-size 12)
-        <BLANKLINE>
-        \header {
-            tagline = ##f
-        }
-        <BLANKLINE>
-        \layout {
-            indent = #0
-            ragged-right = ##t
-            \context {
-                \Score
-                \remove Bar_number_engraver
-                \override SpacingSpanner.strict-grace-spacing = ##t
-                \override SpacingSpanner.strict-note-spacing = ##t
-                \override SpacingSpanner.uniform-stretching = ##t
-                \override TupletBracket.bracket-visibility = ##t
-                \override TupletBracket.minimum-length = #3
-                \override TupletBracket.padding = #2
-                \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                proportionalNotationDuration = #(ly:make-moment 1 24)
-                tupletFullLength = ##t
+    ..  container:: example
+
+        ::
+
+            >>> score = abjad.Score([abjad.Staff('c d e f')])
+            >>> lilypond_file = \
+            ...     abjad.documentationtools.make_reference_manual_lilypond_file(score)
+
+        ..  docs::
+
+            >>> print(format(lilypond_file)) # doctest: +SKIP
+            \version "2.19.15"
+            \language "english"
+            <BLANKLINE>
+            #(set-global-staff-size 12)
+            <BLANKLINE>
+            \header {
+                tagline = ##f
             }
-        }
-        <BLANKLINE>
-        \paper {
-            left-margin = 1\in
-        }
-        <BLANKLINE>
-        \score {
-            \new Score <<
-                \new Staff {
-                    c4
-                    d4
-                    e4
-                    f4
+            <BLANKLINE>
+            \layout {
+                indent = #0
+                ragged-right = ##t
+                \context {
+                    \Score
+                    \remove Bar_number_engraver
+                    \override SpacingSpanner.strict-grace-spacing = ##t
+                    \override SpacingSpanner.strict-note-spacing = ##t
+                    \override SpacingSpanner.uniform-stretching = ##t
+                    \override TupletBracket.bracket-visibility = ##t
+                    \override TupletBracket.minimum-length = #3
+                    \override TupletBracket.padding = #2
+                    \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
+                    proportionalNotationDuration = #(ly:make-moment 1 24)
+                    tupletFullLength = ##t
                 }
-            >>
-        }
+            }
+            <BLANKLINE>
+            \paper {
+                left-margin = 1\in
+            }
+            <BLANKLINE>
+            \score {
+                \new Score <<
+                    \new Staff {
+                        c4
+                        d4
+                        e4
+                        f4
+                    }
+                >>
+            }
 
     Returns LilyPond file.
     '''
@@ -108,8 +116,8 @@ def make_reference_manual_lilypond_file(music=None, **keywords):
     scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
     override(context_block).tuplet_number.text = scheme
     moment = schemetools.SchemeMoment((1, 24))
-    set_(context_block).proportionalNotationDuration = moment
-    set_(context_block).tupletFullLength = True
+    setting(context_block).proportionalNotationDuration = moment
+    setting(context_block).tupletFullLength = True
     layout_block.items.append(context_block)
 
     # header

@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     r'''Fuse leaves in logical tie with same immediate parent.
     '''
 
-    staff = Staff(2 * Measure((2, 8), "c'8 c'8"))
-    leaves = select(staff).by_leaf()
-    tie = spannertools.Tie()
-    attach(tie, leaves)
+    staff = abjad.Staff(2 * abjad.Measure((2, 8), "c'8 c'8"))
+    leaves = abjad.select(staff).by_leaf()
+    tie = abjad.Tie()
+    abjad.attach(tie, leaves)
 
-    logical_tie = inspect_(leaves[1]).get_logical_tie()
+    logical_tie = abjad.inspect(leaves[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -29,18 +29,18 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
         )
 
     assert len(result) == 2
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
     r'''Fuse leaves in logical tie with same immediate parent.
     '''
 
-    staff = Staff("c'8 c'8 c'8 c'8")
-    tie = spannertools.Tie()
-    attach(tie, staff[:])
+    staff = abjad.Staff("c'8 c'8 c'8 c'8")
+    tie = abjad.Tie()
+    abjad.attach(tie, staff[:])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 ~
@@ -51,10 +51,10 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
         '''
         )
 
-    logical_tie = inspect_(staff[1]).get_logical_tie()
+    logical_tie = abjad.inspect(staff[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'2
@@ -62,7 +62,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
     assert len(result) == 1
 
 
@@ -70,8 +70,8 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_03():
     r'''Fuse leaves in logical tie with same immediate parent.
     '''
 
-    note = Note("c'4")
-    logical_tie = inspect_(note).get_logical_tie()
+    note = abjad.Note("c'4")
+    logical_tie = abjad.inspect(note).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
     assert len(result) == 1
-    assert inspect_(note).is_well_formed()
+    assert abjad.inspect(note).is_well_formed()

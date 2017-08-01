@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_spannertools_OctavationSpanner_adjust_automatically_01():
 
-    container = Container(scoretools.make_notes([24, 26, 27, 29], [(1, 8)]))
+    maker = abjad.NoteMaker()
+    notes = maker([24, 26, 27, 29], [(1, 8)])
+    container = abjad.Container(notes)
 
-    octavation_spanner = spannertools.OctavationSpanner()
-    attach(octavation_spanner, container[:])
+    octavation_spanner = abjad.OctavationSpanner()
+    abjad.attach(octavation_spanner, container[:])
     octavation_spanner.adjust_automatically(ottava_breakpoint=14)
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r"""
         {
             \ottava #1
@@ -23,22 +25,24 @@ def test_spannertools_OctavationSpanner_adjust_automatically_01():
         """
         )
 
-    assert inspect_(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()
 
 
 def test_spannertools_OctavationSpanner_adjust_automatically_02():
 
-    container = Container([Note(31, (1, 4))])
-    assert container[0].written_pitch.diatonic_pitch_number == 18
+    note = abjad.Note(31, (1, 4))
+    container = abjad.Container([note])
+    assert container[0].written_pitch.to_staff_position() == \
+        abjad.StaffPosition(18)
 
-    octavation_spanner = spannertools.OctavationSpanner()
-    attach(octavation_spanner, container[:])
+    octavation_spanner = abjad.OctavationSpanner()
+    abjad.attach(octavation_spanner, container[:])
     octavation_spanner.adjust_automatically(
         ottava_breakpoint=15,
         quindecisima_breakpoint=19,
         )
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r"""
         {
             \ottava #1
@@ -48,4 +52,4 @@ def test_spannertools_OctavationSpanner_adjust_automatically_02():
         """
         )
 
-    assert inspect_(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()

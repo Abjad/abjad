@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class CompoundOperator(AbjadValueObject):
     r'''Compound operator.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -13,7 +16,7 @@ class CompoundOperator(AbjadValueObject):
 
         ::
 
-            >>> operator = pitchtools.CompoundOperator()
+            >>> operator = abjad.CompoundOperator()
             >>> operator = operator.rotate(n=1, stravinsky=True)
             >>> operator = operator.transpose(n=2)
 
@@ -24,7 +27,7 @@ class CompoundOperator(AbjadValueObject):
 
         ::
 
-            >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7])
+            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
             >>> operator(pitch_classes)
             PitchClassSegment([2, 7, 8, 11])
 
@@ -60,7 +63,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.transpose(n=1)
                 >>> operator = operator.multiply(n=5)
                 >>> str(operator)
@@ -70,9 +73,9 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> inversion = pitchtools.Inversion()
-                >>> retrograde = pitchtools.Retrograde()
-                >>> transposition = pitchtools.Transposition(n=1)
+                >>> inversion = abjad.Inversion()
+                >>> retrograde = abjad.Retrograde()
+                >>> transposition = abjad.Transposition(n=1)
 
             ::
 
@@ -125,7 +128,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.rotate(n=1, stravinsky=True)
                 >>> operator = operator.transpose(n=2)
                 >>> str(operator)
@@ -133,7 +136,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> segment = pitchtools.PitchClassSegment([0, 1, 4, 7])
+                >>> segment = abjad.PitchClassSegment([0, 1, 4, 7])
                 >>> show(segment) # doctest: +SKIP
 
             ::
@@ -161,7 +164,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.transpose(n=1)
                 >>> operator = operator.multiply(n=5)
                 >>> str(operator)
@@ -169,7 +172,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> retrograde = Retrograde()
+                >>> retrograde = abjad.Retrograde()
                 >>> new_operator = retrograde + operator
                 >>> str(new_operator)
                 'RM5T1'
@@ -201,7 +204,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.rotate(n=1)
                 >>> operator = operator.transpose(n=2)
 
@@ -216,7 +219,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
 
             ::
 
@@ -287,7 +290,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.rotate(n=1)
                 >>> operator = operator.transpose(n=2)
 
@@ -315,7 +318,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.transpose(n=0)
                 >>> operator = operator.multiply(n=5)
 
@@ -330,7 +333,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator(
+                >>> operator = abjad.CompoundOperator(
                 ...     show_identity_operators=True,
                 ...     )
                 >>> operator = operator.transpose(n=0)
@@ -372,7 +375,8 @@ class CompoundOperator(AbjadValueObject):
 
         Returns new compound operator.
         '''
-        operator = sequencetools.Duplication(
+        import abjad
+        operator = abjad.Duplication(
             counts=counts,
             indices=indices,
             period=period,
@@ -484,7 +488,7 @@ class CompoundOperator(AbjadValueObject):
 
             ::
 
-                >>> operator = pitchtools.CompoundOperator()
+                >>> operator = abjad.CompoundOperator()
                 >>> operator = operator.transpose(n=1)
 
             ::

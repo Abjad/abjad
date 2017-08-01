@@ -7,11 +7,15 @@ from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.topleveltools.override import override
-from abjad.tools.topleveltools.set_ import set_
+from abjad.tools.topleveltools.setting import setting
 
 
 class Duration(AbjadObject, Fraction):
     r'''Duration.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -19,7 +23,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(3)
+            >>> abjad.Duration(3)
             Duration(3, 1)
 
     ..  container:: example
@@ -28,7 +32,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(3, 16)
+            >>> abjad.Duration(3, 16)
             Duration(3, 16)
 
     ..  container:: example
@@ -37,7 +41,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(3.0)
+            >>> abjad.Duration(3.0)
             Duration(3, 1)
 
     ..  container:: example
@@ -46,7 +50,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(3.0, 16)
+            >>> abjad.Duration(3.0, 16)
             Duration(3, 16)
 
     ..  container:: example
@@ -55,7 +59,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration((3,))
+            >>> abjad.Duration((3,))
             Duration(3, 1)
 
     ..  container:: example
@@ -64,7 +68,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration((3, 16))
+            >>> abjad.Duration((3, 16))
             Duration(3, 16)
 
     ..  container:: example
@@ -73,7 +77,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(Duration(3, 16))
+            >>> abjad.Duration(abjad.Duration(3, 16))
             Duration(3, 16)
 
     ..  container:: example
@@ -82,7 +86,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(Fraction(3, 16))
+            >>> abjad.Duration(abjad.Fraction(3, 16))
             Duration(3, 16)
 
     ..  container:: example
@@ -91,7 +95,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration('3/16')
+            >>> abjad.Duration('3/16')
             Duration(3, 16)
 
     ..  container:: example
@@ -100,7 +104,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> Duration(mathtools.NonreducedFraction(6, 32))
+            >>> abjad.Duration(abjad.NonreducedFraction(6, 32))
             Duration(3, 16)
 
     ..  container:: example
@@ -109,12 +113,12 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> isinstance(Duration(3, 16), Fraction)
+            >>> isinstance(abjad.Duration(3, 16), abjad.Fraction)
             True
 
     ..  container:: example
 
-        Durations are numeric:
+        Durations are numbers:
 
         ::
 
@@ -122,7 +126,7 @@ class Duration(AbjadObject, Fraction):
 
         ::
 
-            >>> isinstance(Duration(3, 16), numbers.Number)
+            >>> isinstance(abjad.Duration(3, 16), numbers.Number)
             True
 
     '''
@@ -136,30 +140,41 @@ class Duration(AbjadObject, Fraction):
 
     def __new__(class_, *arguments):
         if len(arguments) == 1:
-            arg = arguments[0]
-            if type(arg) is class_:
-                return arg
-            if isinstance(arg, mathtools.NonreducedFraction):
-                return Fraction.__new__(class_, *arg.pair)
+            argument = arguments[0]
+            if type(argument) is class_:
+                return argument
+            if isinstance(argument, mathtools.NonreducedFraction):
+                return Fraction.__new__(class_, *argument.pair)
             try:
-                return Fraction.__new__(class_, *arg)
+                return Fraction.__new__(class_, *argument)
             except (AttributeError, TypeError):
                 pass
             try:
-                return Fraction.__new__(class_, arg)
+                return Fraction.__new__(class_, argument)
             except (AttributeError, TypeError):
                 pass
-            if mathtools.is_fraction_equivalent_pair(arg):
+            if (isinstance(argument, tuple) and
+                len(argument) == 2 and
+                mathtools.is_integer_equivalent(argument[0]) and
+                mathtools.is_integer_equivalent(argument[1]) and
+                not argument[1] == 0):
                 return Fraction.__new__(
-                    class_, int(arg[0]), int(arg[1]))
-            if hasattr(arg, 'duration'):
-                return Fraction.__new__(class_, arg.duration)
-            if isinstance(arg, str) and '/' not in arg:
+                    class_,
+                    int(argument[0]),
+                    int(argument[1]),
+                    )
+            try:
+                return Fraction.__new__(class_, argument.duration)
+            except AttributeError:
+                pass
+            if isinstance(argument, str) and '/' not in argument:
                 result = Duration._initialize_from_lilypond_duration_string(
-                    arg)
+                    argument)
                 return Fraction.__new__(class_, result)
-            if mathtools.is_integer_equivalent_singleton(arg):
-                return Fraction.__new__(class_, int(arg[0]))
+            if (isinstance(argument, tuple) and
+                len(argument) == 1 and
+                mathtools.is_integer_equivalent(argument[0])):
+                return Fraction.__new__(class_, int(argument[0]))
         else:
             try:
                 return Fraction.__new__(class_, *arguments)
@@ -192,8 +207,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> duration_1 = Duration(1, 2)
-                >>> duration_2 = Duration(3, 2)
+                >>> duration_1 = abjad.Duration(1, 2)
+                >>> duration_2 = abjad.Duration(3, 2)
                 >>> duration_1 + duration_2
                 Duration(2, 1)
 
@@ -204,8 +219,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> duration = Duration(1, 2)
-                >>> nonreduced_fraction = mathtools.NonreducedFraction(3, 6)
+                >>> duration = abjad.Duration(1, 2)
+                >>> nonreduced_fraction = abjad.NonreducedFraction(3, 6)
                 >>> duration + nonreduced_fraction
                 NonreducedFraction(6, 6)
 
@@ -222,6 +237,17 @@ class Duration(AbjadObject, Fraction):
 
     def __div__(self, *arguments):
         r'''Divides duration by `arguments`.
+
+        ..  container:: example
+
+            >>> abjad.Duration(1) / abjad.NonreducedFraction(3, 3)
+            NonreducedFraction(3, 3)
+
+
+        ::
+
+            >>> abjad.NonreducedFraction(3, 3) / abjad.Duration(1)
+            NonreducedFraction(3, 3)
 
         Returns multiplier.
         '''
@@ -246,13 +272,13 @@ class Duration(AbjadObject, Fraction):
         residue = type(self)(residue)
         return truncated, residue
 
-    def __eq__(self, arg):
-        r'''Is true when duration equals `arg`.
+    def __eq__(self, argument):
+        r'''Is true when duration equals `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__eq__(self, arg)
+        return Fraction.__eq__(self, argument)
 
     def __format__(self, format_specification=''):
         r'''Formats duration.
@@ -267,21 +293,21 @@ class Duration(AbjadObject, Fraction):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __ge__(self, arg):
-        r'''Is true when duration is greater than or equal to `arg`.
+    def __ge__(self, argument):
+        r'''Is true when duration is greater than or equal to `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__ge__(self, arg)
+        return Fraction.__ge__(self, argument)
 
-    def __gt__(self, arg):
-        r'''Is true when duration is greater than `arg`.
+    def __gt__(self, argument):
+        r'''Is true when duration is greater than `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__gt__(self, arg)
+        return Fraction.__gt__(self, argument)
 
     def __hash__(self):
         r'''Hashes duration.
@@ -292,21 +318,21 @@ class Duration(AbjadObject, Fraction):
         '''
         return super(Duration, self).__hash__()
 
-    def __le__(self, arg):
-        r'''Is true when duration is less than or equal to `arg`.
+    def __le__(self, argument):
+        r'''Is true when duration is less than or equal to `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__le__(self, arg)
+        return Fraction.__le__(self, argument)
 
-    def __lt__(self, arg):
-        r'''Is true when duration is less than `arg`.
+    def __lt__(self, argument):
+        r'''Is true when duration is less than `argument`.
         Otherwise false.
 
         Returns true or false.
         '''
-        return Fraction.__lt__(self, arg)
+        return Fraction.__lt__(self, argument)
 
     def __mod__(self, *arguments):
         r'''Modulus operator applied to duration.
@@ -324,8 +350,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> duration_1 = Duration(1, 2)
-                >>> duration_2 = Duration(3, 2)
+                >>> duration_1 = abjad.Duration(1, 2)
+                >>> duration_2 = abjad.Duration(3, 2)
                 >>> duration_1 * duration_2
                 Duration(3, 4)
 
@@ -336,8 +362,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> duration = Duration(1, 2)
-                >>> nonreduced_fraction = mathtools.NonreducedFraction(3, 6)
+                >>> duration = abjad.Duration(1, 2)
+                >>> nonreduced_fraction = abjad.NonreducedFraction(3, 6)
                 >>> duration * nonreduced_fraction
                 NonreducedFraction(3, 12)
 
@@ -351,14 +377,6 @@ class Duration(AbjadObject, Fraction):
         else:
             result = type(self)(Fraction.__mul__(self, *arguments))
         return result
-
-    def __ne__(self, arg):
-        r'''Is true when duration does not equal `arg`.
-        Otherwise false.
-
-        Returns true or false.
-        '''
-        return Fraction.__ne__(self, arg)
 
     def __neg__(self, *arguments):
         r'''Negates duration.
@@ -446,6 +464,18 @@ class Duration(AbjadObject, Fraction):
     def __sub__(self, *arguments):
         r'''Subtracts `arguments` from duration.
 
+        ..  container:: example
+
+            ::
+
+                >>> abjad.Duration(1, 2) - abjad.NonreducedFraction(2, 8)
+                NonreducedFraction(2, 8)
+
+            ::
+
+                >>> abjad.NonreducedFraction(4, 8) - abjad.Duration(1, 4)
+                NonreducedFraction(2, 8)
+
         Returns new duration.
         '''
         if (
@@ -532,6 +562,22 @@ class Duration(AbjadObject, Fraction):
         return rational
 
     @staticmethod
+    def _least_power_of_two_greater_equal(n, i=0):
+        r'''When ``i = 2``, returns the second integer power of 2 greater than
+        the least integer power of 2 greater than or equal to `n`, and, in
+        general, return the ``i`` th integer power of 2 greater than the least
+        integer power of 2 greater than or equal to `n`.
+
+        Returns integer.
+        '''
+        if not isinstance(n, (int, float, Fraction)):
+            raise TypeError
+        if n <= 0:
+            raise ValueError
+        result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
+        return result
+
+    @staticmethod
     def _make_markup_score_block(selection):
         from abjad.tools import lilypondfiletools
         from abjad.tools import schemetools
@@ -550,13 +596,13 @@ class Duration(AbjadObject, Fraction):
         override(staff).tuplet_bracket.shorten_pair = (-1, -1.5)
         scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
         override(staff).tuplet_number.text = scheme
-        set_(staff).tuplet_full_length = True
+        setting(staff).tuplet_full_length = True
         layout_block = lilypondfiletools.Block(name='layout')
         layout_block.indent = 0
         layout_block.ragged_right = True
         score = scoretools.Score([staff])
         override(score).spacing_spanner.spacing_increment = 0.5
-        set_(score).proportional_notation_duration = False
+        setting(score).proportional_notation_duration = False
         return score, layout_block
 
     @staticmethod
@@ -581,7 +627,7 @@ class Duration(AbjadObject, Fraction):
 
                 >>> for n in range(1, 16 + 1):
                 ...     try:
-                ...         duration = Duration(n, 16)
+                ...         duration = abjad.Duration(n, 16)
                 ...         sixteenths = duration.with_denominator(16)
                 ...         dot_count = duration.dot_count
                 ...         string = '{!s}\t{}'
@@ -635,7 +681,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(1, 16 + 1):
-                ...     duration = Duration(numerator, 16)
+                ...     duration = abjad.Duration(numerator, 16)
                 ...     result = duration.equal_or_greater_assignable
                 ...     sixteenths = duration.with_denominator(16)
                 ...     print('{!s}\t{!s}'.format(sixteenths, result))
@@ -679,7 +725,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(1, 16 + 1):
-                ...     duration = Duration(numerator, 16)
+                ...     duration = abjad.Duration(numerator, 16)
                 ...     result = duration.equal_or_greater_power_of_two
                 ...     sixteenths = duration.with_denominator(16)
                 ...     print('{!s}\t{!s}'.format(sixteenths, result))
@@ -717,7 +763,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(1, 16 + 1):
-                ...     duration = Duration(numerator, 16)
+                ...     duration = abjad.Duration(numerator, 16)
                 ...     result = duration.equal_or_lesser_assignable
                 ...     sixteenths = duration.with_denominator(16)
                 ...     print('{!s}\t{!s}'.format(sixteenths, result))
@@ -741,7 +787,7 @@ class Duration(AbjadObject, Fraction):
 
         Returns new duration.
         '''
-        good_denominator = mathtools.least_power_of_two_greater_equal(
+        good_denominator = self._least_power_of_two_greater_equal(
             self.denominator)
         current_numerator = self.numerator
         candidate = type(self)(current_numerator, good_denominator)
@@ -762,7 +808,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(1, 16 + 1):
-                ...     duration = Duration(numerator, 16)
+                ...     duration = abjad.Duration(numerator, 16)
                 ...     result = duration.equal_or_lesser_power_of_two
                 ...     sixteenths = duration.with_denominator(16)
                 ...     print('{!s}\t{!s}'.format(sixteenths, result))
@@ -800,7 +846,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for n in range(1, 16 + 1):
-                ...     duration = Duration(n, 64)
+                ...     duration = abjad.Duration(n, 64)
                 ...     sixty_fourths = duration.with_denominator(64)
                 ...     print('{!s}\t{}'.format(sixty_fourths, duration.flag_count))
                 ...
@@ -843,7 +889,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for n in range(1, 16 + 1):
-                ...     duration = Duration(1, n)
+                ...     duration = abjad.Duration(1, n)
                 ...     result = duration.has_power_of_two_denominator
                 ...     print('{!s}\t{}'.format(duration, result))
                 ...
@@ -880,7 +926,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for denominator in range(1, 16 + 1):
-                ...     duration = Duration(1, denominator)
+                ...     duration = abjad.Duration(1, denominator)
                 ...     result = duration.implied_prolation
                 ...     print('{!s}\t{!s}'.format(duration, result))
                 ...
@@ -919,7 +965,7 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> for numerator in range(0, 16 + 1):
-                ...     duration = Duration(numerator, 16)
+                ...     duration = abjad.Duration(numerator, 16)
                 ...     sixteenths = duration.with_denominator(16)
                 ...     print('{!s}\t{}'.format(sixteenths, duration.is_assignable))
                 ...
@@ -958,7 +1004,7 @@ class Duration(AbjadObject, Fraction):
 
             Gets LilyPond duration string:
 
-                >>> Duration(3, 16).lilypond_duration_string
+                >>> abjad.Duration(3, 16).lilypond_duration_string
                 '8.'
 
         Raises assignability error when duration is not assignable.
@@ -995,7 +1041,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> Duration(3, 16).pair
+                >>> abjad.Duration(3, 16).pair
                 (3, 16)
 
         Returns integer pair.
@@ -1012,29 +1058,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> generator = Duration.yield_durations(unique=True)
-                >>> for n in range(16):
-                ...     duration = next(generator)
-                ...     string = '{!s}\t{}'
-                ...     string = string.format(duration, duration.prolation_string)
-                ...     print(string)
-                ...
-                1       1:1
-                2       1:2
-                1/2     2:1
-                1/3     3:1
-                3       1:3
-                4       1:4
-                3/2     2:3
-                2/3     3:2
-                1/4     4:1
-                1/5     5:1
-                5       1:5
-                6       1:6
-                5/2     2:5
-                4/3     3:4
-                3/4     4:3
-                2/5     5:2
+                >>> abjad.Duration(3, 16).prolation_string
+                '16:3'
 
         Returns string.
         '''
@@ -1050,7 +1075,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> Duration(3, 7).reciprocal
+                >>> abjad.Duration(3, 7).reciprocal
                 Duration(7, 3)
 
         Returns new duration.
@@ -1070,8 +1095,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> durations = [Duration(2, 4), 3, (5, 16)]
-                >>> result = Duration.durations_to_nonreduced_fractions(durations)
+                >>> durations = [abjad.Duration(2, 4), 3, (5, 16)]
+                >>> result = abjad.Duration.durations_to_nonreduced_fractions(durations)
                 >>> for x in result:
                 ...     x
                 ...
@@ -1101,7 +1126,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> Duration.from_lilypond_duration_string('8.')
+                >>> abjad.Duration.from_lilypond_duration_string('8.')
                 Duration(3, 16)
 
         Returns duration.
@@ -1121,7 +1146,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> Duration.is_token('8.')
+                >>> abjad.Duration.is_token('8.')
                 True
 
         Returns true or false.
@@ -1141,8 +1166,8 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> note = Note("c'4")
-                >>> duration = Duration(117)
+                >>> note = abjad.Note("c'4")
+                >>> duration = abjad.Duration(117)
                 >>> clock_string = duration.to_clock_string()
                 >>> clock_string
                 "1'57''"
@@ -1150,13 +1175,13 @@ class Duration(AbjadObject, Fraction):
             ::
 
                 >>> string = '"{}"'.format(clock_string)
-                >>> markup = markuptools.Markup(string, direction=Up)
-                >>> attach(markup, note)
+                >>> markup = abjad.Markup(string, direction=Up)
+                >>> abjad.attach(markup, note)
                 >>> show(note) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(note))
+                >>> f(note)
                 c'4 ^ \markup { 1'57'' }
 
         Rounds down to nearest second.
@@ -1177,10 +1202,10 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> markup = Duration(3, 16).to_score_markup()
+                >>> markup = abjad.Duration(3, 16).to_score_markup()
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup)
                 \markup {
@@ -1218,10 +1243,10 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> markup = Duration(5, 16).to_score_markup()
+                >>> markup = abjad.Duration(5, 16).to_score_markup()
                 >>> show(markup) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(markup)
                 \markup {
@@ -1260,16 +1285,16 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> tuplet = Tuplet((5, 7), "c'16 c' c' c' c' c' c'")
-                >>> attach(Beam(), tuplet[:])
-                >>> staff = Staff([tuplet], context_name='RhythmicStaff')
-                >>> duration = inspect_(tuplet).get_duration()
+                >>> tuplet = abjad.Tuplet((5, 7), "c'16 c' c' c' c' c' c'")
+                >>> abjad.attach(abjad.Beam(), tuplet[:])
+                >>> staff = abjad.Staff([tuplet], context_name='RhythmicStaff')
+                >>> duration = abjad.inspect(tuplet).get_duration()
                 >>> markup = duration.to_score_markup()
                 >>> markup = markup.scale((0.75, 0.75))
-                >>> override(tuplet).tuplet_number.text = markup
+                >>> abjad.override(tuplet).tuplet_number.text = markup
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new RhythmicStaff {
@@ -1318,8 +1343,9 @@ class Duration(AbjadObject, Fraction):
 
         Returns markup.
         '''
-        from abjad.tools import scoretools
-        notes = scoretools.make_leaves([0], [self])
+        import abjad
+        maker = abjad.LeafMaker()
+        notes = maker([0], [self])
         markup = self._to_score_markup(notes)
         return markup
 
@@ -1332,7 +1358,7 @@ class Duration(AbjadObject, Fraction):
 
             ::
 
-                >>> duration = Duration(1, 4)
+                >>> duration = abjad.Duration(1, 4)
                 >>> for denominator in (4, 8, 16, 32):
                 ...     print(duration.with_denominator(denominator))
                 ...
@@ -1345,154 +1371,3 @@ class Duration(AbjadObject, Fraction):
         '''
         nonreduced_fraction = mathtools.NonreducedFraction(self)
         return nonreduced_fraction.with_denominator(denominator)
-
-    @staticmethod
-    def yield_durations(unique=False):
-        r'''Yields all positive durations.
-
-        ..  container:: example
-
-            Yields all positive durations in Cantor diagonalized order:
-
-            ::
-
-                >>> generator = Duration.yield_durations()
-                >>> for n in range(16):
-                ...     next(generator)
-                ...
-                Duration(1, 1)
-                Duration(2, 1)
-                Duration(1, 2)
-                Duration(1, 3)
-                Duration(1, 1)
-                Duration(3, 1)
-                Duration(4, 1)
-                Duration(3, 2)
-                Duration(2, 3)
-                Duration(1, 4)
-                Duration(1, 5)
-                Duration(1, 2)
-                Duration(1, 1)
-                Duration(2, 1)
-                Duration(5, 1)
-                Duration(6, 1)
-
-        ..  container:: example
-
-            Yields all positive durations in Cantor diagonalized order
-            uniquely:
-
-            ::
-
-                >>> generator = Duration.yield_durations(unique=True)
-                >>> for n in range(16):
-                ...     next(generator)
-                ...
-                Duration(1, 1)
-                Duration(2, 1)
-                Duration(1, 2)
-                Duration(1, 3)
-                Duration(3, 1)
-                Duration(4, 1)
-                Duration(3, 2)
-                Duration(2, 3)
-                Duration(1, 4)
-                Duration(1, 5)
-                Duration(5, 1)
-                Duration(6, 1)
-                Duration(5, 2)
-                Duration(4, 3)
-                Duration(3, 4)
-                Duration(2, 5)
-
-        Returns generator.
-        '''
-        generator = mathtools.yield_nonreduced_fractions()
-        while True:
-            integer_pair = next(generator)
-            duration = Duration(integer_pair)
-            if not unique:
-                yield duration
-            elif duration.pair == integer_pair:
-                yield duration
-
-    def yield_equivalent_durations(self, minimum_written_duration=None):
-        r'''Yields all durations equivalent to this duration.
-
-        Returns output in Cantor diagonalized order.
-
-        Ensures written duration never less than `minimum_written_duration`.
-
-        ..  container:: example
-
-            Yields durations equivalent to ``1/8``:
-
-            ::
-
-                >>> pairs = Duration(1, 8).yield_equivalent_durations()
-                >>> for pair in pairs: pair
-                ...
-                (Multiplier(1, 1), Duration(1, 8))
-                (Multiplier(2, 3), Duration(3, 16))
-                (Multiplier(4, 3), Duration(3, 32))
-                (Multiplier(4, 7), Duration(7, 32))
-                (Multiplier(8, 7), Duration(7, 64))
-                (Multiplier(8, 15), Duration(15, 64))
-                (Multiplier(16, 15), Duration(15, 128))
-                (Multiplier(16, 31), Duration(31, 128))
-
-        ..  container:: example
-
-            Yields durations equivalent to ``1/12``:
-
-            ::
-
-                >>> pairs = Duration(1, 12).yield_equivalent_durations()
-                >>> for pair in pairs: pair
-                ...
-                (Multiplier(2, 3), Duration(1, 8))
-                (Multiplier(4, 3), Duration(1, 16))
-                (Multiplier(8, 9), Duration(3, 32))
-                (Multiplier(16, 9), Duration(3, 64))
-                (Multiplier(16, 21), Duration(7, 64))
-                (Multiplier(32, 21), Duration(7, 128))
-                (Multiplier(32, 45), Duration(15, 128))
-
-        ..  container:: example
-
-            Yields durations equivalent to ``5/48``:
-
-            ::
-
-                >>> pairs = Duration(5, 48).yield_equivalent_durations()
-                >>> for pair in pairs: pair
-                ...
-                (Multiplier(5, 6), Duration(1, 8))
-                (Multiplier(5, 3), Duration(1, 16))
-                (Multiplier(5, 9), Duration(3, 16))
-                (Multiplier(10, 9), Duration(3, 32))
-                (Multiplier(20, 21), Duration(7, 64))
-                (Multiplier(40, 21), Duration(7, 128))
-                (Multiplier(8, 9), Duration(15, 128))
-
-        Defaults `minimum_written_duration` to ``1/128``.
-
-        Returns generator.
-        '''
-        if minimum_written_duration is None:
-            minimum_written_duration = type(self)(1, 128)
-        else:
-            minimum_written_duration = type(self)(minimum_written_duration)
-        generator = type(self).yield_durations(unique=True)
-        pairs = []
-        while True:
-            written_duration = next(generator)
-            if not written_duration.is_assignable:
-                continue
-            if written_duration < minimum_written_duration:
-                pairs = tuple(pairs)
-                return pairs
-            prolation = self / written_duration
-            if prolation.is_proper_tuplet_multiplier:
-                pair = (prolation, written_duration)
-                pairs.append(pair)

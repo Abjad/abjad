@@ -5,19 +5,23 @@ from abjad.tools.pitchtools.Vector import Vector
 class PitchVector(Vector):
     r'''Pitch vector.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> vector = pitchtools.PitchVector(
+            >>> vector = abjad.PitchVector(
             ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-            ...     item_class=pitchtools.NumberedPitch,
+            ...     item_class=abjad.NumberedPitch,
             ...     )
 
         ::
 
             >>> items = list(vector.items())
-            >>> items.sort(key=lambda x: x[0].pitch_number)
+            >>> items.sort(key=lambda x: x[0].number)
             >>> for pitch_class, count in items:
             ...     print(pitch_class, count)
             -3 2
@@ -32,6 +36,11 @@ class PitchVector(Vector):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### SPECIAL METHODS ###
 
     def __repr__(self):
@@ -42,9 +51,9 @@ class PitchVector(Vector):
             Gets interpreter representation of pitch vector:
             ::
 
-                >>> vector = pitchtools.PitchVector(
+                >>> vector = abjad.PitchVector(
                 ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-                ...     item_class=pitchtools.NumberedPitch,
+                ...     item_class=abjad.NumberedPitch,
                 ...     )
 
             ::
@@ -56,7 +65,7 @@ class PitchVector(Vector):
 
             Initializes from interpreter representation of pitch vector:
 
-                >>> pitchtools.PitchVector(vector)
+                >>> abjad.PitchVector(vector)
                 PitchVector({-3: 2, -2: 1, 0: 1, 1: 1, 6: 1, 7: 1, 14: 1, 15: 1, 16: 2}, item_class=NumberedPitch)
 
         Returns string.

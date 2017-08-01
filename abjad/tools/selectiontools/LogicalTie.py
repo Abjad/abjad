@@ -8,18 +8,22 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class LogicalTie(Selection):
-    r'''A selection of components in a logical tie.
+    r'''Logical tie of a component.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c' d' e' ~ e'")
+            >>> staff = abjad.Staff("c' d' e' ~ e'")
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> inspect_(staff[2]).get_logical_tie()
+            >>> abjad.inspect(staff[2]).get_logical_tie()
             LogicalTie([Note("e'4"), Note("e'4")])
 
     '''
@@ -29,38 +33,13 @@ class LogicalTie(Selection):
     __slots__ = (
         )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _all_leaves_are_in_same_parent(self):
-        r'''Is true when all leaves in logical tie are in same parent.
-
-        Returns true or false.
-        '''
-        parents = [leaf._parent for leaf in self.leaves]
-        return mathtools.all_are_equal(parents)
-
-    @property
-    def _leaves_grouped_by_immediate_parents(self):
-        r'''Leaves in logical tie grouped by immediate parents of leaves.
-
-        Returns list of lists.
-        '''
-        from abjad.tools import selectiontools
-        result = []
-        pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
-        for key, values_generator in pairs_generator:
-            group = selectiontools.Selection(list(values_generator))
-            result.append(group)
-        return result
-
     ### PRIVATE METHODS ###
 
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        new_written_duration = durationtools.Duration(new_written_duration)
+        import abjad
+        new_written_duration = abjad.Duration(new_written_duration)
+        maker = abjad.NoteMaker()
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration
             for leaf in self[1:]:
@@ -69,11 +48,11 @@ class LogicalTie(Selection):
                     index = parent.index(leaf)
                     del(parent[index])
             first = self[0]
-            for spanner in first._get_spanners(spannertools.Tie):
+            for spanner in first._get_spanners(abjad.Tie):
                 spanner._sever_all_components()
-            #detach(spannertools.Tie, first)
+            #detach(abjad.Tie, first)
         elif new_written_duration.has_power_of_two_denominator:
-            durations = scoretools.make_notes(0, [new_written_duration])
+            durations = maker(0, [new_written_duration])
             for leaf, token in zip(self, durations):
                 leaf.written_duration = token.written_duration
             if len(self) == len(durations):
@@ -85,9 +64,9 @@ class LogicalTie(Selection):
                         index = parent.index(leaf)
                         del(parent[index])
             elif len(self) < len(durations):
-                for spanner in self[0]._get_spanners(spannertools.Tie):
+                for spanner in self[0]._get_spanners(abjad.Tie):
                     spanner._sever_all_components()
-                #detach(spannertools.Tie, self[0])
+                #detach(abjad.Tie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
@@ -96,29 +75,42 @@ class LogicalTie(Selection):
                 extra_tokens = durations[len(self):]
                 for leaf, token in zip(extra_leaves, extra_tokens):
                     leaf.written_duration = token.written_duration
-                ties = self[-1]._get_spanners(spannertools.Tie)
+                ties = self[-1]._get_spanners(abjad.Tie)
                 if not ties:
-                    tie = spannertools.Tie()
+                    tie = abjad.Tie()
                     if all(tie._attachment_test(_) for _ in self):
-                        attach(tie, list(self))
+                        attach(tie, abjad.select(self))
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:
-            durations = scoretools.make_notes(0, new_written_duration)
-            assert isinstance(durations[0], scoretools.Tuplet)
-            fmtuplet = durations[0]
-            new_logical_tie_written = \
-                fmtuplet[0]._get_logical_tie()._preprolated_duration
-            self._add_or_remove_notes_to_achieve_written_duration(
-                new_logical_tie_written)
-            multiplier = fmtuplet.multiplier
-            scoretools.Tuplet(multiplier, self.leaves)
+            durations = maker(0, new_written_duration)
+            assert isinstance(durations[0], abjad.Tuplet)
+            tuplet = durations[0]
+            logical_tie = tuplet[0]._get_logical_tie()
+            duration = logical_tie._get_preprolated_duration()
+            self._add_or_remove_notes_to_achieve_written_duration(duration)
+            multiplier = tuplet.multiplier
+            tuplet = abjad.Tuplet(multiplier, [])
+            abjad.mutate(self.leaves).wrap(tuplet)
         return self[0]._get_logical_tie()
+
+    def _all_leaves_are_in_same_parent(self):
+        parents = [leaf._parent for leaf in self.leaves]
+        return mathtools.all_are_equal(parents)
 
     def _fuse_leaves_by_immediate_parent(self):
         result = []
-        parts = self._leaves_grouped_by_immediate_parents
+        parts = self._get_leaves_grouped_by_immediate_parents()
         for part in parts:
             result.append(part._fuse())
+        return result
+
+    def _get_leaves_grouped_by_immediate_parents(self):
+        from abjad.tools import selectiontools
+        result = []
+        pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
+        for key, values_generator in pairs_generator:
+            group = selectiontools.Selection(list(values_generator))
+            result.append(group)
         return result
 
     def _scale(self, multiplier):
@@ -156,31 +148,32 @@ class LogicalTie(Selection):
 
     @property
     def leaves(self):
-        r'''Leaves in logical tie.
+        r'''Gets leaves in logical tie.
 
-        Returns tuple.
+        Returns selection.
         '''
-        from abjad.tools import spannertools
-        prototype = (spannertools.Tie,)
+        import abjad
         try:
-            tie_spanner = self[0]._get_spanner(prototype=prototype)
-            return tuple(tie_spanner._get_leaves())
+            tie = self[0]._get_spanner(prototype=abjad.Tie)
         except MissingSpannerError:
             assert self.is_trivial
-            return (self[0], )
+            return abjad.select(self[0])
+        selection = tie._get_leaves()
+        assert isinstance(selection, abjad.Selection)
+        return selection
 
     @property
     def tail(self):
-        r'''Reference to element ``-1`` in logical tie.
+        r'''Gets last leaf in logical tie.
 
-        Returns component.
+        Returns leaf.
         '''
         if self._music:
             return self._music[-1]
 
     @property
     def tie_spanner(self):
-        r'''Tie spanner governing logical tie.
+        r'''Gets tie spanner governing logical tie.
 
         Returns tie spanner.
         '''
@@ -211,24 +204,25 @@ class LogicalTie(Selection):
         dotted=False,
         is_diminution=True,
         ):
-        r'''Change logical tie to tuplet.
+        r'''Changes logical tie to tuplet.
 
         ..  container:: example
 
-            Change logical tie to diminished tuplet:
+            Changes logical tie to diminished tuplet:
 
             ::
 
-                >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
-                >>> crescendo = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(crescendo, staff[:])
-                >>> override(staff).dynamic_line_spanner.staff_padding = 3
-                >>> time_signature = TimeSignature((7, 16))
-                >>> attach(time_signature, staff)
+                >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
+                >>> crescendo = abjad.Hairpin('p < f')
+                >>> abjad.attach(crescendo, staff[:])
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> time_signature = abjad.TimeSignature((7, 16))
+                >>> abjad.attach(time_signature, staff[0])
+                >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -240,23 +234,25 @@ class LogicalTie(Selection):
 
             ::
 
-                >>> show(staff) # doctest: +SKIP
+                >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+                >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=True)
+                Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
 
             ::
 
-                >>> logical_tie = inspect_(staff[0]).get_logical_tie()
-                >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=True)
-                FixedDurationTuplet(Duration(3, 16), "c'8 c'16 c'16 c'16")
+                >>> time_signature = abjad.TimeSignature((7, 16))
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(time_signature, leaf)
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
-                    \time 7/16
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5 {
+                        \time 7/16
                         c'8 \< \p
                         c'16
                         c'16
@@ -271,20 +267,21 @@ class LogicalTie(Selection):
 
         ..  container:: example
 
-            Change logical tie to augmented tuplet:
+            Changes logical tie to augmented tuplet:
 
             ::
 
-                >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
-                >>> crescendo = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(crescendo, staff[:])
-                >>> override(staff).dynamic_line_spanner.staff_padding = 3
-                >>> time_signature = TimeSignature((7, 16))
-                >>> attach(time_signature, staff)
+                >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
+                >>> crescendo = abjad.Hairpin(descriptor='p < f')
+                >>> abjad.attach(crescendo, staff[:])
+                >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> time_signature = abjad.TimeSignature((7, 16))
+                >>> abjad.attach(time_signature, staff[0])
+                >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
@@ -296,23 +293,25 @@ class LogicalTie(Selection):
 
             ::
 
+                >>> logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+                >>> tuplet = logical_tie.to_tuplet(
+                ...     [2, 1, 1, 1],
+                ...     is_diminution=False,
+                ...     )
+                >>> time_signature = abjad.TimeSignature((7, 16))
+                >>> leaf = abjad.inspect(staff).get_leaf(0)
+                >>> abjad.attach(time_signature, leaf)
                 >>> show(staff) # doctest: +SKIP
 
-            ::
+            ..  docs::
 
-                >>> logical_tie = inspect_(staff[0]).get_logical_tie()
-                >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=False)
-                FixedDurationTuplet(Duration(3, 16), "c'16 c'32 c'32 c'32")
-
-            ..  doctest::
-
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner.staff-padding = #3
                 } {
-                    \time 7/16
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/5 {
+                        \time 7/16
                         c'16 \< \p
                         c'32
                         c'32
@@ -321,26 +320,16 @@ class LogicalTie(Selection):
                     cqs''4 \f
                 }
 
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
         Returns tuplet.
         '''
-        from abjad.tools import mathtools
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-
+        import abjad
         # coerce input
-        proportions = mathtools.Ratio(proportions)
-
+        proportions = abjad.Ratio(proportions)
         # find target duration of fixed-duration tuplet
-        target_duration = self._preprolated_duration
-
+        target_duration = self._get_preprolated_duration()
         # find duration of each note in tuplet
         prolated_duration = target_duration / sum(proportions.numbers)
-
-        # find written duration of each notes in tuplet
+        # find written duration of each note in tuplet
         if is_diminution:
             if dotted:
                 basic_written_duration = \
@@ -355,33 +344,27 @@ class LogicalTie(Selection):
             else:
                 basic_written_duration = \
                     prolated_duration.equal_or_lesser_power_of_two
-
         # find written duration of each note in tuplet
         written_durations = [
             _ * basic_written_duration for _ in proportions.numbers
             ]
-
         # make tuplet notes
+        maker = abjad.NoteMaker()
         try:
-            notes = [scoretools.Note(0, x) for x in written_durations]
+            notes = [abjad.Note(0, _) for _ in written_durations]
         except AssignabilityError:
             denominator = target_duration._denominator
             note_durations = [
-                durationtools.Duration(_, denominator)
+                abjad.Duration(_, denominator)
                 for _ in proportions.numbers
                 ]
-            notes = scoretools.make_notes(0, note_durations)
-
+            notes = maker(0, note_durations)
         # make tuplet
-        tuplet = scoretools.FixedDurationTuplet(target_duration, notes)
-
-        # replace logical tie with tuplet
-        mutate(self).replace(tuplet)
-
-        # untie tuplet
-        for spanner in tuplet._get_spanners(spannertools.Tie):
-            spanner._sever_all_components()
-        #detach(spannertools.Tie, tuplet)
-
-        # return tuplet
+        tuplet = abjad.Tuplet.from_duration(target_duration, notes)
+        # remove tie spanner from leaves
+        for leaf in self:
+            for spanner in leaf._get_spanners(abjad.Tie):
+                spanner._sever_all_components()
+        # replace leaves with tuplet
+        abjad.mutate(self).replace(tuplet)
         return tuplet

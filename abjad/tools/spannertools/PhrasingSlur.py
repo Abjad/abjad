@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import override
 
@@ -7,18 +7,22 @@ from abjad.tools.topleveltools import override
 class PhrasingSlur(Spanner):
     r'''Phrasing slur.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Spans four notes:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> slur = spannertools.PhrasingSlur()
-            >>> attach(slur, staff[:])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> slur = abjad.PhrasingSlur()
+            >>> abjad.attach(slur, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -34,9 +38,9 @@ class PhrasingSlur(Spanner):
 
         ::
 
-            >>> staff = Staff("c'8 d' e' f'")
-            >>> phrasing_slur = spannertools.PhrasingSlur()
-            >>> attach(phrasing_slur, staff[:1])
+            >>> staff = abjad.Staff("c'8 d' e' f'")
+            >>> phrasing_slur = abjad.PhrasingSlur()
+            >>> abjad.attach(phrasing_slur, staff[:1])
             Traceback (most recent call last):
                 ...
             Exception: PhrasingSlur() attachment test fails for Selection([Note("c'8")]).
@@ -63,7 +67,7 @@ class PhrasingSlur(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.to_tridirectional_lilypond_symbol(
+        direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
 
@@ -76,7 +80,7 @@ class PhrasingSlur(Spanner):
         new._direction = self.direction
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only_leaf(leaf):
             pass
         elif self._is_my_first_leaf(leaf):
@@ -84,11 +88,11 @@ class PhrasingSlur(Spanner):
                 string = '{} \('.format(self.direction)
             else:
                 string = '\('
-            lilypond_format_bundle.right.spanner_starts.append(string)
+            bundle.right.spanner_starts.append(string)
         elif self._is_my_last_leaf(leaf):
             string = '\)'
-            lilypond_format_bundle.right.spanner_stops.append(string)
-        return lilypond_format_bundle
+            bundle.right.spanner_stops.append(string)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -102,12 +106,12 @@ class PhrasingSlur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.PhrasingSlur(direction=Up)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.PhrasingSlur(direction=Up)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -123,12 +127,12 @@ class PhrasingSlur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.PhrasingSlur(direction=Down)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.PhrasingSlur(direction=Down)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -144,12 +148,12 @@ class PhrasingSlur(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> slur = spannertools.PhrasingSlur(direction=None)
-                >>> attach(slur, staff[:])
+                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                >>> slur = abjad.PhrasingSlur(direction=None)
+                >>> abjad.attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

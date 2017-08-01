@@ -2,12 +2,16 @@
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadValueObject
 
 
 class BurnishSpecifier(AbjadValueObject):
     r'''Burnish specifier.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
 
     ..  container:: example
 
@@ -16,7 +20,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     left_classes=[Rest],
+            ...     left_classes=[abjad.Rest],
             ...     left_counts=[1],
             ...     )
 
@@ -27,7 +31,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     left_classes=[Rest],
+            ...     left_classes=[abjad.Rest],
             ...     left_counts=[3],
             ...     )
 
@@ -38,7 +42,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     right_classes=[Rest],
+            ...     right_classes=[abjad.Rest],
             ...     right_counts=[1],
             ...     )
 
@@ -49,7 +53,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     right_classes=[Rest],
+            ...     right_classes=[abjad.Rest],
             ...     right_counts=[3],
             ...     )
 
@@ -61,7 +65,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     left_classes=[Rest, Note],
+            ...     left_classes=[abjad.Rest, abjad.Note],
             ...     left_counts=[1],
             ...     )
 
@@ -73,7 +77,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     right_classes=[Rest, Note],
+            ...     right_classes=[abjad.Rest, abjad.Note],
             ...     right_counts=[1],
             ...     )
 
@@ -85,7 +89,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     left_classes=[Rest, 0],
+            ...     left_classes=[abjad.Rest, 0],
             ...     left_counts=[1],
             ...     )
 
@@ -97,7 +101,7 @@ class BurnishSpecifier(AbjadValueObject):
         ::
 
             >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-            ...     right_classes=[Rest, 0],
+            ...     right_classes=[abjad.Rest, 0],
             ...     right_counts=[1],
             ...     )
 
@@ -176,7 +180,7 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
+                ...     left_classes=[abjad.Rest, 0],
                 ...     left_counts=[1],
                 ...     )
 
@@ -206,7 +210,7 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
+                ...     left_classes=[abjad.Rest, 0],
                 ...     left_counts=[1],
                 ...     )
 
@@ -266,7 +270,7 @@ class BurnishSpecifier(AbjadValueObject):
             else:
                 middle = middle_count * [0]
             right = right[:right_count]
-            left_part, middle_part, right_part = sequencetools.Sequence(
+            left_part, middle_part, right_part = datastructuretools.Sequence(
                     division).partition_by_counts(
                     [left_count, middle_count, right_count],
                     cyclic=False,
@@ -314,7 +318,7 @@ class BurnishSpecifier(AbjadValueObject):
             middle = [middle_classes[0]]
             middle = middle_count * middle
             right = right[:right_count]
-            left_part, middle_part, right_part = sequencetools.Sequence(
+            left_part, middle_part, right_part = datastructuretools.Sequence(
                     divisions[0]).partition_by_counts(
                     [left_count, middle_count, right_count],
                     cyclic=False,
@@ -335,7 +339,7 @@ class BurnishSpecifier(AbjadValueObject):
                 middle_classes = [1]
             middle = [middle_classes[0]]
             middle = middle_count * middle
-            left_part, middle_part = sequencetools.Sequence(
+            left_part, middle_part = datastructuretools.Sequence(
                     divisions[0]).partition_by_counts(
                     [left_count, middle_count],
                     cyclic=False,
@@ -361,7 +365,7 @@ class BurnishSpecifier(AbjadValueObject):
             middle_count = len(divisions[-1]) - right_count
             right = right[:right_count]
             middle = middle_count * [middle_classes[0]]
-            middle_part, right_part = sequencetools.Sequence(
+            middle_part, right_part = datastructuretools.Sequence(
                     divisions[-1]).partition_by_counts(
                     [middle_count, right_count],
                     cyclic=False,
@@ -437,7 +441,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     def _trivial_helper(self, sequence_, rotation):
         if isinstance(rotation, int) and len(sequence_):
-            return sequencetools.Sequence(sequence_).rotate(n=rotation)
+            return datastructuretools.Sequence(sequence_).rotate(n=rotation)
         return sequence_
 
     ### PUBLIC PROPERTIES ###
@@ -451,8 +455,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     right_classes=[Rest, Rest, 0],
+                ...     left_classes=[abjad.Rest, 0],
+                ...     right_classes=[abjad.Rest, abjad.Rest, 0],
                 ...     left_counts=[2],
                 ...     right_counts=[1],
                 ...     )
@@ -476,8 +480,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     right_classes=[Rest, Rest, 0],
+                ...     left_classes=[abjad.Rest, 0],
+                ...     right_classes=[abjad.Rest, abjad.Rest, 0],
                 ...     left_counts=[2],
                 ...     right_counts=[1],
                 ...     )
@@ -501,8 +505,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     right_classes=[Rest, Rest, 0],
+                ...     left_classes=[abjad.Rest, 0],
+                ...     right_classes=[abjad.Rest, abjad.Rest, 0],
                 ...     left_counts=[2],
                 ...     right_counts=[1],
                 ...     )
@@ -539,8 +543,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     right_classes=[Rest, Rest, 0],
+                ...     left_classes=[abjad.Rest, 0],
+                ...     right_classes=[abjad.Rest, abjad.Rest, 0],
                 ...     left_counts=[2],
                 ...     right_counts=[1],
                 ...     )
@@ -564,8 +568,8 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     right_classes=[Rest, Rest, 0],
+                ...     left_classes=[abjad.Rest, 0],
+                ...     right_classes=[abjad.Rest, abjad.Rest, 0],
                 ...     left_counts=[2],
                 ...     right_counts=[1],
                 ...     )

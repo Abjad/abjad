@@ -5,7 +5,7 @@ import os
 import shutil
 import subprocess
 import sys
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.commandlinetools.ScorePackageScript import ScorePackageScript
 
@@ -21,6 +21,15 @@ class ManageBuildTargetScript(ScorePackageScript):
     '''
 
     ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_build_path',
+        '_materials_path',
+        '_root_parent_path',
+        '_score_package_path',
+        '_score_repository_path',
+        '_segments_path',
+        )
 
     alias = 'build'
     short_description = 'Manage score package build targets.'
@@ -157,7 +166,7 @@ class ManageBuildTargetScript(ScorePackageScript):
             name = paper_size.lower().replace(' ', '-')
             name = '{}-{}'.format(name, orientation)
         else:
-            name = stringtools.to_dash_case(target_name)
+            name = datastructuretools.String(target_name).to_dash_case()
         dimensions = self.paper_sizes[paper_size]
         message = 'Creating build target {!r} ({}{} x {}{})'.format(
             name,

@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 import pytest
-from abjad import *
+import abjad
 
 
 def test_datastructuretools_TreeContainer_name_01():
 
-    foo = datastructuretools.TreeContainer(name='foo')
-    bar = datastructuretools.TreeContainer(name='bar')
-    baz = datastructuretools.TreeContainer(name='baz')
-    quux = datastructuretools.TreeContainer(name='quux')
-    quux2 = datastructuretools.TreeContainer(name='quux')
+    foo = abjad.TreeContainer(name='foo')
+    bar = abjad.TreeContainer(name='bar')
+    baz = abjad.TreeContainer(name='baz')
+    quux = abjad.TreeContainer(name='quux')
+    quux2 = abjad.TreeContainer(name='quux')
 
     foo.append(bar)
     bar.extend([baz, quux])
     baz.append(quux2)
 
-    assert format(foo, 'lilypond') == stringtools.normalize(
+    assert format(foo, 'lilypond') == abjad.String.normalize(
         r'''
         TreeContainer(
             children=(

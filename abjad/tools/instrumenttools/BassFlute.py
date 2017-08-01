@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BassFlute(Instrument):
-    r'''A bass flute.
+    r'''Bass flute.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> bass_flute = instrumenttools.BassFlute()
-        >>> attach(bass_flute, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Bass flute" }
-            \set Staff.shortInstrumentName = \markup { "Bass fl." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> bass_flute = abjad.instrumenttools.BassFlute()
+            >>> abjad.attach(bass_flute, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Bass flute" }
+                \set Staff.shortInstrumentName = \markup { "Bass fl." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -126,7 +133,7 @@ class BassFlute(Instrument):
             ::
 
                 >>> bass_flute.pitch_range
-                PitchRange(range_string='[C3, C6]')
+                PitchRange('[C3, C6]')
 
             ::
 

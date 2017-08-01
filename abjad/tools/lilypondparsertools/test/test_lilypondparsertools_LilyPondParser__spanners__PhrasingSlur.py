@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_01():
     r'''Successful slurs, showing single leaf overlap.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    slur = spannertools.PhrasingSlur()
-    attach(slur, target[2:])
-    slur = spannertools.PhrasingSlur()
-    attach(slur, target[:3])
+    maker = abjad.NoteMaker()
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    slur = abjad.PhrasingSlur()
+    abjad.attach(slur, target[2:])
+    slur = abjad.PhrasingSlur()
+    abjad.attach(slur, target[:3])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 \(
@@ -25,7 +25,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_01():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
 
@@ -34,13 +34,14 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_02():
     r'''Swapped start and stop.
     '''
 
-    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    slur = spannertools.PhrasingSlur()
-    attach(slur, target[2:])
-    slur = spannertools.PhrasingSlur()
-    attach(slur, target[:3])
+    maker = abjad.NoteMaker()
+    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    slur = abjad.PhrasingSlur()
+    abjad.attach(slur, target[2:])
+    slur = abjad.PhrasingSlur()
+    abjad.attach(slur, target[:3])
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         {
             c'4 \(
@@ -53,7 +54,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlur_02():
 
     string = r"\relative c' { c \( c c \( \) c \) }"
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(string)
     assert format(target) == format(result) and target is not result
 

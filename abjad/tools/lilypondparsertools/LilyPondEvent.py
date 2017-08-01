@@ -2,6 +2,7 @@
 from abjad.tools.abctools import AbjadObject
 
 
+# TODO: should not inherit from AbjadObject because no slots
 class LilyPondEvent(AbjadObject):
     r'''Model of an arbitrary event in LilyPond.
 
@@ -20,20 +21,21 @@ class LilyPondEvent(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __repr__(self):
-        r'''Gets interpreter representation of LilyPond event.
+    def __str__(self):
+        r'''Gets string representation of LilyPond event.
 
         Returns string.
         '''
-        return '{}({})'.format(type(self).__name__, self._format_string)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
         result = repr(self.name)
         for key in self.__dict__:
             if key == 'name':
                 continue
             result += ', {} = {!r}'.format(key, getattr(self, key))
         return result
+
+    def __repr__(self):
+        r'''Gets interpreter representation of LilyPond event.
+
+        Returns string.
+        '''
+        return '{}({})'.format(type(self).__name__, str(self))

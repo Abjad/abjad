@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.tools.lilypondparsertools import LilyPondParser
+import abjad
 
 
 def test_lilypondparsertools_LilyPondParser__contexts__context_ids_01():
 
-    target = Staff(scoretools.make_notes([0, 2, 4, 5, 7], (1, 8)))
+    maker = abjad.NoteMaker()
+    notes = maker([0, 2, 4, 5, 7], (1, 8))
+    target = abjad.Staff(notes)
     target.name = 'foo'
 
-    assert format(target) == stringtools.normalize(
+    assert format(target) == abjad.String.normalize(
         r'''
         \context Staff = "foo" {
             c'8
@@ -20,6 +21,6 @@ def test_lilypondparsertools_LilyPondParser__contexts__context_ids_01():
         '''
         )
 
-    parser = LilyPondParser()
+    parser = abjad.lilypondparsertools.LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result

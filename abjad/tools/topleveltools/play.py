@@ -5,12 +5,16 @@ import os
 def play(argument):
     r'''Plays `argument`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> note = Note("c'4")
-            >>> play(note) # doctest: +SKIP
+            >>> note = abjad.Note("c'4")
+            >>> abjad.play(note) # doctest: +SKIP
 
     Makes MIDI file.
 

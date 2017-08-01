@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import iterate
 
@@ -8,17 +8,21 @@ from abjad.tools.topleveltools import iterate
 class Tie(Spanner):
     r'''Tie.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Ties four notes:
 
         ::
 
-            >>> staff = Staff("c'4 c' c' c'")
-            >>> attach(Tie(), staff[:])
+            >>> staff = abjad.Staff("c'4 c' c' c'")
+            >>> abjad.attach(abjad.Tie(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -34,23 +38,24 @@ class Tie(Spanner):
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(Tie(), staff[:])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Tie(), staff[:])
             Traceback (most recent call last):
                 ...
             Exception: Tie() attachment test fails for Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]).
 
     ..  container:: example
 
-        Ties consecutive chords if all adjacent pairs have at least one pitch in common:
+        Ties consecutive chords if all adjacent pairs have at least one pitch
+        in common:
 
         ::
 
-            >>> staff = Staff("<c'>4 <c' d'>4 <d'>4")
-            >>> attach(Tie(), staff[:])
+            >>> staff = abjad.Staff("<c'>4 <c' d'>4 <d'>4")
+            >>> abjad.attach(abjad.Tie(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -81,7 +86,7 @@ class Tie(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.to_tridirectional_lilypond_symbol(
+        direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
         self._use_messiaen_style_ties = use_messiaen_style_ties
@@ -89,27 +94,34 @@ class Tie(Spanner):
     ### PRIVATE METHODS ###
 
     def _attachment_test(self, component):
-        from abjad.tools import scoretools
-        pitched_prototype = (scoretools.Note, scoretools.Chord)
-        return isinstance(component, pitched_prototype)
+        import abjad
+        if self._ignore_attachment_test:
+            return True
+        if not isinstance(component, (abjad.Chord, abjad.Note)):
+            return False
+        if abjad.inspect(component).has_spanner(abjad.Tie):
+            return False
+        return True
 
     def _attachment_test_all(self, component_expression):
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        #if not self._at_least_two_leaves(component_expression):
-        #    return False
+        import abjad
+        if self._ignore_attachment_test:
+            return True
         written_pitches = []
-        if isinstance(component_expression, scoretools.Component):
+        if isinstance(component_expression, abjad.Component):
             component_expression = [component_expression]
         for component in component_expression:
-            if isinstance(component, scoretools.Note):
+            if isinstance(component, abjad.Note):
                 written_pitches.append(set([component.written_pitch]))
-            elif isinstance(component, scoretools.Chord):
+            elif isinstance(component, abjad.Chord):
                 written_pitches.append(set(component.written_pitches))
             else:
                 return False
-        for pair in sequencetools.Sequence(written_pitches).nwise():
+        for pair in abjad.Sequence(written_pitches).nwise():
             if not set.intersection(*pair):
+                return False
+        for component in component_expression:
+            if abjad.inspect(component).has_spanner(abjad.Tie):
                 return False
         return True
 
@@ -117,38 +129,38 @@ class Tie(Spanner):
         new._direction = self.direction
         new._use_messiaen_style_ties = self.use_messiaen_style_ties
 
-    def _format_right_of_leaf(self, leaf):
-        from abjad.tools import scoretools
-        result = []
+    def _get_lilypond_format_bundle(self, leaf):
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (
-            scoretools.Container,
-            scoretools.Rest,
-            scoretools.Skip,
-            scoretools.MultimeasureRest,
+            abjad.Container,
+            abjad.Rest,
+            abjad.Skip,
+            abjad.MultimeasureRest,
             )
         if not self.use_messiaen_style_ties:
             if self._is_my_last_leaf(leaf):
-                return result
+                return bundle
             elif isinstance(leaf, prototype):
-                return result
+                return bundle
             elif isinstance(leaf._get_leaf(1), prototype):
-                return result
+                return bundle
             if self.direction is not None:
                 string = '{} ~'.format(self.direction)
-                result.append(string)
+                bundle.right.spanners.append(string)
             else:
-                result.append('~')
+                bundle.right.spanners.append('~')
         else:
             if isinstance(leaf, prototype):
-                return result
+                return bundle
             elif self._is_my_first_leaf(leaf):
-                return result
+                return bundle
             if self.direction is not None:
                 string = r'{} \repeatTie'.format(self.direction)
-                result.append(string)
+                bundle.right.spanners.append(string)
             else:
-                result.append(r'\repeatTie')
-        return result
+                bundle.right.spanners.append(r'\repeatTie')
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -162,12 +174,12 @@ class Tie(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 c'8 c'8 c'8")
-                >>> tie = Tie(direction=Up)
-                >>> attach(tie, staff[:])
+                >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
+                >>> tie = abjad.Tie(direction=Up)
+                >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -188,12 +200,12 @@ class Tie(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 c'8 c'8 c'8")
-                >>> tie = Tie(direction=Down)
-                >>> attach(tie, staff[:])
+                >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
+                >>> tie = abjad.Tie(direction=Down)
+                >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -214,12 +226,12 @@ class Tie(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 c'8 c'8 c'8")
-                >>> tie = Tie(direction=None)
-                >>> attach(tie, staff[:])
+                >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
+                >>> tie = abjad.Tie(direction=None)
+                >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -253,12 +265,12 @@ class Tie(Spanner):
 
             ::
 
-                >>> staff = Staff("c'8 c'8 c'8 c'8")
-                >>> tie = Tie(direction=Up, use_messiaen_style_ties=True)
-                >>> attach(tie, staff[:])
+                >>> staff = abjad.Staff("c'8 c'8 c'8 c'8")
+                >>> tie = abjad.Tie(direction=Up, use_messiaen_style_ties=True)
+                >>> abjad.attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

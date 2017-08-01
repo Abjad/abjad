@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 import pytest
 
 
@@ -7,123 +7,129 @@ def test_scoretools_Container_reverse_01():
     r'''Retrograde works on a depth-0 container with no spanners and no parent.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     reversed_leaves = reversed(staff[:])
     staff.reverse()
 
     assert list(reversed_leaves) == list(staff[:])
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_02():
     r'''Retrograde works on a depth-0 container with one spanner
-    attached and no parent.
+    abjad.attached and no parent.
     '''
 
-    container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    leaves = select(container).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    container = abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    leaves = abjad.select(container).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
     reversed_leaves = reversed(leaves)
     container.reverse()
 
     assert list(reversed_leaves) == list(container[:])
-    assert inspect_(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()
 
 
 def test_scoretools_Container_reverse_03():
-    r'''Retrograde works on a depth-0 container with one spanner attached
+    r'''Retrograde works on a depth-0 container with one spanner abjad.attached
     to its leaves and with no parent.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    beam = Beam()
-    attach(beam, staff[:])
+    staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    beam = abjad.Beam()
+    abjad.attach(beam, staff[:])
     reversed_leaves = reversed(staff[:])
     staff.reverse()
 
     assert list(reversed_leaves) == list(staff[:])
     assert beam.components == tuple(staff[:])
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_04():
     r'''Retrograde works on a depth-0 container with one spanner
-    attached to itself and with a parent.
+    abjad.attached to itself and with a parent.
     '''
 
-    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + \
-        scoretools.make_repeated_notes(2))
+    staff = abjad.Staff([
+        abjad.Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8"),
+        abjad.Note("c'8"),
+        abjad.Note("c'8"),
+        ])
     measure = staff[0]
-    beam = Beam()
-    attach(beam, measure[:])
+    beam = abjad.Beam()
+    abjad.attach(beam, measure[:])
     reversed_leaves = reversed(measure[:])
     staff[0].reverse()
     assert list(reversed_leaves) == list(measure[:])
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_05():
     r'''Retrograde works on a depth-0 container with one spanner
-    attached to its leaves and with a parent.
+    abjad.attached to its leaves and with a parent.
     '''
 
-    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] +
-        scoretools.make_repeated_notes(2))
+    staff = abjad.Staff([
+        abjad.Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8"),
+        abjad.Note("c'8"),
+        abjad.Note("c'8"),
+        ])
     measure = staff[0]
-    beam = Beam()
-    attach(beam, measure[:])
+    beam = abjad.Beam()
+    abjad.attach(beam, measure[:])
     reversed_leaves = reversed(measure[:])
     staff[0].reverse()
     assert list(reversed_leaves) == list(measure[:])
     assert beam.components == tuple(measure[:])
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_06():
     r'''Retrograde works on a depth-0 container with one spanner
-    attached to its parent.
+    abjad.attached to its parent.
     '''
 
-    notes = [Note("c'8"), Note("d'8")]
-    container = Container(
-        [Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notes)
+    notes = [abjad.Note("c'8"), abjad.Note("d'8")]
+    container = abjad.Container(
+        [abjad.Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notes)
     measure = container[0]
-    beam = Beam()
-    attach(beam, measure[:])
+    beam = abjad.Beam()
+    abjad.attach(beam, measure[:])
     reversed_leaves = reversed(measure[:])
     container[0].reverse()
     assert list(reversed_leaves) == list(measure[:])
-    assert inspect_(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()
 
 
 def test_scoretools_Container_reverse_07():
     r'''Retrograde works on a depth-0 container with one spanner
-    attached to its parent's contents.
+    abjad.attached to its parent's contents.
     '''
 
-    notes = [Note("c'8"), Note("d'8")]
-    measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    staff = Staff([measure] + notes)
-    leaves = select(staff).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    notes = [abjad.Note("c'8"), abjad.Note("d'8")]
+    measure = abjad.Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    staff = abjad.Staff([measure] + notes)
+    leaves = abjad.select(staff).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
     reversed_leaves = reversed(measure[:])
     staff[0].reverse()
     assert list(reversed_leaves) == list(measure[:])
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_08():
 
-    notes = [Note("c'8"), Note("d'8")]
-    measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    staff = Staff([measure] + notes)
-    leaves = select(staff).by_leaf()
-    beam = Beam()
-    attach(beam, leaves)
+    notes = [abjad.Note("c'8"), abjad.Note("d'8")]
+    measure = abjad.Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    staff = abjad.Staff([measure] + notes)
+    leaves = abjad.select(staff).by_leaf()
+    beam = abjad.Beam()
+    abjad.attach(beam, leaves)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -145,7 +151,7 @@ def test_scoretools_Container_reverse_08():
 
     staff.reverse()
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             d'8 [
@@ -165,7 +171,7 @@ def test_scoretools_Container_reverse_08():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert abjad.inspect(staff).is_well_formed()
 
 
 def test_scoretools_Container_reverse_09():
@@ -173,22 +179,22 @@ def test_scoretools_Container_reverse_09():
     and with spanners at all levels.
     '''
 
-    measure_1 = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    measure_2 = Measure((3, 8), "c'8 d'8 e'8")
-    container = Container([measure_1, measure_2])
-    leaves = select(container).by_leaf()
-    pedal = spannertools.PianoPedalSpanner()
-    attach(pedal, leaves)
-    trill = spannertools.TrillSpanner()
-    attach(trill, leaves)
-    beam_1 = Beam()
-    attach(beam_1, measure_1[:])
-    beam_2 = Beam()
-    attach(beam_2, measure_2[:])
-    gliss = spannertools.Glissando()
-    attach(gliss, leaves)
+    measure_1 = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
+    measure_2 = abjad.Measure((3, 8), "c'8 d'8 e'8")
+    container = abjad.Container([measure_1, measure_2])
+    leaves = abjad.select(container).by_leaf()
+    pedal = abjad.PianoPedalSpanner()
+    abjad.attach(pedal, leaves)
+    trill = abjad.TrillSpanner()
+    abjad.attach(trill, leaves)
+    beam_1 = abjad.Beam()
+    abjad.attach(beam_1, measure_1[:])
+    beam_2 = abjad.Beam()
+    abjad.attach(beam_2, measure_2[:])
+    gliss = abjad.Glissando()
+    abjad.attach(gliss, leaves)
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             {
@@ -211,7 +217,7 @@ def test_scoretools_Container_reverse_09():
 
     container.reverse()
 
-    assert format(container) == stringtools.normalize(
+    assert format(container) == abjad.String.normalize(
         r'''
         {
             {
@@ -236,7 +242,7 @@ def test_scoretools_Container_reverse_09():
     assert container[1] is measure_1
     assert len(measure_2) == 3
     assert len(measure_1) == 4
-    leaves = tuple(iterate(container).by_leaf())
+    leaves = tuple(abjad.iterate(container).by_leaf())
     assert pedal.components == leaves
     assert gliss.components == leaves
-    assert inspect_(container).is_well_formed()
+    assert abjad.inspect(container).is_well_formed()

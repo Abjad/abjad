@@ -5,7 +5,7 @@ import sys
 import time
 
 
-abjad.systemtools.IOManager.clear_terminal()
+abjad.IOManager.clear_terminal()
 start_time = time.time()
 argument = sys.argv[1]
 command = r'ack'
@@ -24,7 +24,7 @@ print()
 print('    ' + command)
 print()
 
-abjad.systemtools.IOManager.spawn_subprocess(command)
+abjad.IOManager.spawn_subprocess(command)
 stop_time = time.time()
 total_time = stop_time - start_time
 

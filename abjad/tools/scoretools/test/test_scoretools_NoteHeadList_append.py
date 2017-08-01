@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_NoteHeadList_append_01():
     r'''Append tweaked note-head to chord.
     '''
 
-    chord = Chord("<c' d'>4")
-    note_head = scoretools.NoteHead("b'")
+    chord = abjad.Chord("<c' d'>4")
+    note_head = abjad.NoteHead("b'")
     note_head.tweak.style = 'harmonic'
     chord.note_heads.append(note_head)
 
-    assert format(chord) == stringtools.normalize(
+    assert format(chord) == abjad.String.normalize(
         r'''
         <
             c'

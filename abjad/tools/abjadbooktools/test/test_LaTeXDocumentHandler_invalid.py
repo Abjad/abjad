@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 import platform
 import unittest
 from abjad.tools import abjadbooktools

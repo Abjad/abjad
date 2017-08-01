@@ -5,13 +5,17 @@ import math
 def integer_to_base_k_tuple(n, k):
     '''Changes nonnegative integer `n` to base-`k` tuple.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Gets base-10 digits of 1066:
 
         ::
 
-            >>> mathtools.integer_to_base_k_tuple(1066, 10)
+            >>> abjad.mathtools.integer_to_base_k_tuple(1066, 10)
             (1, 0, 6, 6)
 
     ..  container:: example
@@ -20,7 +24,7 @@ def integer_to_base_k_tuple(n, k):
 
         ::
 
-            >>> mathtools.integer_to_base_k_tuple(1066, 2)
+            >>> abjad.mathtools.integer_to_base_k_tuple(1066, 2)
             (1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0)
 
     Returns tuple of positive integers.

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -8,13 +8,17 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Articulation(AbjadValueObject):
     r'''Articulation.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes from name:
 
         ::
 
-            >>> Articulation('staccato')
+            >>> abjad.Articulation('staccato')
             Articulation('staccato')
 
     ..  container:: example
@@ -23,7 +27,7 @@ class Articulation(AbjadValueObject):
 
         ::
 
-            >>> Articulation('.')
+            >>> abjad.Articulation('.')
             Articulation('.')
 
     ..  container:: example
@@ -32,8 +36,8 @@ class Articulation(AbjadValueObject):
 
         ::
 
-            >>> articulation = Articulation('staccato')
-            >>> Articulation(articulation)
+            >>> articulation = abjad.Articulation('staccato')
+            >>> abjad.Articulation(articulation)
             Articulation('staccato')
 
     ..  container:: example
@@ -42,7 +46,7 @@ class Articulation(AbjadValueObject):
 
         ::
 
-            >>> Articulation('staccato', Up)
+            >>> abjad.Articulation('staccato', Up)
             Articulation('staccato', Up)
 
     .. container:: example
@@ -51,20 +55,29 @@ class Articulation(AbjadValueObject):
 
         ::
 
-            >>> note = Note("c'4")
-            >>> articulation = Articulation('staccato')
-            >>> attach(articulation, note)
+            >>> note = abjad.Note("c'4")
+            >>> articulation = abjad.Articulation('staccato')
+            >>> abjad.attach(articulation, note)
             >>> show(note) # doctest: +SKIP
 
     ..  todo:: Simplify initializer. Allow only initialization from name.
         Implement new ``from_abbreviation()`` and ``from_articulation()``
         methods to replace existing initializer polymorphism.
+
+    ..  container:: example
+
+        Works with new:
+
+        ::
+
+            >>> abjad.new(abjad.Articulation('.'))
+            Articulation('.')
+
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_direction',
         '_format_slot',
         '_name',
@@ -136,7 +149,6 @@ class Articulation(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, name=None, direction=None):
-        self._default_scope = None
         if isinstance(name, type(self)):
             argument = name
             name = argument.name
@@ -146,8 +158,8 @@ class Articulation(AbjadValueObject):
             direction, name = name.split('\\')
             direction = direction.strip()
             name = name.strip()
-        direction = \
-            stringtools.to_tridirectional_ordinal_constant(direction)
+        direction = datastructuretools.String.to_tridirectional_ordinal_constant(
+            direction)
         directions = (Up, Down, Center, None)
         assert direction in directions, repr(direction)
         self._name = name
@@ -196,7 +208,7 @@ class Articulation(AbjadValueObject):
             if self.direction is None:
                 direction = '-'
             else:
-                direction = stringtools.to_tridirectional_lilypond_symbol(
+                direction = datastructuretools.String.to_tridirectional_lilypond_symbol(
                     self.direction)
             return '{}\{}'.format(direction, string)
         else:
@@ -227,26 +239,12 @@ class Articulation(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.articulations.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.right.articulations.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of articulation.
-
-        ..  container:: example
-
-            >>> articulation = Articulation('staccato')
-            >>> articulation.default_scope is None
-            True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def direction(self):
@@ -256,7 +254,7 @@ class Articulation(AbjadValueObject):
 
             Without direction:
 
-            >>> articulation = Articulation('staccato')
+            >>> articulation = abjad.Articulation('staccato')
             >>> articulation.direction is None
             True
 
@@ -264,7 +262,7 @@ class Articulation(AbjadValueObject):
 
             With direction:
 
-            >>> articulation = Articulation('staccato', direction=Up)
+            >>> articulation = abjad.Articulation('staccato', direction=Up)
             >>> articulation.direction
             Up
 
@@ -282,7 +280,7 @@ class Articulation(AbjadValueObject):
 
             ::
 
-                >>> articulation = Articulation('staccato')
+                >>> articulation = abjad.Articulation('staccato')
                 >>> articulation.name
                 'staccato'
 
@@ -292,7 +290,7 @@ class Articulation(AbjadValueObject):
 
             ::
 
-                >>> articulation = Articulation('tenuto')
+                >>> articulation = abjad.Articulation('tenuto')
                 >>> articulation.name
                 'tenuto'
 

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import filecmp
 import os
 import shutil
@@ -22,11 +23,11 @@ class FilesystemState(ContextManager):
 
     def __init__(self, keep=None, remove=None):
         keep = keep or []
-        assert isinstance(keep, (list, tuple)), repr(keep)
+        assert isinstance(keep, collections.Iterable), repr(keep)
         keep = tuple(keep)
         self._keep = keep
         remove = remove or []
-        assert isinstance(remove, (list, tuple)), repr(remove)
+        assert isinstance(remove, collections.Iterable), repr(remove)
         self._remove = remove
 
     ### SPECIAL METHODS ###

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Score_add_final_markup_01():
 
-    staff = Staff("c'4 d'4 e'4 f'4")
-    score = Score([staff])
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
+    score = abjad.Score([staff])
     markup = r'\italic \right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." }'
-    markup = markuptools.Markup(markup, Down)
+    markup = abjad.Markup(markup, Down)
     score.add_final_markup(markup, extra_offset=(4, -2))
 
 
@@ -31,7 +31,7 @@ def test_scoretools_Score_add_final_markup_01():
     >>
     '''
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == abjad.String.normalize(
         r'''
         \new Score <<
             \new Staff {

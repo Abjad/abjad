@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -8,13 +8,17 @@ from abjad.tools.abctools import AbjadValueObject
 class Scheme(AbjadValueObject):
     r'''Abjad model of Scheme code.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         A Scheme boolean value:
 
         ::
 
-            >>> scheme = schemetools.Scheme(True)
+            >>> scheme = abjad.Scheme(True)
             >>> print(format(scheme))
             ##t
 
@@ -24,21 +28,21 @@ class Scheme(AbjadValueObject):
 
         ::
 
-            >>> scheme = schemetools.Scheme(
+            >>> scheme = abjad.Scheme([
             ...     ('left', (1, 2, False)),
-            ...     ('right', (1, 2, 3.3))
-            ...     )
+            ...     ('right', (1, 2, 3.3)),
+            ...     ])
             >>> print(format(scheme))
             #((left (1 2 #f)) (right (1 2 3.3)))
 
     ..  container:: example
 
-        A variable-length argument:
+        A list:
 
         ::
 
-            >>> scheme_1 = schemetools.Scheme(1, 2, 3)
-            >>> scheme_2 = schemetools.Scheme((1, 2, 3))
+            >>> scheme_1 = abjad.Scheme([1, 2, 3])
+            >>> scheme_2 = abjad.Scheme((1, 2, 3))
             >>> format(scheme_1) == format(scheme_2)
             True
 
@@ -50,7 +54,7 @@ class Scheme(AbjadValueObject):
 
         ::
 
-            >>> scheme = schemetools.Scheme((1, 2, 3), quoting="'#")
+            >>> scheme = abjad.Scheme((1, 2, 3), quoting="'#")
             >>> print(format(scheme))
             #'#(1 2 3)
 
@@ -63,7 +67,7 @@ class Scheme(AbjadValueObject):
 
         ::
 
-            >>> scheme = schemetools.Scheme('nospaces', force_quotes=True)
+            >>> scheme = abjad.Scheme('nospaces', force_quotes=True)
             >>> print(format(scheme))
             #"nospaces"
 
@@ -79,14 +83,22 @@ class Scheme(AbjadValueObject):
 
             >>> function_1 = 'tuplet-number::append-note-wrapper'
             >>> function_2 = 'tuplet-number::calc-denominator-text'
-            >>> string = schemetools.Scheme('4', force_quotes=True)
-            >>> scheme = schemetools.Scheme(
-            ...     function_1,
-            ...     function_2,
-            ...     string,
-            ...     )
-            >>> scheme
-            Scheme('tuplet-number::append-note-wrapper', 'tuplet-number::calc-denominator-text', Scheme('4', force_quotes=True))
+            >>> string = abjad.Scheme('4', force_quotes=True)
+            >>> scheme = abjad.Scheme([function_1, function_2, string])
+            >>> f(scheme)
+            abjad.Scheme(
+                [
+                    'tuplet-number::append-note-wrapper',
+                    'tuplet-number::calc-denominator-text',
+                    abjad.Scheme(
+                        '4',
+                        force_quotes=True,
+                        ),
+                    ]
+                )
+
+        ::
+
             >>> print(format(scheme))
             #(tuplet-number::append-note-wrapper tuplet-number::calc-denominator-text "4")
 
@@ -101,13 +113,121 @@ class Scheme(AbjadValueObject):
 
             >>> string = '(lambda (grob) (grob-interpret-markup grob'
             >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
-            >>> scheme = schemetools.Scheme(string, verbatim=True)
-            >>> scheme
-            Scheme('(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))')
+            >>> scheme = abjad.Scheme(string, verbatim=True)
+            >>> f(scheme)
+            abjad.Scheme(
+                '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))',
+                verbatim=True,
+                )
+
+        ::
+
             >>> print(format(scheme))
             #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
 
-    Scheme objects are immutable.
+    ..  container:: example
+
+        More examples:
+
+        ::
+
+            >>> abjad.Scheme(True)
+            Scheme(True)
+
+        ::
+
+            >>> abjad.Scheme(False)
+            Scheme(False)
+
+        ::
+
+            >>> abjad.Scheme(None)
+            Scheme(None)
+
+        ::
+
+            >>> abjad.Scheme('hello')
+            Scheme('hello')
+
+        ::
+
+            >>> abjad.Scheme('hello world')
+            Scheme('hello world')
+
+            >>> abjad.Scheme([abjad.Scheme('foo'), abjad.Scheme(3.14159)])
+            Scheme([Scheme('foo'), Scheme(3.14159)])
+
+            >>> abjad.Scheme([
+            ...     abjad.SchemePair(('padding', 1)),
+            ...     abjad.SchemePair(('attach-dir', -1)),
+            ...     ])
+            Scheme([SchemePair(('padding', 1)), SchemePair(('attach-dir', -1))])
+
+    ..  container:: example
+
+        Scheme takes an optional `quoting` keyword, for prepending
+        quote/unquote ticks:
+
+        >>> str(abjad.Scheme(['fus', 'ro', 'dah'], quoting = "',"))
+        "',(fus ro dah)"
+
+    ..  container:: example
+
+        __str__ of abjad.Scheme returns the abjad.Scheme formatted value
+        without the hash mark, while format(Scheme) returns the formatted value
+        with the hash mark, allowing for nested abjad.Scheme expressions:
+
+        ::
+
+            >>> scheme = abjad.Scheme(['fus', 'ro', 'dah'], quoting = "'")
+            >>> str(scheme)
+            "'(fus ro dah)"
+
+        ::
+
+            >>> format(scheme)
+            "#'(fus ro dah)"
+
+    ..  container:: example
+
+        Scheme attempts to format Python values into abjad.Scheme equivalents:
+
+        ::
+
+            >>> format(abjad.Scheme(True))
+            '##t'
+
+        ::
+
+            >>> format(abjad.Scheme(False))
+            '##f'
+
+        ::
+
+            >>> format(abjad.Scheme(None))
+            '##f'
+
+        ::
+
+            >>> format(abjad.Scheme('hello world'))
+            '#"hello world"'
+
+        ::
+
+
+            >>> format(abjad.Scheme([1, 2, 3]))
+            '#(1 2 3)'
+
+        ::
+
+            >>> format(abjad.Scheme([
+            ...     abjad.SchemePair(('padding', 1)),
+            ...     abjad.SchemePair(('attach-dir', -1)),
+            ...     ],
+            ...     quoting="'",
+            ...     ))
+            "#'((padding . 1) (attach-dir . -1))"
+
     '''
 
     ### CLASS VARIABLES ###
@@ -123,24 +243,27 @@ class Scheme(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *arguments, **keywords):
-        if len(arguments) == 1:
-            if isinstance(arguments[0], type(self)):
-                value = arguments[0]._value
-            else:
-                value = arguments[0]
-        else:
-            value = arguments
-        quoting = keywords.get('quoting')
-        force_quotes = keywords.get('force_quotes')
-        verbatim = keywords.get('verbatim')
+    def __init__(
+        self,
+        value=None,
+        force_quotes=None,
+        quoting=None,
+        verbatim=None,
+        ):
         if quoting is not None:
-            assert isinstance(quoting, str)
-            assert all(character in r"',@`#" for character in quoting)
-        if force_quotes is not None:
-            force_quotes = bool(force_quotes)
-        if verbatim is not None:
-            verbatim = bool(verbatim)
+            if (not isinstance(quoting, str) or
+                not all(character in r"',@`#" for character in quoting)):
+                message = r"quoting must be ' or , or @ or ` or #: {!r}."
+                message = message.format(quoting)
+                raise ValueError(message)
+        if not isinstance(force_quotes, (bool, type(None))):
+            message = 'force quotes must be true, false or none: {!r}.'
+            message = message.format(force_quotes)
+            raise TypeError(force_quotes)
+        if not isinstance(verbatim, (bool, type(None))):
+            message = 'force quotes must be true, false or none: {!r}.'
+            message = message.format(verbatim)
+            raise TypeError(verbatim)
         self._value = value
         self._quoting = quoting
         self._force_quotes = force_quotes
@@ -160,7 +283,7 @@ class Scheme(AbjadValueObject):
 
             ::
 
-                >>> scheme = schemetools.Scheme('foo')
+                >>> scheme = abjad.Scheme('foo')
                 >>> format(scheme)
                 '#foo'
 
@@ -184,13 +307,6 @@ class Scheme(AbjadValueObject):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self._value,)
-
     def __str__(self):
         r'''String representation of scheme object.
 
@@ -213,21 +329,10 @@ class Scheme(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        if stringtools.is_string(self._value):
-            values = [self._value]
-        elif isinstance(self._value, collections.Iterable):
-            values = self._value
-        else:
-            values = [self._value]
-        names = []
-        if self.force_quotes:
-            names.append('force_quotes')
-        if self.quoting:
-            names.append('quoting')
+        values = [self.value]
         return systemtools.FormatSpecification(
             client=self,
             storage_format_args_values=values,
-            storage_format_kwargs_names=names,
             )
 
     def _get_lilypond_format(self):
@@ -252,6 +357,12 @@ class Scheme(AbjadValueObject):
         Returns string.
         '''
         return self._quoting
+
+    @property
+    def value(self):
+        r'''Gets value.
+        '''
+        return self._value
 
     @property
     def verbatim(self):
@@ -296,22 +407,22 @@ class Scheme(AbjadValueObject):
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value(1)
+                >>> abjad.Scheme.format_scheme_value(1)
                 '1'
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value('foo')
+                >>> abjad.Scheme.format_scheme_value('foo')
                 'foo'
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value('bar baz')
+                >>> abjad.Scheme.format_scheme_value('bar baz')
                 '"bar baz"'
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value([1.5, True, False])
+                >>> abjad.Scheme.format_scheme_value([1.5, True, False])
                 '(1.5 #t #f)'
 
         ..  container:: example
@@ -321,7 +432,7 @@ class Scheme(AbjadValueObject):
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value(
+                >>> abjad.Scheme.format_scheme_value(
                 ...     'foo',
                 ...     force_quotes=True,
                 ...     )
@@ -336,7 +447,7 @@ class Scheme(AbjadValueObject):
 
                 >>> string = '(lambda (grob) (grob-interpret-markup grob'
                 >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
-                >>> schemetools.Scheme.format_scheme_value(string, verbatim=True)
+                >>> abjad.Scheme.format_scheme_value(string, verbatim=True)
                 '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))'
 
         ..  container:: example
@@ -347,12 +458,12 @@ class Scheme(AbjadValueObject):
             ::
 
                 >>> string = '#1-finger'
-                >>> schemetools.Scheme.format_scheme_value(string)
+                >>> abjad.Scheme.format_scheme_value(string)
                 '"#1-finger"'
 
             ::
 
-                >>> schemetools.Scheme.format_scheme_value(string, verbatim=True)
+                >>> abjad.Scheme.format_scheme_value(string, verbatim=True)
                 '#1-finger'
 
         Returns string.

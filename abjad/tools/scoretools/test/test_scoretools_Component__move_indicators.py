@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Component__move_indicators_01():
 
-    staff = Staff(r'\clef "bass" c \staccato d e f')
+    staff = abjad.Staff(r'\clef "bass" c \staccato d e f')
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \clef "bass"
@@ -18,14 +18,14 @@ def test_scoretools_Component__move_indicators_01():
         '''
         )
 
-    assert len(inspect_(staff[0]).get_indicators()) == 2
-    assert len(inspect_(staff[1]).get_indicators()) == 0
-    assert len(inspect_(staff[2]).get_indicators()) == 0
-    assert len(inspect_(staff[3]).get_indicators()) == 0
+    assert len(abjad.inspect(staff[0]).get_indicators()) == 2
+    assert len(abjad.inspect(staff[1]).get_indicators()) == 0
+    assert len(abjad.inspect(staff[2]).get_indicators()) == 0
+    assert len(abjad.inspect(staff[3]).get_indicators()) == 0
 
     staff[0]._move_indicators(staff[2])
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c4
@@ -37,7 +37,7 @@ def test_scoretools_Component__move_indicators_01():
         '''
         )
 
-    assert len(inspect_(staff[0]).get_indicators()) == 0
-    assert len(inspect_(staff[1]).get_indicators()) == 0
-    assert len(inspect_(staff[2]).get_indicators()) == 2
-    assert len(inspect_(staff[3]).get_indicators()) == 0
+    assert len(abjad.inspect(staff[0]).get_indicators()) == 0
+    assert len(abjad.inspect(staff[1]).get_indicators()) == 0
+    assert len(abjad.inspect(staff[2]).get_indicators()) == 2
+    assert len(abjad.inspect(staff[3]).get_indicators()) == 0

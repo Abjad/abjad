@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Xylophone(Instrument):
-    r'''A xylphone.
+    r'''Xylphone.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> xylophone = instrumenttools.Xylophone()
-        >>> attach(xylophone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Xylophone }
-            \set Staff.shortInstrumentName = \markup { Xyl. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> xylophone = abjad.instrumenttools.Xylophone()
+            >>> abjad.attach(xylophone, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Xylophone }
+                \set Staff.shortInstrumentName = \markup { Xyl. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -125,7 +132,7 @@ class Xylophone(Instrument):
             ::
 
                 >>> xylophone.pitch_range
-                PitchRange(range_string='[C4, C7]')
+                PitchRange('[C4, C7]')
 
             ::
 

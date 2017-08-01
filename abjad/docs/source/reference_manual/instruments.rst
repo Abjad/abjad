@@ -1,6 +1,10 @@
 Instruments
 ===========
 
+..  abjad::
+
+    import abjad
+
 
 Creating instruments
 --------------------
@@ -9,7 +13,7 @@ Use ``instrumenttools`` to create an instrument:
 
 ..  abjad::
 
-    violin = instrumenttools.Violin()
+    violin = abjad.instrumenttools.Violin()
 
 
 Understanding the interpreter representation of an instrument
@@ -26,23 +30,23 @@ class:
 Attaching instruments to a component
 ------------------------------------
 
-Use ``attach()`` to attach an instrument to a component:
+Use ``attach()`` to attach an instrument to a leaf:
 
 ..  abjad::
 
-    staff = Staff("c'4 d'4 e'4 f'4")
-    attach(violin, staff)
+    staff = abjad.Staff("c'4 d'4 e'4 f'4")
+    attach(violin, staff[0])
     show(staff)
 
 
 Inspecting the instrument attached to a component
 -------------------------------------------------
 
-Use the inspector to get the instrument attached to a component:
+Use the inspector to get the instrument attached to a leaf:
 
 ..  abjad::
 
-    inspect_(staff).get_indicator(instrumenttools.Instrument)
+    abjad.inspect(staff).get_indicator(abjad.Instrument)
 
 
 Inspecting a component's effective instrument
@@ -53,7 +57,7 @@ Use the inspector to get the instrument currently in effect for a component:
 ..  abjad::
 
     for note in staff:
-        inspect_(note).get_effective(instrumenttools.Instrument)
+        abjad.inspect(note).get_effective(abjad.Instrument)
 
 
 Detaching instruments from a component
@@ -63,7 +67,7 @@ Use ``detach()`` to detach an instrument from a component:
 
 ..  abjad::
 
-    detach(violin, staff)
+    abjad.detach(violin, staff)
     show(staff)
 
 
@@ -160,7 +164,7 @@ You can change the properties of any instrument at initialization:
 
 ..  abjad::
 
-    viola = instrumenttools.Viola(
+    viola = abjad.instrumenttools.Viola(
         instrument_name='Bratsche',
         short_instrument_name='Br.',
         allowable_clefs=['alto', 'treble'],
@@ -169,8 +173,8 @@ You can change the properties of any instrument at initialization:
 
 ..  abjad::
 
-    staff = Staff("c'4 d'4 e'4 fs'4")
-    attach(viola, staff)
-    clef = Clef('alto')
-    attach(clef, staff)
+    staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+    attach(viola, staff[0])
+    clef = abjad.Clef('alto')
+    attach(clef, staff[0])
     show(staff)

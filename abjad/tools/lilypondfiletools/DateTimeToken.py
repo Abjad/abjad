@@ -6,9 +6,13 @@ from abjad.tools.abctools import AbjadObject
 class DateTimeToken(AbjadObject):
     '''A LilyPond file date / time token.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
-        >>> lilypondfiletools.DateTimeToken()
+        >>> abjad.DateTimeToken()
         DateTimeToken()
 
     '''
@@ -34,7 +38,7 @@ class DateTimeToken(AbjadObject):
 
             ::
 
-                >>> token = lilypondfiletools.DateTimeToken()
+                >>> token = abjad.DateTimeToken()
                 >>> print(format(token)) # doctest: +SKIP
                 2014-01-04 14:42
 
@@ -54,7 +58,7 @@ class DateTimeToken(AbjadObject):
 
             ::
 
-                >>> lilypondfiletools.DateTimeToken()
+                >>> abjad.DateTimeToken()
                 DateTimeToken()
 
         Returns string.
@@ -77,7 +81,7 @@ class DateTimeToken(AbjadObject):
 
             ::
 
-                >>> token = lilypondfiletools.DateTimeToken()
+                >>> token = abjad.DateTimeToken()
                 >>> token.date_string # doctest: +SKIP
                 '2014-01-23 12:21'
 

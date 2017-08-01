@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
+import abjad
 import random
-from abjad import *
 
 
 def test_selectortools_Selector_run_selectors_01():
 
-    staff = Staff("c'4 d'8 e'8 f'4 g'8 a'4 b'8 c'8")
+    staff = abjad.Staff("c'4 d'8 e'8 f'4 g'8 a'4 b'8 c'8")
 
-    selector = selectortools.Selector()
+    selector = abjad.Selector()
     logical_tie_selector = selector.by_logical_tie()
     pitched_selector = logical_tie_selector.by_pitch('C4')
     duration_selector = logical_tie_selector.by_duration('==', (1, 8))
@@ -24,7 +24,7 @@ def test_selectortools_Selector_run_selectors_01():
     all_results = []
 
     for _ in range(10):
-        result = selectortools.Selector.run_selectors(staff, selectors)
+        result = abjad.Selector.run_selectors(staff, selectors)
         all_results.append(result)
         random.shuffle(selectors)
 
@@ -36,7 +36,7 @@ def test_selectortools_Selector_run_selectors_01():
         assert duration_selector in result
         assert contiguity_selector in result
 
-    pairs = sequencetools.Sequence(all_results).nwise()
+    pairs = abjad.Sequence(all_results).nwise()
     for results_one, results_two in pairs:
         for selector in selectors:
             assert results_one[selector] == results_two[selector]

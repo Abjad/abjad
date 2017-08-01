@@ -1,6 +1,6 @@
 #! /usr/bin/env python
+import abjad
 import os
-from abjad.tools import systemtools
 
 
 def main():
@@ -9,7 +9,7 @@ def main():
         for file_name in file_names:
             if file_name.endswith('.py'):
                 full_file_name = os.path.join(directory, file_name)
-                file_pointer = file(full_file_name, 'r')
+                file_pointer = open(full_file_name, 'r')
                 header_lines = []
                 for i, line in enumerate(file_pointer):
                     if i == 0 and \
@@ -21,31 +21,31 @@ def main():
                     elif line == '\n' or line.startswith('pytest'):
                         break
                     else:
-                        print
-                        print total_nonalphabetized_module_headers
-                        print
-                        print full_file_name
-                        print header_lines
-                        print 'this line is problematic: {!r}'.format(line)
-                        print
+                        print()
+                        print(total_nonalphabetized_module_headers)
+                        print()
+                        print(full_file_name)
+                        print(header_lines)
+                        print('this line is problematic: {!r}'.format(line))
+                        print()
                         raise Exception
                 if header_lines:
                     sorted_header_lines = list(sorted(header_lines))
                     if header_lines != sorted_header_lines:
                         total_nonalphabetized_module_headers += 1
-                        print '### NONALPHABETIZED HEADER ###\n'
-                        print '\n'.join(header_lines)
-                        print '\n'.join(sorted_header_lines)
+                        print('### NONALPHABETIZED HEADER ###\n')
+                        print('\n'.join(header_lines))
+                        print('\n'.join(sorted_header_lines))
 
     total = total_nonalphabetized_module_headers
-    print 'Total nonalphabetized headers: {}'.format(total)
-    print
+    print('Total nonalphabetized headers: {}'.format(total))
+    print()
 
 
 if __name__ == '__main__':
-    systemtools.IOManager.clear_terminal()
+    abjad.IOManager.clear_terminal()
     #print 'Finding nonalphabetized module headers ...'
     #print
     #main()
-    print 'This script needs to be ported to the new module header standard.'
-    print
+    print('This script needs to be ported to the new module header standard.')
+    print()

@@ -6,15 +6,19 @@ from abjad.tools.spannertools.Beam import Beam
 class ComplexBeam(Beam):
     r'''Complex beam.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'16 e'16 r16 f'16 g'2")
-            >>> set_(staff).auto_beaming = False
+            >>> staff = abjad.Staff("c'16 e'16 r16 f'16 g'2")
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -29,11 +33,11 @@ class ComplexBeam(Beam):
 
         ::
 
-            >>> beam = spannertools.ComplexBeam()
-            >>> attach(beam, staff[:4])
+            >>> beam = abjad.ComplexBeam()
+            >>> abjad.attach(beam, staff[:4])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -83,13 +87,7 @@ class ComplexBeam(Beam):
 
     ### PRIVATE METHODS ###
 
-    def _copy_keyword_args(self, new):
-        Beam._copy_keyword_args(self, new)
-        self._beam_rests = self.beam_rests
-        new._isolated_nib_direction = self.isolated_nib_direction
-
-    def _format_before_leaf(self, leaf):
-        result = []
+    def _add_beam_counts(self, leaf, bundle):
         if self._is_beamable(leaf, beam_rests=self.beam_rests):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)
@@ -99,14 +97,12 @@ class ComplexBeam(Beam):
                 left, right = self._get_left_right_for_interior_leaf(leaf)
             if left is not None:
                 string = r'\set stemLeftBeamCount = #{}'.format(left)
-                result.append(string)
+                bundle.before.commands.append(string)
             if right is not None:
                 string = r'\set stemRightBeamCount = #{}'.format(right)
-                result.append(string)
-        return result
+                bundle.before.commands.append(string)
 
-    def _format_right_of_leaf(self, leaf):
-        result = []
+    def _add_start_and_stops(self, leaf, bundle):
         if self._is_beamable(leaf, beam_rests=self.beam_rests):
             previous_leaf = leaf._get_leaf(-1)
             next_leaf = leaf._get_leaf(1)
@@ -115,9 +111,9 @@ class ComplexBeam(Beam):
                 if self.isolated_nib_direction:
                     if self.direction is not None:
                         string = '{} ['.format(self.direction)
-                        result.append(string)
+                        bundle.right.spanner_starts.append(string)
                     else:
-                        result.append('[')
+                        bundle.right.spanner_starts.append('[')
             # otherwise
             elif (self._is_my_first_leaf(leaf) or
                 not previous_leaf or
@@ -128,23 +124,35 @@ class ComplexBeam(Beam):
                 ):
                 if self.direction is not None:
                     string = '{} ['.format(self.direction)
-                    result.append(string)
+                    bundle.right.spanner_starts.append(string)
                 else:
-                    result.append('[')
+                    bundle.right.spanner_starts.append('[')
             # isolated_nib_direction
             if self._is_my_only_leaf(leaf):
                 if self.isolated_nib_direction:
-                    result.append(']')
+                    for string in bundle.right.spanner_starts:
+                        if '[' in string:
+                            bundle.right.spanner_starts.append(']')
+                            break
+                    else:
+                        bundle.right.spanner_stops.append(']')
             # otherwise
-            elif (self._is_my_last_leaf(leaf) or
+            elif (
+                self._is_my_last_leaf(leaf) or
                 not next_leaf or
-                not self._is_beamable(
-                    next_leaf,
-                    beam_rests=self.beam_rests,
-                    )
+                not self._is_beamable(next_leaf, beam_rests=self.beam_rests)
                 ):
-                result.append(']')
-        return result
+                for string in bundle.right.spanner_starts:
+                    if '[' in string:
+                        bundle.right.spanner_starts.append(']')
+                        break
+                else:
+                    bundle.right.spanner_stops.append(']')
+
+    def _copy_keyword_args(self, new):
+        Beam._copy_keyword_args(self, new)
+        self._beam_rests = self.beam_rests
+        new._isolated_nib_direction = self.isolated_nib_direction
 
     def _get_left_right_for_exterior_leaf(self, leaf):
         r'''Gets left and right flag counts for exterior leaf in spanner.
@@ -261,14 +269,11 @@ class ComplexBeam(Beam):
         return left, right
 
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-        lilypond_format_bundle.get('before').spanners.extend(
-            self._format_before_leaf(leaf))
-        lilypond_format_bundle.get('right').spanners.extend(
-            self._format_right_of_leaf(leaf))
-        lilypond_format_bundle.get('after').spanners.extend(
-            self._format_after_leaf(leaf))
-        return lilypond_format_bundle
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
+        self._add_beam_counts(leaf, bundle)
+        self._add_start_and_stops(leaf, bundle)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -283,12 +288,12 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 r r d'")
-                >>> beam = spannertools.ComplexBeam(beam_rests=False)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 r r d'")
+                >>> beam = abjad.ComplexBeam(beam_rests=False)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -310,12 +315,12 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 r r d'")
-                >>> beam = spannertools.ComplexBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 r r d'")
+                >>> beam = abjad.ComplexBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -339,12 +344,12 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 s s d'")
-                >>> beam = spannertools.ComplexBeam(beam_rests=False)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 s s d'")
+                >>> beam = abjad.ComplexBeam(beam_rests=False)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -366,12 +371,12 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> staff = Staff("c'8 s s d'")
-                >>> beam = spannertools.ComplexBeam(beam_rests=True)
-                >>> attach(beam, staff[:])
+                >>> staff = abjad.Staff("c'8 s s d'")
+                >>> beam = abjad.ComplexBeam(beam_rests=True)
+                >>> abjad.attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -407,12 +412,12 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=Left)
-                >>> attach(beam, measure[:])
+                >>> measure = abjad.Measure((1, 16), "c'16")
+                >>> beam = abjad.ComplexBeam(isolated_nib_direction=Left)
+                >>> abjad.attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -428,12 +433,12 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=Right)
-                >>> attach(beam, measure[:])
+                >>> measure = abjad.Measure((1, 16), "c'16")
+                >>> beam = abjad.ComplexBeam(isolated_nib_direction=Right)
+                >>> abjad.attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -449,12 +454,12 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=True)
-                >>> attach(beam, measure[:])
+                >>> measure = abjad.Measure((1, 16), "c'16")
+                >>> beam = abjad.ComplexBeam(isolated_nib_direction=True)
+                >>> abjad.attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {
@@ -470,12 +475,12 @@ class ComplexBeam(Beam):
 
             ::
 
-                >>> measure = Measure((1, 16), "c'16")
-                >>> beam = spannertools.ComplexBeam(isolated_nib_direction=False)
-                >>> attach(beam, measure[:])
+                >>> measure = abjad.Measure((1, 16), "c'16")
+                >>> beam = abjad.ComplexBeam(isolated_nib_direction=False)
+                >>> abjad.attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(measure)
                 {

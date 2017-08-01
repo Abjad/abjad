@@ -5,39 +5,48 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QTargetBeat(AbjadObject):
-    r'''Representation of a single "beat" in a quantization target.
+    r'''Q-target beat.
+    
+    Represents a single beat in a quantization target.
 
     ::
 
-        >>> beatspan = (1, 8)
-        >>> offset_in_ms = 1500
-        >>> search_tree = quantizationtools.UnweightedSearchTree({3: None})
-        >>> tempo = Tempo((1, 4), 56)
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
-    ::
+    ..  container:: example
 
-        >>> q_target_beat = quantizationtools.QTargetBeat(
-        ...     beatspan=beatspan,
-        ...     offset_in_ms=offset_in_ms,
-        ...     search_tree=search_tree,
-        ...     tempo=tempo,
-        ...     )
+        ::
 
-    ::
+            >>> beatspan = (1, 8)
+            >>> offset_in_ms = 1500
+            >>> search_tree = quantizationtools.UnweightedSearchTree({3: None})
+            >>> tempo = abjad.MetronomeMark((1, 4), 56)
 
-        >>> print(format(q_target_beat))
-        quantizationtools.QTargetBeat(
-            beatspan=abjad.Duration(1, 8),
-            offset_in_ms=abjad.Offset(1500, 1),
-            search_tree=quantizationtools.UnweightedSearchTree(
-                definition={   3: None,
-                    },
-                ),
-            tempo=abjad.Tempo(
-                reference_duration=abjad.Duration(1, 4), 
-                units_per_minute=56,
-                ),
-            )
+        ::
+
+            >>> q_target_beat = quantizationtools.QTargetBeat(
+            ...     beatspan=beatspan,
+            ...     offset_in_ms=offset_in_ms,
+            ...     search_tree=search_tree,
+            ...     tempo=tempo,
+            ...     )
+
+        ::
+
+            >>> f(q_target_beat)
+            quantizationtools.QTargetBeat(
+                beatspan=abjad.Duration(1, 8),
+                offset_in_ms=abjad.Offset(1500, 1),
+                search_tree=quantizationtools.UnweightedSearchTree(
+                    definition={   3: None,
+                        },
+                    ),
+                tempo=abjad.MetronomeMark(
+                    reference_duration=abjad.Duration(1, 4), 
+                    units_per_minute=56,
+                    ),
+                )
 
     Not composer-safe.
 
@@ -58,6 +67,8 @@ class QTargetBeat(AbjadObject):
         '_tempo',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -77,10 +88,10 @@ class QTargetBeat(AbjadObject):
         if search_tree is None:
             search_tree = quantizationtools.UnweightedSearchTree()
         assert isinstance(search_tree, quantizationtools.SearchTree)
-        tempo = tempo or indicatortools.Tempo(durationtools.Duration(1, 4), 60)
-        #tempo = indicatortools.Tempo(tempo)
+        tempo = tempo or indicatortools.MetronomeMark((1, 4), 60)
+        #tempo = indicatortools.MetronomeMark(tempo)
         if isinstance(tempo, tuple):
-            tempo = indicatortools.Tempo(*tempo)
+            tempo = indicatortools.MetronomeMark(*tempo)
         assert not tempo.is_imprecise
 
         q_events = []
@@ -230,12 +241,12 @@ class QTargetBeat(AbjadObject):
 
     @property
     def tempo(self):
-        r'''Tempo of q-target beat.
+        r'''MetronomeMark of q-target beat.
 
         ::
 
             >>> q_target_beat.tempo
-            Tempo(reference_duration=Duration(1, 4), units_per_minute=56)
+            MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=56)
 
         Returns tempo.
         '''

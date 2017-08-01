@@ -3,54 +3,68 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class Lineage(Selection):
-    r'''A selection of components in the lineage of a component.
+    r'''Lineage of a component.
 
     ::
 
-        >>> score = Score()
-        >>> score.append(Staff(r"""\new Voice = "Treble Voice" { c'4 }""",
-        ... name='Treble Staff'))
-        >>> score.append(Staff(r"""\new Voice = "Bass Voice" { b,4 }""",
-        ... name='Bass Staff'))
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> print(format(score))
-        \new Score <<
-            \context Staff = "Treble Staff" {
-                \context Voice = "Treble Voice" {
-                    c'4
+        ::
+
+            >>> score = abjad.Score()
+            >>> staff = abjad.Staff(
+            ...     r"""\new Voice = "Treble Voice" { c'4 }""",
+            ...     name='Treble Staff',
+            ...     )
+            >>> score.append(staff)
+            >>> bass = abjad.Staff(
+            ...     r"""\new Voice = "Bass Voice" { b,4 }""",
+            ...     name='Bass Staff',
+            ...     )
+            >>> score.append(bass)
+
+        ..  docs::
+
+            >>> f(score)
+            \new Score <<
+                \context Staff = "Treble Staff" {
+                    \context Voice = "Treble Voice" {
+                        c'4
+                    }
                 }
-            }
-            \context Staff = "Bass Staff" {
-                \context Voice = "Bass Voice" {
-                    b,4
+                \context Staff = "Bass Staff" {
+                    \context Voice = "Bass Voice" {
+                        b,4
+                    }
                 }
-            }
-        >>
+            >>
 
-    ::
+        ::
 
-        >>> for x in selectiontools.Lineage(score): x
-        ...
-        <Score<<2>>>
-        <Staff-"Treble Staff"{1}>
-        Voice("c'4")
-        Note("c'4")
-        <Staff-"Bass Staff"{1}>
-        Voice('b,4')
-        Note('b,4')
+            >>> for component in abjad.inspect(score).get_lineage():
+            ...     component
+            ...
+            <Score<<2>>>
+            <Staff-"Treble Staff"{1}>
+            Voice("c'4", name='Treble Voice')
+            Note("c'4")
+            <Staff-"Bass Staff"{1}>
+            Voice('b,4', name='Bass Voice')
+            Note('b,4')
 
-    ::
+        ::
 
-        >>> for x in selectiontools.Lineage(score['Bass Voice']): x
-        ...
-        <Score<<2>>>
-        <Staff-"Bass Staff"{1}>
-        Voice('b,4')
-        Note('b,4')
+            >>> bass_voice = score['Bass Voice']
+            >>> for component in abjad.inspect(bass_voice).get_lineage():
+            ...     component
+            ...
+            <Score<<2>>>
+            <Staff-"Bass Staff"{1}>
+            Voice('b,4', name='Bass Voice')
+            Note('b,4')
 
-    Returns lineage.
     '''
 
     ### CLASS VARIABLES ###

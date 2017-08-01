@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
+from abjad.tools import rhythmmakertools
 
 
 def test_rhythmmakertools_TaleaRhythmMaker___call___01():
@@ -16,12 +17,13 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
     divisions = [(2, 8), (5, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = Sequence(selections).flatten()
-    measures = scoretools.make_spacer_skip_measures(divisions)
-    staff = Staff(measures)
-    mutate(staff).replace_measure_contents(selections)
+    selections = abjad.Sequence(selections).flatten()
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = abjad.Staff(measures)
+    abjad.mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {
@@ -64,12 +66,13 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
     divisions = [(2, 8), (5, 8)]
     selections = rhythm_maker(divisions)
 
-    selections = Sequence(selections).flatten()
-    measures = scoretools.make_spacer_skip_measures(divisions)
-    staff = Staff(measures)
-    mutate(staff).replace_measure_contents(selections)
+    selections = abjad.Sequence(selections).flatten()
+    maker = abjad.MeasureMaker()
+    measures = maker(divisions)
+    staff = abjad.Staff(measures)
+    abjad.mutate(staff).replace_measure_contents(selections)
 
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             {

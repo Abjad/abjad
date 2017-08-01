@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
+from abjad.tools import datastructuretools
 from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
@@ -8,16 +8,22 @@ class ReSTTOCItem(TreeNode):
 
     ::
 
-        >>> item = documentationtools.ReSTTOCItem(text='api/index')
-        >>> item
-        ReSTTOCItem(
-            text='api/index'
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> print(item.rest_format)
-        api/index
+        ::
+
+            >>> item = abjad.documentationtools.ReSTTOCItem(text='api/index')
+            >>> item
+            ReSTTOCItem(
+                text='api/index'
+                )
+
+        ::
+
+            >>> print(item.rest_format)
+            api/index
 
     '''
 
@@ -25,11 +31,16 @@ class ReSTTOCItem(TreeNode):
 
     __documentation_section__ = 'reStructuredText'
 
+    __slots__ = (
+        '_text',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, name=None, text='foo'):
         TreeNode.__init__(self, name)
-        self.text = text
+        #self.text = text
+        self._text = text
 
     ### PRIVATE PROPERTIES ###
 
@@ -57,6 +68,6 @@ class ReSTTOCItem(TreeNode):
 
     @text.setter
     def text(self, arg):
-        assert stringtools.is_string(arg)
+        assert datastructuretools.String.is_string(arg)
         arg = arg.strip()
         self._text = arg

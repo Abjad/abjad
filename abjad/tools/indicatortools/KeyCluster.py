@@ -5,6 +5,10 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class KeyCluster(AbjadValueObject):
     r'''Key cluster.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         
@@ -12,14 +16,14 @@ class KeyCluster(AbjadValueObject):
 
         ::
 
-            >>> chord = Chord("<c' e' g' b' d'' f''>8")
-            >>> key_cluster = indicatortools.KeyCluster()
-            >>> attach(key_cluster, chord)
+            >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+            >>> key_cluster = abjad.KeyCluster()
+            >>> abjad.attach(key_cluster, chord)
             >>> show(chord) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(chord))
+            >>> f(chord)
             \once \override Accidental.stencil = ##f
             \once \override AccidentalCautionary.stencil = ##f
             \once \override Arpeggio.X-offset = #-2
@@ -42,7 +46,6 @@ class KeyCluster(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_include_black_keys',
         '_include_white_keys',
         '_markup_direction',
@@ -58,7 +61,6 @@ class KeyCluster(AbjadValueObject):
         markup_direction=Up,
         suppress_markup=False,
         ):
-        self._default_scope = None
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
         self._include_white_keys = bool(include_white_keys)
@@ -69,10 +71,9 @@ class KeyCluster(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import markuptools
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.grob_overrides.append(
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.grob_overrides.append(
             '\\once \\override Accidental.stencil = ##f\n'
             '\\once \\override AccidentalCautionary.stencil = ##f\n'
             '\\once \\override Arpeggio.X-offset = #-2\n'
@@ -88,31 +89,15 @@ class KeyCluster(AbjadValueObject):
                 string = r'\center-align \flat'
             else:
                 string = r'\center-align \natural'
-            markup = markuptools.Markup(
+            markup = abjad.Markup(
                 string,
                 direction=self.markup_direction,
                 )
             markup_format_pieces = markup._get_format_pieces()
-            lilypond_format_bundle.right.markup.extend(markup_format_pieces)
-        return lilypond_format_bundle
+            bundle.right.markup.extend(markup_format_pieces)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gest default scope of key cluster indicator.
-
-        ..  container:: example
-
-            ::
-
-                >>> key_cluster = indicatortools.KeyCluster()
-                >>> key_cluster.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def include_black_keys(self):
@@ -124,16 +109,16 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     include_black_keys=True,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -159,16 +144,16 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     include_black_keys=False,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -198,16 +183,16 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     include_white_keys=True,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -233,16 +218,16 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     include_white_keys=False,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -272,16 +257,16 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     markup_direction=Up,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -307,16 +292,16 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(
                 ...     markup_direction=Down,
                 ...     )
-                >>> attach(key_cluster, chord)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -348,16 +333,14 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
-                ...     suppress_markup=False,
-                ...     )
-                >>> attach(key_cluster, chord)
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(suppress_markup=False)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -383,16 +366,14 @@ class KeyCluster(AbjadValueObject):
 
             ::
 
-                >>> chord = Chord("<c' e' g' b' d'' f''>8")
-                >>> key_cluster = indicatortools.KeyCluster(
-                ...     suppress_markup=True,
-                ...     )
-                >>> attach(key_cluster, chord)
+                >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
+                >>> key_cluster = abjad.KeyCluster(suppress_markup=True)
+                >>> abjad.attach(key_cluster, chord)
                 >>> show(chord) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2

@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Container__get_spanners_that_dominate_slice_01():
     r'''Get dominant spanners over zero-length slice.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:2])
-    glissando = spannertools.Glissando()
-    attach(glissando, voice[:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:2])
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, voice[:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -33,13 +33,13 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_02():
     r'''Get dominant spanners over one-component slice.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:2])
-    glissando = spannertools.Glissando()
-    attach(glissando, voice[:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:2])
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, voice[:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -61,13 +61,13 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_03():
     r'''Get dominant spanners over four-component slice.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:2])
-    glissando = spannertools.Glissando()
-    attach(glissando, voice[:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    beam = abjad.Beam()
+    abjad.attach(beam, voice[:2])
+    glissando = abjad.Glissando()
+    abjad.attach(glissando, voice[:])
 
-    assert format(voice) == stringtools.normalize(
+    assert format(voice) == abjad.String.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando

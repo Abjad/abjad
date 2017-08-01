@@ -3,10 +3,15 @@ from __future__ import print_function
 import inspect
 import os
 from abjad.tools import documentationtools
+from abjad.tools import lilypondfiletools
 from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.documentationtools import InheritanceGraph
 
+
+ignored_classes = (
+    lilypondfiletools.Block,
+    )
 
 def shorten_class_name(abjad_class):
     parts = abjad_class.__module__.split('.')[-2:]
@@ -38,7 +43,6 @@ def find_inconsistencies():
             child_has_own_slots_def = child_slots_def is child
             if parent_has_own_slots_def and not child_has_own_slots_def:
                 children_without_own_slots_def.append((parent, child))
-
     if bad_arcs:
         print('%d bad slots relationships found:' % len(bad_arcs))
         generator = sorted(
@@ -54,7 +58,6 @@ def find_inconsistencies():
                 ))
     else:
         print('No bad slots relationships found.')
-
     if children_without_own_slots_def:
         message = '{} children without own __slots__ definition found:'
         message = message.format(len(children_without_own_slots_def))
@@ -72,7 +75,6 @@ def find_inconsistencies():
                 ))
     else:
         print('No children without own __slots__ definition found.')
-
     return graph
 
 

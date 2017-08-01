@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.lilypondfiletools.Block import Block
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import set_
+from abjad.tools.topleveltools import setting
 
 
 class ContextBlock(Block):
     r'''A LilyPond file ``\context`` block.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> block = lilypondfiletools.ContextBlock(
+            >>> block = abjad.ContextBlock(
             ...     source_context_name='Staff',
             ...     name='FluteStaff',
             ...     type_='Engraver_group',
@@ -22,10 +26,10 @@ class ContextBlock(Block):
             >>> block.accepts_commands.append('FluteUpperVoice')
             >>> block.accepts_commands.append('FluteLowerVoice')
             >>> block.items.append(r'\accidentalStyle dodecaphonic')
-            >>> override(block).beam.positions = (-4, -4)
-            >>> override(block).stem.stem_end_position = -6
-            >>> set_(block).auto_beaming = False
-            >>> set_(block).tuplet_full_length = True
+            >>> abjad.override(block).beam.positions = (-4, -4)
+            >>> abjad.override(block).stem.stem_end_position = -6
+            >>> abjad.setting(block).auto_beaming = False
+            >>> abjad.setting(block).tuplet_full_length = True
             >>> block
             <ContextBlock(source_context_name='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
 
@@ -106,7 +110,7 @@ class ContextBlock(Block):
             string = indent + statement
             result.append(string)
         setting_contributions = []
-        for key, value in set_(self)._get_attribute_tuples():
+        for key, value in setting(self)._get_attribute_tuples():
             setting_contribution = \
                 manager.format_lilypond_context_setting_in_with_block(
                     key, value)

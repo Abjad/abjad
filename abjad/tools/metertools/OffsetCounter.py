@@ -5,20 +5,24 @@ from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 
 
 class OffsetCounter(TypedCounter):
-    r'''An offset counter.
+    r'''Offset counter.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> timespans = timespantools.TimespanList([
-            ...     timespantools.Timespan(0, 16),
-            ...     timespantools.Timespan(5, 12),
-            ...     timespantools.Timespan(-2, 8),
+            >>> timespans = abjad.TimespanList([
+            ...     abjad.Timespan(0, 16),
+            ...     abjad.Timespan(5, 12),
+            ...     abjad.Timespan(-2, 8),
             ...     ])
-            >>> timespan_operand = timespantools.Timespan(6, 10)
+            >>> timespan_operand = abjad.Timespan(6, 10)
             >>> timespans = timespans - timespan_operand
-            >>> offset_counter = metertools.OffsetCounter(timespans)
+            >>> offset_counter = abjad.OffsetCounter(timespans)
 
         ::
 
@@ -43,7 +47,8 @@ class OffsetCounter(TypedCounter):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -51,16 +56,16 @@ class OffsetCounter(TypedCounter):
         TypedCounter.__init__(self, item_class=durationtools.Offset)
         if items:
             for item in items:
-                if hasattr(item, 'start_offset') and \
-                    hasattr(item, 'stop_offset'):
+                try:
                     self[item.start_offset] += 1
                     self[item.stop_offset] += 1
-                elif hasattr(item, '_get_timespan'):
-                    self[item._get_timespan().start_offset] += 1
-                    self[item._get_timespan().stop_offset] += 1
-                else:
-                    offset = durationtools.Offset(item)
-                    self[offset] += 1
+                except:
+                    if hasattr(item, '_get_timespan'):
+                        self[item._get_timespan().start_offset] += 1
+                        self[item._get_timespan().stop_offset] += 1
+                    else:
+                        offset = durationtools.Offset(item)
+                        self[offset] += 1
 
     ### SPECIAL METHODS ###
 
@@ -71,14 +76,14 @@ class OffsetCounter(TypedCounter):
 
             ::
 
-                >>> timespans = timespantools.TimespanList([
-                ...     timespantools.Timespan(0, 16),
-                ...     timespantools.Timespan(5, 12),
-                ...     timespantools.Timespan(-2, 8),
+                >>> timespans = abjad.TimespanList([
+                ...     abjad.Timespan(0, 16),
+                ...     abjad.Timespan(5, 12),
+                ...     abjad.Timespan(-2, 8),
                 ...     ])
-                >>> timespan_operand = timespantools.Timespan(6, 10)
+                >>> timespan_operand = abjad.Timespan(6, 10)
                 >>> timespans = timespans - timespan_operand
-                >>> offset_counter = metertools.OffsetCounter(timespans)
+                >>> offset_counter = abjad.OffsetCounter(timespans)
                 >>> show(offset_counter, scale=0.5) # doctest: +SKIP
 
         Returns LilyPond file.

@@ -6,7 +6,6 @@ from abjad.tools import lilypondfiletools
 from abjad.tools import pitchtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import templatetools
 from abjad.tools.topleveltools import iterate
 from experimental.tools.makertools.SegmentMaker import SegmentMaker
@@ -81,6 +80,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
     ### PRIVATE METHODS ###
 
     def _add_time_signature_context(self, score):
+        import abjad
         time_signatures = self.time_signatures
         if not time_signatures:
             return
@@ -88,7 +88,8 @@ class PianoStaffSegmentMaker(SegmentMaker):
             context_name='TimeSignatureContext',
             name='Time Signature Context',
             )
-        measures = scoretools.make_spacer_skip_measures(time_signatures)
+        maker = abjad.MeasureMaker()
+        measures = maker(time_signatures)
         time_signature_context.extend(measures)
         score.insert(0, time_signature_context)
 
@@ -119,14 +120,15 @@ class PianoStaffSegmentMaker(SegmentMaker):
         return lilypond_file
 
     def _populate_pitches(self, voice, pitch_range):
-        assert isinstance(pitch_range, pitchtools.PitchRange)
+        import abjad
+        assert isinstance(pitch_range, abjad.PitchRange)
         pitch_numbers = [
             x for x in self._test_pitch_numbers
             if x in pitch_range
             ]
-        pitch_numbers = sequencetools.Sequence(pitch_numbers).remove_repeats()
-        pitch_numbers = datastructuretools.CyclicTuple(pitch_numbers)
-        logical_ties = iterate(voice).by_logical_tie(pitched=True)
+        pitch_numbers = abjad.Sequence(pitch_numbers).remove_repeats()
+        pitch_numbers = abjad.CyclicTuple(pitch_numbers)
+        logical_ties = abjad.iterate(voice).by_logical_tie(pitched=True)
         for i, logical_tie in enumerate(logical_ties):
             pitch_number = pitch_numbers[i]
             for note in logical_tie:

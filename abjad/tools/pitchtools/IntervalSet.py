@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import sequencetools
+from abjad.tools import mathtools
 from abjad.tools.pitchtools.Set import Set
 
 
 class IntervalSet(Set):
     r'''Interval set.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -24,8 +29,8 @@ class IntervalSet(Set):
             )
         if isinstance(items, prototype):
             items = list(items)
-            enumeration = sequencetools.Enumeration(items)
-            pairs = enumeration.yield_pairs()
+            enumerator = mathtools.Enumerator(items)
+            pairs = enumerator.yield_pairs()
             items = [second - first for first, second in pairs]
         Set.__init__(
             self,
@@ -58,11 +63,10 @@ class IntervalSet(Set):
 
         ::
 
-            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
-            >>> staff_2 = Staff("c4. r8 g2")
-            >>> selection = select((staff_1, staff_2))
-            >>> intervals = pitchtools.IntervalSet.from_selection(
-            ...     selection)
+            >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
+            >>> staff_2 = abjad.Staff("c4. r8 g2")
+            >>> selection = abjad.select((staff_1, staff_2))
+            >>> intervals = abjad.IntervalSet.from_selection(selection)
             >>> for interval in sorted(intervals):
             ...     interval
             ...
@@ -88,9 +92,9 @@ class IntervalSet(Set):
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        enumeration = sequencetools.Enumeration(pitch_segment)
-        pairs = enumeration.yield_pairs()
-        intervals = (second - first for first, second in pairs)
+        enumerator = mathtools.Enumerator(pitch_segment)
+        pairs = enumerator.yield_pairs()
+        intervals = [second - first for first, second in pairs]
         return class_(
             items=intervals,
             item_class=item_class,

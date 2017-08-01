@@ -5,20 +5,24 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BendAfter(AbjadValueObject):
     r'''Fall or doit.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         A fall:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> bend = indicatortools.BendAfter(-4)
-            >>> attach(bend, note)
+            >>> note = abjad.Note("c'4")
+            >>> bend = abjad.BendAfter(-4)
+            >>> abjad.attach(bend, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4 - \bendAfter #'-4.0
 
     ..  container:: example
@@ -27,15 +31,24 @@ class BendAfter(AbjadValueObject):
 
         ::
 
-            >>> note = Note("c'4")
-            >>> bend = indicatortools.BendAfter(2)
-            >>> attach(bend, note)
+            >>> note = abjad.Note("c'4")
+            >>> bend = abjad.BendAfter(2)
+            >>> abjad.attach(bend, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4 - \bendAfter #'2.0
+
+    ..  container:: example
+
+        Initializes from other bend:
+
+        ::
+
+            >>> abjad.BendAfter(abjad.BendAfter(16))
+            BendAfter(bend_amount=16.0)
 
     '''
 
@@ -43,10 +56,11 @@ class BendAfter(AbjadValueObject):
 
     __slots__ = (
         '_bend_amount',
-        '_default_scope',
         )
 
     _format_slot = 'right'
+
+    _time_orientation = Right
 
     ### INITIALIZER ###
 
@@ -55,7 +69,6 @@ class BendAfter(AbjadValueObject):
             bend_amount = bend_amount.bend_amount
         bend_amount = float(bend_amount)
         self._bend_amount = bend_amount
-        self._default_scope = None
 
     ### SPECIAL METHODS ###
 
@@ -66,7 +79,7 @@ class BendAfter(AbjadValueObject):
 
             ::
 
-                >>> str(indicatortools.BendAfter())
+                >>> str(abjad.BendAfter())
                 "- \\bendAfter #'-4.0"
 
         Returns string.
@@ -85,10 +98,10 @@ class BendAfter(AbjadValueObject):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.articulations.append(str(self))
-        return lilypond_format_bundle
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
+        bundle.right.articulations.append(self._get_lilypond_format())
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -102,7 +115,7 @@ class BendAfter(AbjadValueObject):
 
             ::
 
-                >>> bend = indicatortools.BendAfter(-4)
+                >>> bend = abjad.BendAfter(-4)
                 >>> bend.bend_amount
                 -4.0
 
@@ -112,24 +125,10 @@ class BendAfter(AbjadValueObject):
 
             ::
 
-                >>> bend = indicatortools.BendAfter(2)
+                >>> bend = abjad.BendAfter(2)
                 >>> bend.bend_amount
                 2.0 
 
         Returns float.
         '''
         return self._bend_amount
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of bend after.
-
-        ..  container:: example
-
-            >>> bend = indicatortools.BendAfter(-4)
-            >>> bend.default_scope is None
-            True
-
-        Returns none.
-        '''
-        return self._default_scope

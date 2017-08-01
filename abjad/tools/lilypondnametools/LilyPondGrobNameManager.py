@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
 from abjad.tools.lilypondnametools.LilyPondNameManager \
     import LilyPondNameManager
 
@@ -7,14 +6,20 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 class LilyPondGrobNameManager(LilyPondNameManager):
     '''LilyPond grob name manager.
 
+    :: 
+
+        >>> import abjad
+        >>> from abjad.tools import lilypondnametools
+
+
     ..  container:: example
 
         Initializes with toplevel override function:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> override(note)
+            >>> note = abjad.Note("c'4")
+            >>> abjad.override(note)
             LilyPondGrobNameManager()
 
     '''
@@ -28,11 +33,11 @@ class LilyPondGrobNameManager(LilyPondNameManager):
 
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> override(staff).note_head.color = 'red'
+                >>> staff = abjad.Staff("c'4 d' e' f'")
+                >>> abjad.override(staff).note_head.color = 'red'
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -50,13 +55,14 @@ class LilyPondGrobNameManager(LilyPondNameManager):
 
             ::
 
-                >>> override(staff).note_head
+                >>> abjad.override(staff).note_head
                 LilyPondNameManager(('color', 'red'))
 
         '''
+        import abjad
         from abjad import ly
         from abjad.tools import lilypondnametools
-        camel_name = stringtools.to_upper_camel_case(name)
+        camel_name = abjad.String(name).to_upper_camel_case()
         if name.startswith('_'):
             try:
                 return vars(self)[name]

@@ -9,6 +9,10 @@ from abjad.tools.abctools import AbjadValueObject
 class BowContactPoint(AbjadValueObject):
     r'''Bow contact point.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Contact point exactly halfway from frog to tip of bow:
@@ -41,7 +45,6 @@ class BowContactPoint(AbjadValueObject):
 
     __slots__ = (
         '_contact_point',
-        '_default_scope'
         )
 
     _publish_storage_format = True
@@ -56,7 +59,6 @@ class BowContactPoint(AbjadValueObject):
             contact_point = durationtools.Multiplier(contact_point)
             assert 0 <= contact_point <= 1
         self._contact_point = contact_point
-        self._default_scope = None
 
     ### SPECIAL METHODS ###
 

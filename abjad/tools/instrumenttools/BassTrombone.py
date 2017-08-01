@@ -6,35 +6,42 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BassTrombone(Instrument):
-    r'''A bass trombone.
+    r'''Bass trombone.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> bass_trombone = instrumenttools.BassTrombone()
-        >>> attach(bass_trombone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { "Bass trombone" }
-            \set Staff.shortInstrumentName = \markup { "Bass trb." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff[0])
+            >>> bass_trombone = abjad.instrumenttools.BassTrombone()
+            >>> abjad.attach(bass_trombone, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { "Bass trombone" }
+                \set Staff.shortInstrumentName = \markup { "Bass trb." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -128,7 +135,7 @@ class BassTrombone(Instrument):
             ::
 
                 >>> bass_trombone.pitch_range
-                PitchRange(range_string='[C2, F4]')
+                PitchRange('[C2, F4]')
 
             ::
 

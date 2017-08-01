@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import mathtools
 from abjad.tools.pitchtools.Set import Set
-from abjad.tools.topleveltools import new
 
 
 class PitchClassSet(Set):
     '''Pitch-class set.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -14,9 +16,9 @@ class PitchClassSet(Set):
 
         ::
 
-            >>> numbered_pitch_class_set = PitchClassSet(
+            >>> numbered_pitch_class_set = abjad.PitchClassSet(
             ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-            ...     item_class=NumberedPitchClass,
+            ...     item_class=abjad.NumberedPitchClass,
             ...     )
             >>> numbered_pitch_class_set
             PitchClassSet([6, 7, 10, 10.5])
@@ -27,9 +29,9 @@ class PitchClassSet(Set):
 
         ::
 
-            >>> named_pitch_class_set = PitchClassSet(
+            >>> named_pitch_class_set = abjad.PitchClassSet(
             ...     items=['c', 'ef', 'bqs,', 'd'],
-            ...     item_class=NamedPitchClass,
+            ...     item_class=abjad.NamedPitchClass,
             ...     )
             >>> named_pitch_class_set
             PitchClassSet(['c', 'd', 'ef', 'bqs'])
@@ -43,12 +45,52 @@ class PitchClassSet(Set):
 
     ### SPECIAL METHODS ###
 
+    def __contains__(self, argument):
+        r'''Is true when pitch-class set contains `argument`. Otherwise false.
+
+        ..  container:: example
+
+            Initializes numbered pitch-class set:
+
+            ::
+
+                >>> set_ = abjad.PitchClassSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=abjad.NumberedPitchClass,
+                ...     )
+                >>> set_
+                PitchClassSet([6, 7, 10, 10.5])
+
+            ::
+
+                >>> abjad.NamedPitch('fs') in set_
+                True
+
+            ::
+
+                >>> abjad.NamedPitch('f') in set_
+                False
+
+            ::
+
+                >>> 6 in set_
+                True
+
+            ::
+
+                >>> 5 in set_
+                False
+
+        Returns true or false.
+        '''
+        return super(PitchClassSet, self).__contains__(argument)
+
     def __hash__(self):
         r'''Hashes pitch-class set.
 
         Returns integer.
         '''
-        return hash(repr(self))
+        return super(PitchClassSet, self).__hash__()
 
     def __illustrate__(self):
         r'''Illustrates pitch-class set.
@@ -59,13 +101,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> set_ = PitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
-                >>> show(set_) # doctest: +SKIP
+                >>> setting = abjad.PitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+                >>> show(setting) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> lilypond_file = set_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> lilypond_file = setting.__illustrate__()
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     <fs' g' bf' bqf'>1
                 }
@@ -77,16 +119,16 @@ class PitchClassSet(Set):
             ::
 
                 >>> items = ['c', 'ef', 'bqs,', 'd']
-                >>> set_ = PitchClassSet(
+                >>> setting = abjad.PitchClassSet(
                 ...     items=items,
-                ...     item_class=NamedPitchClass,
+                ...     item_class=abjad.NamedPitchClass,
                 ...     )
-                >>> show(set_) # doctest: +SKIP
+                >>> show(setting) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
-                >>> lilypond_file = set_.__illustrate__()
-                >>> f(lilypond_file[Voice])
+                >>> lilypond_file = setting.__illustrate__()
+                >>> f(lilypond_file[abjad.Voice])
                 \new Voice {
                     <c' d' ef' bqs'>1
                 }
@@ -97,8 +139,8 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> prototype = lilypondfiletools.LilyPondFile
-                >>> isinstance(set_.__illustrate__(), prototype)
+                >>> prototype = abjad.LilyPondFile
+                >>> isinstance(setting.__illustrate__(), prototype)
                 True
 
         '''
@@ -120,7 +162,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([6, 7, 10, 10.5])
+                >>> pc_set = abjad.PitchClassSet([6, 7, 10, 10.5])
                 >>> str(pc_set)
                 'PC{6, 7, 10, 10.5}'
 
@@ -130,7 +172,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([10.5, 10, 7, 6])
+                >>> pc_set = abjad.PitchClassSet([10.5, 10, 7, 6])
                 >>> str(pc_set)
                 'PC{6, 7, 10, 10.5}'
 
@@ -236,13 +278,15 @@ class PitchClassSet(Set):
         ):
         r'''Makes pitch-class set from `selection`.
 
-        ::
+        ..  container:: example
 
-            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
-            >>> staff_2 = Staff("c4. r8 g2")
-            >>> selection = select((staff_1, staff_2))
-            >>> PitchClassSet.from_selection(selection)
-            PitchClassSet(['c', 'd', 'fs', 'g', 'a', 'b'])
+            ::
+
+                >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
+                >>> staff_2 = abjad.Staff("c4. r8 g2")
+                >>> selection = abjad.select((staff_1, staff_2))
+                >>> abjad.PitchClassSet.from_selection(selection)
+                PitchClassSet(['c', 'd', 'fs', 'g', 'a', 'b'])
 
         Returns pitch-class set.
         '''
@@ -262,7 +306,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet()
+                >>> pc_set = abjad.PitchClassSet()
                 >>> pc_set.get_normal_order()
                 PitchClassSegment([])
 
@@ -272,7 +316,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([0, 1, 10, 11])
+                >>> pc_set = abjad.PitchClassSet([0, 1, 10, 11])
                 >>> pc_set.get_normal_order()
                 PitchClassSegment([10, 11, 0, 1])
 
@@ -282,7 +326,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([2, 8, 9])
+                >>> pc_set = abjad.PitchClassSet([2, 8, 9])
                 >>> pc_set.get_normal_order()
                 PitchClassSegment([8, 9, 2])
 
@@ -293,7 +337,7 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([1, 2, 7, 8])
+                >>> pc_set = abjad.PitchClassSet([1, 2, 7, 8])
                 >>> pc_set.get_normal_order()
                 PitchClassSegment([1, 2, 7, 8])
 
@@ -304,25 +348,24 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([0, 3, 6, 9])
+                >>> pc_set = abjad.PitchClassSet([0, 3, 6, 9])
                 >>> pc_set.get_normal_order()
                 PitchClassSegment([0, 3, 6, 9])
 
         Returns pitch-class segment.
         '''
-        from abjad.tools import pitchtools
-        from abjad.tools import sequencetools
+        import abjad
         if not len(self):
-            return pitchtools.PitchClassSegment(
+            return abjad.PitchClassSegment(
                 items=None,
-                item_class=pitchtools.NumberedPitchClass,
+                item_class=abjad.NumberedPitchClass,
                 )
         pitch_classes = list(self)
         pitch_classes.sort()
         candidates = []
         for i in range(self.cardinality):
-            candidate = [pitchtools.NumberedPitch(_) for _ in pitch_classes]
-            candidate = sequencetools.Sequence(candidate).rotate(n=-i)
+            candidate = [abjad.NumberedPitch(_) for _ in pitch_classes]
+            candidate = abjad.Sequence(candidate).rotate(n=-i)
             candidates.append(candidate)
         return self._get_most_compact_ordering(candidates)
 
@@ -335,13 +378,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet()
+                >>> pc_set = abjad.PitchClassSet()
                 >>> pc_set.get_prime_form()
                 PitchClassSet([])
 
             ::
 
-                >>> pc_set = PitchClassSet()
+                >>> pc_set = abjad.PitchClassSet()
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([])
 
@@ -351,13 +394,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([0, 1, 10, 11])
+                >>> pc_set = abjad.PitchClassSet([0, 1, 10, 11])
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 1, 2, 3])
 
             ::
 
-                >>> pc_set = PitchClassSet([0, 1, 10, 11])
+                >>> pc_set = abjad.PitchClassSet([0, 1, 10, 11])
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 1, 2, 3])
 
@@ -367,13 +410,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([2, 8, 9])
+                >>> pc_set = abjad.PitchClassSet([2, 8, 9])
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 1, 6])
 
             ::
 
-                >>> pc_set = PitchClassSet([2, 8, 9])
+                >>> pc_set = abjad.PitchClassSet([2, 8, 9])
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 1, 6])
 
@@ -384,13 +427,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([1, 2, 7, 8])
+                >>> pc_set = abjad.PitchClassSet([1, 2, 7, 8])
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 1, 6, 7])
 
             ::
 
-                >>> pc_set = PitchClassSet([1, 2, 7, 8])
+                >>> pc_set = abjad.PitchClassSet([1, 2, 7, 8])
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 1, 6, 7])
 
@@ -401,13 +444,13 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([0, 3, 6, 9])
+                >>> pc_set = abjad.PitchClassSet([0, 3, 6, 9])
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 3, 6, 9])
 
             ::
 
-                >>> pc_set = PitchClassSet([0, 3, 6, 9])
+                >>> pc_set = abjad.PitchClassSet([0, 3, 6, 9])
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 3, 6, 9])
 
@@ -417,19 +460,19 @@ class PitchClassSet(Set):
 
             ::
 
-                >>> pc_set = PitchClassSet([0, 4, 6, 7])
+                >>> pc_set = abjad.PitchClassSet([0, 4, 6, 7])
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 1, 3, 7])
 
             ::
 
-                >>> pc_set = PitchClassSet([0, 4, 6, 7])
+                >>> pc_set = abjad.PitchClassSet([0, 4, 6, 7])
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 4, 6, 7])
 
         Returns new pitch-class set.
         '''
-        from abjad.tools import pitchtools
+        import abjad
         if not len(self):
             return copy.copy(self)
         normal_orders = [self.get_normal_order()]
@@ -438,24 +481,26 @@ class PitchClassSet(Set):
             normal_order = inversion.get_normal_order()
             normal_orders.append(normal_order)
         normal_order = self._get_most_compact_ordering(normal_orders)
-        pcs = [int(_) for _ in normal_order]
+        pcs = [_.number for _ in normal_order]
         first_pc = pcs[0]
         pcs = [pc - first_pc for pc in pcs]
         prime_form = type(self)(
             items=pcs,
-            item_class=pitchtools.NumberedPitchClass,
+            item_class=abjad.NumberedPitchClass,
             )
         return prime_form
 
     def invert(self, axis=None):
         r'''Inverts pitch-class set.
 
-        ::
+        ..  container:: example
 
-            >>> PitchClassSet(
-            ...     [-2, -1.5, 6, 7, -1.5, 7],
-            ...     ).invert()
-            PitchClassSet([1.5, 2, 5, 6])
+            ::
+
+                >>> abjad.PitchClassSet(
+                ...     [-2, -1.5, 6, 7, -1.5, 7],
+                ...     ).invert()
+                PitchClassSet([1.5, 2, 5, 6])
 
         Returns numbered pitch-class set.
         '''
@@ -463,21 +508,23 @@ class PitchClassSet(Set):
 
     def is_transposed_subset(self, pcset):
         r'''Is true when pitch-class set is transposed subset of `pcset`.
-        Otherwise false:
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_class_set_1 = PitchClassSet(
-            ...     [-2, -1.5, 6, 7, -1.5, 7],
-            ...     )
-            >>> pitch_class_set_2 = PitchClassSet(
-            ...     [-2, -1.5, 6, 7, -1.5, 7, 7.5, 8],
-            ...     )
+            ::
 
-        ::
+                >>> pitch_class_set_1 = abjad.PitchClassSet(
+                ...     [-2, -1.5, 6, 7, -1.5, 7],
+                ...     )
+                >>> pitch_class_set_2 = abjad.PitchClassSet(
+                ...     [-2, -1.5, 6, 7, -1.5, 7, 7.5, 8],
+                ...     )
 
-            >>> pitch_class_set_1.is_transposed_subset(pitch_class_set_2)
-            True
+            ::
+
+                >>> pitch_class_set_1.is_transposed_subset(pitch_class_set_2)
+                True
 
         Returns true or false.
         '''
@@ -488,21 +535,23 @@ class PitchClassSet(Set):
 
     def is_transposed_superset(self, pcset):
         r'''Is true when pitch-class set is transposed superset of `pcset`.
-        Otherwise false:
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_class_set_1 = PitchClassSet(
-            ...     [-2, -1.5, 6, 7, -1.5, 7],
-            ...     )
-            >>> pitch_class_set_2 = PitchClassSet(
-            ...     [-2, -1.5, 6, 7, -1.5, 7, 7.5, 8],
-            ...     )
+            ::
 
-        ::
+                >>> pitch_class_set_1 = abjad.PitchClassSet(
+                ...     [-2, -1.5, 6, 7, -1.5, 7],
+                ...     )
+                >>> pitch_class_set_2 = abjad.PitchClassSet(
+                ...     [-2, -1.5, 6, 7, -1.5, 7, 7.5, 8],
+                ...     )
 
-            >>> pitch_class_set_2.is_transposed_superset(pitch_class_set_1)
-            True
+            ::
+
+                >>> pitch_class_set_2.is_transposed_superset(pitch_class_set_1)
+                True
 
         Returns true or false.
         '''
@@ -514,106 +563,78 @@ class PitchClassSet(Set):
     def multiply(self, n):
         r'''Multiplies pitch-class set by `n`.
 
-        ::
+        ..  container:: example
 
-            >>> PitchClassSet(
-            ...     [-2, -1.5, 6, 7, -1.5, 7],
-            ...     ).multiply(5)
-            PitchClassSet([2, 4.5, 6, 11])
+            ::
+
+                >>> abjad.PitchClassSet(
+                ...     [-2, -1.5, 6, 7, -1.5, 7],
+                ...     ).multiply(5)
+                PitchClassSet([2, 4.5, 6, 11])
 
         Returns new pitch-class set.
         '''
+        import abjad
         items = (pitch_class.multiply(n) for pitch_class in self)
-        return new(self, items=items)
+        return abjad.new(self, items=items)
 
-    def order_by(self, pitch_class_segment):
-        r'''Orders pitch-class set by `pitch_class_segment`.
+    def order_by(self, segment):
+        r'''Orders pitch-class set by pitch-class `segment`.
+
+        ..  container:: example
+
+            >>> set_ = abjad.PitchClassSet(['c', 'e', 'b'])
+            >>> segment = abjad.PitchClassSegment(['e', 'a', 'f'])
+            >>> set_.order_by(segment)
+            PitchClassSegment("b e c")
 
         Returns pitch-class segment.
         '''
-        from abjad.tools import pitchtools
-        from abjad.tools import sequencetools
-        if not len(self) == len(pitch_class_segment):
+        import abjad
+        if not len(self) == len(segment):
             message = 'set and segment must be on equal length.'
             raise ValueError(message)
-        enumeration = sequencetools.Enumeration(self)
-        for pitch_classes in enumeration.yield_permutations():
-            candidate_pitch_class_segment = \
-                pitchtools.PitchClassSegment(pitch_classes)
-            if candidate_pitch_class_segment._is_equivalent_under_transposition(
-                pitch_class_segment):
-                return candidate_pitch_class_segment
-        message = 'named pitch-class set {} can not order by '
-        message += 'named pitch-class segment {}.'
-        message = message.format(self, pitch_class_segment)
+        enumerator = abjad.Enumerator(self)
+        for pitch_classes in enumerator.yield_permutations():
+            candidate = abjad.PitchClassSegment(pitch_classes)
+            if candidate._is_equivalent_under_transposition(segment):
+                return candidate
+        message = '{!s} can not order by {!s}.'
+        message = message.format(self, segment)
         raise ValueError(message)
 
     def transpose(self, n=0):
         r'''Transposes all pitch-classes in pitch-class set by index `n`.
 
-        Returns new pitch-class set.
-        '''
-        items = (pitch_class + n for pitch_class in self)
-        return new(self, items=items)
-
-    @staticmethod
-    def yield_all_pitch_class_sets():
-        '''Yields all pitch-class sets.
-
         ..  container:: example
 
-            Yields all pitch-class sets:
+            ::
+
+                >>> set_ = abjad.PitchClassSet(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=abjad.NumberedPitchClass,
+                ...     )
 
             ::
 
+                >>> for n in range(12):
+                ...     print(n, set_.transpose(n))
+                ...
+                0 PC{6, 7, 10, 10.5}
+                1 PC{7, 8, 11, 11.5}
+                2 PC{0, 0.5, 8, 9}
+                3 PC{1, 1.5, 9, 10}
+                4 PC{2, 2.5, 10, 11}
+                5 PC{0, 3, 3.5, 11}
+                6 PC{0, 1, 4, 4.5}
+                7 PC{1, 2, 5, 5.5}
+                8 PC{2, 3, 6, 6.5}
+                9 PC{3, 4, 7, 7.5}
+                10 PC{4, 5, 8, 8.5}
+                11 PC{5, 6, 9, 9.5}
 
-                >>> class_ = PitchClassSet
-                >>> pcsets = list(class_.yield_all_pitch_class_sets())
-                >>> len(pcsets)
-                4096
-
-            ::
-
-                >>> for pcset in pcsets[:20]:
-                ...   pcset
-                PitchClassSet([])
-                PitchClassSet([0])
-                PitchClassSet([1])
-                PitchClassSet([0, 1])
-                PitchClassSet([2])
-                PitchClassSet([0, 2])
-                PitchClassSet([1, 2])
-                PitchClassSet([0, 1, 2])
-                PitchClassSet([3])
-                PitchClassSet([0, 3])
-                PitchClassSet([1, 3])
-                PitchClassSet([0, 1, 3])
-                PitchClassSet([2, 3])
-                PitchClassSet([0, 2, 3])
-                PitchClassSet([1, 2, 3])
-                PitchClassSet([0, 1, 2, 3])
-                PitchClassSet([4])
-                PitchClassSet([0, 4])
-                PitchClassSet([1, 4])
-                PitchClassSet([0, 1, 4])
-
-        There are 4096 pitch-class sets.
-
-        This is ``U*`` in [Morris 1987].
-
-        Returns generator.
+        Returns new pitch-class set.
         '''
-        from abjad.tools import pitchtools
-        def _helper(binary_string):
-            result = zip(binary_string, range(len(binary_string)))
-            result = [string[1] for string in result if string[0] == '1']
-            return result
-        for i in range(4096):
-            string = mathtools.integer_to_binary_string(i).zfill(12)
-            subset = ''.join(list(reversed(string)))
-            subset = _helper(subset)
-            subset = pitchtools.PitchClassSet(
-                subset,
-                item_class=pitchtools.NumberedPitchClass,
-                )
-            yield subset
+        import abjad
+        items = (pitch_class + n for pitch_class in self)
+        return abjad.new(self, items=items)

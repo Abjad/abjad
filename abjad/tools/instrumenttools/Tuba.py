@@ -6,35 +6,42 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Tuba(Instrument):
-    r'''A tuba.
+    r'''Tuba.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> tuba = instrumenttools.Tuba()
-        >>> attach(tuba, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { Tuba }
-            \set Staff.shortInstrumentName = \markup { Tb. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> clef = abjad.Clef(name='bass')
+            >>> abjad.attach(clef, staff[0])
+            >>> tuba = abjad.instrumenttools.Tuba()
+            >>> abjad.attach(tuba, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { Tuba }
+                \set Staff.shortInstrumentName = \markup { Tb. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -129,7 +136,7 @@ class Tuba(Instrument):
             ::
 
                 >>> tuba.pitch_range
-                PitchRange(range_string='[D1, F4]')
+                PitchRange('[D1, F4]')
 
             ::
 

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
-from abjad import *
+import abjad
+from abjad.tools import systemtools
 
 
 def test_systemtools_AbjadConfiguration___init___01():

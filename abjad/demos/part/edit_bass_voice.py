@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 
 
 def edit_bass_voice(score, durated_reservoir):

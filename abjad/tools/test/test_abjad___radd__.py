@@ -2,10 +2,12 @@
 import inspect
 import pytest
 from abjad.tools import documentationtools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 
 
 ignored_classes = (
+    datastructuretools.String,
     systemtools.StorageFormatAgent,
     systemtools.FormatSpecification,
     )
@@ -15,10 +17,9 @@ classes = documentationtools.list_all_abjad_classes(
     )
 
 
-@pytest.mark.skip('Correct failing classes.')
 @pytest.mark.parametrize('class_', classes)
 def test_abjad___radd___01(class_):
-    r'''All classes implementing __add__ also implement __radd__.
+    r'''Classes with __add__ also implement __radd__.
     '''
     if inspect.isabstract(class_):
         return

@@ -3,35 +3,42 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Contrabassoon(Instrument):
-    r'''A contrabassoon.
+    r'''Contrabassoon.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> contrabassoon = instrumenttools.Contrabassoon()
-        >>> attach(contrabassoon, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { Contrabassoon }
-            \set Staff.shortInstrumentName = \markup { Contrabsn. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> clef = abjad.Clef(name='bass')
+            >>> abjad.attach(clef, staff[0])
+            >>> contrabassoon = abjad.instrumenttools.Contrabassoon()
+            >>> abjad.attach(contrabassoon, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { Contrabassoon }
+                \set Staff.shortInstrumentName = \markup { Contrabsn. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -127,7 +134,7 @@ class Contrabassoon(Instrument):
             ::
 
                 >>> contrabassoon.pitch_range
-                PitchRange(range_string='[Bb0, Bb4]')
+                PitchRange('[Bb0, Bb4]')
 
             ::
 

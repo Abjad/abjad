@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import inspect
 from abjad.tools import abctools
-from abjad.tools import expressiontools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
@@ -9,7 +8,6 @@ from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
@@ -17,6 +15,10 @@ from abjad.tools.topleveltools import new
 
 class LabelAgent(abctools.AbjadObject):
     r'''Label agent.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -26,14 +28,14 @@ class LabelAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 e'4 d'4 f'4")
-                >>> label(staff).with_pitches()
+                >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+                >>> abjad.label(staff).with_pitches()
 
             ::
 
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -63,17 +65,18 @@ class LabelAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 e'4 d'4 f'4")
-                >>> expression = label().with_pitches()
+                >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+                >>> expression = abjad.label().with_pitches()
                 >>> f(expression)
                 abjad.Expression(
                     callbacks=[
                         abjad.Expression(
-                            evaluation_template='abjad.agenttools.LabelAgent',
+                            evaluation_template='abjad.LabelAgent',
                             is_initializer=True,
                             ),
                         abjad.Expression(
                             evaluation_template='{}.with_pitches()',
+                            qualified_method_name='abjad.LabelAgent.with_pitches',
                             ),
                         ],
                     proxy_class=agenttools.LabelAgent,
@@ -84,7 +87,7 @@ class LabelAgent(abctools.AbjadObject):
                 >>> expression(staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -118,14 +121,14 @@ class LabelAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 e'4 d'4 f'4")
-                >>> label(staff).with_durations()
+                >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+                >>> abjad.label(staff).with_durations()
 
             ::
 
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -155,17 +158,18 @@ class LabelAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("c'4 e'4 d'4 f'4")
-                >>> expression = label().with_durations()
+                >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+                >>> expression = abjad.label().with_durations()
                 >>> f(expression)
                 abjad.Expression(
                     callbacks=[
                         abjad.Expression(
-                            evaluation_template='abjad.agenttools.LabelAgent',
+                            evaluation_template='abjad.LabelAgent',
                             is_initializer=True,
                             ),
                         abjad.Expression(
                             evaluation_template='{}.with_durations()',
+                            qualified_method_name='abjad.LabelAgent.with_durations',
                             ),
                         ],
                     proxy_class=agenttools.LabelAgent,
@@ -176,7 +180,7 @@ class LabelAgent(abctools.AbjadObject):
                 >>> expression(staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -309,11 +313,11 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> measure = Measure((2, 8), "c'8 d'8")
-                    >>> label(measure).color_container('red')
+                    >>> measure = abjad.Measure((2, 8), "c'8 d'8")
+                    >>> abjad.label(measure).color_container('red')
                     >>> show(measure) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(measure)
                     {
@@ -342,12 +346,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> measure = Measure((2, 8), "c'8 d'8")
-                    >>> expression = label().color_container('red')
+                    >>> measure = abjad.Measure((2, 8), "c'8 d'8")
+                    >>> expression = abjad.label().color_container('red')
                     >>> expression(measure)
                     >>> show(measure) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(measure)
                     {
@@ -396,11 +400,11 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
-                    >>> label(staff).color_leaves('red')
+                    >>> staff = abjad.Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
+                    >>> abjad.label(staff).color_leaves('red')
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -426,12 +430,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
-                    >>> expression = label().color_leaves('red')
+                    >>> staff = abjad.Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
+                    >>> expression = abjad.label().color_leaves('red')
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -471,14 +475,14 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> chord = Chord([12, 14, 18, 21, 23], (1, 4))
+                    >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
                     >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
                     >>> colors = ['red', 'blue', 'green']
-                    >>> color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
-                    >>> label(chord).color_note_heads(color_map)
+                    >>> color_map = abjad.ColorMap(colors, pitches)
+                    >>> abjad.label(chord).color_note_heads(color_map)
                     >>> show(chord) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(chord)
                     <
@@ -498,15 +502,15 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> chord = Chord([12, 14, 18, 21, 23], (1, 4))
+                    >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
                     >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
                     >>> colors = ['red', 'blue', 'green']
-                    >>> color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
-                    >>> expression = label().color_note_heads(color_map)
+                    >>> color_map = abjad.ColorMap(colors, pitches)
+                    >>> expression = abjad.label().color_note_heads(color_map)
                     >>> expression(chord)
                     >>> show(chord) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(chord)
                     <
@@ -530,11 +534,11 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> note = Note("c'4")
-                    >>> label(note).color_note_heads(color_map)
+                    >>> note = abjad.Note("c'4")
+                    >>> abjad.label(note).color_note_heads(color_map)
                     >>> show(note) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(note)
                     \once \override NoteHead.color = #red
@@ -544,12 +548,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> note = Note("c'4")
-                    >>> expression = label().color_note_heads(color_map)
+                    >>> note = abjad.Note("c'4")
+                    >>> expression = abjad.label().color_note_heads(color_map)
                     >>> expression(note)
                     >>> show(note) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(note)
                     \once \override NoteHead.color = #red
@@ -563,15 +567,15 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> label(staff).color_note_heads(color_map)
+                    >>> staff = abjad.Staff()
+                    >>> abjad.label(staff).color_note_heads(color_map)
 
             ..  container:: example expression
 
                 ::
 
-                    >>> staff = Staff()
-                    >>> expression = label().color_note_heads(color_map)
+                    >>> staff = abjad.Staff()
+                    >>> expression = abjad.label().color_note_heads(color_map)
                     >>> expression(staff)
 
         ..  container:: example
@@ -582,11 +586,11 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("c'8 cs'8 d'8 ds'8 e'8 f'8 fs'8 g'8 gs'8 a'8 as'8 b'8 c''8")
-                    >>> label(staff).color_note_heads()
+                    >>> staff = abjad.Staff("c'8 cs'8 d'8 ds'8 e'8 f'8 fs'8 g'8 gs'8 a'8 as'8 b'8 c''8")
+                    >>> abjad.label(staff).color_note_heads()
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -622,12 +626,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("c'8 cs'8 d'8 ds'8 e'8 f'8 fs'8 g'8 gs'8 a'8 as'8 b'8 c''8")
-                    >>> expression = label().color_note_heads()
+                    >>> staff = abjad.Staff("c'8 cs'8 d'8 ds'8 e'8 f'8 fs'8 g'8 gs'8 a'8 as'8 b'8 c''8")
+                    >>> expression = abjad.label().color_note_heads()
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -661,20 +665,23 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         color_map = color_map or self._pc_number_to_color
         for leaf in iterate(self.client).by_leaf():
             if isinstance(leaf, scoretools.Chord):
                 for note_head in leaf.note_heads:
-                    pc = note_head.written_pitch.numbered_pitch_class
+                    number = note_head.written_pitch.number
+                    pc = abjad.NumberedPitchClass(number)
                     color = color_map.get(pc, None)
                     if color is not None:
                         note_head.tweak.color = color
             elif isinstance(leaf, scoretools.Note):
                 note_head = leaf.note_head
-                pc = note_head.written_pitch.numbered_pitch_class
-                color = color_map[pc.pitch_class_number]
+                number = note_head.written_pitch.number
+                pc = abjad.NumberedPitchClass(number)
+                color = color_map[pc.number]
                 if color is not None:
                     override(leaf).note_head.color = color
 
@@ -689,11 +696,11 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("c'8 d'8 e'8 f'8")
-                    >>> label(staff).with_pitches()
+                    >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                    >>> abjad.label(staff).with_pitches()
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -721,10 +728,10 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> label(staff).remove_markup()
+                    >>> abjad.label(staff).remove_markup()
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -738,12 +745,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("c'8 d'8 e'8 f'8")
-                    >>> expression = label().with_pitches()
+                    >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+                    >>> expression = abjad.label().with_pitches()
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -771,11 +778,11 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> expression = label().remove_markup()
+                    >>> expression = abjad.label().remove_markup()
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -804,17 +811,17 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> label(staff_group).vertical_moments()
+                    >>> abjad.label(staff_group).vertical_moments()
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -859,18 +866,18 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> expression = label().vertical_moments()
+                    >>> expression = abjad.label().vertical_moments()
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -919,18 +926,19 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedPitch
-                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> abjad.label(staff_group).vertical_moments(
+                    ...     prototype=abjad.NumberedPitch,
+                    ...     )
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1000,19 +1008,19 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedPitch
-                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.NumberedPitch
+                    >>> expression = abjad.label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1086,18 +1094,18 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedPitchClass
-                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.NumberedPitchClass
+                    >>> abjad.label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1165,19 +1173,19 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedPitchClass
-                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.NumberedPitchClass
+                    >>> expression = abjad.label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1249,18 +1257,18 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedInterval
-                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.NumberedInterval
+                    >>> abjad.label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1325,19 +1333,19 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedInterval
-                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.NumberedInterval
+                    >>> expression = abjad.label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1406,18 +1414,18 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedIntervalClass
-                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.NumberedIntervalClass
+                    >>> abjad.label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1482,19 +1490,19 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.NumberedIntervalClass
-                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.NumberedIntervalClass
+                    >>> expression = abjad.label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1563,18 +1571,18 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.IntervalClassVector
-                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.IntervalClassVector
+                    >>> abjad.label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1624,19 +1632,19 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.IntervalClassVector
-                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.IntervalClassVector
+                    >>> expression = abjad.label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1690,18 +1698,18 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.SetClass()
-                    >>> label(staff_group).vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.SetClass()
+                    >>> abjad.label(staff_group).vertical_moments(prototype=prototype)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1761,19 +1769,19 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff_group = StaffGroup([])
-                    >>> staff = Staff("c'8 d'4 e'16 f'16")
+                    >>> staff_group = abjad.StaffGroup([])
+                    >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                    >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
                     >>> staff_group.append(staff)
-                    >>> staff = Staff(r"""\clef "bass" c,2""")
+                    >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                     >>> staff_group.append(staff)
-                    >>> prototype = pitchtools.SetClass()
-                    >>> expression = label().vertical_moments(prototype=prototype)
+                    >>> prototype = abjad.SetClass()
+                    >>> expression = abjad.label().vertical_moments(prototype=prototype)
                     >>> expression(staff_group)
                     >>> show(staff_group) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff_group)
                     \new StaffGroup <<
@@ -1846,10 +1854,7 @@ class LabelAgent(abctools.AbjadObject):
                 pitches = pitchtools.PitchSegment.from_selection(leaves)
                 if not pitches:
                     continue
-                pitch_numbers = [
-                    pitch.numbered_pitch.pitch_number
-                    for pitch in pitches
-                    ]
+                pitch_numbers = [pitch.number for pitch in pitches]
                 pitch_numbers = [markuptools.Markup(_) for _ in pitch_numbers]
                 label = markuptools.Markup.column(pitch_numbers, direction)
             elif prototype is pitchtools.NumberedPitchClass:
@@ -1857,10 +1862,7 @@ class LabelAgent(abctools.AbjadObject):
                 pitches = pitchtools.PitchSegment.from_selection(leaves)
                 if not pitches:
                     continue
-                pitch_classes = [
-                    pitch.numbered_pitch_class.pitch_class_number
-                    for pitch in pitches
-                    ]
+                pitch_classes = [pitch.pitch_class.number for pitch in pitches]
                 pitch_classes = list(set(pitch_classes))
                 pitch_classes.sort()
                 pitch_classes.reverse()
@@ -1872,7 +1874,7 @@ class LabelAgent(abctools.AbjadObject):
                 notes = [_ for _ in leaves if isinstance(_, scoretools.Note)]
                 if not notes:
                     continue
-                notes.sort(key=lambda x: x.written_pitch.numbered_pitch)
+                notes.sort(key=lambda x: x.written_pitch.number)
                 notes.reverse()
                 bass_note = notes[-1]
                 upper_notes = notes[:-1]
@@ -1889,7 +1891,7 @@ class LabelAgent(abctools.AbjadObject):
                 notes = [_ for _ in leaves if isinstance(_, scoretools.Note)]
                 if not notes:
                     continue
-                notes.sort(key=lambda x: x.written_pitch.numbered_pitch)
+                notes.sort(key=lambda x: x.written_pitch.number)
                 notes.reverse()
                 bass_note = notes[-1]
                 upper_notes = notes[:-1]
@@ -1955,11 +1957,11 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                    >>> label(staff).with_durations()
+                    >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                    >>> abjad.label(staff).with_durations()
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -1990,12 +1992,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                    >>> expression = label().with_durations()
+                    >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                    >>> expression = abjad.label().with_durations()
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2030,11 +2032,11 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                    >>> label(staff).with_durations(preferred_denominator=16)
+                    >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                    >>> abjad.label(staff).with_durations(preferred_denominator=16)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2065,12 +2067,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                    >>> expression = label().with_durations(preferred_denominator=16)
+                    >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                    >>> expression = abjad.label().with_durations(preferred_denominator=16)
                     >>> expression(staff)
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff {
@@ -2122,12 +2124,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                    >>> label(staff).with_indices()
-                    >>> override(staff).text_script.staff_padding = 2
+                    >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> abjad.label(staff).with_indices()
+                    >>> abjad.override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2161,13 +2163,13 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                    >>> expression = label().with_indices()
+                    >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> expression = abjad.label().with_indices()
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 2
+                    >>> abjad.override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2205,12 +2207,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                    >>> label(staff).with_indices(prototype=Note)
-                    >>> override(staff).text_script.staff_padding = 2
+                    >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> abjad.label(staff).with_indices(prototype=abjad.Note)
+                    >>> abjad.override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2244,13 +2246,15 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                    >>> expression = label().with_indices(prototype=Note)
+                    >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> expression = abjad.label().with_indices(
+                    ...     prototype=abjad.Note,
+                    ...     )
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 2
+                    >>> abjad.override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2288,12 +2292,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                    >>> label(staff).with_indices(prototype=Chord)
-                    >>> override(staff).text_script.staff_padding = 2
+                    >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> abjad.label(staff).with_indices(prototype=abjad.Chord)
+                    >>> abjad.override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2319,13 +2323,15 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                    >>> expression = label().with_indices(prototype=Chord)
+                    >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> expression = abjad.label().with_indices(
+                    ...     prototype=abjad.Chord,
+                    ...     )
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 2
+                    >>> abjad.override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2355,12 +2361,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                    >>> label(staff).with_indices(prototype=scoretools.Leaf)
-                    >>> override(staff).text_script.staff_padding = 2
+                    >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> abjad.label(staff).with_indices(prototype=abjad.Leaf)
+                    >>> abjad.override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2402,13 +2408,15 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                    >>> expression = label().with_indices(prototype=scoretools.Leaf)
+                    >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
+                    >>> expression = abjad.label().with_indices(
+                    ...     prototype=abjad.Leaf,
+                    ...     )
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 2
+                    >>> abjad.override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2454,12 +2462,13 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(4 * Tuplet((2, 3), "c'8 [ d'8 e'8 ]"))
-                    >>> label(staff).with_indices(prototype=Tuplet)
-                    >>> override(staff).text_script.staff_padding = 2
+                    >>> tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
+                    >>> staff = abjad.Staff(4 * tuplet)
+                    >>> abjad.label(staff).with_indices(prototype=abjad.Tuplet)
+                    >>> abjad.override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2507,13 +2516,16 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(4 * Tuplet((2, 3), "c'8 [ d'8 e'8 ]"))
-                    >>> expression = label().with_indices(prototype=Tuplet)
+                    >>> tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
+                    >>> staff = abjad.Staff(4 * tuplet)
+                    >>> expression = abjad.label().with_indices(
+                    ...     prototype=abjad.Tuplet,
+                    ...     )
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 2
+                    >>> abjad.override(staff).text_script.staff_padding = 2
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2585,14 +2597,15 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                    >>> staff = Staff(notes)
-                    >>> label(staff).with_intervals(prototype=None)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
+                    >>> staff = abjad.Staff(notes)
+                    >>> abjad.label(staff).with_intervals(prototype=None)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2612,15 +2625,16 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                    >>> staff = Staff(notes)
-                    >>> expression = label().with_intervals(prototype=None)
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
+                    >>> staff = abjad.Staff(notes)
+                    >>> expression = abjad.label().with_intervals(prototype=None)
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2644,15 +2658,16 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                    >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NamedIntervalClass
-                    >>> label(staff).with_intervals(prototype=prototype)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
+                    >>> staff = abjad.Staff(notes)
+                    >>> prototype = abjad.NamedIntervalClass
+                    >>> abjad.label(staff).with_intervals(prototype=prototype)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2672,16 +2687,17 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                    >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NamedIntervalClass
-                    >>> expression = label().with_intervals(prototype=prototype)
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
+                    >>> staff = abjad.Staff(notes)
+                    >>> prototype = abjad.NamedIntervalClass
+                    >>> expression = abjad.label().with_intervals(prototype=prototype)
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2705,15 +2721,16 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                    >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedInterval
-                    >>> label(staff).with_intervals(prototype=prototype)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
+                    >>> staff = abjad.Staff(notes)
+                    >>> prototype = abjad.NumberedInterval
+                    >>> abjad.label(staff).with_intervals(prototype=prototype)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2733,16 +2750,17 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                    >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedInterval
-                    >>> expression = label().with_intervals(prototype=prototype)
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
+                    >>> staff = abjad.Staff(notes)
+                    >>> prototype = abjad.NumberedInterval
+                    >>> expression = abjad.label().with_intervals(prototype=prototype)
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2767,15 +2785,16 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                    >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedIntervalClass
-                    >>> label(staff).with_intervals(prototype=prototype)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
+                    >>> staff = abjad.Staff(notes)
+                    >>> prototype = abjad.NumberedIntervalClass
+                    >>> abjad.label(staff).with_intervals(prototype=prototype)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2795,16 +2814,17 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                    >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedIntervalClass
-                    >>> expression = label().with_intervals(prototype=prototype)
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
+                    >>> staff = abjad.Staff(notes)
+                    >>> prototype = abjad.NumberedIntervalClass
+                    >>> expression = abjad.label().with_intervals(prototype=prototype)
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2829,15 +2849,16 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                    >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedInversionEquivalentIntervalClass
-                    >>> label(staff).with_intervals(prototype=prototype)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
+                    >>> staff = abjad.Staff(notes)
+                    >>> prototype = abjad.NumberedInversionEquivalentIntervalClass
+                    >>> abjad.label(staff).with_intervals(prototype=prototype)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2857,16 +2878,17 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
+                    >>> maker = abjad.NoteMaker()
                     >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                    >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                    >>> staff = Staff(notes)
-                    >>> prototype = pitchtools.NumberedInversionEquivalentIntervalClass
-                    >>> expression = label().with_intervals(prototype=prototype)
+                    >>> notes = maker(pitch_numbers, [(1, 4)])
+                    >>> staff = abjad.Staff(notes)
+                    >>> prototype = abjad.NumberedInversionEquivalentIntervalClass
+                    >>> expression = abjad.label().with_intervals(prototype=prototype)
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2884,13 +2906,14 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         """
+        from abjad.tools.topleveltools import inspect as abjad_inspect
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or pitchtools.NamedInterval
         notes = iterate(self.client).by_class(scoretools.Note)
         for note in notes:
             label = None
-            next_leaf = inspect_(note).get_leaf(1)
+            next_leaf = abjad_inspect(note).get_leaf(1)
             if isinstance(next_leaf, scoretools.Note):
                 interval = pitchtools.NamedInterval.from_pitch_carriers(
                     note,
@@ -2924,12 +2947,12 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                    >>> label(staff).with_pitches(prototype=None)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> abjad.label(staff).with_pitches(prototype=None)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -2963,13 +2986,13 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                    >>> expression = label().with_pitches(prototype=None)
+                    >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> expression = abjad.label().with_pitches(prototype=None)
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3007,13 +3030,13 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                    >>> prototype = pitchtools.NumberedPitch
-                    >>> label(staff).with_pitches(prototype=prototype)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> prototype = abjad.NumberedPitch
+                    >>> abjad.label(staff).with_pitches(prototype=prototype)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3047,14 +3070,14 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                    >>> prototype = pitchtools.NumberedPitch
-                    >>> expression = label().with_pitches(prototype=prototype)
+                    >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> prototype = abjad.NumberedPitch
+                    >>> expression = abjad.label().with_pitches(prototype=prototype)
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3092,13 +3115,13 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                    >>> prototype = pitchtools.NumberedPitchClass
-                    >>> label(staff).with_pitches(prototype=prototype)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> prototype = abjad.NumberedPitchClass
+                    >>> abjad.label(staff).with_pitches(prototype=prototype)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3132,14 +3155,14 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                    >>> prototype = pitchtools.NumberedPitchClass
-                    >>> expression = label().with_pitches(prototype=prototype)
+                    >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                    >>> prototype = abjad.NumberedPitchClass
+                    >>> expression = abjad.label().with_pitches(prototype=prototype)
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).text_script.staff_padding = 4
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3177,19 +3200,20 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-                    >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                    >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> string = 'Horizontal_bracket_engraver'
+                    >>> voice.consists_commands.append(string)
                     >>> selections = [voice[:2], voice[-2:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> label(selections).with_pitches()
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> abjad.label(selections).with_pitches()
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3225,20 +3249,20 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:2], voice[-2:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> expression = label().with_pitches()
+                    >>> expression = abjad.label().with_pitches()
                     >>> expression(selections)
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3278,20 +3302,20 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:2], voice[-2:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.NumberedPitch
-                    >>> label(selections).with_pitches(prototype=prototype)
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> prototype = abjad.NumberedPitch
+                    >>> abjad.label(selections).with_pitches(prototype=prototype)
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3327,21 +3351,21 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:2], voice[-2:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.NumberedPitch
-                    >>> expression = label().with_pitches(prototype=prototype)
+                    >>> prototype = abjad.NumberedPitch
+                    >>> expression = abjad.label().with_pitches(prototype=prototype)
                     >>> expression(selections)
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3382,20 +3406,20 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:2], voice[-2:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.NumberedPitchClass
-                    >>> label(selections).with_pitches(prototype=prototype)
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> prototype = abjad.NumberedPitchClass
+                    >>> abjad.label(selections).with_pitches(prototype=prototype)
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3431,21 +3455,21 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                    >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:2], voice[-2:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.NumberedPitchClass
-                    >>> expression = label().with_pitches(prototype=prototype)
+                    >>> prototype = abjad.NumberedPitchClass
+                    >>> expression = abjad.label().with_pitches(prototype=prototype)
                     >>> expression(selections)
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3500,27 +3524,27 @@ class LabelAgent(abctools.AbjadObject):
                     label = label.small()
             elif prototype is pitchtools.NumberedPitch:
                 if isinstance(leaf, scoretools.Note):
-                    pitch = leaf.written_pitch.pitch_number
+                    pitch = leaf.written_pitch.number
                     label = str(pitch)
                     label = markuptools.Markup(label, direction=direction)
                     label = label.small()
                 elif isinstance(leaf, scoretools.Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
-                    pitches = [_.pitch_number for _ in pitches]
+                    pitches = [_.number for _ in pitches]
                     pitches = [markuptools.Markup(_) for _ in pitches]
                     label = markuptools.Markup.column(pitches)
                     label = label.small()
             elif prototype is pitchtools.NumberedPitchClass:
                 if isinstance(leaf, scoretools.Note):
-                    pitch = leaf.written_pitch.pitch_class_number
+                    pitch = leaf.written_pitch.pitch_class.number
                     label = str(pitch)
                     label = markuptools.Markup(label, direction=direction)
                     label = label.small()
                 elif isinstance(leaf, scoretools.Chord):
                     pitches = leaf.written_pitches
                     pitches = reversed(pitches)
-                    pitches = [_.pitch_class_number for _ in pitches]
+                    pitches = [_.pitch_class.number for _ in pitches]
                     pitches = [markuptools.Markup(_) for _ in pitches]
                     label = markuptools.Markup.column(pitches)
                     label = label.small()
@@ -3541,19 +3565,19 @@ class LabelAgent(abctools.AbjadObject):
                 ::
 
                     >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                    >>> voice = Voice(string)
+                    >>> voice = abjad.Voice(string)
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:4], voice[-4:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> label(selections).with_set_classes()
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> abjad.label(selections).with_set_classes()
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3591,20 +3615,20 @@ class LabelAgent(abctools.AbjadObject):
                 ::
 
                     >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                    >>> voice = Voice(string)
+                    >>> voice = abjad.Voice(string)
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:4], voice[-4:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> expression = label().with_set_classes()
+                    >>> expression = abjad.label().with_set_classes()
                     >>> expression(selections)
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3647,20 +3671,20 @@ class LabelAgent(abctools.AbjadObject):
                 ::
 
                     >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                    >>> voice = Voice(string)
+                    >>> voice = abjad.Voice(string)
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:4], voice[-4:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.SetClass(lex_rank=True)
-                    >>> label(selections).with_set_classes(prototype=prototype)
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> prototype = abjad.SetClass(lex_rank=True)
+                    >>> abjad.label(selections).with_set_classes(prototype=prototype)
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3698,21 +3722,21 @@ class LabelAgent(abctools.AbjadObject):
                 ::
 
                     >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                    >>> voice = Voice(string)
+                    >>> voice = abjad.Voice(string)
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:4], voice[-4:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.SetClass(lex_rank=True)
-                    >>> expression = label().with_set_classes(prototype=prototype)
+                    >>> prototype = abjad.SetClass(lex_rank=True)
+                    >>> expression = abjad.label().with_set_classes(prototype=prototype)
                     >>> expression(selections)
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3754,20 +3778,20 @@ class LabelAgent(abctools.AbjadObject):
                 ::
 
                     >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                    >>> voice = Voice(string)
+                    >>> voice = abjad.Voice(string)
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:4], voice[-4:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.SetClass(transposition_only=True)
-                    >>> label(selections).with_set_classes(prototype=prototype)
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> prototype = abjad.SetClass(transposition_only=True)
+                    >>> abjad.label(selections).with_set_classes(prototype=prototype)
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3805,21 +3829,21 @@ class LabelAgent(abctools.AbjadObject):
                 ::
 
                     >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                    >>> voice = Voice(string)
+                    >>> voice = abjad.Voice(string)
                     >>> voice.consists_commands.append('Horizontal_bracket_engraver')
                     >>> selections = [voice[:4], voice[-4:]]
                     >>> for selection in selections:
-                    ...     spanner = spannertools.HorizontalBracketSpanner()
-                    ...     attach(spanner, selection)
+                    ...     spanner = abjad.HorizontalBracketSpanner()
+                    ...     abjad.attach(spanner, selection)
                     ...
-                    >>> prototype = pitchtools.SetClass(transposition_only=True)
-                    >>> expression = label().with_set_classes(prototype=prototype)
+                    >>> prototype = abjad.SetClass(transposition_only=True)
+                    >>> expression = abjad.label().with_set_classes(prototype=prototype)
                     >>> expression(selections)
-                    >>> override(voice).horizontal_bracket.staff_padding = 3
-                    >>> override(voice).text_script.staff_padding = 2
+                    >>> abjad.override(voice).horizontal_bracket.staff_padding = 3
+                    >>> abjad.override(voice).text_script.staff_padding = 2
                     >>> show(voice) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(voice)
                     \new Voice \with {
@@ -3894,13 +3918,13 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-                    >>> label(staff).with_start_offsets(direction=Up)
-                    >>> override(staff).text_script.staff_padding = 4
-                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+                    >>> abjad.label(staff).with_start_offsets(direction=Up)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3920,14 +3944,14 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-                    >>> expression = label().with_start_offsets(direction=Up)
+                    >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+                    >>> expression = abjad.label().with_start_offsets(direction=Up)
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
-                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> abjad.override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(staff) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(staff)
                     \new Staff \with {
@@ -3951,15 +3975,16 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"c'2 d' e' f'")
-                    >>> score = Score([staff])
-                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
-                    >>> label(staff).with_start_offsets(clock_time=True)
-                    >>> override(staff).text_script.staff_padding = 4
-                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> staff = abjad.Staff(r"c'2 d' e' f'")
+                    >>> score = abjad.Score([staff])
+                    >>> mark = abjad.MetronomeMark((1, 4), 60)
+                    >>> abjad.attach(mark, staff[0])
+                    >>> abjad.label(staff).with_start_offsets(clock_time=True)
+                    >>> abjad.override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -3979,16 +4004,17 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"c'2 d' e' f'")
-                    >>> score = Score([staff])
-                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
-                    >>> expression = label().with_start_offsets(clock_time=True)
+                    >>> staff = abjad.Staff(r"c'2 d' e' f'")
+                    >>> score = abjad.Score([staff])
+                    >>> mark = abjad.MetronomeMark((1, 4), 60)
+                    >>> abjad.attach(mark, staff[0])
+                    >>> expression = abjad.label().with_start_offsets(clock_time=True)
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
-                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> abjad.override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4013,18 +4039,19 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"c'2 d' e' f'")
-                    >>> score = Score([staff])
-                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
-                    >>> label(staff).with_start_offsets(
+                    >>> staff = abjad.Staff(r"c'2 d' e' f'")
+                    >>> score = abjad.Score([staff])
+                    >>> mark = abjad.MetronomeMark((1, 4), 60)
+                    >>> abjad.attach(mark, staff[0])
+                    >>> abjad.label(staff).with_start_offsets(
                     ...     clock_time=True,
                     ...     font_size=-3,
                     ...     )
-                    >>> override(staff).text_script.staff_padding = 4
-                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> abjad.override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4064,19 +4091,20 @@ class LabelAgent(abctools.AbjadObject):
 
                 ::
 
-                    >>> staff = Staff(r"c'2 d' e' f'")
-                    >>> score = Score([staff])
-                    >>> attach(Tempo(Duration(1, 4), 60), staff[0])
-                    >>> expression = label().with_start_offsets(
+                    >>> staff = abjad.Staff(r"c'2 d' e' f'")
+                    >>> score = abjad.Score([staff])
+                    >>> mark = abjad.MetronomeMark((1, 4), 60)
+                    >>> abjad.attach(mark, staff[0])
+                    >>> expression = abjad.label().with_start_offsets(
                     ...     clock_time=True,
                     ...     font_size=-3,
                     ...     )
                     >>> expression(staff)
-                    >>> override(staff).text_script.staff_padding = 4
-                    >>> override(staff).tuplet_bracket.staff_padding = 0
+                    >>> abjad.override(staff).text_script.staff_padding = 4
+                    >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
                     >>> show(score) # doctest: +SKIP
 
-                ..  doctest::
+                ..  docs::
 
                     >>> f(score)
                     \new Score <<
@@ -4114,18 +4142,19 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
+        from abjad.tools.topleveltools import inspect as abjad_inspect
         if self._expression:
             return self._update_expression(inspect.currentframe())
         logical_ties = iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
             if clock_time:
-                inspector = inspect_(logical_tie.head)
+                inspector = abjad_inspect(logical_tie.head)
                 timespan = inspector.get_timespan(in_seconds=True)
                 start_offset = timespan.start_offset
                 string = start_offset.to_clock_string()
                 string = '"{}"'.format(string)
             else:
-                timespan = inspect_(logical_tie.head).get_timespan()
+                timespan = abjad_inspect(logical_tie.head).get_timespan()
                 start_offset = timespan.start_offset
                 string = str(start_offset)
             label = markuptools.Markup(string, direction=direction)

@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_01():
     r'''Change trivial logical tie to nontrivial logical tie.
     '''
 
-    staff = Staff("c'8 [ ]")
-    logical_tie = inspect_(staff[0]).get_logical_tie()
-    logical_tie._add_or_remove_notes_to_achieve_written_duration(Duration(5, 32))
+    staff = abjad.Staff("c'8 [ ]")
+    logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+    logical_tie._add_or_remove_notes_to_achieve_written_duration(abjad.Duration(5, 32))
 
     r'''
     \new Staff {
@@ -17,8 +17,8 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     }
     '''
 
-    assert inspect_(staff).is_well_formed()
-    assert format(staff) == stringtools.normalize(
+    assert abjad.inspect(staff).is_well_formed()
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 ~ [
@@ -32,9 +32,9 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     r'''Change nontrivial logical tie to trivial logical tie.
     '''
 
-    staff = Staff("c'8 ~ [ c'32 ]")
-    logical_tie = inspect_(staff[0]).get_logical_tie()
-    logical_tie._add_or_remove_notes_to_achieve_written_duration(Duration(1, 8))
+    staff = abjad.Staff("c'8 ~ [ c'32 ]")
+    logical_tie = abjad.inspect(staff[0]).get_logical_tie()
+    logical_tie._add_or_remove_notes_to_achieve_written_duration(abjad.Duration(1, 8))
 
     r'''
     \new Staff {
@@ -42,8 +42,8 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     }
     '''
 
-    assert inspect_(staff).is_well_formed()
-    assert format(staff) == stringtools.normalize(
+    assert abjad.inspect(staff).is_well_formed()
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             c'8 [ ]

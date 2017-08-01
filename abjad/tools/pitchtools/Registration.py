@@ -7,6 +7,10 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class Registration(TypedList):
     '''Registration.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Registration in two parts:
@@ -14,7 +18,7 @@ class Registration(TypedList):
         ::
 
             >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-            >>> registration = Registration(components)
+            >>> registration = abjad.Registration(components)
 
         ::
 
@@ -22,15 +26,11 @@ class Registration(TypedList):
             abjad.Registration(
                 [
                     abjad.RegistrationComponent(
-                        source_pitch_range=abjad.PitchRange(
-                            range_string='[A0, C4)',
-                            ),
+                        source_pitch_range=abjad.PitchRange('[A0, C4)'),
                         target_octave_start_pitch=abjad.NumberedPitch(15),
                         ),
                     abjad.RegistrationComponent(
-                        source_pitch_range=abjad.PitchRange(
-                            range_string='[C4, C8)',
-                            ),
+                        source_pitch_range=abjad.PitchRange('[C4, C8)'),
                         target_octave_start_pitch=abjad.NumberedPitch(27),
                         ),
                     ]
@@ -55,10 +55,11 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = Registration(components)
+                >>> registration = abjad.Registration(components)
                 >>> pitches = registration([-24, -22, -23, -21])
                 >>> for pitch in pitches:
                 ...     pitch
+                ...
                 NamedPitch("c'''")
                 NamedPitch("d'''")
                 NamedPitch("cs'''")
@@ -71,10 +72,11 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = Registration(components)
+                >>> registration = abjad.Registration(components)
                 >>> pitches = registration([0, 2, 1, 3])
                 >>> for pitch in pitches:
                 ...     pitch
+                ...
                 NamedPitch("c''''")
                 NamedPitch("d''''")
                 NamedPitch("cs''''")
@@ -87,10 +89,11 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = Registration(components)
+                >>> registration = abjad.Registration(components)
                 >>> pitches = registration([0.5, 2.5, 1.5, 3.5])
                 >>> for pitch in pitches:
                 ...     pitch
+                ...
                 NamedPitch("cqs''''")
                 NamedPitch("dqs''''")
                 NamedPitch("dqf''''")
@@ -114,7 +117,7 @@ class Registration(TypedList):
             ::
 
                 >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
-                >>> registration = Registration(components)
+                >>> registration = abjad.Registration(components)
 
             ::
 
@@ -122,15 +125,11 @@ class Registration(TypedList):
                 abjad.Registration(
                     [
                         abjad.RegistrationComponent(
-                            source_pitch_range=abjad.PitchRange(
-                                range_string='[A0, C4)',
-                                ),
+                            source_pitch_range=abjad.PitchRange('[A0, C4)'),
                             target_octave_start_pitch=abjad.NumberedPitch(15),
                             ),
                         abjad.RegistrationComponent(
-                            source_pitch_range=abjad.PitchRange(
-                                range_string='[C4, C8)',
-                                ),
+                            source_pitch_range=abjad.PitchRange('[C4, C8)'),
                             target_octave_start_pitch=abjad.NumberedPitch(27),
                             ),
                         ]
@@ -145,6 +144,7 @@ class Registration(TypedList):
 
     @property
     def _item_coercer(self):
+        from abjad.tools import pitchtools
         def coerce_(argument):
             if isinstance(argument, tuple):
                 component = pitchtools.RegistrationComponent(*argument)
@@ -153,7 +153,6 @@ class Registration(TypedList):
             else:
                 raise TypeError(repr(argument))
             return component
-        from abjad.tools import pitchtools
         return coerce_
 
     ### PRIVATE METHODS ###
@@ -163,7 +162,7 @@ class Registration(TypedList):
         for registration_component in self:
             item = (
                 registration_component.source_pitch_range.range_string,
-                registration_component.target_octave_start_pitch.pitch_number
+                registration_component.target_octave_start_pitch.number
                 )
             values.append(item)
         return systemtools.FormatSpecification(

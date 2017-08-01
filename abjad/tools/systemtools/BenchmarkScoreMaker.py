@@ -3,16 +3,22 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class BenchmarkScoreMaker(AbjadObject):
-    '''Benchmark score maker:
+    '''Benchmark score-maker.
 
     ::
 
-        >>> benchmark_score_maker = systemtools.BenchmarkScoreMaker()
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> benchmark_score_maker
-        BenchmarkScoreMaker()
+        ::
+
+            >>> benchmark_score_maker = abjad.BenchmarkScoreMaker()
+
+        ::
+
+            >>> benchmark_score_maker
+            BenchmarkScoreMaker()
 
     Use to instantiate scores for benchmark testing.
     '''
@@ -20,6 +26,9 @@ class BenchmarkScoreMaker(AbjadObject):
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Benchmarking'
+
+    __slots__ = (
+        )
 
     ### PUBLIC METHODS ###
 
@@ -34,22 +43,18 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:       124,517 function calls
 
         '''
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequenc(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequenc(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
-            crescendo = spannertools.Crescendo()
-            topleveltools.attach(crescendo, part)
-            dynamic = indicatortools.Dynamic('p')
-            topleveltools.attach(dynamic, part[0])
-            dynamic = indicatortools.Dynamic('r')
-            topleveltools.attach(dynamic, part[-1])
+            crescendo = abjad.Hairpin('<')
+            abjad.attach(crescendo, part)
+            dynamic = abjad.Dynamic('p')
+            abjad.attach(dynamic, part[0])
+            dynamic = abjad.Dynamic('r')
+            abjad.attach(dynamic, part[-1])
         return voice
 
     def make_bound_hairpin_score_02(self):
@@ -63,22 +68,18 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:       117,846 function calls
 
         '''
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
-            crescendo = spannertools.Crescendo()
-            topleveltools.attach(crescendo, part)
-            dynamic = indicatortools.Dynamic('p')
-            topleveltools.attach(dynamic, part[0])
-            dynamic = indicatortools.Dynamic('r')
-            topleveltools.attach(dynamic, part[-1])
+            crescendo = abjad.Hairpin('<')
+            abjad.attach(crescendo, part)
+            dynamic = abjad.Dynamic('p')
+            abjad.attach(dynamic, part[0])
+            dynamic = abjad.Dynamic('r')
+            abjad.attach(dynamic, part[-1])
         return voice
 
     def make_bound_hairpin_score_03(self):
@@ -92,22 +93,18 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:       116,534 function calls
 
         '''
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
-            crescendo = spannertools.Crescendo()
-            topleveltools.attach(crescendo, part)
-            dynamic = indicatortools.Dynamic('p')
-            topleveltools.attach(dynamic, part[0])
-            dynamic = indicatortools.Dynamic('r')
-            topleveltools.attach(dynamic, part[-1])
+            crescendo = abjad.Hairpin('<')
+            abjad.attach(crescendo, part)
+            dynamic = abjad.Dynamic('p')
+            abjad.attach(dynamic, part[0])
+            dynamic = abjad.Dynamic('r')
+            abjad.attach(dynamic, part[-1])
         return voice
 
     def make_hairpin_score_01(self):
@@ -122,17 +119,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9728) LilyPond format:       134,563 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
-            crescendo = spannertools.Crescendo()
-            topleveltools.attach(crescendo, part)
+            crescendo = abjad.Hairpin('<')
+            abjad.attach(crescendo, part)
         return voice
 
     def make_hairpin_score_02(self):
@@ -147,17 +141,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9728) LilyPond format:       129,836 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
-            crescendo = spannertools.Crescendo()
-            topleveltools.attach(crescendo, part)
+            crescendo = abjad.Hairpin('<')
+            abjad.attach(crescendo, part)
         return voice
 
     def make_hairpin_score_03(self):
@@ -172,17 +163,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9728) LilyPond format:       128,948 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
-            crescendo = spannertools.Crescendo()
-            topleveltools.attach(crescendo, part)
+            crescendo = abjad.Hairpin('<')
+            abjad.attach(crescendo, part)
         return voice
 
     def make_score_00(self):
@@ -198,8 +186,8 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:       105,778 function calls
 
         '''
-        from abjad.tools import scoretools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
         return voice
 
     def make_score_with_indicators_01(self):
@@ -216,17 +204,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:        88,382 function calls
 
         '''
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import topleveltools
-        staff = scoretools.Staff(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(staff[:]).partition_by_counts(
+        import abjad
+        staff = abjad.Staff(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(staff[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
-            dynamic = indicatortools.Dynamic('f')
-            topleveltools.attach(dynamic, part[0])
+            dynamic = abjad.Dynamic('f')
+            abjad.attach(dynamic, part[0])
         return staff
 
     def make_score_with_indicators_02(self):
@@ -243,17 +228,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:        90,056 function calls
 
         '''
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import topleveltools
-        staff = scoretools.Staff(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(staff[:]).partition_by_counts(
+        import abjad
+        staff = abjad.Staff(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(staff[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
-            dynamic = indicatortools.Dynamic('f')
-            topleveltools.attach(dynamic, part[0])
+            dynamic = abjad.Dynamic('f')
+            abjad.attach(dynamic, part[0])
         return staff
 
     def make_score_with_indicators_03(self):
@@ -270,14 +252,12 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:        96,806 function calls
 
         '''
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        from abjad.tools import topleveltools
-        staff = scoretools.Staff(200 * scoretools.Note("c'16"))
-        selector = topleveltools.select().by_leaf(flatten=True)
+        import abjad
+        staff = abjad.Staff(200 * abjad.Note("c'16"))
+        selector = abjad.select().by_leaf(flatten=True)
         for note in selector(staff):
-            dynamic = indicatortools.Dynamic('f')
-            topleveltools.attach(dynamic, note)
+            dynamic = abjad.Dynamic('f')
+            abjad.attach(dynamic, note)
         return staff
 
     def make_spanner_score_01(self):
@@ -294,17 +274,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:       441,884 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
-            beam = spannertools.DuratedComplexBeam()
-            topleveltools.attach(beam, part)
+            beam = abjad.DuratedComplexBeam()
+            abjad.attach(beam, part)
         return voice
 
     def make_spanner_score_02(self):
@@ -321,17 +298,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:       511,471 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
-            beam = spannertools.DuratedComplexBeam()
-            topleveltools.attach(beam, part)
+            beam = abjad.DuratedComplexBeam()
+            abjad.attach(beam, part)
         return voice
 
     def make_spanner_score_03(self):
@@ -348,17 +322,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:       525,463 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
-            beam = spannertools.DuratedComplexBeam()
-            topleveltools.attach(beam, part)
+            beam = abjad.DuratedComplexBeam()
+            abjad.attach(beam, part)
         return voice
 
     def make_spanner_score_04(self):
@@ -372,17 +343,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:       111,341 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
-            slur = spannertools.Slur()
-            topleveltools.attach(slur, part)
+            slur = abjad.Slur()
+            abjad.attach(slur, part)
         return voice
 
     def make_spanner_score_05(self):
@@ -396,17 +364,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:       107,486 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
-            slur = spannertools.Slur()
-            topleveltools.attach(slur, part)
+            slur = abjad.Slur()
+            abjad.attach(slur, part)
         return voice
 
     def make_spanner_score_06(self):
@@ -420,17 +385,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:       106,718 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
-            slur = spannertools.Slur()
-            topleveltools.attach(slur, part)
+            slur = abjad.Slur()
+            abjad.attach(slur, part)
         return voice
 
     def make_spanner_score_07(self):
@@ -444,17 +406,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:       132,556 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [4],
             cyclic=True,
             ):
-            beam = spannertools.Beam()
-            topleveltools.attach(beam, part)
+            beam = abjad.Beam()
+            abjad.attach(beam, part)
         return voice
 
     def make_spanner_score_08(self):
@@ -468,17 +427,14 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:       129,166 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [20],
             cyclic=True,
             ):
-            beam = spannertools.Beam()
-            topleveltools.attach(beam, part)
+            beam = abjad.Beam()
+            abjad.attach(beam, part)
         return voice
 
     def make_spanner_score_09(self):
@@ -492,15 +448,12 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:       128,494 function calls
 
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import sequencetools
-        from abjad.tools import spannertools
-        from abjad.tools import topleveltools
-        voice = scoretools.Voice(200 * scoretools.Note("c'16"))
-        for part in sequencetools.Sequence(voice[:]).partition_by_counts(
+        import abjad
+        voice = abjad.Voice(200 * abjad.Note("c'16"))
+        for part in abjad.Sequence(voice[:]).partition_by_counts(
             [100],
             cyclic=True,
             ):
-            beam = spannertools.Beam()
-            topleveltools.attach(beam, part)
+            beam = abjad.Beam()
+            abjad.attach(beam, part)
         return voice

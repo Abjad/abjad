@@ -6,29 +6,35 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class AltoTrombone(Instrument):
-    r'''An alto trombone.
+    r'''Alto trombone.
 
     ::
 
-        >>> staff = Staff("c4 d4 e4 fs4")
-        >>> clef = Clef(name='bass')
-        >>> attach(clef, staff)
-        >>> alto_trombone = instrumenttools.AltoTrombone()
-        >>> attach(alto_trombone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \clef "bass"
-            \set Staff.instrumentName = \markup { "Alto trombone" }
-            \set Staff.shortInstrumentName = \markup { "Alt. trb." }
-            c4
-            d4
-            e4
-            fs4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c4 d4 e4 fs4")
+            >>> clef = abjad.Clef('bass')
+            >>> abjad.attach(clef, staff[0])
+            >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
+            >>> abjad.attach(alto_trombone, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \clef "bass"
+                \set Staff.instrumentName = \markup { "Alto trombone" }
+                \set Staff.shortInstrumentName = \markup { "Alt. trb." }
+                c4
+                d4
+                e4
+                fs4
+            }
 
     '''
 
@@ -78,7 +84,7 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> alto_trombone = instrumenttools.AltoTrombone()
+                >>> alto_trombone = abjad.instrumenttools.AltoTrombone()
                 >>> f(alto_trombone)
                 instrumenttools.AltoTrombone(
                     instrument_name='alto trombone',
@@ -99,9 +105,7 @@ class AltoTrombone(Instrument):
                                 ),
                             ]
                         ),
-                    pitch_range=abjad.PitchRange(
-                        range_string='[A2, Bb5]',
-                        ),
+                    pitch_range=abjad.PitchRange('[A2, Bb5]'),
                     sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
                     )
 
@@ -174,7 +178,7 @@ class AltoTrombone(Instrument):
             ::
 
                 >>> alto_trombone.pitch_range
-                PitchRange(range_string='[A2, Bb5]')
+                PitchRange('[A2, Bb5]')
 
             ::
 

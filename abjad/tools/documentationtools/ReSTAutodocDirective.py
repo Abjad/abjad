@@ -8,31 +8,40 @@ class ReSTAutodocDirective(ReSTDirective):
 
     ::
 
-        >>> autodoc = documentationtools.ReSTAutodocDirective(
-        ...     argument='abjad.tools.spannertools.Beam.Beam',
-        ...     directive='autoclass',
-        ...     )
-        >>> autodoc.options['noindex'] = True
-        >>> autodoc
-        ReSTAutodocDirective(
-            argument='abjad.tools.spannertools.Beam.Beam',
-            directive='autoclass',
-            options={
-                'noindex': True,
-                }
-            )
+        >>> import abjad
 
-    ::
+    ..  container:: example
 
-        >>> print(autodoc.rest_format)
-        .. autoclass:: abjad.tools.spannertools.Beam.Beam
-           :noindex:
+        ::
+
+            >>> autodoc = abjad.documentationtools.ReSTAutodocDirective(
+            ...     argument='abjad.tools.spannertools.Beam.Beam',
+            ...     directive='autoclass',
+            ...     )
+            >>> autodoc.options['noindex'] = True
+            >>> autodoc
+            ReSTAutodocDirective(
+                argument='abjad.tools.spannertools.Beam.Beam',
+                directive='autoclass',
+                options={
+                    'noindex': True,
+                    }
+                )
+
+        ::
+
+            >>> print(autodoc.rest_format)
+            .. autoclass:: abjad.tools.spannertools.Beam.Beam
+            :noindex:
 
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'reStructuredText'
+
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

@@ -5,6 +5,11 @@ from abjad.tools import scoretools
 def parse_rtm_syntax(rtm):
     r'''Parses RTM syntax.
 
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmtreetools
+
     ..  container:: example
 
         Parses tuplet:
@@ -13,16 +18,11 @@ def parse_rtm_syntax(rtm):
 
             >>> rtm = '(1 (1 (1 (1 1)) 1))'
             >>> tuplet = rhythmtreetools.parse_rtm_syntax(rtm)
-            >>> tuplet
-            FixedDurationTuplet(Duration(1, 4), "c'8 c'16 c'16 c'8")
-
-        ::
-
             >>> show(tuplet) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(tuplet))
+            >>> f(tuplet)
             \times 2/3 {
                 c'8
                 c'16
@@ -38,16 +38,11 @@ def parse_rtm_syntax(rtm):
 
             >>> rtm = '(3/4 (1 1/2 (4/3 (1 -1/2 1))))'
             >>> tuplet = rhythmtreetools.parse_rtm_syntax(rtm)
-            >>> tuplet
-            FixedDurationTuplet(Duration(3, 16), "c'8 c'16 { 8/15 c'8 r16 c'8 }")
-
-        ::
-
             >>> show(tuplet) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(_))
+            >>> f(tuplet)
             \tweak text #tuplet-number::calc-fraction-text
             \times 9/17 {
                 c'8
@@ -60,7 +55,7 @@ def parse_rtm_syntax(rtm):
                 }
             }
 
-    Returns fixed-duration tuplet or container.
+    Returns tuplet or container.
     '''
     from abjad.tools import rhythmtreetools
 

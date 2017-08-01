@@ -6,13 +6,17 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 class PitchRangeList(TypedList):
     r"""Pitch range list.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Two pitch ranges:
 
         ::
 
-            >>> ranges = pitchtools.PitchRangeList([
+            >>> ranges = abjad.PitchRangeList([
             ...     '[C3, C6]',
             ...     '[C4, C6]',
             ...     ])
@@ -22,12 +26,8 @@ class PitchRangeList(TypedList):
             >>> f(ranges)
             abjad.PitchRangeList(
                 [
-                    abjad.PitchRange(
-                        range_string='[C3, C6]',
-                        ),
-                    abjad.PitchRange(
-                        range_string='[C4, C6]',
-                        ),
+                    abjad.PitchRange('[C3, C6]'),
+                    abjad.PitchRange('[C4, C6]'),
                     ]
                 )
 
@@ -35,10 +35,10 @@ class PitchRangeList(TypedList):
 
             >>> show(ranges) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> lilypond_file = ranges.__illustrate__()
-            >>> f(lilypond_file[Score])
+            >>> f(lilypond_file[abjad.Score])
             \new Score \with {
                 \override BarLine.stencil = ##f
                 \override Glissando.thickness = #2
@@ -46,17 +46,17 @@ class PitchRangeList(TypedList):
                 \override TimeSignature.stencil = ##f
             } <<
                 \new PianoStaff <<
-                    \context Staff = "treble" {
+                    \context Staff = "Treble Staff" {
                         \clef "treble"
                         s1 * 1/4
                         s1 * 1/4
                         c'1 * 1/4 \glissando
                         c'''1 * 1/4
                     }
-                    \context Staff = "bass" {
+                    \context Staff = "Bass Staff" {
                         \clef "bass"
                         c1 * 1/4 \glissando
-                        \change Staff = treble
+                        \change Staff = "Treble Staff"
                         c'''1 * 1/4
                         s1 * 1/4
                         s1 * 1/4
@@ -73,6 +73,35 @@ class PitchRangeList(TypedList):
 
     ### SPECIAL METHODS ###
 
+    def __contains__(self, argument):
+        r'''Is true when pitch range list contains `argument`.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> ranges = abjad.PitchRangeList(['[C3, C6]', '[C4, C6]'])
+
+            ::
+
+                >>> '[C3, C6]' in ranges
+                True
+
+            ::
+
+                >>> (-12, 24) in ranges
+                True
+
+            ::
+
+                >>> (-39, 48) in ranges
+                False
+        
+        Returns true or false.
+        '''
+        return super(PitchRangeList, self).__contains__(argument)
+
     def __illustrate__(self):
         r"""Illustrates pitch ranges.
 
@@ -80,7 +109,7 @@ class PitchRangeList(TypedList):
 
             ::
 
-                >>> ranges = pitchtools.PitchRangeList([
+                >>> ranges = abjad.PitchRangeList([
                 ...     '[C3, C6]',
                 ...     '[C4, C6]',
                 ...     ])
@@ -89,10 +118,10 @@ class PitchRangeList(TypedList):
 
                 >>> show(ranges) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> lilypond_file = ranges.__illustrate__()
-                >>> f(lilypond_file[Score])
+                >>> f(lilypond_file[abjad.Score])
                 \new Score \with {
                     \override BarLine.stencil = ##f
                     \override Glissando.thickness = #2
@@ -100,17 +129,17 @@ class PitchRangeList(TypedList):
                     \override TimeSignature.stencil = ##f
                 } <<
                     \new PianoStaff <<
-                        \context Staff = "treble" {
+                        \context Staff = "Treble Staff" {
                             \clef "treble"
                             s1 * 1/4
                             s1 * 1/4
                             c'1 * 1/4 \glissando
                             c'''1 * 1/4
                         }
-                        \context Staff = "bass" {
+                        \context Staff = "Bass Staff" {
                             \clef "bass"
                             c1 * 1/4 \glissando
-                            \change Staff = treble
+                            \change Staff = "Treble Staff"
                             c'''1 * 1/4
                             s1 * 1/4
                             s1 * 1/4
@@ -143,7 +172,7 @@ class PitchRangeList(TypedList):
                 staff.extend(notes)
                 abjad.attach(glissando, notes)
         else:
-            result = abjad.scoretools.make_empty_piano_score()
+            result = abjad.Score.make_piano_score()
             score, treble_staff, bass_staff = result
             for pitch_range in self.items:
                 start_note = abjad.Note(pitch_range.start_pitch, 1)
@@ -152,7 +181,7 @@ class PitchRangeList(TypedList):
                 stop_note = abjad.Note(pitch_range.stop_pitch, 1)
                 stop_note_clef = abjad.Clef.from_selection(
                     pitch_range.stop_pitch)
-                notes = [start_note, stop_note]
+                notes = abjad.select([start_note, stop_note])
                 glissando = abjad.Glissando()
                 skips = 2 * abjad.Skip(1)
                 treble_clef = abjad.Clef('treble')
@@ -171,6 +200,8 @@ class PitchRangeList(TypedList):
                     staff_change = abjad.StaffChange(treble_staff)
                     abjad.attach(staff_change, stop_note)
                 abjad.attach(glissando, notes)
+            abjad.attach(abjad.Clef('treble'), treble_staff[0])
+            abjad.attach(abjad.Clef('bass'), bass_staff[0])
         for leaf in abjad.iterate(score).by_leaf():
             multiplier = abjad.Multiplier(1, 4)
             abjad.attach(multiplier, leaf)
@@ -200,3 +231,29 @@ class PitchRangeList(TypedList):
             return range_
         from abjad.tools import pitchtools
         return coerce_
+
+    ### PUBLIC METHODS ###
+
+    def append(self, argument):
+        r'''Appends `argument` to pitch range list.
+
+        ..  container:: example
+
+            ::
+
+                >>> ranges = abjad.PitchRangeList(['[C3, C6]'])
+                >>> ranges.append('[C4, C6]')
+
+            ::
+
+                >>> f(ranges)
+                abjad.PitchRangeList(
+                    [
+                        abjad.PitchRange('[C3, C6]'),
+                        abjad.PitchRange('[C4, C6]'),
+                        ]
+                    )
+        
+        Returns none.
+        '''
+        return super(PitchRangeList, self).append(argument)

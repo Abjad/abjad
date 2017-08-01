@@ -21,6 +21,9 @@ class CheckClassSections(CommandlineScript):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        )
+
     alias = 'check-class-sections'
     short_description = (
         'Check the order and contents of class sections in a path or file.'

@@ -4,16 +4,20 @@
 def iterate(client=None):
     r'''Makes iteration agent.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Example staff:
 
         ::
 
-            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -27,8 +31,9 @@ def iterate(client=None):
 
         Iterates staff by leaf pair:
 
-            >>> for pair in iterate(staff).by_leaf_pair():
+            >>> for pair in abjad.iterate(staff).by_leaf_pair():
             ...     pair
+            ...
             Selection([Note("c'4"), Note("e'4")])
             Selection([Note("e'4"), Note("d'4")])
             Selection([Note("d'4"), Note("f'4")])
@@ -37,8 +42,9 @@ def iterate(client=None):
 
         Iterates staff by pitch:
 
-            >>> for pitch in iterate(staff).by_pitch():
+            >>> for pitch in abjad.iterate(staff).by_pitch():
             ...     pitch
+            ...
             NamedPitch("c'")
             NamedPitch("e'")
             NamedPitch("d'")
@@ -50,14 +56,13 @@ def iterate(client=None):
 
         ::
 
-            >>> iterate(staff)
+            >>> abjad.iterate(staff)
             IterationAgent(client=Staff("c'4 e'4 d'4 f'4"))
 
     '''
-    from abjad.tools import agenttools
-    from abjad.tools import expressiontools
+    import abjad
     if client is not None:
-        return agenttools.IterationAgent(client=client)
-    expression = expressiontools.Expression()
+        return abjad.IterationAgent(client=client)
+    expression = abjad.Expression()
     expression = expression.iterate()
     return expression

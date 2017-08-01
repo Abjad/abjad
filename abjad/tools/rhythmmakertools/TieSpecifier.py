@@ -2,20 +2,25 @@
 from __future__ import print_function
 import collections
 import itertools
-from abjad.tools import patterntools
+from abjad.tools import datastructuretools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import select
 
 
 class TieSpecifier(AbjadValueObject):
     r'''Tie specifier.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
+
     '''
 
     ### CLASS VARIABLES ###
@@ -45,8 +50,8 @@ class TieSpecifier(AbjadValueObject):
             type(None),
             bool,
             collections.Sequence,
-            patterntools.Pattern,
-            patterntools.PatternList,
+            datastructuretools.Pattern,
+            datastructuretools.PatternList,
             )
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions
@@ -79,7 +84,7 @@ class TieSpecifier(AbjadValueObject):
             return
         tie_spanners = set()
         for leaf in iterate(divisions).by_leaf():
-            tie_spanners_ = inspect_(leaf).get_spanners(
+            tie_spanners_ = inspect(leaf).get_spanners(
                 prototype=spannertools.Tie,
                 in_parentage=True,
                 )
@@ -95,6 +100,7 @@ class TieSpecifier(AbjadValueObject):
                 detach(spannertools.Tie, leaf)
 
     def _do_tie_across_divisions(self, divisions):
+        import abjad
         if not self.tie_across_divisions:
             return
         if self.strip_ties:
@@ -105,11 +111,11 @@ class TieSpecifier(AbjadValueObject):
         tie_across_divisions = self.tie_across_divisions
         if isinstance(tie_across_divisions, bool):
             tie_across_divisions = [tie_across_divisions]
-        if not isinstance(tie_across_divisions, patterntools.Pattern):
-            tie_across_divisions = patterntools.Pattern.from_vector(
+        if not isinstance(tie_across_divisions, abjad.Pattern):
+            tie_across_divisions = abjad.Pattern.from_vector(
                 tie_across_divisions)
-        pairs = sequencetools.Sequence(divisions).nwise()
-        rest_prototype = (scoretools.Rest, scoretools.MultimeasureRest)
+        pairs = abjad.Sequence(divisions).nwise()
+        rest_prototype = (abjad.Rest, abjad.MultimeasureRest)
         for i, pair in enumerate(pairs):
             if not tie_across_divisions.matches_index(i, length):
                 continue
@@ -121,51 +127,54 @@ class TieSpecifier(AbjadValueObject):
                 continue
             if isinstance(leaf_two, rest_prototype):
                 continue
-            prototype = (scoretools.Note, scoretools.Chord)
-            if not all(isinstance(x, prototype) for x in leaves):
+            pitched_prototype = (abjad.Note, abjad.Chord)
+            if not all(isinstance(_, pitched_prototype) for _ in leaves):
                 continue
-            logical_tie_one = inspect_(leaf_one).get_logical_tie()
-            logical_tie_two = inspect_(leaf_two).get_logical_tie()
-            for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
-                detach(tie, leaf_one)
-            for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
-                detach(tie, leaf_two)
+            logical_tie_one = inspect(leaf_one).get_logical_tie()
+            logical_tie_two = inspect(leaf_two).get_logical_tie()
+            if logical_tie_one == logical_tie_two:
+                continue
             combined_logical_tie = logical_tie_one + logical_tie_two
-            tie_spanner = spannertools.Tie(
+            for leaf in combined_logical_tie:
+                abjad.detach(abjad.Tie, leaf)
+            tie = abjad.Tie(
                 use_messiaen_style_ties=self.use_messiaen_style_ties,
                 )
-            tie_spanner._unconstrain_contiguity()
-            if tie_spanner._attachment_test_all(combined_logical_tie):
-                attach(tie_spanner, combined_logical_tie)
-            tie_spanner._constrain_contiguity()
+            tie._unconstrain_contiguity()
+            if tie._attachment_test_all(combined_logical_tie):
+                try:
+                    attach(tie, combined_logical_tie)
+                except:
+                    raise Exception(tie, combined_logical_tie)
+            tie._constrain_contiguity()
 
     def _do_tie_consecutive_notes(self, divisions):
+        import abjad
         if not self.tie_consecutive_notes:
             return
-        leaves = select(divisions).by_leaf()
+        leaves = abjad.select(divisions).by_leaf()
         for leaf in leaves:
-            detach(spannertools.Tie, leaf)
+            abjad.detach(abjad.Tie, leaf)
         pairs = itertools.groupby(leaves, lambda _: _.__class__)
-
         def _get_pitches(component):
-            if isinstance(component, scoretools.Note):
+            if isinstance(component, abjad.Note):
                 return component.written_pitch
-            elif isinstance(component, scoretools.Chord):
+            elif isinstance(component, abjad.Chord):
                 return component.written_pitches
             else:
                 raise TypeError(component)
         for class_, group in pairs:
             group = list(group)
-            if not isinstance(group[0], (scoretools.Note, scoretools.Chord)):
+            if not isinstance(group[0], (abjad.Note, abjad.Chord)):
                 continue
             subpairs = itertools.groupby(group, lambda _: _get_pitches(_))
             for pitches, subgroup in subpairs:
                 subgroup = list(subgroup)
                 if len(subgroup) == 1:
                     continue
-                tie = spannertools.Tie()
+                tie = abjad.Tie()
                 assert tie._attachment_test_all(subgroup)
-                attach(tie, subgroup)
+                abjad.attach(tie, abjad.select(subgroup))
 
     ### PUBLIC PROPERTIES ###
 

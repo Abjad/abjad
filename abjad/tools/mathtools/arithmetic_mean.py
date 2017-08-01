@@ -6,21 +6,25 @@ from abjad import Fraction
 def arithmetic_mean(argument):
     '''Gets arithmetic mean of `argument`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.arithmetic_mean([1, 2, 2, 20, 30])
+            >>> abjad.mathtools.arithmetic_mean([1, 2, 2, 20, 30])
             11
 
         ::
 
-            >>> mathtools.arithmetic_mean([1, 2, 20])
+            >>> abjad.mathtools.arithmetic_mean([1, 2, 20])
             Fraction(23, 3)
 
         ::
 
-            >>> mathtools.arithmetic_mean([2, 2, 20.0])
+            >>> abjad.mathtools.arithmetic_mean([2, 2, 20.0])
             8.0
 
     Raises exception when `argument` is not iterable.

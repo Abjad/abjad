@@ -11,27 +11,31 @@ from abjad.tools.topleveltools import select
 class Selector(AbjadValueObject):
     r'''Selector.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Selects note runs:
 
         ::
 
-            >>> selector = selectortools.Selector()
+            >>> selector = abjad.select()
             >>> selector = selector.by_leaf()
-            >>> selector = selector.by_run(Note)
+            >>> selector = selector.by_run(abjad.Note)
 
         ::
 
 
             >>> string = r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4"
-            >>> staff = Staff(string)
+            >>> staff = abjad.Staff(string)
             >>> result = selector(staff)
-            >>> label(result).color_alternating()
-            >>> set_(staff).auto_beaming = False
+            >>> abjad.label(result).color_alternating()
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -94,21 +98,21 @@ class Selector(AbjadValueObject):
 
         ::
 
-            >>> selector = selectortools.Selector()
+            >>> selector = abjad.select()
             >>> selector = selector.by_leaf()
-            >>> selector = selector.by_run(Note)
+            >>> selector = selector.by_run(abjad.Note)
             >>> selector = selector.get_item(0, apply_to_each=True)
 
         ::
 
             >>> string = r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4"
-            >>> staff = Staff(string)
+            >>> staff = abjad.Staff(string)
             >>> result = selector(staff)
-            >>> label(result).color_alternating()
-            >>> set_(staff).auto_beaming = False
+            >>> abjad.label(result).color_alternating()
+            >>> abjad.setting(staff).auto_beaming = False
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff \with {
@@ -243,17 +247,18 @@ class Selector(AbjadValueObject):
 
             ::
 
+                >>> from abjad.tools import abctools
                 >>> class CMajorSelectorCallback(abctools.AbjadValueObject):
                 ...     def __call__(self, argument, rotation=None):
-                ...         c_major_pcs = pitchtools.PitchClassSet("c e g")
+                ...         c_major_pcs = abjad.PitchClassSet("c e g")
                 ...         result = []
                 ...         for subexpr in argument:
                 ...             subresult = []
                 ...             for x in subexpr:
-                ...                 if not isinstance(x, scoretools.Chord):
+                ...                 if not isinstance(x, abjad.Chord):
                 ...                     continue
                 ...                 pitches = x.written_pitches
-                ...                 pcs = pitchtools.PitchClassSet(pitches)
+                ...                 pcs = abjad.PitchClassSet(pitches)
                 ...                 if pcs == c_major_pcs:
                 ...                     subresult.append(x)
                 ...             if subresult:
@@ -262,8 +267,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("<g' d'>4 <c' e' g'>4 r4 <e' g' c''>2 fs,4")
-                >>> selector = selectortools.Selector()
+                >>> staff = abjad.Staff("<g' d'>4 <c' e' g'>4 r4 <e' g' c''>2 fs,4")
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.append_callback(CMajorSelectorCallback())
 
@@ -292,18 +297,18 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = select()
-                >>> selector = selector.by_class(prototype=Note)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(prototype=abjad.Note)
 
             ::
 
-                >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
+                >>> staff = abjad.Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -361,18 +366,18 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = select()
-                >>> selector = selector.by_class(prototype=Note, flatten=True)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(prototype=abjad.Note, flatten=True)
 
             ::
 
-                >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
+                >>> staff = abjad.Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -447,7 +452,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.flatten()
                 >>> selector = selector.by_duration('==', (1, 16))
@@ -455,12 +460,12 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'4 d'16 d' d' d' e'4 f'16 f' f' f'")
+                >>> staff = abjad.Staff("c'4 d'16 d' d' d' e'4 f'16 f' f' f'")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
+                >>> abjad.label(result).color_alternating()
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -531,7 +536,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie()
                 >>> selector = selector.by_duration('<', (1, 4))
                 >>> selector = selector.by_contiguity()
@@ -540,13 +545,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 f'4 g'8")
+                >>> staff = abjad.Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 f'4 g'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -602,7 +607,7 @@ class Selector(AbjadValueObject):
 
             Partitions once by counts without overhang:
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [3],
@@ -613,13 +618,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -660,7 +665,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [3],
@@ -670,13 +675,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -730,7 +735,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [3],
@@ -740,13 +745,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -811,7 +816,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [3],
@@ -822,13 +827,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -892,7 +897,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [1, 2, 3],
@@ -902,13 +907,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating(['red', 'blue', 'green'])
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating(['red', 'blue', 'green'])
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -992,7 +997,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [1, 2, 3],
@@ -1004,13 +1009,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
                 >>> result = selector(staff, rotation=1)
-                >>> label(result).color_alternating(['red', 'blue', 'green'])
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating(['red', 'blue', 'green'])
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1108,18 +1113,18 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
-                >>> selector = selector.by_run(Note)
-                >>> selector = selector.by_duration(Duration(2, 8))
+                >>> selector = selector.by_run(abjad.Note)
+                >>> selector = selector.by_duration(abjad.Duration(2, 8))
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1158,20 +1163,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
-                >>> selector = selector.by_run(Note)
-                >>> selector = selector.by_duration('<', Duration(3, 8))
+                >>> selector = selector.by_run(abjad.Note)
+                >>> selector = selector.by_duration('<', abjad.Duration(3, 8))
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1216,20 +1221,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
-                >>> selector = selector.by_run(Note)
-                >>> selector = selector.by_duration('>=', Duration(1, 4))
+                >>> selector = selector.by_run(abjad.Note)
+                >>> selector = selector.by_duration('>=', abjad.Duration(1, 4))
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1284,28 +1289,28 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie()
                 >>> selector = selector.by_duration(
                 ...     '==',
-                ...     Duration(1, 8),
+                ...     abjad.Duration(1, 8),
                 ...     preprolated=True,
                 ...     )
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 3/4 { c'16 d'16 ~ d'16 e'16 ~ }
                 ...     {e'16 f'16 ~ f'16 g'16 ~ }
                 ...     \times 5/4 { g'16 a'16 ~ a'16 b'16 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1436,21 +1441,21 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1521,21 +1526,21 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf(flatten=True)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1617,22 +1622,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf(pitched=True)
                 >>> selection = selector(staff)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1695,22 +1700,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf(flatten=True, pitched=True)
                 >>> selection = selector(staff)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1780,23 +1785,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaf(
-                ...     trim=(MultimeasureRest, Rest, Skip),
-                ...     )
+                >>> prototype = (abjad.MultimeasureRest, abjad.Rest, abjad.Skip)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_leaf(trim=prototype)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1863,10 +1867,11 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> attach(OctavationSpanner(), result)
+                >>> leaves = abjad.select(result).by_leaf()
+                >>> abjad.attach(abjad.OctavationSpanner(), leaves)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -1874,12 +1879,12 @@ class Selector(AbjadValueObject):
                 } {
                     \times 2/3 {
                         r8
+                        \ottava #1
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
                         \once \override Dots.color = #red
                         \once \override NoteHead.color = #red
                         \once \override Stem.color = #red
-                        \ottava #1
                         d'8
                         \once \override Accidental.color = #red
                         \once \override Beam.color = #red
@@ -1929,23 +1934,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaf(
-                ...     trim=(MultimeasureRest, Rest, Skip),
-                ...     )
+                >>> prototype = (abjad.MultimeasureRest, abjad.Rest, abjad.Skip)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_leaf(trim=prototype)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { c'8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' c' }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2022,24 +2026,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaf(
-                ...     flatten=True,
-                ...     trim=(MultimeasureRest, Rest, Skip),
-                ...     )
+                >>> prototype = (abjad.MultimeasureRest, abjad.Rest, abjad.Skip)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_leaf(flatten=True, trim=prototype)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2115,22 +2117,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(Tuplet)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(abjad.Tuplet)
                 >>> selector = selector.by_leaf()
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2187,22 +2189,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(Tuplet, flatten=True)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(abjad.Tuplet, flatten=True)
                 >>> selector = selector.by_leaf()
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2260,24 +2262,23 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(Tuplet, flatten=True)
-                >>> selector = selector.by_leaf(
-                ...     trim=(MultimeasureRest, Rest, Skip),
-                ...     )
+                >>> prototype = (abjad.MultimeasureRest, abjad.Rest, abjad.Skip)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(abjad.Tuplet, flatten=True)
+                >>> selector = selector.by_leaf(trim=prototype)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2335,22 +2336,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(Tuplet, flatten=True)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(abjad.Tuplet, flatten=True)
                 >>> selector = selector.by_leaf(head=True, pitched=True)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { c'8 d' ~ d' } e' r
                 ...     r e' \times 2/3 { d' ~ d' c' }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2408,22 +2409,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(Tuplet, flatten=True)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(abjad.Tuplet, flatten=True)
                 >>> selector = selector.by_leaf(tail=True, pitched=True)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { c'8 d' ~ d' } e' r
                 ...     r e' \times 2/3 { d' ~ d' c' }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2481,22 +2482,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(Tuplet, flatten=True)
-                >>> selector = selector.by_leaf(prototype=Chord, head=True)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(abjad.Tuplet, flatten=True)
+                >>> selector = selector.by_leaf(prototype=abjad.Chord, head=True)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { <c' e' g'>8 ~ <c' e' g'> d' } e' r
                 ...     r <g d' fs'> \times 2/3 { e' <c' d'> ~ <c' d'> }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2561,20 +2562,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
-                >>> selector = selector.by_run(Note)
+                >>> selector = selector.by_run(abjad.Note)
                 >>> selector = selector.by_length('>', 1)
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2629,20 +2630,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
-                >>> selector = selector.by_run(Note)
+                >>> selector = selector.by_run(abjad.Note)
                 >>> selector = selector.by_length('<', 3)
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2737,18 +2738,18 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(flatten=False)
 
             ::
 
-                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2811,18 +2812,18 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(flatten=True)
 
             ::
 
-                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2892,7 +2893,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(
                 ...     flatten=False,
                 ...     pitched=True,
@@ -2900,13 +2901,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -2965,7 +2966,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(
                 ...     flatten=True,
                 ...     pitched=True,
@@ -2973,13 +2974,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3043,7 +3044,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(
                 ...     flatten=False,
                 ...     pitched=True,
@@ -3052,13 +3053,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3107,7 +3108,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(
                 ...     flatten=True,
                 ...     pitched=True,
@@ -3116,13 +3117,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
+                >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3174,8 +3175,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(prototype=Tuplet)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(prototype=abjad.Tuplet)
                 >>> selector = selector.flatten()
                 >>> selector = selector.by_logical_tie(
                 ...     flatten=False,
@@ -3184,17 +3185,17 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { c'8 d' e'  ~ } e' f' ~
                 ...     \times 2/3 { f' g' a' ~ } a' b' ~
                 ...     \times 2/3 { b' c'' d'' }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3302,8 +3303,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(prototype=Tuplet)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(prototype=abjad.Tuplet)
                 >>> selector = selector.flatten()
                 >>> selector = selector.get_slice(
                 ...     start=-2,
@@ -3313,17 +3314,17 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { c'8 d' e'  ~ } e' f' ~
                 ...     \times 2/3 { f' g' a' ~ } a' b' ~
                 ...     \times 2/3 { b' c'' d'' }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3426,18 +3427,18 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf(flatten=True)
                 >>> selector = selector.by_pattern(
-                ...     pattern=patterntools.select_every([0], period=2),
+                ...     pattern=abjad.index_every([0], period=2),
                 ...     )
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -3456,21 +3457,21 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf(flatten=True)
                 >>> selector = selector.by_pattern(
-                ...     pattern=patterntools.select_every([0], period=2),
+                ...     pattern=abjad.index_every([0], period=2),
                 ...     )
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff, rotation=1)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3522,21 +3523,21 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.by_pattern(
-                ...     pattern=patterntools.select_every([0], period=2),
+                ...     pattern=abjad.index_every([0], period=2),
                 ...     )
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3586,9 +3587,9 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
-                >>> pattern = patterntools.select([1])
+                >>> pattern = abjad.index([1])
                 >>> selector = selector.by_pattern(
                 ...     apply_to_each=True,
                 ...     pattern=pattern,
@@ -3597,13 +3598,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3659,20 +3660,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf(flatten=True)
                 >>> selector = selector.by_pitch(pitches="c'")
 
             ::
 
-                >>> staff = Staff("c'8 d'8 ~ d'8 e'8")
+                >>> staff = abjad.Staff("c'8 d'8 ~ d'8 e'8")
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3715,20 +3716,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_pitch(pitches="c'")
 
             ::
 
-                >>> staff = Staff("c'8 d'8 ~ d'8 e'8")
+                >>> staff = abjad.Staff("c'8 d'8 ~ d'8 e'8")
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3788,20 +3789,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf(flatten=True)
                 >>> selector = selector.by_pitch(pitches="c' e'")
 
             ::
 
-                >>> staff = Staff("c'8 d'8 ~ d'8 e'8")
+                >>> staff = abjad.Staff("c'8 d'8 ~ d'8 e'8")
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3852,20 +3853,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie()
-                >>> selector = selector.by_pitch(pitches=NamedPitch('C4'))
+                >>> selector = selector.by_pitch(pitches=abjad.NamedPitch('C4'))
 
             ::
 
-                >>> staff = Staff("c'8 d'8 ~ d'8 e'8")
+                >>> staff = abjad.Staff("c'8 d'8 ~ d'8 e'8")
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -3921,20 +3922,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> prototype = (abjad.Chord, abjad.Note)
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
-                >>> selector = selector.by_run(prototype=(Note, Chord))
+                >>> selector = selector.by_run(prototype=prototype)
 
             ::
 
-                >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
+                >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
+                >>> staff = abjad.Staff(string)
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4021,19 +4024,19 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.first()
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4079,20 +4082,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.middle()
                 >>> selector = selector.flatten()
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4150,20 +4153,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.flatten()
 
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4245,20 +4248,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.flatten()
                 >>> selector = selector.get_item(1)
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4292,19 +4295,19 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(1)
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4341,23 +4344,23 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(prototype=Tuplet)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(prototype=abjad.Tuplet)
                 >>> selector = selector.flatten()
                 >>> selector = selector.get_item(n=1)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4404,19 +4407,19 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(0, apply_to_each=True)
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4481,7 +4484,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_slice(
                 ...     stop=-1,
@@ -4490,13 +4493,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4555,7 +4558,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_slice(
                 ...     start=1,
@@ -4564,13 +4567,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4631,7 +4634,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_slice(
                 ...     start=1,
@@ -4640,13 +4643,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4689,7 +4692,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_slice(
                 ...     stop=-1,
@@ -4698,13 +4701,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4749,7 +4752,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.get_slice(
                 ...     start=-3,
@@ -4758,13 +4761,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4803,7 +4806,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf(flatten=True)
                 >>> selector = selector.get_slice(
                 ...     start=-3,
@@ -4812,13 +4815,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4874,23 +4877,23 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf(pitched=True)
                 >>> selector = selector.group_by_pitch()
 
             ::
 
                 >>> string = r"c'8 ~ c'16 c'16 r8 c'16 c'16"
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     c'8 ~ c'16 c'16 r8 c'16 c'16
                 ...     d'8 ~ d'16 d'16 r8 d'16 d'16
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -4974,7 +4977,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf(pitched=True)
                 >>> selector = selector.group_by_pitch(
                 ...     allow_discontiguity=True,
@@ -4983,16 +4986,16 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> string = r"c'8 ~ c'16 c'16 r8 c'16 c'16"
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     c'8 ~ c'16 c'16 r8 c'16 c'16
                 ...     d'8 ~ d'16 d'16 r8 d'16 d'16
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5076,22 +5079,22 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.group_by_pitch()
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     c'8 ~ c'16 c'16 r8 c'16 c'16
                 ...     d'8 ~ d'16 d'16 r8 d'16 d'16
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5175,7 +5178,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.group_by_pitch(
                 ...     allow_discontiguity=True,
@@ -5183,16 +5186,16 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     c'8 ~ c'16 c'16 r8 c'16 c'16
                 ...     d'8 ~ d'16 d'16 r8 d'16 d'16
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5287,19 +5290,19 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.last()
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5345,19 +5348,19 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.middle()
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5425,19 +5428,19 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.most()
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5510,19 +5513,19 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.partition_by_ratio((1, 1))
 
             ::
 
-                >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
+                >>> staff = abjad.Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5591,19 +5594,19 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.partition_by_ratio((1, 1, 1))
 
             ::
 
-                >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
+                >>> staff = abjad.Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5682,19 +5685,19 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.rest()
 
             ::
 
-                >>> staff = Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5769,11 +5772,11 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'4 d'8 e'8 f'4 g'8 a'4 b'8 c'8")
+                >>> staff = abjad.Staff("c'4 d'8 e'8 f'4 g'8 a'4 b'8 c'8")
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> logical_tie_selector = selector.by_logical_tie()
                 >>> pitched_selector = logical_tie_selector.by_pitch('C4')
                 >>> duration_selector = logical_tie_selector.by_duration('==', (1, 8))
@@ -5788,7 +5791,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> result = selectortools.Selector.run_selectors(staff, selectors)
+                >>> result = abjad.Selector.run_selectors(staff, selectors)
                 >>> all(selector in result for selector in selectors)
                 True
 
@@ -5905,8 +5908,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(prototype=Tuplet)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(prototype=abjad.Tuplet)
                 >>> selector = selector.flatten()
                 >>> selector = selector.get_item(n=1)
                 >>> selector = selector.select()
@@ -5915,16 +5918,16 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -5966,23 +5969,23 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_class(prototype=Tuplet)
+                >>> selector = abjad.select()
+                >>> selector = selector.by_class(prototype=abjad.Tuplet)
                 >>> selector = selector.flatten()
                 >>> selector = selector.select(apply_to_each=True)
 
             ::
 
-                >>> staff = Staff(r"""
+                >>> staff = abjad.Staff(r"""
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -6053,20 +6056,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
-                >>> selector = selector.by_run(Note)
+                >>> selector = selector.by_run(abjad.Note)
                 >>> selector = selector.with_next_leaf()
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -6131,20 +6134,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(-1, apply_to_each=True)
                 >>> selector = selector.with_next_leaf()
 
             ::
 
-                >>> staff = Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -6206,27 +6209,27 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.with_next_leaf()
 
             ::
 
-                >>> staff = Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
                 >>> result = selector(staff)
                 >>> for selection in result:
-                ...     attach(PianoPedalSpanner(), selection)
+                ...     abjad.attach(abjad.PianoPedalSpanner(), selection)
                 ...
 
             ::
 
-                >>> label(result).color_alternating()
-                >>> manager = override(staff).sustain_pedal_line_spanner
+                >>> abjad.label(result).color_alternating()
+                >>> manager = abjad.override(staff).sustain_pedal_line_spanner
                 >>> manager.staff_padding = 6
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -6308,20 +6311,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_leaf()
-                >>> selector = selector.by_run(Note)
+                >>> selector = selector.by_run(abjad.Note)
                 >>> selector = selector.with_previous_leaf()
 
             ::
 
-                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -6386,20 +6389,20 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selectortools.Selector()
+                >>> selector = abjad.select()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(0, apply_to_each=True)
                 >>> selector = selector.with_previous_leaf()
 
             ::
 
-                >>> staff = Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
+                >>> staff = abjad.Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
                 >>> result = selector(staff)
-                >>> label(result).color_alternating()
-                >>> set_(staff).auto_beaming = False
+                >>> abjad.label(result).color_alternating()
+                >>> abjad.setting(staff).auto_beaming = False
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff \with {

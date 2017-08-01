@@ -2,22 +2,25 @@
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools.inspect_ import inspect_
 
 
 class Glissando(Spanner):
     r'''Glissando.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> glissando = spannertools.Glissando()
-            >>> attach(glissando, staff[:])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> glissando = abjad.Glissando()
+            >>> abjad.attach(glissando, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -29,18 +32,18 @@ class Glissando(Spanner):
 
     ..  container:: example
 
-        Glissando avoids BendAfter indicators.
+        Glissando avoids bend-after indicators:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> bend_after = indicatortools.BendAfter()
-            >>> attach(bend_after, staff[1], is_annotation=True)
-            >>> glissando = spannertools.Glissando()
-            >>> attach(glissando, staff[:])
+            >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+            >>> bend_after = abjad.BendAfter()
+            >>> abjad.attach(bend_after, staff[1])
+            >>> glissando = abjad.Glissando()
+            >>> abjad.attach(glissando, staff[:])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -50,7 +53,6 @@ class Glissando(Spanner):
                 f'8
             }
 
-    Formats notes and chords with LilyPond ``\glissando`` command.
     '''
 
     ### CLASS VARIABLES ###
@@ -92,27 +94,17 @@ class Glissando(Spanner):
         new._allow_ties = self.allow_ties
         new._parenthesize_repeated_pitches = self.parenthesize_repeated_pitches
 
-    def _get_annotations(self, leaf):
-        inspector = inspect_(leaf)
-        bend_after = None
-        prototype = indicatortools.BendAfter
-        if inspector.has_indicator(prototype):
-            bend_after = inspector.get_indicator(prototype)
-        return bend_after
-
     def _get_lilypond_format_bundle(self, leaf):
-        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (scoretools.Chord, scoretools.Note)
-        bend_after = self._get_annotations(leaf)
         should_attach_glissando = False
         if not self._is_my_first_leaf(leaf):
             if self.parenthesize_repeated_pitches:
                 if not self._previous_leaf_changes_current_pitch(leaf):
                     self._parenthesize_leaf(leaf)
-        if bend_after:
-            lilypond_format_bundle.update(
-                bend_after._get_lilypond_format_bundle(),
-                )
+        if abjad.inspect(leaf).has_indicator(abjad.BendAfter):
+            pass
         elif self._is_my_last_leaf(leaf):
             pass
         elif not isinstance(leaf, prototype):
@@ -131,17 +123,19 @@ class Glissando(Spanner):
                 if self._is_last_in_tie_chain(leaf):
                     should_attach_glissando = True
         if should_attach_glissando:
-            lilypond_format_bundle.right.spanner_starts.append('\glissando')
-        return lilypond_format_bundle
+            bundle.right.spanner_starts.append('\glissando')
+        return bundle
 
     @staticmethod
     def _is_last_in_tie_chain(leaf):
-        logical_tie = inspect_(leaf).get_logical_tie()
+        import abjad
+        logical_tie = abjad.inspect(leaf).get_logical_tie()
         return leaf is logical_tie[-1]
 
     @staticmethod
     def _next_leaf_changes_current_pitch(leaf):
-        next_leaf = inspect_(leaf).get_leaf(n=1)
+        import abjad
+        next_leaf = abjad.inspect(leaf).get_leaf(n=1)
         if (isinstance(leaf, scoretools.Note) and
             isinstance(next_leaf, scoretools.Note) and
             leaf.written_pitch == next_leaf.written_pitch):
@@ -162,7 +156,8 @@ class Glissando(Spanner):
 
     @staticmethod
     def _previous_leaf_changes_current_pitch(leaf):
-        previous_leaf = inspect_(leaf).get_leaf(n=-1)
+        import abjad
+        previous_leaf = abjad.inspect(leaf).get_leaf(n=-1)
         if (isinstance(leaf, scoretools.Note) and
             isinstance(previous_leaf, scoretools.Note) and
             leaf.written_pitch == previous_leaf.written_pitch):
@@ -186,14 +181,14 @@ class Glissando(Spanner):
 
             ::
 
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
+                >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = abjad.Glissando(
                 ...     allow_repeat_pitches=False,
                 ...     )
-                >>> attach(glissando, staff[:])
+                >>> abjad.attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -215,14 +210,14 @@ class Glissando(Spanner):
 
             ::
 
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
+                >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = abjad.Glissando(
                 ...     allow_repeat_pitches=True,
                 ...     )
-                >>> attach(glissando, staff[:])
+                >>> abjad.attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -242,15 +237,15 @@ class Glissando(Spanner):
 
             ::
 
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
+                >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = abjad.Glissando(
                 ...     allow_repeat_pitches=True,
                 ...     allow_ties=True,
                 ...     )
-                >>> attach(glissando, staff[:])
+                >>> abjad.attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -281,14 +276,14 @@ class Glissando(Spanner):
 
             ::
 
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
+                >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = abjad.Glissando(
                 ...     allow_repeat_pitches=False,
                 ...     )
-                >>> attach(glissando, staff[:])
+                >>> abjad.attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -310,14 +305,14 @@ class Glissando(Spanner):
 
             ::
 
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
+                >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = abjad.Glissando(
                 ...     allow_repeat_pitches=True,
                 ...     )
-                >>> attach(glissando, staff[:])
+                >>> abjad.attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -337,15 +332,15 @@ class Glissando(Spanner):
 
             ::
 
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
+                >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = abjad.Glissando(
                 ...     allow_repeat_pitches=True,
                 ...     allow_ties=True,
                 ...     )
-                >>> attach(glissando, staff[:])
+                >>> abjad.attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -377,12 +372,12 @@ class Glissando(Spanner):
 
             ::
 
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando()
-                >>> attach(glissando, staff[:])
+                >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = abjad.Glissando()
+                >>> abjad.attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -404,15 +399,15 @@ class Glissando(Spanner):
 
             ::
 
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
+                >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = abjad.Glissando(
                 ...     allow_repeat_pitches=True,
                 ...     parenthesize_repeated_pitches=True,
                 ...     )
-                >>> attach(glissando, staff[:])
+                >>> abjad.attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {
@@ -436,14 +431,14 @@ class Glissando(Spanner):
 
             ::
 
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
+                >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = abjad.Glissando(
                 ...     parenthesize_repeated_pitches=True,
                 ...     )
-                >>> attach(glissando, staff[:])
+                >>> abjad.attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ..  docs::
 
                 >>> f(staff)
                 \new Staff {

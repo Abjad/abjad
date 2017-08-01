@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+import abjad
 import copy
-from abjad import *
+from abjad.tools import quantizationtools
+
 
 def test_quantizationtools_UnweightedSearchTree__generate_all_subdivision_commands_01():
 

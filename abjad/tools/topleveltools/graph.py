@@ -14,16 +14,20 @@ def graph(
     ):
     r'''Graphs `argument`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Graphs staff:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
+            >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> graph(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(staff.__graph__()))
             graphtools.GraphvizGraph(
@@ -242,10 +246,11 @@ def graph(
         ::
 
             >>> rtm_syntax = '(3 ((2 (2 1)) 2))'
-            >>> rhythm_tree = rhythmtreetools.RhythmTreeParser()(rtm_syntax)[0]
+            >>> parser = abjad.rhythmtreetools.RhythmTreeParser()
+            >>> rhythm_tree = parser(rtm_syntax)[0]
             >>> topleveltools.graph(rhythm_tree) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> print(format(rhythm_tree.__graph__()))
             graphtools.GraphvizGraph(

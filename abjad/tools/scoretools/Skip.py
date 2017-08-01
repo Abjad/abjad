@@ -4,19 +4,23 @@ from abjad.tools.scoretools.Leaf import Leaf
 
 
 class Skip(Leaf):
-    r'''A LilyPond skip.
+    r'''LilyPond skip.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> skip = scoretools.Skip((3, 16))
+            >>> skip = abjad.Skip((3, 16))
             >>> skip
             Skip('s8.')
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(skip))
+            >>> f(skip)
             s8.
 
     '''
@@ -25,7 +29,8 @@ class Skip(Leaf):
 
     __documentation_section__ = 'Leaves'
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -54,14 +59,12 @@ class Skip(Leaf):
         if input_leaf is not None:
             self._copy_override_and_set_from_leaf(input_leaf)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _body(self):
+    def _get_body(self):
         result = []
-        result.append('s%s' % self._formatted_duration)
+        result.append('s%s' % self._get_formatted_duration())
         return result
 
-    @property
-    def _compact_representation(self):
-        return 's%s' % self._formatted_duration
+    def _get_compact_representation(self):
+        return 's%s' % self._get_formatted_duration()

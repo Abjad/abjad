@@ -7,19 +7,23 @@ from abjad.tools.rhythmtreetools import RhythmTreeMixin
 
 
 class QGridLeaf(RhythmTreeMixin, TreeNode):
-    r'''A leaf in a ``QGrid`` structure.
+    r'''Q-grid leaf.
 
     ::
 
-        >>> leaf = quantizationtools.QGridLeaf()
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
-    ::
+    ..  container:: example
 
-        >>> leaf
-        QGridLeaf(
-            preprolated_duration=Duration(1, 1),
-            is_divisible=True
-            )
+        ::
+
+            >>> leaf = quantizationtools.QGridLeaf()
+            >>> leaf
+            QGridLeaf(
+                preprolated_duration=Duration(1, 1),
+                is_divisible=True
+                )
 
     Used internally by ``QGrid``.
     '''
@@ -60,9 +64,11 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
 
         Returns selection of notes.
         '''
-        pulse_duration = durationtools.Duration(pulse_duration)
+        import abjad
+        pulse_duration = abjad.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
-        return scoretools.make_notes(0, total_duration)
+        maker = abjad.NoteMaker()
+        return maker(0, total_duration)
 
     def __graph__(self, **keywords):
         r'''Graphviz graph of q-grid leaf.
@@ -111,8 +117,8 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
         return self._is_divisible
 
     @is_divisible.setter
-    def is_divisible(self, arg):
-        self._is_divisible = bool(arg)
+    def is_divisible(self, argument):
+        self._is_divisible = bool(argument)
 
     @property
     def preceding_q_event_proxies(self):

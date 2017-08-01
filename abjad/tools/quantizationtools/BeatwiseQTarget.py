@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 import copy
+from abjad.tools import datastructuretools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools.quantizationtools.QTarget import QTarget
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import select
 
 
 class BeatwiseQTarget(QTarget):
-    r'''A beat-wise quantization target.
+    r'''Beatwise q-target.
+
+    ::
+
+        >>> import abjad
+        >>> from abjad.tools import quantizationtools
 
     Not composer-safe.
 
@@ -43,7 +48,7 @@ class BeatwiseQTarget(QTarget):
         voice.extend(components)
 
         # generate the rest pairwise, comparing tempi
-        for beat_one, beat_two in sequencetools.Sequence(self.items).nwise():
+        for beat_one, beat_two in datastructuretools.Sequence(self.items).nwise():
             components = beat_two.q_grid(beat_two.beatspan)
             if (beat_two.tempo != beat_one.tempo) and attach_tempos:
                 attachment_target = components[0]

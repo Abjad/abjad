@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import abc
+import functools
 import re
 from abjad.tools import mathtools
 from abjad.tools import systemtools
@@ -7,8 +8,14 @@ from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.pitchtools.Accidental import Accidental
 
 
+@functools.total_ordering
 class PitchClass(AbjadValueObject):
-    '''Pitch-class base class.
+    '''Abstract pitch-class.
+
+    ::
+
+        >>> import abjad 
+
     '''
 
     ### CLASS VARIABLES ###
@@ -184,93 +191,33 @@ class PitchClass(AbjadValueObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
-        if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
-        return str(self)
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        if type(self).__name__.startswith('Named'):
-            values = [str(self)]
-        else:
-            values = [
-                mathtools.integer_equivalent_number_to_integer(float(self))
-                ]
-        return systemtools.FormatSpecification(
-            client=self,
-            coerce_for_equality=True,
-            storage_format_is_indented=False,
-            storage_format_args_values=values,
-            template_names=['pitch_class_name'],
+        return super(PitchClass, self).__format__(
+            format_specification=format_specification
             )
+
+    @abc.abstractmethod
+    def __lt__(self, argument):
+        r'''Is true when pitch-class is less than `argument`.
+
+        Returns true or false.
+        '''
+        raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def accidental(self):
-        r'''Accidental of pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def alteration_in_semitones(self):
-        r'''Alteration of pitch-class in semitones.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_class_name(self):
-        r'''Diatonic pitch-class name corresponding to pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_class_number(self):
-        r'''Diatonic pitch-class number corresponding to pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def named_pitch_class(self):
-        r'''Named pitch-class corresponding to pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def numbered_pitch_class(self):
-        r'''Numbered pitch-class corresponding to pitch-class.
+        r'''Gets accidental of pitch-class.
         '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def pitch_class_label(self):
-        r'''Pitch-class label of pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_name(self):
-        r'''Pitch-class name of pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_number(self):
-        r'''Pitch-class number of pitch-class.
+        r'''Gets pitch-class label of pitch-class.
         '''
         raise NotImplementedError
 
     ### PUBLIC METHODS ###
-
-    @abc.abstractmethod
-    def apply_accidental(self, accidental=None):
-        r'''Applies `accidental` to pitch-class.
-
-        Returns new pitch-class.
-        '''
-        raise NotImplementedError
 
     @abc.abstractmethod
     def invert(self, axis=None):
@@ -280,14 +227,28 @@ class PitchClass(AbjadValueObject):
         '''
         raise NotImplementedError
 
+    # TODO: make private
     @staticmethod
     def is_diatonic_pitch_class_name(argument):
-        '''Is true when `argument` is a diatonic pitch-class name. Otherwise false.
+        '''Is true when `argument` is a diatonic pitch-class name.
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.PitchClass.is_diatonic_pitch_class_name('c')
-            True
+            ::
+
+                >>> abjad.PitchClass.is_diatonic_pitch_class_name('g')
+                True
+
+            ::
+
+                >>> abjad.PitchClass.is_diatonic_pitch_class_name('G')
+                True
+
+            ::
+
+                >>> abjad.PitchClass.is_diatonic_pitch_class_name('Allegro')
+                False
 
         The regex ``^[a-g,A-G]$`` underlies this predicate.
 
@@ -297,19 +258,23 @@ class PitchClass(AbjadValueObject):
             return False
         return bool(PitchClass._diatonic_pitch_class_name_regex.match(argument))
 
+    # TODO: make private
     @staticmethod
     def is_diatonic_pitch_class_number(argument):
-        '''Is true when `argument` is a diatonic pitch-class number. Otherwise false.
+        '''Is true when `argument` is a diatonic pitch-class number.
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.PitchClass.is_diatonic_pitch_class_number(0)
-            True
+            ::
 
-        ::
+                >>> abjad.PitchClass.is_diatonic_pitch_class_number(0)
+                True
 
-            >>> pitchtools.PitchClass.is_diatonic_pitch_class_number(-5)
-            False
+            ::
+
+                >>> abjad.PitchClass.is_diatonic_pitch_class_number(-5)
+                False
 
         The diatonic pitch-class numbers are equal to the set
         ``[0, 1, 2, 3, 4, 5, 6]``.
@@ -320,14 +285,27 @@ class PitchClass(AbjadValueObject):
             return True
         return False
 
+    # TODO: make private
     @staticmethod
     def is_pitch_class_name(argument):
         '''Is true when `argument` is a pitch-class name. Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.PitchClass.is_pitch_class_name('fs')
-            True
+            ::
+
+                >>> abjad.PitchClass.is_pitch_class_name('fs')
+                True
+
+            ::
+
+                >>> abjad.PitchClass.is_pitch_class_name('fqs')
+                True
+
+            ::
+
+                >>> abjad.PitchClass.is_pitch_class_name('f,,')
+                False
 
         The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies
         this predicate.
@@ -338,21 +316,33 @@ class PitchClass(AbjadValueObject):
             return False
         return bool(PitchClass._pitch_class_name_regex.match(argument))
 
+    # TODO: make private
     @staticmethod
     def is_pitch_class_number(argument):
-        '''True `argument` is a pitch-class number. Otherwise false.
+        '''Is true when `argument` is a pitch-class number. Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.PitchClass.is_pitch_class_number(1)
-            True
+            ::
+
+                >>> abjad.PitchClass.is_pitch_class_number(1)
+                True
+
+            ::
+
+                >>> abjad.PitchClass.is_pitch_class_number(1.5)
+                True
+
+            ::
+
+                >>> abjad.PitchClass.is_pitch_class_number(12)
+                False
 
         The pitch-class numbers are equal to the set
         ``[0, 0.5, ..., 11, 11.5]``.
 
         Returns true or false.
         '''
-
         return argument in [(n).__truediv__(2) for n in range(24)]
 
     @abc.abstractmethod

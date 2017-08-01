@@ -8,6 +8,7 @@ from abjad.tools import documentationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
+from abjad.tools import datastructuretools
 from abjad.tools import systemtools
 from abjad.tools import tonalanalysistools
 
@@ -18,6 +19,7 @@ _allowed_to_be_empty_string = (
     pitchtools.Accidental,
     pitchtools.CompoundOperator,
     schemetools.SchemeColor,
+    datastructuretools.String,
     tonalanalysistools.ChordSuspension,
     )
 
@@ -25,7 +27,7 @@ ignored_classes = (
     abjadbooktools.AbjadDirective,
     abjadbooktools.CodeBlock,
     abjadbooktools.CodeOutputProxy,
-    abjadbooktools.DoctestDirective,
+    abjadbooktools.AbjadDoctestDirective,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.ImportDirective,
     abjadbooktools.LilyPondBlock,

@@ -50,7 +50,7 @@ Use the inspector the get the duration of a container:
 
 ..  abjad::
 
-    inspect_(container).get_duration()
+    inspect(container).get_duration()
 
 
 Adding one component to the end of a container
@@ -143,7 +143,7 @@ Container names appear in LilyPond input:
 
 ..  abjad::
 
-    print(format(score))
+    f(score)
 
 And make it easy to retrieve containers later:
 

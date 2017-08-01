@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import abjad
 
 
+# TODO: Move to doctests
 def test_custom_score_template_class_01():
     r'''Score template with named contexts.
     '''
 
-    class NamedContextScoreTemplate(AbjadObject):
+    class NamedContextScoreTemplate(abjad.abctools.AbjadObject):
 
         ### INITIALIZER ###
 
@@ -17,9 +17,9 @@ def test_custom_score_template_class_01():
         ### SPECIAL METHODS ###
 
         def __call__(self):
-            voice = scoretools.Voice(name='Blue Voice')
-            staff = scoretools.Staff(name='Red Staff')
-            score = scoretools.Score(name='Green Score')
+            voice = abjad.Voice(name='Blue Voice')
+            staff = abjad.Staff(name='Red Staff')
+            score = abjad.Score(name='Green Score')
             staff.append(voice)
             score.append(staff)
             return score
@@ -27,7 +27,7 @@ def test_custom_score_template_class_01():
     named_context_score_template = NamedContextScoreTemplate()
     score = named_context_score_template()
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == abjad.String.normalize(
         r'''
         \context Score = "Green Score" <<
             \context Staff = "Red Staff" {
@@ -45,7 +45,7 @@ def test_custom_score_template_class_02():
     CAUTION: always use built-in LilyPond score context; do not rename.
     '''
 
-    class CustomContextScoreTemplate(AbjadObject):
+    class CustomContextScoreTemplate(abjad.abctools.AbjadObject):
 
         ### INITIALIZER ###
 
@@ -55,9 +55,9 @@ def test_custom_score_template_class_02():
         ### SPECIAL METHODS ###
 
         def __call__(self):
-            custom_voice = scoretools.Voice(context_name='CustomVoice')
-            custom_staff = scoretools.Staff(context_name='CustomStaff')
-            score = scoretools.Score()
+            custom_voice = abjad.Voice(context_name='CustomVoice')
+            custom_staff = abjad.Staff(context_name='CustomStaff')
+            score = abjad.Score()
             custom_staff.append(custom_voice)
             score.append(custom_staff)
             return score
@@ -65,7 +65,7 @@ def test_custom_score_template_class_02():
     custom_context_score_template = CustomContextScoreTemplate()
     score = custom_context_score_template()
 
-    assert format(score) == stringtools.normalize(
+    assert format(score) == abjad.String.normalize(
         r'''
         \new Score <<
             \new CustomStaff {
@@ -80,19 +80,19 @@ def test_custom_score_template_class_02():
 
     score = custom_context_score_template()
     score[0][0].append("c'4 ( d'4 e'4 f'4 )")
-    lilypond_file = lilypondfiletools.LilyPondFile.new(score)
+    lilypond_file = abjad.LilyPondFile.new(score)
 
-    context_block = lilypondfiletools.ContextBlock(
+    context_block = abjad.ContextBlock(
         source_context_name='Voice',
         type_='Engraver_group',
         name='CustomVoice',
         alias='Voice',
         )
     lilypond_file.layout_block.items.append(context_block)
-    override(context_block).note_head.color = 'green'
-    override(context_block).stem.color = 'green'
+    abjad.override(context_block).note_head.color = 'green'
+    abjad.override(context_block).stem.color = 'green'
 
-    context_block = lilypondfiletools.ContextBlock(
+    context_block = abjad.ContextBlock(
         source_context_name='Staff',
         type_='Engraver_group',
         name='CustomStaff',
@@ -100,15 +100,15 @@ def test_custom_score_template_class_02():
         )
     lilypond_file.layout_block.items.append(context_block)
     context_block.accepts_commands.append('CustomVoice')
-    override(context_block).staff_symbol.color = 'red'
+    abjad.override(context_block).staff_symbol.color = 'red'
 
-    context_block = lilypondfiletools.ContextBlock(
+    context_block = abjad.ContextBlock(
         source_context_name='Score',
         )
     lilypond_file.layout_block.items.append(context_block)
     context_block.accepts_commands.append('CustomStaff')
 
-    assert format(lilypond_file.layout_block) == stringtools.normalize(
+    assert format(lilypond_file.layout_block) == abjad.String.normalize(
         r'''
         \layout {
             \context {
@@ -135,7 +135,7 @@ def test_custom_score_template_class_02():
         '''
         )
 
-    assert format(lilypond_file.score_block) == stringtools.normalize(
+    assert format(lilypond_file.score_block) == abjad.String.normalize(
         r'''
         \score {
             \new Score <<

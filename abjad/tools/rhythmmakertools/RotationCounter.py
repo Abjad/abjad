@@ -4,22 +4,29 @@ from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 
 
 class RotationCounter(TypedCounter):
-    r'''A rotation counter.
+    r'''Rotation counter.
 
     ::
 
-        >>> counter = rhythmmakertools.RotationCounter(default=3)
+        >>> import abjad
+        >>> from abjad.tools import rhythmmakertools
 
-    ::
+    ..  container:: example
 
-        >>> counter['talea__counts']
-        3
+        ::
 
-    ::
+            >>> counter = rhythmmakertools.RotationCounter(default=3)
 
-        >>> counter['talea__counts'] += 1
-        >>> counter['talea__counts']
-        4
+        ::
+
+            >>> counter['talea__counts']
+            3
+
+        ::
+
+            >>> counter['talea__counts'] += 1
+            >>> counter['talea__counts']
+            4
 
     '''
 

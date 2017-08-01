@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import datastructuretools
 from abjad.tools import pitchtools
-from abjad.tools import sequencetools
-from abjad.tools import stringtools
 from abjad.tools.pitchtools import IntervalSegment
 
 
 class RootlessChordClass(IntervalSegment):
-    r'''A rootless chord class.
+    r'''Rootless chord class.
+
+    ::
+
+        >>> from abjad.tools import tonalanalysistools
 
     ..  container:: example
 
@@ -111,134 +114,135 @@ class RootlessChordClass(IntervalSegment):
     def _initialize_augmented_sixth(quality_string):
         if quality_string == 'French':
             intervals = [
-                pitchtools.NamedInterval('major', 3),
-                pitchtools.NamedInterval('major', 2),
-                pitchtools.NamedInterval('major', 3),
+                pitchtools.NamedInterval('M3'),
+                pitchtools.NamedInterval('M2'),
+                pitchtools.NamedInterval('M3'),
                 ]
         elif quality_string == 'German':
             intervals = [
-                pitchtools.NamedInterval('major', 3),
-                pitchtools.NamedInterval('minor', 3),
-                pitchtools.NamedInterval('augmented', 2),
+                pitchtools.NamedInterval('M3'),
+                pitchtools.NamedInterval('m3'),
+                pitchtools.NamedInterval('aug2'),
                 ]
         elif quality_string == 'Italian':
             intervals = [
-                pitchtools.NamedInterval('major', 3),
-                pitchtools.NamedInterval('perfect', 1),
-                pitchtools.NamedInterval('augmented', 4),
+                pitchtools.NamedInterval('M3'),
+                pitchtools.NamedInterval('P1'),
+                pitchtools.NamedInterval('aug4'),
                 ]
         elif quality_string == 'Swiss':
             intervals = [
-                pitchtools.NamedInterval('major', 3),
-                pitchtools.NamedInterval('augmented', 2),
-                pitchtools.NamedInterval('minor', 3),
+                pitchtools.NamedInterval('M3'),
+                pitchtools.NamedInterval('aug2'),
+                pitchtools.NamedInterval('m3'),
                 ]
         else:
             message = 'unaccpetable quality string.'
             raise ValueError(message)
-        intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
+        intervals.insert(0, pitchtools.NamedInterval('P1'))
         return intervals
 
     @staticmethod
     def _initialize_ninth(quality_string):
         if quality_string == 'dominant':
             intervals = [
-                pitchtools.NamedInterval('major', 3),
-                pitchtools.NamedInterval('perfect', 5),
-                pitchtools.NamedInterval('minor', 7),
-                pitchtools.NamedInterval('major', 9),
+                pitchtools.NamedInterval('M3'),
+                pitchtools.NamedInterval('P5'),
+                pitchtools.NamedInterval('m7'),
+                pitchtools.NamedInterval('M9'),
                 ]
         else:
             message = 'unacceptable quality string.'
             raise ValueError(message)
-        intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
+        intervals.insert(0, pitchtools.NamedInterval('P1'))
         return intervals
 
     @staticmethod
     def _initialize_seventh(quality_string):
         if quality_string == 'dominant':
             intervals = [
-                pitchtools.NamedInterval('major', 3),
-                pitchtools.NamedInterval('perfect', 5),
-                pitchtools.NamedInterval('minor', 7),
+                pitchtools.NamedInterval('M3'),
+                pitchtools.NamedInterval('P5'),
+                pitchtools.NamedInterval('m7'),
                 ]
         elif quality_string == 'major':
             intervals = [
-                pitchtools.NamedInterval('major', 3),
-                pitchtools.NamedInterval('perfect', 5),
-                pitchtools.NamedInterval('major', 7),
+                pitchtools.NamedInterval('M3'),
+                pitchtools.NamedInterval('P5'),
+                pitchtools.NamedInterval('M7'),
                 ]
         elif quality_string == 'minor':
             intervals = [
-                pitchtools.NamedInterval('minor', 3),
-                pitchtools.NamedInterval('perfect', 5),
-                pitchtools.NamedInterval('minor', 7),
+                pitchtools.NamedInterval('m3'),
+                pitchtools.NamedInterval('P5'),
+                pitchtools.NamedInterval('m7'),
                 ]
         elif quality_string in ('diminished', 'fully diminished'):
             intervals = [
-                pitchtools.NamedInterval('minor', 3),
-                pitchtools.NamedInterval('diminished', 5),
-                pitchtools.NamedInterval('diminished', 7),
+                pitchtools.NamedInterval('m3'),
+                pitchtools.NamedInterval('dim5'),
+                pitchtools.NamedInterval('dim7'),
                 ]
         elif quality_string == 'half diminished':
             intervals = [
-                pitchtools.NamedInterval('minor', 3),
-                pitchtools.NamedInterval('perfect', 5),
-                pitchtools.NamedInterval('diminished', 7),
+                pitchtools.NamedInterval('m3'),
+                pitchtools.NamedInterval('P5'),
+                pitchtools.NamedInterval('dim7'),
                 ]
         else:
            message = 'unaccpetable quality string.'
            raise ValueError(message)
-        intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
+        intervals.insert(0, pitchtools.NamedInterval('P1'))
         return intervals
 
     @staticmethod
     def _initialize_triad(quality_string):
         if quality_string == 'major':
             intervals = [
-                pitchtools.NamedInterval('major', 3),
-                pitchtools.NamedInterval('perfect', 5),
+                pitchtools.NamedInterval('M3'),
+                pitchtools.NamedInterval('P5'),
                 ]
         elif quality_string == 'minor':
             intervals = [
-                pitchtools.NamedInterval('minor', 3),
-                pitchtools.NamedInterval('perfect', 5),
+                pitchtools.NamedInterval('m3'),
+                pitchtools.NamedInterval('P5'),
                 ]
         elif quality_string == 'diminished':
             intervals = [
-                pitchtools.NamedInterval('minor', 3),
-                pitchtools.NamedInterval('diminished', 5),
+                pitchtools.NamedInterval('m3'),
+                pitchtools.NamedInterval('dim5'),
                 ]
         elif quality_string == 'augmented':
             intervals = [
-                pitchtools.NamedInterval('major', 3),
-                pitchtools.NamedInterval('augmented', 5),
+                pitchtools.NamedInterval('M3'),
+                pitchtools.NamedInterval('aug5'),
                 ]
         else:
             message = 'unacceptable quality string: {!r}.'
             message = message.format(quality_string)
             raise ValueError(message)
-        intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
+        intervals.insert(0, pitchtools.NamedInterval('P1'))
         return intervals
 
     @staticmethod
     def _invert_chord_quality(intervals, inversion):
+        import abjad
         if isinstance(inversion, int):
-            intervals = sequencetools.Sequence(intervals).rotate(n=-inversion)
+            intervals = abjad.Sequence(intervals).rotate(n=-inversion)
             rotation = -inversion
         elif inversion == 'root':
             rotation = 0
         elif inversion == 'first':
-            intervals = sequencetools.Sequence(intervals).rotate(n=-1)
+            intervals = abjad.Sequence(intervals).rotate(n=-1)
             rotation = -1
         elif inversion == 'second':
-            intervals = sequencetools.Sequence(intervals).rotate(n-2)
+            intervals = abjad.Sequence(intervals).rotate(n=-2)
             rotation = -2
         elif inversion == 'third':
-            intervals = sequencetools.Sequence(intervals).rotate(n=-3)
+            intervals = abjad.Sequence(intervals).rotate(n=-3)
             rotation = -3
         elif inversion == 'fourth':
-            intervals = sequencetools.Sequence(intervals).rotate(n=-4)
+            intervals = abjad.Sequence(intervals).rotate(n=-4)
             rotation = -4
         else:
             message = 'unknown chord inversion: {!r}.'
@@ -251,10 +255,43 @@ class RootlessChordClass(IntervalSegment):
     def from_interval_class_segment(segment):
         r'''Makes new rootless chord-class from `segment`.
 
+        ..  container:: example
+
+            ::
+
+                >>> segment = abjad.IntervalClassSegment([
+                ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
+                ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
+                ...     ])
+                >>> class_ = tonalanalysistools.RootlessChordClass
+                >>> class_.from_interval_class_segment(segment)
+                DiminishedTriadInRootPosition('P1', '+m3', '+dim5')
+
+        ..  container:: example
+
+                >>> segment = abjad.IntervalClassSegment([
+                ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
+                ...     abjad.NamedInversionEquivalentIntervalClass('M3'),
+                ...     ])
+                >>> class_ = tonalanalysistools.RootlessChordClass
+                >>> class_.from_interval_class_segment(segment)
+                MinorTriadInRootPosition('P1', '+m3', '+P5')
+
+        ..  container:: example
+
+                >>> segment = abjad.IntervalClassSegment([
+                ...     abjad.NamedInversionEquivalentIntervalClass('M3'),
+                ...     abjad.NamedInversionEquivalentIntervalClass('m3'),
+                ...     ])
+                >>> class_ = tonalanalysistools.RootlessChordClass
+                >>> class_.from_interval_class_segment(segment)
+                MajorTriadInRootPosition('P1', '+M3', '+P5')
+
         Returns new rootless chord-class.
         '''
-        quality, extent = \
-            RootlessChordClass._segment_to_quality_and_extent[str(segment)]
+        quality, extent = RootlessChordClass._segment_to_quality_and_extent[
+            str(segment)
+            ]
         return RootlessChordClass(quality, extent=extent)
 
     ### PRIVATE PROPERTIES ###
@@ -296,16 +333,23 @@ class RootlessChordClass(IntervalSegment):
     @property
     def _title_case_name(self):
         return '{}{}In{}'.format(
-            stringtools.to_upper_camel_case(self.quality_string),
-            stringtools.to_upper_camel_case(self.extent_name),
-            stringtools.to_upper_camel_case(self.position),
+            datastructuretools.String(self.quality_string).to_upper_camel_case(),
+            datastructuretools.String(self.extent_name).to_upper_camel_case(),
+            datastructuretools.String(self.position).to_upper_camel_case(),
             )
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def cardinality(self):
-        r'''Cardinality of rootless chord-class.
+        r'''Gets cardinality.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).cardinality
+                4
 
         Returns nonnegative integer.
         '''
@@ -313,7 +357,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def extent(self):
-        r'''Extent of rootless chord-class.
+        r'''Gets extent.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).extent
+                7
 
         Returns nonnegative integer.
         '''
@@ -322,7 +373,15 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def extent_name(self):
-        r'''Extent name of rootless chord class.
+        r'''Gets extent name.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).extent_name
+                'seventh'
+
         '''
         from abjad.tools import tonalanalysistools
         if self._quality_string.lower() in \
@@ -332,7 +391,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def inversion(self):
-        r'''Inversion of rootless chord-class.
+        r'''Gets inversion.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).inversion
+                0
 
         Returns nonnegative integer.
         '''
@@ -340,7 +406,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def position(self):
-        r'''Position of rootless chord-class.
+        r'''Gets position.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).position
+                'root position'
 
         Returns string.
         '''
@@ -361,7 +434,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def quality_string(self):
-        r'''Quality string of rootless chord class.
+        r'''Gets quality string.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).quality_string
+                'dominant'
 
         Returns string.
         '''
@@ -369,7 +449,14 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def rotation(self):
-        r'''Rotation of rootless chord-class.
+        r'''Gets rotation.
+
+        ..  container:: example
+
+            ::
+
+                >>> tonalanalysistools.RootlessChordClass('dominant', 7).rotation
+                0
 
         Returns nonnegative integer.
         '''

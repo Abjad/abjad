@@ -12,7 +12,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(3)
+            >>> abjad.Offset(3)
             Offset(3, 1)
 
     ..  container:: example
@@ -21,7 +21,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(3, 16)
+            >>> abjad.Offset(3, 16)
             Offset(3, 16)
 
     ..  container:: example
@@ -30,7 +30,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(3.0)
+            >>> abjad.Offset(3.0)
             Offset(3, 1)
 
     ..  container:: example
@@ -39,7 +39,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(3.0, 16)
+            >>> abjad.Offset(3.0, 16)
             Offset(3, 16)
 
     ..  container:: example
@@ -48,7 +48,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset((3,))
+            >>> abjad.Offset((3,))
             Offset(3, 1)
 
     ..  container:: example
@@ -57,7 +57,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset((3, 16))
+            >>> abjad.Offset((3, 16))
             Offset(3, 16)
 
     ..  container:: example
@@ -66,7 +66,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(Duration(3, 16))
+            >>> abjad.Offset(abjad.Duration(3, 16))
             Offset(3, 16)
 
     ..  container:: example
@@ -75,7 +75,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(Offset(3, 16))
+            >>> abjad.Offset(abjad.Offset(3, 16))
             Offset(3, 16)
 
     ..  container:: example
@@ -84,8 +84,8 @@ class Offset(Duration):
 
         ::
 
-            >>> offset = Offset((3, 16), grace_displacement=(-1, 16))
-            >>> Offset(offset)
+            >>> offset = abjad.Offset((3, 16), grace_displacement=(-1, 16))
+            >>> abjad.Offset(offset)
             Offset(
                 (3, 16),
                 grace_displacement=Duration(-1, 16)
@@ -97,7 +97,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(Fraction(3, 16))
+            >>> abjad.Offset(abjad.Fraction(3, 16))
             Offset(3, 16)
 
     ..  container:: example
@@ -106,7 +106,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset('3/16')
+            >>> abjad.Offset('3/16')
             Offset(3, 16)
 
     ..  container:: example
@@ -115,7 +115,7 @@ class Offset(Duration):
 
         ::
 
-            >>> Offset(mathtools.NonreducedFraction(6, 32))
+            >>> abjad.Offset(abjad.NonreducedFraction(6, 32))
             Offset(3, 16)
 
     ..  container:: example
@@ -124,12 +124,12 @@ class Offset(Duration):
 
         ::
 
-            >>> isinstance(Offset(3, 16), Fraction)
+            >>> isinstance(abjad.Offset(3, 16), abjad.Fraction)
             True
 
     ..  container:: example
 
-        Offsets are numeric:
+        Offsets are numbers:
 
         ::
 
@@ -137,7 +137,7 @@ class Offset(Duration):
 
         ::
 
-            >>> isinstance(Offset(3, 16), numbers.Number)
+            >>> isinstance(abjad.Offset(3, 16), numbers.Number)
             True
 
     '''
@@ -152,10 +152,12 @@ class Offset(Duration):
 
     def __new__(class_, *arguments, **keywords):
         grace_displacement = None
-        for arg in arguments:
-            if hasattr(arg, 'grace_displacement'):
-                grace_displacement = getattr(arg, 'grace_displacement')
+        for argument in arguments:
+            try:
+                grace_displacement = argument.grace_displacement
                 break
+            except AttributeError:
+                pass
         grace_displacement = grace_displacement or keywords.get(
             'grace_displacement')
         if grace_displacement is not None:
@@ -182,7 +184,7 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
                 >>> offset_2 = copy.copy(offset_1)
 
             ::
@@ -213,9 +215,8 @@ class Offset(Duration):
 
         Returns new offset.
         '''
-        arguments = self.__getnewargs__()
         return type(self)(
-            *arguments,
+            self.pair,
             grace_displacement=self.grace_displacement
             )
 
@@ -232,7 +233,7 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
                 >>> offset_2 = copy.deepcopy(offset_1)
 
             ::
@@ -265,8 +266,8 @@ class Offset(Duration):
         '''
         return self.__copy__(*arguments)
 
-    def __eq__(self, arg):
-        r'''Is true when offset equals `arg`.
+    def __eq__(self, argument):
+        r'''Is true when offset equals `argument`.
         Otherwise false.
 
         ..  container:: example
@@ -275,8 +276,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -296,8 +297,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -317,8 +318,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4))
-                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+                >>> offset_1 = abjad.Offset((1, 4))
+                >>> offset_2 = abjad.Offset((1, 2), grace_displacement=(-99))
 
             ::
 
@@ -333,13 +334,13 @@ class Offset(Duration):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)) and self.pair == arg.pair:
+        if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() == \
-                arg._get_grace_displacement()
-        return super(Offset, self).__eq__(arg)
+                argument._get_grace_displacement()
+        return super(Offset, self).__eq__(argument)
 
-    def __ge__(self, arg):
-        r'''Is true when offset is greater than or equal to `arg`.
+    def __ge__(self, argument):
+        r'''Is true when offset is greater than or equal to `argument`.
         Otherwise false.
 
         ..  container:: example
@@ -348,8 +349,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -369,8 +370,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -390,8 +391,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4))
-                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+                >>> offset_1 = abjad.Offset((1, 4))
+                >>> offset_2 = abjad.Offset((1, 2), grace_displacement=(-99))
 
             ::
 
@@ -406,20 +407,13 @@ class Offset(Duration):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)) and self.pair == arg.pair:
+        if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() >= \
-                arg._get_grace_displacement()
-        return super(Offset, self).__ge__(arg)
+                argument._get_grace_displacement()
+        return super(Offset, self).__ge__(argument)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return self.pair
-
-    def __gt__(self, arg):
-        r'''Is true when offset is greater than `arg`.
+    def __gt__(self, argument):
+        r'''Is true when offset is greater than `argument`.
         Otherwise false.
 
         ..  container:: example
@@ -428,8 +422,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -449,8 +443,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -470,8 +464,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4))
-                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+                >>> offset_1 = abjad.Offset((1, 4))
+                >>> offset_2 = abjad.Offset((1, 2), grace_displacement=(-99))
 
             ::
 
@@ -486,10 +480,10 @@ class Offset(Duration):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)) and self.pair == arg.pair:
+        if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() > \
-                arg._get_grace_displacement()
-        return Duration.__gt__(self, arg)
+                argument._get_grace_displacement()
+        return Duration.__gt__(self, argument)
 
     def __hash__(self):
         r'''Hashes duration.
@@ -498,15 +492,10 @@ class Offset(Duration):
 
         Returns integer.
         '''
-        return hash((
-            type(self),
-            self.numerator,
-            self.denominator,
-            self.grace_displacement,
-            ))
+        return super(Offset, self).__hash__()
 
-    def __le__(self, arg):
-        r'''Is true when offset is less than or equal to `arg`.
+    def __le__(self, argument):
+        r'''Is true when offset is less than or equal to `argument`.
         Otherwise false.
 
         ..  container:: example
@@ -515,8 +504,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -536,8 +525,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -557,8 +546,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4))
-                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+                >>> offset_1 = abjad.Offset((1, 4))
+                >>> offset_2 = abjad.Offset((1, 2), grace_displacement=(-99))
 
             ::
 
@@ -573,13 +562,13 @@ class Offset(Duration):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)) and self.pair == arg.pair:
+        if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() <= \
-                arg._get_grace_displacement()
-        return super(Offset, self).__le__(arg)
+                argument._get_grace_displacement()
+        return super(Offset, self).__le__(argument)
 
-    def __lt__(self, arg):
-        r'''Is true when offset is less than `arg`.
+    def __lt__(self, argument):
+        r'''Is true when offset is less than `argument`.
         Otherwise false.
 
         ..  container:: example
@@ -588,8 +577,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -609,8 +598,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4), grace_displacement=(-1, 16))
 
             ::
 
@@ -630,8 +619,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
-                >>> offset_2 = Offset((1, 4))
+                >>> offset_1 = abjad.Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = abjad.Offset((1, 4))
 
             ::
 
@@ -651,8 +640,8 @@ class Offset(Duration):
 
             ::
 
-                >>> offset_1 = Offset((1, 4))
-                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+                >>> offset_1 = abjad.Offset((1, 4))
+                >>> offset_2 = abjad.Offset((1, 2), grace_displacement=(-99))
 
             ::
 
@@ -667,10 +656,10 @@ class Offset(Duration):
 
         Returns true or false.
         '''
-        if isinstance(arg, type(self)) and self.pair == arg.pair:
+        if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_grace_displacement() < \
-                arg._get_grace_displacement()
-        return super(Offset, self).__lt__(arg)
+                argument._get_grace_displacement()
+        return super(Offset, self).__lt__(argument)
 
     def __repr__(self):
         r'''Gets interpreter representation of offset.
@@ -682,7 +671,7 @@ class Offset(Duration):
 
             ::
 
-                >>> Offset(1, 4)
+                >>> abjad.Offset(1, 4)
                 Offset(1, 4)
 
         ..  container:: example
@@ -691,7 +680,7 @@ class Offset(Duration):
 
             ::
 
-                >>> Offset(1, 4, grace_displacement=(-1, 16))
+                >>> abjad.Offset(1, 4, grace_displacement=(-1, 16))
                 Offset(
                     (1, 4),
                     grace_displacement=Duration(-1, 16)
@@ -705,21 +694,21 @@ class Offset(Duration):
 
         ::
 
-            >>> durationtools.Offset(2) - durationtools.Offset(1, 2)
+            >>> abjad.Offset(2) - abjad.Offset(1, 2)
             Duration(3, 2)
 
         Duration taken from offset returns another offset:
 
         ::
 
-            >>> durationtools.Offset(2) - durationtools.Duration(1, 2)
+            >>> abjad.Offset(2) - abjad.Duration(1, 2)
             Offset(3, 2)
 
         Coerce `argument` to offset when `argument` is neither offset nor duration:
 
         ::
 
-            >>> durationtools.Offset(2) - Fraction(1, 2)
+            >>> abjad.Offset(2) - abjad.Fraction(1, 2)
             Duration(3, 2)
 
         Returns duration or offset.
@@ -768,7 +757,7 @@ class Offset(Duration):
 
             ::
 
-                >>> offset = Offset(1, 4)
+                >>> offset = abjad.Offset(1, 4)
                 >>> offset.grace_displacement is None
                 True
 
@@ -778,7 +767,7 @@ class Offset(Duration):
 
             ::
 
-                >>> offset = Offset(1, 4, grace_displacement=(-1, 16))
+                >>> offset = abjad.Offset(1, 4, grace_displacement=(-1, 16))
                 >>> offset.grace_displacement
                 Duration(-1, 16)
 
@@ -788,7 +777,7 @@ class Offset(Duration):
 
             ::
 
-                >>> offset = Offset(1, 4, grace_displacement=0)
+                >>> offset = abjad.Offset(1, 4, grace_displacement=0)
                 >>> offset.grace_displacement is None
                 True
 

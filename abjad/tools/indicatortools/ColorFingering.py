@@ -3,12 +3,15 @@ import functools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
-from abjad.tools.topleveltools.new import new
 
 
 @functools.total_ordering
 class ColorFingering(AbjadValueObject):
     r'''Color fingering.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -16,15 +19,15 @@ class ColorFingering(AbjadValueObject):
 
         ::
 
-            >>> fingering = indicatortools.ColorFingering(1)
-            >>> note = Note("c'4")
-            >>> attach(fingering, note)
+            >>> fingering = abjad.ColorFingering(1)
+            >>> note = abjad.Note("c'4")
+            >>> abjad.attach(fingering, note)
 
         ::
 
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4
@@ -42,15 +45,15 @@ class ColorFingering(AbjadValueObject):
 
         ::
 
-            >>> fingering = indicatortools.ColorFingering(2)
-            >>> note = Note("c'4")
-            >>> attach(fingering, note)
+            >>> fingering = abjad.ColorFingering(2)
+            >>> note = abjad.Note("c'4")
+            >>> abjad.attach(fingering, note)
 
         ::
 
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(note)
             c'4
@@ -69,7 +72,6 @@ class ColorFingering(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_default_scope',
         '_number',
         )
 
@@ -83,7 +85,6 @@ class ColorFingering(AbjadValueObject):
         self,
         number=None,
         ):
-        self._default_scope = None
         if number is not None:
             assert mathtools.is_positive_integer(number)
         self._number = number
@@ -98,7 +99,7 @@ class ColorFingering(AbjadValueObject):
 
         ::
 
-            >>> fingering = indicatortools.ColorFingering(1)
+            >>> fingering = abjad.ColorFingering(1)
             >>> f(fingering)
             abjad.ColorFingering(
                 number=1,
@@ -119,9 +120,9 @@ class ColorFingering(AbjadValueObject):
 
             ::
 
-                >>> fingering_1 = indicatortools.ColorFingering(1)
-                >>> fingering_2 = indicatortools.ColorFingering(1)
-                >>> fingering_3 = indicatortools.ColorFingering(2)
+                >>> fingering_1 = abjad.ColorFingering(1)
+                >>> fingering_2 = abjad.ColorFingering(1)
+                >>> fingering_3 = abjad.ColorFingering(2)
 
             ::
 
@@ -168,31 +169,15 @@ class ColorFingering(AbjadValueObject):
         return format(self.markup, 'lilypond')
 
     def _get_lilypond_format_bundle(self, component=None):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        import abjad
+        bundle = abjad.LilyPondFormatBundle()
         markup = self.markup
-        markup = new(markup, direction=Up)
+        markup = abjad.new(markup, direction=Up)
         markup_format_pieces = markup._get_format_pieces()
-        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
-        return lilypond_format_bundle
+        bundle.right.markup.extend(markup_format_pieces)
+        return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of color fingering.
-
-        ..  container:: example
-
-            ::
-
-                >>> fingering = indicatortools.ColorFingering(1)
-                >>> fingering.default_scope is None
-                True
-
-        Returns none.
-        '''
-        return self._default_scope
 
     @property
     def markup(self):
@@ -204,7 +189,7 @@ class ColorFingering(AbjadValueObject):
 
             ::
 
-                >>> fingering = indicatortools.ColorFingering(1)
+                >>> fingering = abjad.ColorFingering(1)
                 >>> print(format(fingering.markup, 'lilypond'))
                 \markup {
                     \override
@@ -221,7 +206,7 @@ class ColorFingering(AbjadValueObject):
 
             ::
 
-                >>> fingering = indicatortools.ColorFingering(2)
+                >>> fingering = abjad.ColorFingering(2)
                 >>> print(format(fingering.markup, 'lilypond'))
                 \markup {
                     \override
@@ -252,7 +237,7 @@ class ColorFingering(AbjadValueObject):
 
             ::
 
-                >>> fingering = indicatortools.ColorFingering(1)
+                >>> fingering = abjad.ColorFingering(1)
                 >>> fingering.number
                 1
 
@@ -262,7 +247,7 @@ class ColorFingering(AbjadValueObject):
 
             ::
 
-                >>> fingering = indicatortools.ColorFingering(2)
+                >>> fingering = abjad.ColorFingering(2)
                 >>> fingering.number
                 2
 

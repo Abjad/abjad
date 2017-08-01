@@ -6,37 +6,43 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Accordion(Instrument):
-    r'''An accordion.
+    r'''Accordion.
 
     ::
 
-        >>> staff_group = StaffGroup()
-        >>> staff_group.context_name = 'PianoStaff'
-        >>> staff_group.append(Staff("c'4 d'4 e'4 f'4"))
-        >>> staff_group.append(Staff("c'2 b2"))
-        >>> accordion = instrumenttools.Accordion()
-        >>> attach(accordion, staff_group)
-        >>> attach(Clef(name='bass'), staff_group[1])
-        >>> show(staff_group) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff_group)
-        \new PianoStaff <<
-            \set PianoStaff.instrumentName = \markup { Accordion }
-            \set PianoStaff.shortInstrumentName = \markup { Acc. }
-            \new Staff {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-            \new Staff {
-                \clef "bass"
-                c'2
-                b2
-            }
-        >>
+        ::
+
+            >>> staff_group = abjad.StaffGroup()
+            >>> staff_group.context_name = 'PianoStaff'
+            >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
+            >>> staff_group.append(abjad.Staff("c'2 b2"))
+            >>> accordion = abjad.instrumenttools.Accordion()
+            >>> abjad.attach(accordion, staff_group[0][0])
+            >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
+            >>> show(staff_group) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff_group)
+            \new PianoStaff <<
+                \new Staff {
+                    \set PianoStaff.instrumentName = \markup { Accordion }
+                    \set PianoStaff.shortInstrumentName = \markup { Acc. }
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    c'2
+                    b2
+                }
+            >>
 
     The accordion targets the piano staff context by default.
     '''
@@ -88,7 +94,7 @@ class Accordion(Instrument):
 
             ::
 
-                >>> accordion = instrumenttools.Accordion()
+                >>> accordion = abjad.instrumenttools.Accordion()
                 >>> f(accordion)
                 instrumenttools.Accordion(
                     instrument_name='accordion',
@@ -109,9 +115,7 @@ class Accordion(Instrument):
                                 ),
                             ]
                         ),
-                    pitch_range=abjad.PitchRange(
-                        range_string='[E1, C8]',
-                        ),
+                    pitch_range=abjad.PitchRange('[E1, C8]'),
                     sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
                     )
 
@@ -140,6 +144,21 @@ class Accordion(Instrument):
         Returns clef list.
         '''
         return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of accordion.
+
+        ..  container:: example
+
+            ::
+
+                >>> accordion.default_scope
+                'PianoStaff'
+
+        Returns piano staff.
+        '''
+        return self._default_scope
 
     @property
     def instrument_name(self):
@@ -184,7 +203,7 @@ class Accordion(Instrument):
             ::
 
                 >>> accordion.pitch_range
-                PitchRange(range_string='[E1, C8]')
+                PitchRange('[E1, C8]')
 
             ::
 

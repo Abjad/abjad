@@ -5,17 +5,21 @@ def all_are_integer_equivalent(argument):
     '''Is true when `argument` is an iterable collection with
     integer-equivalent items. Otherwise false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> items = [1, '2', 3.0, Fraction(4, 1)]
-            >>> mathtools.all_are_integer_equivalent(items)
+            >>> items = [1, '2', 3.0, abjad.Fraction(4, 1)]
+            >>> abjad.mathtools.all_are_integer_equivalent(items)
             True
 
         ::
 
-            >>> mathtools.all_are_integer_equivalent([1, '2', 3.5, 4])
+            >>> abjad.mathtools.all_are_integer_equivalent([1, '2', 3.5, 4])
             False
 
     Returns true or false.

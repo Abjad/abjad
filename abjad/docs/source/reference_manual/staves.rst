@@ -93,7 +93,7 @@ Use the inspector to get the duration of a staff:
 
 ..  abjad::
 
-    inspect_(staff).get_duration()
+    inspect(staff).get_duration()
 
 
 Appending one component to the end of a staff
@@ -186,7 +186,7 @@ Staff names appear in LilyPond input but not in notational output:
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 ..  abjad::
 
@@ -217,7 +217,7 @@ based on a LilyPond staff:
 
 ..  abjad::
 
-    print(format(staff))
+    f(staff)
 
 
 Making parallel voices in a staff

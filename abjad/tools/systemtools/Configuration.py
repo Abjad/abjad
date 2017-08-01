@@ -79,12 +79,12 @@ class Configuration(AbjadObject):
         '''
         return len(self._settings)
 
-    def __setitem__(self, i, arg):
-        r'''Sets configuration item `i` to `arg`.
+    def __setitem__(self, i, argument):
+        r'''Sets configuration item `i` to `argument`.
 
         Returns none.
         '''
-        self._settings[i] = arg
+        self._settings[i] = argument
 
     ### PRIVATE METHODS ###
 

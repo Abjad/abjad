@@ -7,17 +7,21 @@ from abjad.tools.abctools import AbjadValueObject
 class MarkupCommand(AbjadValueObject):
     r'''LilyPond markup command.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Initializes a complex LilyPond markup command:
 
         ::
 
-            >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
-            >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
-            >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
-            >>> rotate = markuptools.MarkupCommand('rotate', 60, line)
-            >>> combine = markuptools.MarkupCommand('combine', rotate, circle)
+            >>> circle = abjad.MarkupCommand('draw-circle', 2.5, 0.1, False)
+            >>> square = abjad.MarkupCommand('rounded-box', 'hello?')
+            >>> line = abjad.MarkupCommand('line', [square, 'wow!'])
+            >>> rotate = abjad.MarkupCommand('rotate', 60, line)
+            >>> combine = abjad.MarkupCommand('combine', rotate, circle)
 
         ::
 
@@ -38,14 +42,14 @@ class MarkupCommand(AbjadValueObject):
 
         ::
 
-            >>> note = Note("c'4")
-            >>> markup = markuptools.Markup(combine)
-            >>> attach(markup, note)
+            >>> note = abjad.Note("c'4")
+            >>> markup = abjad.Markup(combine)
+            >>> abjad.attach(markup, note)
             >>> show(note) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(note))
+            >>> f(note)
             c'4
                 - \markup {
                     \combine
@@ -69,14 +73,14 @@ class MarkupCommand(AbjadValueObject):
 
         ::
 
-            >>> small_staff = Staff("fs'16 gs'16 as'16 b'16")
+            >>> small_staff = abjad.Staff("fs'16 gs'16 as'16 b'16")
             >>> small_staff.remove_commands.append('Clef_engraver')
             >>> small_staff.remove_commands.append('Time_signature_engraver')
-            >>> set_(small_staff).font_size = -3
-            >>> layout_block = lilypondfiletools.Block(name='layout')
+            >>> abjad.setting(small_staff).font_size = -3
+            >>> layout_block = abjad.lilypondfiletools.Block(name='layout')
             >>> layout_block.indent = 0
             >>> layout_block.ragged_right = True
-            >>> command = markuptools.MarkupCommand(
+            >>> command = abjad.MarkupCommand(
             ...     'score',
             ...     [small_staff, layout_block],
             ...     )
@@ -104,14 +108,14 @@ class MarkupCommand(AbjadValueObject):
 
         ::
 
-            >>> markup = Markup(contents=command, direction=Up)
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> attach(markup, staff[0])
+            >>> markup = abjad.Markup(contents=command, direction=Up)
+            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+            >>> abjad.attach(markup, staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4
                     ^ \markup {
@@ -143,22 +147,21 @@ class MarkupCommand(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_args',
-        '_command',
+        '_arguments',
+        '_name',
         '_force_quotes',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, command=None, *arguments):
-        if command is None:
+    def __init__(self, name=None, *arguments):
+        if name is None:
             # TODO: Generalize these arbitrary default arguments away.
-            command = 'draw-circle'
+            name = 'draw-circle'
             assert len(arguments) == 0
-        assert isinstance(command, str) \
-            and len(command) and command.find(' ') == -1
-        self._command = command
-        self._args = tuple(arguments)
+        assert isinstance(name, str) and len(name) and name.find(' ') == -1
+        self._name = name
+        self._arguments = tuple(arguments)
         self._force_quotes = False
 
     ### SPECIAL METHODS ###
@@ -171,9 +174,9 @@ class MarkupCommand(AbjadValueObject):
 
             ::
 
-                >>> command_1 = markuptools.MarkupCommand('box')
-                >>> command_2 = markuptools.MarkupCommand('box')
-                >>> command_3 = markuptools.MarkupCommand('line')
+                >>> command_1 = abjad.MarkupCommand('box')
+                >>> command_2 = abjad.MarkupCommand('box')
+                >>> command_3 = abjad.MarkupCommand('line')
 
             ::
             
@@ -198,11 +201,7 @@ class MarkupCommand(AbjadValueObject):
 
         Returns true or false.
         '''
-        if isinstance(argument, type(self)):
-            if self.command == argument.command:
-                if self.arguments == argument.arguments:
-                    return True
-        return False
+        return super(MarkupCommand, self).__eq__(argument)
 
     def __format__(self, format_specification=''):
         r'''Formats markup command.
@@ -213,11 +212,11 @@ class MarkupCommand(AbjadValueObject):
 
             ::
 
-                >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
-                >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
-                >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
-                >>> rotate = markuptools.MarkupCommand('rotate', 60, line)
-                >>> combine = markuptools.MarkupCommand('combine', rotate, circle)
+                >>> circle = abjad.MarkupCommand('draw-circle', 2.5, 0.1, False)
+                >>> square = abjad.MarkupCommand('rounded-box', 'hello?')
+                >>> line = abjad.MarkupCommand('line', [square, 'wow!'])
+                >>> rotate = abjad.MarkupCommand('rotate', 60, line)
+                >>> combine = abjad.MarkupCommand('combine', rotate, circle)
 
             ::
 
@@ -252,11 +251,11 @@ class MarkupCommand(AbjadValueObject):
 
             ::
 
-                >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
-                >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
-                >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
-                >>> rotate = markuptools.MarkupCommand('rotate', 60, line)
-                >>> combine = markuptools.MarkupCommand('combine', rotate, circle)
+                >>> circle = abjad.MarkupCommand('draw-circle', 2.5, 0.1, False)
+                >>> square = abjad.MarkupCommand('rounded-box', 'hello?')
+                >>> line = abjad.MarkupCommand('line', [square, 'wow!'])
+                >>> rotate = abjad.MarkupCommand('rotate', 60, line)
+                >>> combine = abjad.MarkupCommand('combine', rotate, circle)
 
             ::
 
@@ -305,7 +304,7 @@ class MarkupCommand(AbjadValueObject):
 
             ::
 
-                >>> command = markuptools.MarkupCommand('hspace', 0)
+                >>> command = abjad.MarkupCommand('hspace', 0)
                 >>> command
                 abjad.MarkupCommand(
                     'hspace',
@@ -332,11 +331,11 @@ class MarkupCommand(AbjadValueObject):
 
             ::
 
-                >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
-                >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
-                >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
-                >>> rotate = markuptools.MarkupCommand('rotate', 60, line)
-                >>> combine = markuptools.MarkupCommand('combine', rotate, circle)
+                >>> circle = abjad.MarkupCommand('draw-circle', 2.5, 0.1, False)
+                >>> square = abjad.MarkupCommand('rounded-box', 'hello?')
+                >>> line = abjad.MarkupCommand('line', [square, 'wow!'])
+                >>> rotate = abjad.MarkupCommand('rotate', 60, line)
+                >>> combine = abjad.MarkupCommand('combine', rotate, circle)
 
             ::
 
@@ -372,6 +371,7 @@ class MarkupCommand(AbjadValueObject):
         return string
 
     def _get_format_pieces(self):
+        from abjad.tools import systemtools
         def recurse(iterable):
             result = []
             for x in iterable:
@@ -397,9 +397,8 @@ class MarkupCommand(AbjadValueObject):
                     else:
                         result.append('#{}'.format(formatted))
             return ['{}{}'.format(indent, x) for x in result]
-        from abjad.tools import systemtools
         indent = systemtools.LilyPondFormatManager.indent
-        parts = [r'\{}'.format(self.command)]
+        parts = [r'\{}'.format(self.name)]
         parts.extend(recurse(self.arguments))
         return parts
 
@@ -407,7 +406,7 @@ class MarkupCommand(AbjadValueObject):
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=False,
-            storage_format_args_values=(self.command,) + self.arguments,
+            storage_format_args_values=(self.name,) + self.arguments,
             storage_format_kwargs_names=[],
             )
 
@@ -425,31 +424,13 @@ class MarkupCommand(AbjadValueObject):
             ::
 
                 >>> arguments = ('draw-circle', 1, 0.1, False)
-                >>> command = markuptools.MarkupCommand(*arguments)
+                >>> command = abjad.MarkupCommand(*arguments)
                 >>> command.arguments
                 (1, 0.1, False)
 
         Returns tuple.
         '''
-        return self._args
-
-    # TODO: change to MarkupCommand.name
-    @property
-    def command(self):
-        r'''Gets markup command name.
-
-        ..  container:: example
-
-            ::
-
-                >>> arguments = ('draw-circle', 1, 0.1, False)
-                >>> command = markuptools.MarkupCommand(*arguments)
-                >>> command.command
-                'draw-circle'
-
-        Returns string.
-        '''
-        return self._command
+        return self._arguments
 
     @property
     def force_quotes(self):
@@ -464,8 +445,8 @@ class MarkupCommand(AbjadValueObject):
             ::
 
                 >>> lines = ['foo', 'bar blah', 'baz']
-                >>> command = markuptools.MarkupCommand('column', lines)
-                >>> markup = Markup(command)
+                >>> command = abjad.MarkupCommand('column', lines)
+                >>> markup = abjad.Markup(command)
 
             ::
 
@@ -487,9 +468,9 @@ class MarkupCommand(AbjadValueObject):
             Here's the same markup command with forced quotes:
 
                 >>> lines = ['foo', 'bar blah', 'baz']
-                >>> command = markuptools.MarkupCommand('column', lines)
+                >>> command = abjad.MarkupCommand('column', lines)
                 >>> command.force_quotes = True
-                >>> markup = Markup(command)
+                >>> markup = abjad.Markup(command)
 
             ::
 
@@ -518,6 +499,23 @@ class MarkupCommand(AbjadValueObject):
         assert isinstance(argument, bool), repr(argument)
         self._force_quotes = argument
 
+    @property
+    def name(self):
+        r'''Gets markup command name.
+
+        ..  container:: example
+
+            ::
+
+                >>> arguments = ('draw-circle', 1, 0.1, False)
+                >>> command = abjad.MarkupCommand(*arguments)
+                >>> command.name
+                'draw-circle'
+
+        Returns string.
+        '''
+        return self._name
+
     ### PUBLIC METHODS ###
 
     @staticmethod
@@ -533,21 +531,23 @@ class MarkupCommand(AbjadValueObject):
 
             ::
 
-                >>> markup_a = markuptools.MarkupCommand(
+                >>> markup_a = abjad.MarkupCommand(
                 ...     'draw-circle',
                 ...     4,
                 ...     0.4,
                 ...     False,
                 ...     )
-                >>> markup_b = markuptools.MarkupCommand(
+                >>> markup_b = abjad.MarkupCommand(
                 ...     'filled-box',
-                ...     schemetools.SchemePair(-4, 4),
-                ...     schemetools.SchemePair(-0.5, 0.5), 1)
+                ...     abjad.SchemePair((-4, 4)),
+                ...     abjad.SchemePair((-0.5, 0.5)),
+                ...     1,
+                ...     )
                 >>> markup_c = "some text"
 
             ::
 
-                >>> markup = markuptools.MarkupCommand.combine_markup_commands(
+                >>> markup = abjad.MarkupCommand.combine_markup_commands(
                 ...     markup_a,
                 ...     markup_b,
                 ...     markup_c,

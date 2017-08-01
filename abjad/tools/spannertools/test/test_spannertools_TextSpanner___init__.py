@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_spannertools_TextSpanner___init___01():
     r'''Initialize empty text spanner.
     '''
 
-    spanner = spannertools.TextSpanner()
-    assert isinstance(spanner, spannertools.TextSpanner)
+    spanner = abjad.TextSpanner()
+    assert isinstance(spanner, abjad.TextSpanner)

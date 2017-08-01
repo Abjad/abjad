@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import rhythmtreetools
+import abjad
 import pickle
+from abjad.tools import rhythmtreetools
 
 
 def test_rhythmtreetools_RhythmTreeNode_pickle_01():

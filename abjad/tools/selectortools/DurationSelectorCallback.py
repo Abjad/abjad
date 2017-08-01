@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadValueObject
 
 
 class DurationSelectorCallback(AbjadValueObject):
     r'''Duration selector callback.
+
+    ::
+
+        >>> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -28,7 +34,8 @@ class DurationSelectorCallback(AbjadValueObject):
             durationtools.Duration,
             selectortools.DurationInequality,
             )
-        assert isinstance(duration, prototype)
+        if not isinstance(duration, prototype):
+            duration = durationtools.Duration(duration)
         self._duration = duration
         if preprolated is not None:
             preprolated = bool(preprolated)
@@ -43,7 +50,7 @@ class DurationSelectorCallback(AbjadValueObject):
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectortools
-        assert isinstance(argument, tuple), repr(argument)
+        assert isinstance(argument, collections.Iterable), repr(argument)
         inequality = self.duration
         if not isinstance(inequality, selectortools.DurationInequality):
             inequality = selectortools.DurationInequality(
@@ -60,14 +67,14 @@ class DurationSelectorCallback(AbjadValueObject):
             else:
                 if isinstance(subexpr, scoretools.Component):
                     subexpr._update_now(offsets=True)
-                    duration = subexpr._preprolated_duration
+                    duration = subexpr._get_preprolated_duration()
                 else:
                     durations = []
                     for x in subexpr:
                         if isinstance(x, scoretools.Component):
                             x._update_now(offsets=True)
-                        duration = x._preprolated_duration
-                        durations.append(x._preprolated_duration)
+                        duration = x._get_preprolated_duration()
+                        durations.append(x._get_preprolated_duration())
                     duration = sum(durations)
             if inequality(duration):
                 result.append(subexpr)

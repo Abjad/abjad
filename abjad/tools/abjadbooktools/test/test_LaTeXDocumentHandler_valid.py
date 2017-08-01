@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+import abjad
 import os
 import platform
 import shutil
 import unittest
 from abjad.tools import abjadbooktools
-from abjad.tools import stringtools
 
 
 @unittest.skipIf(
@@ -85,8 +85,8 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         document_handler()
         with open(self.source_valid_path, 'r') as file_pointer:
             target_valid_contents = file_pointer.read()
-        assert stringtools.normalize(str(target_valid_contents)) == \
-            stringtools.normalize(str(self.expected_valid_contents))
+        assert abjad.String.normalize(str(target_valid_contents)) == \
+            abjad.String.normalize(str(self.expected_valid_contents))
         document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler(clean=True)

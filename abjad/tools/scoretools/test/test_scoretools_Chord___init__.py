@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_scoretools_Chord___init___01():
     r'''Initialize empty chord.
     '''
 
-    chord = Chord([], (1, 4))
+    chord = abjad.Chord([], (1, 4))
     assert format(chord) == "<>4"
 
 
@@ -14,7 +14,7 @@ def test_scoretools_Chord___init___02():
     r'''Initialize chord with pitch numbers.
     '''
 
-    chord = Chord([2, 4, 5], (1, 4))
+    chord = abjad.Chord([2, 4, 5], (1, 4))
     assert format(chord) == "<d' e' f'>4"
 
 
@@ -22,7 +22,7 @@ def test_scoretools_Chord___init___03():
     r'''Initialize chord with pitch tokens.
     '''
 
-    chord = Chord([('ds', 4), ('ef', 4)], (1, 4))
+    chord = abjad.Chord([('ds', 4), ('ef', 4)], (1, 4))
     assert format(chord) == "<ds' ef'>4"
 
 
@@ -31,9 +31,9 @@ def test_scoretools_Chord___init___04():
     '''
 
     pitches = []
-    pitches.append(NamedPitch('ds', 4))
-    pitches.append(NamedPitch('ef', 4))
-    chord = Chord(pitches, (1, 4))
+    pitches.append(abjad.NamedPitch('D#4'))
+    pitches.append(abjad.NamedPitch('Eb4'))
+    chord = abjad.Chord(pitches, (1, 4))
     assert format(chord) == "<ds' ef'>4"
 
 
@@ -41,8 +41,8 @@ def test_scoretools_Chord___init___05():
     r'''Initialize chord with pitches and pitch numbers together.
     '''
 
-    pitches = [2, ('ef', 4), NamedPitch(4)]
-    chord = Chord(pitches, (1, 4))
+    pitches = [2, ('ef', 4), abjad.NamedPitch(4)]
+    chord = abjad.Chord(pitches, (1, 4))
     assert format(chord) == "<d' ef' e'>4"
 
 
@@ -51,7 +51,7 @@ def test_scoretools_Chord___init___06():
     '''
 
     pitches = ["d'", "ef'", "e'"]
-    chord = Chord(pitches, (1, 4))
+    chord = abjad.Chord(pitches, (1, 4))
     assert format(chord) == "<d' ef' e'>4"
 
 
@@ -59,7 +59,7 @@ def test_scoretools_Chord___init___07():
     r'''Initialize chord with LilyPond input string.
     '''
 
-    chord = Chord("<d' ef' e'>4")
+    chord = abjad.Chord("<d' ef' e'>4")
     assert format(chord) == "<d' ef' e'>4"
 
 
@@ -67,38 +67,38 @@ def test_scoretools_Chord___init___08():
     r'''Initialize chord from skip.
     '''
 
-    skip = scoretools.Skip('s8')
-    chord = Chord(skip)
+    skip = abjad.Skip('s8')
+    chord = abjad.Chord(skip)
 
     assert format(skip) == 's8'
     assert format(chord) == '<>8'
 
-    assert inspect_(skip).is_well_formed()
-    assert inspect_(chord).is_well_formed()
+    assert abjad.inspect(skip).is_well_formed()
+    assert abjad.inspect(chord).is_well_formed()
 
 
 def test_scoretools_Chord___init___09():
     r'''Initialize chord from tupletized skip.
     '''
 
-    tuplet = Tuplet((2, 3), 's8 s8 s8')
-    chord = Chord(tuplet[0])
+    tuplet = abjad.Tuplet((2, 3), 's8 s8 s8')
+    chord = abjad.Chord(tuplet[0])
 
     assert format(chord) == '<>8'
-    assert inspect_(chord).get_parentage().parent is None
-    assert inspect_(chord).is_well_formed()
+    assert abjad.inspect(chord).get_parentage().parent is None
+    assert abjad.inspect(chord).is_well_formed()
 
 
 def test_scoretools_Chord___init___10():
     r'''Initialize chord from containerized skip.
     '''
 
-    tuplet = Voice('s8 s8 s8')
-    chord = Chord(tuplet[0])
+    tuplet = abjad.Voice('s8 s8 s8')
+    chord = abjad.Chord(tuplet[0])
 
     assert format(chord) == '<>8'
-    assert inspect_(chord).get_parentage().parent is None
-    assert inspect_(chord).is_well_formed()
+    assert abjad.inspect(chord).get_parentage().parent is None
+    assert abjad.inspect(chord).is_well_formed()
 
 
 
@@ -106,81 +106,81 @@ def test_scoretools_Chord___init___11():
     r'''Initialize chord from beamed skip.
     '''
 
-    staff = Staff("c'8 [ s8 c'8 ]")
-    chord = Chord(staff[1])
+    staff = abjad.Staff("c'8 [ s8 c'8 ]")
+    chord = abjad.Chord(staff[1])
 
     assert format(chord) == '<>8'
-    assert inspect_(chord).get_parentage().parent is None
-    assert inspect_(chord).is_well_formed()
+    assert abjad.inspect(chord).get_parentage().parent is None
+    assert abjad.inspect(chord).is_well_formed()
 
 
 def test_scoretools_Chord___init___12():
     r'''Initialize chord from rest.
     '''
 
-    rest = Rest('r8')
-    chord = Chord(rest)
+    rest = abjad.Rest('r8')
+    chord = abjad.Chord(rest)
 
     assert format(rest) == 'r8'
     assert format(chord) == '<>8'
-    assert inspect_(rest).is_well_formed()
-    assert inspect_(chord).is_well_formed()
+    assert abjad.inspect(rest).is_well_formed()
+    assert abjad.inspect(chord).is_well_formed()
 
 
 def test_scoretools_Chord___init___13():
     r'''Initialize chord from tupletized rest.
     '''
 
-    tuplet = Tuplet((2, 3), 'r8 r8 r8')
-    chord = Chord(tuplet[1])
+    tuplet = abjad.Tuplet((2, 3), 'r8 r8 r8')
+    chord = abjad.Chord(tuplet[1])
 
     assert format(chord) == '<>8'
-    assert inspect_(chord).is_well_formed()
-    assert inspect_(chord).get_parentage().parent is None
+    assert abjad.inspect(chord).is_well_formed()
+    assert abjad.inspect(chord).get_parentage().parent is None
 
 
 def test_scoretools_Chord___init___14():
     r'''Initialize chord from note.
     '''
 
-    note = Note("d'8")
-    chord = Chord(note)
+    note = abjad.Note("d'8")
+    chord = abjad.Chord(note)
 
     assert format(note) == "d'8"
     assert format(chord) == "<d'>8"
-    assert inspect_(note).is_well_formed()
-    assert inspect_(chord).is_well_formed()
+    assert abjad.inspect(note).is_well_formed()
+    assert abjad.inspect(chord).is_well_formed()
 
 
 def test_scoretools_Chord___init___15():
     r'''Initialize chord from tupletized note.
     '''
 
-    tuplet = Tuplet((2, 3), "c'8 c'8 c'8")
-    chord = Chord(tuplet[1])
+    tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
+    chord = abjad.Chord(tuplet[1])
 
     assert format(chord) == "<c'>8"
-    assert inspect_(chord).is_well_formed()
-    assert inspect_(chord).get_parentage().parent is None
+    assert abjad.inspect(chord).is_well_formed()
+    assert abjad.inspect(chord).get_parentage().parent is None
 
 
 def test_scoretools_Chord___init___16():
     r'''Initialize chord from spanned note.
     '''
 
-    staff = Staff("c'8 ( d'8 e'8 f'8 )")
-    chord = Chord(staff[1])
+    staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
+    chord = abjad.Chord(staff[1])
 
     assert format(chord) == "<d'>8"
-    assert inspect_(chord).is_well_formed()
-    assert inspect_(chord).get_parentage().parent is None
+    assert abjad.inspect(chord).is_well_formed()
+    assert abjad.inspect(chord).get_parentage().parent is None
 
 
 def test_scoretools_Chord___init___17():
     r'''Initialize empty chord from LilyPond input string.
     '''
 
-    chord = Chord('<>8.')
+    chord = abjad.Chord('<>8.')
 
     assert format(chord) == '<>8.'
     assert not len(chord.note_heads)
@@ -191,7 +191,7 @@ def test_scoretools_Chord___init___18():
     cautionary accidentals.
     '''
 
-    chord = Chord('<c!? e? g! b>4')
+    chord = abjad.Chord('<c!? e? g! b>4')
 
     assert format(chord) == '<c!? e? g! b>4'
 
@@ -200,8 +200,8 @@ def test_scoretools_Chord___init___19():
     r'''Initialize chord from note with forced and cautionary accidentals.
     '''
 
-    note = Note("c'!?4")
-    chord = Chord(note)
+    note = abjad.Note("c'!?4")
+    chord = abjad.Chord(note)
 
     assert format(chord) == "<c'!?>4"
 
@@ -210,8 +210,8 @@ def test_scoretools_Chord___init___20():
     r'''Initialize chord from other chord.
     '''
 
-    chord_1 = Chord("<c' e' g' bf'>4")
-    chord_2 = Chord(chord_1, Duration(1, 8))
+    chord_1 = abjad.Chord("<c' e' g' bf'>4")
+    chord_2 = abjad.Chord(chord_1, abjad.Duration(1, 8))
 
     assert format(chord_2) == "<c' e' g' bf'>8"
 
@@ -220,6 +220,6 @@ def test_scoretools_Chord___init___21():
     r'''Initialize chord with drum pitches.
     '''
 
-    chord = Chord("<sn? bd! tamb>4")
+    chord = abjad.Chord("<sn? bd! tamb>4")
 
     assert format(chord) == '<bassdrum! snare? tambourine>4'

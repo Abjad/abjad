@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Marimba(Instrument):
-    r'''A marimba.
+    r'''Marimba.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> marimba = instrumenttools.Marimba()
-        >>> attach(marimba, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Marimba }
-            \set Staff.shortInstrumentName = \markup { Mb. }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> marimba = abjad.instrumenttools.Marimba()
+            >>> abjad.attach(marimba, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { Marimba }
+                \set Staff.shortInstrumentName = \markup { Mb. }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -124,7 +131,7 @@ class Marimba(Instrument):
             ::
 
                 >>> marimba.pitch_range
-                PitchRange(range_string='[F2, C7]')
+                PitchRange('[F2, C7]')
 
             ::
 

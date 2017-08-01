@@ -6,17 +6,21 @@ from abjad.tools.spannertools.Spanner import Spanner
 class HorizontalBracketSpanner(Spanner):
     r'''Horizontal bracket spanner.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-            >>> spanner = spannertools.HorizontalBracketSpanner()
-            >>> attach(spanner, voice[:])
+            >>> spanner = abjad.HorizontalBracketSpanner()
+            >>> abjad.attach(spanner, voice[:])
             >>> show(voice) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(voice)
             \new Voice \with {
@@ -56,13 +60,14 @@ class HorizontalBracketSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _format_right_of_leaf(self, leaf):
-        result = []
+    def _get_lilypond_format_bundle(self, leaf):
+        import abjad
+        bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_first_leaf(leaf):
-            result.append(r'\startGroup')
+            bundle.right.spanner_starts.append(r'\startGroup')
         if self._is_my_last_leaf(leaf):
-            result.append(r'\stopGroup')
-        return result
+            bundle.right.spanner_stops.append(r'\stopGroup')
+        return bundle
 
     ### PUBLIC PROPERTIES ###
 
@@ -76,10 +81,8 @@ class HorizontalBracketSpanner(Spanner):
 
             ::
 
-                >>> markup = Markup('3-1[012]').smaller()
-                >>> spanner = spannertools.HorizontalBracketSpanner(
-                ...     markup=markup,
-                ...     )
+                >>> markup = abjad.Markup('3-1[012]').smaller()
+                >>> spanner = abjad.HorizontalBracketSpanner(markup=markup)
 
             ::
 
@@ -92,7 +95,7 @@ class HorizontalBracketSpanner(Spanner):
 
             ::
 
-                >>> spanner = spannertools.HorizontalBracketSpanner()
+                >>> spanner = abjad.HorizontalBracketSpanner()
                 >>> spanner.markup is None
                 True
 

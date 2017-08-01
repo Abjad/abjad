@@ -1,6 +1,10 @@
 Working with lists of numbers
 =============================
 
+..  abjad::
+
+    import abjad
+
 Python provides a built-in ``list`` type that you can use to carry around
 almost anything.
 
@@ -11,19 +15,19 @@ Create a list with square brackets:
 
 ::
 
-    >>> my_list = [23, 7, 10, 18, 13, 20, 3, 2, 18, 9, 14, 3]
-    >>> my_list
+    >>> list_ = [23, 7, 10, 18, 13, 20, 3, 2, 18, 9, 14, 3]
+    >>> list_
     [23, 7, 10, 18, 13, 20, 3, 2, 18, 9, 14, 3]
 
 
 Inspecting list attributes
 --------------------------
 
-Use ``len()`` to find the number of elements in any list
+Use ``len()`` to find the number of elements in any list:
 
 ::
 
-    >>> len(my_list)
+    >>> len(list_)
     12
 
 
@@ -34,17 +38,17 @@ Use ``append()`` to add one element to a list:
 
 ::
 
-    >>> my_list.append(5)
-    >>> my_list
+    >>> list_.append(5)
+    >>> list_
     [23, 7, 10, 18, 13, 20, 3, 2, 18, 9, 14, 3, 5]
 
 Use ``extend()`` to extend one list with the contents of another:
 
 ::
 
-    >>> my_other_list = [19, 11, 4, 10, 12]
-    >>> my_list.extend(my_other_list)
-    >>> my_list
+    >>> list_2 = [19, 11, 4, 10, 12]
+    >>> list_2.extend(my_other_list)
+    >>> list_2
     [23, 7, 10, 18, 13, 20, 3, 2, 18, 9, 14, 3, 5, 19, 11, 4, 10, 12]
 
 
@@ -55,18 +59,18 @@ You can return a single value from a list with a numeric index:
 
 ::
 
-    >>> my_list[0]
+    >>> list_[0]
     12
-    >>> my_list[1]
+    >>> list_[1]
     10
-    >>> my_list[2]
+    >>> list_[2]
     4
 
 You can return many values from a list with slice notation:
 
 ::
 
-    >>> my_list[:4]
+    >>> list_[:4]
     [12, 10, 4, 11]
 
 
@@ -77,8 +81,8 @@ Use ``reverse()`` to reverse the elements in a list:
 
 ::
 
-    >>> my_list.reverse()
-    >>> my_list
+    >>> list_.reverse()
+    >>> list_
     [12, 10, 4, 11, 19, 5, 3, 14, 9, 18, 2, 3, 20, 13, 18, 10, 7, 23]
 
 More information on these and all other operations defined on the built-in

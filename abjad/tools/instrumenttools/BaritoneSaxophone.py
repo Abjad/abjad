@@ -6,32 +6,39 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class BaritoneSaxophone(Instrument):
-    r'''A baritone saxophone.
+    r'''Baritone saxophone.
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> baritone_saxophone = instrumenttools.BaritoneSaxophone()
-        >>> attach(baritone_saxophone, staff)
-        >>> show(staff) # doctest: +SKIP
+        >>> import abjad
 
-    ..  doctest::
+    ..  container:: example
 
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { "Baritone saxophone" }
-            \set Staff.shortInstrumentName = \markup { "Bar. sax." }
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
+        ::
+
+            >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
+            >>> baritone_saxophone = abjad.instrumenttools.BaritoneSaxophone()
+            >>> abjad.attach(baritone_saxophone, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> f(staff)
+            \new Staff {
+                \set Staff.instrumentName = \markup { "Baritone saxophone" }
+                \set Staff.shortInstrumentName = \markup { "Bar. sax." }
+                c'4
+                d'4
+                e'4
+                fs'4
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -127,7 +134,7 @@ class BaritoneSaxophone(Instrument):
             ::
 
                 >>> baritone_saxophone.pitch_range
-                PitchRange(range_string='[C2, Ab4]')
+                PitchRange('[C2, Ab4]')
 
             ::
 

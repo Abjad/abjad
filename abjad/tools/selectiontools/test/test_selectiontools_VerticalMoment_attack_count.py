@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_selectiontools_VerticalMoment_attack_count_01():
 
-    score = Score(r'''
+    score = abjad.Score(r'''
         \new Staff {
             \times 4/3 {
                 d''8
@@ -27,8 +27,8 @@ def test_selectiontools_VerticalMoment_attack_count_01():
         >>
         ''')
 
-    vertical_moment = inspect_(score).get_vertical_moment_at(Offset(0))
+    vertical_moment = abjad.inspect(score).get_vertical_moment_at(abjad.Offset(0))
     assert vertical_moment.attack_count == 3
 
-    vertical_moment = inspect_(score).get_vertical_moment_at(Offset(1, 8))
+    vertical_moment = abjad.inspect(score).get_vertical_moment_at(abjad.Offset(1, 8))
     assert vertical_moment.attack_count == 1

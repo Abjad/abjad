@@ -6,21 +6,25 @@ def is_integer_equivalent(argument):
     '''Is true when `argument` is an integer-equivalent number. Otherwise
     false.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         ::
 
-            >>> mathtools.is_integer_equivalent(12.0)
+            >>> abjad.mathtools.is_integer_equivalent(12.0)
             True
 
         ::
 
-            >>> mathtools.is_integer_equivalent('12')
+            >>> abjad.mathtools.is_integer_equivalent('12')
             True
 
         ::
 
-            >>> mathtools.is_integer_equivalent('foo')
+            >>> abjad.mathtools.is_integer_equivalent('foo')
             False
 
     Returns true or false.

@@ -11,30 +11,38 @@ def timespan_2_contains_timespan_1_improperly(
 
     ::
 
-        >>> relation = timespantools.timespan_2_contains_timespan_1_improperly()
-        >>> f(relation)
-        abjad.TimespanTimespanTimeRelation(
-            inequality=abjad.CompoundInequality(
-                [
-                    abjad.Inequality('timespan_2.start_offset <= timespan_1.start_offset'),
-                    abjad.Inequality('timespan_1.stop_offset <= timespan_2.stop_offset'),
-                    ],
-                logical_operator='and',
-                ),
-            )
+        >>> import abjad
 
     ..  container:: example
 
         ::
 
-            >>> staff = Staff(r"c'8. \p \< fs'16 a'4 af'8 \f \> g'8 ~ g'16 f' e' ef' \p")
-            >>> timespan_1 = timespantools.Timespan(Offset(1, 4), Offset(3, 8))
+            >>> relation = abjad.timespantools.timespan_2_contains_timespan_1_improperly()
+            >>> f(relation)
+            abjad.TimespanTimespanTimeRelation(
+                inequality=abjad.CompoundInequality(
+                    [
+                        abjad.TimespanInequality('timespan_2.start_offset <= timespan_1.start_offset'),
+                        abjad.TimespanInequality('timespan_1.stop_offset <= timespan_2.stop_offset'),
+                        ],
+                    logical_operator='and',
+                    ),
+                )
+
+    ..  container:: example
+
+        ::
+
+            >>> staff = abjad.Staff(
+            ...     r"c'8. \p \< fs'16 a'4 af'8 \f \> g'8 ~ g'16 f' e' ef' \p",
+            ...     )
+            >>> timespan_1 = abjad.Timespan((1, 4), (3, 8))
             >>> show(staff) # doctest: +SKIP
 
         ::
 
             >>> offset_lists = staff[:]._get_offset_lists()
-            >>> time_relation = timespantools.timespan_2_contains_timespan_1_improperly(timespan_1=timespan_1)
+            >>> time_relation = abjad.timespantools.timespan_2_contains_timespan_1_improperly(timespan_1=timespan_1)
             >>> start_index, stop_index = time_relation.get_offset_indices(*offset_lists)
             >>> selected_notes = staff[start_index:stop_index]
             >>> selected_notes
@@ -42,7 +50,7 @@ def timespan_2_contains_timespan_1_improperly(
 
         ::
 
-            >>> label(selected_notes).color_leaves('red')
+            >>> abjad.label(selected_notes).color_leaves('red')
             >>> show(staff) # doctest: +SKIP
 
     Returns time relation or boolean.

@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 import abc
-from abjad.tools import mathtools
-from abjad.tools import systemtools
+import functools
 from abjad.tools.abctools import AbjadValueObject
 
 
+@functools.total_ordering
 class IntervalClass(AbjadValueObject):
-    '''Interval-class base class.
+    '''Abstract interval-class.
+
+    ::
+
+        >> import abjad
+
     '''
 
     ### CLASS VARIABLES ###
@@ -23,62 +28,32 @@ class IntervalClass(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        r'''Absolute value of interval-class.
+        r'''Gets absolute value of interval-class.
 
         Returns new interval-class.
         '''
         return type(self)(abs(self._number))
 
-    def __float__(self):
-        r'''Changes interval-class to float.
+    @abc.abstractmethod
+    def __lt__(self, argument):
+        r'''Is true when interval-class is less than `argument`.
 
-        Returns float.
+        Returns true or false.
         '''
-        return float(self._number)
-
-    def __int__(self):
-        r'''Change interval-class to integer.
-
-        Returns integer.
-        '''
-        return self._number
+        raise NotImplementedError
 
     def __str__(self):
-        r'''String representation of interval-class.
+        r'''Gets string representation of interval-class.
 
         Returns string.
         '''
-        return self._format_string
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
         return str(self.number)
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        if type(self).__name__.startswith('Named'):
-            values = [str(self)]
-        else:
-            values = [
-                mathtools.integer_equivalent_number_to_integer(float(self))
-                ]
-        return systemtools.FormatSpecification(
-            client=self,
-            coerce_for_equality=True,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
-            storage_format_args_values=values,
-            template_names=['number'],
-            )
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def number(self):
-        r'''Number of interval-class.
+        r'''Gets number of interval-class.
 
         Returns number.
         '''

@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
+import functools
 import numbers
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
+@functools.total_ordering
 class StaffPosition(AbjadValueObject):
     r'''Staff position.
+
+    ::
+
+        >>> import abjad
 
     ..  container:: example
 
@@ -12,8 +18,8 @@ class StaffPosition(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.StaffPosition(0)
-            StaffPosition(number=0)
+            >>> abjad.StaffPosition(0)
+            StaffPosition(0)
 
     ..  container:: example
 
@@ -21,8 +27,8 @@ class StaffPosition(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.StaffPosition(-1)
-            StaffPosition(number=-1)
+            >>> abjad.StaffPosition(-1)
+            StaffPosition(-1)
 
     ..  container:: example
 
@@ -30,10 +36,19 @@ class StaffPosition(AbjadValueObject):
 
         ::
 
-            >>> pitchtools.StaffPosition(-2)
-            StaffPosition(number=-2)
+            >>> abjad.StaffPosition(-2)
+            StaffPosition(-2)
 
-    Staff positions are immutable.
+    ..  container:: example
+
+        Initializes from other staff position:
+
+        ::
+
+            >>> staff_position = abjad.StaffPosition(-2)
+            >>> abjad.StaffPosition(staff_position)
+            StaffPosition(-2)
+
     '''
 
     ### CLASS VARIABLES ###
@@ -45,22 +60,24 @@ class StaffPosition(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, number=0):
+        if isinstance(number, type(self)):
+            number = number.number
         assert isinstance(number, numbers.Number), repr(number)
         self._number = number
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        r'''Is true when `other` is a staff position with the same number as
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a staff position with the same number as
         this staff position. Otherwise false.
 
         ..  container:: example
 
             ::
 
-                >>> staff_position_1 = pitchtools.StaffPosition(-2)
-                >>> staff_position_2 = pitchtools.StaffPosition(-2)
-                >>> staff_position_3 = pitchtools.StaffPosition(0)
+                >>> staff_position_1 = abjad.StaffPosition(-2)
+                >>> staff_position_2 = abjad.StaffPosition(-2)
+                >>> staff_position_3 = abjad.StaffPosition(0)
 
             ::
 
@@ -73,49 +90,78 @@ class StaffPosition(AbjadValueObject):
 
             ::
 
-                >>> staff_position_1 == 'foo'
+                >>> staff_position_2 == staff_position_1
+                True
+                >>> staff_position_2 == staff_position_2
+                True
+                >>> staff_position_2 == staff_position_3
                 False
-
-        Returns true or false.
-        '''
-        if isinstance(other, type(self)):
-            return self.number == other.number
-        return False
-
-    def __float__(self):
-        r'''Casts staff position as floating point number.
-
-        ..  container:: example
 
             ::
 
-                >>> float(pitchtools.StaffPosition(-2))
-                -2.0
+                >>> staff_position_3 == staff_position_1
+                False
+                >>> staff_position_3 == staff_position_2
+                False
+                >>> staff_position_3 == staff_position_3
+                True
 
-        Returns floating-point number.
+        Returns true or false.
         '''
-        return float(self.number)
+        return super(StaffPosition, self).__eq__(argument)
 
     def __hash__(self):
         r'''Hashes staff position.
 
         Returns integer.
         '''
-        return hash(repr(self))
+        return super(StaffPosition, self).__hash__()
 
-    def __int__(self):
-        r'''Changes staff position to integer.
+    def __lt__(self, argument):
+        r'''Is true when staff position is less than `argument`.
 
         ..  container:: example
 
             ::
 
-                >>> int(pitchtools.StaffPosition(-2))
-                -2
+                >>> staff_position_1 = abjad.StaffPosition(-2)
+                >>> staff_position_2 = abjad.StaffPosition(-2)
+                >>> staff_position_3 = abjad.StaffPosition(0)
 
-        Returns integer.
+            ::
+
+                >>> staff_position_1 < staff_position_1
+                False
+                >>> staff_position_1 < staff_position_2
+                False
+                >>> staff_position_1 < staff_position_3
+                True
+
+            ::
+
+                >>> staff_position_2 < staff_position_1
+                False
+                >>> staff_position_2 < staff_position_2
+                False
+                >>> staff_position_2 < staff_position_3
+                True
+
+            ::
+
+                >>> staff_position_3 < staff_position_1
+                False
+                >>> staff_position_3 < staff_position_2
+                False
+                >>> staff_position_3 < staff_position_3
+                False
+
+        Returns true or false.
         '''
-        return int(self.number)
+        try:
+            argument = type(self)(argument)
+        except:
+            return False
+        return self.number < argument.number
 
     def __str__(self):
         r'''Gets string representation of staff position.
@@ -124,12 +170,24 @@ class StaffPosition(AbjadValueObject):
 
             ::
 
-                >>> str(pitchtools.StaffPosition(-2))
+                >>> str(abjad.StaffPosition(-2))
                 'StaffPosition(-2)'
 
         Returns string.
         '''
         return '{}({})'.format(type(self).__name__, self.number)
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        import abjad
+        return abjad.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=[self.number],
+            storage_format_kwargs_names=[],
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -141,9 +199,131 @@ class StaffPosition(AbjadValueObject):
 
             ::
 
-                >>> pitchtools.StaffPosition(-2).number
+                >>> abjad.StaffPosition(-2).number
                 -2 
 
         Returns number.
         '''
         return self._number
+
+    ### PUBLIC METHODS ###
+
+    def to_pitch(self, clef=None):
+        r'''Makes named pitch from staff position and `clef`.
+
+        ..  container:: example
+
+            From absolute staff position:
+
+            ::
+
+                >>> for n in range(-6, 6):
+                ...     staff_position = abjad.StaffPosition(n)
+                ...     pitch = staff_position.to_pitch()
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-6)	d
+                StaffPosition(-5)	e
+                StaffPosition(-4)	f
+                StaffPosition(-3)	g
+                StaffPosition(-2)	a
+                StaffPosition(-1)	b
+                StaffPosition(0)	c'
+                StaffPosition(1)	d'
+                StaffPosition(2)	e'
+                StaffPosition(3)	f'
+                StaffPosition(4)	g'
+                StaffPosition(5)	a'
+
+        ..  container:: example
+
+            Treble clef:
+
+            ::
+
+                >>> clef = abjad.Clef('treble')
+                >>> for n in range(-6, 6):
+                ...     staff_position = abjad.StaffPosition(n)
+                ...     pitch = staff_position.to_pitch(clef=clef)
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-6)	c'
+                StaffPosition(-5)	d'
+                StaffPosition(-4)	e'
+                StaffPosition(-3)	f'
+                StaffPosition(-2)	g'
+                StaffPosition(-1)	a'
+                StaffPosition(0)	b'
+                StaffPosition(1)	c''
+                StaffPosition(2)	d''
+                StaffPosition(3)	e''
+                StaffPosition(4)	f''
+                StaffPosition(5)	g''
+
+        ..  container:: example
+
+            Bass clef:
+
+            ::
+
+                >>> clef = abjad.Clef('bass')
+                >>> for n in range(-6, 6):
+                ...     staff_position = abjad.StaffPosition(n)
+                ...     pitch = staff_position.to_pitch(clef=clef)
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-6)	e,
+                StaffPosition(-5)	f,
+                StaffPosition(-4)	g,
+                StaffPosition(-3)	a,
+                StaffPosition(-2)	b,
+                StaffPosition(-1)	c
+                StaffPosition(0)	d
+                StaffPosition(1)	e
+                StaffPosition(2)	f
+                StaffPosition(3)	g
+                StaffPosition(4)	a
+                StaffPosition(5)	b
+
+        ..  container:: example
+
+            Alto clef:
+
+            ::
+
+                >>> clef = abjad.Clef('alto')
+                >>> for n in range(-6, 6):
+                ...     staff_position = abjad.StaffPosition(n)
+                ...     pitch = staff_position.to_pitch(clef=clef)
+                ...     message = '{!s}\t{}'.format(staff_position, pitch)
+                ...     print(message)
+                StaffPosition(-6)	d
+                StaffPosition(-5)	e
+                StaffPosition(-4)	f
+                StaffPosition(-3)	g
+                StaffPosition(-2)	a
+                StaffPosition(-1)	b
+                StaffPosition(0)	c'
+                StaffPosition(1)	d'
+                StaffPosition(2)	e'
+                StaffPosition(3)	f'
+                StaffPosition(4)	g'
+                StaffPosition(5)	a'
+
+        Returns new named pitch.
+        '''
+        import abjad
+        if clef is not None:
+            offset_staff_position_number = self.number
+            offset_staff_position_number -= clef.middle_c_position.number
+            offset_staff_position = type(self)(offset_staff_position_number)
+        else:
+            offset_staff_position = self
+        octave_number = offset_staff_position.number // 7 + 4
+        diatonic_pitch_class_number = offset_staff_position.number % 7
+        pitch_class_number = abjad.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
+            diatonic_pitch_class_number]
+        pitch_number = 12 * (octave_number - 4)
+        pitch_number += pitch_class_number
+        named_pitch = abjad.NamedPitch(pitch_number)
+        return named_pitch

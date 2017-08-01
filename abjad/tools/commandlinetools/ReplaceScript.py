@@ -3,7 +3,6 @@ from __future__ import print_function
 import fnmatch
 import os
 import re
-from abjad.tools import stringtools
 from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 try:
     input = raw_input
@@ -28,6 +27,9 @@ class ReplaceScript(CommandlineScript):
     '''
 
     ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
 
     alias = 'replace'
     short_description = 'Replace text.'
@@ -87,10 +89,16 @@ class ReplaceScript(CommandlineScript):
             )
 
     def _process_args(self, arguments):
-        print('Replacing {!r} with {!r} ...'.format(arguments.old, arguments.new))
-        skipped_dirs_patterns = self.skipped_directories + arguments.without_dirs
+        import abjad
+        message = 'Replacing {!r} with {!r} ...'
+        message = message.format(arguments.old, arguments.new)
+        print(message)
+        skipped_dirs_patterns = self.skipped_directories
+        skipped_dirs_patterns += arguments.without_dirs
         skipped_files_patterns = self.skipped_files + arguments.without_files
-        if arguments.regex or (not arguments.regex and arguments.whole_words_only):
+        if (arguments.regex or
+            (not arguments.regex and arguments.whole_words_only)
+            ):
             arguments.old = self._get_regex_search_callable(arguments)
             index, length = arguments.old('', 0)
             if 0 <= index:
@@ -126,9 +134,9 @@ class ReplaceScript(CommandlineScript):
                     changed_line_count += changed_lines
                     changed_item_count += changed_items
         print()
-        item_identifier = stringtools.pluralize('instance', changed_item_count)
-        line_identifier = stringtools.pluralize('line', changed_line_count)
-        file_identifier = stringtools.pluralize('file', changed_file_count)
+        item_identifier = abjad.String('instance').pluralize(changed_item_count)
+        line_identifier = abjad.String('line').pluralize(changed_line_count)
+        file_identifier = abjad.String('file').pluralize(changed_file_count)
         message = '\tReplaced {} {} over {} {} in {} {}.'
         message = message.format(
             changed_item_count,

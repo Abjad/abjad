@@ -1,128 +1,88 @@
 # -*- coding: utf-8 -*-
+import abjad
 import pytest
-from abjad import *
 
 
 def test_agenttools_InspectionAgent_get_indicator_01():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    attach('color', staff)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.attach('color', staff[0])
 
-    assert inspect_(staff).get_indicator('color') == 'color'
-    assert inspect_(staff[0]).get_indicator('color') is None
-    assert inspect_(staff[1]).get_indicator('color') is None
-    assert inspect_(staff[2]).get_indicator('color') is None
-    assert inspect_(staff[3]).get_indicator('color') is None
+    assert abjad.inspect(staff).get_indicator('color') is None
+    assert abjad.inspect(staff[0]).get_indicator('color') == 'color'
+    assert abjad.inspect(staff[1]).get_indicator('color') is None
+    assert abjad.inspect(staff[2]).get_indicator('color') is None
+    assert abjad.inspect(staff[3]).get_indicator('color') is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_02():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    attach('color', staff)
+    note = abjad.Note("c'8")
+    articulation = abjad.Articulation('staccato')
+    abjad.attach(articulation, note)
 
-    assert inspect_(staff).get_indicator(str) == 'color'
-    assert inspect_(staff[0]).get_indicator(str) is None
-    assert inspect_(staff[1]).get_indicator(str) is None
-    assert inspect_(staff[2]).get_indicator(str) is None
-    assert inspect_(staff[3]).get_indicator(str) is None
+    assert abjad.inspect(note).get_indicator(abjad.Articulation) is articulation
 
 
 def test_agenttools_InspectionAgent_get_indicator_03():
 
-    note = Note("c'8")
-    annotation = indicatortools.Annotation('special information')
-    attach(annotation, note)
+    note = abjad.Note("c'8")
 
-    assert inspect_(note).get_indicator(indicatortools.Annotation) is annotation
+    assert abjad.inspect(note).get_indicator(abjad.Articulation) is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_04():
 
-    note = Note("c'8")
+    note = abjad.Note("c'8")
+    articulation = abjad.Articulation('staccato')
+    abjad.attach(articulation, note)
+    articulation = abjad.Articulation('marcato')
+    abjad.attach(articulation, note)
 
-    assert inspect_(note).get_indicator(indicatortools.Annotation) is None
+    statement = 'inspect(note).get_indicator(abjad.Articulation)'
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_indicator_05():
 
-    note = Note("c'8")
-    annotation = indicatortools.Annotation('special information')
-    attach(annotation, note)
-    annotation = indicatortools.Annotation('more special information')
-    attach(annotation, note)
+    note = abjad.Note("c'8")
+    command = abjad.LilyPondCommand('stemUp')
+    abjad.attach(command, note)
 
-    statement = 'inspect_(note).get_indicator(indicatortools.Annotation)'
-    assert pytest.raises(Exception, statement)
+    result = abjad.inspect(note).get_indicator(abjad.LilyPondCommand)
+    assert result is command
 
 
 def test_agenttools_InspectionAgent_get_indicator_06():
 
-    note = Note("c'8")
-    articulation = Articulation('staccato')
-    attach(articulation, note)
+    note = abjad.Note("c'8")
 
-    assert inspect_(note).get_indicator(Articulation) is articulation
+    assert abjad.inspect(note).get_indicator(abjad.LilyPondCommand) is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_07():
 
-    note = Note("c'8")
+    note = abjad.Note("c'8")
+    command = abjad.LilyPondCommand('stemUp')
+    abjad.attach(command, note)
+    command = abjad.LilyPondCommand('slurUp')
+    abjad.attach(command, note)
 
-    assert inspect_(note).get_indicator(Articulation) is None
+    statement = 'inspect(note).get_indicator(abjad.LilyPondCommand)'
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_indicator_08():
 
-    note = Note("c'8")
-    articulation = Articulation('staccato')
-    attach(articulation, note)
-    articulation = Articulation('marcato')
-    attach(articulation, note)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    slur = abjad.Slur()
+    abjad.attach(slur, staff[:])
+    command_1 = abjad.LilyPondCommand('slurDotted')
+    abjad.attach(command_1, staff[0])
+    command_2 = abjad.LilyPondCommand('slurUp')
+    abjad.attach(command_2, staff[0])
 
-    statement = 'inspect_(note).get_indicator(Articulation)'
-    assert pytest.raises(Exception, statement)
-
-
-def test_agenttools_InspectionAgent_get_indicator_09():
-
-    note = Note("c'8")
-    command = indicatortools.LilyPondCommand('stemUp')
-    attach(command, note)
-
-    result = inspect_(note).get_indicator(indicatortools.LilyPondCommand)
-    assert result is command
-
-
-def test_agenttools_InspectionAgent_get_indicator_10():
-
-    note = Note("c'8")
-
-    assert inspect_(note).get_indicator(indicatortools.LilyPondCommand) is None
-
-
-def test_agenttools_InspectionAgent_get_indicator_11():
-
-    note = Note("c'8")
-    command = indicatortools.LilyPondCommand('stemUp')
-    attach(command, note)
-    command = indicatortools.LilyPondCommand('slurUp')
-    attach(command, note)
-
-    statement = 'inspect_(note).get_indicator(indicatortools.LilyPondCommand)'
-    assert pytest.raises(Exception, statement)
-
-
-def test_agenttools_InspectionAgent_get_indicator_12():
-
-    staff = Staff("c'8 d'8 e'8 f'8")
-    slur = Slur()
-    attach(slur, staff[:])
-    command_1 = indicatortools.LilyPondCommand('slurDotted')
-    attach(command_1, staff[0])
-    command_2 = indicatortools.LilyPondCommand('slurUp')
-    attach(command_2, staff[0])
-
-    assert format(staff) == stringtools.normalize(
+    assert format(staff) == abjad.String.normalize(
         r'''
         \new Staff {
             \slurDotted
@@ -135,74 +95,74 @@ def test_agenttools_InspectionAgent_get_indicator_12():
         '''
         )
 
-    indicators = inspect_(staff[0]).get_indicators(
-        indicatortools.LilyPondCommand)
+    indicators = abjad.inspect(staff[0]).get_indicators(
+        abjad.LilyPondCommand)
 
     assert command_1 in indicators
     assert command_2 in indicators
     assert len(indicators) == 2
 
 
-def test_agenttools_InspectionAgent_get_indicator_13():
+def test_agenttools_InspectionAgent_get_indicator_09():
 
-    note = Note("c'8")
-    comment = indicatortools.LilyPondComment('comment')
-    attach(comment, note)
+    note = abjad.Note("c'8")
+    comment = abjad.LilyPondComment('comment')
+    abjad.attach(comment, note)
 
-    indicator = inspect_(note).get_indicator(indicatortools.LilyPondComment)
+    indicator = abjad.inspect(note).get_indicator(abjad.LilyPondComment)
     assert indicator is comment
 
 
-def test_agenttools_InspectionAgent_get_indicator_14():
+def test_agenttools_InspectionAgent_get_indicator_10():
 
-    note = Note("c'8")
+    note = abjad.Note("c'8")
 
-    assert inspect_(note).get_indicator(indicatortools.LilyPondComment) is None
+    assert abjad.inspect(note).get_indicator(abjad.LilyPondComment) is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_15():
+def test_agenttools_InspectionAgent_get_indicator_11():
 
-    note = Note("c'8")
-    comment = indicatortools.LilyPondComment('comment')
-    attach(comment, note)
-    comment = indicatortools.LilyPondComment('another comment')
-    attach(comment, note)
+    note = abjad.Note("c'8")
+    comment = abjad.LilyPondComment('comment')
+    abjad.attach(comment, note)
+    comment = abjad.LilyPondComment('another comment')
+    abjad.attach(comment, note)
 
-    statement = 'inspect_(note).get_indicator(indicatortools.LilyPondComment)'
+    statement = 'inspect(note).get_indicator(abjad.LilyPondComment)'
     assert pytest.raises(Exception, statement)
 
 
-def test_agenttools_InspectionAgent_get_indicator_16():
+def test_agenttools_InspectionAgent_get_indicator_12():
 
-    note = Note("c'8")
+    note = abjad.Note("c'8")
 
-    assert inspect_(note).get_indicator() is None
+    assert abjad.inspect(note).get_indicator() is None
 
 
-def test_agenttools_InspectionAgent_get_indicator_17():
+def test_agenttools_InspectionAgent_get_indicator_13():
 
-    note = Note("c'4")
-    stem_tremolo = indicatortools.StemTremolo(16)
-    attach(stem_tremolo, note)
-    stem_tremolo = inspect_(note).get_indicator(indicatortools.StemTremolo)
+    note = abjad.Note("c'4")
+    stem_tremolo = abjad.StemTremolo(16)
+    abjad.attach(stem_tremolo, note)
+    stem_tremolo = abjad.inspect(note).get_indicator(abjad.StemTremolo)
 
     assert stem_tremolo is stem_tremolo
 
 
-def test_agenttools_InspectionAgent_get_indicator_18():
+def test_agenttools_InspectionAgent_get_indicator_14():
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    violin = instrumenttools.Violin()
-    attach(violin, staff)
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    violin = abjad.instrumenttools.Violin()
+    abjad.attach(violin, staff[0])
 
-    indicator = inspect_(staff).get_indicator(instrumenttools.Instrument)
+    indicator = abjad.inspect(staff[0]).get_indicator(abjad.Instrument)
 
     assert indicator is violin
 
 
-def test_agenttools_InspectionAgent_get_indicator_19():
+def test_agenttools_InspectionAgent_get_indicator_15():
 
-    measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    indicator = inspect_(measure).get_indicator(TimeSignature)
+    measure = abjad.Measure((4, 8), "c'8 d'8 e'8 f'8")
+    indicator = abjad.inspect(measure).get_indicator(abjad.TimeSignature)
 
-    assert indicator == TimeSignature((4, 8))
+    assert indicator == abjad.TimeSignature((4, 8))

@@ -4,17 +4,21 @@
 def detach(prototype, component_expression=None):
     r'''Detaches `prototype` indicators from `component_expression`.
 
+    ::
+
+        >>> import abjad
+
     ..  container:: example
 
         Detaches articulations from first note in staff:
 
         ::
 
-            >>> staff = Staff("c'4 d' e' f'")
-            >>> attach(Articulation('>'), staff[0])
+            >>> staff = abjad.Staff("c'4 d' e' f'")
+            >>> abjad.attach(abjad.Articulation('>'), staff[0])
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -26,11 +30,11 @@ def detach(prototype, component_expression=None):
 
         ::
 
-            >>> detach(Articulation, staff[0])
+            >>> abjad.detach(abjad.Articulation, staff[0])
             (Articulation('>'),)
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest::
+        ..  docs::
 
             >>> f(staff)
             \new Staff {
@@ -42,58 +46,67 @@ def detach(prototype, component_expression=None):
 
     Returns tuple of zero or more detached items.
     '''
-    from abjad.tools import scoretools
-    from abjad.tools import spannertools
-    from abjad.tools import topleveltools
-    if isinstance(prototype, spannertools.Spanner):
+    import abjad
+    if isinstance(prototype, abjad.Spanner):
         prototype._detach()
         return
     assert component_expression is not None
+    after_grace_container = None
+    grace_container = None
     spanners = []
-    grace_containers = []
-    inspector = topleveltools.inspect_(component_expression)
+    inspector = abjad.inspect(component_expression)
     if isinstance(prototype, type):
-        if issubclass(prototype, spannertools.Spanner):
+        if issubclass(prototype, abjad.Spanner):
             spanners = inspector.get_spanners(prototype)
-        elif issubclass(prototype, scoretools.GraceContainer):
-            grace_containers = inspector.get_grace_containers(prototype)
+        elif issubclass(prototype, abjad.AfterGraceContainer):
+            after_grace_container = inspector.get_after_grace_container()
+        elif issubclass(prototype, abjad.GraceContainer):
+            grace_container = inspector.get_grace_container()
         else:
-            assert hasattr(component_expression, '_indicator_expressions')
+            assert hasattr(component_expression, '_indicator_wrappers')
             result = []
-            for x in component_expression._indicator_expressions[:]:
-                if isinstance(x, prototype):
-                    component_expression._indicator_expressions.remove(x)
-                    result.append(x)
+            for item in component_expression._indicator_wrappers[:]:
+                if isinstance(item, prototype):
+                    component_expression._indicator_wrappers.remove(item)
+                    result.append(item)
                 # indicator is a expression
-                elif (hasattr(x, 'indicator') and
-                    isinstance(x.indicator, prototype)):
-                    x._detach()
-                    result.append(x.indicator)
+                elif (
+                    hasattr(item, '_indicator') and
+                    isinstance(item.indicator, prototype)
+                    ):
+                    item._detach()
+                    result.append(item.indicator)
             result = tuple(result)
             return result
     else:
-        if isinstance(prototype, spannertools.Spanner):
+        if isinstance(prototype, abjad.Spanner):
             spanners = inspector.get_spanners(prototype)
-        elif isinstance(prototype, scoretools.GraceContainer):
-            grace_containers = inspector.get_grace_containers(
-                kind=prototype.kind,
-                )
+        elif isinstance(prototype, abjad.AfterGraceContainer):
+            after_grace_container = inspector.get_after_grace_container()
+        elif isinstance(prototype, abjad.GraceContainer):
+            grace_container = inspector.get_grace_container()
         else:
-            assert hasattr(component_expression, '_indicator_expressions')
+            assert hasattr(component_expression, '_indicator_wrappers')
             result = []
-            for x in component_expression._indicator_expressions[:]:
-                if x == prototype:
-                    component_expression._indicator_expressions.remove(x)
-                    result.append(x)
+            for item in component_expression._indicator_wrappers[:]:
+                if item == prototype:
+                    component_expression._indicator_wrappers.remove(item)
+                    result.append(item)
                 # indicator is an expression
-                elif hasattr(x, 'indicator') and x.indicator == prototype:
-                    x._detach()
-                    result.append(x.indicator)
+                elif (
+                    hasattr(item, '_indicator') and
+                    item.indicator == prototype
+                    ):
+                    item._detach()
+                    result.append(item.indicator)
             result = tuple(result)
             return result
     items = []
     items.extend(spanners)
-    items.extend(grace_containers)
+    if after_grace_container is not None:
+        items.append(after_grace_container)
+    if grace_container is not None:
+        items.append(grace_container)
     for item in items:
         item._detach()
     items = tuple(items)
