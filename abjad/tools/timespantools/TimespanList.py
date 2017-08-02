@@ -397,14 +397,17 @@ class TimespanList(TypedList):
 
     @property
     def _item_coercer(self):
-        from abjad.tools import timespantools
         def _coerce(argument):
-            if isinstance(argument, timespantools.Timespan):
+            if timespantools.Timespan._implements_timespan_interface(argument):
+                return argument
+            elif isinstance(argument, timespantools.Timespan):
                 return argument
             elif isinstance(argument, tuple) and len(argument) == 2:
                 return timespantools.Timespan(*argument)
             else:
                 return timespantools.Timespan(argument)
+
+        from abjad.tools import timespantools
         return _coerce
 
     ### PRIVATE METHODS ###
@@ -742,7 +745,7 @@ class TimespanList(TypedList):
     @property
     def duration(self):
         r'''Gets duration of timespan list.
-        
+
         ..  container:: example
 
             Gets duration:
@@ -854,7 +857,7 @@ class TimespanList(TypedList):
     @property
     def start_offset(self):
         r'''Gets start offset.
-        
+
         Defined equal to earliest start offset of any timespan in list.
 
         ..  container:: example
@@ -915,7 +918,7 @@ class TimespanList(TypedList):
     @property
     def stop_offset(self):
         r'''Gets stop offset.
-        
+
         Defined equal to latest stop offset of any timespan.
 
         ..  container:: example
@@ -1090,7 +1093,7 @@ class TimespanList(TypedList):
                 >>> show(timespans, scale=0.5) # doctest: +SKIP
 
             ::
-            
+
                 >>> result = timespans.clip_timespan_durations(
                 ...     maximum=5,
                 ...     )
@@ -1493,7 +1496,7 @@ class TimespanList(TypedList):
             ::
 
                 >>> timespans
-                TimespanList([]) 
+                TimespanList([])
 
         ..  container:: example
 
@@ -1597,7 +1600,7 @@ class TimespanList(TypedList):
         ..  container:: example
 
             Computes logical XOR:
-            
+
             ::
 
                 >>> timespans = abjad.TimespanList([

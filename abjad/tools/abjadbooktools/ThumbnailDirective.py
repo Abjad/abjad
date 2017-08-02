@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from sphinx.util.compat import Directive
+from docutils.parsers.rst import Directive
 from docutils.parsers.rst import directives
 
 

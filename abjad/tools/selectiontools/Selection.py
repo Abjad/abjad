@@ -6,7 +6,6 @@ import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import systemtools
-from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import select
@@ -2085,5 +2084,6 @@ class Selection(object):
                 result.append(components_copy)
         result = [abjad.select(_) for _ in result]
         return result
+
 
 collections.Sequence.register(Selection)

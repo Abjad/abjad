@@ -184,6 +184,13 @@ class PitchClass(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __float__(self):
+        r'''Coerce to float.
+
+        Returns float.
+        '''
+        return float(self.number)
+
     def __format__(self, format_specification=''):
         r'''Formats pitch-class.
 

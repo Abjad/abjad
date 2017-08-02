@@ -23,18 +23,16 @@ class TwoStaffPianoScoreTemplate(AbjadValueObject):
             >>> f(score)
             \context Score = "Two-Staff Piano Score" <<
                 \context PianoStaff = "Piano Staff" <<
+                    \set PianoStaff.instrumentName = \markup { Piano }
+                    \set PianoStaff.shortInstrumentName = \markup { Pf. }
                     \context Staff = "RH Staff" {
+                        \clef "treble"
                         \context Voice = "RH Voice" {
-                            \clef "treble"
-                            \set PianoStaff.instrumentName = \markup { Piano }
-                            \set PianoStaff.shortInstrumentName = \markup { Pf. }
-                            s1
                         }
                     }
                     \context Staff = "LH Staff" {
+                        \clef "bass"
                         \context Voice = "LH Voice" {
-                            \clef "bass"
-                            s1
                         }
                     }
                 >>
@@ -69,7 +67,7 @@ class TwoStaffPianoScoreTemplate(AbjadValueObject):
 
         # make RH voice and staff
         rh_voice = abjad.Voice(
-            [abjad.Skip('s1')],
+            [],
             name='RH Voice',
             )
         rh_staff = abjad.Staff(
@@ -77,12 +75,11 @@ class TwoStaffPianoScoreTemplate(AbjadValueObject):
             name='RH Staff',
             )
         clef = abjad.Clef('treble')
-        leaf = abjad.inspect(rh_staff).get_leaf(0)
-        abjad.attach(clef, leaf)
+        abjad.attach(clef, rh_staff)
 
         # make LH voice and staff
         lh_voice = abjad.Voice(
-            [abjad.Skip('s1')],
+            [],
             name='LH Voice',
             )
         lh_staff = abjad.Staff(
@@ -90,8 +87,7 @@ class TwoStaffPianoScoreTemplate(AbjadValueObject):
             name='LH Staff',
             )
         clef = abjad.Clef('bass')
-        leaf = abjad.inspect(lh_staff).get_leaf(0)
-        abjad.attach(clef, leaf)
+        abjad.attach(clef, lh_staff)
 
         # make piano staff
         staff_group = abjad.StaffGroup(
@@ -100,8 +96,7 @@ class TwoStaffPianoScoreTemplate(AbjadValueObject):
             name='Piano Staff',
             )
         piano = abjad.instrumenttools.Piano()
-        leaf = abjad.inspect(staff_group).get_leaf(0)
-        abjad.attach(piano, leaf)
+        abjad.attach(piano, staff_group)
 
         # make two-staf piano score
         two_staff_piano_score = abjad.Score(

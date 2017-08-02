@@ -317,16 +317,17 @@ class PatternList(TypedTuple):
 
     @property
     def _item_coercer(self):
-        import abjad
-        from abjad.tools import rhythmmakertools
-        prototype = (
-            rhythmmakertools.SilenceMask,
-            rhythmmakertools.SustainMask,
-            )
         def coerce_(argument):
             if isinstance(argument, prototype):
                 pass
             elif not isinstance(argument, abjad.Pattern):
                 argument = abjad.Pattern(*argument)
             return argument
+
+        import abjad
+        from abjad.tools import rhythmmakertools
+        prototype = (
+            rhythmmakertools.SilenceMask,
+            rhythmmakertools.SustainMask,
+            )
         return coerce_

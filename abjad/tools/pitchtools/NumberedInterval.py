@@ -166,6 +166,13 @@ class NumberedInterval(Interval):
         '''
         return super(NumberedInterval, self).__eq__(argument)
 
+    def __float__(self):
+        r'''Coerce to float.
+
+        Returns float.
+        '''
+        return float(self._number)
+
     def __hash__(self):
         r'''Hashes numbered interval.
 
@@ -369,7 +376,7 @@ class NumberedInterval(Interval):
             ::
 
                 >>> abjad.NumberedInterval(0).number
-                0 
+                0
 
         Returns number.
         '''
@@ -520,8 +527,8 @@ class NumberedInterval(Interval):
         '''
         from abjad.tools import pitchtools
         direction_number = mathtools.sign(self.number)
+        quality_string = None
         if staff_positions == 1:
-            quality_string = None
             if self.number % 12 == 11:
                 quality_string = 'augmented'
             elif self.number % 12 == 0:
@@ -615,6 +622,13 @@ class NumberedInterval(Interval):
                 quality_string = 'augmented'
         if not direction_number == 0:
             staff_positions *= direction_number
+        if quality_string is None:
+            # TODO: It is possible to for quality string to *never* get set to
+            #       anything, generally during inversion with double-sharps or
+            #       double-flats. This suite provides a sane result.
+            #       Don't remove it - fix whatever's allowing quality string to
+            #       remain unset.
+            return pitchtools.NamedInterval(self.number)
         named_interval = pitchtools.NamedInterval.from_quality_and_number(
             quality_string,
             staff_positions,

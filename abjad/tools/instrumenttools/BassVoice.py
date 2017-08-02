@@ -27,9 +27,9 @@ class BassVoice(Instrument):
 
             >>> f(staff)
             \new Staff {
-                \clef "bass"
                 \set Staff.instrumentName = \markup { Bass }
                 \set Staff.shortInstrumentName = \markup { Bass }
+                \clef "bass"
                 c4
                 d4
                 e4

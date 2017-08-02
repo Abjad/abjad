@@ -4,6 +4,9 @@
 def attach(
     indicator,
     argument,
+    is_piecewise=None,
+    is_annotation=None,
+    name=None,
     scope=None,
     synthetic_offset=None,
     ):
@@ -95,8 +98,6 @@ def attach(
 #        message = message.format(indicator, argument)
 #        raise Exception(message)
 
-    name = None
-
     if hasattr(indicator, '_attachment_test_all'):
         if not indicator._attachment_test_all(argument):
             message = '{!r} attachment test fails for {!r}.'
@@ -135,8 +136,6 @@ def attach(
         message = message.format(component)
         raise Exception(message)
 
-    is_piecewise = None
-    is_annotation = None
     if isinstance(indicator, abjad.IndicatorWrapper):
         is_annotation = is_annotation or indicator.is_annotation
         is_piecewise = indicator.is_piecewise

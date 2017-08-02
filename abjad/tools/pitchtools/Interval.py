@@ -2,15 +2,13 @@
 import abc
 import functools
 import re
-from abjad.tools import mathtools
-from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 
 @functools.total_ordering
 class Interval(AbjadValueObject):
     '''Abstract interval.
-    
+
     ::
         >>> import abjad
 
@@ -61,6 +59,13 @@ class Interval(AbjadValueObject):
         Returns new interval.
         '''
         return type(self)(abs(self.number))
+
+    def __float__(self):
+        r'''Coerce to float.
+
+        Returns float.
+        '''
+        return float(self.number)
 
     @abc.abstractmethod
     def __lt__(self, argument):

@@ -134,7 +134,7 @@ class PitchSet(Set):
                 ...     )
 
             ::
-            
+
                 >>> show(set_) # doctest: +SKIP
 
             ..  docs::
@@ -168,7 +168,7 @@ class PitchSet(Set):
                 ...     )
 
             ::
-            
+
                 >>> show(set_) # doctest: +SKIP
 
             ..  docs::
@@ -255,7 +255,7 @@ class PitchSet(Set):
             abjad.NamedPitch(self[0], 4)
             )
         new_pitches = (x + difference for x in self)
-        new_pitches = abjad.new(self, items=new_pitch)
+        new_pitches = abjad.new(self, items=new_pitches)
         return argument == new_pitches
 
     def _sort_self(self):

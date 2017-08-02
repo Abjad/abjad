@@ -3,7 +3,7 @@ import os
 import subprocess
 import sys
 from docutils import nodes
-from sphinx.util.compat import Directive
+from docutils.parsers.rst import Directive
 from sphinx.util.nodes import set_source_info
 
 

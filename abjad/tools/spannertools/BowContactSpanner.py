@@ -64,7 +64,6 @@ class BowContactSpanner(Spanner):
                 \override Stem.stem-begin-position = #-9
                 \override TimeSignature.stencil = ##f
             } {
-                \clef "percussion"
                 \once \override Glissando.style = #'dotted-line
                 \once \override NoteHead.Y-offset = -1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
@@ -75,6 +74,7 @@ class BowContactSpanner(Spanner):
                                 1
                                 4
                     }
+                \clef "percussion"
                 c'4. ^\downbow \glissando
                 \once \override NoteHead.Y-offset = 1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
@@ -175,8 +175,8 @@ class BowContactSpanner(Spanner):
                 \override Stem.stem-begin-position = #-9
                 \override TimeSignature.stencil = ##f
             } {
-                \clef "percussion"
                 \once \override NoteHead.style = #'cross
+                \clef "percussion"
                 c'4
                 \once \override NoteHead.Y-offset = 1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print

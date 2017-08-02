@@ -16,7 +16,6 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
 
             >>> template = abjad.templatetools.StringOrchestraScoreTemplate()
             >>> score = template()
-            >>> show(score) # doctest: +SKIP
 
         ::
 
@@ -27,204 +26,189 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
                 }
                 \context StaffGroup = "Outer Staff Group" <<
                     \context ViolinStaffGroup = "Violin Staff Group" <<
+                        \tag #'Violin1
                         \context StringPerformerStaffGroup = "Violin 1 Staff Group" <<
                             \context BowingStaff = "Violin 1 Bowing Staff" <<
                                 \context BowingVoice = "Violin 1 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Violin 1 Fingering Staff" <<
+                                \clef "treble"
                                 \context FingeringVoice = "Violin 1 Fingering Voice" {
-                                    \clef "treble"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Violin2
                         \context StringPerformerStaffGroup = "Violin 2 Staff Group" <<
                             \context BowingStaff = "Violin 2 Bowing Staff" <<
                                 \context BowingVoice = "Violin 2 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Violin 2 Fingering Staff" <<
+                                \clef "treble"
                                 \context FingeringVoice = "Violin 2 Fingering Voice" {
-                                    \clef "treble"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Violin3
                         \context StringPerformerStaffGroup = "Violin 3 Staff Group" <<
                             \context BowingStaff = "Violin 3 Bowing Staff" <<
                                 \context BowingVoice = "Violin 3 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Violin 3 Fingering Staff" <<
+                                \clef "treble"
                                 \context FingeringVoice = "Violin 3 Fingering Voice" {
-                                    \clef "treble"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Violin4
                         \context StringPerformerStaffGroup = "Violin 4 Staff Group" <<
                             \context BowingStaff = "Violin 4 Bowing Staff" <<
                                 \context BowingVoice = "Violin 4 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Violin 4 Fingering Staff" <<
+                                \clef "treble"
                                 \context FingeringVoice = "Violin 4 Fingering Voice" {
-                                    \clef "treble"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Violin5
                         \context StringPerformerStaffGroup = "Violin 5 Staff Group" <<
                             \context BowingStaff = "Violin 5 Bowing Staff" <<
                                 \context BowingVoice = "Violin 5 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Violin 5 Fingering Staff" <<
+                                \clef "treble"
                                 \context FingeringVoice = "Violin 5 Fingering Voice" {
-                                    \clef "treble"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Violin6
                         \context StringPerformerStaffGroup = "Violin 6 Staff Group" <<
                             \context BowingStaff = "Violin 6 Bowing Staff" <<
                                 \context BowingVoice = "Violin 6 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Violin 6 Fingering Staff" <<
+                                \clef "treble"
                                 \context FingeringVoice = "Violin 6 Fingering Voice" {
-                                    \clef "treble"
-                                    s1
                                 }
                             >>
                         >>
                     >>
                     \context ViolaStaffGroup = "Viola Staff Group" <<
+                        \tag #'Viola1
                         \context StringPerformerStaffGroup = "Viola 1 Staff Group" <<
                             \context BowingStaff = "Viola 1 Bowing Staff" <<
                                 \context BowingVoice = "Viola 1 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Viola 1 Fingering Staff" <<
+                                \clef "alto"
                                 \context FingeringVoice = "Viola 1 Fingering Voice" {
-                                    \clef "alto"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Viola2
                         \context StringPerformerStaffGroup = "Viola 2 Staff Group" <<
                             \context BowingStaff = "Viola 2 Bowing Staff" <<
                                 \context BowingVoice = "Viola 2 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Viola 2 Fingering Staff" <<
+                                \clef "alto"
                                 \context FingeringVoice = "Viola 2 Fingering Voice" {
-                                    \clef "alto"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Viola3
                         \context StringPerformerStaffGroup = "Viola 3 Staff Group" <<
                             \context BowingStaff = "Viola 3 Bowing Staff" <<
                                 \context BowingVoice = "Viola 3 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Viola 3 Fingering Staff" <<
+                                \clef "alto"
                                 \context FingeringVoice = "Viola 3 Fingering Voice" {
-                                    \clef "alto"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Viola4
                         \context StringPerformerStaffGroup = "Viola 4 Staff Group" <<
                             \context BowingStaff = "Viola 4 Bowing Staff" <<
                                 \context BowingVoice = "Viola 4 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Viola 4 Fingering Staff" <<
+                                \clef "alto"
                                 \context FingeringVoice = "Viola 4 Fingering Voice" {
-                                    \clef "alto"
-                                    s1
                                 }
                             >>
                         >>
                     >>
                     \context CelloStaffGroup = "Cello Staff Group" <<
+                        \tag #'Cello1
                         \context StringPerformerStaffGroup = "Cello 1 Staff Group" <<
                             \context BowingStaff = "Cello 1 Bowing Staff" <<
                                 \context BowingVoice = "Cello 1 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Cello 1 Fingering Staff" <<
+                                \clef "bass"
                                 \context FingeringVoice = "Cello 1 Fingering Voice" {
-                                    \clef "bass"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Cello2
                         \context StringPerformerStaffGroup = "Cello 2 Staff Group" <<
                             \context BowingStaff = "Cello 2 Bowing Staff" <<
                                 \context BowingVoice = "Cello 2 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Cello 2 Fingering Staff" <<
+                                \clef "bass"
                                 \context FingeringVoice = "Cello 2 Fingering Voice" {
-                                    \clef "bass"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Cello3
                         \context StringPerformerStaffGroup = "Cello 3 Staff Group" <<
                             \context BowingStaff = "Cello 3 Bowing Staff" <<
                                 \context BowingVoice = "Cello 3 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Cello 3 Fingering Staff" <<
+                                \clef "bass"
                                 \context FingeringVoice = "Cello 3 Fingering Voice" {
-                                    \clef "bass"
-                                    s1
                                 }
                             >>
                         >>
                     >>
                     \context ContrabassStaffGroup = "Contrabass Staff Group" <<
+                        \tag #'Contrabass1
                         \context StringPerformerStaffGroup = "Contrabass 1 Staff Group" <<
                             \context BowingStaff = "Contrabass 1 Bowing Staff" <<
                                 \context BowingVoice = "Contrabass 1 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Contrabass 1 Fingering Staff" <<
+                                \clef "bass_8"
                                 \context FingeringVoice = "Contrabass 1 Fingering Voice" {
-                                    \clef "bass_8"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Contrabass2
                         \context StringPerformerStaffGroup = "Contrabass 2 Staff Group" <<
                             \context BowingStaff = "Contrabass 2 Bowing Staff" <<
                                 \context BowingVoice = "Contrabass 2 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Contrabass 2 Fingering Staff" <<
+                                \clef "bass_8"
                                 \context FingeringVoice = "Contrabass 2 Fingering Voice" {
-                                    \clef "bass_8"
-                                    s1
                                 }
                             >>
                         >>
@@ -246,7 +230,6 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
             ...     contrabass_count=0,
             ...     )
             >>> score = template()
-            >>> show(score) # doctest: +SKIP
 
         ::
 
@@ -257,59 +240,55 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
                 }
                 \context StaffGroup = "Outer Staff Group" <<
                     \context ViolinStaffGroup = "Violin Staff Group" <<
+                        \tag #'Violin1
                         \context StringPerformerStaffGroup = "Violin 1 Staff Group" <<
                             \context BowingStaff = "Violin 1 Bowing Staff" <<
                                 \context BowingVoice = "Violin 1 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Violin 1 Fingering Staff" <<
+                                \clef "treble"
                                 \context FingeringVoice = "Violin 1 Fingering Voice" {
-                                    \clef "treble"
-                                    s1
                                 }
                             >>
                         >>
+                        \tag #'Violin2
                         \context StringPerformerStaffGroup = "Violin 2 Staff Group" <<
                             \context BowingStaff = "Violin 2 Bowing Staff" <<
                                 \context BowingVoice = "Violin 2 Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Violin 2 Fingering Staff" <<
+                                \clef "treble"
                                 \context FingeringVoice = "Violin 2 Fingering Voice" {
-                                    \clef "treble"
-                                    s1
                                 }
                             >>
                         >>
                     >>
                     \context ViolaStaffGroup = "Viola Staff Group" <<
+                        \tag #'Viola
                         \context StringPerformerStaffGroup = "Viola Staff Group" <<
                             \context BowingStaff = "Viola Bowing Staff" <<
                                 \context BowingVoice = "Viola Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Viola Fingering Staff" <<
+                                \clef "alto"
                                 \context FingeringVoice = "Viola Fingering Voice" {
-                                    \clef "alto"
-                                    s1
                                 }
                             >>
                         >>
                     >>
                     \context CelloStaffGroup = "Cello Staff Group" <<
+                        \tag #'Cello
                         \context StringPerformerStaffGroup = "Cello Staff Group" <<
                             \context BowingStaff = "Cello Bowing Staff" <<
                                 \context BowingVoice = "Cello Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Cello Fingering Staff" <<
+                                \clef "bass"
                                 \context FingeringVoice = "Cello Fingering Voice" {
-                                    \clef "bass"
-                                    s1
                                 }
                             >>
                         >>
@@ -341,16 +320,15 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
                 }
                 \context StaffGroup = "Outer Staff Group" <<
                     \context CelloStaffGroup = "Cello Staff Group" <<
+                        \tag #'Cello
                         \context StringPerformerStaffGroup = "Cello Staff Group" <<
                             \context BowingStaff = "Cello Bowing Staff" <<
                                 \context BowingVoice = "Cello Bowing Voice" {
-                                    s1
                                 }
                             >>
                             \context FingeringStaff = "Cello Fingering Staff" <<
+                                \clef "bass"
                                 \context FingeringVoice = "Cello Fingering Voice" {
-                                    \clef "bass"
-                                    s1
                                 }
                             >>
                         >>
@@ -561,10 +539,10 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
             tag_string,
             'before',
             )
-        #abjad.attach(tag_command, staff_group)
+        abjad.attach(tag_command, staff_group)
         if self.split_hands:
             lh_voice = abjad.Voice(
-                [abjad.Skip('s1')],
+                [],
                 context_name='FingeringVoice',
                 name='{} Fingering Voice'.format(name),
                 )
@@ -578,11 +556,10 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
                 name='{} Fingering Staff'.format(name),
                 )
             lh_staff.is_simultaneous = True
-            leaf = abjad.inspect(lh_staff).get_leaf(0)
-            abjad.attach(pitch_range, leaf)
-            abjad.attach(abjad.Clef(clef_name), leaf)
+            abjad.attach(pitch_range, lh_staff)
+            abjad.attach(abjad.Clef(clef_name), lh_staff)
             rh_voice = abjad.Voice(
-                [abjad.Skip('s1')],
+                [],
                 context_name='BowingVoice',
                 name='{} Bowing Voice'.format(name),
                 )
@@ -599,7 +576,7 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
             staff_group.extend([rh_staff, lh_staff])
         else:
             lh_voice = abjad.Voice(
-                [abjad.Skip('s1')],
+                [],
                 context_name='FingeringVoice',
                 name='{} Voice'.format(name),
                 )
@@ -611,9 +588,8 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
                 name='{} Staff'.format(name),
                 )
             lh_staff.is_simultaneous = True
-            leaf = abjad.inspect(lh_staff).get_leaf(0)
-            abjad.attach(pitch_range, leaf)
-            abjad.attach(abjad.Clef(clef_name), leaf)
+            abjad.attach(pitch_range, lh_staff)
+            abjad.attach(abjad.Clef(clef_name), lh_staff)
             staff_group.append(lh_staff)
         return staff_group, tag_name
 

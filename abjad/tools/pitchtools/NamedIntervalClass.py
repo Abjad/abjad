@@ -175,6 +175,13 @@ class NamedIntervalClass(IntervalClass):
         '''
         return super(NamedIntervalClass, self).__eq__(argument)
 
+    def __float__(self):
+        r'''Coerce to float.
+
+        Returns float.
+        '''
+        return float(self.number)
+
     def __hash__(self):
         r'''Hashes named interval-class.
 

@@ -25,38 +25,34 @@ class StringQuartetScoreTemplate(AbjadValueObject):
                 \context StaffGroup = "String Quartet Staff Group" <<
                     \tag #'first-violin
                     \context Staff = "First Violin Staff" {
+                        \set Staff.instrumentName = \markup { Violin }
+                        \set Staff.shortInstrumentName = \markup { Vn. }
+                        \clef "treble"
                         \context Voice = "First Violin Voice" {
-                            \clef "treble"
-                            \set Staff.instrumentName = \markup { Violin }
-                            \set Staff.shortInstrumentName = \markup { Vn. }
-                            s1
                         }
                     }
                     \tag #'second-violin
                     \context Staff = "Second Violin Staff" {
+                        \set Staff.instrumentName = \markup { Violin }
+                        \set Staff.shortInstrumentName = \markup { Vn. }
+                        \clef "treble"
                         \context Voice = "Second Violin Voice" {
-                            \clef "treble"
-                            \set Staff.instrumentName = \markup { Violin }
-                            \set Staff.shortInstrumentName = \markup { Vn. }
-                            s1
                         }
                     }
                     \tag #'viola
                     \context Staff = "Viola Staff" {
+                        \set Staff.instrumentName = \markup { Viola }
+                        \set Staff.shortInstrumentName = \markup { Va. }
+                        \clef "alto"
                         \context Voice = "Viola Voice" {
-                            \clef "alto"
-                            \set Staff.instrumentName = \markup { Viola }
-                            \set Staff.shortInstrumentName = \markup { Va. }
-                            s1
                         }
                     }
                     \tag #'cello
                     \context Staff = "Cello Staff" {
+                        \set Staff.instrumentName = \markup { Cello }
+                        \set Staff.shortInstrumentName = \markup { Vc. }
+                        \clef "bass"
                         \context Voice = "Cello Voice" {
-                            \clef "bass"
-                            \set Staff.instrumentName = \markup { Cello }
-                            \set Staff.shortInstrumentName = \markup { Vc. }
-                            s1
                         }
                     }
                 >>
@@ -93,69 +89,65 @@ class StringQuartetScoreTemplate(AbjadValueObject):
 
         # make first violin voice and staff
         first_violin_voice = abjad.Voice(
-            [abjad.Skip('s1')],
+            [],
             name='First Violin Voice',
             )
         first_violin_staff = abjad.Staff(
             [first_violin_voice],
             name='First Violin Staff',
             )
-        leaf = abjad.inspect(first_violin_staff).get_leaf(0)
         clef = abjad.Clef('treble')
-        abjad.attach(clef, leaf)
+        abjad.attach(clef, first_violin_staff)
         violin = abjad.instrumenttools.Violin()
-        abjad.attach(violin, leaf)
+        abjad.attach(violin, first_violin_staff)
         tag = abjad.LilyPondCommand("tag #'first-violin", 'before')
         abjad.attach(tag, first_violin_staff)
 
         # make second violin voice and staff
         second_violin_voice = abjad.Voice(
-            [abjad.Skip('s1')],
+            [],
             name='Second Violin Voice',
             )
         second_violin_staff = abjad.Staff(
             [second_violin_voice],
             name='Second Violin Staff',
             )
-        leaf = abjad.inspect(second_violin_staff).get_leaf(0)
         clef = abjad.Clef('treble')
-        abjad.attach(clef, leaf)
+        abjad.attach(clef, second_violin_staff)
         violin = abjad.instrumenttools.Violin()
-        abjad.attach(violin, leaf)
+        abjad.attach(violin, second_violin_staff)
         tag = abjad.LilyPondCommand("tag #'second-violin", 'before')
         abjad.attach(tag, second_violin_staff)
 
         # make viola voice and staff
         viola_voice = abjad.Voice(
-            [abjad.Skip('s1')],
+            [],
             name='Viola Voice',
             )
         viola_staff = abjad.Staff(
             [viola_voice],
             name='Viola Staff',
             )
-        leaf = abjad.inspect(viola_staff).get_leaf(0)
         clef = abjad.Clef('alto')
-        abjad.attach(clef, leaf)
+        abjad.attach(clef, viola_staff)
         viola = abjad.instrumenttools.Viola()
-        abjad.attach(viola, leaf)
+        abjad.attach(viola, viola_staff)
         tag = abjad.LilyPondCommand("tag #'viola", 'before')
         abjad.attach(tag, viola_staff)
 
         # make cello voice and staff
         cello_voice = abjad.Voice(
-            [abjad.Skip('s1')],
+            [],
             name='Cello Voice',
             )
         cello_staff = abjad.Staff(
             [cello_voice],
             name='Cello Staff',
             )
-        leaf = abjad.inspect(cello_staff).get_leaf(0)
         clef = abjad.Clef('bass')
-        abjad.attach(clef, leaf)
+        abjad.attach(clef, cello_staff)
         cello = abjad.instrumenttools.Cello()
-        abjad.attach(cello, leaf)
+        abjad.attach(cello, cello_staff)
         tag = abjad.LilyPondCommand("tag #'cello", 'before')
         abjad.attach(tag, cello_staff)
 
