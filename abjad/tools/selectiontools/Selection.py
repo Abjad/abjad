@@ -1054,6 +1054,7 @@ class Selection(object):
     def by_leaf(
         self,
         prototype=None,
+        pitched=None,
         reverse=False,
         start=0,
         stop=None,
@@ -1105,6 +1106,7 @@ class Selection(object):
         Returns new selection.
         '''
         iterator = iterate(self).by_leaf(
+            pitched=pitched,
             prototype=prototype,
             reverse=reverse,
             start=start,
