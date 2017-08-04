@@ -266,12 +266,12 @@ class InspectionAgent(abctools.AbjadObject):
                 ...     clef = agent.get_effective(abjad.Clef)
                 ...     print(leaf, clef)
                 ...
-                Staff("c'4 d'4 e'4 f'4") Clef(name='alto')
-                c'4 Clef(name='alto')
-                d'4 Clef(name='alto')
-                e'4 Clef(name='alto')
-                fs'16 Clef(name='alto')
-                f'4 Clef(name='alto')
+                Staff("c'4 d'4 e'4 f'4") Clef('alto')
+                c'4 Clef('alto')
+                d'4 Clef('alto')
+                e'4 Clef('alto')
+                fs'16 Clef('alto')
+                f'4 Clef('alto')
 
         Returns indicator or none.
         '''
