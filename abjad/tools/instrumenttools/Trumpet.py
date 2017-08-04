@@ -71,7 +71,7 @@ class Trumpet(Instrument):
 
                 >>> trumpet = abjad.instrumenttools.Trumpet()
                 >>> trumpet.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

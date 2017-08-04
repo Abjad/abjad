@@ -84,7 +84,7 @@ class Harp(Instrument):
 
                 >>> harp = abjad.instrumenttools.Harp()
                 >>> harp.allowable_clefs
-                ClefList([Clef(name='treble'), Clef(name='bass')])
+                ClefList([Clef('treble'), Clef('bass')])
 
             ::
 

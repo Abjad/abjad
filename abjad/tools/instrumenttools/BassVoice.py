@@ -74,7 +74,7 @@ class BassVoice(Instrument):
 
                 >>> bass = abjad.instrumenttools.BassVoice()
                 >>> bass.allowable_clefs
-                ClefList([Clef(name='bass')])
+                ClefList([Clef('bass')])
 
             ::
 

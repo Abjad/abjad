@@ -73,7 +73,7 @@ class TenorVoice(Instrument):
 
                 >>> tenor = abjad.instrumenttools.TenorVoice()
                 >>> tenor.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

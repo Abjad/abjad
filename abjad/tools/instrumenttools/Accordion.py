@@ -97,12 +97,8 @@ class Accordion(Instrument):
                         ),
                     allowable_clefs=abjad.instrumenttools.ClefList(
                         [
-                            abjad.Clef(
-                                name='treble',
-                                ),
-                            abjad.Clef(
-                                name='bass',
-                                ),
+                            abjad.Clef('treble'),
+                            abjad.Clef('bass'),
                             ]
                         ),
                     middle_c_sounding_pitch=abjad.NamedPitch("c'"),
@@ -126,7 +122,7 @@ class Accordion(Instrument):
 
                 >>> accordion = abjad.instrumenttools.Accordion()
                 >>> accordion.allowable_clefs
-                ClefList([Clef(name='treble'), Clef(name='bass')])
+                ClefList([Clef('treble'), Clef('bass')])
 
             ::
 

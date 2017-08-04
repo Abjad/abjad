@@ -76,7 +76,7 @@ class BaritoneVoice(Instrument):
 
                 >>> baritone = abjad.instrumenttools.BaritoneVoice()
                 >>> baritone.allowable_clefs
-                ClefList([Clef(name='bass')])
+                ClefList([Clef('bass')])
 
             ::
 

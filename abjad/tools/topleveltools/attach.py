@@ -61,35 +61,35 @@ def attach(
         message = message.format(argument)
         raise TypeError(message)
 
-    # NOTE: uncomment the following when working on #824
-    #       "Restrict attachment to leaves".
-    def _is_acceptable(argument):
-        if isinstance(argument, abjad.Leaf):
-            return True
-        ss = (list, abjad.Selection, abjad.Spanner)
-        if not isinstance(argument, ss):
-            return False
-        for item in argument:
-            if not isinstance(item, abjad.Leaf):
-                return False
-        return True
-    prototype = (
-        str,
-        dict,
-        abjad.IndicatorWrapper,
-        )
-    if (isinstance(indicator, prototype) or
-        getattr(indicator, '_can_attach_to_containers', False)):
-        pass
-    elif (
-        isinstance(indicator, abjad.TimeSignature) and
-        isinstance(argument, abjad.Measure)
-        ):
-        pass
-    elif not _is_acceptable(argument):
-        message = 'attach {!r} to a leaf (or selection of leaves) not to {!r}.'
-        message = message.format(indicator, argument)
-        raise Exception(message)
+#    # NOTE: uncomment the following when working on #824
+#    #       "Restrict attachment to leaves".
+#    def _is_acceptable(argument):
+#        if isinstance(argument, abjad.Leaf):
+#            return True
+#        ss = (list, abjad.Selection, abjad.Spanner)
+#        if not isinstance(argument, ss):
+#            return False
+#        for item in argument:
+#            if not isinstance(item, abjad.Leaf):
+#                return False
+#        return True
+#    prototype = (
+#        str,
+#        dict,
+#        abjad.IndicatorWrapper,
+#        )
+#    if (isinstance(indicator, prototype) or
+#        getattr(indicator, '_can_attach_to_containers', False)):
+#        pass
+#    elif (
+#        isinstance(indicator, abjad.TimeSignature) and
+#        isinstance(argument, abjad.Measure)
+#        ):
+#        pass
+#    elif not _is_acceptable(argument):
+#        message = 'attach {!r} to a leaf (or selection of leaves) not to {!r}.'
+#        message = message.format(indicator, argument)
+#        raise Exception(message)
 
     if hasattr(indicator, '_attachment_test_all'):
         if not indicator._attachment_test_all(argument):

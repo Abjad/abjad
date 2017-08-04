@@ -84,7 +84,7 @@ class Harpsichord(Instrument):
 
                 >>> harpsichord = abjad.instrumenttools.Harpsichord()
                 >>> harpsichord.allowable_clefs
-                ClefList([Clef(name='treble'), Clef(name='bass')])
+                ClefList([Clef('treble'), Clef('bass')])
 
             ::
 

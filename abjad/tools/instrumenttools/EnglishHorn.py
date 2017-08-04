@@ -72,7 +72,7 @@ class EnglishHorn(Instrument):
 
                 >>> english_horn = abjad.instrumenttools.EnglishHorn()
                 >>> english_horn.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

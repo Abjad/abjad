@@ -86,9 +86,7 @@ class AltoSaxophone(Instrument):
                         ),
                     allowable_clefs=abjad.instrumenttools.ClefList(
                         [
-                            abjad.Clef(
-                                name='treble',
-                                ),
+                            abjad.Clef('treble'),
                             ]
                         ),
                     middle_c_sounding_pitch=abjad.NamedPitch('ef'),
@@ -112,7 +110,7 @@ class AltoSaxophone(Instrument):
 
                 >>> alto_saxophone = abjad.instrumenttools.AltoSaxophone()
                 >>> alto_saxophone.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

@@ -31,9 +31,7 @@ class Performer(AbjadValueObject):
                                 ),
                             allowable_clefs=abjad.instrumenttools.ClefList(
                                 [
-                                    abjad.Clef(
-                                        name='treble',
-                                        ),
+                                    abjad.Clef('treble'),
                                     ]
                                 ),
                             middle_c_sounding_pitch=abjad.NamedPitch("c'"),
@@ -50,9 +48,7 @@ class Performer(AbjadValueObject):
                                 ),
                             allowable_clefs=abjad.instrumenttools.ClefList(
                                 [
-                                    abjad.Clef(
-                                        name='treble',
-                                        ),
+                                    abjad.Clef('treble'),
                                     ]
                                 ),
                             middle_c_sounding_pitch=abjad.NamedPitch("c''"),

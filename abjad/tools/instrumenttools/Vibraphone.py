@@ -70,7 +70,7 @@ class Vibraphone(Instrument):
 
                 >>> vibraphone = abjad.instrumenttools.Vibraphone()
                 >>> vibraphone.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

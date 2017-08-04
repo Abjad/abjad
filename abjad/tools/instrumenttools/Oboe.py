@@ -73,7 +73,7 @@ class Oboe(Instrument):
 
                 >>> oboe = abjad.instrumenttools.Oboe()
                 >>> oboe.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

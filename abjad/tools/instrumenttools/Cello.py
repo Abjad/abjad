@@ -81,7 +81,7 @@ class Cello(Instrument):
 
                 >>> cello = abjad.instrumenttools.Cello()
                 >>> cello.allowable_clefs
-                ClefList([Clef(name='bass'), Clef(name='tenor'), Clef(name='treble')])
+                ClefList([Clef('bass'), Clef('tenor'), Clef('treble')])
 
             ::
 

@@ -69,7 +69,7 @@ class Marimba(Instrument):
 
                 >>> marimba = abjad.instrumenttools.Marimba()
                 >>> marimba.allowable_clefs
-                ClefList([Clef(name='treble'), Clef(name='bass')])
+                ClefList([Clef('treble'), Clef('bass')])
 
             ::
 

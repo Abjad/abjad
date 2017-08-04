@@ -9,7 +9,7 @@ class Tuba(Instrument):
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-            >>> clef = abjad.Clef(name='bass')
+            >>> clef = abjad.Clef('bass')
             >>> abjad.attach(clef, staff[0])
             >>> tuba = abjad.instrumenttools.Tuba()
             >>> abjad.attach(tuba, staff[0])
@@ -74,7 +74,7 @@ class Tuba(Instrument):
 
                 >>> tuba = abjad.instrumenttools.Tuba()
                 >>> tuba.allowable_clefs
-                ClefList([Clef(name='bass')])
+                ClefList([Clef('bass')])
 
             ::
 

@@ -81,7 +81,7 @@ class Contrabass(Instrument):
 
                 >>> contrabass = abjad.instrumenttools.Contrabass()
                 >>> contrabass.allowable_clefs
-                ClefList([Clef(name='bass'), Clef(name='treble')])
+                ClefList([Clef('bass'), Clef('treble')])
 
             ::
 

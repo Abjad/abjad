@@ -76,7 +76,7 @@ class Guitar(Instrument):
 
                 >>> guitar = abjad.instrumenttools.Guitar()
                 >>> guitar.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 

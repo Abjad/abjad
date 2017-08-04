@@ -97,7 +97,7 @@ class ClarinetInBFlat(Instrument):
 
                 >>> clarinet = abjad.instrumenttools.ClarinetInBFlat()
                 >>> clarinet.allowable_clefs
-                ClefList([Clef(name='treble')])
+                ClefList([Clef('treble')])
 
             ::
 
