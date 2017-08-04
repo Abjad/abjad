@@ -204,7 +204,7 @@ class Clef(AbjadValueObject):
     def _get_lilypond_format_bundle(self, component=None):
         import abjad
         bundle = abjad.LilyPondFormatBundle()
-        bundle.before.commands.append(self._get_lilypond_format())
+        bundle.opening.commands.append(self._get_lilypond_format())
         return bundle
 
     @classmethod

@@ -489,9 +489,9 @@ class WellformednessManager(AbjadObject):
 
                 >>> f(staff)
                 \new Staff {
-                    \clef "alto"
                     \set Staff.instrumentName = \markup { Violin }
                     \set Staff.shortInstrumentName = \markup { Vn. }
+                    \clef "alto"
                     c'8
                     d'8
                     e'8
@@ -542,9 +542,9 @@ class WellformednessManager(AbjadObject):
 
                 >>> f(staff)
                 \new Staff {
-                    \clef "percussion"
                     \set Staff.instrumentName = \markup { Violin }
                     \set Staff.shortInstrumentName = \markup { Vn. }
+                    \clef "percussion"
                     c'8
                     d'8
                     e'8

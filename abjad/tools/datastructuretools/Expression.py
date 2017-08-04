@@ -277,7 +277,6 @@ class Expression(AbjadValueObject):
                 15
 
         '''
-        import abjad
         if not isinstance(i, Expression):
             proxy_method = self.__getattr__('__add__')
             return proxy_method(i)
@@ -733,7 +732,7 @@ class Expression(AbjadValueObject):
             string_template=string_template,
             subclass_hook=subclass_hook,
             )
-        
+
     @staticmethod
     def _get_callback(callback_name, function, function_self):
         callback = None
@@ -1569,7 +1568,7 @@ class Expression(AbjadValueObject):
 
             ::
 
-                
+
                 >>> callback = abjad.Expression(evaluation_template='int({})')
                 >>> expression = expression.append_callback(callback)
                 >>> for callback in expression.callbacks:
@@ -1648,7 +1647,6 @@ class Expression(AbjadValueObject):
 
         Returns new expression.
         '''
-        import abjad
         template = '{name} = {{}}'
         template = template.format(name=name)
         callback = self.make_callback(

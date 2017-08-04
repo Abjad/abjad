@@ -33,6 +33,7 @@ from abjad.tools import *
 from abjad.tools.abctools import *
 from abjad.tools.agenttools import *
 from abjad.tools.datastructuretools import *
+from abjad.tools.datastructuretools import PatternList
 index = Pattern.index
 index_all = Pattern.index_all
 index_every = Pattern.index_every

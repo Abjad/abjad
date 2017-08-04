@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 from docutils.parsers.rst import directives
-from sphinx.util.compat import Directive
+from docutils.parsers.rst import Directive
 from sphinx.util.nodes import set_source_info
 from docutils.nodes import literal_block
 

@@ -1,9 +1,47 @@
-Abjad 2.20
-    Build start date: 2017-05-03
-    Build complete date:
+Abjad 2.21
+    Build start date: 2017-08-02
+    Build complete date: 2017-08-03
 
     Packaging environment:
-        0. workstation description:
+        1. uname -v: Darwin Kernel Version 16.7.0
+        2. git --version: git version 2.6.3
+        3. python --version: Python 3.6.1
+        4. pip --version: pip 9.0.1
+        5. py.test --version: This is pytest version 3.2.0
+        6. sphinx-build --version: Sphinx (sphinx-build) 1.6.3
+        7. lilypond --version: GNU LilyPond 2.19.44
+        8. convert --version: ImageMagick 7.0.2-1 Q16 x86_64 2016-06-12 http://www.imagemagick.org
+        9. dot -V: graphviz version 2.38.0 (20140413.2041)
+
+    Python 3.6.1 (OSX) test results:
+        1. mainline py.test test results: 9680 passed, 18 skipped
+        2. mainline doctest test results: 16217 passed in 707 modules
+        3. experimental py.test test results: 3 passed, 0 skipped
+        4. experimental doctest test results: 120 passed, 0 failed
+        5. sanity check test results: OK
+        6. experimental HTML build results: OK
+        7. mainline HTML build results: OK
+
+    Python 3.5.2 (Windows) test results:
+        1. mainline py.test test results: 9678 passed, 20 skipped
+        2. mainline doctest test results: 16217 in 707 modules
+        3. experimental py.test test results: 3 passed, 0 skipped
+        4. experimental doctest test results: 120 passed, 0 failed
+        5. sanity check test results: OK
+
+    Python 2.7.12 (OSX) test results:
+        1. mainline py.test test results: 9665 passed, 20 skipped
+        2. mainline doctest test results: 16217 passed in 707 modules
+        3. experimental py.test test results: 3 passed, 0 skipped
+        4. experimental doctest test results: 120 passed, 0 failed
+        5. sanity check test results: OK
+
+
+Abjad 2.20
+    Build start date: 2017-05-03
+    Build complete date: 2017-05-03
+
+    Packaging environment:
         1. uname -v: Darwin Kernel Version 16.5.0
         2. git --version: git version 2.6.3
         3. python --version: Python 3.5.2
@@ -43,7 +81,6 @@ Abjad 2.19
     Build complete date: 2016-10-22
 
     Packaging environment:
-        0. workstation description:
         1. uname -v: Darwin Kernel Version 15.6.0
         2. git --version: git version 2.6.3
         3. python --version: Python 3.5.2
@@ -80,8 +117,7 @@ Abjad 2.19
 
 Abjad 2.18
     Build start date: 2016-07-04
-    Build complete date:
-    MD5 hash of Abjad Github repository: e972e4cb58f2aa488817b3f53ebbbbb711510f50
+    Build complete date: 
 
     Packaging environment:
         0. workstation description: 2.3 GHz Intel Core i7 MacBook Pro / OSX 10.11

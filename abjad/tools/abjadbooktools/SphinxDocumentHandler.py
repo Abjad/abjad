@@ -10,6 +10,7 @@ import posixpath
 import platform
 import re
 import shutil
+import sphinx
 import subprocess
 import sys
 import traceback
@@ -198,7 +199,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             )
         with systemtools.TemporaryDirectoryChange(image_directory):
             svg_paths = glob.glob('graphviz*.svg')
-            for filename in app.builder.status_iterator(
+            for filename in sphinx.util.status_iterator(
                 svg_paths,
                 'cleaning-up svg files (A)...',
                 brown,
@@ -208,7 +209,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         image_directory = os.path.join(image_directory, 'abjadbook')
         with systemtools.TemporaryDirectoryChange(image_directory):
             svg_paths = glob.glob('graphviz*.svg')
-            for filename in app.builder.status_iterator(
+            for filename in sphinx.util.status_iterator(
                 svg_paths,
                 'cleaning-up svg files (B)...',
                 brown,
@@ -239,7 +240,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             app.builder.imagedir,
             )
         thumbnail_paths = app.builder.thumbnails
-        for path in app.builder.status_iterator(
+        for path in sphinx.util.status_iterator(
             thumbnail_paths,
             'rendering gallery thumbnails...',
             brown,
@@ -296,7 +297,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 relative_file_paths.append(relative_file_path)
         if os.path.exists(target_lightbox_path):
             shutil.rmtree(target_lightbox_path)
-        for relative_file_path in app.builder.status_iterator(
+        for relative_file_path in sphinx.util.status_iterator(
             relative_file_paths,
             'installing lightbox files... ',
             brown,
@@ -405,8 +406,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         try:
             handler = SphinxDocumentHandler()
             abjad_blocks = handler.collect_abjad_input_blocks(document)
-            namespace = {}
-            namespace.update(abjad.__dict__)
+            namespace = abjad.__dict__.copy()
+            namespace['abjad'] = abjad
             for module_name in getattr(app.config, 'abjadbook_console_module_names', ()):
                 module = importlib.import_module(module_name)
                 namespace.update(module.__dict__)

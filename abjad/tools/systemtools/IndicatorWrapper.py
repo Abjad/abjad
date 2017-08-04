@@ -268,7 +268,7 @@ class IndicatorWrapper(AbjadValueObject):
         if self.is_annotation:
             return result
         if hasattr(self.indicator, '_get_lilypond_format_bundle'):
-            return self.indicator._get_lilypond_format_bundle()
+            return self.indicator._get_lilypond_format_bundle(self.component)
         lilypond_format = self.indicator._get_lilypond_format()
         if isinstance(lilypond_format, (tuple, list)):
             result.extend(lilypond_format)

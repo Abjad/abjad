@@ -121,9 +121,11 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
             verbose=verbose,
             )
         self._errored = False
+        namespace = abjad.__dict__.copy()
+        namespace['abjad'] = abjad
         console = abjadbooktools.AbjadBookConsole(
             document_handler=self,
-            locals=abjad.__dict__.copy(),
+            locals=namespace,
             )
         output_blocks = self.collect_output_blocks(
             self.input_file_contents,

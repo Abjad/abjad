@@ -27,9 +27,9 @@ class Viola(Instrument):
 
             >>> f(staff)
             \new Staff {
-                \clef "alto"
                 \set Staff.instrumentName = \markup { Viola }
                 \set Staff.shortInstrumentName = \markup { Va. }
+                \clef "alto"
                 c'4
                 d'4
                 e'4

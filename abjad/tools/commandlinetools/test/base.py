@@ -75,13 +75,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                 score = self.score_template()
                 for i in range(self.measure_count):
                     for voice in abjad.iterate(score).by_class(abjad.Voice):
-                        skip = voice[0]
-                        indicators = abjad.inspect(skip).get_indicators()
-                        voice[:] = []
                         measure = abjad.Measure((4, 4), "c'1")
-                        for indicator in indicators:
-                            abjad.detach(indicator, skip)
-                            abjad.attach(indicator, measure[0])
                         voice.append(measure)
                 lilypond_file = abjad.LilyPondFile.new(
                     score,

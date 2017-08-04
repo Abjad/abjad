@@ -786,7 +786,8 @@ class Timespan(BoundedObject):
             stop_offset=stop_offset,
             )
 
-    def _implements_timespan_interface(self, timespan):
+    @staticmethod
+    def _implements_timespan_interface(timespan):
         if (
             getattr(timespan, 'start_offset', 'foo') != 'foo' and
             getattr(timespan, 'stop_offset', 'foo') != 'foo'

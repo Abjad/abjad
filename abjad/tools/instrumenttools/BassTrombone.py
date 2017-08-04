@@ -27,9 +27,9 @@ class BassTrombone(Instrument):
 
             >>> f(staff)
             \new Staff {
-                \clef "bass"
                 \set Staff.instrumentName = \markup { "Bass trombone" }
                 \set Staff.shortInstrumentName = \markup { "Bass trb." }
+                \clef "bass"
                 c'4
                 d'4
                 e'4

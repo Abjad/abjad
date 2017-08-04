@@ -380,17 +380,22 @@ class CodeBlock(abctools.AbjadValueObject):
         return is_incomplete_statement
 
     def setup_capture_hooks(self, console):
+        console.locals['__builtins__']['print'] = self.print
+        console.locals['__builtins__']['quit'] = self.quit
         prototype = (types.MethodType, types.FunctionType)
         if isinstance(console.locals['graph'], prototype):
             console.locals['graph'] = self.graph
+        console.locals['graph'] = self.graph
         console.locals['play'] = self.play
-        console.locals['__builtins__']['print'] = self.print
-        console.locals['__builtins__']['quit'] = self.quit
         console.locals['show'] = self.show
-        topleveltools = console.locals['topleveltools']
-        topleveltools.__dict__['graph'] = self.graph
-        topleveltools.__dict__['play'] = self.play
-        topleveltools.__dict__['show'] = self.show
+        for module in (
+            console.locals['abjad'],
+            console.locals['abjad'].topleveltools,
+            console.locals['topleveltools'],
+            ):
+            module.__dict__['graph'] = self.graph
+            module.__dict__['play'] = self.play
+            module.__dict__['show'] = self.show
 
     def write(self, string):
         text_width = None

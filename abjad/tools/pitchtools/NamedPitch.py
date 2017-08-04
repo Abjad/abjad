@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-import collections
 import math
 import numbers
-import re
-from abjad.tools import mathtools
-from abjad.tools import datastructuretools
 from abjad.tools.pitchtools.Pitch import Pitch
 
 
@@ -108,9 +104,9 @@ class NamedPitch(Pitch):
             \new Staff \with {
                 \override TimeSignature.stencil = ##f
             } {
-                \clef "treble"
                 \once \override Accidental.stencil = #ly:text-interface::print
                 \once \override Accidental.text = \markup { \musicglyph #"accidentals.sharp.arrowup" }
+                \clef "treble"
                 cs''1 * 1/4
             }
 
@@ -137,8 +133,9 @@ class NamedPitch(Pitch):
             name = name.name + "'"
         elif isinstance(name, tuple) and len(name) == 2:
             pitch_class, octave = name
-            assert isinstance(pitch_class, str), repr(name)
-            name = pitch_class + abjad.Octave(octave).ticks
+            pitch_class = abjad.NamedPitchClass(pitch_class)
+            octave = abjad.Octave(octave)
+            name = str(pitch_class) + str(abjad.Octave(octave))
         elif isinstance(name, numbers.Number) or hasattr(name, 'number'):
             number = getattr(name, 'number', name)
             named_pitch_class = abjad.NamedPitchClass(number)
@@ -414,10 +411,10 @@ class NamedPitch(Pitch):
         import abjad
         diatonic_pitch_class_name = self._get_diatonic_pitch_class_name()
         class_ = abjad.PitchClass
-        diatonic_pitch_class_number = \
+        diatonic_pitch_class_number = (
             class_._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
-            diatonic_pitch_class_name
-            ]
+                diatonic_pitch_class_name]
+            )
         return diatonic_pitch_class_number
 
     def _get_diatonic_pitch_name(self):

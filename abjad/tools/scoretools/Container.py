@@ -560,7 +560,6 @@ class Container(Component):
         return self._format_slot_contributions_with_indent(result)
 
     def _format_slot_contributions_with_indent(self, slot):
-        from abjad.tools import systemtools
         indent = systemtools.LilyPondFormatManager.indent
         result = []
         for contributor, contributions in slot:

@@ -28,22 +28,18 @@ class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
                 \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                     \context RhythmicStaff = "Staff 1" {
                         \context Voice = "Voice 1" {
-                            s1
                         }
                     }
                     \context RhythmicStaff = "Staff 2" {
                         \context Voice = "Voice 2" {
-                            s1
                         }
                     }
                     \context RhythmicStaff = "Staff 3" {
                         \context Voice = "Voice 3" {
-                            s1
                         }
                     }
                     \context RhythmicStaff = "Staff 4" {
                         \context Voice = "Voice 4" {
-                            s1
                         }
                     }
                 >>
@@ -66,23 +62,18 @@ class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
                 \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                     \context RhythmicStaff = "Staff 1" <<
                         \context Voice = "Voice 1-1" {
-                            s1
                         }
                         \context Voice = "Voice 1-2" {
-                            s1
                         }
                     >>
                     \context RhythmicStaff = "Staff 2" {
                         \context Voice = "Voice 2" {
-                            s1
                         }
                     }
                     \context RhythmicStaff = "Staff 3" <<
                         \context Voice = "Voice 3-1" {
-                            s1
                         }
                         \context Voice = "Voice 3-2" {
-                            s1
                         }
                     >>
                 >>
@@ -127,22 +118,18 @@ class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
                     \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                         \context RhythmicStaff = "Staff 1" {
                             \context Voice = "Voice 1" {
-                                s1
                             }
                         }
                         \context RhythmicStaff = "Staff 2" {
                             \context Voice = "Voice 2" {
-                                s1
                             }
                         }
                         \context RhythmicStaff = "Staff 3" {
                             \context Voice = "Voice 3" {
-                                s1
                             }
                         }
                         \context RhythmicStaff = "Staff 4" {
                             \context Voice = "Voice 4" {
-                                s1
                             }
                         }
                     >>
@@ -164,23 +151,18 @@ class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
                     \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                         \context RhythmicStaff = "Staff 1" <<
                             \context Voice = "Voice 1-1" {
-                                s1
                             }
                             \context Voice = "Voice 1-2" {
-                                s1
                             }
                         >>
                         \context RhythmicStaff = "Staff 2" {
                             \context Voice = "Voice 2" {
-                                s1
                             }
                         }
                         \context RhythmicStaff = "Staff 3" <<
                             \context Voice = "Voice 3-1" {
-                                s1
                             }
                             \context Voice = "Voice 3-2" {
-                                s1
                             }
                         >>
                     >>
@@ -194,10 +176,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
             for index in range(self.staff_count):
                 number = index + 1
                 name = 'Voice {}'.format(number)
-                voice = abjad.Voice(
-                    [abjad.Skip('s1')],
-                    name=name,
-                    )
+                voice = abjad.Voice([], name=name)
                 name='Staff {}'.format(number)
                 staff = abjad.Staff([voice], name=name)
                 staff.context_name = 'RhythmicStaff'
@@ -220,10 +199,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
                             staff_number, voice_number)
                         staff.is_simultaneous = True
                     name = 'Voice {}'.format(voice_identifier)
-                    voice = abjad.Voice(
-                        [abjad.Skip('s1')],
-                        name=name,
-                        )
+                    voice = abjad.Voice([], name=name)
                     staff.append(voice)
                     key = 'v{}'.format(voice_identifier)
                     self.context_name_abbreviations[key] = voice.name

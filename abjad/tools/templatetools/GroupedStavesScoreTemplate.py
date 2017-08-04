@@ -51,22 +51,18 @@ class GroupedStavesScoreTemplate(AbjadValueObject):
                     \context StaffGroup = "Grouped Staves Staff Group" <<
                         \context Staff = "Staff 1" {
                             \context Voice = "Voice 1" {
-                                s1
                             }
                         }
                         \context Staff = "Staff 2" {
                             \context Voice = "Voice 2" {
-                                s1
                             }
                         }
                         \context Staff = "Staff 3" {
                             \context Voice = "Voice 3" {
-                                s1
                             }
                         }
                         \context Staff = "Staff 4" {
                             \context Voice = "Voice 4" {
-                                s1
                             }
                         }
                     >>
@@ -79,7 +75,7 @@ class GroupedStavesScoreTemplate(AbjadValueObject):
         for index in range(self.staff_count):
             number = index + 1
             voice = abjad.Voice(
-                [abjad.Skip('s1')],
+                [],
                 name='Voice {}'.format(number),
                 )
             staff = abjad.Staff(

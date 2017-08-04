@@ -454,7 +454,6 @@ class Component(AbjadObject):
         return indicators[0]
 
     def _get_indicators(self, prototype=None, name=None, unwrap=True):
-        from abjad.tools import indicatortools
         from abjad.tools import systemtools
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
