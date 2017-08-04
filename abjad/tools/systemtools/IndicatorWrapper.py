@@ -12,7 +12,7 @@ class IndicatorWrapper(AbjadValueObject):
 
             >>> component = abjad.Note("c'4")
             >>> articulation = abjad.Articulation('accent', Up)
-            >>> abjad.annotate(component, 'foo', articulation)
+            >>> abjad.attach(articulation, component)
             >>> agent = abjad.inspect(component)
             >>> wrapper = agent.get_indicators(unwrap=False)[0]
 
@@ -20,10 +20,8 @@ class IndicatorWrapper(AbjadValueObject):
 
             >>> f(wrapper)
             systemtools.IndicatorWrapper(
-                component=abjad.Note("c'4"),
+                component=abjad.Note("c'4 ^\\accent"),
                 indicator=abjad.Articulation('accent', Up),
-                is_annotation=True,
-                name='foo',
                 )
 
     '''
@@ -398,10 +396,11 @@ class IndicatorWrapper(AbjadValueObject):
 
             ::
 
-                >>> component = abjad.Note("c'4")
+                >>> note = abjad.Note("c'4")
                 >>> articulation = abjad.Articulation('accent', Up)
-                >>> abjad.attach(articulation, component)
-                >>> wrapper = abjad.inspect(component).get_indicators(unwrap=False)[0]
+                >>> abjad.attach(articulation, note)
+                >>> agent = abjad.inspect(note)
+                >>> wrapper = agent.get_indicators(unwrap=False)[0]
                 >>> wrapper.name is None
                 True
 
@@ -409,75 +408,11 @@ class IndicatorWrapper(AbjadValueObject):
 
             ::
 
-                >>> component = abjad.Note("c'4")
+                >>> note = abjad.Note("c'4")
                 >>> articulation = abjad.Articulation('accent', Up)
-                >>> abjad.annotate(component, 'foo', articulation)
-                >>> wrapper = abjad.inspect(component).get_indicators(unwrap=False)[0]
-                >>> wrapper.name
-                'foo'
-
-        ..  container:: example
-
-            ::
-
-                >>> leaf_a = abjad.Note("c'4")
-                >>> articulation = abjad.Articulation('accent', Up)
-                >>> abjad.attach(articulation, leaf_a)
-                >>> wrapper_a = abjad.inspect(leaf_a).get_indicators(unwrap=False)[0]
-                >>> wrapper_a.name is None
-                True
-
-            ::
-
-                >>> leaf_b = abjad.Note("g'4")
-                >>> abjad.attach(wrapper_a, leaf_b)
-                >>> wrapper_b = abjad.inspect(leaf_b).get_indicators(unwrap=False)[0]
-                >>> wrapper_a is not wrapper_b
-                True
-                >>> wrapper_b.name is None
-                True
-
-        ..  container:: example
-
-            ::
-
-                >>> leaf_a = abjad.Note("c'4")
-                >>> articulation = abjad.Articulation('accent', Up)
-                >>> abjad.annotate(leaf_a, 'foo', articulation)
-                >>> wrapper_a = abjad.inspect(leaf_a).get_indicators(unwrap=False)[0]
-                >>> wrapper_a.name == 'foo'
-                True
-
-            ::
-
-                >>> leaf_b = abjad.Note("g'4")
-                >>> abjad.attach(wrapper_a, leaf_b)
-                >>> wrapper_b = abjad.inspect(leaf_b).get_indicators(unwrap=False)[0]
-                >>> wrapper_a is not wrapper_b
-                True
-                >>> wrapper_b.name
-                'foo'
-
-        ..  container:: example
-
-            ::
-
-                >>> leaf_a = abjad.Note("c'4")
-                >>> articulation = abjad.Articulation('accent', Up)
-                >>> abjad.annotate(leaf_a, 'foo', articulation)
-                >>> wrapper_a = abjad.inspect(leaf_a).get_indicators(unwrap=False)[0]
-                >>> wrapper_a.name
-                'foo'
-
-            ::
-
-                >>> leaf_b = abjad.Note("g'4")
-                >>> abjad.annotate(leaf_b, 'bar', articulation)
-                >>> wrapper_b = abjad.inspect(leaf_b).get_indicators(unwrap=False)[0]
-                >>> wrapper_a is not wrapper_b
-                True
-                >>> wrapper_b.name
-                'bar'
+                >>> abjad.annotate(note, 'foo', articulation)
+                >>> abjad.inspect(note).get_annotation('foo')
+                Articulation('accent', Up)
 
         Returns string or none.
         '''
