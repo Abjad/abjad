@@ -69,6 +69,7 @@ class RhythmMaker(AbjadValueObject):
 
         Returns selections.
         '''
+        import abjad
         self._rotation = rotation
         divisions = self._coerce_divisions(divisions)
         selections = self._make_music(divisions, rotation)
@@ -211,15 +212,8 @@ class RhythmMaker(AbjadValueObject):
         tie_specifier(selections)
 
     def _apply_tuplet_spelling_specifier(self, selections, divisions):
-        # TODO: migrate functionality to TupletSpellingSpecifier.__call__()
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
-        tuplet_spelling_specifier._do_simplify_redundant_tuplets(selections)
-        selections = self._rewrite_rest_filled_tuplets(selections)
-        selections = self._flatten_trivial_tuplets(selections)
-        tuplet_spelling_specifier._apply_preferred_denominator(
-            selections,
-            divisions,
-            )
+        selections = tuplet_spelling_specifier(selections, divisions)
         return selections
 
     def _check_well_formedness(self, selections):
@@ -243,29 +237,6 @@ class RhythmMaker(AbjadValueObject):
         prototype = mathtools.NonreducedFraction
         assert all(isinstance(_, prototype) for _ in divisions)
         return divisions
-
-    def _flatten_trivial_tuplets(self, selections):
-        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
-        if not tuplet_spelling_specifier.flatten_trivial_tuplets:
-            return selections
-        new_selections = []
-        for selection in selections:
-            new_selection = []
-            for component in selection:
-                if not (isinstance(component, scoretools.Tuplet) and
-                    component.is_trivial):
-                    new_selection.append(component)
-                    continue
-                spanners = inspect(component).get_spanners()
-                contents = component[:]
-                for spanner in spanners:
-                    new_spanner = copy.copy(spanner)
-                    attach(new_spanner, contents)
-                new_selection.extend(contents)
-                del(component[:])
-            new_selection = selectiontools.Selection(new_selection)
-            new_selections.append(new_selection)
-        return new_selections
 
     def _get_beam_specifier(self):
         from abjad.tools import rhythmmakertools
@@ -376,28 +347,6 @@ class RhythmMaker(AbjadValueObject):
     def _reverse_tuple(argument):
         if argument is not None:
             return tuple(reversed(argument))
-
-    def _rewrite_rest_filled_tuplets(self, selections):
-        import abjad
-        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
-        if not tuplet_spelling_specifier.rewrite_rest_filled_tuplets:
-            return selections
-        new_selections = []
-        maker = abjad.LeafMaker()
-        for selection in selections:
-            new_selection = []
-            for component in selection:
-                if not (isinstance(component, abjad.Tuplet) and
-                    component._is_rest_filled):
-                    new_selection.append(component)
-                    continue
-                duration = inspect(component).get_duration()
-                new_rests = maker([None], [duration])
-                mutate(component[:]).replace(new_rests)
-                new_selection.append(component)
-            new_selection = abjad.select(new_selection)
-            new_selections.append(new_selection)
-        return new_selections
 
     @staticmethod
     def _rotate_tuple(argument, n):

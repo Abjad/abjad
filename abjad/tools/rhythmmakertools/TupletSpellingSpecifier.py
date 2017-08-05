@@ -1,8 +1,5 @@
-from abjad.tools import durationtools
-from abjad.tools import mathtools
+# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
-from abjad.tools.topleveltools import inspect
-from abjad.tools.topleveltools import iterate
 
 
 class TupletSpellingSpecifier(AbjadValueObject):
@@ -35,6 +32,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
         simplify_redundant_tuplets=False,
         use_note_duration_bracket=False,
         ):
+        import abjad
         # TODO: Consider renaming is_diminution=True to is_augmentation=None.
         #       That would allow for all keywords to default to None,
         #       and therefore a single-line storage format.
@@ -42,53 +40,106 @@ class TupletSpellingSpecifier(AbjadValueObject):
         self._flatten_trivial_tuplets = bool(flatten_trivial_tuplets)
         self._is_diminution = bool(is_diminution)
         if isinstance(preferred_denominator, tuple):
-            preferred_denominator = durationtools.Duration(
-                preferred_denominator
-                )
+            preferred_denominator = abjad.Duration(preferred_denominator)
         self._preferred_denominator = preferred_denominator
         self._rewrite_rest_filled_tuplets = bool(rewrite_rest_filled_tuplets)
         self._simplify_redundant_tuplets = bool(simplify_redundant_tuplets)
         self._use_note_duration_bracket = bool(use_note_duration_bracket)
 
+    ### SPECIAL METHODS ###
+
+    def __call__(self, selections, divisions):
+        r'''Calls tuplet spelling specifier.
+
+        Returns new selections.
+        '''
+        self._simplify_redundant_tuplets_(selections)
+        selections = self._rewrite_rest_filled_tuplets_(selections)
+        selections = self._flatten_trivial_tuplets_(selections)
+        self._apply_preferred_denominator(selections, divisions)
+        return selections
+
     ### PRIVATE METHODS ###
 
     def _apply_preferred_denominator(self, selections, divisions):
-        from abjad.tools import scoretools
+        import abjad
         if not self.preferred_denominator:
             return
-        tuplets = iterate(selections).by_class(scoretools.Tuplet)
-        tuplets = list(tuplets)
+        tuplets = abjad.select(selections).by_class(abjad.Tuplet)
         if divisions is None:
             divisions = len(tuplets) * [None]
         assert len(selections) == len(divisions)
         assert len(tuplets) == len(divisions)
         preferred_denominator = self.preferred_denominator
         if isinstance(preferred_denominator, tuple):
-            preferred_denominator = durationtools.Duration(
-                preferred_denominator,
-                )
+            preferred_denominator = abjad.Duration(preferred_denominator)
         for tuplet, division in zip(tuplets, divisions):
             if preferred_denominator == 'divisions':
                 tuplet.preferred_denominator = division.numerator
-            elif isinstance(preferred_denominator, durationtools.Duration):
+            elif isinstance(preferred_denominator, abjad.Duration):
                 unit_duration = preferred_denominator
                 assert unit_duration.numerator == 1
-                duration = inspect(tuplet).get_duration()
+                duration = abjad.inspect(tuplet).get_duration()
                 denominator = unit_duration.denominator
                 nonreduced_fraction = duration.with_denominator(denominator)
                 tuplet.preferred_denominator = nonreduced_fraction.numerator
-            elif mathtools.is_positive_integer(preferred_denominator):
+            elif abjad.mathtools.is_positive_integer(preferred_denominator):
                 tuplet.preferred_denominator = preferred_denominator
             else:
                 message = 'invalid value for preferred denominator: {!r}.'
                 message = message.format(preferred_denominator)
                 raise Exception(message)
 
-    def _do_simplify_redundant_tuplets(self, selections):
-        from abjad.tools import scoretools
+    def _flatten_trivial_tuplets_(self, selections):
+        import abjad
+        if not self.flatten_trivial_tuplets:
+            return selections
+        new_selections = []
+        for selection in selections:
+            new_selection = []
+            for component in selection:
+                if not (isinstance(component, abjad.Tuplet) and
+                    component.is_trivial):
+                    new_selection.append(component)
+                    continue
+                spanners = abjad.inspect(component).get_spanners()
+                contents = component[:]
+                for spanner in spanners:
+                    new_spanner = copy.copy(spanner)
+                    abjad.attach(new_spanner, contents)
+                new_selection.extend(contents)
+                del(component[:])
+            new_selection = abjad.select(new_selection)
+            new_selections.append(new_selection)
+        return new_selections
+
+    def _rewrite_rest_filled_tuplets_(self, selections):
+        import abjad
+        if not self.rewrite_rest_filled_tuplets:
+            return selections
+        new_selections = []
+        maker = abjad.LeafMaker()
+        for selection in selections:
+            new_selection = []
+            for component in selection:
+                if not (isinstance(component, abjad.Tuplet) and
+                    component._is_rest_filled):
+                    new_selection.append(component)
+                    continue
+                duration = abjad.inspect(component).get_duration()
+                new_rests = maker([None], [duration])
+                abjad.mutate(component[:]).replace(new_rests)
+                component.multiplier = abjad.Multiplier(1)
+                new_selection.append(component)
+            new_selection = abjad.select(new_selection)
+            new_selections.append(new_selection)
+        return new_selections
+
+    def _simplify_redundant_tuplets_(self, selections):
+        import abjad
         if not self.simplify_redundant_tuplets:
             return
-        for tuplet in iterate(selections).by_class(scoretools.Tuplet):
+        for tuplet in abjad.iterate(selections).by_class(abjad.Tuplet):
             tuplet._simplify_redundant_tuplet()
 
     ### PUBLIC PROPERTIES ###
