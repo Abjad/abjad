@@ -788,6 +788,10 @@ class Component(AbjadObject):
 
     def _remove_from_parent(self):
         self._update_later(offsets=True)
+        for parent in self._get_parentage(include_self=False):
+            for wrapper in parent._dependent_wrappers[:]:
+                if wrapper.component is self:
+                    parent._dependent_wrappers.remove(wrapper)
         if self._parent is not None:
             self._parent._music.remove(self)
         self._parent = None

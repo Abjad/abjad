@@ -520,6 +520,37 @@ class MutationAgent(abctools.AbjadObject):
 
             Preserves both hairpin and slur.
 
+        ..  container:: example
+
+            REGRESSION: Replace leaves no leftover indicator references:
+
+                >>> staff = abjad.Staff("c'4")
+                >>> abjad.attach(abjad.Clef('treble'), staff[0])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \clef "treble"
+                    c'4
+                }
+
+            ::
+
+                >>> chord = abjad.Chord("<d' e'>4")
+                >>> abjad.mutate(staff[0]).replace(chord)
+                >>> abjad.attach(abjad.Clef('bass'), staff[0])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \clef "bass"
+                    <d' e'>4
+                }
+
         Returns none.
         '''
         from abjad.tools import selectiontools
