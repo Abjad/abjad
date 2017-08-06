@@ -72,6 +72,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                     for voice in abjad.iterate(score).by_class(abjad.Voice):
                         measure = abjad.Measure((4, 4), "c'1")
                         voice.append(measure)
+                self.score_template.attach_defaults(score)
                 lilypond_file = abjad.LilyPondFile.new(
                     score,
                     includes=['../../stylesheets/stylesheet.ily'],
