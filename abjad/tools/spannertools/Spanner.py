@@ -459,7 +459,7 @@ class Spanner(AbjadObject):
             return indicators[0]
         message = 'multiple piecewise indicators found.'
         raise Exception(message)
-            
+
     def _get_piecewise_indicators(self, leaf, prototype=None):
         import abjad
         assert leaf in self, repr(leaf)

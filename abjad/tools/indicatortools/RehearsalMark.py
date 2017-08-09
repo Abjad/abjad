@@ -142,7 +142,7 @@ class RehearsalMark(AbjadValueObject):
         bundle = abjad.LilyPondFormatBundle()
         bundle.opening.commands.append(self._get_lilypond_format())
         return bundle
-        
+
     ### PUBLIC PROPERTIES ###
 
     @property

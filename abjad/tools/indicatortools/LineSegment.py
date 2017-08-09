@@ -317,7 +317,7 @@ class LineSegment(AbjadValueObject):
         Returns float or none.
         '''
         return self._right_broken_arrow
-        
+
     @property
     def right_broken_padding(self):
         r'''Gets right broken padding of line segment.

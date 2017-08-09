@@ -329,7 +329,8 @@ class WoodwindFingering(AbjadObject):
                 'lh',
                 'possibilities for thumb:',
                 '(thumb thumbT)',
-                'possibilities for R:','(R RT)',
+                'possibilities for R:',
+                '(R RT)',
                 'possibilities for a:',
                 '(a aT)',
                 'possibilities for gis:',
@@ -342,7 +343,8 @@ class WoodwindFingering(AbjadObject):
                 '(f fT)',
                 'possibilities for e:',
                 '(e eT)',
-                'possibilities for fis:','(fis fisT)',
+                'possibilities for fis:',
+                '(fis fisT)',
                 '',
                 'rh',
                 'possibilities for one:',
@@ -428,7 +430,7 @@ class WoodwindFingering(AbjadObject):
             'contrabassoon',
             )
 
-     ### PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def center_column(self):

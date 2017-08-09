@@ -8,7 +8,7 @@ class Tremolo(AbjadValueObject):
     ::
 
         >>> import abjad
-    
+
     ..  container:: example
 
         With two beams:
@@ -265,7 +265,7 @@ class Tremolo(AbjadValueObject):
         Set to true or false.
 
         Defaults to false.
-                
+
         Returns true or false.
         '''
         return self._is_slurred

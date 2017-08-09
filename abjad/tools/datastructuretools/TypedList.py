@@ -290,7 +290,7 @@ class TypedList(TypedCollection):
 
     def extend(self, items):
         r'''Extends typed list with `items`.
-        
+
         ..  container:: example
 
             ::

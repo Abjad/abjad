@@ -11,7 +11,6 @@ class KeyCluster(AbjadValueObject):
 
     ..  container:: example
 
-        
         Default values:
 
         ::

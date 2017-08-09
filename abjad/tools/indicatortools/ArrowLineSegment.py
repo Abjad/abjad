@@ -12,7 +12,7 @@ class ArrowLineSegment(LineSegment):
     ..  container:: example
 
         String contact position spanner:
-            
+
         ::
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
@@ -135,7 +135,7 @@ class ArrowLineSegment(LineSegment):
     @property
     def arrow_width(self):
         r'''Gets arrow width of arrow.
-        
+
         ..  container:: example
 
             Arrow line segment width equals ``0.25``:
@@ -328,7 +328,7 @@ class ArrowLineSegment(LineSegment):
     @property
     def dash_fraction(self):
         r'''Gets dash fraction of arrow.
-        
+
         ..  container:: example
 
             Dash fraction equals 100% of dash period:

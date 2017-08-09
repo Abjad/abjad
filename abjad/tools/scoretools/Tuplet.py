@@ -1362,8 +1362,7 @@ class Tuplet(Container):
                     }
                 }
 
-            Interprets nonassignable `ratio` according to
-            `decrease_monotonic`:
+            Interprets nonassignable `ratio` according to `decrease_monotonic`:
 
             ::
 
@@ -1427,8 +1426,7 @@ class Tuplet(Container):
                     }
                 }
 
-            Interprets nonassignable `ratio` according to
-            `decrease_monotonic`:
+            Interprets nonassignable `ratio` according to `decrease_monotonic`:
 
             ::
 
@@ -1524,8 +1522,7 @@ class Tuplet(Container):
                     }
                 }
 
-            Interprets nonassignable `ratio` according to
-            `decrease_monotonic`:
+            Interprets nonassignable `ratio` according to `decrease_monotonic`:
 
             ::
 
@@ -1638,9 +1635,7 @@ class Tuplet(Container):
                 basic_prolated_duration.equal_or_greater_assignable
         # find written duration of each note in tuplet
         written_durations = [x * basic_written_duration for x in ratio.numbers]
-        leaf_maker = abjad.LeafMaker(
-            decrease_monotonic=decrease_monotonic,
-            )
+        leaf_maker = abjad.LeafMaker(decrease_monotonic=decrease_monotonic)
         # make tuplet leaves
         try:
             notes = [

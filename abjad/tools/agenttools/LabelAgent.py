@@ -1841,25 +1841,26 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
+        import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or int
-        vertical_moments = iterate(self.client).by_vertical_moment()
+        vertical_moments = abjad.iterate(self.client).by_vertical_moment()
         for index, vertical_moment in enumerate(vertical_moments):
             label = None
             if prototype is int:
-                label = markuptools.Markup(index, direction=direction)
-            elif prototype is pitchtools.NumberedPitch:
+                label = abjad.Markup(index, direction=direction)
+            elif prototype is abjad.NumberedPitch:
                 leaves = vertical_moment.leaves
-                pitches = pitchtools.PitchSegment.from_selection(leaves)
+                pitches = abjad.PitchSegment.from_selection(leaves)
                 if not pitches:
                     continue
                 pitch_numbers = [pitch.number for pitch in pitches]
-                pitch_numbers = [markuptools.Markup(_) for _ in pitch_numbers]
-                label = markuptools.Markup.column(pitch_numbers, direction)
-            elif prototype is pitchtools.NumberedPitchClass:
+                pitch_numbers = [abjad.Markup(_) for _ in pitch_numbers]
+                label = abjad.Markup.column(pitch_numbers, direction)
+            elif prototype is abjad.NumberedPitchClass:
                 leaves = vertical_moment.leaves
-                pitches = pitchtools.PitchSegment.from_selection(leaves)
+                pitches = abjad.PitchSegment.from_selection(leaves)
                 if not pitches:
                     continue
                 pitch_classes = [pitch.pitch_class.number for pitch in pitches]
@@ -1867,11 +1868,11 @@ class LabelAgent(abctools.AbjadObject):
                 pitch_classes.sort()
                 pitch_classes.reverse()
                 numbers = [str(_) for _ in pitch_classes]
-                markup = [markuptools.Markup(_) for _ in numbers]
-                label = markuptools.Markup.column(markup, direction)
-            elif prototype is pitchtools.NumberedInterval:
+                markup = [abjad.Markup(_) for _ in numbers]
+                label = abjad.Markup.column(markup, direction)
+            elif prototype is abjad.NumberedInterval:
                 leaves = vertical_moment.leaves
-                notes = [_ for _ in leaves if isinstance(_, scoretools.Note)]
+                notes = [_ for _ in leaves if isinstance(_, abjad.Note)]
                 if not notes:
                     continue
                 notes.sort(key=lambda x: x.written_pitch.number)
@@ -1880,15 +1881,17 @@ class LabelAgent(abctools.AbjadObject):
                 upper_notes = notes[:-1]
                 named_intervals = []
                 for upper_note in upper_notes:
-                    named_interval = pitchtools.NamedInterval.from_pitch_carriers(
-                        bass_note.written_pitch, upper_note.written_pitch)
+                    named_interval = abjad.NamedInterval.from_pitch_carriers(
+                        bass_note.written_pitch,
+                        upper_note.written_pitch,
+                        )
                     named_intervals.append(named_interval)
                 numbers = [x.number for x in named_intervals]
-                markup = [markuptools.Markup(_) for _ in numbers]
-                label = markuptools.Markup.column(markup, direction)
-            elif prototype is pitchtools.NumberedIntervalClass:
+                markup = [abjad.Markup(_) for _ in numbers]
+                label = abjad.Markup.column(markup, direction)
+            elif prototype is abjad.NumberedIntervalClass:
                 leaves = vertical_moment.leaves
-                notes = [_ for _ in leaves if isinstance(_, scoretools.Note)]
+                notes = [_ for _ in leaves if isinstance(_, abjad.Note)]
                 if not notes:
                     continue
                 notes.sort(key=lambda x: x.written_pitch.number)
@@ -1897,43 +1900,43 @@ class LabelAgent(abctools.AbjadObject):
                 upper_notes = notes[:-1]
                 numbers = []
                 for upper_note in upper_notes:
-                    interval = pitchtools.NamedInterval.from_pitch_carriers(
-                        bass_note.written_pitch, upper_note.written_pitch)
-                    interval_class = pitchtools.NumberedIntervalClass(interval)
+                    interval = abjad.NamedInterval.from_pitch_carriers(
+                        bass_note.written_pitch,
+                        upper_note.written_pitch,
+                        )
+                    interval_class = abjad.NumberedIntervalClass(interval)
                     number = interval_class.number
                     numbers.append(number)
-                markup = [markuptools.Markup(_) for _ in numbers]
-                label = markuptools.Markup.column(markup, direction)
-            elif prototype is pitchtools.IntervalClassVector:
+                markup = [abjad.Markup(_) for _ in numbers]
+                label = abjad.Markup.column(markup, direction)
+            elif prototype is abjad.IntervalClassVector:
                 leaves = vertical_moment.leaves
-                pitches = pitchtools.PitchSegment.from_selection(leaves)
+                pitches = abjad.PitchSegment.from_selection(leaves)
                 if not pitches:
                     continue
-                interval_class_vector = pitchtools.IntervalClassVector(
+                interval_class_vector = abjad.IntervalClassVector(
                     pitches,
-                    item_class=pitchtools
-                        .NumberedInversionEquivalentIntervalClass,
+                    item_class=abjad.NumberedInversionEquivalentIntervalClass,
                     )
                 markup = interval_class_vector._label
-                label = markuptools.Markup(markup, direction=direction)
-            elif (prototype is pitchtools.SetClass or
-                isinstance(prototype, pitchtools.SetClass)):
-                if prototype is pitchtools.SetClass:
+                label = abjad.Markup(markup, direction=direction)
+            elif (prototype is abjad.SetClass or
+                isinstance(prototype, abjad.SetClass)):
+                if prototype is abjad.SetClass:
                     prototype = prototype()
-                assert isinstance(prototype, pitchtools.SetClass)
+                assert isinstance(prototype, abjad.SetClass)
                 leaves = vertical_moment.leaves
-                pitch_class_set = pitchtools.PitchClassSet.from_selection(
-                    leaves)
+                pitch_class_set = abjad.PitchClassSet.from_selection(leaves)
                 if not pitch_class_set:
                     continue
-                set_class = pitchtools.SetClass.from_pitch_class_set(
+                set_class = abjad.SetClass.from_pitch_class_set(
                     pitch_class_set,
                     lex_rank=prototype.lex_rank,
                     transposition_only=prototype.transposition_only,
                     )
                 string = str(set_class)
-                command = markuptools.MarkupCommand('line', [string])
-                label = markuptools.Markup(command, direction=direction)
+                command = abjad.MarkupCommand('line', [string])
+                label = abjad.Markup(command, direction=direction)
             else:
                 message = 'unknown prototype: {!r}.'
                 message = message.format(prototype)

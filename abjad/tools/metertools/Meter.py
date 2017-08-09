@@ -366,8 +366,7 @@ class Meter(AbjadValueObject):
                     preprolated_duration=(1, denominator))
                     for _ in range(node.preprolated_duration.numerator)])
 
-        decrease_monotonic = \
-            bool(decrease_monotonic)
+        decrease_monotonic = bool(decrease_monotonic)
 
         try:
             numerator = argument.numerator
@@ -379,8 +378,7 @@ class Meter(AbjadValueObject):
         if isinstance(argument, type(self)):
             root = argument.root_node
             numerator, denominator = argument.numerator, argument.denominator
-            decrease_monotonic = \
-                argument.decrease_monotonic
+            decrease_monotonic = argument.decrease_monotonic
 
         elif isinstance(argument, (str, rhythmtreetools.RhythmTreeContainer)):
             if isinstance(argument, str):
@@ -434,8 +432,7 @@ class Meter(AbjadValueObject):
         self._root_node = root
         self._numerator = numerator
         self._denominator = denominator
-        self._decrease_monotonic = \
-            decrease_monotonic
+        self._decrease_monotonic = decrease_monotonic
 
     ### SPECIAL METHODS ###
 

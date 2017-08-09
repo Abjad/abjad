@@ -4,8 +4,10 @@ import abjad
 
 def test_spannertools_MeasuredComplexBeam_direction_01():
 
-    staff = abjad.Staff("abj: | 2/16 c'16 d'16 || 2/16 e'16 f'16 |"
-        "| 2/16 g'16 a'16 |")
+    staff = abjad.Staff(
+        "abj: | 2/16 c'16 d'16 || 2/16 e'16 f'16 |"
+        "| 2/16 g'16 a'16 |"
+        )
 
     assert format(staff) == abjad.String.normalize(
         r'''

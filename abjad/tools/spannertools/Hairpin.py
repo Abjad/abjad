@@ -335,7 +335,8 @@ class Hairpin(Spanner):
     def _get_next_piecewise_dynamic_from(self, leaf):
         import abjad
         index = self._index(leaf)
-        for leaf in self[index+1:]:
+        number = index + 1
+        for leaf in self[number:]:
             if self._has_piecewise_indicator(leaf, abjad.Dynamic):
                 return self._get_piecewise_indicator(leaf, abjad.Dynamic)
 

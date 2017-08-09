@@ -120,7 +120,7 @@ class Beam(Spanner):
                 >>> for leaf in staff:
                 ...     result = abjad.Beam._is_beamable(leaf)
                 ...     print('{:<8}\t{}'.format(leaf, result))
-                ... 
+                ...
                 r32     False
                 a'32    True
                 gs'32   True
@@ -148,7 +148,7 @@ class Beam(Spanner):
                 ...         beam_rests=True,
                 ...         )
                 ...     print('{:<8}\t{}'.format(leaf, result))
-                ... 
+                ...
                 r32	True
                 a'32	True
                 gs'32	True

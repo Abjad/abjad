@@ -74,7 +74,7 @@ class NoteHead(AbjadObject):
         r'''Copies note-head.
 
         ::
-    
+
             >>> import copy
 
         ::
@@ -202,22 +202,23 @@ class NoteHead(AbjadObject):
             )
 
     def _get_lilypond_format(self):
-        from abjad.tools import systemtools
-        from abjad.tools import scoretools
+        import abjad
         # make sure note-head has pitch
         assert self.written_pitch
         result = []
         # format chord note-head with optional tweaks
         if self.is_parenthesized:
             result.append(r'\parenthesize')
-        if isinstance(self._client, scoretools.Chord):
+        manager = abjad.LilyPondFormatManager
+        if isinstance(self._client, abjad.Chord):
             for key, value in vars(self.tweak).items():
                 if not key.startswith('_'):
-                    result.append(
-                        r'\tweak %s %s' % (
-                        systemtools.LilyPondFormatManager.format_lilypond_attribute(key),
-                        systemtools.LilyPondFormatManager.format_lilypond_value(value)),
+                    string = r'\tweak {} {}'
+                    string = string.format(
+                        manager.format_lilypond_attribute(key),
+                        manager.format_lilypond_value(value),
                         )
+                    result.append(string)
         # format note-head pitch
         kernel = format(self.written_pitch)
         if self.is_forced:

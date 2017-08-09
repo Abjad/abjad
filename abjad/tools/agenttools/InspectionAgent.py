@@ -33,14 +33,55 @@ class InspectionAgent(abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, client=None):
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        prototype = (scoretools.Component, spannertools.Spanner, type(None))
+        import abjad
+        prototype = (abjad.Component, abjad.Spanner, type(None))
         if not isinstance(client, prototype):
             message = 'must be component, spanner or none: {!r}.'
             message = message.format(client)
             raise TypeError(message)
         self._client = client
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Gets client of inspection agent.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Voice("c'8 d'8 e'8 f'8"))
+                >>> staff.append(abjad.Voice("g'8 a'8 b'8 c''8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(staff)
+                \new Staff {
+                    \new Voice {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                    }
+                    \new Voice {
+                        g'8
+                        a'8
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> abjad.inspect(staff).client
+                <Staff{2}>
+
+        Returns component.
+        '''
+        return self._client
 
     ### PUBLIC METHODS ###
 
@@ -83,19 +124,14 @@ class InspectionAgent(abctools.AbjadObject):
         return self._client._after_grace_container
 
     def get_annotation(self, name, default=None):
-        r'''Gets annotation attached to client.
+        r'''Gets annotation.
 
         ..  container:: example
-
-            Gets named indicator:
 
             ::
 
                 >>> note = abjad.Note("c'4")
                 >>> abjad.annotate(note, 'bow_direction', Down)
-
-            ::
-
                 >>> abjad.inspect(note).get_annotation('bow_direction')
                 Down
 
@@ -121,7 +157,7 @@ class InspectionAgent(abctools.AbjadObject):
         return default
 
     def get_badly_formed_components(self):
-        r'''Gets badly formed components in client.
+        r'''Gets badly formed components.
 
         ..  container:: example
 
@@ -147,7 +183,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> abjad.inspect(staff).get_badly_formed_components()
                 [Note("d'4")]
 
-            (Beamed quarter notes are not well formed.)
+            Beamed quarter notes are not well-formed.
 
         Returns list.
         '''
@@ -159,9 +195,9 @@ class InspectionAgent(abctools.AbjadObject):
         return violators
 
     def get_components(self, prototype=None, include_self=True):
-        r'''Gets all components of `prototype` in the descendants of client.
+        r'''Gets components.
 
-        Returns client selection.
+        Returns selection.
         '''
         return self._client._get_components(
             prototype=prototype,
@@ -169,25 +205,25 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def get_contents(self, include_self=True):
-        r'''Gets contents of client.
+        r'''Gets contents.
 
-        Returns sequential selection.
+        Returns selection.
         '''
         return self._client._get_contents(
             include_self=include_self,
             )
 
     def get_descendants(self, include_self=True):
-        r'''Gets descendants of client.
+        r'''Gets descendants.
 
-        Returns descendants.
+        Returns selection.
         '''
         return self._client._get_descendants(
             include_self=include_self,
             )
 
     def get_duration(self, in_seconds=False):
-        r'''Gets duration of client.
+        r'''Gets duration.
 
         Returns duration.
         '''
@@ -196,12 +232,11 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def get_effective(self, prototype=None, unwrap=True, n=0):
-        r'''Gets effective indicator that matches `prototype`
-        and governs client.
+        r'''Gets effective indicator.
 
         ..  container:: example
 
-            Gets components' effective clef:
+            Gets effective clef:
 
             ::
 
@@ -236,12 +271,12 @@ class InspectionAgent(abctools.AbjadObject):
                 ...     clef = agent.get_effective(abjad.Clef)
                 ...     print(leaf, clef)
                 ...
-                Staff("c'4 d'4 e'4 f'4") Clef(name='alto')
-                c'4 Clef(name='alto')
-                d'4 Clef(name='alto')
-                e'4 Clef(name='alto')
-                fs'16 Clef(name='alto')
-                f'4 Clef(name='alto')
+                Staff("c'4 d'4 e'4 f'4") Clef('alto')
+                c'4 Clef('alto')
+                d'4 Clef('alto')
+                e'4 Clef('alto')
+                fs'16 Clef('alto')
+                f'4 Clef('alto')
 
         Returns indicator or none.
         '''
@@ -252,7 +287,7 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def get_effective_staff(self):
-        r'''Gets effective staff of client.
+        r'''Gets effective staff.
 
         Returns staff or none.
         '''
@@ -302,7 +337,7 @@ class InspectionAgent(abctools.AbjadObject):
         default=None,
         unwrap=True,
         ):
-        r'''Gets indicator of `prototype` attached to client.
+        r'''Gets indicator.
 
         Raises exception when more than one indicator of `prototype` attach to
         client.
@@ -338,8 +373,6 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            Example score:
-
             ::
 
                 >>> staff = abjad.Staff()
@@ -367,8 +400,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            Gets leaf `n` **from** client of inspection agent when client of
-            inspection agent is a leaf.
+            Gets leaf `n` **from** client when client is a leaf.
 
             With positive indices:
 
@@ -418,8 +450,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            Gets leaf `n` **in** client of inspection agent when client of
-            inspection agent is a container.
+            Gets leaf `n` **in** client when client is a container.
 
             With positive indices:
 
@@ -473,7 +504,8 @@ class InspectionAgent(abctools.AbjadObject):
         if isinstance(self._client, abjad.Leaf):
             return self._client._get_leaf(n=n)
         if 0 <= n:
-            leaves = abjad.iterate(self._client).by_leaf(start=0, stop=n+1)
+            stop = n + 1
+            leaves = abjad.iterate(self._client).by_leaf(start=0, stop=stop)
             leaves = list(leaves)
             if len(leaves) < n + 1:
                 return
@@ -488,25 +520,26 @@ class InspectionAgent(abctools.AbjadObject):
             leaves = list(leaves)
             if len(leaves) < abs(n):
                 return
-            leaf = leaves[abs(n)-1]
+            index = abs(n) - 1
+            leaf = leaves[index]
             return leaf
 
     def get_lineage(self):
-        r'''Gets lineage of client.
+        r'''Gets lineage.
 
         Returns lineage.
         '''
         return self._client._get_lineage()
 
     def get_logical_tie(self):
-        r'''Gets logical tie that governs leaf.
+        r'''Gets logical tie.
 
         Returns logical tie.
         '''
         return self._client._get_logical_tie()
 
     def get_markup(self, direction=None):
-        r'''Gets all markup attached to client.
+        r'''Gets markup.
 
         Returns tuple.
         '''
@@ -515,7 +548,7 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def get_parentage(self, include_self=True, with_grace_notes=False):
-        r'''Gets parentage of client.
+        r'''Gets parentage.
 
         .. container:: example
 
@@ -586,7 +619,7 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def get_piecewise(self, prototype=None, default=None):
-        r'''Gets piecewise indicators attached to client.
+        r'''Gets piecewise indicators.
 
         ..  container:: example
 
@@ -598,9 +631,6 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> spanner.attach(abjad.Markup('pont.'), staff[0])
                 >>> spanner.attach(abjad.Markup('ord.'), staff[-1])
                 >>> spanner.attach(abjad.ArrowLineSegment(), staff[0])
-
-            ::
-
                 >>> abjad.override(staff).text_script.staff_padding = 1.25
                 >>> abjad.override(staff).text_spanner.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
@@ -658,7 +688,7 @@ class InspectionAgent(abctools.AbjadObject):
             raise Exception(message)
 
     def get_sounding_pitch(self):
-        r'''Gets sounding pitch of client.
+        r'''Gets sounding pitch.
 
         ..  container:: example
 
@@ -689,7 +719,7 @@ class InspectionAgent(abctools.AbjadObject):
         return self._client._get_sounding_pitch()
 
     def get_sounding_pitches(self):
-        r"""Gets sounding pitches of client.
+        r"""Gets sounding pitches.
 
         ..  container:: example
 
@@ -721,7 +751,7 @@ class InspectionAgent(abctools.AbjadObject):
         return self._client._get_sounding_pitches()
 
     def get_spanner(self, prototype=None, default=None, in_parentage=False):
-        r'''Gets spanner of `prototype` attached to client.
+        r'''Gets spanner.
 
         Raises exception when more than one spanner of `prototype` attaches to
         client.
@@ -743,7 +773,7 @@ class InspectionAgent(abctools.AbjadObject):
             raise Exception(message)
 
     def get_spanners(self, prototype=None, in_parentage=False):
-        r'''Gets spanners attached to client.
+        r'''Gets spanners.
 
         Returns set.
         '''
@@ -753,7 +783,7 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def get_timespan(self, in_seconds=False):
-        r'''Gets timespan of client.
+        r'''Gets timespan.
 
         ..  container:: example
 
@@ -862,75 +892,171 @@ class InspectionAgent(abctools.AbjadObject):
             in_seconds=in_seconds,
             )
 
-    def get_vertical_moment(self, governor=None):
-        r'''Gets vertical moment starting with client.
+    def get_tuplet(self, n=0):
+        r'''Gets tuplet `n`.
 
         ..  container:: example
 
             ::
 
-            >>> score = abjad.Score()
-            >>> tuplet = abjad.Tuplet((4, 3), "d''8 c''8 b'8")
-            >>> score.append(abjad.Staff([tuplet]))
-            >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
-            >>> staff_group.append(abjad.Staff("a'4 g'4"))
-            >>> staff_group.append(abjad.Staff("f'8 e'8 d'8 c'8"))
-            >>> clef = abjad.Clef('bass')
-            >>> abjad.attach(clef, staff_group[1][0])
-            >>> score.append(staff_group)
+                >>> staff = abjad.Staff()
+                >>> staff.append(abjad.Tuplet((2, 3), "c'8 d' e'"))
+                >>> staff.append(abjad.Tuplet((2, 3), "d'8 e' f'"))
+                >>> staff.append(abjad.Tuplet((2, 3), "e'8 f' g'"))
+                >>> staff.append(abjad.Tuplet((2, 3), "f'8 g' a'"))
+                >>> show(staff) # doctest: +SKIP
 
-        ..  docs::
+            ..  docs::
 
-            >>> f(score)
-            \new Score <<
+                >>> f(staff)
                 \new Staff {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 4/3 {
-                        d''8
-                        c''8
-                        b'8
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                    \times 2/3 {
+                        d'8
+                        e'8
+                        f'8
+                    }
+                    \times 2/3 {
+                        e'8
+                        f'8
+                        g'8
+                    }
+                    \times 2/3 {
+                        f'8
+                        g'8
+                        a'8
                     }
                 }
-                \new PianoStaff <<
+
+        ..  container:: example
+
+            ::
+
+                >>> for n in range(4):
+                ...     tuplet = abjad.inspect(staff).get_tuplet(n)
+                ...     print(n, tuplet)
+                ...
+                0 Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
+                1 Tuplet(Multiplier(2, 3), "d'8 e'8 f'8")
+                2 Tuplet(Multiplier(2, 3), "e'8 f'8 g'8")
+                3 Tuplet(Multiplier(2, 3), "f'8 g'8 a'8")
+
+            ::
+
+                >>> for n in range(-1, -5, -1):
+                ...     tuplet = abjad.inspect(staff).get_tuplet(n)
+                ...     print(n, tuplet)
+                ...
+                -1 Tuplet(Multiplier(2, 3), "f'8 g'8 a'8")
+                -2 Tuplet(Multiplier(2, 3), "e'8 f'8 g'8")
+                -3 Tuplet(Multiplier(2, 3), "d'8 e'8 f'8")
+                -4 Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
+
+        Returns tuplet or none.
+        '''
+        import abjad
+        if 0 <= n:
+            stop = n + 1
+            components = abjad.iterate(self._client).by_class(
+                prototype=abjad.Tuplet,
+                start=0,
+                stop=stop,
+                )
+            components = list(components)
+            if len(components) < n + 1:
+                return
+            component = components[n]
+            return component
+        else:
+            components = abjad.iterate(self._client).by_class(
+                prototype=abjad.Tuplet,
+                start=0,
+                stop=abs(n),
+                reverse=True,
+                )
+            components = list(components)
+            if len(components) < abs(n):
+                return
+            index = abs(n) - 1
+            component = components[index]
+            return component
+
+    def get_vertical_moment(self, governor=None):
+        r'''Gets vertical moment.
+
+        ..  container:: example
+
+            ::
+
+                >>> score = abjad.Score()
+                >>> tuplet = abjad.Tuplet((4, 3), "d''8 c''8 b'8")
+                >>> score.append(abjad.Staff([tuplet]))
+                >>> staff_group = abjad.StaffGroup(context_name='PianoStaff')
+                >>> staff_group.append(abjad.Staff("a'4 g'4"))
+                >>> staff_group.append(abjad.Staff("f'8 e'8 d'8 c'8"))
+                >>> clef = abjad.Clef('bass')
+                >>> abjad.attach(clef, staff_group[1][0])
+                >>> score.append(staff_group)
+                >>> show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> f(score)
+                \new Score <<
                     \new Staff {
-                        a'4
-                        g'4
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 4/3 {
+                            d''8
+                            c''8
+                            b'8
+                        }
                     }
-                    \new Staff {
-                        \clef "bass"
-                        f'8
-                        e'8
-                        d'8
-                        c'8
-                    }
+                    \new PianoStaff <<
+                        \new Staff {
+                            a'4
+                            g'4
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            f'8
+                            e'8
+                            d'8
+                            c'8
+                        }
+                    >>
                 >>
-            >>
 
-            >>> agent = abjad.inspect(staff_group[1][0])
-            >>> moment = agent.get_vertical_moment(governor=staff_group)
-            >>> moment.leaves
-            Selection([Note("a'4"), Note("f'8")])
+            ::
 
-        ::
+                >>> agent = abjad.inspect(staff_group[1][0])
+                >>> moment = agent.get_vertical_moment(governor=staff_group)
+                >>> moment.leaves
+                Selection([Note("a'4"), Note("f'8")])
 
-            >>> agent = abjad.inspect(staff_group[1][1])
-            >>> moment = agent.get_vertical_moment(governor=staff_group)
-            >>> moment.leaves
-            Selection([Note("a'4"), Note("e'8")])
+            ::
 
-        ::
+                >>> agent = abjad.inspect(staff_group[1][1])
+                >>> moment = agent.get_vertical_moment(governor=staff_group)
+                >>> moment.leaves
+                Selection([Note("a'4"), Note("e'8")])
 
-            >>> agent = abjad.inspect(staff_group[1][2])
-            >>> moment = agent.get_vertical_moment(governor=staff_group)
-            >>> moment.leaves
-            Selection([Note("g'4"), Note("d'8")])
+            ::
 
-        ::
+                >>> agent = abjad.inspect(staff_group[1][2])
+                >>> moment = agent.get_vertical_moment(governor=staff_group)
+                >>> moment.leaves
+                Selection([Note("g'4"), Note("d'8")])
 
-            >>> agent = abjad.inspect(staff_group[1][3])
-            >>> moment = agent.get_vertical_moment(governor=staff_group)
-            >>> moment.leaves
-            Selection([Note("g'4"), Note("c'8")])
+            ::
+
+                >>> agent = abjad.inspect(staff_group[1][3])
+                >>> moment = agent.get_vertical_moment(governor=staff_group)
+                >>> moment.leaves
+                Selection([Note("g'4"), Note("c'8")])
 
         Returns vertical moment.
         '''
@@ -948,24 +1074,21 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def has_effective_indicator(self, prototype=None):
-        r'''Is true when indicator that matches `prototype` is
-        in effect for client. Otherwise false.
+        r'''Is true when client has effective indicator. Otherwise false.
 
         Returns true or false.
         '''
         return self._client._has_effective_indicator(prototype=prototype)
 
     def has_indicator(self, prototype=None):
-        r'''Is true when client has one or more
-        indicators that match `prototype`. Otherwise false.
+        r'''Is true when client has one or more indicators. Otherwise false.
 
         Returns true or false.
         '''
         return self._client._has_indicator(prototype=prototype)
 
     def has_spanner(self, prototype=None, in_parentage=False):
-        r'''Is true when client has one or more
-        spanners that match `prototype`. Otherwise false.
+        r'''Is true when client has one or more spanners. Otherwise false.
 
         Returns true or false.
         '''
@@ -975,8 +1098,7 @@ class InspectionAgent(abctools.AbjadObject):
             )
 
     def is_bar_line_crossing(self):
-        r'''Is true when client crosses bar line.
-        Otherwise false.
+        r'''Is true when client crosses bar line. Otherwise false.
 
         ..  container:: example
 
@@ -1027,24 +1149,21 @@ class InspectionAgent(abctools.AbjadObject):
         return False
 
     def is_well_formed(self):
-        r'''Is true when client is well-formed.
-        Otherwise false.
+        r'''Is true when client is well-formed. Otherwise false.
 
         Returns false.
         '''
-        from abjad.tools import systemtools
-        manager = systemtools.WellformednessManager()
+        import abjad
+        manager = abjad.WellformednessManager()
         for violators, total, check_name in manager(self._client):
             if violators:
                 return False
         return True
 
     def report_modifications(self):
-        r'''Reports modifications of client.
+        r'''Reports modifications.
 
         ..  container:: example
-
-            Report modifications of container in selection:
 
             ::
 
@@ -1070,9 +1189,6 @@ class InspectionAgent(abctools.AbjadObject):
             ::
 
                 >>> report = abjad.inspect(container).report_modifications()
-
-            ::
-
                 >>> print(report)
                 {
                     \override NoteHead.color = #red
@@ -1110,7 +1226,7 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         allow_percussion_clef=None,
         ):
-        r'''Tabulates well-formedness violations in client.
+        r'''Tabulates well-formedness violations.
 
         ..  container:: example
 
@@ -1162,7 +1278,7 @@ class InspectionAgent(abctools.AbjadObject):
                 0 /	0 short hairpins
                 0 /	0 tied rests
 
-            Beamed quarter notes are not well formed.
+            Beamed quarter notes are not well-formed.
 
         Returns string.
         '''
@@ -1180,13 +1296,3 @@ class InspectionAgent(abctools.AbjadObject):
             string = string.format(violator_count, total, check_name)
             strings.append(string)
         return '\n'.join(strings)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        r'''Client of inspection agent.
-
-        Returns component.
-        '''
-        return self._client

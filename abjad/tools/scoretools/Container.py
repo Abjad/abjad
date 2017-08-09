@@ -449,8 +449,11 @@ class Container(Component):
     def _append_without_withdrawing_from_crossing_spanners(self, component):
         '''Not composer-safe.
         '''
-        self._set_item(slice(len(self), len(self)), [component],
-            withdraw_components_from_crossing_spanners=False)
+        self._set_item(
+            slice(len(self), len(self)),
+            [component],
+            withdraw_components_from_crossing_spanners=False,
+            )
 
     def _as_graphviz_node(self):
         from abjad.tools import graphtools
@@ -607,8 +610,10 @@ class Container(Component):
 
     def _get_contents_duration(self):
         if self.is_simultaneous:
-            return max([durationtools.Duration(0)] +
-                [x._get_preprolated_duration() for x in self])
+            return max(
+                [durationtools.Duration(0)] +
+                [x._get_preprolated_duration() for x in self]
+                )
         else:
             duration = durationtools.Duration(0)
             for x in self:
@@ -631,8 +636,10 @@ class Container(Component):
 
     def _get_duration_in_seconds(self):
         if self.is_simultaneous:
-            return max([durationtools.Duration(0)] +
-                [x._get_duration(in_seconds=True) for x in self])
+            return max(
+                [durationtools.Duration(0)] +
+                [x._get_duration(in_seconds=True) for x in self]
+                )
         else:
             duration = durationtools.Duration(0)
             for leaf in iterate(self).by_leaf():

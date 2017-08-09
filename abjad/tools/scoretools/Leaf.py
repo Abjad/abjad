@@ -237,31 +237,31 @@ class Leaf(Component):
             )
 
     def _get_leaf(self, n=0):
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        Selection = selectiontools.Selection
+        import abjad
+
         def next(component):
             new_component = component._get_nth_component_in_time_order_from(1)
             if new_component is None:
                 return
             candidates = new_component._get_descendants_starting_with()
             candidates = [
-                x for x in candidates if isinstance(x, scoretools.Leaf)
+                x for x in candidates if isinstance(x, abjad.Leaf)
                 ]
             for candidate in candidates:
-                if Selection._all_in_same_logical_voice(
+                if abjad.Selection._all_in_same_logical_voice(
                     [component, candidate]):
                     return candidate
+
         def previous(component):
             new_component = component._get_nth_component_in_time_order_from(-1)
             if new_component is None:
                 return
             candidates = new_component._get_descendants_stopping_with()
             candidates = [
-                x for x in candidates if isinstance(x, scoretools.Leaf)
+                x for x in candidates if isinstance(x, abjad.Leaf)
                 ]
             for candidate in candidates:
-                if Selection._all_in_same_logical_voice(
+                if abjad.Selection._all_in_same_logical_voice(
                     [component, candidate]):
                     return candidate
         current_leaf = self

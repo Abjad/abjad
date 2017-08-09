@@ -499,7 +499,6 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                
                     >>> expression = abjad.iterate()
                     >>> expression = expression.by_class(
                     ...     with_grace_notes=True,
@@ -970,7 +969,7 @@ class IterationAgent(abctools.AbjadObject):
                         }
                     }
 
-            ..  container:: example 
+            ..  container:: example
 
                 ::
 
@@ -2492,7 +2491,7 @@ class IterationAgent(abctools.AbjadObject):
                     >>> expression = expression.by_pitch()
                     >>> for pitch in expression(staff):
                     ...     pitch
-                    ... 
+                    ...
                     NamedPitch("c'")
                     NamedPitch("d'")
                     NamedPitch("e'")
@@ -3190,7 +3189,7 @@ class IterationAgent(abctools.AbjadObject):
                             c''8
                         }
                     >>
-            
+
             ..  container:: example
 
                 ::
@@ -4057,7 +4056,7 @@ class IterationAgent(abctools.AbjadObject):
                             }
                         >>
                     >>
-            
+
             ..  container:: example
 
                 ::
@@ -4077,7 +4076,6 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                
                     >>> agent = abjad.iterate(staff_group)
                     >>> for vertical_moment in agent.by_vertical_moment(
                     ...     reverse=True,
@@ -4107,7 +4105,6 @@ class IterationAgent(abctools.AbjadObject):
 
                 ::
 
-                
                     >>> expression = abjad.iterate()
                     >>> expression = expression.by_vertical_moment(reverse=True)
                     >>> for vertical_moment in expression(staff_group):

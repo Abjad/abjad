@@ -231,7 +231,7 @@ class TextSpanner(Spanner):
                 e'4
                 f'4 \stopTextSpan ^ \markup { pont. }
             }
-        
+
     ..  container:: example
 
         Raises exception on fewer than two leaves:

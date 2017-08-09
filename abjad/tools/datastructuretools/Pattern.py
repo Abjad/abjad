@@ -1911,7 +1911,7 @@ class Pattern(AbjadValueObject):
                         c'4.
                     }
                 }
-                
+
         ..  container:: example
 
             Selects first two divisions for tie creation:
@@ -2141,7 +2141,10 @@ class Pattern(AbjadValueObject):
         Returns pattern.
         '''
         if 0 < n:
-            indices = list(reversed(range(-1, -n-1, -1)))
+            start = -1
+            stop = -n - 1
+            stride = -1
+            indices = list(reversed(range(start, stop, stride)))
         else:
             indices = None
         return Pattern(
@@ -2944,7 +2947,7 @@ class Pattern(AbjadValueObject):
                 8 True
                 9
                 10 True
-                11 
+                11
                 12 True
                 13
                 14

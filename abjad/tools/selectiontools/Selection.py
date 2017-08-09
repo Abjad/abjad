@@ -727,7 +727,7 @@ class Selection(object):
             old_denominators.append(effective_time_signature.denominator)
             new_duration += effective_time_signature.duration
         new_time_signature = \
-            measure._duration_and_possible_denominators_to_time_signature(
+            measure._duration_to_time_signature(
                 new_duration,
                 old_denominators,
                 )

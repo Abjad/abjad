@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import six
+from abjad.tools import systemtools
+from abjad.tools import mathtools
 from .OrdinalConstant import OrdinalConstant
-# load constants into __builtins__ namespace
 if six.PY3:
     import builtins
 else:
@@ -18,17 +19,13 @@ builtins.Up = OrdinalConstant('y', 1, 'Up')
 builtins.Down = OrdinalConstant('y', -1, 'Down')
 builtins.Top = OrdinalConstant('y', 1, 'Top')
 builtins.Bottom = OrdinalConstant('y', -1, 'Bottom')
-from abjad.tools import mathtools
 builtins.Infinity = mathtools.Infinity()
 builtins.NegativeInfinity = mathtools.NegativeInfinity()
 del(builtins)
 del(six)
 
-
-from abjad.tools import systemtools
 systemtools.ImportManager.import_structured_package(
     __path__[0],
     globals(),
     )
-
 _documentation_section = 'core'

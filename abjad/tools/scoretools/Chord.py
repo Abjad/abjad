@@ -66,12 +66,15 @@ class Chord(Leaf):
                 are_forced = [leaf.note_head.is_forced]
                 are_parenthesized = [leaf.note_head.is_parenthesized]
             elif 'written_pitches' in dir(leaf):
-                written_pitches.extend(x.written_pitch
-                    for x in leaf.note_heads)
+                written_pitches.extend(
+                    x.written_pitch for x in leaf.note_heads
+                    )
                 are_cautionary = [x.is_cautionary for x in leaf.note_heads]
                 are_forced = [x.is_forced for x in leaf.note_heads]
-                are_parenthesized = [x.is_parenthesized for x in
-                    leaf.note_heads]
+                are_parenthesized = [
+                    x.is_parenthesized for x in
+                    leaf.note_heads
+                    ]
         elif len(arguments) == 2:
             written_pitches, written_duration = arguments
             if isinstance(written_pitches, str):

@@ -37,7 +37,7 @@ class BowContactPoint(AbjadValueObject):
                 contact_point=abjad.Multiplier(3, 5),
                 )
 
-    Contact points are measured from frog to tip as a fraction between ``0`` 
+    Contact points are measured from frog to tip as a fraction between ``0``
     and ``1``.
     '''
 

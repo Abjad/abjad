@@ -87,7 +87,7 @@ class StaffChange(AbjadValueObject):
         ..  container:: example
 
             Explicit staff change:
-    
+
             ::
 
                 >>> staff_change = abjad.StaffChange(staff=lh_staff)
@@ -139,7 +139,7 @@ class StaffChange(AbjadValueObject):
         ..  container:: example
 
             Explicit staff change:
-    
+
             ::
 
                 >>> staff_change = abjad.StaffChange(staff=lh_staff)
@@ -167,13 +167,13 @@ class StaffChange(AbjadValueObject):
         ..  container:: example
 
             Explicit staff change:
-    
+
             ::
 
                 >>> staff_change = abjad.StaffChange(staff=lh_staff)
                 >>> staff_change.staff
                 Staff('s2', name='LHStaff')
-        
+
         Set to staff or none.
 
         Defaults to none.

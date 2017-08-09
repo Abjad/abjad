@@ -213,7 +213,8 @@ class Tuning(AbjadValueObject):
                     continue
                 pitches = pitch_range.voice_pitch_class(pitch_class)
                 if not allow_open_strings:
-                    pitches = [pitch for pitch in pitches
+                    pitches = [
+                        pitch for pitch in pitches
                         if pitch != pitch_range.start_pitch
                         ]
                 if not pitches:

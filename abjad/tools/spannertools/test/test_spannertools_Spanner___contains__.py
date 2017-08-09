@@ -14,4 +14,4 @@ def test_spannertools_Spanner___contains___01():
     spanner = MockSpanner()
     abjad.attach(spanner, abjad.Note("c'4"))
 
-    assert not note in spanner
+    assert note not in spanner

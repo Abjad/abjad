@@ -172,7 +172,7 @@ def test_spannertools_Hairpin_06():
 
 
 def test_spannertools_Hairpin_07():
-    
+
     staff = abjad.Staff("c'4 d'4 e'4 f'4")
     abjad.attach(abjad.Dynamic('p'), staff[0])
     abjad.attach(abjad.Hairpin('<'), staff[:])

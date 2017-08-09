@@ -627,8 +627,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         #print(file_name_pattern, pages)
         with systemtools.TemporaryDirectoryChange(absolute_directory_path):
             file_name_matches = glob.glob(file_name_pattern)
-            file_name_matches = [_ for _ in file_name_matches
-                if '-thumbnail' not in _]
+            file_name_matches = [
+                _ for _ in file_name_matches
+                if '-thumbnail' not in _
+                ]
         #print('\t', file_name_matches)
         target_file_name_dict = {}
         if len(file_name_matches) == 1 and '-page' not in file_name_matches[0]:
@@ -650,8 +652,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     target_file_names.append(target_file_name_dict[page])
             if len(target_file_names) == len(pages):
                 found_all_pages = True
-        target_file_paths = [posixpath.join(relative_directory_path, _)
-            for _ in target_file_names]
+        target_file_paths = [
+            posixpath.join(relative_directory_path, _)
+            for _ in target_file_names
+            ]
         return target_file_paths, found_all_pages
 
     @staticmethod
