@@ -68,7 +68,7 @@ class Score(Context):
     ### PUBLIC METHODS ###
 
     def add_final_bar_line(
-        self, 
+        self,
         abbreviation='|.',
         to_each_voice=False,
         ):

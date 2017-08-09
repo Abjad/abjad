@@ -85,13 +85,13 @@ class NoteMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set ``decrease_durations_monotonically=True`` to express tied values in
+        Set ``decrease_monotonic=True`` to express tied values in
         decreasing duration:
 
         ::
 
             >>> maker = abjad.NoteMaker(
-            ...     decrease_durations_monotonically=True,
+            ...     decrease_monotonic=True,
             ...     )
             >>> notes = maker([0], [(13, 16)])
             >>> staff = abjad.Staff(notes)
@@ -107,13 +107,13 @@ class NoteMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set ``decrease_durations_monotonically=False`` to express tied values
+        Set ``decrease_monotonic=False`` to express tied values
         in increasing duration:
 
         ::
 
             >>> maker = abjad.NoteMaker(
-            ...     decrease_durations_monotonically=False,
+            ...     decrease_monotonic=False,
             ...     )
             >>> notes = maker([0], [(13, 16)])
             >>> staff = abjad.Staff(notes)
@@ -182,7 +182,7 @@ class NoteMaker(AbjadValueObject):
     __documentation_section__ = 'Makers'
 
     __slots__ = (
-        '_decrease_durations_monotonically',
+        '_decrease_monotonic',
         '_use_messiaen_style_ties',
         )
 
@@ -192,11 +192,11 @@ class NoteMaker(AbjadValueObject):
 
     def __init__(
         self,
-        decrease_durations_monotonically=True,
+        decrease_monotonic=True,
         use_messiaen_style_ties=False,
         ):
-        self._decrease_durations_monotonically = \
-            decrease_durations_monotonically
+        self._decrease_monotonic = \
+            decrease_monotonic
         self._use_messiaen_style_ties = use_messiaen_style_ties
 
     ### SPECIAL METHODS ###
@@ -234,8 +234,7 @@ class NoteMaker(AbjadValueObject):
                     self._make_unprolated_notes(
                         ps,
                         duration,
-                        decrease_durations_monotonically=\
-                            self.decrease_durations_monotonically,
+                        decrease_monotonic=self.decrease_monotonic,
                         use_messiaen_style_ties=self.use_messiaen_style_ties,
                         )
                     )
@@ -250,8 +249,7 @@ class NoteMaker(AbjadValueObject):
                 ns = self._make_unprolated_notes(
                     ps,
                     duration,
-                    decrease_durations_monotonically=\
-                        self.decrease_durations_monotonically,
+                    decrease_monotonic=self.decrease_monotonic,
                     use_messiaen_style_ties=self.use_messiaen_style_ties,
                     )
                 tuplet = abjad.Tuplet(multiplier, ns)
@@ -265,7 +263,7 @@ class NoteMaker(AbjadValueObject):
     def _make_unprolated_notes(
         pitches,
         durations,
-        decrease_durations_monotonically=True,
+        decrease_monotonic=True,
         use_messiaen_style_ties=False,
         ):
         import abjad
@@ -277,7 +275,7 @@ class NoteMaker(AbjadValueObject):
                     abjad.Note,
                     duration,
                     pitches=pitch,
-                    decrease_durations_monotonically=decrease_durations_monotonically,
+                    decrease_monotonic=decrease_monotonic,
                     use_messiaen_style_ties=use_messiaen_style_ties,
                     )
                 )
@@ -286,12 +284,12 @@ class NoteMaker(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def decrease_durations_monotonically(self):
+    def decrease_monotonic(self):
         r'''Is true when durations decrease monotonically. Otherwise false.
 
         Returns true, false or none.
         '''
-        return self._decrease_durations_monotonically
+        return self._decrease_monotonic
 
     @property
     def use_messiaen_style_ties(self):

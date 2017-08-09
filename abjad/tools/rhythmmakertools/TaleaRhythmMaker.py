@@ -506,8 +506,8 @@ class TaleaRhythmMaker(RhythmMaker):
             leaf_list = self._make_leaves_from_talea(
                 map_division,
                 talea_denominator,
-                decrease_durations_monotonically=\
-                    specifier.decrease_durations_monotonically,
+                decrease_monotonic=\
+                    specifier.decrease_monotonic,
                 forbidden_written_duration=\
                     specifier.forbidden_written_duration,
                 spell_metrically=specifier.spell_metrically,
@@ -519,7 +519,7 @@ class TaleaRhythmMaker(RhythmMaker):
     def _make_leaves_from_talea(
         talea,
         talea_denominator,
-        decrease_durations_monotonically=True,
+        decrease_monotonic=True,
         forbidden_written_duration=None,
         spell_metrically=None,
         use_messiaen_style_ties=False,
@@ -528,7 +528,7 @@ class TaleaRhythmMaker(RhythmMaker):
         assert all(x != 0 for x in talea), repr(talea)
         result = []
         leaf_maker = abjad.LeafMaker(
-            decrease_durations_monotonically=decrease_durations_monotonically,
+            decrease_monotonic=decrease_monotonic,
             forbidden_written_duration=forbidden_written_duration,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
@@ -1681,7 +1681,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         denominator=16,
                 ...         ),
                 ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                ...         decrease_durations_monotonically=True,
+                ...         decrease_monotonic=True,
                 ...         ),
                 ...     )
 
@@ -1733,7 +1733,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         denominator=16,
                 ...         ),
                 ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                ...         decrease_durations_monotonically=False,
+                ...         decrease_monotonic=False,
                 ...         ),
                 ...     )
 

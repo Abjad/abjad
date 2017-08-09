@@ -53,7 +53,7 @@ def test_systemtools_StorageFormatAgent_get_import_statements_04():
             beam_divisions_together=False,
             ),
         duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-            decrease_durations_monotonically=True,
+            decrease_monotonic=True,
             forbidden_written_duration=durationtools.Duration(1, 2),
             ),
         tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(

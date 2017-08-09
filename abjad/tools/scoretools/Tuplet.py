@@ -355,11 +355,6 @@ class Tuplet(Container):
             leaf.written_duration = duration
             leaves.append(leaf)
         self[:] = leaves
-        #leaves = self[:]
-        #leaf_durations = [inspect(_).get_duration() for _ in leaves]
-        #tuplet_duration = sum(leaf_durations)
-        #for leaf_duration, leaf in zip(leaf_durations, leaves):
-        #    leaf.written_duration = leaf_duration
         self.multiplier = durationtools.Multiplier(1)
 
     ### PUBLIC PROPERTIES ###
@@ -1296,7 +1291,7 @@ class Tuplet(Container):
         duration,
         ratio,
         avoid_dots=True,
-        decrease_durations_monotonically=True,
+        decrease_monotonic=True,
         is_diminution=True,
         ):
         r'''Makes tuplet from `duration` and `ratio`.
@@ -1368,7 +1363,7 @@ class Tuplet(Container):
                 }
 
             Interprets nonassignable `ratio` according to
-            `decrease_durations_monotonically`:
+            `decrease_monotonic`:
 
             ::
 
@@ -1376,7 +1371,7 @@ class Tuplet(Container):
                 ...     abjad.Duration(3, 16),
                 ...     abjad.Ratio((5, -1, 5)),
                 ...     avoid_dots=True,
-                ...     decrease_durations_monotonically=False,
+                ...     decrease_monotonic=False,
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = abjad.Measure((3, 16), [tuplet])
@@ -1433,7 +1428,7 @@ class Tuplet(Container):
                 }
 
             Interprets nonassignable `ratio` according to
-            `decrease_durations_monotonically`:
+            `decrease_monotonic`:
 
             ::
 
@@ -1441,7 +1436,7 @@ class Tuplet(Container):
                 ...     abjad.Duration(3, 16),
                 ...     abjad.Ratio((5, -1, 5)),
                 ...     avoid_dots=False,
-                ...     decrease_durations_monotonically=False,
+                ...     decrease_monotonic=False,
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = abjad.Measure((3, 16), [tuplet])
@@ -1530,7 +1525,7 @@ class Tuplet(Container):
                 }
 
             Interprets nonassignable `ratio` according to
-            `decrease_durations_monotonically`:
+            `decrease_monotonic`:
 
             ::
 
@@ -1538,7 +1533,7 @@ class Tuplet(Container):
                 ...     abjad.Duration(3, 16),
                 ...     abjad.Ratio((5, -1, 5)),
                 ...     avoid_dots=True,
-                ...     decrease_durations_monotonically=False,
+                ...     decrease_monotonic=False,
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = abjad.Measure((3, 16), [tuplet])
@@ -1601,7 +1596,7 @@ class Tuplet(Container):
                 ...     abjad.Duration(3, 16),
                 ...     abjad.Ratio((5, -1, 5)),
                 ...     avoid_dots=False,
-                ...     decrease_durations_monotonically=False,
+                ...     decrease_monotonic=False,
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = abjad.Measure((3, 16), [tuplet])
@@ -1644,7 +1639,7 @@ class Tuplet(Container):
         # find written duration of each note in tuplet
         written_durations = [x * basic_written_duration for x in ratio.numbers]
         leaf_maker = abjad.LeafMaker(
-            decrease_durations_monotonically=decrease_durations_monotonically,
+            decrease_monotonic=decrease_monotonic,
             )
         # make tuplet leaves
         try:
@@ -1653,17 +1648,19 @@ class Tuplet(Container):
                 for x in written_durations
                 ]
         except AssignabilityError:
-            # changed in hopes of removing Python 3.5 ACCELERATED=True error
-            #denominator = duration._denominator
             denominator = duration.denominator
             note_durations = [
                 abjad.Duration(x, denominator)
                 for x in ratio.numbers
                 ]
-            pitches = [None if note_duration < 0 else 0
-                for note_duration in note_durations]
-            leaf_durations = [abs(note_duration)
-                for note_duration in note_durations]
+            pitches = [
+                None if note_duration < 0 else 0
+                for note_duration in note_durations
+                ]
+            leaf_durations = [
+                abs(note_duration)
+                for note_duration in note_durations
+                ]
             notes = leaf_maker(pitches, leaf_durations)
         # make tuplet
         tuplet = abjad.Tuplet.from_duration(duration, notes)

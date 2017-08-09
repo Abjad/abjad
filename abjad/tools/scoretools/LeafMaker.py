@@ -201,7 +201,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set `decrease_durations_monotonically` to true to return nonassignable
+        Set `decrease_monotonic` to true to return nonassignable
         durations tied from greatest to least:
 
         ::
@@ -226,13 +226,13 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set `decrease_durations_monotonically` to false to return nonassignable
+        Set `decrease_monotonic` to false to return nonassignable
         durations tied from least to greatest:
 
         ::
 
             >>> maker = abjad.LeafMaker(
-            ...     decrease_durations_monotonically=False,
+            ...     decrease_monotonic=False,
             ...     )
             >>> pitches = ['E5']
             >>> durations = [abjad.Duration(13, 16)]
@@ -285,13 +285,13 @@ class LeafMaker(AbjadValueObject):
     ..  container:: example
 
         You may set `forbidden_written_duration` and
-        `decrease_durations_monotonically` together:
+        `decrease_monotonic` together:
 
         ::
 
             >>> maker = abjad.LeafMaker(
             ...     forbidden_written_duration=abjad.Duration(1, 2),
-            ...     decrease_durations_monotonically=False,
+            ...     decrease_monotonic=False,
             ...     )
             >>> pitches = "f' g'"
             >>> durations = [abjad.Duration(5, 8)]
@@ -472,7 +472,7 @@ class LeafMaker(AbjadValueObject):
     __documentation_section__ = 'Makers'
 
     __slots__ = (
-        '_decrease_durations_monotonically',
+        '_decrease_monotonic',
         '_forbidden_written_duration',
         '_is_diminution',
         '_metrical_hierarchy',
@@ -487,7 +487,7 @@ class LeafMaker(AbjadValueObject):
 
     def __init__(
         self,
-        decrease_durations_monotonically=True,
+        decrease_monotonic=True,
         forbidden_written_duration=None,
         is_diminution=True,
         metrical_hierarchy=None,
@@ -495,8 +495,8 @@ class LeafMaker(AbjadValueObject):
         use_messiaen_style_ties=False,
         use_multimeasure_rests=False,
         ):
-        self._decrease_durations_monotonically = \
-            decrease_durations_monotonically
+        self._decrease_monotonic = \
+            decrease_monotonic
         self._forbidden_written_duration = forbidden_written_duration
         self._is_diminution = is_diminution
         self._metrical_hierarchy = metrical_hierarchy
@@ -541,7 +541,7 @@ class LeafMaker(AbjadValueObject):
                     leaves = self._make_leaf_on_pitch(
                         pitch,
                         duration,
-                        decrease_durations_monotonically=self.decrease_durations_monotonically,
+                        decrease_monotonic=self.decrease_monotonic,
                         forbidden_written_duration=self.forbidden_written_duration,
                         skips_instead_of_rests=self.skips_instead_of_rests,
                         use_multimeasure_rests=self.use_multimeasure_rests,
@@ -563,8 +563,8 @@ class LeafMaker(AbjadValueObject):
                     leaves = self._make_leaf_on_pitch(
                         pitch,
                         duration,
-                        decrease_durations_monotonically=\
-                            self.decrease_durations_monotonically,
+                        decrease_monotonic=\
+                            self.decrease_monotonic,
                         skips_instead_of_rests=self.skips_instead_of_rests,
                         use_multimeasure_rests=self.use_multimeasure_rests,
                         use_messiaen_style_ties=self.use_messiaen_style_ties,
@@ -585,7 +585,7 @@ class LeafMaker(AbjadValueObject):
     def _make_leaf_on_pitch(
         pitch,
         duration,
-        decrease_durations_monotonically=True,
+        decrease_monotonic=True,
         forbidden_written_duration=None,
         skips_instead_of_rests=False,
         use_multimeasure_rests=False,
@@ -605,7 +605,7 @@ class LeafMaker(AbjadValueObject):
             leaves = LeafMaker._make_tied_leaf(
                 abjad.Note,
                 duration,
-                decrease_durations_monotonically=decrease_durations_monotonically,
+                decrease_monotonic=decrease_monotonic,
                 forbidden_written_duration=forbidden_written_duration,
                 pitches=pitch,
                 use_messiaen_style_ties=use_messiaen_style_ties,
@@ -614,7 +614,7 @@ class LeafMaker(AbjadValueObject):
             leaves = LeafMaker._make_tied_leaf(
                 abjad.Chord,
                 duration,
-                decrease_durations_monotonically=decrease_durations_monotonically,
+                decrease_monotonic=decrease_monotonic,
                 forbidden_written_duration=forbidden_written_duration,
                 pitches=pitch,
                 use_messiaen_style_ties=use_messiaen_style_ties,
@@ -623,7 +623,7 @@ class LeafMaker(AbjadValueObject):
             leaves = LeafMaker._make_tied_leaf(
                 abjad.Skip,
                 duration,
-                decrease_durations_monotonically=decrease_durations_monotonically,
+                decrease_monotonic=decrease_monotonic,
                 forbidden_written_duration=forbidden_written_duration,
                 pitches=None,
                 use_messiaen_style_ties=use_messiaen_style_ties,
@@ -632,7 +632,7 @@ class LeafMaker(AbjadValueObject):
             leaves = LeafMaker._make_tied_leaf(
                 abjad.Rest,
                 duration,
-                decrease_durations_monotonically=decrease_durations_monotonically,
+                decrease_monotonic=decrease_monotonic,
                 forbidden_written_duration=forbidden_written_duration,
                 pitches=None,
                 use_messiaen_style_ties=use_messiaen_style_ties,
@@ -654,7 +654,7 @@ class LeafMaker(AbjadValueObject):
     def _make_tied_leaf(
         class_,
         duration,
-        decrease_durations_monotonically=True,
+        decrease_monotonic=True,
         forbidden_written_duration=None,
         pitches=None,
         tie_parts=True,
@@ -704,7 +704,7 @@ class LeafMaker(AbjadValueObject):
         else:
             numerators = parts
         # reverse numerators if necessary
-        if not decrease_durations_monotonically:
+        if not decrease_monotonic:
             numerators = list(reversed(numerators))
         # make one leaf per written duration
         result = []
@@ -747,12 +747,12 @@ class LeafMaker(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def decrease_durations_monotonically(self):
+    def decrease_monotonic(self):
         r'''Is true when durations decrease monotonically. Otherwise false.
 
         Returns true, false or none.
         '''
-        return self._decrease_durations_monotonically
+        return self._decrease_monotonic
 
     @property
     def forbidden_written_duration(self):
