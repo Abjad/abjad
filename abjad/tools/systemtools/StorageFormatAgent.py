@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import collections
-import platform
 import sys
 import types
 from abjad.tools.abctools import AbjadValueObject

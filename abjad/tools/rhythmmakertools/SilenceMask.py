@@ -77,7 +77,6 @@ class SilenceMask(AbjadValueObject):
 
             ::
 
-            
                 >>> mask = rhythmmakertools.SilenceMask(
                 ...     abjad.index_every([0, 1, 7], period=16),
                 ...     use_multimeasure_rests=False,
@@ -492,9 +491,9 @@ class SilenceMask(AbjadValueObject):
 
     @staticmethod
     def silence_every(
-        indices, 
-        period=None, 
-        inverted=None, 
+        indices,
+        period=None,
+        inverted=None,
         use_multimeasure_rests=None,
         ):
         r'''Makes silence mask that matches `indices` at `period`.
@@ -1207,7 +1206,10 @@ class SilenceMask(AbjadValueObject):
         '''
         import abjad
         if 0 < n:
-            indices = list(reversed(range(-1, -n-1, -1)))
+            start = -1
+            stop = -n - 1
+            stride = -1
+            indices = list(reversed(range(start, stop, stride)))
         else:
             indices = None
         pattern = abjad.Pattern(

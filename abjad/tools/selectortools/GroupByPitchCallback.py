@@ -51,7 +51,7 @@ class GroupByPitchCallback(AbjadValueObject):
         selections = self._map_contiguity(selections)
         selections = [selectiontools.Selection(_) for _ in selections]
         return tuple(selections)
-    
+
     ### PRIVATE METHODS ###
 
     @staticmethod

@@ -243,13 +243,14 @@ class BurnishSpecifier(AbjadValueObject):
 
     @classmethod
     def _burnish_each_division(class_, input_, divisions):
+        import abjad
         left_classes = input_['left_classes']
         middle_classes = input_['middle_classes']
         right_classes = input_['right_classes']
         left_counts = input_['left_counts']
-        left_counts = left_counts or datastructuretools.CyclicTuple([0])
+        left_counts = left_counts or abjad.CyclicTuple([0])
         right_counts = input_['right_counts']
-        right_counts = right_counts or datastructuretools.CyclicTuple([0])
+        right_counts = right_counts or abjad.CyclicTuple([0])
         lefts_index, rights_index = 0, 0
         burnished_divisions = []
         for division_index, division in enumerate(divisions):
@@ -270,12 +271,12 @@ class BurnishSpecifier(AbjadValueObject):
             else:
                 middle = middle_count * [0]
             right = right[:right_count]
-            left_part, middle_part, right_part = datastructuretools.Sequence(
-                    division).partition_by_counts(
-                    [left_count, middle_count, right_count],
-                    cyclic=False,
-                    overhang=False,
-                    )
+            result = abjad.sequence(division).partition_by_counts(
+                [left_count, middle_count, right_count],
+                cyclic=False,
+                overhang=False,
+                )
+            left_part, middle_part, right_part = result
             left_part = class_._burnish_division_part(left_part, left)
             middle_part = class_._burnish_division_part(middle_part, middle)
             right_part = class_._burnish_division_part(right_part, right)
@@ -288,15 +289,16 @@ class BurnishSpecifier(AbjadValueObject):
 
     @classmethod
     def _burnish_outer_divisions(class_, input_, divisions):
+        import abjad
         for list_ in divisions:
             assert all(isinstance(_, int) for _ in list_), repr(list_)
         left_classes = input_['left_classes']
         middle_classes = input_['middle_classes']
         right_classes = input_['right_classes']
         left_counts = input_['left_counts']
-        left_counts = left_counts or datastructuretools.CyclicTuple([0])
+        left_counts = left_counts or abjad.CyclicTuple([0])
         right_counts = input_['right_counts']
-        right_counts = right_counts or datastructuretools.CyclicTuple([0])
+        right_counts = right_counts or abjad.CyclicTuple([0])
         burnished_divisions = []
         left_count = 0
         if left_counts:
@@ -318,12 +320,12 @@ class BurnishSpecifier(AbjadValueObject):
             middle = [middle_classes[0]]
             middle = middle_count * middle
             right = right[:right_count]
-            left_part, middle_part, right_part = datastructuretools.Sequence(
-                    divisions[0]).partition_by_counts(
-                    [left_count, middle_count, right_count],
-                    cyclic=False,
-                    overhang=Exact,
-                    )
+            result = abjad.sequence(divisions[0]).partition_by_counts(
+                [left_count, middle_count, right_count],
+                cyclic=False,
+                overhang=Exact,
+                )
+            left_part, middle_part, right_part = result
             left_part = class_._burnish_division_part(left_part, left)
             middle_part = class_._burnish_division_part(middle_part, middle)
             right_part = class_._burnish_division_part(right_part, right)
@@ -339,12 +341,12 @@ class BurnishSpecifier(AbjadValueObject):
                 middle_classes = [1]
             middle = [middle_classes[0]]
             middle = middle_count * middle
-            left_part, middle_part = datastructuretools.Sequence(
-                    divisions[0]).partition_by_counts(
-                    [left_count, middle_count],
-                    cyclic=False,
-                    overhang=Exact,
-                    )
+            result = abjad.sequence(divisions[0]).partition_by_counts(
+                [left_count, middle_count],
+                cyclic=False,
+                overhang=Exact,
+                )
+            left_part, middle_part = result
             left_part = class_._burnish_division_part(left_part, left)
             middle_part = class_._burnish_division_part(middle_part, middle)
             burnished_division = left_part + middle_part
@@ -365,12 +367,12 @@ class BurnishSpecifier(AbjadValueObject):
             middle_count = len(divisions[-1]) - right_count
             right = right[:right_count]
             middle = middle_count * [middle_classes[0]]
-            middle_part, right_part = datastructuretools.Sequence(
-                    divisions[-1]).partition_by_counts(
-                    [middle_count, right_count],
-                    cyclic=False,
-                    overhang=Exact,
-                    )
+            result = abjad.sequence(divisions[-1]).partition_by_counts(
+                [middle_count, right_count],
+                cyclic=False,
+                overhang=Exact,
+                )
+            middle_part, right_part = result
             middle_part = class_._burnish_division_part(middle_part, middle)
             right_part = class_._burnish_division_part(right_part, right)
             burnished_division = middle_part + right_part
@@ -383,13 +385,13 @@ class BurnishSpecifier(AbjadValueObject):
         return burnished_divisions
 
     def _get_format_specification(self):
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
+        import abjad
+        agent = abjad.StorageFormatAgent(self)
         names = list(agent.signature_keyword_names)
         for name in names[:]:
             if not getattr(self, name):
                 names.remove(name)
-        return systemtools.FormatSpecification(
+        return abjad.FormatSpecification(
             client=self,
             storage_format_kwargs_names=names,
             )
@@ -523,9 +525,9 @@ class BurnishSpecifier(AbjadValueObject):
 
     @property
     def outer_divisions_only(self):
-        r'''Is true when rhythm-maker should burnish only first and last 
+        r'''Is true when rhythm-maker should burnish only first and last
         division in output.
-        
+
         Is false when rhythm-maker should burnish all divisions.
 
         Defaults to false.
