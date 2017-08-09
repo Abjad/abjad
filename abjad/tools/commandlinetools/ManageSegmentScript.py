@@ -255,21 +255,21 @@ class ManageSegmentScript(ScorePackageScript):
             if 0 < index:
                 previous_segment_name = segment_names[index - 1]
             index += 1
-        previous_segment_metadata = {}
+        previous_metadata = {}
         if previous_segment_name:
             previous_segment_metadata_path = self._segments_path.joinpath(
                 previous_segment_name,
                 'metadata.json',
                 )
-            previous_segment_metadata = self._read_json(
+            previous_metadata = self._read_json(
                 previous_segment_metadata_path)
         segment_metadata_path = segment_directory_path.joinpath('metadata.json')
-        segment_metadata = self._read_json(segment_metadata_path)
-        segment_metadata['segment_count'] = len(segment_names)
-        segment_metadata['segment_number'] = index
-        segment_metadata['first_bar_number'] = (
-            previous_segment_metadata.get('measure_count', 0) +
-            previous_segment_metadata.get('first_bar_number', 1)
+        metadata = self._read_json(segment_metadata_path)
+        metadata['segment_count'] = len(segment_names)
+        metadata['segment_number'] = index
+        metadata['first_bar_number'] = (
+            previous_metadata.get('measure_count', 0) +
+            previous_metadata.get('first_bar_number', 1)
             )
         segment_package_path = self._path_to_packagesystem_path(
             segment_directory_path)
@@ -285,14 +285,14 @@ class ManageSegmentScript(ScorePackageScript):
             sys.exit(1)
         with systemtools.Timer() as timer:
             try:
-                lilypond_file, segment_metadata = segment_maker(
-                    segment_metadata=segment_metadata,
-                    previous_segment_metadata=previous_segment_metadata,
+                lilypond_file, metadata = segment_maker(
+                    metadata=metadata,
+                    previous_metadata=previous_metadata,
                     )
             except:
                 traceback.print_exc()
                 sys.exit(1)
-            self._write_json(segment_metadata, segment_metadata_path)
+            self._write_json(metadata, segment_metadata_path)
         self._report_time(timer, prefix='Abjad runtime')
         ly_path = self._write_lilypond_ly(
             lilypond_file,

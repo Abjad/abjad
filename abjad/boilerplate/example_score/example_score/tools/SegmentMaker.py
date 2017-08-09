@@ -15,8 +15,8 @@ class SegmentMaker(abjad.abctools.AbjadObject):
 
     def __call__(
         self,
-        segment_metadata=None,
-        previous_segment_metadata=None,
+        metadata=None,
+        previous_metadata=None,
         ):
         score = self.score_template()
         score['Example Voice'].extend("c'4 ( d'4 e'4 f'4 )")
@@ -24,4 +24,4 @@ class SegmentMaker(abjad.abctools.AbjadObject):
             score,
             includes=['../../stylesheets/stylesheet.ily'],
             )
-        return lilypond_file, segment_metadata
+        return lilypond_file, metadata

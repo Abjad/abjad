@@ -11,8 +11,8 @@ class SegmentMaker(AbjadObject):
 
     __slots__ = (
         '_lilypond_file',
-        '_previous_segment_metadata',
-        '_segment_metadata',
+        '_previous_metadata',
+        '_metadata',
         )
 
     ### INITIALIZER ###
@@ -26,23 +26,23 @@ class SegmentMaker(AbjadObject):
 
     def __call__(
         self,
-        segment_metadata=None,
-        previous_segment_metadata=None,
+        metadata=None,
+        previous_metadata=None,
         ):
         r'''Calls segment-maker.
 
         Returns LilyPond file.
         '''
-        segment_metadata = datastructuretools.TypedOrderedDict(
-            segment_metadata)
-        previous_segment_metadata = datastructuretools.TypedOrderedDict(
-            previous_segment_metadata)
-        self._segment_metadata = segment_metadata
-        self._previous_segment_metadata = previous_segment_metadata
+        metadata = datastructuretools.TypedOrderedDict(
+            metadata)
+        previous_metadata = datastructuretools.TypedOrderedDict(
+            previous_metadata)
+        self._metadata = metadata
+        self._previous_metadata = previous_metadata
         lilypond_file = self._make_lilypond_file()
         assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
         self._lilypond_file = lilypond_file
-        return self._lilypond_file, self._segment_metadata
+        return self._lilypond_file, self._metadata
 
     def __eq__(self, expr):
         r'''Is true if `expr` is a segment-maker with equivalent properties.
