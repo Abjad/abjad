@@ -158,12 +158,12 @@ class DurationSpellingSpecifier(AbjadValueObject):
         parts = abjad.Sequence(component_durations)
         parts = parts.partition_by_weights(
             weights=durations,
-            allow_part_weights=Exact,
+            allow_part_weights=abjad.Exact,
             )
         part_lengths = [len(_) for _ in parts]
         parts = abjad.Sequence(components).partition_by_counts(
             counts=part_lengths,
-            overhang=Exact,
+            overhang=abjad.Exact,
             )
         selections = [abjad.select(_) for _ in parts]
         return selections

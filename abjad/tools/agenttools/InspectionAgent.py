@@ -955,18 +955,11 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         import abjad
         if 0 <= n:
-<<<<<<< HEAD
             stop = n + 1
             components = abjad.iterate(self._client).by_class(
                 prototype=abjad.Tuplet,
                 start=0,
                 stop=stop,
-=======
-            components = abjad.iterate(self._client).by_class(
-                prototype=abjad.Tuplet,
-                start=0,
-                stop=n+1,
->>>>>>> 3fea6a2... Added abjad.inspect().get_tuplet(). NEW.
                 )
             components = list(components)
             if len(components) < n + 1:
@@ -983,12 +976,8 @@ class InspectionAgent(abctools.AbjadObject):
             components = list(components)
             if len(components) < abs(n):
                 return
-<<<<<<< HEAD
             index = abs(n) - 1
             component = components[index]
-=======
-            component = components[abs(n)-1]
->>>>>>> 3fea6a2... Added abjad.inspect().get_tuplet(). NEW.
             return component
 
     def get_vertical_moment(self, governor=None):
@@ -1037,7 +1026,6 @@ class InspectionAgent(abctools.AbjadObject):
                 >>
 
             ::
-<<<<<<< HEAD
 
                 >>> agent = abjad.inspect(staff_group[1][0])
                 >>> moment = agent.get_vertical_moment(governor=staff_group)
@@ -1060,30 +1048,6 @@ class InspectionAgent(abctools.AbjadObject):
 
             ::
 
-=======
-
-                >>> agent = abjad.inspect(staff_group[1][0])
-                >>> moment = agent.get_vertical_moment(governor=staff_group)
-                >>> moment.leaves
-                Selection([Note("a'4"), Note("f'8")])
-
-            ::
-
-                >>> agent = abjad.inspect(staff_group[1][1])
-                >>> moment = agent.get_vertical_moment(governor=staff_group)
-                >>> moment.leaves
-                Selection([Note("a'4"), Note("e'8")])
-
-            ::
-
-                >>> agent = abjad.inspect(staff_group[1][2])
-                >>> moment = agent.get_vertical_moment(governor=staff_group)
-                >>> moment.leaves
-                Selection([Note("g'4"), Note("d'8")])
-
-            ::
-
->>>>>>> 3fea6a2... Added abjad.inspect().get_tuplet(). NEW.
                 >>> agent = abjad.inspect(staff_group[1][3])
                 >>> moment = agent.get_vertical_moment(governor=staff_group)
                 >>> moment.leaves

@@ -224,7 +224,7 @@ class NoteRhythmMaker(RhythmMaker):
             use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
             )
         for division in divisions:
-            if (duration_specifier.spell_metrically == True or
+            if (bool(duration_specifier.spell_metrically) or
                 (duration_specifier.spell_metrically == 'unassignable' and
                 not mathtools.is_assignable_integer(division.numerator))):
                 meter = metertools.Meter(division)
@@ -1211,7 +1211,7 @@ class NoteRhythmMaker(RhythmMaker):
         '''
         superclass = super(NoteRhythmMaker, self)
         return superclass.logical_tie_masks
-    
+
     @property
     def tie_specifier(self):
         r'''Gets tie specifier.

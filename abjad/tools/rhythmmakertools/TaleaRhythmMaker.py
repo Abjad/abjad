@@ -406,6 +406,7 @@ class TaleaRhythmMaker(RhythmMaker):
             )
 
     def _apply_ties_to_split_notes(self, result, unscaled_talea):
+        import abjad
         if not self.tie_split_notes:
             return
         leaves = select(result).by_leaf()
@@ -420,7 +421,7 @@ class TaleaRhythmMaker(RhythmMaker):
             weights.append(weight)
         parts = datastructuretools.Sequence(written_durations).partition_by_weights(
             weights=weights,
-            allow_part_weights=More,
+            allow_part_weights=abjad.More,
             cyclic=True,
             overhang=True,
             )

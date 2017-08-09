@@ -69,7 +69,6 @@ class RhythmMaker(AbjadValueObject):
 
         Returns selections.
         '''
-        import abjad
         self._rotation = rotation
         divisions = self._coerce_divisions(divisions)
         selections = self._make_music(divisions, rotation)

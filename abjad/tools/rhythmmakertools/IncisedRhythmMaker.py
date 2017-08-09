@@ -110,11 +110,9 @@ class IncisedRhythmMaker(RhythmMaker):
         if split_divisions_by_counts is not None:
             split_divisions_by_counts = tuple(split_divisions_by_counts)
         assert (extra_counts_per_division is None or
-            mathtools.all_are_nonnegative_integer_equivalent_numbers(
-            extra_counts_per_division)), extra_counts_per_division
+            mathtools.all_are_nonnegative_integer_equivalent_numbers(extra_counts_per_division)), extra_counts_per_division
         assert (split_divisions_by_counts is None or
-            mathtools.all_are_nonnegative_integer_equivalent_numbers(
-            split_divisions_by_counts)), split_divisions_by_counts
+            mathtools.all_are_nonnegative_integer_equivalent_numbers(split_divisions_by_counts)), split_divisions_by_counts
         self._extra_counts_per_division = extra_counts_per_division
         self._replace_rests_with_skips = replace_rests_with_skips
         self._split_divisions_by_counts = split_divisions_by_counts

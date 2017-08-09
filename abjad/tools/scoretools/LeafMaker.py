@@ -277,8 +277,7 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        You may set `forbidden_duration` and `decrease_monotonic`
-        together:
+        You may set `forbidden_duration` and `decrease_monotonic` together:
 
         ::
 
