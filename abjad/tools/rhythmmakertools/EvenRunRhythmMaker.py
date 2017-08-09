@@ -148,8 +148,8 @@ class EvenRunRhythmMaker(RhythmMaker):
     def _make_container(self, division):
         import abjad
         duration_spelling_specifier = self._get_duration_spelling_specifier()
-        forbidden_written_duration = \
-            duration_spelling_specifier.forbidden_written_duration
+        forbidden_duration = \
+            duration_spelling_specifier.forbidden_duration
         time_signature = indicatortools.TimeSignature(division)
         implied_prolation = time_signature.implied_prolation
         numerator, denominator = division.pair
@@ -159,9 +159,9 @@ class EvenRunRhythmMaker(RhythmMaker):
         denominator_multiplier = 2 ** exponent
         denominator *= denominator_multiplier
         unit_duration = durationtools.Duration(1, denominator)
-        if forbidden_written_duration is not None:
+        if forbidden_duration is not None:
             multiplier = 1
-            while forbidden_written_duration <= unit_duration:
+            while forbidden_duration <= unit_duration:
                 unit_duration /= 2
                 multiplier *= 2
             numerator *= multiplier
@@ -220,7 +220,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier(
-                ...     forbidden_written_duration=(1, 4),
+                ...     forbidden_duration=(1, 4),
                 ...     )
                 >>> rhythm_maker = rhythmmakertools.EvenRunRhythmMaker(
                 ...     duration_spelling_specifier=specifier,

@@ -408,10 +408,8 @@ class IncisedRhythmMaker(RhythmMaker):
             selection = class_._make_leaves_from_talea(
                 numeric_map_part,
                 lcd,
-                forbidden_written_duration=\
-                    specifier.forbidden_written_duration,
-                decrease_monotonic=\
-                    specifier.decrease_monotonic,
+                forbidden_duration=specifier.forbidden_duration,
+                decrease_monotonic=specifier.decrease_monotonic,
                 spell_metrically=specifier.spell_metrically,
                 use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
                 )
@@ -669,7 +667,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...         talea_denominator=8,
                 ...         ),
                 ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                ...         forbidden_written_duration=(1, 2),
+                ...         forbidden_duration=(1, 2),
                 ...         ),
                 ...     )
 

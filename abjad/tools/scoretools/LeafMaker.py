@@ -253,13 +253,13 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        Set `forbidden_written_duration` to avoid notes greater than or equal
+        Set `forbidden_duration` to avoid notes greater than or equal
         to a certain written duration:
 
         ::
 
             >>> maker = abjad.LeafMaker(
-            ...     forbidden_written_duration=abjad.Duration(1, 2),
+            ...     forbidden_duration=abjad.Duration(1, 2),
             ...     )
             >>> pitches = "f' g'"
             >>> durations = [abjad.Duration(5, 8)]
@@ -284,13 +284,13 @@ class LeafMaker(AbjadValueObject):
 
     ..  container:: example
 
-        You may set `forbidden_written_duration` and
-        `decrease_monotonic` together:
+        You may set `forbidden_duration` and `decrease_monotonic`
+        together:
 
         ::
 
             >>> maker = abjad.LeafMaker(
-            ...     forbidden_written_duration=abjad.Duration(1, 2),
+            ...     forbidden_duration=abjad.Duration(1, 2),
             ...     decrease_monotonic=False,
             ...     )
             >>> pitches = "f' g'"
@@ -473,7 +473,7 @@ class LeafMaker(AbjadValueObject):
 
     __slots__ = (
         '_decrease_monotonic',
-        '_forbidden_written_duration',
+        '_forbidden_duration',
         '_is_diminution',
         '_metrical_hierarchy',
         '_skips_instead_of_rests',
@@ -488,16 +488,15 @@ class LeafMaker(AbjadValueObject):
     def __init__(
         self,
         decrease_monotonic=True,
-        forbidden_written_duration=None,
+        forbidden_duration=None,
         is_diminution=True,
         metrical_hierarchy=None,
         skips_instead_of_rests=False,
         use_messiaen_style_ties=False,
         use_multimeasure_rests=False,
         ):
-        self._decrease_monotonic = \
-            decrease_monotonic
-        self._forbidden_written_duration = forbidden_written_duration
+        self._decrease_monotonic = decrease_monotonic
+        self._forbidden_duration = forbidden_duration
         self._is_diminution = is_diminution
         self._metrical_hierarchy = metrical_hierarchy
         self._skips_instead_of_rests = skips_instead_of_rests
@@ -542,7 +541,7 @@ class LeafMaker(AbjadValueObject):
                         pitch,
                         duration,
                         decrease_monotonic=self.decrease_monotonic,
-                        forbidden_written_duration=self.forbidden_written_duration,
+                        forbidden_duration=self.forbidden_duration,
                         skips_instead_of_rests=self.skips_instead_of_rests,
                         use_multimeasure_rests=self.use_multimeasure_rests,
                         use_messiaen_style_ties=self.use_messiaen_style_ties,
@@ -586,7 +585,7 @@ class LeafMaker(AbjadValueObject):
         pitch,
         duration,
         decrease_monotonic=True,
-        forbidden_written_duration=None,
+        forbidden_duration=None,
         skips_instead_of_rests=False,
         use_multimeasure_rests=False,
         use_messiaen_style_ties=False,
@@ -606,7 +605,7 @@ class LeafMaker(AbjadValueObject):
                 abjad.Note,
                 duration,
                 decrease_monotonic=decrease_monotonic,
-                forbidden_written_duration=forbidden_written_duration,
+                forbidden_duration=forbidden_duration,
                 pitches=pitch,
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
@@ -615,7 +614,7 @@ class LeafMaker(AbjadValueObject):
                 abjad.Chord,
                 duration,
                 decrease_monotonic=decrease_monotonic,
-                forbidden_written_duration=forbidden_written_duration,
+                forbidden_duration=forbidden_duration,
                 pitches=pitch,
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
@@ -624,7 +623,7 @@ class LeafMaker(AbjadValueObject):
                 abjad.Skip,
                 duration,
                 decrease_monotonic=decrease_monotonic,
-                forbidden_written_duration=forbidden_written_duration,
+                forbidden_duration=forbidden_duration,
                 pitches=None,
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
@@ -633,7 +632,7 @@ class LeafMaker(AbjadValueObject):
                 abjad.Rest,
                 duration,
                 decrease_monotonic=decrease_monotonic,
-                forbidden_written_duration=forbidden_written_duration,
+                forbidden_duration=forbidden_duration,
                 pitches=None,
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
@@ -655,7 +654,7 @@ class LeafMaker(AbjadValueObject):
         class_,
         duration,
         decrease_monotonic=True,
-        forbidden_written_duration=None,
+        forbidden_duration=None,
         pitches=None,
         tie_parts=True,
         use_messiaen_style_ties=False,
@@ -663,35 +662,35 @@ class LeafMaker(AbjadValueObject):
         import abjad
         # check input
         duration = abjad.Duration(duration)
-        if forbidden_written_duration is not None:
-            forbidden_written_duration = abjad.Duration(
-                forbidden_written_duration,
+        if forbidden_duration is not None:
+            forbidden_duration = abjad.Duration(
+                forbidden_duration,
                 )
-            assert forbidden_written_duration.is_assignable
-            assert forbidden_written_duration.numerator == 1
+            assert forbidden_duration.is_assignable
+            assert forbidden_duration.numerator == 1
         # find preferred numerator of written durations if necessary
-        if (forbidden_written_duration is not None and
-            forbidden_written_duration <= duration):
+        if (forbidden_duration is not None and
+            forbidden_duration <= duration):
             denominators = [
-                2 * forbidden_written_duration.denominator,
+                2 * forbidden_duration.denominator,
                 duration.denominator,
                 ]
             denominator = abjad.mathtools.least_common_multiple(*denominators)
-            forbidden_written_duration = abjad.NonreducedFraction(
-                forbidden_written_duration)
-            forbidden_written_duration = \
-                forbidden_written_duration.with_denominator(denominator)
+            forbidden_duration = abjad.NonreducedFraction(
+                forbidden_duration)
+            forbidden_duration = \
+                forbidden_duration.with_denominator(denominator)
             duration = abjad.NonreducedFraction(duration)
             duration = duration.with_denominator(denominator)
-            forbidden_numerator = forbidden_written_duration.numerator
+            forbidden_numerator = forbidden_duration.numerator
             assert forbidden_numerator % 2 == 0
             preferred_numerator = forbidden_numerator / 2
         # make written duration numerators
         numerators = []
         parts = abjad.mathtools.partition_integer_into_canonic_parts(
             duration.numerator)
-        if (forbidden_written_duration is not None and
-            forbidden_written_duration <= duration):
+        if (forbidden_duration is not None and
+            forbidden_duration <= duration):
             for part in parts:
                 if forbidden_numerator <= part:
                     better_parts = LeafMaker._partition_less_than_double(
@@ -755,12 +754,12 @@ class LeafMaker(AbjadValueObject):
         return self._decrease_monotonic
 
     @property
-    def forbidden_written_duration(self):
+    def forbidden_duration(self):
         r'''Gets forbidden written duration.
 
         Returns duration or none.
         '''
-        return self._forbidden_written_duration
+        return self._forbidden_duration
 
     @property
     def is_diminution(self):

@@ -54,7 +54,7 @@ def test_systemtools_StorageFormatAgent_get_import_statements_04():
             ),
         duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
             decrease_monotonic=True,
-            forbidden_written_duration=durationtools.Duration(1, 2),
+            forbidden_duration=durationtools.Duration(1, 2),
             ),
         tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
             avoid_dots=True,
