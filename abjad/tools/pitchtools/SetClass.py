@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -859,7 +860,6 @@ class SetClass(AbjadValueObject):
         lex_rank=None,
         transposition_only=None,
         ):
-        from abjad.tools import pitchtools
         cardinality = int(cardinality)
         assert 0 <= cardinality <= 12, repr(cardinality)
         self._cardinality = cardinality
@@ -946,7 +946,7 @@ class SetClass(AbjadValueObject):
         all_prime_forms = {}
         for cardinality in range(12 + 1):
             all_prime_forms[cardinality] = set()
-        for pc_set in SetClass_.yield_all_pitch_class_sets():
+        for pc_set in SetClass._yield_all_pitch_class_sets():
             if pitchtools.NumberedPitchClass(0) not in pc_set:
                 if 0 < len(pc_set):
                     continue

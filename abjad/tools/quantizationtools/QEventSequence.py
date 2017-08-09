@@ -563,7 +563,6 @@ class QEventSequence(AbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from abjad.tools import quantizationtools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
         assert Selection._all_in_same_logical_voice(leaves, contiguous=True)

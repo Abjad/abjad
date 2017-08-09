@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import override
 
 
 class Beam(Spanner):
@@ -83,7 +82,6 @@ class Beam(Spanner):
         new._direction = self.direction
 
     def _get_lilypond_format_bundle(self, leaf):
-        import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_first_leaf(leaf):
             if self.direction is not None:

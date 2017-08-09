@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import indicatortools
-from abjad.tools import markuptools
-from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
@@ -57,6 +54,7 @@ class Viola(Instrument):
         middle_c_sounding_pitch=None,
         pitch_range='[C3, D6]',
         ):
+        import abjad
         Instrument.__init__(
             self,
             name=name,
@@ -73,7 +71,7 @@ class Viola(Instrument):
             ])
         self._is_primary_instrument = True
         self._starting_clefs = type(self.allowable_clefs)(['alto'])
-        self._default_tuning = indicatortools.Tuning(default_tuning)
+        self._default_tuning = abjad.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
 

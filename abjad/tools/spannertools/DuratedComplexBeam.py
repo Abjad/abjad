@@ -239,24 +239,17 @@ class DuratedComplexBeam(ComplexBeam):
         return offsets
 
     def _is_just_left_of_gap(self, leaf):
-        local_start_offset = self._start_offset_in_me(leaf)
         local_stop_offset = self._stop_offset_in_me(leaf)
         span_beam_offsets = self._get_span_beam_offsets()
-        #print(leaf, local_start_offset, local_stop_offset, span_beam_offsets)
         if local_stop_offset in span_beam_offsets:
-            #if local_start_offset not in span_beam_offsets:
-            if True:
-                return True
+            return True
         return False
 
     def _is_just_right_of_gap(self, leaf):
         local_start_offset = self._start_offset_in_me(leaf)
-        local_stop_offset = self._stop_offset_in_me(leaf)
         span_beam_offsets = self._get_span_beam_offsets()
         if local_start_offset in span_beam_offsets:
-            #if local_stop_offset not in span_beam_offsets:
-            if True:
-                return True
+            return True
         return False
 
     def _reverse_components(self):

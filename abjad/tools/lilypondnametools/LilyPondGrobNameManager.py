@@ -97,7 +97,6 @@ class LilyPondGrobNameManager(LilyPondNameManager):
         Returns none.
         '''
         # make sure attribute name is valid grob name before setting value
-        attribute_value = getattr(self, attribute_name)
         object.__setattr__(self, attribute_name, value)
 
     ### PRIVATE METHODS ###

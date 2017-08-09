@@ -347,19 +347,15 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Returns selection.
         '''
         from abjad.tools import selectiontools
-        from abjad.tools import timespantools
-
         # check input
         assert isinstance(counttime_components, (
             list, selectiontools.Selection)), repr(counttime_components)
         assert self.timespan_1 is not None
-
         # iterate counttime components
         result = []
         for counttime_component in counttime_components:
             if self(timespan_2=counttime_component._get_timespan()):
                 result.append(counttime_component)
-
         # return result
         return selectiontools.Selection(result)
 
@@ -408,15 +404,11 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Returns nonnegative integer pair.
         '''
-        from abjad.tools import timespantools
-        from abjad.tools import timespantools
-
         result = self.inequality.get_offset_indices(
             self.timespan_1,
             timespan_2_start_offsets,
             timespan_2_stop_offsets,
             )
-
         if not result:
             return []
         elif len(result) == 1:

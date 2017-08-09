@@ -19,16 +19,16 @@ class IntervalClassSet(Set):
     ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):
-        from abjad.tools import pitchtools
+        import abjad
         prototype = (
-            pitchtools.PitchClassSegment,
-            pitchtools.PitchClassSet,
-            pitchtools.PitchSegment,
-            pitchtools.PitchSet,
+            abjad.PitchClassSegment,
+            abjad.PitchClassSet,
+            abjad.PitchSegment,
+            abjad.PitchSet,
             )
         if isinstance(items, prototype):
             items = list(items)
-            enumerator = mathtools.Enumerator(items)
+            enumerator = abjad.mathtools.Enumerator(items)
             pairs = enumerator.yield_pairs()
             items = [second - first for first, second in pairs]
         Set.__init__(

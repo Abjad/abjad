@@ -2,7 +2,6 @@
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 from abjad.tools import metertools
-from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach

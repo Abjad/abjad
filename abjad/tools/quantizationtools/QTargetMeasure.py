@@ -256,7 +256,6 @@ class QTargetMeasure(AbjadObject):
 
         Returns duration.
         '''
-        from abjad.tools import quantizationtools
         return self.tempo.duration_to_milliseconds(
             self.time_signature.duration)
 

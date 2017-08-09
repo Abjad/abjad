@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
-from abjad.tools import datastructuretools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -179,6 +178,7 @@ class Hairpin(Spanner):
             bundle.before.commands.append(string)
 
     def _add_dynamic(self, leaf, bundle):
+        import abjad
         dynamic = self._get_piecewise_dynamic(leaf)
         if dynamic is None:
             return
@@ -346,7 +346,6 @@ class Hairpin(Spanner):
             return self._get_piecewise_indicator(leaf, abjad.Dynamic)
 
     def _get_piecewise_lilypond_format_bundle(self, leaf):
-        import abjad
         self._format_time_test(leaf)
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         self._add_circled_tip_override(leaf, bundle)

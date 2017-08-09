@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
 import abc
 import copy
-from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
-from abjad.tools import timespantools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import select
 from abjad.tools.topleveltools import setting
 from abjad.tools.scoretools.Component import Component
 

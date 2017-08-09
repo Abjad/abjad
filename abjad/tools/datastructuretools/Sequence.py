@@ -4108,9 +4108,7 @@ class Sequence(abctools.AbjadValueObject):
 
         Returns nested sequence.
         '''
-        import abjad
         if allow_part_weights == Exact:
-            sequence = type(self)(items=self)
             candidate = type(self)(items=self)
             candidate = candidate.split(
                 weights,

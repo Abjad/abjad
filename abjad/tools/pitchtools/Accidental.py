@@ -2,7 +2,6 @@
 import functools
 import re
 from abjad.tools import mathtools
-from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 

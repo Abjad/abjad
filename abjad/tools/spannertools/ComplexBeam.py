@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import durationtools
 from abjad.tools.spannertools.Beam import Beam
 
 

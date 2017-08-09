@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import indicatortools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
@@ -52,6 +51,7 @@ class Guitar(Instrument):
         middle_c_sounding_pitch='C3',
         pitch_range='[E2, E5]',
         ):
+        import abjad
         Instrument.__init__(
             self,
             name=name,
@@ -67,7 +67,7 @@ class Guitar(Instrument):
             'guitarist',
             ])
         self._is_primary_instrument = True
-        self._default_tuning = indicatortools.Tuning(default_tuning)
+        self._default_tuning = abjad.Tuning(default_tuning)
 
     ### PUBLIC PROPERTIES ###
 

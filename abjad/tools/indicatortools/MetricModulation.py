@@ -4,7 +4,6 @@ from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
-from abjad.tools.topleveltools.new import new
 
 
 class MetricModulation(AbjadValueObject):

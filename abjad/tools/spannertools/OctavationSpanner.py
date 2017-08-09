@@ -91,7 +91,6 @@ class OctavationSpanner(Spanner):
         new._stop = self.stop
 
     def _get_lilypond_format_bundle(self, leaf):
-        import abjad
         bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_first_leaf(leaf):
             string = r'\ottava #{}'.format(self.start)

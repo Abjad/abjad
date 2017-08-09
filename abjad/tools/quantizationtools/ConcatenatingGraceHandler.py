@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 

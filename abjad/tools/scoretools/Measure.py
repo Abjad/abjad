@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import copy
 from abjad.tools import durationtools
+from abjad.tools import graphtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import setting
 from abjad.tools.scoretools.Container import Container
@@ -224,7 +224,6 @@ class Measure(Container):
         self.append(skip)
 
     def _as_graphviz_node(self):
-        from abjad.tools import documentationtools
         from abjad.tools import scoretools
         node = scoretools.Component._as_graphviz_node(self)
         fraction = mathtools.NonreducedFraction(

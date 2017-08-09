@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import pitchtools
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import inspect
 
 
 class ComplexTrillSpanner(Spanner):

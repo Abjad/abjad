@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abc
-import collections
 from abjad.tools import indicatortools
 from abjad.tools.abctools import AbjadObject
 

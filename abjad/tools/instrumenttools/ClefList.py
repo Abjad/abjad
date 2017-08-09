@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import override
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -106,11 +104,11 @@ class ClefList(TypedList):
         for clef in self:
             rest = abjad.Rest((1, 8))
             clef = copy.copy(clef)
-            attach(clef, rest)
+            abjad.attach(clef, rest)
             staff.append(rest)
-        override(staff).clef.full_size_change = True
-        override(staff).rest.transparent = True
-        override(staff).time_signature.stencil = False
+        abjad.override(staff).clef.full_size_change = True
+        abjad.override(staff).rest.transparent = True
+        abjad.override(staff).time_signature.stencil = False
         lilypond_file = abjad.LilyPondFile.new(staff)
         lilypond_file.header_block.tagline = False
         return lilypond_file

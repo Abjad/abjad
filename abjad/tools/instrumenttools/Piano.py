@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import indicatortools
-from abjad.tools import markuptools
-from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
@@ -64,7 +61,6 @@ class Piano(Instrument):
         middle_c_sounding_pitch=None,
         pitch_range='[A0, C8]',
         ):
-        from abjad.tools import scoretools
         Instrument.__init__(
             self,
             name=name,

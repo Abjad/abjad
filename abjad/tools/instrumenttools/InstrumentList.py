@@ -117,28 +117,28 @@ class InstrumentList(TypedList):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _name_to_instrument(name):
+    def _name_to_instrument(instrument_name):
         from abjad.tools import instrumenttools
-        if name in (
+        if instrument_name in (
             'alto',
             'baritone',
             'bass',
             'soprano',
             'tenor',
             ):
-            name = name + ' Voice'
-        name = name.title()
-        name = name.replace(' ', '')
-        name = name.replace('-', '')
-        instrument_class = instrumenttools.__dict__[name]
+            instrument_name = instrument_name + ' Voice'
+        instrument_name = instrument_name.title()
+        instrument_name = instrument_name.replace(' ', '')
+        instrument_name = instrument_name.replace('-', '')
+        instrument_class = instrumenttools.__dict__[instrument_name]
         instrument = instrument_class()
         return instrument
 
     @staticmethod
     def _name_percussion(instrument, session):
-        from abjad.tools import instrumenttools
         from ide import idetools
-        if isinstance(instrument, instrumenttools.Percussion):
+        import abjad
+        if isinstance(instrument, abjad.Percussion):
             Percussion = abjad.instrumenttools.Percussion
             items = Percussion.known_percussion[:]
             selector = idetools.Selector(session=session, items=items)
@@ -167,8 +167,8 @@ class InstrumentList(TypedList):
                 self._target = target
             ### PRIVATE METHODS ###
             def _run(self):
-                from abjad.tools import instrumenttools
                 from ide import idetools
+                import abjad
                 controller = idetools.ControllerContext(controller=self)
                 with controller:
                     items = abjad.instrumenttools.Instrument._list_names()
@@ -186,8 +186,7 @@ class InstrumentList(TypedList):
                         names = [result]
                     instruments = []
                     class_ = InstrumentList
-                    to_instrument = \
-                        class_._change_instrument_name_to_instrument
+                    to_instrument = class_._name_to_instrument
                     name_percussion = class_._name_percussion
                     for name in names:
                         instrument = to_instrument(name)

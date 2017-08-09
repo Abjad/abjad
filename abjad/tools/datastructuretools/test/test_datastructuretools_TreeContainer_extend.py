@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+import abjad
 
 
 def test_datastructuretools_TreeContainer_extend_01():
 
-    leaf_a = datastructuretools.TreeNode()
-    leaf_b = datastructuretools.TreeNode()
-    leaf_c = datastructuretools.TreeNode()
-    leaf_d = datastructuretools.TreeNode()
+    leaf_a = abjad.TreeNode()
+    leaf_b = abjad.TreeNode()
+    leaf_c = abjad.TreeNode()
+    leaf_d = abjad.TreeNode()
 
-    container = datastructuretools.TreeContainer()
+    container = abjad.TreeContainer()
 
     assert container.children == ()
 

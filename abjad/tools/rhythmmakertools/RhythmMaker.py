@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import collections
-import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools

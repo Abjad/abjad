@@ -220,7 +220,6 @@ class IncisedRhythmMaker(RhythmMaker):
                 raise Exception(message)
 
     def _make_music(self, divisions, rotation):
-        from abjad.tools import rhythmmakertools
         input_divisions = divisions[:]
         input_ = self._prepare_input(rotation)
         prefix_talea = input_[0]

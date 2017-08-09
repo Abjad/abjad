@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import abctools
-from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools.topleveltools import iterate
 
 
@@ -2109,7 +2107,6 @@ class MutationAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         if hasattr(self._client, '_scale'):
             self._client._scale(multiplier)
@@ -2793,7 +2790,7 @@ class MutationAgent(abctools.AbjadObject):
         assert total_split_duration == total_component_duration
         # initialize loop variables
         result, shard = [], []
-        offset_index, offset_count = 0, len(durations)
+        offset_index = 0
         current_shard_duration = abjad.Duration(0)
         remaining_components = list(components[:])
         advance_to_next_offset = True
@@ -2949,15 +2946,13 @@ class MutationAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        Selection = selectiontools.Selection
-        if isinstance(self._client, selectiontools.Selection):
+        import abjad
+        if isinstance(self._client, abjad.Selection):
             donors = self._client
         else:
-            donors = selectiontools.Selection(self._client)
+            donors = abjad.select(self._client)
         assert donors._all_in_same_parent(donors)
-        assert isinstance(container, scoretools.Container)
+        assert isinstance(container, abjad.Container)
         assert not container, repr(container)
         donors._give_music_to_empty_container(container)
         donors._give_dominant_spanners([container])

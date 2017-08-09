@@ -2,12 +2,12 @@
 import math
 from abjad import Fraction
 from abjad.tools import durationtools
+from abjad.tools import graphtools
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.scoretools.Container import Container
 from abjad.tools.topleveltools import inspect
 from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import select
 
@@ -137,7 +137,6 @@ class Tuplet(Container):
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
-        from abjad.tools import documentationtools
         from abjad.tools import scoretools
         node = scoretools.Component._as_graphviz_node(self)
         node[0].extend([
@@ -339,13 +338,11 @@ class Tuplet(Container):
         self._fix()
 
     def _simplify_redundant_tuplet(self):
-        from abjad.tools import scoretools
         if not self.is_redundant:
             return
         leaves = []
         logical_ties = select(self).by_logical_tie(parentage_mask=self)
         durations = [_.get_duration() for _ in logical_ties]
-        tuplet_duration = sum(durations)
         for i, logical_tie in enumerate(logical_ties):
             duration = durations[i]
             if i == len(logical_ties) - 1:

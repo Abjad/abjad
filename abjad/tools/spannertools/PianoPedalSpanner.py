@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.topleveltools import override
 
 
 class PianoPedalSpanner(Spanner):

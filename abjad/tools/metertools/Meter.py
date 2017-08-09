@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import graphtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools

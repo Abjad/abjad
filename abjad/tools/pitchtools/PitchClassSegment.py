@@ -1,10 +1,7 @@
 # -* coding: utf-8 -*-
 import inspect
-from abjad.tools import durationtools
-from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools.pitchtools.Segment import Segment
-from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import new
 
 
@@ -3249,7 +3246,6 @@ class PitchClassSegment(Segment):
         import abjad
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        original_n = n
         items = abjad.Sequence(self._collection).rotate(n=n)
         if stravinsky:
             n = 0 - float(items[0].number)

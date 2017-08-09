@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools.spannertools.Spanner import Spanner
 
@@ -377,7 +376,6 @@ class TextSpanner(Spanner):
 
     def _spanner_starts_on_leaf(self, leaf):
         indicators = self._get_piecewise(leaf)
-        markup = bool(indicators[0])
         line_segment = indicators[1]
         has_smart_events = self._spanner_has_smart_events()
         if not has_smart_events and self._is_my_first_leaf(leaf):
@@ -387,9 +385,6 @@ class TextSpanner(Spanner):
         return False
 
     def _spanner_stops_on_leaf(self, leaf):
-        indicators = self._get_piecewise(leaf)
-        markup = bool(indicators[0])
-        line_segment = indicators[1]
         spanner_is_open = self._spanner_is_open_immediately_before_leaf(leaf)
         if spanner_is_open and self._leaf_has_current_event(leaf):
             return True

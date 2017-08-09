@@ -1127,7 +1127,6 @@ class TwelveToneRow(PitchClassSegment):
                 TwelveToneRow([9, 11, 1, 7, 4, 3, 5, 6, 0, 8, 2, 10])
 
         '''
-        from abjad.tools import pitchtools
         if axis is None:
             axis = self[0]
         items = [pc.invert(axis=axis) for pc in self]

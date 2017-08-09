@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import collections
-import inspect
 import numbers
 from abjad import Fraction
 from abjad.tools import mathtools

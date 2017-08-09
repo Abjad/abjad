@@ -258,17 +258,6 @@ class PitchClassSet(Set):
             )
         return segment
 
-    def _sort_self(self):
-        from abjad.tools import pitchtools
-        def helper(x, y):
-            return cmp(
-                pitchtools.NamedPitch(pitchtools.NamedPitchClass(x), 0),
-                pitchtools.NamedPitch(pitchtools.NamedPitchClass(y), 0)
-                )
-        result = list(self)
-        result.sort(helper)
-        return result
-
     ### PUBLIC METHODS ###
 
     @classmethod

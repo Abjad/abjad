@@ -412,8 +412,6 @@ class TaleaRhythmMaker(RhythmMaker):
             )
 
     def _apply_ties_to_split_notes(self, result, unscaled_talea):
-        from abjad.tools import rhythmmakertools
-        tie_specifier = self._get_tie_specifier()
         if not self.tie_split_notes:
             return
         leaves = select(result).by_leaf()

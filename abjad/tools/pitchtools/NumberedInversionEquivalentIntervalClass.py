@@ -55,7 +55,6 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
     # TODO: clean up
     def __init__(self, number=0):
-        from abjad.tools import pitchtools
         if isinstance(number, type(self)):
             number = number.number
         elif isinstance(number, numbers.Number):

@@ -220,7 +220,6 @@ class TonalAnalysisAgent(abctools.AbjadObject):
     @staticmethod
     def _is_neighbor_note(note):
         import abjad
-        from abjad.tools import tonalanalysistools
         if not isinstance(note, abjad.Note):
             message = 'must be note: {!r}.'
             message = message.format(note)
@@ -249,7 +248,6 @@ class TonalAnalysisAgent(abctools.AbjadObject):
     @staticmethod
     def _is_passing_tone(note):
         import abjad
-        from abjad.tools import tonalanalysistools
         if not isinstance(note, abjad.Note):
             message = 'must be note: {!r}.'
             message = message.format(note)

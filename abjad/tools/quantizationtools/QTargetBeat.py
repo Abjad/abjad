@@ -180,7 +180,6 @@ class QTargetBeat(AbjadObject):
 
         Returns duration.
         '''
-        from abjad.tools import quantizationtools
         return self.tempo.duration_to_milliseconds(self.beatspan)
 
     @property

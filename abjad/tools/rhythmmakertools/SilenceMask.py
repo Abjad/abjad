@@ -48,7 +48,6 @@ class SilenceMask(AbjadValueObject):
         use_multimeasure_rests=None,
         ):
         import abjad
-        from abjad.tools import rhythmmakertools
         if pattern is None:
             pattern = abjad.index_all()
         assert isinstance(pattern, abjad.Pattern), repr(pattern)

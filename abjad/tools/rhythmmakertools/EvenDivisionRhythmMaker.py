@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 import math
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import scoretools
-from abjad.tools import selectiontools
 from abjad.tools.topleveltools import inspect
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
