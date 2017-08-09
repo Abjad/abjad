@@ -12,7 +12,7 @@ class RegistrationList(TypedList):
     ..  container:: example
 
         Two registrations:
-        
+
         ::
 
             >>> registration_1 = abjad.Registration(
@@ -69,7 +69,7 @@ class RegistrationList(TypedList):
         ..  container:: example
 
             Two registrations:
-            
+
             ::
 
                 >>> registration_1 = abjad.Registration(

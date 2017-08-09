@@ -561,7 +561,7 @@ class TaleaRhythmMaker(RhythmMaker):
             result.extend(leaves)
         result = abjad.Selection(result)
         return result
-    
+
     def _make_music(self, divisions, rotation):
         import abjad
         input_divisions = divisions[:]

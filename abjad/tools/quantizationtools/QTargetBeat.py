@@ -6,7 +6,7 @@ from abjad.tools.abctools import AbjadObject
 
 class QTargetBeat(AbjadObject):
     r'''Q-target beat.
-    
+
     Represents a single beat in a quantization target.
 
     ::
@@ -43,7 +43,7 @@ class QTargetBeat(AbjadObject):
                         },
                     ),
                 tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4), 
+                    reference_duration=abjad.Duration(1, 4),
                     units_per_minute=56,
                     ),
                 )

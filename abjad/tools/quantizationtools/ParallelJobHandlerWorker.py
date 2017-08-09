@@ -5,7 +5,7 @@ import pickle
 
 class ParallelJobHandlerWorker(multiprocessing.Process):
     r'''Parallel job-handler worker.
-    
+
     Worker process which runs ``QuantizationJobs``.
 
     ::

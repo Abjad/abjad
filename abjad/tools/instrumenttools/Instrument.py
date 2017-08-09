@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -24,6 +23,7 @@ class Instrument(AbjadValueObject):
         '_name',
         '_name_markup',
         '_is_primary_instrument',
+        '_middle_c_sounding_pitch',
         '_performer_names',
         '_pitch_range',
         '_short_name',
@@ -44,8 +44,8 @@ class Instrument(AbjadValueObject):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
-        pitch_range=None,
         middle_c_sounding_pitch=None,
+        pitch_range=None,
         ):
         import abjad
         self._do_not_format = False
@@ -265,6 +265,7 @@ class Instrument(AbjadValueObject):
 
         Returns clef list.
         '''
+        import abjad
         if self._allowable_clefs is None:
             self._allowable_clefs = abjad.instrumenttools.ClefList('treble')
         return self._allowable_clefs

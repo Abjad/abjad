@@ -49,8 +49,8 @@ class FrenchHorn(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('bass', 'treble'),
-        pitch_range='[B1, F5]',
         middle_c_sounding_pitch='F3',
+        pitch_range='[B1, F5]',
         ):
         Instrument.__init__(
             self,
@@ -59,9 +59,8 @@ class FrenchHorn(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'wind player',

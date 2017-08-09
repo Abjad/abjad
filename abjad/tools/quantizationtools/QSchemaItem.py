@@ -7,7 +7,7 @@ from abjad.tools.abctools import AbjadObject
 
 class QSchemaItem(AbjadObject):
     '''Abstract q-schema item.
-    
+
     Represents a change of state in the timeline of a quantization process.
 
     ::

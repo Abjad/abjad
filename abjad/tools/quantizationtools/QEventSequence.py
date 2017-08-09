@@ -277,7 +277,8 @@ class QEventSequence(AbjadObject):
         for pair in zip(offsets, durations):
             offset = durationtools.Offset(pair[0])
             duration = pair[1]
-            if duration < 0: # negative duration indicates silence
+            # negative duration indicates silence
+            if duration < 0:
                 q_event = quantizationtools.SilentQEvent(offset)
             else:
                 q_event = quantizationtools.PitchedQEvent(offset, [0])
@@ -497,9 +498,11 @@ class QEventSequence(AbjadObject):
         for pair in zip(offsets, durations):
             offset = durationtools.Offset(pair[0])
             duration = pair[1]
-            if duration < 0: # negative duration indicates silence
+            # negative duration indicates silence
+            if duration < 0:
                 q_event = quantizationtools.SilentQEvent(offset)
-            else: # otherwise, use middle-C
+            # otherwise use middle C
+            else:
                 q_event = quantizationtools.PitchedQEvent(offset, [0])
             q_events.append(q_event)
         # insert terminating silence QEvent
@@ -607,7 +610,8 @@ class QEventSequence(AbjadObject):
                 pitch = None
             elif isinstance(group[0], scoretools.Note):
                 pitch = group[0].written_pitch.number
-            else: # chord
+            # chord
+            else:
                 pitch = [x.written_pitch.number for x in group[0].note_heads]
             pitches.append(pitch)
         # convert durations and pitches to QEvents and return

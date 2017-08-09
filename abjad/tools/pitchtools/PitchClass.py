@@ -14,7 +14,7 @@ class PitchClass(AbjadValueObject):
 
     ::
 
-        >>> import abjad 
+        >>> import abjad
 
     '''
 

@@ -54,8 +54,8 @@ class Cello(Instrument):
         short_name_markup=None,
         allowable_clefs=('bass', 'tenor', 'treble'),
         default_tuning=('C2', 'G2', 'D3', 'A3'),
-        pitch_range='[C2, G5]',
         middle_c_sounding_pitch=None,
+        pitch_range='[C2, G5]',
         ):
         Instrument.__init__(
             self,
@@ -64,9 +64,8 @@ class Cello(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'string player',

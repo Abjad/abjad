@@ -53,7 +53,7 @@ class Transposition(AbjadValueObject):
                 >>> items = [0, 2, 4, 5]
                 >>> segment = abjad.PitchClassSegment(items=items)
                 >>> show(segment) # doctest: +SKIP
-    
+
             Example operators:
 
             ::
@@ -226,7 +226,7 @@ class Transposition(AbjadValueObject):
         if self.n == 0:
             return True
         return False
-        
+
     ### PUBLIC PROPERTIES ###
 
     @property

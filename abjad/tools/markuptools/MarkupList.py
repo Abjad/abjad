@@ -661,7 +661,7 @@ class MarkupList(TypedList):
                     >>> show(markup_list) # doctest: +SKIP
 
                 ..  docs::
-            
+
                     >>> f(markup_list.__illustrate__().items[-1])
                     \markup {
                         \column

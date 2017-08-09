@@ -16,7 +16,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
 
             >>> for n in range(1, 11):
             ...     print(n, abjad.mathtools.partition_integer_into_canonic_parts(n))
-            ... 
+            ...
             1 (1,)
             2 (2,)
             3 (3,)
@@ -36,7 +36,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
 
             >>> for n in reversed(range(-20, -10)):
             ...     print(n, abjad.mathtools.partition_integer_into_canonic_parts(n))
-            ... 
+            ...
             -11 (-8, -3)
             -12 (-12,)
             -13 (-12, -1)
@@ -57,7 +57,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
             >>> for n in range(11, 21):
             ...     print(n, abjad.mathtools.partition_integer_into_canonic_parts(n,
             ...         decrease_parts_monotonically=False))
-            ... 
+            ...
             11 (3, 8)
             12 (12,)
             13 (1, 12)

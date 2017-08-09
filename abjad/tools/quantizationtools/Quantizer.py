@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 class Quantizer(AbjadObject):
     r'''Quantizer.
-    
+
     ::
 
         >>> import abjad
@@ -170,7 +170,7 @@ class Quantizer(AbjadObject):
             >>> score = abjad.Score([staff])
             >>> show(score) # doctest: +SKIP
 
-        ..  docs:: 
+        ..  docs::
 
             >>> f(score)
             \new Score <<
@@ -245,7 +245,8 @@ class Quantizer(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self,
+    def __call__(
+        self,
         q_event_sequence,
         q_schema=None,
         grace_handler=None,
@@ -268,7 +269,8 @@ class Quantizer(AbjadObject):
 
         q_target = q_schema(q_event_sequence.duration_in_ms)
 
-        notation = q_target(q_event_sequence,
+        notation = q_target(
+            q_event_sequence,
             grace_handler=grace_handler,
             heuristic=heuristic,
             job_handler=job_handler,

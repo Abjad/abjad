@@ -61,8 +61,8 @@ class Harpsichord(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
-        pitch_range='[C2, C7]',
         middle_c_sounding_pitch=None,
+        pitch_range='[C2, C7]',
         ):
         from abjad.tools import scoretools
         Instrument.__init__(
@@ -72,9 +72,8 @@ class Harpsichord(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
             )
         self._default_scope = 'PianoStaff'
         self._performer_names.extend([

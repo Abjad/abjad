@@ -68,7 +68,7 @@ class PitchClassSegment(Segment):
                     \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
-            
+
     ..  container:: example
 
         Initializes segment with named pitch-classes:
@@ -531,7 +531,7 @@ class PitchClassSegment(Segment):
                     'r1(J) + r2(K)'
 
                 ::
-                    
+
                     >>> segment = expression(pitch_numbers, pitch_names)
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
@@ -639,7 +639,7 @@ class PitchClassSegment(Segment):
                     'R(r1(J) + r2(K))'
 
                 ::
-                    
+
                     >>> segment = expression(pitch_numbers, pitch_names)
                     >>> markup = expression.get_markup()
                     >>> show(segment, figure_name=markup) # doctest: +SKIP
@@ -1134,7 +1134,7 @@ class PitchClassSegment(Segment):
                     >>> expression = expression[:4]
 
                 ::
-                
+
                     >>> expression(items=[-2, -1.5, 6, 7, -1.5, 7])
                     PitchClassSegment([10, 10.5, 6, 7])
 
@@ -1581,7 +1581,7 @@ class PitchClassSegment(Segment):
         ..  container:: example
 
             Gets item class of numbered segment:
-        
+
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
@@ -1608,7 +1608,7 @@ class PitchClassSegment(Segment):
                 >>> show(segment) # doctest: +SKIP
 
             ::
-                
+
                 >>> segment.item_class
                 <class 'abjad.tools.pitchtools.NamedPitchClass.NamedPitchClass'>
 
@@ -1727,7 +1727,7 @@ class PitchClassSegment(Segment):
         ..  container:: example
 
             Example segment:
-        
+
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
@@ -1739,7 +1739,7 @@ class PitchClassSegment(Segment):
             Counts existing item in segment:
 
             ::
-                
+
                 >>> segment.count(-1.5)
                 2
 
@@ -1748,7 +1748,7 @@ class PitchClassSegment(Segment):
             Counts nonexisting item in segment:
 
             ::
-                
+
                 >>> segment.count('text')
                 0
 
@@ -1847,7 +1847,7 @@ class PitchClassSegment(Segment):
         ..  container:: example
 
             Example segment:
-        
+
             ::
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
@@ -1857,7 +1857,7 @@ class PitchClassSegment(Segment):
         ..  container:: example
 
             Gets index of first item in segment:
-        
+
             ::
 
                 >>> segment.index(-2)
@@ -1868,7 +1868,7 @@ class PitchClassSegment(Segment):
             Gets index of second item in segment:
 
             ::
-                
+
                 >>> segment.index(-1.5)
                 1
 
@@ -1877,7 +1877,7 @@ class PitchClassSegment(Segment):
             Returns nonnegative integer:
 
             ::
-                
+
                 >>> isinstance(segment.index(-1.5), int)
                 True
 
@@ -2496,7 +2496,7 @@ class PitchClassSegment(Segment):
                     PitchClassSegment([2, 7.5, 6, 5, 7.5, 5])
 
                 ::
-                
+
                     >>> expression.get_string()
                     'M11(J)'
 
@@ -2583,12 +2583,12 @@ class PitchClassSegment(Segment):
 
             ::
 
-                >>> segment.permute([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]) 
+                >>> segment.permute([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
                 PitchClassSegment([4, 11, 5, 3, 11, 3])
 
             ::
 
-                >>> segment = segment.permute([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]) 
+                >>> segment = segment.permute([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
                 >>> show(segment) # doctest: +SKIP
 
             ..  docs::
@@ -2874,7 +2874,7 @@ class PitchClassSegment(Segment):
             return self._update_expression(inspect.currentframe())
         return type(self)(items=reversed(self))
 
-    @systemtools.Signature( 
+    @systemtools.Signature(
         is_operator=True,
         method_name_callback='_make_rotate_method_name',
         subscript='n',
@@ -3024,7 +3024,7 @@ class PitchClassSegment(Segment):
                     PitchClassSegment([10.5, 6, 7, 10.5, 7, 10])
 
                 ::
-                    
+
                     >>> expression.get_string()
                     'r-1(J)'
 
@@ -3064,7 +3064,7 @@ class PitchClassSegment(Segment):
         ..  container:: example
 
             Rotates segment by zero:
-            
+
             ..  container:: example
 
                 ::

@@ -19,7 +19,7 @@ class PerformerList(TypedList):
         ..  container:: example
 
             ::
-            
+
                 >>> flutist = abjad.instrumenttools.Performer(name='flutist')
                 >>> flutist.instruments.append(abjad.instrumenttools.Flute())
                 >>> flutist.instruments.append(abjad.instrumenttools.Piccolo())

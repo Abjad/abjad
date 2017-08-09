@@ -5,7 +5,7 @@ from abjad.tools import abctools
 class LilyPondGrobInterface(abctools.AbjadValueObject):
     r'''LilyPond grob interface.
 
-    :: 
+    ::
 
         >>> from abjad.tools import lilypondnametools
 

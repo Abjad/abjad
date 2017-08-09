@@ -51,8 +51,8 @@ class AltoVoice(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
-        pitch_range='[F3, G5]',
         middle_c_sounding_pitch=None,
+        pitch_range='[F3, G5]',
         ):
         Instrument.__init__(
             self,
@@ -61,9 +61,8 @@ class AltoVoice(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'vocalist',

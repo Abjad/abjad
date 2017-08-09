@@ -944,7 +944,7 @@ class SetClass(AbjadValueObject):
         '''
         from abjad.tools import pitchtools
         all_prime_forms = {}
-        for cardinality in range(12+1):
+        for cardinality in range(12 + 1):
             all_prime_forms[cardinality] = set()
         for pc_set in SetClass_.yield_all_pitch_class_sets():
             if pitchtools.NumberedPitchClass(0) not in pc_set:
@@ -953,13 +953,13 @@ class SetClass(AbjadValueObject):
             prime_form = pc_set.get_prime_form(transposition_only=True)
             all_prime_forms[prime_form.cardinality].add(prime_form)
         total = 0
-        for cardinality in range(12+1):
+        for cardinality in range(12 + 1):
             count = len(all_prime_forms[cardinality])
             total += count
-        for cardinality in range(12+1):
+        for cardinality in range(12 + 1):
             prime_forms = list(all_prime_forms[cardinality])
             prime_forms.sort(key=lambda x: str(x))
-            for index, prime_form in enumerate(prime_forms): 
+            for index, prime_form in enumerate(prime_forms):
                 rank = index + 1
                 prime_form = str(prime_form)
                 prime_form = prime_form.replace('{', '(')
@@ -1076,7 +1076,7 @@ class SetClass(AbjadValueObject):
         r'''Is true when set-class is inversion-equivalent.
 
         ..  container:: example
-    
+
             Is inversion-equivalent:
 
             ::
@@ -1101,7 +1101,7 @@ class SetClass(AbjadValueObject):
                 True
 
         ..  container:: example
-    
+
             Is inversion-equivalent:
 
             ::
@@ -1130,7 +1130,7 @@ class SetClass(AbjadValueObject):
                 True
 
         ..  container:: example
-    
+
             Is not inversion-equivalent:
 
             ::
@@ -1174,7 +1174,7 @@ class SetClass(AbjadValueObject):
         r'''Is true when set-class uses lex rank.
 
         ..  container:: example
-    
+
             Uses Forte rank:
 
             ::
@@ -1189,7 +1189,7 @@ class SetClass(AbjadValueObject):
                 SC(4-29){0, 1, 3, 7}
 
         ..  container:: example
-    
+
             Uses lex rank:
 
             ::
@@ -1207,7 +1207,7 @@ class SetClass(AbjadValueObject):
                 SC(4-29){0, 3, 6, 9}
 
         ..  container:: example
-    
+
             Transposition-only set-classes always use lex rank:
 
             ::
@@ -1687,7 +1687,7 @@ class SetClass(AbjadValueObject):
                 SC(4-43){0, 4, 6, 7}
 
             There are 43 transposition-only set-classes of cardinality 4.
-            
+
         Returns list of set-classes.
         '''
         if transposition_only:

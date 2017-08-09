@@ -6,7 +6,7 @@ from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 class MeasurewiseQSchemaItem(QSchemaItem):
     '''Measurewise q-schema item.
-    
+
     Represents a change of state in the timeline of a metered quantization
     process.
 
@@ -28,7 +28,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
             >>> print(format(q_schema_item))
             quantizationtools.MeasurewiseQSchemaItem(
                 tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4), 
+                    reference_duration=abjad.Duration(1, 4),
                     units_per_minute=60,
                     ),
                 )

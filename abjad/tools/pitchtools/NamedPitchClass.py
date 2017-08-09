@@ -463,13 +463,13 @@ class NamedPitchClass(PitchClass):
 
         Returns string.
         '''
-        from abjad.tools import pitchtools
+        import abjad
         diatonic_pitch_class_name = self._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
             self._diatonic_pitch_class_number
             ]
-        accidental_abbreviation = pitchtools.Accidental._semitones_to_abbreviation[
-                self._alteration
-                ]
+        accidental_abbreviation = abjad.Accidental._semitones_to_abbreviation[
+            self._alteration
+            ]
         return '{}{}'.format(
             diatonic_pitch_class_name,
             accidental_abbreviation,
@@ -488,10 +488,11 @@ class NamedPitchClass(PitchClass):
 
         Returns nonnegative integer or float.
         '''
-        return (
-            self._diatonic_pitch_class_number_to_pitch_class_number[
-                self._diatonic_pitch_class_number] +
-                self._alteration) % 12
+        dictionary = self._diatonic_pitch_class_number_to_pitch_class_number
+        result = dictionary[self._diatonic_pitch_class_number]
+        result += self._alteration
+        result %= 12
+        return result
 
     @property
     def pitch_class_label(self):

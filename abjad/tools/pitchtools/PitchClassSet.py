@@ -231,10 +231,11 @@ class PitchClassSet(Set):
         for i in range(len(candidates[0]) - 1):
             widths = []
             for candidate in candidates:
-                if candidate[0] < candidate[i+1]:
-                    width = abs(candidate[i+1] - candidate[0])
+                stop = i + 1
+                if candidate[0] < candidate[stop]:
+                    width = abs(candidate[stop] - candidate[0])
                 else:
-                    width = abs(candidate[i+1] + 12 - candidate[0])
+                    width = abs(candidate[stop] + 12 - candidate[0])
                 widths.append(width)
             minimum_width = min(widths)
             candidates_ = []

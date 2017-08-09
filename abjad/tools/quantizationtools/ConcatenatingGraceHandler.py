@@ -13,7 +13,7 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     Concatenates all but the final ``QEvent`` attached to a ``QGrid`` offset
     into a ``GraceContainer``, using a fixed leaf duration ``duration``.
-    
+
     ::
 
         >>> import abjad

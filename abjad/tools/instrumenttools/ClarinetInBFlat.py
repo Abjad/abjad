@@ -51,8 +51,8 @@ class ClarinetInBFlat(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
-        pitch_range='[D3, Bb6]',
         middle_c_sounding_pitch='Bb3',
+        pitch_range='[D3, Bb6]',
         ):
         Instrument.__init__(
             self,
@@ -61,9 +61,8 @@ class ClarinetInBFlat(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'wind player',

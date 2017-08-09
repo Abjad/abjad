@@ -49,8 +49,8 @@ class Guitar(Instrument):
         short_name_markup=None,
         allowable_clefs=None,
         default_tuning=('E2', 'A2', 'D3', 'G3', 'B3', 'E4'),
-        pitch_range='[E2, E5]',
         middle_c_sounding_pitch='C3',
+        pitch_range='[E2, E5]',
         ):
         Instrument.__init__(
             self,
@@ -59,9 +59,8 @@ class Guitar(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'string player',

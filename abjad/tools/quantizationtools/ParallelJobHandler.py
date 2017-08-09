@@ -35,7 +35,7 @@ class ParallelJobHandler(JobHandler):
             job_queue, result_queue)
             for i in range(multiprocessing.cpu_count() * 2)]
         for worker in workers:
-            worker.start( )
+            worker.start()
         for job in jobs:
             job_queue.put(pickle.dumps(job, protocol=0))
         for i in range(len(jobs)):
@@ -46,5 +46,5 @@ class ParallelJobHandler(JobHandler):
         result_queue.close()
         job_queue.close()
         for worker in workers:
-             worker.join()
+            worker.join()
         return finished_jobs

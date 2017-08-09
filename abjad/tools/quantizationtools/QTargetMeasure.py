@@ -6,7 +6,7 @@ from abjad.tools.abctools import AbjadObject
 
 class QTargetMeasure(AbjadObject):
     r'''Q-target measure.
-    
+
     Represents a single measure in a measurewise quantization target.
 
     ::
@@ -42,7 +42,7 @@ class QTargetMeasure(AbjadObject):
                     ),
                 time_signature=abjad.TimeSignature((4, 4)),
                 tempo=abjad.MetronomeMark(
-                    reference_duration=abjad.Duration(1, 4), 
+                    reference_duration=abjad.Duration(1, 4),
                     units_per_minute=60,
                     ),
                 use_full_measure=False,
@@ -189,7 +189,7 @@ class QTargetMeasure(AbjadObject):
 
                 >>> for q_target_beat in q_target_measure.beats:
                 ...     f(q_target_beat)
-                ... 
+                ...
                 quantizationtools.QTargetBeat(
                     beatspan=abjad.Duration(1, 4),
                     offset_in_ms=abjad.Offset(1000, 1),
@@ -198,7 +198,7 @@ class QTargetMeasure(AbjadObject):
                             },
                         ),
                     tempo=abjad.MetronomeMark(
-                        reference_duration=abjad.Duration(1, 4), 
+                        reference_duration=abjad.Duration(1, 4),
                         units_per_minute=60,
                         ),
                     )
@@ -210,7 +210,7 @@ class QTargetMeasure(AbjadObject):
                             },
                         ),
                     tempo=abjad.MetronomeMark(
-                        reference_duration=abjad.Duration(1, 4), 
+                        reference_duration=abjad.Duration(1, 4),
                         units_per_minute=60,
                         ),
                     )
@@ -222,7 +222,7 @@ class QTargetMeasure(AbjadObject):
                             },
                         ),
                     tempo=abjad.MetronomeMark(
-                        reference_duration=abjad.Duration(1, 4), 
+                        reference_duration=abjad.Duration(1, 4),
                         units_per_minute=60,
                         ),
                     )
@@ -234,7 +234,7 @@ class QTargetMeasure(AbjadObject):
                             },
                         ),
                     tempo=abjad.MetronomeMark(
-                        reference_duration=abjad.Duration(1, 4), 
+                        reference_duration=abjad.Duration(1, 4),
                         units_per_minute=60,
                         ),
                     )

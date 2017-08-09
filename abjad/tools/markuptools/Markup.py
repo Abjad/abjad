@@ -55,7 +55,7 @@ class Markup(AbjadValueObject):
                     }
 
             ::
-            
+
                 >>> show(markup) # doctest: +SKIP
 
     ..  container:: example
@@ -483,7 +483,7 @@ class Markup(AbjadValueObject):
             message = 'can only compare markup to markup: {!r}.'
             message = message.format(argument)
             raise TypeError(message)
-        return self.contents < argument.contents 
+        return self.contents < argument.contents
 
     def __radd__(self, argument):
         r'''Adds `argument` to markup.
@@ -997,7 +997,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> show(markup) # doctest: +SKIP    
+                >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''

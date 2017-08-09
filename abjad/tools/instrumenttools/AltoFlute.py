@@ -49,8 +49,8 @@ class AltoFlute(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
-        pitch_range='[G3, G6]',
         middle_c_sounding_pitch='G3',
+        pitch_range='[G3, G6]',
         ):
         Instrument.__init__(
             self,
@@ -59,9 +59,8 @@ class AltoFlute(Instrument):
             name_markup=name_markup,
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'wind player',
@@ -100,8 +99,8 @@ class AltoFlute(Instrument):
                                 ),
                             ]
                         ),
-                    pitch_range=abjad.PitchRange('[G3, G6]'),
                     middle_c_sounding_pitch=abjad.NamedPitch('g'),
+                    pitch_range=abjad.PitchRange('[G3, G6]'),
                     )
 
         Returns string.

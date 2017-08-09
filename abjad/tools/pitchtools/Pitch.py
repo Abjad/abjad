@@ -46,7 +46,7 @@ class Pitch(AbjadValueObject):
         (?P<diatonic_pitch_class_name>
             [A-G]   # exactly one diatonic pitch-class name
         )
-        {}          # plus an optional accidental symbol 
+        {}          # plus an optional accidental symbol
         (?P<octave_number>
             [-]?    # plus an optional negative sign
             [0-9]+  # plus one or more digits
@@ -244,7 +244,7 @@ class Pitch(AbjadValueObject):
         Returns octave.
         '''
         raise NotImplementedError
-            
+
     @abc.abstractproperty
     def pitch_class(self):
         r'''Gets pitch-class of pitch.

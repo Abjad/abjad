@@ -9,7 +9,7 @@ class BeatwiseQSchema(QSchema):
     r'''Beatwise q-schema.
 
     Treats beats as timestep unit.
-    
+
     ::
 
         >>> import abjad

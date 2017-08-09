@@ -54,8 +54,8 @@ class Viola(Instrument):
         short_name_markup=None,
         allowable_clefs=('alto', 'treble'),
         default_tuning=('C3', 'G3', 'D4', 'A4'),
-        pitch_range='[C3, D6]',
         middle_c_sounding_pitch=None,
+        pitch_range='[C3, D6]',
         ):
         Instrument.__init__(
             self,
@@ -65,8 +65,7 @@ class Viola(Instrument):
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'string player',

@@ -4,7 +4,7 @@ from abjad.tools.quantizationtools.Heuristic import Heuristic
 
 class DistanceHeuristic(Heuristic):
     r'''Distance heuristic.
-    
+
     Considers only the computed distance of each ``QGrid`` and the number of
     leaves of that ``QGrid`` when choosing the optimal ``QGrid`` for a given
     ``QTargetBeat``.

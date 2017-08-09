@@ -15,7 +15,7 @@ def is_assignable_integer(argument):
 
             >>> for n in range(0, 16 + 1):
             ...     print('%s\t%s' % (n, abjad.mathtools.is_assignable_integer(n)))
-            ... 
+            ...
             0  False
             1  True
             2  True
@@ -39,6 +39,6 @@ def is_assignable_integer(argument):
     from abjad.tools import mathtools
     if isinstance(argument, int):
         if 0 < argument:
-            if not '01' in mathtools.integer_to_binary_string(argument):
+            if '01' not in mathtools.integer_to_binary_string(argument):
                 return True
     return False

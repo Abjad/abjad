@@ -52,8 +52,8 @@ class MezzoSopranoVoice(Instrument):
         name_markup=None,
         short_name_markup=None,
         allowable_clefs=None,
-        pitch_range='[A3, C6]',
         middle_c_sounding_pitch=None,
+        pitch_range='[A3, C6]',
         ):
         Instrument.__init__(
             self,
@@ -63,8 +63,7 @@ class MezzoSopranoVoice(Instrument):
             short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            middle_c_sounding_pitch=\
-                middle_c_sounding_pitch,
+            middle_c_sounding_pitch=middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'vocalist',

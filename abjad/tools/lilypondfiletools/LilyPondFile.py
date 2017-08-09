@@ -168,7 +168,7 @@ class LilyPondFile(AbjadObject):
                     >>> score_block.items.append(score)
                     >>> score_block.items.append(layout_block)
                     >>> score_block.items.append(midi_block)
-                  
+
                 ::
 
                     >>> f(score_block)
@@ -248,7 +248,7 @@ class LilyPondFile(AbjadObject):
                         }
                     >>
                 >>
-                
+
             ::
 
                 >>> lilypond_file['score']

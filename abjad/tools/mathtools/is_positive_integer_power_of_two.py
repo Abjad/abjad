@@ -15,7 +15,7 @@ def is_positive_integer_power_of_two(argument):
 
             >>> for n in range(10):
             ...     print(n, abjad.mathtools.is_positive_integer_power_of_two(n))
-            ... 
+            ...
             0 False
             1 True
             2 True

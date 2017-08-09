@@ -4,7 +4,7 @@ from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 class DiscardingGraceHandler(GraceHandler):
     r'''Discarindg grace-handler.
-    
+
     Dscards all but final q-event attached to an offset.
 
     ::

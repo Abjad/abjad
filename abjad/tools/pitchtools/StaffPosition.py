@@ -200,7 +200,7 @@ class StaffPosition(AbjadValueObject):
             ::
 
                 >>> abjad.StaffPosition(-2).number
-                -2 
+                -2
 
         Returns number.
         '''

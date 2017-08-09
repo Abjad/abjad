@@ -235,7 +235,7 @@ class NamedInterval(Interval):
         Returns number.
         '''
         return super(NamedInterval, self).__hash__()
-        
+
     def __lt__(self, argument):
         r'''Is true when `argument` is a named interval with a number greater
         than that of this named interval.
@@ -578,7 +578,7 @@ class NamedInterval(Interval):
     @property
     def named_interval_class(self):
         r'''DEPRECATED.
-        
+
         Gets named interval class of named interval.
 
         ..  container:: example
@@ -837,7 +837,7 @@ class NamedInterval(Interval):
         r'''Makes named interval from `quality` and `number`.
 
         ..  container:: example
-            
+
             ::
 
                 >>> abjad.NamedInterval.from_quality_and_number(

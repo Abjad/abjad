@@ -1035,7 +1035,7 @@ class Meter(AbjadValueObject):
                     depth=0,
                     logical_tie=item,
                     )
-            elif isinstance(item, scoretools.Tuplet) and rewrite_tuplets == False:
+            elif isinstance(item, scoretools.Tuplet) and not rewrite_tuplets:
                 pass
             else:
                 #print('DESCENDING:', item)
