@@ -84,7 +84,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
         if not time_signatures:
             return
         time_signature_context = scoretools.Context(
-            context_name='TimeSignatureContext',
+            context_name='GlobalContext',
             name='Time Signature Context',
             )
         maker = abjad.MeasureMaker()

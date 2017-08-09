@@ -449,7 +449,7 @@ class LilyPondFile(AbjadObject):
         assert isinstance(padding, (int, float))
         block = abjad.ContextBlock(
             type_='Engraver_group',
-            name='TimeSignatureContext',
+            name='GlobalContext',
             )
         block.consists_commands.append('Axis_group_engraver')
         block.consists_commands.append('Time_signature_engraver')
@@ -800,7 +800,7 @@ class LilyPondFile(AbjadObject):
 
                 >>> score = abjad.Score()
                 >>> time_signature_context = abjad.Context(
-                ...     context_name='TimeSignatureContext',
+                ...     context_name='GlobalContext',
                 ...     )
                 >>> durations = [(2, 8), (3, 8), (4, 8)]
                 >>> maker = abjad.MeasureMaker()
@@ -833,7 +833,7 @@ class LilyPondFile(AbjadObject):
                     indent = #0
                     ragged-right = ##t
                     \context {
-                        \name TimeSignatureContext
+                        \name GlobalContext
                         \type Engraver_group
                         \consists Axis_group_engraver
                         \consists Time_signature_engraver
@@ -849,7 +849,7 @@ class LilyPondFile(AbjadObject):
                     \context {
                         \Score
                         \remove Bar_number_engraver
-                        \accepts TimeSignatureContext
+                        \accepts GlobalContext
                         \override Beam.breakable = ##t
                         \override SpacingSpanner.strict-grace-spacing = ##t
                         \override SpacingSpanner.strict-note-spacing = ##t
@@ -883,7 +883,7 @@ class LilyPondFile(AbjadObject):
 
                 \score {
                     \new Score <<
-                        \new TimeSignatureContext {
+                        \new GlobalContext {
                             {
                                 \time 2/8
                                 s1 * 1/4
@@ -924,7 +924,7 @@ class LilyPondFile(AbjadObject):
                 >>> block = lilypond_file.layout_block.items[1]
                 >>> f(block)
                 \context {
-                    \name TimeSignatureContext
+                    \name GlobalContext
                     \type Engraver_group
                     \consists Axis_group_engraver
                     \consists Time_signature_engraver
@@ -945,11 +945,11 @@ class LilyPondFile(AbjadObject):
         Adds LilyPond ``\header``, ``\layout``, ``\paper`` and ``\score``
         blocks to LilyPond file.
 
-        Defines layout settings for custom ``\TimeSignatureContext``.
+        Defines layout settings for custom ``\GlobalContext``.
 
         (Note that you must create and populate an Abjad context with name
-        equal to ``'TimeSignatureContext'`` in order for
-        ``\TimeSignatureContext`` layout settings to apply.)
+        equal to ``'GlobalContext'`` in order for
+        ``\GlobalContext`` layout settings to apply.)
 
         Applies many file, layout and paper settings.
 
@@ -975,7 +975,7 @@ class LilyPondFile(AbjadObject):
         lilypond_file.layout_block.items.append(block)
         block = abjad.ContextBlock(source_context_name='Score')
         lilypond_file.layout_block.items.append(block)
-        block.accepts_commands.append('TimeSignatureContext')
+        block.accepts_commands.append('GlobalContext')
         block.remove_commands.append('Bar_number_engraver')
         abjad.override(block).beam.breakable = True
         abjad.override(block).spacing_spanner.strict_grace_spacing = True
@@ -1127,7 +1127,7 @@ class LilyPondFile(AbjadObject):
                 >>> score = lilypond_file[abjad.Score]
                 >>> f(score)
                 \new Score <<
-                    \new TimeSignatureContext {
+                    \new GlobalContext {
                         {
                             \time 3/4
                             s1 * 3/4
@@ -1196,7 +1196,7 @@ class LilyPondFile(AbjadObject):
                 >>> score = lilypond_file[abjad.Score]
                 >>> f(score)
                 \new Score <<
-                    \new TimeSignatureContext {
+                    \new GlobalContext {
                         {
                             \time 6/8
                             s1 * 3/4
@@ -1266,7 +1266,7 @@ class LilyPondFile(AbjadObject):
                 >>> score = lilypond_file[abjad.Score]
                 >>> f(score)
                 \new Score <<
-                    \new TimeSignatureContext {
+                    \new GlobalContext {
                         {
                             \time 3/4
                             s1 * 3/4
@@ -1347,7 +1347,7 @@ class LilyPondFile(AbjadObject):
 
                 >>> f(lilypond_file[abjad.Score])
                 \new Score <<
-                    \new TimeSignatureContext {
+                    \new GlobalContext {
                         {
                             \time 3/4
                             s1 * 3/4
@@ -1518,7 +1518,7 @@ class LilyPondFile(AbjadObject):
         score.append(staff)
         assert isinstance(divisions, collections.Sequence), repr(divisions)
         time_signatures = time_signatures or divisions
-        context = abjad.scoretools.Context(context_name='TimeSignatureContext')
+        context = abjad.scoretools.Context(context_name='GlobalContext')
         maker = abjad.MeasureMaker(implicit_scaling=implicit_scaling)
         measures = maker(time_signatures)
         context.extend(measures)

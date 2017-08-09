@@ -17,7 +17,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             >>> f(template.__illustrate__()[abjad.Score])
             \context Score = "Score" <<
                 \tag #'(Violin1 Violin2 Violin3 Violin4 Violin5 Violin6 Viola1 Viola2 Viola3 Viola4 Cello1 Cello2 Cello3 Contrabass1 Contrabass2)
-                \context TimeSignatureContext = "TimeSignatureContext" {
+                \context GlobalContext = "GlobalContext" {
                 }
                 \context StaffGroup = "Outer Staff Group" <<
                     \context ViolinStaffGroup = "Violin Staff Group" <<
@@ -260,7 +260,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             >>> f(template.__illustrate__()[abjad.Score])
             \context Score = "Score" <<
                 \tag #'(Violin1 Violin2 Viola Cello)
-                \context TimeSignatureContext = "TimeSignatureContext" {
+                \context GlobalContext = "GlobalContext" {
                 }
                 \context StaffGroup = "Outer Staff Group" <<
                     \context ViolinStaffGroup = "Violin Staff Group" <<
@@ -347,7 +347,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             >>> f(template.__illustrate__()[abjad.Score])
             \context Score = "Score" <<
                 \tag #'(Cello)
-                \context TimeSignatureContext = "TimeSignatureContext" {
+                \context GlobalContext = "GlobalContext" {
                 }
                 \context StaffGroup = "Outer Staff Group" <<
                     \context CelloStaffGroup = "Cello Staff Group" <<
@@ -501,8 +501,8 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         ### TIME SIGNATURE CONTEXT ###
 
         time_signature_context = abjad.Context(
-            name='TimeSignatureContext',
-            context_name='TimeSignatureContext',
+            name='GlobalContext',
+            context_name='GlobalContext',
             )
         instrument_tags = ' '.join(tag_names)
         tag_string = "tag #'({})".format(instrument_tags)
