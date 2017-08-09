@@ -69,7 +69,7 @@ def sequence(items=None, **keywords):
                 >>> expression = expression[-3:]
                 >>> expression([1, 2, [3, [4]], 5])
                 Sequence([3, 2, 1])
-        
+
     Returns sequence when `items` is not none.
 
     Returns sequence expression when `items` is none.

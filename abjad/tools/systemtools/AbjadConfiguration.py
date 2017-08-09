@@ -10,7 +10,7 @@ class AbjadConfiguration(Configuration):
     r'''Abjad configuration.
 
     ::
-    
+
         >>> import abjad
 
     ..  container:: example
@@ -31,9 +31,9 @@ class AbjadConfiguration(Configuration):
         * Looks for ``$HOME/.abjad/``.
 
         * Creates ``$HOME/.abjad/`` if directory does not exist.
-        
+
         * Looks for ``$HOME/.abjad/abjad.cfg``.
-        
+
         * Creates ``$HOME/.abjad/abjad.cfg`` if file does not exist.
 
         * Parses ``$HOME/.abjad/abjad.cfg``.

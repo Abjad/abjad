@@ -31,7 +31,7 @@ def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
     inequality = timespantools.CompoundInequality([
         'timespan.start <= offset',
         'offset < timespan.stop',
-            ])
+        ])
 
     time_relation = timespantools.OffsetTimespanTimeRelation(
         inequality,

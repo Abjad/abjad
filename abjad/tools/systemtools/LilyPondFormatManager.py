@@ -74,8 +74,7 @@ class LilyPondFormatManager(AbjadObject):
             elif (wrapper.scope is None and
                 hasattr(wrapper.indicator, '_format_leaf_children') and
                 not getattr(wrapper.indicator, '_format_leaf_children') and
-                wrapper.component is not component
-                ):
+                wrapper.component is not component):
                 continue
             # store markup
             elif isinstance(wrapper.indicator, abjad.Markup):

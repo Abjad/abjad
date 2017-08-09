@@ -190,8 +190,8 @@ class RootlessChordClass(IntervalSegment):
                 pitchtools.NamedInterval('dim7'),
                 ]
         else:
-           message = 'unaccpetable quality string.'
-           raise ValueError(message)
+            message = 'unaccpetable quality string.'
+            raise ValueError(message)
         intervals.insert(0, pitchtools.NamedInterval('P1'))
         return intervals
 

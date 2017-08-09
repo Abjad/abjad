@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 class ScaleDegree(AbjadValueObject):
     '''Scale degree.
-    
+
     ::
 
         >>> from abjad.tools import tonalanalysistools
@@ -166,7 +166,7 @@ class ScaleDegree(AbjadValueObject):
         Returns string.
         '''
         return '{}{}'.format(self.accidental.symbol, self.number)
-    
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):

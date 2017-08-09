@@ -400,7 +400,7 @@ class RootedChordClass(PitchClassSet):
                 ...     )
                 >>> chord_class.root
                 NamedPitchClass('g')
- 
+
         Returns named pitch-class.
         '''
         return self._root

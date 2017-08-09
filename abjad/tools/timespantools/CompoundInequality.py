@@ -68,14 +68,8 @@ class CompoundInequality(TypedList):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        items=None,
-        logical_operator='and',
-        ):
-        TypedList.__init__(self,
-            items=items,
-            )
+    def __init__(self, items=None, logical_operator='and'):
+        TypedList.__init__(self, items=items)
         self._logical_operator = logical_operator
 
     ### PUBLIC METHODS ###

@@ -28,7 +28,7 @@ class RomanNumeral(AbjadValueObject):
         ::
 
             >>> roman_numeral = tonalanalysistools.RomanNumeral('bII')
-    
+
     '''
 
     ### CLASS VARIABLES ###

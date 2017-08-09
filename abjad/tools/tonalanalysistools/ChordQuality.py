@@ -68,7 +68,7 @@ class ChordQuality(AbjadValueObject):
         equal to that of this chord quality. Otherwise false.
 
         ..  container:: example
-    
+
             ::
 
                 >>> quality_1 = tonalanalysistools.ChordQuality('major')

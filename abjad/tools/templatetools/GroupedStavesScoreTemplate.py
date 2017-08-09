@@ -99,11 +99,31 @@ class GroupedStavesScoreTemplate(AbjadValueObject):
     @property
     def context_name_abbreviations(self):
         r'''Gets context name abbreviations.
+
+        ..  container::
+
+            ::
+
+                >>> class_ = abjad.templatetools.GroupedStavesScoreTemplate
+                >>> template = class_(staff_count=4)
+                >>> template.context_name_abbreviations
+                OrderedDict()
+
         '''
         return self._context_name_abbreviations
 
     @property
     def staff_count(self):
         r'''Gets staff count.
+
+        ..  container::
+
+            ::
+
+                >>> class_ = abjad.templatetools.GroupedStavesScoreTemplate
+                >>> template = class_(staff_count=4)
+                >>> template.staff_count
+                4
+
         '''
         return self._staff_count

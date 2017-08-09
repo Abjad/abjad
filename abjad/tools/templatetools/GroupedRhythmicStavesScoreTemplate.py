@@ -177,7 +177,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadValueObject):
                 number = index + 1
                 name = 'Voice {}'.format(number)
                 voice = abjad.Voice([], name=name)
-                name='Staff {}'.format(number)
+                name = 'Staff {}'.format(number)
                 staff = abjad.Staff([voice], name=name)
                 staff.context_name = 'RhythmicStaff'
                 staves.append(staff)
