@@ -130,16 +130,16 @@ Use ``pitch_range`` to get the range of any instrument:
 Getting an instrument's level of transposition
 ----------------------------------------------
 
-Use ``sounding_pitch_of_written_middle_c`` to get an instrument's level of
+Use ``middle_c_sounding_pitch`` to get an instrument's level of
 transposition:
 
 ..  abjad::
 
-    violin.sounding_pitch_of_written_middle_c
+    violin.middle_c_sounding_pitch
 
 ..  abjad::
 
-    show(violin.sounding_pitch_of_written_middle_c)
+    show(violin.middle_c_sounding_pitch)
 
 
 Getting an instrument's allowable clefs

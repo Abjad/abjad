@@ -50,7 +50,7 @@ class AltoFlute(Instrument):
         short_instrument_name_markup=None,
         allowable_clefs=None,
         pitch_range='[G3, G6]',
-        sounding_pitch_of_written_middle_c='G3',
+        middle_c_sounding_pitch='G3',
         ):
         Instrument.__init__(
             self,
@@ -60,8 +60,8 @@ class AltoFlute(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'wind player',
@@ -101,7 +101,7 @@ class AltoFlute(Instrument):
                             ]
                         ),
                     pitch_range=abjad.PitchRange('[G3, G6]'),
-                    sounding_pitch_of_written_middle_c=abjad.NamedPitch('g'),
+                    middle_c_sounding_pitch=abjad.NamedPitch('g'),
                     )
 
         Returns string.
@@ -218,20 +218,20 @@ class AltoFlute(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of alto flute's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> alto_flute.sounding_pitch_of_written_middle_c
+                >>> alto_flute.middle_c_sounding_pitch
                 NamedPitch('g')
 
             ::
 
-                >>> show(alto_flute.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(alto_flute.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)

@@ -53,7 +53,7 @@ class AltoTrombone(Instrument):
         short_instrument_name_markup=None,
         allowable_clefs=('bass', 'tenor'),
         pitch_range='[A2, Bb5]',
-        sounding_pitch_of_written_middle_c=None,
+        middle_c_sounding_pitch=None,
         ):
         Instrument.__init__(
             self,
@@ -63,8 +63,8 @@ class AltoTrombone(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'brass player',
@@ -106,7 +106,7 @@ class AltoTrombone(Instrument):
                             ]
                         ),
                     pitch_range=abjad.PitchRange('[A2, Bb5]'),
-                    sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
+                    middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                     )
 
         Returns string.
@@ -223,20 +223,20 @@ class AltoTrombone(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of alto trombone's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> alto_trombone.sounding_pitch_of_written_middle_c
+                >>> alto_trombone.middle_c_sounding_pitch
                 NamedPitch("c'")
 
             ::
 
-                >>> show(alto_trombone.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(alto_trombone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)

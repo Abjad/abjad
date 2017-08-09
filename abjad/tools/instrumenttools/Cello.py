@@ -55,7 +55,7 @@ class Cello(Instrument):
         allowable_clefs=('bass', 'tenor', 'treble'),
         default_tuning=('C2', 'G2', 'D3', 'A3'),
         pitch_range='[C2, G5]',
-        sounding_pitch_of_written_middle_c=None,
+        middle_c_sounding_pitch=None,
         ):
         Instrument.__init__(
             self,
@@ -65,8 +65,8 @@ class Cello(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'string player',
@@ -198,20 +198,20 @@ class Cello(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of cello's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> cello.sounding_pitch_of_written_middle_c
+                >>> cello.middle_c_sounding_pitch
                 NamedPitch("c'")
 
             ::
 
-                >>> show(cello.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(cello.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)

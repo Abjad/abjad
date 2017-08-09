@@ -43,7 +43,7 @@ class Performer(AbjadValueObject):
                                     ]
                                 ),
                             pitch_range=abjad.PitchRange('[C4, D7]'),
-                            sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
+                            middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                             ),
                         instrumenttools.Piccolo(
                             instrument_name='piccolo',
@@ -62,7 +62,7 @@ class Performer(AbjadValueObject):
                                     ]
                                 ),
                             pitch_range=abjad.PitchRange('[D5, C8]'),
-                            sounding_pitch_of_written_middle_c=abjad.NamedPitch("c''"),
+                            middle_c_sounding_pitch=abjad.NamedPitch("c''"),
                             ),
                         ]
                     ),

@@ -50,7 +50,7 @@ class AltoSaxophone(Instrument):
         short_instrument_name_markup=None,
         allowable_clefs=None,
         pitch_range='[Db3, A5]',
-        sounding_pitch_of_written_middle_c='Eb3',
+        middle_c_sounding_pitch='Eb3',
         ):
         Instrument.__init__(
             self,
@@ -60,8 +60,8 @@ class AltoSaxophone(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'wind player',
@@ -102,7 +102,7 @@ class AltoSaxophone(Instrument):
                             ]
                         ),
                     pitch_range=abjad.PitchRange('[Db3, A5]'),
-                    sounding_pitch_of_written_middle_c=abjad.NamedPitch('ef'),
+                    middle_c_sounding_pitch=abjad.NamedPitch('ef'),
                     )
 
         Returns string.
@@ -219,20 +219,20 @@ class AltoSaxophone(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of alto saxophone's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> alto_saxophone.sounding_pitch_of_written_middle_c
+                >>> alto_saxophone.middle_c_sounding_pitch
                 NamedPitch('ef')
 
             ::
 
-                >>> show(alto_saxophone.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(alto_saxophone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)

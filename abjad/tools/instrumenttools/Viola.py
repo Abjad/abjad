@@ -55,7 +55,7 @@ class Viola(Instrument):
         allowable_clefs=('alto', 'treble'),
         default_tuning=('C3', 'G3', 'D4', 'A4'),
         pitch_range='[C3, D6]',
-        sounding_pitch_of_written_middle_c=None,
+        middle_c_sounding_pitch=None,
         ):
         Instrument.__init__(
             self,
@@ -65,8 +65,8 @@ class Viola(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'string player',
@@ -198,20 +198,20 @@ class Viola(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of viola's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> viola.sounding_pitch_of_written_middle_c
+                >>> viola.middle_c_sounding_pitch
                 NamedPitch("c'")
 
             ::
 
-                >>> show(viola.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(viola.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)

@@ -50,7 +50,7 @@ class Xylophone(Instrument):
         short_instrument_name_markup=None,
         allowable_clefs=None,
         pitch_range='[C4, C7]',
-        sounding_pitch_of_written_middle_c='C5',
+        middle_c_sounding_pitch='C5',
         ):
         Instrument.__init__(
             self,
@@ -60,8 +60,8 @@ class Xylophone(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'percussionist',
@@ -177,20 +177,20 @@ class Xylophone(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of xylophone's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> xylophone.sounding_pitch_of_written_middle_c
+                >>> xylophone.middle_c_sounding_pitch
                 NamedPitch("c''")
 
             ::
 
-                >>> show(xylophone.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(xylophone.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)

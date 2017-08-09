@@ -49,7 +49,7 @@ class Instrument(AbjadValueObject):
         short_instrument_name_markup=None,
         allowable_clefs=None,
         pitch_range=None,
-        sounding_pitch_of_written_middle_c=None,
+        middle_c_sounding_pitch=None,
         ):
         from abjad.tools import instrumenttools
         from abjad.tools import scoretools
@@ -80,12 +80,12 @@ class Instrument(AbjadValueObject):
         else:
             raise TypeError(pitch_range)
         self._pitch_range = pitch_range
-        sounding_pitch_of_written_middle_c = \
-            sounding_pitch_of_written_middle_c or pitchtools.NamedPitch("c'")
-        sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch(sounding_pitch_of_written_middle_c)
+        middle_c_sounding_pitch = \
+            middle_c_sounding_pitch or pitchtools.NamedPitch("c'")
+        middle_c_sounding_pitch = \
+            pitchtools.NamedPitch(middle_c_sounding_pitch)
         self._sounding_pitch_of_written_middle_c = \
-            sounding_pitch_of_written_middle_c
+            middle_c_sounding_pitch
         self._default_scope = scoretools.Staff
         self._is_primary_instrument = False
         self._performer_names = ['instrumentalist']
@@ -327,7 +327,7 @@ class Instrument(AbjadValueObject):
             return self._short_instrument_name_markup
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of written middle C.
 
         Returns named pitch.
@@ -386,7 +386,7 @@ class Instrument(AbjadValueObject):
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
             if not instrument:
                 continue
-            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            sounding_pitch = instrument.middle_c_sounding_pitch
             interval = abjad.NamedPitch('C4') - sounding_pitch
             interval *= -1
             if isinstance(leaf, abjad.Note):
@@ -450,7 +450,7 @@ class Instrument(AbjadValueObject):
             instrument = abjad.inspect(leaf).get_effective(abjad.Instrument)
             if not instrument:
                 continue
-            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            sounding_pitch = instrument.middle_c_sounding_pitch
             interval = abjad.NamedPitch('C4') - sounding_pitch
             if isinstance(leaf, abjad.Note):
                 written_pitch = leaf.written_pitch

@@ -53,7 +53,7 @@ class Contrabass(Instrument):
         allowable_clefs=('bass', 'treble'),
         default_tuning=('C1', 'A1', 'D2', 'G2'),
         pitch_range='[C1, G4]',
-        sounding_pitch_of_written_middle_c='C3',
+        middle_c_sounding_pitch='C3',
         ):
         Instrument.__init__(
             self,
@@ -63,8 +63,8 @@ class Contrabass(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'string player',
@@ -197,20 +197,20 @@ class Contrabass(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of contrabass's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> contrabass.sounding_pitch_of_written_middle_c
+                >>> contrabass.middle_c_sounding_pitch
                 NamedPitch('c')
 
             ::
 
-                >>> show(contrabass.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(contrabass.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)

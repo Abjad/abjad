@@ -50,7 +50,7 @@ class ClarinetInEFlat(Instrument):
         short_instrument_name_markup=None,
         allowable_clefs=None,
         pitch_range='[F3, C7]',
-        sounding_pitch_of_written_middle_c='Eb4',
+        middle_c_sounding_pitch='Eb4',
         ):
         Instrument.__init__(
             self,
@@ -60,8 +60,8 @@ class ClarinetInEFlat(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'wind player',
@@ -180,20 +180,20 @@ class ClarinetInEFlat(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of clarinet in E-flat's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> clarinet.sounding_pitch_of_written_middle_c
+                >>> clarinet.middle_c_sounding_pitch
                 NamedPitch("ef'")
 
             ::
 
-                >>> show(clarinet.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(clarinet.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)

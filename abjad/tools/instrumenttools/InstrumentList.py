@@ -41,7 +41,7 @@ class InstrumentList(TypedList):
                                 ]
                             ),
                         pitch_range=abjad.PitchRange('[C4, D7]'),
-                        sounding_pitch_of_written_middle_c=abjad.NamedPitch("c'"),
+                        middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                         ),
                     instrumenttools.Guitar(
                         instrument_name='guitar',
@@ -73,7 +73,7 @@ class InstrumentList(TypedList):
                                 ),
                             ),
                         pitch_range=abjad.PitchRange('[E2, E5]'),
-                        sounding_pitch_of_written_middle_c=abjad.NamedPitch('c'),
+                        middle_c_sounding_pitch=abjad.NamedPitch('c'),
                         ),
                     ]
                 )

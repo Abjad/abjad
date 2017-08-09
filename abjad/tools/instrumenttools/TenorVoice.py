@@ -52,7 +52,7 @@ class TenorVoice(Instrument):
         short_instrument_name_markup=None,
         allowable_clefs=None,
         pitch_range='[C3, D5]',
-        sounding_pitch_of_written_middle_c=None,
+        middle_c_sounding_pitch=None,
         ):
         Instrument.__init__(
             self,
@@ -62,8 +62,8 @@ class TenorVoice(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'vocalist',
@@ -180,20 +180,20 @@ class TenorVoice(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of tenor's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> tenor.sounding_pitch_of_written_middle_c
+                >>> tenor.middle_c_sounding_pitch
                 NamedPitch("c'")
 
             ::
 
-                >>> show(tenor.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(tenor.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)

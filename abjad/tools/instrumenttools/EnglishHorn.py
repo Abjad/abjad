@@ -50,7 +50,7 @@ class EnglishHorn(Instrument):
         short_instrument_name_markup=None,
         allowable_clefs=None,
         pitch_range='[E3, C6]',
-        sounding_pitch_of_written_middle_c='F3',
+        middle_c_sounding_pitch='F3',
         ):
         Instrument.__init__(
             self,
@@ -60,8 +60,8 @@ class EnglishHorn(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._performer_names.extend([
             'wind player',
@@ -179,20 +179,20 @@ class EnglishHorn(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of English horn's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> english_horn.sounding_pitch_of_written_middle_c
+                >>> english_horn.middle_c_sounding_pitch
                 NamedPitch('f')
 
             ::
 
-                >>> show(english_horn.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(english_horn.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)

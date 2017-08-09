@@ -62,7 +62,7 @@ class Harpsichord(Instrument):
         short_instrument_name_markup=None,
         allowable_clefs=('treble', 'bass'),
         pitch_range='[C2, C7]',
-        sounding_pitch_of_written_middle_c=None,
+        middle_c_sounding_pitch=None,
         ):
         from abjad.tools import scoretools
         Instrument.__init__(
@@ -73,8 +73,8 @@ class Harpsichord(Instrument):
             short_instrument_name_markup=short_instrument_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
+            middle_c_sounding_pitch=\
+                middle_c_sounding_pitch,
             )
         self._default_scope = 'PianoStaff'
         self._performer_names.extend([
@@ -207,20 +207,20 @@ class Harpsichord(Instrument):
         return Instrument.short_instrument_name_markup.fget(self)
 
     @property
-    def sounding_pitch_of_written_middle_c(self):
+    def middle_c_sounding_pitch(self):
         r'''Gets sounding pitch of harpsichord's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> harpsichord.sounding_pitch_of_written_middle_c
+                >>> harpsichord.middle_c_sounding_pitch
                 NamedPitch("c'")
 
             ::
 
-                >>> show(harpsichord.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(harpsichord.middle_c_sounding_pitch) # doctest: +SKIP
 
         Returns named pitch.
         '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+        return Instrument.middle_c_sounding_pitch.fget(self)
