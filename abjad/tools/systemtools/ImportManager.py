@@ -178,7 +178,7 @@ class ImportManager(AbjadObject):
         if isinstance(namespace, types.ModuleType):
             namespace = namespace.__dict__
         package_path = ImportManager._split_package_path(path)
-        for element in os.listdir(path):
+        for element in sorted(os.listdir(path)):
             if ignored_names and element in ignored_names:
                 continue
             if os.path.isfile(os.path.join(path, element)):
