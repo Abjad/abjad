@@ -7,62 +7,183 @@ class SetClass(AbjadValueObject):
 
     ..  container:: example
 
-        Initializes transposition-inversion set-class (with Forte rank):
+        Makes SG2 set-class from Forte rank:
 
         ::
 
             >>> set_class = abjad.SetClass(4, 29)
-
-        ::
-
             >>> print(set_class)
             SC(4-29){0, 1, 3, 7}
 
-        There are 224 transposition-inversion set-classes.
-
-    ..  container:: example
-
-        Initializes transposition-inversion set-class (with lex rank):
+        Makes SG2 set-class from lex rank:
 
         ::
 
             >>> set_class = abjad.SetClass(4, 29, lex_rank=True)
-
-        ::
-
             >>> print(set_class)
             SC(4-29){0, 3, 6, 9}
 
-        There are 224 transposition-inversion set-classes.
-
-    ..  container:: example
-
-        Initializes transposition-only set-class:
+        Makes SG1 set-class:
 
         ::
 
             >>> set_class = abjad.SetClass(4, 29, transposition_only=True)
-
-        ::
-
             >>> print(set_class)
             SC(4-29){0, 2, 6, 7}
 
-        There are 352 transposition-only set-classes.
-
     ..  container:: example
 
-        Initializes 12-ET aggregate:
+        Makes aggregate:
 
         ::
 
             >>> set_class = abjad.SetClass(12, 1, transposition_only=True)
-
-        ::
-
             >>> print(set_class)
             SC(12-1){0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
 
+    ..  container:: example
+
+        Lists SG2 tetrachords, pentachords, hexachords by Forte rank:
+
+        ::
+
+            >>> set_classes = abjad.SetClass.list_set_classes(cardinality=4)
+            >>> for set_class in set_classes:
+            ...     print(set_class)
+            ...
+            SC(4-1){0, 1, 2, 3}
+            SC(4-2){0, 1, 2, 4}
+            SC(4-3){0, 1, 3, 4}
+            SC(4-4){0, 1, 2, 5}
+            SC(4-5){0, 1, 2, 6}
+            SC(4-6){0, 1, 2, 7}
+            SC(4-7){0, 1, 4, 5}
+            SC(4-8){0, 1, 5, 6}
+            SC(4-9){0, 1, 6, 7}
+            SC(4-10){0, 2, 3, 5}
+            SC(4-11){0, 1, 3, 5}
+            SC(4-12){0, 2, 3, 6}
+            SC(4-13){0, 1, 3, 6}
+            SC(4-14){0, 2, 3, 7}
+            SC(4-15){0, 1, 4, 6}
+            SC(4-16){0, 1, 5, 7}
+            SC(4-17){0, 3, 4, 7}
+            SC(4-18){0, 1, 4, 7}
+            SC(4-19){0, 1, 4, 8}
+            SC(4-20){0, 1, 5, 8}
+            SC(4-21){0, 2, 4, 6}
+            SC(4-22){0, 2, 4, 7}
+            SC(4-23){0, 2, 5, 7}
+            SC(4-24){0, 2, 4, 8}
+            SC(4-25){2, 6, 8, 9}
+            SC(4-26){0, 3, 5, 8}
+            SC(4-27){0, 2, 5, 8}
+            SC(4-28){0, 3, 6, 9}
+            SC(4-29){0, 1, 3, 7}
+
+        ::
+
+            >>> set_classes = abjad.SetClass.list_set_classes(cardinality=5)
+            >>> for set_class in set_classes:
+            ...     print(set_class)
+            ...
+            SC(5-1){0, 1, 2, 3, 4}
+            SC(5-2){0, 1, 2, 3, 5}
+            SC(5-3){0, 1, 2, 4, 5}
+            SC(5-4){0, 1, 2, 3, 6}
+            SC(5-5){0, 1, 2, 3, 7}
+            SC(5-6){0, 1, 2, 5, 6}
+            SC(5-7){0, 1, 2, 6, 7}
+            SC(5-8){0, 2, 3, 4, 6}
+            SC(5-9){0, 1, 2, 4, 6}
+            SC(5-10){0, 1, 3, 4, 6}
+            SC(5-11){0, 2, 3, 4, 7}
+            SC(5-12){0, 1, 3, 5, 6}
+            SC(5-13){0, 1, 2, 4, 8}
+            SC(5-14){0, 1, 2, 5, 7}
+            SC(5-15){0, 1, 2, 6, 8}
+            SC(5-16){0, 1, 3, 4, 7}
+            SC(5-17){0, 1, 3, 4, 8}
+            SC(5-18){0, 1, 4, 5, 7}
+            SC(5-19){0, 1, 3, 6, 7}
+            SC(5-20){0, 1, 3, 7, 8}
+            SC(5-21){0, 1, 4, 5, 8}
+            SC(5-22){0, 1, 4, 7, 8}
+            SC(5-23){0, 2, 3, 5, 7}
+            SC(5-24){0, 1, 3, 5, 7}
+            SC(5-25){0, 2, 3, 5, 8}
+            SC(5-26){0, 2, 4, 5, 8}
+            SC(5-27){0, 1, 3, 5, 8}
+            SC(5-28){0, 2, 3, 6, 8}
+            SC(5-29){0, 1, 3, 6, 8}
+            SC(5-30){0, 1, 4, 6, 8}
+            SC(5-31){0, 1, 3, 6, 9}
+            SC(5-32){0, 1, 4, 6, 9}
+            SC(5-33){0, 2, 4, 6, 8}
+            SC(5-34){0, 2, 4, 6, 9}
+            SC(5-35){0, 2, 4, 7, 9}
+            SC(5-36){0, 1, 2, 4, 7}
+            SC(5-37){0, 3, 4, 5, 8}
+            SC(5-38){0, 1, 2, 5, 8}
+
+        ::
+
+            >>> set_classes = abjad.SetClass.list_set_classes(cardinality=6)
+            >>> for set_class in set_classes:
+            ...     print(set_class)
+            ...
+            SC(6-1){0, 1, 2, 3, 4, 5}
+            SC(6-2){0, 1, 2, 3, 4, 6}
+            SC(6-3){0, 1, 2, 3, 5, 6}
+            SC(6-4){0, 1, 2, 4, 5, 6}
+            SC(6-5){0, 1, 2, 3, 6, 7}
+            SC(6-6){0, 1, 2, 5, 6, 7}
+            SC(6-7){0, 1, 2, 6, 7, 8}
+            SC(6-8){0, 2, 3, 4, 5, 7}
+            SC(6-9){0, 1, 2, 3, 5, 7}
+            SC(6-10){0, 1, 3, 4, 5, 7}
+            SC(6-11){0, 1, 2, 4, 5, 7}
+            SC(6-12){0, 1, 2, 4, 6, 7}
+            SC(6-13){0, 1, 3, 4, 6, 7}
+            SC(6-14){0, 1, 3, 4, 5, 8}
+            SC(6-15){0, 1, 2, 4, 5, 8}
+            SC(6-16){0, 1, 4, 5, 6, 8}
+            SC(6-17){0, 1, 2, 4, 7, 8}
+            SC(6-18){0, 1, 2, 5, 7, 8}
+            SC(6-19){0, 1, 3, 4, 7, 8}
+            SC(6-20){0, 1, 4, 5, 8, 9}
+            SC(6-21){0, 2, 3, 4, 6, 8}
+            SC(6-22){0, 1, 2, 4, 6, 8}
+            SC(6-23){0, 2, 3, 5, 6, 8}
+            SC(6-24){0, 1, 3, 4, 6, 8}
+            SC(6-25){0, 1, 3, 5, 6, 8}
+            SC(6-26){0, 1, 3, 5, 7, 8}
+            SC(6-27){0, 1, 3, 4, 6, 9}
+            SC(6-28){0, 1, 3, 5, 6, 9}
+            SC(6-29){0, 1, 3, 6, 8, 9}
+            SC(6-30){0, 1, 3, 6, 7, 9}
+            SC(6-31){0, 1, 3, 5, 8, 9}
+            SC(6-32){0, 2, 4, 5, 7, 9}
+            SC(6-33){0, 2, 3, 5, 7, 9}
+            SC(6-34){0, 1, 3, 5, 7, 9}
+            SC(6-35){0, 2, 4, 6, 8, 10}
+            SC(6-36){0, 1, 2, 3, 4, 7}
+            SC(6-37){0, 1, 2, 3, 4, 8}
+            SC(6-38){0, 1, 2, 3, 7, 8}
+            SC(6-39){0, 2, 3, 4, 5, 8}
+            SC(6-40){0, 1, 2, 3, 5, 8}
+            SC(6-41){0, 1, 2, 3, 6, 8}
+            SC(6-42){0, 1, 2, 3, 6, 9}
+            SC(6-43){0, 1, 2, 5, 6, 8}
+            SC(6-44){0, 1, 2, 5, 6, 9}
+            SC(6-45){0, 2, 3, 4, 6, 9}
+            SC(6-46){0, 1, 2, 4, 6, 9}
+            SC(6-47){0, 1, 2, 4, 7, 9}
+            SC(6-48){0, 1, 2, 5, 7, 9}
+            SC(6-49){0, 1, 3, 4, 7, 9}
+            SC(6-50){0, 1, 4, 6, 7, 9}
+
+    There are 352 SG1 set-classes and 224 SG2 set-classes.
     '''
 
     ### CLASS VARIABLES ##
@@ -174,7 +295,7 @@ class SetClass(AbjadValueObject):
         (6, 2): (0, 1, 2, 3, 4, 6),
         (6, 3): (0, 1, 2, 3, 5, 6),
         (6, 4): (0, 1, 2, 4, 5, 6),
-        (6, 5): (0, 1, 2, 5, 6, 7),
+        (6, 5): (0, 1, 2, 3, 6, 7),
         (6, 6): (0, 1, 2, 5, 6, 7),
         (6, 7): (0, 1, 2, 6, 7, 8),
         (6, 8): (0, 2, 3, 4, 5, 7),
@@ -836,6 +957,8 @@ class SetClass(AbjadValueObject):
         (12, 1): (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
         }
 
+    assert len(_transposition_only_identifier_to_prime_form) == 352
+
     _prime_form_to_forte_identifier = {
         v: k for k, v in
         _forte_identifier_to_prime_form.items()
@@ -844,6 +967,11 @@ class SetClass(AbjadValueObject):
     _prime_form_to_lex_identifier = {
         v: k for k, v in
         _lex_identifier_to_prime_form.items()
+        }
+
+    _prime_form_to_transposition_only_identifier = {
+        v: k for k, v in
+        _transposition_only_identifier_to_prime_form.items()
         }
 
     ### INITIALIZER ###
@@ -855,6 +983,9 @@ class SetClass(AbjadValueObject):
         lex_rank=None,
         transposition_only=None,
         ):
+        if bool(transposition_only) and lex_rank is False:
+            message = 'SG1 set-classes are always lex-rank.'
+            raise Exception(message)
         cardinality = int(cardinality)
         assert 0 <= cardinality <= 12, repr(cardinality)
         self._cardinality = cardinality
@@ -879,8 +1010,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets string of transposition-inversion set-class
-            (with Forte rank):
+            Gets string of SG2 set-class with Forte rank:
 
             ::
 
@@ -890,8 +1020,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets string of transposition-inversion set-class
-            (with lex rank):
+            Gets string of SG2 set-class with lex rank:
 
             ::
 
@@ -904,7 +1033,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets string of transposition-only set-class:
+            Gets string of SG1 set-class:
 
             ::
 
@@ -1009,8 +1138,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets cardinality of transposition-inversion
-            set-class (with Forte rank):
+            Gets cardinality of SG2 set-class with Forte rank:
 
             ::
 
@@ -1025,8 +1153,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets cardinality of transposition-inversion
-            set-class (with lex rank):
+            Gets cardinality of SG2 set-class with lex rank:
 
             ::
 
@@ -1044,7 +1171,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets cardinality of transposition-only set-class:
+            Gets cardinality of SG1 set-class:
 
             ::
 
@@ -1146,7 +1273,7 @@ class SetClass(AbjadValueObject):
                 ...     transposition_only=True,
                 ...     )
                 >>> print(inverted_set_class)
-                SC(4-16){0, 1, 5, 8}
+                SC(4-15){0, 1, 5, 7}
 
             ::
 
@@ -1203,7 +1330,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Transposition-only set-classes always use lex rank:
+            SG1 set-classes always use lex rank:
 
             ::
 
@@ -1233,8 +1360,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets prime form of transposition-inversion set-class
-            (with Forte rank):
+            Gets prime form of SG2 set-class with Forte rank:
 
             ::
 
@@ -1249,8 +1375,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets prime form of transposition-inversion set-class
-            (with lex rank):
+            Gets prime form of SG2 set-class with lex rank:
 
             ::
 
@@ -1268,7 +1393,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets prime form of transposition-only set-class:
+            Gets prime form of SG1 set-class:
 
             ::
 
@@ -1294,8 +1419,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets rank of transposition-inversion set-class (with
-            Forte rank):
+            Gets rank of SG2 set-class with Forte rank:
 
             ::
 
@@ -1310,8 +1434,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets rank of transposition-inversion
-            set-class (with lex rank):
+            Gets rank of SG2 set-class with lex rank:
 
             ::
 
@@ -1329,7 +1452,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Gets rank of transposition-only set-class:
+            Gets rank of SG1 set-class:
 
             ::
 
@@ -1358,8 +1481,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Initializes transposition-inversion set-class (with
-            Forte rank):
+            Initializes SG2 set-class with Forte rank:
 
             ::
 
@@ -1369,8 +1491,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Initializes transposition-inversion set-class (with
-            lex rank):
+            Initializes SG2 set-class with lex rank:
 
             ::
 
@@ -1383,7 +1504,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Initializes transposition-only set-class:
+            Initializes SG1 set-class:
 
             ::
 
@@ -1415,8 +1536,6 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Makes set-class from pitch-class set:
-
             ::
 
                 >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
@@ -1442,11 +1561,9 @@ class SetClass(AbjadValueObject):
                 ...     transposition_only=True,
                 ...     )
                 >>> print(set_class)
-                SC(5-31){0, 1, 4, 7, 8}
+                SC(5-44){0, 2, 3, 6, 9}
 
         ..  container:: example
-
-            Makes set-class from pitch-class set:
 
             ::
 
@@ -1473,11 +1590,9 @@ class SetClass(AbjadValueObject):
                 ...     transposition_only=True,
                 ...     )
                 >>> print(set_class)
-                SC(6-32){0, 1, 3, 4, 6, 9}
+                SC(6-70){0, 2, 4, 5, 7, 9}
 
         ..  container:: example
-
-            Makes set-class from pitch-class set:
 
             ::
 
@@ -1504,18 +1619,52 @@ class SetClass(AbjadValueObject):
                 ...     transposition_only=True,
                 ...     )
                 >>> print(set_class)
-                SC(4-9){0, 1, 3, 7}
+                SC(4-17){0, 1, 6, 7}
+
+        ..  container:: example
+
+            ::
+
+                >>> pc_set = abjad.PitchClassSet([0, 4, 7])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
+                >>> print(set_class)
+                SC(3-11){0, 3, 7}
+
+            ::
+
+                >>> pc_set = abjad.PitchClassSet([0, 4, 7])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(
+                ...     pc_set,
+                ...     lex_rank=True,
+                ...     )
+                >>> print(set_class)
+                SC(3-11){0, 3, 7}
+
+            ::
+
+                >>> pc_set = abjad.PitchClassSet([0, 4, 7])
+                >>> set_class = abjad.SetClass.from_pitch_class_set(
+                ...     pc_set,
+                ...     transposition_only=True,
+                ...     )
+                >>> print(set_class)
+                SC(3-17){0, 4, 7}
 
         Returns set-class.
         '''
-        from abjad.tools import pitchtools
-        pitch_class_set = pitchtools.PitchClassSet(
+        import abjad
+        pitch_class_set = abjad.PitchClassSet(
             items=pitch_class_set,
-            item_class=pitchtools.NumberedPitchClass,
+            item_class=abjad.NumberedPitchClass,
             )
-        prime_form = pitch_class_set.get_prime_form()
+        prime_form = pitch_class_set.get_prime_form(
+            transposition_only=transposition_only,
+            )
         prime_form = tuple([_.number for _ in sorted(prime_form)])
-        if lex_rank:
+        if transposition_only:
+            pair = SetClass._prime_form_to_transposition_only_identifier[
+                prime_form]
+        elif lex_rank:
             pair = SetClass._prime_form_to_lex_identifier[prime_form]
         else:
             pair = SetClass._prime_form_to_forte_identifier[prime_form]
@@ -1538,8 +1687,7 @@ class SetClass(AbjadValueObject):
 
         ..  container:: example
 
-            Lists transposition-inversion set-classes of
-            cardinality 4 (with Forte rank):
+            Lists SG2 set-classes of cardinality 4 with Forte rank:
 
             ::
 
@@ -1578,12 +1726,9 @@ class SetClass(AbjadValueObject):
                 SC(4-28){0, 3, 6, 9}
                 SC(4-29){0, 1, 3, 7}
 
-            There are 29 transposition-inversion set-classes of cardinality 4.
-
         ..  container:: example
 
-            Lists transposition-inversion set-classes of
-            cardinality 4 (with lex rank):
+            Lists SG2 set-classes of cardinality 4 with lex rank:
 
             ::
 
@@ -1623,11 +1768,9 @@ class SetClass(AbjadValueObject):
                 SC(4-28){0, 3, 5, 8}
                 SC(4-29){0, 3, 6, 9}
 
-            There are 29 transposition-inversion set-classes of cardinality 4:
-
         ..  container:: example
 
-            Lists transposition-only set-classes of cardinality 4:
+            Lists SG1 set-classes of cardinality 4:
 
             ::
 
@@ -1680,8 +1823,6 @@ class SetClass(AbjadValueObject):
                 SC(4-41){0, 4, 5, 6}
                 SC(4-42){0, 4, 5, 7}
                 SC(4-43){0, 4, 6, 7}
-
-            There are 43 transposition-only set-classes of cardinality 4.
 
         Returns list of set-classes.
         '''

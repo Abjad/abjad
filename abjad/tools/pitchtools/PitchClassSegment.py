@@ -1556,6 +1556,13 @@ class PitchClassSegment(Segment):
             return 'rs'
         return 'r'
 
+    def _transpose_to_zero(self):
+        numbers = [_.number for _ in self]
+        first_number = self[0].number
+        numbers = [pc.number - first_number for pc in self]
+        pcs = [_ % 12 for _ in numbers]
+        return type(self)(items=pcs, item_class=self.item_class)
+
     def _update_expression(self, frame, precedence=None):
         import abjad
         callback = abjad.Expression._frame_to_callback(

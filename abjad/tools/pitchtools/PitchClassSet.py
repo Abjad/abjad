@@ -200,7 +200,7 @@ class PitchClassSet(Set):
 
     @staticmethod
     def _get_most_compact_ordering(candidates):
-        from abjad.tools import pitchtools
+        import abjad
         widths = []
         for candidate in candidates:
             if candidate[0] < candidate[-1]:
@@ -217,9 +217,9 @@ class PitchClassSet(Set):
         assert 1 <= len(candidates)
         if len(candidates) == 1:
             segment = candidates[0]
-            segment = pitchtools.PitchClassSegment(
+            segment = abjad.PitchClassSegment(
                 items=segment,
-                item_class=pitchtools.NumberedPitchClass,
+                item_class=abjad.NumberedPitchClass,
                 )
             return segment
         for i in range(len(candidates[0]) - 1):
@@ -239,16 +239,16 @@ class PitchClassSet(Set):
             candidates = candidates_
             if len(candidates) == 1:
                 segment = candidates[0]
-                segment = pitchtools.PitchClassSegment(
+                segment = abjad.PitchClassSegment(
                     items=segment,
-                    item_class=pitchtools.NumberedPitchClass,
+                    item_class=abjad.NumberedPitchClass,
                     )
                 return segment
         candidates.sort(key=lambda x: x[0])
         segment = candidates[0]
-        segment = pitchtools.PitchClassSegment(
+        segment = abjad.PitchClassSegment(
             items=segment,
-            item_class=pitchtools.NumberedPitchClass,
+            item_class=abjad.NumberedPitchClass,
             )
         return segment
 
@@ -454,17 +454,62 @@ class PitchClassSet(Set):
                 >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 4, 6, 7])
 
+        ..  container:: example
+
+            Gets prime form of inversionally nonequivalent pitch-class set:
+
+            ::
+
+                >>> pc_set = abjad.PitchClassSet([0, 4, 7])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 3, 7])
+
+            ::
+
+                >>> pc_set = abjad.PitchClassSet([0, 4, 7])
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([0, 4, 7])
+
+        ..  container:: example
+
+            REGRESSION:
+
+            ::
+
+                >>> pc_set = abjad.PitchClassSet([0, 1, 2, 5, 8, 9])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 2, 5, 6, 9])
+
+            REGRESSION:
+
+            ::
+
+                >>> pc_set = abjad.PitchClassSet([0, 1, 2, 3, 6, 7])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 2, 3, 6, 7])
+
         Returns new pitch-class set.
         '''
         import abjad
         if not len(self):
             return copy.copy(self)
-        normal_orders = [self.get_normal_order()]
+        normal_order = self.get_normal_order()
         if not transposition_only:
+            normal_orders = [normal_order]
             inversion = self.invert()
             normal_order = inversion.get_normal_order()
             normal_orders.append(normal_order)
-        normal_order = self._get_most_compact_ordering(normal_orders)
+            normal_orders = [_._transpose_to_zero() for _ in normal_orders]
+            assert len(normal_orders) == 2
+            for left_pc, right_pc in zip(*normal_orders):
+                if left_pc == right_pc:
+                    continue
+                if left_pc < right_pc:
+                    normal_order = normal_orders[0]
+                    break
+                if right_pc < left_pc:
+                    normal_order = normal_orders[-1]
+                    break
         pcs = [_.number for _ in normal_order]
         first_pc = pcs[0]
         pcs = [pc - first_pc for pc in pcs]
