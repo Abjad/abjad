@@ -487,10 +487,10 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
         instrument=None,
         ):
         import abjad
-        instrument_name = instrument.instrument_name.title()
+        name = instrument.name.title()
         instrument_staff_group = abjad.StaffGroup(
-            context_name='{}StaffGroup'.format(instrument_name),
-            name='{} Staff Group'.format(instrument_name),
+            context_name='{}StaffGroup'.format(name),
+            name='{} Staff Group'.format(name),
             )
         tag_names = []
         if count == 1:
@@ -523,11 +523,11 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
         import abjad
         if number is not None:
             name = '{} {}'.format(
-                instrument.instrument_name.title(),
+                instrument.name.title(),
                 number,
                 )
         else:
-            name = instrument.instrument_name.title()
+            name = instrument.name.title()
         pitch_range = instrument.pitch_range
         staff_group = abjad.StaffGroup(
             context_name='StringPerformerStaffGroup',

@@ -46,20 +46,20 @@ class TenorVoice(Instrument):
 
     def __init__(
         self,
-        instrument_name='tenor',
-        short_instrument_name='ten.',
-        instrument_name_markup=None,
-        short_instrument_name_markup=None,
+        name='tenor',
+        short_name='ten.',
+        name_markup=None,
+        short_name_markup=None,
         allowable_clefs=None,
         pitch_range='[C3, D5]',
         middle_c_sounding_pitch=None,
         ):
         Instrument.__init__(
             self,
-            instrument_name=instrument_name,
-            short_instrument_name=short_instrument_name,
-            instrument_name_markup=instrument_name_markup,
-            short_instrument_name_markup=short_instrument_name_markup,
+            name=name,
+            short_name=short_name,
+            name_markup=name_markup,
+            short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
             middle_c_sounding_pitch=\
@@ -93,38 +93,57 @@ class TenorVoice(Instrument):
         return Instrument.allowable_clefs.fget(self)
 
     @property
-    def instrument_name(self):
+    def middle_c_sounding_pitch(self):
+        r'''Gets sounding pitch of tenor's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> tenor.middle_c_sounding_pitch
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(tenor.middle_c_sounding_pitch) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.middle_c_sounding_pitch.fget(self)
+
+    @property
+    def name(self):
         r'''Gets tenor's name.
 
         ..  container:: example
 
             ::
 
-                >>> tenor.instrument_name
+                >>> tenor.name
                 'tenor'
 
         Returns string.
         '''
-        return Instrument.instrument_name.fget(self)
+        return Instrument.name.fget(self)
 
     @property
-    def instrument_name_markup(self):
+    def name_markup(self):
         r'''Gets tenor's instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> tenor.instrument_name_markup
+                >>> tenor.name_markup
                 Markup(contents=['Tenor'])
 
             ::
 
-                >>> show(tenor.instrument_name_markup) # doctest: +SKIP
+                >>> show(tenor.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.instrument_name_markup.fget(self)
+        return Instrument.name_markup.fget(self)
 
     @property
     def pitch_range(self):
@@ -146,54 +165,35 @@ class TenorVoice(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
-    def short_instrument_name(self):
+    def short_name(self):
         r'''Gets tenor's short instrument name.
 
         ..  container:: example
 
             ::
 
-                >>> tenor.short_instrument_name
+                >>> tenor.short_name
                 'ten.'
 
         Returns string.
         '''
-        return Instrument.short_instrument_name.fget(self)
+        return Instrument.short_name.fget(self)
 
     @property
-    def short_instrument_name_markup(self):
+    def short_name_markup(self):
         r'''Gets tenor's short instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> tenor.short_instrument_name_markup
+                >>> tenor.short_name_markup
                 Markup(contents=['Ten.'])
 
             ::
 
-                >>> show(tenor.short_instrument_name_markup) # doctest: +SKIP
+                >>> show(tenor.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.short_instrument_name_markup.fget(self)
-
-    @property
-    def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of tenor's written middle C.
-
-        ..  container:: example
-
-            ::
-
-                >>> tenor.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(tenor.middle_c_sounding_pitch) # doctest: +SKIP
-
-        Returns named pitch.
-        '''
-        return Instrument.middle_c_sounding_pitch.fget(self)
+        return Instrument.short_name_markup.fget(self)

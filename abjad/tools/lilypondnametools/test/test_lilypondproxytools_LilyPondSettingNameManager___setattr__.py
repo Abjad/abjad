@@ -226,8 +226,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___10():
     '''
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.setting(staff).short_instrument_name = abjad.Markup(
-        r'\circle { V }')
+    abjad.setting(staff).short_instrument_name = abjad.Markup(r'\circle { V }')
 
     assert format(staff) == abjad.String.normalize(
         r'''

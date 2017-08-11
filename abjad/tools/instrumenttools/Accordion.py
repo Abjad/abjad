@@ -56,20 +56,20 @@ class Accordion(Instrument):
 
     def __init__(
         self,
-        instrument_name='accordion',
-        short_instrument_name='acc.',
-        instrument_name_markup=None,
-        short_instrument_name_markup=None,
+        name='accordion',
+        short_name='acc.',
+        name_markup=None,
+        short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
         pitch_range='[E1, C8]',
         middle_c_sounding_pitch=None,
         ):
         Instrument.__init__(
             self,
-            instrument_name=instrument_name,
-            short_instrument_name=short_instrument_name,
-            instrument_name_markup=instrument_name_markup,
-            short_instrument_name_markup=short_instrument_name_markup,
+            name=name,
+            short_name=short_name,
+            name_markup=name_markup,
+            short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
             middle_c_sounding_pitch=\
@@ -97,12 +97,12 @@ class Accordion(Instrument):
                 >>> accordion = abjad.instrumenttools.Accordion()
                 >>> f(accordion)
                 instrumenttools.Accordion(
-                    instrument_name='accordion',
-                    short_instrument_name='acc.',
-                    instrument_name_markup=abjad.Markup(
+                    name='accordion',
+                    short_name='acc.',
+                    name_markup=abjad.Markup(
                         contents=['Accordion'],
                         ),
-                    short_instrument_name_markup=abjad.Markup(
+                    short_name_markup=abjad.Markup(
                         contents=['Acc.'],
                         ),
                     allowable_clefs=instrumenttools.ClefList(
@@ -161,38 +161,57 @@ class Accordion(Instrument):
         return self._default_scope
 
     @property
-    def instrument_name(self):
+    def middle_c_sounding_pitch(self):
+        r'''Gets sounding pitch of accordion's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> accordion.middle_c_sounding_pitch
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(accordion.middle_c_sounding_pitch) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.middle_c_sounding_pitch.fget(self)
+
+    @property
+    def name(self):
         r'''Gets accordion's name.
 
         ..  container:: example
 
             ::
 
-                >>> accordion.instrument_name
+                >>> accordion.name
                 'accordion'
 
         Returns string.
         '''
-        return Instrument.instrument_name.fget(self)
+        return Instrument.name.fget(self)
 
     @property
-    def instrument_name_markup(self):
+    def name_markup(self):
         r'''Gets accordion's instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> accordion.instrument_name_markup
+                >>> accordion.name_markup
                 Markup(contents=['Accordion'])
 
             ::
 
-                >>> show(accordion.instrument_name_markup) # doctest: +SKIP
+                >>> show(accordion.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.instrument_name_markup.fget(self)
+        return Instrument.name_markup.fget(self)
 
     @property
     def pitch_range(self):
@@ -214,54 +233,35 @@ class Accordion(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
-    def short_instrument_name(self):
+    def short_name(self):
         r'''Gets accordion's short instrument name.
 
         ..  container:: example
 
             ::
 
-                >>> accordion.short_instrument_name
+                >>> accordion.short_name
                 'acc.'
 
         Returns string.
         '''
-        return Instrument.short_instrument_name.fget(self)
+        return Instrument.short_name.fget(self)
 
     @property
-    def short_instrument_name_markup(self):
+    def short_name_markup(self):
         r'''Gets accordion's short instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> accordion.short_instrument_name_markup
+                >>> accordion.short_name_markup
                 Markup(contents=['Acc.'])
 
             ::
 
-                >>> show(accordion.short_instrument_name_markup) # doctest: +SKIP
+                >>> show(accordion.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.short_instrument_name_markup.fget(self)
-
-    @property
-    def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of accordion's written middle C.
-
-        ..  container:: example
-
-            ::
-
-                >>> accordion.middle_c_sounding_pitch
-                NamedPitch("c'")
-
-            ::
-
-                >>> show(accordion.middle_c_sounding_pitch) # doctest: +SKIP
-
-        Returns named pitch.
-        '''
-        return Instrument.middle_c_sounding_pitch.fget(self)
+        return Instrument.short_name_markup.fget(self)

@@ -12,8 +12,8 @@ def configure_score(score):
     clef = abjad.Clef('treble')
     abjad.attach(clef, leaf)
     bells = abjad.instrumenttools.Instrument(
-        instrument_name='Campana in La',
-        short_instrument_name='Camp.',
+        name='Campana in La',
+        short_name='Camp.',
         pitch_range='[C4, C6]',
         )
     abjad.attach(bells, leaf)
@@ -28,8 +28,8 @@ def configure_score(score):
     clef = abjad.Clef('treble')
     abjad.attach(clef, leaf)
     violin = abjad.instrumenttools.Violin(
-        instrument_name_markup=abjad.Markup('Violin I'),
-        short_instrument_name_markup=abjad.Markup('Vl. I'),
+        name_markup=abjad.Markup('Violin I'),
+        short_name_markup=abjad.Markup('Vl. I'),
         )
     abjad.attach(violin, leaf)
 
@@ -39,8 +39,8 @@ def configure_score(score):
     clef = abjad.Clef('treble')
     abjad.attach(clef, leaf)
     violin = abjad.instrumenttools.Violin(
-        instrument_name_markup=abjad.Markup('Violin II'),
-        short_instrument_name_markup=abjad.Markup('Vl. II'),
+        name_markup=abjad.Markup('Violin II'),
+        short_name_markup=abjad.Markup('Vl. II'),
         )
     abjad.attach(violin, leaf)
 
@@ -63,7 +63,7 @@ def configure_score(score):
     clef = abjad.Clef('bass')
     abjad.attach(clef, leaf)
     contrabass = abjad.instrumenttools.Contrabass(
-        short_instrument_name_markup=abjad.Markup('Cb.'),
+        short_name_markup=abjad.Markup('Cb.'),
         )
     abjad.attach(contrabass, leaf)
 

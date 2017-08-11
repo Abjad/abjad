@@ -25,12 +25,12 @@ class InstrumentList(TypedList):
             instrumenttools.InstrumentList(
                 [
                     instrumenttools.Flute(
-                        instrument_name='flute',
-                        short_instrument_name='fl.',
-                        instrument_name_markup=abjad.Markup(
+                        name='flute',
+                        short_name='fl.',
+                        name_markup=abjad.Markup(
                             contents=['Flute'],
                             ),
-                        short_instrument_name_markup=abjad.Markup(
+                        short_name_markup=abjad.Markup(
                             contents=['Fl.'],
                             ),
                         allowable_clefs=instrumenttools.ClefList(
@@ -44,12 +44,12 @@ class InstrumentList(TypedList):
                         middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                         ),
                     instrumenttools.Guitar(
-                        instrument_name='guitar',
-                        short_instrument_name='gt.',
-                        instrument_name_markup=abjad.Markup(
+                        name='guitar',
+                        short_name='gt.',
+                        name_markup=abjad.Markup(
                             contents=['Guitar'],
                             ),
-                        short_instrument_name_markup=abjad.Markup(
+                        short_name_markup=abjad.Markup(
                             contents=['Gt.'],
                             ),
                         allowable_clefs=instrumenttools.ClefList(
@@ -117,20 +117,20 @@ class InstrumentList(TypedList):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _change_instrument_name_to_instrument(instrument_name):
+    def _name_to_instrument(name):
         from abjad.tools import instrumenttools
-        if instrument_name in (
+        if name in (
             'alto',
             'baritone',
             'bass',
             'soprano',
             'tenor',
             ):
-            instrument_name = instrument_name + ' Voice'
-        instrument_name = instrument_name.title()
-        instrument_name = instrument_name.replace(' ', '')
-        instrument_name = instrument_name.replace('-', '')
-        instrument_class = instrumenttools.__dict__[instrument_name]
+            name = name + ' Voice'
+        name = name.title()
+        name = name.replace(' ', '')
+        name = name.replace('-', '')
+        instrument_class = instrumenttools.__dict__[name]
         instrument = instrument_class()
         return instrument
 
@@ -142,13 +142,13 @@ class InstrumentList(TypedList):
             Percussion = abjad.instrumenttools.Percussion
             items = Percussion.known_percussion[:]
             selector = idetools.Selector(session=session, items=items)
-            instrument_name = selector._run()
-            if selector._session.is_backtracking or instrument_name is None:
+            name = selector._run()
+            if selector._session.is_backtracking or name is None:
                 return
             instrument = new(
                 instrument,
-                instrument_name=instrument_name,
-                short_instrument_name=instrument_name,
+                name=name,
+                short_name=name,
                 )
         return instrument
 
@@ -171,7 +171,7 @@ class InstrumentList(TypedList):
                 from ide import idetools
                 controller = idetools.ControllerContext(controller=self)
                 with controller:
-                    items = abjad.instrumenttools.Instrument._list_instrument_names()
+                    items = abjad.instrumenttools.Instrument._list_names()
                     selector = idetools.Selector(
                         session=self._session,
                         items=items,
@@ -181,16 +181,16 @@ class InstrumentList(TypedList):
                     if self._session.is_backtracking or not result:
                         return
                     if isinstance(result, list):
-                        instrument_names = result
+                        names = result
                     else:
-                        instrument_names = [result]
+                        names = [result]
                     instruments = []
                     class_ = InstrumentList
                     to_instrument = \
                         class_._change_instrument_name_to_instrument
                     name_percussion = class_._name_percussion
-                    for instrument_name in instrument_names:
-                        instrument = to_instrument(instrument_name)
+                    for name in names:
+                        instrument = to_instrument(name)
                         instrument = name_percussion(instrument, self._session)
                         if instrument is not None:
                             instruments.append(instrument)

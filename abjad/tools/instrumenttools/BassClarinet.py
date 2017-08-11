@@ -44,20 +44,20 @@ class BassClarinet(Instrument):
 
     def __init__(
         self,
-        instrument_name='bass clarinet',
-        short_instrument_name='bass cl.',
-        instrument_name_markup=None,
-        short_instrument_name_markup=None,
+        name='bass clarinet',
+        short_name='bass cl.',
+        name_markup=None,
+        short_name_markup=None,
         allowable_clefs=('treble', 'bass'),
         pitch_range='[Bb1, G5]',
         middle_c_sounding_pitch='Bb2',
         ):
         Instrument.__init__(
             self,
-            instrument_name=instrument_name,
-            short_instrument_name=short_instrument_name,
-            instrument_name_markup=instrument_name_markup,
-            short_instrument_name_markup=short_instrument_name_markup,
+            name=name,
+            short_name=short_name,
+            name_markup=name_markup,
+            short_name_markup=short_name_markup,
             allowable_clefs=allowable_clefs,
             pitch_range=pitch_range,
             middle_c_sounding_pitch=\
@@ -94,38 +94,57 @@ class BassClarinet(Instrument):
         return Instrument.allowable_clefs.fget(self)
 
     @property
-    def instrument_name(self):
+    def middle_c_sounding_pitch(self):
+        r'''Gets sounding pitch of bass_clarinet's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass_clarinet.middle_c_sounding_pitch
+                NamedPitch('bf,')
+
+            ::
+
+                >>> show(bass_clarinet.middle_c_sounding_pitch) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.middle_c_sounding_pitch.fget(self)
+
+    @property
+    def name(self):
         r'''Gets bass clarinet's name.
 
         ..  container:: example
 
             ::
 
-                >>> bass_clarinet.instrument_name
+                >>> bass_clarinet.name
                 'bass clarinet'
 
         Returns string.
         '''
-        return Instrument.instrument_name.fget(self)
+        return Instrument.name.fget(self)
 
     @property
-    def instrument_name_markup(self):
+    def name_markup(self):
         r'''Gets bass clarinet's instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> bass_clarinet.instrument_name_markup
+                >>> bass_clarinet.name_markup
                 Markup(contents=['Bass clarinet'])
 
             ::
 
-                >>> show(bass_clarinet.instrument_name_markup) # doctest: +SKIP
+                >>> show(bass_clarinet.name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.instrument_name_markup.fget(self)
+        return Instrument.name_markup.fget(self)
 
     @property
     def pitch_range(self):
@@ -147,54 +166,35 @@ class BassClarinet(Instrument):
         return Instrument.pitch_range.fget(self)
 
     @property
-    def short_instrument_name(self):
+    def short_name(self):
         r'''Gets bass clarinet's short instrument name.
 
         ..  container:: example
 
             ::
 
-                >>> bass_clarinet.short_instrument_name
+                >>> bass_clarinet.short_name
                 'bass cl.'
 
         Returns string.
         '''
-        return Instrument.short_instrument_name.fget(self)
+        return Instrument.short_name.fget(self)
 
     @property
-    def short_instrument_name_markup(self):
+    def short_name_markup(self):
         r'''Gets bass clarinet's short instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> bass_clarinet.short_instrument_name_markup
+                >>> bass_clarinet.short_name_markup
                 Markup(contents=['Bass cl.'])
 
             ::
 
-                >>> show(bass_clarinet.short_instrument_name_markup) # doctest: +SKIP
+                >>> show(bass_clarinet.short_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
-        return Instrument.short_instrument_name_markup.fget(self)
-
-    @property
-    def middle_c_sounding_pitch(self):
-        r'''Gets sounding pitch of bass_clarinet's written middle C.
-
-        ..  container:: example
-
-            ::
-
-                >>> bass_clarinet.middle_c_sounding_pitch
-                NamedPitch('bf,')
-
-            ::
-
-                >>> show(bass_clarinet.middle_c_sounding_pitch) # doctest: +SKIP
-
-        Returns named pitch.
-        '''
-        return Instrument.middle_c_sounding_pitch.fget(self)
+        return Instrument.short_name_markup.fget(self)

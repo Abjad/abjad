@@ -27,12 +27,12 @@ class Performer(AbjadValueObject):
                 instruments=instrumenttools.InstrumentList(
                     [
                         instrumenttools.Flute(
-                            instrument_name='flute',
-                            short_instrument_name='fl.',
-                            instrument_name_markup=abjad.Markup(
+                            name='flute',
+                            short_name='fl.',
+                            name_markup=abjad.Markup(
                                 contents=['Flute'],
                                 ),
-                            short_instrument_name_markup=abjad.Markup(
+                            short_name_markup=abjad.Markup(
                                 contents=['Fl.'],
                                 ),
                             allowable_clefs=instrumenttools.ClefList(
@@ -46,12 +46,12 @@ class Performer(AbjadValueObject):
                             middle_c_sounding_pitch=abjad.NamedPitch("c'"),
                             ),
                         instrumenttools.Piccolo(
-                            instrument_name='piccolo',
-                            short_instrument_name='picc.',
-                            instrument_name_markup=abjad.Markup(
+                            name='piccolo',
+                            short_name='picc.',
+                            name_markup=abjad.Markup(
                                 contents=['Piccolo'],
                                 ),
-                            short_instrument_name_markup=abjad.Markup(
+                            short_name_markup=abjad.Markup(
                                 contents=['Picc.'],
                                 ),
                             allowable_clefs=instrumenttools.ClefList(
@@ -120,8 +120,8 @@ class Performer(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    def get_instrument(self, instrument_name):
-        r'''Gets instrument in performer with `instrument_name`.
+    def get_instrument(self, name):
+        r'''Gets instrument in performer with `name`.
 
         ..  container:: example
 
@@ -172,10 +172,10 @@ class Performer(AbjadValueObject):
         Returns instrument or none.
         '''
         for instrument in self.instruments:
-            if instrument.instrument_name.lower() == instrument_name.lower():
+            if instrument.name.lower() == name.lower():
                 return instrument
-            if instrument.short_instrument_name.lower() == \
-                instrument_name.lower():
+            if instrument.short_name.lower() == \
+                name.lower():
                 return instrument
 
     # TODO: make private
@@ -278,7 +278,7 @@ class Performer(AbjadValueObject):
                 performer_abbreviation = getattr(
                     instrument, 'performer_abbreviation', None)
                 performer_abbreviation = performer_abbreviation or \
-                    instrument.short_instrument_name
+                    instrument.short_name
                 performer_names.add((performer_name, performer_abbreviation))
         return list(sorted(performer_names))
 
