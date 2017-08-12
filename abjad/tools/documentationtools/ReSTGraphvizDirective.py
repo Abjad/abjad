@@ -39,7 +39,7 @@ class ReSTGraphvizDirective(ReSTDirective):
         result = ['']
         graphviz_format = str(self.graph)
         for line in graphviz_format.splitlines():
-            line = '   {}'.format(line)
+            line = ' ' * 4 + line
             result.append(line)
         return result
 

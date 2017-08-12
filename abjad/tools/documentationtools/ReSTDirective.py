@@ -59,7 +59,7 @@ class ReSTDirective(TreeContainer):
             contribution = child._rest_format_contributions
             for x in contribution:
                 if x:
-                    result.append('   ' + x)
+                    result.append(' ' * 4 + x)
                 else:
                     result.append(x)
         return result
@@ -67,11 +67,11 @@ class ReSTDirective(TreeContainer):
     @property
     def _rest_format_contributions(self):
         if self.argument:
-            result = ['.. {}:: {}'.format(self.directive, self.argument)]
+            result = ['..  {}:: {}'.format(self.directive, self.argument)]
         else:
-            result = ['.. {}::'.format(self.directive)]
+            result = ['..  {}::'.format(self.directive)]
         for key, value in sorted(self.options.items()):
-            option = '   :{}:'.format(key)
+            option = ' ' * 4 + ':{}:'.format(key)
             if value is True:
                 pass
             elif value is None or value is False:

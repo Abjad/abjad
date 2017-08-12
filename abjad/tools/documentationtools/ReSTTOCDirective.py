@@ -85,7 +85,7 @@ class ReSTTOCDirective(ReSTDirective):
             contribution = child._rest_format_contributions
             for x in contribution:
                 if x:
-                    result.append('   ' + x)
+                    result.append(' ' * 4 + x)
                 else:
                     result.append(x)
         return result
