@@ -56,12 +56,8 @@ install:
     - if [[ $ACCELERATED == true ]]; then pip install -e .[accelerated]; fi
 
 script:
-    - abjad/scr/ajv doctest --diff experimental
-    - py.test -rf experimental
     - coverage run -a `which jupyter` nbconvert --to=html --ExecutePreprocessor.enabled=True abjad/ext/abjad-ipython-notebook-test-no-audio.ipynb
-    - coverage run -a abjad/scr/ajv doctest --diff abjad
-    - coverage run -a `which py.test` -rf abjad
-    - coverage run -a abjad/scr/ajv api -R
+    - coverage run -a `which py.test`
 
 after_success:
     - coveralls
