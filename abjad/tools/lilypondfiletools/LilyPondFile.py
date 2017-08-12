@@ -118,10 +118,8 @@ class LilyPondFile(AbjadObject):
             self._date_time_token = lilypondfiletools.DateTimeToken()
         self._default_paper_size = default_paper_size
         self._global_staff_size = global_staff_size
-        includes = includes or ()
-        includes = tuple(includes)
-        self._includes = includes
-        self._items = items or []
+        self._includes = list(includes or [])
+        self._items = list(items or [])
         self._lilypond_language_token = None
         if lilypond_language_token is not False:
             token = lilypondfiletools.LilyPondLanguageToken()
@@ -618,9 +616,9 @@ class LilyPondFile(AbjadObject):
                 >>> lilypond_file.includes
                 []
 
-        Returns list.
+        Return list
         '''
-        return list(self._includes)
+        return self._includes
 
     @property
     def items(self):
