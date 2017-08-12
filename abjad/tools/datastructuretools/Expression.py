@@ -368,8 +368,6 @@ class Expression(AbjadValueObject):
     def __dict__(self):
         r'''Gets attributes.
 
-        Trivial implementation defined equal to ``dir(self)`` to satisfy PyPy.
-
         Returns list or strings.
         '''
         return dir(self)
