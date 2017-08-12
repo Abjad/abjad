@@ -4,17 +4,13 @@ from abjad.tools.abctools import AbjadValueObject
 class ChordQuality(AbjadValueObject):
     '''Chord quality.
 
-    ::
-
-        >>> from abjad.tools import tonalanalysistools
-
     ..  container:: example
 
         Initializes from string:
 
         ::
 
-            >>> tonalanalysistools.ChordQuality('major')
+            >>> abjad.tonalanalysistools.ChordQuality('major')
             ChordQuality('major')
 
     ..  container:: example
@@ -23,8 +19,8 @@ class ChordQuality(AbjadValueObject):
 
         ::
 
-            >>> quality = tonalanalysistools.ChordQuality('major')
-            >>> tonalanalysistools.ChordQuality(quality)
+            >>> quality = abjad.tonalanalysistools.ChordQuality('major')
+            >>> abjad.tonalanalysistools.ChordQuality(quality)
             ChordQuality('major')
 
     '''
@@ -70,9 +66,9 @@ class ChordQuality(AbjadValueObject):
 
             ::
 
-                >>> quality_1 = tonalanalysistools.ChordQuality('major')
-                >>> quality_2 = tonalanalysistools.ChordQuality('major')
-                >>> quality_3 = tonalanalysistools.ChordQuality('dominant')
+                >>> quality_1 = abjad.tonalanalysistools.ChordQuality('major')
+                >>> quality_2 = abjad.tonalanalysistools.ChordQuality('major')
+                >>> quality_3 = abjad.tonalanalysistools.ChordQuality('dominant')
 
             ::
 
@@ -121,7 +117,7 @@ class ChordQuality(AbjadValueObject):
 
             ::
 
-                >>> quality = tonalanalysistools.ChordQuality('major')
+                >>> quality = abjad.tonalanalysistools.ChordQuality('major')
                 >>> str(quality)
                 'major'
 
@@ -151,12 +147,12 @@ class ChordQuality(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordQuality('major').is_uppercase
+                >>> abjad.tonalanalysistools.ChordQuality('major').is_uppercase
                 True
 
             ::
 
-                >>> tonalanalysistools.ChordQuality('minor').is_uppercase
+                >>> abjad.tonalanalysistools.ChordQuality('minor').is_uppercase
                 False
 
         Returns true or false.
@@ -171,12 +167,12 @@ class ChordQuality(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordQuality('major').quality_string
+                >>> abjad.tonalanalysistools.ChordQuality('major').quality_string
                 'major'
 
             ::
 
-                >>> tonalanalysistools.ChordQuality('minor').quality_string
+                >>> abjad.tonalanalysistools.ChordQuality('minor').quality_string
                 'minor'
 
         Returns string.

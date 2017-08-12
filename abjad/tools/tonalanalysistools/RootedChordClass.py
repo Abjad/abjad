@@ -4,17 +4,13 @@ from abjad.tools.pitchtools import PitchClassSet
 class RootedChordClass(PitchClassSet):
     '''Rooted chord class.
 
-    ::
-
-        >>> from abjad.tools import tonalanalysistools
-
     ..  container:: example
 
         Initializes from pair:
 
         ::
 
-            >>> tonalanalysistools.RootedChordClass('g', 'major')
+            >>> abjad.tonalanalysistools.RootedChordClass('g', 'major')
             GMajorTriadInRootPosition
 
     ..  container:: example
@@ -23,7 +19,7 @@ class RootedChordClass(PitchClassSet):
 
         ::
 
-            >>> tonalanalysistools.RootedChordClass('g', 'dominant', 7)
+            >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7)
             GDominantSeventhInRootPosition
 
     G dominant seventh represents a class of chords because there are many
@@ -174,7 +170,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.RootedChordClass('g', 'major').bass
+                >>> abjad.tonalanalysistools.RootedChordClass('g', 'major').bass
                 NamedPitchClass('g')
 
         Returns named pitch-class.
@@ -189,7 +185,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.RootedChordClass('g', 'dominant', 7).cardinality
+                >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).cardinality
                 4
 
         Returns nonnegative integer.
@@ -204,7 +200,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.RootedChordClass('g', 'dominant', 7).chord_quality
+                >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).chord_quality
                 DominantSeventhInRootPosition('P1', '+M3', '+P5', '+m7')
 
         Returns chord quality.
@@ -219,7 +215,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.RootedChordClass('g', 'dominant', 7).extent
+                >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).extent
                 ChordExtent(7)
 
         Returns chord extent.
@@ -236,7 +232,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.RootedChordClass('g', 'dominant', 7).extent
+                >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).extent
                 ChordExtent(7)
 
         Returns string.
@@ -278,7 +274,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.RootedChordClass('g', 'dominant', 7).inversion
+                >>> abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).inversion
                 0
 
         Returns nonnegative integer.
@@ -293,7 +289,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> markup = tonalanalysistools.RootedChordClass('g', 'dominant', 7).markup
+                >>> markup = abjad.tonalanalysistools.RootedChordClass('g', 'dominant', 7).markup
                 >>> show(markup) # doctest: +SKIP
 
             ..  docs::
@@ -347,7 +343,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> chord_class = tonalanalysistools.RootedChordClass(
+                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
                 ...     'c',
                 ...     'major',
                 ...     'triad',
@@ -358,7 +354,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> chord_class = tonalanalysistools.RootedChordClass(
+                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
                 ...     'g',
                 ...     'dominant',
                 ...     7,
@@ -380,7 +376,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> chord_class = tonalanalysistools.RootedChordClass(
+                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
                 ...     'c',
                 ...     'major',
                 ...     'triad',
@@ -391,7 +387,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> chord_class = tonalanalysistools.RootedChordClass(
+                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
                 ...     'g',
                 ...     'dominant',
                 ...     7,
@@ -412,7 +408,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> chord_class = tonalanalysistools.RootedChordClass(
+                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
                 ...     'c',
                 ...     'major',
                 ...     'triad',
@@ -423,7 +419,7 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> chord_class = tonalanalysistools.RootedChordClass(
+                >>> chord_class = abjad.tonalanalysistools.RootedChordClass(
                 ...     'g',
                 ...     'dominant',
                 ...     7,
@@ -453,15 +449,15 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.RootedChordClass.cardinality_to_extent(3)
+                >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(3)
                 5
-                >>> tonalanalysistools.RootedChordClass.cardinality_to_extent(4)
+                >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(4)
                 7
-                >>> tonalanalysistools.RootedChordClass.cardinality_to_extent(5)
+                >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(5)
                 9
-                >>> tonalanalysistools.RootedChordClass.cardinality_to_extent(6)
+                >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(6)
                 11
-                >>> tonalanalysistools.RootedChordClass.cardinality_to_extent(7)
+                >>> abjad.tonalanalysistools.RootedChordClass.cardinality_to_extent(7)
                 13
 
         Returns integer.
@@ -476,15 +472,15 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.RootedChordClass.extent_to_cardinality(5)
+                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(5)
                 3
-                >>> tonalanalysistools.RootedChordClass.extent_to_cardinality(7)
+                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(7)
                 4
-                >>> tonalanalysistools.RootedChordClass.extent_to_cardinality(9)
+                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(9)
                 5
-                >>> tonalanalysistools.RootedChordClass.extent_to_cardinality(11)
+                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(11)
                 6
-                >>> tonalanalysistools.RootedChordClass.extent_to_cardinality(13)
+                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_cardinality(13)
                 7
 
         Returns integer.
@@ -499,15 +495,15 @@ class RootedChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.RootedChordClass.extent_to_extent_name(5)
+                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(5)
                 'triad'
-                >>> tonalanalysistools.RootedChordClass.extent_to_extent_name(7)
+                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(7)
                 'seventh'
-                >>> tonalanalysistools.RootedChordClass.extent_to_extent_name(9)
+                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(9)
                 'ninth'
-                >>> tonalanalysistools.RootedChordClass.extent_to_extent_name(11)
+                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(11)
                 'eleventh'
-                >>> tonalanalysistools.RootedChordClass.extent_to_extent_name(13)
+                >>> abjad.tonalanalysistools.RootedChordClass.extent_to_extent_name(13)
                 'thirteenth'
 
         Returns string.

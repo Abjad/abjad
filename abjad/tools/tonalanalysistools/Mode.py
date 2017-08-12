@@ -6,17 +6,13 @@ from abjad.tools.abctools import AbjadValueObject
 class Mode(AbjadValueObject):
     '''Mode.
 
-    ::
-
-        >>> from abjad.tools import tonalanalysistools
-
     ..  container:: example
 
         Initializes from string:
 
         ::
 
-            >>> tonalanalysistools.Mode('major')
+            >>> abjad.tonalanalysistools.Mode('major')
             Mode('major')
 
     ..  container:: example
@@ -25,8 +21,8 @@ class Mode(AbjadValueObject):
 
         ::
 
-            >>> mode = tonalanalysistools.Mode('dorian')
-            >>> tonalanalysistools.Mode(mode)
+            >>> mode = abjad.tonalanalysistools.Mode('dorian')
+            >>> abjad.tonalanalysistools.Mode(mode)
             Mode('dorian')
 
     '''
@@ -63,9 +59,9 @@ class Mode(AbjadValueObject):
 
             ::
 
-                >>> mode_1 = tonalanalysistools.Mode('major')
-                >>> mode_2 = tonalanalysistools.Mode('major')
-                >>> mode_3 = tonalanalysistools.Mode('dorian')
+                >>> mode_1 = abjad.tonalanalysistools.Mode('major')
+                >>> mode_2 = abjad.tonalanalysistools.Mode('major')
+                >>> mode_3 = abjad.tonalanalysistools.Mode('dorian')
 
             ::
 
@@ -115,7 +111,7 @@ class Mode(AbjadValueObject):
 
             ::
 
-                >>> len(tonalanalysistools.Mode('dorian'))
+                >>> len(abjad.tonalanalysistools.Mode('dorian'))
                 7
 
         Returns nonnegative integer.
@@ -129,7 +125,7 @@ class Mode(AbjadValueObject):
 
             ::
 
-                >>> str(tonalanalysistools.Mode('dorian'))
+                >>> str(abjad.tonalanalysistools.Mode('dorian'))
                 'dorian'
 
         Returns string.
@@ -191,12 +187,12 @@ class Mode(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.Mode('major').mode_name
+                >>> abjad.tonalanalysistools.Mode('major').mode_name
                 'major'
 
             ::
 
-                >>> tonalanalysistools.Mode('dorian').mode_name
+                >>> abjad.tonalanalysistools.Mode('dorian').mode_name
                 'dorian'
 
         Returns string.
@@ -211,13 +207,13 @@ class Mode(AbjadValueObject):
 
             ::
 
-                >>> mode = tonalanalysistools.Mode('major')
+                >>> mode = abjad.tonalanalysistools.Mode('major')
                 >>> str(mode.named_interval_segment)
                 '<+M2, +M2, +m2, +M2, +M2, +M2, +m2>'
 
             ::
 
-                >>> mode = tonalanalysistools.Mode('dorian')
+                >>> mode = abjad.tonalanalysistools.Mode('dorian')
                 >>> str(mode.named_interval_segment)
                 '<+M2, +m2, +M2, +M2, +M2, +m2, +M2>'
 

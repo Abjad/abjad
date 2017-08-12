@@ -6,11 +6,6 @@ from abjad.tools import pitchtools
 class TonalAnalysisAgent(abctools.AbjadObject):
     r'''Tonal analysis agent.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import tonalanalysistools
-
     ..  container:: example
 
         Intializes agent on conjunct selection:

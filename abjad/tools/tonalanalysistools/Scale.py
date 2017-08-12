@@ -5,18 +5,13 @@ from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 class Scale(PitchClassSegment):
     '''Scale.
 
-    ::
-
-        >>> import abjad
-        >>> from abjad.tools import tonalanalysistools
-
     ..  container:: example
 
         Initializes from pair:
 
         ::
 
-            >>> tonalanalysistools.Scale(('c', 'minor'))
+            >>> abjad.tonalanalysistools.Scale(('c', 'minor'))
             Scale("c d ef f g af bf")
 
     '''
@@ -115,7 +110,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> tonalanalysistools.Scale(('c', 'minor')).dominant
+                >>> abjad.tonalanalysistools.Scale(('c', 'minor')).dominant
                 NamedPitchClass('g')
 
         Return pitch-class.
@@ -130,7 +125,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> tonalanalysistools.Scale(('c', 'minor')).key_signature
+                >>> abjad.tonalanalysistools.Scale(('c', 'minor')).key_signature
                 KeySignature(NamedPitchClass('c'), Mode('minor'))
 
         Returns key signature.
@@ -145,7 +140,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> tonalanalysistools.Scale(('c', 'minor')).leading_tone
+                >>> abjad.tonalanalysistools.Scale(('c', 'minor')).leading_tone
                 NamedPitchClass('bf')
 
         Returns pitch-class.
@@ -160,7 +155,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> tonalanalysistools.Scale(('c', 'minor')).mediant
+                >>> abjad.tonalanalysistools.Scale(('c', 'minor')).mediant
                 NamedPitchClass('ef')
 
         Returns pitch-class.
@@ -175,13 +170,13 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> scale = tonalanalysistools.Scale(('c', 'minor'))
+                >>> scale = abjad.tonalanalysistools.Scale(('c', 'minor'))
                 >>> str(scale.named_interval_class_segment)
                 '<+M2, +m2, +M2, +M2, +m2, +M2, +M2>'
 
             ::
 
-                >>> scale = tonalanalysistools.Scale(('d', 'dorian'))
+                >>> scale = abjad.tonalanalysistools.Scale(('d', 'dorian'))
                 >>> str(scale.named_interval_class_segment)
                 '<+M2, +m2, +M2, +M2, +M2, +m2, +M2>'
 
@@ -206,7 +201,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> tonalanalysistools.Scale(('c', 'minor')).subdominant
+                >>> abjad.tonalanalysistools.Scale(('c', 'minor')).subdominant
                 NamedPitchClass('f')
 
         Returns pitch-class.
@@ -221,7 +216,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> tonalanalysistools.Scale(('c', 'minor')).submediant
+                >>> abjad.tonalanalysistools.Scale(('c', 'minor')).submediant
                 NamedPitchClass('af')
 
         Returns pitch-class.
@@ -236,7 +231,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> tonalanalysistools.Scale(('c', 'minor')).superdominant
+                >>> abjad.tonalanalysistools.Scale(('c', 'minor')).superdominant
                 NamedPitchClass('d')
 
         Returns pitch-class.
@@ -251,7 +246,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> tonalanalysistools.Scale(('c', 'minor')).tonic
+                >>> abjad.tonalanalysistools.Scale(('c', 'minor')).tonic
                 NamedPitchClass('c')
 
         Returns pitch-class.
@@ -301,7 +296,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> scale = tonalanalysistools.Scale(('c', 'major'))
+                >>> scale = abjad.tonalanalysistools.Scale(('c', 'major'))
                 >>> notes = scale.make_notes(8)
                 >>> staff = abjad.Staff(notes)
                 >>> show(staff) # doctest: +SKIP
@@ -336,7 +331,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> scale = tonalanalysistools.Scale(('E', 'major'))
+                >>> scale = abjad.tonalanalysistools.Scale(('E', 'major'))
                 >>> score = scale.make_score()
                 >>> show(score) # doctest: +SKIP
 
@@ -390,7 +385,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> scale = tonalanalysistools.Scale(('c', 'major'))
+                >>> scale = abjad.tonalanalysistools.Scale(('c', 'major'))
                 >>> scale.named_pitch_class_to_scale_degree('c')
                 ScaleDegree('1')
                 >>> scale.named_pitch_class_to_scale_degree('d')
@@ -414,7 +409,6 @@ class Scale(PitchClassSegment):
         Returns scale degree.
         '''
         import abjad
-        from abjad.tools import tonalanalysistools
         foreign_pitch_class = abjad.NamedPitchClass(pitch_class)
         letter = foreign_pitch_class._get_diatonic_pitch_class_name()
         for i, pc in enumerate(self):
@@ -426,7 +420,7 @@ class Scale(PitchClassSegment):
         native_pitch = abjad.NamedPitch((native_pitch_class.name, 4))
         foreign_pitch = abjad.NamedPitch((foreign_pitch_class.name, 4))
         accidental = foreign_pitch.accidental - native_pitch.accidental
-        class_ = tonalanalysistools.ScaleDegree
+        class_ = abjad.tonalanalysistools.ScaleDegree
         scale_degree = class_.from_accidental_and_number(accidental, number)
         return scale_degree
 
@@ -437,7 +431,7 @@ class Scale(PitchClassSegment):
 
             ::
 
-                >>> scale = tonalanalysistools.Scale(('c', 'major'))
+                >>> scale = abjad.tonalanalysistools.Scale(('c', 'major'))
                 >>> scale.scale_degree_to_named_pitch_class('1')
                 NamedPitchClass('c')
                 >>> scale.scale_degree_to_named_pitch_class('2')
@@ -460,8 +454,8 @@ class Scale(PitchClassSegment):
 
         Returns named pitch-class.
         '''
-        from abjad.tools import tonalanalysistools
-        scale_degree = tonalanalysistools.ScaleDegree(scale_degree)
+        import abjad
+        scale_degree = abjad.tonalanalysistools.ScaleDegree(scale_degree)
         scale_index = (scale_degree.number - 1) % 7
         pitch_class = self[scale_index]
         pitch_class = scale_degree.accidental(pitch_class)
@@ -472,7 +466,7 @@ class Scale(PitchClassSegment):
 
         ::
 
-            >>> scale = tonalanalysistools.Scale(('c', 'major'))
+            >>> scale = abjad.tonalanalysistools.Scale(('c', 'major'))
             >>> scale_degrees = [1, 3, 'b5', 7, '#9']
             >>> segment = scale.voice_scale_degrees_in_open_position(
             ...     scale_degrees)

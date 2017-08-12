@@ -7,17 +7,13 @@ from abjad.tools.abctools import AbjadValueObject
 class RomanNumeral(AbjadValueObject):
     '''Roman numeral.
 
-    ::
-
-        >>> from abjad.tools import tonalanalysistools
-
     ..  container:: example
 
         Initializes from string:
 
         ::
 
-            >>> tonalanalysistools.RomanNumeral('bII6/4')
+            >>> abjad.tonalanalysistools.RomanNumeral('bII6/4')
             RomanNumeral('bII6/4')
 
     ..  container:: example
@@ -26,7 +22,7 @@ class RomanNumeral(AbjadValueObject):
 
         ::
 
-            >>> roman_numeral = tonalanalysistools.RomanNumeral('bII')
+            >>> roman_numeral = abjad.tonalanalysistools.RomanNumeral('bII')
 
     '''
 
@@ -108,9 +104,9 @@ class RomanNumeral(AbjadValueObject):
 
             ::
 
-                >>> roman_numeral_1 = tonalanalysistools.RomanNumeral('I')
-                >>> roman_numeral_2 = tonalanalysistools.RomanNumeral('I')
-                >>> roman_numeral_3 = tonalanalysistools.RomanNumeral('V7')
+                >>> roman_numeral_1 = abjad.tonalanalysistools.RomanNumeral('I')
+                >>> roman_numeral_2 = abjad.tonalanalysistools.RomanNumeral('I')
+                >>> roman_numeral_3 = abjad.tonalanalysistools.RomanNumeral('V7')
 
             ::
 
@@ -248,12 +244,12 @@ class RomanNumeral(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('bII6/4').bass_scale_degree
+                >>> abjad.tonalanalysistools.RomanNumeral('bII6/4').bass_scale_degree
                 ScaleDegree('6')
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('V7').bass_scale_degree
+                >>> abjad.tonalanalysistools.RomanNumeral('V7').bass_scale_degree
                 ScaleDegree('5')
 
         Returns scale degree.
@@ -275,7 +271,7 @@ class RomanNumeral(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('bII').extent
+                >>> abjad.tonalanalysistools.RomanNumeral('bII').extent
                 ChordExtent(5)
 
         Returns extent.
@@ -290,7 +286,7 @@ class RomanNumeral(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('II6/5').figured_bass_string
+                >>> abjad.tonalanalysistools.RomanNumeral('II6/5').figured_bass_string
                 '6/5'
 
         Returns string.
@@ -318,7 +314,7 @@ class RomanNumeral(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('bII').inversion
+                >>> abjad.tonalanalysistools.RomanNumeral('bII').inversion
                 ChordInversion(0)
 
         Returns nonnegative integer.
@@ -333,7 +329,7 @@ class RomanNumeral(AbjadValueObject):
 
             ::
 
-                >>> markup = tonalanalysistools.RomanNumeral('bII').markup
+                >>> markup = abjad.tonalanalysistools.RomanNumeral('bII').markup
                 >>> show(markup) # doctest: +SKIP
 
             ..  docs::
@@ -355,7 +351,7 @@ class RomanNumeral(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('bII').quality
+                >>> abjad.tonalanalysistools.RomanNumeral('bII').quality
                 ChordQuality('major')
 
         Returns chord quality.
@@ -370,12 +366,12 @@ class RomanNumeral(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('bII').root_scale_degree
+                >>> abjad.tonalanalysistools.RomanNumeral('bII').root_scale_degree
                 ScaleDegree('b2')
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('bII6/4').root_scale_degree
+                >>> abjad.tonalanalysistools.RomanNumeral('bII6/4').root_scale_degree
                 ScaleDegree('b2')
 
         Returns scale degree.
@@ -390,12 +386,12 @@ class RomanNumeral(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('bII6/4').suspension is None
+                >>> abjad.tonalanalysistools.RomanNumeral('bII6/4').suspension is None
                 True
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('V7').suspension is None
+                >>> abjad.tonalanalysistools.RomanNumeral('V7').suspension is None
                 True
 
         Returns suspension.
@@ -410,12 +406,12 @@ class RomanNumeral(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('bII6/4').symbol
+                >>> abjad.tonalanalysistools.RomanNumeral('bII6/4').symbol
                 'bII6/4'
 
             ::
 
-                >>> tonalanalysistools.RomanNumeral('V7').symbol
+                >>> abjad.tonalanalysistools.RomanNumeral('V7').symbol
                 'V7'
 
         Returns string.

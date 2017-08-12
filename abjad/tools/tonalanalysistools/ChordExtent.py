@@ -4,17 +4,13 @@ from abjad.tools.abctools import AbjadValueObject
 class ChordExtent(AbjadValueObject):
     '''Chord extent.
 
-    ::
-
-        >>> from abjad.tools import tonalanalysistools
-
     ..  container:: example
 
         Initializes from number:
 
         ::
 
-            >>> tonalanalysistools.ChordExtent(7)
+            >>> abjad.tonalanalysistools.ChordExtent(7)
             ChordExtent(7)
 
     ..  container:: example
@@ -23,8 +19,8 @@ class ChordExtent(AbjadValueObject):
 
         ::
 
-            >>> extent = tonalanalysistools.ChordExtent(7)
-            >>> tonalanalysistools.ChordExtent(extent)
+            >>> extent = abjad.tonalanalysistools.ChordExtent(7)
+            >>> abjad.tonalanalysistools.ChordExtent(extent)
             ChordExtent(7)
 
     Defined equal to outer interval of any root-position chord.
@@ -70,9 +66,9 @@ class ChordExtent(AbjadValueObject):
 
             ::
 
-                >>> extent_1 = tonalanalysistools.ChordExtent(5)
-                >>> extent_2 = tonalanalysistools.ChordExtent(5)
-                >>> extent_3 = tonalanalysistools.ChordExtent(7)
+                >>> extent_1 = abjad.tonalanalysistools.ChordExtent(5)
+                >>> extent_2 = abjad.tonalanalysistools.ChordExtent(5)
+                >>> extent_3 = abjad.tonalanalysistools.ChordExtent(7)
 
             ::
 
@@ -134,12 +130,12 @@ class ChordExtent(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordExtent(5).name
+                >>> abjad.tonalanalysistools.ChordExtent(5).name
                 'triad'
 
             ::
 
-                >>> tonalanalysistools.ChordExtent(7).name
+                >>> abjad.tonalanalysistools.ChordExtent(7).name
                 'seventh'
 
         Returns string.
@@ -154,7 +150,7 @@ class ChordExtent(AbjadValueObject):
 
             ::
 
-                >>> tonalanalysistools.ChordExtent(7).number
+                >>> abjad.tonalanalysistools.ChordExtent(7).number
                 7
 
         Returns nonnegative integer.
