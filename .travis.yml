@@ -4,18 +4,16 @@ sudo: false
 
 env:
     global:
-        - LILYPOND_VERSION=2.19.28
+        - LILYPOND_VERSION=2.19.65
 
 python:
-    - 2.7
     - 3.4
     - 3.5
     - 3.6
-    - pypy
 
 matrix:
     include:
-        python: "3.5"
+        python: "3.6"
         env: ACCELERATED=true
 
 addons:
@@ -35,7 +33,6 @@ addons:
             - texlive-xetex
 
 before_install:
-    - echo TRAVIS_PYTHON_VERSION $TRAVIS_PYTHON_VERSION
     - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-$LILYPOND_VERSION-1.linux-64.sh
     - sh lilypond-$LILYPOND_VERSION-1.linux-64.sh --batch
     - export PATH=/home/travis/bin:$PATH
@@ -61,13 +58,10 @@ install:
 script:
     - abjad/scr/ajv doctest --diff experimental
     - py.test -rf experimental
-    - if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then coverage run -a `which jupyter` nbconvert --to=html --ExecutePreprocessor.enabled=True abjad/ext/abjad-ipython-notebook-test-no-audio.ipynb; fi
-    - if [[ $TRAVIS_PYTHON_VERSION != pypy ]]; then coverage run -a abjad/scr/ajv doctest --diff abjad; fi
-    - if [[ $TRAVIS_PYTHON_VERSION != pypy ]]; then coverage run -a `which py.test` -rf abjad; fi
-    - if [[ $TRAVIS_PYTHON_VERSION != pypy ]]; then coverage run -a abjad/scr/ajv api -R; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then abjad/scr/ajv doctest --diff abjad; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then `which py.test` -rf abjad; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then abjad/scr/ajv api -R; fi
+    - coverage run -a `which jupyter` nbconvert --to=html --ExecutePreprocessor.enabled=True abjad/ext/abjad-ipython-notebook-test-no-audio.ipynb
+    - coverage run -a abjad/scr/ajv doctest --diff abjad
+    - coverage run -a `which py.test` -rf abjad
+    - coverage run -a abjad/scr/ajv api -R
 
 after_success:
-    - if [[ $TRAVIS_PYTHON_VERSION != pypy ]]; then coveralls; fi
+    - coveralls

@@ -38,9 +38,7 @@ typographic details of the symbols on the page.
 Installation
 ============
 
-Abjad works on Unix/Linux, OSX, and Windows.
-
-Abjad also works with `CPython`_ versions 2.7 and 3.3+, as well as `PyPy`_.
+Abjad works on Unix/Linux, OSX, and Windows on Python versions 3.4+.
 
 Install Abjad
 -------------

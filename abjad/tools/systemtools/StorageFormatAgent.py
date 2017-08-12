@@ -733,34 +733,15 @@ class StorageFormatAgent(AbjadValueObject):
         accepts_kwargs = False
         if not isinstance(subject, type):
             subject = type(subject)
-        if platform.python_implementation() == 'PyPy':
-            # Under PyPy, funcsigs can't automatically find the correct 
-            # initializer or constructor, so must be told what's desired.
-            # PyPy also seems to create function objects that don't exist
-            # under CPython, so we have to check for the existence of a 
-            # filename to prove that those functions / methods are actually
-            # being pulled from code that exists on the filesystem.
-            if hasattr(subject.__init__.func_code, 'co_filename'):
-                signature = funcsigs.signature(subject.__init__)
-            elif hasattr(subject.__new__.func_code, 'co_filename'):
-                signature = funcsigs.signature(subject.__new__)
-            else:
-                return (
-                    positional_names,
-                    keyword_names,
-                    accepts_args,
-                    accepts_kwargs,
-                    )
-        else:
-            try:
-                signature = funcsigs.signature(subject)
-            except ValueError:
-                return (
-                    positional_names,
-                    keyword_names,
-                    accepts_args,
-                    accepts_kwargs,
-                    )
+        try:
+            signature = funcsigs.signature(subject)
+        except ValueError:
+            return (
+                positional_names,
+                keyword_names,
+                accepts_args,
+                accepts_kwargs,
+                )
         for name, parameter in signature.parameters.items():
             if parameter.kind == funcsigs._POSITIONAL_OR_KEYWORD:
                 if parameter.default == parameter.empty:
@@ -775,10 +756,6 @@ class StorageFormatAgent(AbjadValueObject):
                 accepts_args = True
             elif parameter.kind == funcsigs._VAR_KEYWORD:
                 accepts_kwargs = True
-        if platform.python_implementation() == 'PyPy':
-            # Funcsigs under PyPy doesn't discard class_ or self.
-            if positional_names:
-                positional_names.pop(0)
         return (
             positional_names,
             keyword_names,

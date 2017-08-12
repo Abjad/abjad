@@ -55,8 +55,6 @@ def test_abjad___doc___01(class_):
     missing_doc_names = []
     if class_.__doc__ is None:
         missing_doc_names.append(class_.__name__)
-    if class_ is abjad.String and platform.python_implementation() == 'PyPy':
-        return
     for attribute in inspect.classify_class_attrs(class_):
         if attribute.name in ignored_names:
             continue
